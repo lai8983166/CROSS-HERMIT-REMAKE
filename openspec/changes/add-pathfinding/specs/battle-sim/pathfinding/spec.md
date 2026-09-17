@@ -5,11 +5,11 @@
 ## ADDED Requirements
 
 ### Requirement: 可行走规则数据驱动
-阻挡规则由 `data/walk_rules.json` 定义：三层的"阻挡值集合"（`blocked_terrain`/`blocked_variant` 为数组，`blocked_objects` 支持 `"nonzero"` 或数组）。默认规则 = object 层非零阻挡。SimMapData 暴露 `is_walkable(x, y, rules)`；改 JSON 不改代码即可改变通行语义。
+阻挡规则由 `data/walk_rules.json` 定义：三层的"阻挡值集合"（`blocked_terrain`/`blocked_variant` 为数组，`blocked_objects` 支持 `"nonzero"` 或数组）。默认规则 = 全开放（实测 object 层为横条纹装饰非墙、terrain 为逐格散点，均非可行走语义——真实碰撞待实机对照）。SimMapData 暴露 `is_walkable(x, y, rules)`；改 JSON 不改代码即可改变通行语义。
 
 #### Scenario: 默认规则
-- **WHEN** 以默认规则查询 object≠0 的格子
-- **THEN** 不可行走；object=0 且其余层不在阻挡表的格子可行走
+- **WHEN** 以默认规则（空阻挡表）查询任意界内格子
+- **THEN** 可行走；把某 object 值加入 `blocked_objects` 数组后，该值格子立即不可行走
 
 #### Scenario: 自定义规则
 - **WHEN** 把某 terrain 值加入 blocked_terrain 后重新加载

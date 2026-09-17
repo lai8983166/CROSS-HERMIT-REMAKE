@@ -25,6 +25,10 @@ var atk_accuracy := 0
 var evasion := 0
 var defense := 0
 
+# 寻路缓存 (design 决策 3 修订: 每步重算→缓存失效重算; 裸 BFS 实测 ~30ms/次)
+var path_cache: Array[Vector2i] = []
+var path_target := Vector2i(-1, -1)
+
 
 func setup(def: Dictionary) -> void:
 	name = def.get("name", "unit")

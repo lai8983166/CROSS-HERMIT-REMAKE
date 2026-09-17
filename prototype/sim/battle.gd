@@ -83,15 +83,47 @@ func _step_along_path(u: BattleUnit, target: Vector2i) -> bool:
 	if map == null:
 		_step_straight(u, target)
 		return true
+	# 缓存命中: 目标未变且缓存下一步仍可走 → 直接走; 否则重算
+	if u.path_cache.is_empty() or u.path_target != target:
+		u.path_cache = _path(u, target)
+		u.path_target = target
+	while not u.path_cache.is_empty():
+		var next: Vector2i = u.path_cache[0]
+		if _cell_free(next, u):
+			u.cell = next
+			u.path_cache.remove_at(0)
+			u.state = BattleUnit.State.MOVE
+			return true
+		u.path_cache.remove_at(0)   # 前方被占, 弹出重试后续步
+	# 缓存耗尽/不可达 → 重算一次; 仍空则原地等待
+	u.path_cache = _path(u, target)
+	u.path_target = target
+	if u.path_cache.is_empty():
+		return false
+	var step: Vector2i = u.path_cache[0]
+	if not _cell_free(step, u):
+		u.path_cache = []
+		return false
+	u.cell = step
+	u.path_cache.remove_at(0)
+	u.state = BattleUnit.State.MOVE
+	return true
+
+
+func _path(u: BattleUnit, target: Vector2i) -> Array[Vector2i]:
 	var blocked := {}
 	for o in units:
 		if o != u and o.state != BattleUnit.State.DEAD and o.state != BattleUnit.State.WITHDRAWN:
 			blocked[o.cell] = true
-	var path := SimPath.find_path(map, walk_rules, u.cell, target, blocked)
-	if path.is_empty():
-		return false   # 不可达/挤死 → 原地等待
-	u.cell = path[0]
-	u.state = BattleUnit.State.MOVE
+	return SimPath.find_path(map, walk_rules, u.cell, target, blocked)
+
+
+func _cell_free(c: Vector2i, u: BattleUnit) -> bool:
+	if map != null and not map.is_walkable(c.x, c.y, walk_rules):
+		return false
+	for o in units:
+		if o != u and o.cell == c and o.state != BattleUnit.State.DEAD 				and o.state != BattleUnit.State.WITHDRAWN:
+			return false
 	return true
 
 

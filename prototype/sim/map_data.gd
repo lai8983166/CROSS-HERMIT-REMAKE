@@ -63,9 +63,9 @@ func is_walkable(x: int, y: int, rules: Dictionary) -> bool:
 		return false
 	if rules.get("blocked_variant", []).has(layer_value("variant", x, y)):
 		return false
-	var obj_rule: Variant = rules.get("blocked_objects", "nonzero")
+	var obj_rule: Variant = rules.get("blocked_objects", [])
 	var o: int = layer_value("object", x, y)
-	if obj_rule == "nonzero":
+	if typeof(obj_rule) == TYPE_STRING and obj_rule == "nonzero":
 		if o != 0:
 			return false
 	elif obj_rule is Array and obj_rule.has(o):

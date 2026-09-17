@@ -5,6 +5,8 @@ extends RefCounted
 ## 全 PackedInt32Array, 无 Dictionary 哈希开销 (idx = y*cell_w + x)
 
 const DIRS: Array[Vector2i] = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+const DIRX := [1, -1, 0, 0]
+const DIRY := [0, 0, 1, -1]
 
 
 ## 返回路径 (不含 from, 含 to); 目标阻挡/被占时终点退化为目标的最近可达邻格; 不可达返回 []
@@ -35,6 +37,15 @@ static func find_path(map: SimMapData, rules: Dictionary, from: Vector2i, to: Ve
 	queue[tail] = start_i
 	tail += 1
 	var goal_i := -1
+	var dofs := [1, -1, w, -w]   # 右/左/下/上 的索引增量 (边界由 nx/ny 检查保证)
+	var terrain: Array = map._layers.get("terrain", [])
+	var variant: Array = map._layers.get("variant", [])
+	var obj: Array = map._layers.get("object", [])
+	var bt: Array = rules.get("blocked_terrain", [])
+	var bv: Array = rules.get("blocked_variant", [])
+	var bo: Variant = rules.get("blocked_objects", [])
+	var bo_nonzero: bool = typeof(bo) == TYPE_STRING and bo == "nonzero"
+	var bo_arr: Array = bo if bo is Array else []
 	while head < tail:
 		var cur: int = queue[head]
 		head += 1
@@ -43,18 +54,25 @@ static func find_path(map: SimMapData, rules: Dictionary, from: Vector2i, to: Ve
 			break
 		var cx: int = cur % w
 		var cy: int = cur / w
-		for d in DIRS:
-			var nx: int = cx + d.x
-			var ny: int = cy + d.y
+		for k in 4:
+			var nx: int = cx + DIRX[k]
+			var ny: int = cy + DIRY[k]
 			if nx < 0 or ny < 0 or nx >= w or ny >= h:
 				continue
-			var ni: int = ny * w + nx
+			var ni: int = cur + dofs[k]
 			if visited[ni] != 0:
 				continue
 			visited[ni] = 1
-			var pos := Vector2i(nx, ny)
-			if not _open(map, rules, pos, blocked, from):
-				continue
+			if ni != start_i:
+				if bt.has(terrain[ni]):
+					continue
+				if bv.has(variant[ni]):
+					continue
+				var o: int = obj[ni]
+				if (bo_nonzero and o != 0) or bo_arr.has(o):
+					continue
+				if blocked.has(Vector2i(nx, ny)):
+					continue
 			prev[ni] = cur
 			queue[tail] = ni
 			tail += 1

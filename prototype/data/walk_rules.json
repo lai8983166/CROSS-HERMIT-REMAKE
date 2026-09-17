@@ -1,10 +1,10 @@
 {
  "_meta": {
-  "desc": "可行走规则 (add-pathfinding) — BIN 三层值→阻挡; 语义实机对照后改此表即可",
-  "modding": "数组列出阻挡值; objects 支持 \"nonzero\"(非零全阻) 或值数组",
-  "placeholder": "占位规则: 仅 object≠0 阻挡 (terrain/variant 不设限)"
+  "desc": "可行走规则 (add-pathfinding) — BIN 三层值→阻挡",
+  "modding": "数组列出阻挡值; objects 支持 \"nonzero\" 或值数组; 改表即改通行语义",
+  "finding_2026-09-18": "MAP01 实测: object 层是横条纹装饰(每3行一条, 69个64x2条带), terrain 是逐格散点类型 — 都不是可行走/墙语义; 故默认全开放, 真实碰撞数据待实机对照 (formats.md §5 开口)"
  },
  "blocked_terrain": [],
  "blocked_variant": [],
- "blocked_objects": "nonzero"
+ "blocked_objects": []
 }
