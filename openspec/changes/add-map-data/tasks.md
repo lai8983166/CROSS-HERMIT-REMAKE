@@ -20,11 +20,11 @@
 
 ## 3. 渲染与交互
 
-- [ ] 3.1 `data/terrain_palette.json`（占位调色板 13 色，数据驱动）+ main.gd 改造：SimMapData 加载 map01 → 全图渲染（
+- [x] 3.1 `data/terrain_palette.json`（占位调色板 13 色，数据驱动）+ main.gd 改造：SimMapData 加载 map01 → 全图渲染（
        variant 明度微调、object 亮黄描边）。验证：窗口运行 `--quit-after 120` 无脚本错误，
        人工看一眼全图着色分层可辨
-- [ ] 3.2 悬停/点击回显：HUD 显示 (x,y)+三层值（点击锁定）。验证：人工点击 object≠0 格，
+- [x] 3.2 悬停/点击回显：HUD 显示 (x,y)+三层值（点击锁定）。验证：人工点击 object≠0 格，
        HUD 值与 JSON 抽查一致；无资产（assets 空）状态功能正常
 - [x] 3.3 回归：sim 测试全绿（`-s res://sim/tests/test_runner.gd`，新增 map_data 套件）。
        验证：汇总 0 failures, exit=0
-- [ ] 3.4 提交 + prototype/README 更新（运行方式/map01.json 来源/调色板占位说明）
+- [x] 3.4 提交 + prototype/README 更新（运行方式/map01.json 来源/调色板占位说明）
