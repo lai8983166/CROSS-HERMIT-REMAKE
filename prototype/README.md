@@ -1,6 +1,9 @@
 # prototype/ — Godot 4 复刻原型
 
-入口: `main.tscn`（占位: 菱形格网格 + 速度档 1/2/3 + FPS）。
+入口: `main.tscn`（**MAP01 地图数据视图**：三层逻辑数据渲染 + 悬停/点击回显 + 速度档）。
+
+数据来源: `python tools/map_export.py 01` → `data/map01.json`（游戏目录不入库，JSON 入库）。
+调色板: `data/terrain_palette.json`（占位语义，直接改颜色即可换肤/魔改）。
 
 ## 目录
 
