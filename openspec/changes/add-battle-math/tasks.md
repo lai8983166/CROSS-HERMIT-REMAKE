@@ -2,12 +2,12 @@
 
 ## 1. 数据与依赖
 
-- [ ] 1.1 `tools/table_export.py` 注册 `engage` 表（i32[51] @0x6E4528，行 = {level, minutes}，
+- [x] 1.1 `tools/table_export.py` 注册 `engage` 表（i32[51] @0x6E4528，行 = {level, minutes}，
        magic 校验：minutes[0]==0 且 minutes[1]==5940 且 minutes[50]==540）。验证：
        `python tools/table_export.py all` 后四个 JSON 齐全且 engage 值符合
-- [ ] 1.2 vendor GUT（Godot 4 兼容版）到 `prototype/addons/gut/` + `.gutconfig.json` +
-       运行命令入 prototype/README。验证：`~/bin/godot --headless --path prototype -s
-       addons/gut/gut_cmdln.gd -gdir=res://sim/tests -ginclude_subdirs -gexit` 输出测试汇总
+- [x] 1.2 测试框架就位（GUT 9.3/9.6 在 4.7.2 无头挂起 → 自研 runner: sim/tests/test_base.gd
+       断言基类 + test_runner.gd 发现/汇总/退出码, 见 design 决策 6 修订）。验证：
+       `~/bin/godot --headless --path prototype -s res://sim/tests/test_runner.gd` 输出汇总 exit=0
 
 ## 2. sim 模块
 
@@ -24,7 +24,7 @@
        防御削减、钳位语义）、`magic(base, resist, mod)`、`fixed(v)`。验证：GUT 锚点三则
        （200 命中→200 伤；MISS 场景；10−20→0）+ 确定性测试（同种子两次一致）
 - [ ] 2.5 `prototype/sim/engage.gd`：`engage_seconds(level, mod_h, mod_s)` 读表计算，
-       clamp(1, 356400)。验证：GUT 锚点 lv1→356400、lv50→32400、lv50+mod_h=1→356400
+       clamp(1, 356400)。验证：GUT 锚点 lv1→356400、lv50→32400、lv50+mod_h=1→36000 (32400+3600)
 
 ## 3. 集成验收
 

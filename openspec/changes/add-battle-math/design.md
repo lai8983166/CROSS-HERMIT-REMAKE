@@ -30,9 +30,11 @@
    阶段保持轻量。
 5. **表加载**：`sim/tables.gd` 单点负责加载 `res://data/*.json` 并缓存（静态 Dictionary）；
    位置换算（如 minutes→秒）写在消费者（engage.gd）而非导出器——导出保持"原作单位原样"。
-6. **GUT 引入方式**：vendor 到 `prototype/addons/gut/`（Godot 4 兼容版，github.com/bitwes/Gut
-   9.x），连同 `.gutconfig.json` 与运行命令一起提交。备选（自研 60 行断言 runner）放弃——
-   GUT 有 runner/断言/报告开箱即用，后续 suite 增长不用迁移。
+6. **测试框架 (实施中修订 2026-09-17)**：原计划 vendor GUT 9.x，实测 9.3.0 与 9.6.1 在
+   Godot 4.7.2 headless 下均报错后挂起（class 注册/兼容性问题；另查明 `_init` 报错会使
+   SceneTree 永不退出，即"挂起"的机制）。改用原备选：自研轻量 runner
+   （`sim/tests/test_base.gd` 断言基类 + `test_runner.gd` 发现/汇总/退出码），满足 spec 的
+   headless 可跑 + 退出码要求。GUT 若未来兼容可整体替换（测试文件仅依赖自家基类 API）。
 7. **魔法式简化建模**：v1 按 spec 场景实现 `d = 基础×(100−魔抗+修正)/100`；原作 4826F0 的
    状态附加/多段细节留待需要时扩展（文档锚点已注明）。
 

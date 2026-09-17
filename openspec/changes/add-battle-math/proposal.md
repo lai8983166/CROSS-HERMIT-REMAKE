@@ -15,7 +15,7 @@ character_growth §1.3/§2）落成可运行、可测试的 Godot 代码。数�
   - `battle_math.gd`（伤害三式：物理命中残量/倍率档/防御削减、魔法抗性、固定伤害；可注入 RNG）
   - `engage.gd`（ENGAGE TIME 计算，表驱动）
 - `tools/table_export.py` 新增 `engage` 表导出（i32[51] @0x6E4528，分钟/等级）
-- 引入 GUT 测试框架（vendor 至 `prototype/addons/gut/`）+ `sim/tests/` 锚点测试
+- 轻量测试框架（自研 runner；GUT 9.3/9.6 与 Godot 4.7.2 无头不兼容，见 design 决策 6）+ `sim/tests/` 锚点测试
 - 不含：AI、寻路、演出、UI、地图（后续 change）
 
 ## Capabilities
