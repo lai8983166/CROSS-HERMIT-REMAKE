@@ -37,15 +37,29 @@
 - 8bit 调色板不在文件内（索引 255≈白色字形, 0=透明底），推断用全局调色板或作纯 alpha 用
 - `DUMMY.BIN`(128B 像素体) 为占位文件
 
-## 2. 偏移表档案容器 (.BIN 多条目) ⚠️结构已知, 条目待枚举
+## 2. 偏移表档案容器 (.BIN 多条目) ✅已全量枚举 (2026-09-17, tools/enum_container.py)
 
-`EDDATA.BIN / DEMODATA.BIN / MENU / WORKROOM / TACTSTART / TACTICSRESULT / ALLRESULT / SLPROG / COMING.BIN / DXANIM`
+**统一格式**（单图 .BIN 即 N=1 特例, 与 §1 融合）:
+```
+[u32 总长=文件大小][u32 条目数 N][u32 偏移[N]]   首条目 = 8+4N, 末条目止于总长
+```
+全库 432 个容器 / 1,578 条目: DXIMG 478 / BMP 683 / TEXT 160 / 嵌套? 257
+(清单: analysis/container_enum.json)
 
-```
-[u32 总长][u32 条目数 N][u32 首偏移][u32 偏移1]...[u32 偏移N][数据...]
-```
-- `COMING.BIN` 中直接内嵌标准 BMP（魔数 `BM`）
-- `DEMODATA.BIN` 115MB / `OP` 合计 248MB — 疑为 OP 动画帧序列（X1RGB555 帧或多图层）
+| 容器 | n | 内容 |
+|---|---|---|
+| DEMODATA.BIN | 57 | demo 演出 = **57 张 DX 图帧序列** |
+| OPDATA.BIN / OPDATA_256.BIN | 48+48 | OP 动画 = 48 帧 DX图 + 同帧 8bpp BMP 版 |
+| KOJINDATA.BIN | 47 | 个人状态 CG |
+| COMMON.BIN | 580 | UI 图集: 461 BMP + 116 文本(含 Dm-No-MakeTe 构建标记) |
+| HANDATA/EDDATA/ALLRESULT/SLPROG/TACTICSRESULT/WORKROOM/OPTION/NETDATA | 3~12 | 场景图组 |
+| TITLE.BIN | 8 | 6 BMP + 2 DXIMG |
+| TACTSTART*.BIN | 2~5 | 战斗开场图 |
+| EFCT.BIN | 7 | 特效: 条目内又嵌 {u32 尺寸, u32 子数, ...} 子表 |
+| **UNITPAL.BIN** | 70 | **8bit 纹理调色板库: 70×1024B = 256×4B(BGRX, 0号=透明黑)** → 关闭"调色板来源"开口项 |
+| T*.BIN | 2 | 战斗脚本容器 (即 §4 的 {len, nblocks=2}) |
+
+- `COMING.BIN` 内嵌标准 BMP ✓; T*.BIN 在 SCRIPT/ 与 SCRIPT/BIG5/ 各计一次 (安装器冗余副本)
 
 ## 3. YBC 事件脚本格式 (.YBC) ✅已破解并全量反汇编 (2026-09-17)
 
@@ -201,8 +215,8 @@ TEXT 逐行对白 → 每回合循环 IFGOTO 查 UNITWK/事件开关 → TACTSET
 - 音频 (MP3/WAV) 与地图 BMP 为标准格式，原地使用不复制
 
 ## 待办
-- [ ] 多条目容器条目枚举器（对照 OP/MENU 验证内嵌 BMP 或 X1RGB555 帧）
+- [x] ~~多条目容器条目枚举器~~ → 已解: tools/enum_container.py, 432 容器/1,578 条目 (见 §2)
 - [x] TACTICS SCRIPT 字节码反汇编（见 §4, 45/45 + 4,842 条文本提取）
 - [ ] MAP/VPT/CEL 布局解析（对照 BMP 纹理拼图验证）
 - [ ] YBC 分段表结构（X/Y 字段含义）
-- [ ] 8bit 纹理的调色板来源定位
+- [x] ~~8bit 纹理的调色板来源定位~~ → UNITPAL.BIN 70×256×4B (见 §2; 与具体 8bit 纹理的绑定关系待查)
