@@ -5,7 +5,7 @@
 
 #### Scenario: 导出 engage 表
 - **WHEN** 运行 `python tools/table_export.py engage`
-- **THEN** 生成 51 行 JSON：level 0 的 minutes=0、level 1..6 均为 5940、level 50 为 540；首值不符 5940 段特征时报错退出
+- **THEN** 生成 51 行 JSON：level 0 的 minutes=0、level 1..5 均为 5940、level 6 为 5760、level 50 为 540；首值不符 5940 段特征时报错退出
 
 #### Scenario: 纳入 all
 - **WHEN** 运行 `python tools/table_export.py all`

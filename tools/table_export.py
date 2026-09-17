@@ -116,6 +116,27 @@ JOB_STRIDE = 0x40
 JOB_COUNT = 30
 LEVEL_VA = 0x625300
 LEVEL_COUNT = 50
+ENGAGE_VA = 0x6E4528
+ENGAGE_COUNT = 51
+
+
+def decode_engage(data, sha):
+    """ENGAGE 时长表 (i32[51], 单位=分钟; battle_mechanics.md §8):
+    lv0=0, lv1~6=5940 (99h 封顶), 每 3min/级降至 lv20, 再 2min/级至 lv50=540"""
+    vals = list(struct.unpack_from(f'<{ENGAGE_COUNT}i', data, ENGAGE_VA - BASE))
+    if vals[0] != 0 or vals[1] != 5940 or vals[50] != 540:
+        sys.stderr.write(f'错误: ENGAGE 表 magic 校验失败 ({vals[0]},{vals[1]},{vals[50]}), '
+                         '镜像可能已更换, 核对 0x6E4528\n')
+        sys.exit(1)
+    rows = [{'level': i, 'minutes': v} for i, v in enumerate(vals)]
+    return {
+        '_meta': {
+            'table': 'engage', 'source_va': ENGAGE_VA, 'stride': 4, 'count': len(rows),
+            'naming_ref': 'docs/battle_mechanics.md#8 (engage = mod_h*3600 + tbl[lv]*60 + mod_s, clamp 1..356400)',
+            'image_sha1_8': sha, 'tool': f'table_export v{TOOL_VER}',
+        },
+        'rows': rows,
+    }
 
 
 def load_image():
@@ -200,6 +221,7 @@ TABLES = {
     'level': decode_level,
     'attack': decode_attack,
     'job': decode_job,
+    'engage': decode_engage,
 }
 
 
