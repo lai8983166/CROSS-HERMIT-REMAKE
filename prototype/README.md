@@ -19,4 +19,13 @@
 
 ## 运行
 
-Godot 4.3+：`godot --path prototype/`（骨架未接数据，仅渲染验证）
+本机 Godot 4.7.2 (winget: `GodotEngine.GodotEngine.Mono`)，bash 包装器 `~/bin/godot`：
+
+```bash
+~/bin/godot --path prototype            # 窗口运行
+~/bin/godot --headless --path prototype --quit   # CI/无头校验
+~/bin/godot --path prototype --quit-after 60     # 渲染 60 帧自退 (验证通过, RTX 3060 Ti)
+```
+
+exe 直达路径 (cmd 用):
+`%LOCALAPPDATA%\Microsoft\WinGet\Packages\GodotEngine.GodotEngine.Mono_Microsoft.Winget.Source_8wekyb3d8bbwe\Godot_v4.7.2-stable_mono_win64\Godot_v4.7.2-stable_mono_win64_console.exe`
