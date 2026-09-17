@@ -52,3 +52,22 @@ func world_to_cell(w: Vector2) -> Vector2i:
 	var s: float = w.x / (CELL_W * 0.5)
 	var t: float = w.y / (CELL_H * 0.5)
 	return Vector2i(roundi((t + s) * 0.5), roundi((t - s) * 0.5))
+
+
+## 可行走判定 (add-pathfinding) — 规则 Dictionary 由调用方从 data/walk_rules.json 加载缓存
+## rules: {blocked_terrain: Array, blocked_variant: Array, blocked_objects: "nonzero"|Array}
+func is_walkable(x: int, y: int, rules: Dictionary) -> bool:
+	if x < 0 or y < 0 or x >= cell_w or y >= cell_h:
+		return false
+	if rules.get("blocked_terrain", []).has(layer_value("terrain", x, y)):
+		return false
+	if rules.get("blocked_variant", []).has(layer_value("variant", x, y)):
+		return false
+	var obj_rule: Variant = rules.get("blocked_objects", "nonzero")
+	var o: int = layer_value("object", x, y)
+	if obj_rule == "nonzero":
+		if o != 0:
+			return false
+	elif obj_rule is Array and obj_rule.has(o):
+		return false
+	return true

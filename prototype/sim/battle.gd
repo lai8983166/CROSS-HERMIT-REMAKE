@@ -14,11 +14,16 @@ var finished := false
 var winner := -1          # -1 进行中/平局
 var move_interval := 12
 var attack_interval := 30
+var map: SimMapData = null                      # 传入则启用寻路 (add-pathfinding)
+var walk_rules: Dictionary = {}
 
 
-static func start(setup: Dictionary, seed: int) -> Battle:
+static func start(setup: Dictionary, seed: int, p_map: SimMapData = null) -> Battle:
 	var b := Battle.new()
 	b.rng.seed = seed
+	b.map = p_map
+	b.walk_rules = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/walk_rules.json"))
 	b.move_interval = maxi(1, int(setup.get("move_interval", 12)))
 	b.attack_interval = maxi(1, int(setup.get("attack_interval", 30)))
 	for u in setup.get("units", []):
@@ -51,8 +56,7 @@ func tick() -> void:
 			continue
 		var dist: int = absi(u.cell.x - t.cell.x) + absi(u.cell.y - t.cell.y)
 		if dist > RANGE:
-			if frame % move_interval == 0:
-				_step_toward(u, t.cell)
+			if frame % move_interval == 0 and _step_along_path(u, t.cell):
 				_log("f%d %s move %d,%d" % [frame, u.name, u.cell.x, u.cell.y])
 		elif frame % attack_interval == 0:
 			_attack(u, t)
@@ -74,8 +78,24 @@ func _nearest_enemy(u: BattleUnit) -> BattleUnit:
 	return best
 
 
-## 直线步进: 优先距离差较大的轴, 平局交替 (design 决策 2, 无碰撞)
-func _step_toward(u: BattleUnit, target: Vector2i) -> void:
+## 沿 BFS 路径步进一步 (add-pathfinding); 地图缺失时退化为直线步进; 返回是否移动
+func _step_along_path(u: BattleUnit, target: Vector2i) -> bool:
+	if map == null:
+		_step_straight(u, target)
+		return true
+	var blocked := {}
+	for o in units:
+		if o != u and o.state != BattleUnit.State.DEAD and o.state != BattleUnit.State.WITHDRAWN:
+			blocked[o.cell] = true
+	var path := SimPath.find_path(map, walk_rules, u.cell, target, blocked)
+	if path.is_empty():
+		return false   # 不可达/挤死 → 原地等待
+	u.cell = path[0]
+	u.state = BattleUnit.State.MOVE
+	return true
+
+
+func _step_straight(u: BattleUnit, target: Vector2i) -> void:
 	var dx: int = target.x - u.cell.x
 	var dy: int = target.y - u.cell.y
 	if dx == 0:

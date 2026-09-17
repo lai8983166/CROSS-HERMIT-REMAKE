@@ -81,3 +81,51 @@ func test_engage_withdraw() -> void:
 		if " withdraw" in e:
 			has_withdraw = true
 	assert_true(has_withdraw, "日志含撤退")
+
+
+func test_battle_paths_around_wall() -> void:
+	# 隔墙 1v1 (task 2.1): 中间竖墙留缺口, BFS 绕行, 战斗打完且 move 不踩墙
+	var m := SimMapData.new()
+	m.cell_w = 7
+	m.cell_h = 5
+	var cells := 35
+	var obj: Array = []
+	obj.resize(cells)
+	obj.fill(0)
+	for y in 4:
+		obj[y * 7 + 3] = 1          # x=3 竖墙 y=0..3, y=4 留缺口
+	var zero: Array = []
+	zero.resize(cells)
+	zero.fill(0)
+	m._layers = {"terrain": zero.duplicate(), "variant": zero.duplicate(), "object": obj}
+	var rules := {"blocked_terrain": [], "blocked_variant": [], "blocked_objects": "nonzero"}
+	var setup := {
+		"move_interval": 6, "attack_interval": 30,
+		"units": [
+			{"name": "L", "faction": 0, "job_id": 1, "level": 5,
+			 "stats": {"strength": 30, "agility": 18, "constitution": 30}, "pos": [1, 2]},
+			{"name": "R", "faction": 1, "job_id": 1, "level": 5,
+			 "stats": {"strength": 28, "agility": 18, "constitution": 28}, "pos": [5, 2]},
+		]}
+	var b := Battle.start(setup, 7, m)
+	b.walk_rules = rules
+	b.run_to_finish()
+	assert_true(b.finished, "隔墙战斗结束")
+	assert_true(b.winner == 0 or b.winner == 1, "有胜方")
+	for e in b.events:
+		if " move " in e:
+			var parts := e.split(" ")[-1].split(",")
+			var x: int = int(parts[0])
+			var y: int = int(parts[1])
+			assert_true(m.is_walkable(x, y, rules), "move 落点 %d,%d 可走" % [x, y])
+
+
+func test_setup_positions_walkable() -> void:
+	# task 2.3: 实战布阵全员初始格可行走 (MAP01 + 默认规则)
+	var m := SimMapData.load_map("01")
+	var rules := _load_setup()
+	var rules_json: Dictionary = JSON.parse_string(
+			FileAccess.get_file_as_string("res://data/walk_rules.json"))
+	for u in rules.units:
+		assert_true(m.is_walkable(u.pos[0], u.pos[1], rules_json),
+			"%s 初始格 (%d,%d) 可走" % [u.name, u.pos[0], u.pos[1]])

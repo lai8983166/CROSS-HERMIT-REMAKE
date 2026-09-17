@@ -39,6 +39,11 @@ func assert_true(cond: bool, msg := "expected true") -> void:
 		_fail(msg)
 
 
+func assert_false(cond: bool, msg := "expected false") -> void:
+	if cond:
+		_fail(msg)
+
+
 func assert_eq(got: Variant, want: Variant, msg := "") -> void:
 	if got != want:
 		_fail("%s got=%s want=%s" % [msg, str(got), str(want)])

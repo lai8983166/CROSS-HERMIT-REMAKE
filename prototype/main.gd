@@ -61,7 +61,7 @@ func _start_battle(seed: int) -> void:
 	var setup: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/battle_setup.json"))
 	var use_seed: int = setup.get("seed", 42) if seed == 0 else seed
-	battle = Battle.start(setup, use_seed)
+	battle = Battle.start(setup, use_seed, map)
 	selected = null
 	_accum = 0.0
 

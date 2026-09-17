@@ -6,6 +6,7 @@
 
 数据来源: `python tools/map_export.py 01` → `data/map01.json`（游戏目录不入库，JSON 入库）。
 调色板: `data/terrain_palette.json`（占位语义，直接改颜色即可换肤/魔改）。
+可行走规则: `data/walk_rules.json`（占位=object≠0 阻挡；实机对照后改表即改通行语义）。
 
 ## 目录
 
