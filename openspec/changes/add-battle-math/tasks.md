@@ -11,24 +11,24 @@
 
 ## 2. sim 模块
 
-- [ ] 2.1 `prototype/sim/tables.gd`：加载并缓存 `res://data/*.json`（level/attack/job/engage），
+- [x] 2.1 `prototype/sim/tables.gd`：加载并缓存 `res://data/*.json`（level/attack/job/engage），
        暴露 `job(id)` / `attack(id)` / `engage_table()`。验证：headless 脚本取 job 0 与
        attack 0 字段与 JSON 一致
-- [ ] 2.2 `prototype/sim/unit.gd`（class_name SimUnit）：七属性/职业/等级/HP/MP 现值与上限/
+- [x] 2.2 `prototype/sim/unit.gd`（class_name SimUnit）：七属性/职业/等级/HP/MP 现值与上限/
        回避/装甲/魔抗/精神抗性 字段 + 构造默认值。验证：GUT 构造测试（缺省防御字段为 0，
        全字段可读回）
-- [ ] 2.3 `prototype/sim/derive.gd`：`derive_unit(u) -> Dictionary` 按蓝图 §2 公式与
+- [x] 2.3 `prototype/sim/derive.gd`：`derive_unit(u) -> Dictionary` 按蓝图 §2 公式与
        job_table 系数算 HP/MP/精神上限（clamp 1..999 等，整数截断）。验证：GUT 锚点
        (耐10力10敏10, hp_coef=100)→50；全 1 属性 + hp_coef=1 → 1
-- [ ] 2.4 `prototype/sim/battle_math.gd`：`physical(atk, def, rng)`（MISS=-1、倍率档≥150、
+- [x] 2.4 `prototype/sim/battle_math.gd`：`physical(atk, def, rng)`（MISS=-1、倍率档≥150、
        防御削减、钳位语义）、`magic(base, resist, mod)`、`fixed(v)`。验证：GUT 锚点三则
        （200 命中→200 伤；MISS 场景；10−20→0）+ 确定性测试（同种子两次一致）
-- [ ] 2.5 `prototype/sim/engage.gd`：`engage_seconds(level, mod_h, mod_s)` 读表计算，
+- [x] 2.5 `prototype/sim/engage.gd`：`engage_seconds(level, mod_h, mod_s)` 读表计算，
        clamp(1, 356400)。验证：GUT 锚点 lv1→356400、lv50→32400、lv50+mod_h=1→36000 (32400+3600)
 
 ## 3. 集成验收
 
-- [ ] 3.1 GUT 全量绿：headless 运行全部测试退出码 0，汇总行写进提交信息。验证：
+- [x] 3.1 GUT 全量绿：headless 运行全部测试退出码 0，汇总行写进提交信息。验证：
        `~/bin/godot --headless --path prototype -s addons/gut/gut_cmdln.gd -gdir=res://sim/tests -gexit`
 - [ ] 3.2 公式↔文档交叉核对：把 battle_math/derive/engage 的每个公式旁注文档章节指针，
        提交前人工过一遍符号与端点。验证：代码内注释含 `# 见 battle_mechanics.md §3.1` 式引用

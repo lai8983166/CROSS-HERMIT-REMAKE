@@ -6,7 +6,8 @@
 
 | 目录 | 用途 |
 |---|---|
-| `sim/` | 战斗模拟器模块（伤害/命中/ENGAGE TIME/AI/寻路），按 openspec change 逐个落地 |
+| `sim/` | 战斗模拟器模块（tables/unit/derive/battle_math/engage 已就位），按 openspec change 逐个扩展 |
+| `sim/tests/` | 测试（自研 runner）：`~/bin/godot --headless --path prototype -s res://sim/tests/test_runner.gd`（改 class_name 后先 `--import`） |
 | `data/` | 表导出 JSON（tools/table_export.py 产出）+ 地图逻辑层 + 文本池 |
 | `scripts_gen/` | YBC32→GDScript 转译输出（**不手改**，工具再生成） |
 | `assets/` | 离线转换素材（PNG/OGG） |
