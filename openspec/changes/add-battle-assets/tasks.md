@@ -22,4 +22,4 @@
        验证：runner 0 failures；README 含再生成命令
 - [ ] 3.2 用户目检：窗口认出原版 MAP01（与 analysis/map01_atlas.png 同图）、三态切换、
        战斗照常进行。验证：用户确认
-- [ ] 3.3 提交（含 atlas PNG + JSON）
+- [x] 3.3 提交 cd258f6 (含 atlas PNG/JSON/README)
