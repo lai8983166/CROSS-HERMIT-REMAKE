@@ -30,7 +30,7 @@
 
 - [x] 3.1 GUT 全量绿：headless 运行全部测试退出码 0，汇总行写进提交信息。验证：
        `~/bin/godot --headless --path prototype -s addons/gut/gut_cmdln.gd -gdir=res://sim/tests -gexit`
-- [ ] 3.2 公式↔文档交叉核对：把 battle_math/derive/engage 的每个公式旁注文档章节指针，
+- [x] 3.2 公式↔文档交叉核对：把 battle_math/derive/engage 的每个公式旁注文档章节指针，
        提交前人工过一遍符号与端点。验证：代码内注释含 `# 见 battle_mechanics.md §3.1` 式引用
        不少于 5 处
-- [ ] 3.3 提交（信息含测试汇总），blueprint §6 资产表加一行 sim 现状
+- [x] 3.3 提交（信息含测试汇总），blueprint §6 资产表加一行 sim 现状
