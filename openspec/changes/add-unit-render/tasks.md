@@ -27,8 +27,8 @@
        [原] main.gd 接入 Battle：_physics_process 固定步长累积调 tick（×time_scale）；
        单位绘制（阵营色菱形/死亡暗/撤退半透明）+ 头顶 HP/ENGAGE 双条；地图三层渲染保留。
        验证：窗口 `--quit-after 600` 无脚本错误，人工看移动/掉血
-- [ ] 3.2 点击单位回显单位摘要 + 战斗结束 HUD（胜负/耗时）+ `R` 重开（新种子）。
+- [x] 3.2 点击单位回显单位摘要 + 战斗结束 HUD（胜负/耗时）+ `R` 重开（新种子）。
        验证：人工点击与重开；HUD 数值与 setup 派生一致抽查
 - [x] 3.3 回归：全部测试套件绿（新增 battle/battle_unit 套件）。
        验证：runner 汇总 0 failures exit=0
-- [ ] 3.4 提交 + README 更新（战斗视图说明/操作键位/battle_setup 魔改说明）
+- [x] 3.4 提交 + README 更新（战斗视图说明/操作键位/battle_setup 魔改说明）
