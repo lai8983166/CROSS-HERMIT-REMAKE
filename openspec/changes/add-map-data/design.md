@@ -22,9 +22,10 @@ BIN 格式已定案（formats.md §5：16B 头 + 3×W×H u16 层，层语义待�
    校验/输入/输出形态都不同；复用 `_meta` 惯例。备选（并入）会让 table_export 双职责。
 2. **JSON 层用一维行优先数组**（非二维嵌套）：文件小（6144×3 int）、Godot 侧索引
    `y*cell_w+x` 一次乘加；二维数组在 GDScript 访问开销大。
-3. **调色板 = terrain 值→Color 的常量表**（0=透明/空, 1..12 递进色相），写在渲染脚本；
-   层1 明度调制 `lightness ± value×2%`；层2 描边亮黄。全部为占位语义，集中一张表便于
-   实机对照后整表替换。
+3. **调色板 = terrain 值→颜色的数据表**（0=透明/空, 1..12 递进色相），放
+   `prototype/data/terrain_palette.json`（魔改友好约束：代码不藏常量，改色=改 JSON）；
+   层1 明度调制 `lightness ± value×2%`；层2 描边亮黄。全部为占位语义，实机对照后整表
+   替换该 JSON。
 4. **渲染分帧**：一次性 `_draw()` 画 6,144 格的 draw_polyline/draw_rect 数量级可控
    （实测同量级占位网格已达标），不加瓦片化/合并；若 profiling 不达标再引入
    RenderingServer 批量（记录为后备方案）。

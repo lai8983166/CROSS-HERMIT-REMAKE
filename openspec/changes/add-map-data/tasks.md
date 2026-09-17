@@ -20,7 +20,7 @@
 
 ## 3. 渲染与交互
 
-- [ ] 3.1 main.gd 改造：SimMapData 加载 map01 → 全图渲染（terrain 调色板 13 色、
+- [ ] 3.1 `data/terrain_palette.json`（占位调色板 13 色，数据驱动）+ main.gd 改造：SimMapData 加载 map01 → 全图渲染（
        variant 明度微调、object 亮黄描边）。验证：窗口运行 `--quit-after 120` 无脚本错误，
        人工看一眼全图着色分层可辨
 - [ ] 3.2 悬停/点击回显：HUD 显示 (x,y)+三层值（点击锁定）。验证：人工点击 object≠0 格，
