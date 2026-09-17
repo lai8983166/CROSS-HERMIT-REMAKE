@@ -1,0 +1,3 @@
+表导出 JSON 落位处（tools/table_export.py 产出, openspec change 待立）
+预期: level_table.json / attack_table.json / job_table.json / course_table.json ...
+来源地址见 docs/REMAKE_BLUEPRINT.md §7
