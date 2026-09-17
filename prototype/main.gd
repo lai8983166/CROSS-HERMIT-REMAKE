@@ -13,6 +13,9 @@ var origin := Vector2.ZERO
 var view_scale := 1.0
 
 var battle: Battle
+var _atlas: Texture2D = null      # 原版纹理图集 (assets/map01_atlas.png, 可缺)
+var _base_mode := 0               # 0=纯贴图 1=贴图+数据叠加 2=纯数据 (T 循环)
+const OVERLAY_ALPHA := 0.45       # 叠加态数据层透明度 (design 决策 4)
 var hover := Vector2i(-1, -1)
 var locked_cell := Vector2i(-1, -1)
 var selected: BattleUnit = null
@@ -51,6 +54,11 @@ func _ready() -> void:
 	Engine.time_scale = 1.0
 	map = SimMapData.load_map("01")
 	_load_palette()
+	if FileAccess.file_exists("res://assets/map01_atlas.png"):
+		_atlas = load("res://assets/map01_atlas.png")
+		_base_mode = 0
+	else:
+		_base_mode = 2   # 无贴图回退数据视图
 	if map.cell_w > 0:
 		_fit_view()
 	_start_battle(0)
@@ -133,6 +141,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_3: Engine.time_scale = 3.0
 			KEY_R: _start_battle(int(Time.get_ticks_msec()) % 100000)
 			KEY_SPACE: Engine.time_scale = 0.0 if Engine.time_scale > 0 else 1.0
+			KEY_T:
+				_base_mode = (_base_mode + 1) % 3
+				queue_redraw()
 
 
 func _cell_at(screen: Vector2) -> Vector2i:
@@ -162,11 +173,20 @@ func _draw() -> void:
 
 
 func _draw_map() -> void:
-	if _map_tex != null:
-		draw_set_transform(origin, 0.0, Vector2(view_scale, view_scale))
-		draw_texture_rect(_map_tex, Rect2(_world_min, _world_size), false)
-		draw_set_transform(Vector2.ZERO)
-		return
+	if _map_tex == null:
+		return   # 烘焙未完成的首帧: 走下方直接绘制兜底
+	var world_rect := Rect2(_world_min, _world_size)
+	draw_set_transform(origin, 0.0, Vector2(view_scale, view_scale))
+	# 三态底图 (add-battle-assets): 图集 2048×1536 与菱形包围盒 2560×1288 形状不同
+	# → 仿射拉伸适配; 像素级真映射待实机对照 (open item)
+	if _base_mode == 0 and _atlas != null:
+		draw_texture_rect(_atlas, world_rect, false)
+	elif _base_mode == 1 and _atlas != null:
+		draw_texture_rect(_atlas, world_rect, false)
+		draw_texture_rect(_map_tex, world_rect, false, Color(1, 1, 1, OVERLAY_ALPHA))
+	else:
+		draw_texture_rect(_map_tex, world_rect, false)
+	draw_set_transform(Vector2.ZERO)
 	# 烘焙未完成的首帧兜底: 直接绘制 (静态一次)
 	draw_set_transform(origin, 0.0, Vector2(view_scale, view_scale))
 	for y in map.cell_h:
@@ -226,8 +246,9 @@ func _draw_hud() -> void:
 	if battle.finished:
 		battle_state = ("平局" if battle.winner < 0
 				else "%s方胜利" % ("红" if battle.winner == 0 else "蓝"))
-	var line1 := "CROSS HERMIT 战斗模拟器 — MAP01 %d×%d | %s (帧 %d) | 速度 %.1f× FPS %d" % [
-		map.cell_w, map.cell_h, battle_state, battle.frame if battle else 0,
+	var mode_name: String = ["贴图", "贴图+数据", "数据"][_base_mode] if _atlas != null else "数据(缺图集)"
+	var line1 := "CROSS HERMIT 战斗模拟器 — MAP01 %d×%d | 底图:%s | %s (帧 %d) | 速度 %.1f× FPS %d" % [
+		map.cell_w, map.cell_h, mode_name, battle_state, battle.frame if battle else 0,
 		Engine.time_scale, Engine.get_frames_per_second()]
 	draw_string(font, Vector2(16, 20), line1, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
 	# 悬停/锁定格三层值 (add-map-data 既有行为)
@@ -251,5 +272,5 @@ func _draw_hud() -> void:
 			int(selected.engage_left), BattleUnit.State.keys()[selected.state]]
 		draw_string(font, Vector2(16, 78), s, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0.4, 1.0, 0.6))
 	draw_string(font, Vector2(16, 758),
-		"[1/2/3]速度 [空格]暂停 [R]重开(新种子) 点击=选单位/锁格 悬停=实时 | 阵容改 data/battle_setup.json",
+		"[1/2/3]速度 [空格]暂停 [R]重开 [T]底图三态 点击=选单位/锁格 | 阵容改 data/battle_setup.json",
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(0.7, 0.7, 0.7))
