@@ -1,0 +1,492 @@
+; CHAPTER302.YBC  len=0x15d6  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x8c0', '0x8c0', '0x8c0']
+;   txt#0 off=0x1dc prm=0x1a0 "你也在這裡啊，真是剛好，"
+;   txt#1 off=0x1f6 prm=0x160 "我正有話想跟你說呢。"
+;   txt#2 off=0x20c prm=0xe0 "天秤之長……"
+;   txt#3 off=0x21a prm=0x1e0 "雖然我才剛來純潔之盾不久……"
+;   txt#4 off=0x238 prm=0x220 "但是我已經開始瞭解純潔之盾的人們"
+;   txt#5 off=0x25a prm=0x180 "心中在想的是些什麼了。"
+;   txt#6 off=0x272 prm=0xa0 "…………"
+;   txt#7 off=0x27c prm=0x1e0 "我聽說孩子們已經下定決心了，"
+;   txt#8 off=0x29a prm=0x2a0 "純潔之盾也該回到那自己應該駐守的地方了。"
+;   txt#9 off=0x2c4 prm=0x140 "……回到安蒂米昂。"
+;   txt#10 off=0x2d8 prm=0x80 "是的。"
+;   txt#11 off=0x2e0 prm=0x160 "如果錯失了這次機會。"
+;   txt#12 off=0x2f6 prm=0x220 "以後想要再回去，恐怕就很難了吧。"
+;   txt#13 off=0x318 prm=0xa0 "…………"
+;   txt#14 off=0x322 prm=0x2a0 "雖然「匍伏蔓延而來之物」是從混沌裡產生出"
+;   txt#15 off=0x34c prm=0xc0 "來的東西，"
+;   txt#16 off=0x358 prm=0x180 "但是我最近卻開始感覺，"
+;   txt#17 off=0x370 prm=0x1c0 "它們的行動也有一定的規則。"
+;   txt#18 off=0x38c prm=0x240 "雖然不知道它們的目的究竟是什麼……"
+;   txt#19 off=0x3b0 prm=0x200 "不過，一旦有什麼緊急狀況的話，"
+;   txt#20 off=0x3d0 prm=0x1a0 "如果我們不是在安蒂米昂，"
+;   txt#21 off=0x3ea prm=0x200 "能夠做出的應變就真的差很多了。"
+;   txt#22 off=0x40a prm=0x80 "的確。"
+;   txt#23 off=0x412 prm=0x140 "那裡所蘊藏的力量，"
+;   txt#24 off=0x426 prm=0x220 "是這個艾爾貝洛瓦所不能相比的呀。"
+;   txt#25 off=0x448 prm=0xa0 "…………"
+;   txt#26 off=0x452 prm=0x120 "我會好好考慮的。"
+;   txt#27 off=0x464 prm=0x140 "……考慮離開這裡。"
+;   txt#28 off=0x478 prm=0xe0 "你有信心嗎？"
+;   txt#29 off=0x486 prm=0x220 "……如果我說我完全不會不安的話，"
+;   txt#30 off=0x4a8 prm=0x120 "那肯定是在說謊。"
+;   txt#31 off=0x4ba prm=0x260 "畢竟愛爾梅納斯裡的混沌是這麼地深呀。"
+;   txt#32 off=0x4e0 prm=0x160 "……我這個老太婆呀，"
+;   txt#33 off=0x4f6 prm=0x200 "可不是無所事事地一直被關著呢。"
+;   txt#34 off=0x516 prm=0x2a0 "我可是有著掌管混沌與秩序的天秤之長名號…"
+;   txt#35 off=0x540 prm=0x220 "我這個老太婆有一個計畫想告訴你。"
+;   txt#36 off=0x562 prm=0x1a0 "……請您說給我聽聽看吧。"
+;   txt#37 off=0x57c prm=0x260 "那冠上了四大學級居城之名的尊貴建築，"
+;   txt#38 off=0x5a2 prm=0x2a0 "被無數的城牆與護城河所包圍的白皙城砦呀，"
+;   txt#39 off=0x5cc prm=0x240 "雖然它現在落入了混沌的手中，不過，"
+;   txt#40 off=0x5f0 prm=0x280 "就讓我們把它的力量交還給原本的主人吧。"
+;   txt#41 off=0x618 prm=0x140 "那你打算怎麼做呢？"
+;   txt#42 off=0x62c prm=0xa0 "…………"
+;   txt#43 off=0x636 prm=0x1e0 "就以其人之道還治其人之身吧。"
+;   txt#44 off=0x654 prm=0x200 "……果然還是要從地下著手是吧。"
+;   txt#45 off=0x674 prm=0xa0 "…………"
+;   txt#46 off=0x67e prm=0xa0 "…………"
+;   txt#47 off=0x688 prm=0xa0 "…………"
+;   txt#48 off=0x692 prm=0x1e0 "但是以我們這種半調子的實力，"
+;   txt#49 off=0x6b0 prm=0x1a0 "是沒辦法攻陷安蒂米昂的。"
+;   txt#50 off=0x6ca prm=0x1a0 "如果從地上直接進攻的話，"
+;   txt#51 off=0x6e4 prm=0x180 "在到達城砦的中心之前，"
+;   txt#52 off=0x6fc prm=0x240 "恐怕就已經不知道會被打敗多少次了。"
+;   txt#53 off=0x720 prm=0x2a0 "那裡就是特地設計成不輕易讓敵人靠近的呀。"
+;   txt#54 off=0x74a prm=0xa0 "…………"
+;   txt#55 off=0x754 prm=0x280 "這件事情，相信我的朋友你是最清楚的了。"
+;   txt#56 off=0x77c prm=0x2a0 "如果想要攻陷那裡的話，正面進攻是不行的。"
+;   txt#57 off=0x7a6 prm=0xa0 "…………"
+;   txt#58 off=0x7b0 prm=0xa0 "…………"
+;   txt#59 off=0x7ba prm=0x280 "就像「匍伏蔓延而來之物」所做的一樣……"
+;   txt#60 off=0x7e2 prm=0x1c0 "我們從地下潛入城堡的核心，"
+;   txt#61 off=0x7fe prm=0x160 "直接攻擊主城就好了。"
+;   txt#62 off=0x814 prm=0x160 "……不過，就算這樣，"
+;   txt#63 off=0x82a prm=0x200 "也不是真的有很大的勝算就是了。"
+;   txt#64 off=0x84a prm=0x220 "如果你認為這是最完美的方法的話，"
+;   txt#65 off=0x86c prm=0x100 "我會支持你的。"
+;   txt#66 off=0x87c prm=0xa0 "老師……"
+;   txt#67 off=0x886 prm=0xa0 "…………"
+;   txt#68 off=0x890 prm=0xa0 "…………"
+;   txt#69 off=0x89a prm=0xa0 "…………"
+;   txt#70 off=0x8a4 prm=0x140 "但是……我的朋友。"
+;   txt#71 off=0x8b8 prm=0x1e0 "在通往安蒂米昂的地下通道裡，"
+;   txt#72 off=0x8d6 prm=0x160 "有那個傢伙在把守呀。"
+;   txt#73 off=0x8ec prm=0x220 "全身蓋滿了赤銅鎧甲的異形混沌－－"
+;   txt#74 off=0x90e prm=0x120 "赤壁的鄔爾戈呀。"
+;   txt#75 off=0x920 prm=0x100 "……天秤之長。"
+;   txt#76 off=0x930 prm=0xa0 "…………"
+;   txt#77 off=0x93a prm=0x1e0 "就如同鎖匙之長所說的一樣……"
+;   txt#78 off=0x958 prm=0x2a0 "只要那傢伙還領導著「匍伏蔓延而來之物」的"
+;   txt#79 off=0x982 prm=0x60 "話，"
+;   txt#80 off=0x988 prm=0x180 "地底的通道就非常危險。"
+;   txt#81 off=0x9a0 prm=0x260 "甚至可能會跟白皙城砦一樣地難以攻破。"
+;   txt#82 off=0x9c6 prm=0xa0 "…………"
+;   txt#83 off=0x9d0 prm=0xa0 "…………"
+;   txt#84 off=0x9da prm=0xa0 "但是……"
+;   txt#85 off=0x9e4 prm=0x240 "有個地方跟赤壁鄔爾戈的因緣很深厚。"
+;   txt#86 off=0xa08 prm=0x1a0 "如果去攻擊那個地方的話，"
+;   txt#87 off=0xa22 prm=0x1a0 "鄔爾戈一定會現身阻止的。"
+;   txt#88 off=0xa3c prm=0xa0 "…………"
+;   txt#89 off=0xa46 prm=0x1a0 "……那個地方就是攸利亞。"
+;   txt#90 off=0xa60 prm=0x2a0 "只要能夠打倒被我們引誘出來的赤壁鄔爾戈的"
+;   txt#91 off=0xa8a prm=0x80 "話……"
+;   txt#92 off=0xa92 prm=0x2a0 "就可以順利地破壞「匍伏蔓延而來之物」才剛"
+;   txt#93 off=0xabc prm=0x1a0 "剛建立起來的領導組織了。"
+;   txt#94 off=0xad6 prm=0x260 "就算那只能讓它們混亂一小段時間也好。"
+;   txt#95 off=0xafc prm=0xa0 "…………"
+;   txt#96 off=0xb06 prm=0x1c0 "……在通往安蒂米昂的路上，"
+;   txt#97 off=0xb22 prm=0x1c0 "有不少以前不曾碰過的強敵。"
+;   txt#98 off=0xb3e prm=0x2a0 "但是只要他們沒有辦法組織性地行動的話……"
+;   txt#99 off=0xb68 prm=0x120 "對純潔之盾來說，"
+;   txt#100 off=0xb7a prm=0x1a0 "就是創造了不少的生機呀。"
+;   txt#101 off=0xb94 prm=0xa0 "…………"
+;   txt#102 off=0xb9e prm=0x260 "那麼，要在什麼時候出發攻擊攸利亞呢？"
+;   txt#103 off=0xbc4 prm=0xa0 "…………"
+;   txt#104 off=0xbce prm=0x120 "在三個星期以後，"
+;   txt#105 off=0xbe0 prm=0x1e0 "天上的三個月亮會聚集在一起，"
+;   txt#106 off=0xbfe prm=0x1e0 "在那充滿祝福的七月第三週裡。"
+;   txt#107 off=0xc1c prm=0x2a0 "我們就朝著安蒂米昂出發，離開艾爾貝洛瓦。"
+;   txt#108 off=0xc46 prm=0x80 "唔嗯。"
+;   txt#109 off=0xc4e prm=0xa0 "…………"
+;   txt#110 off=0xc58 prm=0x1c0 "我們年輕的純潔之盾之長呀，"
+;   txt#111 off=0xc74 prm=0x2a0 "但願你能為那連續而來的艱苦戰役做好萬全的"
+;   txt#112 off=0xc9e prm=0x80 "準備。"
+;   txt#113 off=0xca6 prm=0xa0 "…………"
+;   txt#114 off=0xcb0 prm=0xc0 "……是的。"
+;   txt#115 off=0xcbc prm=0x220 "那麼，直到那即將來臨的時刻之前，"
+;   txt#116 off=0xcde prm=0xe0 "好好努力吧。"
+;   txt#117 off=0xcec prm=0x2a0 "在那即將來臨的時刻之前，我會好好努力的。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 8 1
+000034:             30 BORDPACKONWAIT           adv=20  10 118 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   10
+000058:             17 TEXT                     adv=6   #0 "你也在這裡啊，真是剛好，"
+00005e:             17 TEXT                     adv=6   #1 "我正有話想跟你說呢。"
+000064:             50 TEXTWAITKB               adv=4   
+000068:             51 KEYWAIT                  adv=4   
+00006c:             27 BORDONWAIT               adv=16  4 268435455 268435455
+00007c:             43 TEXTACTIVE               adv=8   4
+000084:             17 TEXT                     adv=6   #2 "天秤之長……"
+00008a:             50 TEXTWAITKB               adv=4   
+00008e:             51 KEYWAIT                  adv=4   
+000092:             43 TEXTACTIVE               adv=8   10
+00009a:             44 TEXTCLEAR                adv=4   
+00009e:             17 TEXT                     adv=6   #3 "雖然我才剛來純潔之盾不久……"
+0000a4:             17 TEXT                     adv=6   #4 "但是我已經開始瞭解純潔之盾的人們"
+0000aa:             17 TEXT                     adv=6   #5 "心中在想的是些什麼了。"
+0000b0:             50 TEXTWAITKB               adv=4   
+0000b4:             51 KEYWAIT                  adv=4   
+0000b8:             43 TEXTACTIVE               adv=8   4
+0000c0:             44 TEXTCLEAR                adv=4   
+0000c4:             17 TEXT                     adv=6   #6 "…………"
+0000ca:             50 TEXTWAITKB               adv=4   
+0000ce:             51 KEYWAIT                  adv=4   
+0000d2:             43 TEXTACTIVE               adv=8   10
+0000da:             44 TEXTCLEAR                adv=4   
+0000de:             17 TEXT                     adv=6   #7 "我聽說孩子們已經下定決心了，"
+0000e4:             17 TEXT                     adv=6   #8 "純潔之盾也該回到那自己應該駐守的地方了。"
+0000ea:             50 TEXTWAITKB               adv=4   
+0000ee:             51 KEYWAIT                  adv=4   
+0000f2:             43 TEXTACTIVE               adv=8   4
+0000fa:             44 TEXTCLEAR                adv=4   
+0000fe:             17 TEXT                     adv=6   #9 "……回到安蒂米昂。"
+000104:             50 TEXTWAITKB               adv=4   
+000108:             51 KEYWAIT                  adv=4   
+00010c:             43 TEXTACTIVE               adv=8   10
+000114:             44 TEXTCLEAR                adv=4   
+000118:             17 TEXT                     adv=6   #10 "是的。"
+00011e:             17 TEXT                     adv=6   #11 "如果錯失了這次機會。"
+000124:             17 TEXT                     adv=6   #12 "以後想要再回去，恐怕就很難了吧。"
+00012a:             50 TEXTWAITKB               adv=4   
+00012e:             51 KEYWAIT                  adv=4   
+000132:             43 TEXTACTIVE               adv=8   4
+00013a:             44 TEXTCLEAR                adv=4   
+00013e:             17 TEXT                     adv=6   #13 "…………"
+000144:             43 TEXTACTIVE               adv=8   10
+00014c:             44 TEXTCLEAR                adv=4   
+000150:             17 TEXT                     adv=6   #14 "雖然「匍伏蔓延而來之物」是從混沌裡產生出"
+000156:             17 TEXT                     adv=6   #15 "來的東西，"
+00015c:             17 TEXT                     adv=6   #16 "但是我最近卻開始感覺，"
+000162:             17 TEXT                     adv=6   #17 "它們的行動也有一定的規則。"
+000168:             50 TEXTWAITKB               adv=4   
+00016c:             51 KEYWAIT                  adv=4   
+000170:             44 TEXTCLEAR                adv=4   
+000174:             17 TEXT                     adv=6   #18 "雖然不知道它們的目的究竟是什麼……"
+00017a:             17 TEXT                     adv=6   #19 "不過，一旦有什麼緊急狀況的話，"
+000180:             17 TEXT                     adv=6   #20 "如果我們不是在安蒂米昂，"
+000186:             17 TEXT                     adv=6   #21 "能夠做出的應變就真的差很多了。"
+00018c:             50 TEXTWAITKB               adv=4   
+000190:             51 KEYWAIT                  adv=4   
+000194:             43 TEXTACTIVE               adv=8   4
+00019c:             44 TEXTCLEAR                adv=4   
+0001a0:             17 TEXT                     adv=6   #22 "的確。"
+0001a6:             17 TEXT                     adv=6   #23 "那裡所蘊藏的力量，"
+0001ac:             17 TEXT                     adv=6   #24 "是這個艾爾貝洛瓦所不能相比的呀。"
+0001b2:             50 TEXTWAITKB               adv=4   
+0001b6:             51 KEYWAIT                  adv=4   
+0001ba:             43 TEXTACTIVE               adv=8   10
+0001c2:             44 TEXTCLEAR                adv=4   
+0001c6:             17 TEXT                     adv=6   #25 "…………"
+0001cc:             50 TEXTWAITKB               adv=4   
+0001d0:             51 KEYWAIT                  adv=4   
+0001d4:             43 TEXTACTIVE               adv=8   4
+0001dc:             44 TEXTCLEAR                adv=4   
+0001e0:             17 TEXT                     adv=6   #26 "我會好好考慮的。"
+0001e6:             17 TEXT                     adv=6   #27 "……考慮離開這裡。"
+0001ec:             50 TEXTWAITKB               adv=4   
+0001f0:             51 KEYWAIT                  adv=4   
+0001f4:             43 TEXTACTIVE               adv=8   10
+0001fc:             44 TEXTCLEAR                adv=4   
+000200:             17 TEXT                     adv=6   #28 "你有信心嗎？"
+000206:             50 TEXTWAITKB               adv=4   
+00020a:             51 KEYWAIT                  adv=4   
+00020e:             43 TEXTACTIVE               adv=8   4
+000216:             44 TEXTCLEAR                adv=4   
+00021a:             17 TEXT                     adv=6   #29 "……如果我說我完全不會不安的話，"
+000220:             17 TEXT                     adv=6   #30 "那肯定是在說謊。"
+000226:             17 TEXT                     adv=6   #31 "畢竟愛爾梅納斯裡的混沌是這麼地深呀。"
+00022c:             50 TEXTWAITKB               adv=4   
+000230:             51 KEYWAIT                  adv=4   
+000234:             43 TEXTACTIVE               adv=8   10
+00023c:             44 TEXTCLEAR                adv=4   
+000240:             17 TEXT                     adv=6   #32 "……我這個老太婆呀，"
+000246:             17 TEXT                     adv=6   #33 "可不是無所事事地一直被關著呢。"
+00024c:             17 TEXT                     adv=6   #34 "我可是有著掌管混沌與秩序的天秤之長名號…"
+000252:             17 TEXT                     adv=6   #35 "我這個老太婆有一個計畫想告訴你。"
+000258:             50 TEXTWAITKB               adv=4   
+00025c:             51 KEYWAIT                  adv=4   
+000260:             43 TEXTACTIVE               adv=8   4
+000268:             44 TEXTCLEAR                adv=4   
+00026c:             17 TEXT                     adv=6   #36 "……請您說給我聽聽看吧。"
+000272:             50 TEXTWAITKB               adv=4   
+000276:             51 KEYWAIT                  adv=4   
+00027a:             12 VWAIT                    adv=8   30
+000282:             56 FADESETWAIT              adv=8   4
+00028a:             21 ALLOFF                   adv=4   
+00028e:             12 VWAIT                    adv=8   60
+000296:             20 ADVMODESET               adv=8   0
+00029e:             59 BGSETWAIT                adv=16  0 8 1
+0002ae:             30 BORDPACKONWAIT           adv=20  8 118 0 30
+0002c2:             56 FADESETWAIT              adv=8   3
+0002ca:             43 TEXTACTIVE               adv=8   8
+0002d2:             17 TEXT                     adv=6   #37 "那冠上了四大學級居城之名的尊貴建築，"
+0002d8:             17 TEXT                     adv=6   #38 "被無數的城牆與護城河所包圍的白皙城砦呀，"
+0002de:             17 TEXT                     adv=6   #39 "雖然它現在落入了混沌的手中，不過，"
+0002e4:             17 TEXT                     adv=6   #40 "就讓我們把它的力量交還給原本的主人吧。"
+0002ea:             50 TEXTWAITKB               adv=4   
+0002ee:             51 KEYWAIT                  adv=4   
+0002f2:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+000306:             43 TEXTACTIVE               adv=8   7
+00030e:             17 TEXT                     adv=6   #41 "那你打算怎麼做呢？"
+000314:             50 TEXTWAITKB               adv=4   
+000318:             51 KEYWAIT                  adv=4   
+00031c:             43 TEXTACTIVE               adv=8   8
+000324:             44 TEXTCLEAR                adv=4   
+000328:             17 TEXT                     adv=6   #42 "…………"
+00032e:             27 BORDONWAIT               adv=16  4 268435455 268435455
+00033e:             43 TEXTACTIVE               adv=8   4
+000346:             17 TEXT                     adv=6   #43 "就以其人之道還治其人之身吧。"
+00034c:             50 TEXTWAITKB               adv=4   
+000350:             51 KEYWAIT                  adv=4   
+000354:             43 TEXTACTIVE               adv=8   7
+00035c:             44 TEXTCLEAR                adv=4   
+000360:             17 TEXT                     adv=6   #44 "……果然還是要從地下著手是吧。"
+000366:             50 TEXTWAITKB               adv=4   
+00036a:             51 KEYWAIT                  adv=4   
+00036e:             43 TEXTACTIVE               adv=8   4
+000376:             44 TEXTCLEAR                adv=4   
+00037a:             17 TEXT                     adv=6   #45 "…………"
+000380:             43 TEXTACTIVE               adv=8   8
+000388:             44 TEXTCLEAR                adv=4   
+00038c:             33 CHARSET                  adv=16  8 115 0
+00039c:             36 CHARWAIT                 adv=4   
+0003a0:             43 TEXTACTIVE               adv=8   8
+0003a8:             17 TEXT                     adv=6   #46 "…………"
+0003ae:             50 TEXTWAITKB               adv=4   
+0003b2:             51 KEYWAIT                  adv=4   
+0003b6:             43 TEXTACTIVE               adv=8   7
+0003be:             44 TEXTCLEAR                adv=4   
+0003c2:             17 TEXT                     adv=6   #47 "…………"
+0003c8:             43 TEXTACTIVE               adv=8   4
+0003d0:             44 TEXTCLEAR                adv=4   
+0003d4:             17 TEXT                     adv=6   #48 "但是以我們這種半調子的實力，"
+0003da:             17 TEXT                     adv=6   #49 "是沒辦法攻陷安蒂米昂的。"
+0003e0:             17 TEXT                     adv=6   #50 "如果從地上直接進攻的話，"
+0003e6:             17 TEXT                     adv=6   #51 "在到達城砦的中心之前，"
+0003ec:             17 TEXT                     adv=6   #52 "恐怕就已經不知道會被打敗多少次了。"
+0003f2:             50 TEXTWAITKB               adv=4   
+0003f6:             51 KEYWAIT                  adv=4   
+0003fa:             43 TEXTACTIVE               adv=8   8
+000402:             44 TEXTCLEAR                adv=4   
+000406:             33 CHARSET                  adv=16  8 110 0
+000416:             36 CHARWAIT                 adv=4   
+00041a:             43 TEXTACTIVE               adv=8   8
+000422:             17 TEXT                     adv=6   #53 "那裡就是特地設計成不輕易讓敵人靠近的呀。"
+000428:             50 TEXTWAITKB               adv=4   
+00042c:             51 KEYWAIT                  adv=4   
+000430:             43 TEXTACTIVE               adv=8   4
+000438:             44 TEXTCLEAR                adv=4   
+00043c:             17 TEXT                     adv=6   #54 "…………"
+000442:             50 TEXTWAITKB               adv=4   
+000446:             51 KEYWAIT                  adv=4   
+00044a:             43 TEXTACTIVE               adv=8   8
+000452:             44 TEXTCLEAR                adv=4   
+000456:             17 TEXT                     adv=6   #55 "這件事情，相信我的朋友你是最清楚的了。"
+00045c:             17 TEXT                     adv=6   #56 "如果想要攻陷那裡的話，正面進攻是不行的。"
+000462:             50 TEXTWAITKB               adv=4   
+000466:             51 KEYWAIT                  adv=4   
+00046a:             43 TEXTACTIVE               adv=8   7
+000472:             44 TEXTCLEAR                adv=4   
+000476:             17 TEXT                     adv=6   #57 "…………"
+00047c:             50 TEXTWAITKB               adv=4   
+000480:             51 KEYWAIT                  adv=4   
+000484:             43 TEXTACTIVE               adv=8   8
+00048c:             44 TEXTCLEAR                adv=4   
+000490:             17 TEXT                     adv=6   #58 "…………"
+000496:             43 TEXTACTIVE               adv=8   4
+00049e:             44 TEXTCLEAR                adv=4   
+0004a2:             17 TEXT                     adv=6   #59 "就像「匍伏蔓延而來之物」所做的一樣……"
+0004a8:             17 TEXT                     adv=6   #60 "我們從地下潛入城堡的核心，"
+0004ae:             17 TEXT                     adv=6   #61 "直接攻擊主城就好了。"
+0004b4:             17 TEXT                     adv=6   #62 "……不過，就算這樣，"
+0004ba:             17 TEXT                     adv=6   #63 "也不是真的有很大的勝算就是了。"
+0004c0:             50 TEXTWAITKB               adv=4   
+0004c4:             51 KEYWAIT                  adv=4   
+0004c8:             43 TEXTACTIVE               adv=8   7
+0004d0:             44 TEXTCLEAR                adv=4   
+0004d4:             17 TEXT                     adv=6   #64 "如果你認為這是最完美的方法的話，"
+0004da:             17 TEXT                     adv=6   #65 "我會支持你的。"
+0004e0:             50 TEXTWAITKB               adv=4   
+0004e4:             51 KEYWAIT                  adv=4   
+0004e8:             43 TEXTACTIVE               adv=8   4
+0004f0:             44 TEXTCLEAR                adv=4   
+0004f4:             17 TEXT                     adv=6   #66 "老師……"
+0004fa:             50 TEXTWAITKB               adv=4   
+0004fe:             51 KEYWAIT                  adv=4   
+000502:             43 TEXTACTIVE               adv=8   7
+00050a:             44 TEXTCLEAR                adv=4   
+00050e:             17 TEXT                     adv=6   #67 "…………"
+000514:             43 TEXTACTIVE               adv=8   8
+00051c:             44 TEXTCLEAR                adv=4   
+000520:             33 CHARSET                  adv=16  8 118 0
+000530:             36 CHARWAIT                 adv=4   
+000534:             43 TEXTACTIVE               adv=8   8
+00053c:             17 TEXT                     adv=6   #68 "…………"
+000542:             50 TEXTWAITKB               adv=4   
+000546:             51 KEYWAIT                  adv=4   
+00054a:             43 TEXTACTIVE               adv=8   4
+000552:             44 TEXTCLEAR                adv=4   
+000556:             17 TEXT                     adv=6   #69 "…………"
+00055c:             43 TEXTACTIVE               adv=8   7
+000564:             44 TEXTCLEAR                adv=4   
+000568:             33 CHARSET                  adv=16  7 110 0
+000578:             36 CHARWAIT                 adv=4   
+00057c:             43 TEXTACTIVE               adv=8   7
+000584:             17 TEXT                     adv=6   #70 "但是……我的朋友。"
+00058a:             17 TEXT                     adv=6   #71 "在通往安蒂米昂的地下通道裡，"
+000590:             17 TEXT                     adv=6   #72 "有那個傢伙在把守呀。"
+000596:             17 TEXT                     adv=6   #73 "全身蓋滿了赤銅鎧甲的異形混沌－－"
+00059c:             17 TEXT                     adv=6   #74 "赤壁的鄔爾戈呀。"
+0005a2:             50 TEXTWAITKB               adv=4   
+0005a6:             51 KEYWAIT                  adv=4   
+0005aa:             43 TEXTACTIVE               adv=8   4
+0005b2:             44 TEXTCLEAR                adv=4   
+0005b6:             17 TEXT                     adv=6   #75 "……天秤之長。"
+0005bc:             50 TEXTWAITKB               adv=4   
+0005c0:             51 KEYWAIT                  adv=4   
+0005c4:             43 TEXTACTIVE               adv=8   7
+0005cc:             44 TEXTCLEAR                adv=4   
+0005d0:             17 TEXT                     adv=6   #76 "…………"
+0005d6:             43 TEXTACTIVE               adv=8   8
+0005de:             44 TEXTCLEAR                adv=4   
+0005e2:             17 TEXT                     adv=6   #77 "就如同鎖匙之長所說的一樣……"
+0005e8:             17 TEXT                     adv=6   #78 "只要那傢伙還領導著「匍伏蔓延而來之物」的"
+0005ee:             17 TEXT                     adv=6   #79 "話，"
+0005f4:             17 TEXT                     adv=6   #80 "地底的通道就非常危險。"
+0005fa:             17 TEXT                     adv=6   #81 "甚至可能會跟白皙城砦一樣地難以攻破。"
+000600:             50 TEXTWAITKB               adv=4   
+000604:             51 KEYWAIT                  adv=4   
+000608:             43 TEXTACTIVE               adv=8   4
+000610:             44 TEXTCLEAR                adv=4   
+000614:             17 TEXT                     adv=6   #82 "…………"
+00061a:             43 TEXTACTIVE               adv=8   7
+000622:             44 TEXTCLEAR                adv=4   
+000626:             17 TEXT                     adv=6   #83 "…………"
+00062c:             50 TEXTWAITKB               adv=4   
+000630:             51 KEYWAIT                  adv=4   
+000634:             43 TEXTACTIVE               adv=8   8
+00063c:             44 TEXTCLEAR                adv=4   
+000640:             17 TEXT                     adv=6   #84 "但是……"
+000646:             17 TEXT                     adv=6   #85 "有個地方跟赤壁鄔爾戈的因緣很深厚。"
+00064c:             17 TEXT                     adv=6   #86 "如果去攻擊那個地方的話，"
+000652:             17 TEXT                     adv=6   #87 "鄔爾戈一定會現身阻止的。"
+000658:             50 TEXTWAITKB               adv=4   
+00065c:             51 KEYWAIT                  adv=4   
+000660:             43 TEXTACTIVE               adv=8   7
+000668:             44 TEXTCLEAR                adv=4   
+00066c:             33 CHARSET                  adv=16  7 101 0
+00067c:             36 CHARWAIT                 adv=4   
+000680:             43 TEXTACTIVE               adv=8   7
+000688:             17 TEXT                     adv=6   #88 "…………"
+00068e:             50 TEXTWAITKB               adv=4   
+000692:             51 KEYWAIT                  adv=4   
+000696:             43 TEXTACTIVE               adv=8   8
+00069e:             44 TEXTCLEAR                adv=4   
+0006a2:             17 TEXT                     adv=6   #89 "……那個地方就是攸利亞。"
+0006a8:             17 TEXT                     adv=6   #90 "只要能夠打倒被我們引誘出來的赤壁鄔爾戈的"
+0006ae:             17 TEXT                     adv=6   #91 "話……"
+0006b4:             50 TEXTWAITKB               adv=4   
+0006b8:             51 KEYWAIT                  adv=4   
+0006bc:             44 TEXTCLEAR                adv=4   
+0006c0:             17 TEXT                     adv=6   #92 "就可以順利地破壞「匍伏蔓延而來之物」才剛"
+0006c6:             17 TEXT                     adv=6   #93 "剛建立起來的領導組織了。"
+0006cc:             17 TEXT                     adv=6   #94 "就算那只能讓它們混亂一小段時間也好。"
+0006d2:             50 TEXTWAITKB               adv=4   
+0006d6:             51 KEYWAIT                  adv=4   
+0006da:             43 TEXTACTIVE               adv=8   7
+0006e2:             44 TEXTCLEAR                adv=4   
+0006e6:             33 CHARSET                  adv=16  7 115 0
+0006f6:             36 CHARWAIT                 adv=4   
+0006fa:             43 TEXTACTIVE               adv=8   7
+000702:             17 TEXT                     adv=6   #95 "…………"
+000708:             50 TEXTWAITKB               adv=4   
+00070c:             51 KEYWAIT                  adv=4   
+000710:             43 TEXTACTIVE               adv=8   8
+000718:             44 TEXTCLEAR                adv=4   
+00071c:             17 TEXT                     adv=6   #96 "……在通往安蒂米昂的路上，"
+000722:             17 TEXT                     adv=6   #97 "有不少以前不曾碰過的強敵。"
+000728:             17 TEXT                     adv=6   #98 "但是只要他們沒有辦法組織性地行動的話……"
+00072e:             17 TEXT                     adv=6   #99 "對純潔之盾來說，"
+000734:             17 TEXT                     adv=6   #100 "就是創造了不少的生機呀。"
+00073a:             50 TEXTWAITKB               adv=4   
+00073e:             51 KEYWAIT                  adv=4   
+000742:             43 TEXTACTIVE               adv=8   4
+00074a:             44 TEXTCLEAR                adv=4   
+00074e:             17 TEXT                     adv=6   #101 "…………"
+000754:             50 TEXTWAITKB               adv=4   
+000758:             51 KEYWAIT                  adv=4   
+00075c:             43 TEXTACTIVE               adv=8   7
+000764:             44 TEXTCLEAR                adv=4   
+000768:             33 CHARSET                  adv=16  7 101 0
+000778:             36 CHARWAIT                 adv=4   
+00077c:             43 TEXTACTIVE               adv=8   7
+000784:             17 TEXT                     adv=6   #102 "那麼，要在什麼時候出發攻擊攸利亞呢？"
+00078a:             50 TEXTWAITKB               adv=4   
+00078e:             51 KEYWAIT                  adv=4   
+000792:             43 TEXTACTIVE               adv=8   8
+00079a:             44 TEXTCLEAR                adv=4   
+00079e:             17 TEXT                     adv=6   #103 "…………"
+0007a4:             43 TEXTACTIVE               adv=8   4
+0007ac:             44 TEXTCLEAR                adv=4   
+0007b0:             17 TEXT                     adv=6   #104 "在三個星期以後，"
+0007b6:             17 TEXT                     adv=6   #105 "天上的三個月亮會聚集在一起，"
+0007bc:             17 TEXT                     adv=6   #106 "在那充滿祝福的七月第三週裡。"
+0007c2:             17 TEXT                     adv=6   #107 "我們就朝著安蒂米昂出發，離開艾爾貝洛瓦。"
+0007c8:             50 TEXTWAITKB               adv=4   
+0007cc:             51 KEYWAIT                  adv=4   
+0007d0:             43 TEXTACTIVE               adv=8   7
+0007d8:             44 TEXTCLEAR                adv=4   
+0007dc:             17 TEXT                     adv=6   #108 "唔嗯。"
+0007e2:             50 TEXTWAITKB               adv=4   
+0007e6:             51 KEYWAIT                  adv=4   
+0007ea:             43 TEXTACTIVE               adv=8   4
+0007f2:             44 TEXTCLEAR                adv=4   
+0007f6:             17 TEXT                     adv=6   #109 "…………"
+0007fc:             43 TEXTACTIVE               adv=8   8
+000804:             44 TEXTCLEAR                adv=4   
+000808:             17 TEXT                     adv=6   #110 "我們年輕的純潔之盾之長呀，"
+00080e:             17 TEXT                     adv=6   #111 "但願你能為那連續而來的艱苦戰役做好萬全的"
+000814:             17 TEXT                     adv=6   #112 "準備。"
+00081a:             50 TEXTWAITKB               adv=4   
+00081e:             51 KEYWAIT                  adv=4   
+000822:             43 TEXTACTIVE               adv=8   7
+00082a:             44 TEXTCLEAR                adv=4   
+00082e:             17 TEXT                     adv=6   #113 "…………"
+000834:             43 TEXTACTIVE               adv=8   4
+00083c:             44 TEXTCLEAR                adv=4   
+000840:             17 TEXT                     adv=6   #114 "……是的。"
+000846:             50 TEXTWAITKB               adv=4   
+00084a:             51 KEYWAIT                  adv=4   
+00084e:             43 TEXTACTIVE               adv=8   8
+000856:             44 TEXTCLEAR                adv=4   
+00085a:             17 TEXT                     adv=6   #115 "那麼，直到那即將來臨的時刻之前，"
+000860:             17 TEXT                     adv=6   #116 "好好努力吧。"
+000866:             50 TEXTWAITKB               adv=4   
+00086a:             51 KEYWAIT                  adv=4   
+00086e:             43 TEXTACTIVE               adv=8   4
+000876:             44 TEXTCLEAR                adv=4   
+00087a:             17 TEXT                     adv=6   #117 "在那即將來臨的時刻之前，我會好好努力的。"
+000880:             50 TEXTWAITKB               adv=4   
+000884:             51 KEYWAIT                  adv=4   
+000888:             12 VWAIT                    adv=8   30
+000890:             56 FADESETWAIT              adv=8   4
+000898:             21 ALLOFF                   adv=4   
+00089c:             12 VWAIT                    adv=8   60
+0008a4:            151 OP_151                   adv=12  2 1
+0008b0:             91 PUTUNITWK                adv=12  8 2
+0008bc:             19 END                      adv=4   ; END
+; (371 insns)

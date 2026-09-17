@@ -1,0 +1,243 @@
+; MVP004.YBC  len=0xaba  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x4ac', '0x4ac', '0x4ac']
+;   txt#0 off=0xc4 prm=0x140 "可以請您告訴我嗎？"
+;   txt#1 off=0xd8 prm=0x220 "老師您在這裡求學的時候的回憶……"
+;   txt#2 off=0xfa prm=0x2a0 "那讓思念在愛爾梅納斯裡奔馳的雪夜中回憶。"
+;   txt#3 off=0x124 prm=0x260 "那第一次進入學舍大門的，清晨的回憶。"
+;   txt#4 off=0x14a prm=0x260 "在對著書桌努力奮發的，黃昏的回憶……"
+;   txt#5 off=0x170 prm=0x260 "那個時候您眼中所看到的都是些什麼呢？"
+;   txt#6 off=0x196 prm=0x240 "那個時候您心裡所想的都是些什麼呢？"
+;   txt#7 off=0x1ba prm=0x120 "……我想要知道。"
+;   txt#8 off=0x1cc prm=0x260 "我想知道這世界上老師獨一無二的心情。"
+;   txt#9 off=0x1f2 prm=0xe0 "老師，我……"
+;   txt#10 off=0x200 prm=0x1e0 "我現在的努力符合您的期許嗎？"
+;   txt#11 off=0x21e prm=0x160 "就算只有一點點也好。"
+;   txt#12 off=0x234 prm=0x260 "我想要待在您的身邊，為您出一份心力。"
+;   txt#13 off=0x25a prm=0xa0 "老師……"
+;   txt#14 off=0x264 prm=0x1a0 "我，我想要保護純潔之盾。"
+;   txt#15 off=0x27e prm=0x1a0 "就算我所能做的幫助不大，"
+;   txt#16 off=0x298 prm=0x180 "我也想為您出一份心力。"
+;   txt#17 off=0x2b0 prm=0x120 "但是要怎樣去做，"
+;   txt#18 off=0x2c2 prm=0x1e0 "才能讓您感覺需要我的幫助呢？"
+;   txt#19 off=0x2e0 prm=0xe0 "我不知道……"
+;   txt#20 off=0x2ee prm=0x1e0 "要怎樣做才能保護純潔之盾呢？"
+;   txt#21 off=0x30c prm=0xe0 "我不知道……"
+;   txt#22 off=0x31a prm=0x200 "……從今以後我也會好好努力的。"
+;   txt#23 off=0x33a prm=0x200 "所以，懇請您……懇請您指引我。"
+;   txt#24 off=0x35a prm=0x1c0 "雖然一直不斷地努力再努力，"
+;   txt#25 off=0x376 prm=0x220 "也是會有無論如何都做不到的事情。"
+;   txt#26 off=0x398 prm=0x1e0 "那連會不會有所進步也不知道，"
+;   txt#27 off=0x3b6 prm=0x260 "因而時常流淚的日子，我都記得很清楚。"
+;   txt#28 off=0x3dc prm=0x180 "但是，就是因為這樣……"
+;   txt#29 off=0x3f4 prm=0x1a0 "第一次被老師誇獎的時候，"
+;   txt#30 off=0x40e prm=0x140 "我是多麼地開心呀。"
+;   txt#31 off=0x422 prm=0x280 "……我是在很熱衷的情況下努力到了現在。"
+;   txt#32 off=0x44a prm=0x1a0 "……我不會忘記您的眼神，"
+;   txt#33 off=0x464 prm=0x180 "絕對不會，永遠也不會。"
+;   txt#34 off=0x47c prm=0x280 "如果從此以後我也能和您一起前進的話……"
+;   txt#35 off=0x4a4 prm=0x140 "那我真的是好幸福。"
+;   txt#36 off=0x4b8 prm=0x180 "可以這樣地被您引導……"
+;   txt#37 off=0x4d0 prm=0x200 "讓我也稍微能理解身旁的一切了。"
+;   txt#38 off=0x4f0 prm=0x120 "現在，回頭想想，"
+;   txt#39 off=0x502 prm=0x220 "我曾經給老師帶來了多大的麻煩呀。"
+;   txt#40 off=0x524 prm=0xc0 "不，沒錯，"
+;   txt#41 off=0x530 prm=0x280 "就算如此您也沒有讓我看到那為難的表情。"
+;   txt#42 off=0x558 prm=0x2a0 "所以……所以我要全心全力地報答您的恩情，"
+;   txt#43 off=0x582 prm=0x1e0 "我願意付出我的一切去支持您。"
+;   txt#44 off=0x5a0 prm=0x1e0 "……無論會遇上什麼樣的事情，"
+;   txt#45 off=0x5be prm=0x100 "我都不會退縮。"
+;   txt#46 off=0x5ce prm=0x200 "如果，您願意對我有所期許的話，"
+;   txt#47 off=0x5ee prm=0x200 "無論會遇上什麼樣的事情也好……"
+000014:             56 FADESETWAIT              adv=8   2
+00001c:             20 ADVMODESET               adv=8   1
+000024:             12 VWAIT                    adv=8   30
+00002c:             30 BORDPACKONWAIT           adv=20  5 4 0 30
+000040:             90 GETUNITWK                adv=12  v0x0 4
+00004c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 0 -> L_00a4
+000060:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0182
+000074:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 2 -> L_01ee
+000088:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 3 -> L_02bc
+00009c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 4 -> L_0390
+0000b0:             11 GOTO                     adv=8   L_0182
+0000b8: L_00a4    43 TEXTACTIVE               adv=8   5
+0000c0:             65 BGM                      adv=8   v0x7b
+0000c8:             17 TEXT                     adv=6   #0 "可以請您告訴我嗎？"
+0000ce:             50 TEXTWAITKB               adv=4   
+0000d2:             51 KEYWAIT                  adv=4   
+0000d6:             65 BGM                      adv=8   v0x1007b
+0000de:             17 TEXT                     adv=6   #1 "老師您在這裡求學的時候的回憶……"
+0000e4:             50 TEXTWAITKB               adv=4   
+0000e8:             51 KEYWAIT                  adv=4   
+0000ec:             65 BGM                      adv=8   v0x2007b
+0000f4:             17 TEXT                     adv=6   #2 "那讓思念在愛爾梅納斯裡奔馳的雪夜中回憶。"
+0000fa:             50 TEXTWAITKB               adv=4   
+0000fe:             51 KEYWAIT                  adv=4   
+000102:             65 BGM                      adv=8   v0x3007b
+00010a:             17 TEXT                     adv=6   #3 "那第一次進入學舍大門的，清晨的回憶。"
+000110:             50 TEXTWAITKB               adv=4   
+000114:             51 KEYWAIT                  adv=4   
+000118:             65 BGM                      adv=8   v0x4007b
+000120:             17 TEXT                     adv=6   #4 "在對著書桌努力奮發的，黃昏的回憶……"
+000126:             50 TEXTWAITKB               adv=4   
+00012a:             51 KEYWAIT                  adv=4   
+00012e:             44 TEXTCLEAR                adv=4   
+000132:             65 BGM                      adv=8   v0x5007b
+00013a:             17 TEXT                     adv=6   #5 "那個時候您眼中所看到的都是些什麼呢？"
+000140:             50 TEXTWAITKB               adv=4   
+000144:             51 KEYWAIT                  adv=4   
+000148:             65 BGM                      adv=8   v0x6007b
+000150:             17 TEXT                     adv=6   #6 "那個時候您心裡所想的都是些什麼呢？"
+000156:             50 TEXTWAITKB               adv=4   
+00015a:             51 KEYWAIT                  adv=4   
+00015e:             65 BGM                      adv=8   v0x7007b
+000166:             17 TEXT                     adv=6   #7 "……我想要知道。"
+00016c:             50 TEXTWAITKB               adv=4   
+000170:             51 KEYWAIT                  adv=4   
+000174:             65 BGM                      adv=8   v0x8007b
+00017c:             17 TEXT                     adv=6   #8 "我想知道這世界上老師獨一無二的心情。"
+000182:             50 TEXTWAITKB               adv=4   
+000186:             51 KEYWAIT                  adv=4   
+00018a:             44 TEXTCLEAR                adv=4   
+00018e:             11 GOTO                     adv=8   L_047c
+000196: L_0182    43 TEXTACTIVE               adv=8   5
+00019e:             65 BGM                      adv=8   v0x9007b
+0001a6:             17 TEXT                     adv=6   #9 "老師，我……"
+0001ac:             50 TEXTWAITKB               adv=4   
+0001b0:             51 KEYWAIT                  adv=4   
+0001b4:             65 BGM                      adv=8   v0xa007b
+0001bc:             17 TEXT                     adv=6   #10 "我現在的努力符合您的期許嗎？"
+0001c2:             50 TEXTWAITKB               adv=4   
+0001c6:             51 KEYWAIT                  adv=4   
+0001ca:             65 BGM                      adv=8   v0xb007b
+0001d2:             17 TEXT                     adv=6   #11 "就算只有一點點也好。"
+0001d8:             50 TEXTWAITKB               adv=4   
+0001dc:             51 KEYWAIT                  adv=4   
+0001e0:             65 BGM                      adv=8   v0xc007b
+0001e8:             17 TEXT                     adv=6   #12 "我想要待在您的身邊，為您出一份心力。"
+0001ee:             50 TEXTWAITKB               adv=4   
+0001f2:             51 KEYWAIT                  adv=4   
+0001f6:             44 TEXTCLEAR                adv=4   
+0001fa:             11 GOTO                     adv=8   L_047c
+000202: L_01ee    43 TEXTACTIVE               adv=8   5
+00020a:             65 BGM                      adv=8   v0xd007b
+000212:             17 TEXT                     adv=6   #13 "老師……"
+000218:             50 TEXTWAITKB               adv=4   
+00021c:             51 KEYWAIT                  adv=4   
+000220:             65 BGM                      adv=8   v0xe007b
+000228:             17 TEXT                     adv=6   #14 "我，我想要保護純潔之盾。"
+00022e:             50 TEXTWAITKB               adv=4   
+000232:             51 KEYWAIT                  adv=4   
+000236:             65 BGM                      adv=8   v0xf007b
+00023e:             17 TEXT                     adv=6   #15 "就算我所能做的幫助不大，"
+000244:             17 TEXT                     adv=6   #16 "我也想為您出一份心力。"
+00024a:             50 TEXTWAITKB               adv=4   
+00024e:             51 KEYWAIT                  adv=4   
+000252:             44 TEXTCLEAR                adv=4   
+000256:             65 BGM                      adv=8   v0x10007b
+00025e:             17 TEXT                     adv=6   #17 "但是要怎樣去做，"
+000264:             17 TEXT                     adv=6   #18 "才能讓您感覺需要我的幫助呢？"
+00026a:             17 TEXT                     adv=6   #19 "我不知道……"
+000270:             50 TEXTWAITKB               adv=4   
+000274:             51 KEYWAIT                  adv=4   
+000278:             65 BGM                      adv=8   v0x11007b
+000280:             17 TEXT                     adv=6   #20 "要怎樣做才能保護純潔之盾呢？"
+000286:             17 TEXT                     adv=6   #21 "我不知道……"
+00028c:             50 TEXTWAITKB               adv=4   
+000290:             51 KEYWAIT                  adv=4   
+000294:             44 TEXTCLEAR                adv=4   
+000298:             65 BGM                      adv=8   v0x12007b
+0002a0:             17 TEXT                     adv=6   #22 "……從今以後我也會好好努力的。"
+0002a6:             50 TEXTWAITKB               adv=4   
+0002aa:             51 KEYWAIT                  adv=4   
+0002ae:             65 BGM                      adv=8   v0x13007b
+0002b6:             17 TEXT                     adv=6   #23 "所以，懇請您……懇請您指引我。"
+0002bc:             50 TEXTWAITKB               adv=4   
+0002c0:             51 KEYWAIT                  adv=4   
+0002c4:             44 TEXTCLEAR                adv=4   
+0002c8:             11 GOTO                     adv=8   L_047c
+0002d0: L_02bc    43 TEXTACTIVE               adv=8   5
+0002d8:             65 BGM                      adv=8   v0x14007b
+0002e0:             17 TEXT                     adv=6   #24 "雖然一直不斷地努力再努力，"
+0002e6:             17 TEXT                     adv=6   #25 "也是會有無論如何都做不到的事情。"
+0002ec:             50 TEXTWAITKB               adv=4   
+0002f0:             51 KEYWAIT                  adv=4   
+0002f4:             65 BGM                      adv=8   v0x15007b
+0002fc:             17 TEXT                     adv=6   #26 "那連會不會有所進步也不知道，"
+000302:             17 TEXT                     adv=6   #27 "因而時常流淚的日子，我都記得很清楚。"
+000308:             50 TEXTWAITKB               adv=4   
+00030c:             51 KEYWAIT                  adv=4   
+000310:             44 TEXTCLEAR                adv=4   
+000314:             65 BGM                      adv=8   v0x16007b
+00031c:             17 TEXT                     adv=6   #28 "但是，就是因為這樣……"
+000322:             17 TEXT                     adv=6   #29 "第一次被老師誇獎的時候，"
+000328:             17 TEXT                     adv=6   #30 "我是多麼地開心呀。"
+00032e:             50 TEXTWAITKB               adv=4   
+000332:             51 KEYWAIT                  adv=4   
+000336:             44 TEXTCLEAR                adv=4   
+00033a:             65 BGM                      adv=8   v0x17007b
+000342:             17 TEXT                     adv=6   #31 "……我是在很熱衷的情況下努力到了現在。"
+000348:             50 TEXTWAITKB               adv=4   
+00034c:             51 KEYWAIT                  adv=4   
+000350:             65 BGM                      adv=8   v0x18007b
+000358:             17 TEXT                     adv=6   #32 "……我不會忘記您的眼神，"
+00035e:             17 TEXT                     adv=6   #33 "絕對不會，永遠也不會。"
+000364:             50 TEXTWAITKB               adv=4   
+000368:             51 KEYWAIT                  adv=4   
+00036c:             65 BGM                      adv=8   v0x19007b
+000374:             17 TEXT                     adv=6   #34 "如果從此以後我也能和您一起前進的話……"
+00037a:             50 TEXTWAITKB               adv=4   
+00037e:             51 KEYWAIT                  adv=4   
+000382:             65 BGM                      adv=8   v0x1a007b
+00038a:             17 TEXT                     adv=6   #35 "那我真的是好幸福。"
+000390:             50 TEXTWAITKB               adv=4   
+000394:             51 KEYWAIT                  adv=4   
+000398:             44 TEXTCLEAR                adv=4   
+00039c:             11 GOTO                     adv=8   L_047c
+0003a4: L_0390    43 TEXTACTIVE               adv=8   5
+0003ac:             65 BGM                      adv=8   v0x1b007b
+0003b4:             17 TEXT                     adv=6   #36 "可以這樣地被您引導……"
+0003ba:             50 TEXTWAITKB               adv=4   
+0003be:             51 KEYWAIT                  adv=4   
+0003c2:             65 BGM                      adv=8   v0x1c007b
+0003ca:             17 TEXT                     adv=6   #37 "讓我也稍微能理解身旁的一切了。"
+0003d0:             50 TEXTWAITKB               adv=4   
+0003d4:             51 KEYWAIT                  adv=4   
+0003d8:             65 BGM                      adv=8   v0x1d007b
+0003e0:             17 TEXT                     adv=6   #38 "現在，回頭想想，"
+0003e6:             50 TEXTWAITKB               adv=4   
+0003ea:             51 KEYWAIT                  adv=4   
+0003ee:             65 BGM                      adv=8   v0x1e007b
+0003f6:             17 TEXT                     adv=6   #39 "我曾經給老師帶來了多大的麻煩呀。"
+0003fc:             50 TEXTWAITKB               adv=4   
+000400:             51 KEYWAIT                  adv=4   
+000404:             44 TEXTCLEAR                adv=4   
+000408:             65 BGM                      adv=8   v0x1f007b
+000410:             17 TEXT                     adv=6   #40 "不，沒錯，"
+000416:             17 TEXT                     adv=6   #41 "就算如此您也沒有讓我看到那為難的表情。"
+00041c:             50 TEXTWAITKB               adv=4   
+000420:             51 KEYWAIT                  adv=4   
+000424:             65 BGM                      adv=8   v0x20007b
+00042c:             17 TEXT                     adv=6   #42 "所以……所以我要全心全力地報答您的恩情，"
+000432:             50 TEXTWAITKB               adv=4   
+000436:             51 KEYWAIT                  adv=4   
+00043a:             44 TEXTCLEAR                adv=4   
+00043e:             65 BGM                      adv=8   v0x21007b
+000446:             17 TEXT                     adv=6   #43 "我願意付出我的一切去支持您。"
+00044c:             50 TEXTWAITKB               adv=4   
+000450:             51 KEYWAIT                  adv=4   
+000454:             65 BGM                      adv=8   v0x22007b
+00045c:             17 TEXT                     adv=6   #44 "……無論會遇上什麼樣的事情，"
+000462:             17 TEXT                     adv=6   #45 "我都不會退縮。"
+000468:             50 TEXTWAITKB               adv=4   
+00046c:             51 KEYWAIT                  adv=4   
+000470:             65 BGM                      adv=8   v0x23007b
+000478:             17 TEXT                     adv=6   #46 "如果，您願意對我有所期許的話，"
+00047e:             17 TEXT                     adv=6   #47 "無論會遇上什麼樣的事情也好……"
+000484:             50 TEXTWAITKB               adv=4   
+000488:             51 KEYWAIT                  adv=4   
+00048c:             44 TEXTCLEAR                adv=4   
+000490: L_047c    32 BORDPACKOFFWAIT          adv=12  5 30
+00049c:             12 VWAIT                    adv=8   30
+0004a4:             21 ALLOFF                   adv=4   
+0004a8:             19 END                      adv=4   ; END
+; (192 insns)

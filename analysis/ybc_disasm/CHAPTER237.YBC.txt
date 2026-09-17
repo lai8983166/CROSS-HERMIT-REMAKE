@@ -1,0 +1,45 @@
+; CHAPTER237.YBC  len=0x1dc  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x100', '0x100', '0x100']
+;   txt#0 off=0x24 prm=0x180 "的確，那些失傳的技能，"
+;   txt#1 off=0x3c prm=0x240 "每一個都有我們必須重新發掘的理由。"
+;   txt#2 off=0x60 prm=0x80 "然而，"
+;   txt#3 off=0x68 prm=0x200 "不是用普通的方式就可以領會的，"
+;   txt#4 off=0x88 prm=0x1c0 "所以這將會是很困難的工作。"
+;   txt#5 off=0xa4 prm=0xa0 "…………"
+;   txt#6 off=0xae prm=0xa0 "…………"
+;   txt#7 off=0xb8 prm=0x240 "那就讓我們盡力去做到自己的極限吧。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             63 SE                       adv=8   9
+00002c:             59 BGSETWAIT                adv=16  0 7 1
+00003c:             30 BORDPACKONWAIT           adv=20  10 110 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   10
+000060:             17 TEXT                     adv=6   #0 "的確，那些失傳的技能，"
+000066:             17 TEXT                     adv=6   #1 "每一個都有我們必須重新發掘的理由。"
+00006c:             17 TEXT                     adv=6   #2 "然而，"
+000072:             17 TEXT                     adv=6   #3 "不是用普通的方式就可以領會的，"
+000078:             17 TEXT                     adv=6   #4 "所以這將會是很困難的工作。"
+00007e:             50 TEXTWAITKB               adv=4   
+000082:             51 KEYWAIT                  adv=4   
+000086:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000096:             43 TEXTACTIVE               adv=8   4
+00009e:             17 TEXT                     adv=6   #5 "…………"
+0000a4:             50 TEXTWAITKB               adv=4   
+0000a8:             51 KEYWAIT                  adv=4   
+0000ac:             43 TEXTACTIVE               adv=8   10
+0000b4:             44 TEXTCLEAR                adv=4   
+0000b8:             17 TEXT                     adv=6   #6 "…………"
+0000be:             50 TEXTWAITKB               adv=4   
+0000c2:             51 KEYWAIT                  adv=4   
+0000c6:             43 TEXTACTIVE               adv=8   4
+0000ce:             44 TEXTCLEAR                adv=4   
+0000d2:             17 TEXT                     adv=6   #7 "那就讓我們盡力去做到自己的極限吧。"
+0000d8:             50 TEXTWAITKB               adv=4   
+0000dc:             51 KEYWAIT                  adv=4   
+0000e0:             12 VWAIT                    adv=8   30
+0000e8:             56 FADESETWAIT              adv=8   4
+0000f0:             21 ALLOFF                   adv=4   
+0000f4:             12 VWAIT                    adv=8   60
+0000fc:             19 END                      adv=4   ; END
+; (34 insns)

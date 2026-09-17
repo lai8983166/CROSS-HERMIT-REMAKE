@@ -1,0 +1,140 @@
+; MVP010.YBC  len=0x62a  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x2cc', '0x2cc', '0x2cc']
+;   txt#0 off=0x6c prm=0x180 "三年前離開了純潔之盾，"
+;   txt#1 off=0x84 prm=0x1c0 "現在再度這樣地回到這裡……"
+;   txt#2 off=0xa0 prm=0x1e0 "才發現這真的是繞了一趟遠路。"
+;   txt#3 off=0xbe prm=0x240 "我曾經以您為目標，憧憬著您而努力。"
+;   txt#4 off=0xe2 prm=0x120 "也正是因為如此，"
+;   txt#5 off=0xf4 prm=0x1e0 "所以曾經有過怨恨、有過挫折、"
+;   txt#6 off=0x112 prm=0x160 "有過悲傷流淚的經驗。"
+;   txt#7 off=0x128 prm=0x2a0 "但是，卻從來也不曾感覺您不是我要去追趕的"
+;   txt#8 off=0x152 prm=0xc0 "崇高目標。"
+;   txt#9 off=0x15e prm=0x1e0 "……因為現在再次地被您領導。"
+;   txt#10 off=0x17c prm=0x280 "所以，我一定要努力地超越您，給您看看。"
+;   txt#11 off=0x1a4 prm=0x240 "如果我們可以拯救愛爾梅納斯的話……"
+;   txt#12 off=0x1c8 prm=0x240 "那個時候，我就要去外面的世界旅行。"
+;   txt#13 off=0x1ec prm=0x200 "我希望可以幫那些賢者出一份力。"
+;   txt#14 off=0x20c prm=0x1c0 "我希望能夠重新地審視自己。"
+;   txt#15 off=0x228 prm=0x100 "我是這麼想的。"
+;   txt#16 off=0x238 prm=0x260 "我追逐著你的腳步，魯莽地奮鬥了很久。"
+;   txt#17 off=0x25e prm=0x1e0 "我認為在純潔之盾這個溫室裡，"
+;   txt#18 off=0x27c prm=0x260 "是沒有辦法鍛鍊自己的，所以我離開了。"
+;   txt#19 off=0x2a2 prm=0x1a0 "然而，事實卻不是這樣的。"
+;   txt#20 off=0x2bc prm=0x140 "無論是在什麼地方，"
+;   txt#21 off=0x2d0 prm=0x260 "只要自己有決心的話，就可以學到東西。"
+;   txt#22 off=0x2f6 prm=0x1c0 "……我想起了您所說過的話。"
+;   txt#23 off=0x312 prm=0x240 "「最棘手的敵人不會是其他的任何人，"
+;   txt#24 off=0x336 prm=0xe0 "而是自己。」"
+;   txt#25 off=0x344 prm=0x1a0 "……我絕對不會再忘記了。"
+000014:             56 FADESETWAIT              adv=8   2
+00001c:             20 ADVMODESET               adv=8   1
+000024:             12 VWAIT                    adv=8   30
+00002c:             30 BORDPACKONWAIT           adv=20  5 10 0 30
+000040:             90 GETUNITWK                adv=12  v0x0 4
+00004c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 0 -> L_007c
+000060:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_015a
+000074:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 2 -> L_01dc
+000088:             11 GOTO                     adv=8   L_015a
+000090: L_007c    43 TEXTACTIVE               adv=8   5
+000098:             65 BGM                      adv=8   v0x81
+0000a0:             17 TEXT                     adv=6   #0 "三年前離開了純潔之盾，"
+0000a6:             17 TEXT                     adv=6   #1 "現在再度這樣地回到這裡……"
+0000ac:             50 TEXTWAITKB               adv=4   
+0000b0:             51 KEYWAIT                  adv=4   
+0000b4:             65 BGM                      adv=8   v0x10081
+0000bc:             17 TEXT                     adv=6   #2 "才發現這真的是繞了一趟遠路。"
+0000c2:             50 TEXTWAITKB               adv=4   
+0000c6:             51 KEYWAIT                  adv=4   
+0000ca:             65 BGM                      adv=8   v0x20081
+0000d2:             17 TEXT                     adv=6   #3 "我曾經以您為目標，憧憬著您而努力。"
+0000d8:             50 TEXTWAITKB               adv=4   
+0000dc:             51 KEYWAIT                  adv=4   
+0000e0:             44 TEXTCLEAR                adv=4   
+0000e4:             65 BGM                      adv=8   v0x30081
+0000ec:             17 TEXT                     adv=6   #4 "也正是因為如此，"
+0000f2:             50 TEXTWAITKB               adv=4   
+0000f6:             51 KEYWAIT                  adv=4   
+0000fa:             65 BGM                      adv=8   v0x40081
+000102:             17 TEXT                     adv=6   #5 "所以曾經有過怨恨、有過挫折、"
+000108:             17 TEXT                     adv=6   #6 "有過悲傷流淚的經驗。"
+00010e:             50 TEXTWAITKB               adv=4   
+000112:             51 KEYWAIT                  adv=4   
+000116:             65 BGM                      adv=8   v0x50081
+00011e:             17 TEXT                     adv=6   #7 "但是，卻從來也不曾感覺您不是我要去追趕的"
+000124:             17 TEXT                     adv=6   #8 "崇高目標。"
+00012a:             50 TEXTWAITKB               adv=4   
+00012e:             51 KEYWAIT                  adv=4   
+000132:             44 TEXTCLEAR                adv=4   
+000136:             65 BGM                      adv=8   v0x60081
+00013e:             17 TEXT                     adv=6   #9 "……因為現在再次地被您領導。"
+000144:             50 TEXTWAITKB               adv=4   
+000148:             51 KEYWAIT                  adv=4   
+00014c:             65 BGM                      adv=8   v0x70081
+000154:             17 TEXT                     adv=6   #10 "所以，我一定要努力地超越您，給您看看。"
+00015a:             50 TEXTWAITKB               adv=4   
+00015e:             51 KEYWAIT                  adv=4   
+000162:             44 TEXTCLEAR                adv=4   
+000166:             11 GOTO                     adv=8   L_029c
+00016e: L_015a    43 TEXTACTIVE               adv=8   5
+000176:             65 BGM                      adv=8   v0x80081
+00017e:             17 TEXT                     adv=6   #11 "如果我們可以拯救愛爾梅納斯的話……"
+000184:             50 TEXTWAITKB               adv=4   
+000188:             51 KEYWAIT                  adv=4   
+00018c:             65 BGM                      adv=8   v0x90081
+000194:             17 TEXT                     adv=6   #12 "那個時候，我就要去外面的世界旅行。"
+00019a:             50 TEXTWAITKB               adv=4   
+00019e:             51 KEYWAIT                  adv=4   
+0001a2:             65 BGM                      adv=8   v0xa0081
+0001aa:             17 TEXT                     adv=6   #13 "我希望可以幫那些賢者出一份力。"
+0001b0:             50 TEXTWAITKB               adv=4   
+0001b4:             51 KEYWAIT                  adv=4   
+0001b8:             65 BGM                      adv=8   v0xb0081
+0001c0:             17 TEXT                     adv=6   #14 "我希望能夠重新地審視自己。"
+0001c6:             50 TEXTWAITKB               adv=4   
+0001ca:             51 KEYWAIT                  adv=4   
+0001ce:             65 BGM                      adv=8   v0xc0081
+0001d6:             17 TEXT                     adv=6   #15 "我是這麼想的。"
+0001dc:             50 TEXTWAITKB               adv=4   
+0001e0:             51 KEYWAIT                  adv=4   
+0001e4:             44 TEXTCLEAR                adv=4   
+0001e8:             11 GOTO                     adv=8   L_029c
+0001f0: L_01dc    43 TEXTACTIVE               adv=8   5
+0001f8:             65 BGM                      adv=8   v0xd0081
+000200:             17 TEXT                     adv=6   #16 "我追逐著你的腳步，魯莽地奮鬥了很久。"
+000206:             50 TEXTWAITKB               adv=4   
+00020a:             51 KEYWAIT                  adv=4   
+00020e:             65 BGM                      adv=8   v0xe0081
+000216:             17 TEXT                     adv=6   #17 "我認為在純潔之盾這個溫室裡，"
+00021c:             17 TEXT                     adv=6   #18 "是沒有辦法鍛鍊自己的，所以我離開了。"
+000222:             50 TEXTWAITKB               adv=4   
+000226:             51 KEYWAIT                  adv=4   
+00022a:             65 BGM                      adv=8   v0xf0081
+000232:             17 TEXT                     adv=6   #19 "然而，事實卻不是這樣的。"
+000238:             50 TEXTWAITKB               adv=4   
+00023c:             51 KEYWAIT                  adv=4   
+000240:             44 TEXTCLEAR                adv=4   
+000244:             65 BGM                      adv=8   v0x100081
+00024c:             17 TEXT                     adv=6   #20 "無論是在什麼地方，"
+000252:             17 TEXT                     adv=6   #21 "只要自己有決心的話，就可以學到東西。"
+000258:             50 TEXTWAITKB               adv=4   
+00025c:             51 KEYWAIT                  adv=4   
+000260:             65 BGM                      adv=8   v0x110081
+000268:             17 TEXT                     adv=6   #22 "……我想起了您所說過的話。"
+00026e:             50 TEXTWAITKB               adv=4   
+000272:             51 KEYWAIT                  adv=4   
+000276:             44 TEXTCLEAR                adv=4   
+00027a:             65 BGM                      adv=8   v0x120081
+000282:             17 TEXT                     adv=6   #23 "「最棘手的敵人不會是其他的任何人，"
+000288:             17 TEXT                     adv=6   #24 "而是自己。」"
+00028e:             50 TEXTWAITKB               adv=4   
+000292:             51 KEYWAIT                  adv=4   
+000296:             65 BGM                      adv=8   v0x130081
+00029e:             17 TEXT                     adv=6   #25 "……我絕對不會再忘記了。"
+0002a4:             50 TEXTWAITKB               adv=4   
+0002a8:             51 KEYWAIT                  adv=4   
+0002ac:             44 TEXTCLEAR                adv=4   
+0002b0: L_029c    32 BORDPACKOFFWAIT          adv=12  5 30
+0002bc:             12 VWAIT                    adv=8   30
+0002c4:             21 ALLOFF                   adv=4   
+0002c8:             19 END                      adv=4   ; END
+; (111 insns)

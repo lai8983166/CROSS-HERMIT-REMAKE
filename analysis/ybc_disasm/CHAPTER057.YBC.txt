@@ -1,0 +1,103 @@
+; CHAPTER057.YBC  len=0x59c  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x19e', '0x19e', '0x19e']
+;   txt#0 off=0x80 prm=0x160 "完成　堅守艾爾貝洛瓦"
+;   txt#1 off=0x96 prm=0x140 "完成　收復安蒂米昂"
+;   txt#2 off=0xaa prm=0x120 "１　守衛安蒂米昂"
+;   txt#3 off=0xbc prm=0x1e0 "２　聖者的墳墓－躲呀躲呀大會"
+;   txt#4 off=0xda prm=0x2a0 "（ＡＬＴ限制、一旦死亡就出局、沒有時間限"
+;   txt#5 off=0x104 prm=0x2a0 "制、所得到的寶物會隨著人數多寡而不同。）"
+;   txt#6 off=0x12e prm=0x260 "如果只有一個人參加的話，報酬會增加。"
+;   txt#7 off=0x154 prm=0x2a0 "（因為有ＡＬＴ限制，所以只派一個人的話，"
+;   txt#8 off=0x17e prm=0x160 "困難度會增加許多。）"
+;   txt#9 off=0x194 prm=0x220 "３　愛爾梅納斯大美術館－鬧鬼作戰"
+;   txt#10 off=0x1b6 prm=0x2a0 "（不能ＡＬＴ就出局，死亡也出局，沒有時間"
+;   txt#11 off=0x1e0 prm=0x2a0 "限制，所得到的寶物會隨人數多寡而不同。）"
+;   txt#12 off=0x20a prm=0x260 "如果只有一個人參加的話，報酬會增加。"
+;   txt#13 off=0x230 prm=0x1c0 "（有安全地點，高低差大。）"
+;   txt#14 off=0x24c prm=0x280 "……光是這些，就已經有一部分很困難了，"
+;   txt#15 off=0x274 prm=0x100 "接下來更是……"
+;   txt#16 off=0x284 prm=0x140 "４　歌詠星辰的天蓋"
+;   txt#17 off=0x298 prm=0x1c0 "搶先抵達終點式─衝呀衝大會"
+;   txt#18 off=0x2b4 prm=0x2a0 "（ＡＬＴ限制，死了之後可以復活，沒有時間"
+;   txt#19 off=0x2de prm=0xa0 "限制。）"
+;   txt#20 off=0x2e8 prm=0x2a0 "總之，就努力一直往前衝吧，高低差會很大。"
+;   txt#21 off=0x312 prm=0xe0 "５　迷失之森"
+;   txt#22 off=0x320 prm=0x160 "鬧鬼作戰－逃呀逃大會"
+;   txt#23 off=0x336 prm=0x1e0 "（死了就出局，沒有時間限制）"
+;   txt#24 off=0x354 prm=0x200 "總之咧，儘量跑來跑去會比較好。"
+;   txt#25 off=0x374 prm=0x120 "（沒有安全地點）"
+;   txt#26 off=0x386 prm=0xc0 "６　炎之谷"
+;   txt#27 off=0x392 prm=0x240 "有任務時間限制，裡面可以走多遠呢？"
+;   txt#28 off=0x3b6 prm=0x160 "……就像以上敘述的，"
+;   txt#29 off=0x3cc prm=0x260 "有各式各樣挑戰系的劇情關卡可以選擇！"
+;   txt#30 off=0x3f2 prm=0xc0 "就是這樣。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             59 BGSETWAIT                adv=16  0 1 1
+000034:             56 FADESETWAIT              adv=8   3
+00003c:             12 VWAIT                    adv=8   30
+000044:             27 BORDONWAIT               adv=16  0 268435455 268435455
+000054:             43 TEXTACTIVE               adv=8   0
+00005c:             17 TEXT                     adv=6   #0 "完成　堅守艾爾貝洛瓦"
+000062:             17 TEXT                     adv=6   #1 "完成　收復安蒂米昂"
+000068:             50 TEXTWAITKB               adv=4   
+00006c:             51 KEYWAIT                  adv=4   
+000070:             44 TEXTCLEAR                adv=4   
+000074:             17 TEXT                     adv=6   #2 "１　守衛安蒂米昂"
+00007a:             50 TEXTWAITKB               adv=4   
+00007e:             51 KEYWAIT                  adv=4   
+000082:             44 TEXTCLEAR                adv=4   
+000086:             17 TEXT                     adv=6   #3 "２　聖者的墳墓－躲呀躲呀大會"
+00008c:             17 TEXT                     adv=6   #4 "（ＡＬＴ限制、一旦死亡就出局、沒有時間限"
+000092:             17 TEXT                     adv=6   #5 "制、所得到的寶物會隨著人數多寡而不同。）"
+000098:             17 TEXT                     adv=6   #6 "如果只有一個人參加的話，報酬會增加。"
+00009e:             17 TEXT                     adv=6   #7 "（因為有ＡＬＴ限制，所以只派一個人的話，"
+0000a4:             17 TEXT                     adv=6   #8 "困難度會增加許多。）"
+0000aa:             50 TEXTWAITKB               adv=4   
+0000ae:             51 KEYWAIT                  adv=4   
+0000b2:             44 TEXTCLEAR                adv=4   
+0000b6:             17 TEXT                     adv=6   #9 "３　愛爾梅納斯大美術館－鬧鬼作戰"
+0000bc:             17 TEXT                     adv=6   #10 "（不能ＡＬＴ就出局，死亡也出局，沒有時間"
+0000c2:             17 TEXT                     adv=6   #11 "限制，所得到的寶物會隨人數多寡而不同。）"
+0000c8:             17 TEXT                     adv=6   #12 "如果只有一個人參加的話，報酬會增加。"
+0000ce:             17 TEXT                     adv=6   #13 "（有安全地點，高低差大。）"
+0000d4:             50 TEXTWAITKB               adv=4   
+0000d8:             51 KEYWAIT                  adv=4   
+0000dc:             44 TEXTCLEAR                adv=4   
+0000e0:             17 TEXT                     adv=6   #14 "……光是這些，就已經有一部分很困難了，"
+0000e6:             17 TEXT                     adv=6   #15 "接下來更是……"
+0000ec:             50 TEXTWAITKB               adv=4   
+0000f0:             51 KEYWAIT                  adv=4   
+0000f4:             44 TEXTCLEAR                adv=4   
+0000f8:             17 TEXT                     adv=6   #16 "４　歌詠星辰的天蓋"
+0000fe:             17 TEXT                     adv=6   #17 "搶先抵達終點式─衝呀衝大會"
+000104:             17 TEXT                     adv=6   #18 "（ＡＬＴ限制，死了之後可以復活，沒有時間"
+00010a:             17 TEXT                     adv=6   #19 "限制。）"
+000110:             17 TEXT                     adv=6   #20 "總之，就努力一直往前衝吧，高低差會很大。"
+000116:             50 TEXTWAITKB               adv=4   
+00011a:             51 KEYWAIT                  adv=4   
+00011e:             44 TEXTCLEAR                adv=4   
+000122:             17 TEXT                     adv=6   #21 "５　迷失之森"
+000128:             17 TEXT                     adv=6   #22 "鬧鬼作戰－逃呀逃大會"
+00012e:             17 TEXT                     adv=6   #23 "（死了就出局，沒有時間限制）"
+000134:             17 TEXT                     adv=6   #24 "總之咧，儘量跑來跑去會比較好。"
+00013a:             17 TEXT                     adv=6   #25 "（沒有安全地點）"
+000140:             50 TEXTWAITKB               adv=4   
+000144:             51 KEYWAIT                  adv=4   
+000148:             44 TEXTCLEAR                adv=4   
+00014c:             17 TEXT                     adv=6   #26 "６　炎之谷"
+000152:             17 TEXT                     adv=6   #27 "有任務時間限制，裡面可以走多遠呢？"
+000158:             50 TEXTWAITKB               adv=4   
+00015c:             51 KEYWAIT                  adv=4   
+000160:             44 TEXTCLEAR                adv=4   
+000164:             17 TEXT                     adv=6   #28 "……就像以上敘述的，"
+00016a:             17 TEXT                     adv=6   #29 "有各式各樣挑戰系的劇情關卡可以選擇！"
+000170:             17 TEXT                     adv=6   #30 "就是這樣。"
+000176:             50 TEXTWAITKB               adv=4   
+00017a:             51 KEYWAIT                  adv=4   
+00017e:             12 VWAIT                    adv=8   30
+000186:             56 FADESETWAIT              adv=8   4
+00018e:             21 ALLOFF                   adv=4   
+000192:             12 VWAIT                    adv=8   60
+00019a:             19 END                      adv=4   ; END
+; (69 insns)

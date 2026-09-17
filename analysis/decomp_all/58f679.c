@@ -1,0 +1,16 @@
+
+void Unwind_0058f679(void)
+
+{
+  int unaff_EBP;
+  
+  if (*(int *)(unaff_EBP + -0x10) == 0) {
+    *(undefined4 *)(unaff_EBP + -0x14) = 0;
+  }
+  else {
+    *(int *)(unaff_EBP + -0x14) = *(int *)(unaff_EBP + -0x10) + 0x180;
+  }
+  FUN_004257c0();
+  return;
+}
+

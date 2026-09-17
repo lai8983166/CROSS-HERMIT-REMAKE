@@ -1,0 +1,183 @@
+; CHAPTER089.YBC  len=0x7da  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x3ce', '0x45e', '0x45e']
+; rec1[0] = "data\\adv\\bin\\tc0104.bin"
+; rec1[1] = "data\\adv\\dat\\Chapter314A.ybc"
+; rec1[2] = "data\\adv\\dat\\Chapter314B.ybc"
+;   txt#0 off=0x88 prm=0x260 "果然，到最後還留在這裡的，就是你呀。"
+;   txt#1 off=0xae prm=0x1e0 "……賢者圓桌的判斷是正確的。"
+;   txt#2 off=0xcc prm=0x240 "就因為這樣，純潔之盾才能完成使命。"
+;   txt#3 off=0xf0 prm=0xa0 "…………"
+;   txt#4 off=0xfa prm=0x200 "聖瑟維艾斯代替學舍犧牲了自己、"
+;   txt#5 off=0x11a prm=0x220 "葛斯貝布洛為了愛爾梅納斯而奮鬥、"
+;   txt#6 off=0x13c prm=0x260 "帕蘭達因毅然地走在充滿荊棘的道路上。"
+;   txt#7 off=0x162 prm=0xa0 "…………"
+;   txt#8 off=0x16c prm=0x160 "就算只有一點點也好。"
+;   txt#9 off=0x182 prm=0x1e0 "希望您能夠體諒孩子們的心情。"
+;   txt#10 off=0x1a0 prm=0xc0 "……抱歉。"
+;   txt#11 off=0x1ac prm=0x140 "……第十三王杯呢？"
+;   txt#12 off=0x1c0 prm=0x2a0 "在黑衣施咒者與「匍伏蔓延而來之物」的手中"
+;   txt#13 off=0x1ea prm=0x60 "……"
+;   txt#14 off=0x1f0 prm=0x240 "許下了愛爾梅納斯的願望─自我毀滅。"
+;   txt#15 off=0x214 prm=0xa0 "…………"
+;   txt#16 off=0x21e prm=0x180 "原來事情是這樣子啊……"
+;   txt#17 off=0x236 prm=0x1c0 "這一切都是因為我的無能……"
+;   txt#18 off=0x252 prm=0xe0 "非常地抱歉。"
+;   txt#19 off=0x260 prm=0xa0 "…………"
+;   txt#20 off=0x26a prm=0xa0 "…………"
+;   txt#21 off=0x274 prm=0x120 "在戰爭結束後……"
+;   txt#22 off=0x286 prm=0x2a0 "希望您能再度地放出照耀愛爾梅納斯的光芒。"
+;   txt#23 off=0x2b0 prm=0x80 "……！"
+;   txt#24 off=0x2b8 prm=0x1e0 "純潔之盾會保護愛爾梅納斯的。"
+;   txt#25 off=0x2d6 prm=0xa0 "……不。"
+;   txt#26 off=0x2e0 prm=0x2a0 "是跟所有在愛爾梅納斯一起生活的人同心協力"
+;   txt#27 off=0x30a prm=0x40 "。"
+;   txt#28 off=0x30e prm=0x160 "……真的，很感謝你。"
+;   txt#29 off=0x324 prm=0xa0 "不客氣。"
+;   txt#30 off=0x32e prm=0xa0 "…………"
+;   txt#31 off=0x338 prm=0x200 "希望我們在未來的那個時刻再見。"
+;   txt#32 off=0x358 prm=0x240 "……希望我們在未來的那個時刻再見。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   0
+000080:             63 SE                       adv=8   2
+000088:             59 BGSETWAIT                adv=16  0 119 1
+000098:             30 BORDPACKONWAIT           adv=20  10 109 0 30
+0000ac:             56 FADESETWAIT              adv=8   3
+0000b4:             43 TEXTACTIVE               adv=8   10
+0000bc:             17 TEXT                     adv=6   #0 "果然，到最後還留在這裡的，就是你呀。"
+0000c2:             50 TEXTWAITKB               adv=4   
+0000c6:             51 KEYWAIT                  adv=4   
+0000ca:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0000da:             43 TEXTACTIVE               adv=8   4
+0000e2:             17 TEXT                     adv=6   #1 "……賢者圓桌的判斷是正確的。"
+0000e8:             17 TEXT                     adv=6   #2 "就因為這樣，純潔之盾才能完成使命。"
+0000ee:             50 TEXTWAITKB               adv=4   
+0000f2:             51 KEYWAIT                  adv=4   
+0000f6:             43 TEXTACTIVE               adv=8   10
+0000fe:             44 TEXTCLEAR                adv=4   
+000102:             17 TEXT                     adv=6   #3 "…………"
+000108:             50 TEXTWAITKB               adv=4   
+00010c:             51 KEYWAIT                  adv=4   
+000110:             43 TEXTACTIVE               adv=8   4
+000118:             44 TEXTCLEAR                adv=4   
+00011c:             17 TEXT                     adv=6   #4 "聖瑟維艾斯代替學舍犧牲了自己、"
+000122:             17 TEXT                     adv=6   #5 "葛斯貝布洛為了愛爾梅納斯而奮鬥、"
+000128:             17 TEXT                     adv=6   #6 "帕蘭達因毅然地走在充滿荊棘的道路上。"
+00012e:             50 TEXTWAITKB               adv=4   
+000132:             51 KEYWAIT                  adv=4   
+000136:             43 TEXTACTIVE               adv=8   10
+00013e:             44 TEXTCLEAR                adv=4   
+000142:             17 TEXT                     adv=6   #7 "…………"
+000148:             50 TEXTWAITKB               adv=4   
+00014c:             51 KEYWAIT                  adv=4   
+000150:             43 TEXTACTIVE               adv=8   4
+000158:             44 TEXTCLEAR                adv=4   
+00015c:             17 TEXT                     adv=6   #8 "就算只有一點點也好。"
+000162:             17 TEXT                     adv=6   #9 "希望您能夠體諒孩子們的心情。"
+000168:             50 TEXTWAITKB               adv=4   
+00016c:             51 KEYWAIT                  adv=4   
+000170:             43 TEXTACTIVE               adv=8   10
+000178:             44 TEXTCLEAR                adv=4   
+00017c:             17 TEXT                     adv=6   #10 "……抱歉。"
+000182:             50 TEXTWAITKB               adv=4   
+000186:             51 KEYWAIT                  adv=4   
+00018a:             43 TEXTACTIVE               adv=8   4
+000192:             44 TEXTCLEAR                adv=4   
+000196:             17 TEXT                     adv=6   #11 "……第十三王杯呢？"
+00019c:             50 TEXTWAITKB               adv=4   
+0001a0:             51 KEYWAIT                  adv=4   
+0001a4:             43 TEXTACTIVE               adv=8   10
+0001ac:             44 TEXTCLEAR                adv=4   
+0001b0:             17 TEXT                     adv=6   #12 "在黑衣施咒者與「匍伏蔓延而來之物」的手中"
+0001b6:             17 TEXT                     adv=6   #13 "……"
+0001bc:             17 TEXT                     adv=6   #14 "許下了愛爾梅納斯的願望─自我毀滅。"
+0001c2:             50 TEXTWAITKB               adv=4   
+0001c6:             51 KEYWAIT                  adv=4   
+0001ca:             43 TEXTACTIVE               adv=8   4
+0001d2:             44 TEXTCLEAR                adv=4   
+0001d6:             17 TEXT                     adv=6   #15 "…………"
+0001dc:             17 TEXT                     adv=6   #16 "原來事情是這樣子啊……"
+0001e2:             50 TEXTWAITKB               adv=4   
+0001e6:             51 KEYWAIT                  adv=4   
+0001ea:             43 TEXTACTIVE               adv=8   10
+0001f2:             44 TEXTCLEAR                adv=4   
+0001f6:             17 TEXT                     adv=6   #17 "這一切都是因為我的無能……"
+0001fc:             17 TEXT                     adv=6   #18 "非常地抱歉。"
+000202:             50 TEXTWAITKB               adv=4   
+000206:             51 KEYWAIT                  adv=4   
+00020a:             43 TEXTACTIVE               adv=8   4
+000212:             44 TEXTCLEAR                adv=4   
+000216:             17 TEXT                     adv=6   #19 "…………"
+00021c:             50 TEXTWAITKB               adv=4   
+000220:             51 KEYWAIT                  adv=4   
+000224:             43 TEXTACTIVE               adv=8   10
+00022c:             44 TEXTCLEAR                adv=4   
+000230:             17 TEXT                     adv=6   #20 "…………"
+000236:             50 TEXTWAITKB               adv=4   
+00023a:             51 KEYWAIT                  adv=4   
+00023e:             43 TEXTACTIVE               adv=8   4
+000246:             44 TEXTCLEAR                adv=4   
+00024a:             17 TEXT                     adv=6   #21 "在戰爭結束後……"
+000250:             17 TEXT                     adv=6   #22 "希望您能再度地放出照耀愛爾梅納斯的光芒。"
+000256:             50 TEXTWAITKB               adv=4   
+00025a:             51 KEYWAIT                  adv=4   
+00025e:             43 TEXTACTIVE               adv=8   10
+000266:             44 TEXTCLEAR                adv=4   
+00026a:             17 TEXT                     adv=6   #23 "……！"
+000270:             50 TEXTWAITKB               adv=4   
+000274:             51 KEYWAIT                  adv=4   
+000278:             43 TEXTACTIVE               adv=8   4
+000280:             44 TEXTCLEAR                adv=4   
+000284:             17 TEXT                     adv=6   #24 "純潔之盾會保護愛爾梅納斯的。"
+00028a:             17 TEXT                     adv=6   #25 "……不。"
+000290:             17 TEXT                     adv=6   #26 "是跟所有在愛爾梅納斯一起生活的人同心協力"
+000296:             17 TEXT                     adv=6   #27 "。"
+00029c:             50 TEXTWAITKB               adv=4   
+0002a0:             51 KEYWAIT                  adv=4   
+0002a4:             43 TEXTACTIVE               adv=8   10
+0002ac:             44 TEXTCLEAR                adv=4   
+0002b0:             17 TEXT                     adv=6   #28 "……真的，很感謝你。"
+0002b6:             50 TEXTWAITKB               adv=4   
+0002ba:             51 KEYWAIT                  adv=4   
+0002be:             43 TEXTACTIVE               adv=8   4
+0002c6:             44 TEXTCLEAR                adv=4   
+0002ca:             17 TEXT                     adv=6   #29 "不客氣。"
+0002d0:             50 TEXTWAITKB               adv=4   
+0002d4:             51 KEYWAIT                  adv=4   
+0002d8:             43 TEXTACTIVE               adv=8   10
+0002e0:             44 TEXTCLEAR                adv=4   
+0002e4:             17 TEXT                     adv=6   #30 "…………"
+0002ea:             50 TEXTWAITKB               adv=4   
+0002ee:             51 KEYWAIT                  adv=4   
+0002f2:             43 TEXTACTIVE               adv=8   4
+0002fa:             44 TEXTCLEAR                adv=4   
+0002fe:             17 TEXT                     adv=6   #31 "希望我們在未來的那個時刻再見。"
+000304:             50 TEXTWAITKB               adv=4   
+000308:             51 KEYWAIT                  adv=4   
+00030c:             43 TEXTACTIVE               adv=8   10
+000314:             44 TEXTCLEAR                adv=4   
+000318:             17 TEXT                     adv=6   #32 "……希望我們在未來的那個時刻再見。"
+00031e:             50 TEXTWAITKB               adv=4   
+000322:             51 KEYWAIT                  adv=4   
+000326:             12 VWAIT                    adv=8   30
+00032e:             56 FADESETWAIT              adv=8   4
+000336:             21 ALLOFF                   adv=4   
+00033a:             12 VWAIT                    adv=8   60
+000342:            169 OP_169                   adv=12  v0x0 13
+00034e:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_03a6
+000362:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 2 -> L_03a6
+000376:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 3 -> L_03a6
+00038a:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 4 -> L_03ae
+00039e:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 5 -> L_03ae
+0003b2:             11 GOTO                     adv=8   L_03a6
+0003ba: L_03a6    15 SCRIPTEXEC               adv=8   v0x1
+0003c2: L_03ae    15 SCRIPTEXEC               adv=8   v0x2
+0003ca:             19 END                      adv=4   ; END
+; (144 insns)

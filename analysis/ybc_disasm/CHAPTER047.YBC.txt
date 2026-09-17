@@ -1,0 +1,202 @@
+; CHAPTER047.YBC  len=0x892  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x3e8', '0x448', '0x448']
+; rec1[0] = "data\\adv\\bin\\tc0805.bin"
+; rec1[1] = "data\\adv\\dat\\Chapter235.ybc"
+;   txt#0 off=0xac prm=0x80 "老師。"
+;   txt#1 off=0xb4 prm=0x280 "希里鄔司•謬斯要來這裡的消息是真的嗎？"
+;   txt#2 off=0xdc prm=0x100 "嗯嗯，終於……"
+;   txt#3 off=0xec prm=0x140 "貝爾鐸可勞的世家，"
+;   txt#4 off=0x100 prm=0x1c0 "謬斯大公殿下也要有動作了，"
+;   txt#5 off=0x11c prm=0xe0 "準備一下吧，"
+;   txt#6 off=0x12a prm=0x220 "我們對他的接待至少也不能太輕率。"
+;   txt#7 off=0x14c prm=0x240 "那信上的簽名當然要弄清楚是否屬實，"
+;   txt#8 off=0x170 prm=0x2a0 "不，也許那應該說是我們得弄清楚他的本意究"
+;   txt#9 off=0x19a prm=0xc0 "竟是什麼。"
+;   txt#10 off=0x1a6 prm=0x180 "那有可能是可以原諒的，"
+;   txt#11 off=0x1be prm=0x180 "也有可能是不可原諒的。"
+;   txt#12 off=0x1d6 prm=0x1e0 "雖然可以確認這件事情的真偽，"
+;   txt#13 off=0x1f4 prm=0x200 "但卻不代表可以解開所有的謎團，"
+;   txt#14 off=0x214 prm=0x1e0 "可是我們仍然得去確認，是嗎？"
+;   txt#15 off=0x232 prm=0xa0 "…………"
+;   txt#16 off=0x23c prm=0xa0 "…………"
+;   txt#17 off=0x246 prm=0x140 "從一開始我就認為，"
+;   txt#18 off=0x25a prm=0x1e0 "他不可能是會送來那種信的人。"
+;   txt#19 off=0x278 prm=0xa0 "艾爾雪。"
+;   txt#20 off=0x282 prm=0x240 "也許他正受到了很大的壓力與痛苦吧。"
+;   txt#21 off=0x2a6 prm=0x100 "我是這麼想的。"
+;   txt#22 off=0x2b6 prm=0xa0 "…………"
+;   txt#23 off=0x2c0 prm=0xa0 "…………"
+;   txt#24 off=0x2ca prm=0x200 "如果他真的是為了要讓我們臣服，"
+;   txt#25 off=0x2ea prm=0x1a0 "而送了那封信過來的話……"
+;   txt#26 off=0x304 prm=0x240 "應該要在純潔之盾回到安蒂米昂之前，"
+;   txt#27 off=0x328 prm=0x100 "就動手才對吧。"
+;   txt#28 off=0x338 prm=0xc0 "……的確。"
+;   txt#29 off=0x344 prm=0xa0 "…………"
+;   txt#30 off=0x34e prm=0x220 "我很想知道他們的目的究竟是什麼。"
+;   txt#31 off=0x370 prm=0x60 "好。"
+;   txt#32 off=0x376 prm=0x120 "那剛好，其實呢，"
+;   txt#33 off=0x388 prm=0x1c0 "對方指名了要妳跟他們交涉。"
+;   txt#34 off=0x3a4 prm=0x60 "咦？"
+;   txt#35 off=0x3aa prm=0x280 "雖然我對沒辦法跟他們交談而感到遺憾……"
+;   txt#36 off=0x3d2 prm=0x160 "但是也許對他們來說，"
+;   txt#37 off=0x3e8 prm=0x1c0 "重要的並不是我這個賢者吧。"
+;   txt#38 off=0x404 prm=0xa0 "帕彌菈。"
+;   txt#39 off=0x40e prm=0xa0 "…………"
+;   txt#40 off=0x418 prm=0x200 "與貝爾鐸可勞的大公殿下的會面，"
+;   txt#41 off=0x438 prm=0x120 "就交給妳負責了。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   1
+000080:             63 SE                       adv=8   3
+000088:             59 BGSETWAIT                adv=16  0 14 1
+000098:             30 BORDPACKONWAIT           adv=20  5 3 0 30
+0000ac:             56 FADESETWAIT              adv=8   3
+0000b4:             43 TEXTACTIVE               adv=8   5
+0000bc:             65 BGM                      adv=8   v0x33
+0000c4:             17 TEXT                     adv=6   #0 "老師。"
+0000ca:             50 TEXTWAITKB               adv=4   
+0000ce:             51 KEYWAIT                  adv=4   
+0000d2:             65 BGM                      adv=8   v0x10033
+0000da:             17 TEXT                     adv=6   #1 "希里鄔司•謬斯要來這裡的消息是真的嗎？"
+0000e0:             50 TEXTWAITKB               adv=4   
+0000e4:             51 KEYWAIT                  adv=4   
+0000e8:             27 BORDONWAIT               adv=16  1 268435455 268435455
+0000f8:             43 TEXTACTIVE               adv=8   1
+000100:             17 TEXT                     adv=6   #2 "嗯嗯，終於……"
+000106:             17 TEXT                     adv=6   #3 "貝爾鐸可勞的世家，"
+00010c:             17 TEXT                     adv=6   #4 "謬斯大公殿下也要有動作了，"
+000112:             17 TEXT                     adv=6   #5 "準備一下吧，"
+000118:             17 TEXT                     adv=6   #6 "我們對他的接待至少也不能太輕率。"
+00011e:             50 TEXTWAITKB               adv=4   
+000122:             51 KEYWAIT                  adv=4   
+000126:             43 TEXTACTIVE               adv=8   5
+00012e:             44 TEXTCLEAR                adv=4   
+000132:             65 BGM                      adv=8   v0x20033
+00013a:             17 TEXT                     adv=6   #7 "那信上的簽名當然要弄清楚是否屬實，"
+000140:             17 TEXT                     adv=6   #8 "不，也許那應該說是我們得弄清楚他的本意究"
+000146:             17 TEXT                     adv=6   #9 "竟是什麼。"
+00014c:             50 TEXTWAITKB               adv=4   
+000150:             51 KEYWAIT                  adv=4   
+000154:             65 BGM                      adv=8   v0x30033
+00015c:             17 TEXT                     adv=6   #10 "那有可能是可以原諒的，"
+000162:             17 TEXT                     adv=6   #11 "也有可能是不可原諒的。"
+000168:             50 TEXTWAITKB               adv=4   
+00016c:             51 KEYWAIT                  adv=4   
+000170:             43 TEXTACTIVE               adv=8   1
+000178:             44 TEXTCLEAR                adv=4   
+00017c:             17 TEXT                     adv=6   #12 "雖然可以確認這件事情的真偽，"
+000182:             17 TEXT                     adv=6   #13 "但卻不代表可以解開所有的謎團，"
+000188:             17 TEXT                     adv=6   #14 "可是我們仍然得去確認，是嗎？"
+00018e:             50 TEXTWAITKB               adv=4   
+000192:             51 KEYWAIT                  adv=4   
+000196:             43 TEXTACTIVE               adv=8   5
+00019e:             44 TEXTCLEAR                adv=4   
+0001a2:             17 TEXT                     adv=6   #15 "…………"
+0001a8:             50 TEXTWAITKB               adv=4   
+0001ac:             51 KEYWAIT                  adv=4   
+0001b0:             43 TEXTACTIVE               adv=8   1
+0001b8:             44 TEXTCLEAR                adv=4   
+0001bc:             17 TEXT                     adv=6   #16 "…………"
+0001c2:             50 TEXTWAITKB               adv=4   
+0001c6:             51 KEYWAIT                  adv=4   
+0001ca:             30 BORDPACKONWAIT           adv=20  6 6 0 30
+0001de:             43 TEXTACTIVE               adv=8   6
+0001e6:             65 BGM                      adv=8   v0x40033
+0001ee:             17 TEXT                     adv=6   #17 "從一開始我就認為，"
+0001f4:             17 TEXT                     adv=6   #18 "他不可能是會送來那種信的人。"
+0001fa:             50 TEXTWAITKB               adv=4   
+0001fe:             51 KEYWAIT                  adv=4   
+000202:             43 TEXTACTIVE               adv=8   5
+00020a:             44 TEXTCLEAR                adv=4   
+00020e:             65 BGM                      adv=8   v0x50033
+000216:             17 TEXT                     adv=6   #19 "艾爾雪。"
+00021c:             50 TEXTWAITKB               adv=4   
+000220:             51 KEYWAIT                  adv=4   
+000224:             43 TEXTACTIVE               adv=8   6
+00022c:             44 TEXTCLEAR                adv=4   
+000230:             65 BGM                      adv=8   v0x60033
+000238:             17 TEXT                     adv=6   #20 "也許他正受到了很大的壓力與痛苦吧。"
+00023e:             50 TEXTWAITKB               adv=4   
+000242:             51 KEYWAIT                  adv=4   
+000246:             65 BGM                      adv=8   v0x70033
+00024e:             17 TEXT                     adv=6   #21 "我是這麼想的。"
+000254:             50 TEXTWAITKB               adv=4   
+000258:             51 KEYWAIT                  adv=4   
+00025c:             43 TEXTACTIVE               adv=8   5
+000264:             44 TEXTCLEAR                adv=4   
+000268:             17 TEXT                     adv=6   #22 "…………"
+00026e:             43 TEXTACTIVE               adv=8   1
+000276:             44 TEXTCLEAR                adv=4   
+00027a:             17 TEXT                     adv=6   #23 "…………"
+000280:             50 TEXTWAITKB               adv=4   
+000284:             51 KEYWAIT                  adv=4   
+000288:             43 TEXTACTIVE               adv=8   6
+000290:             44 TEXTCLEAR                adv=4   
+000294:             65 BGM                      adv=8   v0x80033
+00029c:             17 TEXT                     adv=6   #24 "如果他真的是為了要讓我們臣服，"
+0002a2:             17 TEXT                     adv=6   #25 "而送了那封信過來的話……"
+0002a8:             50 TEXTWAITKB               adv=4   
+0002ac:             51 KEYWAIT                  adv=4   
+0002b0:             65 BGM                      adv=8   v0x90033
+0002b8:             17 TEXT                     adv=6   #26 "應該要在純潔之盾回到安蒂米昂之前，"
+0002be:             17 TEXT                     adv=6   #27 "就動手才對吧。"
+0002c4:             50 TEXTWAITKB               adv=4   
+0002c8:             51 KEYWAIT                  adv=4   
+0002cc:             43 TEXTACTIVE               adv=8   1
+0002d4:             44 TEXTCLEAR                adv=4   
+0002d8:             17 TEXT                     adv=6   #28 "……的確。"
+0002de:             50 TEXTWAITKB               adv=4   
+0002e2:             51 KEYWAIT                  adv=4   
+0002e6:             43 TEXTACTIVE               adv=8   6
+0002ee:             44 TEXTCLEAR                adv=4   
+0002f2:             17 TEXT                     adv=6   #29 "…………"
+0002f8:             43 TEXTACTIVE               adv=8   5
+000300:             44 TEXTCLEAR                adv=4   
+000304:             65 BGM                      adv=8   v0xa0033
+00030c:             17 TEXT                     adv=6   #30 "我很想知道他們的目的究竟是什麼。"
+000312:             50 TEXTWAITKB               adv=4   
+000316:             51 KEYWAIT                  adv=4   
+00031a:             43 TEXTACTIVE               adv=8   1
+000322:             44 TEXTCLEAR                adv=4   
+000326:             17 TEXT                     adv=6   #31 "好。"
+00032c:             17 TEXT                     adv=6   #32 "那剛好，其實呢，"
+000332:             17 TEXT                     adv=6   #33 "對方指名了要妳跟他們交涉。"
+000338:             50 TEXTWAITKB               adv=4   
+00033c:             51 KEYWAIT                  adv=4   
+000340:             43 TEXTACTIVE               adv=8   5
+000348:             44 TEXTCLEAR                adv=4   
+00034c:             65 BGM                      adv=8   v0xb0033
+000354:             17 TEXT                     adv=6   #34 "咦？"
+00035a:             50 TEXTWAITKB               adv=4   
+00035e:             51 KEYWAIT                  adv=4   
+000362:             43 TEXTACTIVE               adv=8   1
+00036a:             44 TEXTCLEAR                adv=4   
+00036e:             17 TEXT                     adv=6   #35 "雖然我對沒辦法跟他們交談而感到遺憾……"
+000374:             17 TEXT                     adv=6   #36 "但是也許對他們來說，"
+00037a:             17 TEXT                     adv=6   #37 "重要的並不是我這個賢者吧。"
+000380:             17 TEXT                     adv=6   #38 "帕彌菈。"
+000386:             50 TEXTWAITKB               adv=4   
+00038a:             51 KEYWAIT                  adv=4   
+00038e:             44 TEXTCLEAR                adv=4   
+000392:             43 TEXTACTIVE               adv=8   5
+00039a:             44 TEXTCLEAR                adv=4   
+00039e:             17 TEXT                     adv=6   #39 "…………"
+0003a4:             43 TEXTACTIVE               adv=8   1
+0003ac:             17 TEXT                     adv=6   #40 "與貝爾鐸可勞的大公殿下的會面，"
+0003b2:             17 TEXT                     adv=6   #41 "就交給妳負責了。"
+0003b8:             50 TEXTWAITKB               adv=4   
+0003bc:             51 KEYWAIT                  adv=4   
+0003c0:             12 VWAIT                    adv=8   30
+0003c8:             56 FADESETWAIT              adv=8   4
+0003d0:             21 ALLOFF                   adv=4   
+0003d4:             12 VWAIT                    adv=8   60
+0003dc:             15 SCRIPTEXEC               adv=8   v0x1
+0003e4:             19 END                      adv=4   ; END
+; (155 insns)

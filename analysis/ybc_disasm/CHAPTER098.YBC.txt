@@ -1,0 +1,94 @@
+; CHAPTER098.YBC  len=0x4c6  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x1b8', '0x1b8', '0x1b8']
+;   txt#0 off=0x5c prm=0x40 "　"
+;   txt#1 off=0x60 prm=0x40 "　"
+;   txt#2 off=0x64 prm=0x3e0 "　僅學過一點知識與技能的孩子們，現在朝著混亂的世界展翅而飛。"
+;   txt#3 off=0xa2 prm=0x3a0 "　　　無論有多大的困難在面前等著，他們都不會因此而卻步。"
+;   txt#4 off=0xdc prm=0x360 "　　　　　就算會在傷痛之中屈膝倒地，在地上匍伏而行。"
+;   txt#5 off=0x112 prm=0x40 "　"
+;   txt#6 off=0x116 prm=0x40 "　"
+;   txt#7 off=0x11a prm=0x2a0 "　　　　　　　　　　　這究竟是為什麼……"
+;   txt#8 off=0x144 prm=0x300 "　　　　　　　　這就只因為他們是賢者─────"
+;   txt#9 off=0x174 prm=0x40 "　"
+;   txt#10 off=0x178 prm=0x40 "　"
+;   txt#11 off=0x17c prm=0x260 "　　　　　　　　　　　　　超魔法大戰"
+;   txt#12 off=0x1a2 prm=0x300 "　　　　　　　　Ｃｒｏｓｓ　Ｈｅｒｍｉｔ───"
+;   txt#13 off=0x1d2 prm=0x40 "　"
+;   txt#14 off=0x1d6 prm=0x2c0 "　　　　　　　　　　那是閃爍著微光的篝火，"
+;   txt#15 off=0x202 prm=0x300 "　　　　　　　　在深沉的黑闇中彼此交集的所在。"
+;   txt#16 off=0x232 prm=0x320 "　　　　　　　那是就算在緊逼而來的混沌威脅面前，"
+;   txt#17 off=0x264 prm=0x340 "　　　　　　仍然凜然面對邪惡的，年幼賢者們的故事。"
+;   txt#18 off=0x298 prm=0x40 "　"
+;   txt#19 off=0x29c prm=0x40 "　"
+;   txt#20 off=0x2a0 prm=0x340 "　　　　　　但願，各位可以對那未知的故事給予祝福。"
+;   txt#21 off=0x2d4 prm=0x3a0 "　　　但願，各位可以對他們所選擇的道路，給予溫暖的祝福。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   12
+00002c:             59 BGSETWAIT                adv=16  0 117 1
+00003c:             56 FADESETWAIT              adv=8   3
+000044:             12 VWAIT                    adv=8   30
+00004c:             27 BORDONWAIT               adv=16  0 268435455 268435455
+00005c:             43 TEXTACTIVE               adv=8   0
+000064:             17 TEXT                     adv=6   #0 "　"
+00006a:             17 TEXT                     adv=6   #1 "　"
+000070:             65 BGM                      adv=8   v0x75
+000078:             17 TEXT                     adv=6   #2 "　僅學過一點知識與技能的孩子們，現在朝著混亂的世界展翅而飛。"
+00007e:             50 TEXTWAITKB               adv=4   
+000082:             51 KEYWAIT                  adv=4   
+000086:             65 BGM                      adv=8   v0x10075
+00008e:             17 TEXT                     adv=6   #3 "　　　無論有多大的困難在面前等著，他們都不會因此而卻步。"
+000094:             50 TEXTWAITKB               adv=4   
+000098:             51 KEYWAIT                  adv=4   
+00009c:             65 BGM                      adv=8   v0x20075
+0000a4:             17 TEXT                     adv=6   #4 "　　　　　就算會在傷痛之中屈膝倒地，在地上匍伏而行。"
+0000aa:             50 TEXTWAITKB               adv=4   
+0000ae:             51 KEYWAIT                  adv=4   
+0000b2:             44 TEXTCLEAR                adv=4   
+0000b6:             17 TEXT                     adv=6   #5 "　"
+0000bc:             17 TEXT                     adv=6   #6 "　"
+0000c2:             65 BGM                      adv=8   v0x30075
+0000ca:             17 TEXT                     adv=6   #7 "　　　　　　　　　　　這究竟是為什麼……"
+0000d0:             50 TEXTWAITKB               adv=4   
+0000d4:             51 KEYWAIT                  adv=4   
+0000d8:             65 BGM                      adv=8   v0x40075
+0000e0:             17 TEXT                     adv=6   #8 "　　　　　　　　這就只因為他們是賢者─────"
+0000e6:             50 TEXTWAITKB               adv=4   
+0000ea:             51 KEYWAIT                  adv=4   
+0000ee:             44 TEXTCLEAR                adv=4   
+0000f2:             17 TEXT                     adv=6   #9 "　"
+0000f8:             17 TEXT                     adv=6   #10 "　"
+0000fe:             65 BGM                      adv=8   v0x50075
+000106:             17 TEXT                     adv=6   #11 "　　　　　　　　　　　　　超魔法大戰"
+00010c:             17 TEXT                     adv=6   #12 "　　　　　　　　Ｃｒｏｓｓ　Ｈｅｒｍｉｔ───"
+000112:             50 TEXTWAITKB               adv=4   
+000116:             51 KEYWAIT                  adv=4   
+00011a:             44 TEXTCLEAR                adv=4   
+00011e:             17 TEXT                     adv=6   #13 "　"
+000124:             65 BGM                      adv=8   v0x60075
+00012c:             17 TEXT                     adv=6   #14 "　　　　　　　　　　那是閃爍著微光的篝火，"
+000132:             17 TEXT                     adv=6   #15 "　　　　　　　　在深沉的黑闇中彼此交集的所在。"
+000138:             50 TEXTWAITKB               adv=4   
+00013c:             51 KEYWAIT                  adv=4   
+000140:             65 BGM                      adv=8   v0x70075
+000148:             17 TEXT                     adv=6   #16 "　　　　　　　那是就算在緊逼而來的混沌威脅面前，"
+00014e:             17 TEXT                     adv=6   #17 "　　　　　　仍然凜然面對邪惡的，年幼賢者們的故事。"
+000154:             50 TEXTWAITKB               adv=4   
+000158:             51 KEYWAIT                  adv=4   
+00015c:             44 TEXTCLEAR                adv=4   
+000160:             17 TEXT                     adv=6   #18 "　"
+000166:             17 TEXT                     adv=6   #19 "　"
+00016c:             65 BGM                      adv=8   v0x80075
+000174:             17 TEXT                     adv=6   #20 "　　　　　　但願，各位可以對那未知的故事給予祝福。"
+00017a:             50 TEXTWAITKB               adv=4   
+00017e:             51 KEYWAIT                  adv=4   
+000182:             65 BGM                      adv=8   v0x90075
+00018a:             17 TEXT                     adv=6   #21 "　　　但願，各位可以對他們所選擇的道路，給予溫暖的祝福。"
+000190:             50 TEXTWAITKB               adv=4   
+000194:             51 KEYWAIT                  adv=4   
+000198:             12 VWAIT                    adv=8   30
+0001a0:             56 FADESETWAIT              adv=8   4
+0001a8:             21 ALLOFF                   adv=4   
+0001ac:             12 VWAIT                    adv=8   60
+0001b4:             19 END                      adv=4   ; END
+; (69 insns)

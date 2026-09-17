@@ -1,0 +1,65 @@
+; CHAPTER220.YBC  len=0x300  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x176', '0x1a6', '0x1a6']
+; rec1[0] = "data\\adv\\bin\\tc0802.bin"
+;   txt#0 off=0x30 prm=0x160 "我們只要再前進一步，"
+;   txt#1 off=0x46 prm=0x1a0 "就可以到達白皙的城砦了。"
+;   txt#2 off=0x60 prm=0x260 "然而，就像「雙子鐵璧」他們說的一樣，"
+;   txt#3 off=0x86 prm=0x240 "那通往白皙城砦的道路已經被封閉了。"
+;   txt#4 off=0xaa prm=0x2a0 "恐怕那是一個以「匍伏蔓延而來之物」作為觸"
+;   txt#5 off=0xd4 prm=0x120 "媒而維持的封印。"
+;   txt#6 off=0xe6 prm=0x1a0 "解開那古雷納汀的封印吧。"
+;   txt#7 off=0x100 prm=0x1c0 "然後往安蒂米昂的方向前進。"
+;   txt#8 off=0x11c prm=0xa0 "是的……"
+;   txt#9 off=0x126 prm=0x180 "往那養育了我們所有人，"
+;   txt#10 off=0x13e prm=0x1c0 "能讓我們好好休息的家前進。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   0
+000080:             63 SE                       adv=8   5
+000088:             59 BGSETWAIT                adv=16  0 122 1
+000098:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0000a8:             56 FADESETWAIT              adv=8   3
+0000b0:             43 TEXTACTIVE               adv=8   4
+0000b8:             17 TEXT                     adv=6   #0 "我們只要再前進一步，"
+0000be:             17 TEXT                     adv=6   #1 "就可以到達白皙的城砦了。"
+0000c4:             50 TEXTWAITKB               adv=4   
+0000c8:             51 KEYWAIT                  adv=4   
+0000cc:             44 TEXTCLEAR                adv=4   
+0000d0:             17 TEXT                     adv=6   #2 "然而，就像「雙子鐵璧」他們說的一樣，"
+0000d6:             17 TEXT                     adv=6   #3 "那通往白皙城砦的道路已經被封閉了。"
+0000dc:             50 TEXTWAITKB               adv=4   
+0000e0:             51 KEYWAIT                  adv=4   
+0000e4:             44 TEXTCLEAR                adv=4   
+0000e8:             17 TEXT                     adv=6   #4 "恐怕那是一個以「匍伏蔓延而來之物」作為觸"
+0000ee:             17 TEXT                     adv=6   #5 "媒而維持的封印。"
+0000f4:             50 TEXTWAITKB               adv=4   
+0000f8:             51 KEYWAIT                  adv=4   
+0000fc:             44 TEXTCLEAR                adv=4   
+000100:             17 TEXT                     adv=6   #6 "解開那古雷納汀的封印吧。"
+000106:             17 TEXT                     adv=6   #7 "然後往安蒂米昂的方向前進。"
+00010c:             50 TEXTWAITKB               adv=4   
+000110:             51 KEYWAIT                  adv=4   
+000114:             44 TEXTCLEAR                adv=4   
+000118:             17 TEXT                     adv=6   #8 "是的……"
+00011e:             50 TEXTWAITKB               adv=4   
+000122:             51 KEYWAIT                  adv=4   
+000126:             44 TEXTCLEAR                adv=4   
+00012a:             17 TEXT                     adv=6   #9 "往那養育了我們所有人，"
+000130:             17 TEXT                     adv=6   #10 "能讓我們好好休息的家前進。"
+000136:             50 TEXTWAITKB               adv=4   
+00013a:             51 KEYWAIT                  adv=4   
+00013e:             12 VWAIT                    adv=8   30
+000146:             56 FADESETWAIT              adv=8   4
+00014e:             21 ALLOFF                   adv=4   
+000152:             12 VWAIT                    adv=8   60
+00015a:            151 OP_151                   adv=12  5 1
+000166:             91 PUTUNITWK                adv=12  122 2
+000172:             19 END                      adv=4   ; END
+; (50 insns)

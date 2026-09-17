@@ -1,0 +1,178 @@
+; T0045.BIN  len=0xcbc
+; ── block0 sub1 code@0x1c4 pool@0x27a (3 strings)
+;   #0 off=0x10 prm=0x220 "從毀滅之王的手中保護愛爾梅納斯。"
+;   #1 off=0x32 prm=0x180 "大家一定要活著回來呀。"
+;   #2 off=0x4a prm=0xe0 "……開始吧。"
+0001c4:            167 REG_GET                  adv=8   v0x0
+0001cc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0001e0:            166 REG_PUT                  adv=8   1
+0001e8:             11 GOTO                     adv=8   L_00b2
+0001f0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0001f8:             56 FADESETWAIT              adv=8   2
+000200:             20 ADVMODESET               adv=8   1
+000208:             12 VWAIT                    adv=8   30
+000210:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000220:             43 TEXTACTIVE               adv=8   1
+000228:             17 TEXT                     adv=6   #0 "從毀滅之王的手中保護愛爾梅納斯。"
+00022e:             50 TEXTWAITKB               adv=4   
+000232:             51 KEYWAIT                  adv=4   
+000236:             44 TEXTCLEAR                adv=4   
+00023a:             17 TEXT                     adv=6   #1 "大家一定要活著回來呀。"
+000240:             50 TEXTWAITKB               adv=4   
+000244:             51 KEYWAIT                  adv=4   
+000248:             44 TEXTCLEAR                adv=4   
+00024c:             17 TEXT                     adv=6   #2 "……開始吧。"
+000252:             50 TEXTWAITKB               adv=4   
+000256:             51 KEYWAIT                  adv=4   
+00025a:             44 TEXTCLEAR                adv=4   
+00025e:             24 BORDDISP                 adv=12  1 3
+00026a:             12 VWAIT                    adv=8   60
+000272:             21 ALLOFF                   adv=4   
+000276: L_00b2    19 END                      adv=4   ; END
+;   (26 insns)
+; ── block0 sub2 code@0x2e8 pool@0x3ac (4 strings)
+;   #0 off=0x14 prm=0x160 "……這樣就結束了嗎？"
+;   #1 off=0x2a prm=0xe0 "不，不是的。"
+;   #2 off=0x38 prm=0x100 "這只是開始呀。"
+;   #3 off=0x48 prm=0x160 "一切都將從這裡開始。"
+0002e8:            167 REG_GET                  adv=8   v0x0
+0002f0:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000304:            166 REG_PUT                  adv=8   1
+00030c:             11 GOTO                     adv=8   L_00c0
+000314: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+00031c:             56 FADESETWAIT              adv=8   2
+000324:             20 ADVMODESET               adv=8   1
+00032c:             12 VWAIT                    adv=8   30
+000334:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000344:             43 TEXTACTIVE               adv=8   1
+00034c:             17 TEXT                     adv=6   #0 "……這樣就結束了嗎？"
+000352:             50 TEXTWAITKB               adv=4   
+000356:             51 KEYWAIT                  adv=4   
+00035a:             44 TEXTCLEAR                adv=4   
+00035e:             17 TEXT                     adv=6   #1 "不，不是的。"
+000364:             50 TEXTWAITKB               adv=4   
+000368:             51 KEYWAIT                  adv=4   
+00036c:             44 TEXTCLEAR                adv=4   
+000370:             17 TEXT                     adv=6   #2 "這只是開始呀。"
+000376:             17 TEXT                     adv=6   #3 "一切都將從這裡開始。"
+00037c:             50 TEXTWAITKB               adv=4   
+000380:             51 KEYWAIT                  adv=4   
+000384:             44 TEXTCLEAR                adv=4   
+000388:             24 BORDDISP                 adv=12  1 3
+000394:             12 VWAIT                    adv=8   60
+00039c:             21 ALLOFF                   adv=4   
+0003a0:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0003a8: L_00c0    19 END                      adv=4   ; END
+;   (28 insns)
+; ── block0 sub5 code@0x428 pool@0x4ec (4 strings)
+;   #0 off=0x14 prm=0x160 "……這樣就結束了嗎？"
+;   #1 off=0x2a prm=0xe0 "不，不是的。"
+;   #2 off=0x38 prm=0x100 "這只是開始呀。"
+;   #3 off=0x48 prm=0x160 "一切都將從這裡開始。"
+000428:            167 REG_GET                  adv=8   v0x0
+000430:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000444:            166 REG_PUT                  adv=8   1
+00044c:             11 GOTO                     adv=8   L_00c0
+000454: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+00045c:             56 FADESETWAIT              adv=8   2
+000464:             20 ADVMODESET               adv=8   1
+00046c:             12 VWAIT                    adv=8   30
+000474:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000484:             43 TEXTACTIVE               adv=8   1
+00048c:             17 TEXT                     adv=6   #0 "……這樣就結束了嗎？"
+000492:             50 TEXTWAITKB               adv=4   
+000496:             51 KEYWAIT                  adv=4   
+00049a:             44 TEXTCLEAR                adv=4   
+00049e:             17 TEXT                     adv=6   #1 "不，不是的。"
+0004a4:             50 TEXTWAITKB               adv=4   
+0004a8:             51 KEYWAIT                  adv=4   
+0004ac:             44 TEXTCLEAR                adv=4   
+0004b0:             17 TEXT                     adv=6   #2 "這只是開始呀。"
+0004b6:             17 TEXT                     adv=6   #3 "一切都將從這裡開始。"
+0004bc:             50 TEXTWAITKB               adv=4   
+0004c0:             51 KEYWAIT                  adv=4   
+0004c4:             44 TEXTCLEAR                adv=4   
+0004c8:             24 BORDDISP                 adv=12  1 3
+0004d4:             12 VWAIT                    adv=8   60
+0004dc:             21 ALLOFF                   adv=4   
+0004e0:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0004e8: L_00c0    19 END                      adv=4   ; END
+;   (28 insns)
+; ── block0 sub8 code@0x568 pool@0x62c (4 strings)
+;   #0 off=0x14 prm=0x160 "……這樣就結束了嗎？"
+;   #1 off=0x2a prm=0xe0 "不，不是的。"
+;   #2 off=0x38 prm=0x100 "這只是開始呀。"
+;   #3 off=0x48 prm=0x160 "一切都將從這裡開始。"
+000568:            167 REG_GET                  adv=8   v0x0
+000570:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000584:            166 REG_PUT                  adv=8   1
+00058c:             11 GOTO                     adv=8   L_00c0
+000594: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+00059c:             56 FADESETWAIT              adv=8   2
+0005a4:             20 ADVMODESET               adv=8   1
+0005ac:             12 VWAIT                    adv=8   30
+0005b4:             27 BORDONWAIT               adv=16  1 268435455 268435455
+0005c4:             43 TEXTACTIVE               adv=8   1
+0005cc:             17 TEXT                     adv=6   #0 "……這樣就結束了嗎？"
+0005d2:             50 TEXTWAITKB               adv=4   
+0005d6:             51 KEYWAIT                  adv=4   
+0005da:             44 TEXTCLEAR                adv=4   
+0005de:             17 TEXT                     adv=6   #1 "不，不是的。"
+0005e4:             50 TEXTWAITKB               adv=4   
+0005e8:             51 KEYWAIT                  adv=4   
+0005ec:             44 TEXTCLEAR                adv=4   
+0005f0:             17 TEXT                     adv=6   #2 "這只是開始呀。"
+0005f6:             17 TEXT                     adv=6   #3 "一切都將從這裡開始。"
+0005fc:             50 TEXTWAITKB               adv=4   
+000600:             51 KEYWAIT                  adv=4   
+000604:             44 TEXTCLEAR                adv=4   
+000608:             24 BORDDISP                 adv=12  1 3
+000614:             12 VWAIT                    adv=8   60
+00061c:             21 ALLOFF                   adv=4   
+000620:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000628: L_00c0    19 END                      adv=4   ; END
+;   (28 insns)
+; ── block0 sub11 code@0x6a8 pool@0x742 (1 strings)
+;   #0 off=0x8 prm=0x140 "ＧＡＭＥ　ＯＶＥＲ"
+0006a8:            167 REG_GET                  adv=8   v0x0
+0006b0:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0006c4:            166 REG_PUT                  adv=8   0
+0006cc:             11 GOTO                     adv=8   L_0096
+0006d4: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0006dc:             56 FADESETWAIT              adv=8   2
+0006e4:             20 ADVMODESET               adv=8   1
+0006ec:             12 VWAIT                    adv=8   30
+0006f4:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000704:             43 TEXTACTIVE               adv=8   1
+00070c:             17 TEXT                     adv=6   #0 "ＧＡＭＥ　ＯＶＥＲ"
+000712:             50 TEXTWAITKB               adv=4   
+000716:             51 KEYWAIT                  adv=4   
+00071a:             44 TEXTCLEAR                adv=4   
+00071e:             24 BORDDISP                 adv=12  1 3
+00072a:             12 VWAIT                    adv=8   60
+000732:             21 ALLOFF                   adv=4   
+000736:            118 TACTSETDESTROYSCRIPT     adv=8   60
+00073e: L_0096    19 END                      adv=4   ; END
+;   (19 insns)
+; ── block0 sub14 code@0x77c pool@0x816 (1 strings)
+;   #0 off=0x8 prm=0x140 "ＧＡＭＥ　ＯＶＥＲ"
+00077c:            167 REG_GET                  adv=8   v0x0
+000784:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000798:            166 REG_PUT                  adv=8   0
+0007a0:             11 GOTO                     adv=8   L_0096
+0007a8: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0007b0:             56 FADESETWAIT              adv=8   2
+0007b8:             20 ADVMODESET               adv=8   1
+0007c0:             12 VWAIT                    adv=8   30
+0007c8:             27 BORDONWAIT               adv=16  1 268435455 268435455
+0007d8:             43 TEXTACTIVE               adv=8   1
+0007e0:             17 TEXT                     adv=6   #0 "ＧＡＭＥ　ＯＶＥＲ"
+0007e6:             50 TEXTWAITKB               adv=4   
+0007ea:             51 KEYWAIT                  adv=4   
+0007ee:             44 TEXTCLEAR                adv=4   
+0007f2:             24 BORDDISP                 adv=12  1 3
+0007fe:             12 VWAIT                    adv=8   60
+000806:             21 ALLOFF                   adv=4   
+00080a:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000812: L_0096    19 END                      adv=4   ; END
+;   (19 insns)

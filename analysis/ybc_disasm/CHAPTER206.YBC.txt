@@ -1,0 +1,160 @@
+; CHAPTER206.YBC  len=0x710  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x2dc', '0x2dc', '0x2dc']
+;   txt#0 off=0x9c prm=0x220 "你的表情看起來不太開心呢，吾友。"
+;   txt#1 off=0xbe prm=0xa0 "…………"
+;   txt#2 off=0xc8 prm=0xa0 "…………"
+;   txt#3 off=0xd2 prm=0x180 "這也不是沒有理由的呀。"
+;   txt#4 off=0xea prm=0x240 "真是有夠慘的，所謂的「無孔不入」，"
+;   txt#5 off=0x10e prm=0x1c0 "大概就是在形容那些傢伙吧。"
+;   txt#6 off=0x12a prm=0x2a0 "終於，這裡也不再讓人感到任何一點安穩了。"
+;   txt#7 off=0x154 prm=0x80 "的確。"
+;   txt#8 off=0x15c prm=0x260 "雖然和以前一樣，行動仍然不是很協調，"
+;   txt#9 off=0x182 prm=0x220 "但是比起以前，真的有條理太多了。"
+;   txt#10 off=0x1a4 prm=0x180 "你現在是在說純潔之盾？"
+;   txt#11 off=0x1bc prm=0x1a0 "還是在說那些異形的混沌？"
+;   txt#12 off=0x1d6 prm=0xc0 "這個嘛……"
+;   txt#13 off=0x1e2 prm=0x1e0 "這就要讓我們的朋友來決定了。"
+;   txt#14 off=0x200 prm=0x1a0 "不過，不管要怎麼去判斷，"
+;   txt#15 off=0x21a prm=0x260 "那大概都只針對目前的情況來推斷而已。"
+;   txt#16 off=0x240 prm=0x140 "……你的意思是說，"
+;   txt#17 off=0x254 prm=0x1c0 "「匍伏蔓延而來之物」之中，"
+;   txt#18 off=0x270 prm=0x160 "也有領導者的存在嗎？"
+;   txt#19 off=0x286 prm=0x2a0 "「匍伏蔓延而來之物」裡也有領導者的存在。"
+;   txt#20 off=0x2b0 prm=0x160 "雖然還沒有人確定過，"
+;   txt#21 off=0x2c6 prm=0x240 "但是以後總會有人分辨出來的，對吧？"
+;   txt#22 off=0x2ea prm=0xa0 "…………"
+;   txt#23 off=0x2f4 prm=0xa0 "…………"
+;   txt#24 off=0x2fe prm=0x1c0 "在賽格諾爾出現的那些混沌，"
+;   txt#25 off=0x31a prm=0x1c0 "大概就是屬於領導階層的吧。"
+;   txt#26 off=0x336 prm=0xe0 "混沌的種子，"
+;   txt#27 off=0x344 prm=0x2a0 "我想……也是為了培養那些東西而存在的吧。"
+;   txt#28 off=0x36e prm=0x260 "不過，要確定這件事情可是有點困難喔。"
+;   txt#29 off=0x394 prm=0x200 "……現在正是去確認的好時機呀。"
+;   txt#30 off=0x3b4 prm=0x180 "對於敵我雙方來說都是。"
+;   txt#31 off=0x3cc prm=0xa0 "…………"
+;   txt#32 off=0x3d6 prm=0xa0 "…………"
+;   txt#33 off=0x3e0 prm=0xa0 "…………"
+;   txt#34 off=0x3ea prm=0xa0 "…………"
+;   txt#35 off=0x3f4 prm=0xa0 "……嗯？"
+;   txt#36 off=0x3fe prm=0x100 "我會試試看的。"
+;   txt#37 off=0x40e prm=0x260 "為了以後那一定會到來的危機做準備……"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 8 1
+000034:             30 BORDPACKONWAIT           adv=20  7 110 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   7
+000058:             17 TEXT                     adv=6   #0 "你的表情看起來不太開心呢，吾友。"
+00005e:             50 TEXTWAITKB               adv=4   
+000062:             51 KEYWAIT                  adv=4   
+000066:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000076:             43 TEXTACTIVE               adv=8   4
+00007e:             17 TEXT                     adv=6   #1 "…………"
+000084:             50 TEXTWAITKB               adv=4   
+000088:             51 KEYWAIT                  adv=4   
+00008c:             43 TEXTACTIVE               adv=8   7
+000094:             44 TEXTCLEAR                adv=4   
+000098:             17 TEXT                     adv=6   #2 "…………"
+00009e:             30 BORDPACKONWAIT           adv=20  8 117 0 30
+0000b2:             43 TEXTACTIVE               adv=8   8
+0000ba:             17 TEXT                     adv=6   #3 "這也不是沒有理由的呀。"
+0000c0:             17 TEXT                     adv=6   #4 "真是有夠慘的，所謂的「無孔不入」，"
+0000c6:             17 TEXT                     adv=6   #5 "大概就是在形容那些傢伙吧。"
+0000cc:             17 TEXT                     adv=6   #6 "終於，這裡也不再讓人感到任何一點安穩了。"
+0000d2:             50 TEXTWAITKB               adv=4   
+0000d6:             51 KEYWAIT                  adv=4   
+0000da:             43 TEXTACTIVE               adv=8   7
+0000e2:             44 TEXTCLEAR                adv=4   
+0000e6:             17 TEXT                     adv=6   #7 "的確。"
+0000ec:             17 TEXT                     adv=6   #8 "雖然和以前一樣，行動仍然不是很協調，"
+0000f2:             17 TEXT                     adv=6   #9 "但是比起以前，真的有條理太多了。"
+0000f8:             50 TEXTWAITKB               adv=4   
+0000fc:             51 KEYWAIT                  adv=4   
+000100:             43 TEXTACTIVE               adv=8   8
+000108:             44 TEXTCLEAR                adv=4   
+00010c:             17 TEXT                     adv=6   #10 "你現在是在說純潔之盾？"
+000112:             17 TEXT                     adv=6   #11 "還是在說那些異形的混沌？"
+000118:             50 TEXTWAITKB               adv=4   
+00011c:             51 KEYWAIT                  adv=4   
+000120:             43 TEXTACTIVE               adv=8   7
+000128:             44 TEXTCLEAR                adv=4   
+00012c:             17 TEXT                     adv=6   #12 "這個嘛……"
+000132:             17 TEXT                     adv=6   #13 "這就要讓我們的朋友來決定了。"
+000138:             17 TEXT                     adv=6   #14 "不過，不管要怎麼去判斷，"
+00013e:             17 TEXT                     adv=6   #15 "那大概都只針對目前的情況來推斷而已。"
+000144:             50 TEXTWAITKB               adv=4   
+000148:             51 KEYWAIT                  adv=4   
+00014c:             43 TEXTACTIVE               adv=8   8
+000154:             44 TEXTCLEAR                adv=4   
+000158:             17 TEXT                     adv=6   #16 "……你的意思是說，"
+00015e:             17 TEXT                     adv=6   #17 "「匍伏蔓延而來之物」之中，"
+000164:             17 TEXT                     adv=6   #18 "也有領導者的存在嗎？"
+00016a:             50 TEXTWAITKB               adv=4   
+00016e:             51 KEYWAIT                  adv=4   
+000172:             43 TEXTACTIVE               adv=8   7
+00017a:             44 TEXTCLEAR                adv=4   
+00017e:             17 TEXT                     adv=6   #19 "「匍伏蔓延而來之物」裡也有領導者的存在。"
+000184:             17 TEXT                     adv=6   #20 "雖然還沒有人確定過，"
+00018a:             17 TEXT                     adv=6   #21 "但是以後總會有人分辨出來的，對吧？"
+000190:             50 TEXTWAITKB               adv=4   
+000194:             51 KEYWAIT                  adv=4   
+000198:             43 TEXTACTIVE               adv=8   8
+0001a0:             44 TEXTCLEAR                adv=4   
+0001a4:             17 TEXT                     adv=6   #22 "…………"
+0001aa:             43 TEXTACTIVE               adv=8   4
+0001b2:             44 TEXTCLEAR                adv=4   
+0001b6:             17 TEXT                     adv=6   #23 "…………"
+0001bc:             50 TEXTWAITKB               adv=4   
+0001c0:             51 KEYWAIT                  adv=4   
+0001c4:             43 TEXTACTIVE               adv=8   7
+0001cc:             44 TEXTCLEAR                adv=4   
+0001d0:             17 TEXT                     adv=6   #24 "在賽格諾爾出現的那些混沌，"
+0001d6:             17 TEXT                     adv=6   #25 "大概就是屬於領導階層的吧。"
+0001dc:             17 TEXT                     adv=6   #26 "混沌的種子，"
+0001e2:             17 TEXT                     adv=6   #27 "我想……也是為了培養那些東西而存在的吧。"
+0001e8:             50 TEXTWAITKB               adv=4   
+0001ec:             51 KEYWAIT                  adv=4   
+0001f0:             43 TEXTACTIVE               adv=8   8
+0001f8:             44 TEXTCLEAR                adv=4   
+0001fc:             17 TEXT                     adv=6   #28 "不過，要確定這件事情可是有點困難喔。"
+000202:             50 TEXTWAITKB               adv=4   
+000206:             51 KEYWAIT                  adv=4   
+00020a:             43 TEXTACTIVE               adv=8   7
+000212:             44 TEXTCLEAR                adv=4   
+000216:             17 TEXT                     adv=6   #29 "……現在正是去確認的好時機呀。"
+00021c:             17 TEXT                     adv=6   #30 "對於敵我雙方來說都是。"
+000222:             50 TEXTWAITKB               adv=4   
+000226:             51 KEYWAIT                  adv=4   
+00022a:             43 TEXTACTIVE               adv=8   8
+000232:             44 TEXTCLEAR                adv=4   
+000236:             17 TEXT                     adv=6   #31 "…………"
+00023c:             43 TEXTACTIVE               adv=8   4
+000244:             44 TEXTCLEAR                adv=4   
+000248:             17 TEXT                     adv=6   #32 "…………"
+00024e:             50 TEXTWAITKB               adv=4   
+000252:             51 KEYWAIT                  adv=4   
+000256:             43 TEXTACTIVE               adv=8   7
+00025e:             44 TEXTCLEAR                adv=4   
+000262:             17 TEXT                     adv=6   #33 "…………"
+000268:             43 TEXTACTIVE               adv=8   8
+000270:             44 TEXTCLEAR                adv=4   
+000274:             17 TEXT                     adv=6   #34 "…………"
+00027a:             50 TEXTWAITKB               adv=4   
+00027e:             51 KEYWAIT                  adv=4   
+000282:             43 TEXTACTIVE               adv=8   7
+00028a:             44 TEXTCLEAR                adv=4   
+00028e:             17 TEXT                     adv=6   #35 "……嗯？"
+000294:             50 TEXTWAITKB               adv=4   
+000298:             51 KEYWAIT                  adv=4   
+00029c:             43 TEXTACTIVE               adv=8   4
+0002a4:             44 TEXTCLEAR                adv=4   
+0002a8:             17 TEXT                     adv=6   #36 "我會試試看的。"
+0002ae:             17 TEXT                     adv=6   #37 "為了以後那一定會到來的危機做準備……"
+0002b4:             50 TEXTWAITKB               adv=4   
+0002b8:             51 KEYWAIT                  adv=4   
+0002bc:             12 VWAIT                    adv=8   30
+0002c4:             56 FADESETWAIT              adv=8   4
+0002cc:             21 ALLOFF                   adv=4   
+0002d0:             12 VWAIT                    adv=8   60
+0002d8:             19 END                      adv=4   ; END
+; (119 insns)

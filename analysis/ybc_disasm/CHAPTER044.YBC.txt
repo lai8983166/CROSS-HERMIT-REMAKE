@@ -1,0 +1,27 @@
+; CHAPTER044.YBC  len=0x124  [ADV YBC]
+; nblocks=4 offs=['0x14', '0xa2', '0xa2', '0xa2']
+;   txt#0 off=0x18 prm=0x40 "　"
+;   txt#1 off=0x1c prm=0x40 "　"
+;   txt#2 off=0x20 prm=0x2a0 "長久地，在安蒂米昂生活的日子即將展開了。"
+;   txt#3 off=0x4a prm=0x200 "白皙的城砦才是純潔之盾的居城，"
+;   txt#4 off=0x6a prm=0x180 "才是我所懷念的家園呀。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             59 BGSETWAIT                adv=16  0 1 1
+000034:             56 FADESETWAIT              adv=8   3
+00003c:             12 VWAIT                    adv=8   30
+000044:             27 BORDONWAIT               adv=16  0 268435455 268435455
+000054:             43 TEXTACTIVE               adv=8   0
+00005c:             17 TEXT                     adv=6   #0 "　"
+000062:             17 TEXT                     adv=6   #1 "　"
+000068:             17 TEXT                     adv=6   #2 "長久地，在安蒂米昂生活的日子即將展開了。"
+00006e:             17 TEXT                     adv=6   #3 "白皙的城砦才是純潔之盾的居城，"
+000074:             17 TEXT                     adv=6   #4 "才是我所懷念的家園呀。"
+00007a:             50 TEXTWAITKB               adv=4   
+00007e:             51 KEYWAIT                  adv=4   
+000082:             12 VWAIT                    adv=8   30
+00008a:             56 FADESETWAIT              adv=8   4
+000092:             21 ALLOFF                   adv=4   
+000096:             12 VWAIT                    adv=8   60
+00009e:             19 END                      adv=4   ; END
+; (19 insns)

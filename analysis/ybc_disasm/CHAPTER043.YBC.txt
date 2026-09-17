@@ -1,0 +1,80 @@
+; CHAPTER043.YBC  len=0x458  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x150', '0x150', '0x150']
+;   txt#0 off=0x64 prm=0x1c0 "《終於要收復安蒂米昂了嗎？"
+;   txt#1 off=0x80 prm=0x2a0 "　如果成功的話，就可以堂堂正正地回應葛斯"
+;   txt#2 off=0xaa prm=0x100 "　貝布洛了吧。"
+;   txt#3 off=0xba prm=0x1a0 "　無論是帕彌菈或是法娜，"
+;   txt#4 off=0xd4 prm=0x220 "　大家都對這件事情很有自信呀。》"
+;   txt#5 off=0xf6 prm=0x2a0 "《帕彌菈、法娜、艾爾雪、瑟希莉絲、伊里安"
+;   txt#6 off=0x120 prm=0x1e0 "　、夏朧、凱洛特、奎絲忒……"
+;   txt#7 off=0x13e prm=0x1c0 "　一開始不過從三個人開始，"
+;   txt#8 off=0x15a prm=0x220 "　現在這裡也聚集了這麼多的人。》"
+;   txt#9 off=0x17c prm=0x2a0 "《如果……羅弗利被囚禁在安蒂米昂的事情是"
+;   txt#10 off=0x1a6 prm=0xa0 "　真的。"
+;   txt#11 off=0x1b0 prm=0x240 "　那麼這樣做的人究竟是帕蘭達因呢？"
+;   txt#12 off=0x1d4 prm=0x140 "　還是葛斯貝布洛？"
+;   txt#13 off=0x1e8 prm=0x160 "　或者是賢者圓桌？》"
+;   txt#14 off=0x1fe prm=0x80 "《……"
+;   txt#15 off=0x206 prm=0x180 "　羅亞爾•聖提淪陷了，"
+;   txt#16 off=0x21e prm=0x220 "　很快地，時代就這樣改變了呀。》"
+;   txt#17 off=0x240 prm=0x1c0 "本來，為了這個世界的安寧，"
+;   txt#18 off=0x25c prm=0x260 "或許把那個傢伙監禁起來也是應該的……"
+;   txt#19 off=0x282 prm=0x220 "然而，只要那裡有痛苦的人們的話，"
+;   txt#20 off=0x2a4 prm=0x1e0 "我們就應該無差別地伸出援手。"
+;   txt#21 off=0x2c2 prm=0x120 "呼呼，可是呢……"
+;   txt#22 off=0x2d4 prm=0x180 "那傢伙感到痛苦的表情，"
+;   txt#23 off=0x2ec prm=0x1c0 "我還真是完全沒辦法想像呢。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   7
+00002c:             59 BGSETWAIT                adv=16  0 1 1
+00003c:             27 BORDONWAIT               adv=16  1 268435455 268435455
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             43 TEXTACTIVE               adv=8   1
+00005c:             17 TEXT                     adv=6   #0 "《終於要收復安蒂米昂了嗎？"
+000062:             17 TEXT                     adv=6   #1 "　如果成功的話，就可以堂堂正正地回應葛斯"
+000068:             17 TEXT                     adv=6   #2 "　貝布洛了吧。"
+00006e:             17 TEXT                     adv=6   #3 "　無論是帕彌菈或是法娜，"
+000074:             17 TEXT                     adv=6   #4 "　大家都對這件事情很有自信呀。》"
+00007a:             50 TEXTWAITKB               adv=4   
+00007e:             51 KEYWAIT                  adv=4   
+000082:             44 TEXTCLEAR                adv=4   
+000086:             17 TEXT                     adv=6   #5 "《帕彌菈、法娜、艾爾雪、瑟希莉絲、伊里安"
+00008c:             17 TEXT                     adv=6   #6 "　、夏朧、凱洛特、奎絲忒……"
+000092:             17 TEXT                     adv=6   #7 "　一開始不過從三個人開始，"
+000098:             17 TEXT                     adv=6   #8 "　現在這裡也聚集了這麼多的人。》"
+00009e:             50 TEXTWAITKB               adv=4   
+0000a2:             51 KEYWAIT                  adv=4   
+0000a6:             44 TEXTCLEAR                adv=4   
+0000aa:             17 TEXT                     adv=6   #9 "《如果……羅弗利被囚禁在安蒂米昂的事情是"
+0000b0:             17 TEXT                     adv=6   #10 "　真的。"
+0000b6:             17 TEXT                     adv=6   #11 "　那麼這樣做的人究竟是帕蘭達因呢？"
+0000bc:             17 TEXT                     adv=6   #12 "　還是葛斯貝布洛？"
+0000c2:             17 TEXT                     adv=6   #13 "　或者是賢者圓桌？》"
+0000c8:             50 TEXTWAITKB               adv=4   
+0000cc:             51 KEYWAIT                  adv=4   
+0000d0:             44 TEXTCLEAR                adv=4   
+0000d4:             17 TEXT                     adv=6   #14 "《……"
+0000da:             17 TEXT                     adv=6   #15 "　羅亞爾•聖提淪陷了，"
+0000e0:             17 TEXT                     adv=6   #16 "　很快地，時代就這樣改變了呀。》"
+0000e6:             50 TEXTWAITKB               adv=4   
+0000ea:             51 KEYWAIT                  adv=4   
+0000ee:             44 TEXTCLEAR                adv=4   
+0000f2:             17 TEXT                     adv=6   #17 "本來，為了這個世界的安寧，"
+0000f8:             17 TEXT                     adv=6   #18 "或許把那個傢伙監禁起來也是應該的……"
+0000fe:             17 TEXT                     adv=6   #19 "然而，只要那裡有痛苦的人們的話，"
+000104:             17 TEXT                     adv=6   #20 "我們就應該無差別地伸出援手。"
+00010a:             50 TEXTWAITKB               adv=4   
+00010e:             51 KEYWAIT                  adv=4   
+000112:             44 TEXTCLEAR                adv=4   
+000116:             17 TEXT                     adv=6   #21 "呼呼，可是呢……"
+00011c:             17 TEXT                     adv=6   #22 "那傢伙感到痛苦的表情，"
+000122:             17 TEXT                     adv=6   #23 "我還真是完全沒辦法想像呢。"
+000128:             50 TEXTWAITKB               adv=4   
+00012c:             51 KEYWAIT                  adv=4   
+000130:             12 VWAIT                    adv=8   30
+000138:             56 FADESETWAIT              adv=8   4
+000140:             21 ALLOFF                   adv=4   
+000144:             12 VWAIT                    adv=8   60
+00014c:             19 END                      adv=4   ; END
+; (53 insns)

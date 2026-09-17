@@ -1,0 +1,188 @@
+; CHAPTER075.YBC  len=0x8b8  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x348', '0x348', '0x348']
+;   txt#0 off=0xc4 prm=0x220 "利用了夏朧身上咒縛的黑衣施咒者，"
+;   txt#1 off=0xe6 prm=0x120 "叫做烏洛波羅斯。"
+;   txt#2 off=0xf8 prm=0x260 "既然愛爾梅納斯還沒有被毀滅，我推測，"
+;   txt#3 off=0x11e prm=0x280 "他真正的力量應該還是在被封印的狀態下。"
+;   txt#4 off=0x146 prm=0x180 "竟然利用別人的誓言呀，"
+;   txt#5 off=0x15e prm=0x180 "他做事的手段真是卑劣。"
+;   txt#6 off=0x176 prm=0xa0 "…………"
+;   txt#7 off=0x180 prm=0x1a0 "在羅亞爾•聖提淪陷之後，"
+;   txt#8 off=0x19a prm=0x1e0 "黑衣的施咒者馬上就出現了……"
+;   txt#9 off=0x1b8 prm=0xa0 "…………"
+;   txt#10 off=0x1c2 prm=0x80 "是呀。"
+;   txt#11 off=0x1ca prm=0x140 "這些被囚禁的人們，"
+;   txt#12 off=0x1de prm=0x2a0 "到底是受到混沌的力量幫助他們解開了束縛，"
+;   txt#13 off=0x208 prm=0xa0 "還是……"
+;   txt#14 off=0x212 prm=0xa0 "…………"
+;   txt#15 off=0x21c prm=0x2a0 "雖然我們不清楚「匍伏蔓延而來之物」對愛爾"
+;   txt#16 off=0x246 prm=0x1c0 "梅納斯的企圖究竟是什麼……"
+;   txt#17 off=0x262 prm=0x160 "但它們在侵略的途中，"
+;   txt#18 off=0x278 prm=0x2a0 "到底有沒有順便解開那些被囚禁的施咒者的鎖"
+;   txt#19 off=0x2a2 prm=0x80 "鏈呢？"
+;   txt#20 off=0x2aa prm=0xa0 "…………"
+;   txt#21 off=0x2b4 prm=0x2a0 "我想，它們恐怕是欣喜若狂地把那些囚禁者從"
+;   txt#22 off=0x2de prm=0x160 "牢房裡給放了出來吧。"
+;   txt#23 off=0x2f4 prm=0xa0 "…………"
+;   txt#24 off=0x2fe prm=0x180 "從羅亞爾，聖提的深處，"
+;   txt#25 off=0x316 prm=0x160 "那些傢伙們蜂擁而出。"
+;   txt#26 off=0x32c prm=0xa0 "…………"
+;   txt#27 off=0x336 prm=0x280 "無論是在地上、地下、城牆中、城堡裡……"
+;   txt#28 off=0x35e prm=0x220 "它們出沒在散置各地的祕寶收藏處，"
+;   txt#29 off=0x380 prm=0x1c0 "以及那些封鎖邪惡的鎖鏈旁。"
+;   txt#30 off=0x39c prm=0x180 "像烏洛波羅斯這樣的人，"
+;   txt#31 off=0x3b4 prm=0x120 "究竟還有多少呢？"
+;   txt#32 off=0x3c6 prm=0x240 "據我所知，被稱為黑衣七哲的那些人，"
+;   txt#33 off=0x3ea prm=0xe0 "名位都很高，"
+;   txt#34 off=0x3f8 prm=0x1c0 "烏洛波羅斯也是其中的一個。"
+;   txt#35 off=0x414 prm=0xa0 "…………"
+;   txt#36 off=0x41e prm=0x2a0 "那也就是說，像他這樣的人還有六個囉……！"
+;   txt#37 off=0x448 prm=0x280 "賢者的圓桌之所以會容許帕蘭達因的專橫，"
+;   txt#38 off=0x470 prm=0x220 "也許正是因為預見了這樣的事情吧。"
+;   txt#39 off=0x492 prm=0x180 "……如果集結十二王杯，"
+;   txt#40 off=0x4aa prm=0x1c0 "消除黑闇是帕蘭達因的使命。"
+;   txt#41 off=0x4c6 prm=0xa0 "…………"
+;   txt#42 off=0x4d0 prm=0x2a0 "那麼，要討伐那些阻撓修奈鐸的黑衣施咒者，"
+;   txt#43 off=0x4fa prm=0x200 "就確實是我們純潔之盾的責任了。"
+;   txt#44 off=0x51a prm=0x220 "……無論他過去曾經做過些什麼嗎？"
+;   txt#45 off=0x53c prm=0x200 "……無論他過去曾經做過些什麼。"
+;   txt#46 off=0x55c prm=0xa0 "…………"
+;   txt#47 off=0x566 prm=0xa0 "…………"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 118 1
+000034:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   7
+000058:             17 TEXT                     adv=6   #0 "利用了夏朧身上咒縛的黑衣施咒者，"
+00005e:             17 TEXT                     adv=6   #1 "叫做烏洛波羅斯。"
+000064:             17 TEXT                     adv=6   #2 "既然愛爾梅納斯還沒有被毀滅，我推測，"
+00006a:             17 TEXT                     adv=6   #3 "他真正的力量應該還是在被封印的狀態下。"
+000070:             50 TEXTWAITKB               adv=4   
+000074:             51 KEYWAIT                  adv=4   
+000078:             30 BORDPACKONWAIT           adv=20  8 116 0 30
+00008c:             43 TEXTACTIVE               adv=8   8
+000094:             17 TEXT                     adv=6   #4 "竟然利用別人的誓言呀，"
+00009a:             17 TEXT                     adv=6   #5 "他做事的手段真是卑劣。"
+0000a0:             50 TEXTWAITKB               adv=4   
+0000a4:             51 KEYWAIT                  adv=4   
+0000a8:             43 TEXTACTIVE               adv=8   7
+0000b0:             44 TEXTCLEAR                adv=4   
+0000b4:             17 TEXT                     adv=6   #6 "…………"
+0000ba:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0000ca:             43 TEXTACTIVE               adv=8   4
+0000d2:             17 TEXT                     adv=6   #7 "在羅亞爾•聖提淪陷之後，"
+0000d8:             17 TEXT                     adv=6   #8 "黑衣的施咒者馬上就出現了……"
+0000de:             50 TEXTWAITKB               adv=4   
+0000e2:             51 KEYWAIT                  adv=4   
+0000e6:             43 TEXTACTIVE               adv=8   8
+0000ee:             44 TEXTCLEAR                adv=4   
+0000f2:             17 TEXT                     adv=6   #9 "…………"
+0000f8:             43 TEXTACTIVE               adv=8   7
+000100:             44 TEXTCLEAR                adv=4   
+000104:             17 TEXT                     adv=6   #10 "是呀。"
+00010a:             17 TEXT                     adv=6   #11 "這些被囚禁的人們，"
+000110:             17 TEXT                     adv=6   #12 "到底是受到混沌的力量幫助他們解開了束縛，"
+000116:             17 TEXT                     adv=6   #13 "還是……"
+00011c:             50 TEXTWAITKB               adv=4   
+000120:             51 KEYWAIT                  adv=4   
+000124:             43 TEXTACTIVE               adv=8   4
+00012c:             44 TEXTCLEAR                adv=4   
+000130:             17 TEXT                     adv=6   #14 "…………"
+000136:             43 TEXTACTIVE               adv=8   8
+00013e:             44 TEXTCLEAR                adv=4   
+000142:             17 TEXT                     adv=6   #15 "雖然我們不清楚「匍伏蔓延而來之物」對愛爾"
+000148:             17 TEXT                     adv=6   #16 "梅納斯的企圖究竟是什麼……"
+00014e:             17 TEXT                     adv=6   #17 "但它們在侵略的途中，"
+000154:             17 TEXT                     adv=6   #18 "到底有沒有順便解開那些被囚禁的施咒者的鎖"
+00015a:             17 TEXT                     adv=6   #19 "鏈呢？"
+000160:             50 TEXTWAITKB               adv=4   
+000164:             51 KEYWAIT                  adv=4   
+000168:             44 TEXTCLEAR                adv=4   
+00016c:             43 TEXTACTIVE               adv=8   7
+000174:             44 TEXTCLEAR                adv=4   
+000178:             17 TEXT                     adv=6   #20 "…………"
+00017e:             43 TEXTACTIVE               adv=8   8
+000186:             17 TEXT                     adv=6   #21 "我想，它們恐怕是欣喜若狂地把那些囚禁者從"
+00018c:             17 TEXT                     adv=6   #22 "牢房裡給放了出來吧。"
+000192:             50 TEXTWAITKB               adv=4   
+000196:             51 KEYWAIT                  adv=4   
+00019a:             43 TEXTACTIVE               adv=8   7
+0001a2:             44 TEXTCLEAR                adv=4   
+0001a6:             17 TEXT                     adv=6   #23 "…………"
+0001ac:             17 TEXT                     adv=6   #24 "從羅亞爾，聖提的深處，"
+0001b2:             17 TEXT                     adv=6   #25 "那些傢伙們蜂擁而出。"
+0001b8:             50 TEXTWAITKB               adv=4   
+0001bc:             51 KEYWAIT                  adv=4   
+0001c0:             44 TEXTCLEAR                adv=4   
+0001c4:             43 TEXTACTIVE               adv=8   8
+0001cc:             44 TEXTCLEAR                adv=4   
+0001d0:             17 TEXT                     adv=6   #26 "…………"
+0001d6:             43 TEXTACTIVE               adv=8   7
+0001de:             17 TEXT                     adv=6   #27 "無論是在地上、地下、城牆中、城堡裡……"
+0001e4:             17 TEXT                     adv=6   #28 "它們出沒在散置各地的祕寶收藏處，"
+0001ea:             17 TEXT                     adv=6   #29 "以及那些封鎖邪惡的鎖鏈旁。"
+0001f0:             50 TEXTWAITKB               adv=4   
+0001f4:             51 KEYWAIT                  adv=4   
+0001f8:             43 TEXTACTIVE               adv=8   4
+000200:             44 TEXTCLEAR                adv=4   
+000204:             17 TEXT                     adv=6   #30 "像烏洛波羅斯這樣的人，"
+00020a:             17 TEXT                     adv=6   #31 "究竟還有多少呢？"
+000210:             50 TEXTWAITKB               adv=4   
+000214:             51 KEYWAIT                  adv=4   
+000218:             43 TEXTACTIVE               adv=8   7
+000220:             44 TEXTCLEAR                adv=4   
+000224:             17 TEXT                     adv=6   #32 "據我所知，被稱為黑衣七哲的那些人，"
+00022a:             17 TEXT                     adv=6   #33 "名位都很高，"
+000230:             17 TEXT                     adv=6   #34 "烏洛波羅斯也是其中的一個。"
+000236:             50 TEXTWAITKB               adv=4   
+00023a:             51 KEYWAIT                  adv=4   
+00023e:             43 TEXTACTIVE               adv=8   4
+000246:             44 TEXTCLEAR                adv=4   
+00024a:             17 TEXT                     adv=6   #35 "…………"
+000250:             43 TEXTACTIVE               adv=8   8
+000258:             44 TEXTCLEAR                adv=4   
+00025c:             17 TEXT                     adv=6   #36 "那也就是說，像他這樣的人還有六個囉……！"
+000262:             50 TEXTWAITKB               adv=4   
+000266:             51 KEYWAIT                  adv=4   
+00026a:             43 TEXTACTIVE               adv=8   7
+000272:             44 TEXTCLEAR                adv=4   
+000276:             17 TEXT                     adv=6   #37 "賢者的圓桌之所以會容許帕蘭達因的專橫，"
+00027c:             17 TEXT                     adv=6   #38 "也許正是因為預見了這樣的事情吧。"
+000282:             17 TEXT                     adv=6   #39 "……如果集結十二王杯，"
+000288:             17 TEXT                     adv=6   #40 "消除黑闇是帕蘭達因的使命。"
+00028e:             50 TEXTWAITKB               adv=4   
+000292:             51 KEYWAIT                  adv=4   
+000296:             44 TEXTCLEAR                adv=4   
+00029a:             43 TEXTACTIVE               adv=8   8
+0002a2:             44 TEXTCLEAR                adv=4   
+0002a6:             17 TEXT                     adv=6   #41 "…………"
+0002ac:             43 TEXTACTIVE               adv=8   7
+0002b4:             17 TEXT                     adv=6   #42 "那麼，要討伐那些阻撓修奈鐸的黑衣施咒者，"
+0002ba:             17 TEXT                     adv=6   #43 "就確實是我們純潔之盾的責任了。"
+0002c0:             50 TEXTWAITKB               adv=4   
+0002c4:             51 KEYWAIT                  adv=4   
+0002c8:             43 TEXTACTIVE               adv=8   8
+0002d0:             44 TEXTCLEAR                adv=4   
+0002d4:             17 TEXT                     adv=6   #44 "……無論他過去曾經做過些什麼嗎？"
+0002da:             50 TEXTWAITKB               adv=4   
+0002de:             51 KEYWAIT                  adv=4   
+0002e2:             43 TEXTACTIVE               adv=8   7
+0002ea:             44 TEXTCLEAR                adv=4   
+0002ee:             17 TEXT                     adv=6   #45 "……無論他過去曾經做過些什麼。"
+0002f4:             50 TEXTWAITKB               adv=4   
+0002f8:             51 KEYWAIT                  adv=4   
+0002fc:             43 TEXTACTIVE               adv=8   8
+000304:             44 TEXTCLEAR                adv=4   
+000308:             17 TEXT                     adv=6   #46 "…………"
+00030e:             43 TEXTACTIVE               adv=8   4
+000316:             44 TEXTCLEAR                adv=4   
+00031a:             17 TEXT                     adv=6   #47 "…………"
+000320:             50 TEXTWAITKB               adv=4   
+000324:             51 KEYWAIT                  adv=4   
+000328:             12 VWAIT                    adv=8   30
+000330:             56 FADESETWAIT              adv=8   4
+000338:             21 ALLOFF                   adv=4   
+00033c:             12 VWAIT                    adv=8   60
+000344:             19 END                      adv=4   ; END
+; (137 insns)

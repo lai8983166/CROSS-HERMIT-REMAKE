@@ -1,0 +1,67 @@
+; CHAPTER041.YBC  len=0x350  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x1aa', '0x20a', '0x20a']
+; rec1[0] = "data\\adv\\bin\\tc0603.bin"
+; rec1[1] = "data\\adv\\dat\\Chapter210.ybc"
+;   txt#0 off=0x30 prm=0x1e0 "伊諾森提雅終於要有所動作了。"
+;   txt#1 off=0x4e prm=0x2a0 "純潔之盾也將成為點綴在織錦上的華麗絲線。"
+;   txt#2 off=0x78 prm=0x1e0 "他們展翅翱翔的時機也要到了。"
+;   txt#3 off=0x96 prm=0xa0 "…………"
+;   txt#4 off=0xa0 prm=0x120 "誰將要去完成它？"
+;   txt#5 off=0xb2 prm=0x160 "將要完成的又是什麼？"
+;   txt#6 off=0xc8 prm=0x260 "接著，我們所將見證的未來，又是什麼？"
+;   txt#7 off=0xee prm=0xa0 "…………"
+;   txt#8 off=0xf8 prm=0x1c0 "一切都在那時間的長河之中。"
+;   txt#9 off=0x114 prm=0x180 "沒有光明，也沒有黑闇。"
+;   txt#10 off=0x12c prm=0x1a0 "只是，在那淡青色的雪中。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   0
+000080:             63 SE                       adv=8   5
+000088:             59 BGSETWAIT                adv=16  0 118 1
+000098:             56 FADESETWAIT              adv=8   3
+0000a0:             12 VWAIT                    adv=8   30
+0000a8:             30 BORDPACKONWAIT           adv=20  7 127 0 30
+0000bc:             43 TEXTACTIVE               adv=8   7
+0000c4:             17 TEXT                     adv=6   #0 "伊諾森提雅終於要有所動作了。"
+0000ca:             50 TEXTWAITKB               adv=4   
+0000ce:             51 KEYWAIT                  adv=4   
+0000d2:             30 BORDPACKONWAIT           adv=20  8 128 0 30
+0000e6:             43 TEXTACTIVE               adv=8   8
+0000ee:             17 TEXT                     adv=6   #1 "純潔之盾也將成為點綴在織錦上的華麗絲線。"
+0000f4:             17 TEXT                     adv=6   #2 "他們展翅翱翔的時機也要到了。"
+0000fa:             50 TEXTWAITKB               adv=4   
+0000fe:             51 KEYWAIT                  adv=4   
+000102:             43 TEXTACTIVE               adv=8   7
+00010a:             44 TEXTCLEAR                adv=4   
+00010e:             17 TEXT                     adv=6   #3 "…………"
+000114:             30 BORDPACKONWAIT           adv=20  9 129 0 30
+000128:             43 TEXTACTIVE               adv=8   9
+000130:             17 TEXT                     adv=6   #4 "誰將要去完成它？"
+000136:             17 TEXT                     adv=6   #5 "將要完成的又是什麼？"
+00013c:             17 TEXT                     adv=6   #6 "接著，我們所將見證的未來，又是什麼？"
+000142:             50 TEXTWAITKB               adv=4   
+000146:             51 KEYWAIT                  adv=4   
+00014a:             43 TEXTACTIVE               adv=8   8
+000152:             44 TEXTCLEAR                adv=4   
+000156:             17 TEXT                     adv=6   #7 "…………"
+00015c:             43 TEXTACTIVE               adv=8   7
+000164:             44 TEXTCLEAR                adv=4   
+000168:             17 TEXT                     adv=6   #8 "一切都在那時間的長河之中。"
+00016e:             17 TEXT                     adv=6   #9 "沒有光明，也沒有黑闇。"
+000174:             17 TEXT                     adv=6   #10 "只是，在那淡青色的雪中。"
+00017a:             50 TEXTWAITKB               adv=4   
+00017e:             51 KEYWAIT                  adv=4   
+000182:             12 VWAIT                    adv=8   30
+00018a:             56 FADESETWAIT              adv=8   4
+000192:             21 ALLOFF                   adv=4   
+000196:             12 VWAIT                    adv=8   60
+00019e:             15 SCRIPTEXEC               adv=8   v0x1
+0001a6:             19 END                      adv=4   ; END
+; (51 insns)

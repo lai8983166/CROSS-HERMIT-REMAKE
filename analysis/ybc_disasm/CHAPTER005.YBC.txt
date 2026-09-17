@@ -1,0 +1,103 @@
+; CHAPTER005.YBC  len=0x56a  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x1b0', '0x1b0', '0x1b0']
+;   txt#0 off=0x7c prm=0x100 "已經九年了嗎？"
+;   txt#1 off=0x8c prm=0x1e0 "這裡真的絲毫也沒有改變哪……"
+;   txt#2 off=0xaa prm=0xa0 "…………"
+;   txt#3 off=0xb4 prm=0x100 "比起那個時候，"
+;   txt#4 off=0xc4 prm=0x1c0 "一點也沒有現在這樣的閒暇。"
+;   txt#5 off=0xe0 prm=0x1c0 "現在心情之所以會這麼安祥，"
+;   txt#6 off=0xfc prm=0x280 "這都是因為和你－奧爾菲一同度過的時光，"
+;   txt#7 off=0x124 prm=0x160 "正圍繞在這房間中吧？"
+;   txt#8 off=0x13a prm=0x80 "然而，"
+;   txt#9 off=0x142 prm=0x240 "無論在這黑夜的寂靜中是多麼地愜意，"
+;   txt#10 off=0x166 prm=0x1a0 "從那深遂黑闇的淵藪之中，"
+;   txt#11 off=0x180 prm=0x1c0 "它們仍不斷地匍伏蔓延而出。"
+;   txt#12 off=0x19c prm=0x1a0 "你就是抱著那熾熱的思念，"
+;   txt#13 off=0x1b6 prm=0x1c0 "在混沌的漩渦中捨身而戰嗎？"
+;   txt#14 off=0x1d2 prm=0x1a0 "前來愛爾梅納斯的孩子們，"
+;   txt#15 off=0x1ec prm=0x1a0 "勇敢地選擇了苦難的道路。"
+;   txt#16 off=0x206 prm=0x1e0 "離開了那在遙遠彼方的故鄉……"
+;   txt#17 off=0x224 prm=0x240 "前來依靠這些沒有血緣羈絆的師長們，"
+;   txt#18 off=0x248 prm=0x200 "以及依靠這些同甘共苦的夥伴們。"
+;   txt#19 off=0x268 prm=0x1a0 "然而……你卻離開了這裡。"
+;   txt#20 off=0x282 prm=0x280 "將孩子們留在這裡，把一切都托付給恩師。"
+;   txt#21 off=0x2aa prm=0x260 "因為你非得一個人去面對這命運，是嗎？"
+;   txt#22 off=0x2d0 prm=0x1c0 "如果這就是你心中所希望的。"
+;   txt#23 off=0x2ec prm=0x160 "那我便暫時代替你吧，"
+;   txt#24 off=0x302 prm=0x1a0 "照顧你費心栽培的孩子們，"
+;   txt#25 off=0x31c prm=0x1c0 "以及這愛爾梅納斯的精粹……"
+;   txt#26 off=0x338 prm=0x2a0 "位列四大學級之一、我們的故鄉伊諾森提雅。"
+;   txt#27 off=0x362 prm=0x260 "啊啊……這樣也就能對他們有所回應了，"
+;   txt#28 off=0x388 prm=0x1e0 "在那幼小眸子中所深藏的夢想，"
+;   txt#29 off=0x3a6 prm=0x140 "那純真的願望啊……"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             59 BGSETWAIT                adv=16  0 8 1
+000034:             56 FADESETWAIT              adv=8   3
+00003c:             12 VWAIT                    adv=8   30
+000044:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000054:             43 TEXTACTIVE               adv=8   1
+00005c:             17 TEXT                     adv=6   #0 "已經九年了嗎？"
+000062:             17 TEXT                     adv=6   #1 "這裡真的絲毫也沒有改變哪……"
+000068:             17 TEXT                     adv=6   #2 "…………"
+00006e:             50 TEXTWAITKB               adv=4   
+000072:             51 KEYWAIT                  adv=4   
+000076:             44 TEXTCLEAR                adv=4   
+00007a:             17 TEXT                     adv=6   #3 "比起那個時候，"
+000080:             17 TEXT                     adv=6   #4 "一點也沒有現在這樣的閒暇。"
+000086:             50 TEXTWAITKB               adv=4   
+00008a:             51 KEYWAIT                  adv=4   
+00008e:             44 TEXTCLEAR                adv=4   
+000092:             17 TEXT                     adv=6   #5 "現在心情之所以會這麼安祥，"
+000098:             17 TEXT                     adv=6   #6 "這都是因為和你－奧爾菲一同度過的時光，"
+00009e:             17 TEXT                     adv=6   #7 "正圍繞在這房間中吧？"
+0000a4:             50 TEXTWAITKB               adv=4   
+0000a8:             51 KEYWAIT                  adv=4   
+0000ac:             44 TEXTCLEAR                adv=4   
+0000b0:             17 TEXT                     adv=6   #8 "然而，"
+0000b6:             17 TEXT                     adv=6   #9 "無論在這黑夜的寂靜中是多麼地愜意，"
+0000bc:             17 TEXT                     adv=6   #10 "從那深遂黑闇的淵藪之中，"
+0000c2:             17 TEXT                     adv=6   #11 "它們仍不斷地匍伏蔓延而出。"
+0000c8:             50 TEXTWAITKB               adv=4   
+0000cc:             51 KEYWAIT                  adv=4   
+0000d0:             44 TEXTCLEAR                adv=4   
+0000d4:             17 TEXT                     adv=6   #12 "你就是抱著那熾熱的思念，"
+0000da:             17 TEXT                     adv=6   #13 "在混沌的漩渦中捨身而戰嗎？"
+0000e0:             50 TEXTWAITKB               adv=4   
+0000e4:             51 KEYWAIT                  adv=4   
+0000e8:             44 TEXTCLEAR                adv=4   
+0000ec:             17 TEXT                     adv=6   #14 "前來愛爾梅納斯的孩子們，"
+0000f2:             17 TEXT                     adv=6   #15 "勇敢地選擇了苦難的道路。"
+0000f8:             17 TEXT                     adv=6   #16 "離開了那在遙遠彼方的故鄉……"
+0000fe:             17 TEXT                     adv=6   #17 "前來依靠這些沒有血緣羈絆的師長們，"
+000104:             17 TEXT                     adv=6   #18 "以及依靠這些同甘共苦的夥伴們。"
+00010a:             50 TEXTWAITKB               adv=4   
+00010e:             51 KEYWAIT                  adv=4   
+000112:             44 TEXTCLEAR                adv=4   
+000116:             17 TEXT                     adv=6   #19 "然而……你卻離開了這裡。"
+00011c:             17 TEXT                     adv=6   #20 "將孩子們留在這裡，把一切都托付給恩師。"
+000122:             17 TEXT                     adv=6   #21 "因為你非得一個人去面對這命運，是嗎？"
+000128:             50 TEXTWAITKB               adv=4   
+00012c:             51 KEYWAIT                  adv=4   
+000130:             44 TEXTCLEAR                adv=4   
+000134:             17 TEXT                     adv=6   #22 "如果這就是你心中所希望的。"
+00013a:             17 TEXT                     adv=6   #23 "那我便暫時代替你吧，"
+000140:             17 TEXT                     adv=6   #24 "照顧你費心栽培的孩子們，"
+000146:             17 TEXT                     adv=6   #25 "以及這愛爾梅納斯的精粹……"
+00014c:             17 TEXT                     adv=6   #26 "位列四大學級之一、我們的故鄉伊諾森提雅。"
+000152:             50 TEXTWAITKB               adv=4   
+000156:             51 KEYWAIT                  adv=4   
+00015a:             44 TEXTCLEAR                adv=4   
+00015e:             17 TEXT                     adv=6   #27 "啊啊……這樣也就能對他們有所回應了，"
+000164:             17 TEXT                     adv=6   #28 "在那幼小眸子中所深藏的夢想，"
+00016a:             17 TEXT                     adv=6   #29 "那純真的願望啊……"
+000170:             50 TEXTWAITKB               adv=4   
+000174:             51 KEYWAIT                  adv=4   
+000178:             12 VWAIT                    adv=8   30
+000180:             56 FADESETWAIT              adv=8   4
+000188:             21 ALLOFF                   adv=4   
+00018c:             12 VWAIT                    adv=8   60
+000194:            151 OP_151                   adv=12  11 0
+0001a0:             91 PUTUNITWK                adv=12  6 2
+0001ac:             19 END                      adv=4   ; END
+; (70 insns)

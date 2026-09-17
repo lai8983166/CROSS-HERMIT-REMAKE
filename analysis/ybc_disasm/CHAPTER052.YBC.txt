@@ -1,0 +1,184 @@
+; CHAPTER052.YBC  len=0x736  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x3fa', '0x42a', '0x42a']
+; rec1[0] = "data\\adv\\bin\\tc0903.bin"
+;   txt#0 off=0x78 prm=0x240 "你們現在的心情如何啊，純潔之盾呀。"
+;   txt#1 off=0x9c prm=0x120 "希里鄔司•謬斯。"
+;   txt#2 off=0xae prm=0x1e0 "差不多也該好好確認一下了吧。"
+;   txt#3 off=0xcc prm=0x2a0 "純潔之盾究竟是否有位列四大學級的實力呢？"
+;   txt#4 off=0xf6 prm=0xa0 "…………"
+;   txt#5 off=0x100 prm=0xa0 "…………"
+;   txt#6 off=0x10a prm=0x260 "唉呀唉呀，你們兩位都需要冷靜一下唷。"
+;   txt#7 off=0x130 prm=0xa0 "可以嗎？"
+;   txt#8 off=0x13a prm=0x120 "不要多管閒事啦，"
+;   txt#9 off=0x14c prm=0x180 "像修貝流士這樣的小國，"
+;   txt#10 off=0x164 prm=0x160 "沒有資格做這種事情。"
+;   txt#11 off=0x17a prm=0x80 "唉唷∼"
+;   txt#12 off=0x182 prm=0x220 "你不要老是注意那些無聊的事情嘛。"
+;   txt#13 off=0x1a4 prm=0x200 "倒是呢，你們只不過來了五個人，"
+;   txt#14 off=0x1c4 prm=0x140 "這樣就想打贏我們？"
+;   txt#15 off=0x1d8 prm=0xa0 "…………"
+;   txt#16 off=0x1e2 prm=0xc0 "無論如何，"
+;   txt#17 off=0x1ee prm=0x200 "這都是很輕率的舉動呀，不是嗎∼"
+;   txt#18 off=0x20e prm=0x180 "如果我們全部都一起來，"
+;   txt#19 off=0x226 prm=0x220 "就沒辦法感受你們那微小的實力了。"
+;   txt#20 off=0x248 prm=0xc0 "……很好∼"
+;   txt#21 off=0x254 prm=0xa0 "…………"
+;   txt#22 off=0x25e prm=0x100 "那麼，艾爾雪。"
+;   txt#23 off=0x26e prm=0x1c0 "如果妳不想跟他們作戰的話，"
+;   txt#24 off=0x28a prm=0x1a0 "是不是現在退下會比較好？"
+;   txt#25 off=0x2a4 prm=0x60 "不。"
+;   txt#26 off=0x2aa prm=0x1c0 "我是為了戰鬥才加入這裡的。"
+;   txt#27 off=0x2c6 prm=0x1c0 "怎麼可能會有退縮的理由呢。"
+;   txt#28 off=0x2e2 prm=0x2a0 "那麼，就為我們期待已久的宴會揭開序幕吧。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   1
+000080:             63 SE                       adv=8   12
+000088:             59 BGSETWAIT                adv=16  0 10 1
+000098:             30 BORDPACKONWAIT           adv=20  6 11 0 30
+0000ac:             56 FADESETWAIT              adv=8   3
+0000b4:             43 TEXTACTIVE               adv=8   6
+0000bc:             65 BGM                      adv=8   v0x38
+0000c4:             17 TEXT                     adv=6   #0 "你們現在的心情如何啊，純潔之盾呀。"
+0000ca:             50 TEXTWAITKB               adv=4   
+0000ce:             51 KEYWAIT                  adv=4   
+0000d2:             30 BORDPACKONWAIT           adv=20  5 3 0 30
+0000e6:             43 TEXTACTIVE               adv=8   5
+0000ee:             65 BGM                      adv=8   v0x10038
+0000f6:             17 TEXT                     adv=6   #1 "希里鄔司•謬斯。"
+0000fc:             50 TEXTWAITKB               adv=4   
+000100:             51 KEYWAIT                  adv=4   
+000104:             43 TEXTACTIVE               adv=8   6
+00010c:             44 TEXTCLEAR                adv=4   
+000110:             65 BGM                      adv=8   v0x20038
+000118:             17 TEXT                     adv=6   #2 "差不多也該好好確認一下了吧。"
+00011e:             50 TEXTWAITKB               adv=4   
+000122:             51 KEYWAIT                  adv=4   
+000126:             65 BGM                      adv=8   v0x30038
+00012e:             17 TEXT                     adv=6   #3 "純潔之盾究竟是否有位列四大學級的實力呢？"
+000134:             50 TEXTWAITKB               adv=4   
+000138:             51 KEYWAIT                  adv=4   
+00013c:             43 TEXTACTIVE               adv=8   5
+000144:             44 TEXTCLEAR                adv=4   
+000148:             65 BGM                      adv=8   v0x40038
+000150:             17 TEXT                     adv=6   #4 "…………"
+000156:             50 TEXTWAITKB               adv=4   
+00015a:             51 KEYWAIT                  adv=4   
+00015e:             43 TEXTACTIVE               adv=8   6
+000166:             44 TEXTCLEAR                adv=4   
+00016a:             17 TEXT                     adv=6   #5 "…………"
+000170:             50 TEXTWAITKB               adv=4   
+000174:             51 KEYWAIT                  adv=4   
+000178:             43 TEXTACTIVE               adv=8   5
+000180:             44 TEXTCLEAR                adv=4   
+000184:             33 CHARSET                  adv=16  5 5 0
+000194:             36 CHARWAIT                 adv=4   
+000198:             43 TEXTACTIVE               adv=8   5
+0001a0:             65 BGM                      adv=8   v0x50038
+0001a8:             17 TEXT                     adv=6   #6 "唉呀唉呀，你們兩位都需要冷靜一下唷。"
+0001ae:             17 TEXT                     adv=6   #7 "可以嗎？"
+0001b4:             50 TEXTWAITKB               adv=4   
+0001b8:             51 KEYWAIT                  adv=4   
+0001bc:             43 TEXTACTIVE               adv=8   6
+0001c4:             44 TEXTCLEAR                adv=4   
+0001c8:             65 BGM                      adv=8   v0x60038
+0001d0:             17 TEXT                     adv=6   #8 "不要多管閒事啦，"
+0001d6:             17 TEXT                     adv=6   #9 "像修貝流士這樣的小國，"
+0001dc:             17 TEXT                     adv=6   #10 "沒有資格做這種事情。"
+0001e2:             50 TEXTWAITKB               adv=4   
+0001e6:             51 KEYWAIT                  adv=4   
+0001ea:             43 TEXTACTIVE               adv=8   5
+0001f2:             44 TEXTCLEAR                adv=4   
+0001f6:             65 BGM                      adv=8   v0x70038
+0001fe:             17 TEXT                     adv=6   #11 "唉唷∼"
+000204:             50 TEXTWAITKB               adv=4   
+000208:             51 KEYWAIT                  adv=4   
+00020c:             65 BGM                      adv=8   v0x80038
+000214:             17 TEXT                     adv=6   #12 "你不要老是注意那些無聊的事情嘛。"
+00021a:             50 TEXTWAITKB               adv=4   
+00021e:             51 KEYWAIT                  adv=4   
+000222:             65 BGM                      adv=8   v0x90038
+00022a:             17 TEXT                     adv=6   #13 "倒是呢，你們只不過來了五個人，"
+000230:             17 TEXT                     adv=6   #14 "這樣就想打贏我們？"
+000236:             50 TEXTWAITKB               adv=4   
+00023a:             51 KEYWAIT                  adv=4   
+00023e:             44 TEXTCLEAR                adv=4   
+000242:             43 TEXTACTIVE               adv=8   6
+00024a:             44 TEXTCLEAR                adv=4   
+00024e:             17 TEXT                     adv=6   #15 "…………"
+000254:             43 TEXTACTIVE               adv=8   5
+00025c:             65 BGM                      adv=8   v0xa0038
+000264:             17 TEXT                     adv=6   #16 "無論如何，"
+00026a:             17 TEXT                     adv=6   #17 "這都是很輕率的舉動呀，不是嗎∼"
+000270:             50 TEXTWAITKB               adv=4   
+000274:             51 KEYWAIT                  adv=4   
+000278:             43 TEXTACTIVE               adv=8   6
+000280:             44 TEXTCLEAR                adv=4   
+000284:             65 BGM                      adv=8   v0xb0038
+00028c:             17 TEXT                     adv=6   #18 "如果我們全部都一起來，"
+000292:             17 TEXT                     adv=6   #19 "就沒辦法感受你們那微小的實力了。"
+000298:             50 TEXTWAITKB               adv=4   
+00029c:             51 KEYWAIT                  adv=4   
+0002a0:             43 TEXTACTIVE               adv=8   5
+0002a8:             44 TEXTCLEAR                adv=4   
+0002ac:             65 BGM                      adv=8   v0xc0038
+0002b4:             17 TEXT                     adv=6   #20 "……很好∼"
+0002ba:             50 TEXTWAITKB               adv=4   
+0002be:             51 KEYWAIT                  adv=4   
+0002c2:             43 TEXTACTIVE               adv=8   6
+0002ca:             44 TEXTCLEAR                adv=4   
+0002ce:             33 CHARSET                  adv=16  6 6 0
+0002de:             36 CHARWAIT                 adv=4   
+0002e2:             43 TEXTACTIVE               adv=8   6
+0002ea:             17 TEXT                     adv=6   #21 "…………"
+0002f0:             50 TEXTWAITKB               adv=4   
+0002f4:             51 KEYWAIT                  adv=4   
+0002f8:             43 TEXTACTIVE               adv=8   5
+000300:             44 TEXTCLEAR                adv=4   
+000304:             65 BGM                      adv=8   v0xd0038
+00030c:             17 TEXT                     adv=6   #22 "那麼，艾爾雪。"
+000312:             50 TEXTWAITKB               adv=4   
+000316:             51 KEYWAIT                  adv=4   
+00031a:             65 BGM                      adv=8   v0xe0038
+000322:             17 TEXT                     adv=6   #23 "如果妳不想跟他們作戰的話，"
+000328:             17 TEXT                     adv=6   #24 "是不是現在退下會比較好？"
+00032e:             50 TEXTWAITKB               adv=4   
+000332:             51 KEYWAIT                  adv=4   
+000336:             43 TEXTACTIVE               adv=8   6
+00033e:             44 TEXTCLEAR                adv=4   
+000342:             65 BGM                      adv=8   v0xf0038
+00034a:             17 TEXT                     adv=6   #25 "不。"
+000350:             50 TEXTWAITKB               adv=4   
+000354:             51 KEYWAIT                  adv=4   
+000358:             65 BGM                      adv=8   v0x100038
+000360:             17 TEXT                     adv=6   #26 "我是為了戰鬥才加入這裡的。"
+000366:             50 TEXTWAITKB               adv=4   
+00036a:             51 KEYWAIT                  adv=4   
+00036e:             65 BGM                      adv=8   v0x110038
+000376:             17 TEXT                     adv=6   #27 "怎麼可能會有退縮的理由呢。"
+00037c:             50 TEXTWAITKB               adv=4   
+000380:             51 KEYWAIT                  adv=4   
+000384:             43 TEXTACTIVE               adv=8   5
+00038c:             44 TEXTCLEAR                adv=4   
+000390:             33 CHARSET                  adv=16  5 11 0
+0003a0:             36 CHARWAIT                 adv=4   
+0003a4:             43 TEXTACTIVE               adv=8   5
+0003ac:             65 BGM                      adv=8   v0x120038
+0003b4:             17 TEXT                     adv=6   #28 "那麼，就為我們期待已久的宴會揭開序幕吧。"
+0003ba:             50 TEXTWAITKB               adv=4   
+0003be:             51 KEYWAIT                  adv=4   
+0003c2:             12 VWAIT                    adv=8   30
+0003ca:             56 FADESETWAIT              adv=8   4
+0003d2:             21 ALLOFF                   adv=4   
+0003d6:             12 VWAIT                    adv=8   60
+0003de:            151 OP_151                   adv=12  12 1
+0003ea:             91 PUTUNITWK                adv=12  10 2
+0003f6:             19 END                      adv=4   ; END
+; (151 insns)

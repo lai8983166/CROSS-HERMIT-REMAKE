@@ -1,0 +1,122 @@
+; CHAPTER229.YBC  len=0x4e2  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x236', '0x236', '0x236']
+;   txt#0 off=0x70 prm=0x80 "老師。"
+;   txt#1 off=0x78 prm=0xe0 "瑟希莉絲……"
+;   txt#2 off=0x86 prm=0x180 "既然眺望萬物的尖塔……"
+;   txt#3 off=0x9e prm=0x2a0 "打算收集所有的王杯，並引出它們力量的話。"
+;   txt#4 off=0xc8 prm=0x2a0 "那麼，「匍伏蔓延而來之物」一定會想盡辦法"
+;   txt#5 off=0xf2 prm=0xc0 "去阻止吧。"
+;   txt#6 off=0xfe prm=0xa0 "…………"
+;   txt#7 off=0x108 prm=0x80 "而且，"
+;   txt#8 off=0x110 prm=0x280 "如果眺望萬物的尖塔在探索王杯的任務裡，"
+;   txt#9 off=0x138 prm=0x1c0 "或是在那引起奇蹟的儀式中，"
+;   txt#10 off=0x154 prm=0x180 "用盡所有的力量的話……"
+;   txt#11 off=0x16c prm=0x260 "無論眺望萬物的尖塔的力量有多麼強大，"
+;   txt#12 off=0x192 prm=0x2a0 "我也認為若是他們要同時阻止「匍伏蔓延而來"
+;   txt#13 off=0x1bc prm=0xe0 "之物」的話，"
+;   txt#14 off=0x1ca prm=0x160 "是一件非常困難的事。"
+;   txt#15 off=0x1e0 prm=0xa0 "…………"
+;   txt#16 off=0x1ea prm=0xe0 "老師，我……"
+;   txt#17 off=0x1f8 prm=0x1c0 "我想去一趟眺望萬物的尖塔。"
+;   txt#18 off=0x214 prm=0x80 "嗯嗯。"
+;   txt#19 off=0x21c prm=0x160 "大家也都是這麼想的。"
+;   txt#20 off=0x232 prm=0xa0 "這樣啊。"
+;   txt#21 off=0x23c prm=0xa0 "…………"
+;   txt#22 off=0x246 prm=0xc0 "我瞭解了。"
+;   txt#23 off=0x252 prm=0x240 "那麼我們就往眺望萬物的尖塔出發吧。"
+;   txt#24 off=0x276 prm=0x2a0 "希望那裡有機會可以充分地發揮純潔之盾的實"
+;   txt#25 off=0x2a0 prm=0x60 "力。"
+;   txt#26 off=0x2a6 prm=0x60 "是！"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 10 1
+000034:             30 BORDPACKONWAIT           adv=20  10 4 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   10
+000058:             17 TEXT                     adv=6   #0 "老師。"
+00005e:             50 TEXTWAITKB               adv=4   
+000062:             51 KEYWAIT                  adv=4   
+000066:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000076:             43 TEXTACTIVE               adv=8   4
+00007e:             17 TEXT                     adv=6   #1 "瑟希莉絲……"
+000084:             50 TEXTWAITKB               adv=4   
+000088:             51 KEYWAIT                  adv=4   
+00008c:             43 TEXTACTIVE               adv=8   10
+000094:             44 TEXTCLEAR                adv=4   
+000098:             17 TEXT                     adv=6   #2 "既然眺望萬物的尖塔……"
+00009e:             17 TEXT                     adv=6   #3 "打算收集所有的王杯，並引出它們力量的話。"
+0000a4:             17 TEXT                     adv=6   #4 "那麼，「匍伏蔓延而來之物」一定會想盡辦法"
+0000aa:             17 TEXT                     adv=6   #5 "去阻止吧。"
+0000b0:             50 TEXTWAITKB               adv=4   
+0000b4:             51 KEYWAIT                  adv=4   
+0000b8:             43 TEXTACTIVE               adv=8   4
+0000c0:             44 TEXTCLEAR                adv=4   
+0000c4:             17 TEXT                     adv=6   #6 "…………"
+0000ca:             50 TEXTWAITKB               adv=4   
+0000ce:             51 KEYWAIT                  adv=4   
+0000d2:             43 TEXTACTIVE               adv=8   10
+0000da:             44 TEXTCLEAR                adv=4   
+0000de:             17 TEXT                     adv=6   #7 "而且，"
+0000e4:             17 TEXT                     adv=6   #8 "如果眺望萬物的尖塔在探索王杯的任務裡，"
+0000ea:             17 TEXT                     adv=6   #9 "或是在那引起奇蹟的儀式中，"
+0000f0:             17 TEXT                     adv=6   #10 "用盡所有的力量的話……"
+0000f6:             50 TEXTWAITKB               adv=4   
+0000fa:             51 KEYWAIT                  adv=4   
+0000fe:             44 TEXTCLEAR                adv=4   
+000102:             17 TEXT                     adv=6   #11 "無論眺望萬物的尖塔的力量有多麼強大，"
+000108:             17 TEXT                     adv=6   #12 "我也認為若是他們要同時阻止「匍伏蔓延而來"
+00010e:             17 TEXT                     adv=6   #13 "之物」的話，"
+000114:             17 TEXT                     adv=6   #14 "是一件非常困難的事。"
+00011a:             50 TEXTWAITKB               adv=4   
+00011e:             51 KEYWAIT                  adv=4   
+000122:             43 TEXTACTIVE               adv=8   4
+00012a:             44 TEXTCLEAR                adv=4   
+00012e:             17 TEXT                     adv=6   #15 "…………"
+000134:             50 TEXTWAITKB               adv=4   
+000138:             51 KEYWAIT                  adv=4   
+00013c:             43 TEXTACTIVE               adv=8   10
+000144:             44 TEXTCLEAR                adv=4   
+000148:             17 TEXT                     adv=6   #16 "老師，我……"
+00014e:             17 TEXT                     adv=6   #17 "我想去一趟眺望萬物的尖塔。"
+000154:             50 TEXTWAITKB               adv=4   
+000158:             51 KEYWAIT                  adv=4   
+00015c:             43 TEXTACTIVE               adv=8   4
+000164:             44 TEXTCLEAR                adv=4   
+000168:             17 TEXT                     adv=6   #18 "嗯嗯。"
+00016e:             50 TEXTWAITKB               adv=4   
+000172:             51 KEYWAIT                  adv=4   
+000176:             43 TEXTACTIVE               adv=8   10
+00017e:             44 TEXTCLEAR                adv=4   
+000182:             17 TEXT                     adv=6   #19 "大家也都是這麼想的。"
+000188:             50 TEXTWAITKB               adv=4   
+00018c:             51 KEYWAIT                  adv=4   
+000190:             43 TEXTACTIVE               adv=8   4
+000198:             44 TEXTCLEAR                adv=4   
+00019c:             17 TEXT                     adv=6   #20 "這樣啊。"
+0001a2:             50 TEXTWAITKB               adv=4   
+0001a6:             51 KEYWAIT                  adv=4   
+0001aa:             43 TEXTACTIVE               adv=8   10
+0001b2:             44 TEXTCLEAR                adv=4   
+0001b6:             17 TEXT                     adv=6   #21 "…………"
+0001bc:             50 TEXTWAITKB               adv=4   
+0001c0:             51 KEYWAIT                  adv=4   
+0001c4:             43 TEXTACTIVE               adv=8   4
+0001cc:             44 TEXTCLEAR                adv=4   
+0001d0:             17 TEXT                     adv=6   #22 "我瞭解了。"
+0001d6:             17 TEXT                     adv=6   #23 "那麼我們就往眺望萬物的尖塔出發吧。"
+0001dc:             17 TEXT                     adv=6   #24 "希望那裡有機會可以充分地發揮純潔之盾的實"
+0001e2:             17 TEXT                     adv=6   #25 "力。"
+0001e8:             50 TEXTWAITKB               adv=4   
+0001ec:             51 KEYWAIT                  adv=4   
+0001f0:             43 TEXTACTIVE               adv=8   10
+0001f8:             44 TEXTCLEAR                adv=4   
+0001fc:             17 TEXT                     adv=6   #26 "是！"
+000202:             50 TEXTWAITKB               adv=4   
+000206:             51 KEYWAIT                  adv=4   
+00020a:             12 VWAIT                    adv=8   30
+000212:             56 FADESETWAIT              adv=8   4
+00021a:             21 ALLOFF                   adv=4   
+00021e:             12 VWAIT                    adv=8   60
+000226:            151 OP_151                   adv=12  11 1
+000232:             19 END                      adv=4   ; END
+; (92 insns)

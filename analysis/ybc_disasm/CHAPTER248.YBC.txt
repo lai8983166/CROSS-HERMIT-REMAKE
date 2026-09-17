@@ -1,0 +1,67 @@
+; CHAPTER248.YBC  len=0x2b8  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x16e', '0x16e', '0x16e']
+;   txt#0 off=0x38 prm=0x200 "你們已經準備好要進入迷宮了嗎？"
+;   txt#1 off=0x58 prm=0x2a0 "迷宮裡真的可以接觸到那深沉的黑闇之力嗎？"
+;   txt#2 off=0x82 prm=0x80 "的確，"
+;   txt#3 off=0x8a prm=0x240 "光是這一點就已經很有特訓的意義了。"
+;   txt#4 off=0xae prm=0xa0 "…………"
+;   txt#5 off=0xb8 prm=0xa0 "…………"
+;   txt#6 off=0xc2 prm=0x200 "不過，勇敢與無謀只有一線之隔，"
+;   txt#7 off=0xe2 prm=0x2a0 "希望你可以毫無迷惑地好好領導他們行動……"
+;   txt#8 off=0x10c prm=0x160 "我就先為你們祈禱吧。"
+;   txt#9 off=0x122 prm=0xa0 "…………"
+;   txt#10 off=0x12c prm=0xa0 "…………"
+;   txt#11 off=0x136 prm=0x80 "嗯嗯。"
+;   txt#12 off=0x13e prm=0xc0 "感謝你……"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             63 SE                       adv=8   9
+00002c:             59 BGSETWAIT                adv=16  0 7 1
+00003c:             30 BORDPACKONWAIT           adv=20  7 112 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   7
+000060:             17 TEXT                     adv=6   #0 "你們已經準備好要進入迷宮了嗎？"
+000066:             50 TEXTWAITKB               adv=4   
+00006a:             51 KEYWAIT                  adv=4   
+00006e:             30 BORDPACKONWAIT           adv=20  8 116 0 30
+000082:             43 TEXTACTIVE               adv=8   8
+00008a:             17 TEXT                     adv=6   #1 "迷宮裡真的可以接觸到那深沉的黑闇之力嗎？"
+000090:             17 TEXT                     adv=6   #2 "的確，"
+000096:             17 TEXT                     adv=6   #3 "光是這一點就已經很有特訓的意義了。"
+00009c:             50 TEXTWAITKB               adv=4   
+0000a0:             51 KEYWAIT                  adv=4   
+0000a4:             43 TEXTACTIVE               adv=8   7
+0000ac:             44 TEXTCLEAR                adv=4   
+0000b0:             17 TEXT                     adv=6   #4 "…………"
+0000b6:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0000c6:             43 TEXTACTIVE               adv=8   4
+0000ce:             17 TEXT                     adv=6   #5 "…………"
+0000d4:             50 TEXTWAITKB               adv=4   
+0000d8:             51 KEYWAIT                  adv=4   
+0000dc:             43 TEXTACTIVE               adv=8   8
+0000e4:             44 TEXTCLEAR                adv=4   
+0000e8:             17 TEXT                     adv=6   #6 "不過，勇敢與無謀只有一線之隔，"
+0000ee:             17 TEXT                     adv=6   #7 "希望你可以毫無迷惑地好好領導他們行動……"
+0000f4:             17 TEXT                     adv=6   #8 "我就先為你們祈禱吧。"
+0000fa:             50 TEXTWAITKB               adv=4   
+0000fe:             51 KEYWAIT                  adv=4   
+000102:             43 TEXTACTIVE               adv=8   7
+00010a:             44 TEXTCLEAR                adv=4   
+00010e:             17 TEXT                     adv=6   #9 "…………"
+000114:             50 TEXTWAITKB               adv=4   
+000118:             51 KEYWAIT                  adv=4   
+00011c:             43 TEXTACTIVE               adv=8   8
+000124:             44 TEXTCLEAR                adv=4   
+000128:             17 TEXT                     adv=6   #10 "…………"
+00012e:             43 TEXTACTIVE               adv=8   4
+000136:             44 TEXTCLEAR                adv=4   
+00013a:             17 TEXT                     adv=6   #11 "嗯嗯。"
+000140:             17 TEXT                     adv=6   #12 "感謝你……"
+000146:             50 TEXTWAITKB               adv=4   
+00014a:             51 KEYWAIT                  adv=4   
+00014e:             12 VWAIT                    adv=8   30
+000156:             56 FADESETWAIT              adv=8   4
+00015e:             21 ALLOFF                   adv=4   
+000162:             12 VWAIT                    adv=8   60
+00016a:             19 END                      adv=4   ; END
+; (51 insns)

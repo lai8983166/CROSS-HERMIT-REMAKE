@@ -1,0 +1,106 @@
+; CHAPTER087.YBC  len=0x3ce  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x27e', '0x27e', '0x27e']
+;   txt#0 off=0x48 prm=0xa0 "…………"
+;   txt#1 off=0x52 prm=0xa0 "…………"
+;   txt#2 off=0x5c prm=0xa0 "…………"
+;   txt#3 off=0x66 prm=0xa0 "…………"
+;   txt#4 off=0x70 prm=0x100 "……我們上吧。"
+;   txt#5 off=0x80 prm=0x80 "是！！"
+;   txt#6 off=0x88 prm=0x80 "是！！"
+;   txt#7 off=0x90 prm=0xa0 "…………"
+;   txt#8 off=0x9a prm=0x80 "好！！"
+;   txt#9 off=0xa2 prm=0x80 "是！！"
+;   txt#10 off=0xaa prm=0xa0 "…………"
+;   txt#11 off=0xb4 prm=0x220 "真是感謝各位給了我們充分的時間。"
+;   txt#12 off=0xd6 prm=0x200 "毀滅的帝王再過不久就要降臨了。"
+;   txt#13 off=0xf6 prm=0x180 "與其要在絕望之中度過，"
+;   txt#14 off=0x10e prm=0x2a0 "不如就好好珍惜你們生命中最後的這段時光吧"
+;   txt#15 off=0x138 prm=0x40 "。"
+;   txt#16 off=0x13c prm=0x140 "……來遲一步了嗎？"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 1 1
+000034:             30 BORDPACKONWAIT           adv=20  7 10 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   7
+000058:             17 TEXT                     adv=6   #0 "…………"
+00005e:             50 TEXTWAITKB               adv=4   
+000062:             51 KEYWAIT                  adv=4   
+000066:             30 BORDPACKONWAIT           adv=20  8 3 0 30
+00007a:             43 TEXTACTIVE               adv=8   8
+000082:             17 TEXT                     adv=6   #1 "…………"
+000088:             50 TEXTWAITKB               adv=4   
+00008c:             51 KEYWAIT                  adv=4   
+000090:             30 BORDPACKONWAIT           adv=20  9 112 0 30
+0000a4:             43 TEXTACTIVE               adv=8   9
+0000ac:             17 TEXT                     adv=6   #2 "…………"
+0000b2:             50 TEXTWAITKB               adv=4   
+0000b6:             51 KEYWAIT                  adv=4   
+0000ba:             43 TEXTACTIVE               adv=8   7
+0000c2:             44 TEXTCLEAR                adv=4   
+0000c6:             33 CHARSET                  adv=16  7 12 0
+0000d6:             36 CHARWAIT                 adv=4   
+0000da:             43 TEXTACTIVE               adv=8   7
+0000e2:             17 TEXT                     adv=6   #3 "…………"
+0000e8:             50 TEXTWAITKB               adv=4   
+0000ec:             51 KEYWAIT                  adv=4   
+0000f0:             43 TEXTACTIVE               adv=8   9
+0000f8:             44 TEXTCLEAR                adv=4   
+0000fc:             26 BORDCHANGE               adv=20  9 4 268435455 268435455
+000110:             24 BORDDISP                 adv=12  4 1
+00011c:             43 TEXTACTIVE               adv=8   4
+000124:             17 TEXT                     adv=6   #4 "……我們上吧。"
+00012a:             50 TEXTWAITKB               adv=4   
+00012e:             51 KEYWAIT                  adv=4   
+000132:             43 TEXTACTIVE               adv=8   7
+00013a:             44 TEXTCLEAR                adv=4   
+00013e:             33 CHARSET                  adv=16  7 10 0
+00014e:             36 CHARWAIT                 adv=4   
+000152:             43 TEXTACTIVE               adv=8   7
+00015a:             17 TEXT                     adv=6   #5 "是！！"
+000160:             43 TEXTACTIVE               adv=8   8
+000168:             44 TEXTCLEAR                adv=4   
+00016c:             17 TEXT                     adv=6   #6 "是！！"
+000172:             50 TEXTWAITKB               adv=4   
+000176:             51 KEYWAIT                  adv=4   
+00017a:             44 TEXTCLEAR                adv=4   
+00017e:             43 TEXTACTIVE               adv=8   4
+000186:             44 TEXTCLEAR                adv=4   
+00018a:             17 TEXT                     adv=6   #7 "…………"
+000190:             43 TEXTACTIVE               adv=8   7
+000198:             44 TEXTCLEAR                adv=4   
+00019c:             33 CHARSET                  adv=16  7 112 0
+0001ac:             33 CHARSET                  adv=16  8 12 0
+0001bc:             36 CHARWAIT                 adv=4   
+0001c0:             43 TEXTACTIVE               adv=8   7
+0001c8:             17 TEXT                     adv=6   #8 "好！！"
+0001ce:             43 TEXTACTIVE               adv=8   8
+0001d6:             17 TEXT                     adv=6   #9 "是！！"
+0001dc:             50 TEXTWAITKB               adv=4   
+0001e0:             51 KEYWAIT                  adv=4   
+0001e4:             43 TEXTACTIVE               adv=8   7
+0001ec:             44 TEXTCLEAR                adv=4   
+0001f0:             43 TEXTACTIVE               adv=8   8
+0001f8:             44 TEXTCLEAR                adv=4   
+0001fc:             17 TEXT                     adv=6   #10 "…………"
+000202:             33 CHARSET                  adv=16  7 121 0
+000212:             36 CHARWAIT                 adv=4   
+000216:             43 TEXTACTIVE               adv=8   7
+00021e:             17 TEXT                     adv=6   #11 "真是感謝各位給了我們充分的時間。"
+000224:             17 TEXT                     adv=6   #12 "毀滅的帝王再過不久就要降臨了。"
+00022a:             17 TEXT                     adv=6   #13 "與其要在絕望之中度過，"
+000230:             17 TEXT                     adv=6   #14 "不如就好好珍惜你們生命中最後的這段時光吧"
+000236:             17 TEXT                     adv=6   #15 "。"
+00023c:             50 TEXTWAITKB               adv=4   
+000240:             51 KEYWAIT                  adv=4   
+000244:             43 TEXTACTIVE               adv=8   4
+00024c:             44 TEXTCLEAR                adv=4   
+000250:             17 TEXT                     adv=6   #16 "……來遲一步了嗎？"
+000256:             50 TEXTWAITKB               adv=4   
+00025a:             51 KEYWAIT                  adv=4   
+00025e:             12 VWAIT                    adv=8   30
+000266:             56 FADESETWAIT              adv=8   4
+00026e:             21 ALLOFF                   adv=4   
+000272:             12 VWAIT                    adv=8   60
+00027a:             19 END                      adv=4   ; END
+; (86 insns)

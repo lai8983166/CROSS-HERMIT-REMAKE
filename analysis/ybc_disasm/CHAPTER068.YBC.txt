@@ -1,0 +1,206 @@
+; CHAPTER068.YBC  len=0x6fc  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x40a', '0x40a', '0x40a']
+;   txt#0 off=0x88 prm=0x100 "嗯∼∼∼嗯……"
+;   txt#1 off=0x98 prm=0xc0 "哈啊∼∼∼"
+;   txt#2 off=0xa4 prm=0xc0 "呼咻∼∼∼"
+;   txt#3 off=0xb0 prm=0x120 "好漂亮的日出……"
+;   txt#4 off=0xc2 prm=0x2a0 "不過，以前也曾經看過陰氣沉沉的日出呀……"
+;   txt#5 off=0xec prm=0x120 "現在的夏朧也是。"
+;   txt#6 off=0xfe prm=0x160 "那樣地陰氣沉沉呀……"
+;   txt#7 off=0x114 prm=0xa0 "夏朧呀。"
+;   txt#8 off=0x11e prm=0x180 "她在那雪地中發過誓了。"
+;   txt#9 off=0x136 prm=0x220 "是流出了自己的鮮血而立下的毒誓。"
+;   txt#10 off=0x158 prm=0x1a0 "所以，那是沒辦法改變的。"
+;   txt#11 off=0x172 prm=0x160 "絕對是沒辦法改變的。"
+;   txt#12 off=0x188 prm=0xe0 "奎絲忒∼∼∼"
+;   txt#13 off=0x196 prm=0x160 "拜託妳別這樣講嘛……"
+;   txt#14 off=0x1ac prm=0xa0 "好不好？"
+;   txt#15 off=0x1b6 prm=0x200 "難道沒有什麼我們可以做的事嗎？"
+;   txt#16 off=0x1d6 prm=0xa0 "嗯∼∼∼"
+;   txt#17 off=0x1e0 prm=0x160 "不是有一句俗話是說，"
+;   txt#18 off=0x1f6 prm=0x220 "只要有三人合力的話，就可以……？"
+;   txt#19 off=0x218 prm=0x120 "對，就是那個！！"
+;   txt#20 off=0x22a prm=0x180 "……嗯，那還少一個人！"
+;   txt#21 off=0x242 prm=0x120 "要找誰比較好咧？"
+;   txt#22 off=0x254 prm=0xa0 "這個嘛。"
+;   txt#23 off=0x25e prm=0x80 "老師？"
+;   txt#24 off=0x266 prm=0xa0 "哪一個？"
+;   txt#25 off=0x270 prm=0xa0 "嗯∼∼∼"
+;   txt#26 off=0x27a prm=0xc0 "找最老的？"
+;   txt#27 off=0x286 prm=0xe0 "好，就是他！"
+;   txt#28 off=0x294 prm=0x120 "那麼，有幹勁嗎？"
+;   txt#29 off=0x2a6 prm=0x60 "嗯。"
+;   txt#30 off=0x2ac prm=0x1a0 "……這麼一說咧，奎絲忒。"
+;   txt#31 off=0x2c6 prm=0x80 "啊啊？"
+;   txt#32 off=0x2ce prm=0x240 "……我們現在要往哪裡走才好啊？？？"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   4
+00002c:             59 BGSETWAIT                adv=16  0 14 1
+00003c:             30 BORDPACKONWAIT           adv=20  5 1 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   5
+000060:             65 BGM                      adv=8   v0x4b
+000068:             17 TEXT                     adv=6   #0 "嗯∼∼∼嗯……"
+00006e:             50 TEXTWAITKB               adv=4   
+000072:             51 KEYWAIT                  adv=4   
+000076:             65 BGM                      adv=8   v0x1004b
+00007e:             17 TEXT                     adv=6   #1 "哈啊∼∼∼"
+000084:             50 TEXTWAITKB               adv=4   
+000088:             51 KEYWAIT                  adv=4   
+00008c:             30 BORDPACKONWAIT           adv=20  6 8 0 30
+0000a0:             43 TEXTACTIVE               adv=8   6
+0000a8:             65 BGM                      adv=8   v0x2004b
+0000b0:             17 TEXT                     adv=6   #2 "呼咻∼∼∼"
+0000b6:             50 TEXTWAITKB               adv=4   
+0000ba:             51 KEYWAIT                  adv=4   
+0000be:             43 TEXTACTIVE               adv=8   5
+0000c6:             44 TEXTCLEAR                adv=4   
+0000ca:             65 BGM                      adv=8   v0x3004b
+0000d2:             17 TEXT                     adv=6   #3 "好漂亮的日出……"
+0000d8:             50 TEXTWAITKB               adv=4   
+0000dc:             51 KEYWAIT                  adv=4   
+0000e0:             65 BGM                      adv=8   v0x4004b
+0000e8:             17 TEXT                     adv=6   #4 "不過，以前也曾經看過陰氣沉沉的日出呀……"
+0000ee:             50 TEXTWAITKB               adv=4   
+0000f2:             51 KEYWAIT                  adv=4   
+0000f6:             65 BGM                      adv=8   v0x5004b
+0000fe:             17 TEXT                     adv=6   #5 "現在的夏朧也是。"
+000104:             50 TEXTWAITKB               adv=4   
+000108:             51 KEYWAIT                  adv=4   
+00010c:             65 BGM                      adv=8   v0x6004b
+000114:             17 TEXT                     adv=6   #6 "那樣地陰氣沉沉呀……"
+00011a:             50 TEXTWAITKB               adv=4   
+00011e:             51 KEYWAIT                  adv=4   
+000122:             43 TEXTACTIVE               adv=8   6
+00012a:             44 TEXTCLEAR                adv=4   
+00012e:             65 BGM                      adv=8   v0x7004b
+000136:             17 TEXT                     adv=6   #7 "夏朧呀。"
+00013c:             50 TEXTWAITKB               adv=4   
+000140:             51 KEYWAIT                  adv=4   
+000144:             65 BGM                      adv=8   v0x8004b
+00014c:             17 TEXT                     adv=6   #8 "她在那雪地中發過誓了。"
+000152:             50 TEXTWAITKB               adv=4   
+000156:             51 KEYWAIT                  adv=4   
+00015a:             65 BGM                      adv=8   v0x9004b
+000162:             17 TEXT                     adv=6   #9 "是流出了自己的鮮血而立下的毒誓。"
+000168:             50 TEXTWAITKB               adv=4   
+00016c:             51 KEYWAIT                  adv=4   
+000170:             65 BGM                      adv=8   v0xa004b
+000178:             17 TEXT                     adv=6   #10 "所以，那是沒辦法改變的。"
+00017e:             50 TEXTWAITKB               adv=4   
+000182:             51 KEYWAIT                  adv=4   
+000186:             65 BGM                      adv=8   v0xb004b
+00018e:             17 TEXT                     adv=6   #11 "絕對是沒辦法改變的。"
+000194:             50 TEXTWAITKB               adv=4   
+000198:             51 KEYWAIT                  adv=4   
+00019c:             43 TEXTACTIVE               adv=8   5
+0001a4:             44 TEXTCLEAR                adv=4   
+0001a8:             65 BGM                      adv=8   v0xc004b
+0001b0:             17 TEXT                     adv=6   #12 "奎絲忒∼∼∼"
+0001b6:             50 TEXTWAITKB               adv=4   
+0001ba:             51 KEYWAIT                  adv=4   
+0001be:             65 BGM                      adv=8   v0xd004b
+0001c6:             17 TEXT                     adv=6   #13 "拜託妳別這樣講嘛……"
+0001cc:             50 TEXTWAITKB               adv=4   
+0001d0:             51 KEYWAIT                  adv=4   
+0001d4:             65 BGM                      adv=8   v0xe004b
+0001dc:             17 TEXT                     adv=6   #14 "好不好？"
+0001e2:             50 TEXTWAITKB               adv=4   
+0001e6:             51 KEYWAIT                  adv=4   
+0001ea:             65 BGM                      adv=8   v0xf004b
+0001f2:             17 TEXT                     adv=6   #15 "難道沒有什麼我們可以做的事嗎？"
+0001f8:             50 TEXTWAITKB               adv=4   
+0001fc:             51 KEYWAIT                  adv=4   
+000200:             43 TEXTACTIVE               adv=8   6
+000208:             44 TEXTCLEAR                adv=4   
+00020c:             65 BGM                      adv=8   v0x10004b
+000214:             17 TEXT                     adv=6   #16 "嗯∼∼∼"
+00021a:             50 TEXTWAITKB               adv=4   
+00021e:             51 KEYWAIT                  adv=4   
+000222:             65 BGM                      adv=8   v0x11004b
+00022a:             17 TEXT                     adv=6   #17 "不是有一句俗話是說，"
+000230:             17 TEXT                     adv=6   #18 "只要有三人合力的話，就可以……？"
+000236:             50 TEXTWAITKB               adv=4   
+00023a:             51 KEYWAIT                  adv=4   
+00023e:             43 TEXTACTIVE               adv=8   5
+000246:             44 TEXTCLEAR                adv=4   
+00024a:             65 BGM                      adv=8   v0x12004b
+000252:             17 TEXT                     adv=6   #19 "對，就是那個！！"
+000258:             50 TEXTWAITKB               adv=4   
+00025c:             51 KEYWAIT                  adv=4   
+000260:             65 BGM                      adv=8   v0x13004b
+000268:             17 TEXT                     adv=6   #20 "……嗯，那還少一個人！"
+00026e:             50 TEXTWAITKB               adv=4   
+000272:             51 KEYWAIT                  adv=4   
+000276:             65 BGM                      adv=8   v0x14004b
+00027e:             17 TEXT                     adv=6   #21 "要找誰比較好咧？"
+000284:             50 TEXTWAITKB               adv=4   
+000288:             51 KEYWAIT                  adv=4   
+00028c:             43 TEXTACTIVE               adv=8   6
+000294:             44 TEXTCLEAR                adv=4   
+000298:             65 BGM                      adv=8   v0x15004b
+0002a0:             17 TEXT                     adv=6   #22 "這個嘛。"
+0002a6:             50 TEXTWAITKB               adv=4   
+0002aa:             51 KEYWAIT                  adv=4   
+0002ae:             65 BGM                      adv=8   v0x16004b
+0002b6:             17 TEXT                     adv=6   #23 "老師？"
+0002bc:             50 TEXTWAITKB               adv=4   
+0002c0:             51 KEYWAIT                  adv=4   
+0002c4:             43 TEXTACTIVE               adv=8   5
+0002cc:             44 TEXTCLEAR                adv=4   
+0002d0:             65 BGM                      adv=8   v0x17004b
+0002d8:             17 TEXT                     adv=6   #24 "哪一個？"
+0002de:             50 TEXTWAITKB               adv=4   
+0002e2:             51 KEYWAIT                  adv=4   
+0002e6:             43 TEXTACTIVE               adv=8   6
+0002ee:             44 TEXTCLEAR                adv=4   
+0002f2:             65 BGM                      adv=8   v0x18004b
+0002fa:             17 TEXT                     adv=6   #25 "嗯∼∼∼"
+000300:             50 TEXTWAITKB               adv=4   
+000304:             51 KEYWAIT                  adv=4   
+000308:             65 BGM                      adv=8   v0x19004b
+000310:             17 TEXT                     adv=6   #26 "找最老的？"
+000316:             50 TEXTWAITKB               adv=4   
+00031a:             51 KEYWAIT                  adv=4   
+00031e:             43 TEXTACTIVE               adv=8   5
+000326:             44 TEXTCLEAR                adv=4   
+00032a:             65 BGM                      adv=8   v0x1a004b
+000332:             17 TEXT                     adv=6   #27 "好，就是他！"
+000338:             50 TEXTWAITKB               adv=4   
+00033c:             51 KEYWAIT                  adv=4   
+000340:             43 TEXTACTIVE               adv=8   6
+000348:             44 TEXTCLEAR                adv=4   
+00034c:             65 BGM                      adv=8   v0x1b004b
+000354:             17 TEXT                     adv=6   #28 "那麼，有幹勁嗎？"
+00035a:             50 TEXTWAITKB               adv=4   
+00035e:             51 KEYWAIT                  adv=4   
+000362:             43 TEXTACTIVE               adv=8   5
+00036a:             44 TEXTCLEAR                adv=4   
+00036e:             65 BGM                      adv=8   v0x1c004b
+000376:             17 TEXT                     adv=6   #29 "嗯。"
+00037c:             50 TEXTWAITKB               adv=4   
+000380:             51 KEYWAIT                  adv=4   
+000384:             65 BGM                      adv=8   v0x1d004b
+00038c:             17 TEXT                     adv=6   #30 "……這麼一說咧，奎絲忒。"
+000392:             50 TEXTWAITKB               adv=4   
+000396:             51 KEYWAIT                  adv=4   
+00039a:             43 TEXTACTIVE               adv=8   6
+0003a2:             44 TEXTCLEAR                adv=4   
+0003a6:             65 BGM                      adv=8   v0x1e004b
+0003ae:             17 TEXT                     adv=6   #31 "啊啊？"
+0003b4:             50 TEXTWAITKB               adv=4   
+0003b8:             51 KEYWAIT                  adv=4   
+0003bc:             43 TEXTACTIVE               adv=8   5
+0003c4:             44 TEXTCLEAR                adv=4   
+0003c8:             65 BGM                      adv=8   v0x1f004b
+0003d0:             17 TEXT                     adv=6   #32 "……我們現在要往哪裡走才好啊？？？"
+0003d6:             50 TEXTWAITKB               adv=4   
+0003da:             51 KEYWAIT                  adv=4   
+0003de:             12 VWAIT                    adv=8   30
+0003e6:             56 FADESETWAIT              adv=8   4
+0003ee:             21 ALLOFF                   adv=4   
+0003f2:             12 VWAIT                    adv=8   60
+0003fa:            151 OP_151                   adv=12  4 1
+000406:             19 END                      adv=4   ; END
+; (170 insns)

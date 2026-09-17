@@ -1,0 +1,983 @@
+; T0080.BIN  len=0x3210
+; ── block0 sub1 code@0x1c4 pool@0x408 (18 strings)
+;   #0 off=0x4c prm=0x140 "現在開始遊戲教學。"
+;   #1 off=0x60 prm=0x60 "唔。"
+;   #2 off=0x66 prm=0x1a0 "在這裡學好基礎知識的話，"
+;   #3 off=0x80 prm=0x1e0 "在實戰中就不會手忙腳亂的了。"
+;   #4 off=0x9e prm=0x1c0 "那一切就麻煩你了，帕彌菈。"
+;   #5 off=0xba prm=0x140 "這是當然的，父親。"
+;   #6 off=0xce prm=0xe0 "那麼，老師。"
+;   #7 off=0xdc prm=0x200 "首先從【移動】的方式開始介紹。"
+;   #8 off=0xfc prm=0x1a0 "如果對一個角色按下左鍵，"
+;   #9 off=0x116 prm=0x1a0 "就會讓角色進入選擇狀態。"
+;   #10 off=0x130 prm=0x160 "一旦進入了選擇狀態，"
+;   #11 off=0x146 prm=0x1a0 "角色的上方將會有所標示。"
+;   #12 off=0x160 prm=0x120 "選擇角色狀態下，"
+;   #13 off=0x172 prm=0x1c0 "在想要移動的地方按下右鍵，"
+;   #14 off=0x18e prm=0x160 "就會朝那個地點移動。"
+;   #15 off=0x1a4 prm=0x1c0 "那麼，就實際地練習一下吧。"
+;   #16 off=0x1c0 prm=0x140 "首先讓這個角色……"
+;   #17 off=0x1d4 prm=0x1a0 "移動到這個地方，可以嗎？"
+0001c4:            167 REG_GET                  adv=8   v0x0
+0001cc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0001e0:            166 REG_PUT                  adv=8   1
+0001e8:             11 GOTO                     adv=8   L_0240
+0001f0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0001f8:             56 FADESETWAIT              adv=8   2
+000200:             20 ADVMODESET               adv=8   0
+000208:             12 VWAIT                    adv=8   30
+000210:             30 BORDPACKONWAIT           adv=20  9 3 0 30
+000224:             43 TEXTACTIVE               adv=8   9
+00022c:             17 TEXT                     adv=6   #0 "現在開始遊戲教學。"
+000232:             50 TEXTWAITKB               adv=4   
+000236:             51 KEYWAIT                  adv=4   
+00023a:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+00024e:             43 TEXTACTIVE               adv=8   7
+000256:             17 TEXT                     adv=6   #1 "唔。"
+00025c:             17 TEXT                     adv=6   #2 "在這裡學好基礎知識的話，"
+000262:             17 TEXT                     adv=6   #3 "在實戰中就不會手忙腳亂的了。"
+000268:             17 TEXT                     adv=6   #4 "那一切就麻煩你了，帕彌菈。"
+00026e:             50 TEXTWAITKB               adv=4   
+000272:             51 KEYWAIT                  adv=4   
+000276:             43 TEXTACTIVE               adv=8   7
+00027e:             44 TEXTCLEAR                adv=4   
+000282:             48 TEXTFONTRET              adv=4   
+000286:             31 BORDPACKOFF              adv=12  7 30
+000292:             43 TEXTACTIVE               adv=8   9
+00029a:             44 TEXTCLEAR                adv=4   
+00029e:             17 TEXT                     adv=6   #5 "這是當然的，父親。"
+0002a4:             50 TEXTWAITKB               adv=4   
+0002a8:             51 KEYWAIT                  adv=4   
+0002ac:             43 TEXTACTIVE               adv=8   9
+0002b4:             44 TEXTCLEAR                adv=4   
+0002b8:             17 TEXT                     adv=6   #6 "那麼，老師。"
+0002be:             17 TEXT                     adv=6   #7 "首先從【移動】的方式開始介紹。"
+0002c4:             50 TEXTWAITKB               adv=4   
+0002c8:             51 KEYWAIT                  adv=4   
+0002cc:             43 TEXTACTIVE               adv=8   9
+0002d4:             44 TEXTCLEAR                adv=4   
+0002d8:             17 TEXT                     adv=6   #8 "如果對一個角色按下左鍵，"
+0002de:             17 TEXT                     adv=6   #9 "就會讓角色進入選擇狀態。"
+0002e4:             17 TEXT                     adv=6   #10 "一旦進入了選擇狀態，"
+0002ea:             17 TEXT                     adv=6   #11 "角色的上方將會有所標示。"
+0002f0:             50 TEXTWAITKB               adv=4   
+0002f4:             51 KEYWAIT                  adv=4   
+0002f8:             43 TEXTACTIVE               adv=8   9
+000300:             44 TEXTCLEAR                adv=4   
+000304:             17 TEXT                     adv=6   #12 "選擇角色狀態下，"
+00030a:             17 TEXT                     adv=6   #13 "在想要移動的地方按下右鍵，"
+000310:             17 TEXT                     adv=6   #14 "就會朝那個地點移動。"
+000316:             50 TEXTWAITKB               adv=4   
+00031a:             51 KEYWAIT                  adv=4   
+00031e:             43 TEXTACTIVE               adv=8   9
+000326:             44 TEXTCLEAR                adv=4   
+00032a:             17 TEXT                     adv=6   #15 "那麼，就實際地練習一下吧。"
+000330:             50 TEXTWAITKB               adv=4   
+000334:             51 KEYWAIT                  adv=4   
+000338:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000340:            139 TACTANIMSET              adv=20  0 1045 0 10
+000354:            142 TACTANIMSTOP             adv=12  0 0
+000360:             43 TEXTACTIVE               adv=8   9
+000368:             44 TEXTCLEAR                adv=4   
+00036c:             17 TEXT                     adv=6   #16 "首先讓這個角色……"
+000372:             50 TEXTWAITKB               adv=4   
+000376:             51 KEYWAIT                  adv=4   
+00037a:            140 TACTANIMSETCELL          adv=8   0
+000382:            138 TACTUNIONFUNCCALL        adv=24  0 18 8 1045 10
+00039a:            120 TACTFADEIN               adv=16  18 8 0
+0003aa:             43 TEXTACTIVE               adv=8   9
+0003b2:             44 TEXTCLEAR                adv=4   
+0003b6:             17 TEXT                     adv=6   #17 "移動到這個地方，可以嗎？"
+0003bc:             50 TEXTWAITKB               adv=4   
+0003c0:             51 KEYWAIT                  adv=4   
+0003c4:            142 TACTANIMSTOP             adv=12  0 0
+0003d0:             43 TEXTACTIVE               adv=8   9
+0003d8:             44 TEXTCLEAR                adv=4   
+0003dc:             48 TEXTFONTRET              adv=4   
+0003e0:             31 BORDPACKOFF              adv=12  9 30
+0003ec:             12 VWAIT                    adv=8   30
+0003f4:             21 ALLOFF                   adv=4   
+0003f8:            113 TACTPLAYERAPPEAR         adv=12  1 1
+000404: L_0240    19 END                      adv=4   ; END
+;   (81 insns)
+; ── block0 sub2 code@0x60c pool@0xa36 (39 strings)
+;   #0 off=0xa0 prm=0x100 "真不愧是老師。"
+;   #1 off=0xb0 prm=0xc0 "這樣的話，"
+;   #2 off=0xbc prm=0x280 "就算是被敵人包圍，也可以安心地戰鬥了。"
+;   #3 off=0xe4 prm=0x260 "那麼，不知道您是不是已經注意到了……"
+;   #4 off=0x10a prm=0x1c0 "在角色周圍出現的藍色範圍，"
+;   #5 off=0x126 prm=0x1e0 "就是他可以攻擊到的射程範圍。"
+;   #6 off=0x144 prm=0x220 "只有在選擇單一角色的時候會顯示，"
+;   #7 off=0x166 prm=0x1a0 "在戰鬥前就能夠事先確認。"
+;   #8 off=0x180 prm=0xa0 "……！！"
+;   #9 off=0x18a prm=0x200 "看來這樣慢吞吞地教是不行的唷。"
+;   #10 off=0x1aa prm=0x180 "這次的敵人對劍士來說，"
+;   #11 off=0x1c2 prm=0x1a0 "普通攻擊是起不了作用的。"
+;   #12 off=0x1dc prm=0x2a0 "遇到這種情況的時候，就要發揮技能的力量。"
+;   #13 off=0x206 prm=0x120 "那麼從現在開始，"
+;   #14 off=0x218 prm=0x200 "就來說明〈技能〉的使用方法吧。"
+;   #15 off=0x238 prm=0x2a0 "與普通攻擊不同，使用技能時會消耗ＭＰ值。"
+;   #16 off=0x262 prm=0x160 "相對於ＭＰ的消耗值，"
+;   #17 off=0x278 prm=0x1c0 "攻擊的射程、影響範圍更大，"
+;   #18 off=0x294 prm=0x2a0 "或是回復自己的體能，發揮各式各樣的效果。"
+;   #19 off=0x2be prm=0x1e0 "雖然技能中有很多不同的種類，"
+;   #20 off=0x2dc prm=0x1e0 "但是這次我想舉雷擊術作例子。"
+;   #21 off=0x2fa prm=0x240 "那麼，現在開始說明技能的使用方法。"
+;   #22 off=0x31e prm=0x120 "與普通攻擊相同，"
+;   #23 off=0x330 prm=0x220 "先點擊左鍵，讓角色進入選擇狀態。"
+;   #24 off=0x352 prm=0x2a0 "接著在控制面板的模式切換圖示上按下左鍵。"
+;   #25 off=0x37c prm=0x160 "在這裡按下左鍵之後，"
+;   #26 off=0x392 prm=0x240 "就可以切換普通攻擊模式與技能模式。"
+;   #27 off=0x3b6 prm=0x240 "或是在想使用的技能圖示上雙擊左鍵，"
+;   #28 off=0x3da prm=0x1c0 "也可以進行技能模式的轉換。"
+;   #29 off=0x3f6 prm=0x240 "這兩種方法可以隨您的喜好選擇使用。"
+;   #30 off=0x41a prm=0x220 "雷擊術是以指定的【空間】為中心，"
+;   #31 off=0x43c prm=0x240 "對一定範圍內的敵人施加攻擊的技能。"
+;   #32 off=0x460 prm=0x120 "進入技能模式後，"
+;   #33 off=0x472 prm=0x280 "在指定的地點按下右鍵就可以使用雷擊術。"
+;   #34 off=0x49a prm=0x200 "那麼，就實際地使用一次看看吧。"
+;   #35 off=0x4ba prm=0x100 "請選擇角色……"
+;   #36 off=0x4ca prm=0x120 "請攻擊這些敵人。"
+;   #37 off=0x4dc prm=0x160 "在打倒所有敵人之前，"
+;   #38 off=0x4f2 prm=0x140 "就請您好好努力囉。"
+00060c:            167 REG_GET                  adv=8   v0x0
+000614:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000628:            166 REG_PUT                  adv=8   1
+000630:             11 GOTO                     adv=8   L_0426
+000638: L_002c   142 TACTANIMSTOP             adv=12  0 0
+000644:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+00064c:             56 FADESETWAIT              adv=8   2
+000654:             20 ADVMODESET               adv=8   0
+00065c:             12 VWAIT                    adv=8   30
+000664:             30 BORDPACKONWAIT           adv=20  8 3 0 30
+000678:             43 TEXTACTIVE               adv=8   8
+000680:             17 TEXT                     adv=6   #0 "真不愧是老師。"
+000686:             17 TEXT                     adv=6   #1 "這樣的話，"
+00068c:             17 TEXT                     adv=6   #2 "就算是被敵人包圍，也可以安心地戰鬥了。"
+000692:             50 TEXTWAITKB               adv=4   
+000696:             51 KEYWAIT                  adv=4   
+00069a:             43 TEXTACTIVE               adv=8   8
+0006a2:             44 TEXTCLEAR                adv=4   
+0006a6:             17 TEXT                     adv=6   #3 "那麼，不知道您是不是已經注意到了……"
+0006ac:             17 TEXT                     adv=6   #4 "在角色周圍出現的藍色範圍，"
+0006b2:             17 TEXT                     adv=6   #5 "就是他可以攻擊到的射程範圍。"
+0006b8:             17 TEXT                     adv=6   #6 "只有在選擇單一角色的時候會顯示，"
+0006be:             17 TEXT                     adv=6   #7 "在戰鬥前就能夠事先確認。"
+0006c4:             50 TEXTWAITKB               adv=4   
+0006c8:             51 KEYWAIT                  adv=4   
+0006cc:             47 TEXTFONT                 adv=12  12 24
+0006d8:             43 TEXTACTIVE               adv=8   8
+0006e0:             44 TEXTCLEAR                adv=4   
+0006e4:             17 TEXT                     adv=6   #8 "……！！"
+0006ea:             49 TEXTWAIT                 adv=4   
+0006ee:             48 TEXTFONTRET              adv=4   
+0006f2:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0006fa:            141 TACTANIMSETUNIT          adv=8   1
+000702:            120 TACTFADEIN               adv=16  32 14 0
+000712:            130 TACTPLAYERAPPEARGROUP    adv=20  2 32 14 10
+000726:             12 VWAIT                    adv=8   300
+00072e:            141 TACTANIMSETUNIT          adv=8   0
+000736:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+00073e:             43 TEXTACTIVE               adv=8   8
+000746:             44 TEXTCLEAR                adv=4   
+00074a:             17 TEXT                     adv=6   #9 "看來這樣慢吞吞地教是不行的唷。"
+000750:             50 TEXTWAITKB               adv=4   
+000754:             51 KEYWAIT                  adv=4   
+000758:             43 TEXTACTIVE               adv=8   8
+000760:             44 TEXTCLEAR                adv=4   
+000764:             17 TEXT                     adv=6   #10 "這次的敵人對劍士來說，"
+00076a:             17 TEXT                     adv=6   #11 "普通攻擊是起不了作用的。"
+000770:             50 TEXTWAITKB               adv=4   
+000774:             51 KEYWAIT                  adv=4   
+000778:             43 TEXTACTIVE               adv=8   8
+000780:             44 TEXTCLEAR                adv=4   
+000784:             17 TEXT                     adv=6   #12 "遇到這種情況的時候，就要發揮技能的力量。"
+00078a:             17 TEXT                     adv=6   #13 "那麼從現在開始，"
+000790:             17 TEXT                     adv=6   #14 "就來說明〈技能〉的使用方法吧。"
+000796:             50 TEXTWAITKB               adv=4   
+00079a:             51 KEYWAIT                  adv=4   
+00079e:             43 TEXTACTIVE               adv=8   8
+0007a6:             44 TEXTCLEAR                adv=4   
+0007aa:             17 TEXT                     adv=6   #15 "與普通攻擊不同，使用技能時會消耗ＭＰ值。"
+0007b0:             17 TEXT                     adv=6   #16 "相對於ＭＰ的消耗值，"
+0007b6:             17 TEXT                     adv=6   #17 "攻擊的射程、影響範圍更大，"
+0007bc:             17 TEXT                     adv=6   #18 "或是回復自己的體能，發揮各式各樣的效果。"
+0007c2:             50 TEXTWAITKB               adv=4   
+0007c6:             51 KEYWAIT                  adv=4   
+0007ca:             43 TEXTACTIVE               adv=8   8
+0007d2:             44 TEXTCLEAR                adv=4   
+0007d6:             17 TEXT                     adv=6   #19 "雖然技能中有很多不同的種類，"
+0007dc:             17 TEXT                     adv=6   #20 "但是這次我想舉雷擊術作例子。"
+0007e2:             50 TEXTWAITKB               adv=4   
+0007e6:             51 KEYWAIT                  adv=4   
+0007ea:             43 TEXTACTIVE               adv=8   8
+0007f2:             44 TEXTCLEAR                adv=4   
+0007f6:             17 TEXT                     adv=6   #21 "那麼，現在開始說明技能的使用方法。"
+0007fc:             50 TEXTWAITKB               adv=4   
+000800:             51 KEYWAIT                  adv=4   
+000804:             43 TEXTACTIVE               adv=8   8
+00080c:             44 TEXTCLEAR                adv=4   
+000810:             17 TEXT                     adv=6   #22 "與普通攻擊相同，"
+000816:             17 TEXT                     adv=6   #23 "先點擊左鍵，讓角色進入選擇狀態。"
+00081c:             50 TEXTWAITKB               adv=4   
+000820:             51 KEYWAIT                  adv=4   
+000824:            118 TACTSETDESTROYSCRIPT     adv=8   30
+00082c:            137 TACTGETCNTEVENTCELLUNIT  adv=32  5 429 621 1045 10 1 0
+00084c:             43 TEXTACTIVE               adv=8   8
+000854:             44 TEXTCLEAR                adv=4   
+000858:             17 TEXT                     adv=6   #24 "接著在控制面板的模式切換圖示上按下左鍵。"
+00085e:             17 TEXT                     adv=6   #25 "在這裡按下左鍵之後，"
+000864:             17 TEXT                     adv=6   #26 "就可以切換普通攻擊模式與技能模式。"
+00086a:             50 TEXTWAITKB               adv=4   
+00086e:             51 KEYWAIT                  adv=4   
+000872:            140 TACTANIMSETCELL          adv=8   5
+00087a:            137 TACTGETCNTEVENTCELLUNIT  adv=32  5 478 624 1045 10 1 0
+00089a:             43 TEXTACTIVE               adv=8   8
+0008a2:             44 TEXTCLEAR                adv=4   
+0008a6:             17 TEXT                     adv=6   #27 "或是在想使用的技能圖示上雙擊左鍵，"
+0008ac:             17 TEXT                     adv=6   #28 "也可以進行技能模式的轉換。"
+0008b2:             17 TEXT                     adv=6   #29 "這兩種方法可以隨您的喜好選擇使用。"
+0008b8:             50 TEXTWAITKB               adv=4   
+0008bc:             51 KEYWAIT                  adv=4   
+0008c0:            140 TACTANIMSETCELL          adv=8   5
+0008c8:            117 TACTEVENTCELLWRITEPOS    adv=8   30
+0008d0:             43 TEXTACTIVE               adv=8   8
+0008d8:             44 TEXTCLEAR                adv=4   
+0008dc:             17 TEXT                     adv=6   #30 "雷擊術是以指定的【空間】為中心，"
+0008e2:             17 TEXT                     adv=6   #31 "對一定範圍內的敵人施加攻擊的技能。"
+0008e8:             17 TEXT                     adv=6   #32 "進入技能模式後，"
+0008ee:             17 TEXT                     adv=6   #33 "在指定的地點按下右鍵就可以使用雷擊術。"
+0008f4:             50 TEXTWAITKB               adv=4   
+0008f8:             51 KEYWAIT                  adv=4   
+0008fc:             43 TEXTACTIVE               adv=8   8
+000904:             44 TEXTCLEAR                adv=4   
+000908:             17 TEXT                     adv=6   #34 "那麼，就實際地使用一次看看吧。"
+00090e:             50 TEXTWAITKB               adv=4   
+000912:             51 KEYWAIT                  adv=4   
+000916:            118 TACTSETDESTROYSCRIPT     adv=8   60
+00091e:            139 TACTANIMSET              adv=20  0 1045 0 10
+000932:            142 TACTANIMSTOP             adv=12  0 0
+00093e:             43 TEXTACTIVE               adv=8   8
+000946:             44 TEXTCLEAR                adv=4   
+00094a:             17 TEXT                     adv=6   #35 "請選擇角色……"
+000950:             50 TEXTWAITKB               adv=4   
+000954:             51 KEYWAIT                  adv=4   
+000958:            140 TACTANIMSETCELL          adv=8   0
+000960:            146 NETKEYWAIT               adv=28  v0x0 1 8 0 0 0
+00097c:            139 TACTANIMSET              adv=20  0 1045 v0x0 10
+000990:            142 TACTANIMSTOP             adv=12  v0x0 0
+00099c:             43 TEXTACTIVE               adv=8   8
+0009a4:             44 TEXTCLEAR                adv=4   
+0009a8:             17 TEXT                     adv=6   #36 "請攻擊這些敵人。"
+0009ae:             50 TEXTWAITKB               adv=4   
+0009b2:             51 KEYWAIT                  adv=4   
+0009b6:             43 TEXTACTIVE               adv=8   8
+0009be:             44 TEXTCLEAR                adv=4   
+0009c2:             17 TEXT                     adv=6   #37 "在打倒所有敵人之前，"
+0009c8:             17 TEXT                     adv=6   #38 "就請您好好努力囉。"
+0009ce:             50 TEXTWAITKB               adv=4   
+0009d2:             51 KEYWAIT                  adv=4   
+0009d6:            140 TACTANIMSETCELL          adv=8   0
+0009de:            142 TACTANIMSTOP             adv=12  0 0
+0009ea:             43 TEXTACTIVE               adv=8   8
+0009f2:             44 TEXTCLEAR                adv=4   
+0009f6:             48 TEXTFONTRET              adv=4   
+0009fa:             31 BORDPACKOFF              adv=12  8 30
+000a06:             12 VWAIT                    adv=8   30
+000a0e:             21 ALLOFF                   adv=4   
+000a12:            136 TACTANIMPLAY             adv=32  34 2 0 0 0 0 0
+000a32: L_0426    19 END                      adv=4   ; END
+;   (147 insns)
+; ── block0 sub3 code@0xf50 pool@0x139a (41 strings)
+;   #0 off=0xa8 prm=0x120 "您做得真是完美。"
+;   #1 off=0xba prm=0x120 "隨著技能的不同，"
+;   #2 off=0xcc prm=0x1a0 "也有其他不同的發動方式。"
+;   #3 off=0xe6 prm=0x160 "像是跟普通攻擊一樣，"
+;   #4 off=0xfc prm=0x1e0 "指定單一敵人的爆碎斬、毒箭。"
+;   #5 off=0x11a prm=0x1e0 "或是指定自己而發動的流星雨。"
+;   #6 off=0x138 prm=0x260 "以及指定我方角色使用的神聖洗禮等等。"
+;   #7 off=0x15e prm=0x160 "還有，在各種技能中，"
+;   #8 off=0x174 prm=0x1a0 "相對於它們強大的攻擊力，"
+;   #9 off=0x18e prm=0x2a0 "也會有一些對我方角色產生極大傷害或效果的"
+;   #10 off=0x1b8 prm=0x80 "技能。"
+;   #11 off=0x1c0 prm=0x1c0 "請您在戰鬥中多加嘗試確認。"
+;   #12 off=0x1dc prm=0xa0 "…………"
+;   #13 off=0x1e6 prm=0x1c0 "唉呀，看來我們是離題了呢。"
+;   #14 off=0x202 prm=0x180 "雖然次序有一點錯亂……"
+;   #15 off=0x21a prm=0x260 "不過我現在想繼續說明有關登場的部分。"
+;   #16 off=0x240 prm=0x120 "……帕彌菈學姊。"
+;   #17 off=0x252 prm=0x1a0 "因為只有法娜一個人的話，"
+;   #18 off=0x26c prm=0x1a0 "沒有辦法進行登場練習的。"
+;   #19 off=0x286 prm=0x160 "你可以來幫忙一下嗎？"
+;   #20 off=0x29c prm=0x80 "好的。"
+;   #21 off=0x2a4 prm=0x100 "現在開始待命。"
+;   #22 off=0x2b4 prm=0x240 "那麼，現在開始向您說明登場的方法。"
+;   #23 off=0x2d8 prm=0x180 "首先，按下登場的圖示。"
+;   #24 off=0x2f0 prm=0x200 "接著圖示會變成箭頭向下的圖示。"
+;   #25 off=0x310 prm=0x260 "只有在這種狀態下才能進行登場的指令。"
+;   #26 off=0x336 prm=0x100 "請您多加注意。"
+;   #27 off=0x346 prm=0x1e0 "接著，選擇想讓他登場的角色。"
+;   #28 off=0x364 prm=0x1e0 "點擊在畫面側邊的伊里安圖示，"
+;   #29 off=0x382 prm=0x140 "讓他進入選擇狀態。"
+;   #30 off=0x396 prm=0x220 "最後，必須決定由誰將他呼叫出來。"
+;   #31 off=0x3b8 prm=0x160 "為了讓一個角色登場，"
+;   #32 off=0x3ce prm=0x260 "必須由另一個地圖上的角色來呼叫才行。"
+;   #33 off=0x3f4 prm=0x1a0 "這次是由法娜呼叫伊里安，"
+;   #34 off=0x40e prm=0x1e0 "所以請在法娜的身上按下右鍵。"
+;   #35 off=0x42c prm=0x1c0 "那麼，請實際地呼叫看看吧。"
+;   #36 off=0x448 prm=0x1e0 "先用左鍵點擊這個登場圖示……"
+;   #37 off=0x466 prm=0x1c0 "接著再用左鍵選擇伊里安……"
+;   #38 off=0x482 prm=0x1a0 "最後在法娜身上按下右鍵，"
+;   #39 off=0x49c prm=0x100 "就會開始呼叫。"
+;   #40 off=0x4ac prm=0x280 "這樣就能順利地將新角色呼叫出來了對吧？"
+000f50:            167 REG_GET                  adv=8   v0x0
+000f58:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000f6c:            166 REG_PUT                  adv=8   1
+000f74:             11 GOTO                     adv=8   L_0446
+000f7c: L_002c   141 TACTANIMSETUNIT          adv=8   1
+000f84:             12 VWAIT                    adv=8   180
+000f8c:            142 TACTANIMSTOP             adv=12  0 0
+000f98:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+000fa0:            141 TACTANIMSETUNIT          adv=8   0
+000fa8:             56 FADESETWAIT              adv=8   2
+000fb0:             20 ADVMODESET               adv=8   0
+000fb8:             12 VWAIT                    adv=8   30
+000fc0:             30 BORDPACKONWAIT           adv=20  8 3 0 30
+000fd4:             43 TEXTACTIVE               adv=8   8
+000fdc:             17 TEXT                     adv=6   #0 "您做得真是完美。"
+000fe2:             50 TEXTWAITKB               adv=4   
+000fe6:             51 KEYWAIT                  adv=4   
+000fea:             43 TEXTACTIVE               adv=8   8
+000ff2:             44 TEXTCLEAR                adv=4   
+000ff6:             17 TEXT                     adv=6   #1 "隨著技能的不同，"
+000ffc:             17 TEXT                     adv=6   #2 "也有其他不同的發動方式。"
+001002:             49 TEXTWAIT                 adv=4   
+001006:             51 KEYWAIT                  adv=4   
+00100a:             43 TEXTACTIVE               adv=8   8
+001012:             44 TEXTCLEAR                adv=4   
+001016:             17 TEXT                     adv=6   #3 "像是跟普通攻擊一樣，"
+00101c:             17 TEXT                     adv=6   #4 "指定單一敵人的爆碎斬、毒箭。"
+001022:             17 TEXT                     adv=6   #5 "或是指定自己而發動的流星雨。"
+001028:             17 TEXT                     adv=6   #6 "以及指定我方角色使用的神聖洗禮等等。"
+00102e:             49 TEXTWAIT                 adv=4   
+001032:             51 KEYWAIT                  adv=4   
+001036:             43 TEXTACTIVE               adv=8   8
+00103e:             44 TEXTCLEAR                adv=4   
+001042:             17 TEXT                     adv=6   #7 "還有，在各種技能中，"
+001048:             17 TEXT                     adv=6   #8 "相對於它們強大的攻擊力，"
+00104e:             17 TEXT                     adv=6   #9 "也會有一些對我方角色產生極大傷害或效果的"
+001054:             17 TEXT                     adv=6   #10 "技能。"
+00105a:             17 TEXT                     adv=6   #11 "請您在戰鬥中多加嘗試確認。"
+001060:             49 TEXTWAIT                 adv=4   
+001064:             51 KEYWAIT                  adv=4   
+001068:             43 TEXTACTIVE               adv=8   8
+001070:             44 TEXTCLEAR                adv=4   
+001074:             17 TEXT                     adv=6   #12 "…………"
+00107a:             49 TEXTWAIT                 adv=4   
+00107e:             51 KEYWAIT                  adv=4   
+001082:             17 TEXT                     adv=6   #13 "唉呀，看來我們是離題了呢。"
+001088:             49 TEXTWAIT                 adv=4   
+00108c:             51 KEYWAIT                  adv=4   
+001090:             43 TEXTACTIVE               adv=8   8
+001098:             44 TEXTCLEAR                adv=4   
+00109c:             17 TEXT                     adv=6   #14 "雖然次序有一點錯亂……"
+0010a2:             17 TEXT                     adv=6   #15 "不過我現在想繼續說明有關登場的部分。"
+0010a8:             49 TEXTWAIT                 adv=4   
+0010ac:             51 KEYWAIT                  adv=4   
+0010b0:             44 TEXTCLEAR                adv=4   
+0010b4:             30 BORDPACKONWAIT           adv=20  9 9 1 30
+0010c8:             43 TEXTACTIVE               adv=8   9
+0010d0:             43 TEXTACTIVE               adv=8   9
+0010d8:             44 TEXTCLEAR                adv=4   
+0010dc:             17 TEXT                     adv=6   #16 "……帕彌菈學姊。"
+0010e2:             49 TEXTWAIT                 adv=4   
+0010e6:             51 KEYWAIT                  adv=4   
+0010ea:             43 TEXTACTIVE               adv=8   8
+0010f2:             44 TEXTCLEAR                adv=4   
+0010f6:             17 TEXT                     adv=6   #17 "因為只有法娜一個人的話，"
+0010fc:             17 TEXT                     adv=6   #18 "沒有辦法進行登場練習的。"
+001102:             17 TEXT                     adv=6   #19 "你可以來幫忙一下嗎？"
+001108:             49 TEXTWAIT                 adv=4   
+00110c:             51 KEYWAIT                  adv=4   
+001110:             43 TEXTACTIVE               adv=8   9
+001118:             44 TEXTCLEAR                adv=4   
+00111c:             17 TEXT                     adv=6   #20 "好的。"
+001122:             17 TEXT                     adv=6   #21 "現在開始待命。"
+001128:             49 TEXTWAIT                 adv=4   
+00112c:             51 KEYWAIT                  adv=4   
+001130:             43 TEXTACTIVE               adv=8   9
+001138:             44 TEXTCLEAR                adv=4   
+00113c:             48 TEXTFONTRET              adv=4   
+001140:             31 BORDPACKOFF              adv=12  9 30
+00114c:             43 TEXTACTIVE               adv=8   8
+001154:             44 TEXTCLEAR                adv=4   
+001158:             17 TEXT                     adv=6   #22 "那麼，現在開始向您說明登場的方法。"
+00115e:             49 TEXTWAIT                 adv=4   
+001162:             51 KEYWAIT                  adv=4   
+001166:             11 GOTO                     adv=8   L_0282
+00116e:            118 TACTSETDESTROYSCRIPT     adv=8   30
+001176:            137 TACTGETCNTEVENTCELLUNIT  adv=32  5 429 704 1045 10 1 0
+001196:             43 TEXTACTIVE               adv=8   8
+00119e:             44 TEXTCLEAR                adv=4   
+0011a2:             17 TEXT                     adv=6   #23 "首先，按下登場的圖示。"
+0011a8:             17 TEXT                     adv=6   #24 "接著圖示會變成箭頭向下的圖示。"
+0011ae:             17 TEXT                     adv=6   #25 "只有在這種狀態下才能進行登場的指令。"
+0011b4:             17 TEXT                     adv=6   #26 "請您多加注意。"
+0011ba:             49 TEXTWAIT                 adv=4   
+0011be:             51 KEYWAIT                  adv=4   
+0011c2:            140 TACTANIMSETCELL          adv=8   5
+0011ca:            117 TACTEVENTCELLWRITEPOS    adv=8   30
+0011d2: L_0282    43 TEXTACTIVE               adv=8   8
+0011da:             44 TEXTCLEAR                adv=4   
+0011de:             17 TEXT                     adv=6   #27 "接著，選擇想讓他登場的角色。"
+0011e4:             17 TEXT                     adv=6   #28 "點擊在畫面側邊的伊里安圖示，"
+0011ea:             17 TEXT                     adv=6   #29 "讓他進入選擇狀態。"
+0011f0:             49 TEXTWAIT                 adv=4   
+0011f4:             51 KEYWAIT                  adv=4   
+0011f8:             43 TEXTACTIVE               adv=8   8
+001200:             44 TEXTCLEAR                adv=4   
+001204:             17 TEXT                     adv=6   #30 "最後，必須決定由誰將他呼叫出來。"
+00120a:             17 TEXT                     adv=6   #31 "為了讓一個角色登場，"
+001210:             17 TEXT                     adv=6   #32 "必須由另一個地圖上的角色來呼叫才行。"
+001216:             49 TEXTWAIT                 adv=4   
+00121a:             51 KEYWAIT                  adv=4   
+00121e:             43 TEXTACTIVE               adv=8   8
+001226:             44 TEXTCLEAR                adv=4   
+00122a:             17 TEXT                     adv=6   #33 "這次是由法娜呼叫伊里安，"
+001230:             17 TEXT                     adv=6   #34 "所以請在法娜的身上按下右鍵。"
+001236:             49 TEXTWAIT                 adv=4   
+00123a:             51 KEYWAIT                  adv=4   
+00123e:             43 TEXTACTIVE               adv=8   8
+001246:             44 TEXTCLEAR                adv=4   
+00124a:             17 TEXT                     adv=6   #35 "那麼，請實際地呼叫看看吧。"
+001250:             49 TEXTWAIT                 adv=4   
+001254:             51 KEYWAIT                  adv=4   
+001258:            118 TACTSETDESTROYSCRIPT     adv=8   60
+001260:             11 GOTO                     adv=8   L_035a
+001268:            137 TACTGETCNTEVENTCELLUNIT  adv=32  5 429 704 1045 10 1 0
+001288:             43 TEXTACTIVE               adv=8   8
+001290:             44 TEXTCLEAR                adv=4   
+001294:             17 TEXT                     adv=6   #36 "先用左鍵點擊這個登場圖示……"
+00129a:             50 TEXTWAITKB               adv=4   
+00129e:             51 KEYWAIT                  adv=4   
+0012a2:            140 TACTANIMSETCELL          adv=8   5
+0012aa: L_035a   137 TACTGETCNTEVENTCELLUNIT  adv=32  5 25 112 1045 10 1 0
+0012ca:             43 TEXTACTIVE               adv=8   8
+0012d2:             44 TEXTCLEAR                adv=4   
+0012d6:             17 TEXT                     adv=6   #37 "接著再用左鍵選擇伊里安……"
+0012dc:             50 TEXTWAITKB               adv=4   
+0012e0:             51 KEYWAIT                  adv=4   
+0012e4:            142 TACTANIMSTOP             adv=12  0 0
+0012f0:            140 TACTANIMSETCELL          adv=8   5
+0012f8:            139 TACTANIMSET              adv=20  0 1045 0 10
+00130c:             43 TEXTACTIVE               adv=8   8
+001314:             44 TEXTCLEAR                adv=4   
+001318:             17 TEXT                     adv=6   #38 "最後在法娜身上按下右鍵，"
+00131e:             17 TEXT                     adv=6   #39 "就會開始呼叫。"
+001324:             50 TEXTWAITKB               adv=4   
+001328:             51 KEYWAIT                  adv=4   
+00132c:            140 TACTANIMSETCELL          adv=8   0
+001334:             43 TEXTACTIVE               adv=8   8
+00133c:             44 TEXTCLEAR                adv=4   
+001340:             17 TEXT                     adv=6   #40 "這樣就能順利地將新角色呼叫出來了對吧？"
+001346:             50 TEXTWAITKB               adv=4   
+00134a:             51 KEYWAIT                  adv=4   
+00134e:             43 TEXTACTIVE               adv=8   8
+001356:             44 TEXTCLEAR                adv=4   
+00135a:             48 TEXTFONTRET              adv=4   
+00135e:             31 BORDPACKOFF              adv=12  8 30
+00136a:             12 VWAIT                    adv=8   30
+001372:             21 ALLOFF                   adv=4   
+001376:            136 TACTANIMPLAY             adv=32  34 3 0 0 0 0 0
+001396: L_0446    19 END                      adv=4   ; END
+;   (160 insns)
+; ── block0 sub4 code@0x1884 pool@0x1b4c (12 strings)
+;   #0 off=0x34 prm=0x200 "您的指令下得毫無缺點呀，老師。"
+;   #1 off=0x54 prm=0x200 "那麼最後讓我來說明退場的方法。"
+;   #2 off=0x74 prm=0x220 "首先，請選擇想要讓他退場的角色。"
+;   #3 off=0x96 prm=0x180 "就如同之前的做法一樣，"
+;   #4 off=0xae prm=0x160 "以左鍵點擊那個角色，"
+;   #5 off=0xc4 prm=0x140 "使他進入選擇狀態。"
+;   #6 off=0xd8 prm=0x200 "接著只要用左鍵點擊退出的圖示，"
+;   #7 off=0xf8 prm=0x160 "那個角色就會退場了。"
+;   #8 off=0x10e prm=0x1e0 "那麼，就請實際地演練一下吧。"
+;   #9 off=0x12c prm=0x1c0 "首先讓角色進入選擇狀態……"
+;   #10 off=0x148 prm=0x220 "接著請用左鍵點擊這個退出的圖示。"
+;   #11 off=0x16a prm=0x220 "那麼，以後就要請老師來下指令了。"
+001884:            167 REG_GET                  adv=8   v0x0
+00188c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0018a0:            166 REG_PUT                  adv=8   1
+0018a8:             11 GOTO                     adv=8   L_02c4
+0018b0: L_002c   141 TACTANIMSETUNIT          adv=8   1
+0018b8:             12 VWAIT                    adv=8   180
+0018c0:            142 TACTANIMSTOP             adv=12  0 0
+0018cc:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+0018d4:            141 TACTANIMSETUNIT          adv=8   0
+0018dc:             56 FADESETWAIT              adv=8   2
+0018e4:             20 ADVMODESET               adv=8   0
+0018ec:             12 VWAIT                    adv=8   30
+0018f4:             30 BORDPACKONWAIT           adv=20  8 3 0 30
+001908:             43 TEXTACTIVE               adv=8   8
+001910:             17 TEXT                     adv=6   #0 "您的指令下得毫無缺點呀，老師。"
+001916:             50 TEXTWAITKB               adv=4   
+00191a:             51 KEYWAIT                  adv=4   
+00191e:             43 TEXTACTIVE               adv=8   8
+001926:             44 TEXTCLEAR                adv=4   
+00192a:             17 TEXT                     adv=6   #1 "那麼最後讓我來說明退場的方法。"
+001930:             49 TEXTWAIT                 adv=4   
+001934:             51 KEYWAIT                  adv=4   
+001938:             43 TEXTACTIVE               adv=8   8
+001940:             44 TEXTCLEAR                adv=4   
+001944:             17 TEXT                     adv=6   #2 "首先，請選擇想要讓他退場的角色。"
+00194a:             49 TEXTWAIT                 adv=4   
+00194e:             51 KEYWAIT                  adv=4   
+001952:             43 TEXTACTIVE               adv=8   8
+00195a:             44 TEXTCLEAR                adv=4   
+00195e:             17 TEXT                     adv=6   #3 "就如同之前的做法一樣，"
+001964:             17 TEXT                     adv=6   #4 "以左鍵點擊那個角色，"
+00196a:             17 TEXT                     adv=6   #5 "使他進入選擇狀態。"
+001970:             49 TEXTWAIT                 adv=4   
+001974:             51 KEYWAIT                  adv=4   
+001978:            118 TACTSETDESTROYSCRIPT     adv=8   60
+001980:            137 TACTGETCNTEVENTCELLUNIT  adv=32  5 429 745 1045 10 1 0
+0019a0:             43 TEXTACTIVE               adv=8   8
+0019a8:             44 TEXTCLEAR                adv=4   
+0019ac:             17 TEXT                     adv=6   #6 "接著只要用左鍵點擊退出的圖示，"
+0019b2:             17 TEXT                     adv=6   #7 "那個角色就會退場了。"
+0019b8:             49 TEXTWAIT                 adv=4   
+0019bc:             51 KEYWAIT                  adv=4   
+0019c0:            140 TACTANIMSETCELL          adv=8   5
+0019c8:            117 TACTEVENTCELLWRITEPOS    adv=8   30
+0019d0:             43 TEXTACTIVE               adv=8   8
+0019d8:             44 TEXTCLEAR                adv=4   
+0019dc:             17 TEXT                     adv=6   #8 "那麼，就請實際地演練一下吧。"
+0019e2:             49 TEXTWAIT                 adv=4   
+0019e6:             51 KEYWAIT                  adv=4   
+0019ea:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0019f2:             43 TEXTACTIVE               adv=8   8
+0019fa:             44 TEXTCLEAR                adv=4   
+0019fe:             48 TEXTFONTRET              adv=4   
+001a02:             31 BORDPACKOFF              adv=12  8 30
+001a0e:             30 BORDPACKONWAIT           adv=20  9 3 0 30
+001a22:             43 TEXTACTIVE               adv=8   9
+001a2a:            139 TACTANIMSET              adv=20  0 1045 1 10
+001a3e:            142 TACTANIMSTOP             adv=12  0 0
+001a4a:             43 TEXTACTIVE               adv=8   9
+001a52:             44 TEXTCLEAR                adv=4   
+001a56:             17 TEXT                     adv=6   #9 "首先讓角色進入選擇狀態……"
+001a5c:             50 TEXTWAITKB               adv=4   
+001a60:             51 KEYWAIT                  adv=4   
+001a64:             43 TEXTACTIVE               adv=8   9
+001a6c:             44 TEXTCLEAR                adv=4   
+001a70:             48 TEXTFONTRET              adv=4   
+001a74:             31 BORDPACKOFF              adv=12  9 30
+001a80:            140 TACTANIMSETCELL          adv=8   0
+001a88:             30 BORDPACKONWAIT           adv=20  8 3 0 30
+001a9c:             43 TEXTACTIVE               adv=8   8
+001aa4:            137 TACTGETCNTEVENTCELLUNIT  adv=32  5 429 745 1045 10 1 0
+001ac4:             43 TEXTACTIVE               adv=8   8
+001acc:             44 TEXTCLEAR                adv=4   
+001ad0:             17 TEXT                     adv=6   #10 "接著請用左鍵點擊這個退出的圖示。"
+001ad6:             50 TEXTWAITKB               adv=4   
+001ada:             51 KEYWAIT                  adv=4   
+001ade:            140 TACTANIMSETCELL          adv=8   5
+001ae6:             43 TEXTACTIVE               adv=8   8
+001aee:             44 TEXTCLEAR                adv=4   
+001af2:             17 TEXT                     adv=6   #11 "那麼，以後就要請老師來下指令了。"
+001af8:             50 TEXTWAITKB               adv=4   
+001afc:             51 KEYWAIT                  adv=4   
+001b00:             43 TEXTACTIVE               adv=8   8
+001b08:             44 TEXTCLEAR                adv=4   
+001b0c:             48 TEXTFONTRET              adv=4   
+001b10:             31 BORDPACKOFF              adv=12  8 30
+001b1c:             12 VWAIT                    adv=8   30
+001b24:             21 ALLOFF                   adv=4   
+001b28:            136 TACTANIMPLAY             adv=32  34 4 0 0 0 0 0
+001b48: L_02c4    19 END                      adv=4   ; END
+;   (90 insns)
+; ── block0 sub5 code@0x1cec pool@0x1df6 (7 strings)
+;   #0 off=0x20 prm=0x2a0 "那麼，現在您已經能隨意地操縱登場與退場的"
+;   #1 off=0x4a prm=0xa0 "動作了。"
+;   #2 off=0x54 prm=0x200 "選擇、移動、攻擊、登場、退場。"
+;   #3 off=0x74 prm=0x260 "基本的動作都已經在這教學中說明完畢。"
+;   #4 off=0x9a prm=0x1a0 "接著各式各樣的實際操作，"
+;   #5 off=0xb4 prm=0x160 "就請老師自己嘗試了。"
+;   #6 off=0xca prm=0x160 "那麼，我就先離開了。"
+001cec:            167 REG_GET                  adv=8   v0x0
+001cf4:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+001d08:            166 REG_PUT                  adv=8   1
+001d10:             11 GOTO                     adv=8   L_0106
+001d18: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+001d20:             56 FADESETWAIT              adv=8   2
+001d28:             20 ADVMODESET               adv=8   0
+001d30:             12 VWAIT                    adv=8   30
+001d38:             30 BORDPACKONWAIT           adv=20  9 3 0 30
+001d4c:             43 TEXTACTIVE               adv=8   9
+001d54:             17 TEXT                     adv=6   #0 "那麼，現在您已經能隨意地操縱登場與退場的"
+001d5a:             17 TEXT                     adv=6   #1 "動作了。"
+001d60:             50 TEXTWAITKB               adv=4   
+001d64:             51 KEYWAIT                  adv=4   
+001d68:             43 TEXTACTIVE               adv=8   9
+001d70:             44 TEXTCLEAR                adv=4   
+001d74:             17 TEXT                     adv=6   #2 "選擇、移動、攻擊、登場、退場。"
+001d7a:             17 TEXT                     adv=6   #3 "基本的動作都已經在這教學中說明完畢。"
+001d80:             49 TEXTWAIT                 adv=4   
+001d84:             51 KEYWAIT                  adv=4   
+001d88:             43 TEXTACTIVE               adv=8   9
+001d90:             44 TEXTCLEAR                adv=4   
+001d94:             17 TEXT                     adv=6   #4 "接著各式各樣的實際操作，"
+001d9a:             17 TEXT                     adv=6   #5 "就請老師自己嘗試了。"
+001da0:             49 TEXTWAIT                 adv=4   
+001da4:             51 KEYWAIT                  adv=4   
+001da8:             43 TEXTACTIVE               adv=8   9
+001db0:             44 TEXTCLEAR                adv=4   
+001db4:             17 TEXT                     adv=6   #6 "那麼，我就先離開了。"
+001dba:             50 TEXTWAITKB               adv=4   
+001dbe:             51 KEYWAIT                  adv=4   
+001dc2:             43 TEXTACTIVE               adv=8   9
+001dca:             44 TEXTCLEAR                adv=4   
+001dce:             48 TEXTFONTRET              adv=4   
+001dd2:             31 BORDPACKOFF              adv=12  9 30
+001dde:             12 VWAIT                    adv=8   30
+001de6:             21 ALLOFF                   adv=4   
+001dea:            118 TACTSETDESTROYSCRIPT     adv=8   60
+001df2: L_0106    19 END                      adv=4   ; END
+;   (39 insns)
+; ── block0 sub6 code@0x1eec pool@0x1ff0 (6 strings)
+;   #0 off=0x1c prm=0xa0 "老師……"
+;   #1 off=0x26 prm=0x100 "非常地遺憾……"
+;   #2 off=0x36 prm=0x140 "限制時間已經到了。"
+;   #3 off=0x4a prm=0x120 "請您再挑戰一次。"
+;   #4 off=0x5c prm=0x140 "然後順利地通過吧。"
+;   #5 off=0x70 prm=0xc0 "唉呀呀……"
+001eec:            167 REG_GET                  adv=8   v0x0
+001ef4:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+001f08:            166 REG_PUT                  adv=8   1
+001f10:             11 GOTO                     adv=8   L_0100
+001f18: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+001f20:             56 FADESETWAIT              adv=8   2
+001f28:             20 ADVMODESET               adv=8   0
+001f30:             12 VWAIT                    adv=8   30
+001f38:             30 BORDPACKONWAIT           adv=20  9 3 0 30
+001f4c:             43 TEXTACTIVE               adv=8   9
+001f54:             17 TEXT                     adv=6   #0 "老師……"
+001f5a:             50 TEXTWAITKB               adv=4   
+001f5e:             51 KEYWAIT                  adv=4   
+001f62:             43 TEXTACTIVE               adv=8   9
+001f6a:             44 TEXTCLEAR                adv=4   
+001f6e:             17 TEXT                     adv=6   #1 "非常地遺憾……"
+001f74:             17 TEXT                     adv=6   #2 "限制時間已經到了。"
+001f7a:             49 TEXTWAIT                 adv=4   
+001f7e:             51 KEYWAIT                  adv=4   
+001f82:             43 TEXTACTIVE               adv=8   9
+001f8a:             44 TEXTCLEAR                adv=4   
+001f8e:             17 TEXT                     adv=6   #3 "請您再挑戰一次。"
+001f94:             17 TEXT                     adv=6   #4 "然後順利地通過吧。"
+001f9a:             49 TEXTWAIT                 adv=4   
+001f9e:             51 KEYWAIT                  adv=4   
+001fa2:             43 TEXTACTIVE               adv=8   9
+001faa:             44 TEXTCLEAR                adv=4   
+001fae:             17 TEXT                     adv=6   #5 "唉呀呀……"
+001fb4:             50 TEXTWAITKB               adv=4   
+001fb8:             51 KEYWAIT                  adv=4   
+001fbc:             43 TEXTACTIVE               adv=8   9
+001fc4:             44 TEXTCLEAR                adv=4   
+001fc8:             48 TEXTFONTRET              adv=4   
+001fcc:             31 BORDPACKOFF              adv=12  9 30
+001fd8:             12 VWAIT                    adv=8   30
+001fe0:             21 ALLOFF                   adv=4   
+001fe4:            118 TACTSETDESTROYSCRIPT     adv=8   60
+001fec: L_0100    19 END                      adv=4   ; END
+;   (38 insns)
+; ── block0 sub7 code@0x2080 pool@0x2084 (0 strings)
+002080:            148 PUTTACTRET               adv=4   
+002084:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block0 sub8 code@0x209c pool@0x20a0 (0 strings)
+00209c:            148 PUTTACTRET               adv=4   
+0020a0:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block0 sub9 code@0x20b8 pool@0x20bc (0 strings)
+0020b8:            148 PUTTACTRET               adv=4   
+0020bc:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block0 sub10 code@0x20d4 pool@0x21e4 (4 strings)
+;   #0 off=0x14 prm=0xa0 "��������"
+;   #1 off=0x1e prm=0x1c0 "���_�S�T�A�S�U�A����������"
+;   #2 off=0x3a prm=0x1e0 "�����A�����������A����������"
+;   #3 off=0x58 prm=0x1e0 "�����A�G�O���[�v���o��������"
+0020d4:             96 SYSTEMREAD8              adv=12  v0x0 0
+0020e0:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0034
+0020f4:            100 SYSTEMWRITE8             adv=12  1 0
+002100:             11 GOTO                     adv=8   L_010c
+002108: L_0034    55 FADESET                  adv=8   2
+002110:             19 END                      adv=8   ; END
+;   (6 insns)
+; ── block1 sub1 code@0x2578 pool@0x292c (32 strings)
+;   #0 off=0x84 prm=0xa0 "呼呼……"
+;   #1 off=0x8e prm=0x1a0 "這樣移動就沒有問題了吧。"
+;   #2 off=0xa8 prm=0x200 "只要記住選擇角色是用【左鍵】，"
+;   #3 off=0xc8 prm=0x280 "確認則是【右鍵】，我想應該很好理解吧。"
+;   #4 off=0xf0 prm=0xa0 "接下來，"
+;   #5 off=0xfa prm=0x1a0 "關於登場與退場的說明……"
+;   #6 off=0x114 prm=0x40 "！"
+;   #7 off=0x118 prm=0x100 "看來在這之前，"
+;   #8 off=0x128 prm=0x1c0 "有必須先要解決的事情了呢。"
+;   #9 off=0x144 prm=0x220 "與「匍伏蔓延而來之物」的戰鬥中，"
+;   #10 off=0x166 prm=0x220 "不可或缺的東西就是【普通攻擊】。"
+;   #11 off=0x188 prm=0x120 "所以在戰鬥之前，"
+;   #12 off=0x19a prm=0x280 "我就對您說明一下【普通攻擊】的方法吧。"
+;   #13 off=0x1c2 prm=0x120 "所謂的普通攻擊，"
+;   #14 off=0x1d4 prm=0x280 "就是無論是誰都可以使用的基本攻擊方式。"
+;   #15 off=0x1fc prm=0x260 "不會消耗ＭＰ，無論要攻擊幾次都可以，"
+;   #16 off=0x222 prm=0x100 "這是它的優點。"
+;   #17 off=0x232 prm=0x280 "另外，當僧侶對同伴使用普通攻擊的時候，"
+;   #18 off=0x25a prm=0x180 "可以回復同伴的ＨＰ值。"
+;   #19 off=0x272 prm=0x260 "那麼，現在來說明普通攻擊的使用步驟。"
+;   #20 off=0x298 prm=0x1c0 "就像下移動指令的時候一樣，"
+;   #21 off=0x2b4 prm=0x180 "先以左鍵選擇一個角色。"
+;   #22 off=0x2cc prm=0x220 "選擇好之後，對敵方單位按下右鍵，"
+;   #23 off=0x2ee prm=0x260 "這樣角色就會對那個敵方單位開始攻擊。"
+;   #24 off=0x314 prm=0x1c0 "有關是否能攻擊的各種狀況，"
+;   #25 off=0x330 prm=0x1e0 "將會以游標圖示的變化來呈現，"
+;   #26 off=0x34e prm=0x200 "由圖示就可以判斷是否可以攻擊。"
+;   #27 off=0x36e prm=0x200 "那麼，實際攻擊一次練習看看吧。"
+;   #28 off=0x38e prm=0x1a0 "首先，先選擇這個角色……"
+;   #29 off=0x3a8 prm=0x180 "然後請攻擊這幾個敵人。"
+;   #30 off=0x3c0 prm=0x1c0 "在所有的敵人都被打倒之前，"
+;   #31 off=0x3dc prm=0x160 "就請你多多加油了喔。"
+002578:            167 REG_GET                  adv=8   v0x0
+002580:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+002594:            166 REG_PUT                  adv=8   1
+00259c:             11 GOTO                     adv=8   L_03b0
+0025a4: L_002c   142 TACTANIMSTOP             adv=12  0 0
+0025b0:            140 TACTANIMSETCELL          adv=8   0
+0025b8:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+0025c0:             56 FADESETWAIT              adv=8   2
+0025c8:             20 ADVMODESET               adv=8   0
+0025d0:             12 VWAIT                    adv=8   30
+0025d8:             30 BORDPACKONWAIT           adv=20  9 3 0 30
+0025ec:             43 TEXTACTIVE               adv=8   9
+0025f4:             17 TEXT                     adv=6   #0 "呼呼……"
+0025fa:             17 TEXT                     adv=6   #1 "這樣移動就沒有問題了吧。"
+002600:             50 TEXTWAITKB               adv=4   
+002604:             51 KEYWAIT                  adv=4   
+002608:             43 TEXTACTIVE               adv=8   9
+002610:             44 TEXTCLEAR                adv=4   
+002614:             17 TEXT                     adv=6   #2 "只要記住選擇角色是用【左鍵】，"
+00261a:             17 TEXT                     adv=6   #3 "確認則是【右鍵】，我想應該很好理解吧。"
+002620:             50 TEXTWAITKB               adv=4   
+002624:             51 KEYWAIT                  adv=4   
+002628:             43 TEXTACTIVE               adv=8   9
+002630:             44 TEXTCLEAR                adv=4   
+002634:             17 TEXT                     adv=6   #4 "接下來，"
+00263a:             17 TEXT                     adv=6   #5 "關於登場與退場的說明……"
+002640:             50 TEXTWAITKB               adv=4   
+002644:             51 KEYWAIT                  adv=4   
+002648:             47 TEXTFONT                 adv=12  12 24
+002654:             43 TEXTACTIVE               adv=8   9
+00265c:             44 TEXTCLEAR                adv=4   
+002660:             17 TEXT                     adv=6   #6 "！"
+002666:             49 TEXTWAIT                 adv=4   
+00266a:             48 TEXTFONTRET              adv=4   
+00266e:            118 TACTSETDESTROYSCRIPT     adv=8   60
+002676:            141 TACTANIMSETUNIT          adv=8   1
+00267e:            120 TACTFADEIN               adv=16  28 14 0
+00268e:            130 TACTPLAYERAPPEARGROUP    adv=20  1 28 14 10
+0026a2:             12 VWAIT                    adv=8   180
+0026aa:            141 TACTANIMSETUNIT          adv=8   0
+0026b2:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+0026ba:             43 TEXTACTIVE               adv=8   9
+0026c2:             44 TEXTCLEAR                adv=4   
+0026c6:             17 TEXT                     adv=6   #7 "看來在這之前，"
+0026cc:             17 TEXT                     adv=6   #8 "有必須先要解決的事情了呢。"
+0026d2:             50 TEXTWAITKB               adv=4   
+0026d6:             51 KEYWAIT                  adv=4   
+0026da:             43 TEXTACTIVE               adv=8   9
+0026e2:             44 TEXTCLEAR                adv=4   
+0026e6:             17 TEXT                     adv=6   #9 "與「匍伏蔓延而來之物」的戰鬥中，"
+0026ec:             17 TEXT                     adv=6   #10 "不可或缺的東西就是【普通攻擊】。"
+0026f2:             50 TEXTWAITKB               adv=4   
+0026f6:             51 KEYWAIT                  adv=4   
+0026fa:             43 TEXTACTIVE               adv=8   9
+002702:             44 TEXTCLEAR                adv=4   
+002706:             17 TEXT                     adv=6   #11 "所以在戰鬥之前，"
+00270c:             17 TEXT                     adv=6   #12 "我就對您說明一下【普通攻擊】的方法吧。"
+002712:             50 TEXTWAITKB               adv=4   
+002716:             51 KEYWAIT                  adv=4   
+00271a:             43 TEXTACTIVE               adv=8   9
+002722:             44 TEXTCLEAR                adv=4   
+002726:             17 TEXT                     adv=6   #13 "所謂的普通攻擊，"
+00272c:             17 TEXT                     adv=6   #14 "就是無論是誰都可以使用的基本攻擊方式。"
+002732:             17 TEXT                     adv=6   #15 "不會消耗ＭＰ，無論要攻擊幾次都可以，"
+002738:             17 TEXT                     adv=6   #16 "這是它的優點。"
+00273e:             50 TEXTWAITKB               adv=4   
+002742:             51 KEYWAIT                  adv=4   
+002746:             43 TEXTACTIVE               adv=8   9
+00274e:             44 TEXTCLEAR                adv=4   
+002752:             17 TEXT                     adv=6   #17 "另外，當僧侶對同伴使用普通攻擊的時候，"
+002758:             17 TEXT                     adv=6   #18 "可以回復同伴的ＨＰ值。"
+00275e:             50 TEXTWAITKB               adv=4   
+002762:             51 KEYWAIT                  adv=4   
+002766:             43 TEXTACTIVE               adv=8   9
+00276e:             44 TEXTCLEAR                adv=4   
+002772:             17 TEXT                     adv=6   #19 "那麼，現在來說明普通攻擊的使用步驟。"
+002778:             50 TEXTWAITKB               adv=4   
+00277c:             51 KEYWAIT                  adv=4   
+002780:             43 TEXTACTIVE               adv=8   9
+002788:             44 TEXTCLEAR                adv=4   
+00278c:             17 TEXT                     adv=6   #20 "就像下移動指令的時候一樣，"
+002792:             17 TEXT                     adv=6   #21 "先以左鍵選擇一個角色。"
+002798:             50 TEXTWAITKB               adv=4   
+00279c:             51 KEYWAIT                  adv=4   
+0027a0:             43 TEXTACTIVE               adv=8   9
+0027a8:             44 TEXTCLEAR                adv=4   
+0027ac:             17 TEXT                     adv=6   #22 "選擇好之後，對敵方單位按下右鍵，"
+0027b2:             17 TEXT                     adv=6   #23 "這樣角色就會對那個敵方單位開始攻擊。"
+0027b8:             50 TEXTWAITKB               adv=4   
+0027bc:             51 KEYWAIT                  adv=4   
+0027c0:             43 TEXTACTIVE               adv=8   9
+0027c8:             44 TEXTCLEAR                adv=4   
+0027cc:             17 TEXT                     adv=6   #24 "有關是否能攻擊的各種狀況，"
+0027d2:             17 TEXT                     adv=6   #25 "將會以游標圖示的變化來呈現，"
+0027d8:             17 TEXT                     adv=6   #26 "由圖示就可以判斷是否可以攻擊。"
+0027de:             50 TEXTWAITKB               adv=4   
+0027e2:             51 KEYWAIT                  adv=4   
+0027e6:             43 TEXTACTIVE               adv=8   9
+0027ee:             44 TEXTCLEAR                adv=4   
+0027f2:             17 TEXT                     adv=6   #27 "那麼，實際攻擊一次練習看看吧。"
+0027f8:             50 TEXTWAITKB               adv=4   
+0027fc:             51 KEYWAIT                  adv=4   
+002800:            118 TACTSETDESTROYSCRIPT     adv=8   60
+002808:            139 TACTANIMSET              adv=20  0 1045 0 10
+00281c:            142 TACTANIMSTOP             adv=12  0 0
+002828:             43 TEXTACTIVE               adv=8   9
+002830:             44 TEXTCLEAR                adv=4   
+002834:             17 TEXT                     adv=6   #28 "首先，先選擇這個角色……"
+00283a:             50 TEXTWAITKB               adv=4   
+00283e:             51 KEYWAIT                  adv=4   
+002842:            140 TACTANIMSETCELL          adv=8   0
+00284a:            146 NETKEYWAIT               adv=28  v0x0 1 3 0 0 0
+002866:            139 TACTANIMSET              adv=20  0 1045 v0x0 10
+00287a:            142 TACTANIMSTOP             adv=12  v0x0 0
+002886:             43 TEXTACTIVE               adv=8   9
+00288e:             44 TEXTCLEAR                adv=4   
+002892:             17 TEXT                     adv=6   #29 "然後請攻擊這幾個敵人。"
+002898:             50 TEXTWAITKB               adv=4   
+00289c:             51 KEYWAIT                  adv=4   
+0028a0:             43 TEXTACTIVE               adv=8   9
+0028a8:             44 TEXTCLEAR                adv=4   
+0028ac:             17 TEXT                     adv=6   #30 "在所有的敵人都被打倒之前，"
+0028b2:             17 TEXT                     adv=6   #31 "就請你多多加油了喔。"
+0028b8:             50 TEXTWAITKB               adv=4   
+0028bc:             51 KEYWAIT                  adv=4   
+0028c0:            140 TACTANIMSETCELL          adv=8   0
+0028c8:            142 TACTANIMSTOP             adv=12  0 0
+0028d4:             43 TEXTACTIVE               adv=8   9
+0028dc:             44 TEXTCLEAR                adv=4   
+0028e0:             48 TEXTFONTRET              adv=4   
+0028e4:             31 BORDPACKOFF              adv=12  9 30
+0028f0:             12 VWAIT                    adv=8   30
+0028f8:             21 ALLOFF                   adv=4   
+0028fc:            113 TACTPLAYERAPPEAR         adv=12  1 0
+002908:            136 TACTANIMPLAY             adv=32  34 1 0 0 0 0 0
+002928: L_03b0    19 END                      adv=4   ; END
+;   (136 insns)
+; ── block1 sub2 code@0x2d34 pool@0x2e56 (3 strings)
+;   #0 off=0x10 prm=0xc0 "踩到了呢∼"
+;   #1 off=0x1c prm=0x180 "那麼∼所謂的劇情啟動∼"
+;   #2 off=0x34 prm=0x1e0 "就是在十秒後將會有事件發生。"
+002d34:            167 REG_GET                  adv=8   v0x0
+002d3c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+002d50:            166 REG_PUT                  adv=8   1
+002d58:             11 GOTO                     adv=8   L_011e
+002d60: L_002c    56 FADESETWAIT              adv=8   2
+002d68:             20 ADVMODESET               adv=8   0
+002d70:             12 VWAIT                    adv=8   30
+002d78:             30 BORDPACKONWAIT           adv=20  7 9 0 30
+002d8c:             43 TEXTACTIVE               adv=8   7
+002d94:             17 TEXT                     adv=6   #0 "踩到了呢∼"
+002d9a:             50 TEXTWAITKB               adv=4   
+002d9e:             51 KEYWAIT                  adv=4   
+002da2:             30 BORDPACKONWAIT           adv=20  8 4 0 30
+002db6:             43 TEXTACTIVE               adv=8   8
+002dbe:             17 TEXT                     adv=6   #1 "那麼∼所謂的劇情啟動∼"
+002dc4:             17 TEXT                     adv=6   #2 "就是在十秒後將會有事件發生。"
+002dca:             50 TEXTWAITKB               adv=4   
+002dce:             51 KEYWAIT                  adv=4   
+002dd2:             27 BORDONWAIT               adv=16  4 268435455 268435455
+002de2:             43 TEXTACTIVE               adv=8   7
+002dea:             44 TEXTCLEAR                adv=4   
+002dee:             48 TEXTFONTRET              adv=4   
+002df2:             31 BORDPACKOFF              adv=12  7 30
+002dfe:             43 TEXTACTIVE               adv=8   8
+002e06:             44 TEXTCLEAR                adv=4   
+002e0a:             48 TEXTFONTRET              adv=4   
+002e0e:             31 BORDPACKOFF              adv=12  8 30
+002e1a:             24 BORDDISP                 adv=12  4 3
+002e26:             12 VWAIT                    adv=8   30
+002e2e:             21 ALLOFF                   adv=4   
+002e32:            125 TACTENEMYEXIT            adv=20  0 0 3 600
+002e46:            113 TACTPLAYERAPPEAR         adv=12  2 0
+002e52: L_011e    19 END                      adv=4   ; END
+;   (33 insns)
+; ── block1 sub3 code@0x2ebc pool@0x2fbe (3 strings)
+;   #0 off=0x10 prm=0xe0 "等、等、等∼"
+;   #1 off=0x1e prm=0xc0 "劇情啟動∼"
+;   #2 off=0x2a prm=0x120 "這次是６０秒唷∼"
+002ebc:            167 REG_GET                  adv=8   v0x0
+002ec4:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+002ed8:            166 REG_PUT                  adv=8   1
+002ee0:             11 GOTO                     adv=8   L_00fe
+002ee8: L_002c    56 FADESETWAIT              adv=8   2
+002ef0:             20 ADVMODESET               adv=8   0
+002ef8:             12 VWAIT                    adv=8   30
+002f00:             30 BORDPACKONWAIT           adv=20  7 9 0 30
+002f14:             43 TEXTACTIVE               adv=8   7
+002f1c:             17 TEXT                     adv=6   #0 "等、等、等∼"
+002f22:             50 TEXTWAITKB               adv=4   
+002f26:             51 KEYWAIT                  adv=4   
+002f2a:             30 BORDPACKONWAIT           adv=20  8 4 0 30
+002f3e:             43 TEXTACTIVE               adv=8   8
+002f46:             17 TEXT                     adv=6   #1 "劇情啟動∼"
+002f4c:             17 TEXT                     adv=6   #2 "這次是６０秒唷∼"
+002f52:             50 TEXTWAITKB               adv=4   
+002f56:             51 KEYWAIT                  adv=4   
+002f5a:             27 BORDONWAIT               adv=16  4 268435455 268435455
+002f6a:             43 TEXTACTIVE               adv=8   7
+002f72:             44 TEXTCLEAR                adv=4   
+002f76:             48 TEXTFONTRET              adv=4   
+002f7a:             31 BORDPACKOFF              adv=12  7 30
+002f86:             43 TEXTACTIVE               adv=8   8
+002f8e:             44 TEXTCLEAR                adv=4   
+002f92:             48 TEXTFONTRET              adv=4   
+002f96:             31 BORDPACKOFF              adv=12  8 30
+002fa2:             24 BORDDISP                 adv=12  4 3
+002fae:             12 VWAIT                    adv=8   30
+002fb6:             21 ALLOFF                   adv=4   
+002fba: L_00fe    19 END                      adv=4   ; END
+;   (31 insns)
+; ── block1 sub4 code@0x3010 pool@0x3014 (0 strings)
+003010:            148 PUTTACTRET               adv=4   
+003014:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block1 sub5 code@0x302c pool@0x3030 (0 strings)
+00302c:            148 PUTTACTRET               adv=4   
+003030:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block1 sub6 code@0x3048 pool@0x304c (0 strings)
+003048:            148 PUTTACTRET               adv=4   
+00304c:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block1 sub7 code@0x3064 pool@0x3068 (0 strings)
+003064:            148 PUTTACTRET               adv=4   
+003068:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block1 sub8 code@0x3080 pool@0x3084 (0 strings)
+003080:            148 PUTTACTRET               adv=4   
+003084:              0 TOP                      adv=0   
+;   (2 insns)
+; ── block1 sub9 code@0x309c pool@0x30a0 (0 strings)
+00309c:            148 PUTTACTRET               adv=4   
+0030a0:              0 TOP                      adv=0   
+;   (2 insns)

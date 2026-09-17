@@ -1,0 +1,23 @@
+; CHAPTER063.YBC  len=0xc6  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x98', '0x98', '0x98']
+;   txt#0 off=0xc prm=0xe0 "我願意效力。"
+;   txt#1 off=0x1a prm=0x140 "如果是為了你的話。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 1 1
+000034:             30 BORDPACKONWAIT           adv=20  10 111 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   10
+000058:             17 TEXT                     adv=6   #0 "我願意效力。"
+00005e:             50 TEXTWAITKB               adv=4   
+000062:             51 KEYWAIT                  adv=4   
+000066:             44 TEXTCLEAR                adv=4   
+00006a:             17 TEXT                     adv=6   #1 "如果是為了你的話。"
+000070:             50 TEXTWAITKB               adv=4   
+000074:             51 KEYWAIT                  adv=4   
+000078:             12 VWAIT                    adv=8   30
+000080:             56 FADESETWAIT              adv=8   4
+000088:             21 ALLOFF                   adv=4   
+00008c:             12 VWAIT                    adv=8   60
+000094:             19 END                      adv=4   ; END
+; (18 insns)

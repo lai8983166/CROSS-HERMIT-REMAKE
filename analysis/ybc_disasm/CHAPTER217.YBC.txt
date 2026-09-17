@@ -1,0 +1,103 @@
+; CHAPTER217.YBC  len=0x4a8  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x1ea', '0x1ea', '0x1ea']
+;   txt#0 off=0x60 prm=0x140 "純潔之盾的首領呀。"
+;   txt#1 off=0x74 prm=0xc0 "……老師。"
+;   txt#2 off=0x80 prm=0x1a0 "您這樣稱呼我，實在是……"
+;   txt#3 off=0x9a prm=0x1a0 "雖然這樣可能有點太快了，"
+;   txt#4 off=0xb4 prm=0x1a0 "不過現在是個很好的時機，"
+;   txt#5 off=0xce prm=0x280 "差不多也該設置個特訓專用的練習場了吧？"
+;   txt#6 off=0xf6 prm=0x120 "您是說特訓場嗎？"
+;   txt#7 off=0x108 prm=0x240 "應該沒有比霍雷斯更合適的地方了吧？"
+;   txt#8 off=0x12c prm=0x240 "從地下湧出的混沌、令人不安的黑闇，"
+;   txt#9 off=0x150 prm=0x240 "還有許多等待人們去發現的古代珍寶。"
+;   txt#10 off=0x174 prm=0x100 "……原來如此。"
+;   txt#11 off=0x184 prm=0x240 "聽您這麼一說，的確是很適合的樣子。"
+;   txt#12 off=0x1a8 prm=0x1e0 "那就不要在這裡磨磨蹭蹭的啦。"
+;   txt#13 off=0x1c6 prm=0x1a0 "我會趕快開始著手準備的。"
+;   txt#14 off=0x1e0 prm=0x80 "不不。"
+;   txt#15 off=0x1e8 prm=0x180 "……那應該是我的任務。"
+;   txt#16 off=0x200 prm=0x120 "就從這一週開始，"
+;   txt#17 off=0x212 prm=0x2a0 "讓我把它當作課程的其中一個環節來考慮吧。"
+;   txt#18 off=0x23c prm=0xc0 "那麼……？"
+;   txt#19 off=0x248 prm=0x1c0 "我會用我全副的心力去安排，"
+;   txt#20 off=0x264 prm=0x200 "所以就請你等到最後再來下評斷。"
+;   txt#21 off=0x284 prm=0x280 "到了那個時候，再請你稍微做一些調整吧，"
+;   txt#22 off=0x2ac prm=0x120 "大概就是這樣了。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 6 1
+000034:             30 BORDPACKONWAIT           adv=20  10 117 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   10
+000058:             17 TEXT                     adv=6   #0 "純潔之盾的首領呀。"
+00005e:             50 TEXTWAITKB               adv=4   
+000062:             51 KEYWAIT                  adv=4   
+000066:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000076:             43 TEXTACTIVE               adv=8   4
+00007e:             17 TEXT                     adv=6   #1 "……老師。"
+000084:             17 TEXT                     adv=6   #2 "您這樣稱呼我，實在是……"
+00008a:             50 TEXTWAITKB               adv=4   
+00008e:             51 KEYWAIT                  adv=4   
+000092:             43 TEXTACTIVE               adv=8   10
+00009a:             44 TEXTCLEAR                adv=4   
+00009e:             17 TEXT                     adv=6   #3 "雖然這樣可能有點太快了，"
+0000a4:             17 TEXT                     adv=6   #4 "不過現在是個很好的時機，"
+0000aa:             17 TEXT                     adv=6   #5 "差不多也該設置個特訓專用的練習場了吧？"
+0000b0:             50 TEXTWAITKB               adv=4   
+0000b4:             51 KEYWAIT                  adv=4   
+0000b8:             43 TEXTACTIVE               adv=8   4
+0000c0:             44 TEXTCLEAR                adv=4   
+0000c4:             17 TEXT                     adv=6   #6 "您是說特訓場嗎？"
+0000ca:             50 TEXTWAITKB               adv=4   
+0000ce:             51 KEYWAIT                  adv=4   
+0000d2:             43 TEXTACTIVE               adv=8   10
+0000da:             44 TEXTCLEAR                adv=4   
+0000de:             17 TEXT                     adv=6   #7 "應該沒有比霍雷斯更合適的地方了吧？"
+0000e4:             17 TEXT                     adv=6   #8 "從地下湧出的混沌、令人不安的黑闇，"
+0000ea:             17 TEXT                     adv=6   #9 "還有許多等待人們去發現的古代珍寶。"
+0000f0:             50 TEXTWAITKB               adv=4   
+0000f4:             51 KEYWAIT                  adv=4   
+0000f8:             43 TEXTACTIVE               adv=8   4
+000100:             44 TEXTCLEAR                adv=4   
+000104:             17 TEXT                     adv=6   #10 "……原來如此。"
+00010a:             17 TEXT                     adv=6   #11 "聽您這麼一說，的確是很適合的樣子。"
+000110:             50 TEXTWAITKB               adv=4   
+000114:             51 KEYWAIT                  adv=4   
+000118:             43 TEXTACTIVE               adv=8   10
+000120:             44 TEXTCLEAR                adv=4   
+000124:             17 TEXT                     adv=6   #12 "那就不要在這裡磨磨蹭蹭的啦。"
+00012a:             50 TEXTWAITKB               adv=4   
+00012e:             51 KEYWAIT                  adv=4   
+000132:             43 TEXTACTIVE               adv=8   4
+00013a:             44 TEXTCLEAR                adv=4   
+00013e:             17 TEXT                     adv=6   #13 "我會趕快開始著手準備的。"
+000144:             50 TEXTWAITKB               adv=4   
+000148:             51 KEYWAIT                  adv=4   
+00014c:             43 TEXTACTIVE               adv=8   10
+000154:             44 TEXTCLEAR                adv=4   
+000158:             17 TEXT                     adv=6   #14 "不不。"
+00015e:             17 TEXT                     adv=6   #15 "……那應該是我的任務。"
+000164:             17 TEXT                     adv=6   #16 "就從這一週開始，"
+00016a:             17 TEXT                     adv=6   #17 "讓我把它當作課程的其中一個環節來考慮吧。"
+000170:             50 TEXTWAITKB               adv=4   
+000174:             51 KEYWAIT                  adv=4   
+000178:             43 TEXTACTIVE               adv=8   4
+000180:             44 TEXTCLEAR                adv=4   
+000184:             17 TEXT                     adv=6   #18 "那麼……？"
+00018a:             50 TEXTWAITKB               adv=4   
+00018e:             51 KEYWAIT                  adv=4   
+000192:             43 TEXTACTIVE               adv=8   10
+00019a:             44 TEXTCLEAR                adv=4   
+00019e:             17 TEXT                     adv=6   #19 "我會用我全副的心力去安排，"
+0001a4:             17 TEXT                     adv=6   #20 "所以就請你等到最後再來下評斷。"
+0001aa:             17 TEXT                     adv=6   #21 "到了那個時候，再請你稍微做一些調整吧，"
+0001b0:             17 TEXT                     adv=6   #22 "大概就是這樣了。"
+0001b6:             50 TEXTWAITKB               adv=4   
+0001ba:             51 KEYWAIT                  adv=4   
+0001be:             12 VWAIT                    adv=8   30
+0001c6:             56 FADESETWAIT              adv=8   4
+0001ce:             21 ALLOFF                   adv=4   
+0001d2:             12 VWAIT                    adv=8   60
+0001da:            151 OP_151                   adv=12  11 1
+0001e6:             19 END                      adv=4   ; END
+; (77 insns)

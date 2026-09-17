@@ -1,0 +1,24 @@
+; CHAPTER062.YBC  len=0x126  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x98', '0x98', '0x98']
+;   txt#0 off=0x14 prm=0x220 "如果有一天，你不是為了尋求建言，"
+;   txt#1 off=0x36 prm=0x2a0 "而是為了尋找一個可以埋首痛哭的地方的話。"
+;   txt#2 off=0x60 prm=0x1a0 "到那個時候，再來找我吧。"
+;   txt#3 off=0x7a prm=0x140 "和你的同伴一起來。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 1 1
+000034:             30 BORDPACKONWAIT           adv=20  10 103 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   10
+000058:             17 TEXT                     adv=6   #0 "如果有一天，你不是為了尋求建言，"
+00005e:             17 TEXT                     adv=6   #1 "而是為了尋找一個可以埋首痛哭的地方的話。"
+000064:             17 TEXT                     adv=6   #2 "到那個時候，再來找我吧。"
+00006a:             17 TEXT                     adv=6   #3 "和你的同伴一起來。"
+000070:             50 TEXTWAITKB               adv=4   
+000074:             51 KEYWAIT                  adv=4   
+000078:             12 VWAIT                    adv=8   30
+000080:             56 FADESETWAIT              adv=8   4
+000088:             21 ALLOFF                   adv=4   
+00008c:             12 VWAIT                    adv=8   60
+000094:             19 END                      adv=4   ; END
+; (17 insns)

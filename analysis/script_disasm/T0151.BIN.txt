@@ -1,0 +1,416 @@
+; T0151.BIN  len=0x19f8
+; ── block0 sub1 code@0x1c4 pool@0x342 (11 strings)
+;   #0 off=0x30 prm=0x2a0 "「匍伏蔓延而來之物」會從聖堂的下層逐層向"
+;   #1 off=0x5a prm=0x60 "上。"
+;   #2 off=0x60 prm=0x260 "關於它們的數量及種類，目前都不清楚。"
+;   #3 off=0x86 prm=0x1e0 "各位要以一一確保定點的方式，"
+;   #4 off=0xa4 prm=0x160 "不要太過躁進地前進。"
+;   #5 off=0xba prm=0x180 "在能夠停留的地方停留，"
+;   #6 off=0xd2 prm=0x240 "必須快速通過的地方就加快腳步通過。"
+;   #7 off=0xf6 prm=0x100 "無論是在哪裡。"
+;   #8 off=0x106 prm=0x1e0 "應該都會有集中戰力的好時機。"
+;   #9 off=0x124 prm=0x280 "我期待各位明智的判斷每個據點的好時機。"
+;   #10 off=0x14c prm=0x120 "那麼，就開始吧。"
+0001c4:            167 REG_GET                  adv=8   v0x0
+0001cc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0001e0:            166 REG_PUT                  adv=8   1
+0001e8:             11 GOTO                     adv=8   L_017a
+0001f0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0001f8:             56 FADESETWAIT              adv=8   2
+000200:             20 ADVMODESET               adv=8   0
+000208:             12 VWAIT                    adv=8   30
+000210:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000220:             43 TEXTACTIVE               adv=8   4
+000228:             17 TEXT                     adv=6   #0 "「匍伏蔓延而來之物」會從聖堂的下層逐層向"
+00022e:             17 TEXT                     adv=6   #1 "上。"
+000234:             17 TEXT                     adv=6   #2 "關於它們的數量及種類，目前都不清楚。"
+00023a:             17 TEXT                     adv=6   #3 "各位要以一一確保定點的方式，"
+000240:             17 TEXT                     adv=6   #4 "不要太過躁進地前進。"
+000246:             49 TEXTWAIT                 adv=4   
+00024a:             12 VWAIT                    adv=8   150
+000252:             44 TEXTCLEAR                adv=4   
+000256:             17 TEXT                     adv=6   #5 "在能夠停留的地方停留，"
+00025c:             17 TEXT                     adv=6   #6 "必須快速通過的地方就加快腳步通過。"
+000262:             17 TEXT                     adv=6   #7 "無論是在哪裡。"
+000268:             17 TEXT                     adv=6   #8 "應該都會有集中戰力的好時機。"
+00026e:             17 TEXT                     adv=6   #9 "我期待各位明智的判斷每個據點的好時機。"
+000274:             49 TEXTWAIT                 adv=4   
+000278:             12 VWAIT                    adv=8   150
+000280:             44 TEXTCLEAR                adv=4   
+000284:             17 TEXT                     adv=6   #10 "那麼，就開始吧。"
+00028a:             49 TEXTWAIT                 adv=4   
+00028e:             12 VWAIT                    adv=8   150
+000296:             44 TEXTCLEAR                adv=4   
+00029a:             24 BORDDISP                 adv=12  4 3
+0002a6:             12 VWAIT                    adv=8   60
+0002ae:             21 ALLOFF                   adv=4   
+0002b2:            124 TACTPLAYEREXIT           adv=20  0 0 20 3600
+0002c6:            124 TACTPLAYEREXIT           adv=20  1 0 20 7200
+0002da:            124 TACTPLAYEREXIT           adv=20  2 0 20 10800
+0002ee:            124 TACTPLAYEREXIT           adv=20  3 0 20 14400
+000302:            124 TACTPLAYEREXIT           adv=20  4 0 21 3600
+000316:            124 TACTPLAYEREXIT           adv=20  5 0 21 7200
+00032a:            124 TACTPLAYEREXIT           adv=20  6 0 21 10800
+00033e: L_017a    19 END                      adv=4   ; END
+;   (41 insns)
+; ── block0 sub2 code@0x4b4 pool@0x5fe (7 strings)
+;   #0 off=0x20 prm=0xa0 "好了……"
+;   #1 off=0x2a prm=0x280 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+;   #2 off=0x52 prm=0x100 "剛好趕上了哪。"
+;   #3 off=0x62 prm=0x160 "……真是非常地感謝。"
+;   #4 off=0x78 prm=0x1c0 "我們也會跟你們一起撤退的。"
+;   #5 off=0x94 prm=0x1e0 "在完全撤離之前都不能大意呀。"
+;   #6 off=0xb2 prm=0x80 "是的。"
+0004b4:            167 REG_GET                  adv=8   v0x0
+0004bc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0004d0:            166 REG_PUT                  adv=8   1
+0004d8:             11 GOTO                     adv=8   L_0146
+0004e0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0004e8:             56 FADESETWAIT              adv=8   2
+0004f0:             20 ADVMODESET               adv=8   0
+0004f8:             12 VWAIT                    adv=8   30
+000500:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000510:             43 TEXTACTIVE               adv=8   4
+000518:             17 TEXT                     adv=6   #0 "好了……"
+00051e:             50 TEXTWAITKB               adv=4   
+000522:             51 KEYWAIT                  adv=4   
+000526:             30 BORDPACKONWAIT           adv=20  10 115 0 30
+00053a:             43 TEXTACTIVE               adv=8   10
+000542:             17 TEXT                     adv=6   #1 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+000548:             50 TEXTWAITKB               adv=4   
+00054c:             51 KEYWAIT                  adv=4   
+000550:             43 TEXTACTIVE               adv=8   4
+000558:             44 TEXTCLEAR                adv=4   
+00055c:             17 TEXT                     adv=6   #2 "剛好趕上了哪。"
+000562:             50 TEXTWAITKB               adv=4   
+000566:             51 KEYWAIT                  adv=4   
+00056a:             43 TEXTACTIVE               adv=8   10
+000572:             44 TEXTCLEAR                adv=4   
+000576:             17 TEXT                     adv=6   #3 "……真是非常地感謝。"
+00057c:             50 TEXTWAITKB               adv=4   
+000580:             51 KEYWAIT                  adv=4   
+000584:             43 TEXTACTIVE               adv=8   4
+00058c:             44 TEXTCLEAR                adv=4   
+000590:             17 TEXT                     adv=6   #4 "我們也會跟你們一起撤退的。"
+000596:             17 TEXT                     adv=6   #5 "在完全撤離之前都不能大意呀。"
+00059c:             50 TEXTWAITKB               adv=4   
+0005a0:             51 KEYWAIT                  adv=4   
+0005a4:             43 TEXTACTIVE               adv=8   10
+0005ac:             44 TEXTCLEAR                adv=4   
+0005b0:             17 TEXT                     adv=6   #6 "是的。"
+0005b6:             50 TEXTWAITKB               adv=4   
+0005ba:             51 KEYWAIT                  adv=4   
+0005be:             44 TEXTCLEAR                adv=4   
+0005c2:             43 TEXTACTIVE               adv=8   4
+0005ca:             44 TEXTCLEAR                adv=4   
+0005ce:             31 BORDPACKOFF              adv=12  10 30
+0005da:             24 BORDDISP                 adv=12  4 3
+0005e6:             12 VWAIT                    adv=8   60
+0005ee:             21 ALLOFF                   adv=4   
+0005f2:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0005fa: L_0146    19 END                      adv=4   ; END
+;   (48 insns)
+; ── block0 sub5 code@0x6d4 pool@0x81e (7 strings)
+;   #0 off=0x20 prm=0xa0 "好了……"
+;   #1 off=0x2a prm=0x280 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+;   #2 off=0x52 prm=0x100 "剛好趕上了哪。"
+;   #3 off=0x62 prm=0x160 "……真是非常地感謝。"
+;   #4 off=0x78 prm=0x1c0 "我們也會跟你們一起撤退的。"
+;   #5 off=0x94 prm=0x1e0 "在完全撤離之前都不能大意呀。"
+;   #6 off=0xb2 prm=0x80 "是的。"
+0006d4:            167 REG_GET                  adv=8   v0x0
+0006dc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0006f0:            166 REG_PUT                  adv=8   1
+0006f8:             11 GOTO                     adv=8   L_0146
+000700: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+000708:             56 FADESETWAIT              adv=8   2
+000710:             20 ADVMODESET               adv=8   0
+000718:             12 VWAIT                    adv=8   30
+000720:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000730:             43 TEXTACTIVE               adv=8   4
+000738:             17 TEXT                     adv=6   #0 "好了……"
+00073e:             50 TEXTWAITKB               adv=4   
+000742:             51 KEYWAIT                  adv=4   
+000746:             30 BORDPACKONWAIT           adv=20  10 115 0 30
+00075a:             43 TEXTACTIVE               adv=8   10
+000762:             17 TEXT                     adv=6   #1 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+000768:             50 TEXTWAITKB               adv=4   
+00076c:             51 KEYWAIT                  adv=4   
+000770:             43 TEXTACTIVE               adv=8   4
+000778:             44 TEXTCLEAR                adv=4   
+00077c:             17 TEXT                     adv=6   #2 "剛好趕上了哪。"
+000782:             50 TEXTWAITKB               adv=4   
+000786:             51 KEYWAIT                  adv=4   
+00078a:             43 TEXTACTIVE               adv=8   10
+000792:             44 TEXTCLEAR                adv=4   
+000796:             17 TEXT                     adv=6   #3 "……真是非常地感謝。"
+00079c:             50 TEXTWAITKB               adv=4   
+0007a0:             51 KEYWAIT                  adv=4   
+0007a4:             43 TEXTACTIVE               adv=8   4
+0007ac:             44 TEXTCLEAR                adv=4   
+0007b0:             17 TEXT                     adv=6   #4 "我們也會跟你們一起撤退的。"
+0007b6:             17 TEXT                     adv=6   #5 "在完全撤離之前都不能大意呀。"
+0007bc:             50 TEXTWAITKB               adv=4   
+0007c0:             51 KEYWAIT                  adv=4   
+0007c4:             43 TEXTACTIVE               adv=8   10
+0007cc:             44 TEXTCLEAR                adv=4   
+0007d0:             17 TEXT                     adv=6   #6 "是的。"
+0007d6:             50 TEXTWAITKB               adv=4   
+0007da:             51 KEYWAIT                  adv=4   
+0007de:             44 TEXTCLEAR                adv=4   
+0007e2:             43 TEXTACTIVE               adv=8   4
+0007ea:             44 TEXTCLEAR                adv=4   
+0007ee:             31 BORDPACKOFF              adv=12  10 30
+0007fa:             24 BORDDISP                 adv=12  4 3
+000806:             12 VWAIT                    adv=8   60
+00080e:             21 ALLOFF                   adv=4   
+000812:            118 TACTSETDESTROYSCRIPT     adv=8   60
+00081a: L_0146    19 END                      adv=4   ; END
+;   (48 insns)
+; ── block0 sub8 code@0x8f4 pool@0xa3e (7 strings)
+;   #0 off=0x20 prm=0xa0 "好了……"
+;   #1 off=0x2a prm=0x280 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+;   #2 off=0x52 prm=0x100 "剛好趕上了哪。"
+;   #3 off=0x62 prm=0x180 "……真是非常地感謝您。"
+;   #4 off=0x7a prm=0x1c0 "我們也會跟你們一起撤退的。"
+;   #5 off=0x96 prm=0x1e0 "在完全撤離之前都不能大意呀。"
+;   #6 off=0xb4 prm=0x80 "是的。"
+0008f4:            167 REG_GET                  adv=8   v0x0
+0008fc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000910:            166 REG_PUT                  adv=8   1
+000918:             11 GOTO                     adv=8   L_0146
+000920: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+000928:             56 FADESETWAIT              adv=8   2
+000930:             20 ADVMODESET               adv=8   0
+000938:             12 VWAIT                    adv=8   30
+000940:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000950:             43 TEXTACTIVE               adv=8   4
+000958:             17 TEXT                     adv=6   #0 "好了……"
+00095e:             50 TEXTWAITKB               adv=4   
+000962:             51 KEYWAIT                  adv=4   
+000966:             30 BORDPACKONWAIT           adv=20  10 115 0 30
+00097a:             43 TEXTACTIVE               adv=8   10
+000982:             17 TEXT                     adv=6   #1 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+000988:             50 TEXTWAITKB               adv=4   
+00098c:             51 KEYWAIT                  adv=4   
+000990:             43 TEXTACTIVE               adv=8   4
+000998:             44 TEXTCLEAR                adv=4   
+00099c:             17 TEXT                     adv=6   #2 "剛好趕上了哪。"
+0009a2:             50 TEXTWAITKB               adv=4   
+0009a6:             51 KEYWAIT                  adv=4   
+0009aa:             43 TEXTACTIVE               adv=8   10
+0009b2:             44 TEXTCLEAR                adv=4   
+0009b6:             17 TEXT                     adv=6   #3 "……真是非常地感謝您。"
+0009bc:             50 TEXTWAITKB               adv=4   
+0009c0:             51 KEYWAIT                  adv=4   
+0009c4:             43 TEXTACTIVE               adv=8   4
+0009cc:             44 TEXTCLEAR                adv=4   
+0009d0:             17 TEXT                     adv=6   #4 "我們也會跟你們一起撤退的。"
+0009d6:             17 TEXT                     adv=6   #5 "在完全撤離之前都不能大意呀。"
+0009dc:             50 TEXTWAITKB               adv=4   
+0009e0:             51 KEYWAIT                  adv=4   
+0009e4:             43 TEXTACTIVE               adv=8   10
+0009ec:             44 TEXTCLEAR                adv=4   
+0009f0:             17 TEXT                     adv=6   #6 "是的。"
+0009f6:             50 TEXTWAITKB               adv=4   
+0009fa:             51 KEYWAIT                  adv=4   
+0009fe:             44 TEXTCLEAR                adv=4   
+000a02:             43 TEXTACTIVE               adv=8   4
+000a0a:             44 TEXTCLEAR                adv=4   
+000a0e:             31 BORDPACKOFF              adv=12  10 30
+000a1a:             24 BORDDISP                 adv=12  4 3
+000a26:             12 VWAIT                    adv=8   60
+000a2e:             21 ALLOFF                   adv=4   
+000a32:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000a3a: L_0146    19 END                      adv=4   ; END
+;   (48 insns)
+; ── block0 sub11 code@0xb18 pool@0xc8a (9 strings)
+;   #0 off=0x28 prm=0x160 "唉呀，沒辦法趕上嗎？"
+;   #1 off=0x3e prm=0x280 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+;   #2 off=0x66 prm=0xe0 "……太好了。"
+;   #3 off=0x74 prm=0x220 "等會合了之後，我們就一起撤退吧。"
+;   #4 off=0x96 prm=0x1c0 "雖然跟預定的情況不一樣……"
+;   #5 off=0xb2 prm=0x120 "但仍然非常感謝。"
+;   #6 off=0xc4 prm=0x1e0 "事情還沒結束之前都別鬆懈呀。"
+;   #7 off=0xe2 prm=0x200 "要好好撤退才是真正困難的事情。"
+;   #8 off=0x102 prm=0xc0 "……是的。"
+000b18:            167 REG_GET                  adv=8   v0x0
+000b20:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000b34:            166 REG_PUT                  adv=8   1
+000b3c:             11 GOTO                     adv=8   L_016e
+000b44: L_002c   159 UNITWK_GET16             adv=16  v0x0 <- UNITWK[65535].0 (u16)
+000b54:            142 TACTANIMSTOP             adv=12  v0x0 0
+000b60:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+000b68:             56 FADESETWAIT              adv=8   2
+000b70:             20 ADVMODESET               adv=8   0
+000b78:             12 VWAIT                    adv=8   30
+000b80:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000b90:             43 TEXTACTIVE               adv=8   4
+000b98:             17 TEXT                     adv=6   #0 "唉呀，沒辦法趕上嗎？"
+000b9e:             50 TEXTWAITKB               adv=4   
+000ba2:             51 KEYWAIT                  adv=4   
+000ba6:             30 BORDPACKONWAIT           adv=20  10 115 0 30
+000bba:             43 TEXTACTIVE               adv=8   10
+000bc2:             17 TEXT                     adv=6   #1 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+000bc8:             50 TEXTWAITKB               adv=4   
+000bcc:             51 KEYWAIT                  adv=4   
+000bd0:             43 TEXTACTIVE               adv=8   4
+000bd8:             44 TEXTCLEAR                adv=4   
+000bdc:             17 TEXT                     adv=6   #2 "……太好了。"
+000be2:             17 TEXT                     adv=6   #3 "等會合了之後，我們就一起撤退吧。"
+000be8:             50 TEXTWAITKB               adv=4   
+000bec:             51 KEYWAIT                  adv=4   
+000bf0:             43 TEXTACTIVE               adv=8   10
+000bf8:             44 TEXTCLEAR                adv=4   
+000bfc:             17 TEXT                     adv=6   #4 "雖然跟預定的情況不一樣……"
+000c02:             17 TEXT                     adv=6   #5 "但仍然非常感謝。"
+000c08:             50 TEXTWAITKB               adv=4   
+000c0c:             51 KEYWAIT                  adv=4   
+000c10:             43 TEXTACTIVE               adv=8   4
+000c18:             44 TEXTCLEAR                adv=4   
+000c1c:             17 TEXT                     adv=6   #6 "事情還沒結束之前都別鬆懈呀。"
+000c22:             17 TEXT                     adv=6   #7 "要好好撤退才是真正困難的事情。"
+000c28:             50 TEXTWAITKB               adv=4   
+000c2c:             51 KEYWAIT                  adv=4   
+000c30:             43 TEXTACTIVE               adv=8   10
+000c38:             44 TEXTCLEAR                adv=4   
+000c3c:             17 TEXT                     adv=6   #8 "……是的。"
+000c42:             50 TEXTWAITKB               adv=4   
+000c46:             51 KEYWAIT                  adv=4   
+000c4a:             44 TEXTCLEAR                adv=4   
+000c4e:             43 TEXTACTIVE               adv=8   4
+000c56:             44 TEXTCLEAR                adv=4   
+000c5a:             31 BORDPACKOFF              adv=12  10 30
+000c66:             24 BORDDISP                 adv=12  4 3
+000c72:             12 VWAIT                    adv=8   60
+000c7a:             21 ALLOFF                   adv=4   
+000c7e:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000c86: L_016e    19 END                      adv=4   ; END
+;   (52 insns)
+; ── block0 sub14 code@0xdb4 pool@0xf26 (9 strings)
+;   #0 off=0x28 prm=0x160 "唉呀，沒辦法趕上嗎？"
+;   #1 off=0x3e prm=0x280 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+;   #2 off=0x66 prm=0xe0 "……太好了。"
+;   #3 off=0x74 prm=0x220 "等會合了之後，我們就一起撤退吧。"
+;   #4 off=0x96 prm=0x1c0 "雖然跟預定的情況不一樣……"
+;   #5 off=0xb2 prm=0x120 "但仍然非常感謝。"
+;   #6 off=0xc4 prm=0x1e0 "事情還沒結束之前都別鬆懈呀。"
+;   #7 off=0xe2 prm=0x200 "要好好撤退才是真正困難的事情。"
+;   #8 off=0x102 prm=0xc0 "……是的。"
+000db4:            167 REG_GET                  adv=8   v0x0
+000dbc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000dd0:            166 REG_PUT                  adv=8   1
+000dd8:             11 GOTO                     adv=8   L_016e
+000de0: L_002c   159 UNITWK_GET16             adv=16  v0x0 <- UNITWK[65535].0 (u16)
+000df0:            142 TACTANIMSTOP             adv=12  v0x0 0
+000dfc:            117 TACTEVENTCELLWRITEPOS    adv=8   60
+000e04:             56 FADESETWAIT              adv=8   2
+000e0c:             20 ADVMODESET               adv=8   0
+000e14:             12 VWAIT                    adv=8   30
+000e1c:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000e2c:             43 TEXTACTIVE               adv=8   4
+000e34:             17 TEXT                     adv=6   #0 "唉呀，沒辦法趕上嗎？"
+000e3a:             50 TEXTWAITKB               adv=4   
+000e3e:             51 KEYWAIT                  adv=4   
+000e42:             30 BORDPACKONWAIT           adv=20  10 115 0 30
+000e56:             43 TEXTACTIVE               adv=8   10
+000e5e:             17 TEXT                     adv=6   #1 "聖瑟維艾斯似乎已經準備好要撤退的樣子。"
+000e64:             50 TEXTWAITKB               adv=4   
+000e68:             51 KEYWAIT                  adv=4   
+000e6c:             43 TEXTACTIVE               adv=8   4
+000e74:             44 TEXTCLEAR                adv=4   
+000e78:             17 TEXT                     adv=6   #2 "……太好了。"
+000e7e:             17 TEXT                     adv=6   #3 "等會合了之後，我們就一起撤退吧。"
+000e84:             50 TEXTWAITKB               adv=4   
+000e88:             51 KEYWAIT                  adv=4   
+000e8c:             43 TEXTACTIVE               adv=8   10
+000e94:             44 TEXTCLEAR                adv=4   
+000e98:             17 TEXT                     adv=6   #4 "雖然跟預定的情況不一樣……"
+000e9e:             17 TEXT                     adv=6   #5 "但仍然非常感謝。"
+000ea4:             50 TEXTWAITKB               adv=4   
+000ea8:             51 KEYWAIT                  adv=4   
+000eac:             43 TEXTACTIVE               adv=8   4
+000eb4:             44 TEXTCLEAR                adv=4   
+000eb8:             17 TEXT                     adv=6   #6 "事情還沒結束之前都別鬆懈呀。"
+000ebe:             17 TEXT                     adv=6   #7 "要好好撤退才是真正困難的事情。"
+000ec4:             50 TEXTWAITKB               adv=4   
+000ec8:             51 KEYWAIT                  adv=4   
+000ecc:             43 TEXTACTIVE               adv=8   10
+000ed4:             44 TEXTCLEAR                adv=4   
+000ed8:             17 TEXT                     adv=6   #8 "……是的。"
+000ede:             50 TEXTWAITKB               adv=4   
+000ee2:             51 KEYWAIT                  adv=4   
+000ee6:             44 TEXTCLEAR                adv=4   
+000eea:             43 TEXTACTIVE               adv=8   4
+000ef2:             44 TEXTCLEAR                adv=4   
+000ef6:             31 BORDPACKOFF              adv=12  10 30
+000f02:             24 BORDDISP                 adv=12  4 3
+000f0e:             12 VWAIT                    adv=8   60
+000f16:             21 ALLOFF                   adv=4   
+000f1a:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000f22: L_016e    19 END                      adv=4   ; END
+;   (52 insns)
+; ── block0 sub20 code@0x105c pool@0x1398 (0 strings)
+00105c:            167 REG_GET                  adv=8   v0x0
+001064:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0338
+001078:            166 REG_PUT                  adv=8   0
+001080:            136 TACTANIMPLAY             adv=32  31 0 0 0 0 0 0
+0010a0:            136 TACTANIMPLAY             adv=32  32 11 0 0 0 0 0
+0010c0:            136 TACTANIMPLAY             adv=32  32 12 0 0 0 0 0
+0010e0:            136 TACTANIMPLAY             adv=32  32 13 0 0 0 0 0
+001100:            136 TACTANIMPLAY             adv=32  32 14 0 0 0 0 0
+001120:            136 TACTANIMPLAY             adv=32  32 15 0 0 0 0 0
+001140:            136 TACTANIMPLAY             adv=32  32 16 0 0 0 0 0
+001160:            136 TACTANIMPLAY             adv=32  32 17 0 0 0 0 0
+001180:            136 TACTANIMPLAY             adv=32  32 18 0 0 0 0 0
+0011a0:            136 TACTANIMPLAY             adv=32  32 19 0 0 0 0 0
+0011c0:            136 TACTANIMPLAY             adv=32  32 20 0 0 0 0 0
+0011e0:            146 NETKEYWAIT               adv=28  v0x2 5 0 0 0 0
+0011fc:              8 IFGOTO                   adv=20  cond=1 v0x2 cmp 65535 -> L_02e4
+001210:            136 TACTANIMPLAY             adv=32  33 v0x2 0 0 0 0 0
+001230:            146 NETKEYWAIT               adv=28  v0x4 2 1 8 0 0
+00124c:            133 TACTENEMYEXITGROUP       adv=24  v0x2 1 0 0 0
+001264:            133 TACTENEMYEXITGROUP       adv=24  v0x2 3 1 0 0
+00127c:            133 TACTENEMYEXITGROUP       adv=24  v0x2 2 v0x4 0 0
+001294:            146 NETKEYWAIT               adv=28  v0x5 2 1 3 0 0
+0012b0:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 1 -> L_0290
+0012c4:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 2 -> L_02ac
+0012d8:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 3 -> L_02c8
+0012ec: L_0290   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 4 149 5
+001300:             11 GOTO                     adv=8   L_02e4
+001308: L_02ac   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 32 170 5
+00131c:             11 GOTO                     adv=8   L_02e4
+001324: L_02c8   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 48 173 5
+001338:             11 GOTO                     adv=8   L_02e4
+001340: L_02e4   146 NETKEYWAIT               adv=28  v0x1 2 1800 7200 0 0
+00135c:            146 NETKEYWAIT               adv=28  v0x3 6 0 0 0 0
+001378:            124 TACTPLAYEREXIT           adv=20  v0x3 0 20 v0x1
+00138c:             11 GOTO                     adv=8   L_0338
+001394: L_0338    19 END                      adv=4   ; END
+;   (36 insns)
+; ── block0 sub21 code@0x13b0 pool@0x1588 (0 strings)
+0013b0:            167 REG_GET                  adv=8   v0x0
+0013b8:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_01d4
+0013cc:            166 REG_PUT                  adv=8   0
+0013d4:            136 TACTANIMPLAY             adv=32  31 0 0 0 0 0 0
+0013f4:            136 TACTANIMPLAY             adv=32  32 3 0 0 0 0 0
+001414:            136 TACTANIMPLAY             adv=32  32 8 0 0 0 0 0
+001434:            146 NETKEYWAIT               adv=28  v0x2 5 0 0 0 0
+001450:              8 IFGOTO                   adv=20  cond=1 v0x2 cmp 65535 -> L_0180
+001464:            136 TACTANIMPLAY             adv=32  33 v0x2 0 0 0 0 0
+001484:            146 NETKEYWAIT               adv=28  v0x5 2 1 3 0 0
+0014a0:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 1 -> L_012c
+0014b4:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 2 -> L_0148
+0014c8:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 3 -> L_0164
+0014dc: L_012c   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 4 149 5
+0014f0:             11 GOTO                     adv=8   L_0180
+0014f8: L_0148   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 32 170 5
+00150c:             11 GOTO                     adv=8   L_0180
+001514: L_0164   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 48 173 5
+001528:             11 GOTO                     adv=8   L_0180
+001530: L_0180   146 NETKEYWAIT               adv=28  v0x1 2 900 7200 0 0
+00154c:            146 NETKEYWAIT               adv=28  v0x3 6 0 0 0 0
+001568:            124 TACTPLAYEREXIT           adv=20  v0x3 0 21 v0x1
+00157c:             11 GOTO                     adv=8   L_01d4
+001584: L_01d4    19 END                      adv=4   ; END
+;   (24 insns)

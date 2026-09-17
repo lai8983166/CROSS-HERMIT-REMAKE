@@ -1,0 +1,137 @@
+; CHAPTER013.YBC  len=0x568  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x2c2', '0x2f2', '0x2f2']
+; rec1[0] = "data\\adv\\dat\\Chapter203.ybc"
+;   txt#0 off=0x60 prm=0x60 "呼∼"
+;   txt#1 off=0x66 prm=0x120 "這個森林，怎麼∼"
+;   txt#2 off=0x78 prm=0x1c0 "給人一種這麼沉悶的感覺呀。"
+;   txt#3 off=0x94 prm=0xa0 "…………"
+;   txt#4 off=0x9e prm=0x200 "……唉呀，情況好像有點不妙呢。"
+;   txt#5 off=0xbe prm=0xe0 "我聽到了……"
+;   txt#6 off=0xcc prm=0x180 "……血液在騷動的聲音。"
+;   txt#7 off=0xe4 prm=0x1e0 "……這份誓願，我一定會完成。"
+;   txt#8 off=0x102 prm=0x80 "……嗯"
+;   txt#9 off=0x10a prm=0x80 "唔……"
+;   txt#10 off=0x112 prm=0xc0 "噗哈∼∼∼"
+;   txt#11 off=0x11e prm=0x140 "……這就是所謂的，"
+;   txt#12 off=0x132 prm=0x220 "不小心看到了不該看到的東西對吧∼"
+;   txt#13 off=0x154 prm=0x80 "唔唔∼"
+;   txt#14 off=0x15c prm=0x240 "可是可是，要我假裝什麼都沒有看到，"
+;   txt#15 off=0x180 prm=0x120 "實在是辦不到啊∼"
+;   txt#16 off=0x192 prm=0x1e0 "那∼麼，要怎樣做咧，凱洛特？"
+;   txt#17 off=0x1b0 prm=0x1e0 "不但中央校舍變成了一塊廢墟，"
+;   txt#18 off=0x1ce prm=0x200 "賢者大人們也跑得一個都不剩了。"
+;   txt#19 off=0x1ee prm=0x280 "不過，這搞不好也是入學考試的一部分吧。"
+;   txt#20 off=0x216 prm=0x180 "不但一直都找不到教室，"
+;   txt#21 off=0x22e prm=0x220 "居然連個學生宿舍都沒有啊啊啊∼∼"
+;   txt#22 off=0x250 prm=0x260 "難道……這裡真的是愛爾梅納斯嗎∼！？"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   34
+00002c:             59 BGSETWAIT                adv=16  0 47 1
+00003c:             30 BORDPACKONWAIT           adv=20  5 1 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   5
+000060:             65 BGM                      adv=8   v0xd
+000068:             17 TEXT                     adv=6   #0 "呼∼"
+00006e:             50 TEXTWAITKB               adv=4   
+000072:             51 KEYWAIT                  adv=4   
+000076:             65 BGM                      adv=8   v0x1000d
+00007e:             17 TEXT                     adv=6   #1 "這個森林，怎麼∼"
+000084:             17 TEXT                     adv=6   #2 "給人一種這麼沉悶的感覺呀。"
+00008a:             50 TEXTWAITKB               adv=4   
+00008e:             51 KEYWAIT                  adv=4   
+000092:             44 TEXTCLEAR                adv=4   
+000096:             17 TEXT                     adv=6   #3 "…………"
+00009c:             50 TEXTWAITKB               adv=4   
+0000a0:             51 KEYWAIT                  adv=4   
+0000a4:             44 TEXTCLEAR                adv=4   
+0000a8:             65 BGM                      adv=8   v0x2000d
+0000b0:             17 TEXT                     adv=6   #4 "……唉呀，情況好像有點不妙呢。"
+0000b6:             50 TEXTWAITKB               adv=4   
+0000ba:             51 KEYWAIT                  adv=4   
+0000be:             44 TEXTCLEAR                adv=4   
+0000c2:             32 BORDPACKOFFWAIT          adv=12  5 30
+0000ce:             12 VWAIT                    adv=8   30
+0000d6:             30 BORDPACKONWAIT           adv=20  6 130 0 30
+0000ea:             43 TEXTACTIVE               adv=8   6
+0000f2:             65 BGM                      adv=8   v0x3000d
+0000fa:             17 TEXT                     adv=6   #5 "我聽到了……"
+000100:             50 TEXTWAITKB               adv=4   
+000104:             51 KEYWAIT                  adv=4   
+000108:             44 TEXTCLEAR                adv=4   
+00010c:             65 BGM                      adv=8   v0x4000d
+000114:             17 TEXT                     adv=6   #6 "……血液在騷動的聲音。"
+00011a:             50 TEXTWAITKB               adv=4   
+00011e:             51 KEYWAIT                  adv=4   
+000122:             65 BGM                      adv=8   v0x5000d
+00012a:             17 TEXT                     adv=6   #7 "……這份誓願，我一定會完成。"
+000130:             50 TEXTWAITKB               adv=4   
+000134:             51 KEYWAIT                  adv=4   
+000138:             44 TEXTCLEAR                adv=4   
+00013c:             32 BORDPACKOFFWAIT          adv=12  6 30
+000148:             12 VWAIT                    adv=8   30
+000150:             30 BORDPACKONWAIT           adv=20  5 1 0 30
+000164:             43 TEXTACTIVE               adv=8   5
+00016c:             65 BGM                      adv=8   v0x6000d
+000174:             17 TEXT                     adv=6   #8 "……嗯"
+00017a:             50 TEXTWAITKB               adv=4   
+00017e:             51 KEYWAIT                  adv=4   
+000182:             65 BGM                      adv=8   v0x7000d
+00018a:             17 TEXT                     adv=6   #9 "唔……"
+000190:             50 TEXTWAITKB               adv=4   
+000194:             51 KEYWAIT                  adv=4   
+000198:             44 TEXTCLEAR                adv=4   
+00019c:             65 BGM                      adv=8   v0x8000d
+0001a4:             17 TEXT                     adv=6   #10 "噗哈∼∼∼"
+0001aa:             50 TEXTWAITKB               adv=4   
+0001ae:             51 KEYWAIT                  adv=4   
+0001b2:             44 TEXTCLEAR                adv=4   
+0001b6:             65 BGM                      adv=8   v0x9000d
+0001be:             17 TEXT                     adv=6   #11 "……這就是所謂的，"
+0001c4:             50 TEXTWAITKB               adv=4   
+0001c8:             51 KEYWAIT                  adv=4   
+0001cc:             65 BGM                      adv=8   v0xa000d
+0001d4:             17 TEXT                     adv=6   #12 "不小心看到了不該看到的東西對吧∼"
+0001da:             50 TEXTWAITKB               adv=4   
+0001de:             51 KEYWAIT                  adv=4   
+0001e2:             44 TEXTCLEAR                adv=4   
+0001e6:             65 BGM                      adv=8   v0xb000d
+0001ee:             17 TEXT                     adv=6   #13 "唔唔∼"
+0001f4:             50 TEXTWAITKB               adv=4   
+0001f8:             51 KEYWAIT                  adv=4   
+0001fc:             65 BGM                      adv=8   v0xc000d
+000204:             17 TEXT                     adv=6   #14 "可是可是，要我假裝什麼都沒有看到，"
+00020a:             17 TEXT                     adv=6   #15 "實在是辦不到啊∼"
+000210:             50 TEXTWAITKB               adv=4   
+000214:             51 KEYWAIT                  adv=4   
+000218:             44 TEXTCLEAR                adv=4   
+00021c:             65 BGM                      adv=8   v0xd000d
+000224:             17 TEXT                     adv=6   #16 "那∼麼，要怎樣做咧，凱洛特？"
+00022a:             50 TEXTWAITKB               adv=4   
+00022e:             51 KEYWAIT                  adv=4   
+000232:             65 BGM                      adv=8   v0xe000d
+00023a:             17 TEXT                     adv=6   #17 "不但中央校舍變成了一塊廢墟，"
+000240:             17 TEXT                     adv=6   #18 "賢者大人們也跑得一個都不剩了。"
+000246:             50 TEXTWAITKB               adv=4   
+00024a:             51 KEYWAIT                  adv=4   
+00024e:             65 BGM                      adv=8   v0xf000d
+000256:             17 TEXT                     adv=6   #19 "不過，這搞不好也是入學考試的一部分吧。"
+00025c:             50 TEXTWAITKB               adv=4   
+000260:             51 KEYWAIT                  adv=4   
+000264:             44 TEXTCLEAR                adv=4   
+000268:             65 BGM                      adv=8   v0x10000d
+000270:             17 TEXT                     adv=6   #20 "不但一直都找不到教室，"
+000276:             17 TEXT                     adv=6   #21 "居然連個學生宿舍都沒有啊啊啊∼∼"
+00027c:             50 TEXTWAITKB               adv=4   
+000280:             51 KEYWAIT                  adv=4   
+000284:             65 BGM                      adv=8   v0x11000d
+00028c:             17 TEXT                     adv=6   #22 "難道……這裡真的是愛爾梅納斯嗎∼！？"
+000292:             50 TEXTWAITKB               adv=4   
+000296:             51 KEYWAIT                  adv=4   
+00029a:             12 VWAIT                    adv=8   30
+0002a2:             56 FADESETWAIT              adv=8   4
+0002aa:             21 ALLOFF                   adv=4   
+0002ae:             12 VWAIT                    adv=8   60
+0002b6:             15 SCRIPTEXEC               adv=8   v0x0
+0002be:             19 END                      adv=4   ; END
+; (110 insns)

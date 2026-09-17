@@ -1,0 +1,185 @@
+; CHAPTER305.YBC  len=0x854  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x3d8', '0x408', '0x408']
+; rec1[0] = "data\\adv\\bin\\tc0705.bin"
+;   txt#0 off=0xa4 prm=0xa0 "…………"
+;   txt#1 off=0xae prm=0xa0 "…………"
+;   txt#2 off=0xb8 prm=0xc0 "這樣啊……"
+;   txt#3 off=0xc4 prm=0x260 "原來通往安蒂米昂的路已經被封鎖了嗎？"
+;   txt#4 off=0xea prm=0x2a0 "我們在古雷那汀發現了那些負責封印道路的傢"
+;   txt#5 off=0x114 prm=0x60 "伙。"
+;   txt#6 off=0x11a prm=0x160 "但是就憑我們兩個人，"
+;   txt#7 off=0x130 prm=0x240 "連守住這玄室的大門也已經很困難了。"
+;   txt#8 off=0x154 prm=0xa0 "…………"
+;   txt#9 off=0x15e prm=0xa0 "…………"
+;   txt#10 off=0x168 prm=0x80 "當然。"
+;   txt#11 off=0x170 prm=0x220 "如果沒有聖者之泉跟守護塔的話……"
+;   txt#12 off=0x192 prm=0x200 "我們大概也沒有辦法到達這裡吧。"
+;   txt#13 off=0x1b2 prm=0x180 "總之，不管是要去哪裡，"
+;   txt#14 off=0x1ca prm=0x100 "我們兩兄弟……"
+;   txt#15 off=0x1da prm=0x1e0 "最後都得待在不見天日的地方。"
+;   txt#16 off=0x1f8 prm=0x260 "……雖然說能夠逃到這個地方是很好啦，"
+;   txt#17 off=0x21e prm=0x220 "然而，在那之後卻被困在這裡面了。"
+;   txt#18 off=0x240 prm=0x160 "雖然現在已經沒事了，"
+;   txt#19 off=0x256 prm=0x2a0 "但還是感覺有一股無名火想要好好發洩一下。"
+;   txt#20 off=0x280 prm=0xa0 "…………"
+;   txt#21 off=0x28a prm=0x1e0 "唉呀，這樣不是已經很好了嗎？"
+;   txt#22 off=0x2a8 prm=0x140 "就因為被困在這裡，"
+;   txt#23 off=0x2bc prm=0x1c0 "才有辦法這樣地跟我們重逢。"
+;   txt#24 off=0x2d8 prm=0x1c0 "也是因為你們兩個都很努力，"
+;   txt#25 off=0x2f4 prm=0x1c0 "所以才有辦法生存到現在呀。"
+;   txt#26 off=0x310 prm=0xa0 "…………"
+;   txt#27 off=0x31a prm=0xa0 "…………"
+;   txt#28 off=0x324 prm=0x2a0 "大家也都為了能跟你們兩個會合而感到開心。"
+;   txt#29 off=0x34e prm=0x1a0 "當然，我跟老師也很開心。"
+;   txt#30 off=0x368 prm=0x280 "……然後，接下來也就只有繼續前進了吧。"
+;   txt#31 off=0x390 prm=0xc0 "……是的。"
+;   txt#32 off=0x39c prm=0xc0 "……是的。"
+;   txt#33 off=0x3a8 prm=0xa0 "…………"
+;   txt#34 off=0x3b2 prm=0x1e0 "竟然可以在這裡存活兩個禮拜，"
+;   txt#35 off=0x3d0 prm=0x200 "你們兩位的實力真是令人期待呀。"
+;   txt#36 off=0x3f0 prm=0xa0 "…………"
+;   txt#37 off=0x3fa prm=0x280 "雖然力量微薄，但我們還是會全力以赴的。"
+;   txt#38 off=0x422 prm=0xa0 "…………"
+;   txt#39 off=0x42c prm=0x200 "因為這是我們兩個立下的誓約呀。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   0
+000080:             63 SE                       adv=8   9
+000088:             59 BGSETWAIT                adv=16  0 122 1
+000098:             30 BORDPACKONWAIT           adv=20  8 16 0 30
+0000ac:             56 FADESETWAIT              adv=8   3
+0000b4:             43 TEXTACTIVE               adv=8   8
+0000bc:             17 TEXT                     adv=6   #0 "…………"
+0000c2:             50 TEXTWAITKB               adv=4   
+0000c6:             51 KEYWAIT                  adv=4   
+0000ca:             30 BORDPACKONWAIT           adv=20  7 17 0 30
+0000de:             43 TEXTACTIVE               adv=8   7
+0000e6:             17 TEXT                     adv=6   #1 "…………"
+0000ec:             50 TEXTWAITKB               adv=4   
+0000f0:             51 KEYWAIT                  adv=4   
+0000f4:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000104:             43 TEXTACTIVE               adv=8   4
+00010c:             17 TEXT                     adv=6   #2 "這樣啊……"
+000112:             17 TEXT                     adv=6   #3 "原來通往安蒂米昂的路已經被封鎖了嗎？"
+000118:             50 TEXTWAITKB               adv=4   
+00011c:             51 KEYWAIT                  adv=4   
+000120:             43 TEXTACTIVE               adv=8   8
+000128:             44 TEXTCLEAR                adv=4   
+00012c:             17 TEXT                     adv=6   #4 "我們在古雷那汀發現了那些負責封印道路的傢"
+000132:             17 TEXT                     adv=6   #5 "伙。"
+000138:             17 TEXT                     adv=6   #6 "但是就憑我們兩個人，"
+00013e:             17 TEXT                     adv=6   #7 "連守住這玄室的大門也已經很困難了。"
+000144:             50 TEXTWAITKB               adv=4   
+000148:             51 KEYWAIT                  adv=4   
+00014c:             43 TEXTACTIVE               adv=8   4
+000154:             44 TEXTCLEAR                adv=4   
+000158:             17 TEXT                     adv=6   #8 "…………"
+00015e:             50 TEXTWAITKB               adv=4   
+000162:             51 KEYWAIT                  adv=4   
+000166:             43 TEXTACTIVE               adv=8   8
+00016e:             44 TEXTCLEAR                adv=4   
+000172:             17 TEXT                     adv=6   #9 "…………"
+000178:             43 TEXTACTIVE               adv=8   7
+000180:             44 TEXTCLEAR                adv=4   
+000184:             17 TEXT                     adv=6   #10 "當然。"
+00018a:             17 TEXT                     adv=6   #11 "如果沒有聖者之泉跟守護塔的話……"
+000190:             17 TEXT                     adv=6   #12 "我們大概也沒有辦法到達這裡吧。"
+000196:             50 TEXTWAITKB               adv=4   
+00019a:             51 KEYWAIT                  adv=4   
+00019e:             44 TEXTCLEAR                adv=4   
+0001a2:             17 TEXT                     adv=6   #13 "總之，不管是要去哪裡，"
+0001a8:             17 TEXT                     adv=6   #14 "我們兩兄弟……"
+0001ae:             17 TEXT                     adv=6   #15 "最後都得待在不見天日的地方。"
+0001b4:             50 TEXTWAITKB               adv=4   
+0001b8:             51 KEYWAIT                  adv=4   
+0001bc:             43 TEXTACTIVE               adv=8   8
+0001c4:             44 TEXTCLEAR                adv=4   
+0001c8:             17 TEXT                     adv=6   #16 "……雖然說能夠逃到這個地方是很好啦，"
+0001ce:             17 TEXT                     adv=6   #17 "然而，在那之後卻被困在這裡面了。"
+0001d4:             17 TEXT                     adv=6   #18 "雖然現在已經沒事了，"
+0001da:             17 TEXT                     adv=6   #19 "但還是感覺有一股無名火想要好好發洩一下。"
+0001e0:             50 TEXTWAITKB               adv=4   
+0001e4:             51 KEYWAIT                  adv=4   
+0001e8:             43 TEXTACTIVE               adv=8   7
+0001f0:             44 TEXTCLEAR                adv=4   
+0001f4:             17 TEXT                     adv=6   #20 "…………"
+0001fa:             43 TEXTACTIVE               adv=8   4
+000202:             44 TEXTCLEAR                adv=4   
+000206:             26 BORDCHANGE               adv=20  4 9 3 0
+00021a:             30 BORDPACKONWAIT           adv=20  9 3 0 30
+00022e:             43 TEXTACTIVE               adv=8   9
+000236:             17 TEXT                     adv=6   #21 "唉呀，這樣不是已經很好了嗎？"
+00023c:             17 TEXT                     adv=6   #22 "就因為被困在這裡，"
+000242:             17 TEXT                     adv=6   #23 "才有辦法這樣地跟我們重逢。"
+000248:             17 TEXT                     adv=6   #24 "也是因為你們兩個都很努力，"
+00024e:             17 TEXT                     adv=6   #25 "所以才有辦法生存到現在呀。"
+000254:             50 TEXTWAITKB               adv=4   
+000258:             51 KEYWAIT                  adv=4   
+00025c:             43 TEXTACTIVE               adv=8   7
+000264:             44 TEXTCLEAR                adv=4   
+000268:             43 TEXTACTIVE               adv=8   8
+000270:             44 TEXTCLEAR                adv=4   
+000274:             43 TEXTACTIVE               adv=8   7
+00027c:             17 TEXT                     adv=6   #26 "…………"
+000282:             43 TEXTACTIVE               adv=8   8
+00028a:             17 TEXT                     adv=6   #27 "…………"
+000290:             50 TEXTWAITKB               adv=4   
+000294:             51 KEYWAIT                  adv=4   
+000298:             43 TEXTACTIVE               adv=8   9
+0002a0:             44 TEXTCLEAR                adv=4   
+0002a4:             17 TEXT                     adv=6   #28 "大家也都為了能跟你們兩個會合而感到開心。"
+0002aa:             17 TEXT                     adv=6   #29 "當然，我跟老師也很開心。"
+0002b0:             17 TEXT                     adv=6   #30 "……然後，接下來也就只有繼續前進了吧。"
+0002b6:             50 TEXTWAITKB               adv=4   
+0002ba:             51 KEYWAIT                  adv=4   
+0002be:             43 TEXTACTIVE               adv=8   7
+0002c6:             44 TEXTCLEAR                adv=4   
+0002ca:             43 TEXTACTIVE               adv=8   8
+0002d2:             44 TEXTCLEAR                adv=4   
+0002d6:             43 TEXTACTIVE               adv=8   7
+0002de:             17 TEXT                     adv=6   #31 "……是的。"
+0002e4:             43 TEXTACTIVE               adv=8   8
+0002ec:             17 TEXT                     adv=6   #32 "……是的。"
+0002f2:             50 TEXTWAITKB               adv=4   
+0002f6:             51 KEYWAIT                  adv=4   
+0002fa:             43 TEXTACTIVE               adv=8   9
+000302:             44 TEXTCLEAR                adv=4   
+000306:             26 BORDCHANGE               adv=20  9 4 268435455 268435455
+00031a:             24 BORDDISP                 adv=12  4 1
+000326:             43 TEXTACTIVE               adv=8   4
+00032e:             17 TEXT                     adv=6   #33 "…………"
+000334:             17 TEXT                     adv=6   #34 "竟然可以在這裡存活兩個禮拜，"
+00033a:             17 TEXT                     adv=6   #35 "你們兩位的實力真是令人期待呀。"
+000340:             50 TEXTWAITKB               adv=4   
+000344:             51 KEYWAIT                  adv=4   
+000348:             43 TEXTACTIVE               adv=8   8
+000350:             44 TEXTCLEAR                adv=4   
+000354:             17 TEXT                     adv=6   #36 "…………"
+00035a:             43 TEXTACTIVE               adv=8   7
+000362:             44 TEXTCLEAR                adv=4   
+000366:             17 TEXT                     adv=6   #37 "雖然力量微薄，但我們還是會全力以赴的。"
+00036c:             50 TEXTWAITKB               adv=4   
+000370:             51 KEYWAIT                  adv=4   
+000374:             43 TEXTACTIVE               adv=8   4
+00037c:             44 TEXTCLEAR                adv=4   
+000380:             17 TEXT                     adv=6   #38 "…………"
+000386:             43 TEXTACTIVE               adv=8   8
+00038e:             44 TEXTCLEAR                adv=4   
+000392:             17 TEXT                     adv=6   #39 "因為這是我們兩個立下的誓約呀。"
+000398:             50 TEXTWAITKB               adv=4   
+00039c:             51 KEYWAIT                  adv=4   
+0003a0:             12 VWAIT                    adv=8   30
+0003a8:             56 FADESETWAIT              adv=8   4
+0003b0:             21 ALLOFF                   adv=4   
+0003b4:             12 VWAIT                    adv=8   60
+0003bc:            151 OP_151                   adv=12  9 1
+0003c8:             91 PUTUNITWK                adv=12  122 2
+0003d4:             19 END                      adv=4   ; END
+; (141 insns)

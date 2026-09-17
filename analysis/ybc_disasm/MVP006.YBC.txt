@@ -1,0 +1,190 @@
+; MVP006.YBC  len=0x86a  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x3c6', '0x3c6', '0x3c6']
+;   txt#0 off=0x98 prm=0x1a0 "以我艾爾雪•貝爾薩之名，"
+;   txt#1 off=0xb2 prm=0x1a0 "一切都完全遵從您的指示。"
+;   txt#2 off=0xcc prm=0x220 "希望引導我們的您，能夠受到祝福。"
+;   txt#3 off=0xee prm=0x100 "誠摯地感謝您。"
+;   txt#4 off=0xfe prm=0x260 "從過去到現在如此，從現在到以後也是。"
+;   txt#5 off=0x124 prm=0x1c0 "在要去看的時候就要看清楚，"
+;   txt#6 off=0x140 prm=0x1a0 "在要去聽的時候就用心聽。"
+;   txt#7 off=0x15a prm=0x1a0 "表情要沉穩、舉止要莊重、"
+;   txt#8 off=0x174 prm=0x1a0 "說話要誠懇、做事要謹慎。"
+;   txt#9 off=0x18e prm=0x180 "有所懷疑的時候就發問、"
+;   txt#10 off=0x1a6 prm=0x240 "生氣的時候要想清楚日後會有的麻煩、"
+;   txt#11 off=0x1ca prm=0x2a0 "有利益擺在面前時要以道義去衡量它的輕重。"
+;   txt#12 off=0x1f4 prm=0x240 "……我接受了愛爾梅納斯的古老教誨，"
+;   txt#13 off=0x218 prm=0x1c0 "決心從今以後要這樣地生活。"
+;   txt#14 off=0x234 prm=0x180 "希望您以後能夠指導我，"
+;   txt#15 off=0x24c prm=0x1a0 "讓我不要偏離了這條道路。"
+;   txt#16 off=0x266 prm=0x180 "您的話語中沒有矛盾……"
+;   txt#17 off=0x27e prm=0x200 "若是被您那毫無迷惑的眼神注視、"
+;   txt#18 off=0x29e prm=0x1c0 "被您那不曾動搖的雙手懷抱、"
+;   txt#19 off=0x2ba prm=0x180 "無論是誰也會努力向前。"
+;   txt#20 off=0x2d2 prm=0x120 "我敬愛的老師呀。"
+;   txt#21 off=0x2e4 prm=0x180 "我要以你為目標而努力。"
+;   txt#22 off=0x2fc prm=0x1c0 "要像您一樣如山一般地崇高、"
+;   txt#23 off=0x318 prm=0x220 "如原野般地寬大、如湖泊般地澄澈。"
+;   txt#24 off=0x33a prm=0xa0 "吾師呀。"
+;   txt#25 off=0x344 prm=0x1c0 "希望您能夠永遠地如此健康。"
+;   txt#26 off=0x360 prm=0x120 "為了主人而揮劍，"
+;   txt#27 off=0x372 prm=0x1a0 "那曾經是相當自然的事情，"
+;   txt#28 off=0x38c prm=0x160 "也是毫不猶豫的事情。"
+;   txt#29 off=0x3a2 prm=0x1e0 "忠誠地奉獻自己的生命而戰鬥，"
+;   txt#30 off=0x3c0 prm=0x1c0 "這件事情不需要任何的理由。"
+;   txt#31 off=0x3dc prm=0x1e0 "……然而，您卻這樣地教導我："
+;   txt#32 off=0x3fa prm=0x260 "「我只有為了互相深深信賴的朋友而活，"
+;   txt#33 off=0x420 prm=0x180 "才能真正地活出自己。」"
+;   txt#34 off=0x438 prm=0x200 "加入了純潔之盾以後，我才發現："
+;   txt#35 off=0x458 prm=0x260 "「原來在這世界上還有這種生活方式。」"
+;   txt#36 off=0x47e prm=0x260 "……我再度地發誓，將要貫徹這份信念。"
+000014:             56 FADESETWAIT              adv=8   2
+00001c:             20 ADVMODESET               adv=8   1
+000024:             12 VWAIT                    adv=8   30
+00002c:             30 BORDPACKONWAIT           adv=20  5 6 0 30
+000040:             90 GETUNITWK                adv=12  v0x0 4
+00004c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 0 -> L_00a4
+000060:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_00e4
+000074:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 2 -> L_013a
+000088:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 3 -> L_01e8
+00009c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 4 -> L_02b0
+0000b0:             11 GOTO                     adv=8   L_00e4
+0000b8: L_00a4    43 TEXTACTIVE               adv=8   5
+0000c0:             65 BGM                      adv=8   v0x7d
+0000c8:             17 TEXT                     adv=6   #0 "以我艾爾雪•貝爾薩之名，"
+0000ce:             50 TEXTWAITKB               adv=4   
+0000d2:             51 KEYWAIT                  adv=4   
+0000d6:             65 BGM                      adv=8   v0x1007d
+0000de:             17 TEXT                     adv=6   #1 "一切都完全遵從您的指示。"
+0000e4:             50 TEXTWAITKB               adv=4   
+0000e8:             51 KEYWAIT                  adv=4   
+0000ec:             44 TEXTCLEAR                adv=4   
+0000f0:             11 GOTO                     adv=8   L_0396
+0000f8: L_00e4    43 TEXTACTIVE               adv=8   5
+000100:             65 BGM                      adv=8   v0x2007d
+000108:             17 TEXT                     adv=6   #2 "希望引導我們的您，能夠受到祝福。"
+00010e:             50 TEXTWAITKB               adv=4   
+000112:             51 KEYWAIT                  adv=4   
+000116:             65 BGM                      adv=8   v0x3007d
+00011e:             17 TEXT                     adv=6   #3 "誠摯地感謝您。"
+000124:             50 TEXTWAITKB               adv=4   
+000128:             51 KEYWAIT                  adv=4   
+00012c:             65 BGM                      adv=8   v0x4007d
+000134:             17 TEXT                     adv=6   #4 "從過去到現在如此，從現在到以後也是。"
+00013a:             50 TEXTWAITKB               adv=4   
+00013e:             51 KEYWAIT                  adv=4   
+000142:             44 TEXTCLEAR                adv=4   
+000146:             11 GOTO                     adv=8   L_0396
+00014e: L_013a    43 TEXTACTIVE               adv=8   5
+000156:             65 BGM                      adv=8   v0x5007d
+00015e:             17 TEXT                     adv=6   #5 "在要去看的時候就要看清楚，"
+000164:             17 TEXT                     adv=6   #6 "在要去聽的時候就用心聽。"
+00016a:             50 TEXTWAITKB               adv=4   
+00016e:             51 KEYWAIT                  adv=4   
+000172:             65 BGM                      adv=8   v0x6007d
+00017a:             17 TEXT                     adv=6   #7 "表情要沉穩、舉止要莊重、"
+000180:             17 TEXT                     adv=6   #8 "說話要誠懇、做事要謹慎。"
+000186:             50 TEXTWAITKB               adv=4   
+00018a:             51 KEYWAIT                  adv=4   
+00018e:             44 TEXTCLEAR                adv=4   
+000192:             65 BGM                      adv=8   v0x7007d
+00019a:             17 TEXT                     adv=6   #9 "有所懷疑的時候就發問、"
+0001a0:             17 TEXT                     adv=6   #10 "生氣的時候要想清楚日後會有的麻煩、"
+0001a6:             17 TEXT                     adv=6   #11 "有利益擺在面前時要以道義去衡量它的輕重。"
+0001ac:             50 TEXTWAITKB               adv=4   
+0001b0:             51 KEYWAIT                  adv=4   
+0001b4:             65 BGM                      adv=8   v0x8007d
+0001bc:             17 TEXT                     adv=6   #12 "……我接受了愛爾梅納斯的古老教誨，"
+0001c2:             17 TEXT                     adv=6   #13 "決心從今以後要這樣地生活。"
+0001c8:             50 TEXTWAITKB               adv=4   
+0001cc:             51 KEYWAIT                  adv=4   
+0001d0:             44 TEXTCLEAR                adv=4   
+0001d4:             65 BGM                      adv=8   v0x9007d
+0001dc:             17 TEXT                     adv=6   #14 "希望您以後能夠指導我，"
+0001e2:             17 TEXT                     adv=6   #15 "讓我不要偏離了這條道路。"
+0001e8:             50 TEXTWAITKB               adv=4   
+0001ec:             51 KEYWAIT                  adv=4   
+0001f0:             44 TEXTCLEAR                adv=4   
+0001f4:             11 GOTO                     adv=8   L_0396
+0001fc: L_01e8    43 TEXTACTIVE               adv=8   5
+000204:             65 BGM                      adv=8   v0xa007d
+00020c:             17 TEXT                     adv=6   #16 "您的話語中沒有矛盾……"
+000212:             50 TEXTWAITKB               adv=4   
+000216:             51 KEYWAIT                  adv=4   
+00021a:             65 BGM                      adv=8   v0xb007d
+000222:             17 TEXT                     adv=6   #17 "若是被您那毫無迷惑的眼神注視、"
+000228:             17 TEXT                     adv=6   #18 "被您那不曾動搖的雙手懷抱、"
+00022e:             17 TEXT                     adv=6   #19 "無論是誰也會努力向前。"
+000234:             50 TEXTWAITKB               adv=4   
+000238:             51 KEYWAIT                  adv=4   
+00023c:             44 TEXTCLEAR                adv=4   
+000240:             65 BGM                      adv=8   v0xc007d
+000248:             17 TEXT                     adv=6   #20 "我敬愛的老師呀。"
+00024e:             50 TEXTWAITKB               adv=4   
+000252:             51 KEYWAIT                  adv=4   
+000256:             65 BGM                      adv=8   v0xd007d
+00025e:             17 TEXT                     adv=6   #21 "我要以你為目標而努力。"
+000264:             50 TEXTWAITKB               adv=4   
+000268:             51 KEYWAIT                  adv=4   
+00026c:             65 BGM                      adv=8   v0xe007d
+000274:             17 TEXT                     adv=6   #22 "要像您一樣如山一般地崇高、"
+00027a:             17 TEXT                     adv=6   #23 "如原野般地寬大、如湖泊般地澄澈。"
+000280:             50 TEXTWAITKB               adv=4   
+000284:             51 KEYWAIT                  adv=4   
+000288:             44 TEXTCLEAR                adv=4   
+00028c:             65 BGM                      adv=8   v0xf007d
+000294:             17 TEXT                     adv=6   #24 "吾師呀。"
+00029a:             50 TEXTWAITKB               adv=4   
+00029e:             51 KEYWAIT                  adv=4   
+0002a2:             65 BGM                      adv=8   v0x10007d
+0002aa:             17 TEXT                     adv=6   #25 "希望您能夠永遠地如此健康。"
+0002b0:             50 TEXTWAITKB               adv=4   
+0002b4:             51 KEYWAIT                  adv=4   
+0002b8:             44 TEXTCLEAR                adv=4   
+0002bc:             11 GOTO                     adv=8   L_0396
+0002c4: L_02b0    43 TEXTACTIVE               adv=8   5
+0002cc:             65 BGM                      adv=8   v0x11007d
+0002d4:             17 TEXT                     adv=6   #26 "為了主人而揮劍，"
+0002da:             50 TEXTWAITKB               adv=4   
+0002de:             51 KEYWAIT                  adv=4   
+0002e2:             65 BGM                      adv=8   v0x12007d
+0002ea:             17 TEXT                     adv=6   #27 "那曾經是相當自然的事情，"
+0002f0:             17 TEXT                     adv=6   #28 "也是毫不猶豫的事情。"
+0002f6:             50 TEXTWAITKB               adv=4   
+0002fa:             51 KEYWAIT                  adv=4   
+0002fe:             65 BGM                      adv=8   v0x13007d
+000306:             17 TEXT                     adv=6   #29 "忠誠地奉獻自己的生命而戰鬥，"
+00030c:             50 TEXTWAITKB               adv=4   
+000310:             51 KEYWAIT                  adv=4   
+000314:             65 BGM                      adv=8   v0x14007d
+00031c:             17 TEXT                     adv=6   #30 "這件事情不需要任何的理由。"
+000322:             50 TEXTWAITKB               adv=4   
+000326:             51 KEYWAIT                  adv=4   
+00032a:             44 TEXTCLEAR                adv=4   
+00032e:             65 BGM                      adv=8   v0x15007d
+000336:             17 TEXT                     adv=6   #31 "……然而，您卻這樣地教導我："
+00033c:             50 TEXTWAITKB               adv=4   
+000340:             51 KEYWAIT                  adv=4   
+000344:             65 BGM                      adv=8   v0x16007d
+00034c:             17 TEXT                     adv=6   #32 "「我只有為了互相深深信賴的朋友而活，"
+000352:             17 TEXT                     adv=6   #33 "才能真正地活出自己。」"
+000358:             50 TEXTWAITKB               adv=4   
+00035c:             51 KEYWAIT                  adv=4   
+000360:             44 TEXTCLEAR                adv=4   
+000364:             65 BGM                      adv=8   v0x17007d
+00036c:             17 TEXT                     adv=6   #34 "加入了純潔之盾以後，我才發現："
+000372:             50 TEXTWAITKB               adv=4   
+000376:             51 KEYWAIT                  adv=4   
+00037a:             65 BGM                      adv=8   v0x18007d
+000382:             17 TEXT                     adv=6   #35 "「原來在這世界上還有這種生活方式。」"
+000388:             50 TEXTWAITKB               adv=4   
+00038c:             51 KEYWAIT                  adv=4   
+000390:             65 BGM                      adv=8   v0x19007d
+000398:             17 TEXT                     adv=6   #36 "……我再度地發誓，將要貫徹這份信念。"
+00039e:             50 TEXTWAITKB               adv=4   
+0003a2:             51 KEYWAIT                  adv=4   
+0003a6:             44 TEXTCLEAR                adv=4   
+0003aa: L_0396    32 BORDPACKOFFWAIT          adv=12  5 30
+0003b6:             12 VWAIT                    adv=8   30
+0003be:             21 ALLOFF                   adv=4   
+0003c2:             19 END                      adv=4   ; END
+; (150 insns)

@@ -1,0 +1,212 @@
+; CHAPTER054.YBC  len=0x89c  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x3f2', '0x3f2', '0x3f2']
+;   txt#0 off=0xc0 prm=0x180 "殿下他真的長大了呀……"
+;   txt#1 off=0xd8 prm=0x240 "……我也是這麼認為的呀，長老先生。"
+;   txt#2 off=0xfc prm=0xa0 "…………"
+;   txt#3 off=0x106 prm=0x200 "這應該也是上天所指示的道路吧，"
+;   txt#4 off=0x126 prm=0x1e0 "簡直就像整個心靈都被洗淨了。"
+;   txt#5 off=0x144 prm=0x220 "這種感覺就如同在深遂的霧中迷失，"
+;   txt#6 off=0x166 prm=0x240 "然後被一雙溫柔的手引導出來般幸福。"
+;   txt#7 off=0x18a prm=0xa0 "…………"
+;   txt#8 off=0x194 prm=0xa0 "…………"
+;   txt#9 off=0x19e prm=0x80 "唔……"
+;   txt#10 off=0x1a6 prm=0x220 "那麼，我們不如也追隨純潔之盾吧。"
+;   txt#11 off=0x1c8 prm=0x240 "這一切都是為了支持殿下所走的道路。"
+;   txt#12 off=0x1ec prm=0xa0 "長老……"
+;   txt#13 off=0x1f6 prm=0x80 "然而，"
+;   txt#14 off=0x1fe prm=0x220 "我卻沒有辦法棄吾師、吾友於不顧。"
+;   txt#15 off=0x220 prm=0x140 "所以我要待在這裡，"
+;   txt#16 off=0x234 prm=0x1c0 "等待吾友布拉奇•巴圖歸來。"
+;   txt#17 off=0x250 prm=0xa0 "…………"
+;   txt#18 off=0x25a prm=0x140 "……加德摩斯閣下。"
+;   txt#19 off=0x26e prm=0x160 "過去與殿下一同戰鬥，"
+;   txt#20 off=0x284 prm=0x240 "讓我這把老骨頭度過了許多快樂時光，"
+;   txt#21 off=0x2a8 prm=0x120 "在這個橋墩之下，"
+;   txt#22 off=0x2ba prm=0x260 "沒有辦法忘記的回憶，實在是太多太多。"
+;   txt#23 off=0x2e0 prm=0x100 "那我也要留下。"
+;   txt#24 off=0x2f0 prm=0xa0 "…………"
+;   txt#25 off=0x2fa prm=0xe0 "那麼我也是。"
+;   txt#26 off=0x308 prm=0xa0 "…………"
+;   txt#27 off=0x312 prm=0x80 "昱荻。"
+;   txt#28 off=0x31a prm=0xc0 "派洛斯……"
+;   txt#29 off=0x326 prm=0x80 "抱歉。"
+;   txt#30 off=0x32e prm=0xc0 "那我也……"
+;   txt#31 off=0x33a prm=0xa0 "芙莉卡。"
+;   txt#32 off=0x344 prm=0xa0 "是的……"
+;   txt#33 off=0x34e prm=0x240 "妳可是逝世的葛斯貝拉德大人的後嗣，"
+;   txt#34 off=0x372 prm=0x80 "去吧。"
+;   txt#35 off=0x37a prm=0x220 "去妳祖父的學友－羽翼之長的身邊。"
+;   txt#36 off=0x39c prm=0xe0 "怎麼這樣……"
+;   txt#37 off=0x3aa prm=0x280 "知道嗎，妳沒有其他方法可以逃避這條路。"
+;   txt#38 off=0x3d2 prm=0x1c0 "妳不能不支持希里鄔司閣下。"
+;   txt#39 off=0x3ee prm=0x140 "不動的橋墩的信念，"
+;   txt#40 off=0x402 prm=0x1a0 "將在妳所展示的道路之中。"
+;   txt#41 off=0x41c prm=0x120 "加德摩斯閣下……"
+;   txt#42 off=0x42e prm=0x140 "知道了嗎，芙莉卡。"
+;   txt#43 off=0x442 prm=0x240 "我們會在這裡保護葛斯貝布洛的基礎。"
+;   txt#44 off=0x466 prm=0x1e0 "而妳，則要變成那偉大的支柱，"
+;   txt#45 off=0x484 prm=0x180 "支撐著這個愛爾梅納斯。"
+;   txt#46 off=0x49c prm=0xe0 "是的……！！"
+000014:            144 TACTSCROLLSETUNIT        adv=8   14
+00001c:            144 TACTSCROLLSETUNIT        adv=8   15
+000024:             56 FADESETWAIT              adv=8   0
+00002c:             20 ADVMODESET               adv=8   0
+000034:             63 SE                       adv=8   5
+00003c:             59 BGSETWAIT                adv=16  0 17 1
+00004c:             30 BORDPACKONWAIT           adv=20  7 19 0 30
+000060:             56 FADESETWAIT              adv=8   3
+000068:             43 TEXTACTIVE               adv=8   7
+000070:             17 TEXT                     adv=6   #0 "殿下他真的長大了呀……"
+000076:             50 TEXTWAITKB               adv=4   
+00007a:             51 KEYWAIT                  adv=4   
+00007e:             30 BORDPACKONWAIT           adv=20  8 20 0 30
+000092:             43 TEXTACTIVE               adv=8   8
+00009a:             17 TEXT                     adv=6   #1 "……我也是這麼認為的呀，長老先生。"
+0000a0:             50 TEXTWAITKB               adv=4   
+0000a4:             51 KEYWAIT                  adv=4   
+0000a8:             43 TEXTACTIVE               adv=8   7
+0000b0:             44 TEXTCLEAR                adv=4   
+0000b4:             17 TEXT                     adv=6   #2 "…………"
+0000ba:             30 BORDPACKONWAIT           adv=20  9 21 0 30
+0000ce:             43 TEXTACTIVE               adv=8   9
+0000d6:             17 TEXT                     adv=6   #3 "這應該也是上天所指示的道路吧，"
+0000dc:             17 TEXT                     adv=6   #4 "簡直就像整個心靈都被洗淨了。"
+0000e2:             17 TEXT                     adv=6   #5 "這種感覺就如同在深遂的霧中迷失，"
+0000e8:             17 TEXT                     adv=6   #6 "然後被一雙溫柔的手引導出來般幸福。"
+0000ee:             50 TEXTWAITKB               adv=4   
+0000f2:             51 KEYWAIT                  adv=4   
+0000f6:             43 TEXTACTIVE               adv=8   8
+0000fe:             44 TEXTCLEAR                adv=4   
+000102:             33 CHARSET                  adv=16  8 18 0
+000112:             36 CHARWAIT                 adv=4   
+000116:             43 TEXTACTIVE               adv=8   8
+00011e:             17 TEXT                     adv=6   #7 "…………"
+000124:             50 TEXTWAITKB               adv=4   
+000128:             51 KEYWAIT                  adv=4   
+00012c:             43 TEXTACTIVE               adv=8   9
+000134:             44 TEXTCLEAR                adv=4   
+000138:             17 TEXT                     adv=6   #8 "…………"
+00013e:             43 TEXTACTIVE               adv=8   7
+000146:             44 TEXTCLEAR                adv=4   
+00014a:             17 TEXT                     adv=6   #9 "唔……"
+000150:             17 TEXT                     adv=6   #10 "那麼，我們不如也追隨純潔之盾吧。"
+000156:             17 TEXT                     adv=6   #11 "這一切都是為了支持殿下所走的道路。"
+00015c:             50 TEXTWAITKB               adv=4   
+000160:             51 KEYWAIT                  adv=4   
+000164:             43 TEXTACTIVE               adv=8   8
+00016c:             44 TEXTCLEAR                adv=4   
+000170:             33 CHARSET                  adv=16  8 20 0
+000180:             36 CHARWAIT                 adv=4   
+000184:             43 TEXTACTIVE               adv=8   8
+00018c:             17 TEXT                     adv=6   #12 "長老……"
+000192:             50 TEXTWAITKB               adv=4   
+000196:             51 KEYWAIT                  adv=4   
+00019a:             43 TEXTACTIVE               adv=8   7
+0001a2:             44 TEXTCLEAR                adv=4   
+0001a6:             17 TEXT                     adv=6   #13 "然而，"
+0001ac:             17 TEXT                     adv=6   #14 "我卻沒有辦法棄吾師、吾友於不顧。"
+0001b2:             17 TEXT                     adv=6   #15 "所以我要待在這裡，"
+0001b8:             17 TEXT                     adv=6   #16 "等待吾友布拉奇•巴圖歸來。"
+0001be:             50 TEXTWAITKB               adv=4   
+0001c2:             51 KEYWAIT                  adv=4   
+0001c6:             43 TEXTACTIVE               adv=8   8
+0001ce:             44 TEXTCLEAR                adv=4   
+0001d2:             17 TEXT                     adv=6   #17 "…………"
+0001d8:             43 TEXTACTIVE               adv=8   9
+0001e0:             44 TEXTCLEAR                adv=4   
+0001e4:             17 TEXT                     adv=6   #18 "……加德摩斯閣下。"
+0001ea:             50 TEXTWAITKB               adv=4   
+0001ee:             51 KEYWAIT                  adv=4   
+0001f2:             43 TEXTACTIVE               adv=8   7
+0001fa:             44 TEXTCLEAR                adv=4   
+0001fe:             17 TEXT                     adv=6   #19 "過去與殿下一同戰鬥，"
+000204:             17 TEXT                     adv=6   #20 "讓我這把老骨頭度過了許多快樂時光，"
+00020a:             17 TEXT                     adv=6   #21 "在這個橋墩之下，"
+000210:             17 TEXT                     adv=6   #22 "沒有辦法忘記的回憶，實在是太多太多。"
+000216:             50 TEXTWAITKB               adv=4   
+00021a:             51 KEYWAIT                  adv=4   
+00021e:             43 TEXTACTIVE               adv=8   9
+000226:             44 TEXTCLEAR                adv=4   
+00022a:             17 TEXT                     adv=6   #23 "那我也要留下。"
+000230:             50 TEXTWAITKB               adv=4   
+000234:             51 KEYWAIT                  adv=4   
+000238:             43 TEXTACTIVE               adv=8   7
+000240:             44 TEXTCLEAR                adv=4   
+000244:             17 TEXT                     adv=6   #24 "…………"
+00024a:             43 TEXTACTIVE               adv=8   8
+000252:             44 TEXTCLEAR                adv=4   
+000256:             17 TEXT                     adv=6   #25 "那麼我也是。"
+00025c:             50 TEXTWAITKB               adv=4   
+000260:             51 KEYWAIT                  adv=4   
+000264:             43 TEXTACTIVE               adv=8   9
+00026c:             44 TEXTCLEAR                adv=4   
+000270:             17 TEXT                     adv=6   #26 "…………"
+000276:             43 TEXTACTIVE               adv=8   7
+00027e:             44 TEXTCLEAR                adv=4   
+000282:             17 TEXT                     adv=6   #27 "昱荻。"
+000288:             17 TEXT                     adv=6   #28 "派洛斯……"
+00028e:             17 TEXT                     adv=6   #29 "抱歉。"
+000294:             50 TEXTWAITKB               adv=4   
+000298:             51 KEYWAIT                  adv=4   
+00029c:             43 TEXTACTIVE               adv=8   8
+0002a4:             44 TEXTCLEAR                adv=4   
+0002a8:             33 CHARSET                  adv=16  8 18 0
+0002b8:             36 CHARWAIT                 adv=4   
+0002bc:             43 TEXTACTIVE               adv=8   8
+0002c4:             17 TEXT                     adv=6   #30 "那我也……"
+0002ca:             50 TEXTWAITKB               adv=4   
+0002ce:             51 KEYWAIT                  adv=4   
+0002d2:             43 TEXTACTIVE               adv=8   7
+0002da:             44 TEXTCLEAR                adv=4   
+0002de:             17 TEXT                     adv=6   #31 "芙莉卡。"
+0002e4:             50 TEXTWAITKB               adv=4   
+0002e8:             51 KEYWAIT                  adv=4   
+0002ec:             43 TEXTACTIVE               adv=8   8
+0002f4:             44 TEXTCLEAR                adv=4   
+0002f8:             17 TEXT                     adv=6   #32 "是的……"
+0002fe:             50 TEXTWAITKB               adv=4   
+000302:             51 KEYWAIT                  adv=4   
+000306:             43 TEXTACTIVE               adv=8   7
+00030e:             44 TEXTCLEAR                adv=4   
+000312:             17 TEXT                     adv=6   #33 "妳可是逝世的葛斯貝拉德大人的後嗣，"
+000318:             17 TEXT                     adv=6   #34 "去吧。"
+00031e:             17 TEXT                     adv=6   #35 "去妳祖父的學友－羽翼之長的身邊。"
+000324:             50 TEXTWAITKB               adv=4   
+000328:             51 KEYWAIT                  adv=4   
+00032c:             43 TEXTACTIVE               adv=8   8
+000334:             44 TEXTCLEAR                adv=4   
+000338:             17 TEXT                     adv=6   #36 "怎麼這樣……"
+00033e:             50 TEXTWAITKB               adv=4   
+000342:             51 KEYWAIT                  adv=4   
+000346:             43 TEXTACTIVE               adv=8   7
+00034e:             44 TEXTCLEAR                adv=4   
+000352:             17 TEXT                     adv=6   #37 "知道嗎，妳沒有其他方法可以逃避這條路。"
+000358:             17 TEXT                     adv=6   #38 "妳不能不支持希里鄔司閣下。"
+00035e:             17 TEXT                     adv=6   #39 "不動的橋墩的信念，"
+000364:             17 TEXT                     adv=6   #40 "將在妳所展示的道路之中。"
+00036a:             50 TEXTWAITKB               adv=4   
+00036e:             51 KEYWAIT                  adv=4   
+000372:             43 TEXTACTIVE               adv=8   8
+00037a:             44 TEXTCLEAR                adv=4   
+00037e:             17 TEXT                     adv=6   #41 "加德摩斯閣下……"
+000384:             50 TEXTWAITKB               adv=4   
+000388:             51 KEYWAIT                  adv=4   
+00038c:             43 TEXTACTIVE               adv=8   7
+000394:             44 TEXTCLEAR                adv=4   
+000398:             17 TEXT                     adv=6   #42 "知道了嗎，芙莉卡。"
+00039e:             17 TEXT                     adv=6   #43 "我們會在這裡保護葛斯貝布洛的基礎。"
+0003a4:             17 TEXT                     adv=6   #44 "而妳，則要變成那偉大的支柱，"
+0003aa:             17 TEXT                     adv=6   #45 "支撐著這個愛爾梅納斯。"
+0003b0:             50 TEXTWAITKB               adv=4   
+0003b4:             51 KEYWAIT                  adv=4   
+0003b8:             43 TEXTACTIVE               adv=8   8
+0003c0:             44 TEXTCLEAR                adv=4   
+0003c4:             17 TEXT                     adv=6   #46 "是的……！！"
+0003ca:             50 TEXTWAITKB               adv=4   
+0003ce:             51 KEYWAIT                  adv=4   
+0003d2:             12 VWAIT                    adv=8   30
+0003da:             56 FADESETWAIT              adv=8   4
+0003e2:             21 ALLOFF                   adv=4   
+0003e6:             12 VWAIT                    adv=8   60
+0003ee:             19 END                      adv=4   ; END
+; (162 insns)

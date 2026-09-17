@@ -1,0 +1,386 @@
+; CHAPTER028.YBC  len=0x11cc  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x6b2', '0x6b2', '0x6b2']
+;   txt#0 off=0x178 prm=0x100 "咕，嗯∼∼∼！"
+;   txt#1 off=0x188 prm=0x180 "……我還是太衝動了呀。"
+;   txt#2 off=0x1a0 prm=0x240 "光是打破沉默的戒律就已經很糟糕了，"
+;   txt#3 off=0x1c4 prm=0x1c0 "甚至還因為「三愚」的影響，"
+;   txt#4 off=0x1e0 prm=0x180 "而把怒氣表現出來了……"
+;   txt#5 off=0x1f8 prm=0x2a0 "這樣，不就一眼可以看出交涉一定會決裂了嗎"
+;   txt#6 off=0x222 prm=0x40 "？"
+;   txt#7 off=0x226 prm=0x180 "唉唉，艾爾雪•貝爾薩，"
+;   txt#8 off=0x23e prm=0x160 "妳的修行還不夠呀……"
+;   txt#9 off=0x254 prm=0x120 "費爾德訥•派隆。"
+;   txt#10 off=0x266 prm=0x1c0 "我沒有辦法忘記你的眼神……"
+;   txt#11 off=0x282 prm=0x1a0 "離開聖瑟維艾斯的那一天，"
+;   txt#12 off=0x29c prm=0x1c0 "你甚至還對我說了這樣的話："
+;   txt#13 off=0x2b8 prm=0x280 "「妳要抬頭挺胸地面對妳應該完成的事情」"
+;   txt#14 off=0x2e0 prm=0x180 "笨蛋，你真是個笨蛋呀，"
+;   txt#15 off=0x2f8 prm=0x260 "竟然對這麼無能的我有這麼高的評價……"
+;   txt#16 off=0x31e prm=0x180 "《我想拯救聖瑟維艾斯，"
+;   txt#17 off=0x336 prm=0x160 "　想拯救愛爾梅納斯。"
+;   txt#18 off=0x34c prm=0xe0 "　然而……》"
+;   txt#19 off=0x35a prm=0x1e0 "《雖然說著要拯救故鄉的大話，"
+;   txt#20 off=0x378 prm=0x120 "　可是追根究底，"
+;   txt#21 off=0x38a prm=0x240 "　我還不是只考慮到自己的事情而已。"
+;   txt#22 off=0x3ae prm=0x240 "　一切都只是我自己所希望的而已。》"
+;   txt#23 off=0x3d2 prm=0x120 "那時候也是這樣，"
+;   txt#24 off=0x3e4 prm=0x1c0 "現在的我更是完全沒有進步。"
+;   txt#25 off=0x400 prm=0x280 "我的劍會被大家捨棄，這也是理所當然的。"
+;   txt#26 off=0x428 prm=0x180 "用那種無論是誰聽到了，"
+;   txt#27 off=0x440 prm=0x180 "都會認同的理由去搪塞，"
+;   txt#28 off=0x458 prm=0x200 "藉以一口氣發洩那紛亂的情緒……"
+;   txt#29 off=0x478 prm=0x2a0 "真是的，不過……跟紐•普勞迪斯說的一樣。"
+;   txt#30 off=0x4a2 prm=0x1a0 "一個人的弱點一旦被刺傷，"
+;   txt#31 off=0x4bc prm=0x160 "就會做出愚蠢的行為。"
+;   txt#32 off=0x4d2 prm=0x180 "若是被他人喝叱的時候，"
+;   txt#33 off=0x4ea prm=0x1c0 "無論多想要保持風度也是……"
+;   txt#34 off=0x506 prm=0x220 "被人看作是禍根而遭到責備的時候，"
+;   txt#35 off=0x528 prm=0x160 "我又回應了些什麼呢？"
+;   txt#36 off=0x53e prm=0x1a0 "我真的是一點也不成熟呀。"
+;   txt#37 off=0x558 prm=0xa0 "…………"
+;   txt#38 off=0x562 prm=0x200 "……別過來，否則我就不客氣了。"
+;   txt#39 off=0x582 prm=0x140 "我艾爾雪•貝爾薩，"
+;   txt#40 off=0x596 prm=0x1e0 "對這件事可是一點也不會猶豫。"
+;   txt#41 off=0x5b4 prm=0x180 "如果妳心裡有什麼心事，"
+;   txt#42 off=0x5cc prm=0x1e0 "沒辦法對別人訴說的話，至少，"
+;   txt#43 off=0x5ea prm=0x180 "妳也可以說給我聽聽吧。"
+;   txt#44 off=0x602 prm=0x280 "……老師一定會這樣對我們說的，不是嗎？"
+;   txt#45 off=0x62a prm=0xa0 "薛莉爾！"
+;   txt#46 off=0x634 prm=0x140 "原來妳沒事呀……！"
+;   txt#47 off=0x648 prm=0x1a0 "是呀，就像妳看到的一樣。"
+;   txt#48 off=0x662 prm=0x120 "那聖瑟維艾斯呢？"
+;   txt#49 off=0x674 prm=0x160 "妳那邊有什麼消息嗎？"
+;   txt#50 off=0x68a prm=0x2a0 "奈比洛斯閣下現在也跟費爾德訥他們在一起。"
+;   txt#51 off=0x6b4 prm=0x220 "雖然被囚禁在眺望萬物的尖塔裡……"
+;   txt#52 off=0x6d6 prm=0x1c0 "她也一定執著教鞭教導大家，"
+;   txt#53 off=0x6f2 prm=0x220 "在牢獄中應有的態度跟生活方式吧。"
+;   txt#54 off=0x714 prm=0x80 "呃……"
+;   txt#55 off=0x71c prm=0x2a0 "啊啊，不管是費爾德訥、法娜還是席菈也好，"
+;   txt#56 off=0x746 prm=0x160 "大家一定都還活著的。"
+;   txt#57 off=0x75c prm=0xa0 "一定的。"
+;   txt#58 off=0x766 prm=0x80 "那麼。"
+;   txt#59 off=0x76e prm=0x220 "就跟我一起走吧，到伊諾森提雅去。"
+;   txt#60 off=0x790 prm=0x200 "……果然，只剩下這一條路了嗎？"
+;   txt#61 off=0x7b0 prm=0x200 "唉呀，和葛斯貝布洛斷絕了關係、"
+;   txt#62 off=0x7d0 prm=0x2a0 "在帕蘭達因的門口被驅逐、而聖瑟維艾斯又被"
+;   txt#63 off=0x7fa prm=0xc0 "囚禁了……"
+;   txt#64 off=0x806 prm=0x140 "除了純潔之盾以外，"
+;   txt#65 off=0x81a prm=0x240 "妳還知道有什麼更好的地方可以去嗎？"
+;   txt#66 off=0x83e prm=0xa0 "…………"
+;   txt#67 off=0x848 prm=0x160 "那……真的沒有嗎……"
+;   txt#68 off=0x85e prm=0x240 "艾爾雪呀，就連羅弗利閣下也對我說，"
+;   txt#69 off=0x882 prm=0x2a0 "「妳可以去的地方就只剩下純潔之盾了」呀。"
+;   txt#70 off=0x8ac prm=0x1e0 "……妳不要被那個男的給騙了，"
+;   txt#71 off=0x8ca prm=0x1c0 "伊諾森提雅早就四分五裂了，"
+;   txt#72 off=0x8e6 prm=0x280 "我最近遇到了「司法」羅沙麗亞•奧笛納。"
+;   txt#73 off=0x90e prm=0xa0 "…………"
+;   txt#74 off=0x918 prm=0x1e0 "也許她被「劍將」奧吉爾說服，"
+;   txt#75 off=0x936 prm=0x260 "不知道什麼時候也歸入了帕蘭達因麾下。"
+;   txt#76 off=0x95c prm=0x1c0 "只剩下白銀的薔薇獨力支撐，"
+;   txt#77 off=0x978 prm=0x240 "我們去純潔之盾又能獲得什麼幫助呢？"
+;   txt#78 off=0x99c prm=0x180 "所以……妳是不想去囉？"
+;   txt#79 off=0x9b4 prm=0x80 "嘖……"
+;   txt#80 off=0x9bc prm=0x1e0 "如果聽信那個傢伙的建議的話，"
+;   txt#81 off=0x9da prm=0x1c0 "說不定會碰到什麼麻煩事吧。"
+;   txt#82 off=0x9f6 prm=0x180 "就算是這樣也沒關係嗎？"
+;   txt#83 off=0xa0e prm=0x260 "那就是艾爾雪妳自己要決定的事情了呀。"
+;   txt#84 off=0xa34 prm=0xa0 "…………"
+;   txt#85 off=0xa3e prm=0xa0 "至少……"
+;   txt#86 off=0xa48 prm=0x2a0 "羅弗利閣下現在正代替我被帕蘭達因囚禁著，"
+;   txt#87 off=0xa72 prm=0x240 "就算妳不去純潔之盾，我也是得去的。"
+;   txt#88 off=0xa96 prm=0x120 "真是狡猾的傢伙，"
+;   txt#89 off=0xaa8 prm=0x240 "就是用這種手段把別人引進麻煩裡嗎，"
+;   txt#90 off=0xacc prm=0x280 "如果他保持沉默的話，其實還蠻可愛的咧。"
+;   txt#91 off=0xaf4 prm=0x100 "唉呀，艾爾雪。"
+;   txt#92 off=0xb04 prm=0x160 "那不是在說妳自己嗎？"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   2
+00002c:             59 BGSETWAIT                adv=16  0 50 1
+00003c:             30 BORDPACKONWAIT           adv=20  6 6 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   6
+000060:             65 BGM                      adv=8   v0x1c
+000068:             17 TEXT                     adv=6   #0 "咕，嗯∼∼∼！"
+00006e:             50 TEXTWAITKB               adv=4   
+000072:             51 KEYWAIT                  adv=4   
+000076:             65 BGM                      adv=8   v0x1001c
+00007e:             17 TEXT                     adv=6   #1 "……我還是太衝動了呀。"
+000084:             50 TEXTWAITKB               adv=4   
+000088:             51 KEYWAIT                  adv=4   
+00008c:             65 BGM                      adv=8   v0x2001c
+000094:             17 TEXT                     adv=6   #2 "光是打破沉默的戒律就已經很糟糕了，"
+00009a:             17 TEXT                     adv=6   #3 "甚至還因為「三愚」的影響，"
+0000a0:             17 TEXT                     adv=6   #4 "而把怒氣表現出來了……"
+0000a6:             50 TEXTWAITKB               adv=4   
+0000aa:             51 KEYWAIT                  adv=4   
+0000ae:             44 TEXTCLEAR                adv=4   
+0000b2:             43 TEXTACTIVE               adv=8   6
+0000ba:             65 BGM                      adv=8   v0x3001c
+0000c2:             17 TEXT                     adv=6   #5 "這樣，不就一眼可以看出交涉一定會決裂了嗎"
+0000c8:             17 TEXT                     adv=6   #6 "？"
+0000ce:             50 TEXTWAITKB               adv=4   
+0000d2:             51 KEYWAIT                  adv=4   
+0000d6:             65 BGM                      adv=8   v0x4001c
+0000de:             17 TEXT                     adv=6   #7 "唉唉，艾爾雪•貝爾薩，"
+0000e4:             17 TEXT                     adv=6   #8 "妳的修行還不夠呀……"
+0000ea:             50 TEXTWAITKB               adv=4   
+0000ee:             51 KEYWAIT                  adv=4   
+0000f2:             44 TEXTCLEAR                adv=4   
+0000f6:             43 TEXTACTIVE               adv=8   6
+0000fe:             65 BGM                      adv=8   v0x5001c
+000106:             17 TEXT                     adv=6   #9 "費爾德訥•派隆。"
+00010c:             50 TEXTWAITKB               adv=4   
+000110:             51 KEYWAIT                  adv=4   
+000114:             65 BGM                      adv=8   v0x6001c
+00011c:             17 TEXT                     adv=6   #10 "我沒有辦法忘記你的眼神……"
+000122:             50 TEXTWAITKB               adv=4   
+000126:             51 KEYWAIT                  adv=4   
+00012a:             65 BGM                      adv=8   v0x7001c
+000132:             17 TEXT                     adv=6   #11 "離開聖瑟維艾斯的那一天，"
+000138:             17 TEXT                     adv=6   #12 "你甚至還對我說了這樣的話："
+00013e:             17 TEXT                     adv=6   #13 "「妳要抬頭挺胸地面對妳應該完成的事情」"
+000144:             50 TEXTWAITKB               adv=4   
+000148:             51 KEYWAIT                  adv=4   
+00014c:             44 TEXTCLEAR                adv=4   
+000150:             43 TEXTACTIVE               adv=8   6
+000158:             65 BGM                      adv=8   v0x8001c
+000160:             17 TEXT                     adv=6   #14 "笨蛋，你真是個笨蛋呀，"
+000166:             17 TEXT                     adv=6   #15 "竟然對這麼無能的我有這麼高的評價……"
+00016c:             50 TEXTWAITKB               adv=4   
+000170:             51 KEYWAIT                  adv=4   
+000174:             44 TEXTCLEAR                adv=4   
+000178:             43 TEXTACTIVE               adv=8   6
+000180:             65 BGM                      adv=8   v0x9001c
+000188:             17 TEXT                     adv=6   #16 "《我想拯救聖瑟維艾斯，"
+00018e:             17 TEXT                     adv=6   #17 "　想拯救愛爾梅納斯。"
+000194:             50 TEXTWAITKB               adv=4   
+000198:             51 KEYWAIT                  adv=4   
+00019c:             65 BGM                      adv=8   v0xa001c
+0001a4:             17 TEXT                     adv=6   #18 "　然而……》"
+0001aa:             50 TEXTWAITKB               adv=4   
+0001ae:             51 KEYWAIT                  adv=4   
+0001b2:             44 TEXTCLEAR                adv=4   
+0001b6:             43 TEXTACTIVE               adv=8   6
+0001be:             65 BGM                      adv=8   v0xb001c
+0001c6:             17 TEXT                     adv=6   #19 "《雖然說著要拯救故鄉的大話，"
+0001cc:             17 TEXT                     adv=6   #20 "　可是追根究底，"
+0001d2:             17 TEXT                     adv=6   #21 "　我還不是只考慮到自己的事情而已。"
+0001d8:             50 TEXTWAITKB               adv=4   
+0001dc:             51 KEYWAIT                  adv=4   
+0001e0:             65 BGM                      adv=8   v0xc001c
+0001e8:             17 TEXT                     adv=6   #22 "　一切都只是我自己所希望的而已。》"
+0001ee:             50 TEXTWAITKB               adv=4   
+0001f2:             51 KEYWAIT                  adv=4   
+0001f6:             44 TEXTCLEAR                adv=4   
+0001fa:             43 TEXTACTIVE               adv=8   6
+000202:             65 BGM                      adv=8   v0xd001c
+00020a:             17 TEXT                     adv=6   #23 "那時候也是這樣，"
+000210:             50 TEXTWAITKB               adv=4   
+000214:             51 KEYWAIT                  adv=4   
+000218:             65 BGM                      adv=8   v0xe001c
+000220:             17 TEXT                     adv=6   #24 "現在的我更是完全沒有進步。"
+000226:             50 TEXTWAITKB               adv=4   
+00022a:             51 KEYWAIT                  adv=4   
+00022e:             65 BGM                      adv=8   v0xf001c
+000236:             17 TEXT                     adv=6   #25 "我的劍會被大家捨棄，這也是理所當然的。"
+00023c:             50 TEXTWAITKB               adv=4   
+000240:             51 KEYWAIT                  adv=4   
+000244:             44 TEXTCLEAR                adv=4   
+000248:             43 TEXTACTIVE               adv=8   6
+000250:             65 BGM                      adv=8   v0x10001c
+000258:             17 TEXT                     adv=6   #26 "用那種無論是誰聽到了，"
+00025e:             17 TEXT                     adv=6   #27 "都會認同的理由去搪塞，"
+000264:             17 TEXT                     adv=6   #28 "藉以一口氣發洩那紛亂的情緒……"
+00026a:             50 TEXTWAITKB               adv=4   
+00026e:             51 KEYWAIT                  adv=4   
+000272:             44 TEXTCLEAR                adv=4   
+000276:             43 TEXTACTIVE               adv=8   6
+00027e:             65 BGM                      adv=8   v0x11001c
+000286:             17 TEXT                     adv=6   #29 "真是的，不過……跟紐•普勞迪斯說的一樣。"
+00028c:             50 TEXTWAITKB               adv=4   
+000290:             51 KEYWAIT                  adv=4   
+000294:             65 BGM                      adv=8   v0x12001c
+00029c:             17 TEXT                     adv=6   #30 "一個人的弱點一旦被刺傷，"
+0002a2:             17 TEXT                     adv=6   #31 "就會做出愚蠢的行為。"
+0002a8:             50 TEXTWAITKB               adv=4   
+0002ac:             51 KEYWAIT                  adv=4   
+0002b0:             65 BGM                      adv=8   v0x13001c
+0002b8:             17 TEXT                     adv=6   #32 "若是被他人喝叱的時候，"
+0002be:             17 TEXT                     adv=6   #33 "無論多想要保持風度也是……"
+0002c4:             50 TEXTWAITKB               adv=4   
+0002c8:             51 KEYWAIT                  adv=4   
+0002cc:             44 TEXTCLEAR                adv=4   
+0002d0:             43 TEXTACTIVE               adv=8   6
+0002d8:             65 BGM                      adv=8   v0x14001c
+0002e0:             17 TEXT                     adv=6   #34 "被人看作是禍根而遭到責備的時候，"
+0002e6:             17 TEXT                     adv=6   #35 "我又回應了些什麼呢？"
+0002ec:             50 TEXTWAITKB               adv=4   
+0002f0:             51 KEYWAIT                  adv=4   
+0002f4:             65 BGM                      adv=8   v0x15001c
+0002fc:             17 TEXT                     adv=6   #36 "我真的是一點也不成熟呀。"
+000302:             50 TEXTWAITKB               adv=4   
+000306:             51 KEYWAIT                  adv=4   
+00030a:             44 TEXTCLEAR                adv=4   
+00030e:             43 TEXTACTIVE               adv=8   6
+000316:             17 TEXT                     adv=6   #37 "…………"
+00031c:             50 TEXTWAITKB               adv=4   
+000320:             51 KEYWAIT                  adv=4   
+000324:             44 TEXTCLEAR                adv=4   
+000328:             43 TEXTACTIVE               adv=8   6
+000330:             65 BGM                      adv=8   v0x16001c
+000338:             17 TEXT                     adv=6   #38 "……別過來，否則我就不客氣了。"
+00033e:             50 TEXTWAITKB               adv=4   
+000342:             51 KEYWAIT                  adv=4   
+000346:             65 BGM                      adv=8   v0x17001c
+00034e:             17 TEXT                     adv=6   #39 "我艾爾雪•貝爾薩，"
+000354:             17 TEXT                     adv=6   #40 "對這件事可是一點也不會猶豫。"
+00035a:             50 TEXTWAITKB               adv=4   
+00035e:             51 KEYWAIT                  adv=4   
+000362:             12 VWAIT                    adv=8   30
+00036a:             56 FADESETWAIT              adv=8   4
+000372:             21 ALLOFF                   adv=4   
+000376:             12 VWAIT                    adv=8   60
+00037e:             20 ADVMODESET               adv=8   0
+000386:             59 BGSETWAIT                adv=16  0 50 1
+000396:             30 BORDPACKONWAIT           adv=20  7 115 0 30
+0003aa:             56 FADESETWAIT              adv=8   3
+0003b2:             43 TEXTACTIVE               adv=8   7
+0003ba:             17 TEXT                     adv=6   #41 "如果妳心裡有什麼心事，"
+0003c0:             17 TEXT                     adv=6   #42 "沒辦法對別人訴說的話，至少，"
+0003c6:             17 TEXT                     adv=6   #43 "妳也可以說給我聽聽吧。"
+0003cc:             17 TEXT                     adv=6   #44 "……老師一定會這樣對我們說的，不是嗎？"
+0003d2:             50 TEXTWAITKB               adv=4   
+0003d6:             51 KEYWAIT                  adv=4   
+0003da:             30 BORDPACKONWAIT           adv=20  8 6 0 30
+0003ee:             43 TEXTACTIVE               adv=8   8
+0003f6:             17 TEXT                     adv=6   #45 "薛莉爾！"
+0003fc:             17 TEXT                     adv=6   #46 "原來妳沒事呀……！"
+000402:             50 TEXTWAITKB               adv=4   
+000406:             51 KEYWAIT                  adv=4   
+00040a:             43 TEXTACTIVE               adv=8   7
+000412:             44 TEXTCLEAR                adv=4   
+000416:             17 TEXT                     adv=6   #47 "是呀，就像妳看到的一樣。"
+00041c:             50 TEXTWAITKB               adv=4   
+000420:             51 KEYWAIT                  adv=4   
+000424:             43 TEXTACTIVE               adv=8   8
+00042c:             44 TEXTCLEAR                adv=4   
+000430:             17 TEXT                     adv=6   #48 "那聖瑟維艾斯呢？"
+000436:             17 TEXT                     adv=6   #49 "妳那邊有什麼消息嗎？"
+00043c:             50 TEXTWAITKB               adv=4   
+000440:             51 KEYWAIT                  adv=4   
+000444:             43 TEXTACTIVE               adv=8   7
+00044c:             44 TEXTCLEAR                adv=4   
+000450:             17 TEXT                     adv=6   #50 "奈比洛斯閣下現在也跟費爾德訥他們在一起。"
+000456:             17 TEXT                     adv=6   #51 "雖然被囚禁在眺望萬物的尖塔裡……"
+00045c:             17 TEXT                     adv=6   #52 "她也一定執著教鞭教導大家，"
+000462:             17 TEXT                     adv=6   #53 "在牢獄中應有的態度跟生活方式吧。"
+000468:             50 TEXTWAITKB               adv=4   
+00046c:             51 KEYWAIT                  adv=4   
+000470:             43 TEXTACTIVE               adv=8   8
+000478:             44 TEXTCLEAR                adv=4   
+00047c:             17 TEXT                     adv=6   #54 "呃……"
+000482:             17 TEXT                     adv=6   #55 "啊啊，不管是費爾德訥、法娜還是席菈也好，"
+000488:             17 TEXT                     adv=6   #56 "大家一定都還活著的。"
+00048e:             17 TEXT                     adv=6   #57 "一定的。"
+000494:             50 TEXTWAITKB               adv=4   
+000498:             51 KEYWAIT                  adv=4   
+00049c:             43 TEXTACTIVE               adv=8   7
+0004a4:             44 TEXTCLEAR                adv=4   
+0004a8:             17 TEXT                     adv=6   #58 "那麼。"
+0004ae:             17 TEXT                     adv=6   #59 "就跟我一起走吧，到伊諾森提雅去。"
+0004b4:             50 TEXTWAITKB               adv=4   
+0004b8:             51 KEYWAIT                  adv=4   
+0004bc:             43 TEXTACTIVE               adv=8   8
+0004c4:             44 TEXTCLEAR                adv=4   
+0004c8:             17 TEXT                     adv=6   #60 "……果然，只剩下這一條路了嗎？"
+0004ce:             50 TEXTWAITKB               adv=4   
+0004d2:             51 KEYWAIT                  adv=4   
+0004d6:             43 TEXTACTIVE               adv=8   7
+0004de:             44 TEXTCLEAR                adv=4   
+0004e2:             17 TEXT                     adv=6   #61 "唉呀，和葛斯貝布洛斷絕了關係、"
+0004e8:             17 TEXT                     adv=6   #62 "在帕蘭達因的門口被驅逐、而聖瑟維艾斯又被"
+0004ee:             17 TEXT                     adv=6   #63 "囚禁了……"
+0004f4:             17 TEXT                     adv=6   #64 "除了純潔之盾以外，"
+0004fa:             17 TEXT                     adv=6   #65 "妳還知道有什麼更好的地方可以去嗎？"
+000500:             50 TEXTWAITKB               adv=4   
+000504:             51 KEYWAIT                  adv=4   
+000508:             43 TEXTACTIVE               adv=8   8
+000510:             44 TEXTCLEAR                adv=4   
+000514:             17 TEXT                     adv=6   #66 "…………"
+00051a:             17 TEXT                     adv=6   #67 "那……真的沒有嗎……"
+000520:             50 TEXTWAITKB               adv=4   
+000524:             51 KEYWAIT                  adv=4   
+000528:             43 TEXTACTIVE               adv=8   7
+000530:             44 TEXTCLEAR                adv=4   
+000534:             17 TEXT                     adv=6   #68 "艾爾雪呀，就連羅弗利閣下也對我說，"
+00053a:             17 TEXT                     adv=6   #69 "「妳可以去的地方就只剩下純潔之盾了」呀。"
+000540:             50 TEXTWAITKB               adv=4   
+000544:             51 KEYWAIT                  adv=4   
+000548:             43 TEXTACTIVE               adv=8   8
+000550:             44 TEXTCLEAR                adv=4   
+000554:             17 TEXT                     adv=6   #70 "……妳不要被那個男的給騙了，"
+00055a:             17 TEXT                     adv=6   #71 "伊諾森提雅早就四分五裂了，"
+000560:             17 TEXT                     adv=6   #72 "我最近遇到了「司法」羅沙麗亞•奧笛納。"
+000566:             50 TEXTWAITKB               adv=4   
+00056a:             51 KEYWAIT                  adv=4   
+00056e:             44 TEXTCLEAR                adv=4   
+000572:             43 TEXTACTIVE               adv=8   7
+00057a:             44 TEXTCLEAR                adv=4   
+00057e:             17 TEXT                     adv=6   #73 "…………"
+000584:             43 TEXTACTIVE               adv=8   8
+00058c:             17 TEXT                     adv=6   #74 "也許她被「劍將」奧吉爾說服，"
+000592:             17 TEXT                     adv=6   #75 "不知道什麼時候也歸入了帕蘭達因麾下。"
+000598:             17 TEXT                     adv=6   #76 "只剩下白銀的薔薇獨力支撐，"
+00059e:             17 TEXT                     adv=6   #77 "我們去純潔之盾又能獲得什麼幫助呢？"
+0005a4:             50 TEXTWAITKB               adv=4   
+0005a8:             51 KEYWAIT                  adv=4   
+0005ac:             43 TEXTACTIVE               adv=8   7
+0005b4:             44 TEXTCLEAR                adv=4   
+0005b8:             17 TEXT                     adv=6   #78 "所以……妳是不想去囉？"
+0005be:             50 TEXTWAITKB               adv=4   
+0005c2:             51 KEYWAIT                  adv=4   
+0005c6:             43 TEXTACTIVE               adv=8   8
+0005ce:             44 TEXTCLEAR                adv=4   
+0005d2:             17 TEXT                     adv=6   #79 "嘖……"
+0005d8:             17 TEXT                     adv=6   #80 "如果聽信那個傢伙的建議的話，"
+0005de:             17 TEXT                     adv=6   #81 "說不定會碰到什麼麻煩事吧。"
+0005e4:             17 TEXT                     adv=6   #82 "就算是這樣也沒關係嗎？"
+0005ea:             50 TEXTWAITKB               adv=4   
+0005ee:             51 KEYWAIT                  adv=4   
+0005f2:             43 TEXTACTIVE               adv=8   7
+0005fa:             44 TEXTCLEAR                adv=4   
+0005fe:             17 TEXT                     adv=6   #83 "那就是艾爾雪妳自己要決定的事情了呀。"
+000604:             50 TEXTWAITKB               adv=4   
+000608:             51 KEYWAIT                  adv=4   
+00060c:             43 TEXTACTIVE               adv=8   8
+000614:             44 TEXTCLEAR                adv=4   
+000618:             17 TEXT                     adv=6   #84 "…………"
+00061e:             50 TEXTWAITKB               adv=4   
+000622:             51 KEYWAIT                  adv=4   
+000626:             43 TEXTACTIVE               adv=8   7
+00062e:             44 TEXTCLEAR                adv=4   
+000632:             17 TEXT                     adv=6   #85 "至少……"
+000638:             17 TEXT                     adv=6   #86 "羅弗利閣下現在正代替我被帕蘭達因囚禁著，"
+00063e:             17 TEXT                     adv=6   #87 "就算妳不去純潔之盾，我也是得去的。"
+000644:             50 TEXTWAITKB               adv=4   
+000648:             51 KEYWAIT                  adv=4   
+00064c:             43 TEXTACTIVE               adv=8   8
+000654:             44 TEXTCLEAR                adv=4   
+000658:             17 TEXT                     adv=6   #88 "真是狡猾的傢伙，"
+00065e:             17 TEXT                     adv=6   #89 "就是用這種手段把別人引進麻煩裡嗎，"
+000664:             17 TEXT                     adv=6   #90 "如果他保持沉默的話，其實還蠻可愛的咧。"
+00066a:             50 TEXTWAITKB               adv=4   
+00066e:             51 KEYWAIT                  adv=4   
+000672:             43 TEXTACTIVE               adv=8   7
+00067a:             44 TEXTCLEAR                adv=4   
+00067e:             17 TEXT                     adv=6   #91 "唉呀，艾爾雪。"
+000684:             17 TEXT                     adv=6   #92 "那不是在說妳自己嗎？"
+00068a:             50 TEXTWAITKB               adv=4   
+00068e:             51 KEYWAIT                  adv=4   
+000692:             12 VWAIT                    adv=8   30
+00069a:             56 FADESETWAIT              adv=8   4
+0006a2:             21 ALLOFF                   adv=4   
+0006a6:             12 VWAIT                    adv=8   60
+0006ae:             19 END                      adv=4   ; END
+; (290 insns)

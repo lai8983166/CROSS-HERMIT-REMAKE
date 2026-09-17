@@ -1,0 +1,252 @@
+; KOJIN006.YBC  len=0xd5e  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x5ca', '0x71a', '0x71a']
+; rec1[0] = "data\\adv\\bin\\k-part005.bin"
+; rec1[1] = "data\\adv\\dat\\KojinMain.ybc"
+; rec1[2] = "data\\adv\\dat\\Kojin001.ybc"
+; rec1[3] = "data\\adv\\dat\\Kojin002.ybc"
+; rec1[4] = "data\\adv\\dat\\Kojin003.ybc"
+; rec1[5] = "data\\adv\\dat\\Kojin004.ybc"
+; rec1[6] = "data\\adv\\dat\\Kojin005.ybc"
+;   txt#0 off=0xc0 prm=0x180 "「選択生徒変更の仕方」"
+;   txt#1 off=0xd8 prm=0x2c0 "ここでは「生徒一覧」について説明致します。"
+;   txt#2 off=0x104 prm=0x1c0 "生徒一覧は、この枠内に居る"
+;   txt#3 off=0x120 prm=0x260 "生徒の確認と、各生徒ごとの詳細画面を"
+;   txt#4 off=0x146 prm=0x1a0 "変更することが出来ます。"
+;   txt#5 off=0x160 prm=0x280 "現在の生徒から違う生徒に変更するには、"
+;   txt#6 off=0x188 prm=0x280 "現在の生徒から違う生徒に変更するには、"
+;   txt#7 off=0x1b0 prm=0x240 "見たい生徒を左クリックして下さい。"
+;   txt#8 off=0x1d4 prm=0x280 "このように、画面上部が切り替わります。"
+;   txt#9 off=0x1fc prm=0x180 "生徒の切り替え動作は、"
+;   txt#10 off=0x214 prm=0x1a0 "他の項目「技能」「装備」"
+;   txt#11 off=0x22e prm=0x220 "「職業変更」「能力値ＵＰ」内でも"
+;   txt#12 off=0x250 prm=0x1a0 "カーソルキー「←」「→」"
+;   txt#13 off=0x26a prm=0x180 "で切り替えが可能です。"
+;   txt#14 off=0x282 prm=0x240 "以上で、職業変更の仕方は終了です。"
+;   txt#15 off=0x2a6 prm=0x160 "ご理解頂けましたか？"
+;   txt#16 off=0x2bc prm=0x1a0 "すまない、もう一度頼む。"
+;   txt#17 off=0x2d6 prm=0xc0 "理解した。"
+;   txt#18 off=0x2e2 prm=0x1a0 "すまない、もう一度頼む。"
+;   txt#19 off=0x2fc prm=0x1c0 "では最初から説明致します。"
+;   txt#20 off=0x318 prm=0xc0 "理解した。"
+;   txt#21 off=0x324 prm=0x100 "わかりました。"
+;   txt#22 off=0x334 prm=0x240 "他にわからないことは御座いますか？"
+;   txt#23 off=0x358 prm=0x160 "　いや、もう結構だ。"
+;   txt#24 off=0x36e prm=0x280 "　ステータスエリアついて説明してくれ。"
+;   txt#25 off=0x396 prm=0x2a0 "　スキル装備の仕方について説明してくれ。"
+;   txt#26 off=0x3c0 prm=0x2c0 "　アイテム装備の仕方について説明してくれ。"
+;   txt#27 off=0x3ec prm=0x200 "　職業変更ついて説明してくれ。"
+;   txt#28 off=0x40c prm=0x2a0 "　能力値上昇の仕方について説明してくれ。"
+;   txt#29 off=0x436 prm=0x140 "いや、もう結構だ。"
+;   txt#30 off=0x44a prm=0x220 "では、またご質問がありましたら、"
+;   txt#31 off=0x46c prm=0x160 "お声をおかけ下さい。"
+;   txt#32 off=0x482 prm=0x280 "ステータスエリアについて説明してくれ。"
+;   txt#33 off=0x4aa prm=0x100 "わかりました。"
+;   txt#34 off=0x4ba prm=0x220 "ステータスエリアについてですね。"
+;   txt#35 off=0x4dc prm=0x280 "スキル装備の仕方について説明してくれ。"
+;   txt#36 off=0x504 prm=0x100 "わかりました。"
+;   txt#37 off=0x514 prm=0x220 "スキル装備の仕方についてですね。"
+;   txt#38 off=0x536 prm=0x2a0 "アイテム装備の仕方について説明してくれ。"
+;   txt#39 off=0x560 prm=0x100 "わかりました。"
+;   txt#40 off=0x570 prm=0x240 "アイテム装備の仕方についてですね。"
+;   txt#41 off=0x594 prm=0x260 "職業変更の仕方について説明してくれ。"
+;   txt#42 off=0x5ba prm=0x100 "わかりました。"
+;   txt#43 off=0x5ca prm=0x200 "職業変更の仕方についてですね。"
+;   txt#44 off=0x5ea prm=0x280 "能力値上昇の仕方について説明してくれ。"
+;   txt#45 off=0x612 prm=0x100 "わかりました。"
+;   txt#46 off=0x622 prm=0x220 "能力値上昇の仕方についてですね。"
+000014: L_0000    56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             59 BGSETWAIT                adv=16  0 196 1
+000034:             56 FADESETWAIT              adv=8   3
+00003c:             51 KEYWAIT                  adv=4   
+000040:             56 FADESETWAIT              adv=8   4
+000048:             21 ALLOFF                   adv=4   
+00004c:             67 VOICE                    adv=8   v0x0
+000054:             59 BGSETWAIT                adv=16  0 197 1
+000064:             22 BORDSET                  adv=16  6 3 0
+000074:             24 BORDDISP                 adv=12  6 0
+000080:             27 BORDONWAIT               adv=16  2 268435455 268435455
+000090:             56 FADESETWAIT              adv=8   3
+000098:             12 VWAIT                    adv=8   30
+0000a0:             43 TEXTACTIVE               adv=8   2
+0000a8:             17 TEXT                     adv=6   #0 "「選択生徒変更の仕方」"
+0000ae:             43 TEXTACTIVE               adv=8   6
+0000b6:             17 TEXT                     adv=6   #1 "ここでは「生徒一覧」について説明致します。"
+0000bc:             50 TEXTWAITKB               adv=4   
+0000c0:             51 KEYWAIT                  adv=4   
+0000c4:             69 DRAWBINFREAD             adv=40  0 153 309 0 54 0 280 560 226
+0000ec:             12 VWAIT                    adv=8   30
+0000f4:             44 TEXTCLEAR                adv=4   
+0000f8:             17 TEXT                     adv=6   #2 "生徒一覧は、この枠内に居る"
+0000fe:             17 TEXT                     adv=6   #3 "生徒の確認と、各生徒ごとの詳細画面を"
+000104:             17 TEXT                     adv=6   #4 "変更することが出来ます。"
+00010a:             50 TEXTWAITKB               adv=4   
+00010e:             51 KEYWAIT                  adv=4   
+000112:             74 DRAWOBJSETE              adv=4   
+000116:             12 VWAIT                    adv=8   30
+00011e:             69 DRAWBINFREAD             adv=40  0 150 319 0 54 712 0 74 74
+000146:             12 VWAIT                    adv=8   30
+00014e:             44 TEXTCLEAR                adv=4   
+000152:             17 TEXT                     adv=6   #5 "現在の生徒から違う生徒に変更するには、"
+000158:             50 TEXTWAITKB               adv=4   
+00015c:             51 KEYWAIT                  adv=4   
+000160:             74 DRAWOBJSETE              adv=4   
+000164:             12 VWAIT                    adv=8   30
+00016c:             69 DRAWBINFREAD             adv=40  0 206 319 0 54 712 0 74 74
+000194:             59 BGSETWAIT                adv=16  0 198 6
+0001a4:             12 VWAIT                    adv=8   30
+0001ac:             44 TEXTCLEAR                adv=4   
+0001b0:             17 TEXT                     adv=6   #6 "現在の生徒から違う生徒に変更するには、"
+0001b6:             17 TEXT                     adv=6   #7 "見たい生徒を左クリックして下さい。"
+0001bc:             50 TEXTWAITKB               adv=4   
+0001c0:             51 KEYWAIT                  adv=4   
+0001c4:             74 DRAWOBJSETE              adv=4   
+0001c8:             12 VWAIT                    adv=8   30
+0001d0:             69 DRAWBINFREAD             adv=40  0 0 19 0 53 0 0 712 280
+0001f8:             12 VWAIT                    adv=8   30
+000200:             44 TEXTCLEAR                adv=4   
+000204:             17 TEXT                     adv=6   #8 "このように、画面上部が切り替わります。"
+00020a:             50 TEXTWAITKB               adv=4   
+00020e:             51 KEYWAIT                  adv=4   
+000212:             74 DRAWOBJSETE              adv=4   
+000216:             12 VWAIT                    adv=8   30
+00021e:             44 TEXTCLEAR                adv=4   
+000222:             17 TEXT                     adv=6   #9 "生徒の切り替え動作は、"
+000228:             17 TEXT                     adv=6   #10 "他の項目「技能」「装備」"
+00022e:             17 TEXT                     adv=6   #11 "「職業変更」「能力値ＵＰ」内でも"
+000234:             17 TEXT                     adv=6   #12 "カーソルキー「←」「→」"
+00023a:             17 TEXT                     adv=6   #13 "で切り替えが可能です。"
+000240:             50 TEXTWAITKB               adv=4   
+000244:             51 KEYWAIT                  adv=4   
+000248:             44 TEXTCLEAR                adv=4   
+00024c:             17 TEXT                     adv=6   #14 "以上で、職業変更の仕方は終了です。"
+000252:             17 TEXT                     adv=6   #15 "ご理解頂けましたか？"
+000258:             50 TEXTWAITKB               adv=4   
+00025c:             51 KEYWAIT                  adv=4   
+000260:             61 MENU                     adv=20  v0x0 v0x2 v0x10 v0x11
+000274:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 0 -> L_0288
+000288:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_02d0
+00029c: L_0288    43 TEXTACTIVE               adv=8   2
+0002a4:             44 TEXTCLEAR                adv=4   
+0002a8:             17 TEXT                     adv=6   #18 "すまない、もう一度頼む。"
+0002ae:             50 TEXTWAITKB               adv=4   
+0002b2:             51 KEYWAIT                  adv=4   
+0002b6:             43 TEXTACTIVE               adv=8   6
+0002be:             44 TEXTCLEAR                adv=4   
+0002c2:             17 TEXT                     adv=6   #19 "では最初から説明致します。"
+0002c8:             50 TEXTWAITKB               adv=4   
+0002cc:             51 KEYWAIT                  adv=4   
+0002d0:             56 FADESETWAIT              adv=8   4
+0002d8:             21 ALLOFF                   adv=4   
+0002dc:             11 GOTO                     adv=8   L_0000
+0002e4: L_02d0    43 TEXTACTIVE               adv=8   2
+0002ec:             44 TEXTCLEAR                adv=4   
+0002f0:             17 TEXT                     adv=6   #20 "理解した。"
+0002f6:             50 TEXTWAITKB               adv=4   
+0002fa:             51 KEYWAIT                  adv=4   
+0002fe:             43 TEXTACTIVE               adv=8   6
+000306:             44 TEXTCLEAR                adv=4   
+00030a:             17 TEXT                     adv=6   #21 "わかりました。"
+000310:             17 TEXT                     adv=6   #22 "他にわからないことは御座いますか？"
+000316:             50 TEXTWAITKB               adv=4   
+00031a:             51 KEYWAIT                  adv=4   
+00031e:             61 MENU                     adv=36  v0x0 v0x6 v0x17 v0x18 v0x19 v0x1a v0x1b v0x1c
+000342:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 0 -> L_03a6
+000356:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0404
+00036a:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 2 -> L_045a
+00037e:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 3 -> L_04b0
+000392:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 4 -> L_0506
+0003a6:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 5 -> L_055c
+0003ba: L_03a6    43 TEXTACTIVE               adv=8   2
+0003c2:             44 TEXTCLEAR                adv=4   
+0003c6:             17 TEXT                     adv=6   #29 "いや、もう結構だ。"
+0003cc:             50 TEXTWAITKB               adv=4   
+0003d0:             51 KEYWAIT                  adv=4   
+0003d4:             43 TEXTACTIVE               adv=8   6
+0003dc:             44 TEXTCLEAR                adv=4   
+0003e0:             17 TEXT                     adv=6   #30 "では、またご質問がありましたら、"
+0003e6:             17 TEXT                     adv=6   #31 "お声をおかけ下さい。"
+0003ec:             50 TEXTWAITKB               adv=4   
+0003f0:             51 KEYWAIT                  adv=4   
+0003f4:             12 VWAIT                    adv=8   30
+0003fc:             56 FADESETWAIT              adv=8   4
+000404:             21 ALLOFF                   adv=4   
+000408:             12 VWAIT                    adv=8   60
+000410:             15 SCRIPTEXEC               adv=8   v0x1
+000418: L_0404    43 TEXTACTIVE               adv=8   2
+000420:             44 TEXTCLEAR                adv=4   
+000424:             17 TEXT                     adv=6   #32 "ステータスエリアについて説明してくれ。"
+00042a:             50 TEXTWAITKB               adv=4   
+00042e:             51 KEYWAIT                  adv=4   
+000432:             43 TEXTACTIVE               adv=8   6
+00043a:             44 TEXTCLEAR                adv=4   
+00043e:             17 TEXT                     adv=6   #33 "わかりました。"
+000444:             17 TEXT                     adv=6   #34 "ステータスエリアについてですね。"
+00044a:             50 TEXTWAITKB               adv=4   
+00044e:             51 KEYWAIT                  adv=4   
+000452:             12 VWAIT                    adv=8   30
+00045a:             56 FADESETWAIT              adv=8   4
+000462:             21 ALLOFF                   adv=4   
+000466:             15 SCRIPTEXEC               adv=8   v0x2
+00046e: L_045a    43 TEXTACTIVE               adv=8   2
+000476:             44 TEXTCLEAR                adv=4   
+00047a:             17 TEXT                     adv=6   #35 "スキル装備の仕方について説明してくれ。"
+000480:             50 TEXTWAITKB               adv=4   
+000484:             51 KEYWAIT                  adv=4   
+000488:             43 TEXTACTIVE               adv=8   6
+000490:             44 TEXTCLEAR                adv=4   
+000494:             17 TEXT                     adv=6   #36 "わかりました。"
+00049a:             17 TEXT                     adv=6   #37 "スキル装備の仕方についてですね。"
+0004a0:             50 TEXTWAITKB               adv=4   
+0004a4:             51 KEYWAIT                  adv=4   
+0004a8:             12 VWAIT                    adv=8   30
+0004b0:             56 FADESETWAIT              adv=8   4
+0004b8:             21 ALLOFF                   adv=4   
+0004bc:             15 SCRIPTEXEC               adv=8   v0x3
+0004c4: L_04b0    43 TEXTACTIVE               adv=8   2
+0004cc:             44 TEXTCLEAR                adv=4   
+0004d0:             17 TEXT                     adv=6   #38 "アイテム装備の仕方について説明してくれ。"
+0004d6:             50 TEXTWAITKB               adv=4   
+0004da:             51 KEYWAIT                  adv=4   
+0004de:             43 TEXTACTIVE               adv=8   6
+0004e6:             44 TEXTCLEAR                adv=4   
+0004ea:             17 TEXT                     adv=6   #39 "わかりました。"
+0004f0:             17 TEXT                     adv=6   #40 "アイテム装備の仕方についてですね。"
+0004f6:             50 TEXTWAITKB               adv=4   
+0004fa:             51 KEYWAIT                  adv=4   
+0004fe:             12 VWAIT                    adv=8   30
+000506:             56 FADESETWAIT              adv=8   4
+00050e:             21 ALLOFF                   adv=4   
+000512:             15 SCRIPTEXEC               adv=8   v0x4
+00051a: L_0506    43 TEXTACTIVE               adv=8   2
+000522:             44 TEXTCLEAR                adv=4   
+000526:             17 TEXT                     adv=6   #41 "職業変更の仕方について説明してくれ。"
+00052c:             50 TEXTWAITKB               adv=4   
+000530:             51 KEYWAIT                  adv=4   
+000534:             43 TEXTACTIVE               adv=8   6
+00053c:             44 TEXTCLEAR                adv=4   
+000540:             17 TEXT                     adv=6   #42 "わかりました。"
+000546:             17 TEXT                     adv=6   #43 "職業変更の仕方についてですね。"
+00054c:             50 TEXTWAITKB               adv=4   
+000550:             51 KEYWAIT                  adv=4   
+000554:             12 VWAIT                    adv=8   30
+00055c:             56 FADESETWAIT              adv=8   4
+000564:             21 ALLOFF                   adv=4   
+000568:             15 SCRIPTEXEC               adv=8   v0x5
+000570: L_055c    43 TEXTACTIVE               adv=8   2
+000578:             44 TEXTCLEAR                adv=4   
+00057c:             17 TEXT                     adv=6   #44 "能力値上昇の仕方について説明してくれ。"
+000582:             50 TEXTWAITKB               adv=4   
+000586:             51 KEYWAIT                  adv=4   
+00058a:             43 TEXTACTIVE               adv=8   6
+000592:             44 TEXTCLEAR                adv=4   
+000596:             17 TEXT                     adv=6   #45 "わかりました。"
+00059c:             17 TEXT                     adv=6   #46 "能力値上昇の仕方についてですね。"
+0005a2:             50 TEXTWAITKB               adv=4   
+0005a6:             51 KEYWAIT                  adv=4   
+0005aa:             12 VWAIT                    adv=8   30
+0005b2:             56 FADESETWAIT              adv=8   4
+0005ba:             21 ALLOFF                   adv=4   
+0005be:             15 SCRIPTEXEC               adv=8   v0x6
+0005c6:             19 END                      adv=4   ; END
+; (195 insns)

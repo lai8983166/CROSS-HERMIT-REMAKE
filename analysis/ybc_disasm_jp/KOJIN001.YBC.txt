@@ -1,0 +1,330 @@
+; KOJIN001.YBC  len=0x11c2  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x64c', '0x76c', '0x76c']
+; rec1[0] = "data\\adv\\dat\\mm001.ybc"
+; rec1[1] = "data\\adv\\dat\\Kojin002.ybc"
+; rec1[2] = "data\\adv\\dat\\Kojin003.ybc"
+; rec1[3] = "data\\adv\\dat\\Kojin004.ybc"
+; rec1[4] = "data\\adv\\dat\\Kojin005.ybc"
+; rec1[5] = "data\\adv\\dat\\Kojin006.ybc"
+;   txt#0 off=0x134 prm=0x1a0 "「ステータス画面の説明」"
+;   txt#1 off=0x14e prm=0x240 "ここでは、各個人ステータスの見方を"
+;   txt#2 off=0x172 prm=0x100 "説明致します。"
+;   txt#3 off=0x182 prm=0x280 "「キャラグラフィック」では選択している"
+;   txt#4 off=0x1aa prm=0x220 "ユニットの顔が表示されています。"
+;   txt#5 off=0x1cc prm=0x180 "「キャラクタＬＶ」では"
+;   txt#6 off=0x1e4 prm=0x1c0 "現在のＬＶが表示されます。"
+;   txt#7 off=0x200 prm=0x1a0 "「基本ステータス」では、"
+;   txt#8 off=0x21a prm=0x280 "そのユニットの能力値が記されています。"
+;   txt#9 off=0x242 prm=0x260 "細かい意味合いは、画面をご覧下さい。"
+;   txt#10 off=0x268 prm=0x1e0 "では、続いて戦闘ステータスの"
+;   txt#11 off=0x286 prm=0x140 "見方を説明します。"
+;   txt#12 off=0x29a prm=0x180 "「メインステータス」は"
+;   txt#13 off=0x2b2 prm=0x1a0 "このようになっています。"
+;   txt#14 off=0x2cc prm=0x2a0 "注目すべきは「エンゲージタイム」であり、"
+;   txt#15 off=0x2f6 prm=0x180 "ユニットＬＶが上がるに"
+;   txt#16 off=0x30e prm=0x1c0 "連れて短くなっていきます。"
+;   txt#17 off=0x32a prm=0x1a0 "高ＬＶのユニットほど気を"
+;   txt#18 off=0x344 prm=0x160 "つけねばなりません。"
+;   txt#19 off=0x35a prm=0x260 "次に、アタックステータスの説明です。"
+;   txt#20 off=0x380 prm=0x240 "この部分がアタックステータスです。"
+;   txt#21 off=0x3a4 prm=0x220 "命中精度は、魔術師・僧侶の場合、"
+;   txt#22 off=0x3c6 prm=0x1c0 "必ず「必中」になりますが、"
+;   txt#23 off=0x3e2 prm=0x2c0 "その他の職業は、数値表記になっております。"
+;   txt#24 off=0x40e prm=0x2a0 "数値が高い程、攻撃が当たり易くなります。"
+;   txt#25 off=0x438 prm=0x260 "威力は冒険中、「威力下限～威力上限」"
+;   txt#26 off=0x45e prm=0x140 "が設定されており、"
+;   txt#27 off=0x472 prm=0x220 "実際の威力にばらつきがあります。"
+;   txt#28 off=0x494 prm=0x260 "この画面では、平均値を取っています。"
+;   txt#29 off=0x4ba prm=0x2a0 "その他細かい部分は画面を参照して下さい。"
+;   txt#30 off=0x4e4 prm=0x1a0 "ディフェンスステータスは"
+;   txt#31 off=0x4fe prm=0x180 "こちらになっています。"
+;   txt#32 off=0x516 prm=0x280 "ここでの注目すべきは「精神耐性」です。"
+;   txt#33 off=0x53e prm=0x200 "「障壁」は受ける魔法ダメージを"
+;   txt#34 off=0x55e prm=0x160 "数値分防ぐ訳ですが、"
+;   txt#35 off=0x574 prm=0x1a0 "「精神耐性」は数値％分、"
+;   txt#36 off=0x58e prm=0x1c0 "ダメージをカット出来ます。"
+;   txt#37 off=0x5aa prm=0x2a0 "では、最後に職業関係枠の説明を致します。"
+;   txt#38 off=0x5d4 prm=0x260 "こちらの「職業」欄が現在の職業です。"
+;   txt#39 off=0x5fa prm=0x240 "右端の「装備スキル＋アイテム」欄は"
+;   txt#40 off=0x61e prm=0x2c0 "現在装備しているスキルやアイテムの一覧と、"
+;   txt#41 off=0x64a prm=0x2a0 "それぞれ装備できる許容量を表しています。"
+;   txt#42 off=0x674 prm=0x280 "各個人のパラメータをチェックできます。"
+;   txt#43 off=0x69c prm=0x2a0 "ステータス画面の説明は以上で終わります。"
+;   txt#44 off=0x6c6 prm=0x160 "ご理解頂けましたか？"
+;   txt#45 off=0x6dc prm=0x1a0 "すまない、もう一度頼む。"
+;   txt#46 off=0x6f6 prm=0xc0 "理解した。"
+;   txt#47 off=0x702 prm=0x1a0 "すまない、もう一度頼む。"
+;   txt#48 off=0x71c prm=0x1c0 "では最初から説明致します。"
+;   txt#49 off=0x738 prm=0xc0 "理解した。"
+;   txt#50 off=0x744 prm=0x100 "わかりました。"
+;   txt#51 off=0x754 prm=0x240 "他にわからないことは御座いますか？"
+;   txt#52 off=0x778 prm=0x160 "　いや、もう結構だ。"
+;   txt#53 off=0x78e prm=0x2a0 "　スキル装備の仕方について説明してくれ。"
+;   txt#54 off=0x7b8 prm=0x2c0 "　アイテム装備の仕方について説明してくれ。"
+;   txt#55 off=0x7e4 prm=0x280 "　職業変更の仕方について説明してくれ。"
+;   txt#56 off=0x80c prm=0x2a0 "　能力値上昇の仕方について説明してくれ。"
+;   txt#57 off=0x836 prm=0x220 "　生徒一覧について説明してくれ。"
+;   txt#58 off=0x858 prm=0x140 "いや、もう結構だ。"
+;   txt#59 off=0x86c prm=0x220 "では、またご質問がありましたら、"
+;   txt#60 off=0x88e prm=0x160 "お声をおかけ下さい。"
+;   txt#61 off=0x8a4 prm=0x280 "スキル装備の仕方について説明してくれ。"
+;   txt#62 off=0x8cc prm=0x100 "わかりました。"
+;   txt#63 off=0x8dc prm=0x220 "スキル装備の仕方についてですね。"
+;   txt#64 off=0x8fe prm=0x2a0 "アイテム装備の仕方について説明してくれ。"
+;   txt#65 off=0x928 prm=0x100 "わかりました。"
+;   txt#66 off=0x938 prm=0x240 "アイテム装備の仕方についてですね。"
+;   txt#67 off=0x95c prm=0x260 "職業変更の仕方について説明してくれ。"
+;   txt#68 off=0x982 prm=0x100 "わかりました。"
+;   txt#69 off=0x992 prm=0x200 "職業変更の仕方についてですね。"
+;   txt#70 off=0x9b2 prm=0x280 "能力値上昇の仕方について説明してくれ。"
+;   txt#71 off=0x9da prm=0x100 "わかりました。"
+;   txt#72 off=0x9ea prm=0x220 "能力値上昇の仕方についてですね。"
+;   txt#73 off=0xa0c prm=0x200 "生徒一覧について説明してくれ。"
+;   txt#74 off=0xa2c prm=0x100 "わかりました。"
+;   txt#75 off=0xa3c prm=0x1a0 "生徒一覧についてですね。"
+000014: L_0000    56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             59 BGSETWAIT                adv=16  0 166 1
+000034:             56 FADESETWAIT              adv=8   3
+00003c:             51 KEYWAIT                  adv=4   
+000040:             56 FADESETWAIT              adv=8   4
+000048:             21 ALLOFF                   adv=4   
+00004c:             59 BGSETWAIT                adv=16  0 167 1
+00005c:             22 BORDSET                  adv=16  6 3 0
+00006c:             24 BORDDISP                 adv=12  6 0
+000078:             27 BORDONWAIT               adv=16  2 268435455 268435455
+000088:             56 FADESETWAIT              adv=8   3
+000090:             43 TEXTACTIVE               adv=8   2
+000098:             17 TEXT                     adv=6   #0 "「ステータス画面の説明」"
+00009e:             43 TEXTACTIVE               adv=8   6
+0000a6:             17 TEXT                     adv=6   #1 "ここでは、各個人ステータスの見方を"
+0000ac:             17 TEXT                     adv=6   #2 "説明致します。"
+0000b2:             50 TEXTWAITKB               adv=4   
+0000b6:             51 KEYWAIT                  adv=4   
+0000ba:             59 BGSETWAIT                adv=16  0 168 6
+0000ca:             44 TEXTCLEAR                adv=4   
+0000ce:             17 TEXT                     adv=6   #3 "「キャラグラフィック」では選択している"
+0000d4:             17 TEXT                     adv=6   #4 "ユニットの顔が表示されています。"
+0000da:             50 TEXTWAITKB               adv=4   
+0000de:             51 KEYWAIT                  adv=4   
+0000e2:             44 TEXTCLEAR                adv=4   
+0000e6:             17 TEXT                     adv=6   #5 "「キャラクタＬＶ」では"
+0000ec:             17 TEXT                     adv=6   #6 "現在のＬＶが表示されます。"
+0000f2:             50 TEXTWAITKB               adv=4   
+0000f6:             51 KEYWAIT                  adv=4   
+0000fa:             44 TEXTCLEAR                adv=4   
+0000fe:             17 TEXT                     adv=6   #7 "「基本ステータス」では、"
+000104:             17 TEXT                     adv=6   #8 "そのユニットの能力値が記されています。"
+00010a:             50 TEXTWAITKB               adv=4   
+00010e:             51 KEYWAIT                  adv=4   
+000112:             44 TEXTCLEAR                adv=4   
+000116:             17 TEXT                     adv=6   #9 "細かい意味合いは、画面をご覧下さい。"
+00011c:             17 TEXT                     adv=6   #10 "では、続いて戦闘ステータスの"
+000122:             17 TEXT                     adv=6   #11 "見方を説明します。"
+000128:             50 TEXTWAITKB               adv=4   
+00012c:             51 KEYWAIT                  adv=4   
+000130:             59 BGSETWAIT                adv=16  0 169 6
+000140:             44 TEXTCLEAR                adv=4   
+000144:             17 TEXT                     adv=6   #12 "「メインステータス」は"
+00014a:             17 TEXT                     adv=6   #13 "このようになっています。"
+000150:             50 TEXTWAITKB               adv=4   
+000154:             51 KEYWAIT                  adv=4   
+000158:             44 TEXTCLEAR                adv=4   
+00015c:             17 TEXT                     adv=6   #14 "注目すべきは「エンゲージタイム」であり、"
+000162:             17 TEXT                     adv=6   #15 "ユニットＬＶが上がるに"
+000168:             17 TEXT                     adv=6   #16 "連れて短くなっていきます。"
+00016e:             17 TEXT                     adv=6   #17 "高ＬＶのユニットほど気を"
+000174:             17 TEXT                     adv=6   #18 "つけねばなりません。"
+00017a:             50 TEXTWAITKB               adv=4   
+00017e:             51 KEYWAIT                  adv=4   
+000182:             44 TEXTCLEAR                adv=4   
+000186:             17 TEXT                     adv=6   #19 "次に、アタックステータスの説明です。"
+00018c:             50 TEXTWAITKB               adv=4   
+000190:             51 KEYWAIT                  adv=4   
+000194:             59 BGSETWAIT                adv=16  0 170 6
+0001a4:             44 TEXTCLEAR                adv=4   
+0001a8:             17 TEXT                     adv=6   #20 "この部分がアタックステータスです。"
+0001ae:             50 TEXTWAITKB               adv=4   
+0001b2:             51 KEYWAIT                  adv=4   
+0001b6:             44 TEXTCLEAR                adv=4   
+0001ba:             17 TEXT                     adv=6   #21 "命中精度は、魔術師・僧侶の場合、"
+0001c0:             17 TEXT                     adv=6   #22 "必ず「必中」になりますが、"
+0001c6:             17 TEXT                     adv=6   #23 "その他の職業は、数値表記になっております。"
+0001cc:             17 TEXT                     adv=6   #24 "数値が高い程、攻撃が当たり易くなります。"
+0001d2:             50 TEXTWAITKB               adv=4   
+0001d6:             51 KEYWAIT                  adv=4   
+0001da:             44 TEXTCLEAR                adv=4   
+0001de:             17 TEXT                     adv=6   #25 "威力は冒険中、「威力下限～威力上限」"
+0001e4:             17 TEXT                     adv=6   #26 "が設定されており、"
+0001ea:             17 TEXT                     adv=6   #27 "実際の威力にばらつきがあります。"
+0001f0:             17 TEXT                     adv=6   #28 "この画面では、平均値を取っています。"
+0001f6:             50 TEXTWAITKB               adv=4   
+0001fa:             51 KEYWAIT                  adv=4   
+0001fe:             44 TEXTCLEAR                adv=4   
+000202:             17 TEXT                     adv=6   #29 "その他細かい部分は画面を参照して下さい。"
+000208:             50 TEXTWAITKB               adv=4   
+00020c:             51 KEYWAIT                  adv=4   
+000210:             59 BGSETWAIT                adv=16  0 171 6
+000220:             44 TEXTCLEAR                adv=4   
+000224:             17 TEXT                     adv=6   #30 "ディフェンスステータスは"
+00022a:             17 TEXT                     adv=6   #31 "こちらになっています。"
+000230:             50 TEXTWAITKB               adv=4   
+000234:             51 KEYWAIT                  adv=4   
+000238:             44 TEXTCLEAR                adv=4   
+00023c:             17 TEXT                     adv=6   #32 "ここでの注目すべきは「精神耐性」です。"
+000242:             17 TEXT                     adv=6   #33 "「障壁」は受ける魔法ダメージを"
+000248:             17 TEXT                     adv=6   #34 "数値分防ぐ訳ですが、"
+00024e:             17 TEXT                     adv=6   #35 "「精神耐性」は数値％分、"
+000254:             17 TEXT                     adv=6   #36 "ダメージをカット出来ます。"
+00025a:             50 TEXTWAITKB               adv=4   
+00025e:             51 KEYWAIT                  adv=4   
+000262:             44 TEXTCLEAR                adv=4   
+000266:             17 TEXT                     adv=6   #37 "では、最後に職業関係枠の説明を致します。"
+00026c:             50 TEXTWAITKB               adv=4   
+000270:             51 KEYWAIT                  adv=4   
+000274:             59 BGSETWAIT                adv=16  0 172 6
+000284:             44 TEXTCLEAR                adv=4   
+000288:             17 TEXT                     adv=6   #38 "こちらの「職業」欄が現在の職業です。"
+00028e:             50 TEXTWAITKB               adv=4   
+000292:             51 KEYWAIT                  adv=4   
+000296:             44 TEXTCLEAR                adv=4   
+00029a:             17 TEXT                     adv=6   #39 "右端の「装備スキル＋アイテム」欄は"
+0002a0:             17 TEXT                     adv=6   #40 "現在装備しているスキルやアイテムの一覧と、"
+0002a6:             17 TEXT                     adv=6   #41 "それぞれ装備できる許容量を表しています。"
+0002ac:             50 TEXTWAITKB               adv=4   
+0002b0:             51 KEYWAIT                  adv=4   
+0002b4:             43 TEXTACTIVE               adv=8   2
+0002bc:             17 TEXT                     adv=6   #42 "各個人のパラメータをチェックできます。"
+0002c2:             43 TEXTACTIVE               adv=8   6
+0002ca:             44 TEXTCLEAR                adv=4   
+0002ce:             17 TEXT                     adv=6   #43 "ステータス画面の説明は以上で終わります。"
+0002d4:             17 TEXT                     adv=6   #44 "ご理解頂けましたか？"
+0002da:             50 TEXTWAITKB               adv=4   
+0002de:             51 KEYWAIT                  adv=4   
+0002e2:             61 MENU                     adv=20  v0x0 v0x2 v0x2d v0x2e
+0002f6:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 0 -> L_030a
+00030a:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0352
+00031e: L_030a    43 TEXTACTIVE               adv=8   2
+000326:             44 TEXTCLEAR                adv=4   
+00032a:             17 TEXT                     adv=6   #47 "すまない、もう一度頼む。"
+000330:             50 TEXTWAITKB               adv=4   
+000334:             51 KEYWAIT                  adv=4   
+000338:             43 TEXTACTIVE               adv=8   6
+000340:             44 TEXTCLEAR                adv=4   
+000344:             17 TEXT                     adv=6   #48 "では最初から説明致します。"
+00034a:             50 TEXTWAITKB               adv=4   
+00034e:             51 KEYWAIT                  adv=4   
+000352:             56 FADESETWAIT              adv=8   4
+00035a:             21 ALLOFF                   adv=4   
+00035e:             11 GOTO                     adv=8   L_0000
+000366: L_0352    43 TEXTACTIVE               adv=8   2
+00036e:             44 TEXTCLEAR                adv=4   
+000372:             17 TEXT                     adv=6   #49 "理解した。"
+000378:             50 TEXTWAITKB               adv=4   
+00037c:             51 KEYWAIT                  adv=4   
+000380:             43 TEXTACTIVE               adv=8   6
+000388:             44 TEXTCLEAR                adv=4   
+00038c:             17 TEXT                     adv=6   #50 "わかりました。"
+000392:             17 TEXT                     adv=6   #51 "他にわからないことは御座いますか？"
+000398:             50 TEXTWAITKB               adv=4   
+00039c:             51 KEYWAIT                  adv=4   
+0003a0:             61 MENU                     adv=36  v0x0 v0x6 v0x34 v0x35 v0x36 v0x37 v0x38 v0x39
+0003c4:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 0 -> L_0428
+0003d8:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0486
+0003ec:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 2 -> L_04dc
+000400:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 3 -> L_0532
+000414:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 4 -> L_0588
+000428:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 5 -> L_05de
+00043c: L_0428    43 TEXTACTIVE               adv=8   2
+000444:             44 TEXTCLEAR                adv=4   
+000448:             17 TEXT                     adv=6   #58 "いや、もう結構だ。"
+00044e:             50 TEXTWAITKB               adv=4   
+000452:             51 KEYWAIT                  adv=4   
+000456:             43 TEXTACTIVE               adv=8   6
+00045e:             44 TEXTCLEAR                adv=4   
+000462:             17 TEXT                     adv=6   #59 "では、またご質問がありましたら、"
+000468:             17 TEXT                     adv=6   #60 "お声をおかけ下さい。"
+00046e:             50 TEXTWAITKB               adv=4   
+000472:             51 KEYWAIT                  adv=4   
+000476:             12 VWAIT                    adv=8   30
+00047e:             56 FADESETWAIT              adv=8   4
+000486:             21 ALLOFF                   adv=4   
+00048a:             12 VWAIT                    adv=8   60
+000492:             15 SCRIPTEXEC               adv=8   v0x0
+00049a: L_0486    43 TEXTACTIVE               adv=8   2
+0004a2:             44 TEXTCLEAR                adv=4   
+0004a6:             17 TEXT                     adv=6   #61 "スキル装備の仕方について説明してくれ。"
+0004ac:             50 TEXTWAITKB               adv=4   
+0004b0:             51 KEYWAIT                  adv=4   
+0004b4:             43 TEXTACTIVE               adv=8   6
+0004bc:             44 TEXTCLEAR                adv=4   
+0004c0:             17 TEXT                     adv=6   #62 "わかりました。"
+0004c6:             17 TEXT                     adv=6   #63 "スキル装備の仕方についてですね。"
+0004cc:             50 TEXTWAITKB               adv=4   
+0004d0:             51 KEYWAIT                  adv=4   
+0004d4:             12 VWAIT                    adv=8   30
+0004dc:             56 FADESETWAIT              adv=8   4
+0004e4:             21 ALLOFF                   adv=4   
+0004e8:             15 SCRIPTEXEC               adv=8   v0x1
+0004f0: L_04dc    43 TEXTACTIVE               adv=8   2
+0004f8:             44 TEXTCLEAR                adv=4   
+0004fc:             17 TEXT                     adv=6   #64 "アイテム装備の仕方について説明してくれ。"
+000502:             50 TEXTWAITKB               adv=4   
+000506:             51 KEYWAIT                  adv=4   
+00050a:             43 TEXTACTIVE               adv=8   6
+000512:             44 TEXTCLEAR                adv=4   
+000516:             17 TEXT                     adv=6   #65 "わかりました。"
+00051c:             17 TEXT                     adv=6   #66 "アイテム装備の仕方についてですね。"
+000522:             50 TEXTWAITKB               adv=4   
+000526:             51 KEYWAIT                  adv=4   
+00052a:             12 VWAIT                    adv=8   30
+000532:             56 FADESETWAIT              adv=8   4
+00053a:             21 ALLOFF                   adv=4   
+00053e:             15 SCRIPTEXEC               adv=8   v0x2
+000546: L_0532    43 TEXTACTIVE               adv=8   2
+00054e:             44 TEXTCLEAR                adv=4   
+000552:             17 TEXT                     adv=6   #67 "職業変更の仕方について説明してくれ。"
+000558:             50 TEXTWAITKB               adv=4   
+00055c:             51 KEYWAIT                  adv=4   
+000560:             43 TEXTACTIVE               adv=8   6
+000568:             44 TEXTCLEAR                adv=4   
+00056c:             17 TEXT                     adv=6   #68 "わかりました。"
+000572:             17 TEXT                     adv=6   #69 "職業変更の仕方についてですね。"
+000578:             50 TEXTWAITKB               adv=4   
+00057c:             51 KEYWAIT                  adv=4   
+000580:             12 VWAIT                    adv=8   30
+000588:             56 FADESETWAIT              adv=8   4
+000590:             21 ALLOFF                   adv=4   
+000594:             15 SCRIPTEXEC               adv=8   v0x3
+00059c: L_0588    43 TEXTACTIVE               adv=8   2
+0005a4:             44 TEXTCLEAR                adv=4   
+0005a8:             17 TEXT                     adv=6   #70 "能力値上昇の仕方について説明してくれ。"
+0005ae:             50 TEXTWAITKB               adv=4   
+0005b2:             51 KEYWAIT                  adv=4   
+0005b6:             43 TEXTACTIVE               adv=8   6
+0005be:             44 TEXTCLEAR                adv=4   
+0005c2:             17 TEXT                     adv=6   #71 "わかりました。"
+0005c8:             17 TEXT                     adv=6   #72 "能力値上昇の仕方についてですね。"
+0005ce:             50 TEXTWAITKB               adv=4   
+0005d2:             51 KEYWAIT                  adv=4   
+0005d6:             12 VWAIT                    adv=8   30
+0005de:             56 FADESETWAIT              adv=8   4
+0005e6:             21 ALLOFF                   adv=4   
+0005ea:             15 SCRIPTEXEC               adv=8   v0x4
+0005f2: L_05de    43 TEXTACTIVE               adv=8   2
+0005fa:             44 TEXTCLEAR                adv=4   
+0005fe:             17 TEXT                     adv=6   #73 "生徒一覧について説明してくれ。"
+000604:             50 TEXTWAITKB               adv=4   
+000608:             51 KEYWAIT                  adv=4   
+00060c:             43 TEXTACTIVE               adv=8   6
+000614:             44 TEXTCLEAR                adv=4   
+000618:             17 TEXT                     adv=6   #74 "わかりました。"
+00061e:             17 TEXT                     adv=6   #75 "生徒一覧についてですね。"
+000624:             50 TEXTWAITKB               adv=4   
+000628:             51 KEYWAIT                  adv=4   
+00062c:             12 VWAIT                    adv=8   30
+000634:             56 FADESETWAIT              adv=8   4
+00063c:             21 ALLOFF                   adv=4   
+000640:             15 SCRIPTEXEC               adv=8   v0x5
+000648:             19 END                      adv=4   ; END
+; (245 insns)

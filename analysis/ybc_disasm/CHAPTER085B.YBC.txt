@@ -1,0 +1,200 @@
+; CHAPTER085B.YBC  len=0x780  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x4d0', '0x4d0', '0x4d0']
+;   txt#0 off=0x7c prm=0x80 "老師。"
+;   txt#1 off=0x84 prm=0xe0 "《這一刻……"
+;   txt#2 off=0x92 prm=0x160 "　果然還是來了嗎。》"
+;   txt#3 off=0xa8 prm=0x80 "老師？"
+;   txt#4 off=0xb0 prm=0x80 "請進。"
+;   txt#5 off=0xb8 prm=0xa0 "…………"
+;   txt#6 off=0xc2 prm=0xa0 "老師……"
+;   txt#7 off=0xcc prm=0x180 "第十三王杯是什麼東西？"
+;   txt#8 off=0xe4 prm=0x260 "……那是在九年前失落的，最後的王杯。"
+;   txt#9 off=0x10a prm=0x120 "它擁有什麼能力？"
+;   txt#10 off=0x11c prm=0x140 "可以消除混沌……？"
+;   txt#11 off=0x130 prm=0xa0 "…………"
+;   txt#12 off=0x13a prm=0x60 "不。"
+;   txt#13 off=0x140 prm=0x1e0 "那是可以讓人隨心所欲的東西，"
+;   txt#14 off=0x15e prm=0x220 "無論是混沌、秩序、光明、黑闇……"
+;   txt#15 off=0x180 prm=0x280 "不管是什麼樣的願望，都可以實現的東西。"
+;   txt#16 off=0x1a8 prm=0x1e0 "什麼樣的願望都可以實現……？"
+;   txt#17 off=0x1c6 prm=0xa0 "…………"
+;   txt#18 off=0x1d0 prm=0x2a0 "如果「匍伏蔓延來而之物」想要毀滅愛爾梅納"
+;   txt#19 off=0x1fa prm=0xc0 "斯的話……"
+;   txt#20 off=0x206 prm=0x1a0 "那也可以實現他們的心願。"
+;   txt#21 off=0x220 prm=0xe0 "怎麼會……！"
+;   txt#22 off=0x22e prm=0x100 "這麼說的話……"
+;   txt#23 off=0x23e prm=0x160 "帕彌拉學姊她……！？"
+;   txt#24 off=0x254 prm=0x180 "愛爾梅納斯，危險了……"
+;   txt#25 off=0x26c prm=0xa0 "老師！！"
+;   txt#26 off=0x276 prm=0xa0 "老師！！"
+;   txt#27 off=0x280 prm=0xa0 "…………"
+;   txt#28 off=0x28a prm=0x100 "嗯嗯，出發吧。"
+;   txt#29 off=0x29a prm=0x160 "去完成大家的心願吧。"
+000014:             20 ADVMODESET               adv=8   1
+00001c:             63 SE                       adv=8   9
+000024:             59 BGSETWAIT                adv=16  0 16 1
+000034:             27 BORDONWAIT               adv=16  5 4 0
+000044:             56 FADESETWAIT              adv=8   3
+00004c:             43 TEXTACTIVE               adv=8   5
+000054:             65 BGM                      adv=8   v0x5c
+00005c:             17 TEXT                     adv=6   #0 "老師。"
+000062:             50 TEXTWAITKB               adv=4   
+000066:             51 KEYWAIT                  adv=4   
+00006a:             27 BORDONWAIT               adv=16  3 268435455 268435455
+00007a:             43 TEXTACTIVE               adv=8   3
+000082:             17 TEXT                     adv=6   #1 "《這一刻……"
+000088:             17 TEXT                     adv=6   #2 "　果然還是來了嗎。》"
+00008e:             50 TEXTWAITKB               adv=4   
+000092:             51 KEYWAIT                  adv=4   
+000096:             43 TEXTACTIVE               adv=8   5
+00009e:             44 TEXTCLEAR                adv=4   
+0000a2:             65 BGM                      adv=8   v0x1005c
+0000aa:             17 TEXT                     adv=6   #3 "老師？"
+0000b0:             50 TEXTWAITKB               adv=4   
+0000b4:             51 KEYWAIT                  adv=4   
+0000b8:             43 TEXTACTIVE               adv=8   3
+0000c0:             44 TEXTCLEAR                adv=4   
+0000c4:             17 TEXT                     adv=6   #4 "請進。"
+0000ca:             50 TEXTWAITKB               adv=4   
+0000ce:             51 KEYWAIT                  adv=4   
+0000d2:             44 TEXTCLEAR                adv=4   
+0000d6:             33 CHARSET                  adv=16  5 4 0
+0000e6:             35 CHARDISP                 adv=12  5 0
+0000f2:             43 TEXTACTIVE               adv=8   5
+0000fa:             44 TEXTCLEAR                adv=4   
+0000fe:             17 TEXT                     adv=6   #5 "…………"
+000104:             26 BORDCHANGE               adv=20  3 6 6 0
+000118:             30 BORDPACKONWAIT           adv=20  6 6 0 30
+00012c:             43 TEXTACTIVE               adv=8   6
+000134:             65 BGM                      adv=8   v0x2005c
+00013c:             17 TEXT                     adv=6   #6 "老師……"
+000142:             50 TEXTWAITKB               adv=4   
+000146:             51 KEYWAIT                  adv=4   
+00014a:             65 BGM                      adv=8   v0x3005c
+000152:             17 TEXT                     adv=6   #7 "第十三王杯是什麼東西？"
+000158:             50 TEXTWAITKB               adv=4   
+00015c:             51 KEYWAIT                  adv=4   
+000160:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000170:             43 TEXTACTIVE               adv=8   1
+000178:             17 TEXT                     adv=6   #8 "……那是在九年前失落的，最後的王杯。"
+00017e:             50 TEXTWAITKB               adv=4   
+000182:             51 KEYWAIT                  adv=4   
+000186:             43 TEXTACTIVE               adv=8   5
+00018e:             44 TEXTCLEAR                adv=4   
+000192:             33 CHARSET                  adv=16  5 5 0
+0001a2:             35 CHARDISP                 adv=12  5 1
+0001ae:             43 TEXTACTIVE               adv=8   5
+0001b6:             65 BGM                      adv=8   v0x4005c
+0001be:             17 TEXT                     adv=6   #9 "它擁有什麼能力？"
+0001c4:             50 TEXTWAITKB               adv=4   
+0001c8:             51 KEYWAIT                  adv=4   
+0001cc:             65 BGM                      adv=8   v0x5005c
+0001d4:             17 TEXT                     adv=6   #10 "可以消除混沌……？"
+0001da:             50 TEXTWAITKB               adv=4   
+0001de:             51 KEYWAIT                  adv=4   
+0001e2:             43 TEXTACTIVE               adv=8   6
+0001ea:             44 TEXTCLEAR                adv=4   
+0001ee:             17 TEXT                     adv=6   #11 "…………"
+0001f4:             43 TEXTACTIVE               adv=8   1
+0001fc:             44 TEXTCLEAR                adv=4   
+000200:             17 TEXT                     adv=6   #12 "不。"
+000206:             17 TEXT                     adv=6   #13 "那是可以讓人隨心所欲的東西，"
+00020c:             17 TEXT                     adv=6   #14 "無論是混沌、秩序、光明、黑闇……"
+000212:             17 TEXT                     adv=6   #15 "不管是什麼樣的願望，都可以實現的東西。"
+000218:             50 TEXTWAITKB               adv=4   
+00021c:             51 KEYWAIT                  adv=4   
+000220:             43 TEXTACTIVE               adv=8   5
+000228:             44 TEXTCLEAR                adv=4   
+00022c:             33 CHARSET                  adv=16  5 8 0
+00023c:             35 CHARDISP                 adv=12  5 1
+000248:             43 TEXTACTIVE               adv=8   5
+000250:             65 BGM                      adv=8   v0x6005c
+000258:             17 TEXT                     adv=6   #16 "什麼樣的願望都可以實現……？"
+00025e:             50 TEXTWAITKB               adv=4   
+000262:             51 KEYWAIT                  adv=4   
+000266:             43 TEXTACTIVE               adv=8   1
+00026e:             44 TEXTCLEAR                adv=4   
+000272:             17 TEXT                     adv=6   #17 "…………"
+000278:             43 TEXTACTIVE               adv=8   6
+000280:             44 TEXTCLEAR                adv=4   
+000284:             33 CHARSET                  adv=16  6 7 0
+000294:             35 CHARDISP                 adv=12  6 1
+0002a0:             43 TEXTACTIVE               adv=8   6
+0002a8:             65 BGM                      adv=8   v0x7005c
+0002b0:             17 TEXT                     adv=6   #18 "如果「匍伏蔓延來而之物」想要毀滅愛爾梅納"
+0002b6:             17 TEXT                     adv=6   #19 "斯的話……"
+0002bc:             50 TEXTWAITKB               adv=4   
+0002c0:             51 KEYWAIT                  adv=4   
+0002c4:             65 BGM                      adv=8   v0x8005c
+0002cc:             17 TEXT                     adv=6   #20 "那也可以實現他們的心願。"
+0002d2:             50 TEXTWAITKB               adv=4   
+0002d6:             51 KEYWAIT                  adv=4   
+0002da:             43 TEXTACTIVE               adv=8   5
+0002e2:             44 TEXTCLEAR                adv=4   
+0002e6:             33 CHARSET                  adv=16  5 4 0
+0002f6:             35 CHARDISP                 adv=12  5 1
+000302:             43 TEXTACTIVE               adv=8   5
+00030a:             65 BGM                      adv=8   v0x9005c
+000312:             17 TEXT                     adv=6   #21 "怎麼會……！"
+000318:             50 TEXTWAITKB               adv=4   
+00031c:             51 KEYWAIT                  adv=4   
+000320:             43 TEXTACTIVE               adv=8   6
+000328:             44 TEXTCLEAR                adv=4   
+00032c:             33 CHARSET                  adv=16  6 2 0
+00033c:             35 CHARDISP                 adv=12  6 1
+000348:             43 TEXTACTIVE               adv=8   6
+000350:             65 BGM                      adv=8   v0xa005c
+000358:             17 TEXT                     adv=6   #22 "這麼說的話……"
+00035e:             50 TEXTWAITKB               adv=4   
+000362:             51 KEYWAIT                  adv=4   
+000366:             43 TEXTACTIVE               adv=8   5
+00036e:             44 TEXTCLEAR                adv=4   
+000372:             33 CHARSET                  adv=16  5 9 0
+000382:             35 CHARDISP                 adv=12  5 1
+00038e:             43 TEXTACTIVE               adv=8   5
+000396:             65 BGM                      adv=8   v0xb005c
+00039e:             17 TEXT                     adv=6   #23 "帕彌拉學姊她……！？"
+0003a4:             50 TEXTWAITKB               adv=4   
+0003a8:             51 KEYWAIT                  adv=4   
+0003ac:             43 TEXTACTIVE               adv=8   6
+0003b4:             44 TEXTCLEAR                adv=4   
+0003b8:             33 CHARSET                  adv=16  6 6 0
+0003c8:             35 CHARDISP                 adv=12  6 1
+0003d4:             43 TEXTACTIVE               adv=8   6
+0003dc:             65 BGM                      adv=8   v0xc005c
+0003e4:             17 TEXT                     adv=6   #24 "愛爾梅納斯，危險了……"
+0003ea:             50 TEXTWAITKB               adv=4   
+0003ee:             51 KEYWAIT                  adv=4   
+0003f2:             43 TEXTACTIVE               adv=8   5
+0003fa:             44 TEXTCLEAR                adv=4   
+0003fe:             33 CHARSET                  adv=16  5 4 0
+00040e:             35 CHARDISP                 adv=12  5 1
+00041a:             43 TEXTACTIVE               adv=8   5
+000422:             65 BGM                      adv=8   v0xd005c
+00042a:             17 TEXT                     adv=6   #25 "老師！！"
+000430:             50 TEXTWAITKB               adv=4   
+000434:             51 KEYWAIT                  adv=4   
+000438:             43 TEXTACTIVE               adv=8   6
+000440:             44 TEXTCLEAR                adv=4   
+000444:             33 CHARSET                  adv=16  6 11 0
+000454:             35 CHARDISP                 adv=12  6 1
+000460:             43 TEXTACTIVE               adv=8   6
+000468:             65 BGM                      adv=8   v0xe005c
+000470:             17 TEXT                     adv=6   #26 "老師！！"
+000476:             50 TEXTWAITKB               adv=4   
+00047a:             51 KEYWAIT                  adv=4   
+00047e:             43 TEXTACTIVE               adv=8   5
+000486:             44 TEXTCLEAR                adv=4   
+00048a:             17 TEXT                     adv=6   #27 "…………"
+000490:             43 TEXTACTIVE               adv=8   1
+000498:             44 TEXTCLEAR                adv=4   
+00049c:             17 TEXT                     adv=6   #28 "嗯嗯，出發吧。"
+0004a2:             17 TEXT                     adv=6   #29 "去完成大家的心願吧。"
+0004a8:             50 TEXTWAITKB               adv=4   
+0004ac:             51 KEYWAIT                  adv=4   
+0004b0:             12 VWAIT                    adv=8   30
+0004b8:             56 FADESETWAIT              adv=8   4
+0004c0:             21 ALLOFF                   adv=4   
+0004c4:             12 VWAIT                    adv=8   60
+0004cc:             19 END                      adv=4   ; END
+; (167 insns)

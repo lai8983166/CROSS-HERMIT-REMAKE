@@ -1,0 +1,262 @@
+; T0086.BIN  len=0x10dc
+; ── block0 sub1 code@0x1c4 pool@0x1f4 (0 strings)
+0001c4:            167 REG_GET                  adv=8   v0x0
+0001cc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0001e0:            166 REG_PUT                  adv=8   0
+0001e8:             11 GOTO                     adv=8   L_002c
+0001f0: L_002c    19 END                      adv=4   ; END
+;   (5 insns)
+; ── block0 sub2 code@0x20c pool@0x31a (3 strings)
+;   #0 off=0x10 prm=0x1a0 "這是劇本定時啟動的實驗。"
+;   #1 off=0x2a prm=0x1e0 "因為事件定點一號已經開啟了，"
+;   #2 off=0x48 prm=0x120 "所以就踩踩看吧。"
+00020c:            167 REG_GET                  adv=8   v0x0
+000214:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000228:            166 REG_PUT                  adv=8   1
+000230:             11 GOTO                     adv=8   L_010a
+000238: L_002c    56 FADESETWAIT              adv=8   2
+000240:             20 ADVMODESET               adv=8   0
+000248:             12 VWAIT                    adv=8   30
+000250:             30 BORDPACKONWAIT           adv=20  7 9 0 30
+000264:             43 TEXTACTIVE               adv=8   7
+00026c:             17 TEXT                     adv=6   #0 "這是劇本定時啟動的實驗。"
+000272:             50 TEXTWAITKB               adv=4   
+000276:             51 KEYWAIT                  adv=4   
+00027a:             30 BORDPACKONWAIT           adv=20  8 4 0 30
+00028e:             43 TEXTACTIVE               adv=8   8
+000296:             17 TEXT                     adv=6   #1 "因為事件定點一號已經開啟了，"
+00029c:             17 TEXT                     adv=6   #2 "所以就踩踩看吧。"
+0002a2:             50 TEXTWAITKB               adv=4   
+0002a6:             51 KEYWAIT                  adv=4   
+0002aa:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0002ba:             43 TEXTACTIVE               adv=8   7
+0002c2:             44 TEXTCLEAR                adv=4   
+0002c6:             48 TEXTFONTRET              adv=4   
+0002ca:             31 BORDPACKOFF              adv=12  7 30
+0002d6:             43 TEXTACTIVE               adv=8   8
+0002de:             44 TEXTCLEAR                adv=4   
+0002e2:             48 TEXTFONTRET              adv=4   
+0002e6:             31 BORDPACKOFF              adv=12  8 30
+0002f2:             24 BORDDISP                 adv=12  4 3
+0002fe:             12 VWAIT                    adv=8   30
+000306:             21 ALLOFF                   adv=4   
+00030a:            113 TACTPLAYERAPPEAR         adv=12  1 1
+000316: L_010a    19 END                      adv=4   ; END
+;   (32 insns)
+; ── block0 sub3 code@0x388 pool@0x48a (3 strings)
+;   #0 off=0x10 prm=0xc0 "劇情啟動∼"
+;   #1 off=0x1c prm=0x260 "從現在開始，在１０秒之後應該會啟動，"
+;   #2 off=0x42 prm=0x220 "如果沒啟動的話，就是有Ｂｕｇ囉。"
+000388:            167 REG_GET                  adv=8   v0x0
+000390:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0003a4:            166 REG_PUT                  adv=8   1
+0003ac:             11 GOTO                     adv=8   L_00fe
+0003b4: L_002c    56 FADESETWAIT              adv=8   2
+0003bc:             20 ADVMODESET               adv=8   0
+0003c4:             12 VWAIT                    adv=8   30
+0003cc:             30 BORDPACKONWAIT           adv=20  7 9 0 30
+0003e0:             43 TEXTACTIVE               adv=8   7
+0003e8:             17 TEXT                     adv=6   #0 "劇情啟動∼"
+0003ee:             50 TEXTWAITKB               adv=4   
+0003f2:             51 KEYWAIT                  adv=4   
+0003f6:             30 BORDPACKONWAIT           adv=20  8 4 0 30
+00040a:             43 TEXTACTIVE               adv=8   8
+000412:             17 TEXT                     adv=6   #1 "從現在開始，在１０秒之後應該會啟動，"
+000418:             17 TEXT                     adv=6   #2 "如果沒啟動的話，就是有Ｂｕｇ囉。"
+00041e:             50 TEXTWAITKB               adv=4   
+000422:             51 KEYWAIT                  adv=4   
+000426:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000436:             43 TEXTACTIVE               adv=8   7
+00043e:             44 TEXTCLEAR                adv=4   
+000442:             48 TEXTFONTRET              adv=4   
+000446:             31 BORDPACKOFF              adv=12  7 30
+000452:             43 TEXTACTIVE               adv=8   8
+00045a:             44 TEXTCLEAR                adv=4   
+00045e:             48 TEXTFONTRET              adv=4   
+000462:             31 BORDPACKOFF              adv=12  8 30
+00046e:             24 BORDDISP                 adv=12  4 3
+00047a:             12 VWAIT                    adv=8   30
+000482:             21 ALLOFF                   adv=4   
+000486: L_00fe    19 END                      adv=4   ; END
+;   (31 insns)
+; ── block0 sub4 code@0x504 pool@0x508 (0 strings)
+000504:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block0 sub5 code@0x520 pool@0x524 (0 strings)
+000520:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block0 sub6 code@0x53c pool@0x540 (0 strings)
+00053c:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block0 sub7 code@0x558 pool@0x55c (0 strings)
+000558:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block0 sub8 code@0x574 pool@0x578 (0 strings)
+000574:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block0 sub9 code@0x590 pool@0x594 (0 strings)
+000590:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block1 sub1 code@0x8b8 pool@0xac2 (9 strings)
+;   #0 off=0x28 prm=0x100 "嗚喔喔喔喔喔∼"
+;   #1 off=0x38 prm=0xc0 "怎麼啦！？"
+;   #2 off=0x44 prm=0x240 "如果踩到了這個定點，事件就會發生，"
+;   #3 off=0x68 prm=0x1a0 "所以這個劇情就出現了唷∼"
+;   #4 off=0x82 prm=0x1e0 "呼∼呼，那麼就利用這個機會，"
+;   #5 off=0xa0 prm=0x1e0 "把地圖一號的事件消除看看吧。"
+;   #6 off=0xbe prm=0x220 "如果成功的話，事件就不會發生囉。"
+;   #7 off=0xe0 prm=0x260 "啊，如果順便把事件二的開關打開的話。"
+;   #8 off=0x106 prm=0x260 "踩下去可能會發生什麼不一樣的事情唷。"
+0008b8:            167 REG_GET                  adv=8   v0x0
+0008c0:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_00cc
+0008d4:              5 SET1                     adv=12  v0x0 1
+0008e0:             96 SYSTEMREAD8              adv=12  v0x0 10
+0008ec:              5 SET1                     adv=12  v0x0 2
+0008f8:             97 SYSTEMREADBIT            adv=12  v0x0 10
+000904:              5 SET1                     adv=12  v0x0 3
+000910:             98 SYSTEMWRITE32            adv=12  v0x0 10
+00091c:              5 SET1                     adv=12  v0x0 1
+000928:             99 SYSTEMWRITE16            adv=12  v0x0 10
+000934:             96 SYSTEMREAD8              adv=12  5 10
+000940:             97 SYSTEMREADBIT            adv=12  6 10
+00094c:             98 SYSTEMWRITE32            adv=12  7 10
+000958:             99 SYSTEMWRITE16            adv=12  1 10
+000964:             96 SYSTEMREAD8              adv=12  777 10
+000970:             99 SYSTEMWRITE16            adv=12  1 0
+00097c:             11 GOTO                     adv=8   L_0206
+000984: L_00cc    56 FADESETWAIT              adv=8   2
+00098c:             20 ADVMODESET               adv=8   0
+000994:             12 VWAIT                    adv=8   30
+00099c:             30 BORDPACKONWAIT           adv=20  7 9 0 30
+0009b0:             43 TEXTACTIVE               adv=8   7
+0009b8:             17 TEXT                     adv=6   #0 "嗚喔喔喔喔喔∼"
+0009be:             50 TEXTWAITKB               adv=4   
+0009c2:             51 KEYWAIT                  adv=4   
+0009c6:             30 BORDPACKONWAIT           adv=20  8 4 0 30
+0009da:             43 TEXTACTIVE               adv=8   8
+0009e2:             17 TEXT                     adv=6   #1 "怎麼啦！？"
+0009e8:             50 TEXTWAITKB               adv=4   
+0009ec:             51 KEYWAIT                  adv=4   
+0009f0:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000a00:             43 TEXTACTIVE               adv=8   7
+000a08:             44 TEXTCLEAR                adv=4   
+000a0c:             17 TEXT                     adv=6   #2 "如果踩到了這個定點，事件就會發生，"
+000a12:             17 TEXT                     adv=6   #3 "所以這個劇情就出現了唷∼"
+000a18:             43 TEXTACTIVE               adv=8   4
+000a20:             17 TEXT                     adv=6   #4 "呼∼呼，那麼就利用這個機會，"
+000a26:             17 TEXT                     adv=6   #5 "把地圖一號的事件消除看看吧。"
+000a2c:             17 TEXT                     adv=6   #6 "如果成功的話，事件就不會發生囉。"
+000a32:             50 TEXTWAITKB               adv=4   
+000a36:             51 KEYWAIT                  adv=4   
+000a3a:             43 TEXTACTIVE               adv=8   4
+000a42:             17 TEXT                     adv=6   #7 "啊，如果順便把事件二的開關打開的話。"
+000a48:             17 TEXT                     adv=6   #8 "踩下去可能會發生什麼不一樣的事情唷。"
+000a4e:             50 TEXTWAITKB               adv=4   
+000a52:             51 KEYWAIT                  adv=4   
+000a56:             43 TEXTACTIVE               adv=8   7
+000a5e:             44 TEXTCLEAR                adv=4   
+000a62:             48 TEXTFONTRET              adv=4   
+000a66:             31 BORDPACKOFF              adv=12  7 30
+000a72:             43 TEXTACTIVE               adv=8   8
+000a7a:             44 TEXTCLEAR                adv=4   
+000a7e:             48 TEXTFONTRET              adv=4   
+000a82:             31 BORDPACKOFF              adv=12  8 30
+000a8e:             24 BORDDISP                 adv=12  4 3
+000a9a:             12 VWAIT                    adv=8   30
+000aa2:             21 ALLOFF                   adv=4   
+000aa6:            114 TACTENEMYAPPEAR          adv=12  1 0
+000ab2:            113 TACTPLAYERAPPEAR         adv=12  2 1
+000abe: L_0206    19 END                      adv=4   ; END
+;   (60 insns)
+; ── block1 sub2 code@0xc04 pool@0xd26 (3 strings)
+;   #0 off=0x10 prm=0xc0 "踩到了呢∼"
+;   #1 off=0x1c prm=0x180 "那麼，就等劇情啟動吧∼"
+;   #2 off=0x34 prm=0x140 "只要１０秒就好了。"
+000c04:            167 REG_GET                  adv=8   v0x0
+000c0c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000c20:            166 REG_PUT                  adv=8   1
+000c28:             11 GOTO                     adv=8   L_011e
+000c30: L_002c    56 FADESETWAIT              adv=8   2
+000c38:             20 ADVMODESET               adv=8   0
+000c40:             12 VWAIT                    adv=8   30
+000c48:             30 BORDPACKONWAIT           adv=20  7 9 0 30
+000c5c:             43 TEXTACTIVE               adv=8   7
+000c64:             17 TEXT                     adv=6   #0 "踩到了呢∼"
+000c6a:             50 TEXTWAITKB               adv=4   
+000c6e:             51 KEYWAIT                  adv=4   
+000c72:             30 BORDPACKONWAIT           adv=20  8 4 0 30
+000c86:             43 TEXTACTIVE               adv=8   8
+000c8e:             17 TEXT                     adv=6   #1 "那麼，就等劇情啟動吧∼"
+000c94:             17 TEXT                     adv=6   #2 "只要１０秒就好了。"
+000c9a:             50 TEXTWAITKB               adv=4   
+000c9e:             51 KEYWAIT                  adv=4   
+000ca2:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000cb2:             43 TEXTACTIVE               adv=8   7
+000cba:             44 TEXTCLEAR                adv=4   
+000cbe:             48 TEXTFONTRET              adv=4   
+000cc2:             31 BORDPACKOFF              adv=12  7 30
+000cce:             43 TEXTACTIVE               adv=8   8
+000cd6:             44 TEXTCLEAR                adv=4   
+000cda:             48 TEXTFONTRET              adv=4   
+000cde:             31 BORDPACKOFF              adv=12  8 30
+000cea:             24 BORDDISP                 adv=12  4 3
+000cf6:             12 VWAIT                    adv=8   30
+000cfe:             21 ALLOFF                   adv=4   
+000d02:            125 TACTENEMYEXIT            adv=20  0 0 3 600
+000d16:            113 TACTPLAYERAPPEAR         adv=12  2 0
+000d22: L_011e    19 END                      adv=4   ; END
+;   (33 insns)
+; ── block1 sub3 code@0xd84 pool@0xe86 (3 strings)
+;   #0 off=0x10 prm=0xe0 "等、等、等∼"
+;   #1 off=0x1e prm=0xc0 "劇情啟動∼"
+;   #2 off=0x2a prm=0x180 "下一次是６０秒之後唷∼"
+000d84:            167 REG_GET                  adv=8   v0x0
+000d8c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000da0:            166 REG_PUT                  adv=8   1
+000da8:             11 GOTO                     adv=8   L_00fe
+000db0: L_002c    56 FADESETWAIT              adv=8   2
+000db8:             20 ADVMODESET               adv=8   0
+000dc0:             12 VWAIT                    adv=8   30
+000dc8:             30 BORDPACKONWAIT           adv=20  7 9 0 30
+000ddc:             43 TEXTACTIVE               adv=8   7
+000de4:             17 TEXT                     adv=6   #0 "等、等、等∼"
+000dea:             50 TEXTWAITKB               adv=4   
+000dee:             51 KEYWAIT                  adv=4   
+000df2:             30 BORDPACKONWAIT           adv=20  8 4 0 30
+000e06:             43 TEXTACTIVE               adv=8   8
+000e0e:             17 TEXT                     adv=6   #1 "劇情啟動∼"
+000e14:             17 TEXT                     adv=6   #2 "下一次是６０秒之後唷∼"
+000e1a:             50 TEXTWAITKB               adv=4   
+000e1e:             51 KEYWAIT                  adv=4   
+000e22:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000e32:             43 TEXTACTIVE               adv=8   7
+000e3a:             44 TEXTCLEAR                adv=4   
+000e3e:             48 TEXTFONTRET              adv=4   
+000e42:             31 BORDPACKOFF              adv=12  7 30
+000e4e:             43 TEXTACTIVE               adv=8   8
+000e56:             44 TEXTCLEAR                adv=4   
+000e5a:             48 TEXTFONTRET              adv=4   
+000e5e:             31 BORDPACKOFF              adv=12  8 30
+000e6a:             24 BORDDISP                 adv=12  4 3
+000e76:             12 VWAIT                    adv=8   30
+000e7e:             21 ALLOFF                   adv=4   
+000e82: L_00fe    19 END                      adv=4   ; END
+;   (31 insns)
+; ── block1 sub4 code@0xedc pool@0xee0 (0 strings)
+000edc:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block1 sub5 code@0xef8 pool@0xefc (0 strings)
+000ef8:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block1 sub6 code@0xf14 pool@0xf18 (0 strings)
+000f14:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block1 sub7 code@0xf30 pool@0xf34 (0 strings)
+000f30:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block1 sub8 code@0xf4c pool@0xf50 (0 strings)
+000f4c:             19 END                      adv=4   ; END
+;   (1 insns)
+; ── block1 sub9 code@0xf68 pool@0xf6c (0 strings)
+000f68:             19 END                      adv=4   ; END
+;   (1 insns)

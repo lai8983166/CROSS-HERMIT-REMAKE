@@ -1,0 +1,19 @@
+; MAP.YBC  len=0x118  [ADV YBC]
+; nblocks=4 offs=['0x14', '0xb4', '0x114', '0x114']
+; rec1[0] = ".\\data\\adv\\bin\\mb.bin"
+; rec1[1] = "dat\\Shitumu.ybc"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             59 BGSETWAIT                adv=16  0 142 1
+000034:             56 FADESETWAIT              adv=8   3
+00003c: L_0028    52 MOUSEHITGOTO             adv=40  v0x1 t3:0x3 v0x28 v0x28 350 723 324 37 v0x58
+000064:             11 GOTO                     adv=8   L_0028
+00006c:             68 VOICESTOP                adv=24  v0x0 350 723 0 53
+000084:             12 VWAIT                    adv=8   30
+00008c:             73 DRAWOBJSETD              adv=8   v0x0
+000094:             56 FADESETWAIT              adv=8   4
+00009c:             21 ALLOFF                   adv=4   
+0000a0:             12 VWAIT                    adv=8   60
+0000a8:             15 SCRIPTEXEC               adv=8   v0x1
+0000b0:             19 END                      adv=4   ; END
+; (14 insns)

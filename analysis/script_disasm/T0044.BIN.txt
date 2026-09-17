@@ -1,0 +1,2325 @@
+; T0044.BIN  len=0x7164
+; ── block0 sub1 code@0x1c4 pool@0x390 (6 strings)
+;   #0 off=0x1c prm=0x180 "要阻止迪布羅瑪的復活。"
+;   #1 off=0x34 prm=0x280 "或者是打倒被迪布羅瑪寄生的黑衣施咒者。"
+;   #2 off=0x5c prm=0x280 "不要因為帕彌菈不在你們身邊而感到害怕。"
+;   #3 off=0x84 prm=0x1c0 "帕彌菈永遠都在你們的心中，"
+;   #4 off=0xa0 prm=0x280 "你們只要好好發揮過去所學的一切就好了。"
+;   #5 off=0xc8 prm=0x120 "那麼，就開始吧。"
+0001c4:            167 REG_GET                  adv=8   v0x0
+0001cc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0001e0:            166 REG_PUT                  adv=8   1
+0001e8:             11 GOTO                     adv=8   L_01c8
+0001f0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0001f8:             56 FADESETWAIT              adv=8   2
+000200:             20 ADVMODESET               adv=8   0
+000208:             12 VWAIT                    adv=8   30
+000210:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000220:             43 TEXTACTIVE               adv=8   4
+000228:             17 TEXT                     adv=6   #0 "要阻止迪布羅瑪的復活。"
+00022e:             17 TEXT                     adv=6   #1 "或者是打倒被迪布羅瑪寄生的黑衣施咒者。"
+000234:             50 TEXTWAITKB               adv=4   
+000238:             51 KEYWAIT                  adv=4   
+00023c:             44 TEXTCLEAR                adv=4   
+000240:             17 TEXT                     adv=6   #2 "不要因為帕彌菈不在你們身邊而感到害怕。"
+000246:             17 TEXT                     adv=6   #3 "帕彌菈永遠都在你們的心中，"
+00024c:             17 TEXT                     adv=6   #4 "你們只要好好發揮過去所學的一切就好了。"
+000252:             50 TEXTWAITKB               adv=4   
+000256:             51 KEYWAIT                  adv=4   
+00025a:             44 TEXTCLEAR                adv=4   
+00025e:             17 TEXT                     adv=6   #5 "那麼，就開始吧。"
+000264:             50 TEXTWAITKB               adv=4   
+000268:             51 KEYWAIT                  adv=4   
+00026c:             44 TEXTCLEAR                adv=4   
+000270:             24 BORDDISP                 adv=12  4 3
+00027c:             12 VWAIT                    adv=8   60
+000284:             21 ALLOFF                   adv=4   
+000288:            124 TACTPLAYEREXIT           adv=20  0 0 20 3600
+00029c:            124 TACTPLAYEREXIT           adv=20  1 0 20 10800
+0002b0:            124 TACTPLAYEREXIT           adv=20  2 0 20 18000
+0002c4:            124 TACTPLAYEREXIT           adv=20  3 0 20 25200
+0002d8:            124 TACTPLAYEREXIT           adv=20  4 0 20 32400
+0002ec:            124 TACTPLAYEREXIT           adv=20  5 0 21 10800
+000300:            124 TACTPLAYEREXIT           adv=20  6 0 21 14400
+000314:            124 TACTPLAYEREXIT           adv=20  7 0 21 21600
+000328:            124 TACTPLAYEREXIT           adv=20  8 0 21 28800
+00033c:            124 TACTPLAYEREXIT           adv=20  9 0 22 10800
+000350:            124 TACTPLAYEREXIT           adv=20  10 0 22 14400
+000364:            124 TACTPLAYEREXIT           adv=20  11 0 22 18000
+000378:            124 TACTPLAYEREXIT           adv=20  12 0 22 21600
+00038c: L_01c8    19 END                      adv=4   ; END
+;   (42 insns)
+; ── block0 sub2 code@0x480 pool@0xbe0 (102 strings)
+;   #0 off=0x19c prm=0x1a0 "這一切就這樣落幕了嗎……"
+;   #1 off=0x1b6 prm=0xa0 "不不不，"
+;   #2 off=0x1c0 prm=0x200 "剩下的這最後一段還沒有結束呀。"
+;   #3 off=0x1e0 prm=0xa0 "…………"
+;   #4 off=0x1ea prm=0x120 "……烏洛波羅斯。"
+;   #5 off=0x1fc prm=0x1a0 "看來各位的心情都不錯嘛。"
+;   #6 off=0x216 prm=0xa0 "…………"
+;   #7 off=0x220 prm=0x240 "……你是特地來表達對我們的眷戀嗎？"
+;   #8 off=0x244 prm=0xc0 "這個嘛……"
+;   #9 off=0x250 prm=0xa0 "…………"
+;   #10 off=0x25a prm=0xa0 "我看……"
+;   #11 off=0x264 prm=0x240 "想必是為了毀滅愛爾梅納斯而來的吧。"
+;   #12 off=0x288 prm=0x220 "你不是很想解開身上久遠的枷鎖嗎？"
+;   #13 off=0x2aa prm=0x200 "然而，十二王杯將會蒐集齊全的。"
+;   #14 off=0x2ca prm=0x200 "……帕蘭達因將會完成這個任務。"
+;   #15 off=0x2ea prm=0x180 "這件事我可是十分贊成。"
+;   #16 off=0x302 prm=0x240 "讓愛爾梅納斯得到救贖才是我的心願。"
+;   #17 off=0x326 prm=0x1c0 "……你還真是會巴結別人哪。"
+;   #18 off=0x342 prm=0x200 "不過，你還是少開口說話比較好。"
+;   #19 off=0x362 prm=0xa0 "可是……"
+;   #20 off=0x36c prm=0x1c0 "只是把眼前所見的混沌消除，"
+;   #21 off=0x388 prm=0x240 "是絕對無法給愛爾梅納斯帶來幸福的。"
+;   #22 off=0x3ac prm=0xc0 "什麼……？"
+;   #23 off=0x3b8 prm=0x200 "只不過是聽了一個小女孩的說辭，"
+;   #24 off=0x3d8 prm=0x1c0 "無論是誰都不可能會相信吧？"
+;   #25 off=0x3f4 prm=0x2a0 "總有一天，那「匍伏蔓延而來之物」一定會把"
+;   #26 off=0x41e prm=0x160 "所有的生命都消滅掉。"
+;   #27 off=0x434 prm=0x120 "你在開什麼玩笑。"
+;   #28 off=0x446 prm=0x1e0 "正因為如此，所以無論如何……"
+;   #29 off=0x464 prm=0x260 "我們都必須用十二王杯消除這些混沌呀。"
+;   #30 off=0x48a prm=0x2a0 "這個願望連精靈都不能達成了，你這個傻瓜當"
+;   #31 off=0x4b4 prm=0x2a0 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+;   #32 off=0x4de prm=0x1c0 "的時候，究竟做了些什麼呢？"
+;   #33 off=0x4fa prm=0x280 "你們覺得他毫無休止地在那永久的黑闇中，"
+;   #34 off=0x522 prm=0x140 "究竟做了些什麼呢？"
+;   #35 off=0x536 prm=0xa0 "…………"
+;   #36 off=0x540 prm=0x100 "難道你們認為，"
+;   #37 off=0x550 prm=0x180 "他為了今天所做的準備，"
+;   #38 off=0x568 prm=0x1e0 "就只是每天無所事事地度過嗎？"
+;   #39 off=0x586 prm=0xa0 "…………"
+;   #40 off=0x590 prm=0x200 "在那些詛咒、黑闇、罪與罰之中，"
+;   #41 off=0x5b0 prm=0x1a0 "所能找到的東西實在不少。"
+;   #42 off=0x5ca prm=0xa0 "難道……"
+;   #43 off=0x5d4 prm=0x180 "你反應很快嘛……沒錯。"
+;   #44 off=0x5ec prm=0x1e0 "第十三王杯就在那黑暗的深處。"
+;   #45 off=0x60a prm=0xc0 "不可能！！"
+;   #46 off=0x616 prm=0x240 "我就知道你對這件事一定會有興趣的。"
+;   #47 off=0x63a prm=0x1a0 "第十三王杯的確是失落了。"
+;   #48 off=0x654 prm=0x220 "在九年前的那一天，確實被毀滅了。"
+;   #49 off=0x676 prm=0x280 "沒錯，在那一天，王杯的確只剩下十二個。"
+;   #50 off=0x69e prm=0x200 "這都是因為你們純潔之盾的努力。"
+;   #51 off=0x6be prm=0x1e0 "然而，從虛無之中編織出混沌，"
+;   #52 off=0x6dc prm=0x1e0 "才正是黑衣施咒者邪惡的根源。"
+;   #53 off=0x6fa prm=0xa0 "…………"
+;   #54 off=0x704 prm=0x220 "這真是作夢也想不到的事情對吧……"
+;   #55 off=0x726 prm=0x200 "如果不是羅亞爾•聖提被攻破了，"
+;   #56 off=0x746 prm=0x1a0 "這種事情也不可能發生吧。"
+;   #57 off=0x760 prm=0xa0 "…………"
+;   #58 off=0x76a prm=0x1a0 "命運真是一種奇妙的東西。"
+;   #59 off=0x784 prm=0x160 "如果我們的信念堅定，"
+;   #60 off=0x79a prm=0x1c0 "愛爾梅納斯就可以永存了嗎？"
+;   #61 off=0x7b6 prm=0x240 "就因為大家都這樣想，才出了問題呀。"
+;   #62 off=0x7da prm=0x1c0 "愛爾梅納斯真的是墮落了哪。"
+;   #63 off=0x7f6 prm=0xa0 "…………"
+;   #64 off=0x800 prm=0x160 "第十三王杯帶來終結，"
+;   #65 off=0x816 prm=0x280 "那些東西將會來到十二王杯所聚集的地方。"
+;   #66 off=0x83e prm=0x220 "如果真是這樣的話，一切就結束了。"
+;   #67 off=0x860 prm=0x160 "毀滅將在那時候降臨。"
+;   #68 off=0x876 prm=0xa0 "…………"
+;   #69 off=0x880 prm=0xa0 "…………"
+;   #70 off=0x88a prm=0xa0 "…………"
+;   #71 off=0x894 prm=0x120 "就像我剛剛說的。"
+;   #72 off=0x8a6 prm=0x2a0 "這就是為什麼十二王杯不能消滅混沌的原因。"
+;   #73 off=0x8d0 prm=0x140 "被稱為賢者的你們，"
+;   #74 off=0x8e4 prm=0x180 "不過是一些只知道後悔，"
+;   #75 off=0x8fc prm=0x1a0 "卻一點用處也沒有的傢伙。"
+;   #76 off=0x916 prm=0xa0 "…………"
+;   #77 off=0x920 prm=0xe0 "雖然如此……"
+;   #78 off=0x92e prm=0x2a0 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+;   #79 off=0x958 prm=0x280 "我還是得對那優秀的領導者致上我的謝意。"
+;   #80 off=0x980 prm=0x220 "無論你們找到多少個王杯也沒用……"
+;   #81 off=0x9a2 prm=0x280 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+;   #82 off=0x9ca prm=0xa0 "…………"
+;   #83 off=0x9d4 prm=0xa0 "…………"
+;   #84 off=0x9de prm=0x1c0 "為什麼要說這些話幫助我們？"
+;   #85 off=0x9fa prm=0x1e0 "學舍中的七哲，因為互相背叛，"
+;   #86 off=0xa18 prm=0x180 "全都遭受了對方的詛咒。"
+;   #87 off=0xa30 prm=0x1c0 "而這情況至今也一直持續著。"
+;   #88 off=0xa4c prm=0x1e0 "這都是我們的愚蠢所造成的呀。"
+;   #89 off=0xa6a prm=0xa0 "那麼……"
+;   #90 off=0xa74 prm=0x220 "你又為什麼要傷害那北壁的雪花呢？"
+;   #91 off=0xa96 prm=0x180 "你要怎麼說都沒有關係。"
+;   #92 off=0xaae prm=0x2a0 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+;   #93 off=0xad8 prm=0xa0 "…………"
+;   #94 off=0xae2 prm=0x180 "你相信也好，不信也罷，"
+;   #95 off=0xafa prm=0x160 "對我來說都沒有意義。"
+;   #96 off=0xb10 prm=0x280 "然而……我至少也得補救我所造成的罪業。"
+;   #97 off=0xb38 prm=0x1c0 "所以我選擇來到了這個地方。"
+;   #98 off=0xb54 prm=0xa0 "那麼……"
+;   #99 off=0xb5e prm=0x140 "黑衣施咒者的計謀，"
+;   #100 off=0xb72 prm=0x220 "將會藉由眺望萬物的尖塔來完成吧。"
+;   #101 off=0xb94 prm=0xa0 "……！！"
+000480:            167 REG_GET                  adv=8   v0x0
+000488:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+00049c:            166 REG_PUT                  adv=8   1
+0004a4:             11 GOTO                     adv=8   L_075c
+0004ac: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0004b4:             56 FADESETWAIT              adv=8   2
+0004bc:             20 ADVMODESET               adv=8   0
+0004c4:             12 VWAIT                    adv=8   30
+0004cc:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0004dc:             43 TEXTACTIVE               adv=8   4
+0004e4:             17 TEXT                     adv=6   #0 "這一切就這樣落幕了嗎……"
+0004ea:             50 TEXTWAITKB               adv=4   
+0004ee:             51 KEYWAIT                  adv=4   
+0004f2:             30 BORDPACKONWAIT           adv=20  8 120 0 30
+000506:             43 TEXTACTIVE               adv=8   8
+00050e:             17 TEXT                     adv=6   #1 "不不不，"
+000514:             17 TEXT                     adv=6   #2 "剩下的這最後一段還沒有結束呀。"
+00051a:             50 TEXTWAITKB               adv=4   
+00051e:             51 KEYWAIT                  adv=4   
+000522:             43 TEXTACTIVE               adv=8   4
+00052a:             44 TEXTCLEAR                adv=4   
+00052e:             17 TEXT                     adv=6   #3 "…………"
+000534:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+000548:             43 TEXTACTIVE               adv=8   7
+000550:             17 TEXT                     adv=6   #4 "……烏洛波羅斯。"
+000556:             50 TEXTWAITKB               adv=4   
+00055a:             51 KEYWAIT                  adv=4   
+00055e:             43 TEXTACTIVE               adv=8   8
+000566:             44 TEXTCLEAR                adv=4   
+00056a:             17 TEXT                     adv=6   #5 "看來各位的心情都不錯嘛。"
+000570:             50 TEXTWAITKB               adv=4   
+000574:             51 KEYWAIT                  adv=4   
+000578:             43 TEXTACTIVE               adv=8   7
+000580:             44 TEXTCLEAR                adv=4   
+000584:             17 TEXT                     adv=6   #6 "…………"
+00058a:             43 TEXTACTIVE               adv=8   4
+000592:             44 TEXTCLEAR                adv=4   
+000596:             17 TEXT                     adv=6   #7 "……你是特地來表達對我們的眷戀嗎？"
+00059c:             50 TEXTWAITKB               adv=4   
+0005a0:             51 KEYWAIT                  adv=4   
+0005a4:             43 TEXTACTIVE               adv=8   8
+0005ac:             44 TEXTCLEAR                adv=4   
+0005b0:             17 TEXT                     adv=6   #8 "這個嘛……"
+0005b6:             50 TEXTWAITKB               adv=4   
+0005ba:             51 KEYWAIT                  adv=4   
+0005be:             43 TEXTACTIVE               adv=8   4
+0005c6:             44 TEXTCLEAR                adv=4   
+0005ca:             17 TEXT                     adv=6   #9 "…………"
+0005d0:             43 TEXTACTIVE               adv=8   7
+0005d8:             44 TEXTCLEAR                adv=4   
+0005dc:             33 CHARSET                  adv=16  7 116 0
+0005ec:             36 CHARWAIT                 adv=4   
+0005f0:             43 TEXTACTIVE               adv=8   7
+0005f8:             17 TEXT                     adv=6   #10 "我看……"
+0005fe:             17 TEXT                     adv=6   #11 "想必是為了毀滅愛爾梅納斯而來的吧。"
+000604:             17 TEXT                     adv=6   #12 "你不是很想解開身上久遠的枷鎖嗎？"
+00060a:             17 TEXT                     adv=6   #13 "然而，十二王杯將會蒐集齊全的。"
+000610:             17 TEXT                     adv=6   #14 "……帕蘭達因將會完成這個任務。"
+000616:             50 TEXTWAITKB               adv=4   
+00061a:             51 KEYWAIT                  adv=4   
+00061e:             43 TEXTACTIVE               adv=8   8
+000626:             44 TEXTCLEAR                adv=4   
+00062a:             17 TEXT                     adv=6   #15 "這件事我可是十分贊成。"
+000630:             17 TEXT                     adv=6   #16 "讓愛爾梅納斯得到救贖才是我的心願。"
+000636:             50 TEXTWAITKB               adv=4   
+00063a:             51 KEYWAIT                  adv=4   
+00063e:             43 TEXTACTIVE               adv=8   7
+000646:             44 TEXTCLEAR                adv=4   
+00064a:             33 CHARSET                  adv=16  7 101 0
+00065a:             36 CHARWAIT                 adv=4   
+00065e:             43 TEXTACTIVE               adv=8   7
+000666:             17 TEXT                     adv=6   #17 "……你還真是會巴結別人哪。"
+00066c:             17 TEXT                     adv=6   #18 "不過，你還是少開口說話比較好。"
+000672:             50 TEXTWAITKB               adv=4   
+000676:             51 KEYWAIT                  adv=4   
+00067a:             43 TEXTACTIVE               adv=8   8
+000682:             44 TEXTCLEAR                adv=4   
+000686:             17 TEXT                     adv=6   #19 "可是……"
+00068c:             17 TEXT                     adv=6   #20 "只是把眼前所見的混沌消除，"
+000692:             17 TEXT                     adv=6   #21 "是絕對無法給愛爾梅納斯帶來幸福的。"
+000698:             50 TEXTWAITKB               adv=4   
+00069c:             51 KEYWAIT                  adv=4   
+0006a0:             43 TEXTACTIVE               adv=8   7
+0006a8:             44 TEXTCLEAR                adv=4   
+0006ac:             33 CHARSET                  adv=16  7 116 0
+0006bc:             36 CHARWAIT                 adv=4   
+0006c0:             43 TEXTACTIVE               adv=8   7
+0006c8:             17 TEXT                     adv=6   #22 "什麼……？"
+0006ce:             50 TEXTWAITKB               adv=4   
+0006d2:             51 KEYWAIT                  adv=4   
+0006d6:             43 TEXTACTIVE               adv=8   8
+0006de:             44 TEXTCLEAR                adv=4   
+0006e2:             17 TEXT                     adv=6   #23 "只不過是聽了一個小女孩的說辭，"
+0006e8:             17 TEXT                     adv=6   #24 "無論是誰都不可能會相信吧？"
+0006ee:             17 TEXT                     adv=6   #25 "總有一天，那「匍伏蔓延而來之物」一定會把"
+0006f4:             17 TEXT                     adv=6   #26 "所有的生命都消滅掉。"
+0006fa:             50 TEXTWAITKB               adv=4   
+0006fe:             51 KEYWAIT                  adv=4   
+000702:             43 TEXTACTIVE               adv=8   7
+00070a:             44 TEXTCLEAR                adv=4   
+00070e:             17 TEXT                     adv=6   #27 "你在開什麼玩笑。"
+000714:             17 TEXT                     adv=6   #28 "正因為如此，所以無論如何……"
+00071a:             17 TEXT                     adv=6   #29 "我們都必須用十二王杯消除這些混沌呀。"
+000720:             50 TEXTWAITKB               adv=4   
+000724:             51 KEYWAIT                  adv=4   
+000728:             43 TEXTACTIVE               adv=8   8
+000730:             44 TEXTCLEAR                adv=4   
+000734:             17 TEXT                     adv=6   #30 "這個願望連精靈都不能達成了，你這個傻瓜當"
+00073a:             17 TEXT                     adv=6   #31 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+000740:             17 TEXT                     adv=6   #32 "的時候，究竟做了些什麼呢？"
+000746:             17 TEXT                     adv=6   #33 "你們覺得他毫無休止地在那永久的黑闇中，"
+00074c:             17 TEXT                     adv=6   #34 "究竟做了些什麼呢？"
+000752:             50 TEXTWAITKB               adv=4   
+000756:             51 KEYWAIT                  adv=4   
+00075a:             43 TEXTACTIVE               adv=8   7
+000762:             44 TEXTCLEAR                adv=4   
+000766:             17 TEXT                     adv=6   #35 "…………"
+00076c:             43 TEXTACTIVE               adv=8   8
+000774:             44 TEXTCLEAR                adv=4   
+000778:             17 TEXT                     adv=6   #36 "難道你們認為，"
+00077e:             17 TEXT                     adv=6   #37 "他為了今天所做的準備，"
+000784:             17 TEXT                     adv=6   #38 "就只是每天無所事事地度過嗎？"
+00078a:             50 TEXTWAITKB               adv=4   
+00078e:             51 KEYWAIT                  adv=4   
+000792:             43 TEXTACTIVE               adv=8   4
+00079a:             44 TEXTCLEAR                adv=4   
+00079e:             17 TEXT                     adv=6   #39 "…………"
+0007a4:             50 TEXTWAITKB               adv=4   
+0007a8:             51 KEYWAIT                  adv=4   
+0007ac:             43 TEXTACTIVE               adv=8   8
+0007b4:             44 TEXTCLEAR                adv=4   
+0007b8:             17 TEXT                     adv=6   #40 "在那些詛咒、黑闇、罪與罰之中，"
+0007be:             17 TEXT                     adv=6   #41 "所能找到的東西實在不少。"
+0007c4:             50 TEXTWAITKB               adv=4   
+0007c8:             51 KEYWAIT                  adv=4   
+0007cc:             43 TEXTACTIVE               adv=8   4
+0007d4:             44 TEXTCLEAR                adv=4   
+0007d8:             17 TEXT                     adv=6   #42 "難道……"
+0007de:             50 TEXTWAITKB               adv=4   
+0007e2:             51 KEYWAIT                  adv=4   
+0007e6:             43 TEXTACTIVE               adv=8   8
+0007ee:             44 TEXTCLEAR                adv=4   
+0007f2:             17 TEXT                     adv=6   #43 "你反應很快嘛……沒錯。"
+0007f8:             17 TEXT                     adv=6   #44 "第十三王杯就在那黑暗的深處。"
+0007fe:             50 TEXTWAITKB               adv=4   
+000802:             51 KEYWAIT                  adv=4   
+000806:             43 TEXTACTIVE               adv=8   4
+00080e:             44 TEXTCLEAR                adv=4   
+000812:             17 TEXT                     adv=6   #45 "不可能！！"
+000818:             50 TEXTWAITKB               adv=4   
+00081c:             51 KEYWAIT                  adv=4   
+000820:             43 TEXTACTIVE               adv=8   8
+000828:             44 TEXTCLEAR                adv=4   
+00082c:             17 TEXT                     adv=6   #46 "我就知道你對這件事一定會有興趣的。"
+000832:             50 TEXTWAITKB               adv=4   
+000836:             51 KEYWAIT                  adv=4   
+00083a:             43 TEXTACTIVE               adv=8   4
+000842:             44 TEXTCLEAR                adv=4   
+000846:             17 TEXT                     adv=6   #47 "第十三王杯的確是失落了。"
+00084c:             17 TEXT                     adv=6   #48 "在九年前的那一天，確實被毀滅了。"
+000852:             50 TEXTWAITKB               adv=4   
+000856:             51 KEYWAIT                  adv=4   
+00085a:             43 TEXTACTIVE               adv=8   8
+000862:             44 TEXTCLEAR                adv=4   
+000866:             17 TEXT                     adv=6   #49 "沒錯，在那一天，王杯的確只剩下十二個。"
+00086c:             17 TEXT                     adv=6   #50 "這都是因為你們純潔之盾的努力。"
+000872:             17 TEXT                     adv=6   #51 "然而，從虛無之中編織出混沌，"
+000878:             17 TEXT                     adv=6   #52 "才正是黑衣施咒者邪惡的根源。"
+00087e:             50 TEXTWAITKB               adv=4   
+000882:             51 KEYWAIT                  adv=4   
+000886:             43 TEXTACTIVE               adv=8   4
+00088e:             44 TEXTCLEAR                adv=4   
+000892:             17 TEXT                     adv=6   #53 "…………"
+000898:             43 TEXTACTIVE               adv=8   8
+0008a0:             44 TEXTCLEAR                adv=4   
+0008a4:             17 TEXT                     adv=6   #54 "這真是作夢也想不到的事情對吧……"
+0008aa:             17 TEXT                     adv=6   #55 "如果不是羅亞爾•聖提被攻破了，"
+0008b0:             17 TEXT                     adv=6   #56 "這種事情也不可能發生吧。"
+0008b6:             50 TEXTWAITKB               adv=4   
+0008ba:             51 KEYWAIT                  adv=4   
+0008be:             43 TEXTACTIVE               adv=8   4
+0008c6:             44 TEXTCLEAR                adv=4   
+0008ca:             17 TEXT                     adv=6   #57 "…………"
+0008d0:             50 TEXTWAITKB               adv=4   
+0008d4:             51 KEYWAIT                  adv=4   
+0008d8:             43 TEXTACTIVE               adv=8   8
+0008e0:             44 TEXTCLEAR                adv=4   
+0008e4:             17 TEXT                     adv=6   #58 "命運真是一種奇妙的東西。"
+0008ea:             17 TEXT                     adv=6   #59 "如果我們的信念堅定，"
+0008f0:             17 TEXT                     adv=6   #60 "愛爾梅納斯就可以永存了嗎？"
+0008f6:             17 TEXT                     adv=6   #61 "就因為大家都這樣想，才出了問題呀。"
+0008fc:             17 TEXT                     adv=6   #62 "愛爾梅納斯真的是墮落了哪。"
+000902:             50 TEXTWAITKB               adv=4   
+000906:             51 KEYWAIT                  adv=4   
+00090a:             43 TEXTACTIVE               adv=8   4
+000912:             44 TEXTCLEAR                adv=4   
+000916:             17 TEXT                     adv=6   #63 "…………"
+00091c:             50 TEXTWAITKB               adv=4   
+000920:             51 KEYWAIT                  adv=4   
+000924:             43 TEXTACTIVE               adv=8   8
+00092c:             44 TEXTCLEAR                adv=4   
+000930:             17 TEXT                     adv=6   #64 "第十三王杯帶來終結，"
+000936:             17 TEXT                     adv=6   #65 "那些東西將會來到十二王杯所聚集的地方。"
+00093c:             17 TEXT                     adv=6   #66 "如果真是這樣的話，一切就結束了。"
+000942:             17 TEXT                     adv=6   #67 "毀滅將在那時候降臨。"
+000948:             50 TEXTWAITKB               adv=4   
+00094c:             51 KEYWAIT                  adv=4   
+000950:             43 TEXTACTIVE               adv=8   7
+000958:             44 TEXTCLEAR                adv=4   
+00095c:             17 TEXT                     adv=6   #68 "…………"
+000962:             50 TEXTWAITKB               adv=4   
+000966:             51 KEYWAIT                  adv=4   
+00096a:             43 TEXTACTIVE               adv=8   8
+000972:             44 TEXTCLEAR                adv=4   
+000976:             17 TEXT                     adv=6   #69 "…………"
+00097c:             43 TEXTACTIVE               adv=8   4
+000984:             44 TEXTCLEAR                adv=4   
+000988:             17 TEXT                     adv=6   #70 "…………"
+00098e:             50 TEXTWAITKB               adv=4   
+000992:             51 KEYWAIT                  adv=4   
+000996:             43 TEXTACTIVE               adv=8   8
+00099e:             44 TEXTCLEAR                adv=4   
+0009a2:             17 TEXT                     adv=6   #71 "就像我剛剛說的。"
+0009a8:             17 TEXT                     adv=6   #72 "這就是為什麼十二王杯不能消滅混沌的原因。"
+0009ae:             17 TEXT                     adv=6   #73 "被稱為賢者的你們，"
+0009b4:             17 TEXT                     adv=6   #74 "不過是一些只知道後悔，"
+0009ba:             17 TEXT                     adv=6   #75 "卻一點用處也沒有的傢伙。"
+0009c0:             50 TEXTWAITKB               adv=4   
+0009c4:             51 KEYWAIT                  adv=4   
+0009c8:             43 TEXTACTIVE               adv=8   7
+0009d0:             44 TEXTCLEAR                adv=4   
+0009d4:             33 CHARSET                  adv=16  7 101 0
+0009e4:             36 CHARWAIT                 adv=4   
+0009e8:             43 TEXTACTIVE               adv=8   7
+0009f0:             17 TEXT                     adv=6   #76 "…………"
+0009f6:             50 TEXTWAITKB               adv=4   
+0009fa:             51 KEYWAIT                  adv=4   
+0009fe:             43 TEXTACTIVE               adv=8   8
+000a06:             44 TEXTCLEAR                adv=4   
+000a0a:             17 TEXT                     adv=6   #77 "雖然如此……"
+000a10:             17 TEXT                     adv=6   #78 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+000a16:             17 TEXT                     adv=6   #79 "我還是得對那優秀的領導者致上我的謝意。"
+000a1c:             50 TEXTWAITKB               adv=4   
+000a20:             51 KEYWAIT                  adv=4   
+000a24:             44 TEXTCLEAR                adv=4   
+000a28:             17 TEXT                     adv=6   #80 "無論你們找到多少個王杯也沒用……"
+000a2e:             17 TEXT                     adv=6   #81 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+000a34:             50 TEXTWAITKB               adv=4   
+000a38:             51 KEYWAIT                  adv=4   
+000a3c:             43 TEXTACTIVE               adv=8   7
+000a44:             44 TEXTCLEAR                adv=4   
+000a48:             17 TEXT                     adv=6   #82 "…………"
+000a4e:             50 TEXTWAITKB               adv=4   
+000a52:             51 KEYWAIT                  adv=4   
+000a56:             43 TEXTACTIVE               adv=8   8
+000a5e:             44 TEXTCLEAR                adv=4   
+000a62:             17 TEXT                     adv=6   #83 "…………"
+000a68:             43 TEXTACTIVE               adv=8   4
+000a70:             44 TEXTCLEAR                adv=4   
+000a74:             17 TEXT                     adv=6   #84 "為什麼要說這些話幫助我們？"
+000a7a:             50 TEXTWAITKB               adv=4   
+000a7e:             51 KEYWAIT                  adv=4   
+000a82:             43 TEXTACTIVE               adv=8   8
+000a8a:             44 TEXTCLEAR                adv=4   
+000a8e:             17 TEXT                     adv=6   #85 "學舍中的七哲，因為互相背叛，"
+000a94:             17 TEXT                     adv=6   #86 "全都遭受了對方的詛咒。"
+000a9a:             17 TEXT                     adv=6   #87 "而這情況至今也一直持續著。"
+000aa0:             17 TEXT                     adv=6   #88 "這都是我們的愚蠢所造成的呀。"
+000aa6:             50 TEXTWAITKB               adv=4   
+000aaa:             51 KEYWAIT                  adv=4   
+000aae:             43 TEXTACTIVE               adv=8   4
+000ab6:             44 TEXTCLEAR                adv=4   
+000aba:             17 TEXT                     adv=6   #89 "那麼……"
+000ac0:             17 TEXT                     adv=6   #90 "你又為什麼要傷害那北壁的雪花呢？"
+000ac6:             50 TEXTWAITKB               adv=4   
+000aca:             51 KEYWAIT                  adv=4   
+000ace:             43 TEXTACTIVE               adv=8   8
+000ad6:             44 TEXTCLEAR                adv=4   
+000ada:             17 TEXT                     adv=6   #91 "你要怎麼說都沒有關係。"
+000ae0:             17 TEXT                     adv=6   #92 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+000ae6:             50 TEXTWAITKB               adv=4   
+000aea:             51 KEYWAIT                  adv=4   
+000aee:             43 TEXTACTIVE               adv=8   4
+000af6:             44 TEXTCLEAR                adv=4   
+000afa:             17 TEXT                     adv=6   #93 "…………"
+000b00:             50 TEXTWAITKB               adv=4   
+000b04:             51 KEYWAIT                  adv=4   
+000b08:             43 TEXTACTIVE               adv=8   8
+000b10:             44 TEXTCLEAR                adv=4   
+000b14:             17 TEXT                     adv=6   #94 "你相信也好，不信也罷，"
+000b1a:             17 TEXT                     adv=6   #95 "對我來說都沒有意義。"
+000b20:             17 TEXT                     adv=6   #96 "然而……我至少也得補救我所造成的罪業。"
+000b26:             17 TEXT                     adv=6   #97 "所以我選擇來到了這個地方。"
+000b2c:             50 TEXTWAITKB               adv=4   
+000b30:             51 KEYWAIT                  adv=4   
+000b34:             43 TEXTACTIVE               adv=8   4
+000b3c:             44 TEXTCLEAR                adv=4   
+000b40:             17 TEXT                     adv=6   #98 "那麼……"
+000b46:             50 TEXTWAITKB               adv=4   
+000b4a:             51 KEYWAIT                  adv=4   
+000b4e:             43 TEXTACTIVE               adv=8   8
+000b56:             44 TEXTCLEAR                adv=4   
+000b5a:             17 TEXT                     adv=6   #99 "黑衣施咒者的計謀，"
+000b60:             17 TEXT                     adv=6   #100 "將會藉由眺望萬物的尖塔來完成吧。"
+000b66:             50 TEXTWAITKB               adv=4   
+000b6a:             51 KEYWAIT                  adv=4   
+000b6e:             43 TEXTACTIVE               adv=8   4
+000b76:             44 TEXTCLEAR                adv=4   
+000b7a:             17 TEXT                     adv=6   #101 "……！！"
+000b80:             50 TEXTWAITKB               adv=4   
+000b84:             51 KEYWAIT                  adv=4   
+000b88:             44 TEXTCLEAR                adv=4   
+000b8c:             43 TEXTACTIVE               adv=8   7
+000b94:             44 TEXTCLEAR                adv=4   
+000b98:             43 TEXTACTIVE               adv=8   8
+000ba0:             44 TEXTCLEAR                adv=4   
+000ba4:             31 BORDPACKOFF              adv=12  7 30
+000bb0:             31 BORDPACKOFF              adv=12  8 30
+000bbc:             24 BORDDISP                 adv=12  4 3
+000bc8:             12 VWAIT                    adv=8   60
+000bd0:             21 ALLOFF                   adv=4   
+000bd4:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000bdc: L_075c    19 END                      adv=4   ; END
+;   (323 insns)
+; ── block0 sub5 code@0x179c pool@0x1efc (102 strings)
+;   #0 off=0x19c prm=0x1a0 "這一切就這樣落幕了嗎……"
+;   #1 off=0x1b6 prm=0xa0 "不不不，"
+;   #2 off=0x1c0 prm=0x200 "剩下的這最後一段還沒有結束呀。"
+;   #3 off=0x1e0 prm=0xa0 "…………"
+;   #4 off=0x1ea prm=0x120 "……烏洛波羅斯。"
+;   #5 off=0x1fc prm=0x1a0 "看來各位的心情都不錯嘛。"
+;   #6 off=0x216 prm=0xa0 "…………"
+;   #7 off=0x220 prm=0x240 "……你是特地來表達對我們的眷戀嗎？"
+;   #8 off=0x244 prm=0xc0 "這個嘛……"
+;   #9 off=0x250 prm=0xa0 "…………"
+;   #10 off=0x25a prm=0xa0 "我看……"
+;   #11 off=0x264 prm=0x240 "想必是為了毀滅愛爾梅納斯而來的吧。"
+;   #12 off=0x288 prm=0x220 "你不是很想解開身上久遠的枷鎖嗎？"
+;   #13 off=0x2aa prm=0x200 "然而，十二王杯將會蒐集齊全的。"
+;   #14 off=0x2ca prm=0x200 "……帕蘭達因將會完成這個任務。"
+;   #15 off=0x2ea prm=0x180 "這件事我可是十分贊成。"
+;   #16 off=0x302 prm=0x240 "讓愛爾梅納斯得到救贖才是我的心願。"
+;   #17 off=0x326 prm=0x1e0 "……你還真是很會巴結別人哪。"
+;   #18 off=0x344 prm=0x200 "不過，你還是少開口說話比較好。"
+;   #19 off=0x364 prm=0xa0 "可是……"
+;   #20 off=0x36e prm=0x1c0 "只是把眼前所見的混沌消除，"
+;   #21 off=0x38a prm=0x240 "是絕對無法給愛爾梅納斯帶來幸福的。"
+;   #22 off=0x3ae prm=0xc0 "什麼……？"
+;   #23 off=0x3ba prm=0x200 "只不過是聽了一個小女孩的說辭，"
+;   #24 off=0x3da prm=0x1c0 "無論是誰都不可能會相信吧？"
+;   #25 off=0x3f6 prm=0x2a0 "總有一天，那「匍伏蔓延而來之物」一定會把"
+;   #26 off=0x420 prm=0x160 "所有的生命都消滅掉。"
+;   #27 off=0x436 prm=0x120 "你在開什麼玩笑。"
+;   #28 off=0x448 prm=0x1e0 "正因為如此，所以無論如何……"
+;   #29 off=0x466 prm=0x260 "我們都必須用十二王杯消除這些混沌呀。"
+;   #30 off=0x48c prm=0x2a0 "這個願望連精靈都不能達成了，你這個傻瓜當"
+;   #31 off=0x4b6 prm=0x2a0 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+;   #32 off=0x4e0 prm=0x1c0 "的時候，究竟做了些什麼呢？"
+;   #33 off=0x4fc prm=0x280 "你們覺得他毫無休止地在那永久的黑闇中，"
+;   #34 off=0x524 prm=0x140 "究竟做了些什麼呢？"
+;   #35 off=0x538 prm=0xa0 "…………"
+;   #36 off=0x542 prm=0x100 "難道你們認為，"
+;   #37 off=0x552 prm=0x180 "他為了今天所做的準備，"
+;   #38 off=0x56a prm=0x1e0 "就只是每天無所事事地度過嗎？"
+;   #39 off=0x588 prm=0xa0 "…………"
+;   #40 off=0x592 prm=0x200 "在那些詛咒、黑闇、罪與罰之中，"
+;   #41 off=0x5b2 prm=0x1a0 "所能找到的東西實在不少。"
+;   #42 off=0x5cc prm=0xa0 "難道……"
+;   #43 off=0x5d6 prm=0x180 "你反應很快嘛……沒錯。"
+;   #44 off=0x5ee prm=0x1e0 "第十三王杯就在那黑暗的深處。"
+;   #45 off=0x60c prm=0xc0 "不可能！！"
+;   #46 off=0x618 prm=0x240 "我就知道你對這件事一定會有興趣的。"
+;   #47 off=0x63c prm=0x1a0 "第十三王杯的確是失落了。"
+;   #48 off=0x656 prm=0x220 "在九年前的那一天，確實被毀滅了。"
+;   #49 off=0x678 prm=0x280 "沒錯，在那一天，王杯的確只剩下十二個。"
+;   #50 off=0x6a0 prm=0x200 "這都是因為你們純潔之盾的努力。"
+;   #51 off=0x6c0 prm=0x1e0 "然而，從虛無之中編織出混沌，"
+;   #52 off=0x6de prm=0x1e0 "才正是黑衣施咒者邪惡的根源。"
+;   #53 off=0x6fc prm=0xa0 "…………"
+;   #54 off=0x706 prm=0x220 "這真是作夢也想不到的事情對吧……"
+;   #55 off=0x728 prm=0x200 "如果不是羅亞爾•聖提被攻破了，"
+;   #56 off=0x748 prm=0x1a0 "這種事情也不可能發生吧。"
+;   #57 off=0x762 prm=0xa0 "…………"
+;   #58 off=0x76c prm=0x1a0 "命運真是一種奇妙的東西。"
+;   #59 off=0x786 prm=0x160 "如果我們的信念堅定，"
+;   #60 off=0x79c prm=0x1c0 "愛爾梅納斯就可以永存了嗎？"
+;   #61 off=0x7b8 prm=0x240 "就因為大家都這樣想，才出了問題呀。"
+;   #62 off=0x7dc prm=0x1c0 "愛爾梅納斯真的是墮落了哪。"
+;   #63 off=0x7f8 prm=0xa0 "…………"
+;   #64 off=0x802 prm=0x160 "第十三王杯帶來終結，"
+;   #65 off=0x818 prm=0x280 "那些東西將會來到十二王杯所聚集的地方。"
+;   #66 off=0x840 prm=0x220 "如果真是這樣的話，一切就結束了。"
+;   #67 off=0x862 prm=0x160 "毀滅將在那時候降臨。"
+;   #68 off=0x878 prm=0xa0 "…………"
+;   #69 off=0x882 prm=0xa0 "…………"
+;   #70 off=0x88c prm=0xa0 "…………"
+;   #71 off=0x896 prm=0x120 "就像我剛剛說的。"
+;   #72 off=0x8a8 prm=0x2a0 "這就是為什麼十二王杯不能消滅混沌的原因。"
+;   #73 off=0x8d2 prm=0x140 "被稱為賢者的你們，"
+;   #74 off=0x8e6 prm=0x180 "不過是一些只知道後悔，"
+;   #75 off=0x8fe prm=0x1a0 "卻一點用處也沒有的傢伙。"
+;   #76 off=0x918 prm=0xa0 "…………"
+;   #77 off=0x922 prm=0xe0 "雖然如此……"
+;   #78 off=0x930 prm=0x2a0 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+;   #79 off=0x95a prm=0x280 "我還是得對那優秀的領導者致上我的謝意。"
+;   #80 off=0x982 prm=0x220 "無論你們找到多少個王杯也沒用……"
+;   #81 off=0x9a4 prm=0x280 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+;   #82 off=0x9cc prm=0xa0 "…………"
+;   #83 off=0x9d6 prm=0xa0 "…………"
+;   #84 off=0x9e0 prm=0x1c0 "為什麼要說這些話幫助我們？"
+;   #85 off=0x9fc prm=0x1e0 "學舍中的七哲，因為互相背叛，"
+;   #86 off=0xa1a prm=0x180 "全都遭受了對方的詛咒。"
+;   #87 off=0xa32 prm=0x1c0 "而這情況至今也一直持續著。"
+;   #88 off=0xa4e prm=0x1e0 "這都是我們的愚蠢所造成的呀。"
+;   #89 off=0xa6c prm=0xa0 "那麼……"
+;   #90 off=0xa76 prm=0x220 "你又為什麼要傷害那北壁的雪花呢？"
+;   #91 off=0xa98 prm=0x180 "你要怎麼說都沒有關係。"
+;   #92 off=0xab0 prm=0x2a0 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+;   #93 off=0xada prm=0xa0 "…………"
+;   #94 off=0xae4 prm=0x180 "你相信也好，不信也罷，"
+;   #95 off=0xafc prm=0x160 "對我來說都沒有意義。"
+;   #96 off=0xb12 prm=0x280 "然而……我至少也得補救我所造成的罪業。"
+;   #97 off=0xb3a prm=0x1c0 "所以我選擇來到了這個地方。"
+;   #98 off=0xb56 prm=0xa0 "那麼……"
+;   #99 off=0xb60 prm=0x140 "黑衣施咒者的計謀，"
+;   #100 off=0xb74 prm=0x220 "將會藉由眺望萬物的尖塔來完成吧。"
+;   #101 off=0xb96 prm=0xa0 "……！！"
+00179c:            167 REG_GET                  adv=8   v0x0
+0017a4:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0017b8:            166 REG_PUT                  adv=8   1
+0017c0:             11 GOTO                     adv=8   L_075c
+0017c8: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0017d0:             56 FADESETWAIT              adv=8   2
+0017d8:             20 ADVMODESET               adv=8   0
+0017e0:             12 VWAIT                    adv=8   30
+0017e8:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0017f8:             43 TEXTACTIVE               adv=8   4
+001800:             17 TEXT                     adv=6   #0 "這一切就這樣落幕了嗎……"
+001806:             50 TEXTWAITKB               adv=4   
+00180a:             51 KEYWAIT                  adv=4   
+00180e:             30 BORDPACKONWAIT           adv=20  8 120 0 30
+001822:             43 TEXTACTIVE               adv=8   8
+00182a:             17 TEXT                     adv=6   #1 "不不不，"
+001830:             17 TEXT                     adv=6   #2 "剩下的這最後一段還沒有結束呀。"
+001836:             50 TEXTWAITKB               adv=4   
+00183a:             51 KEYWAIT                  adv=4   
+00183e:             43 TEXTACTIVE               adv=8   4
+001846:             44 TEXTCLEAR                adv=4   
+00184a:             17 TEXT                     adv=6   #3 "…………"
+001850:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+001864:             43 TEXTACTIVE               adv=8   7
+00186c:             17 TEXT                     adv=6   #4 "……烏洛波羅斯。"
+001872:             50 TEXTWAITKB               adv=4   
+001876:             51 KEYWAIT                  adv=4   
+00187a:             43 TEXTACTIVE               adv=8   8
+001882:             44 TEXTCLEAR                adv=4   
+001886:             17 TEXT                     adv=6   #5 "看來各位的心情都不錯嘛。"
+00188c:             50 TEXTWAITKB               adv=4   
+001890:             51 KEYWAIT                  adv=4   
+001894:             43 TEXTACTIVE               adv=8   7
+00189c:             44 TEXTCLEAR                adv=4   
+0018a0:             17 TEXT                     adv=6   #6 "…………"
+0018a6:             43 TEXTACTIVE               adv=8   4
+0018ae:             44 TEXTCLEAR                adv=4   
+0018b2:             17 TEXT                     adv=6   #7 "……你是特地來表達對我們的眷戀嗎？"
+0018b8:             50 TEXTWAITKB               adv=4   
+0018bc:             51 KEYWAIT                  adv=4   
+0018c0:             43 TEXTACTIVE               adv=8   8
+0018c8:             44 TEXTCLEAR                adv=4   
+0018cc:             17 TEXT                     adv=6   #8 "這個嘛……"
+0018d2:             50 TEXTWAITKB               adv=4   
+0018d6:             51 KEYWAIT                  adv=4   
+0018da:             43 TEXTACTIVE               adv=8   4
+0018e2:             44 TEXTCLEAR                adv=4   
+0018e6:             17 TEXT                     adv=6   #9 "…………"
+0018ec:             43 TEXTACTIVE               adv=8   7
+0018f4:             44 TEXTCLEAR                adv=4   
+0018f8:             33 CHARSET                  adv=16  7 116 0
+001908:             36 CHARWAIT                 adv=4   
+00190c:             43 TEXTACTIVE               adv=8   7
+001914:             17 TEXT                     adv=6   #10 "我看……"
+00191a:             17 TEXT                     adv=6   #11 "想必是為了毀滅愛爾梅納斯而來的吧。"
+001920:             17 TEXT                     adv=6   #12 "你不是很想解開身上久遠的枷鎖嗎？"
+001926:             17 TEXT                     adv=6   #13 "然而，十二王杯將會蒐集齊全的。"
+00192c:             17 TEXT                     adv=6   #14 "……帕蘭達因將會完成這個任務。"
+001932:             50 TEXTWAITKB               adv=4   
+001936:             51 KEYWAIT                  adv=4   
+00193a:             43 TEXTACTIVE               adv=8   8
+001942:             44 TEXTCLEAR                adv=4   
+001946:             17 TEXT                     adv=6   #15 "這件事我可是十分贊成。"
+00194c:             17 TEXT                     adv=6   #16 "讓愛爾梅納斯得到救贖才是我的心願。"
+001952:             50 TEXTWAITKB               adv=4   
+001956:             51 KEYWAIT                  adv=4   
+00195a:             43 TEXTACTIVE               adv=8   7
+001962:             44 TEXTCLEAR                adv=4   
+001966:             33 CHARSET                  adv=16  7 101 0
+001976:             36 CHARWAIT                 adv=4   
+00197a:             43 TEXTACTIVE               adv=8   7
+001982:             17 TEXT                     adv=6   #17 "……你還真是很會巴結別人哪。"
+001988:             17 TEXT                     adv=6   #18 "不過，你還是少開口說話比較好。"
+00198e:             50 TEXTWAITKB               adv=4   
+001992:             51 KEYWAIT                  adv=4   
+001996:             43 TEXTACTIVE               adv=8   8
+00199e:             44 TEXTCLEAR                adv=4   
+0019a2:             17 TEXT                     adv=6   #19 "可是……"
+0019a8:             17 TEXT                     adv=6   #20 "只是把眼前所見的混沌消除，"
+0019ae:             17 TEXT                     adv=6   #21 "是絕對無法給愛爾梅納斯帶來幸福的。"
+0019b4:             50 TEXTWAITKB               adv=4   
+0019b8:             51 KEYWAIT                  adv=4   
+0019bc:             43 TEXTACTIVE               adv=8   7
+0019c4:             44 TEXTCLEAR                adv=4   
+0019c8:             33 CHARSET                  adv=16  7 116 0
+0019d8:             36 CHARWAIT                 adv=4   
+0019dc:             43 TEXTACTIVE               adv=8   7
+0019e4:             17 TEXT                     adv=6   #22 "什麼……？"
+0019ea:             50 TEXTWAITKB               adv=4   
+0019ee:             51 KEYWAIT                  adv=4   
+0019f2:             43 TEXTACTIVE               adv=8   8
+0019fa:             44 TEXTCLEAR                adv=4   
+0019fe:             17 TEXT                     adv=6   #23 "只不過是聽了一個小女孩的說辭，"
+001a04:             17 TEXT                     adv=6   #24 "無論是誰都不可能會相信吧？"
+001a0a:             17 TEXT                     adv=6   #25 "總有一天，那「匍伏蔓延而來之物」一定會把"
+001a10:             17 TEXT                     adv=6   #26 "所有的生命都消滅掉。"
+001a16:             50 TEXTWAITKB               adv=4   
+001a1a:             51 KEYWAIT                  adv=4   
+001a1e:             43 TEXTACTIVE               adv=8   7
+001a26:             44 TEXTCLEAR                adv=4   
+001a2a:             17 TEXT                     adv=6   #27 "你在開什麼玩笑。"
+001a30:             17 TEXT                     adv=6   #28 "正因為如此，所以無論如何……"
+001a36:             17 TEXT                     adv=6   #29 "我們都必須用十二王杯消除這些混沌呀。"
+001a3c:             50 TEXTWAITKB               adv=4   
+001a40:             51 KEYWAIT                  adv=4   
+001a44:             43 TEXTACTIVE               adv=8   8
+001a4c:             44 TEXTCLEAR                adv=4   
+001a50:             17 TEXT                     adv=6   #30 "這個願望連精靈都不能達成了，你這個傻瓜當"
+001a56:             17 TEXT                     adv=6   #31 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+001a5c:             17 TEXT                     adv=6   #32 "的時候，究竟做了些什麼呢？"
+001a62:             17 TEXT                     adv=6   #33 "你們覺得他毫無休止地在那永久的黑闇中，"
+001a68:             17 TEXT                     adv=6   #34 "究竟做了些什麼呢？"
+001a6e:             50 TEXTWAITKB               adv=4   
+001a72:             51 KEYWAIT                  adv=4   
+001a76:             43 TEXTACTIVE               adv=8   7
+001a7e:             44 TEXTCLEAR                adv=4   
+001a82:             17 TEXT                     adv=6   #35 "…………"
+001a88:             43 TEXTACTIVE               adv=8   8
+001a90:             44 TEXTCLEAR                adv=4   
+001a94:             17 TEXT                     adv=6   #36 "難道你們認為，"
+001a9a:             17 TEXT                     adv=6   #37 "他為了今天所做的準備，"
+001aa0:             17 TEXT                     adv=6   #38 "就只是每天無所事事地度過嗎？"
+001aa6:             50 TEXTWAITKB               adv=4   
+001aaa:             51 KEYWAIT                  adv=4   
+001aae:             43 TEXTACTIVE               adv=8   4
+001ab6:             44 TEXTCLEAR                adv=4   
+001aba:             17 TEXT                     adv=6   #39 "…………"
+001ac0:             50 TEXTWAITKB               adv=4   
+001ac4:             51 KEYWAIT                  adv=4   
+001ac8:             43 TEXTACTIVE               adv=8   8
+001ad0:             44 TEXTCLEAR                adv=4   
+001ad4:             17 TEXT                     adv=6   #40 "在那些詛咒、黑闇、罪與罰之中，"
+001ada:             17 TEXT                     adv=6   #41 "所能找到的東西實在不少。"
+001ae0:             50 TEXTWAITKB               adv=4   
+001ae4:             51 KEYWAIT                  adv=4   
+001ae8:             43 TEXTACTIVE               adv=8   4
+001af0:             44 TEXTCLEAR                adv=4   
+001af4:             17 TEXT                     adv=6   #42 "難道……"
+001afa:             50 TEXTWAITKB               adv=4   
+001afe:             51 KEYWAIT                  adv=4   
+001b02:             43 TEXTACTIVE               adv=8   8
+001b0a:             44 TEXTCLEAR                adv=4   
+001b0e:             17 TEXT                     adv=6   #43 "你反應很快嘛……沒錯。"
+001b14:             17 TEXT                     adv=6   #44 "第十三王杯就在那黑暗的深處。"
+001b1a:             50 TEXTWAITKB               adv=4   
+001b1e:             51 KEYWAIT                  adv=4   
+001b22:             43 TEXTACTIVE               adv=8   4
+001b2a:             44 TEXTCLEAR                adv=4   
+001b2e:             17 TEXT                     adv=6   #45 "不可能！！"
+001b34:             50 TEXTWAITKB               adv=4   
+001b38:             51 KEYWAIT                  adv=4   
+001b3c:             43 TEXTACTIVE               adv=8   8
+001b44:             44 TEXTCLEAR                adv=4   
+001b48:             17 TEXT                     adv=6   #46 "我就知道你對這件事一定會有興趣的。"
+001b4e:             50 TEXTWAITKB               adv=4   
+001b52:             51 KEYWAIT                  adv=4   
+001b56:             43 TEXTACTIVE               adv=8   4
+001b5e:             44 TEXTCLEAR                adv=4   
+001b62:             17 TEXT                     adv=6   #47 "第十三王杯的確是失落了。"
+001b68:             17 TEXT                     adv=6   #48 "在九年前的那一天，確實被毀滅了。"
+001b6e:             50 TEXTWAITKB               adv=4   
+001b72:             51 KEYWAIT                  adv=4   
+001b76:             43 TEXTACTIVE               adv=8   8
+001b7e:             44 TEXTCLEAR                adv=4   
+001b82:             17 TEXT                     adv=6   #49 "沒錯，在那一天，王杯的確只剩下十二個。"
+001b88:             17 TEXT                     adv=6   #50 "這都是因為你們純潔之盾的努力。"
+001b8e:             17 TEXT                     adv=6   #51 "然而，從虛無之中編織出混沌，"
+001b94:             17 TEXT                     adv=6   #52 "才正是黑衣施咒者邪惡的根源。"
+001b9a:             50 TEXTWAITKB               adv=4   
+001b9e:             51 KEYWAIT                  adv=4   
+001ba2:             43 TEXTACTIVE               adv=8   4
+001baa:             44 TEXTCLEAR                adv=4   
+001bae:             17 TEXT                     adv=6   #53 "…………"
+001bb4:             43 TEXTACTIVE               adv=8   8
+001bbc:             44 TEXTCLEAR                adv=4   
+001bc0:             17 TEXT                     adv=6   #54 "這真是作夢也想不到的事情對吧……"
+001bc6:             17 TEXT                     adv=6   #55 "如果不是羅亞爾•聖提被攻破了，"
+001bcc:             17 TEXT                     adv=6   #56 "這種事情也不可能發生吧。"
+001bd2:             50 TEXTWAITKB               adv=4   
+001bd6:             51 KEYWAIT                  adv=4   
+001bda:             43 TEXTACTIVE               adv=8   4
+001be2:             44 TEXTCLEAR                adv=4   
+001be6:             17 TEXT                     adv=6   #57 "…………"
+001bec:             50 TEXTWAITKB               adv=4   
+001bf0:             51 KEYWAIT                  adv=4   
+001bf4:             43 TEXTACTIVE               adv=8   8
+001bfc:             44 TEXTCLEAR                adv=4   
+001c00:             17 TEXT                     adv=6   #58 "命運真是一種奇妙的東西。"
+001c06:             17 TEXT                     adv=6   #59 "如果我們的信念堅定，"
+001c0c:             17 TEXT                     adv=6   #60 "愛爾梅納斯就可以永存了嗎？"
+001c12:             17 TEXT                     adv=6   #61 "就因為大家都這樣想，才出了問題呀。"
+001c18:             17 TEXT                     adv=6   #62 "愛爾梅納斯真的是墮落了哪。"
+001c1e:             50 TEXTWAITKB               adv=4   
+001c22:             51 KEYWAIT                  adv=4   
+001c26:             43 TEXTACTIVE               adv=8   4
+001c2e:             44 TEXTCLEAR                adv=4   
+001c32:             17 TEXT                     adv=6   #63 "…………"
+001c38:             50 TEXTWAITKB               adv=4   
+001c3c:             51 KEYWAIT                  adv=4   
+001c40:             43 TEXTACTIVE               adv=8   8
+001c48:             44 TEXTCLEAR                adv=4   
+001c4c:             17 TEXT                     adv=6   #64 "第十三王杯帶來終結，"
+001c52:             17 TEXT                     adv=6   #65 "那些東西將會來到十二王杯所聚集的地方。"
+001c58:             17 TEXT                     adv=6   #66 "如果真是這樣的話，一切就結束了。"
+001c5e:             17 TEXT                     adv=6   #67 "毀滅將在那時候降臨。"
+001c64:             50 TEXTWAITKB               adv=4   
+001c68:             51 KEYWAIT                  adv=4   
+001c6c:             43 TEXTACTIVE               adv=8   7
+001c74:             44 TEXTCLEAR                adv=4   
+001c78:             17 TEXT                     adv=6   #68 "…………"
+001c7e:             50 TEXTWAITKB               adv=4   
+001c82:             51 KEYWAIT                  adv=4   
+001c86:             43 TEXTACTIVE               adv=8   8
+001c8e:             44 TEXTCLEAR                adv=4   
+001c92:             17 TEXT                     adv=6   #69 "…………"
+001c98:             43 TEXTACTIVE               adv=8   4
+001ca0:             44 TEXTCLEAR                adv=4   
+001ca4:             17 TEXT                     adv=6   #70 "…………"
+001caa:             50 TEXTWAITKB               adv=4   
+001cae:             51 KEYWAIT                  adv=4   
+001cb2:             43 TEXTACTIVE               adv=8   8
+001cba:             44 TEXTCLEAR                adv=4   
+001cbe:             17 TEXT                     adv=6   #71 "就像我剛剛說的。"
+001cc4:             17 TEXT                     adv=6   #72 "這就是為什麼十二王杯不能消滅混沌的原因。"
+001cca:             17 TEXT                     adv=6   #73 "被稱為賢者的你們，"
+001cd0:             17 TEXT                     adv=6   #74 "不過是一些只知道後悔，"
+001cd6:             17 TEXT                     adv=6   #75 "卻一點用處也沒有的傢伙。"
+001cdc:             50 TEXTWAITKB               adv=4   
+001ce0:             51 KEYWAIT                  adv=4   
+001ce4:             43 TEXTACTIVE               adv=8   7
+001cec:             44 TEXTCLEAR                adv=4   
+001cf0:             33 CHARSET                  adv=16  7 101 0
+001d00:             36 CHARWAIT                 adv=4   
+001d04:             43 TEXTACTIVE               adv=8   7
+001d0c:             17 TEXT                     adv=6   #76 "…………"
+001d12:             50 TEXTWAITKB               adv=4   
+001d16:             51 KEYWAIT                  adv=4   
+001d1a:             43 TEXTACTIVE               adv=8   8
+001d22:             44 TEXTCLEAR                adv=4   
+001d26:             17 TEXT                     adv=6   #77 "雖然如此……"
+001d2c:             17 TEXT                     adv=6   #78 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+001d32:             17 TEXT                     adv=6   #79 "我還是得對那優秀的領導者致上我的謝意。"
+001d38:             50 TEXTWAITKB               adv=4   
+001d3c:             51 KEYWAIT                  adv=4   
+001d40:             44 TEXTCLEAR                adv=4   
+001d44:             17 TEXT                     adv=6   #80 "無論你們找到多少個王杯也沒用……"
+001d4a:             17 TEXT                     adv=6   #81 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+001d50:             50 TEXTWAITKB               adv=4   
+001d54:             51 KEYWAIT                  adv=4   
+001d58:             43 TEXTACTIVE               adv=8   7
+001d60:             44 TEXTCLEAR                adv=4   
+001d64:             17 TEXT                     adv=6   #82 "…………"
+001d6a:             50 TEXTWAITKB               adv=4   
+001d6e:             51 KEYWAIT                  adv=4   
+001d72:             43 TEXTACTIVE               adv=8   8
+001d7a:             44 TEXTCLEAR                adv=4   
+001d7e:             17 TEXT                     adv=6   #83 "…………"
+001d84:             43 TEXTACTIVE               adv=8   4
+001d8c:             44 TEXTCLEAR                adv=4   
+001d90:             17 TEXT                     adv=6   #84 "為什麼要說這些話幫助我們？"
+001d96:             50 TEXTWAITKB               adv=4   
+001d9a:             51 KEYWAIT                  adv=4   
+001d9e:             43 TEXTACTIVE               adv=8   8
+001da6:             44 TEXTCLEAR                adv=4   
+001daa:             17 TEXT                     adv=6   #85 "學舍中的七哲，因為互相背叛，"
+001db0:             17 TEXT                     adv=6   #86 "全都遭受了對方的詛咒。"
+001db6:             17 TEXT                     adv=6   #87 "而這情況至今也一直持續著。"
+001dbc:             17 TEXT                     adv=6   #88 "這都是我們的愚蠢所造成的呀。"
+001dc2:             50 TEXTWAITKB               adv=4   
+001dc6:             51 KEYWAIT                  adv=4   
+001dca:             43 TEXTACTIVE               adv=8   4
+001dd2:             44 TEXTCLEAR                adv=4   
+001dd6:             17 TEXT                     adv=6   #89 "那麼……"
+001ddc:             17 TEXT                     adv=6   #90 "你又為什麼要傷害那北壁的雪花呢？"
+001de2:             50 TEXTWAITKB               adv=4   
+001de6:             51 KEYWAIT                  adv=4   
+001dea:             43 TEXTACTIVE               adv=8   8
+001df2:             44 TEXTCLEAR                adv=4   
+001df6:             17 TEXT                     adv=6   #91 "你要怎麼說都沒有關係。"
+001dfc:             17 TEXT                     adv=6   #92 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+001e02:             50 TEXTWAITKB               adv=4   
+001e06:             51 KEYWAIT                  adv=4   
+001e0a:             43 TEXTACTIVE               adv=8   4
+001e12:             44 TEXTCLEAR                adv=4   
+001e16:             17 TEXT                     adv=6   #93 "…………"
+001e1c:             50 TEXTWAITKB               adv=4   
+001e20:             51 KEYWAIT                  adv=4   
+001e24:             43 TEXTACTIVE               adv=8   8
+001e2c:             44 TEXTCLEAR                adv=4   
+001e30:             17 TEXT                     adv=6   #94 "你相信也好，不信也罷，"
+001e36:             17 TEXT                     adv=6   #95 "對我來說都沒有意義。"
+001e3c:             17 TEXT                     adv=6   #96 "然而……我至少也得補救我所造成的罪業。"
+001e42:             17 TEXT                     adv=6   #97 "所以我選擇來到了這個地方。"
+001e48:             50 TEXTWAITKB               adv=4   
+001e4c:             51 KEYWAIT                  adv=4   
+001e50:             43 TEXTACTIVE               adv=8   4
+001e58:             44 TEXTCLEAR                adv=4   
+001e5c:             17 TEXT                     adv=6   #98 "那麼……"
+001e62:             50 TEXTWAITKB               adv=4   
+001e66:             51 KEYWAIT                  adv=4   
+001e6a:             43 TEXTACTIVE               adv=8   8
+001e72:             44 TEXTCLEAR                adv=4   
+001e76:             17 TEXT                     adv=6   #99 "黑衣施咒者的計謀，"
+001e7c:             17 TEXT                     adv=6   #100 "將會藉由眺望萬物的尖塔來完成吧。"
+001e82:             50 TEXTWAITKB               adv=4   
+001e86:             51 KEYWAIT                  adv=4   
+001e8a:             43 TEXTACTIVE               adv=8   4
+001e92:             44 TEXTCLEAR                adv=4   
+001e96:             17 TEXT                     adv=6   #101 "……！！"
+001e9c:             50 TEXTWAITKB               adv=4   
+001ea0:             51 KEYWAIT                  adv=4   
+001ea4:             44 TEXTCLEAR                adv=4   
+001ea8:             43 TEXTACTIVE               adv=8   7
+001eb0:             44 TEXTCLEAR                adv=4   
+001eb4:             43 TEXTACTIVE               adv=8   8
+001ebc:             44 TEXTCLEAR                adv=4   
+001ec0:             31 BORDPACKOFF              adv=12  7 30
+001ecc:             31 BORDPACKOFF              adv=12  8 30
+001ed8:             24 BORDDISP                 adv=12  4 3
+001ee4:             12 VWAIT                    adv=8   60
+001eec:             21 ALLOFF                   adv=4   
+001ef0:            118 TACTSETDESTROYSCRIPT     adv=8   60
+001ef8: L_075c    19 END                      adv=4   ; END
+;   (323 insns)
+; ── block0 sub8 code@0x2ab8 pool@0x3218 (102 strings)
+;   #0 off=0x19c prm=0x1a0 "這一切就這樣落幕了嗎……"
+;   #1 off=0x1b6 prm=0xa0 "不不不，"
+;   #2 off=0x1c0 prm=0x200 "剩下的這最後一段還沒有結束呀。"
+;   #3 off=0x1e0 prm=0xa0 "…………"
+;   #4 off=0x1ea prm=0x120 "……烏洛波羅斯。"
+;   #5 off=0x1fc prm=0x1a0 "看來各位的心情都不錯嘛。"
+;   #6 off=0x216 prm=0xa0 "…………"
+;   #7 off=0x220 prm=0x240 "……你是特地來表達對我們的眷戀嗎？"
+;   #8 off=0x244 prm=0xc0 "這個嘛……"
+;   #9 off=0x250 prm=0xa0 "…………"
+;   #10 off=0x25a prm=0xa0 "我看……"
+;   #11 off=0x264 prm=0x240 "想必是為了毀滅愛爾梅納斯而來的吧。"
+;   #12 off=0x288 prm=0x220 "你不是很想解開身上久遠的枷鎖嗎？"
+;   #13 off=0x2aa prm=0x200 "然而，十二王杯將會蒐集齊全的。"
+;   #14 off=0x2ca prm=0x200 "……帕蘭達因將會完成這個任務。"
+;   #15 off=0x2ea prm=0x180 "這件事我可是十分贊成。"
+;   #16 off=0x302 prm=0x240 "讓愛爾梅納斯得到救贖才是我的心願。"
+;   #17 off=0x326 prm=0x1e0 "……你還真是很會巴結別人哪。"
+;   #18 off=0x344 prm=0x220 "不過，你還是少開口說話會比較好。"
+;   #19 off=0x366 prm=0xa0 "可是……"
+;   #20 off=0x370 prm=0x1c0 "只是把眼前所見的混沌消除，"
+;   #21 off=0x38c prm=0x240 "是絕對無法給愛爾梅納斯帶來幸福的。"
+;   #22 off=0x3b0 prm=0xc0 "什麼……？"
+;   #23 off=0x3bc prm=0x200 "只不過是聽了一個小女孩的說辭，"
+;   #24 off=0x3dc prm=0x1c0 "無論是誰都不可能會相信吧？"
+;   #25 off=0x3f8 prm=0x2a0 "總有一天，那「匍伏蔓延而來之物」一定會把"
+;   #26 off=0x422 prm=0x160 "所有的生命都消滅掉。"
+;   #27 off=0x438 prm=0x120 "你在開什麼玩笑。"
+;   #28 off=0x44a prm=0x1e0 "正因為如此，所以無論如何……"
+;   #29 off=0x468 prm=0x260 "我們都必須用十二王杯消除這些混沌呀。"
+;   #30 off=0x48e prm=0x2a0 "這個願望連精靈都不能達成了，你這個傻瓜當"
+;   #31 off=0x4b8 prm=0x2a0 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+;   #32 off=0x4e2 prm=0x1c0 "的時候，究竟做了些什麼呢？"
+;   #33 off=0x4fe prm=0x280 "你們覺得他毫無休止地在那永久的黑闇中，"
+;   #34 off=0x526 prm=0x140 "究竟做了些什麼呢？"
+;   #35 off=0x53a prm=0xa0 "…………"
+;   #36 off=0x544 prm=0x100 "難道你們認為，"
+;   #37 off=0x554 prm=0x180 "他為了今天所做的準備，"
+;   #38 off=0x56c prm=0x1e0 "就只是每天無所事事地度過嗎？"
+;   #39 off=0x58a prm=0xa0 "…………"
+;   #40 off=0x594 prm=0x200 "在那些詛咒、黑闇、罪與罰之中，"
+;   #41 off=0x5b4 prm=0x1a0 "所能找到的東西實在不少。"
+;   #42 off=0x5ce prm=0xa0 "難道……"
+;   #43 off=0x5d8 prm=0x180 "你反應很快嘛……沒錯。"
+;   #44 off=0x5f0 prm=0x1e0 "第十三王杯就在那黑暗的深處。"
+;   #45 off=0x60e prm=0xc0 "不可能！！"
+;   #46 off=0x61a prm=0x240 "我就知道你對這件事一定會有興趣的。"
+;   #47 off=0x63e prm=0x1a0 "第十三王杯的確是失落了。"
+;   #48 off=0x658 prm=0x220 "在九年前的那一天，確實被毀滅了。"
+;   #49 off=0x67a prm=0x280 "沒錯，在那一天，王杯的確只剩下十二個。"
+;   #50 off=0x6a2 prm=0x200 "這都是因為你們純潔之盾的努力。"
+;   #51 off=0x6c2 prm=0x1e0 "然而，從虛無之中編織出混沌，"
+;   #52 off=0x6e0 prm=0x1e0 "才正是黑衣施咒者邪惡的根源。"
+;   #53 off=0x6fe prm=0xa0 "…………"
+;   #54 off=0x708 prm=0x220 "這真是作夢也想不到的事情對吧……"
+;   #55 off=0x72a prm=0x200 "如果不是羅亞爾•聖提被攻破了，"
+;   #56 off=0x74a prm=0x1a0 "這種事情也不可能發生吧。"
+;   #57 off=0x764 prm=0xa0 "…………"
+;   #58 off=0x76e prm=0x1a0 "命運真是一種奇妙的東西。"
+;   #59 off=0x788 prm=0x160 "如果我們的信念堅定，"
+;   #60 off=0x79e prm=0x1c0 "愛爾梅納斯就可以永存了嗎？"
+;   #61 off=0x7ba prm=0x240 "就因為大家都這樣想，才出了問題呀。"
+;   #62 off=0x7de prm=0x1c0 "愛爾梅納斯真的是墮落了哪。"
+;   #63 off=0x7fa prm=0xa0 "…………"
+;   #64 off=0x804 prm=0x160 "第十三王杯帶來終結，"
+;   #65 off=0x81a prm=0x280 "那些東西將會來到十二王杯所聚集的地方。"
+;   #66 off=0x842 prm=0x220 "如果真是這樣的話，一切就結束了。"
+;   #67 off=0x864 prm=0x160 "毀滅將在那時候降臨。"
+;   #68 off=0x87a prm=0xa0 "…………"
+;   #69 off=0x884 prm=0xa0 "…………"
+;   #70 off=0x88e prm=0xa0 "…………"
+;   #71 off=0x898 prm=0x120 "就像我剛剛說的。"
+;   #72 off=0x8aa prm=0x2a0 "這就是為什麼十二王杯不能消滅混沌的原因。"
+;   #73 off=0x8d4 prm=0x140 "被稱為賢者的你們，"
+;   #74 off=0x8e8 prm=0x180 "不過是一些只知道後悔，"
+;   #75 off=0x900 prm=0x1a0 "卻一點用處也沒有的傢伙。"
+;   #76 off=0x91a prm=0xa0 "…………"
+;   #77 off=0x924 prm=0xe0 "雖然如此……"
+;   #78 off=0x932 prm=0x2a0 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+;   #79 off=0x95c prm=0x280 "我還是得對那優秀的領導者致上我的謝意。"
+;   #80 off=0x984 prm=0x220 "無論你們找到多少個王杯也沒用……"
+;   #81 off=0x9a6 prm=0x280 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+;   #82 off=0x9ce prm=0xa0 "…………"
+;   #83 off=0x9d8 prm=0xa0 "…………"
+;   #84 off=0x9e2 prm=0x1c0 "為什麼要說這些話幫助我們？"
+;   #85 off=0x9fe prm=0x1e0 "學舍中的七哲，因為互相背叛，"
+;   #86 off=0xa1c prm=0x180 "全都遭受了對方的詛咒。"
+;   #87 off=0xa34 prm=0x1c0 "而這情況至今也一直持續著。"
+;   #88 off=0xa50 prm=0x1e0 "這都是我們的愚蠢所造成的呀。"
+;   #89 off=0xa6e prm=0xa0 "那麼……"
+;   #90 off=0xa78 prm=0x220 "你又為什麼要傷害那北壁的雪花呢？"
+;   #91 off=0xa9a prm=0x180 "你要怎麼說都沒有關係。"
+;   #92 off=0xab2 prm=0x2a0 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+;   #93 off=0xadc prm=0xa0 "…………"
+;   #94 off=0xae6 prm=0x180 "你相信也好，不信也罷，"
+;   #95 off=0xafe prm=0x160 "對我來說都沒有意義。"
+;   #96 off=0xb14 prm=0x280 "然而……我至少也得補救我所造成的罪業。"
+;   #97 off=0xb3c prm=0x1c0 "所以我選擇來到了這個地方。"
+;   #98 off=0xb58 prm=0xa0 "那麼……"
+;   #99 off=0xb62 prm=0x140 "黑衣施咒者的計謀，"
+;   #100 off=0xb76 prm=0x220 "將會藉由眺望萬物的尖塔來完成吧。"
+;   #101 off=0xb98 prm=0xa0 "……！！"
+002ab8:            167 REG_GET                  adv=8   v0x0
+002ac0:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+002ad4:            166 REG_PUT                  adv=8   1
+002adc:             11 GOTO                     adv=8   L_075c
+002ae4: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+002aec:             56 FADESETWAIT              adv=8   2
+002af4:             20 ADVMODESET               adv=8   0
+002afc:             12 VWAIT                    adv=8   30
+002b04:             27 BORDONWAIT               adv=16  4 268435455 268435455
+002b14:             43 TEXTACTIVE               adv=8   4
+002b1c:             17 TEXT                     adv=6   #0 "這一切就這樣落幕了嗎……"
+002b22:             50 TEXTWAITKB               adv=4   
+002b26:             51 KEYWAIT                  adv=4   
+002b2a:             30 BORDPACKONWAIT           adv=20  8 120 0 30
+002b3e:             43 TEXTACTIVE               adv=8   8
+002b46:             17 TEXT                     adv=6   #1 "不不不，"
+002b4c:             17 TEXT                     adv=6   #2 "剩下的這最後一段還沒有結束呀。"
+002b52:             50 TEXTWAITKB               adv=4   
+002b56:             51 KEYWAIT                  adv=4   
+002b5a:             43 TEXTACTIVE               adv=8   4
+002b62:             44 TEXTCLEAR                adv=4   
+002b66:             17 TEXT                     adv=6   #3 "…………"
+002b6c:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+002b80:             43 TEXTACTIVE               adv=8   7
+002b88:             17 TEXT                     adv=6   #4 "……烏洛波羅斯。"
+002b8e:             50 TEXTWAITKB               adv=4   
+002b92:             51 KEYWAIT                  adv=4   
+002b96:             43 TEXTACTIVE               adv=8   8
+002b9e:             44 TEXTCLEAR                adv=4   
+002ba2:             17 TEXT                     adv=6   #5 "看來各位的心情都不錯嘛。"
+002ba8:             50 TEXTWAITKB               adv=4   
+002bac:             51 KEYWAIT                  adv=4   
+002bb0:             43 TEXTACTIVE               adv=8   7
+002bb8:             44 TEXTCLEAR                adv=4   
+002bbc:             17 TEXT                     adv=6   #6 "…………"
+002bc2:             43 TEXTACTIVE               adv=8   4
+002bca:             44 TEXTCLEAR                adv=4   
+002bce:             17 TEXT                     adv=6   #7 "……你是特地來表達對我們的眷戀嗎？"
+002bd4:             50 TEXTWAITKB               adv=4   
+002bd8:             51 KEYWAIT                  adv=4   
+002bdc:             43 TEXTACTIVE               adv=8   8
+002be4:             44 TEXTCLEAR                adv=4   
+002be8:             17 TEXT                     adv=6   #8 "這個嘛……"
+002bee:             50 TEXTWAITKB               adv=4   
+002bf2:             51 KEYWAIT                  adv=4   
+002bf6:             43 TEXTACTIVE               adv=8   4
+002bfe:             44 TEXTCLEAR                adv=4   
+002c02:             17 TEXT                     adv=6   #9 "…………"
+002c08:             43 TEXTACTIVE               adv=8   7
+002c10:             44 TEXTCLEAR                adv=4   
+002c14:             33 CHARSET                  adv=16  7 116 0
+002c24:             36 CHARWAIT                 adv=4   
+002c28:             43 TEXTACTIVE               adv=8   7
+002c30:             17 TEXT                     adv=6   #10 "我看……"
+002c36:             17 TEXT                     adv=6   #11 "想必是為了毀滅愛爾梅納斯而來的吧。"
+002c3c:             17 TEXT                     adv=6   #12 "你不是很想解開身上久遠的枷鎖嗎？"
+002c42:             17 TEXT                     adv=6   #13 "然而，十二王杯將會蒐集齊全的。"
+002c48:             17 TEXT                     adv=6   #14 "……帕蘭達因將會完成這個任務。"
+002c4e:             50 TEXTWAITKB               adv=4   
+002c52:             51 KEYWAIT                  adv=4   
+002c56:             43 TEXTACTIVE               adv=8   8
+002c5e:             44 TEXTCLEAR                adv=4   
+002c62:             17 TEXT                     adv=6   #15 "這件事我可是十分贊成。"
+002c68:             17 TEXT                     adv=6   #16 "讓愛爾梅納斯得到救贖才是我的心願。"
+002c6e:             50 TEXTWAITKB               adv=4   
+002c72:             51 KEYWAIT                  adv=4   
+002c76:             43 TEXTACTIVE               adv=8   7
+002c7e:             44 TEXTCLEAR                adv=4   
+002c82:             33 CHARSET                  adv=16  7 101 0
+002c92:             36 CHARWAIT                 adv=4   
+002c96:             43 TEXTACTIVE               adv=8   7
+002c9e:             17 TEXT                     adv=6   #17 "……你還真是很會巴結別人哪。"
+002ca4:             17 TEXT                     adv=6   #18 "不過，你還是少開口說話會比較好。"
+002caa:             50 TEXTWAITKB               adv=4   
+002cae:             51 KEYWAIT                  adv=4   
+002cb2:             43 TEXTACTIVE               adv=8   8
+002cba:             44 TEXTCLEAR                adv=4   
+002cbe:             17 TEXT                     adv=6   #19 "可是……"
+002cc4:             17 TEXT                     adv=6   #20 "只是把眼前所見的混沌消除，"
+002cca:             17 TEXT                     adv=6   #21 "是絕對無法給愛爾梅納斯帶來幸福的。"
+002cd0:             50 TEXTWAITKB               adv=4   
+002cd4:             51 KEYWAIT                  adv=4   
+002cd8:             43 TEXTACTIVE               adv=8   7
+002ce0:             44 TEXTCLEAR                adv=4   
+002ce4:             33 CHARSET                  adv=16  7 116 0
+002cf4:             36 CHARWAIT                 adv=4   
+002cf8:             43 TEXTACTIVE               adv=8   7
+002d00:             17 TEXT                     adv=6   #22 "什麼……？"
+002d06:             50 TEXTWAITKB               adv=4   
+002d0a:             51 KEYWAIT                  adv=4   
+002d0e:             43 TEXTACTIVE               adv=8   8
+002d16:             44 TEXTCLEAR                adv=4   
+002d1a:             17 TEXT                     adv=6   #23 "只不過是聽了一個小女孩的說辭，"
+002d20:             17 TEXT                     adv=6   #24 "無論是誰都不可能會相信吧？"
+002d26:             17 TEXT                     adv=6   #25 "總有一天，那「匍伏蔓延而來之物」一定會把"
+002d2c:             17 TEXT                     adv=6   #26 "所有的生命都消滅掉。"
+002d32:             50 TEXTWAITKB               adv=4   
+002d36:             51 KEYWAIT                  adv=4   
+002d3a:             43 TEXTACTIVE               adv=8   7
+002d42:             44 TEXTCLEAR                adv=4   
+002d46:             17 TEXT                     adv=6   #27 "你在開什麼玩笑。"
+002d4c:             17 TEXT                     adv=6   #28 "正因為如此，所以無論如何……"
+002d52:             17 TEXT                     adv=6   #29 "我們都必須用十二王杯消除這些混沌呀。"
+002d58:             50 TEXTWAITKB               adv=4   
+002d5c:             51 KEYWAIT                  adv=4   
+002d60:             43 TEXTACTIVE               adv=8   8
+002d68:             44 TEXTCLEAR                adv=4   
+002d6c:             17 TEXT                     adv=6   #30 "這個願望連精靈都不能達成了，你這個傻瓜當"
+002d72:             17 TEXT                     adv=6   #31 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+002d78:             17 TEXT                     adv=6   #32 "的時候，究竟做了些什麼呢？"
+002d7e:             17 TEXT                     adv=6   #33 "你們覺得他毫無休止地在那永久的黑闇中，"
+002d84:             17 TEXT                     adv=6   #34 "究竟做了些什麼呢？"
+002d8a:             50 TEXTWAITKB               adv=4   
+002d8e:             51 KEYWAIT                  adv=4   
+002d92:             43 TEXTACTIVE               adv=8   7
+002d9a:             44 TEXTCLEAR                adv=4   
+002d9e:             17 TEXT                     adv=6   #35 "…………"
+002da4:             43 TEXTACTIVE               adv=8   8
+002dac:             44 TEXTCLEAR                adv=4   
+002db0:             17 TEXT                     adv=6   #36 "難道你們認為，"
+002db6:             17 TEXT                     adv=6   #37 "他為了今天所做的準備，"
+002dbc:             17 TEXT                     adv=6   #38 "就只是每天無所事事地度過嗎？"
+002dc2:             50 TEXTWAITKB               adv=4   
+002dc6:             51 KEYWAIT                  adv=4   
+002dca:             43 TEXTACTIVE               adv=8   4
+002dd2:             44 TEXTCLEAR                adv=4   
+002dd6:             17 TEXT                     adv=6   #39 "…………"
+002ddc:             50 TEXTWAITKB               adv=4   
+002de0:             51 KEYWAIT                  adv=4   
+002de4:             43 TEXTACTIVE               adv=8   8
+002dec:             44 TEXTCLEAR                adv=4   
+002df0:             17 TEXT                     adv=6   #40 "在那些詛咒、黑闇、罪與罰之中，"
+002df6:             17 TEXT                     adv=6   #41 "所能找到的東西實在不少。"
+002dfc:             50 TEXTWAITKB               adv=4   
+002e00:             51 KEYWAIT                  adv=4   
+002e04:             43 TEXTACTIVE               adv=8   4
+002e0c:             44 TEXTCLEAR                adv=4   
+002e10:             17 TEXT                     adv=6   #42 "難道……"
+002e16:             50 TEXTWAITKB               adv=4   
+002e1a:             51 KEYWAIT                  adv=4   
+002e1e:             43 TEXTACTIVE               adv=8   8
+002e26:             44 TEXTCLEAR                adv=4   
+002e2a:             17 TEXT                     adv=6   #43 "你反應很快嘛……沒錯。"
+002e30:             17 TEXT                     adv=6   #44 "第十三王杯就在那黑暗的深處。"
+002e36:             50 TEXTWAITKB               adv=4   
+002e3a:             51 KEYWAIT                  adv=4   
+002e3e:             43 TEXTACTIVE               adv=8   4
+002e46:             44 TEXTCLEAR                adv=4   
+002e4a:             17 TEXT                     adv=6   #45 "不可能！！"
+002e50:             50 TEXTWAITKB               adv=4   
+002e54:             51 KEYWAIT                  adv=4   
+002e58:             43 TEXTACTIVE               adv=8   8
+002e60:             44 TEXTCLEAR                adv=4   
+002e64:             17 TEXT                     adv=6   #46 "我就知道你對這件事一定會有興趣的。"
+002e6a:             50 TEXTWAITKB               adv=4   
+002e6e:             51 KEYWAIT                  adv=4   
+002e72:             43 TEXTACTIVE               adv=8   4
+002e7a:             44 TEXTCLEAR                adv=4   
+002e7e:             17 TEXT                     adv=6   #47 "第十三王杯的確是失落了。"
+002e84:             17 TEXT                     adv=6   #48 "在九年前的那一天，確實被毀滅了。"
+002e8a:             50 TEXTWAITKB               adv=4   
+002e8e:             51 KEYWAIT                  adv=4   
+002e92:             43 TEXTACTIVE               adv=8   8
+002e9a:             44 TEXTCLEAR                adv=4   
+002e9e:             17 TEXT                     adv=6   #49 "沒錯，在那一天，王杯的確只剩下十二個。"
+002ea4:             17 TEXT                     adv=6   #50 "這都是因為你們純潔之盾的努力。"
+002eaa:             17 TEXT                     adv=6   #51 "然而，從虛無之中編織出混沌，"
+002eb0:             17 TEXT                     adv=6   #52 "才正是黑衣施咒者邪惡的根源。"
+002eb6:             50 TEXTWAITKB               adv=4   
+002eba:             51 KEYWAIT                  adv=4   
+002ebe:             43 TEXTACTIVE               adv=8   4
+002ec6:             44 TEXTCLEAR                adv=4   
+002eca:             17 TEXT                     adv=6   #53 "…………"
+002ed0:             43 TEXTACTIVE               adv=8   8
+002ed8:             44 TEXTCLEAR                adv=4   
+002edc:             17 TEXT                     adv=6   #54 "這真是作夢也想不到的事情對吧……"
+002ee2:             17 TEXT                     adv=6   #55 "如果不是羅亞爾•聖提被攻破了，"
+002ee8:             17 TEXT                     adv=6   #56 "這種事情也不可能發生吧。"
+002eee:             50 TEXTWAITKB               adv=4   
+002ef2:             51 KEYWAIT                  adv=4   
+002ef6:             43 TEXTACTIVE               adv=8   4
+002efe:             44 TEXTCLEAR                adv=4   
+002f02:             17 TEXT                     adv=6   #57 "…………"
+002f08:             50 TEXTWAITKB               adv=4   
+002f0c:             51 KEYWAIT                  adv=4   
+002f10:             43 TEXTACTIVE               adv=8   8
+002f18:             44 TEXTCLEAR                adv=4   
+002f1c:             17 TEXT                     adv=6   #58 "命運真是一種奇妙的東西。"
+002f22:             17 TEXT                     adv=6   #59 "如果我們的信念堅定，"
+002f28:             17 TEXT                     adv=6   #60 "愛爾梅納斯就可以永存了嗎？"
+002f2e:             17 TEXT                     adv=6   #61 "就因為大家都這樣想，才出了問題呀。"
+002f34:             17 TEXT                     adv=6   #62 "愛爾梅納斯真的是墮落了哪。"
+002f3a:             50 TEXTWAITKB               adv=4   
+002f3e:             51 KEYWAIT                  adv=4   
+002f42:             43 TEXTACTIVE               adv=8   4
+002f4a:             44 TEXTCLEAR                adv=4   
+002f4e:             17 TEXT                     adv=6   #63 "…………"
+002f54:             50 TEXTWAITKB               adv=4   
+002f58:             51 KEYWAIT                  adv=4   
+002f5c:             43 TEXTACTIVE               adv=8   8
+002f64:             44 TEXTCLEAR                adv=4   
+002f68:             17 TEXT                     adv=6   #64 "第十三王杯帶來終結，"
+002f6e:             17 TEXT                     adv=6   #65 "那些東西將會來到十二王杯所聚集的地方。"
+002f74:             17 TEXT                     adv=6   #66 "如果真是這樣的話，一切就結束了。"
+002f7a:             17 TEXT                     adv=6   #67 "毀滅將在那時候降臨。"
+002f80:             50 TEXTWAITKB               adv=4   
+002f84:             51 KEYWAIT                  adv=4   
+002f88:             43 TEXTACTIVE               adv=8   7
+002f90:             44 TEXTCLEAR                adv=4   
+002f94:             17 TEXT                     adv=6   #68 "…………"
+002f9a:             50 TEXTWAITKB               adv=4   
+002f9e:             51 KEYWAIT                  adv=4   
+002fa2:             43 TEXTACTIVE               adv=8   8
+002faa:             44 TEXTCLEAR                adv=4   
+002fae:             17 TEXT                     adv=6   #69 "…………"
+002fb4:             43 TEXTACTIVE               adv=8   4
+002fbc:             44 TEXTCLEAR                adv=4   
+002fc0:             17 TEXT                     adv=6   #70 "…………"
+002fc6:             50 TEXTWAITKB               adv=4   
+002fca:             51 KEYWAIT                  adv=4   
+002fce:             43 TEXTACTIVE               adv=8   8
+002fd6:             44 TEXTCLEAR                adv=4   
+002fda:             17 TEXT                     adv=6   #71 "就像我剛剛說的。"
+002fe0:             17 TEXT                     adv=6   #72 "這就是為什麼十二王杯不能消滅混沌的原因。"
+002fe6:             17 TEXT                     adv=6   #73 "被稱為賢者的你們，"
+002fec:             17 TEXT                     adv=6   #74 "不過是一些只知道後悔，"
+002ff2:             17 TEXT                     adv=6   #75 "卻一點用處也沒有的傢伙。"
+002ff8:             50 TEXTWAITKB               adv=4   
+002ffc:             51 KEYWAIT                  adv=4   
+003000:             43 TEXTACTIVE               adv=8   7
+003008:             44 TEXTCLEAR                adv=4   
+00300c:             33 CHARSET                  adv=16  7 101 0
+00301c:             36 CHARWAIT                 adv=4   
+003020:             43 TEXTACTIVE               adv=8   7
+003028:             17 TEXT                     adv=6   #76 "…………"
+00302e:             50 TEXTWAITKB               adv=4   
+003032:             51 KEYWAIT                  adv=4   
+003036:             43 TEXTACTIVE               adv=8   8
+00303e:             44 TEXTCLEAR                adv=4   
+003042:             17 TEXT                     adv=6   #77 "雖然如此……"
+003048:             17 TEXT                     adv=6   #78 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+00304e:             17 TEXT                     adv=6   #79 "我還是得對那優秀的領導者致上我的謝意。"
+003054:             50 TEXTWAITKB               adv=4   
+003058:             51 KEYWAIT                  adv=4   
+00305c:             44 TEXTCLEAR                adv=4   
+003060:             17 TEXT                     adv=6   #80 "無論你們找到多少個王杯也沒用……"
+003066:             17 TEXT                     adv=6   #81 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+00306c:             50 TEXTWAITKB               adv=4   
+003070:             51 KEYWAIT                  adv=4   
+003074:             43 TEXTACTIVE               adv=8   7
+00307c:             44 TEXTCLEAR                adv=4   
+003080:             17 TEXT                     adv=6   #82 "…………"
+003086:             50 TEXTWAITKB               adv=4   
+00308a:             51 KEYWAIT                  adv=4   
+00308e:             43 TEXTACTIVE               adv=8   8
+003096:             44 TEXTCLEAR                adv=4   
+00309a:             17 TEXT                     adv=6   #83 "…………"
+0030a0:             43 TEXTACTIVE               adv=8   4
+0030a8:             44 TEXTCLEAR                adv=4   
+0030ac:             17 TEXT                     adv=6   #84 "為什麼要說這些話幫助我們？"
+0030b2:             50 TEXTWAITKB               adv=4   
+0030b6:             51 KEYWAIT                  adv=4   
+0030ba:             43 TEXTACTIVE               adv=8   8
+0030c2:             44 TEXTCLEAR                adv=4   
+0030c6:             17 TEXT                     adv=6   #85 "學舍中的七哲，因為互相背叛，"
+0030cc:             17 TEXT                     adv=6   #86 "全都遭受了對方的詛咒。"
+0030d2:             17 TEXT                     adv=6   #87 "而這情況至今也一直持續著。"
+0030d8:             17 TEXT                     adv=6   #88 "這都是我們的愚蠢所造成的呀。"
+0030de:             50 TEXTWAITKB               adv=4   
+0030e2:             51 KEYWAIT                  adv=4   
+0030e6:             43 TEXTACTIVE               adv=8   4
+0030ee:             44 TEXTCLEAR                adv=4   
+0030f2:             17 TEXT                     adv=6   #89 "那麼……"
+0030f8:             17 TEXT                     adv=6   #90 "你又為什麼要傷害那北壁的雪花呢？"
+0030fe:             50 TEXTWAITKB               adv=4   
+003102:             51 KEYWAIT                  adv=4   
+003106:             43 TEXTACTIVE               adv=8   8
+00310e:             44 TEXTCLEAR                adv=4   
+003112:             17 TEXT                     adv=6   #91 "你要怎麼說都沒有關係。"
+003118:             17 TEXT                     adv=6   #92 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+00311e:             50 TEXTWAITKB               adv=4   
+003122:             51 KEYWAIT                  adv=4   
+003126:             43 TEXTACTIVE               adv=8   4
+00312e:             44 TEXTCLEAR                adv=4   
+003132:             17 TEXT                     adv=6   #93 "…………"
+003138:             50 TEXTWAITKB               adv=4   
+00313c:             51 KEYWAIT                  adv=4   
+003140:             43 TEXTACTIVE               adv=8   8
+003148:             44 TEXTCLEAR                adv=4   
+00314c:             17 TEXT                     adv=6   #94 "你相信也好，不信也罷，"
+003152:             17 TEXT                     adv=6   #95 "對我來說都沒有意義。"
+003158:             17 TEXT                     adv=6   #96 "然而……我至少也得補救我所造成的罪業。"
+00315e:             17 TEXT                     adv=6   #97 "所以我選擇來到了這個地方。"
+003164:             50 TEXTWAITKB               adv=4   
+003168:             51 KEYWAIT                  adv=4   
+00316c:             43 TEXTACTIVE               adv=8   4
+003174:             44 TEXTCLEAR                adv=4   
+003178:             17 TEXT                     adv=6   #98 "那麼……"
+00317e:             50 TEXTWAITKB               adv=4   
+003182:             51 KEYWAIT                  adv=4   
+003186:             43 TEXTACTIVE               adv=8   8
+00318e:             44 TEXTCLEAR                adv=4   
+003192:             17 TEXT                     adv=6   #99 "黑衣施咒者的計謀，"
+003198:             17 TEXT                     adv=6   #100 "將會藉由眺望萬物的尖塔來完成吧。"
+00319e:             50 TEXTWAITKB               adv=4   
+0031a2:             51 KEYWAIT                  adv=4   
+0031a6:             43 TEXTACTIVE               adv=8   4
+0031ae:             44 TEXTCLEAR                adv=4   
+0031b2:             17 TEXT                     adv=6   #101 "……！！"
+0031b8:             50 TEXTWAITKB               adv=4   
+0031bc:             51 KEYWAIT                  adv=4   
+0031c0:             44 TEXTCLEAR                adv=4   
+0031c4:             43 TEXTACTIVE               adv=8   7
+0031cc:             44 TEXTCLEAR                adv=4   
+0031d0:             43 TEXTACTIVE               adv=8   8
+0031d8:             44 TEXTCLEAR                adv=4   
+0031dc:             31 BORDPACKOFF              adv=12  7 30
+0031e8:             31 BORDPACKOFF              adv=12  8 30
+0031f4:             24 BORDDISP                 adv=12  4 3
+003200:             12 VWAIT                    adv=8   60
+003208:             21 ALLOFF                   adv=4   
+00320c:            118 TACTSETDESTROYSCRIPT     adv=8   60
+003214: L_075c    19 END                      adv=4   ; END
+;   (323 insns)
+; ── block0 sub11 code@0x3dd8 pool@0x45c6 (111 strings)
+;   #0 off=0x1c0 prm=0x80 "呃……"
+;   #1 off=0x1c8 prm=0x140 "到此為止了嗎……？"
+;   #2 off=0x1dc prm=0x60 "不。"
+;   #3 off=0x1e2 prm=0x1c0 "純潔之盾的目標已經達成了，"
+;   #4 off=0x1fe prm=0x1e0 "迪布羅瑪的鼓動正在逐漸消失。"
+;   #5 off=0x21c prm=0xa0 "…………"
+;   #6 off=0x226 prm=0xa0 "…………"
+;   #7 off=0x230 prm=0x100 "這巴雷歐斯……"
+;   #8 off=0x240 prm=0x200 "如果不是被我們荒廢得這麼徹底，"
+;   #9 off=0x260 prm=0x1c0 "也不會變成這樣的一片荒野。"
+;   #10 off=0x27c prm=0x280 "應該沒有比這樣的事情更現實的結果了吧。"
+;   #11 off=0x2a4 prm=0xa0 "不不不，"
+;   #12 off=0x2ae prm=0x200 "剩下的這最後一段還沒有結束呀。"
+;   #13 off=0x2ce prm=0x120 "……烏洛波羅斯。"
+;   #14 off=0x2e0 prm=0x1a0 "看來各位的心情都不錯嘛。"
+;   #15 off=0x2fa prm=0xa0 "…………"
+;   #16 off=0x304 prm=0x240 "……你是特地來表達對我們的眷戀嗎？"
+;   #17 off=0x328 prm=0xc0 "這個嘛……"
+;   #18 off=0x334 prm=0xa0 "…………"
+;   #19 off=0x33e prm=0xa0 "我看……"
+;   #20 off=0x348 prm=0x240 "想必是為了毀滅愛爾梅納斯而來的吧。"
+;   #21 off=0x36c prm=0x220 "你不是很想解開身上久遠的枷鎖嗎？"
+;   #22 off=0x38e prm=0x200 "然而，十二王杯將會蒐集齊全的。"
+;   #23 off=0x3ae prm=0x200 "……帕蘭達因將會完成這個任務。"
+;   #24 off=0x3ce prm=0x180 "這件事我可是十分贊成。"
+;   #25 off=0x3e6 prm=0x240 "讓愛爾梅納斯得到救贖才是我的心願。"
+;   #26 off=0x40a prm=0x1e0 "……你還真是很會巴結別人哪。"
+;   #27 off=0x428 prm=0x200 "不過，你還是少開口說話比較好。"
+;   #28 off=0x448 prm=0xa0 "可是……"
+;   #29 off=0x452 prm=0x1c0 "只是把眼前所見的混沌消除，"
+;   #30 off=0x46e prm=0x240 "是絕對無法給愛爾梅納斯帶來幸福的。"
+;   #31 off=0x492 prm=0xc0 "什麼……？"
+;   #32 off=0x49e prm=0x200 "只不過是聽了一個小女孩的說辭，"
+;   #33 off=0x4be prm=0x1c0 "無論是誰都不可能會相信吧？"
+;   #34 off=0x4da prm=0x2a0 "總有一天，那「匍伏蔓延而來之物」一定會把"
+;   #35 off=0x504 prm=0x160 "所有的生命都消滅掉。"
+;   #36 off=0x51a prm=0x120 "你在開什麼玩笑。"
+;   #37 off=0x52c prm=0x1e0 "正因為如此，所以無論如何……"
+;   #38 off=0x54a prm=0x260 "我們都必須用十二王杯消除這些混沌呀。"
+;   #39 off=0x570 prm=0x2a0 "這個願望連精靈都不能達成了，你這個傻瓜當"
+;   #40 off=0x59a prm=0x2a0 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+;   #41 off=0x5c4 prm=0x1c0 "的時候，究竟做了些什麼呢？"
+;   #42 off=0x5e0 prm=0x280 "你們覺得他毫無休止地在那永久的黑闇中，"
+;   #43 off=0x608 prm=0x140 "究竟做了些什麼呢？"
+;   #44 off=0x61c prm=0xa0 "…………"
+;   #45 off=0x626 prm=0x100 "難道你們認為，"
+;   #46 off=0x636 prm=0x180 "他為了今天所做的準備，"
+;   #47 off=0x64e prm=0x1e0 "就只是每天無所事事地度過嗎？"
+;   #48 off=0x66c prm=0xa0 "…………"
+;   #49 off=0x676 prm=0x200 "在那些詛咒、黑闇、罪與罰之中，"
+;   #50 off=0x696 prm=0x1a0 "所能找到的東西實在不少。"
+;   #51 off=0x6b0 prm=0xa0 "難道……"
+;   #52 off=0x6ba prm=0x180 "你反應很快嘛……沒錯。"
+;   #53 off=0x6d2 prm=0x1e0 "第十三王杯就在那黑暗的深處。"
+;   #54 off=0x6f0 prm=0xc0 "不可能！！"
+;   #55 off=0x6fc prm=0x240 "我就知道你對這件事一定會有興趣的。"
+;   #56 off=0x720 prm=0x1a0 "第十三王杯的確是失落了。"
+;   #57 off=0x73a prm=0x220 "在九年前的那一天，確實被毀滅了。"
+;   #58 off=0x75c prm=0x280 "沒錯，在那一天，王杯的確只剩下十二個。"
+;   #59 off=0x784 prm=0x200 "這都是因為你們純潔之盾的努力。"
+;   #60 off=0x7a4 prm=0x1e0 "然而，從虛無之中編織出混沌，"
+;   #61 off=0x7c2 prm=0x1e0 "才正是黑衣施咒者邪惡的根源。"
+;   #62 off=0x7e0 prm=0xa0 "…………"
+;   #63 off=0x7ea prm=0x220 "這真是作夢也想不到的事情對吧……"
+;   #64 off=0x80c prm=0x200 "如果不是羅亞爾•聖提被攻破了，"
+;   #65 off=0x82c prm=0x1a0 "這種事情也不可能發生吧。"
+;   #66 off=0x846 prm=0xa0 "…………"
+;   #67 off=0x850 prm=0x1a0 "命運真是一種奇妙的東西。"
+;   #68 off=0x86a prm=0x160 "如果我們的信念堅定，"
+;   #69 off=0x880 prm=0x1c0 "愛爾梅納斯就可以永存了嗎？"
+;   #70 off=0x89c prm=0x240 "就因為大家都這樣想，才出了問題呀。"
+;   #71 off=0x8c0 prm=0x1c0 "愛爾梅納斯真的是墮落了哪。"
+;   #72 off=0x8dc prm=0xa0 "…………"
+;   #73 off=0x8e6 prm=0x160 "第十三王杯帶來終結，"
+;   #74 off=0x8fc prm=0x280 "那些東西將會來到十二王杯所聚集的地方。"
+;   #75 off=0x924 prm=0x220 "如果真是這樣的話，一切就結束了。"
+;   #76 off=0x946 prm=0x160 "毀滅將在那時候降臨。"
+;   #77 off=0x95c prm=0xa0 "…………"
+;   #78 off=0x966 prm=0xa0 "…………"
+;   #79 off=0x970 prm=0xa0 "…………"
+;   #80 off=0x97a prm=0x120 "就像我剛剛說的。"
+;   #81 off=0x98c prm=0x2a0 "這就是為什麼十二王杯不能消滅混沌的原因。"
+;   #82 off=0x9b6 prm=0x140 "被稱為賢者的你們，"
+;   #83 off=0x9ca prm=0x180 "不過是一些只知道後悔，"
+;   #84 off=0x9e2 prm=0x1a0 "卻一點用處也沒有的傢伙。"
+;   #85 off=0x9fc prm=0xa0 "…………"
+;   #86 off=0xa06 prm=0xe0 "雖然如此……"
+;   #87 off=0xa14 prm=0x2a0 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+;   #88 off=0xa3e prm=0x280 "我還是得對那優秀的領導者致上我的謝意。"
+;   #89 off=0xa66 prm=0x220 "無論你們找到多少個王杯也沒用……"
+;   #90 off=0xa88 prm=0x280 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+;   #91 off=0xab0 prm=0xa0 "…………"
+;   #92 off=0xaba prm=0xa0 "…………"
+;   #93 off=0xac4 prm=0x1c0 "為什麼要說這些話幫助我們？"
+;   #94 off=0xae0 prm=0x1e0 "學舍中的七哲，因為互相背叛，"
+;   #95 off=0xafe prm=0x180 "全都遭受了對方的詛咒。"
+;   #96 off=0xb16 prm=0x1c0 "而這情況至今也一直持續著。"
+;   #97 off=0xb32 prm=0x1e0 "這都是我們的愚蠢所造成的呀。"
+;   #98 off=0xb50 prm=0xa0 "那麼……"
+;   #99 off=0xb5a prm=0x220 "你又為什麼要傷害那北壁的雪花呢？"
+;   #100 off=0xb7c prm=0x180 "你要怎麼說都沒有關係。"
+;   #101 off=0xb94 prm=0x2a0 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+;   #102 off=0xbbe prm=0xa0 "…………"
+;   #103 off=0xbc8 prm=0x180 "你相信也好，不信也罷，"
+;   #104 off=0xbe0 prm=0x160 "對我來說都沒有意義。"
+;   #105 off=0xbf6 prm=0x280 "然而……我至少也得補救我所造成的罪業。"
+;   #106 off=0xc1e prm=0x1c0 "所以我選擇來到了這個地方。"
+;   #107 off=0xc3a prm=0xa0 "那麼……"
+;   #108 off=0xc44 prm=0x140 "黑衣施咒者的計謀，"
+;   #109 off=0xc58 prm=0x220 "將會藉由眺望萬物的尖塔來完成吧。"
+;   #110 off=0xc7a prm=0xa0 "……！！"
+003dd8:            167 REG_GET                  adv=8   v0x0
+003de0:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+003df4:            166 REG_PUT                  adv=8   1
+003dfc:             11 GOTO                     adv=8   L_07ea
+003e04: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+003e0c:             56 FADESETWAIT              adv=8   2
+003e14:             20 ADVMODESET               adv=8   0
+003e1c:             12 VWAIT                    adv=8   30
+003e24:             27 BORDONWAIT               adv=16  4 268435455 268435455
+003e34:             43 TEXTACTIVE               adv=8   4
+003e3c:             17 TEXT                     adv=6   #0 "呃……"
+003e42:             17 TEXT                     adv=6   #1 "到此為止了嗎……？"
+003e48:             50 TEXTWAITKB               adv=4   
+003e4c:             51 KEYWAIT                  adv=4   
+003e50:             30 BORDPACKONWAIT           adv=20  8 118 0 30
+003e64:             43 TEXTACTIVE               adv=8   8
+003e6c:             17 TEXT                     adv=6   #2 "不。"
+003e72:             17 TEXT                     adv=6   #3 "純潔之盾的目標已經達成了，"
+003e78:             17 TEXT                     adv=6   #4 "迪布羅瑪的鼓動正在逐漸消失。"
+003e7e:             50 TEXTWAITKB               adv=4   
+003e82:             51 KEYWAIT                  adv=4   
+003e86:             43 TEXTACTIVE               adv=8   4
+003e8e:             44 TEXTCLEAR                adv=4   
+003e92:             17 TEXT                     adv=6   #5 "…………"
+003e98:             50 TEXTWAITKB               adv=4   
+003e9c:             51 KEYWAIT                  adv=4   
+003ea0:             43 TEXTACTIVE               adv=8   8
+003ea8:             44 TEXTCLEAR                adv=4   
+003eac:             17 TEXT                     adv=6   #6 "…………"
+003eb2:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+003ec6:             43 TEXTACTIVE               adv=8   7
+003ece:             17 TEXT                     adv=6   #7 "這巴雷歐斯……"
+003ed4:             17 TEXT                     adv=6   #8 "如果不是被我們荒廢得這麼徹底，"
+003eda:             17 TEXT                     adv=6   #9 "也不會變成這樣的一片荒野。"
+003ee0:             17 TEXT                     adv=6   #10 "應該沒有比這樣的事情更現實的結果了吧。"
+003ee6:             50 TEXTWAITKB               adv=4   
+003eea:             51 KEYWAIT                  adv=4   
+003eee:             43 TEXTACTIVE               adv=8   8
+003ef6:             44 TEXTCLEAR                adv=4   
+003efa:             33 CHARSET                  adv=16  8 120 0
+003f0a:             36 CHARWAIT                 adv=4   
+003f0e:             43 TEXTACTIVE               adv=8   8
+003f16:             17 TEXT                     adv=6   #11 "不不不，"
+003f1c:             17 TEXT                     adv=6   #12 "剩下的這最後一段還沒有結束呀。"
+003f22:             50 TEXTWAITKB               adv=4   
+003f26:             51 KEYWAIT                  adv=4   
+003f2a:             43 TEXTACTIVE               adv=8   7
+003f32:             44 TEXTCLEAR                adv=4   
+003f36:             17 TEXT                     adv=6   #13 "……烏洛波羅斯。"
+003f3c:             50 TEXTWAITKB               adv=4   
+003f40:             51 KEYWAIT                  adv=4   
+003f44:             43 TEXTACTIVE               adv=8   8
+003f4c:             44 TEXTCLEAR                adv=4   
+003f50:             17 TEXT                     adv=6   #14 "看來各位的心情都不錯嘛。"
+003f56:             50 TEXTWAITKB               adv=4   
+003f5a:             51 KEYWAIT                  adv=4   
+003f5e:             43 TEXTACTIVE               adv=8   7
+003f66:             44 TEXTCLEAR                adv=4   
+003f6a:             17 TEXT                     adv=6   #15 "…………"
+003f70:             43 TEXTACTIVE               adv=8   4
+003f78:             44 TEXTCLEAR                adv=4   
+003f7c:             17 TEXT                     adv=6   #16 "……你是特地來表達對我們的眷戀嗎？"
+003f82:             50 TEXTWAITKB               adv=4   
+003f86:             51 KEYWAIT                  adv=4   
+003f8a:             43 TEXTACTIVE               adv=8   8
+003f92:             44 TEXTCLEAR                adv=4   
+003f96:             17 TEXT                     adv=6   #17 "這個嘛……"
+003f9c:             50 TEXTWAITKB               adv=4   
+003fa0:             51 KEYWAIT                  adv=4   
+003fa4:             43 TEXTACTIVE               adv=8   4
+003fac:             44 TEXTCLEAR                adv=4   
+003fb0:             17 TEXT                     adv=6   #18 "…………"
+003fb6:             43 TEXTACTIVE               adv=8   7
+003fbe:             44 TEXTCLEAR                adv=4   
+003fc2:             33 CHARSET                  adv=16  7 116 0
+003fd2:             36 CHARWAIT                 adv=4   
+003fd6:             43 TEXTACTIVE               adv=8   7
+003fde:             17 TEXT                     adv=6   #19 "我看……"
+003fe4:             17 TEXT                     adv=6   #20 "想必是為了毀滅愛爾梅納斯而來的吧。"
+003fea:             17 TEXT                     adv=6   #21 "你不是很想解開身上久遠的枷鎖嗎？"
+003ff0:             17 TEXT                     adv=6   #22 "然而，十二王杯將會蒐集齊全的。"
+003ff6:             17 TEXT                     adv=6   #23 "……帕蘭達因將會完成這個任務。"
+003ffc:             50 TEXTWAITKB               adv=4   
+004000:             51 KEYWAIT                  adv=4   
+004004:             43 TEXTACTIVE               adv=8   8
+00400c:             44 TEXTCLEAR                adv=4   
+004010:             17 TEXT                     adv=6   #24 "這件事我可是十分贊成。"
+004016:             17 TEXT                     adv=6   #25 "讓愛爾梅納斯得到救贖才是我的心願。"
+00401c:             50 TEXTWAITKB               adv=4   
+004020:             51 KEYWAIT                  adv=4   
+004024:             43 TEXTACTIVE               adv=8   7
+00402c:             44 TEXTCLEAR                adv=4   
+004030:             33 CHARSET                  adv=16  7 101 0
+004040:             36 CHARWAIT                 adv=4   
+004044:             43 TEXTACTIVE               adv=8   7
+00404c:             17 TEXT                     adv=6   #26 "……你還真是很會巴結別人哪。"
+004052:             17 TEXT                     adv=6   #27 "不過，你還是少開口說話比較好。"
+004058:             50 TEXTWAITKB               adv=4   
+00405c:             51 KEYWAIT                  adv=4   
+004060:             43 TEXTACTIVE               adv=8   8
+004068:             44 TEXTCLEAR                adv=4   
+00406c:             17 TEXT                     adv=6   #28 "可是……"
+004072:             17 TEXT                     adv=6   #29 "只是把眼前所見的混沌消除，"
+004078:             17 TEXT                     adv=6   #30 "是絕對無法給愛爾梅納斯帶來幸福的。"
+00407e:             50 TEXTWAITKB               adv=4   
+004082:             51 KEYWAIT                  adv=4   
+004086:             43 TEXTACTIVE               adv=8   7
+00408e:             44 TEXTCLEAR                adv=4   
+004092:             33 CHARSET                  adv=16  7 116 0
+0040a2:             36 CHARWAIT                 adv=4   
+0040a6:             43 TEXTACTIVE               adv=8   7
+0040ae:             17 TEXT                     adv=6   #31 "什麼……？"
+0040b4:             50 TEXTWAITKB               adv=4   
+0040b8:             51 KEYWAIT                  adv=4   
+0040bc:             43 TEXTACTIVE               adv=8   8
+0040c4:             44 TEXTCLEAR                adv=4   
+0040c8:             17 TEXT                     adv=6   #32 "只不過是聽了一個小女孩的說辭，"
+0040ce:             17 TEXT                     adv=6   #33 "無論是誰都不可能會相信吧？"
+0040d4:             17 TEXT                     adv=6   #34 "總有一天，那「匍伏蔓延而來之物」一定會把"
+0040da:             17 TEXT                     adv=6   #35 "所有的生命都消滅掉。"
+0040e0:             50 TEXTWAITKB               adv=4   
+0040e4:             51 KEYWAIT                  adv=4   
+0040e8:             43 TEXTACTIVE               adv=8   7
+0040f0:             44 TEXTCLEAR                adv=4   
+0040f4:             17 TEXT                     adv=6   #36 "你在開什麼玩笑。"
+0040fa:             17 TEXT                     adv=6   #37 "正因為如此，所以無論如何……"
+004100:             17 TEXT                     adv=6   #38 "我們都必須用十二王杯消除這些混沌呀。"
+004106:             50 TEXTWAITKB               adv=4   
+00410a:             51 KEYWAIT                  adv=4   
+00410e:             43 TEXTACTIVE               adv=8   8
+004116:             44 TEXTCLEAR                adv=4   
+00411a:             17 TEXT                     adv=6   #39 "這個願望連精靈都不能達成了，你這個傻瓜當"
+004120:             17 TEXT                     adv=6   #40 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+004126:             17 TEXT                     adv=6   #41 "的時候，究竟做了些什麼呢？"
+00412c:             17 TEXT                     adv=6   #42 "你們覺得他毫無休止地在那永久的黑闇中，"
+004132:             17 TEXT                     adv=6   #43 "究竟做了些什麼呢？"
+004138:             50 TEXTWAITKB               adv=4   
+00413c:             51 KEYWAIT                  adv=4   
+004140:             43 TEXTACTIVE               adv=8   7
+004148:             44 TEXTCLEAR                adv=4   
+00414c:             17 TEXT                     adv=6   #44 "…………"
+004152:             43 TEXTACTIVE               adv=8   8
+00415a:             44 TEXTCLEAR                adv=4   
+00415e:             17 TEXT                     adv=6   #45 "難道你們認為，"
+004164:             17 TEXT                     adv=6   #46 "他為了今天所做的準備，"
+00416a:             17 TEXT                     adv=6   #47 "就只是每天無所事事地度過嗎？"
+004170:             50 TEXTWAITKB               adv=4   
+004174:             51 KEYWAIT                  adv=4   
+004178:             43 TEXTACTIVE               adv=8   4
+004180:             44 TEXTCLEAR                adv=4   
+004184:             17 TEXT                     adv=6   #48 "…………"
+00418a:             50 TEXTWAITKB               adv=4   
+00418e:             51 KEYWAIT                  adv=4   
+004192:             43 TEXTACTIVE               adv=8   8
+00419a:             44 TEXTCLEAR                adv=4   
+00419e:             17 TEXT                     adv=6   #49 "在那些詛咒、黑闇、罪與罰之中，"
+0041a4:             17 TEXT                     adv=6   #50 "所能找到的東西實在不少。"
+0041aa:             50 TEXTWAITKB               adv=4   
+0041ae:             51 KEYWAIT                  adv=4   
+0041b2:             43 TEXTACTIVE               adv=8   4
+0041ba:             44 TEXTCLEAR                adv=4   
+0041be:             17 TEXT                     adv=6   #51 "難道……"
+0041c4:             50 TEXTWAITKB               adv=4   
+0041c8:             51 KEYWAIT                  adv=4   
+0041cc:             43 TEXTACTIVE               adv=8   8
+0041d4:             44 TEXTCLEAR                adv=4   
+0041d8:             17 TEXT                     adv=6   #52 "你反應很快嘛……沒錯。"
+0041de:             17 TEXT                     adv=6   #53 "第十三王杯就在那黑暗的深處。"
+0041e4:             50 TEXTWAITKB               adv=4   
+0041e8:             51 KEYWAIT                  adv=4   
+0041ec:             43 TEXTACTIVE               adv=8   4
+0041f4:             44 TEXTCLEAR                adv=4   
+0041f8:             17 TEXT                     adv=6   #54 "不可能！！"
+0041fe:             50 TEXTWAITKB               adv=4   
+004202:             51 KEYWAIT                  adv=4   
+004206:             43 TEXTACTIVE               adv=8   8
+00420e:             44 TEXTCLEAR                adv=4   
+004212:             17 TEXT                     adv=6   #55 "我就知道你對這件事一定會有興趣的。"
+004218:             50 TEXTWAITKB               adv=4   
+00421c:             51 KEYWAIT                  adv=4   
+004220:             43 TEXTACTIVE               adv=8   4
+004228:             44 TEXTCLEAR                adv=4   
+00422c:             17 TEXT                     adv=6   #56 "第十三王杯的確是失落了。"
+004232:             17 TEXT                     adv=6   #57 "在九年前的那一天，確實被毀滅了。"
+004238:             50 TEXTWAITKB               adv=4   
+00423c:             51 KEYWAIT                  adv=4   
+004240:             43 TEXTACTIVE               adv=8   8
+004248:             44 TEXTCLEAR                adv=4   
+00424c:             17 TEXT                     adv=6   #58 "沒錯，在那一天，王杯的確只剩下十二個。"
+004252:             17 TEXT                     adv=6   #59 "這都是因為你們純潔之盾的努力。"
+004258:             17 TEXT                     adv=6   #60 "然而，從虛無之中編織出混沌，"
+00425e:             17 TEXT                     adv=6   #61 "才正是黑衣施咒者邪惡的根源。"
+004264:             50 TEXTWAITKB               adv=4   
+004268:             51 KEYWAIT                  adv=4   
+00426c:             43 TEXTACTIVE               adv=8   4
+004274:             44 TEXTCLEAR                adv=4   
+004278:             17 TEXT                     adv=6   #62 "…………"
+00427e:             43 TEXTACTIVE               adv=8   8
+004286:             44 TEXTCLEAR                adv=4   
+00428a:             17 TEXT                     adv=6   #63 "這真是作夢也想不到的事情對吧……"
+004290:             17 TEXT                     adv=6   #64 "如果不是羅亞爾•聖提被攻破了，"
+004296:             17 TEXT                     adv=6   #65 "這種事情也不可能發生吧。"
+00429c:             50 TEXTWAITKB               adv=4   
+0042a0:             51 KEYWAIT                  adv=4   
+0042a4:             43 TEXTACTIVE               adv=8   4
+0042ac:             44 TEXTCLEAR                adv=4   
+0042b0:             17 TEXT                     adv=6   #66 "…………"
+0042b6:             50 TEXTWAITKB               adv=4   
+0042ba:             51 KEYWAIT                  adv=4   
+0042be:             43 TEXTACTIVE               adv=8   8
+0042c6:             44 TEXTCLEAR                adv=4   
+0042ca:             17 TEXT                     adv=6   #67 "命運真是一種奇妙的東西。"
+0042d0:             17 TEXT                     adv=6   #68 "如果我們的信念堅定，"
+0042d6:             17 TEXT                     adv=6   #69 "愛爾梅納斯就可以永存了嗎？"
+0042dc:             17 TEXT                     adv=6   #70 "就因為大家都這樣想，才出了問題呀。"
+0042e2:             17 TEXT                     adv=6   #71 "愛爾梅納斯真的是墮落了哪。"
+0042e8:             50 TEXTWAITKB               adv=4   
+0042ec:             51 KEYWAIT                  adv=4   
+0042f0:             43 TEXTACTIVE               adv=8   4
+0042f8:             44 TEXTCLEAR                adv=4   
+0042fc:             17 TEXT                     adv=6   #72 "…………"
+004302:             50 TEXTWAITKB               adv=4   
+004306:             51 KEYWAIT                  adv=4   
+00430a:             43 TEXTACTIVE               adv=8   8
+004312:             44 TEXTCLEAR                adv=4   
+004316:             17 TEXT                     adv=6   #73 "第十三王杯帶來終結，"
+00431c:             17 TEXT                     adv=6   #74 "那些東西將會來到十二王杯所聚集的地方。"
+004322:             17 TEXT                     adv=6   #75 "如果真是這樣的話，一切就結束了。"
+004328:             17 TEXT                     adv=6   #76 "毀滅將在那時候降臨。"
+00432e:             50 TEXTWAITKB               adv=4   
+004332:             51 KEYWAIT                  adv=4   
+004336:             43 TEXTACTIVE               adv=8   7
+00433e:             44 TEXTCLEAR                adv=4   
+004342:             17 TEXT                     adv=6   #77 "…………"
+004348:             50 TEXTWAITKB               adv=4   
+00434c:             51 KEYWAIT                  adv=4   
+004350:             43 TEXTACTIVE               adv=8   8
+004358:             44 TEXTCLEAR                adv=4   
+00435c:             17 TEXT                     adv=6   #78 "…………"
+004362:             43 TEXTACTIVE               adv=8   4
+00436a:             44 TEXTCLEAR                adv=4   
+00436e:             17 TEXT                     adv=6   #79 "…………"
+004374:             50 TEXTWAITKB               adv=4   
+004378:             51 KEYWAIT                  adv=4   
+00437c:             43 TEXTACTIVE               adv=8   8
+004384:             44 TEXTCLEAR                adv=4   
+004388:             17 TEXT                     adv=6   #80 "就像我剛剛說的。"
+00438e:             17 TEXT                     adv=6   #81 "這就是為什麼十二王杯不能消滅混沌的原因。"
+004394:             17 TEXT                     adv=6   #82 "被稱為賢者的你們，"
+00439a:             17 TEXT                     adv=6   #83 "不過是一些只知道後悔，"
+0043a0:             17 TEXT                     adv=6   #84 "卻一點用處也沒有的傢伙。"
+0043a6:             50 TEXTWAITKB               adv=4   
+0043aa:             51 KEYWAIT                  adv=4   
+0043ae:             43 TEXTACTIVE               adv=8   7
+0043b6:             44 TEXTCLEAR                adv=4   
+0043ba:             33 CHARSET                  adv=16  7 101 0
+0043ca:             36 CHARWAIT                 adv=4   
+0043ce:             43 TEXTACTIVE               adv=8   7
+0043d6:             17 TEXT                     adv=6   #85 "…………"
+0043dc:             50 TEXTWAITKB               adv=4   
+0043e0:             51 KEYWAIT                  adv=4   
+0043e4:             43 TEXTACTIVE               adv=8   8
+0043ec:             44 TEXTCLEAR                adv=4   
+0043f0:             17 TEXT                     adv=6   #86 "雖然如此……"
+0043f6:             17 TEXT                     adv=6   #87 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+0043fc:             17 TEXT                     adv=6   #88 "我還是得對那優秀的領導者致上我的謝意。"
+004402:             50 TEXTWAITKB               adv=4   
+004406:             51 KEYWAIT                  adv=4   
+00440a:             44 TEXTCLEAR                adv=4   
+00440e:             17 TEXT                     adv=6   #89 "無論你們找到多少個王杯也沒用……"
+004414:             17 TEXT                     adv=6   #90 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+00441a:             50 TEXTWAITKB               adv=4   
+00441e:             51 KEYWAIT                  adv=4   
+004422:             43 TEXTACTIVE               adv=8   7
+00442a:             44 TEXTCLEAR                adv=4   
+00442e:             17 TEXT                     adv=6   #91 "…………"
+004434:             50 TEXTWAITKB               adv=4   
+004438:             51 KEYWAIT                  adv=4   
+00443c:             43 TEXTACTIVE               adv=8   8
+004444:             44 TEXTCLEAR                adv=4   
+004448:             17 TEXT                     adv=6   #92 "…………"
+00444e:             43 TEXTACTIVE               adv=8   4
+004456:             44 TEXTCLEAR                adv=4   
+00445a:             17 TEXT                     adv=6   #93 "為什麼要說這些話幫助我們？"
+004460:             50 TEXTWAITKB               adv=4   
+004464:             51 KEYWAIT                  adv=4   
+004468:             43 TEXTACTIVE               adv=8   8
+004470:             44 TEXTCLEAR                adv=4   
+004474:             17 TEXT                     adv=6   #94 "學舍中的七哲，因為互相背叛，"
+00447a:             17 TEXT                     adv=6   #95 "全都遭受了對方的詛咒。"
+004480:             17 TEXT                     adv=6   #96 "而這情況至今也一直持續著。"
+004486:             17 TEXT                     adv=6   #97 "這都是我們的愚蠢所造成的呀。"
+00448c:             50 TEXTWAITKB               adv=4   
+004490:             51 KEYWAIT                  adv=4   
+004494:             43 TEXTACTIVE               adv=8   4
+00449c:             44 TEXTCLEAR                adv=4   
+0044a0:             17 TEXT                     adv=6   #98 "那麼……"
+0044a6:             17 TEXT                     adv=6   #99 "你又為什麼要傷害那北壁的雪花呢？"
+0044ac:             50 TEXTWAITKB               adv=4   
+0044b0:             51 KEYWAIT                  adv=4   
+0044b4:             43 TEXTACTIVE               adv=8   8
+0044bc:             44 TEXTCLEAR                adv=4   
+0044c0:             17 TEXT                     adv=6   #100 "你要怎麼說都沒有關係。"
+0044c6:             17 TEXT                     adv=6   #101 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+0044cc:             50 TEXTWAITKB               adv=4   
+0044d0:             51 KEYWAIT                  adv=4   
+0044d4:             43 TEXTACTIVE               adv=8   4
+0044dc:             44 TEXTCLEAR                adv=4   
+0044e0:             17 TEXT                     adv=6   #102 "…………"
+0044e6:             50 TEXTWAITKB               adv=4   
+0044ea:             51 KEYWAIT                  adv=4   
+0044ee:             43 TEXTACTIVE               adv=8   8
+0044f6:             44 TEXTCLEAR                adv=4   
+0044fa:             17 TEXT                     adv=6   #103 "你相信也好，不信也罷，"
+004500:             17 TEXT                     adv=6   #104 "對我來說都沒有意義。"
+004506:             17 TEXT                     adv=6   #105 "然而……我至少也得補救我所造成的罪業。"
+00450c:             17 TEXT                     adv=6   #106 "所以我選擇來到了這個地方。"
+004512:             50 TEXTWAITKB               adv=4   
+004516:             51 KEYWAIT                  adv=4   
+00451a:             43 TEXTACTIVE               adv=8   4
+004522:             44 TEXTCLEAR                adv=4   
+004526:             17 TEXT                     adv=6   #107 "那麼……"
+00452c:             50 TEXTWAITKB               adv=4   
+004530:             51 KEYWAIT                  adv=4   
+004534:             43 TEXTACTIVE               adv=8   8
+00453c:             44 TEXTCLEAR                adv=4   
+004540:             17 TEXT                     adv=6   #108 "黑衣施咒者的計謀，"
+004546:             17 TEXT                     adv=6   #109 "將會藉由眺望萬物的尖塔來完成吧。"
+00454c:             50 TEXTWAITKB               adv=4   
+004550:             51 KEYWAIT                  adv=4   
+004554:             43 TEXTACTIVE               adv=8   4
+00455c:             44 TEXTCLEAR                adv=4   
+004560:             17 TEXT                     adv=6   #110 "……！！"
+004566:             50 TEXTWAITKB               adv=4   
+00456a:             51 KEYWAIT                  adv=4   
+00456e:             44 TEXTCLEAR                adv=4   
+004572:             43 TEXTACTIVE               adv=8   7
+00457a:             44 TEXTCLEAR                adv=4   
+00457e:             43 TEXTACTIVE               adv=8   8
+004586:             44 TEXTCLEAR                adv=4   
+00458a:             31 BORDPACKOFF              adv=12  7 30
+004596:             31 BORDPACKOFF              adv=12  8 30
+0045a2:             24 BORDDISP                 adv=12  4 3
+0045ae:             12 VWAIT                    adv=8   60
+0045b6:             21 ALLOFF                   adv=4   
+0045ba:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0045c2: L_07ea    19 END                      adv=4   ; END
+;   (347 insns)
+; ── block0 sub14 code@0x5268 pool@0x5a56 (111 strings)
+;   #0 off=0x1c0 prm=0x80 "呃……"
+;   #1 off=0x1c8 prm=0x140 "到此為止了嗎……？"
+;   #2 off=0x1dc prm=0x60 "不。"
+;   #3 off=0x1e2 prm=0x1c0 "純潔之盾的目標已經達成了，"
+;   #4 off=0x1fe prm=0x1c0 "迪布羅瑪的鼓動正逐漸消失。"
+;   #5 off=0x21a prm=0xa0 "…………"
+;   #6 off=0x224 prm=0xa0 "…………"
+;   #7 off=0x22e prm=0x100 "這巴雷歐斯……"
+;   #8 off=0x23e prm=0x200 "如果不是被我們荒廢得這麼徹底，"
+;   #9 off=0x25e prm=0x1c0 "也不會變成這樣的一片荒野。"
+;   #10 off=0x27a prm=0x280 "應該沒有比這樣的事情更現實的結果了吧。"
+;   #11 off=0x2a2 prm=0xa0 "不不不，"
+;   #12 off=0x2ac prm=0x200 "剩下的這最後一段還沒有結束呀。"
+;   #13 off=0x2cc prm=0x120 "……烏洛波羅斯。"
+;   #14 off=0x2de prm=0x1a0 "看來各位的心情都不錯嘛。"
+;   #15 off=0x2f8 prm=0xa0 "…………"
+;   #16 off=0x302 prm=0x240 "……你是特地來表達對我們的眷戀嗎？"
+;   #17 off=0x326 prm=0xc0 "這個嘛……"
+;   #18 off=0x332 prm=0xa0 "…………"
+;   #19 off=0x33c prm=0xa0 "我看……"
+;   #20 off=0x346 prm=0x240 "想必是為了毀滅愛爾梅納斯而來的吧。"
+;   #21 off=0x36a prm=0x220 "你不是很想解開身上久遠的枷鎖嗎？"
+;   #22 off=0x38c prm=0x200 "然而，十二王杯將會蒐集齊全的。"
+;   #23 off=0x3ac prm=0x200 "……帕蘭達因將會完成這個任務。"
+;   #24 off=0x3cc prm=0x180 "這件事我可是十分贊成。"
+;   #25 off=0x3e4 prm=0x240 "讓愛爾梅納斯得到救贖才是我的心願。"
+;   #26 off=0x408 prm=0x1e0 "……你還真是很會巴結別人哪。"
+;   #27 off=0x426 prm=0x200 "不過，你還是少開口說話比較好。"
+;   #28 off=0x446 prm=0xa0 "可是……"
+;   #29 off=0x450 prm=0x1c0 "只是把眼前所見的混沌消除，"
+;   #30 off=0x46c prm=0x240 "是絕對無法給愛爾梅納斯帶來幸福的。"
+;   #31 off=0x490 prm=0xc0 "什麼……？"
+;   #32 off=0x49c prm=0x200 "只不過是聽了一個小女孩的說辭，"
+;   #33 off=0x4bc prm=0x1c0 "無論是誰都不可能會相信吧？"
+;   #34 off=0x4d8 prm=0x2a0 "總有一天，那「匍伏蔓延而來之物」一定會把"
+;   #35 off=0x502 prm=0x160 "所有的生命都消滅掉。"
+;   #36 off=0x518 prm=0x120 "你在開什麼玩笑。"
+;   #37 off=0x52a prm=0x1e0 "正因為如此，所以無論如何……"
+;   #38 off=0x548 prm=0x260 "我們都必須用十二王杯消除這些混沌呀。"
+;   #39 off=0x56e prm=0x2a0 "這個願望連精靈都不能達成了，你這個傻瓜當"
+;   #40 off=0x598 prm=0x2a0 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+;   #41 off=0x5c2 prm=0x1c0 "的時候，究竟做了些什麼呢？"
+;   #42 off=0x5de prm=0x280 "你們覺得他毫無休止地在那永久的黑闇中，"
+;   #43 off=0x606 prm=0x140 "究竟做了些什麼呢？"
+;   #44 off=0x61a prm=0xa0 "…………"
+;   #45 off=0x624 prm=0x100 "難道你們認為，"
+;   #46 off=0x634 prm=0x180 "他為了今天所做的準備，"
+;   #47 off=0x64c prm=0x1e0 "就只是每天無所事事地度過嗎？"
+;   #48 off=0x66a prm=0xa0 "…………"
+;   #49 off=0x674 prm=0x200 "在那些詛咒、黑闇、罪與罰之中，"
+;   #50 off=0x694 prm=0x1a0 "所能找到的東西實在不少。"
+;   #51 off=0x6ae prm=0xa0 "難道……"
+;   #52 off=0x6b8 prm=0x180 "你反應很快嘛……沒錯。"
+;   #53 off=0x6d0 prm=0x1e0 "第十三王杯就在那黑暗的深處。"
+;   #54 off=0x6ee prm=0xc0 "不可能！！"
+;   #55 off=0x6fa prm=0x240 "我就知道你對這件事一定會有興趣的。"
+;   #56 off=0x71e prm=0x1a0 "第十三王杯的確是失落了。"
+;   #57 off=0x738 prm=0x220 "在九年前的那一天，確實被毀滅了。"
+;   #58 off=0x75a prm=0x280 "沒錯，在那一天，王杯的確只剩下十二個。"
+;   #59 off=0x782 prm=0x200 "這都是因為你們純潔之盾的努力。"
+;   #60 off=0x7a2 prm=0x1e0 "然而，從虛無之中編織出混沌，"
+;   #61 off=0x7c0 prm=0x1e0 "才正是黑衣施咒者邪惡的根源。"
+;   #62 off=0x7de prm=0xa0 "…………"
+;   #63 off=0x7e8 prm=0x220 "這真是作夢也想不到的事情對吧……"
+;   #64 off=0x80a prm=0x200 "如果不是羅亞爾•聖提被攻破了，"
+;   #65 off=0x82a prm=0x1a0 "這種事情也不可能發生吧。"
+;   #66 off=0x844 prm=0xa0 "…………"
+;   #67 off=0x84e prm=0x1a0 "命運真是一種奇妙的東西。"
+;   #68 off=0x868 prm=0x160 "如果我們的信念堅定，"
+;   #69 off=0x87e prm=0x1c0 "愛爾梅納斯就可以永存了嗎？"
+;   #70 off=0x89a prm=0x240 "就因為大家都這樣想，才出了問題呀。"
+;   #71 off=0x8be prm=0x1c0 "愛爾梅納斯真的是墮落了哪。"
+;   #72 off=0x8da prm=0xa0 "…………"
+;   #73 off=0x8e4 prm=0x160 "第十三王杯帶來終結，"
+;   #74 off=0x8fa prm=0x280 "那些東西將會來到十二王杯所聚集的地方。"
+;   #75 off=0x922 prm=0x220 "如果真是這樣的話，一切就結束了。"
+;   #76 off=0x944 prm=0x160 "毀滅將在那時候降臨。"
+;   #77 off=0x95a prm=0xa0 "…………"
+;   #78 off=0x964 prm=0xa0 "…………"
+;   #79 off=0x96e prm=0xa0 "…………"
+;   #80 off=0x978 prm=0x120 "就像我剛剛說的。"
+;   #81 off=0x98a prm=0x2a0 "這就是為什麼十二王杯不能消滅混沌的原因。"
+;   #82 off=0x9b4 prm=0x140 "被稱為賢者的你們，"
+;   #83 off=0x9c8 prm=0x180 "不過是一些只知道後悔，"
+;   #84 off=0x9e0 prm=0x1a0 "卻一點用處也沒有的傢伙。"
+;   #85 off=0x9fa prm=0xa0 "…………"
+;   #86 off=0xa04 prm=0xe0 "雖然如此……"
+;   #87 off=0xa12 prm=0x2a0 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+;   #88 off=0xa3c prm=0x280 "我還是得對那優秀的領導者致上我的謝意。"
+;   #89 off=0xa64 prm=0x220 "無論你們找到多少個王杯也沒用……"
+;   #90 off=0xa86 prm=0x280 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+;   #91 off=0xaae prm=0xa0 "…………"
+;   #92 off=0xab8 prm=0xa0 "…………"
+;   #93 off=0xac2 prm=0x1c0 "為什麼要說這些話幫助我們？"
+;   #94 off=0xade prm=0x1e0 "學舍中的七哲，因為互相背叛，"
+;   #95 off=0xafc prm=0x180 "全都遭受了對方的詛咒。"
+;   #96 off=0xb14 prm=0x1c0 "而這情況至今也一直持續著。"
+;   #97 off=0xb30 prm=0x1e0 "這都是我們的愚蠢所造成的呀。"
+;   #98 off=0xb4e prm=0xa0 "那麼……"
+;   #99 off=0xb58 prm=0x220 "你又為什麼要傷害那北壁的雪花呢？"
+;   #100 off=0xb7a prm=0x180 "你要怎麼說都沒有關係。"
+;   #101 off=0xb92 prm=0x2a0 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+;   #102 off=0xbbc prm=0xa0 "…………"
+;   #103 off=0xbc6 prm=0x180 "你相信也好，不信也罷，"
+;   #104 off=0xbde prm=0x160 "對我來說都沒有意義。"
+;   #105 off=0xbf4 prm=0x280 "然而……我至少也得補救我所造成的罪業。"
+;   #106 off=0xc1c prm=0x1c0 "所以我選擇來到了這個地方。"
+;   #107 off=0xc38 prm=0xa0 "那麼……"
+;   #108 off=0xc42 prm=0x140 "黑衣施咒者的計謀，"
+;   #109 off=0xc56 prm=0x220 "將會藉由眺望萬物的尖塔來完成吧。"
+;   #110 off=0xc78 prm=0xa0 "……！！"
+005268:            167 REG_GET                  adv=8   v0x0
+005270:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+005284:            166 REG_PUT                  adv=8   1
+00528c:             11 GOTO                     adv=8   L_07ea
+005294: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+00529c:             56 FADESETWAIT              adv=8   2
+0052a4:             20 ADVMODESET               adv=8   0
+0052ac:             12 VWAIT                    adv=8   30
+0052b4:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0052c4:             43 TEXTACTIVE               adv=8   4
+0052cc:             17 TEXT                     adv=6   #0 "呃……"
+0052d2:             17 TEXT                     adv=6   #1 "到此為止了嗎……？"
+0052d8:             50 TEXTWAITKB               adv=4   
+0052dc:             51 KEYWAIT                  adv=4   
+0052e0:             30 BORDPACKONWAIT           adv=20  8 118 0 30
+0052f4:             43 TEXTACTIVE               adv=8   8
+0052fc:             17 TEXT                     adv=6   #2 "不。"
+005302:             17 TEXT                     adv=6   #3 "純潔之盾的目標已經達成了，"
+005308:             17 TEXT                     adv=6   #4 "迪布羅瑪的鼓動正逐漸消失。"
+00530e:             50 TEXTWAITKB               adv=4   
+005312:             51 KEYWAIT                  adv=4   
+005316:             43 TEXTACTIVE               adv=8   4
+00531e:             44 TEXTCLEAR                adv=4   
+005322:             17 TEXT                     adv=6   #5 "…………"
+005328:             50 TEXTWAITKB               adv=4   
+00532c:             51 KEYWAIT                  adv=4   
+005330:             43 TEXTACTIVE               adv=8   8
+005338:             44 TEXTCLEAR                adv=4   
+00533c:             17 TEXT                     adv=6   #6 "…………"
+005342:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+005356:             43 TEXTACTIVE               adv=8   7
+00535e:             17 TEXT                     adv=6   #7 "這巴雷歐斯……"
+005364:             17 TEXT                     adv=6   #8 "如果不是被我們荒廢得這麼徹底，"
+00536a:             17 TEXT                     adv=6   #9 "也不會變成這樣的一片荒野。"
+005370:             17 TEXT                     adv=6   #10 "應該沒有比這樣的事情更現實的結果了吧。"
+005376:             50 TEXTWAITKB               adv=4   
+00537a:             51 KEYWAIT                  adv=4   
+00537e:             43 TEXTACTIVE               adv=8   8
+005386:             44 TEXTCLEAR                adv=4   
+00538a:             33 CHARSET                  adv=16  8 120 0
+00539a:             36 CHARWAIT                 adv=4   
+00539e:             43 TEXTACTIVE               adv=8   8
+0053a6:             17 TEXT                     adv=6   #11 "不不不，"
+0053ac:             17 TEXT                     adv=6   #12 "剩下的這最後一段還沒有結束呀。"
+0053b2:             50 TEXTWAITKB               adv=4   
+0053b6:             51 KEYWAIT                  adv=4   
+0053ba:             43 TEXTACTIVE               adv=8   7
+0053c2:             44 TEXTCLEAR                adv=4   
+0053c6:             17 TEXT                     adv=6   #13 "……烏洛波羅斯。"
+0053cc:             50 TEXTWAITKB               adv=4   
+0053d0:             51 KEYWAIT                  adv=4   
+0053d4:             43 TEXTACTIVE               adv=8   8
+0053dc:             44 TEXTCLEAR                adv=4   
+0053e0:             17 TEXT                     adv=6   #14 "看來各位的心情都不錯嘛。"
+0053e6:             50 TEXTWAITKB               adv=4   
+0053ea:             51 KEYWAIT                  adv=4   
+0053ee:             43 TEXTACTIVE               adv=8   7
+0053f6:             44 TEXTCLEAR                adv=4   
+0053fa:             17 TEXT                     adv=6   #15 "…………"
+005400:             43 TEXTACTIVE               adv=8   4
+005408:             44 TEXTCLEAR                adv=4   
+00540c:             17 TEXT                     adv=6   #16 "……你是特地來表達對我們的眷戀嗎？"
+005412:             50 TEXTWAITKB               adv=4   
+005416:             51 KEYWAIT                  adv=4   
+00541a:             43 TEXTACTIVE               adv=8   8
+005422:             44 TEXTCLEAR                adv=4   
+005426:             17 TEXT                     adv=6   #17 "這個嘛……"
+00542c:             50 TEXTWAITKB               adv=4   
+005430:             51 KEYWAIT                  adv=4   
+005434:             43 TEXTACTIVE               adv=8   4
+00543c:             44 TEXTCLEAR                adv=4   
+005440:             17 TEXT                     adv=6   #18 "…………"
+005446:             43 TEXTACTIVE               adv=8   7
+00544e:             44 TEXTCLEAR                adv=4   
+005452:             33 CHARSET                  adv=16  7 116 0
+005462:             36 CHARWAIT                 adv=4   
+005466:             43 TEXTACTIVE               adv=8   7
+00546e:             17 TEXT                     adv=6   #19 "我看……"
+005474:             17 TEXT                     adv=6   #20 "想必是為了毀滅愛爾梅納斯而來的吧。"
+00547a:             17 TEXT                     adv=6   #21 "你不是很想解開身上久遠的枷鎖嗎？"
+005480:             17 TEXT                     adv=6   #22 "然而，十二王杯將會蒐集齊全的。"
+005486:             17 TEXT                     adv=6   #23 "……帕蘭達因將會完成這個任務。"
+00548c:             50 TEXTWAITKB               adv=4   
+005490:             51 KEYWAIT                  adv=4   
+005494:             43 TEXTACTIVE               adv=8   8
+00549c:             44 TEXTCLEAR                adv=4   
+0054a0:             17 TEXT                     adv=6   #24 "這件事我可是十分贊成。"
+0054a6:             17 TEXT                     adv=6   #25 "讓愛爾梅納斯得到救贖才是我的心願。"
+0054ac:             50 TEXTWAITKB               adv=4   
+0054b0:             51 KEYWAIT                  adv=4   
+0054b4:             43 TEXTACTIVE               adv=8   7
+0054bc:             44 TEXTCLEAR                adv=4   
+0054c0:             33 CHARSET                  adv=16  7 101 0
+0054d0:             36 CHARWAIT                 adv=4   
+0054d4:             43 TEXTACTIVE               adv=8   7
+0054dc:             17 TEXT                     adv=6   #26 "……你還真是很會巴結別人哪。"
+0054e2:             17 TEXT                     adv=6   #27 "不過，你還是少開口說話比較好。"
+0054e8:             50 TEXTWAITKB               adv=4   
+0054ec:             51 KEYWAIT                  adv=4   
+0054f0:             43 TEXTACTIVE               adv=8   8
+0054f8:             44 TEXTCLEAR                adv=4   
+0054fc:             17 TEXT                     adv=6   #28 "可是……"
+005502:             17 TEXT                     adv=6   #29 "只是把眼前所見的混沌消除，"
+005508:             17 TEXT                     adv=6   #30 "是絕對無法給愛爾梅納斯帶來幸福的。"
+00550e:             50 TEXTWAITKB               adv=4   
+005512:             51 KEYWAIT                  adv=4   
+005516:             43 TEXTACTIVE               adv=8   7
+00551e:             44 TEXTCLEAR                adv=4   
+005522:             33 CHARSET                  adv=16  7 116 0
+005532:             36 CHARWAIT                 adv=4   
+005536:             43 TEXTACTIVE               adv=8   7
+00553e:             17 TEXT                     adv=6   #31 "什麼……？"
+005544:             50 TEXTWAITKB               adv=4   
+005548:             51 KEYWAIT                  adv=4   
+00554c:             43 TEXTACTIVE               adv=8   8
+005554:             44 TEXTCLEAR                adv=4   
+005558:             17 TEXT                     adv=6   #32 "只不過是聽了一個小女孩的說辭，"
+00555e:             17 TEXT                     adv=6   #33 "無論是誰都不可能會相信吧？"
+005564:             17 TEXT                     adv=6   #34 "總有一天，那「匍伏蔓延而來之物」一定會把"
+00556a:             17 TEXT                     adv=6   #35 "所有的生命都消滅掉。"
+005570:             50 TEXTWAITKB               adv=4   
+005574:             51 KEYWAIT                  adv=4   
+005578:             43 TEXTACTIVE               adv=8   7
+005580:             44 TEXTCLEAR                adv=4   
+005584:             17 TEXT                     adv=6   #36 "你在開什麼玩笑。"
+00558a:             17 TEXT                     adv=6   #37 "正因為如此，所以無論如何……"
+005590:             17 TEXT                     adv=6   #38 "我們都必須用十二王杯消除這些混沌呀。"
+005596:             50 TEXTWAITKB               adv=4   
+00559a:             51 KEYWAIT                  adv=4   
+00559e:             43 TEXTACTIVE               adv=8   8
+0055a6:             44 TEXTCLEAR                adv=4   
+0055aa:             17 TEXT                     adv=6   #39 "這個願望連精靈都不能達成了，你這個傻瓜當"
+0055b0:             17 TEXT                     adv=6   #40 "然更不可能。那黑衣的施咒者，在被重重縛鎖"
+0055b6:             17 TEXT                     adv=6   #41 "的時候，究竟做了些什麼呢？"
+0055bc:             17 TEXT                     adv=6   #42 "你們覺得他毫無休止地在那永久的黑闇中，"
+0055c2:             17 TEXT                     adv=6   #43 "究竟做了些什麼呢？"
+0055c8:             50 TEXTWAITKB               adv=4   
+0055cc:             51 KEYWAIT                  adv=4   
+0055d0:             43 TEXTACTIVE               adv=8   7
+0055d8:             44 TEXTCLEAR                adv=4   
+0055dc:             17 TEXT                     adv=6   #44 "…………"
+0055e2:             43 TEXTACTIVE               adv=8   8
+0055ea:             44 TEXTCLEAR                adv=4   
+0055ee:             17 TEXT                     adv=6   #45 "難道你們認為，"
+0055f4:             17 TEXT                     adv=6   #46 "他為了今天所做的準備，"
+0055fa:             17 TEXT                     adv=6   #47 "就只是每天無所事事地度過嗎？"
+005600:             50 TEXTWAITKB               adv=4   
+005604:             51 KEYWAIT                  adv=4   
+005608:             43 TEXTACTIVE               adv=8   4
+005610:             44 TEXTCLEAR                adv=4   
+005614:             17 TEXT                     adv=6   #48 "…………"
+00561a:             50 TEXTWAITKB               adv=4   
+00561e:             51 KEYWAIT                  adv=4   
+005622:             43 TEXTACTIVE               adv=8   8
+00562a:             44 TEXTCLEAR                adv=4   
+00562e:             17 TEXT                     adv=6   #49 "在那些詛咒、黑闇、罪與罰之中，"
+005634:             17 TEXT                     adv=6   #50 "所能找到的東西實在不少。"
+00563a:             50 TEXTWAITKB               adv=4   
+00563e:             51 KEYWAIT                  adv=4   
+005642:             43 TEXTACTIVE               adv=8   4
+00564a:             44 TEXTCLEAR                adv=4   
+00564e:             17 TEXT                     adv=6   #51 "難道……"
+005654:             50 TEXTWAITKB               adv=4   
+005658:             51 KEYWAIT                  adv=4   
+00565c:             43 TEXTACTIVE               adv=8   8
+005664:             44 TEXTCLEAR                adv=4   
+005668:             17 TEXT                     adv=6   #52 "你反應很快嘛……沒錯。"
+00566e:             17 TEXT                     adv=6   #53 "第十三王杯就在那黑暗的深處。"
+005674:             50 TEXTWAITKB               adv=4   
+005678:             51 KEYWAIT                  adv=4   
+00567c:             43 TEXTACTIVE               adv=8   4
+005684:             44 TEXTCLEAR                adv=4   
+005688:             17 TEXT                     adv=6   #54 "不可能！！"
+00568e:             50 TEXTWAITKB               adv=4   
+005692:             51 KEYWAIT                  adv=4   
+005696:             43 TEXTACTIVE               adv=8   8
+00569e:             44 TEXTCLEAR                adv=4   
+0056a2:             17 TEXT                     adv=6   #55 "我就知道你對這件事一定會有興趣的。"
+0056a8:             50 TEXTWAITKB               adv=4   
+0056ac:             51 KEYWAIT                  adv=4   
+0056b0:             43 TEXTACTIVE               adv=8   4
+0056b8:             44 TEXTCLEAR                adv=4   
+0056bc:             17 TEXT                     adv=6   #56 "第十三王杯的確是失落了。"
+0056c2:             17 TEXT                     adv=6   #57 "在九年前的那一天，確實被毀滅了。"
+0056c8:             50 TEXTWAITKB               adv=4   
+0056cc:             51 KEYWAIT                  adv=4   
+0056d0:             43 TEXTACTIVE               adv=8   8
+0056d8:             44 TEXTCLEAR                adv=4   
+0056dc:             17 TEXT                     adv=6   #58 "沒錯，在那一天，王杯的確只剩下十二個。"
+0056e2:             17 TEXT                     adv=6   #59 "這都是因為你們純潔之盾的努力。"
+0056e8:             17 TEXT                     adv=6   #60 "然而，從虛無之中編織出混沌，"
+0056ee:             17 TEXT                     adv=6   #61 "才正是黑衣施咒者邪惡的根源。"
+0056f4:             50 TEXTWAITKB               adv=4   
+0056f8:             51 KEYWAIT                  adv=4   
+0056fc:             43 TEXTACTIVE               adv=8   4
+005704:             44 TEXTCLEAR                adv=4   
+005708:             17 TEXT                     adv=6   #62 "…………"
+00570e:             43 TEXTACTIVE               adv=8   8
+005716:             44 TEXTCLEAR                adv=4   
+00571a:             17 TEXT                     adv=6   #63 "這真是作夢也想不到的事情對吧……"
+005720:             17 TEXT                     adv=6   #64 "如果不是羅亞爾•聖提被攻破了，"
+005726:             17 TEXT                     adv=6   #65 "這種事情也不可能發生吧。"
+00572c:             50 TEXTWAITKB               adv=4   
+005730:             51 KEYWAIT                  adv=4   
+005734:             43 TEXTACTIVE               adv=8   4
+00573c:             44 TEXTCLEAR                adv=4   
+005740:             17 TEXT                     adv=6   #66 "…………"
+005746:             50 TEXTWAITKB               adv=4   
+00574a:             51 KEYWAIT                  adv=4   
+00574e:             43 TEXTACTIVE               adv=8   8
+005756:             44 TEXTCLEAR                adv=4   
+00575a:             17 TEXT                     adv=6   #67 "命運真是一種奇妙的東西。"
+005760:             17 TEXT                     adv=6   #68 "如果我們的信念堅定，"
+005766:             17 TEXT                     adv=6   #69 "愛爾梅納斯就可以永存了嗎？"
+00576c:             17 TEXT                     adv=6   #70 "就因為大家都這樣想，才出了問題呀。"
+005772:             17 TEXT                     adv=6   #71 "愛爾梅納斯真的是墮落了哪。"
+005778:             50 TEXTWAITKB               adv=4   
+00577c:             51 KEYWAIT                  adv=4   
+005780:             43 TEXTACTIVE               adv=8   4
+005788:             44 TEXTCLEAR                adv=4   
+00578c:             17 TEXT                     adv=6   #72 "…………"
+005792:             50 TEXTWAITKB               adv=4   
+005796:             51 KEYWAIT                  adv=4   
+00579a:             43 TEXTACTIVE               adv=8   8
+0057a2:             44 TEXTCLEAR                adv=4   
+0057a6:             17 TEXT                     adv=6   #73 "第十三王杯帶來終結，"
+0057ac:             17 TEXT                     adv=6   #74 "那些東西將會來到十二王杯所聚集的地方。"
+0057b2:             17 TEXT                     adv=6   #75 "如果真是這樣的話，一切就結束了。"
+0057b8:             17 TEXT                     adv=6   #76 "毀滅將在那時候降臨。"
+0057be:             50 TEXTWAITKB               adv=4   
+0057c2:             51 KEYWAIT                  adv=4   
+0057c6:             43 TEXTACTIVE               adv=8   7
+0057ce:             44 TEXTCLEAR                adv=4   
+0057d2:             17 TEXT                     adv=6   #77 "…………"
+0057d8:             50 TEXTWAITKB               adv=4   
+0057dc:             51 KEYWAIT                  adv=4   
+0057e0:             43 TEXTACTIVE               adv=8   8
+0057e8:             44 TEXTCLEAR                adv=4   
+0057ec:             17 TEXT                     adv=6   #78 "…………"
+0057f2:             43 TEXTACTIVE               adv=8   4
+0057fa:             44 TEXTCLEAR                adv=4   
+0057fe:             17 TEXT                     adv=6   #79 "…………"
+005804:             50 TEXTWAITKB               adv=4   
+005808:             51 KEYWAIT                  adv=4   
+00580c:             43 TEXTACTIVE               adv=8   8
+005814:             44 TEXTCLEAR                adv=4   
+005818:             17 TEXT                     adv=6   #80 "就像我剛剛說的。"
+00581e:             17 TEXT                     adv=6   #81 "這就是為什麼十二王杯不能消滅混沌的原因。"
+005824:             17 TEXT                     adv=6   #82 "被稱為賢者的你們，"
+00582a:             17 TEXT                     adv=6   #83 "不過是一些只知道後悔，"
+005830:             17 TEXT                     adv=6   #84 "卻一點用處也沒有的傢伙。"
+005836:             50 TEXTWAITKB               adv=4   
+00583a:             51 KEYWAIT                  adv=4   
+00583e:             43 TEXTACTIVE               adv=8   7
+005846:             44 TEXTCLEAR                adv=4   
+00584a:             33 CHARSET                  adv=16  7 101 0
+00585a:             36 CHARWAIT                 adv=4   
+00585e:             43 TEXTACTIVE               adv=8   7
+005866:             17 TEXT                     adv=6   #85 "…………"
+00586c:             50 TEXTWAITKB               adv=4   
+005870:             51 KEYWAIT                  adv=4   
+005874:             43 TEXTACTIVE               adv=8   8
+00587c:             44 TEXTCLEAR                adv=4   
+005880:             17 TEXT                     adv=6   #86 "雖然如此……"
+005886:             17 TEXT                     adv=6   #87 "將愛爾梅納斯從混沌中拯救出來的純潔之盾，"
+00588c:             17 TEXT                     adv=6   #88 "我還是得對那優秀的領導者致上我的謝意。"
+005892:             50 TEXTWAITKB               adv=4   
+005896:             51 KEYWAIT                  adv=4   
+00589a:             44 TEXTCLEAR                adv=4   
+00589e:             17 TEXT                     adv=6   #89 "無論你們找到多少個王杯也沒用……"
+0058a4:             17 TEXT                     adv=6   #90 "只有純潔之盾的力量才能拯救愛爾梅納斯。"
+0058aa:             50 TEXTWAITKB               adv=4   
+0058ae:             51 KEYWAIT                  adv=4   
+0058b2:             43 TEXTACTIVE               adv=8   7
+0058ba:             44 TEXTCLEAR                adv=4   
+0058be:             17 TEXT                     adv=6   #91 "…………"
+0058c4:             50 TEXTWAITKB               adv=4   
+0058c8:             51 KEYWAIT                  adv=4   
+0058cc:             43 TEXTACTIVE               adv=8   8
+0058d4:             44 TEXTCLEAR                adv=4   
+0058d8:             17 TEXT                     adv=6   #92 "…………"
+0058de:             43 TEXTACTIVE               adv=8   4
+0058e6:             44 TEXTCLEAR                adv=4   
+0058ea:             17 TEXT                     adv=6   #93 "為什麼要說這些話幫助我們？"
+0058f0:             50 TEXTWAITKB               adv=4   
+0058f4:             51 KEYWAIT                  adv=4   
+0058f8:             43 TEXTACTIVE               adv=8   8
+005900:             44 TEXTCLEAR                adv=4   
+005904:             17 TEXT                     adv=6   #94 "學舍中的七哲，因為互相背叛，"
+00590a:             17 TEXT                     adv=6   #95 "全都遭受了對方的詛咒。"
+005910:             17 TEXT                     adv=6   #96 "而這情況至今也一直持續著。"
+005916:             17 TEXT                     adv=6   #97 "這都是我們的愚蠢所造成的呀。"
+00591c:             50 TEXTWAITKB               adv=4   
+005920:             51 KEYWAIT                  adv=4   
+005924:             43 TEXTACTIVE               adv=8   4
+00592c:             44 TEXTCLEAR                adv=4   
+005930:             17 TEXT                     adv=6   #98 "那麼……"
+005936:             17 TEXT                     adv=6   #99 "你又為什麼要傷害那北壁的雪花呢？"
+00593c:             50 TEXTWAITKB               adv=4   
+005940:             51 KEYWAIT                  adv=4   
+005944:             43 TEXTACTIVE               adv=8   8
+00594c:             44 TEXTCLEAR                adv=4   
+005950:             17 TEXT                     adv=6   #100 "你要怎麼說都沒有關係。"
+005956:             17 TEXT                     adv=6   #101 "但我是想拯救那孩子，想拯救愛爾梅納斯的。"
+00595c:             50 TEXTWAITKB               adv=4   
+005960:             51 KEYWAIT                  adv=4   
+005964:             43 TEXTACTIVE               adv=8   4
+00596c:             44 TEXTCLEAR                adv=4   
+005970:             17 TEXT                     adv=6   #102 "…………"
+005976:             50 TEXTWAITKB               adv=4   
+00597a:             51 KEYWAIT                  adv=4   
+00597e:             43 TEXTACTIVE               adv=8   8
+005986:             44 TEXTCLEAR                adv=4   
+00598a:             17 TEXT                     adv=6   #103 "你相信也好，不信也罷，"
+005990:             17 TEXT                     adv=6   #104 "對我來說都沒有意義。"
+005996:             17 TEXT                     adv=6   #105 "然而……我至少也得補救我所造成的罪業。"
+00599c:             17 TEXT                     adv=6   #106 "所以我選擇來到了這個地方。"
+0059a2:             50 TEXTWAITKB               adv=4   
+0059a6:             51 KEYWAIT                  adv=4   
+0059aa:             43 TEXTACTIVE               adv=8   4
+0059b2:             44 TEXTCLEAR                adv=4   
+0059b6:             17 TEXT                     adv=6   #107 "那麼……"
+0059bc:             50 TEXTWAITKB               adv=4   
+0059c0:             51 KEYWAIT                  adv=4   
+0059c4:             43 TEXTACTIVE               adv=8   8
+0059cc:             44 TEXTCLEAR                adv=4   
+0059d0:             17 TEXT                     adv=6   #108 "黑衣施咒者的計謀，"
+0059d6:             17 TEXT                     adv=6   #109 "將會藉由眺望萬物的尖塔來完成吧。"
+0059dc:             50 TEXTWAITKB               adv=4   
+0059e0:             51 KEYWAIT                  adv=4   
+0059e4:             43 TEXTACTIVE               adv=8   4
+0059ec:             44 TEXTCLEAR                adv=4   
+0059f0:             17 TEXT                     adv=6   #110 "……！！"
+0059f6:             50 TEXTWAITKB               adv=4   
+0059fa:             51 KEYWAIT                  adv=4   
+0059fe:             44 TEXTCLEAR                adv=4   
+005a02:             43 TEXTACTIVE               adv=8   7
+005a0a:             44 TEXTCLEAR                adv=4   
+005a0e:             43 TEXTACTIVE               adv=8   8
+005a16:             44 TEXTCLEAR                adv=4   
+005a1a:             31 BORDPACKOFF              adv=12  7 30
+005a26:             31 BORDPACKOFF              adv=12  8 30
+005a32:             24 BORDDISP                 adv=12  4 3
+005a3e:             12 VWAIT                    adv=8   60
+005a46:             21 ALLOFF                   adv=4   
+005a4a:            118 TACTSETDESTROYSCRIPT     adv=8   60
+005a52: L_07ea    19 END                      adv=4   ; END
+;   (347 insns)
+; ── block0 sub20 code@0x6700 pool@0x6900 (0 strings)
+006700:            167 REG_GET                  adv=8   v0x0
+006708:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_01fc
+00671c:            166 REG_PUT                  adv=8   0
+006724:            136 TACTANIMPLAY             adv=32  31 0 0 0 0 0 0
+006744:            136 TACTANIMPLAY             adv=32  32 1 0 0 0 0 0
+006764:            136 TACTANIMPLAY             adv=32  32 2 0 0 0 0 0
+006784:            136 TACTANIMPLAY             adv=32  32 3 0 0 0 0 0
+0067a4:            136 TACTANIMPLAY             adv=32  32 4 0 0 0 0 0
+0067c4:            136 TACTANIMPLAY             adv=32  32 5 0 0 0 0 0
+0067e4:            136 TACTANIMPLAY             adv=32  32 6 0 0 0 0 0
+006804:            136 TACTANIMPLAY             adv=32  32 7 0 0 0 0 0
+006824:            136 TACTANIMPLAY             adv=32  32 8 0 0 0 0 0
+006844:            146 NETKEYWAIT               adv=28  v0x2 5 0 0 0 0
+006860:              8 IFGOTO                   adv=20  cond=1 v0x2 cmp 65535 -> L_01a8
+006874:            136 TACTANIMPLAY             adv=32  33 v0x2 0 0 0 0 0
+006894:            130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 92 11 5
+0068a8: L_01a8   146 NETKEYWAIT               adv=28  v0x1 2 900 7200 0 0
+0068c4:            146 NETKEYWAIT               adv=28  v0x3 6 0 0 0 0
+0068e0:            124 TACTPLAYEREXIT           adv=20  v0x3 0 20 v0x1
+0068f4:             11 GOTO                     adv=8   L_01fc
+0068fc: L_01fc    19 END                      adv=4   ; END
+;   (21 insns)
+; ── block0 sub21 code@0x6918 pool@0x6a98 (0 strings)
+006918:            167 REG_GET                  adv=8   v0x0
+006920:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_017c
+006934:            166 REG_PUT                  adv=8   0
+00693c:            136 TACTANIMPLAY             adv=32  31 0 0 0 0 0 0
+00695c:            136 TACTANIMPLAY             adv=32  32 11 0 0 0 0 0
+00697c:            136 TACTANIMPLAY             adv=32  32 12 0 0 0 0 0
+00699c:            136 TACTANIMPLAY             adv=32  32 13 0 0 0 0 0
+0069bc:            136 TACTANIMPLAY             adv=32  32 14 0 0 0 0 0
+0069dc:            146 NETKEYWAIT               adv=28  v0x2 5 0 0 0 0
+0069f8:              8 IFGOTO                   adv=20  cond=1 v0x2 cmp 65535 -> L_0128
+006a0c:            136 TACTANIMPLAY             adv=32  33 v0x2 0 0 0 0 0
+006a2c:            130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 67 73 5
+006a40: L_0128   146 NETKEYWAIT               adv=28  v0x1 2 1200 2700 0 0
+006a5c:            146 NETKEYWAIT               adv=28  v0x3 6 0 0 0 0
+006a78:            124 TACTPLAYEREXIT           adv=20  v0x3 0 21 v0x1
+006a8c:             11 GOTO                     adv=8   L_017c
+006a94: L_017c    19 END                      adv=4   ; END
+;   (17 insns)
+; ── block0 sub22 code@0x6ab0 pool@0x6cf8 (0 strings)
+006ab0:            167 REG_GET                  adv=8   v0x0
+006ab8:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0244
+006acc:            166 REG_PUT                  adv=8   0
+006ad4:            136 TACTANIMPLAY             adv=32  31 0 0 0 0 0 0
+006af4:            136 TACTANIMPLAY             adv=32  32 9 0 0 0 0 0
+006b14:            136 TACTANIMPLAY             adv=32  32 10 0 0 0 0 0
+006b34:            136 TACTANIMPLAY             adv=32  32 15 0 0 0 0 0
+006b54:            136 TACTANIMPLAY             adv=32  32 16 0 0 0 0 0
+006b74:            146 NETKEYWAIT               adv=28  v0x2 5 0 0 0 0
+006b90:              8 IFGOTO                   adv=20  cond=1 v0x2 cmp 65535 -> L_01f0
+006ba4:            136 TACTANIMPLAY             adv=32  33 v0x2 0 0 0 0 0
+006bc4:            146 NETKEYWAIT               adv=28  v0x5 2 1 4 0 0
+006be0:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 1 -> L_0180
+006bf4:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 2 -> L_019c
+006c08:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 3 -> L_01b8
+006c1c:              8 IFGOTO                   adv=20  cond=1 v0x5 cmp 4 -> L_01d4
+006c30: L_0180   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 49 6 5
+006c44:             11 GOTO                     adv=8   L_01f0
+006c4c: L_019c   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 9 8 5
+006c60:             11 GOTO                     adv=8   L_01f0
+006c68: L_01b8   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 18 65 5
+006c7c:             11 GOTO                     adv=8   L_01f0
+006c84: L_01d4   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 80 119 5
+006c98:             11 GOTO                     adv=8   L_01f0
+006ca0: L_01f0   146 NETKEYWAIT               adv=28  v0x1 2 900 3600 0 0
+006cbc:            146 NETKEYWAIT               adv=28  v0x3 6 0 0 0 0
+006cd8:            124 TACTPLAYEREXIT           adv=20  v0x3 0 22 v0x1
+006cec:             11 GOTO                     adv=8   L_0244
+006cf4: L_0244    19 END                      adv=4   ; END
+;   (29 insns)

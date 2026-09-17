@@ -1,0 +1,132 @@
+; CHAPTER235.YBC  len=0x564  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x270', '0x270', '0x270']
+;   txt#0 off=0x74 prm=0xa0 "我說啊。"
+;   txt#1 off=0x7e prm=0x60 "嗯？"
+;   txt#2 off=0x84 prm=0x200 "讓它在這裡變成安蒂米昂的名產，"
+;   txt#3 off=0xa4 prm=0x100 "好像也不錯嘛。"
+;   txt#4 off=0xb4 prm=0xa0 "…………"
+;   txt#5 off=0xbe prm=0x1a0 "本來呀，我是想早一點……"
+;   txt#6 off=0xd8 prm=0x2a0 "是啊，如果在艾爾貝洛瓦就可以這樣做的話，"
+;   txt#7 off=0x102 prm=0x140 "說不定會更有趣呢。"
+;   txt#8 off=0x116 prm=0x2a0 "如果不是在這裡的話，就沒有這種餘裕了吧。"
+;   txt#9 off=0x140 prm=0xc0 "……抱歉。"
+;   txt#10 off=0x14c prm=0x1e0 "在有能力做的時候就全力去做，"
+;   txt#11 off=0x16a prm=0x200 "這的確是伊諾森提雅的傳統沒錯。"
+;   txt#12 off=0x18a prm=0xc0 "原來如此。"
+;   txt#13 off=0x196 prm=0x280 "不過……你離開愛爾梅納斯也有九年了呢。"
+;   txt#14 off=0x1be prm=0xa0 "…………"
+;   txt#15 off=0x1c8 prm=0x2a0 "我呀，只不過是被關在牢裡那麼一小段時間，"
+;   txt#16 off=0x1f2 prm=0x160 "就已經被整成這樣了。"
+;   txt#17 off=0x208 prm=0xa0 "…………"
+;   txt#18 off=0x212 prm=0xe0 "就憑這一點，"
+;   txt#19 off=0x220 prm=0x260 "我能夠瞭解奈比洛斯閣下敢於保持沉默，"
+;   txt#20 off=0x246 prm=0x220 "甚至到自己還因此被囚禁的程度……"
+;   txt#21 off=0x268 prm=0x220 "那就表示她已經有了相當大的覺悟。"
+;   txt#22 off=0x28a prm=0xa0 "…………"
+;   txt#23 off=0x294 prm=0x100 "唉呀，總之咧，"
+;   txt#24 off=0x2a4 prm=0x240 "「那個」已經在第三中庭裡準備好了，"
+;   txt#25 off=0x2c8 prm=0x1a0 "什麼時候想試試看都可以。"
+;   txt#26 off=0x2e2 prm=0x80 "嗯嗯。"
+;   txt#27 off=0x2ea prm=0xa0 "謝謝你。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 14 1
+000034:             30 BORDPACKONWAIT           adv=20  10 116 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   10
+000058:             17 TEXT                     adv=6   #0 "我說啊。"
+00005e:             50 TEXTWAITKB               adv=4   
+000062:             51 KEYWAIT                  adv=4   
+000066:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000076:             43 TEXTACTIVE               adv=8   4
+00007e:             17 TEXT                     adv=6   #1 "嗯？"
+000084:             50 TEXTWAITKB               adv=4   
+000088:             51 KEYWAIT                  adv=4   
+00008c:             43 TEXTACTIVE               adv=8   10
+000094:             44 TEXTCLEAR                adv=4   
+000098:             17 TEXT                     adv=6   #2 "讓它在這裡變成安蒂米昂的名產，"
+00009e:             17 TEXT                     adv=6   #3 "好像也不錯嘛。"
+0000a4:             50 TEXTWAITKB               adv=4   
+0000a8:             51 KEYWAIT                  adv=4   
+0000ac:             43 TEXTACTIVE               adv=8   4
+0000b4:             44 TEXTCLEAR                adv=4   
+0000b8:             17 TEXT                     adv=6   #4 "…………"
+0000be:             50 TEXTWAITKB               adv=4   
+0000c2:             51 KEYWAIT                  adv=4   
+0000c6:             43 TEXTACTIVE               adv=8   10
+0000ce:             44 TEXTCLEAR                adv=4   
+0000d2:             17 TEXT                     adv=6   #5 "本來呀，我是想早一點……"
+0000d8:             17 TEXT                     adv=6   #6 "是啊，如果在艾爾貝洛瓦就可以這樣做的話，"
+0000de:             17 TEXT                     adv=6   #7 "說不定會更有趣呢。"
+0000e4:             50 TEXTWAITKB               adv=4   
+0000e8:             51 KEYWAIT                  adv=4   
+0000ec:             43 TEXTACTIVE               adv=8   4
+0000f4:             44 TEXTCLEAR                adv=4   
+0000f8:             17 TEXT                     adv=6   #8 "如果不是在這裡的話，就沒有這種餘裕了吧。"
+0000fe:             50 TEXTWAITKB               adv=4   
+000102:             51 KEYWAIT                  adv=4   
+000106:             43 TEXTACTIVE               adv=8   10
+00010e:             44 TEXTCLEAR                adv=4   
+000112:             17 TEXT                     adv=6   #9 "……抱歉。"
+000118:             50 TEXTWAITKB               adv=4   
+00011c:             51 KEYWAIT                  adv=4   
+000120:             43 TEXTACTIVE               adv=8   4
+000128:             44 TEXTCLEAR                adv=4   
+00012c:             17 TEXT                     adv=6   #10 "在有能力做的時候就全力去做，"
+000132:             17 TEXT                     adv=6   #11 "這的確是伊諾森提雅的傳統沒錯。"
+000138:             50 TEXTWAITKB               adv=4   
+00013c:             51 KEYWAIT                  adv=4   
+000140:             43 TEXTACTIVE               adv=8   10
+000148:             44 TEXTCLEAR                adv=4   
+00014c:             17 TEXT                     adv=6   #12 "原來如此。"
+000152:             17 TEXT                     adv=6   #13 "不過……你離開愛爾梅納斯也有九年了呢。"
+000158:             50 TEXTWAITKB               adv=4   
+00015c:             51 KEYWAIT                  adv=4   
+000160:             43 TEXTACTIVE               adv=8   4
+000168:             44 TEXTCLEAR                adv=4   
+00016c:             17 TEXT                     adv=6   #14 "…………"
+000172:             43 TEXTACTIVE               adv=8   10
+00017a:             44 TEXTCLEAR                adv=4   
+00017e:             17 TEXT                     adv=6   #15 "我呀，只不過是被關在牢裡那麼一小段時間，"
+000184:             17 TEXT                     adv=6   #16 "就已經被整成這樣了。"
+00018a:             50 TEXTWAITKB               adv=4   
+00018e:             51 KEYWAIT                  adv=4   
+000192:             43 TEXTACTIVE               adv=8   4
+00019a:             44 TEXTCLEAR                adv=4   
+00019e:             17 TEXT                     adv=6   #17 "…………"
+0001a4:             50 TEXTWAITKB               adv=4   
+0001a8:             51 KEYWAIT                  adv=4   
+0001ac:             43 TEXTACTIVE               adv=8   10
+0001b4:             44 TEXTCLEAR                adv=4   
+0001b8:             17 TEXT                     adv=6   #18 "就憑這一點，"
+0001be:             17 TEXT                     adv=6   #19 "我能夠瞭解奈比洛斯閣下敢於保持沉默，"
+0001c4:             17 TEXT                     adv=6   #20 "甚至到自己還因此被囚禁的程度……"
+0001ca:             17 TEXT                     adv=6   #21 "那就表示她已經有了相當大的覺悟。"
+0001d0:             50 TEXTWAITKB               adv=4   
+0001d4:             51 KEYWAIT                  adv=4   
+0001d8:             43 TEXTACTIVE               adv=8   4
+0001e0:             44 TEXTCLEAR                adv=4   
+0001e4:             17 TEXT                     adv=6   #22 "…………"
+0001ea:             50 TEXTWAITKB               adv=4   
+0001ee:             51 KEYWAIT                  adv=4   
+0001f2:             43 TEXTACTIVE               adv=8   10
+0001fa:             44 TEXTCLEAR                adv=4   
+0001fe:             17 TEXT                     adv=6   #23 "唉呀，總之咧，"
+000204:             17 TEXT                     adv=6   #24 "「那個」已經在第三中庭裡準備好了，"
+00020a:             17 TEXT                     adv=6   #25 "什麼時候想試試看都可以。"
+000210:             50 TEXTWAITKB               adv=4   
+000214:             51 KEYWAIT                  adv=4   
+000218:             43 TEXTACTIVE               adv=8   4
+000220:             44 TEXTCLEAR                adv=4   
+000224:             17 TEXT                     adv=6   #26 "嗯嗯。"
+00022a:             17 TEXT                     adv=6   #27 "謝謝你。"
+000230:             50 TEXTWAITKB               adv=4   
+000234:             51 KEYWAIT                  adv=4   
+000238:             12 VWAIT                    adv=8   30
+000240:             56 FADESETWAIT              adv=8   4
+000248:             21 ALLOFF                   adv=4   
+00024c:             12 VWAIT                    adv=8   60
+000254:            151 OP_151                   adv=12  3 1
+000260:             91 PUTUNITWK                adv=12  14 2
+00026c:             19 END                      adv=4   ; END
+; (101 insns)

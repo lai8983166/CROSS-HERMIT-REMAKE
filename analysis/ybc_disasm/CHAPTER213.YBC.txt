@@ -1,0 +1,116 @@
+; CHAPTER213.YBC  len=0x554  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x276', '0x2a6', '0x2a6']
+; rec1[0] = "data\\adv\\bin\\tc0604.bin"
+;   txt#0 off=0x68 prm=0x240 "法爾德留下的信你應該已經看過了吧？"
+;   txt#1 off=0x8c prm=0xc0 "……是的。"
+;   txt#2 off=0x98 prm=0x160 "就算到了最後的最後，"
+;   txt#3 off=0xae prm=0x220 "他也還是想操縱我們的行動的樣子。"
+;   txt#4 off=0xd0 prm=0xa0 "…………"
+;   txt#5 off=0xda prm=0x180 "在傑諾巴特斯的遺跡裡，"
+;   txt#6 off=0xf2 prm=0x1e0 "有著需要純潔之盾幫忙的人……"
+;   txt#7 off=0x110 prm=0x140 "如果各位願意的話，"
+;   txt#8 off=0x124 prm=0x280 "那一位應該也會是純潔之盾所需要的人才。"
+;   txt#9 off=0x14c prm=0x1a0 "他這話還說得真是漂亮呀。"
+;   txt#10 off=0x166 prm=0xa0 "…………"
+;   txt#11 off=0x170 prm=0x1a0 "都已經被他說成這樣了……"
+;   txt#12 off=0x18a prm=0x1c0 "看來，好像是非去不可了呢。"
+;   txt#13 off=0x1a6 prm=0xa0 "…………"
+;   txt#14 off=0x1b0 prm=0x80 "呼嗯。"
+;   txt#15 off=0x1b8 prm=0xa0 "…………"
+;   txt#16 off=0x1c2 prm=0x200 "沒關係的，就算有什麼萬一的話，"
+;   txt#17 off=0x1e2 prm=0x1a0 "雖然那應該是不可能的啦，"
+;   txt#18 off=0x1fc prm=0x180 "就算這是一個陷阱也好，"
+;   txt#19 off=0x214 prm=0x200 "這應該也會是一趟很好的冒險呀。"
+;   txt#20 off=0x234 prm=0xa0 "…………"
+;   txt#21 off=0x23e prm=0x80 "沒錯，"
+;   txt#22 off=0x246 prm=0x2a0 "雖然我不是很明白我朋友究竟在想些什麼……"
+;   txt#23 off=0x270 prm=0x160 "至少，我願意相信他，"
+;   txt#24 off=0x286 prm=0x280 "絕對不會準備了一個陷阱給我們跳下去的。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   0
+000080:             63 SE                       adv=8   9
+000088:             59 BGSETWAIT                adv=16  0 8 1
+000098:             30 BORDPACKONWAIT           adv=20  8 101 0 30
+0000ac:             56 FADESETWAIT              adv=8   3
+0000b4:             43 TEXTACTIVE               adv=8   8
+0000bc:             17 TEXT                     adv=6   #0 "法爾德留下的信你應該已經看過了吧？"
+0000c2:             50 TEXTWAITKB               adv=4   
+0000c6:             51 KEYWAIT                  adv=4   
+0000ca:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0000da:             43 TEXTACTIVE               adv=8   4
+0000e2:             17 TEXT                     adv=6   #1 "……是的。"
+0000e8:             50 TEXTWAITKB               adv=4   
+0000ec:             51 KEYWAIT                  adv=4   
+0000f0:             43 TEXTACTIVE               adv=8   8
+0000f8:             44 TEXTCLEAR                adv=4   
+0000fc:             17 TEXT                     adv=6   #2 "就算到了最後的最後，"
+000102:             17 TEXT                     adv=6   #3 "他也還是想操縱我們的行動的樣子。"
+000108:             50 TEXTWAITKB               adv=4   
+00010c:             51 KEYWAIT                  adv=4   
+000110:             43 TEXTACTIVE               adv=8   4
+000118:             44 TEXTCLEAR                adv=4   
+00011c:             17 TEXT                     adv=6   #4 "…………"
+000122:             30 BORDPACKONWAIT           adv=20  7 110 0 30
+000136:             43 TEXTACTIVE               adv=8   7
+00013e:             17 TEXT                     adv=6   #5 "在傑諾巴特斯的遺跡裡，"
+000144:             17 TEXT                     adv=6   #6 "有著需要純潔之盾幫忙的人……"
+00014a:             17 TEXT                     adv=6   #7 "如果各位願意的話，"
+000150:             17 TEXT                     adv=6   #8 "那一位應該也會是純潔之盾所需要的人才。"
+000156:             17 TEXT                     adv=6   #9 "他這話還說得真是漂亮呀。"
+00015c:             50 TEXTWAITKB               adv=4   
+000160:             51 KEYWAIT                  adv=4   
+000164:             43 TEXTACTIVE               adv=8   8
+00016c:             44 TEXTCLEAR                adv=4   
+000170:             17 TEXT                     adv=6   #10 "…………"
+000176:             43 TEXTACTIVE               adv=8   4
+00017e:             44 TEXTCLEAR                adv=4   
+000182:             17 TEXT                     adv=6   #11 "都已經被他說成這樣了……"
+000188:             17 TEXT                     adv=6   #12 "看來，好像是非去不可了呢。"
+00018e:             50 TEXTWAITKB               adv=4   
+000192:             51 KEYWAIT                  adv=4   
+000196:             43 TEXTACTIVE               adv=8   7
+00019e:             44 TEXTCLEAR                adv=4   
+0001a2:             17 TEXT                     adv=6   #13 "…………"
+0001a8:             43 TEXTACTIVE               adv=8   8
+0001b0:             44 TEXTCLEAR                adv=4   
+0001b4:             17 TEXT                     adv=6   #14 "呼嗯。"
+0001ba:             50 TEXTWAITKB               adv=4   
+0001be:             51 KEYWAIT                  adv=4   
+0001c2:             43 TEXTACTIVE               adv=8   4
+0001ca:             44 TEXTCLEAR                adv=4   
+0001ce:             17 TEXT                     adv=6   #15 "…………"
+0001d4:             43 TEXTACTIVE               adv=8   7
+0001dc:             44 TEXTCLEAR                adv=4   
+0001e0:             17 TEXT                     adv=6   #16 "沒關係的，就算有什麼萬一的話，"
+0001e6:             17 TEXT                     adv=6   #17 "雖然那應該是不可能的啦，"
+0001ec:             17 TEXT                     adv=6   #18 "就算這是一個陷阱也好，"
+0001f2:             17 TEXT                     adv=6   #19 "這應該也會是一趟很好的冒險呀。"
+0001f8:             50 TEXTWAITKB               adv=4   
+0001fc:             51 KEYWAIT                  adv=4   
+000200:             43 TEXTACTIVE               adv=8   8
+000208:             44 TEXTCLEAR                adv=4   
+00020c:             17 TEXT                     adv=6   #20 "…………"
+000212:             43 TEXTACTIVE               adv=8   7
+00021a:             44 TEXTCLEAR                adv=4   
+00021e:             17 TEXT                     adv=6   #21 "沒錯，"
+000224:             17 TEXT                     adv=6   #22 "雖然我不是很明白我朋友究竟在想些什麼……"
+00022a:             17 TEXT                     adv=6   #23 "至少，我願意相信他，"
+000230:             17 TEXT                     adv=6   #24 "絕對不會準備了一個陷阱給我們跳下去的。"
+000236:             50 TEXTWAITKB               adv=4   
+00023a:             51 KEYWAIT                  adv=4   
+00023e:             12 VWAIT                    adv=8   30
+000246:             56 FADESETWAIT              adv=8   4
+00024e:             21 ALLOFF                   adv=4   
+000252:             12 VWAIT                    adv=8   60
+00025a:            151 OP_151                   adv=12  9 1
+000266:             91 PUTUNITWK                adv=12  8 2
+000272:             19 END                      adv=4   ; END
+; (87 insns)

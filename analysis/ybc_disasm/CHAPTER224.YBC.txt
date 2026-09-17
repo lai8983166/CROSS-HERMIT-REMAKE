@@ -1,0 +1,132 @@
+; CHAPTER224.YBC  len=0x640  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x2b2', '0x2e2', '0x2e2']
+; rec1[0] = "data\\adv\\bin\\tc0904.bin"
+;   txt#0 off=0x78 prm=0x220 "在這附近好像有一股強力的咒禁呢。"
+;   txt#1 off=0x9a prm=0x1a0 "而且它的力量真的很深沉。"
+;   txt#2 off=0xb4 prm=0xa0 "…………"
+;   txt#3 off=0xbe prm=0xa0 "…………"
+;   txt#4 off=0xc8 prm=0x220 "這表示有人在這附近被困住了嗎……"
+;   txt#5 off=0xea prm=0x180 "雖然不知道是誰在那裡。"
+;   txt#6 off=0x102 prm=0x120 "不過要去看看嗎？"
+;   txt#7 off=0x114 prm=0xa0 "…………"
+;   txt#8 off=0x11e prm=0x120 "當然要過去看看。"
+;   txt#9 off=0x130 prm=0x240 "不過……好不容易才回到了安蒂米昂，"
+;   txt#10 off=0x154 prm=0x220 "結果竟然還要再回到地底下一次……"
+;   txt#11 off=0x176 prm=0x260 "如果我說我並沒有因此而感到不快的話，"
+;   txt#12 off=0x19c prm=0x160 "那肯定就是在說謊了。"
+;   txt#13 off=0x1b2 prm=0xc0 "哈哈哈……"
+;   txt#14 off=0x1be prm=0x260 "你不是常常說你最喜歡在迷宮裡面探險，"
+;   txt#15 off=0x1e4 prm=0x1e0 "最喜歡那些獨一無二的迷宮嗎？"
+;   txt#16 off=0x202 prm=0x280 "所以你才沒辦法在迷失之森裡冷靜下來嘛。"
+;   txt#17 off=0x22a prm=0xa0 "…………"
+;   txt#18 off=0x234 prm=0x180 "哈哈哈，哈哈，哈哈哈。"
+;   txt#19 off=0x24c prm=0x120 "這樣不是很好嘛。"
+;   txt#20 off=0x25e prm=0xa0 "…………"
+;   txt#21 off=0x268 prm=0x180 "總之，還是過去看看吧。"
+;   txt#22 off=0x280 prm=0x2a0 "對那些孩子們來說，地下迷宮雖然恐怖又討厭"
+;   txt#23 off=0x2aa prm=0x240 "，但應該也是很喜歡去探險的地方吧。"
+;   txt#24 off=0x2ce prm=0x260 "我的朋友呀，有時候也要像羅弗利一樣，"
+;   txt#25 off=0x2f4 prm=0x1c0 "只要這樣地一笑置之就好啦。"
+;   txt#26 off=0x310 prm=0xa0 "…………"
+;   txt#27 off=0x31a prm=0x240 "至少比起在這裡閒著，什麼事都不做，"
+;   txt#28 off=0x33e prm=0x200 "去那裡晃晃應該會有一點好處吧。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   0
+000080:             63 SE                       adv=8   9
+000088:             59 BGSETWAIT                adv=16  0 15 1
+000098:             30 BORDPACKONWAIT           adv=20  8 110 0 30
+0000ac:             56 FADESETWAIT              adv=8   3
+0000b4:             43 TEXTACTIVE               adv=8   8
+0000bc:             17 TEXT                     adv=6   #0 "在這附近好像有一股強力的咒禁呢。"
+0000c2:             17 TEXT                     adv=6   #1 "而且它的力量真的很深沉。"
+0000c8:             50 TEXTWAITKB               adv=4   
+0000cc:             51 KEYWAIT                  adv=4   
+0000d0:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0000e0:             43 TEXTACTIVE               adv=8   4
+0000e8:             17 TEXT                     adv=6   #2 "…………"
+0000ee:             50 TEXTWAITKB               adv=4   
+0000f2:             51 KEYWAIT                  adv=4   
+0000f6:             43 TEXTACTIVE               adv=8   8
+0000fe:             44 TEXTCLEAR                adv=4   
+000102:             17 TEXT                     adv=6   #3 "…………"
+000108:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+00011c:             43 TEXTACTIVE               adv=8   7
+000124:             17 TEXT                     adv=6   #4 "這表示有人在這附近被困住了嗎……"
+00012a:             50 TEXTWAITKB               adv=4   
+00012e:             51 KEYWAIT                  adv=4   
+000132:             43 TEXTACTIVE               adv=8   8
+00013a:             44 TEXTCLEAR                adv=4   
+00013e:             17 TEXT                     adv=6   #5 "雖然不知道是誰在那裡。"
+000144:             17 TEXT                     adv=6   #6 "不過要去看看嗎？"
+00014a:             50 TEXTWAITKB               adv=4   
+00014e:             51 KEYWAIT                  adv=4   
+000152:             43 TEXTACTIVE               adv=8   7
+00015a:             44 TEXTCLEAR                adv=4   
+00015e:             17 TEXT                     adv=6   #7 "…………"
+000164:             43 TEXTACTIVE               adv=8   4
+00016c:             44 TEXTCLEAR                adv=4   
+000170:             17 TEXT                     adv=6   #8 "當然要過去看看。"
+000176:             17 TEXT                     adv=6   #9 "不過……好不容易才回到了安蒂米昂，"
+00017c:             17 TEXT                     adv=6   #10 "結果竟然還要再回到地底下一次……"
+000182:             17 TEXT                     adv=6   #11 "如果我說我並沒有因此而感到不快的話，"
+000188:             17 TEXT                     adv=6   #12 "那肯定就是在說謊了。"
+00018e:             50 TEXTWAITKB               adv=4   
+000192:             51 KEYWAIT                  adv=4   
+000196:             43 TEXTACTIVE               adv=8   8
+00019e:             44 TEXTCLEAR                adv=4   
+0001a2:             17 TEXT                     adv=6   #13 "哈哈哈……"
+0001a8:             17 TEXT                     adv=6   #14 "你不是常常說你最喜歡在迷宮裡面探險，"
+0001ae:             17 TEXT                     adv=6   #15 "最喜歡那些獨一無二的迷宮嗎？"
+0001b4:             17 TEXT                     adv=6   #16 "所以你才沒辦法在迷失之森裡冷靜下來嘛。"
+0001ba:             50 TEXTWAITKB               adv=4   
+0001be:             51 KEYWAIT                  adv=4   
+0001c2:             43 TEXTACTIVE               adv=8   4
+0001ca:             44 TEXTCLEAR                adv=4   
+0001ce:             17 TEXT                     adv=6   #17 "…………"
+0001d4:             43 TEXTACTIVE               adv=8   8
+0001dc:             44 TEXTCLEAR                adv=4   
+0001e0:             17 TEXT                     adv=6   #18 "哈哈哈，哈哈，哈哈哈。"
+0001e6:             17 TEXT                     adv=6   #19 "這樣不是很好嘛。"
+0001ec:             50 TEXTWAITKB               adv=4   
+0001f0:             51 KEYWAIT                  adv=4   
+0001f4:             43 TEXTACTIVE               adv=8   4
+0001fc:             44 TEXTCLEAR                adv=4   
+000200:             17 TEXT                     adv=6   #20 "…………"
+000206:             50 TEXTWAITKB               adv=4   
+00020a:             51 KEYWAIT                  adv=4   
+00020e:             43 TEXTACTIVE               adv=8   8
+000216:             44 TEXTCLEAR                adv=4   
+00021a:             17 TEXT                     adv=6   #21 "總之，還是過去看看吧。"
+000220:             17 TEXT                     adv=6   #22 "對那些孩子們來說，地下迷宮雖然恐怖又討厭"
+000226:             17 TEXT                     adv=6   #23 "，但應該也是很喜歡去探險的地方吧。"
+00022c:             17 TEXT                     adv=6   #24 "我的朋友呀，有時候也要像羅弗利一樣，"
+000232:             17 TEXT                     adv=6   #25 "只要這樣地一笑置之就好啦。"
+000238:             50 TEXTWAITKB               adv=4   
+00023c:             51 KEYWAIT                  adv=4   
+000240:             43 TEXTACTIVE               adv=8   4
+000248:             44 TEXTCLEAR                adv=4   
+00024c:             17 TEXT                     adv=6   #26 "…………"
+000252:             50 TEXTWAITKB               adv=4   
+000256:             51 KEYWAIT                  adv=4   
+00025a:             43 TEXTACTIVE               adv=8   8
+000262:             44 TEXTCLEAR                adv=4   
+000266:             17 TEXT                     adv=6   #27 "至少比起在這裡閒著，什麼事都不做，"
+00026c:             17 TEXT                     adv=6   #28 "去那裡晃晃應該會有一點好處吧。"
+000272:             50 TEXTWAITKB               adv=4   
+000276:             51 KEYWAIT                  adv=4   
+00027a:             12 VWAIT                    adv=8   30
+000282:             56 FADESETWAIT              adv=8   4
+00028a:             21 ALLOFF                   adv=4   
+00028e:             12 VWAIT                    adv=8   60
+000296:            151 OP_151                   adv=12  9 1
+0002a2:             91 PUTUNITWK                adv=12  10 2
+0002ae:             19 END                      adv=4   ; END
+; (99 insns)

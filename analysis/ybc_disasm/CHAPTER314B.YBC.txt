@@ -1,0 +1,232 @@
+; CHAPTER314B.YBC  len=0x8a2  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x43a', '0x43a', '0x43a']
+;   txt#0 off=0xb8 prm=0x1c0 "妳這樣地回到這裡來了呢……"
+;   txt#1 off=0xd4 prm=0xe0 "然而我卻……"
+;   txt#2 off=0xe2 prm=0xc0 "奈比洛斯。"
+;   txt#3 off=0xee prm=0xa0 "大姐……"
+;   txt#4 off=0xf8 prm=0xa0 "…………"
+;   txt#5 off=0x102 prm=0xa0 "…………"
+;   txt#6 off=0x10c prm=0x240 "妳看起來好像經歷了一場大戰的樣子。"
+;   txt#7 off=0x130 prm=0x280 "看來……妳心裡有一些解不開的心事是吧？"
+;   txt#8 off=0x158 prm=0xa0 "…………"
+;   txt#9 off=0x162 prm=0x1a0 "那些孩子們正在看著妳呀。"
+;   txt#10 off=0x17c prm=0x2a0 "而妳的表情彷彿在忍受著全世界所有的痛苦，"
+;   txt#11 off=0x1a6 prm=0x100 "在這種情況下，"
+;   txt#12 off=0x1b6 prm=0x240 "妳覺得妳還有辦法對他們說些什麼嗎？"
+;   txt#13 off=0x1da prm=0xa0 "…………"
+;   txt#14 off=0x1e4 prm=0x280 "妳在沉默退縮的時候沒能說出來的那些話，"
+;   txt#15 off=0x20c prm=0x180 "現在可得要傳達出來呀。"
+;   txt#16 off=0x224 prm=0xa0 "…………"
+;   txt#17 off=0x22e prm=0x80 "呼嗯。"
+;   txt#18 off=0x236 prm=0xa0 "…………"
+;   txt#19 off=0x240 prm=0x240 "你願意收留她嗎，年輕的四大之長呀。"
+;   txt#20 off=0x264 prm=0x120 "……芭特菈閣下。"
+;   txt#21 off=0x276 prm=0xa0 "…………"
+;   txt#22 off=0x280 prm=0x2a0 "沉思的聖堂的人們已經開始用自己的意志去行"
+;   txt#23 off=0x2aa prm=0x80 "動了。"
+;   txt#24 off=0x2b2 prm=0x260 "這樣的話，他們也不再需要這個導師了。"
+;   txt#25 off=0x2d8 prm=0xa0 "…………"
+;   txt#26 off=0x2e2 prm=0xa0 "大姐……"
+;   txt#27 off=0x2ec prm=0xa0 "…………"
+;   txt#28 off=0x2f6 prm=0x1e0 "純潔之盾之長，我的老朋友呀。"
+;   txt#29 off=0x314 prm=0xc0 "……是的。"
+;   txt#30 off=0x320 prm=0x200 "至少，讓我補償一下我的過錯吧。"
+;   txt#31 off=0x340 prm=0x80 "好的。"
+;   txt#32 off=0x348 prm=0xa0 "…………"
+;   txt#33 off=0x352 prm=0xa0 "…………"
+;   txt#34 off=0x35c prm=0xa0 "…………"
+;   txt#35 off=0x366 prm=0x80 "那麼。"
+;   txt#36 off=0x36e prm=0x1a0 "現在還沒有完成工作的人，"
+;   txt#37 off=0x388 prm=0x240 "就是那些留在帕蘭達因努力的人們吧。"
+;   txt#38 off=0x3ac prm=0x260 "……在十三個王杯都被集中在一起之前，"
+;   txt#39 off=0x3d2 prm=0x260 "第十三王杯是不會聽取其他人的願望的。"
+;   txt#40 off=0x3f8 prm=0x80 "是的。"
+;   txt#41 off=0x400 prm=0x1a0 "所以他們應該還有機會吧。"
+;   txt#42 off=0x41a prm=0xa0 "…………"
+;   txt#43 off=0x424 prm=0x2a0 "到了那個時候，就要請你好好地領導我們了。"
+;   txt#44 off=0x44e prm=0x1a0 "……我也需要您的指導呀。"
+000014:            144 TACTSCROLLSETUNIT        adv=8   113
+00001c:             56 FADESETWAIT              adv=8   0
+000024:             20 ADVMODESET               adv=8   0
+00002c:             63 SE                       adv=8   9
+000034:             59 BGSETWAIT                adv=16  0 119 1
+000044:             30 BORDPACKONWAIT           adv=20  7 113 0 30
+000058:             56 FADESETWAIT              adv=8   3
+000060:             43 TEXTACTIVE               adv=8   7
+000068:             17 TEXT                     adv=6   #0 "妳這樣地回到這裡來了呢……"
+00006e:             17 TEXT                     adv=6   #1 "然而我卻……"
+000074:             50 TEXTWAITKB               adv=4   
+000078:             51 KEYWAIT                  adv=4   
+00007c:             30 BORDPACKONWAIT           adv=20  8 118 0 30
+000090:             43 TEXTACTIVE               adv=8   8
+000098:             17 TEXT                     adv=6   #2 "奈比洛斯。"
+00009e:             50 TEXTWAITKB               adv=4   
+0000a2:             51 KEYWAIT                  adv=4   
+0000a6:             43 TEXTACTIVE               adv=8   7
+0000ae:             44 TEXTCLEAR                adv=4   
+0000b2:             17 TEXT                     adv=6   #3 "大姐……"
+0000b8:             50 TEXTWAITKB               adv=4   
+0000bc:             51 KEYWAIT                  adv=4   
+0000c0:             43 TEXTACTIVE               adv=8   8
+0000c8:             44 TEXTCLEAR                adv=4   
+0000cc:             17 TEXT                     adv=6   #4 "…………"
+0000d2:             50 TEXTWAITKB               adv=4   
+0000d6:             51 KEYWAIT                  adv=4   
+0000da:             43 TEXTACTIVE               adv=8   7
+0000e2:             44 TEXTCLEAR                adv=4   
+0000e6:             17 TEXT                     adv=6   #5 "…………"
+0000ec:             50 TEXTWAITKB               adv=4   
+0000f0:             51 KEYWAIT                  adv=4   
+0000f4:             43 TEXTACTIVE               adv=8   8
+0000fc:             44 TEXTCLEAR                adv=4   
+000100:             17 TEXT                     adv=6   #6 "妳看起來好像經歷了一場大戰的樣子。"
+000106:             17 TEXT                     adv=6   #7 "看來……妳心裡有一些解不開的心事是吧？"
+00010c:             50 TEXTWAITKB               adv=4   
+000110:             51 KEYWAIT                  adv=4   
+000114:             43 TEXTACTIVE               adv=8   7
+00011c:             44 TEXTCLEAR                adv=4   
+000120:             17 TEXT                     adv=6   #8 "…………"
+000126:             50 TEXTWAITKB               adv=4   
+00012a:             51 KEYWAIT                  adv=4   
+00012e:             43 TEXTACTIVE               adv=8   8
+000136:             44 TEXTCLEAR                adv=4   
+00013a:             17 TEXT                     adv=6   #9 "那些孩子們正在看著妳呀。"
+000140:             17 TEXT                     adv=6   #10 "而妳的表情彷彿在忍受著全世界所有的痛苦，"
+000146:             17 TEXT                     adv=6   #11 "在這種情況下，"
+00014c:             17 TEXT                     adv=6   #12 "妳覺得妳還有辦法對他們說些什麼嗎？"
+000152:             50 TEXTWAITKB               adv=4   
+000156:             51 KEYWAIT                  adv=4   
+00015a:             43 TEXTACTIVE               adv=8   7
+000162:             44 TEXTCLEAR                adv=4   
+000166:             17 TEXT                     adv=6   #13 "…………"
+00016c:             50 TEXTWAITKB               adv=4   
+000170:             51 KEYWAIT                  adv=4   
+000174:             43 TEXTACTIVE               adv=8   8
+00017c:             44 TEXTCLEAR                adv=4   
+000180:             17 TEXT                     adv=6   #14 "妳在沉默退縮的時候沒能說出來的那些話，"
+000186:             17 TEXT                     adv=6   #15 "現在可得要傳達出來呀。"
+00018c:             50 TEXTWAITKB               adv=4   
+000190:             51 KEYWAIT                  adv=4   
+000194:             43 TEXTACTIVE               adv=8   7
+00019c:             44 TEXTCLEAR                adv=4   
+0001a0:             17 TEXT                     adv=6   #16 "…………"
+0001a6:             50 TEXTWAITKB               adv=4   
+0001aa:             51 KEYWAIT                  adv=4   
+0001ae:             43 TEXTACTIVE               adv=8   8
+0001b6:             44 TEXTCLEAR                adv=4   
+0001ba:             17 TEXT                     adv=6   #17 "呼嗯。"
+0001c0:             50 TEXTWAITKB               adv=4   
+0001c4:             51 KEYWAIT                  adv=4   
+0001c8:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0001d8:             43 TEXTACTIVE               adv=8   4
+0001e0:             17 TEXT                     adv=6   #18 "…………"
+0001e6:             50 TEXTWAITKB               adv=4   
+0001ea:             51 KEYWAIT                  adv=4   
+0001ee:             43 TEXTACTIVE               adv=8   8
+0001f6:             44 TEXTCLEAR                adv=4   
+0001fa:             17 TEXT                     adv=6   #19 "你願意收留她嗎，年輕的四大之長呀。"
+000200:             50 TEXTWAITKB               adv=4   
+000204:             51 KEYWAIT                  adv=4   
+000208:             43 TEXTACTIVE               adv=8   4
+000210:             44 TEXTCLEAR                adv=4   
+000214:             17 TEXT                     adv=6   #20 "……芭特菈閣下。"
+00021a:             50 TEXTWAITKB               adv=4   
+00021e:             51 KEYWAIT                  adv=4   
+000222:             43 TEXTACTIVE               adv=8   7
+00022a:             44 TEXTCLEAR                adv=4   
+00022e:             17 TEXT                     adv=6   #21 "…………"
+000234:             43 TEXTACTIVE               adv=8   8
+00023c:             44 TEXTCLEAR                adv=4   
+000240:             17 TEXT                     adv=6   #22 "沉思的聖堂的人們已經開始用自己的意志去行"
+000246:             17 TEXT                     adv=6   #23 "動了。"
+00024c:             17 TEXT                     adv=6   #24 "這樣的話，他們也不再需要這個導師了。"
+000252:             50 TEXTWAITKB               adv=4   
+000256:             51 KEYWAIT                  adv=4   
+00025a:             43 TEXTACTIVE               adv=8   4
+000262:             44 TEXTCLEAR                adv=4   
+000266:             17 TEXT                     adv=6   #25 "…………"
+00026c:             43 TEXTACTIVE               adv=8   7
+000274:             44 TEXTCLEAR                adv=4   
+000278:             17 TEXT                     adv=6   #26 "大姐……"
+00027e:             50 TEXTWAITKB               adv=4   
+000282:             51 KEYWAIT                  adv=4   
+000286:             43 TEXTACTIVE               adv=8   8
+00028e:             44 TEXTCLEAR                adv=4   
+000292:             17 TEXT                     adv=6   #27 "…………"
+000298:             50 TEXTWAITKB               adv=4   
+00029c:             51 KEYWAIT                  adv=4   
+0002a0:             43 TEXTACTIVE               adv=8   7
+0002a8:             44 TEXTCLEAR                adv=4   
+0002ac:             17 TEXT                     adv=6   #28 "純潔之盾之長，我的老朋友呀。"
+0002b2:             50 TEXTWAITKB               adv=4   
+0002b6:             51 KEYWAIT                  adv=4   
+0002ba:             43 TEXTACTIVE               adv=8   4
+0002c2:             44 TEXTCLEAR                adv=4   
+0002c6:             17 TEXT                     adv=6   #29 "……是的。"
+0002cc:             50 TEXTWAITKB               adv=4   
+0002d0:             51 KEYWAIT                  adv=4   
+0002d4:             43 TEXTACTIVE               adv=8   7
+0002dc:             44 TEXTCLEAR                adv=4   
+0002e0:             17 TEXT                     adv=6   #30 "至少，讓我補償一下我的過錯吧。"
+0002e6:             50 TEXTWAITKB               adv=4   
+0002ea:             51 KEYWAIT                  adv=4   
+0002ee:             43 TEXTACTIVE               adv=8   4
+0002f6:             44 TEXTCLEAR                adv=4   
+0002fa:             17 TEXT                     adv=6   #31 "好的。"
+000300:             50 TEXTWAITKB               adv=4   
+000304:             51 KEYWAIT                  adv=4   
+000308:             43 TEXTACTIVE               adv=8   7
+000310:             44 TEXTCLEAR                adv=4   
+000314:             17 TEXT                     adv=6   #32 "…………"
+00031a:             43 TEXTACTIVE               adv=8   8
+000322:             44 TEXTCLEAR                adv=4   
+000326:             17 TEXT                     adv=6   #33 "…………"
+00032c:             50 TEXTWAITKB               adv=4   
+000330:             51 KEYWAIT                  adv=4   
+000334:             43 TEXTACTIVE               adv=8   4
+00033c:             44 TEXTCLEAR                adv=4   
+000340:             17 TEXT                     adv=6   #34 "…………"
+000346:             50 TEXTWAITKB               adv=4   
+00034a:             51 KEYWAIT                  adv=4   
+00034e:             43 TEXTACTIVE               adv=8   8
+000356:             44 TEXTCLEAR                adv=4   
+00035a:             17 TEXT                     adv=6   #35 "那麼。"
+000360:             17 TEXT                     adv=6   #36 "現在還沒有完成工作的人，"
+000366:             17 TEXT                     adv=6   #37 "就是那些留在帕蘭達因努力的人們吧。"
+00036c:             50 TEXTWAITKB               adv=4   
+000370:             51 KEYWAIT                  adv=4   
+000374:             43 TEXTACTIVE               adv=8   4
+00037c:             44 TEXTCLEAR                adv=4   
+000380:             17 TEXT                     adv=6   #38 "……在十三個王杯都被集中在一起之前，"
+000386:             17 TEXT                     adv=6   #39 "第十三王杯是不會聽取其他人的願望的。"
+00038c:             50 TEXTWAITKB               adv=4   
+000390:             51 KEYWAIT                  adv=4   
+000394:             43 TEXTACTIVE               adv=8   8
+00039c:             44 TEXTCLEAR                adv=4   
+0003a0:             17 TEXT                     adv=6   #40 "是的。"
+0003a6:             17 TEXT                     adv=6   #41 "所以他們應該還有機會吧。"
+0003ac:             50 TEXTWAITKB               adv=4   
+0003b0:             51 KEYWAIT                  adv=4   
+0003b4:             43 TEXTACTIVE               adv=8   4
+0003bc:             44 TEXTCLEAR                adv=4   
+0003c0:             17 TEXT                     adv=6   #42 "…………"
+0003c6:             50 TEXTWAITKB               adv=4   
+0003ca:             51 KEYWAIT                  adv=4   
+0003ce:             43 TEXTACTIVE               adv=8   8
+0003d6:             44 TEXTCLEAR                adv=4   
+0003da:             17 TEXT                     adv=6   #43 "到了那個時候，就要請你好好地領導我們了。"
+0003e0:             50 TEXTWAITKB               adv=4   
+0003e4:             51 KEYWAIT                  adv=4   
+0003e8:             43 TEXTACTIVE               adv=8   4
+0003f0:             44 TEXTCLEAR                adv=4   
+0003f4:             17 TEXT                     adv=6   #44 "……我也需要您的指導呀。"
+0003fa:             50 TEXTWAITKB               adv=4   
+0003fe:             51 KEYWAIT                  adv=4   
+000402:             12 VWAIT                    adv=8   30
+00040a:             56 FADESETWAIT              adv=8   4
+000412:             21 ALLOFF                   adv=4   
+000416:             12 VWAIT                    adv=8   60
+00041e:            151 OP_151                   adv=12  9 1
+00042a:             91 PUTUNITWK                adv=12  119 2
+000436:             19 END                      adv=4   ; END
+; (184 insns)

@@ -1,0 +1,186 @@
+; CHAPTER036.YBC  len=0x882  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x32e', '0x32e', '0x32e']
+;   txt#0 off=0xc0 prm=0x1c0 "純潔之盾現在正在蓄積實力。"
+;   txt#1 off=0xdc prm=0x240 "……他們現在正處於這漩渦的中心呀。"
+;   txt#2 off=0x100 prm=0x1a0 "那真是一位傑出的賢者呀。"
+;   txt#3 off=0x11a prm=0x100 "也正因為如此，"
+;   txt#4 off=0x12a prm=0x1e0 "就算賢者圓桌已經有所裁定了，"
+;   txt#5 off=0x148 prm=0x1c0 "他還是勇於庇護聖瑟維艾斯。"
+;   txt#6 off=0x164 prm=0xa0 "…………"
+;   txt#7 off=0x16e prm=0x2a0 "他現在已經接納了聖瑟維艾斯的法娜•修貝流"
+;   txt#8 off=0x198 prm=0x60 "士。"
+;   txt#9 off=0x19e prm=0x1a0 "無論他對事實瞭解了多少，"
+;   txt#10 off=0x1b8 prm=0x260 "現在要叫他放手，應該也是沒辦法了吧。"
+;   txt#11 off=0x1de prm=0x2a0 "……就算是在受到了「匍伏蔓延而來之物」威"
+;   txt#12 off=0x208 prm=0xc0 "脅的時候？"
+;   txt#13 off=0x214 prm=0x160 "他就是這樣的一個人。"
+;   txt#14 off=0x22a prm=0x2a0 "那麼……我們就得加強監視囚禁在安蒂米昂的"
+;   txt#15 off=0x254 prm=0x120 "傑萊特•羅弗利。"
+;   txt#16 off=0x266 prm=0x2a0 "並且必須把法娜•修貝流士帶來這眺望萬物的"
+;   txt#17 off=0x290 prm=0x80 "尖塔。"
+;   txt#18 off=0x298 prm=0xa0 "…………"
+;   txt#19 off=0x2a2 prm=0x1e0 "……請你這樣命令純潔之盾吧。"
+;   txt#20 off=0x2c0 prm=0xa0 "…………"
+;   txt#21 off=0x2ca prm=0x180 "他們不會就這樣屈服的。"
+;   txt#22 off=0x2e2 prm=0x200 "他們也一定會用毫不猶豫的手段，"
+;   txt#23 off=0x302 prm=0x2a0 "想辦法把傑萊特•羅弗利從牢獄裡救出來吧。"
+;   txt#24 off=0x32c prm=0x2a0 "那麼，我們不如命令那遵守道義的霸道正柱。"
+;   txt#25 off=0x356 prm=0x2a0 "葛斯貝布洛應該會為了讓純潔之盾走上正途而"
+;   txt#26 off=0x380 prm=0xa0 "努力吧。"
+;   txt#27 off=0x38a prm=0xa0 "…………"
+;   txt#28 off=0x394 prm=0x120 "眺望萬物之長呀，"
+;   txt#29 off=0x3a6 prm=0x1e0 "懇求您將四大學級合而為一吧，"
+;   txt#30 off=0x3c4 prm=0x280 "在這麼危急的時刻，已經沒有時間猶豫了。"
+;   txt#31 off=0x3ec prm=0x1c0 "修奈鐸，你應該很瞭解的呀。"
+;   txt#32 off=0x408 prm=0x1a0 "就因為在這麼重要的時刻，"
+;   txt#33 off=0x422 prm=0x1e0 "所以只有這件事是不可以做的。"
+;   txt#34 off=0x440 prm=0xc0 "……蕾芃。"
+;   txt#35 off=0x44c prm=0x80 "抱歉。"
+;   txt#36 off=0x454 prm=0xa0 "……不。"
+;   txt#37 off=0x45e prm=0x1e0 "在學舍真正的主事長老不在時，"
+;   txt#38 off=0x47c prm=0x280 "能夠判決聖瑟維艾斯有和混沌共謀的嫌疑，"
+;   txt#39 off=0x4a4 prm=0x120 "就已經很足夠了。"
+;   txt#40 off=0x4b6 prm=0x1e0 "我也不會強求要有更大的進展。"
+;   txt#41 off=0x4d4 prm=0xa0 "…………"
+;   txt#42 off=0x4de prm=0x140 "那麼，我要離開了。"
+;   txt#43 off=0x4f2 prm=0x180 "美麗的眺望萬物之長呀。"
+;   txt#44 off=0x50a prm=0x260 "希望無論在什麼時候、什麼樣的情況下，"
+;   txt#45 off=0x530 prm=0x1a0 "您所做的指揮都是正確的。"
+;   txt#46 off=0x54a prm=0xa0 "…………"
+000014:            144 TACTSCROLLSETUNIT        adv=8   2
+00001c:             56 FADESETWAIT              adv=8   0
+000024:             20 ADVMODESET               adv=8   0
+00002c:             63 SE                       adv=8   7
+000034:             59 BGSETWAIT                adv=16  0 27 1
+000044:             30 BORDPACKONWAIT           adv=20  7 112 0 30
+000058:             56 FADESETWAIT              adv=8   3
+000060:             43 TEXTACTIVE               adv=8   7
+000068:             17 TEXT                     adv=6   #0 "純潔之盾現在正在蓄積實力。"
+00006e:             50 TEXTWAITKB               adv=4   
+000072:             51 KEYWAIT                  adv=4   
+000076:             30 BORDPACKONWAIT           adv=20  8 109 0 30
+00008a:             43 TEXTACTIVE               adv=8   8
+000092:             17 TEXT                     adv=6   #1 "……他們現在正處於這漩渦的中心呀。"
+000098:             50 TEXTWAITKB               adv=4   
+00009c:             51 KEYWAIT                  adv=4   
+0000a0:             43 TEXTACTIVE               adv=8   7
+0000a8:             44 TEXTCLEAR                adv=4   
+0000ac:             17 TEXT                     adv=6   #2 "那真是一位傑出的賢者呀。"
+0000b2:             17 TEXT                     adv=6   #3 "也正因為如此，"
+0000b8:             17 TEXT                     adv=6   #4 "就算賢者圓桌已經有所裁定了，"
+0000be:             17 TEXT                     adv=6   #5 "他還是勇於庇護聖瑟維艾斯。"
+0000c4:             50 TEXTWAITKB               adv=4   
+0000c8:             51 KEYWAIT                  adv=4   
+0000cc:             43 TEXTACTIVE               adv=8   8
+0000d4:             44 TEXTCLEAR                adv=4   
+0000d8:             17 TEXT                     adv=6   #6 "…………"
+0000de:             50 TEXTWAITKB               adv=4   
+0000e2:             51 KEYWAIT                  adv=4   
+0000e6:             43 TEXTACTIVE               adv=8   7
+0000ee:             44 TEXTCLEAR                adv=4   
+0000f2:             17 TEXT                     adv=6   #7 "他現在已經接納了聖瑟維艾斯的法娜•修貝流"
+0000f8:             17 TEXT                     adv=6   #8 "士。"
+0000fe:             17 TEXT                     adv=6   #9 "無論他對事實瞭解了多少，"
+000104:             17 TEXT                     adv=6   #10 "現在要叫他放手，應該也是沒辦法了吧。"
+00010a:             50 TEXTWAITKB               adv=4   
+00010e:             51 KEYWAIT                  adv=4   
+000112:             43 TEXTACTIVE               adv=8   8
+00011a:             44 TEXTCLEAR                adv=4   
+00011e:             17 TEXT                     adv=6   #11 "……就算是在受到了「匍伏蔓延而來之物」威"
+000124:             17 TEXT                     adv=6   #12 "脅的時候？"
+00012a:             50 TEXTWAITKB               adv=4   
+00012e:             51 KEYWAIT                  adv=4   
+000132:             43 TEXTACTIVE               adv=8   7
+00013a:             44 TEXTCLEAR                adv=4   
+00013e:             17 TEXT                     adv=6   #13 "他就是這樣的一個人。"
+000144:             50 TEXTWAITKB               adv=4   
+000148:             51 KEYWAIT                  adv=4   
+00014c:             43 TEXTACTIVE               adv=8   8
+000154:             44 TEXTCLEAR                adv=4   
+000158:             17 TEXT                     adv=6   #14 "那麼……我們就得加強監視囚禁在安蒂米昂的"
+00015e:             17 TEXT                     adv=6   #15 "傑萊特•羅弗利。"
+000164:             17 TEXT                     adv=6   #16 "並且必須把法娜•修貝流士帶來這眺望萬物的"
+00016a:             17 TEXT                     adv=6   #17 "尖塔。"
+000170:             50 TEXTWAITKB               adv=4   
+000174:             51 KEYWAIT                  adv=4   
+000178:             44 TEXTCLEAR                adv=4   
+00017c:             43 TEXTACTIVE               adv=8   7
+000184:             44 TEXTCLEAR                adv=4   
+000188:             17 TEXT                     adv=6   #18 "…………"
+00018e:             43 TEXTACTIVE               adv=8   8
+000196:             17 TEXT                     adv=6   #19 "……請你這樣命令純潔之盾吧。"
+00019c:             50 TEXTWAITKB               adv=4   
+0001a0:             51 KEYWAIT                  adv=4   
+0001a4:             43 TEXTACTIVE               adv=8   7
+0001ac:             44 TEXTCLEAR                adv=4   
+0001b0:             17 TEXT                     adv=6   #20 "…………"
+0001b6:             17 TEXT                     adv=6   #21 "他們不會就這樣屈服的。"
+0001bc:             17 TEXT                     adv=6   #22 "他們也一定會用毫不猶豫的手段，"
+0001c2:             17 TEXT                     adv=6   #23 "想辦法把傑萊特•羅弗利從牢獄裡救出來吧。"
+0001c8:             50 TEXTWAITKB               adv=4   
+0001cc:             51 KEYWAIT                  adv=4   
+0001d0:             43 TEXTACTIVE               adv=8   8
+0001d8:             44 TEXTCLEAR                adv=4   
+0001dc:             17 TEXT                     adv=6   #24 "那麼，我們不如命令那遵守道義的霸道正柱。"
+0001e2:             17 TEXT                     adv=6   #25 "葛斯貝布洛應該會為了讓純潔之盾走上正途而"
+0001e8:             17 TEXT                     adv=6   #26 "努力吧。"
+0001ee:             50 TEXTWAITKB               adv=4   
+0001f2:             51 KEYWAIT                  adv=4   
+0001f6:             43 TEXTACTIVE               adv=8   7
+0001fe:             44 TEXTCLEAR                adv=4   
+000202:             17 TEXT                     adv=6   #27 "…………"
+000208:             17 TEXT                     adv=6   #28 "眺望萬物之長呀，"
+00020e:             17 TEXT                     adv=6   #29 "懇求您將四大學級合而為一吧，"
+000214:             17 TEXT                     adv=6   #30 "在這麼危急的時刻，已經沒有時間猶豫了。"
+00021a:             50 TEXTWAITKB               adv=4   
+00021e:             51 KEYWAIT                  adv=4   
+000222:             43 TEXTACTIVE               adv=8   8
+00022a:             44 TEXTCLEAR                adv=4   
+00022e:             17 TEXT                     adv=6   #31 "修奈鐸，你應該很瞭解的呀。"
+000234:             17 TEXT                     adv=6   #32 "就因為在這麼重要的時刻，"
+00023a:             17 TEXT                     adv=6   #33 "所以只有這件事是不可以做的。"
+000240:             50 TEXTWAITKB               adv=4   
+000244:             51 KEYWAIT                  adv=4   
+000248:             43 TEXTACTIVE               adv=8   7
+000250:             44 TEXTCLEAR                adv=4   
+000254:             17 TEXT                     adv=6   #34 "……蕾芃。"
+00025a:             50 TEXTWAITKB               adv=4   
+00025e:             51 KEYWAIT                  adv=4   
+000262:             43 TEXTACTIVE               adv=8   8
+00026a:             44 TEXTCLEAR                adv=4   
+00026e:             17 TEXT                     adv=6   #35 "抱歉。"
+000274:             50 TEXTWAITKB               adv=4   
+000278:             51 KEYWAIT                  adv=4   
+00027c:             43 TEXTACTIVE               adv=8   7
+000284:             44 TEXTCLEAR                adv=4   
+000288:             17 TEXT                     adv=6   #36 "……不。"
+00028e:             17 TEXT                     adv=6   #37 "在學舍真正的主事長老不在時，"
+000294:             17 TEXT                     adv=6   #38 "能夠判決聖瑟維艾斯有和混沌共謀的嫌疑，"
+00029a:             17 TEXT                     adv=6   #39 "就已經很足夠了。"
+0002a0:             17 TEXT                     adv=6   #40 "我也不會強求要有更大的進展。"
+0002a6:             50 TEXTWAITKB               adv=4   
+0002aa:             51 KEYWAIT                  adv=4   
+0002ae:             43 TEXTACTIVE               adv=8   8
+0002b6:             44 TEXTCLEAR                adv=4   
+0002ba:             17 TEXT                     adv=6   #41 "…………"
+0002c0:             50 TEXTWAITKB               adv=4   
+0002c4:             51 KEYWAIT                  adv=4   
+0002c8:             43 TEXTACTIVE               adv=8   7
+0002d0:             44 TEXTCLEAR                adv=4   
+0002d4:             17 TEXT                     adv=6   #42 "那麼，我要離開了。"
+0002da:             17 TEXT                     adv=6   #43 "美麗的眺望萬物之長呀。"
+0002e0:             17 TEXT                     adv=6   #44 "希望無論在什麼時候、什麼樣的情況下，"
+0002e6:             17 TEXT                     adv=6   #45 "您所做的指揮都是正確的。"
+0002ec:             50 TEXTWAITKB               adv=4   
+0002f0:             51 KEYWAIT                  adv=4   
+0002f4:             43 TEXTACTIVE               adv=8   8
+0002fc:             44 TEXTCLEAR                adv=4   
+000300:             17 TEXT                     adv=6   #46 "…………"
+000306:             50 TEXTWAITKB               adv=4   
+00030a:             51 KEYWAIT                  adv=4   
+00030e:             12 VWAIT                    adv=8   30
+000316:             56 FADESETWAIT              adv=8   4
+00031e:             21 ALLOFF                   adv=4   
+000322:             12 VWAIT                    adv=8   60
+00032a:             19 END                      adv=4   ; END
+; (136 insns)

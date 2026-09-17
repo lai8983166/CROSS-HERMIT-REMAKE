@@ -1,0 +1,201 @@
+; CHAPTER232.YBC  len=0x7bc  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x3b4', '0x3b4', '0x3b4']
+;   txt#0 off=0xa4 prm=0x100 "你是認真的嗎？"
+;   txt#1 off=0xb4 prm=0xa0 "…………"
+;   txt#2 off=0xbe prm=0x2a0 "雖然釋放了聖瑟維艾斯的人是一件好事啦……"
+;   txt#3 off=0xe8 prm=0x280 "但是現在讓他們回沉思的聖堂是很危險的，"
+;   txt#4 off=0x110 prm=0x180 "難道你看不出來嗎！！！"
+;   txt#5 off=0x128 prm=0x220 "……他們已經對我們請求很多次了。"
+;   txt#6 off=0x14a prm=0x100 "∼∼∼∼！！！"
+;   txt#7 off=0x15a prm=0x200 "那些孩子明明知道這樣很危險……"
+;   txt#8 off=0x17a prm=0x180 "但是仍然希望離開這裡。"
+;   txt#9 off=0x192 prm=0x160 "那奈比洛斯閣下呢！？"
+;   txt#10 off=0x1a8 prm=0x140 "他現在非常地衰弱。"
+;   txt#11 off=0x1bc prm=0x2a0 "恐怕連要離開眺望萬物的尖塔的體力都沒有了"
+;   txt#12 off=0x1e6 prm=0x40 "。"
+;   txt#13 off=0x1ea prm=0xa0 "…………"
+;   txt#14 off=0x1f4 prm=0xa0 "…………"
+;   txt#15 off=0x1fe prm=0x220 "在眺望萬物的尖塔裡所遵行的邏輯，"
+;   txt#16 off=0x220 prm=0x180 "還真是相當古怪呀……！"
+;   txt#17 off=0x238 prm=0xe0 "……羅弗利。"
+;   txt#18 off=0x246 prm=0x1a0 "現在沒有時間責怪他們了。"
+;   txt#19 off=0x260 prm=0xc0 "可惡……！"
+;   txt#20 off=0x26c prm=0x160 "……所以情況怎樣了？"
+;   txt#21 off=0x282 prm=0x2a0 "沉思聖堂的底層已經被「匍伏蔓延而來之物」"
+;   txt#22 off=0x2ac prm=0xa0 "所佔領，"
+;   txt#23 off=0x2b6 prm=0x1c0 "但是在靠近聖堂頂層的部分，"
+;   txt#24 off=0x2d2 prm=0x160 "還保持著原有的力量。"
+;   txt#25 off=0x2e8 prm=0xe0 "也就是說……"
+;   txt#26 off=0x2f6 prm=0x240 "只要幫他們爭取逃脫的時間就可以了？"
+;   txt#27 off=0x31a prm=0xc0 "……是的。"
+;   txt#28 off=0x326 prm=0x160 "聖堂頂端的守護塔……"
+;   txt#29 off=0x33c prm=0x140 "我曾經去過一次呢。"
+;   txt#30 off=0x350 prm=0x160 "是啊，我們一起去的。"
+;   txt#31 off=0x366 prm=0x120 "……是在那裡呀。"
+;   txt#32 off=0x378 prm=0x140 "守護塔應該還在吧？"
+;   txt#33 off=0x38c prm=0xe0 "這是當然的。"
+;   txt#34 off=0x39a prm=0x1a0 "……去把孩子們救出來吧。"
+;   txt#35 off=0x3b4 prm=0xc0 "是的……！"
+;   txt#36 off=0x3c0 prm=0xa0 "…………"
+;   txt#37 off=0x3ca prm=0x180 "一切就拜託各位幫忙了。"
+;   txt#38 off=0x3e2 prm=0xa0 "…………"
+;   txt#39 off=0x3ec prm=0x1c0 "沒什麼時間了，趕快出發吧。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             63 SE                       adv=8   12
+00002c:             59 BGSETWAIT                adv=16  0 16 1
+00003c:             30 BORDPACKONWAIT           adv=20  7 116 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   7
+000060:             17 TEXT                     adv=6   #0 "你是認真的嗎？"
+000066:             50 TEXTWAITKB               adv=4   
+00006a:             51 KEYWAIT                  adv=4   
+00006e:             30 BORDPACKONWAIT           adv=20  8 107 0 30
+000082:             43 TEXTACTIVE               adv=8   8
+00008a:             17 TEXT                     adv=6   #1 "…………"
+000090:             50 TEXTWAITKB               adv=4   
+000094:             51 KEYWAIT                  adv=4   
+000098:             43 TEXTACTIVE               adv=8   7
+0000a0:             44 TEXTCLEAR                adv=4   
+0000a4:             17 TEXT                     adv=6   #2 "雖然釋放了聖瑟維艾斯的人是一件好事啦……"
+0000aa:             17 TEXT                     adv=6   #3 "但是現在讓他們回沉思的聖堂是很危險的，"
+0000b0:             17 TEXT                     adv=6   #4 "難道你看不出來嗎！！！"
+0000b6:             50 TEXTWAITKB               adv=4   
+0000ba:             51 KEYWAIT                  adv=4   
+0000be:             43 TEXTACTIVE               adv=8   8
+0000c6:             44 TEXTCLEAR                adv=4   
+0000ca:             17 TEXT                     adv=6   #5 "……他們已經對我們請求很多次了。"
+0000d0:             50 TEXTWAITKB               adv=4   
+0000d4:             51 KEYWAIT                  adv=4   
+0000d8:             43 TEXTACTIVE               adv=8   7
+0000e0:             44 TEXTCLEAR                adv=4   
+0000e4:             17 TEXT                     adv=6   #6 "∼∼∼∼！！！"
+0000ea:             50 TEXTWAITKB               adv=4   
+0000ee:             51 KEYWAIT                  adv=4   
+0000f2:             43 TEXTACTIVE               adv=8   8
+0000fa:             44 TEXTCLEAR                adv=4   
+0000fe:             17 TEXT                     adv=6   #7 "那些孩子明明知道這樣很危險……"
+000104:             17 TEXT                     adv=6   #8 "但是仍然希望離開這裡。"
+00010a:             50 TEXTWAITKB               adv=4   
+00010e:             51 KEYWAIT                  adv=4   
+000112:             43 TEXTACTIVE               adv=8   7
+00011a:             44 TEXTCLEAR                adv=4   
+00011e:             17 TEXT                     adv=6   #9 "那奈比洛斯閣下呢！？"
+000124:             50 TEXTWAITKB               adv=4   
+000128:             51 KEYWAIT                  adv=4   
+00012c:             43 TEXTACTIVE               adv=8   8
+000134:             44 TEXTCLEAR                adv=4   
+000138:             17 TEXT                     adv=6   #10 "他現在非常地衰弱。"
+00013e:             17 TEXT                     adv=6   #11 "恐怕連要離開眺望萬物的尖塔的體力都沒有了"
+000144:             17 TEXT                     adv=6   #12 "。"
+00014a:             50 TEXTWAITKB               adv=4   
+00014e:             51 KEYWAIT                  adv=4   
+000152:             43 TEXTACTIVE               adv=8   7
+00015a:             44 TEXTCLEAR                adv=4   
+00015e:             17 TEXT                     adv=6   #13 "…………"
+000164:             50 TEXTWAITKB               adv=4   
+000168:             51 KEYWAIT                  adv=4   
+00016c:             43 TEXTACTIVE               adv=8   8
+000174:             44 TEXTCLEAR                adv=4   
+000178:             17 TEXT                     adv=6   #14 "…………"
+00017e:             50 TEXTWAITKB               adv=4   
+000182:             51 KEYWAIT                  adv=4   
+000186:             43 TEXTACTIVE               adv=8   7
+00018e:             44 TEXTCLEAR                adv=4   
+000192:             17 TEXT                     adv=6   #15 "在眺望萬物的尖塔裡所遵行的邏輯，"
+000198:             17 TEXT                     adv=6   #16 "還真是相當古怪呀……！"
+00019e:             50 TEXTWAITKB               adv=4   
+0001a2:             51 KEYWAIT                  adv=4   
+0001a6:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0001b6:             43 TEXTACTIVE               adv=8   4
+0001be:             17 TEXT                     adv=6   #17 "……羅弗利。"
+0001c4:             17 TEXT                     adv=6   #18 "現在沒有時間責怪他們了。"
+0001ca:             50 TEXTWAITKB               adv=4   
+0001ce:             51 KEYWAIT                  adv=4   
+0001d2:             43 TEXTACTIVE               adv=8   7
+0001da:             44 TEXTCLEAR                adv=4   
+0001de:             17 TEXT                     adv=6   #19 "可惡……！"
+0001e4:             50 TEXTWAITKB               adv=4   
+0001e8:             51 KEYWAIT                  adv=4   
+0001ec:             43 TEXTACTIVE               adv=8   4
+0001f4:             44 TEXTCLEAR                adv=4   
+0001f8:             17 TEXT                     adv=6   #20 "……所以情況怎樣了？"
+0001fe:             50 TEXTWAITKB               adv=4   
+000202:             51 KEYWAIT                  adv=4   
+000206:             43 TEXTACTIVE               adv=8   7
+00020e:             44 TEXTCLEAR                adv=4   
+000212:             33 CHARSET                  adv=16  7 115 0
+000222:             36 CHARWAIT                 adv=4   
+000226:             43 TEXTACTIVE               adv=8   7
+00022e:             17 TEXT                     adv=6   #21 "沉思聖堂的底層已經被「匍伏蔓延而來之物」"
+000234:             17 TEXT                     adv=6   #22 "所佔領，"
+00023a:             17 TEXT                     adv=6   #23 "但是在靠近聖堂頂層的部分，"
+000240:             17 TEXT                     adv=6   #24 "還保持著原有的力量。"
+000246:             50 TEXTWAITKB               adv=4   
+00024a:             51 KEYWAIT                  adv=4   
+00024e:             43 TEXTACTIVE               adv=8   4
+000256:             44 TEXTCLEAR                adv=4   
+00025a:             17 TEXT                     adv=6   #25 "也就是說……"
+000260:             17 TEXT                     adv=6   #26 "只要幫他們爭取逃脫的時間就可以了？"
+000266:             50 TEXTWAITKB               adv=4   
+00026a:             51 KEYWAIT                  adv=4   
+00026e:             43 TEXTACTIVE               adv=8   7
+000276:             44 TEXTCLEAR                adv=4   
+00027a:             17 TEXT                     adv=6   #27 "……是的。"
+000280:             50 TEXTWAITKB               adv=4   
+000284:             51 KEYWAIT                  adv=4   
+000288:             43 TEXTACTIVE               adv=8   4
+000290:             44 TEXTCLEAR                adv=4   
+000294:             17 TEXT                     adv=6   #28 "聖堂頂端的守護塔……"
+00029a:             17 TEXT                     adv=6   #29 "我曾經去過一次呢。"
+0002a0:             50 TEXTWAITKB               adv=4   
+0002a4:             51 KEYWAIT                  adv=4   
+0002a8:             43 TEXTACTIVE               adv=8   7
+0002b0:             44 TEXTCLEAR                adv=4   
+0002b4:             17 TEXT                     adv=6   #30 "是啊，我們一起去的。"
+0002ba:             50 TEXTWAITKB               adv=4   
+0002be:             51 KEYWAIT                  adv=4   
+0002c2:             43 TEXTACTIVE               adv=8   4
+0002ca:             44 TEXTCLEAR                adv=4   
+0002ce:             17 TEXT                     adv=6   #31 "……是在那裡呀。"
+0002d4:             17 TEXT                     adv=6   #32 "守護塔應該還在吧？"
+0002da:             50 TEXTWAITKB               adv=4   
+0002de:             51 KEYWAIT                  adv=4   
+0002e2:             43 TEXTACTIVE               adv=8   7
+0002ea:             44 TEXTCLEAR                adv=4   
+0002ee:             17 TEXT                     adv=6   #33 "這是當然的。"
+0002f4:             50 TEXTWAITKB               adv=4   
+0002f8:             51 KEYWAIT                  adv=4   
+0002fc:             43 TEXTACTIVE               adv=8   4
+000304:             44 TEXTCLEAR                adv=4   
+000308:             17 TEXT                     adv=6   #34 "……去把孩子們救出來吧。"
+00030e:             50 TEXTWAITKB               adv=4   
+000312:             51 KEYWAIT                  adv=4   
+000316:             43 TEXTACTIVE               adv=8   7
+00031e:             44 TEXTCLEAR                adv=4   
+000322:             17 TEXT                     adv=6   #35 "是的……！"
+000328:             50 TEXTWAITKB               adv=4   
+00032c:             51 KEYWAIT                  adv=4   
+000330:             43 TEXTACTIVE               adv=8   4
+000338:             44 TEXTCLEAR                adv=4   
+00033c:             17 TEXT                     adv=6   #36 "…………"
+000342:             43 TEXTACTIVE               adv=8   8
+00034a:             44 TEXTCLEAR                adv=4   
+00034e:             17 TEXT                     adv=6   #37 "一切就拜託各位幫忙了。"
+000354:             50 TEXTWAITKB               adv=4   
+000358:             51 KEYWAIT                  adv=4   
+00035c:             43 TEXTACTIVE               adv=8   7
+000364:             44 TEXTCLEAR                adv=4   
+000368:             17 TEXT                     adv=6   #38 "…………"
+00036e:             43 TEXTACTIVE               adv=8   4
+000376:             44 TEXTCLEAR                adv=4   
+00037a:             17 TEXT                     adv=6   #39 "沒什麼時間了，趕快出發吧。"
+000380:             50 TEXTWAITKB               adv=4   
+000384:             51 KEYWAIT                  adv=4   
+000388:             12 VWAIT                    adv=8   30
+000390:             56 FADESETWAIT              adv=8   4
+000398:             21 ALLOFF                   adv=4   
+00039c:             12 VWAIT                    adv=8   60
+0003a4:            151 OP_151                   adv=12  12 1
+0003b0:             19 END                      adv=4   ; END
+; (158 insns)

@@ -1,0 +1,147 @@
+; CHAPTER001.YBC  len=0x760  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x240', '0x240', '0x240']
+;   txt#0 off=0xb4 prm=0x2a0 "�@�@在這裡寫信給你，這已經是第幾封了呢？"
+;   txt#1 off=0xde prm=0x240 "我總是把她當成孩子般看待的帕彌菈，"
+;   txt#2 off=0x102 prm=0x240 "如今已是能照顧後輩的優秀魔法師了。"
+;   txt#3 off=0x126 prm=0x220 "孩提時就總是埋在書堆裡的伊里安，"
+;   txt#4 off=0x148 prm=0x1a0 "現在也在圖書館裡工作了。"
+;   txt#5 off=0x162 prm=0x140 "在那暴風雨的夜晚，"
+;   txt#6 off=0x176 prm=0x1e0 "瑟希莉絲聽我述說著你的故事，"
+;   txt#7 off=0x194 prm=0xc0 "當時的她，"
+;   txt#8 off=0x1a0 prm=0x200 "對我們一同冒險的故事嚮往不已。"
+;   txt#9 off=0x1c0 prm=0x1a0 "今年這裡也有新的成員加入"
+;   txt#10 off=0x1da prm=0x2a0 "彷彿那掌管世間因果的黎明大地─凱洛特•溫"
+;   txt#11 off=0x204 prm=0x2a0 "菲，以及那如同被黑闇深埋的北方雪花─夏朧"
+;   txt#12 off=0x22e prm=0xe0 "•佛洛斯蘋。"
+;   txt#13 off=0x23c prm=0x120 "克服了千辛萬苦，"
+;   txt#14 off=0x24e prm=0x200 "孑然一身地投靠了這賢者的學舍，"
+;   txt#15 off=0x26e prm=0x1e0 "他們靠著自己的力量來到這裡。"
+;   txt#16 off=0x28c prm=0x180 "……我真的覺得很幸福，"
+;   txt#17 off=0x2a4 prm=0x260 "這裡有讓我傾訴想法、傳達思念的對象，"
+;   txt#18 off=0x2ca prm=0x180 "這是多麼地令人開心呀。"
+;   txt#19 off=0x2e2 prm=0xa0 "因此……"
+;   txt#20 off=0x2ec prm=0x100 "我想保護他們。"
+;   txt#21 off=0x2fc prm=0x2a0 "保護這些總有一天要為夢想展翅高飛的孩子們"
+;   txt#22 off=0x326 prm=0x260 "，保護這些有如未雕琢璞玉般的孩子們。"
+;   txt#23 off=0x34c prm=0x160 "你現在正在做什麼呢？"
+;   txt#24 off=0x362 prm=0x160 "你正用那溫暖的雙手，"
+;   txt#25 off=0x378 prm=0x140 "展開這一紙書信嗎？"
+;   txt#26 off=0x38c prm=0x240 "現在，只有你的回音能讓我重拾希望。"
+;   txt#27 off=0x3b0 prm=0x1a0 "當年，我們在大雨中離別，"
+;   txt#28 off=0x3ca prm=0x280 "「無論有什麼困難，一定要告訴我……」，"
+;   txt#29 off=0x3f2 prm=0x120 "是你臨別的一語。"
+;   txt#30 off=0x404 prm=0x40 "�@"
+;   txt#31 off=0x408 prm=0x220 "你那時候的眼神，就算只有一瞬間，"
+;   txt#32 off=0x42a prm=0x100 "我也不曾忘記。"
+;   txt#33 off=0x43a prm=0x180 "儘管是最後一瞥也好……"
+;   txt#34 off=0x452 prm=0x120 "在聖潔的星光下，"
+;   txt#35 off=0x464 prm=0x1a0 "在天使鐘聲迴響的森林裡，"
+;   txt#36 off=0x47e prm=0xe0 "再一次就好。"
+;   txt#37 off=0x48c prm=0xa0 "啊啊……"
+;   txt#38 off=0x496 prm=0x140 "……想再見你一面。"
+;   txt#39 off=0x4aa prm=0x40 "�@"
+;   txt#40 off=0x4ae prm=0x120 "給我親愛的朋友，"
+;   txt#41 off=0x4c0 prm=0x220 "如果你願意讓我如此稱呼你的話……"
+;   txt#42 off=0x4e2 prm=0x40 "�@"
+;   txt#43 off=0x4e6 prm=0x3a0 "�@�@�@�@�@�@�@�@�@�@�@您過去的朋友－奧爾菲•羅馬諾華　筆"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   12
+00002c:             59 BGSETWAIT                adv=16  0 117 1
+00003c:             56 FADESETWAIT              adv=8   3
+000044:             12 VWAIT                    adv=8   30
+00004c:             27 BORDONWAIT               adv=16  0 268435455 268435455
+00005c:             43 TEXTACTIVE               adv=8   0
+000064:             17 TEXT                     adv=6   #0 "�@�@在這裡寫信給你，這已經是第幾封了呢？"
+00006a:             50 TEXTWAITKB               adv=4   
+00006e:             51 KEYWAIT                  adv=4   
+000072:             44 TEXTCLEAR                adv=4   
+000076:             17 TEXT                     adv=6   #1 "我總是把她當成孩子般看待的帕彌菈，"
+00007c:             17 TEXT                     adv=6   #2 "如今已是能照顧後輩的優秀魔法師了。"
+000082:             50 TEXTWAITKB               adv=4   
+000086:             51 KEYWAIT                  adv=4   
+00008a:             17 TEXT                     adv=6   #3 "孩提時就總是埋在書堆裡的伊里安，"
+000090:             17 TEXT                     adv=6   #4 "現在也在圖書館裡工作了。"
+000096:             50 TEXTWAITKB               adv=4   
+00009a:             51 KEYWAIT                  adv=4   
+00009e:             17 TEXT                     adv=6   #5 "在那暴風雨的夜晚，"
+0000a4:             17 TEXT                     adv=6   #6 "瑟希莉絲聽我述說著你的故事，"
+0000aa:             17 TEXT                     adv=6   #7 "當時的她，"
+0000b0:             17 TEXT                     adv=6   #8 "對我們一同冒險的故事嚮往不已。"
+0000b6:             50 TEXTWAITKB               adv=4   
+0000ba:             51 KEYWAIT                  adv=4   
+0000be:             44 TEXTCLEAR                adv=4   
+0000c2:             17 TEXT                     adv=6   #9 "今年這裡也有新的成員加入"
+0000c8:             50 TEXTWAITKB               adv=4   
+0000cc:             51 KEYWAIT                  adv=4   
+0000d0:             17 TEXT                     adv=6   #10 "彷彿那掌管世間因果的黎明大地─凱洛特•溫"
+0000d6:             17 TEXT                     adv=6   #11 "菲，以及那如同被黑闇深埋的北方雪花─夏朧"
+0000dc:             17 TEXT                     adv=6   #12 "•佛洛斯蘋。"
+0000e2:             50 TEXTWAITKB               adv=4   
+0000e6:             51 KEYWAIT                  adv=4   
+0000ea:             17 TEXT                     adv=6   #13 "克服了千辛萬苦，"
+0000f0:             17 TEXT                     adv=6   #14 "孑然一身地投靠了這賢者的學舍，"
+0000f6:             17 TEXT                     adv=6   #15 "他們靠著自己的力量來到這裡。"
+0000fc:             50 TEXTWAITKB               adv=4   
+000100:             51 KEYWAIT                  adv=4   
+000104:             44 TEXTCLEAR                adv=4   
+000108:             17 TEXT                     adv=6   #16 "……我真的覺得很幸福，"
+00010e:             17 TEXT                     adv=6   #17 "這裡有讓我傾訴想法、傳達思念的對象，"
+000114:             17 TEXT                     adv=6   #18 "這是多麼地令人開心呀。"
+00011a:             50 TEXTWAITKB               adv=4   
+00011e:             51 KEYWAIT                  adv=4   
+000122:             44 TEXTCLEAR                adv=4   
+000126:             17 TEXT                     adv=6   #19 "因此……"
+00012c:             17 TEXT                     adv=6   #20 "我想保護他們。"
+000132:             17 TEXT                     adv=6   #21 "保護這些總有一天要為夢想展翅高飛的孩子們"
+000138:             17 TEXT                     adv=6   #22 "，保護這些有如未雕琢璞玉般的孩子們。"
+00013e:             50 TEXTWAITKB               adv=4   
+000142:             51 KEYWAIT                  adv=4   
+000146:             44 TEXTCLEAR                adv=4   
+00014a:             17 TEXT                     adv=6   #23 "你現在正在做什麼呢？"
+000150:             17 TEXT                     adv=6   #24 "你正用那溫暖的雙手，"
+000156:             17 TEXT                     adv=6   #25 "展開這一紙書信嗎？"
+00015c:             50 TEXTWAITKB               adv=4   
+000160:             51 KEYWAIT                  adv=4   
+000164:             44 TEXTCLEAR                adv=4   
+000168:             17 TEXT                     adv=6   #26 "現在，只有你的回音能讓我重拾希望。"
+00016e:             50 TEXTWAITKB               adv=4   
+000172:             51 KEYWAIT                  adv=4   
+000176:             44 TEXTCLEAR                adv=4   
+00017a:             17 TEXT                     adv=6   #27 "當年，我們在大雨中離別，"
+000180:             17 TEXT                     adv=6   #28 "「無論有什麼困難，一定要告訴我……」，"
+000186:             17 TEXT                     adv=6   #29 "是你臨別的一語。"
+00018c:             50 TEXTWAITKB               adv=4   
+000190:             51 KEYWAIT                  adv=4   
+000194:             17 TEXT                     adv=6   #30 "�@"
+00019a:             17 TEXT                     adv=6   #31 "你那時候的眼神，就算只有一瞬間，"
+0001a0:             17 TEXT                     adv=6   #32 "我也不曾忘記。"
+0001a6:             50 TEXTWAITKB               adv=4   
+0001aa:             51 KEYWAIT                  adv=4   
+0001ae:             44 TEXTCLEAR                adv=4   
+0001b2:             17 TEXT                     adv=6   #33 "儘管是最後一瞥也好……"
+0001b8:             17 TEXT                     adv=6   #34 "在聖潔的星光下，"
+0001be:             17 TEXT                     adv=6   #35 "在天使鐘聲迴響的森林裡，"
+0001c4:             17 TEXT                     adv=6   #36 "再一次就好。"
+0001ca:             50 TEXTWAITKB               adv=4   
+0001ce:             51 KEYWAIT                  adv=4   
+0001d2:             17 TEXT                     adv=6   #37 "啊啊……"
+0001d8:             50 TEXTWAITKB               adv=4   
+0001dc:             12 VWAIT                    adv=8   15
+0001e4:             17 TEXT                     adv=6   #38 "……想再見你一面。"
+0001ea:             12 VWAIT                    adv=8   45
+0001f2:             51 KEYWAIT                  adv=4   
+0001f6:             44 TEXTCLEAR                adv=4   
+0001fa:             17 TEXT                     adv=6   #39 "�@"
+000200:             17 TEXT                     adv=6   #40 "給我親愛的朋友，"
+000206:             17 TEXT                     adv=6   #41 "如果你願意讓我如此稱呼你的話……"
+00020c:             17 TEXT                     adv=6   #42 "�@"
+000212:             17 TEXT                     adv=6   #43 "�@�@�@�@�@�@�@�@�@�@�@您過去的朋友－奧爾菲•羅馬諾華　筆"
+000218:             50 TEXTWAITKB               adv=4   
+00021c:             51 KEYWAIT                  adv=4   
+000220:             12 VWAIT                    adv=8   30
+000228:             56 FADESETWAIT              adv=8   6
+000230:             21 ALLOFF                   adv=4   
+000234:             12 VWAIT                    adv=8   60
+00023c:             19 END                      adv=4   ; END
+; (100 insns)

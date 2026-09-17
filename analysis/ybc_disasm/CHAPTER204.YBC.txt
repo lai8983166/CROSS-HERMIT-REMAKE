@@ -1,0 +1,66 @@
+; CHAPTER204.YBC  len=0x2fa  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x166', '0x166', '0x166']
+;   txt#0 off=0x38 prm=0xe0 "妳覺得如何？"
+;   txt#1 off=0x46 prm=0x200 "……在尤安瀑布那邊發生了騷動，"
+;   txt#2 off=0x66 prm=0x160 "這是可以確定的事實。"
+;   txt#3 off=0x7c prm=0xa0 "…………"
+;   txt#4 off=0x86 prm=0x200 "那裡是凱洛特曾經經過的地方呢。"
+;   txt#5 off=0xa6 prm=0x260 "「匍伏蔓延而來之物」會沿著河流移動。"
+;   txt#6 off=0xcc prm=0x1c0 "而尤安又是河流匯聚的所在。"
+;   txt#7 off=0xe8 prm=0x200 "如果我們能在那裡壓制它們的話，"
+;   txt#8 off=0x108 prm=0x220 "說不定可以減少一些未來的禍患……"
+;   txt#9 off=0x12a prm=0x220 "既然通曉水流知識的妳都這麼說了。"
+;   txt#10 off=0x14c prm=0x260 "而且我們必須拯救的少女應該就在那裡。"
+;   txt#11 off=0x172 prm=0xa0 "…………"
+;   txt#12 off=0x17c prm=0x180 "……那我們就試試看吧。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 8 1
+000034:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000044:             56 FADESETWAIT              adv=8   3
+00004c:             43 TEXTACTIVE               adv=8   4
+000054:             17 TEXT                     adv=6   #0 "妳覺得如何？"
+00005a:             50 TEXTWAITKB               adv=4   
+00005e:             51 KEYWAIT                  adv=4   
+000062:             30 BORDPACKONWAIT           adv=20  8 115 0 30
+000076:             43 TEXTACTIVE               adv=8   8
+00007e:             17 TEXT                     adv=6   #1 "……在尤安瀑布那邊發生了騷動，"
+000084:             17 TEXT                     adv=6   #2 "這是可以確定的事實。"
+00008a:             50 TEXTWAITKB               adv=4   
+00008e:             51 KEYWAIT                  adv=4   
+000092:             43 TEXTACTIVE               adv=8   4
+00009a:             44 TEXTCLEAR                adv=4   
+00009e:             17 TEXT                     adv=6   #3 "…………"
+0000a4:             30 BORDPACKONWAIT           adv=20  7 110 0 30
+0000b8:             43 TEXTACTIVE               adv=8   7
+0000c0:             17 TEXT                     adv=6   #4 "那裡是凱洛特曾經經過的地方呢。"
+0000c6:             50 TEXTWAITKB               adv=4   
+0000ca:             51 KEYWAIT                  adv=4   
+0000ce:             43 TEXTACTIVE               adv=8   8
+0000d6:             44 TEXTCLEAR                adv=4   
+0000da:             17 TEXT                     adv=6   #5 "「匍伏蔓延而來之物」會沿著河流移動。"
+0000e0:             17 TEXT                     adv=6   #6 "而尤安又是河流匯聚的所在。"
+0000e6:             17 TEXT                     adv=6   #7 "如果我們能在那裡壓制它們的話，"
+0000ec:             17 TEXT                     adv=6   #8 "說不定可以減少一些未來的禍患……"
+0000f2:             50 TEXTWAITKB               adv=4   
+0000f6:             51 KEYWAIT                  adv=4   
+0000fa:             43 TEXTACTIVE               adv=8   7
+000102:             44 TEXTCLEAR                adv=4   
+000106:             17 TEXT                     adv=6   #9 "既然通曉水流知識的妳都這麼說了。"
+00010c:             17 TEXT                     adv=6   #10 "而且我們必須拯救的少女應該就在那裡。"
+000112:             50 TEXTWAITKB               adv=4   
+000116:             51 KEYWAIT                  adv=4   
+00011a:             43 TEXTACTIVE               adv=8   8
+000122:             44 TEXTCLEAR                adv=4   
+000126:             17 TEXT                     adv=6   #11 "…………"
+00012c:             43 TEXTACTIVE               adv=8   4
+000134:             44 TEXTCLEAR                adv=4   
+000138:             17 TEXT                     adv=6   #12 "……那我們就試試看吧。"
+00013e:             50 TEXTWAITKB               adv=4   
+000142:             51 KEYWAIT                  adv=4   
+000146:             12 VWAIT                    adv=8   30
+00014e:             56 FADESETWAIT              adv=8   4
+000156:             21 ALLOFF                   adv=4   
+00015a:             12 VWAIT                    adv=8   60
+000162:             19 END                      adv=4   ; END
+; (50 insns)

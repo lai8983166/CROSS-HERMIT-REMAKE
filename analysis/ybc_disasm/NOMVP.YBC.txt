@@ -1,0 +1,17 @@
+; NOMVP.YBC  len=0x94  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x72', '0x72', '0x72']
+;   txt#0 off=0x8 prm=0x1a0 "這一週的功勞賞人選從缺。"
+000014:             56 FADESETWAIT              adv=8   2
+00001c:             20 ADVMODESET               adv=8   1
+000024:             12 VWAIT                    adv=8   30
+00002c:             27 BORDONWAIT               adv=16  1 268435455 268435455
+00003c:             43 TEXTACTIVE               adv=8   1
+000044:             17 TEXT                     adv=6   #0 "這一週的功勞賞人選從缺。"
+00004a:             50 TEXTWAITKB               adv=4   
+00004e:             51 KEYWAIT                  adv=4   
+000052:             44 TEXTCLEAR                adv=4   
+000056:             32 BORDPACKOFFWAIT          adv=12  1 30
+000062:             12 VWAIT                    adv=8   30
+00006a:             21 ALLOFF                   adv=4   
+00006e:             19 END                      adv=4   ; END
+; (13 insns)

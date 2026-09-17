@@ -1,0 +1,456 @@
+; T0014.BIN  len=0x1c7c
+; ── block0 sub1 code@0x1c4 pool@0x3ac (10 strings)
+;   #0 off=0x2c prm=0x200 "在我們穿越地下城砦－貝倫之前，"
+;   #1 off=0x4c prm=0x100 "都要持續戰鬥。"
+;   #2 off=0x5c prm=0x280 "在該前進的時候前進，該後退的時候後退。"
+;   #3 off=0x84 prm=0x2a0 "會有容易攻陷的地方，也有容易防守的地方。"
+;   #4 off=0xae prm=0x1a0 "一旦前鋒與敵方接觸之後，"
+;   #5 off=0xc8 prm=0x1e0 "不要期待會有什麼輕鬆的戰鬥，"
+;   #6 off=0xe6 prm=0x1c0 "要好好地跟中衛、後衛配合。"
+;   #7 off=0x102 prm=0x80 "好了。"
+;   #8 off=0x10a prm=0x140 "那麼我們就回去吧，"
+;   #9 off=0x11e prm=0x160 "回到那純潔之盾的居城"
+0001c4:            167 REG_GET                  adv=8   v0x0
+0001cc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+0001e0:            166 REG_PUT                  adv=8   1
+0001e8:             11 GOTO                     adv=8   L_01e4
+0001f0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0001f8:             56 FADESETWAIT              adv=8   2
+000200:             20 ADVMODESET               adv=8   0
+000208:             12 VWAIT                    adv=8   30
+000210:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000220:             43 TEXTACTIVE               adv=8   4
+000228:             17 TEXT                     adv=6   #0 "在我們穿越地下城砦－貝倫之前，"
+00022e:             17 TEXT                     adv=6   #1 "都要持續戰鬥。"
+000234:             17 TEXT                     adv=6   #2 "在該前進的時候前進，該後退的時候後退。"
+00023a:             17 TEXT                     adv=6   #3 "會有容易攻陷的地方，也有容易防守的地方。"
+000240:             50 TEXTWAITKB               adv=4   
+000244:             51 KEYWAIT                  adv=4   
+000248:             44 TEXTCLEAR                adv=4   
+00024c:             17 TEXT                     adv=6   #4 "一旦前鋒與敵方接觸之後，"
+000252:             17 TEXT                     adv=6   #5 "不要期待會有什麼輕鬆的戰鬥，"
+000258:             17 TEXT                     adv=6   #6 "要好好地跟中衛、後衛配合。"
+00025e:             50 TEXTWAITKB               adv=4   
+000262:             51 KEYWAIT                  adv=4   
+000266:             44 TEXTCLEAR                adv=4   
+00026a:             17 TEXT                     adv=6   #7 "好了。"
+000270:             17 TEXT                     adv=6   #8 "那麼我們就回去吧，"
+000276:             17 TEXT                     adv=6   #9 "回到那純潔之盾的居城"
+00027c:             50 TEXTWAITKB               adv=4   
+000280:             51 KEYWAIT                  adv=4   
+000284:             44 TEXTCLEAR                adv=4   
+000288:             24 BORDDISP                 adv=12  4 3
+000294:             12 VWAIT                    adv=8   60
+00029c:             21 ALLOFF                   adv=4   
+0002a0:            124 TACTPLAYEREXIT           adv=20  1 0 20 10800
+0002b4:            124 TACTPLAYEREXIT           adv=20  2 0 20 18000
+0002c8:            124 TACTPLAYEREXIT           adv=20  3 0 20 25200
+0002dc:            124 TACTPLAYEREXIT           adv=20  4 0 20 14400
+0002f0:            124 TACTPLAYEREXIT           adv=20  5 0 20 21600
+000304:            124 TACTPLAYEREXIT           adv=20  6 0 20 28800
+000318:            124 TACTPLAYEREXIT           adv=20  7 0 21 10800
+00032c:            124 TACTPLAYEREXIT           adv=20  8 0 21 18000
+000340:            124 TACTPLAYEREXIT           adv=20  9 0 21 25200
+000354:            124 TACTPLAYEREXIT           adv=20  10 0 21 14400
+000368:            124 TACTPLAYEREXIT           adv=20  11 0 21 21600
+00037c:            113 TACTPLAYERAPPEAR         adv=12  1 1
+000388:            136 TACTANIMPLAY             adv=32  20 1 1 0 0 0 0
+0003a8: L_01e4    19 END                      adv=4   ; END
+;   (46 insns)
+; ── block0 sub2 code@0x4f4 pool@0x5ee (11 strings)
+;   #0 off=0x30 prm=0x1e0 "……已經突破了第一個關口呢。"
+;   #1 off=0x4e prm=0x120 "你們的默契不錯。"
+;   #2 off=0x60 prm=0x1c0 "就算跟從未見過的敵人交戰，"
+;   #3 off=0x7c prm=0x180 "也沒有露出膽怯的表情。"
+;   #4 off=0x94 prm=0x260 "不管是前進、後退還是轉向進攻的時機。"
+;   #5 off=0xba prm=0x240 "雖然在戰場上需要學習的事情還很多，"
+;   #6 off=0xde prm=0x2a0 "但你們一定可以在這場戰鬥中得到不少經驗。"
+;   #7 off=0x108 prm=0x180 "……在接下來的戰鬥中，"
+;   #8 off=0x120 prm=0x200 "希望能繼續看到純潔之盾的勇猛。"
+;   #9 off=0x140 prm=0x80 "去吧。"
+;   #10 off=0x148 prm=0x220 "穿越霍雷斯，往喀爾布的迷宮出發。"
+0004f4:            167 REG_GET                  adv=8   v0x0
+0004fc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000510:            166 REG_PUT                  adv=8   1
+000518:             11 GOTO                     adv=8   L_00f6
+000520: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+000528:             56 FADESETWAIT              adv=8   2
+000530:             20 ADVMODESET               adv=8   1
+000538:             12 VWAIT                    adv=8   30
+000540:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000550:             43 TEXTACTIVE               adv=8   1
+000558:             17 TEXT                     adv=6   #0 "……已經突破了第一個關口呢。"
+00055e:             50 TEXTWAITKB               adv=4   
+000562:             51 KEYWAIT                  adv=4   
+000566:             44 TEXTCLEAR                adv=4   
+00056a:             17 TEXT                     adv=6   #1 "你們的默契不錯。"
+000570:             17 TEXT                     adv=6   #2 "就算跟從未見過的敵人交戰，"
+000576:             17 TEXT                     adv=6   #3 "也沒有露出膽怯的表情。"
+00057c:             50 TEXTWAITKB               adv=4   
+000580:             51 KEYWAIT                  adv=4   
+000584:             44 TEXTCLEAR                adv=4   
+000588:             17 TEXT                     adv=6   #4 "不管是前進、後退還是轉向進攻的時機。"
+00058e:             17 TEXT                     adv=6   #5 "雖然在戰場上需要學習的事情還很多，"
+000594:             17 TEXT                     adv=6   #6 "但你們一定可以在這場戰鬥中得到不少經驗。"
+00059a:             50 TEXTWAITKB               adv=4   
+00059e:             51 KEYWAIT                  adv=4   
+0005a2:             44 TEXTCLEAR                adv=4   
+0005a6:             17 TEXT                     adv=6   #7 "……在接下來的戰鬥中，"
+0005ac:             17 TEXT                     adv=6   #8 "希望能繼續看到純潔之盾的勇猛。"
+0005b2:             17 TEXT                     adv=6   #9 "去吧。"
+0005b8:             17 TEXT                     adv=6   #10 "穿越霍雷斯，往喀爾布的迷宮出發。"
+0005be:             50 TEXTWAITKB               adv=4   
+0005c2:             51 KEYWAIT                  adv=4   
+0005c6:             44 TEXTCLEAR                adv=4   
+0005ca:             24 BORDDISP                 adv=12  1 3
+0005d6:             12 VWAIT                    adv=8   60
+0005de:             21 ALLOFF                   adv=4   
+0005e2:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0005ea: L_00f6    19 END                      adv=4   ; END
+;   (38 insns)
+; ── block0 sub5 code@0x774 pool@0x86e (11 strings)
+;   #0 off=0x30 prm=0x1e0 "……已經突破了第一個關口呢。"
+;   #1 off=0x4e prm=0x120 "你們的默契不錯。"
+;   #2 off=0x60 prm=0x1c0 "就算跟從未見過的敵人交戰，"
+;   #3 off=0x7c prm=0x180 "也沒有露出膽怯的表情。"
+;   #4 off=0x94 prm=0x260 "不管是前進、後退還是轉向進攻的時機。"
+;   #5 off=0xba prm=0x240 "雖然在戰場上需要學習的事情還很多，"
+;   #6 off=0xde prm=0x2a0 "但你們一定可以在這場戰鬥中得到不少經驗。"
+;   #7 off=0x108 prm=0x180 "……在接下來的戰鬥中，"
+;   #8 off=0x120 prm=0x200 "希望能繼續看到純潔之盾的勇猛。"
+;   #9 off=0x140 prm=0x80 "去吧。"
+;   #10 off=0x148 prm=0x220 "穿越霍雷斯，往喀爾布的迷宮出發。"
+000774:            167 REG_GET                  adv=8   v0x0
+00077c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000790:            166 REG_PUT                  adv=8   1
+000798:             11 GOTO                     adv=8   L_00f6
+0007a0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+0007a8:             56 FADESETWAIT              adv=8   2
+0007b0:             20 ADVMODESET               adv=8   1
+0007b8:             12 VWAIT                    adv=8   30
+0007c0:             27 BORDONWAIT               adv=16  1 268435455 268435455
+0007d0:             43 TEXTACTIVE               adv=8   1
+0007d8:             17 TEXT                     adv=6   #0 "……已經突破了第一個關口呢。"
+0007de:             50 TEXTWAITKB               adv=4   
+0007e2:             51 KEYWAIT                  adv=4   
+0007e6:             44 TEXTCLEAR                adv=4   
+0007ea:             17 TEXT                     adv=6   #1 "你們的默契不錯。"
+0007f0:             17 TEXT                     adv=6   #2 "就算跟從未見過的敵人交戰，"
+0007f6:             17 TEXT                     adv=6   #3 "也沒有露出膽怯的表情。"
+0007fc:             50 TEXTWAITKB               adv=4   
+000800:             51 KEYWAIT                  adv=4   
+000804:             44 TEXTCLEAR                adv=4   
+000808:             17 TEXT                     adv=6   #4 "不管是前進、後退還是轉向進攻的時機。"
+00080e:             17 TEXT                     adv=6   #5 "雖然在戰場上需要學習的事情還很多，"
+000814:             17 TEXT                     adv=6   #6 "但你們一定可以在這場戰鬥中得到不少經驗。"
+00081a:             50 TEXTWAITKB               adv=4   
+00081e:             51 KEYWAIT                  adv=4   
+000822:             44 TEXTCLEAR                adv=4   
+000826:             17 TEXT                     adv=6   #7 "……在接下來的戰鬥中，"
+00082c:             17 TEXT                     adv=6   #8 "希望能繼續看到純潔之盾的勇猛。"
+000832:             17 TEXT                     adv=6   #9 "去吧。"
+000838:             17 TEXT                     adv=6   #10 "穿越霍雷斯，往喀爾布的迷宮出發。"
+00083e:             50 TEXTWAITKB               adv=4   
+000842:             51 KEYWAIT                  adv=4   
+000846:             44 TEXTCLEAR                adv=4   
+00084a:             24 BORDDISP                 adv=12  1 3
+000856:             12 VWAIT                    adv=8   60
+00085e:             21 ALLOFF                   adv=4   
+000862:            118 TACTSETDESTROYSCRIPT     adv=8   60
+00086a: L_00f6    19 END                      adv=4   ; END
+;   (38 insns)
+; ── block0 sub8 code@0x9f4 pool@0xaee (11 strings)
+;   #0 off=0x30 prm=0x1e0 "……已經突破了第一個關口呢。"
+;   #1 off=0x4e prm=0x120 "你們的默契不錯。"
+;   #2 off=0x60 prm=0x1c0 "就算跟從未見過的敵人交戰，"
+;   #3 off=0x7c prm=0x180 "也沒有露出膽怯的表情。"
+;   #4 off=0x94 prm=0x260 "不管是前進、後退還是轉向進攻的時機。"
+;   #5 off=0xba prm=0x240 "雖然在戰場上需要學習的事情還很多，"
+;   #6 off=0xde prm=0x2a0 "但你們一定可以在這場戰鬥中得到不少經驗。"
+;   #7 off=0x108 prm=0x180 "……在接下來的戰鬥中，"
+;   #8 off=0x120 prm=0x200 "希望能繼續看到純潔之盾的勇猛。"
+;   #9 off=0x140 prm=0x80 "去吧。"
+;   #10 off=0x148 prm=0x220 "穿越霍雷斯，往喀爾布的迷宮出發。"
+0009f4:            167 REG_GET                  adv=8   v0x0
+0009fc:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000a10:            166 REG_PUT                  adv=8   1
+000a18:             11 GOTO                     adv=8   L_00f6
+000a20: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+000a28:             56 FADESETWAIT              adv=8   2
+000a30:             20 ADVMODESET               adv=8   1
+000a38:             12 VWAIT                    adv=8   30
+000a40:             27 BORDONWAIT               adv=16  1 268435455 268435455
+000a50:             43 TEXTACTIVE               adv=8   1
+000a58:             17 TEXT                     adv=6   #0 "……已經突破了第一個關口呢。"
+000a5e:             50 TEXTWAITKB               adv=4   
+000a62:             51 KEYWAIT                  adv=4   
+000a66:             44 TEXTCLEAR                adv=4   
+000a6a:             17 TEXT                     adv=6   #1 "你們的默契不錯。"
+000a70:             17 TEXT                     adv=6   #2 "就算跟從未見過的敵人交戰，"
+000a76:             17 TEXT                     adv=6   #3 "也沒有露出膽怯的表情。"
+000a7c:             50 TEXTWAITKB               adv=4   
+000a80:             51 KEYWAIT                  adv=4   
+000a84:             44 TEXTCLEAR                adv=4   
+000a88:             17 TEXT                     adv=6   #4 "不管是前進、後退還是轉向進攻的時機。"
+000a8e:             17 TEXT                     adv=6   #5 "雖然在戰場上需要學習的事情還很多，"
+000a94:             17 TEXT                     adv=6   #6 "但你們一定可以在這場戰鬥中得到不少經驗。"
+000a9a:             50 TEXTWAITKB               adv=4   
+000a9e:             51 KEYWAIT                  adv=4   
+000aa2:             44 TEXTCLEAR                adv=4   
+000aa6:             17 TEXT                     adv=6   #7 "……在接下來的戰鬥中，"
+000aac:             17 TEXT                     adv=6   #8 "希望能繼續看到純潔之盾的勇猛。"
+000ab2:             17 TEXT                     adv=6   #9 "去吧。"
+000ab8:             17 TEXT                     adv=6   #10 "穿越霍雷斯，往喀爾布的迷宮出發。"
+000abe:             50 TEXTWAITKB               adv=4   
+000ac2:             51 KEYWAIT                  adv=4   
+000ac6:             44 TEXTCLEAR                adv=4   
+000aca:             24 BORDDISP                 adv=12  1 3
+000ad6:             12 VWAIT                    adv=8   60
+000ade:             21 ALLOFF                   adv=4   
+000ae2:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000aea: L_00f6    19 END                      adv=4   ; END
+;   (38 insns)
+; ── block0 sub11 code@0xc74 pool@0xe84 (16 strings)
+;   #0 off=0x44 prm=0x80 "嘖……"
+;   #1 off=0x4c prm=0xc0 "前輩……？"
+;   #2 off=0x58 prm=0xa0 "…………"
+;   #3 off=0x62 prm=0x80 "���c�c"
+;   #4 off=0x6a prm=0x80 "呃……"
+;   #5 off=0x72 prm=0x180 "有辦法繼續步行嗎……？"
+;   #6 off=0x8a prm=0xa0 "…………"
+;   #7 off=0x94 prm=0x120 "就讓我來幫忙吧。"
+;   #8 off=0xa6 prm=0xa0 "…………"
+;   #9 off=0xb0 prm=0xc0 "看到了嗎？"
+;   #10 off=0xbc prm=0x1c0 "因為那些孩子們的努力奮鬥，"
+;   #11 off=0xd8 prm=0x160 "黑闇中也透出了光明。"
+;   #12 off=0xee prm=0x120 "看啊，就是那裡。"
+;   #13 off=0x100 prm=0xa0 "…………"
+;   #14 off=0x10a prm=0x120 "……我們出發吧。"
+;   #15 off=0x11c prm=0x200 "穿越霍雷斯，往喀爾布迷宮前進。"
+000c74:            167 REG_GET                  adv=8   v0x0
+000c7c:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000c90:            166 REG_PUT                  adv=8   1
+000c98:             11 GOTO                     adv=8   L_020c
+000ca0: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+000ca8:             56 FADESETWAIT              adv=8   2
+000cb0:             20 ADVMODESET               adv=8   0
+000cb8:             12 VWAIT                    adv=8   30
+000cc0:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+000cd4:             43 TEXTACTIVE               adv=8   7
+000cdc:             17 TEXT                     adv=6   #0 "嘖……"
+000ce2:             50 TEXTWAITKB               adv=4   
+000ce6:             51 KEYWAIT                  adv=4   
+000cea:             30 BORDPACKONWAIT           adv=20  8 115 0 30
+000cfe:             43 TEXTACTIVE               adv=8   8
+000d06:             17 TEXT                     adv=6   #1 "前輩……？"
+000d0c:             50 TEXTWAITKB               adv=4   
+000d10:             51 KEYWAIT                  adv=4   
+000d14:             43 TEXTACTIVE               adv=8   7
+000d1c:             44 TEXTCLEAR                adv=4   
+000d20:             17 TEXT                     adv=6   #2 "…………"
+000d26:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000d36:             43 TEXTACTIVE               adv=8   4
+000d3e:             17 TEXT                     adv=6   #3 "���c�c"
+000d44:             17 TEXT                     adv=6   #4 "呃……"
+000d4a:             17 TEXT                     adv=6   #5 "有辦法繼續步行嗎……？"
+000d50:             50 TEXTWAITKB               adv=4   
+000d54:             51 KEYWAIT                  adv=4   
+000d58:             43 TEXTACTIVE               adv=8   8
+000d60:             44 TEXTCLEAR                adv=4   
+000d64:             17 TEXT                     adv=6   #6 "…………"
+000d6a:             43 TEXTACTIVE               adv=8   7
+000d72:             44 TEXTCLEAR                adv=4   
+000d76:             33 CHARSET                  adv=16  7 118 0
+000d86:             36 CHARWAIT                 adv=4   
+000d8a:             43 TEXTACTIVE               adv=8   7
+000d92:             17 TEXT                     adv=6   #7 "就讓我來幫忙吧。"
+000d98:             50 TEXTWAITKB               adv=4   
+000d9c:             51 KEYWAIT                  adv=4   
+000da0:             43 TEXTACTIVE               adv=8   4
+000da8:             44 TEXTCLEAR                adv=4   
+000dac:             17 TEXT                     adv=6   #8 "…………"
+000db2:             43 TEXTACTIVE               adv=8   8
+000dba:             44 TEXTCLEAR                adv=4   
+000dbe:             33 CHARSET                  adv=16  8 110 0
+000dce:             36 CHARWAIT                 adv=4   
+000dd2:             43 TEXTACTIVE               adv=8   8
+000dda:             17 TEXT                     adv=6   #9 "看到了嗎？"
+000de0:             17 TEXT                     adv=6   #10 "因為那些孩子們的努力奮鬥，"
+000de6:             17 TEXT                     adv=6   #11 "黑闇中也透出了光明。"
+000dec:             17 TEXT                     adv=6   #12 "看啊，就是那裡。"
+000df2:             50 TEXTWAITKB               adv=4   
+000df6:             51 KEYWAIT                  adv=4   
+000dfa:             43 TEXTACTIVE               adv=8   7
+000e02:             44 TEXTCLEAR                adv=4   
+000e06:             17 TEXT                     adv=6   #13 "…………"
+000e0c:             43 TEXTACTIVE               adv=8   4
+000e14:             44 TEXTCLEAR                adv=4   
+000e18:             17 TEXT                     adv=6   #14 "……我們出發吧。"
+000e1e:             17 TEXT                     adv=6   #15 "穿越霍雷斯，往喀爾布迷宮前進。"
+000e24:             50 TEXTWAITKB               adv=4   
+000e28:             51 KEYWAIT                  adv=4   
+000e2c:             44 TEXTCLEAR                adv=4   
+000e30:             43 TEXTACTIVE               adv=8   7
+000e38:             44 TEXTCLEAR                adv=4   
+000e3c:             43 TEXTACTIVE               adv=8   8
+000e44:             44 TEXTCLEAR                adv=4   
+000e48:             31 BORDPACKOFF              adv=12  7 30
+000e54:             31 BORDPACKOFF              adv=12  8 30
+000e60:             24 BORDDISP                 adv=12  4 3
+000e6c:             12 VWAIT                    adv=8   60
+000e74:             21 ALLOFF                   adv=4   
+000e78:            118 TACTSETDESTROYSCRIPT     adv=8   60
+000e80: L_020c    19 END                      adv=4   ; END
+;   (74 insns)
+; ── block0 sub14 code@0xfdc pool@0x11e6 (15 strings)
+;   #0 off=0x40 prm=0x80 "嘖……"
+;   #1 off=0x48 prm=0xc0 "前輩……？"
+;   #2 off=0x54 prm=0xa0 "…………"
+;   #3 off=0x5e prm=0x80 "呃……"
+;   #4 off=0x66 prm=0x180 "有辦法繼續步行嗎……？"
+;   #5 off=0x7e prm=0xa0 "…………"
+;   #6 off=0x88 prm=0x120 "就讓我來幫忙吧。"
+;   #7 off=0x9a prm=0xa0 "…………"
+;   #8 off=0xa4 prm=0xc0 "看到了嗎？"
+;   #9 off=0xb0 prm=0x1c0 "因為那些孩子們的努力奮鬥，"
+;   #10 off=0xcc prm=0x160 "黑闇中也透出了光明。"
+;   #11 off=0xe2 prm=0x120 "看啊，就是那裡。"
+;   #12 off=0xf4 prm=0xa0 "…………"
+;   #13 off=0xfe prm=0x120 "……我們出發吧。"
+;   #14 off=0x110 prm=0x200 "穿越霍雷斯，往喀爾布迷宮前進。"
+000fdc:            167 REG_GET                  adv=8   v0x0
+000fe4:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_002c
+000ff8:            166 REG_PUT                  adv=8   1
+001000:             11 GOTO                     adv=8   L_0206
+001008: L_002c   117 TACTEVENTCELLWRITEPOS    adv=8   60
+001010:             56 FADESETWAIT              adv=8   2
+001018:             20 ADVMODESET               adv=8   0
+001020:             12 VWAIT                    adv=8   30
+001028:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+00103c:             43 TEXTACTIVE               adv=8   7
+001044:             17 TEXT                     adv=6   #0 "嘖……"
+00104a:             50 TEXTWAITKB               adv=4   
+00104e:             51 KEYWAIT                  adv=4   
+001052:             30 BORDPACKONWAIT           adv=20  8 115 0 30
+001066:             43 TEXTACTIVE               adv=8   8
+00106e:             17 TEXT                     adv=6   #1 "前輩……？"
+001074:             50 TEXTWAITKB               adv=4   
+001078:             51 KEYWAIT                  adv=4   
+00107c:             43 TEXTACTIVE               adv=8   7
+001084:             44 TEXTCLEAR                adv=4   
+001088:             17 TEXT                     adv=6   #2 "…………"
+00108e:             27 BORDONWAIT               adv=16  4 268435455 268435455
+00109e:             43 TEXTACTIVE               adv=8   4
+0010a6:             17 TEXT                     adv=6   #3 "呃……"
+0010ac:             17 TEXT                     adv=6   #4 "有辦法繼續步行嗎……？"
+0010b2:             50 TEXTWAITKB               adv=4   
+0010b6:             51 KEYWAIT                  adv=4   
+0010ba:             43 TEXTACTIVE               adv=8   8
+0010c2:             44 TEXTCLEAR                adv=4   
+0010c6:             17 TEXT                     adv=6   #5 "…………"
+0010cc:             43 TEXTACTIVE               adv=8   7
+0010d4:             44 TEXTCLEAR                adv=4   
+0010d8:             33 CHARSET                  adv=16  7 118 0
+0010e8:             36 CHARWAIT                 adv=4   
+0010ec:             43 TEXTACTIVE               adv=8   7
+0010f4:             17 TEXT                     adv=6   #6 "就讓我來幫忙吧。"
+0010fa:             50 TEXTWAITKB               adv=4   
+0010fe:             51 KEYWAIT                  adv=4   
+001102:             43 TEXTACTIVE               adv=8   4
+00110a:             44 TEXTCLEAR                adv=4   
+00110e:             17 TEXT                     adv=6   #7 "…………"
+001114:             43 TEXTACTIVE               adv=8   8
+00111c:             44 TEXTCLEAR                adv=4   
+001120:             33 CHARSET                  adv=16  8 110 0
+001130:             36 CHARWAIT                 adv=4   
+001134:             43 TEXTACTIVE               adv=8   8
+00113c:             17 TEXT                     adv=6   #8 "看到了嗎？"
+001142:             17 TEXT                     adv=6   #9 "因為那些孩子們的努力奮鬥，"
+001148:             17 TEXT                     adv=6   #10 "黑闇中也透出了光明。"
+00114e:             17 TEXT                     adv=6   #11 "看啊，就是那裡。"
+001154:             50 TEXTWAITKB               adv=4   
+001158:             51 KEYWAIT                  adv=4   
+00115c:             43 TEXTACTIVE               adv=8   7
+001164:             44 TEXTCLEAR                adv=4   
+001168:             17 TEXT                     adv=6   #12 "…………"
+00116e:             43 TEXTACTIVE               adv=8   4
+001176:             44 TEXTCLEAR                adv=4   
+00117a:             17 TEXT                     adv=6   #13 "……我們出發吧。"
+001180:             17 TEXT                     adv=6   #14 "穿越霍雷斯，往喀爾布迷宮前進。"
+001186:             50 TEXTWAITKB               adv=4   
+00118a:             51 KEYWAIT                  adv=4   
+00118e:             44 TEXTCLEAR                adv=4   
+001192:             43 TEXTACTIVE               adv=8   7
+00119a:             44 TEXTCLEAR                adv=4   
+00119e:             43 TEXTACTIVE               adv=8   8
+0011a6:             44 TEXTCLEAR                adv=4   
+0011aa:             31 BORDPACKOFF              adv=12  7 30
+0011b6:             31 BORDPACKOFF              adv=12  8 30
+0011c2:             24 BORDDISP                 adv=12  4 3
+0011ce:             12 VWAIT                    adv=8   60
+0011d6:             21 ALLOFF                   adv=4   
+0011da:            118 TACTSETDESTROYSCRIPT     adv=8   60
+0011e2: L_0206    19 END                      adv=4   ; END
+;   (73 insns)
+; ── block0 sub20 code@0x1340 pool@0x1564 (0 strings)
+001340:            167 REG_GET                  adv=8   v0x0
+001348:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0220
+00135c:            166 REG_PUT                  adv=8   0
+001364:            136 TACTANIMPLAY             adv=32  31 0 0 0 0 0 0
+001384:            136 TACTANIMPLAY             adv=32  32 10 0 0 0 0 0
+0013a4:            136 TACTANIMPLAY             adv=32  32 11 0 0 0 0 0
+0013c4:            136 TACTANIMPLAY             adv=32  32 12 0 0 0 0 0
+0013e4:            136 TACTANIMPLAY             adv=32  32 13 0 0 0 0 0
+001404:            136 TACTANIMPLAY             adv=32  32 14 0 0 0 0 0
+001424:            136 TACTANIMPLAY             adv=32  32 15 0 0 0 0 0
+001444:            146 NETKEYWAIT               adv=28  v0x2 5 0 0 0 0
+001460:              8 IFGOTO                   adv=20  cond=1 v0x2 cmp 65535 -> L_01cc
+001474:            136 TACTANIMPLAY             adv=32  33 v0x2 0 0 0 0 0
+001494:            146 NETKEYWAIT               adv=28  v0x4 2 1 6 0 0
+0014b0:            133 TACTENEMYEXITGROUP       adv=24  v0x2 1 0 0 0
+0014c8:            133 TACTENEMYEXITGROUP       adv=24  v0x2 3 1 0 0
+0014e0:            133 TACTENEMYEXITGROUP       adv=24  v0x2 2 v0x4 0 0
+0014f8:            130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 18 170 3
+00150c: L_01cc   146 NETKEYWAIT               adv=28  v0x1 2 900 10800 0 0
+001528:            146 NETKEYWAIT               adv=28  v0x3 6 0 0 0 0
+001544:            124 TACTPLAYEREXIT           adv=20  v0x3 0 20 v0x1
+001558:             11 GOTO                     adv=8   L_0220
+001560: L_0220    19 END                      adv=4   ; END
+;   (23 insns)
+; ── block0 sub21 code@0x157c pool@0x178c (0 strings)
+00157c:            167 REG_GET                  adv=8   v0x0
+001584:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_020c
+001598:            166 REG_PUT                  adv=8   0
+0015a0:            136 TACTANIMPLAY             adv=32  31 0 0 0 0 0 0
+0015c0:            136 TACTANIMPLAY             adv=32  32 2 0 0 0 0 0
+0015e0:            136 TACTANIMPLAY             adv=32  32 3 0 0 0 0 0
+001600:            136 TACTANIMPLAY             adv=32  32 4 0 0 0 0 0
+001620:            136 TACTANIMPLAY             adv=32  32 5 0 0 0 0 0
+001640:            136 TACTANIMPLAY             adv=32  32 6 0 0 0 0 0
+001660:            146 NETKEYWAIT               adv=28  v0x2 5 0 0 0 0
+00167c:              8 IFGOTO                   adv=20  cond=1 v0x2 cmp 65535 -> L_01b8
+001690:            136 TACTANIMPLAY             adv=32  33 v0x2 0 0 0 0 0
+0016b0:            146 NETKEYWAIT               adv=28  v0x5 2 0 2 0 0
+0016cc:              8 IFGOTO                   adv=20  cond=1 v0x4 cmp 1 -> L_0180
+0016e0:            130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 101 129 3
+0016f4:             11 GOTO                     adv=8   L_01b8
+0016fc: L_0180   130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 62 163 3
+001710:             11 GOTO                     adv=8   L_01b8
+001718:            130 TACTPLAYERAPPEARGROUP    adv=20  v0x2 49 78 3
+00172c:             11 GOTO                     adv=8   L_01b8
+001734: L_01b8   146 NETKEYWAIT               adv=28  v0x1 2 3600 10800 0 0
+001750:            146 NETKEYWAIT               adv=28  v0x3 6 0 0 0 0
+00176c:            124 TACTPLAYEREXIT           adv=20  v0x3 0 21 v0x1
+001780:             11 GOTO                     adv=8   L_020c
+001788: L_020c    19 END                      adv=4   ; END
+;   (25 insns)
+; ── block1 sub1 code@0x1a80 pool@0x1aec (0 strings)
+001a80:            167 REG_GET                  adv=8   v0x0
+001a88:              8 IFGOTO                   adv=20  cond=1 v0x0 cmp 1 -> L_0068
+001a9c:            166 REG_PUT                  adv=8   0
+001aa4:            146 NETKEYWAIT               adv=28  v0x0 7 0 0 0 0
+001ac0:            163 UNITWK_PUT16             adv=16  v0x0 -> UNITWK[65535].0 (u16)
+001ad0:            165 UNITWK_PUTBIT            adv=16  1 -> UNITWK[65535].0 (bit)
+001ae0:             11 GOTO                     adv=8   L_0068
+001ae8: L_0068    19 END                      adv=4   ; END
+;   (8 insns)

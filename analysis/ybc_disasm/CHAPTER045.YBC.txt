@@ -1,0 +1,285 @@
+; CHAPTER045.YBC  len=0xa94  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x688', '0x688', '0x688']
+;   txt#0 off=0xa4 prm=0xe0 "下雨了呢……"
+;   txt#1 off=0xb2 prm=0x140 "真是冰冷的雨呀……"
+;   txt#2 off=0xc6 prm=0x180 "嗯嗯，就像那天一樣……"
+;   txt#3 off=0xde prm=0x180 "冷到彷彿要凍結的雨呀。"
+;   txt#4 off=0xf6 prm=0xa0 "嗯……？"
+;   txt#5 off=0x100 prm=0x200 "那是……老師出發旅行的那一天。"
+;   txt#6 off=0x120 prm=0x180 "與吉爾梅亞閣下一起……"
+;   txt#7 off=0x138 prm=0x80 "啊……"
+;   txt#8 off=0x140 prm=0x160 "雨水的香氣和聲音……"
+;   txt#9 off=0x156 prm=0x200 "令我想起了別離，雖然令人傷感，"
+;   txt#10 off=0x176 prm=0x220 "然而，那也是曾經一同走過的證據。"
+;   txt#11 off=0x198 prm=0x220 "所以，雖然這樣的日子令人不捨……"
+;   txt#12 off=0x1ba prm=0x140 "我卻還是好喜歡……"
+;   txt#13 off=0x1ce prm=0xa0 "…………"
+;   txt#14 off=0x1d8 prm=0x140 "而且，下過雨的話，"
+;   txt#15 off=0x1ec prm=0x1e0 "深夜裡的星光將會更加地璀璨。"
+;   txt#16 off=0x20a prm=0x1e0 "我們……真的回到這裡來了呢。"
+;   txt#17 off=0x228 prm=0xa0 "嗯嗯……"
+;   txt#18 off=0x232 prm=0xc0 "大家……！"
+;   txt#19 off=0x23e prm=0x100 "看，快看呀……"
+;   txt#20 off=0x24e prm=0xa0 "星星……"
+;   txt#21 off=0x258 prm=0x160 "對呀，今天不就是……"
+;   txt#22 off=0x26e prm=0xc0 "銀鐘祭……"
+;   txt#23 off=0x27a prm=0x1c0 "希望混沌永遠不要再出現……"
+;   txt#24 off=0x296 prm=0x220 "就像這世上沒有永不結束的長夜……"
+;   txt#25 off=0x2b8 prm=0x80 "嗯……"
+;   txt#26 off=0x2c0 prm=0x220 "現在，我們還只踏出了小小的一步。"
+;   txt#27 off=0x2e2 prm=0x220 "這是我們的，小小的小小的銀鐘祭。"
+;   txt#28 off=0x304 prm=0x260 "然而我不會忘記，這個立下誓約的夜晚。"
+;   txt#29 off=0x32a prm=0xe0 "我會努力的。"
+;   txt#30 off=0x338 prm=0x1e0 "……就算只有一點點幫助也好。"
+;   txt#31 off=0x356 prm=0x220 "也希望能夠讓老師感覺我值得信賴。"
+;   txt#32 off=0x378 prm=0xa0 "凱洛……"
+;   txt#33 off=0x382 prm=0x120 "嗯嗯，就是這樣。"
+;   txt#34 off=0x394 prm=0x260 "就算到了最後，我們仍然將各分東西……"
+;   txt#35 off=0x3ba prm=0xa0 "…………"
+;   txt#36 off=0x3c4 prm=0x240 "至少在那之前，大家也要在一起努力。"
+;   txt#37 off=0x3e8 prm=0x100 "我們就此約定。"
+;   txt#38 off=0x3f8 prm=0x60 "嗯。"
+;   txt#39 off=0x3fe prm=0xe0 "加油吧……！"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   1
+00002c:             59 BGSETWAIT                adv=16  0 12 1
+00003c:             30 BORDPACKONWAIT           adv=20  5 3 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   5
+000060:             65 BGM                      adv=8   v0x31
+000068:             17 TEXT                     adv=6   #0 "下雨了呢……"
+00006e:             50 TEXTWAITKB               adv=4   
+000072:             51 KEYWAIT                  adv=4   
+000076:             30 BORDPACKONWAIT           adv=20  6 4 0 30
+00008a:             43 TEXTACTIVE               adv=8   6
+000092:             65 BGM                      adv=8   v0x10031
+00009a:             17 TEXT                     adv=6   #1 "真是冰冷的雨呀……"
+0000a0:             50 TEXTWAITKB               adv=4   
+0000a4:             51 KEYWAIT                  adv=4   
+0000a8:             43 TEXTACTIVE               adv=8   5
+0000b0:             44 TEXTCLEAR                adv=4   
+0000b4:             65 BGM                      adv=8   v0x20031
+0000bc:             17 TEXT                     adv=6   #2 "嗯嗯，就像那天一樣……"
+0000c2:             50 TEXTWAITKB               adv=4   
+0000c6:             51 KEYWAIT                  adv=4   
+0000ca:             65 BGM                      adv=8   v0x30031
+0000d2:             17 TEXT                     adv=6   #3 "冷到彷彿要凍結的雨呀。"
+0000d8:             50 TEXTWAITKB               adv=4   
+0000dc:             51 KEYWAIT                  adv=4   
+0000e0:             43 TEXTACTIVE               adv=8   6
+0000e8:             44 TEXTCLEAR                adv=4   
+0000ec:             65 BGM                      adv=8   v0x40031
+0000f4:             17 TEXT                     adv=6   #4 "嗯……？"
+0000fa:             50 TEXTWAITKB               adv=4   
+0000fe:             51 KEYWAIT                  adv=4   
+000102:             43 TEXTACTIVE               adv=8   5
+00010a:             44 TEXTCLEAR                adv=4   
+00010e:             65 BGM                      adv=8   v0x50031
+000116:             17 TEXT                     adv=6   #5 "那是……老師出發旅行的那一天。"
+00011c:             50 TEXTWAITKB               adv=4   
+000120:             51 KEYWAIT                  adv=4   
+000124:             65 BGM                      adv=8   v0x60031
+00012c:             17 TEXT                     adv=6   #6 "與吉爾梅亞閣下一起……"
+000132:             50 TEXTWAITKB               adv=4   
+000136:             51 KEYWAIT                  adv=4   
+00013a:             43 TEXTACTIVE               adv=8   6
+000142:             44 TEXTCLEAR                adv=4   
+000146:             65 BGM                      adv=8   v0x70031
+00014e:             17 TEXT                     adv=6   #7 "啊……"
+000154:             50 TEXTWAITKB               adv=4   
+000158:             51 KEYWAIT                  adv=4   
+00015c:             43 TEXTACTIVE               adv=8   5
+000164:             44 TEXTCLEAR                adv=4   
+000168:             65 BGM                      adv=8   v0x80031
+000170:             17 TEXT                     adv=6   #8 "雨水的香氣和聲音……"
+000176:             50 TEXTWAITKB               adv=4   
+00017a:             51 KEYWAIT                  adv=4   
+00017e:             65 BGM                      adv=8   v0x90031
+000186:             17 TEXT                     adv=6   #9 "令我想起了別離，雖然令人傷感，"
+00018c:             50 TEXTWAITKB               adv=4   
+000190:             51 KEYWAIT                  adv=4   
+000194:             65 BGM                      adv=8   v0xa0031
+00019c:             17 TEXT                     adv=6   #10 "然而，那也是曾經一同走過的證據。"
+0001a2:             50 TEXTWAITKB               adv=4   
+0001a6:             51 KEYWAIT                  adv=4   
+0001aa:             65 BGM                      adv=8   v0xb0031
+0001b2:             17 TEXT                     adv=6   #11 "所以，雖然這樣的日子令人不捨……"
+0001b8:             50 TEXTWAITKB               adv=4   
+0001bc:             51 KEYWAIT                  adv=4   
+0001c0:             65 BGM                      adv=8   v0xc0031
+0001c8:             17 TEXT                     adv=6   #12 "我卻還是好喜歡……"
+0001ce:             50 TEXTWAITKB               adv=4   
+0001d2:             51 KEYWAIT                  adv=4   
+0001d6:             43 TEXTACTIVE               adv=8   6
+0001de:             44 TEXTCLEAR                adv=4   
+0001e2:             65 BGM                      adv=8   v0xd0031
+0001ea:             17 TEXT                     adv=6   #13 "…………"
+0001f0:             50 TEXTWAITKB               adv=4   
+0001f4:             51 KEYWAIT                  adv=4   
+0001f8:             43 TEXTACTIVE               adv=8   5
+000200:             44 TEXTCLEAR                adv=4   
+000204:             65 BGM                      adv=8   v0xe0031
+00020c:             17 TEXT                     adv=6   #14 "而且，下過雨的話，"
+000212:             17 TEXT                     adv=6   #15 "深夜裡的星光將會更加地璀璨。"
+000218:             50 TEXTWAITKB               adv=4   
+00021c:             51 KEYWAIT                  adv=4   
+000220:             43 TEXTACTIVE               adv=8   6
+000228:             44 TEXTCLEAR                adv=4   
+00022c:             65 BGM                      adv=8   v0xf0031
+000234:             17 TEXT                     adv=6   #16 "我們……真的回到這裡來了呢。"
+00023a:             50 TEXTWAITKB               adv=4   
+00023e:             51 KEYWAIT                  adv=4   
+000242:             43 TEXTACTIVE               adv=8   5
+00024a:             44 TEXTCLEAR                adv=4   
+00024e:             65 BGM                      adv=8   v0x100031
+000256:             17 TEXT                     adv=6   #17 "嗯嗯……"
+00025c:             50 TEXTWAITKB               adv=4   
+000260:             51 KEYWAIT                  adv=4   
+000264:             12 VWAIT                    adv=8   30
+00026c:             56 FADESETWAIT              adv=8   4
+000274:             21 ALLOFF                   adv=4   
+000278:             12 VWAIT                    adv=8   60
+000280:             20 ADVMODESET               adv=8   1
+000288:             59 BGSETWAIT                adv=16  0 117 1
+000298:             30 BORDPACKONWAIT           adv=20  5 9 0 30
+0002ac:             56 FADESETWAIT              adv=8   3
+0002b4:             43 TEXTACTIVE               adv=8   5
+0002bc:             65 BGM                      adv=8   v0x110031
+0002c4:             17 TEXT                     adv=6   #18 "大家……！"
+0002ca:             50 TEXTWAITKB               adv=4   
+0002ce:             51 KEYWAIT                  adv=4   
+0002d2:             65 BGM                      adv=8   v0x120031
+0002da:             17 TEXT                     adv=6   #19 "看，快看呀……"
+0002e0:             50 TEXTWAITKB               adv=4   
+0002e4:             51 KEYWAIT                  adv=4   
+0002e8:             30 BORDPACKONWAIT           adv=20  6 2 0 30
+0002fc:             43 TEXTACTIVE               adv=8   6
+000304:             65 BGM                      adv=8   v0x130031
+00030c:             17 TEXT                     adv=6   #20 "星星……"
+000312:             50 TEXTWAITKB               adv=4   
+000316:             51 KEYWAIT                  adv=4   
+00031a:             43 TEXTACTIVE               adv=8   5
+000322:             44 TEXTCLEAR                adv=4   
+000326:             30 BORDPACKONWAIT           adv=20  5 5 0 30
+00033a:             43 TEXTACTIVE               adv=8   5
+000342:             65 BGM                      adv=8   v0x140031
+00034a:             17 TEXT                     adv=6   #21 "對呀，今天不就是……"
+000350:             50 TEXTWAITKB               adv=4   
+000354:             51 KEYWAIT                  adv=4   
+000358:             43 TEXTACTIVE               adv=8   6
+000360:             44 TEXTCLEAR                adv=4   
+000364:             30 BORDPACKONWAIT           adv=20  6 6 0 30
+000378:             43 TEXTACTIVE               adv=8   6
+000380:             65 BGM                      adv=8   v0x150031
+000388:             17 TEXT                     adv=6   #22 "銀鐘祭……"
+00038e:             50 TEXTWAITKB               adv=4   
+000392:             51 KEYWAIT                  adv=4   
+000396:             43 TEXTACTIVE               adv=8   5
+00039e:             44 TEXTCLEAR                adv=4   
+0003a2:             30 BORDPACKONWAIT           adv=20  5 3 0 30
+0003b6:             43 TEXTACTIVE               adv=8   5
+0003be:             65 BGM                      adv=8   v0x160031
+0003c6:             17 TEXT                     adv=6   #23 "希望混沌永遠不要再出現……"
+0003cc:             50 TEXTWAITKB               adv=4   
+0003d0:             51 KEYWAIT                  adv=4   
+0003d4:             65 BGM                      adv=8   v0x170031
+0003dc:             17 TEXT                     adv=6   #24 "就像這世上沒有永不結束的長夜……"
+0003e2:             50 TEXTWAITKB               adv=4   
+0003e6:             51 KEYWAIT                  adv=4   
+0003ea:             43 TEXTACTIVE               adv=8   6
+0003f2:             44 TEXTCLEAR                adv=4   
+0003f6:             30 BORDPACKONWAIT           adv=20  6 5 0 30
+00040a:             43 TEXTACTIVE               adv=8   6
+000412:             65 BGM                      adv=8   v0x180031
+00041a:             17 TEXT                     adv=6   #25 "嗯……"
+000420:             50 TEXTWAITKB               adv=4   
+000424:             51 KEYWAIT                  adv=4   
+000428:             65 BGM                      adv=8   v0x190031
+000430:             17 TEXT                     adv=6   #26 "現在，我們還只踏出了小小的一步。"
+000436:             50 TEXTWAITKB               adv=4   
+00043a:             51 KEYWAIT                  adv=4   
+00043e:             65 BGM                      adv=8   v0x1a0031
+000446:             17 TEXT                     adv=6   #27 "這是我們的，小小的小小的銀鐘祭。"
+00044c:             50 TEXTWAITKB               adv=4   
+000450:             51 KEYWAIT                  adv=4   
+000454:             65 BGM                      adv=8   v0x1b0031
+00045c:             17 TEXT                     adv=6   #28 "然而我不會忘記，這個立下誓約的夜晚。"
+000462:             50 TEXTWAITKB               adv=4   
+000466:             51 KEYWAIT                  adv=4   
+00046a:             43 TEXTACTIVE               adv=8   5
+000472:             44 TEXTCLEAR                adv=4   
+000476:             30 BORDPACKONWAIT           adv=20  5 1 0 30
+00048a:             43 TEXTACTIVE               adv=8   5
+000492:             65 BGM                      adv=8   v0x1c0031
+00049a:             17 TEXT                     adv=6   #29 "我會努力的。"
+0004a0:             50 TEXTWAITKB               adv=4   
+0004a4:             51 KEYWAIT                  adv=4   
+0004a8:             65 BGM                      adv=8   v0x1d0031
+0004b0:             17 TEXT                     adv=6   #30 "……就算只有一點點幫助也好。"
+0004b6:             50 TEXTWAITKB               adv=4   
+0004ba:             51 KEYWAIT                  adv=4   
+0004be:             65 BGM                      adv=8   v0x1e0031
+0004c6:             17 TEXT                     adv=6   #31 "也希望能夠讓老師感覺我值得信賴。"
+0004cc:             50 TEXTWAITKB               adv=4   
+0004d0:             51 KEYWAIT                  adv=4   
+0004d4:             43 TEXTACTIVE               adv=8   6
+0004dc:             44 TEXTCLEAR                adv=4   
+0004e0:             30 BORDPACKONWAIT           adv=20  6 2 0 30
+0004f4:             43 TEXTACTIVE               adv=8   6
+0004fc:             65 BGM                      adv=8   v0x1f0031
+000504:             17 TEXT                     adv=6   #32 "凱洛……"
+00050a:             50 TEXTWAITKB               adv=4   
+00050e:             51 KEYWAIT                  adv=4   
+000512:             65 BGM                      adv=8   v0x200031
+00051a:             17 TEXT                     adv=6   #33 "嗯嗯，就是這樣。"
+000520:             50 TEXTWAITKB               adv=4   
+000524:             51 KEYWAIT                  adv=4   
+000528:             43 TEXTACTIVE               adv=8   5
+000530:             44 TEXTCLEAR                adv=4   
+000534:             30 BORDPACKONWAIT           adv=20  5 5 0 30
+000548:             43 TEXTACTIVE               adv=8   5
+000550:             65 BGM                      adv=8   v0x210031
+000558:             17 TEXT                     adv=6   #34 "就算到了最後，我們仍然將各分東西……"
+00055e:             50 TEXTWAITKB               adv=4   
+000562:             51 KEYWAIT                  adv=4   
+000566:             44 TEXTCLEAR                adv=4   
+00056a:             43 TEXTACTIVE               adv=8   6
+000572:             44 TEXTCLEAR                adv=4   
+000576:             17 TEXT                     adv=6   #35 "…………"
+00057c:             30 BORDPACKONWAIT           adv=20  5 4 0 30
+000590:             43 TEXTACTIVE               adv=8   5
+000598:             65 BGM                      adv=8   v0x220031
+0005a0:             17 TEXT                     adv=6   #36 "至少在那之前，大家也要在一起努力。"
+0005a6:             50 TEXTWAITKB               adv=4   
+0005aa:             51 KEYWAIT                  adv=4   
+0005ae:             43 TEXTACTIVE               adv=8   6
+0005b6:             44 TEXTCLEAR                adv=4   
+0005ba:             30 BORDPACKONWAIT           adv=20  6 6 0 30
+0005ce:             43 TEXTACTIVE               adv=8   6
+0005d6:             65 BGM                      adv=8   v0x230031
+0005de:             17 TEXT                     adv=6   #37 "我們就此約定。"
+0005e4:             50 TEXTWAITKB               adv=4   
+0005e8:             51 KEYWAIT                  adv=4   
+0005ec:             43 TEXTACTIVE               adv=8   5
+0005f4:             44 TEXTCLEAR                adv=4   
+0005f8:             30 BORDPACKONWAIT           adv=20  5 8 0 30
+00060c:             43 TEXTACTIVE               adv=8   5
+000614:             65 BGM                      adv=8   v0x240031
+00061c:             17 TEXT                     adv=6   #38 "嗯。"
+000622:             50 TEXTWAITKB               adv=4   
+000626:             51 KEYWAIT                  adv=4   
+00062a:             43 TEXTACTIVE               adv=8   6
+000632:             44 TEXTCLEAR                adv=4   
+000636:             30 BORDPACKONWAIT           adv=20  6 5 0 30
+00064a:             43 TEXTACTIVE               adv=8   6
+000652:             65 BGM                      adv=8   v0x250031
+00065a:             17 TEXT                     adv=6   #39 "加油吧……！"
+000660:             50 TEXTWAITKB               adv=4   
+000664:             51 KEYWAIT                  adv=4   
+000668:             12 VWAIT                    adv=8   30
+000670:             56 FADESETWAIT              adv=8   4
+000678:             21 ALLOFF                   adv=4   
+00067c:             12 VWAIT                    adv=8   60
+000684:             19 END                      adv=4   ; END
+; (242 insns)

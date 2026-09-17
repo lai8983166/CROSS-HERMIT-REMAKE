@@ -1,0 +1,106 @@
+; CHAPTER009.YBC  len=0x3fc  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x208', '0x208', '0x208']
+;   txt#0 off=0x54 prm=0x80 "老師。"
+;   txt#1 off=0x5c prm=0xa0 "……嗯？"
+;   txt#2 off=0x66 prm=0x100 "霍雷斯迴廊裡，"
+;   txt#3 off=0x76 prm=0x1c0 "守護塔的燈火似乎被點亮了。"
+;   txt#4 off=0x92 prm=0x1e0 "不是聽說那裡已經被封鎖了嗎？"
+;   txt#5 off=0xb0 prm=0xa0 "…………"
+;   txt#6 off=0xba prm=0x220 "難道那是「匍伏蔓延而來之物」……"
+;   txt#7 off=0xdc prm=0x260 "或者是……與純潔之盾有深厚關係的人，"
+;   txt#8 off=0x102 prm=0x120 "為了自保而做的？"
+;   txt#9 off=0x114 prm=0xa0 "…………"
+;   txt#10 off=0x11e prm=0x220 "到底是誰點亮了那守護塔的燈火……"
+;   txt#11 off=0x140 prm=0x180 "我想去確認一下這件事。"
+;   txt#12 off=0x158 prm=0x160 "……地底深處的黑闇，"
+;   txt#13 off=0x16e prm=0x1e0 "對「匍伏蔓延而來之物」來說，"
+;   txt#14 off=0x18c prm=0x100 "就像故鄉一樣。"
+;   txt#15 off=0x19c prm=0x180 "要儘量避免無益的戰鬥，"
+;   txt#16 off=0x1b4 prm=0xc0 "知道了嗎？"
+;   txt#17 off=0x1c0 prm=0xe0 "這是當然的。"
+;   txt#18 off=0x1ce prm=0x1e0 "很好，就請妳這樣通知大家吧。"
+;   txt#19 off=0x1ec prm=0x80 "是的。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             63 SE                       adv=8   9
+00002c:             59 BGSETWAIT                adv=16  0 8 1
+00003c:             30 BORDPACKONWAIT           adv=20  10 3 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   10
+000060:             17 TEXT                     adv=6   #0 "老師。"
+000066:             50 TEXTWAITKB               adv=4   
+00006a:             51 KEYWAIT                  adv=4   
+00006e:             27 BORDONWAIT               adv=16  4 268435455 268435455
+00007e:             43 TEXTACTIVE               adv=8   4
+000086:             17 TEXT                     adv=6   #1 "……嗯？"
+00008c:             50 TEXTWAITKB               adv=4   
+000090:             51 KEYWAIT                  adv=4   
+000094:             43 TEXTACTIVE               adv=8   10
+00009c:             44 TEXTCLEAR                adv=4   
+0000a0:             17 TEXT                     adv=6   #2 "霍雷斯迴廊裡，"
+0000a6:             17 TEXT                     adv=6   #3 "守護塔的燈火似乎被點亮了。"
+0000ac:             50 TEXTWAITKB               adv=4   
+0000b0:             51 KEYWAIT                  adv=4   
+0000b4:             43 TEXTACTIVE               adv=8   4
+0000bc:             44 TEXTCLEAR                adv=4   
+0000c0:             17 TEXT                     adv=6   #4 "不是聽說那裡已經被封鎖了嗎？"
+0000c6:             50 TEXTWAITKB               adv=4   
+0000ca:             51 KEYWAIT                  adv=4   
+0000ce:             43 TEXTACTIVE               adv=8   10
+0000d6:             44 TEXTCLEAR                adv=4   
+0000da:             17 TEXT                     adv=6   #5 "…………"
+0000e0:             50 TEXTWAITKB               adv=4   
+0000e4:             51 KEYWAIT                  adv=4   
+0000e8:             43 TEXTACTIVE               adv=8   4
+0000f0:             44 TEXTCLEAR                adv=4   
+0000f4:             17 TEXT                     adv=6   #6 "難道那是「匍伏蔓延而來之物」……"
+0000fa:             50 TEXTWAITKB               adv=4   
+0000fe:             51 KEYWAIT                  adv=4   
+000102:             43 TEXTACTIVE               adv=8   10
+00010a:             44 TEXTCLEAR                adv=4   
+00010e:             17 TEXT                     adv=6   #7 "或者是……與純潔之盾有深厚關係的人，"
+000114:             17 TEXT                     adv=6   #8 "為了自保而做的？"
+00011a:             50 TEXTWAITKB               adv=4   
+00011e:             51 KEYWAIT                  adv=4   
+000122:             43 TEXTACTIVE               adv=8   4
+00012a:             44 TEXTCLEAR                adv=4   
+00012e:             17 TEXT                     adv=6   #9 "…………"
+000134:             50 TEXTWAITKB               adv=4   
+000138:             51 KEYWAIT                  adv=4   
+00013c:             43 TEXTACTIVE               adv=8   10
+000144:             44 TEXTCLEAR                adv=4   
+000148:             17 TEXT                     adv=6   #10 "到底是誰點亮了那守護塔的燈火……"
+00014e:             17 TEXT                     adv=6   #11 "我想去確認一下這件事。"
+000154:             50 TEXTWAITKB               adv=4   
+000158:             51 KEYWAIT                  adv=4   
+00015c:             43 TEXTACTIVE               adv=8   4
+000164:             44 TEXTCLEAR                adv=4   
+000168:             17 TEXT                     adv=6   #12 "……地底深處的黑闇，"
+00016e:             17 TEXT                     adv=6   #13 "對「匍伏蔓延而來之物」來說，"
+000174:             17 TEXT                     adv=6   #14 "就像故鄉一樣。"
+00017a:             17 TEXT                     adv=6   #15 "要儘量避免無益的戰鬥，"
+000180:             17 TEXT                     adv=6   #16 "知道了嗎？"
+000186:             50 TEXTWAITKB               adv=4   
+00018a:             51 KEYWAIT                  adv=4   
+00018e:             43 TEXTACTIVE               adv=8   10
+000196:             44 TEXTCLEAR                adv=4   
+00019a:             17 TEXT                     adv=6   #17 "這是當然的。"
+0001a0:             50 TEXTWAITKB               adv=4   
+0001a4:             51 KEYWAIT                  adv=4   
+0001a8:             43 TEXTACTIVE               adv=8   4
+0001b0:             44 TEXTCLEAR                adv=4   
+0001b4:             17 TEXT                     adv=6   #18 "很好，就請妳這樣通知大家吧。"
+0001ba:             50 TEXTWAITKB               adv=4   
+0001be:             51 KEYWAIT                  adv=4   
+0001c2:             43 TEXTACTIVE               adv=8   10
+0001ca:             44 TEXTCLEAR                adv=4   
+0001ce:             17 TEXT                     adv=6   #19 "是的。"
+0001d4:             50 TEXTWAITKB               adv=4   
+0001d8:             51 KEYWAIT                  adv=4   
+0001dc:             12 VWAIT                    adv=8   30
+0001e4:             56 FADESETWAIT              adv=8   4
+0001ec:             21 ALLOFF                   adv=4   
+0001f0:             12 VWAIT                    adv=8   60
+0001f8:            151 OP_151                   adv=12  9 1
+000204:             19 END                      adv=4   ; END
+; (83 insns)

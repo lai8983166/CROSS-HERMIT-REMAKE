@@ -1,0 +1,163 @@
+; CHAPTER093.YBC  len=0x77a  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x2e8', '0x2e8', '0x2e8']
+;   txt#0 off=0x9c prm=0x160 "這樣真的可以嗎……？"
+;   txt#1 off=0xb2 prm=0x1c0 "要把你珍愛的這些孩子們……"
+;   txt#2 off=0xce prm=0x1a0 "送到這麼困難的戰鬥中呀。"
+;   txt#3 off=0xe8 prm=0x1c0 "那些孩子們是這樣地希望著。"
+;   txt#4 off=0x104 prm=0xa0 "…………"
+;   txt#5 off=0x10e prm=0x240 "孩子們在那個被黑暗籠罩著的故鄉裡，"
+;   txt#6 off=0x132 prm=0x1e0 "不但無法找到可以追求的目標，"
+;   txt#7 off=0x150 prm=0x1c0 "而且也沒有辦法得到自由……"
+;   txt#8 off=0x16c prm=0xa0 "…………"
+;   txt#9 off=0x176 prm=0x180 "在那毫無道理的恐懼中，"
+;   txt#10 off=0x18e prm=0x260 "也有一些不能忍受就此苟延殘喘的孩子。"
+;   txt#11 off=0x1b4 prm=0x120 "我是這麼認為的。"
+;   txt#12 off=0x1c6 prm=0x1c0 "就算那是一條很難走完的路，"
+;   txt#13 off=0x1e2 prm=0x1c0 "那也是孩子們自己選擇的路。"
+;   txt#14 off=0x1fe prm=0x240 "我怎麼會有理由去留下那些孩子們呢？"
+;   txt#15 off=0x222 prm=0xe0 "那些孩子們，"
+;   txt#16 off=0x230 prm=0x280 "明明就正要為了自己的信念而展翅翱翔呀。"
+;   txt#17 off=0x258 prm=0x80 "抱歉。"
+;   txt#18 off=0x260 prm=0xe0 "……別在意。"
+;   txt#19 off=0x26e prm=0x100 "我終於發現了。"
+;   txt#20 off=0x27e prm=0x260 "我自己在年輕時夢想著出外旅行的思念，"
+;   txt#21 off=0x2a4 prm=0x220 "現在簡直就活在這些孩子們的身上。"
+;   txt#22 off=0x2c6 prm=0x280 "難道，就沒有什麼我可以出點力的事情嗎？"
+;   txt#23 off=0x2ee prm=0x180 "就像你曾經做過的一樣。"
+;   txt#24 off=0x306 prm=0x200 "溫柔地、有力地給予他們信任吧。"
+;   txt#25 off=0x326 prm=0x200 "就像那愛護著自己孩子的母親般，"
+;   txt#26 off=0x346 prm=0x1c0 "給予他們那不求回報的愛呀。"
+;   txt#27 off=0x362 prm=0xa0 "…………"
+;   txt#28 off=0x36c prm=0xa0 "…………"
+;   txt#29 off=0x376 prm=0x1e0 "……你真是露出了一個好表情。"
+;   txt#30 off=0x394 prm=0x160 "不知道經過多少歲月，"
+;   txt#31 off=0x3aa prm=0x280 "我從來沒有像現在這樣地為你感到驕傲過。"
+;   txt#32 off=0x3d2 prm=0x2a0 "那我就信任你，和你所疼愛的那些孩子們吧。"
+;   txt#33 off=0x3fc prm=0x260 "然後，我發誓我會支持你們，直到最後。"
+;   txt#34 off=0x422 prm=0x220 "就算是受了傷也好，被打敗了也好。"
+;   txt#35 off=0x444 prm=0x200 "……失敗並不代表一切都將結束，"
+;   txt#36 off=0x464 prm=0x1a0 "只有在自己也放棄的時候，"
+;   txt#37 off=0x47e prm=0x140 "才會是結束的時候。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   1
+000024:             63 SE                       adv=8   6
+00002c:             59 BGSETWAIT                adv=16  0 8 1
+00003c:             30 BORDPACKONWAIT           adv=20  6 101 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   6
+000060:             65 BGM                      adv=8   v0x64
+000068:             17 TEXT                     adv=6   #0 "這樣真的可以嗎……？"
+00006e:             50 TEXTWAITKB               adv=4   
+000072:             51 KEYWAIT                  adv=4   
+000076:             65 BGM                      adv=8   v0x10064
+00007e:             17 TEXT                     adv=6   #1 "要把你珍愛的這些孩子們……"
+000084:             50 TEXTWAITKB               adv=4   
+000088:             51 KEYWAIT                  adv=4   
+00008c:             65 BGM                      adv=8   v0x20064
+000094:             17 TEXT                     adv=6   #2 "送到這麼困難的戰鬥中呀。"
+00009a:             50 TEXTWAITKB               adv=4   
+00009e:             51 KEYWAIT                  adv=4   
+0000a2:             27 BORDONWAIT               adv=16  2 268435455 268435455
+0000b2:             43 TEXTACTIVE               adv=8   2
+0000ba:             17 TEXT                     adv=6   #3 "那些孩子們是這樣地希望著。"
+0000c0:             17 TEXT                     adv=6   #4 "…………"
+0000c6:             17 TEXT                     adv=6   #5 "孩子們在那個被黑暗籠罩著的故鄉裡，"
+0000cc:             17 TEXT                     adv=6   #6 "不但無法找到可以追求的目標，"
+0000d2:             17 TEXT                     adv=6   #7 "而且也沒有辦法得到自由……"
+0000d8:             50 TEXTWAITKB               adv=4   
+0000dc:             51 KEYWAIT                  adv=4   
+0000e0:             44 TEXTCLEAR                adv=4   
+0000e4:             43 TEXTACTIVE               adv=8   6
+0000ec:             44 TEXTCLEAR                adv=4   
+0000f0:             17 TEXT                     adv=6   #8 "…………"
+0000f6:             43 TEXTACTIVE               adv=8   2
+0000fe:             17 TEXT                     adv=6   #9 "在那毫無道理的恐懼中，"
+000104:             17 TEXT                     adv=6   #10 "也有一些不能忍受就此苟延殘喘的孩子。"
+00010a:             17 TEXT                     adv=6   #11 "我是這麼認為的。"
+000110:             17 TEXT                     adv=6   #12 "就算那是一條很難走完的路，"
+000116:             17 TEXT                     adv=6   #13 "那也是孩子們自己選擇的路。"
+00011c:             50 TEXTWAITKB               adv=4   
+000120:             51 KEYWAIT                  adv=4   
+000124:             44 TEXTCLEAR                adv=4   
+000128:             17 TEXT                     adv=6   #14 "我怎麼會有理由去留下那些孩子們呢？"
+00012e:             17 TEXT                     adv=6   #15 "那些孩子們，"
+000134:             17 TEXT                     adv=6   #16 "明明就正要為了自己的信念而展翅翱翔呀。"
+00013a:             50 TEXTWAITKB               adv=4   
+00013e:             51 KEYWAIT                  adv=4   
+000142:             43 TEXTACTIVE               adv=8   6
+00014a:             44 TEXTCLEAR                adv=4   
+00014e:             65 BGM                      adv=8   v0x30064
+000156:             17 TEXT                     adv=6   #17 "抱歉。"
+00015c:             50 TEXTWAITKB               adv=4   
+000160:             51 KEYWAIT                  adv=4   
+000164:             43 TEXTACTIVE               adv=8   2
+00016c:             44 TEXTCLEAR                adv=4   
+000170:             17 TEXT                     adv=6   #18 "……別在意。"
+000176:             17 TEXT                     adv=6   #19 "我終於發現了。"
+00017c:             17 TEXT                     adv=6   #20 "我自己在年輕時夢想著出外旅行的思念，"
+000182:             17 TEXT                     adv=6   #21 "現在簡直就活在這些孩子們的身上。"
+000188:             50 TEXTWAITKB               adv=4   
+00018c:             51 KEYWAIT                  adv=4   
+000190:             43 TEXTACTIVE               adv=8   6
+000198:             44 TEXTCLEAR                adv=4   
+00019c:             65 BGM                      adv=8   v0x40064
+0001a4:             17 TEXT                     adv=6   #22 "難道，就沒有什麼我可以出點力的事情嗎？"
+0001aa:             50 TEXTWAITKB               adv=4   
+0001ae:             51 KEYWAIT                  adv=4   
+0001b2:             43 TEXTACTIVE               adv=8   2
+0001ba:             44 TEXTCLEAR                adv=4   
+0001be:             17 TEXT                     adv=6   #23 "就像你曾經做過的一樣。"
+0001c4:             17 TEXT                     adv=6   #24 "溫柔地、有力地給予他們信任吧。"
+0001ca:             17 TEXT                     adv=6   #25 "就像那愛護著自己孩子的母親般，"
+0001d0:             17 TEXT                     adv=6   #26 "給予他們那不求回報的愛呀。"
+0001d6:             50 TEXTWAITKB               adv=4   
+0001da:             51 KEYWAIT                  adv=4   
+0001de:             43 TEXTACTIVE               adv=8   6
+0001e6:             44 TEXTCLEAR                adv=4   
+0001ea:             17 TEXT                     adv=6   #27 "…………"
+0001f0:             50 TEXTWAITKB               adv=4   
+0001f4:             51 KEYWAIT                  adv=4   
+0001f8:             43 TEXTACTIVE               adv=8   2
+000200:             44 TEXTCLEAR                adv=4   
+000204:             17 TEXT                     adv=6   #28 "…………"
+00020a:             50 TEXTWAITKB               adv=4   
+00020e:             51 KEYWAIT                  adv=4   
+000212:             43 TEXTACTIVE               adv=8   6
+00021a:             44 TEXTCLEAR                adv=4   
+00021e:             65 BGM                      adv=8   v0x50064
+000226:             17 TEXT                     adv=6   #29 "……你真是露出了一個好表情。"
+00022c:             50 TEXTWAITKB               adv=4   
+000230:             51 KEYWAIT                  adv=4   
+000234:             65 BGM                      adv=8   v0x60064
+00023c:             17 TEXT                     adv=6   #30 "不知道經過多少歲月，"
+000242:             17 TEXT                     adv=6   #31 "我從來沒有像現在這樣地為你感到驕傲過。"
+000248:             50 TEXTWAITKB               adv=4   
+00024c:             51 KEYWAIT                  adv=4   
+000250:             65 BGM                      adv=8   v0x70064
+000258:             17 TEXT                     adv=6   #32 "那我就信任你，和你所疼愛的那些孩子們吧。"
+00025e:             50 TEXTWAITKB               adv=4   
+000262:             51 KEYWAIT                  adv=4   
+000266:             44 TEXTCLEAR                adv=4   
+00026a:             65 BGM                      adv=8   v0x80064
+000272:             17 TEXT                     adv=6   #33 "然後，我發誓我會支持你們，直到最後。"
+000278:             50 TEXTWAITKB               adv=4   
+00027c:             51 KEYWAIT                  adv=4   
+000280:             43 TEXTACTIVE               adv=8   2
+000288:             44 TEXTCLEAR                adv=4   
+00028c:             17 TEXT                     adv=6   #34 "就算是受了傷也好，被打敗了也好。"
+000292:             50 TEXTWAITKB               adv=4   
+000296:             51 KEYWAIT                  adv=4   
+00029a:             43 TEXTACTIVE               adv=8   6
+0002a2:             44 TEXTCLEAR                adv=4   
+0002a6:             65 BGM                      adv=8   v0x90064
+0002ae:             17 TEXT                     adv=6   #35 "……失敗並不代表一切都將結束，"
+0002b4:             17 TEXT                     adv=6   #36 "只有在自己也放棄的時候，"
+0002ba:             17 TEXT                     adv=6   #37 "才會是結束的時候。"
+0002c0:             50 TEXTWAITKB               adv=4   
+0002c4:             51 KEYWAIT                  adv=4   
+0002c8:             12 VWAIT                    adv=8   30
+0002d0:             56 FADESETWAIT              adv=8   4
+0002d8:             21 ALLOFF                   adv=4   
+0002dc:             12 VWAIT                    adv=8   60
+0002e4:             19 END                      adv=4   ; END
+; (122 insns)

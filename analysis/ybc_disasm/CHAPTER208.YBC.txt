@@ -1,0 +1,89 @@
+; CHAPTER208.YBC  len=0x466  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x1b4', '0x1b4', '0x1b4']
+;   txt#0 off=0x5c prm=0x140 "你是說列達砦是吧？"
+;   txt#1 off=0x70 prm=0x180 "既然是法娜提供的情報，"
+;   txt#2 off=0x88 prm=0x180 "我想應該不會有問題吧。"
+;   txt#3 off=0xa0 prm=0x1c0 "我並沒有懷疑那孩子的能力。"
+;   txt#4 off=0xbc prm=0x1a0 "列達砦對艾爾貝洛瓦來說，"
+;   txt#5 off=0xd6 prm=0x1a0 "是一個很重要的防禦工事。"
+;   txt#6 off=0xf0 prm=0x1a0 "如果一個不小心失陷的話，"
+;   txt#7 off=0x10a prm=0x260 "很快地，就會有更大的災禍降臨了吧……"
+;   txt#8 off=0x130 prm=0x160 "依照鎖匙之長的說法，"
+;   txt#9 off=0x146 prm=0x260 "對方似乎並沒有立刻就發動攻勢的打算，"
+;   txt#10 off=0x16c prm=0x280 "所以好好地備戰之後，再出擊也是可以的。"
+;   txt#11 off=0x194 prm=0x280 "就是要以孩子們的狀況來決定出發的時機，"
+;   txt#12 off=0x1bc prm=0x80 "對吧。"
+;   txt#13 off=0x1c4 prm=0x240 "如果他們準備好了的話，就馬上出發。"
+;   txt#14 off=0x1e8 prm=0x1c0 "那麼，是要先讓他們上課呢，"
+;   txt#15 off=0x204 prm=0x220 "還是要在地下為他們做特訓都可以。"
+;   txt#16 off=0x226 prm=0xa0 "…………"
+;   txt#17 off=0x230 prm=0x1e0 "或者是說……不需要太過急躁，"
+;   txt#18 off=0x24e prm=0x1c0 "只要把我們堅守這裡的意志，"
+;   txt#19 off=0x26a prm=0x280 "確實地傳達給「匍伏蔓延而來之物」就好。"
+;   txt#20 off=0x292 prm=0x180 "這一切都交給你處理了。"
+;   txt#21 off=0x2aa prm=0x80 "是的。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             63 SE                       adv=8   9
+00002c:             59 BGSETWAIT                adv=16  0 8 1
+00003c:             30 BORDPACKONWAIT           adv=20  10 101 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   10
+000060:             17 TEXT                     adv=6   #0 "你是說列達砦是吧？"
+000066:             17 TEXT                     adv=6   #1 "既然是法娜提供的情報，"
+00006c:             17 TEXT                     adv=6   #2 "我想應該不會有問題吧。"
+000072:             50 TEXTWAITKB               adv=4   
+000076:             51 KEYWAIT                  adv=4   
+00007a:             27 BORDONWAIT               adv=16  4 268435455 268435455
+00008a:             43 TEXTACTIVE               adv=8   4
+000092:             17 TEXT                     adv=6   #3 "我並沒有懷疑那孩子的能力。"
+000098:             17 TEXT                     adv=6   #4 "列達砦對艾爾貝洛瓦來說，"
+00009e:             17 TEXT                     adv=6   #5 "是一個很重要的防禦工事。"
+0000a4:             17 TEXT                     adv=6   #6 "如果一個不小心失陷的話，"
+0000aa:             17 TEXT                     adv=6   #7 "很快地，就會有更大的災禍降臨了吧……"
+0000b0:             50 TEXTWAITKB               adv=4   
+0000b4:             51 KEYWAIT                  adv=4   
+0000b8:             43 TEXTACTIVE               adv=8   10
+0000c0:             44 TEXTCLEAR                adv=4   
+0000c4:             17 TEXT                     adv=6   #8 "依照鎖匙之長的說法，"
+0000ca:             17 TEXT                     adv=6   #9 "對方似乎並沒有立刻就發動攻勢的打算，"
+0000d0:             17 TEXT                     adv=6   #10 "所以好好地備戰之後，再出擊也是可以的。"
+0000d6:             50 TEXTWAITKB               adv=4   
+0000da:             51 KEYWAIT                  adv=4   
+0000de:             43 TEXTACTIVE               adv=8   4
+0000e6:             44 TEXTCLEAR                adv=4   
+0000ea:             17 TEXT                     adv=6   #11 "就是要以孩子們的狀況來決定出發的時機，"
+0000f0:             17 TEXT                     adv=6   #12 "對吧。"
+0000f6:             17 TEXT                     adv=6   #13 "如果他們準備好了的話，就馬上出發。"
+0000fc:             50 TEXTWAITKB               adv=4   
+000100:             51 KEYWAIT                  adv=4   
+000104:             43 TEXTACTIVE               adv=8   10
+00010c:             44 TEXTCLEAR                adv=4   
+000110:             17 TEXT                     adv=6   #14 "那麼，是要先讓他們上課呢，"
+000116:             17 TEXT                     adv=6   #15 "還是要在地下為他們做特訓都可以。"
+00011c:             50 TEXTWAITKB               adv=4   
+000120:             51 KEYWAIT                  adv=4   
+000124:             43 TEXTACTIVE               adv=8   4
+00012c:             44 TEXTCLEAR                adv=4   
+000130:             17 TEXT                     adv=6   #16 "…………"
+000136:             43 TEXTACTIVE               adv=8   10
+00013e:             44 TEXTCLEAR                adv=4   
+000142:             17 TEXT                     adv=6   #17 "或者是說……不需要太過急躁，"
+000148:             17 TEXT                     adv=6   #18 "只要把我們堅守這裡的意志，"
+00014e:             17 TEXT                     adv=6   #19 "確實地傳達給「匍伏蔓延而來之物」就好。"
+000154:             17 TEXT                     adv=6   #20 "這一切都交給你處理了。"
+00015a:             50 TEXTWAITKB               adv=4   
+00015e:             51 KEYWAIT                  adv=4   
+000162:             43 TEXTACTIVE               adv=8   4
+00016a:             44 TEXTCLEAR                adv=4   
+00016e:             17 TEXT                     adv=6   #21 "是的。"
+000174:             50 TEXTWAITKB               adv=4   
+000178:             51 KEYWAIT                  adv=4   
+00017c:             12 VWAIT                    adv=8   30
+000184:             56 FADESETWAIT              adv=8   4
+00018c:             21 ALLOFF                   adv=4   
+000190:             12 VWAIT                    adv=8   60
+000198:            151 OP_151                   adv=12  9 1
+0001a4:             91 PUTUNITWK                adv=12  8 2
+0001b0:             19 END                      adv=4   ; END
+; (64 insns)

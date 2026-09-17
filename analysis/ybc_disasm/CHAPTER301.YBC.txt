@@ -1,0 +1,187 @@
+; CHAPTER301.YBC  len=0x782  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x344', '0x374', '0x374']
+; rec1[0] = "data\\adv\\dat\\Chapter011.ybc"
+;   txt#0 off=0xa4 prm=0x160 "我真的很想挽留她……"
+;   txt#1 off=0xba prm=0x160 "可惜卻沒有辦法做到。"
+;   txt#2 off=0xd0 prm=0xa0 "…………"
+;   txt#3 off=0xda prm=0x240 "不過，那也是她自己的道路，不是嗎？"
+;   txt#4 off=0xfe prm=0xa0 "…………"
+;   txt#5 off=0x108 prm=0x140 "在羅沙麗亞的眼裡，"
+;   txt#6 off=0x11c prm=0x220 "可以看見一些我所不能預見的未來。"
+;   txt#7 off=0x13e prm=0x240 "如果她決心要離開這裡去旅行的話……"
+;   txt#8 off=0x162 prm=0x2a0 "那預知的能力也正是她值得我們相信的原因。"
+;   txt#9 off=0x18c prm=0x100 "原來是這樣呀。"
+;   txt#10 off=0x19c prm=0xa0 "…………"
+;   txt#11 off=0x1a6 prm=0xa0 "…………"
+;   txt#12 off=0x1b0 prm=0x1c0 "如果老師您不嫌麻煩的話……"
+;   txt#13 off=0x1cc prm=0x1a0 "可以請您留在純潔之盾嗎？"
+;   txt#14 off=0x1e6 prm=0xa0 "…………"
+;   txt#15 off=0x1f0 prm=0x1a0 "為了要培養出優秀的僧侶，"
+;   txt#16 off=0x20a prm=0x180 "我們需要借重您的力量。"
+;   txt#17 off=0x222 prm=0xa0 "…………"
+;   txt#18 off=0x22c prm=0xc0 "拜託您了。"
+;   txt#19 off=0x238 prm=0x120 "……你的意思是："
+;   txt#20 off=0x24a prm=0x280 "「請您待在安全的地方努力活久一點呀。」"
+;   txt#21 off=0x272 prm=0xa0 "…………"
+;   txt#22 off=0x27c prm=0x220 "你這個總是不好好聽人說話的傢伙。"
+;   txt#23 off=0x29e prm=0x120 "你是這個意思嗎？"
+;   txt#24 off=0x2b0 prm=0xa0 "…………"
+;   txt#25 off=0x2ba prm=0x120 "如果是那樣的話，"
+;   txt#26 off=0x2cc prm=0x220 "我可就不會再把你當作我的學生了。"
+;   txt#27 off=0x2ee prm=0x120 "法爾德閣下……？"
+;   txt#28 off=0x300 prm=0x240 "身為一同在愛爾梅納斯裡生活的賢者，"
+;   txt#29 off=0x324 prm=0x100 "我願意幫助你。"
+;   txt#30 off=0x334 prm=0xa0 "…………"
+;   txt#31 off=0x33e prm=0x200 "雖然我已經老得沒有辦法戰鬥了，"
+;   txt#32 off=0x35e prm=0x1a0 "但是說到照顧孩子們的話，"
+;   txt#33 off=0x378 prm=0x200 "一兩個我也是可以盡力去幫忙的。"
+;   txt#34 off=0x398 prm=0x1a0 "如果，你是這麼希望的話。"
+;   txt#35 off=0x3b2 prm=0xa0 "老師……"
+;   txt#36 off=0x3bc prm=0x1e0 "那麼以後就要請您多多指教了。"
+;   txt#37 off=0x3da prm=0x80 "呵呵。"
+;   txt#38 off=0x3e2 prm=0x120 "純潔之盾之長呀，"
+;   txt#39 off=0x3f4 prm=0x1a0 "我才要請你多多指教了呢。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             63 SE                       adv=8   9
+00002c:             59 BGSETWAIT                adv=16  0 8 1
+00003c:             30 BORDPACKONWAIT           adv=20  10 117 0 30
+000050:             56 FADESETWAIT              adv=8   3
+000058:             43 TEXTACTIVE               adv=8   10
+000060:             17 TEXT                     adv=6   #0 "我真的很想挽留她……"
+000066:             17 TEXT                     adv=6   #1 "可惜卻沒有辦法做到。"
+00006c:             50 TEXTWAITKB               adv=4   
+000070:             51 KEYWAIT                  adv=4   
+000074:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000084:             43 TEXTACTIVE               adv=8   4
+00008c:             17 TEXT                     adv=6   #2 "…………"
+000092:             17 TEXT                     adv=6   #3 "不過，那也是她自己的道路，不是嗎？"
+000098:             50 TEXTWAITKB               adv=4   
+00009c:             51 KEYWAIT                  adv=4   
+0000a0:             43 TEXTACTIVE               adv=8   10
+0000a8:             44 TEXTCLEAR                adv=4   
+0000ac:             17 TEXT                     adv=6   #4 "…………"
+0000b2:             50 TEXTWAITKB               adv=4   
+0000b6:             51 KEYWAIT                  adv=4   
+0000ba:             43 TEXTACTIVE               adv=8   4
+0000c2:             44 TEXTCLEAR                adv=4   
+0000c6:             17 TEXT                     adv=6   #5 "在羅沙麗亞的眼裡，"
+0000cc:             17 TEXT                     adv=6   #6 "可以看見一些我所不能預見的未來。"
+0000d2:             17 TEXT                     adv=6   #7 "如果她決心要離開這裡去旅行的話……"
+0000d8:             17 TEXT                     adv=6   #8 "那預知的能力也正是她值得我們相信的原因。"
+0000de:             50 TEXTWAITKB               adv=4   
+0000e2:             51 KEYWAIT                  adv=4   
+0000e6:             43 TEXTACTIVE               adv=8   10
+0000ee:             44 TEXTCLEAR                adv=4   
+0000f2:             17 TEXT                     adv=6   #9 "原來是這樣呀。"
+0000f8:             50 TEXTWAITKB               adv=4   
+0000fc:             51 KEYWAIT                  adv=4   
+000100:             43 TEXTACTIVE               adv=8   4
+000108:             44 TEXTCLEAR                adv=4   
+00010c:             17 TEXT                     adv=6   #10 "…………"
+000112:             50 TEXTWAITKB               adv=4   
+000116:             51 KEYWAIT                  adv=4   
+00011a:             43 TEXTACTIVE               adv=8   10
+000122:             44 TEXTCLEAR                adv=4   
+000126:             17 TEXT                     adv=6   #11 "…………"
+00012c:             50 TEXTWAITKB               adv=4   
+000130:             51 KEYWAIT                  adv=4   
+000134:             43 TEXTACTIVE               adv=8   4
+00013c:             44 TEXTCLEAR                adv=4   
+000140:             17 TEXT                     adv=6   #12 "如果老師您不嫌麻煩的話……"
+000146:             17 TEXT                     adv=6   #13 "可以請您留在純潔之盾嗎？"
+00014c:             50 TEXTWAITKB               adv=4   
+000150:             51 KEYWAIT                  adv=4   
+000154:             43 TEXTACTIVE               adv=8   10
+00015c:             44 TEXTCLEAR                adv=4   
+000160:             17 TEXT                     adv=6   #14 "…………"
+000166:             50 TEXTWAITKB               adv=4   
+00016a:             51 KEYWAIT                  adv=4   
+00016e:             43 TEXTACTIVE               adv=8   4
+000176:             44 TEXTCLEAR                adv=4   
+00017a:             17 TEXT                     adv=6   #15 "為了要培養出優秀的僧侶，"
+000180:             17 TEXT                     adv=6   #16 "我們需要借重您的力量。"
+000186:             50 TEXTWAITKB               adv=4   
+00018a:             51 KEYWAIT                  adv=4   
+00018e:             43 TEXTACTIVE               adv=8   10
+000196:             44 TEXTCLEAR                adv=4   
+00019a:             17 TEXT                     adv=6   #17 "…………"
+0001a0:             50 TEXTWAITKB               adv=4   
+0001a4:             51 KEYWAIT                  adv=4   
+0001a8:             43 TEXTACTIVE               adv=8   4
+0001b0:             44 TEXTCLEAR                adv=4   
+0001b4:             17 TEXT                     adv=6   #18 "拜託您了。"
+0001ba:             50 TEXTWAITKB               adv=4   
+0001be:             51 KEYWAIT                  adv=4   
+0001c2:             43 TEXTACTIVE               adv=8   10
+0001ca:             44 TEXTCLEAR                adv=4   
+0001ce:             17 TEXT                     adv=6   #19 "……你的意思是："
+0001d4:             17 TEXT                     adv=6   #20 "「請您待在安全的地方努力活久一點呀。」"
+0001da:             50 TEXTWAITKB               adv=4   
+0001de:             51 KEYWAIT                  adv=4   
+0001e2:             43 TEXTACTIVE               adv=8   4
+0001ea:             44 TEXTCLEAR                adv=4   
+0001ee:             17 TEXT                     adv=6   #21 "…………"
+0001f4:             50 TEXTWAITKB               adv=4   
+0001f8:             51 KEYWAIT                  adv=4   
+0001fc:             43 TEXTACTIVE               adv=8   10
+000204:             44 TEXTCLEAR                adv=4   
+000208:             17 TEXT                     adv=6   #22 "你這個總是不好好聽人說話的傢伙。"
+00020e:             17 TEXT                     adv=6   #23 "你是這個意思嗎？"
+000214:             50 TEXTWAITKB               adv=4   
+000218:             51 KEYWAIT                  adv=4   
+00021c:             43 TEXTACTIVE               adv=8   4
+000224:             44 TEXTCLEAR                adv=4   
+000228:             17 TEXT                     adv=6   #24 "…………"
+00022e:             50 TEXTWAITKB               adv=4   
+000232:             51 KEYWAIT                  adv=4   
+000236:             43 TEXTACTIVE               adv=8   10
+00023e:             44 TEXTCLEAR                adv=4   
+000242:             17 TEXT                     adv=6   #25 "如果是那樣的話，"
+000248:             17 TEXT                     adv=6   #26 "我可就不會再把你當作我的學生了。"
+00024e:             50 TEXTWAITKB               adv=4   
+000252:             51 KEYWAIT                  adv=4   
+000256:             43 TEXTACTIVE               adv=8   4
+00025e:             44 TEXTCLEAR                adv=4   
+000262:             17 TEXT                     adv=6   #27 "法爾德閣下……？"
+000268:             50 TEXTWAITKB               adv=4   
+00026c:             51 KEYWAIT                  adv=4   
+000270:             43 TEXTACTIVE               adv=8   10
+000278:             44 TEXTCLEAR                adv=4   
+00027c:             17 TEXT                     adv=6   #28 "身為一同在愛爾梅納斯裡生活的賢者，"
+000282:             17 TEXT                     adv=6   #29 "我願意幫助你。"
+000288:             50 TEXTWAITKB               adv=4   
+00028c:             51 KEYWAIT                  adv=4   
+000290:             43 TEXTACTIVE               adv=8   4
+000298:             44 TEXTCLEAR                adv=4   
+00029c:             17 TEXT                     adv=6   #30 "…………"
+0002a2:             50 TEXTWAITKB               adv=4   
+0002a6:             51 KEYWAIT                  adv=4   
+0002aa:             43 TEXTACTIVE               adv=8   10
+0002b2:             44 TEXTCLEAR                adv=4   
+0002b6:             17 TEXT                     adv=6   #31 "雖然我已經老得沒有辦法戰鬥了，"
+0002bc:             17 TEXT                     adv=6   #32 "但是說到照顧孩子們的話，"
+0002c2:             17 TEXT                     adv=6   #33 "一兩個我也是可以盡力去幫忙的。"
+0002c8:             17 TEXT                     adv=6   #34 "如果，你是這麼希望的話。"
+0002ce:             50 TEXTWAITKB               adv=4   
+0002d2:             51 KEYWAIT                  adv=4   
+0002d6:             43 TEXTACTIVE               adv=8   4
+0002de:             44 TEXTCLEAR                adv=4   
+0002e2:             17 TEXT                     adv=6   #35 "老師……"
+0002e8:             17 TEXT                     adv=6   #36 "那麼以後就要請您多多指教了。"
+0002ee:             50 TEXTWAITKB               adv=4   
+0002f2:             51 KEYWAIT                  adv=4   
+0002f6:             43 TEXTACTIVE               adv=8   10
+0002fe:             44 TEXTCLEAR                adv=4   
+000302:             17 TEXT                     adv=6   #37 "呵呵。"
+000308:             17 TEXT                     adv=6   #38 "純潔之盾之長呀，"
+00030e:             17 TEXT                     adv=6   #39 "我才要請你多多指教了呢。"
+000314:             50 TEXTWAITKB               adv=4   
+000318:             51 KEYWAIT                  adv=4   
+00031c:             12 VWAIT                    adv=8   30
+000324:             56 FADESETWAIT              adv=8   4
+00032c:             21 ALLOFF                   adv=4   
+000330:             12 VWAIT                    adv=8   60
+000338:             15 SCRIPTEXEC               adv=8   v0x0
+000340:             19 END                      adv=4   ; END
+; (143 insns)

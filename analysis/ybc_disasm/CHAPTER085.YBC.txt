@@ -1,0 +1,124 @@
+; CHAPTER085.YBC  len=0x570  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x294', '0x2c4', '0x2c4']
+; rec1[0] = "data\\adv\\bin\\tc0102.bin"
+;   txt#0 off=0x6c prm=0xe0 "奎絲忒呀……"
+;   txt#1 off=0x7a prm=0x260 "還真不愧是個和精靈一起長大的孩子呀。"
+;   txt#2 off=0xa0 prm=0xa0 "…………"
+;   txt#3 off=0xaa prm=0x120 "愛爾梅納斯的病─"
+;   txt#4 off=0xbc prm=0x1c0 "「匍伏蔓延而來之物」本身，"
+;   txt#5 off=0xd8 prm=0x180 "才是這個學舍的絕望嗎？"
+;   txt#6 off=0xf0 prm=0xa0 "哈哈……"
+;   txt#7 off=0xfa prm=0x240 "不會吧，帕蘭達因是不會相信這些的。"
+;   txt#8 off=0x11e prm=0xa0 "…………"
+;   txt#9 off=0x128 prm=0xa0 "…………"
+;   txt#10 off=0x132 prm=0x280 "那麼，我們來做一些我們能夠做的事情吧。"
+;   txt#11 off=0x15a prm=0x1c0 "那麼，往巴雷歐斯出發……？"
+;   txt#12 off=0x176 prm=0x80 "是的。"
+;   txt#13 off=0x17e prm=0x220 "朝向那些黑衣施咒者被囚禁的地方。"
+;   txt#14 off=0x1a0 prm=0x1c0 "一定要趕在那些深沉的混沌，"
+;   txt#15 off=0x1bc prm=0x180 "將頭從那裡探出來之前。"
+;   txt#16 off=0x1d4 prm=0xa0 "…………"
+;   txt#17 off=0x1de prm=0x140 "……你們要小心呀。"
+;   txt#18 off=0x1f2 prm=0x2a0 "黑衣施咒者也許不是可以用普通方式就能解決"
+;   txt#19 off=0x21c prm=0xa0 "的敵人。"
+;   txt#20 off=0x226 prm=0x180 "……我就是這麼認為的。"
+;   txt#21 off=0x23e prm=0x160 "我就知道你會這樣說。"
+;   txt#22 off=0x254 prm=0x180 "吾友啊……正因為如此，"
+;   txt#23 off=0x26c prm=0x240 "請你在一切都結束之前，多加小心呀。"
+;   txt#24 off=0x290 prm=0xc0 "……是的。"
+;   txt#25 off=0x29c prm=0x100 "感謝您的忠告。"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             67 VOICE                    adv=8   v0x0
+000024:             69 DRAWBINFREAD             adv=40  0 0 324 0 53 0 0 1024 128
+00004c:             56 FADESETWAIT              adv=8   3
+000054:             13 VWAITKB                  adv=8   600
+00005c:             56 FADESETWAIT              adv=8   4
+000064:             74 DRAWOBJSETE              adv=4   
+000068:             12 VWAIT                    adv=8   30
+000070:             56 FADESETWAIT              adv=8   0
+000078:             20 ADVMODESET               adv=8   0
+000080:             63 SE                       adv=8   2
+000088:             59 BGSETWAIT                adv=16  0 14 1
+000098:             30 BORDPACKONWAIT           adv=20  8 110 0 30
+0000ac:             56 FADESETWAIT              adv=8   3
+0000b4:             43 TEXTACTIVE               adv=8   8
+0000bc:             17 TEXT                     adv=6   #0 "奎絲忒呀……"
+0000c2:             17 TEXT                     adv=6   #1 "還真不愧是個和精靈一起長大的孩子呀。"
+0000c8:             50 TEXTWAITKB               adv=4   
+0000cc:             51 KEYWAIT                  adv=4   
+0000d0:             27 BORDONWAIT               adv=16  4 268435455 268435455
+0000e0:             43 TEXTACTIVE               adv=8   4
+0000e8:             17 TEXT                     adv=6   #2 "…………"
+0000ee:             50 TEXTWAITKB               adv=4   
+0000f2:             51 KEYWAIT                  adv=4   
+0000f6:             43 TEXTACTIVE               adv=8   8
+0000fe:             44 TEXTCLEAR                adv=4   
+000102:             17 TEXT                     adv=6   #3 "愛爾梅納斯的病─"
+000108:             17 TEXT                     adv=6   #4 "「匍伏蔓延而來之物」本身，"
+00010e:             17 TEXT                     adv=6   #5 "才是這個學舍的絕望嗎？"
+000114:             17 TEXT                     adv=6   #6 "哈哈……"
+00011a:             17 TEXT                     adv=6   #7 "不會吧，帕蘭達因是不會相信這些的。"
+000120:             50 TEXTWAITKB               adv=4   
+000124:             51 KEYWAIT                  adv=4   
+000128:             30 BORDPACKONWAIT           adv=20  7 101 0 30
+00013c:             43 TEXTACTIVE               adv=8   7
+000144:             17 TEXT                     adv=6   #8 "…………"
+00014a:             50 TEXTWAITKB               adv=4   
+00014e:             51 KEYWAIT                  adv=4   
+000152:             43 TEXTACTIVE               adv=8   8
+00015a:             44 TEXTCLEAR                adv=4   
+00015e:             17 TEXT                     adv=6   #9 "…………"
+000164:             43 TEXTACTIVE               adv=8   4
+00016c:             44 TEXTCLEAR                adv=4   
+000170:             17 TEXT                     adv=6   #10 "那麼，我們來做一些我們能夠做的事情吧。"
+000176:             50 TEXTWAITKB               adv=4   
+00017a:             51 KEYWAIT                  adv=4   
+00017e:             43 TEXTACTIVE               adv=8   7
+000186:             44 TEXTCLEAR                adv=4   
+00018a:             17 TEXT                     adv=6   #11 "那麼，往巴雷歐斯出發……？"
+000190:             50 TEXTWAITKB               adv=4   
+000194:             51 KEYWAIT                  adv=4   
+000198:             43 TEXTACTIVE               adv=8   4
+0001a0:             44 TEXTCLEAR                adv=4   
+0001a4:             17 TEXT                     adv=6   #12 "是的。"
+0001aa:             17 TEXT                     adv=6   #13 "朝向那些黑衣施咒者被囚禁的地方。"
+0001b0:             17 TEXT                     adv=6   #14 "一定要趕在那些深沉的混沌，"
+0001b6:             17 TEXT                     adv=6   #15 "將頭從那裡探出來之前。"
+0001bc:             50 TEXTWAITKB               adv=4   
+0001c0:             51 KEYWAIT                  adv=4   
+0001c4:             43 TEXTACTIVE               adv=8   7
+0001cc:             44 TEXTCLEAR                adv=4   
+0001d0:             17 TEXT                     adv=6   #16 "…………"
+0001d6:             43 TEXTACTIVE               adv=8   8
+0001de:             44 TEXTCLEAR                adv=4   
+0001e2:             17 TEXT                     adv=6   #17 "……你們要小心呀。"
+0001e8:             17 TEXT                     adv=6   #18 "黑衣施咒者也許不是可以用普通方式就能解決"
+0001ee:             17 TEXT                     adv=6   #19 "的敵人。"
+0001f4:             50 TEXTWAITKB               adv=4   
+0001f8:             51 KEYWAIT                  adv=4   
+0001fc:             43 TEXTACTIVE               adv=8   4
+000204:             44 TEXTCLEAR                adv=4   
+000208:             17 TEXT                     adv=6   #20 "……我就是這麼認為的。"
+00020e:             50 TEXTWAITKB               adv=4   
+000212:             51 KEYWAIT                  adv=4   
+000216:             43 TEXTACTIVE               adv=8   8
+00021e:             44 TEXTCLEAR                adv=4   
+000222:             17 TEXT                     adv=6   #21 "我就知道你會這樣說。"
+000228:             17 TEXT                     adv=6   #22 "吾友啊……正因為如此，"
+00022e:             17 TEXT                     adv=6   #23 "請你在一切都結束之前，多加小心呀。"
+000234:             50 TEXTWAITKB               adv=4   
+000238:             51 KEYWAIT                  adv=4   
+00023c:             43 TEXTACTIVE               adv=8   4
+000244:             44 TEXTCLEAR                adv=4   
+000248:             17 TEXT                     adv=6   #24 "……是的。"
+00024e:             17 TEXT                     adv=6   #25 "感謝您的忠告。"
+000254:             50 TEXTWAITKB               adv=4   
+000258:             51 KEYWAIT                  adv=4   
+00025c:             12 VWAIT                    adv=8   30
+000264:             56 FADESETWAIT              adv=8   4
+00026c:             21 ALLOFF                   adv=4   
+000270:             12 VWAIT                    adv=8   60
+000278:            151 OP_151                   adv=12  2 1
+000284:             91 PUTUNITWK                adv=12  15 2
+000290:             19 END                      adv=4   ; END
+; (94 insns)

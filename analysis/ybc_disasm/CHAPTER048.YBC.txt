@@ -1,0 +1,25 @@
+; CHAPTER048.YBC  len=0xda  [ADV YBC]
+; nblocks=4 offs=['0x14', '0xb8', '0xb8', '0xb8']
+;   txt#0 off=0xc prm=0xc0 "沒時間了！"
+;   txt#1 off=0x18 prm=0xa0 "我知道！"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 1 1
+000034:             56 FADESETWAIT              adv=8   3
+00003c:             12 VWAIT                    adv=8   30
+000044:             30 BORDPACKONWAIT           adv=20  7 0 0 30
+000058:             43 TEXTACTIVE               adv=8   7
+000060:             17 TEXT                     adv=6   #0 "沒時間了！"
+000066:             50 TEXTWAITKB               adv=4   
+00006a:             51 KEYWAIT                  adv=4   
+00006e:             30 BORDPACKONWAIT           adv=20  8 0 0 30
+000082:             43 TEXTACTIVE               adv=8   8
+00008a:             17 TEXT                     adv=6   #1 "我知道！"
+000090:             50 TEXTWAITKB               adv=4   
+000094:             51 KEYWAIT                  adv=4   
+000098:             12 VWAIT                    adv=8   30
+0000a0:             56 FADESETWAIT              adv=8   4
+0000a8:             21 ALLOFF                   adv=4   
+0000ac:             12 VWAIT                    adv=8   60
+0000b4:             19 END                      adv=4   ; END
+; (20 insns)

@@ -1,0 +1,140 @@
+; CHAPTER218.YBC  len=0x4ee  [ADV YBC]
+; nblocks=4 offs=['0x14', '0x2a2', '0x2a2', '0x2a2']
+;   txt#0 off=0x68 prm=0xa0 "老師……"
+;   txt#1 off=0x72 prm=0xc0 "瑟希莉絲。"
+;   txt#2 off=0x7e prm=0xa0 "那個……"
+;   txt#3 off=0x88 prm=0x60 "嗯？"
+;   txt#4 off=0x8e prm=0x140 "聽說達雷希昂砦……"
+;   txt#5 off=0xa2 prm=0x240 "被「匍伏蔓延而來之物」給佔領了……"
+;   txt#6 off=0xc6 prm=0xe0 "這是真的嗎？"
+;   txt#7 off=0xd4 prm=0x80 "沒錯。"
+;   txt#8 off=0xdc prm=0x240 "鎖匙之長已經親眼確認過這件事情了。"
+;   txt#9 off=0x100 prm=0xa0 "…………"
+;   txt#10 off=0x10a prm=0x140 "我們會收復它的……"
+;   txt#11 off=0x11e prm=0xa0 "咦……？"
+;   txt#12 off=0x128 prm=0x280 "……如果我這麼說的話，妳的想法如何呢？"
+;   txt#13 off=0x150 prm=0x100 "……我，我啊。"
+;   txt#14 off=0x160 prm=0xa0 "…………"
+;   txt#15 off=0x16a prm=0xe0 "因為那是……"
+;   txt#16 off=0x178 prm=0x240 "老師第一次教導我如何戰鬥的地方……"
+;   txt#17 off=0x19c prm=0xa0 "…………"
+;   txt#18 off=0x1a6 prm=0x260 "所以如果可以的話，我也希望收復那裡。"
+;   txt#19 off=0x1cc prm=0x200 "因為那裡是充滿我回憶的地方……"
+;   txt#20 off=0x1ec prm=0x1a0 "……嗯嗯，的確是這樣呢。"
+;   txt#21 off=0x206 prm=0xc0 "……老師。"
+;   txt#22 off=0x212 prm=0x220 "那就請妳等一下到職務室來做簡報，"
+;   txt#23 off=0x234 prm=0xc0 "沒問題吧？"
+;   txt#24 off=0x240 prm=0xc0 "是的……！"
+000014:             56 FADESETWAIT              adv=8   0
+00001c:             20 ADVMODESET               adv=8   0
+000024:             59 BGSETWAIT                adv=16  0 8 1
+000034:             30 BORDPACKONWAIT           adv=20  10 4 0 30
+000048:             56 FADESETWAIT              adv=8   3
+000050:             43 TEXTACTIVE               adv=8   10
+000058:             17 TEXT                     adv=6   #0 "老師……"
+00005e:             50 TEXTWAITKB               adv=4   
+000062:             51 KEYWAIT                  adv=4   
+000066:             27 BORDONWAIT               adv=16  4 268435455 268435455
+000076:             43 TEXTACTIVE               adv=8   4
+00007e:             17 TEXT                     adv=6   #1 "瑟希莉絲。"
+000084:             50 TEXTWAITKB               adv=4   
+000088:             51 KEYWAIT                  adv=4   
+00008c:             43 TEXTACTIVE               adv=8   10
+000094:             44 TEXTCLEAR                adv=4   
+000098:             17 TEXT                     adv=6   #2 "那個……"
+00009e:             50 TEXTWAITKB               adv=4   
+0000a2:             51 KEYWAIT                  adv=4   
+0000a6:             43 TEXTACTIVE               adv=8   4
+0000ae:             44 TEXTCLEAR                adv=4   
+0000b2:             17 TEXT                     adv=6   #3 "嗯？"
+0000b8:             50 TEXTWAITKB               adv=4   
+0000bc:             51 KEYWAIT                  adv=4   
+0000c0:             43 TEXTACTIVE               adv=8   10
+0000c8:             44 TEXTCLEAR                adv=4   
+0000cc:             17 TEXT                     adv=6   #4 "聽說達雷希昂砦……"
+0000d2:             17 TEXT                     adv=6   #5 "被「匍伏蔓延而來之物」給佔領了……"
+0000d8:             17 TEXT                     adv=6   #6 "這是真的嗎？"
+0000de:             50 TEXTWAITKB               adv=4   
+0000e2:             51 KEYWAIT                  adv=4   
+0000e6:             43 TEXTACTIVE               adv=8   4
+0000ee:             44 TEXTCLEAR                adv=4   
+0000f2:             17 TEXT                     adv=6   #7 "沒錯。"
+0000f8:             17 TEXT                     adv=6   #8 "鎖匙之長已經親眼確認過這件事情了。"
+0000fe:             50 TEXTWAITKB               adv=4   
+000102:             51 KEYWAIT                  adv=4   
+000106:             43 TEXTACTIVE               adv=8   10
+00010e:             44 TEXTCLEAR                adv=4   
+000112:             17 TEXT                     adv=6   #9 "…………"
+000118:             50 TEXTWAITKB               adv=4   
+00011c:             51 KEYWAIT                  adv=4   
+000120:             43 TEXTACTIVE               adv=8   4
+000128:             44 TEXTCLEAR                adv=4   
+00012c:             17 TEXT                     adv=6   #10 "我們會收復它的……"
+000132:             50 TEXTWAITKB               adv=4   
+000136:             51 KEYWAIT                  adv=4   
+00013a:             43 TEXTACTIVE               adv=8   10
+000142:             44 TEXTCLEAR                adv=4   
+000146:             17 TEXT                     adv=6   #11 "咦……？"
+00014c:             50 TEXTWAITKB               adv=4   
+000150:             51 KEYWAIT                  adv=4   
+000154:             43 TEXTACTIVE               adv=8   4
+00015c:             44 TEXTCLEAR                adv=4   
+000160:             17 TEXT                     adv=6   #12 "……如果我這麼說的話，妳的想法如何呢？"
+000166:             50 TEXTWAITKB               adv=4   
+00016a:             51 KEYWAIT                  adv=4   
+00016e:             43 TEXTACTIVE               adv=8   10
+000176:             44 TEXTCLEAR                adv=4   
+00017a:             17 TEXT                     adv=6   #13 "……我，我啊。"
+000180:             50 TEXTWAITKB               adv=4   
+000184:             51 KEYWAIT                  adv=4   
+000188:             43 TEXTACTIVE               adv=8   4
+000190:             44 TEXTCLEAR                adv=4   
+000194:             17 TEXT                     adv=6   #14 "…………"
+00019a:             50 TEXTWAITKB               adv=4   
+00019e:             51 KEYWAIT                  adv=4   
+0001a2:             43 TEXTACTIVE               adv=8   10
+0001aa:             44 TEXTCLEAR                adv=4   
+0001ae:             17 TEXT                     adv=6   #15 "因為那是……"
+0001b4:             17 TEXT                     adv=6   #16 "老師第一次教導我如何戰鬥的地方……"
+0001ba:             50 TEXTWAITKB               adv=4   
+0001be:             51 KEYWAIT                  adv=4   
+0001c2:             43 TEXTACTIVE               adv=8   4
+0001ca:             44 TEXTCLEAR                adv=4   
+0001ce:             17 TEXT                     adv=6   #17 "…………"
+0001d4:             50 TEXTWAITKB               adv=4   
+0001d8:             51 KEYWAIT                  adv=4   
+0001dc:             43 TEXTACTIVE               adv=8   10
+0001e4:             44 TEXTCLEAR                adv=4   
+0001e8:             17 TEXT                     adv=6   #18 "所以如果可以的話，我也希望收復那裡。"
+0001ee:             17 TEXT                     adv=6   #19 "因為那裡是充滿我回憶的地方……"
+0001f4:             50 TEXTWAITKB               adv=4   
+0001f8:             51 KEYWAIT                  adv=4   
+0001fc:             43 TEXTACTIVE               adv=8   4
+000204:             44 TEXTCLEAR                adv=4   
+000208:             17 TEXT                     adv=6   #20 "……嗯嗯，的確是這樣呢。"
+00020e:             50 TEXTWAITKB               adv=4   
+000212:             51 KEYWAIT                  adv=4   
+000216:             43 TEXTACTIVE               adv=8   10
+00021e:             44 TEXTCLEAR                adv=4   
+000222:             17 TEXT                     adv=6   #21 "……老師。"
+000228:             50 TEXTWAITKB               adv=4   
+00022c:             51 KEYWAIT                  adv=4   
+000230:             43 TEXTACTIVE               adv=8   4
+000238:             44 TEXTCLEAR                adv=4   
+00023c:             17 TEXT                     adv=6   #22 "那就請妳等一下到職務室來做簡報，"
+000242:             17 TEXT                     adv=6   #23 "沒問題吧？"
+000248:             50 TEXTWAITKB               adv=4   
+00024c:             51 KEYWAIT                  adv=4   
+000250:             43 TEXTACTIVE               adv=8   10
+000258:             44 TEXTCLEAR                adv=4   
+00025c:             17 TEXT                     adv=6   #24 "是的……！"
+000262:             50 TEXTWAITKB               adv=4   
+000266:             51 KEYWAIT                  adv=4   
+00026a:             12 VWAIT                    adv=8   30
+000272:             56 FADESETWAIT              adv=8   4
+00027a:             21 ALLOFF                   adv=4   
+00027e:             12 VWAIT                    adv=8   60
+000286:            151 OP_151                   adv=12  12 1
+000292:             91 PUTUNITWK                adv=12  8 2
+00029e:             19 END                      adv=4   ; END
+; (112 insns)
