@@ -46,6 +46,7 @@ func test_序列选择有效() -> void:
 			assert_true(nvalid >= 1, "%s %s 至少 1 条有效帧" % [id, key])
 			if key == "MOVE":
 				assert_true(nvalid >= 4, "%s MOVE 行走循环 ≥4 帧" % id)
+				assert_true(nvalid == recs.size(), "%s MOVE 纯循环无空白帧 (隐身断流 2026-09-18 目检抓出)" % id)
 
 
 func test_朝向量化() -> void:

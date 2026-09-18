@@ -120,7 +120,10 @@ def export_unit(name: str):
         recs = []
         for k in range((e - s) // 10):
             cw, b, c, d_field, dur = struct.unpack_from('<5h', data, s + k * 10)
-            # b <= -2 → 帧索引(-b); b == -1 → 空白帧; b >= 0 → 控制/终止记录 (0x0801头/32643终止符等)
+            # 控制记录不进播放序列: a=32643(0x7F63 终止符)/2049(0x0801 头) 或 b>=0
+            if cw == 32643 or cw == 2049 or b >= 0:
+                continue
+            # b <= -2 → 帧索引(-b); b == -1 → 空白帧 (隐身 dur)
             frame = -b if b <= -2 else -1
             recs.append({'frame': frame, 'dur': dur})
         anims.append({'id': ai, 'records': recs})
@@ -141,17 +144,19 @@ def pick_anim_map(anims, frame_count):
 
     move = None
     for a in anims:
-        valid = frame_recs(a)
-        if len(valid) < 4:
+        recs = a['records']
+        # 纯循环: 全部记录都是界内帧 (无空白帧 — 否则移动中会"隐身", 目检 2026-09-18 抓出)
+        if len(recs) < 4 or any(r['frame'] < 0 or r['frame'] >= frame_count for r in recs):
             continue
-        fr = [r['frame'] for r in valid]
-        durs = {r['dur'] for r in valid}
+        fr = [r['frame'] for r in recs]
+        durs = {r['dur'] for r in recs}
         if len(durs) == 1 and max(fr) - min(fr) + 1 == len(fr):  # 等时长 + 帧号连续
-            if move is None or len(valid) > len(frame_recs(move)):
+            if move is None or len(recs) > len(move['records']):
                 move = a
     idle = None
     for a in anims:
-        if len(frame_recs(a)) == 1:
+        recs = a['records']
+        if len(recs) == 1 and 0 <= recs[0]['frame'] < frame_count:
             idle = a
             break
     amap = {}
