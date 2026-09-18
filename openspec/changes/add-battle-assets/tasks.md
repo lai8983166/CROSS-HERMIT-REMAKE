@@ -20,6 +20,6 @@
 
 - [x] 3.1 全量测试绿 + assets/README（来源/再生成/坐标系说明）。
        验证：runner 0 failures；README 含再生成命令
-- [ ] 3.2 用户目检：窗口认出原版 MAP01（与 analysis/map01_atlas.png 同图）、三态切换、
-       战斗照常进行。验证：用户确认
+- [x] 3.2 用户目检: 认出原版贴图 ✓ / 三态 ✓ / 战斗 ✓; "错位"反馈经缝分析定性为
+       素材库≠地图碎片 (发现入 spec/README), 世界合成转 add-map-composition
 - [x] 3.3 提交 cd258f6 (含 atlas PNG/JSON/README)
