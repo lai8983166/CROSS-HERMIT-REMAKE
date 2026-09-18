@@ -2,7 +2,7 @@
  "_meta": {
   "desc": "战斗布阵 (add-unit-render) — 改阵容/属性/节奏 = 改此文件, 零代码",
   "modding": "units 里可增删单位; engage_seconds 可选覆盖 ENGAGE 初始(测试用)",
-  "fields": "faction 0=红 1=蓝 | stats 七属性 | pos 为格坐标 | anim_id = unit_sprites.json 精灵档键 (缺省/无效 → 色块回退)"
+  "fields": "faction 0=红 1=蓝 | stats 七属性 | pos 为格坐标 | anim_id = unit_sprites.json 精灵档键 (缺省/无效 → 色块回退) | palette_id = recolor palette table index (-1=faction default, 0=base color), faction_palettes=faction default color scheme"
  },
  "seed": 42,
  "move_interval": 12,
@@ -66,7 +66,8 @@
     27,
     43
    ],
-   "anim_id": "B0A"
+   "anim_id": "B0A",
+   "palette_id": 3
   },
   {
    "name": "红·剑士D",
@@ -168,5 +169,9 @@
    ],
    "anim_id": "E1A"
   }
- ]
+ ],
+ "faction_palettes": {
+  "0": 7,
+  "1": 1
+ }
 }

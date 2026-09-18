@@ -22,6 +22,7 @@ var from_cell := Vector2i.ZERO
 var move_started_frame := -100000
 var _tick_prev_cell := Vector2i.ZERO
 var anim_id := ""           # battle_setup 指定的精灵档 (unit_sprites.json 键, 空 = 色块回退)
+var palette_id := -1        # 换色表序号 (unit_recolors.json; -1 = 用阵营默认, 0 = 基色)
 
 # 普攻条目快照 (v1 简化: 威力=攻击表主威力基数, 命中=精度基础×10; 完整 0x4C 快照链后续 change)
 var atk_power := 1
@@ -43,6 +44,7 @@ func setup(def: Dictionary) -> void:
 	from_cell = cell
 	_tick_prev_cell = cell
 	anim_id = String(def.get("anim_id", ""))
+	palette_id = int(def.get("palette_id", -1))
 	unit = SimUnit.new(def.get("stats", {}))
 	unit.job_id = int(def.get("job_id", 0))
 	unit.level = int(def.get("level", 1))

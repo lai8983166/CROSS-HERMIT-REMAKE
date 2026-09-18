@@ -28,6 +28,10 @@ var _world_size := Vector2.ZERO
 var _unit_sprites: Dictionary = {}
 var _sprites_meta: Dictionary = {}
 var _tex_cache: Dictionary = {}
+# 换色 (add-unit-recolor): 块7 表 + (档,色) 重映射字典 + 阵营默认色
+var _unit_recolors: Dictionary = {}
+var _recolor_maps: Dictionary = {}
+var _faction_palettes: Dictionary = {}
 
 
 ## 静态地图画家 (烘进 SubViewport 一次性成像, _draw 每帧只贴纹理)
@@ -60,6 +64,7 @@ func _ready() -> void:
 	map = SimMapData.load_map("01")
 	_load_palette()
 	_load_unit_sprites()
+	_load_unit_recolors()
 	if FileAccess.file_exists("res://assets/map01_composed.png"):
 		_atlas = load("res://assets/map01_composed.png")   # 直角世界图 (add-map-composition)
 		_base_mode = 0
@@ -75,6 +80,11 @@ func _start_battle(seed: int) -> void:
 	var setup: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/battle_setup.json"))
 	var use_seed: int = setup.get("seed", 42) if seed == 0 else seed
+	_faction_palettes = {}   # 阵营默认换色 (add-unit-recolor): {"阵营str": palette_id}
+	var fp: Variant = setup.get("faction_palettes", {})
+	if fp is Dictionary:
+		for k: String in fp:
+			_faction_palettes[k] = int(fp[k])
 	battle = Battle.start(setup, use_seed, map)
 	selected = null
 	_accum = 0.0
@@ -97,6 +107,15 @@ func _load_unit_sprites() -> void:
 	if parsed is Dictionary and parsed.get("units") is Dictionary:
 		_unit_sprites = parsed["units"]
 		_sprites_meta = parsed.get("_meta", {})
+
+
+func _load_unit_recolors() -> void:
+	if not FileAccess.file_exists("res://data/unit_recolors.json"):
+		return   # 无换色表 → 全部基色
+	var parsed: Variant = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/unit_recolors.json"))
+	if parsed is Dictionary and parsed.get("units") is Dictionary:
+		_unit_recolors = parsed["units"]
 
 
 func _fit_view() -> void:
@@ -362,7 +381,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 	draw_set_transform(Vector2.ZERO)
 	if pick_frame < 0 or pick_frame >= frames.size():
 		return true   # 空白帧时段: 只画阴影不画本体 (序列本身有效)
-	var tex := _frame_tex(u.anim_id, pick_frame)
+	var pal := u.palette_id if u.palette_id >= 0 else int(_faction_palettes.get(str(u.faction), 0))
+	var tex := _frame_tex(u.anim_id, pick_frame, pal)
 	if tex == null:
 		return false
 	var f: Dictionary = frames[pick_frame]
@@ -378,18 +398,50 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 	return true
 
 
-func _frame_tex(anim_id: String, frame_idx: int) -> Texture2D:
-	var key := "%s/%d" % [anim_id, frame_idx]
+## 换色重映射字典 (add-unit-recolor): 基色 hex → 目标 hex 的 int 键值表, 按 (档,色) 缓存
+func _recolor_map(anim_id: String, pal_id: int) -> Dictionary:
+	var key := "%s/%d" % [anim_id, pal_id]
+	if _recolor_maps.has(key):
+		return _recolor_maps[key]
+	var m := {}
+	var upal: Array = _unit_recolors.get(anim_id, {}).get("palettes", [])
+	var base: Array = upal[0] if upal.size() > 0 else []
+	var targ: Array = upal[pal_id] if pal_id >= 0 and pal_id < upal.size() else []
+	if base.size() == 256 and targ.size() == 256:
+		for c in 256:
+			if base[c] != targ[c]:
+				m[("0x" + String(base[c])).hex_to_int()] = ("0x" + String(targ[c])).hex_to_int()
+	_recolor_maps[key] = m
+	return m
+
+
+func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
+	var key := "%s/%d/%d" % [anim_id, frame_idx, pal_id]
 	if _tex_cache.has(key):
 		return _tex_cache[key]
-	var udata: Dictionary = _unit_sprites.get(anim_id, {})
-	var frames: Array = udata.get("frames", [])
-	if frame_idx < 0 or frame_idx >= frames.size():
+	var base_tex := _frame_tex(anim_id, frame_idx, 0)
+	if base_tex == null:
 		return null
-	var path := "res://assets/unit/%s/%s" % [anim_id, frames[frame_idx].get("file", "")]
-	if not ResourceLoader.exists(path):
-		return null
-	var tex: Texture2D = load(path)
+	if pal_id <= 0:
+		_tex_cache[key] = base_tex
+		return base_tex
+	var m := _recolor_map(anim_id, pal_id)
+	if m.is_empty():   # 无该换色 (越界/缺表) → 基色回退
+		_tex_cache[key] = base_tex
+		return base_tex
+	var img := base_tex.get_image()
+	if img.get_format() != Image.FORMAT_RGBA8:
+		img.convert(Image.FORMAT_RGBA8)
+	var buf := img.data   # RGBA 字节序
+	for i in range(0, buf.size(), 4):
+		var k := (int(buf[i]) << 16) | (int(buf[i + 1]) << 8) | int(buf[i + 2])
+		if m.has(k):
+			var v: int = m[k]
+			buf[i] = (v >> 16) & 0xFF
+			buf[i + 1] = (v >> 8) & 0xFF
+			buf[i + 2] = v & 0xFF
+	var tex := ImageTexture.create_from_image(Image.create_from_data(
+			img.get_width(), img.get_height(), false, Image.FORMAT_RGBA8, buf))
 	_tex_cache[key] = tex
 	return tex
 
