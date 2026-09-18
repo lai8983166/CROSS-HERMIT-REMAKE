@@ -27,8 +27,7 @@ TOOL_VER = '1.1'
 UNIT_FILES = [f'{g}{v}A.BIN' for g in 'ABCDE' for v in '01']
 # IDLE 人工覆盖 (视觉逐帧验证 2026-09-18): 启发式"贴行走带"在 B1A 抓到击飞带尾帧 43 (倒栽葱骑士,
 # 小图下即"黑软泥怪"); B1A 真立姿 = anim#116 (帧226, 金盔朝上标准站姿)
-IDLE_OVERRIDES = {'B1A': 116,   # f226 金盔朝上标准站姿
-               'A0A': 2}      # f187 侧身持剑立姿 (f193=背面视角, 盾背对镜头小图似'云团' 2026-09-18)
+IDLE_OVERRIDES = {}   # 引擎表 (dxanim_lib.ENGINE_IDLE_ANIM=#7) 已验证优于人工挑选, 覆盖表留空备用
 
 
 def export_unit(name: str):
@@ -100,6 +99,13 @@ def pick_anim_map(anims, frame_count, unit_uid):
     amap = {}
     if move:
         amap['MOVE'] = {'anim': move['id'], 'flip_x_when_facing_right': True}
+    # 引擎朝向表 (EXE 0x610510/0x60D160 逆向, 语义槽位全档一致): 优先于启发式
+    walk_by_dir = dx.engine_walk_map(anims, frame_count)
+    if walk_by_dir:
+        amap['walk_by_dir'] = walk_by_dir
+    idle_engine = dx.engine_idle_anim(anims, frame_count)
+    if idle_engine is not None:
+        idle = anims[idle_engine]
     idle_override = IDLE_OVERRIDES.get(unit_uid)
     if idle_override is not None and 0 <= idle_override < len(anims):
         idle = anims[idle_override]

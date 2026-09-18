@@ -386,6 +386,25 @@ func _draw_units() -> void:
 			draw_arc(p, r + 4, 0, TAU, 24, Color.YELLOW, 1.5)
 
 
+## 朝向向量 → 8 向罗盘键 (引擎行走带选择)
+func _facing_dir8(f: Vector2i) -> String:
+	if f.x < 0 and f.y < 0:
+		return "NW"
+	if f.x > 0 and f.y < 0:
+		return "NE"
+	if f.x < 0 and f.y > 0:
+		return "SW"
+	if f.x > 0 and f.y > 0:
+		return "SE"
+	if f.x < 0:
+		return "W"
+	if f.x > 0:
+		return "E"
+	if f.y < 0:
+		return "N"
+	return "S"
+
+
 ## 单位绘制位置: 格间平滑插值 (from_cell → cell, 跨 move_interval 逻辑帧)
 func _unit_world_pos(u: BattleUnit) -> Vector2:
 	var cur := map.cell_to_world(u.cell.x, u.cell.y)
@@ -417,8 +436,20 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 			key = "DEAD"
 	var entry: Dictionary = amap.get(key, amap.get("IDLE", {}))
 	var anims: Array = udata.get("anims", [])
-	var anim_idx := int(entry.get("anim", -1))   # JSON 数字为 float, 统一 int 化
-	if entry.is_empty() or anim_idx < 0 or anim_idx >= anims.size():
+	# 引擎朝向表 (EXE 0x610510/0x60D160 逆向): MOVE 按朝向选 5 行走带之一, flip=引擎镜像位
+	var anim_idx := -1
+	var flip := false
+	if key == "MOVE" and amap.has("walk_by_dir"):
+		var wd: Dictionary = amap["walk_by_dir"].get(_facing_dir8(u.facing), {})
+		if not wd.is_empty():
+			anim_idx = int(wd.get("anim", -1))
+			flip = bool(wd.get("flip", false))
+	if anim_idx < 0:
+		anim_idx = int(entry.get("anim", -1))   # JSON 数字为 float, 统一 int 化
+		flip = bool(entry.get("flip_x_when_facing_right", false)) and u.facing.x > 0
+	if entry.is_empty() and anim_idx < 0:
+		return false
+	if anim_idx < 0 or anim_idx >= anims.size():
 		return false
 	var recs: Array = anims[anim_idx].get("records", [])
 	var frames: Array = udata.get("frames", [])
@@ -454,9 +485,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 	var f: Dictionary = frames[pick_frame]
 	var anchor: Dictionary = f.get("anchor",
 			{"x": float(f.get("w", 0)) * 0.5, "y": float(f.get("h", 0))})
-	var flip := bool(entry.get("flip_x_when_facing_right", false)) and u.facing.x > 0
 	var mod := Color(1, 1, 1, 0.55) if u.state == BattleUnit.State.WITHDRAWN else Color.WHITE
-	var fx := -1.0 if flip else 1.0
+	var fx := -1.0 if flip else 1.0   # flip 已按引擎朝向表/镜像位定
 	draw_set_transform_matrix(Transform2D(0.0, Vector2(view_scale * fx, view_scale), 0.0, p_screen))
 	draw_texture_rect(tex, Rect2(Vector2(-float(anchor.get("x", 0.0)),
 			-float(anchor.get("y", 0.0))), Vector2(tex.get_width(), tex.get_height())), false, mod)
