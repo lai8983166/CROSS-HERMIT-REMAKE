@@ -219,7 +219,8 @@ func _physics_process(delta: float) -> void:
 ## 调试: 自动轮转截图 (0.4s/张 × 8 滚动) — "窗口异常但数据全亮"类问题抓现行
 var _shot_timer := 0.0
 var _shot_idx := 0
-var auto_shots := false   # 默认关; 键 A 切换 (避免常态 IO)
+var auto_shots := false   # 键 A 切换; 抓现行时开 (0.4s×8 滚动 IO 较重, 常态关)
+var _last_draw: Dictionary = {}   # 单位名 → 最近一次绘制信息 (截图时落盘对账)
 
 func _auto_shot(delta: float) -> void:
 	if not auto_shots:
@@ -234,6 +235,12 @@ func _auto_shot(delta: float) -> void:
 func _capture(tag: String) -> void:
 	var img := get_viewport().get_texture().get_image()
 	img.save_png("user://dbg_%s.png" % tag)
+	if not _last_draw.is_empty():
+		var f := FileAccess.open("user://dbg_state.txt", FileAccess.WRITE)
+		f.store_line("battle.frame=%d tag=%s" % [battle.frame if battle else -1, tag])
+		for k in _last_draw:
+			f.store_line("%s %s" % [k, str(_last_draw[k])])
+		f.close()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -437,6 +444,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 	if pick_frame < 0 or pick_frame >= frames.size():
 		return true   # 空白帧时段: 只画阴影不画本体 (序列本身有效)
 	var pal := u.palette_id if u.palette_id >= 0 else int(_faction_palettes.get(str(u.faction), 0))
+	_last_draw[u.name] = "anim=%s state=%s frame=%d pal=%d cell=%s" % [
+		u.anim_id, BattleUnit.State.keys()[u.state], pick_frame, pal, str(u.cell)]
 	var tex := _frame_tex(u.anim_id, pick_frame, pal)
 	if tex != null:
 		_check_dark_frame(u.anim_id, pick_frame, pal, u)
