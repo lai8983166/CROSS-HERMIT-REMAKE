@@ -169,7 +169,8 @@ func _draw() -> void:
 			HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.ORANGE_RED)
 		return
 	_draw_map()
-	_draw_units()
+	if _base_mode > 0:
+		_draw_units()
 	_draw_hud()
 
 
@@ -225,9 +226,7 @@ func _draw_units() -> void:
 				col = Color(0.25, 0.25, 0.25, 0.8)
 			BattleUnit.State.WITHDRAWN:
 				col.a = 0.3
-		draw_colored_polygon(PackedVector2Array([
-			p + Vector2(0, -r * 0.6), p + Vector2(r * 0.7, 0),
-			p + Vector2(0, r * 0.6), p + Vector2(-r * 0.7, 0)]), col)
+		draw_rect(Rect2(p - Vector2(r * 0.7, r * 0.5), Vector2(r * 1.4, r)), col)
 		if u.state != BattleUnit.State.DEAD:
 			# 头顶双条: HP 红 / ENGAGE 蓝 (屏幕空间, 不吃地图形变)
 			var bw := 26.0
@@ -247,7 +246,7 @@ func _draw_hud() -> void:
 	if battle.finished:
 		battle_state = ("平局" if battle.winner < 0
 				else "%s方胜利" % ("红" if battle.winner == 0 else "蓝"))
-	var mode_name: String = ["贴图", "贴图+数据", "数据"][_base_mode] if _atlas != null else "数据(缺图集)"
+	var mode_name: String = ["纯贴图", "贴图+数据+单位", "数据+单位"][_base_mode] if _atlas != null else "数据(缺图集)"
 	var line1 := "CROSS HERMIT 战斗模拟器 — MAP01 %d×%d | 底图:%s | %s (帧 %d) | 速度 %.1f× FPS %d" % [
 		map.cell_w, map.cell_h, mode_name, battle_state, battle.frame if battle else 0,
 		Engine.time_scale, Engine.get_frames_per_second()]
@@ -273,5 +272,5 @@ func _draw_hud() -> void:
 			int(selected.engage_left), BattleUnit.State.keys()[selected.state]]
 		draw_string(font, Vector2(16, 78), s, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0.4, 1.0, 0.6))
 	draw_string(font, Vector2(16, 758),
-		"[1/2/3]速度 [空格]暂停 [R]重开 [T]底图三态 点击=选单位/锁格 | 阵容改 data/battle_setup.json",
+		"[1/2/3]速度 [空格]暂停 [R]重开 [T]底图: 纯贴图/贴图+数据+单位/纯数据+单位 | 点击=选单位/锁格",
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(0.7, 0.7, 0.7))
