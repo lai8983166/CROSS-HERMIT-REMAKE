@@ -11,10 +11,10 @@
 
 ## 2. 导出管线
 
-- [ ] 2.1 tools/unit_anim_export.py：容器→assets/unit/*.png + data/unit_sprites.json
-       （帧表含尺寸/锚点/朝向映射/调色板 id/_meta.open_items）。验证：01E 全量导出无错、
-       帧数与容器一致
-- [ ] 2.2 formats.md 新 §（DxAnim 格式定案/开口分明）。验证：无"待定"含糊表述
+- [x] 2.1 tools/unit_anim_export.py：容器→assets/unit/*.png + data/unit_sprites.json
+       （帧表含尺寸/锚点/朝向映射/调色板 id/_meta.open_items）。验证：全 10 单位档导出无错、
+       帧数与容器一致（01E 为特效档已改导 {A..E}{0,1}A）
+- [x] 2.2 formats.md 新 §（DxAnim 格式定案/开口分明）。验证：§10 已写，开口逐项列明
 
 ## 3. sim 集成
 

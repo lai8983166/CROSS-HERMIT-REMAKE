@@ -24,6 +24,10 @@ var _panning := false
 var _map_tex: Texture2D = null            # 烘焙的静态地图纹理
 var _world_min := Vector2.ZERO
 var _world_size := Vector2.ZERO
+# 单位精灵 (add-unit-sprites): unit_sprites.json 缺失/条目缺 → 色块回退, 功能不损
+var _unit_sprites: Dictionary = {}
+var _sprites_meta: Dictionary = {}
+var _tex_cache: Dictionary = {}
 
 
 ## 静态地图画家 (烘进 SubViewport 一次性成像, _draw 每帧只贴纹理)
@@ -55,6 +59,7 @@ func _ready() -> void:
 	Engine.time_scale = 1.0
 	map = SimMapData.load_map("01")
 	_load_palette()
+	_load_unit_sprites()
 	if FileAccess.file_exists("res://assets/map01_composed.png"):
 		_atlas = load("res://assets/map01_composed.png")   # 直角世界图 (add-map-composition)
 		_base_mode = 0
@@ -82,6 +87,16 @@ func _load_palette() -> void:
 		for k: String in parsed.get("colors", {}):
 			var rgb: Array = parsed["colors"][k]
 			palette[int(k)] = Color8(int(rgb[0]), int(rgb[1]), int(rgb[2]))
+
+
+func _load_unit_sprites() -> void:
+	if not FileAccess.file_exists("res://data/unit_sprites.json"):
+		return   # 无帧表 → _draw_units 走色块回退
+	var parsed: Variant = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/unit_sprites.json"))
+	if parsed is Dictionary and parsed.get("units") is Dictionary:
+		_unit_sprites = parsed["units"]
+		_sprites_meta = parsed.get("_meta", {})
 
 
 func _fit_view() -> void:
@@ -264,15 +279,19 @@ func _draw_units() -> void:
 	if battle == null:
 		return
 	var r := maxf(6.0, 10.0 * view_scale)
-	for u in battle.units:
-		var p := _screen_pos(u.cell)
-		var col: Color = FACTION_COLOR[u.faction]
-		match u.state:
-			BattleUnit.State.DEAD:
-				col = Color(0.25, 0.25, 0.25, 0.8)
-			BattleUnit.State.WITHDRAWN:
-				col.a = 0.3
-		draw_rect(Rect2(p - Vector2(r * 0.7, r * 0.5), Vector2(r * 1.4, r)), col)
+	for i in battle.units.size():
+		var u: BattleUnit = battle.units[i]
+		var p := origin + _unit_world_pos(u) * view_scale
+		# 相位偏移按单位序错开 (同时出发不走齐步)
+		var phase: float = battle.frame * Battle.LOGIC_STEP + float(i % 7) * 0.37
+		if not _draw_sprite_unit(u, p, phase):
+			var col: Color = FACTION_COLOR[u.faction]
+			match u.state:
+				BattleUnit.State.DEAD:
+					col = Color(0.25, 0.25, 0.25, 0.8)
+				BattleUnit.State.WITHDRAWN:
+					col.a = 0.3
+			draw_rect(Rect2(p - Vector2(r * 0.7, r * 0.5), Vector2(r * 1.4, r)), col)
 		if u.state != BattleUnit.State.DEAD:
 			# 头顶双条: HP 红 / ENGAGE 蓝 (屏幕空间, 不吃地图形变)
 			var bw := 26.0
@@ -286,6 +305,95 @@ func _draw_units() -> void:
 			draw_arc(p, r + 4, 0, TAU, 24, Color.YELLOW, 1.5)
 
 
+## 单位绘制位置: 格间平滑插值 (from_cell → cell, 跨 move_interval 逻辑帧)
+func _unit_world_pos(u: BattleUnit) -> Vector2:
+	var cur := map.cell_to_world(u.cell.x, u.cell.y)
+	if u.from_cell == u.cell or battle == null:
+		return cur
+	var span: float = maxf(1.0, float(battle.move_interval)) * Battle.LOGIC_STEP
+	var t: float = clampf((battle.frame - u.move_started_frame) * Battle.LOGIC_STEP / span, 0.0, 1.0)
+	if t >= 1.0:
+		return cur
+	return map.cell_to_world(u.from_cell.x, u.from_cell.y).lerp(cur, t)
+
+
+## 精灵绘制 (add-unit-sprites): 状态→anim_map 序列循环, 锚点=画布底中对格心, 脚底椭圆阴影。
+## 返回 false = 无帧表/无序列/资产缺失 → 调用方走色块回退。
+func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
+	if _unit_sprites.is_empty() or u.anim_id.is_empty():
+		return false
+	var udata: Dictionary = _unit_sprites.get(u.anim_id, {})
+	if udata.is_empty():
+		return false
+	var amap: Dictionary = udata.get("anim_map", {})
+	var key := "IDLE"
+	match u.state:
+		BattleUnit.State.MOVE:
+			key = "MOVE"
+		BattleUnit.State.ATTACK:
+			key = "ATTACK"
+		BattleUnit.State.DEAD:
+			key = "DEAD"
+	var entry: Dictionary = amap.get(key, amap.get("IDLE", {}))
+	var anims: Array = udata.get("anims", [])
+	var anim_idx := int(entry.get("anim", -1))   # JSON 数字为 float, 统一 int 化
+	if entry.is_empty() or anim_idx < 0 or anim_idx >= anims.size():
+		return false
+	var recs: Array = anims[anim_idx].get("records", [])
+	var frames: Array = udata.get("frames", [])
+	var dur_s: float = float(_sprites_meta.get("dur_unit_seconds", 1.0 / 60.0))
+	var total := 0.0
+	for r in recs:
+		total += maxf(1.0, float(r.get("dur", 1))) * dur_s
+	if total <= 0.0 or frames.is_empty():
+		return false
+	var phase_t := fposmod(maxf(0.0, phase), total)
+	var pick_frame := -1
+	for ri in recs.size():
+		var r: Dictionary = recs[ri]
+		var d := maxf(1.0, float(r.get("dur", 1))) * dur_s
+		if phase_t < d or ri == recs.size() - 1:
+			pick_frame = int(r.get("frame", -1))
+			break
+		phase_t -= d
+	# 脚底阴影 (43d270 印章语义的椭圆近似)
+	draw_set_transform(p_screen, 0.0, Vector2(1.0, 0.45))
+	draw_circle(Vector2.ZERO, 9.0 * view_scale, Color(0, 0, 0, 0.35))
+	draw_set_transform(Vector2.ZERO)
+	if pick_frame < 0 or pick_frame >= frames.size():
+		return true   # 空白帧时段: 只画阴影不画本体 (序列本身有效)
+	var tex := _frame_tex(u.anim_id, pick_frame)
+	if tex == null:
+		return false
+	var f: Dictionary = frames[pick_frame]
+	var anchor: Dictionary = f.get("anchor",
+			{"x": float(f.get("w", 0)) * 0.5, "y": float(f.get("h", 0))})
+	var flip := bool(entry.get("flip_x_when_facing_right", false)) and u.facing.x > 0
+	var mod := Color(1, 1, 1, 0.55) if u.state == BattleUnit.State.WITHDRAWN else Color.WHITE
+	var fx := -1.0 if flip else 1.0
+	draw_set_transform_matrix(Transform2D(0.0, Vector2(view_scale * fx, view_scale), 0.0, p_screen))
+	draw_texture_rect(tex, Rect2(Vector2(-float(anchor.get("x", 0.0)),
+			-float(anchor.get("y", 0.0))), Vector2(tex.get_width(), tex.get_height())), false, mod)
+	draw_set_transform_matrix(Transform2D())
+	return true
+
+
+func _frame_tex(anim_id: String, frame_idx: int) -> Texture2D:
+	var key := "%s/%d" % [anim_id, frame_idx]
+	if _tex_cache.has(key):
+		return _tex_cache[key]
+	var udata: Dictionary = _unit_sprites.get(anim_id, {})
+	var frames: Array = udata.get("frames", [])
+	if frame_idx < 0 or frame_idx >= frames.size():
+		return null
+	var path := "res://assets/unit/%s/%s" % [anim_id, frames[frame_idx].get("file", "")]
+	if not ResourceLoader.exists(path):
+		return null
+	var tex: Texture2D = load(path)
+	_tex_cache[key] = tex
+	return tex
+
+
 func _draw_hud() -> void:
 	var font := ThemeDB.fallback_font
 	var battle_state := "进行中"
@@ -293,8 +401,9 @@ func _draw_hud() -> void:
 		battle_state = ("平局" if battle.winner < 0
 				else "%s方胜利" % ("红" if battle.winner == 0 else "蓝"))
 	var mode_name: String = ["纯贴图", "贴图+数据+单位", "数据+单位"][_base_mode] if _atlas != null else "数据(缺图集)"
-	var line1 := "CROSS HERMIT 战斗模拟器 — MAP01 %d×%d | 底图:%s | %s (帧 %d) | 速度 %.1f× FPS %d" % [
-		map.cell_w, map.cell_h, mode_name, battle_state, battle.frame if battle else 0,
+	var sprite_state := ("精灵%d档" % _unit_sprites.size()) if not _unit_sprites.is_empty() else "精灵缺失(色块回退)"
+	var line1 := "CROSS HERMIT 战斗模拟器 — MAP01 %d×%d | 底图:%s | %s | %s (帧 %d) | 速度 %.1f× FPS %d" % [
+		map.cell_w, map.cell_h, mode_name, sprite_state, battle_state, battle.frame if battle else 0,
 		Engine.time_scale, Engine.get_frames_per_second()]
 	draw_string(font, Vector2(16, 20), line1, HORIZONTAL_ALIGNMENT_LEFT, -1, 13)
 	# 悬停/锁定格三层值 (add-map-data 既有行为)

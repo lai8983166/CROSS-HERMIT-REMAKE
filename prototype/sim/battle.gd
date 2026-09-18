@@ -60,6 +60,14 @@ func tick() -> void:
 				_log("f%d %s move %d,%d" % [frame, u.name, u.cell.x, u.cell.y])
 		elif frame % attack_interval == 0:
 			_attack(u, t)
+	# 格变更扫描 (add-unit-sprites): 朝向 8 向量化 + 视图插值快照
+	for u in units:
+		if u.cell != u._tick_prev_cell:
+			u.facing = Vector2i(signi(u.cell.x - u._tick_prev_cell.x),
+					signi(u.cell.y - u._tick_prev_cell.y))
+			u.from_cell = u._tick_prev_cell
+			u.move_started_frame = frame
+			u._tick_prev_cell = u.cell
 	_check_finish()
 
 

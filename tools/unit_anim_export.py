@@ -132,23 +132,26 @@ def export_unit(name: str):
     }, unit_dir
 
 
-def pick_anim_map(anims):
-    """自动挑默认序列 (JSON 可手改): MOVE=最多帧的连续+等时长序列, IDLE=首条非空白单帧动画"""
+def pick_anim_map(anims, frame_count):
+    """自动挑默认序列 (JSON 可手改): MOVE=帧引用最多的连续+等时长循环, IDLE=首条单帧动画。
+    只认界内引用 (-b ≥ frame_count 的外部引用语义未定, 见 _meta.open_items);
+    控制/空白记录 (b ≥ 0 或 -1) 不计入帧序列但也不否决候选 (如尾部 32643 终止符)。"""
+    def frame_recs(a):
+        return [r for r in a['records'] if 0 <= r['frame'] < frame_count]
+
     move = None
     for a in anims:
-        recs = a['records']
-        valid = [r for r in recs if r['frame'] >= 0]
-        if len(valid) < 4 or len(valid) != len(recs):
-            continue  # 混有空白/控制记录的 (如 anim#89 带 30/58 帧停顿) 不作默认 MOVE
+        valid = frame_recs(a)
+        if len(valid) < 4:
+            continue
         fr = [r['frame'] for r in valid]
         durs = {r['dur'] for r in valid}
-        span = max(fr) - min(fr) + 1
-        if len(durs) == 1 and span == len(fr):  # 全有效 + 等时长 + 帧号连续 = 纯循环
-            if move is None or len(valid) > len(move['records']):
+        if len(durs) == 1 and max(fr) - min(fr) + 1 == len(fr):  # 等时长 + 帧号连续
+            if move is None or len(valid) > len(frame_recs(move)):
                 move = a
     idle = None
     for a in anims:
-        if len(a['records']) == 1 and a['records'][0]['frame'] >= 0:
+        if len(frame_recs(a)) == 1:
             idle = a
             break
     amap = {}
@@ -183,7 +186,7 @@ def main():
     units = {}
     for name in files:
         unit, unit_dir = export_unit(name)
-        unit['anim_map'] = pick_anim_map(unit['anims'])
+        unit['anim_map'] = pick_anim_map(unit['anims'], unit['frame_count'])
         make_preview(unit_dir, unit['frames'])
         units[name[:-4]] = unit
         mv = unit['anim_map'].get('MOVE', {})
@@ -197,8 +200,11 @@ def main():
             'tool': f'unit_anim_export v{TOOL_VER}',
             'format_ref': 'docs/formats.md §DxAnim',
             'anchor_rule': '画布底中 = 脚底; anchor 为画布底中在帧图像内的像素偏移',
+            'dur_unit_seconds': 1.0 / 60.0,  # 记录 dur 的单位 (秒) — 引擎按 60fps 计帧的假设, 可改
             'frame_index_rule': 'anims[].records[].frame: >=0 → frames 下标; -1 → 空白帧(不绘制)',
             'open_items': [
+                '部分档 (D0A/D1A/E0A/E1A 等) 的动画记录存在 -b ≥ 本档帧数的外部引用 (anim#2→250 等; '
+                '同构位置在其他档全在界内) — 跨档续编/部件表两种假设均未证实, 默认序列只选界内引用',
                 '块1 合成动画表 (27条, 头0x0801) 未解码 — v1 不导出',
                 '块4 运动步进字节码 (0xFF06/0x7F06 记录) 未解码 — 攻击位移等细节缺失',
                 '块8 (帧数+1 × u8 标志) 语义未定',

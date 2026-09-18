@@ -2,35 +2,171 @@
  "_meta": {
   "desc": "战斗布阵 (add-unit-render) — 改阵容/属性/节奏 = 改此文件, 零代码",
   "modding": "units 里可增删单位; engage_seconds 可选覆盖 ENGAGE 初始(测试用)",
-  "fields": "faction 0=红 1=蓝 | stats 七属性 | pos 为格坐标"
+  "fields": "faction 0=红 1=蓝 | stats 七属性 | pos 为格坐标 | anim_id = unit_sprites.json 精灵档键 (缺省/无效 → 色块回退)"
  },
  "seed": 42,
  "move_interval": 12,
  "attack_interval": 30,
  "units": [
-  {"name": "红·重战士A", "faction": 0, "job_id": 1, "level": 10,
-   "stats": {"strength": 30, "agility": 18, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 32, "spirit": 8},
-   "pos": [24, 46]},
-  {"name": "红·重战士B", "faction": 0, "job_id": 1, "level": 10,
-   "stats": {"strength": 28, "agility": 20, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 30, "spirit": 8},
-   "pos": [24, 50]},
-  {"name": "红·剑士C", "faction": 0, "job_id": 3, "level": 10,
-   "stats": {"strength": 22, "agility": 30, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 20, "spirit": 8},
-   "pos": [27, 43]},
-  {"name": "红·剑士D", "faction": 0, "job_id": 3, "level": 10,
-   "stats": {"strength": 22, "agility": 28, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 20, "spirit": 8},
-   "pos": [28, 52]},
-  {"name": "蓝·重战士A", "faction": 1, "job_id": 1, "level": 10,
-   "stats": {"strength": 30, "agility": 18, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 32, "spirit": 8},
-   "pos": [40, 46]},
-  {"name": "蓝·重战士B", "faction": 1, "job_id": 1, "level": 10,
-   "stats": {"strength": 28, "agility": 20, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 30, "spirit": 8},
-   "pos": [39, 49]},
-  {"name": "蓝·剑士C", "faction": 1, "job_id": 3, "level": 10,
-   "stats": {"strength": 22, "agility": 30, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 20, "spirit": 8},
-   "pos": [36, 44]},
-  {"name": "蓝·剑士D", "faction": 1, "job_id": 3, "level": 10,
-   "stats": {"strength": 22, "agility": 28, "sense": 12, "vitality": 14, "intellect": 8, "constitution": 20, "spirit": 8},
-   "pos": [36, 52]}
+  {
+   "name": "红·重战士A",
+   "faction": 0,
+   "job_id": 1,
+   "level": 10,
+   "stats": {
+    "strength": 30,
+    "agility": 18,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 32,
+    "spirit": 8
+   },
+   "pos": [
+    24,
+    46
+   ],
+   "anim_id": "A0A"
+  },
+  {
+   "name": "红·重战士B",
+   "faction": 0,
+   "job_id": 1,
+   "level": 10,
+   "stats": {
+    "strength": 28,
+    "agility": 20,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 30,
+    "spirit": 8
+   },
+   "pos": [
+    24,
+    50
+   ],
+   "anim_id": "A1A"
+  },
+  {
+   "name": "红·剑士C",
+   "faction": 0,
+   "job_id": 3,
+   "level": 10,
+   "stats": {
+    "strength": 22,
+    "agility": 30,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 20,
+    "spirit": 8
+   },
+   "pos": [
+    27,
+    43
+   ],
+   "anim_id": "B0A"
+  },
+  {
+   "name": "红·剑士D",
+   "faction": 0,
+   "job_id": 3,
+   "level": 10,
+   "stats": {
+    "strength": 22,
+    "agility": 28,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 20,
+    "spirit": 8
+   },
+   "pos": [
+    28,
+    52
+   ],
+   "anim_id": "C0A"
+  },
+  {
+   "name": "蓝·重战士A",
+   "faction": 1,
+   "job_id": 1,
+   "level": 10,
+   "stats": {
+    "strength": 30,
+    "agility": 18,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 32,
+    "spirit": 8
+   },
+   "pos": [
+    40,
+    46
+   ],
+   "anim_id": "C1A"
+  },
+  {
+   "name": "蓝·重战士B",
+   "faction": 1,
+   "job_id": 1,
+   "level": 10,
+   "stats": {
+    "strength": 28,
+    "agility": 20,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 30,
+    "spirit": 8
+   },
+   "pos": [
+    39,
+    49
+   ],
+   "anim_id": "D0A"
+  },
+  {
+   "name": "蓝·剑士C",
+   "faction": 1,
+   "job_id": 3,
+   "level": 10,
+   "stats": {
+    "strength": 22,
+    "agility": 30,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 20,
+    "spirit": 8
+   },
+   "pos": [
+    36,
+    44
+   ],
+   "anim_id": "E0A"
+  },
+  {
+   "name": "蓝·剑士D",
+   "faction": 1,
+   "job_id": 3,
+   "level": 10,
+   "stats": {
+    "strength": 22,
+    "agility": 28,
+    "sense": 12,
+    "vitality": 14,
+    "intellect": 8,
+    "constitution": 20,
+    "spirit": 8
+   },
+   "pos": [
+    36,
+    52
+   ],
+   "anim_id": "E1A"
+  }
  ]
 }
