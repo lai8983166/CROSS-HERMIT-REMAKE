@@ -2,7 +2,7 @@
  "_meta": {
   "desc": "可行走规则 (add-pathfinding) — BIN 三层值→阻挡",
   "modding": "数组列出阻挡值; objects 支持 \"nonzero\" 或值数组; 改表即改通行语义",
-  "finding_2026-09-18": "MAP01 实测: object 层是横条纹装饰(每3行一条, 69个64x2条带), terrain 是逐格散点类型 — 都不是可行走/墙语义; 故默认全开放, 真实碰撞数据待实机对照 (formats.md §5 开口)"
+  "finding_2026-09-18": "BIN 交错格式修正(map_export v1.1)后: object 层全 0, variant 仅 35 格非零, terrain 逐格全有值(1..13,17) — 旧'每3行横条'是平面误切伪像; 阻挡语义未定, 默认全开放 (formats.md §5 开口)"
  },
  "blocked_terrain": [],
  "blocked_variant": [],

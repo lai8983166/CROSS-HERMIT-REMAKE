@@ -20,6 +20,7 @@ var hover := Vector2i(-1, -1)
 var locked_cell := Vector2i(-1, -1)
 var selected: BattleUnit = null
 var _accum := 0.0
+var _panning := false
 var _map_tex: Texture2D = null            # 烘焙的静态地图纹理
 var _world_min := Vector2.ZERO
 var _world_size := Vector2.ZERO
@@ -40,14 +41,14 @@ class MapPainter:
 				var col: Color = palette.get(t, Color(0.35, 0.1, 0.35))
 				if v != 0:
 					col = col.lightened(clampf(v * 0.02, -0.3, 0.3))
-				var center: Vector2 = map.cell_to_world(x, y) - offset
-				var pts := PackedVector2Array([
-					center + Vector2(0, -8), center + Vector2(16, 0),
-					center + Vector2(0, 8), center + Vector2(-16, 0)])
+				# 直角格: (x,y) = 像素矩形 [32x,16y,32,16] (add-map-composition 定案)
+				var rect := Rect2(map.cell_to_world(x, y) - offset
+						- Vector2(SimMapData.CELL_W, SimMapData.CELL_H) * 0.5,
+						Vector2(SimMapData.CELL_W, SimMapData.CELL_H))
 				if t != 0 or v != 0:
-					draw_colored_polygon(pts, col)
+					draw_rect(rect, col)
 				if map.layer_value("object", x, y) != 0:
-					draw_polyline(pts + PackedVector2Array([pts[0]]), Color(1.0, 0.85, 0.2, 0.9), 1.5)
+					draw_rect(rect, Color(1.0, 0.85, 0.2, 0.9), false, 1.5)
 
 
 func _ready() -> void:
@@ -85,16 +86,43 @@ func _load_palette() -> void:
 
 func _fit_view() -> void:
 	# 直角投影 (add-map-composition): 世界 = [0,0,px_w,px_h] == 图集尺寸
+	# 默认视口 = composed 元数据里的实机验证窗口 (没有则全图)
 	var min_x: float = 0.0
-	var max_x: float = map.cell_w * 32.0
 	var min_y: float = 0.0
+	var max_x: float = map.cell_w * 32.0
 	var max_y: float = map.cell_h * 16.0
+	var win: Dictionary = _composed_window()
+	if not win.is_empty():
+		min_x = float(win.x)
+		min_y = float(win.y)
+		max_x = min_x + float(win.w)
+		max_y = min_y + float(win.h)
 	view_scale = min((1024.0 - MARGIN * 2) / (max_x - min_x),
 			(768.0 - MARGIN * 2 - 24.0) / (max_y - min_y))
 	origin = Vector2(MARGIN - min_x * view_scale, MARGIN + 24.0 - min_y * view_scale)
-	_world_min = Vector2(min_x, min_y)
-	_world_size = Vector2(max_x - min_x, max_y - min_y)
+	_world_min = Vector2(0.0, 0.0)
+	_world_size = Vector2(map.cell_w * 32.0, map.cell_h * 16.0)
 	_bake_map()
+
+
+## composed 元数据的实机验证窗口 (map_window_match: 屏幕≈图集该窗口×1.02 平移)
+func _composed_window() -> Dictionary:
+	if not FileAccess.file_exists("res://assets/map01_composed.png.json"):
+		return {}
+	var parsed: Variant = JSON.parse_string(
+		FileAccess.get_file_as_string("res://assets/map01_composed.png.json"))
+	if parsed is Dictionary and parsed.get("verified_window") is Dictionary:
+		return parsed["verified_window"]
+	return {}
+
+
+func _fit_full_map() -> void:
+	# F 键: 回到全图视野
+	var max_x: float = map.cell_w * 32.0
+	var max_y: float = map.cell_h * 16.0
+	view_scale = min((1024.0 - MARGIN * 2) / max_x, (768.0 - MARGIN * 2 - 24.0) / max_y)
+	origin = Vector2(MARGIN, MARGIN + 24.0)
+	queue_redraw()
 
 
 func _bake_map() -> void:
@@ -129,12 +157,25 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		hover = _cell_at(event.position)
-		queue_redraw()
-	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		var c := _cell_at(event.position)
-		locked_cell = c
-		selected = _unit_at(c)
-		queue_redraw()
+		if _panning:
+			# 拖拽平移: 世界偏移 = -屏幕位移/缩放
+			origin += event.relative
+			queue_redraw()
+		else:
+			queue_redraw()
+	elif event is InputEventMouseButton:
+		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			var c := _cell_at(event.position)
+			locked_cell = c
+			selected = _unit_at(c)
+			queue_redraw()
+		elif event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
+			_panning = true
+		elif not event.pressed and event.button_index == MOUSE_BUTTON_MIDDLE:
+			_panning = false
+		elif event.pressed and (event.button_index == MOUSE_BUTTON_WHEEL_UP
+				or event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
+			_zoom_at(event.position, 1.25 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 0.8)
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_1: Engine.time_scale = 1.0
@@ -145,6 +186,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_T:
 				_base_mode = (_base_mode + 1) % 3
 				queue_redraw()
+			KEY_F: _fit_view()
+
+
+## 以屏幕点为中心缩放 (世界点不动)
+func _zoom_at(screen: Vector2, factor: float) -> void:
+	var world: Vector2 = (screen - origin) / view_scale
+	view_scale = clampf(view_scale * factor, 0.15, 6.0)
+	origin = screen - world * view_scale
+	queue_redraw()
 
 
 func _cell_at(screen: Vector2) -> Vector2i:
@@ -179,8 +229,7 @@ func _draw_map() -> void:
 		return   # 烘焙未完成的首帧: 走下方直接绘制兜底
 	var world_rect := Rect2(_world_min, _world_size)
 	draw_set_transform(origin, 0.0, Vector2(view_scale, view_scale))
-	# 三态底图 (add-battle-assets): 图集 2048×1536 与菱形包围盒 2560×1288 形状不同
-	# → 仿射拉伸适配; 像素级真映射待实机对照 (open item)
+	# 直角定案: 世界图 == 图集 (恒等); 默认视口对准实机验证窗口 (compose meta 驱动)
 	if _base_mode == 0 and _atlas != null:
 		draw_texture_rect(_atlas, world_rect, false)
 	elif _base_mode == 1 and _atlas != null:
@@ -189,7 +238,7 @@ func _draw_map() -> void:
 	else:
 		draw_texture_rect(_map_tex, world_rect, false)
 	draw_set_transform(Vector2.ZERO)
-	# 烘焙未完成的首帧兜底: 直接绘制 (静态一次)
+	# 烘焙未完成的首帧兜底: 直接绘制 (静态一次, 直角矩形格)
 	draw_set_transform(origin, 0.0, Vector2(view_scale, view_scale))
 	for y in map.cell_h:
 		for x in map.cell_w:
@@ -198,15 +247,11 @@ func _draw_map() -> void:
 			var col: Color = palette.get(t, Color(0.35, 0.1, 0.35))
 			if v != 0:
 				col = col.lightened(clampf(v * 0.02, -0.3, 0.3))
-			var center: Vector2 = map.cell_to_world(x, y)
-			var pts := PackedVector2Array([
-				center + Vector2(0, -8), center + Vector2(16, 0),
-				center + Vector2(0, 8), center + Vector2(-16, 0),
-			])
+			var rect := Rect2(Vector2(x * 32.0, y * 16.0), Vector2(32.0, 16.0))
 			if t != 0 or v != 0:
-				draw_colored_polygon(pts, col)
+				draw_rect(rect, col)
 			if map.layer_value("object", x, y) != 0:
-				draw_polyline(pts + PackedVector2Array([pts[0]]), OBJECT_OUTLINE, 1.5)
+				draw_rect(rect, OBJECT_OUTLINE, false, 1.5)
 	draw_set_transform(Vector2.ZERO)
 
 
@@ -272,5 +317,5 @@ func _draw_hud() -> void:
 			int(selected.engage_left), BattleUnit.State.keys()[selected.state]]
 		draw_string(font, Vector2(16, 78), s, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0.4, 1.0, 0.6))
 	draw_string(font, Vector2(16, 758),
-		"[1/2/3]速度 [空格]暂停 [R]重开 [T]底图: 纯贴图/贴图+数据+单位/纯数据+单位 | 点击=选单位/锁格",
+		"[1/2/3]速度 [空格]暂停 [R]重开 [T]底图: 纯贴图/贴图+数据+单位/纯数据+单位 [F]回验证窗口 | 滚轮=缩放 中键拖=平移 点击=选单位",
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(0.7, 0.7, 0.7))

@@ -3,7 +3,9 @@
 
 格式 (docs/formats.md §5, 已逆向定案):
   头 16B = 8×u16 [pxW][pxH][cellW][cellH][tileW=256][tileH=256][pageX][pageY]
-  体 = cellW×cellH × 3 层 u16 (层序: terrain / variant / object, 行优先)
+  体 = cellW×cellH × 3 u16, cell-major 交错: 第 k 格 = [terrain][variant][object]
+  (旧版按"3 个平面"切分是误读 —— 平面切法在重排后产生 x+64y≡0 (mod 3) 的伪条带,
+   与 object 层"每 3 行横条"伪像同源; 实机截图对照定案为交错, 见 analysis/map_window_match.md)
 校验: 文件大小 == 16 + 6×格数 (不符报错退出, 不产出半成品)
 
 用法: python tools/map_export.py 01
@@ -15,7 +17,7 @@ import sys
 
 BIN_DIR = 'CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/MAP'
 OUTDIR = 'prototype/data'
-TOOL_VER = '1.0'
+TOOL_VER = '1.1'
 LAYER_NAMES = ('terrain', 'variant', 'object')
 
 
@@ -40,9 +42,9 @@ def export(num: str) -> None:
     if px_w != cell_w * 32 or px_h != cell_h * 16:
         sys.stderr.write(f'警告: px/格 不符 32×16 ({px_w}×{px_h} vs {cell_w}×{cell_h})\n')
 
-    layers = {}
-    for li, name in enumerate(LAYER_NAMES):
-        layers[name] = list(struct.unpack_from(f'<{cells}H', data, 16 + li * 2 * cells))
+    # cell-major 交错: raw[3k+li] = 第 k 格的第 li 层值
+    raw = struct.unpack_from(f'<{cells * 3}H', data, 16)
+    layers = {name: list(raw[li::3]) for li, name in enumerate(LAYER_NAMES)}
 
     out = {
         '_meta': {
@@ -51,7 +53,8 @@ def export(num: str) -> None:
             'cell_w': cell_w, 'cell_h': cell_h,
             'tile_w': tile_w, 'tile_h': tile_h,
             'page_x': page_x, 'page_y': page_y,
-            'layers': list(LAYER_NAMES), 'layout': 'row-major, index = y*cell_w + x',
+            'layers': list(LAYER_NAMES),
+            'layout': 'row-major, index = y*cell_w + x; BIN 内为 cell-major 交错 (每格 3×u16)',
             'naming_ref': 'docs/formats.md#5 (BIN 逻辑格图)',
             'tool': f'map_export v{TOOL_VER}',
         },

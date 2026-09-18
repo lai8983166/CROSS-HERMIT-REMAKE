@@ -46,6 +46,9 @@ def main() -> None:
         'map': f'MAP{num}', 'projection': 'straight (cell rect [32x,16y,32,16])',
         'identity_of': atlas_path,
         'evidence': 'engine linear cell div (x>>21,y>>20) + bmp aspect + iso variants corr<=0.113',
+        # 实机截图模板匹配验证过的世界窗口 (analysis/map_window_match.md):
+        # 屏幕(1024x768) ≈ 图集该窗口 ×1.02 平移 (+428,+434); 窗口内逐格 NCC 0.9+
+        'verified_window': {'x': 520, 'y': 500, 'w': 880, 'h': 600},
         'regen': f'python tools/compose_map.py {num}',
     }
     with open(OUT.format(num=num) + '.json', 'w', encoding='utf-8') as f:
