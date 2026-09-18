@@ -212,7 +212,28 @@ func _physics_process(delta: float) -> void:
 		_accum -= LOGIC_STEP
 		if battle.finished:
 			break
+	_auto_shot(delta)
 	queue_redraw()
+
+
+## 调试: 自动轮转截图 (0.4s/张 × 8 滚动) — "窗口异常但数据全亮"类问题抓现行
+var _shot_timer := 0.0
+var _shot_idx := 0
+var auto_shots := false   # 默认关; 键 A 切换 (避免常态 IO)
+
+func _auto_shot(delta: float) -> void:
+	if not auto_shots:
+		return
+	_shot_timer += delta
+	if _shot_timer < 0.4:
+		return
+	_shot_timer = 0.0
+	_capture("auto_%d" % _shot_idx)
+	_shot_idx = (_shot_idx + 1) % 8
+
+func _capture(tag: String) -> void:
+	var img := get_viewport().get_texture().get_image()
+	img.save_png("user://dbg_%s.png" % tag)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -248,6 +269,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				_base_mode = (_base_mode + 1) % 3
 				queue_redraw()
 			KEY_F: _fit_view()
+			KEY_A:
+				auto_shots = not auto_shots
+				_shot_idx = 0
+				printerr("[截图] 自动轮转 ", "开" if auto_shots else "关",
+						" -> ", OS.get_user_data_dir())
+			KEY_P: _capture("manual")
 
 
 ## 以屏幕点为中心缩放 (世界点不动)

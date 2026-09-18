@@ -86,11 +86,14 @@ def main():
             ],
         },
         'files': out_files,
-        # 语义命名 (视觉标注 2026-09-18: #15 紫月斩→消散 / #22 刀光展开 / #24 多段斩 / #28 弹丸)
+        # 语义命名 (视觉+实机复核 2026-09-18): 真斩击带=帧5..30 (#15 紫月斩/#18 短斩/#19 竖劈/#20 横扫);
+        # 帧31..75 = 蓝色软泥/弹体素材带 (#21..25) — 曾误当"刀光"配给重战士致画面出现蓝史莱姆;
+        # #28 (帧88..93) = 灰蓝光球弹丸 ✓
         'effects': {
             'slash': {'file': '01E', 'anim': 15},
-            'slash_long': {'file': '01E', 'anim': 22},
-            'multi_slash': {'file': '01E', 'anim': 24},
+            'slash_heavy': {'file': '01E', 'anim': 19},
+            'slash_short': {'file': '01E', 'anim': 18},
+            'slash_horizontal': {'file': '01E', 'anim': 20},
             'orb': {'file': '01E', 'anim': 28},
         },
         'default': 'slash',
