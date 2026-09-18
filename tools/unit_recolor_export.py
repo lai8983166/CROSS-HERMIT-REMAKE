@@ -92,6 +92,48 @@ def make_preview(unit_id: str, data: bytes, offs, pals, fps):
     return base_idx
 
 
+def walk_luma(pals, uid):
+    """每调色板对 MOVE 行走带帧重映射后的最低平均亮度 — 防踩"行走帧变黑"暗板
+    (B1A pal12 事故 2026-09-18: 预览基帧银蓝, 行走帧索引被换近黑 → 周期性黑怪)"""
+    import numpy as np
+    from PIL import Image
+    sprites_path = os.path.join('prototype', 'data', 'unit_sprites.json')
+    assets_dir = os.path.join('prototype', 'assets', 'unit')
+    sp = json.load(open(sprites_path, encoding='utf-8'))
+    if uid not in sp.get('units', {}):
+        return {}
+    u = sp['units'][uid]
+    mv = u.get('anim_map', {}).get('MOVE', {})
+    anims = u.get('anims', [])
+    if not mv or int(mv.get('anim', -1)) >= len(anims):
+        return {}
+    recs = anims[int(mv['anim'])]['records']
+    frs = [r['frame'] for r in recs if 0 <= r['frame'] < u['frame_count']]
+    if not frs:
+        return {}
+    base = [(int(p[0:2], 16), int(p[2:4], 16), int(p[4:6], 16)) for p in pals[0]]
+    out = {}
+    for k, pal in enumerate(pals):
+        lut = {}
+        for c in range(256):
+            if pals[0][c] != pal[c]:
+                lut[base[c]] = (int(pal[c][0:2], 16), int(pal[c][2:4], 16), int(pal[c][4:6], 16))
+        worst = 255.0
+        for f in frs:
+            fp = os.path.join(assets_dir, uid, u['frames'][f]['file'])
+            arr = np.array(Image.open(fp).convert('RGBA'))
+            a = arr[:, :, 3] > 0
+            if not a.any():
+                continue
+            px = arr[:, :, :3].copy()
+            for src, dst in lut.items():
+                m = a & (px[:, :, 0] == src[0]) & (px[:, :, 1] == src[1]) & (px[:, :, 2] == src[2])
+                px[m] = dst
+            worst = min(worst, float(px.mean(axis=2)[a].mean()))
+        out[str(k)] = round(worst, 1)
+    return out
+
+
 def main():
     units = {}
     stats = {}
@@ -103,10 +145,12 @@ def main():
         n_body = sum(1 for fp in fps if fp == base)
         uid = name[:-4]
         preview_frame = make_preview(uid, data, offs, pals, fps)
-        units[uid] = {'palette_count': npal, 'palettes': pals}
+        wl = walk_luma(pals, uid)
+        units[uid] = {'palette_count': npal, 'palettes': pals, 'walk_luma': wl}
         stats[uid] = n_body
-        print(f'{uid}: {npal} 调色板, 身体帧(内嵌==[0]) {n_body}/{len(fps)}, '
-              f'预览基帧 #{preview_frame} -> assets/unit/{uid}/_recolors.png')
+        dark = [k for k, v in wl.items() if v < 45]
+        print(f'{uid}: {npal} 调色板, 身体帧 {n_body}/{len(fps)}, 行走暗板={dark or "无"} '
+              f'-> assets/unit/{uid}/_recolors.png')
 
     out = {
         '_meta': {

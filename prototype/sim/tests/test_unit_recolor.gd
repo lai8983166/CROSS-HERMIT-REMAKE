@@ -58,6 +58,31 @@ func test_battle_setup_配置有效() -> void:
 				"配了 palette_id 的单位其 anim_id 在换色表中")
 
 
+func test_配置避让行走暗板() -> void:
+	# walk_luma = 每调色板对 MOVE 行走带的最低平均亮度 (B1A pal12 周期性黑怪事故 2026-09-18)
+	# 断言: 配置的 palette_id (单位级或阵营默认) 不踩暗板 — 亮度 ≥ min(45, 基色+10)
+	# (整档角色本身暗的, 如 D0A 法师深袍, 允许与基色同水位)
+	var setup: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/battle_setup.json"))
+	var recolors: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/unit_recolors.json"))["units"]
+	var fpal: Dictionary = setup.get("faction_palettes", {})
+	for u in setup.get("units", []):
+		var uid := String(u.get("anim_id", ""))
+		if not recolors.has(uid):
+			continue
+		var wl: Dictionary = recolors[uid].get("walk_luma", {})
+		if wl.is_empty():
+			continue
+		var pid: int = int(u.get("palette_id", -1))
+		if pid < 0:
+			pid = int(fpal.get(str(int(u.get("faction", 0))), 0))
+		var floor_: float = minf(45.0, float(wl.get("0", 255.0)) + 10.0)
+		var got: float = float(wl.get(str(pid), 255.0))
+		assert_true(got >= floor_, "单位 %s pal%d 行走亮度 %.0f ≥ %.0f (暗板清单见 _recolors 导出)" % [
+			u.get("name", "?"), pid, got, floor_])
+
+
 func test_回退语义() -> void:
 	# 视图侧: 越界 palette_id / 未知档 → _recolor_map 返回空表 → 基色回退。
 	# 数据侧验证: 表结构与已知键存在性 (运行时行为由 main.gd _frame_tex 保证)

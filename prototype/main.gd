@@ -411,6 +411,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 		return true   # 空白帧时段: 只画阴影不画本体 (序列本身有效)
 	var pal := u.palette_id if u.palette_id >= 0 else int(_faction_palettes.get(str(u.faction), 0))
 	var tex := _frame_tex(u.anim_id, pick_frame, pal)
+	if tex != null:
+		_check_dark_frame(u.anim_id, pick_frame, pal, u)
 	if tex == null:
 		return false
 	var f: Dictionary = frames[pick_frame]
@@ -498,6 +500,41 @@ func _draw_fx() -> void:
 		draw_set_transform_matrix(Transform2D())
 
 
+## 暗帧检测 (调试): 记录每键平均亮度; 画出异常暗帧时打印 + 截图 (目检"黑色怪物"抓现行用)
+var _frame_luma: Dictionary = {}
+var _last_dark_shot_msec := -10000
+
+func _note_frame_luma(key: String, buf: PackedByteArray) -> void:
+	if _frame_luma.has(key) or buf.size() < 4:
+		return
+	var sum := 0
+	var n := 0
+	var i := 0
+	while i < buf.size():
+		if buf[i + 3] > 0:
+			sum += (int(buf[i]) + int(buf[i + 1]) + int(buf[i + 2])) / 3
+			n += 1
+		i += 4
+	_frame_luma[key] = [float(sum) / maxf(1, n), float(n) / (buf.size() / 4)]
+
+
+func _check_dark_frame(anim_id: String, frame_idx: int, pal_id: int, u: BattleUnit) -> void:
+	var key := "%s/%d/%d" % [anim_id, frame_idx, pal_id]
+	if not _frame_luma.has(key):
+		return
+	var lv: Array = _frame_luma[key]
+	if float(lv[0]) < 45.0 and float(lv[1]) > 0.25:
+		var now := Time.get_ticks_msec()
+		if now - _last_dark_shot_msec < 1000:
+			return
+		_last_dark_shot_msec = now
+		printerr("[暗帧] %s state=%s facing=%s frame=%d pal=%d 亮度=%.0f 覆盖=%.0f%%" % [
+			u.name, BattleUnit.State.keys()[u.state], str(u.facing), frame_idx,
+			pal_id, float(lv[0]), float(lv[1]) * 100.0])
+		var shot := get_viewport().get_texture().get_image()
+		shot.save_png("user://dark_frame_%d.png" % now)
+
+
 func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
 	var key := "%s/%d/%d" % [anim_id, frame_idx, pal_id]
 	if _tex_cache.has(key):
@@ -516,6 +553,11 @@ func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
 			return null
 		base_tex = load(path)
 		_tex_cache[base_key] = base_tex
+		if base_tex != null:
+			var bimg := base_tex.get_image()
+			if bimg.get_format() != Image.FORMAT_RGBA8:
+				bimg.convert(Image.FORMAT_RGBA8)
+			_note_frame_luma(base_key, bimg.get_data())
 	if pal_id <= 0 or base_tex == null:
 		return base_tex
 	var m := _recolor_map(anim_id, pal_id)
@@ -538,6 +580,7 @@ func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
 	var tex := ImageTexture.create_from_image(Image.create_from_data(
 			img.get_width(), img.get_height(), false, Image.FORMAT_RGBA8, buf))
 	_tex_cache[key] = tex
+	_note_frame_luma(key, buf)
 	return tex
 
 
