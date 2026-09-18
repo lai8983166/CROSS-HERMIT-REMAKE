@@ -25,6 +25,9 @@ OUT_ASSETS = 'prototype/assets/unit'
 OUT_JSON = 'prototype/data/unit_sprites.json'
 TOOL_VER = '1.1'
 UNIT_FILES = [f'{g}{v}A.BIN' for g in 'ABCDE' for v in '01']
+# IDLE 人工覆盖 (视觉逐帧验证 2026-09-18): 启发式"贴行走带"在 B1A 抓到击飞带尾帧 43 (倒栽葱骑士,
+# 小图下即"黑软泥怪"); B1A 真立姿 = anim#116 (帧226, 金盔朝上标准站姿)
+IDLE_OVERRIDES = {'B1A': 116}
 
 
 def export_unit(name: str):
@@ -60,7 +63,7 @@ def export_unit(name: str):
     }, unit_dir
 
 
-def pick_anim_map(anims, frame_count):
+def pick_anim_map(anims, frame_count, unit_uid):
     """自动挑默认序列 (JSON 可手改): MOVE=帧数最多的连续+等时长纯循环, IDLE=首条单帧动画。
     只认界内引用 (-b ≥ frame_count 的外部引用语义未定, 见 _meta.open_items)。"""
     move = None
@@ -96,6 +99,9 @@ def pick_anim_map(anims, frame_count):
     amap = {}
     if move:
         amap['MOVE'] = {'anim': move['id'], 'flip_x_when_facing_right': True}
+    idle_override = IDLE_OVERRIDES.get(unit_uid)
+    if idle_override is not None and 0 <= idle_override < len(anims):
+        idle = anims[idle_override]
     if idle:
         amap['IDLE'] = {'anim': idle['id'], 'flip_x_when_facing_right': True}
     for st in ('ATTACK', 'DEAD'):  # 语义标签未定案 → 跟随 IDLE (开口项)
@@ -125,7 +131,7 @@ def main():
     units = {}
     for name in files:
         unit, unit_dir = export_unit(name)
-        unit['anim_map'] = pick_anim_map(unit['anims'], unit['frame_count'])
+        unit['anim_map'] = pick_anim_map(unit['anims'], unit['frame_count'], name[:-4])
         make_preview(unit_dir, unit['frames'])
         units[name[:-4]] = unit
         mv = unit['anim_map'].get('MOVE', {})

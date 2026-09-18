@@ -219,7 +219,7 @@ func _physics_process(delta: float) -> void:
 ## 调试: 自动轮转截图 (0.4s/张 × 8 滚动) — "窗口异常但数据全亮"类问题抓现行
 var _shot_timer := 0.0
 var _shot_idx := 0
-var auto_shots := false   # 键 A 切换; 抓现行时开 (0.4s×8 滚动 IO 较重, 常态关)
+var auto_shots := false   # 键 A 切换; 抓现行时开
 var _last_draw: Dictionary = {}   # 单位名 → 最近一次绘制信息 (截图时落盘对账)
 
 func _auto_shot(delta: float) -> void:
@@ -530,6 +530,8 @@ func _draw_fx() -> void:
 		var anchor: Dictionary = f.get("anchor",
 				{"x": float(f.get("w", 0)) * 0.5, "y": float(f.get("h", 0))})
 		var fx := -1.0 if int(to_c[0]) < int(from_c[0]) else 1.0
+		_last_draw["FX"] = "file=%s anim#%d frame=%d age=%.2f at=(%d,%d)" % [
+			fid, anim_idx, pick, age, int(to_c[0]), int(to_c[1])]
 		draw_set_transform_matrix(Transform2D(0.0, Vector2(view_scale * fx, view_scale), 0.0, p))
 		draw_texture_rect(tex, Rect2(Vector2(-float(anchor.get("x", 0.0)),
 				-float(anchor.get("y", 0.0))), Vector2(tex.get_width(), tex.get_height())), false)
