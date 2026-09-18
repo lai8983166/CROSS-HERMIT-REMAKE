@@ -42,16 +42,15 @@ func layer_value(name: String, x: int, y: int) -> int:
 	return _layers[name][y * cell_w + x]
 
 
-## 格心局部坐标 (菱形: 中心 = ((x−y)·16, (x+y)·8))
+## 格中心局部坐标 — 直角网格 (add-map-composition 定案: 格 (x,y) = 像素矩形 [32x,16y,32,16],
+## 引擎 x>>21/y>>20 线性整除证据; 原菱形投影为误读, "菱形观感"来自贴片绘制)
 func cell_to_world(x: int, y: int) -> Vector2:
-	return Vector2((x - y) * (CELL_W * 0.5), (x + y) * (CELL_H * 0.5))
+	return Vector2(x * CELL_W + CELL_W * 0.5, y * CELL_H + CELL_H * 0.5)
 
 
-## 任意局部坐标 → 所在格 (旋转度量下最近格心 = 菱形归属; 格心点往返恒等)
+## 任意局部坐标 → 所在格 (矩形整除)
 func world_to_cell(w: Vector2) -> Vector2i:
-	var s: float = w.x / (CELL_W * 0.5)
-	var t: float = w.y / (CELL_H * 0.5)
-	return Vector2i(roundi((t + s) * 0.5), roundi((t - s) * 0.5))
+	return Vector2i(floori(w.x / CELL_W), floori(w.y / CELL_H))
 
 
 ## 可行走判定 (add-pathfinding) — 规则 Dictionary 由调用方从 data/walk_rules.json 加载缓存

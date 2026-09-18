@@ -36,9 +36,9 @@ func test_out_of_range() -> void:
 	assert_eq(m.layer_value("terrain", 0, 96), -1, "y 越界")
 	assert_eq(m.layer_value("no_such_layer", 0, 0), -1, "未知层")
 
-func test_world_to_cell_diamond() -> void:
+func test_world_to_cell_rect() -> void:
 	var m := SimMapData.new()
-	# 格心 (0,0) 局部 (0,0); 其右下 45° 方向仍属 (1,0) 或 (0,1) 的判定
-	assert_eq(m.world_to_cell(Vector2(0, 0)), Vector2i(0, 0), "原点")
-	assert_eq(m.world_to_cell(Vector2(8, 4)), Vector2i(1, 0), "右下方向 → (1,0)")
-	assert_eq(m.world_to_cell(Vector2(-8, 4)), Vector2i(0, 1), "左下方向 → (0,1)")
+	assert_eq(m.world_to_cell(Vector2(0, 0)), Vector2i(0, 0), "原点属格(0,0)")
+	assert_eq(m.world_to_cell(Vector2(33, 17)), Vector2i(1, 1), "格(1,1)内")
+	assert_eq(m.world_to_cell(Vector2(31, 15)), Vector2i(0, 0), "格(0,0)边界内")
+	assert_eq(m.cell_to_world(0, 0), Vector2(16, 8), "格心")

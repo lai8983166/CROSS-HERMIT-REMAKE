@@ -54,8 +54,8 @@ func _ready() -> void:
 	Engine.time_scale = 1.0
 	map = SimMapData.load_map("01")
 	_load_palette()
-	if FileAccess.file_exists("res://assets/map01_atlas.png"):
-		_atlas = load("res://assets/map01_atlas.png")
+	if FileAccess.file_exists("res://assets/map01_composed.png"):
+		_atlas = load("res://assets/map01_composed.png")   # 直角世界图 (add-map-composition)
 		_base_mode = 0
 	else:
 		_base_mode = 2   # 无贴图回退数据视图
@@ -84,10 +84,11 @@ func _load_palette() -> void:
 
 
 func _fit_view() -> void:
-	var min_x: float = (0 - (map.cell_h - 1)) * 16.0 - 16.0
-	var max_x: float = (map.cell_w - 1) * 16.0 + 16.0
-	var min_y: float = -8.0
-	var max_y: float = (map.cell_w + map.cell_h - 2) * 8.0 + 8.0
+	# 直角投影 (add-map-composition): 世界 = [0,0,px_w,px_h] == 图集尺寸
+	var min_x: float = 0.0
+	var max_x: float = map.cell_w * 32.0
+	var min_y: float = 0.0
+	var max_y: float = map.cell_h * 16.0
 	view_scale = min((1024.0 - MARGIN * 2) / (max_x - min_x),
 			(768.0 - MARGIN * 2 - 24.0) / (max_y - min_y))
 	origin = Vector2(MARGIN - min_x * view_scale, MARGIN + 24.0 - min_y * view_scale)

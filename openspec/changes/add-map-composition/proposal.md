@@ -26,6 +26,7 @@ add-battle-assets 的缝分析把图集定性为**贴图素材库**（非地图�
 
 ### Modified Capabilities
 - `battle-sim/map-render`: 贴图态底图改用合成图；叠加态对齐检查在此之后才具验收意义
+- `battle-sim/map-data`: 坐标换算由菱形投影修正为**直角网格**（实施期发现：引擎线性整除证据 + iso 8 朝向全灭）
 
 ## Impact
 
