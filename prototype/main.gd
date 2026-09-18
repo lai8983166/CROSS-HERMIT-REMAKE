@@ -405,12 +405,15 @@ func _recolor_map(anim_id: String, pal_id: int) -> Dictionary:
 		return _recolor_maps[key]
 	var m := {}
 	var upal: Array = _unit_recolors.get(anim_id, {}).get("palettes", [])
-	var base: Array = upal[0] if upal.size() > 0 else []
-	var targ: Array = upal[pal_id] if pal_id >= 0 and pal_id < upal.size() else []
-	if base.size() == 256 and targ.size() == 256:
-		for c in 256:
-			if base[c] != targ[c]:
-				m[("0x" + String(base[c])).hex_to_int()] = ("0x" + String(targ[c])).hex_to_int()
+	if pal_id >= 0 and pal_id < upal.size() and upal.size() > 0:
+		var base: Array = upal[0]
+		var targ: Array = upal[pal_id]
+		if base.size() == 256 and targ.size() == 256:
+			for c in 256:
+				var bhex := String(base[c])
+				var thex := String(targ[c])
+				if bhex != thex:
+					m[bhex.hex_to_int()] = thex.hex_to_int()
 	_recolor_maps[key] = m
 	return m
 
@@ -419,27 +422,38 @@ func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
 	var key := "%s/%d/%d" % [anim_id, frame_idx, pal_id]
 	if _tex_cache.has(key):
 		return _tex_cache[key]
-	var base_tex := _frame_tex(anim_id, frame_idx, 0)
+	# 基色纹理独立缓存 (不递归 — GDScript VM 递归+早退触发 Stack underflow)
+	var base_key := "%s/%d/0" % [anim_id, frame_idx]
+	var base_tex: Texture2D = _tex_cache.get(base_key, null)
 	if base_tex == null:
-		return null
-	if pal_id <= 0:
-		_tex_cache[key] = base_tex
+		var udata: Dictionary = _unit_sprites.get(anim_id, {})
+		var frames: Array = udata.get("frames", [])
+		if frame_idx < 0 or frame_idx >= frames.size():
+			return null
+		var path := "res://assets/unit/%s/%s" % [anim_id, frames[frame_idx].get("file", "")]
+		if not ResourceLoader.exists(path):
+			return null
+		base_tex = load(path)
+		_tex_cache[base_key] = base_tex
+	if pal_id <= 0 or base_tex == null:
 		return base_tex
 	var m := _recolor_map(anim_id, pal_id)
 	if m.is_empty():   # 无该换色 (越界/缺表) → 基色回退
-		_tex_cache[key] = base_tex
 		return base_tex
 	var img := base_tex.get_image()
 	if img.get_format() != Image.FORMAT_RGBA8:
 		img.convert(Image.FORMAT_RGBA8)
 	var buf := img.get_data()   # PackedByteArray, RGBA 字节序 (Image.data 属性是 Dictionary!)
-	for i in range(0, buf.size(), 4):
+	var i := 0
+	var n := buf.size()
+	while i < n:
 		var k := (int(buf[i]) << 16) | (int(buf[i + 1]) << 8) | int(buf[i + 2])
 		if m.has(k):
 			var v: int = m[k]
 			buf[i] = (v >> 16) & 0xFF
 			buf[i + 1] = (v >> 8) & 0xFF
 			buf[i + 2] = v & 0xFF
+		i += 4
 	var tex := ImageTexture.create_from_image(Image.create_from_data(
 			img.get_width(), img.get_height(), false, Image.FORMAT_RGBA8, buf))
 	_tex_cache[key] = tex
