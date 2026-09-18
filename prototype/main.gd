@@ -238,21 +238,22 @@ func _draw_map() -> void:
 	else:
 		draw_texture_rect(_map_tex, world_rect, false)
 	draw_set_transform(Vector2.ZERO)
-	# 烘焙未完成的首帧兜底: 直接绘制 (静态一次, 直角矩形格)
-	draw_set_transform(origin, 0.0, Vector2(view_scale, view_scale))
-	for y in map.cell_h:
-		for x in map.cell_w:
-			var t: int = map.layer_value("terrain", x, y)
-			var v: int = map.layer_value("variant", x, y)
-			var col: Color = palette.get(t, Color(0.35, 0.1, 0.35))
-			if v != 0:
-				col = col.lightened(clampf(v * 0.02, -0.3, 0.3))
-			var rect := Rect2(Vector2(x * 32.0, y * 16.0), Vector2(32.0, 16.0))
-			if t != 0 or v != 0:
-				draw_rect(rect, col)
-			if map.layer_value("object", x, y) != 0:
-				draw_rect(rect, OBJECT_OUTLINE, false, 1.5)
-	draw_set_transform(Vector2.ZERO)
+	if _map_tex == null:
+		# 烘焙未完成的首帧兜底: 直接绘制 (仅首帧, 有烘焙后不再画 —— 否则会盖住贴图)
+		draw_set_transform(origin, 0.0, Vector2(view_scale, view_scale))
+		for y in map.cell_h:
+			for x in map.cell_w:
+				var t: int = map.layer_value("terrain", x, y)
+				var v: int = map.layer_value("variant", x, y)
+				var col: Color = palette.get(t, Color(0.35, 0.1, 0.35))
+				if v != 0:
+					col = col.lightened(clampf(v * 0.02, -0.3, 0.3))
+				var rect := Rect2(Vector2(x * 32.0, y * 16.0), Vector2(32.0, 16.0))
+				if t != 0 or v != 0:
+					draw_rect(rect, col)
+				if map.layer_value("object", x, y) != 0:
+					draw_rect(rect, OBJECT_OUTLINE, false, 1.5)
+		draw_set_transform(Vector2.ZERO)
 
 
 func _screen_pos(c: Vector2i) -> Vector2:
