@@ -432,7 +432,7 @@ func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
 	var img := base_tex.get_image()
 	if img.get_format() != Image.FORMAT_RGBA8:
 		img.convert(Image.FORMAT_RGBA8)
-	var buf := img.data   # RGBA 字节序
+	var buf := img.get_data()   # PackedByteArray, RGBA 字节序 (Image.data 属性是 Dictionary!)
 	for i in range(0, buf.size(), 4):
 		var k := (int(buf[i]) << 16) | (int(buf[i + 1]) << 8) | int(buf[i + 2])
 		if m.has(k):
