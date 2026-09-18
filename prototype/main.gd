@@ -32,6 +32,10 @@ var _tex_cache: Dictionary = {}
 var _unit_recolors: Dictionary = {}
 var _recolor_maps: Dictionary = {}
 var _faction_palettes: Dictionary = {}
+# 攻击特效 (add-attack-effects): effects/default + 职业覆盖; 表缺失 → 不播不报错
+var _fx_effects: Dictionary = {}
+var _fx_default := ""
+var _fx_job_map: Dictionary = {}
 
 
 ## 静态地图画家 (烘进 SubViewport 一次性成像, _draw 每帧只贴纹理)
@@ -65,6 +69,7 @@ func _ready() -> void:
 	_load_palette()
 	_load_unit_sprites()
 	_load_unit_recolors()
+	_load_attack_effects()
 	if FileAccess.file_exists("res://assets/map01_composed.png"):
 		_atlas = load("res://assets/map01_composed.png")   # 直角世界图 (add-map-composition)
 		_base_mode = 0
@@ -85,6 +90,11 @@ func _start_battle(seed: int) -> void:
 	if fp is Dictionary:
 		for k: String in fp:
 			_faction_palettes[k] = int(fp[k])
+	_fx_job_map = {}   # 职业特效覆盖 (add-attack-effects): {job_id str: effect 名}
+	var ja: Variant = setup.get("attack_effects", {})
+	if ja is Dictionary:
+		for k: String in ja:
+			_fx_job_map[k] = String(ja[k])
 	battle = Battle.start(setup, use_seed, map)
 	selected = null
 	_accum = 0.0
@@ -107,6 +117,8 @@ func _load_unit_sprites() -> void:
 	if parsed is Dictionary and parsed.get("units") is Dictionary:
 		_unit_sprites = parsed["units"]
 		_sprites_meta = parsed.get("_meta", {})
+		for id: String in _unit_sprites:
+			_unit_sprites[id]["_base"] = "res://assets/unit/%s" % id   # 帧资产寻址 (fx 并入后统一)
 
 
 func _load_unit_recolors() -> void:
@@ -116,6 +128,21 @@ func _load_unit_recolors() -> void:
 		FileAccess.get_file_as_string("res://data/unit_recolors.json"))
 	if parsed is Dictionary and parsed.get("units") is Dictionary:
 		_unit_recolors = parsed["units"]
+
+
+func _load_attack_effects() -> void:
+	if not FileAccess.file_exists("res://data/attack_effects.json"):
+		return   # 无特效表 → 不播不报错
+	var parsed: Variant = JSON.parse_string(
+		FileAccess.get_file_as_string("res://data/attack_effects.json"))
+	if not (parsed is Dictionary and parsed.get("files") is Dictionary):
+		return
+	for fid: String in parsed["files"]:
+		var entry: Dictionary = parsed["files"][fid]
+		entry["_base"] = "res://assets/fx/%s" % fid
+		_unit_sprites[fid] = entry   # 帧表 schema 同 units → 渲染/缓存路径直接复用
+	_fx_effects = parsed.get("effects", {})
+	_fx_default = String(parsed.get("default", ""))
 
 
 func _fit_view() -> void:
@@ -255,6 +282,7 @@ func _draw() -> void:
 	_draw_map()
 	if _base_mode > 0:
 		_draw_units()
+		_draw_fx()
 	_draw_hud()
 
 
@@ -418,6 +446,58 @@ func _recolor_map(anim_id: String, pal_id: int) -> Dictionary:
 	return m
 
 
+## 攻击特效播一次 (add-attack-effects): 消费 battle.fx_events, sim 时间推进,
+## age ≥ 序列总长即不画 (帧号淘汰 — 无需清理, 停机回看不残留)。
+## 锚点=画布底中对目标格心; 攻→守 x 分量 < 0 时水平镜像。
+func _draw_fx() -> void:
+	if battle == null or _fx_effects.is_empty() or battle.fx_events.is_empty():
+		return
+	var dur_s: float = float(_sprites_meta.get("dur_unit_seconds", 1.0 / 60.0))
+	for ev in battle.fx_events:
+		var fx_name: String = _fx_job_map.get(str(ev.get("job_id", -1)), _fx_default)
+		var cfg: Dictionary = _fx_effects.get(fx_name, {})
+		if cfg.is_empty():
+			continue   # 未配置/无效名 → 不播
+		var fid := String(cfg.get("file", ""))
+		var udata: Dictionary = _unit_sprites.get(fid, {})
+		var anims: Array = udata.get("anims", [])
+		var anim_idx: int = int(cfg.get("anim", udata.get("anim_map", {}).get("PLAY", {}).get("anim", -1)))
+		if udata.is_empty() or anim_idx < 0 or anim_idx >= anims.size():
+			continue
+		var recs: Array = anims[anim_idx].get("records", [])
+		var frames: Array = udata.get("frames", [])
+		var total := 0.0
+		for r in recs:
+			total += maxf(1.0, float(r.get("dur", 1))) * dur_s
+		var age: float = (battle.frame - int(ev.get("frame", 0))) * Battle.LOGIC_STEP
+		if age < 0.0 or age >= total:
+			continue
+		var t := age
+		var pick := -1
+		for ri in recs.size():
+			var dsec := maxf(1.0, float(recs[ri].get("dur", 1))) * dur_s
+			if t < dsec or ri == recs.size() - 1:
+				pick = int(recs[ri].get("frame", -1))
+				break
+			t -= dsec
+		if pick < 0 or pick >= frames.size():
+			continue   # 空白帧时段 → 本帧不画
+		var tex := _frame_tex(fid, pick, 0)
+		if tex == null:
+			continue
+		var to_c: Array = ev.get("to_cell", [0, 0])
+		var from_c: Array = ev.get("from_cell", [0, 0])
+		var p := origin + map.cell_to_world(int(to_c[0]), int(to_c[1])) * view_scale
+		var f: Dictionary = frames[pick]
+		var anchor: Dictionary = f.get("anchor",
+				{"x": float(f.get("w", 0)) * 0.5, "y": float(f.get("h", 0))})
+		var fx := -1.0 if int(to_c[0]) < int(from_c[0]) else 1.0
+		draw_set_transform_matrix(Transform2D(0.0, Vector2(view_scale * fx, view_scale), 0.0, p))
+		draw_texture_rect(tex, Rect2(Vector2(-float(anchor.get("x", 0.0)),
+				-float(anchor.get("y", 0.0))), Vector2(tex.get_width(), tex.get_height())), false)
+		draw_set_transform_matrix(Transform2D())
+
+
 func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
 	var key := "%s/%d/%d" % [anim_id, frame_idx, pal_id]
 	if _tex_cache.has(key):
@@ -430,7 +510,8 @@ func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:
 		var frames: Array = udata.get("frames", [])
 		if frame_idx < 0 or frame_idx >= frames.size():
 			return null
-		var path := "res://assets/unit/%s/%s" % [anim_id, frames[frame_idx].get("file", "")]
+		var base_dir: String = udata.get("_base", "res://assets/unit/%s" % anim_id)
+		var path := "%s/%s" % [base_dir, frames[frame_idx].get("file", "")]
 		if not ResourceLoader.exists(path):
 			return null
 		base_tex = load(path)

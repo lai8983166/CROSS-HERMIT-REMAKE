@@ -16,6 +16,9 @@ var move_interval := 12
 var attack_interval := 30
 var map: SimMapData = null                      # 传入则启用寻路 (add-pathfinding)
 var walk_rules: Dictionary = {}
+# typed 特效事件流 (add-attack-effects): 只追加不改判, 战斗逻辑/确定性不受影响
+var fx_events: Array[Dictionary] = []
+var fx_events_keep := 64   # 最近保留条数 (视图消费用, 防长战内存涨; 数据字段非平衡常量)
 
 
 static func start(setup: Dictionary, seed: int, p_map: SimMapData = null) -> Battle:
@@ -157,13 +160,29 @@ func _attack(a: BattleUnit, d: BattleUnit) -> void:
 		rng)
 	if dmg == BattleMath.MISS:
 		_log("f%d %s->%s MISS" % [frame, a.name, d.name])
+		_emit_fx(a, d, false, 0)
 		return
+	d.hp -= dmg
+	_log("f%d %s->%s hit %d (hp %d)" % [frame, a.name, d.name, dmg, maxi(d.hp, 0)])
+	_emit_fx(a, d, true, dmg)
 	d.hp -= dmg
 	_log("f%d %s->%s hit %d (hp %d)" % [frame, a.name, d.name, dmg, maxi(d.hp, 0)])
 	if d.hp <= 0:
 		d.hp = 0
 		d.state = BattleUnit.State.DEAD
 		_log("f%d %s dead" % [frame, d.name])
+
+
+## 特效事件 (add-attack-effects): MISS 也播 (错位斩击是原版演出的一部分)
+func _emit_fx(a: BattleUnit, d: BattleUnit, hit: bool, damage: int) -> void:
+	fx_events.append({
+		"type": "attack", "frame": frame,
+		"from_cell": [a.cell.x, a.cell.y], "to_cell": [d.cell.x, d.cell.y],
+		"hit": hit, "damage": damage,
+		"job_id": a.unit.job_id,
+	})
+	if fx_events.size() > fx_events_keep:
+		fx_events = fx_events.slice(fx_events.size() - fx_events_keep)
 
 
 func _check_finish() -> void:
