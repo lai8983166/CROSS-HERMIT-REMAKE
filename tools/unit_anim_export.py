@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 """单位精灵导出器: DATA/DXANIM/{A..E}{0,1}A.BIN → prototype/assets/unit/<档名>/ + prototype/data/unit_sprites.json
 
-DxAnim 格式 (docs/formats.md §DxAnim, 逆向定案见 openspec/changes/add-unit-sprites/design.md):
-  容器 = {u32 总长; u32 块数; u32 offs[块数]} (offs[0] == 8+4×块数 自洽校验)
-  块0 = 动画定义表 {len; n; offs[n]}, 条目 = k × 10B 记录 (i16 画布w, i16 -帧号, i16 -1, i16 -14, i16 时长)
-        帧号 <0 且 ≠-1 → 块6 帧索引; -1 = 空白帧; 记录顺序 = 播放顺序
-  块5 = 帧数 × 8B 直排 (i16 画布w, 画布h, 帧x, 帧y)  —— 帧在画布中的摆放
-  块6 = 帧容器 {len; n; offs[n]}, 每帧 = 标准 8bpp BMP (内嵌 1024B 调色板, 底上行序, 4 对齐, 索引0=透明)
-  块7 = 换色调色板 {len; n; offs[n]} (单位档 40×1024B, v1 不应用)
-锚点 = 画布底中 (脚底), 帧内偏移 (cw/2 - fx, ch - fy), 数据推导非硬编码。
+容器/帧/序列解码在 tools/dxanim_lib.py (与 fx_export 共享)。
+格式定案: docs/formats.md §10; 逆向过程见 openspec/changes/archive/2026-09-18-add-unit-sprites/design.md
 
+锚点 = 画布底中 (脚底), 帧内偏移 (cw/2 - fx, ch - fy), 数据推导非硬编码。
 anim_map 自动挑选 (全部写入 JSON, 手改即生效):
-  MOVE = 帧数最多的"连续帧号+等时长"序列 (行走循环特征)
-  IDLE = 首个非空白单帧动画
+  MOVE = 帧数最多的全界内连续+等时长纯循环 (无空白帧 — 空白会造成移动隐身断流)
+  IDLE = 首条非空白单帧动画
 用法: python tools/unit_anim_export.py            # 导出全部 10 档
       python tools/unit_anim_export.py A0A C0A   # 只导指定档
 """
@@ -22,126 +17,52 @@ import struct
 import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import dxanim_lib as dx
 
 DX_DIR = 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM'
 OUT_ASSETS = 'prototype/assets/unit'
 OUT_JSON = 'prototype/data/unit_sprites.json'
-TOOL_VER = '1.0'
+TOOL_VER = '1.1'
 UNIT_FILES = [f'{g}{v}A.BIN' for g in 'ABCDE' for v in '01']
-
-
-def parse_container(data: bytes, base: int):
-    """通用档案容器 {u32 len; u32 n; u32 offs[n]} → (n, offs列表, 终点=len)"""
-    clen, n = struct.unpack_from('<II', data, base)
-    offs = list(struct.unpack_from(f'<{n}I', data, base + 8))
-    return clen, n, offs
-
-
-def parse_dxanim(data: bytes):
-    """容器级解析 + 自洽校验, 返回块偏移表
-
-    校验: offs[0] == 8+4×块数; 偏移严格递增; 头部总长 == 文件长度。
-    (末块 块8 无 {len;n} 头 —— 前 4B 即数据, 不能对其做块长校验)
-    """
-    total, nblk = struct.unpack_from('<II', data, 0)
-    offs = list(struct.unpack_from(f'<{nblk}I', data, 8))
-    if offs[0] != 8 + 4 * nblk:
-        raise ValueError(f'offset table not self-consistent: offs[0]={offs[0]} != {8 + 4 * nblk}')
-    if any(offs[i] > offs[i + 1] for i in range(nblk - 1)):
-        raise ValueError('block offsets not increasing')  # 相邻相等 = 空块 (如 A0A 块2 len=0)
-    if len(data) != total:
-        raise ValueError(f'file size {len(data)} != header total {total}')
-    return offs
-
-
-def decode_bmp(data: bytes, s: int):
-    """块6 内单帧 (标准 8bpp BMP, 内嵌调色板) → (w, h, 索引数组[h][w], 调色板[256][4])"""
-    if data[s:s + 2] != b'BM':
-        raise ValueError(f'非 BMP 帧 @{s}: {data[s:s + 2]!r}')
-    w, h = struct.unpack_from('<ii', data, s + 18)
-    px_off = struct.unpack_from('<I', data, s + 10)[0]
-    if px_off != 54 + 1024:
-        raise ValueError(f'BMP 像素偏移 {px_off} != 54+1024 (非内嵌 1024B 调色板)')
-    stride = (w + 3) // 4 * 4
-    rows = []
-    for y in range(h):  # 底上行序 → 顶向下
-        rows.append(data[s + px_off + y * stride: s + px_off + y * stride + w])
-    idx = b''.join(reversed(rows))
-    pal = [tuple(data[s + 54 + c * 4: s + 54 + c * 4 + 3]) + (0 if c == 0 else 255,)
-           for c in range(256)]  # BGRX → 保留 BGR, 索引0 透明
-    return w, h, idx, pal
-
-
-def write_png(path: str, w: int, h: int, idx: bytes, pal) -> None:
-    from PIL import Image
-    import numpy as np
-    a = np.frombuffer(idx, np.uint8).reshape(h, w)
-    p = np.array(pal, np.uint8)  # (256,4) BGRA
-    rgba = p[a][:, :, [2, 1, 0, 3]]  # → RGBA
-    Image.fromarray(rgba).save(path)
 
 
 def export_unit(name: str):
     src = os.path.join(DX_DIR, name)
     data = open(src, 'rb').read()
-    offs = parse_dxanim(data)
+    offs = dx.parse_dxanim(data)
     b0, b5, b6, b7 = offs[0], offs[5], offs[6], offs[7]
 
-    # 块6 帧
-    _, nf, foffs = parse_container(data, b6)
-    # 块5 画布矩形 (帧数×8B 直排无头)
-    rects = [struct.unpack_from('<4h', data, b5 + i * 8) for i in range(nf)]
-    if len(rects) != nf:
-        raise ValueError(f'块5 条数 {len(rects)} != 帧数 {nf}')
-    # 块7 调色板数 (元数据)
-    _, npal, _ = parse_container(data, b7)
-    # 块0 动画定义
-    _, na, aoffs = parse_container(data, b0)
-    aoffs = aoffs + [struct.unpack_from('<I', data, b0)[0]]
+    _, nf, foffs = dx.parse_container(data, b6)
+    rects = dx.parse_block5_rects(data, b5, nf)
+    _, npal, _ = dx.parse_container(data, b7)
+    anims = dx.parse_block0_anims(data, b0)
 
     unit_dir = os.path.join(OUT_ASSETS, name[:-4])  # 去 .BIN
     os.makedirs(unit_dir, exist_ok=True)
 
     frames = []
     for i in range(nf):
-        w, h, idx, pal = decode_bmp(data, b6 + foffs[i])
+        w, h, idx, pal = dx.decode_bmp(data, b6 + foffs[i])
         cw, ch, fx, fy = rects[i]
         rel = f'frame_{i:03d}.png'
-        write_png(os.path.join(unit_dir, rel), w, h, idx, pal)
+        dx.write_png(os.path.join(unit_dir, rel), w, h, idx, pal)
         frames.append({
             'file': rel, 'w': w, 'h': h,
             'canvas': {'w': cw, 'h': ch, 'x': fx, 'y': fy},
-            'anchor': {'x': cw / 2 - fx, 'y': ch - fy},  # 画布底中 → 帧内偏移
+            'anchor': dx.frame_anchor(rects[i]),
         })
 
-    anims = []
-    for ai in range(na):
-        s, e = b0 + aoffs[ai], b0 + aoffs[ai + 1]
-        recs = []
-        for k in range((e - s) // 10):
-            cw, b, c, d_field, dur = struct.unpack_from('<5h', data, s + k * 10)
-            # 控制记录不进播放序列: a=32643(0x7F63 终止符)/2049(0x0801 头) 或 b>=0
-            if cw == 32643 or cw == 2049 or b >= 0:
-                continue
-            # b <= -2 → 帧索引(-b); b == -1 → 空白帧 (隐身 dur)
-            frame = -b if b <= -2 else -1
-            recs.append({'frame': frame, 'dur': dur})
-        anims.append({'id': ai, 'records': recs})
-
     return {
-        'source': src, 'frame_count': nf, 'anim_count': na,
+        'source': src, 'frame_count': nf, 'anim_count': len(anims),
         'recolor_palettes': npal, 'frames': frames, 'anims': anims,
         '_preview': f'{name[:-4]}/_preview.png',
     }, unit_dir
 
 
 def pick_anim_map(anims, frame_count):
-    """自动挑默认序列 (JSON 可手改): MOVE=帧引用最多的连续+等时长循环, IDLE=首条单帧动画。
-    只认界内引用 (-b ≥ frame_count 的外部引用语义未定, 见 _meta.open_items);
-    控制/空白记录 (b ≥ 0 或 -1) 不计入帧序列但也不否决候选 (如尾部 32643 终止符)。"""
-    def frame_recs(a):
-        return [r for r in a['records'] if 0 <= r['frame'] < frame_count]
-
+    """自动挑默认序列 (JSON 可手改): MOVE=帧数最多的连续+等时长纯循环, IDLE=首条单帧动画。
+    只认界内引用 (-b ≥ frame_count 的外部引用语义未定, 见 _meta.open_items)。"""
     move = None
     for a in anims:
         recs = a['records']
@@ -202,7 +123,7 @@ def main():
     out = {
         '_meta': {
             'source_dir': DX_DIR,
-            'tool': f'unit_anim_export v{TOOL_VER}',
+            'tool': f'unit_anim_export v{TOOL_VER} (dxanim_lib)',
             'format_ref': 'docs/formats.md §DxAnim',
             'anchor_rule': '画布底中 = 脚底; anchor 为画布底中在帧图像内的像素偏移',
             'dur_unit_seconds': 1.0 / 60.0,  # 记录 dur 的单位 (秒) — 引擎按 60fps 计帧的假设, 可改
