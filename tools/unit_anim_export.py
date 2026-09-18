@@ -75,11 +75,24 @@ def pick_anim_map(anims, frame_count):
             if move is None or len(recs) > len(move['records']):
                 move = a
     idle = None
-    for a in anims:
-        recs = a['records']
-        if len(recs) == 1 and 0 <= recs[0]['frame'] < frame_count:
-            idle = a
-            break
+    # IDLE 挑选: 单帧动画中取"帧号最贴近 MOVE 行走带"者 —— 立绘常紧邻行走帧带排版;
+    # 首条单帧会误选同档特效帧 (B0A 目检 2026-09-18: 抓到魔法阵帧)
+    if move is not None:
+        mv_fr = [r['frame'] for r in move['records']]
+        band = (min(mv_fr) + max(mv_fr)) * 0.5
+        best_d = None
+        for a in anims:
+            recs = a['records']
+            if len(recs) == 1 and 0 <= recs[0]['frame'] < frame_count:
+                dist = abs(recs[0]['frame'] - band)
+                if best_d is None or dist < best_d:
+                    idle, best_d = a, dist
+    if idle is None:
+        for a in anims:
+            recs = a['records']
+            if len(recs) == 1 and 0 <= recs[0]['frame'] < frame_count:
+                idle = a
+                break
     amap = {}
     if move:
         amap['MOVE'] = {'anim': move['id'], 'flip_x_when_facing_right': True}
