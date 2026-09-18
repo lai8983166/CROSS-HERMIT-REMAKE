@@ -27,7 +27,8 @@ TOOL_VER = '1.1'
 UNIT_FILES = [f'{g}{v}A.BIN' for g in 'ABCDE' for v in '01']
 # IDLE 人工覆盖 (视觉逐帧验证 2026-09-18): 启发式"贴行走带"在 B1A 抓到击飞带尾帧 43 (倒栽葱骑士,
 # 小图下即"黑软泥怪"); B1A 真立姿 = anim#116 (帧226, 金盔朝上标准站姿)
-IDLE_OVERRIDES = {'B1A': 116}
+IDLE_OVERRIDES = {'B1A': 116,   # f226 金盔朝上标准站姿
+               'A0A': 2}      # f187 侧身持剑立姿 (f193=背面视角, 盾背对镜头小图似'云团' 2026-09-18)
 
 
 def export_unit(name: str):
