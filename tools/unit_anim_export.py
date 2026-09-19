@@ -5,15 +5,13 @@
 格式定案: docs/formats.md §10; 逆向过程见 openspec/changes/archive/2026-09-18-add-unit-sprites/design.md
 
 锚点 = 画布底中 (脚底), 帧内偏移 (cw/2 - fx, ch - fy), 数据推导非硬编码。
-anim_map 自动挑选 (全部写入 JSON, 手改即生效):
-  MOVE = 帧数最多的全界内连续+等时长纯循环 (无空白帧 — 空白会造成移动隐身断流)
-  IDLE = 首条非空白单帧动画
+anim_map 使用原版动作 no=3 的八向表选择 block0 #11～#15；低两位仅作为 x/y 镜像标志。
+每条动画离线解释为 steps[].layers[]，运行时无需重做原版 VM。
 用法: python tools/unit_anim_export.py            # 导出全部 10 档
       python tools/unit_anim_export.py A0A C0A   # 只导指定档
 """
 import json
 import os
-import struct
 import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -23,11 +21,29 @@ import dxanim_lib as dx
 DX_DIR = 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM'
 OUT_ASSETS = 'prototype/assets/unit'
 OUT_JSON = 'prototype/data/unit_sprites.json'
-TOOL_VER = '1.1'
+TOOL_VER = '2.0'
 UNIT_FILES = [f'{g}{v}A.BIN' for g in 'ABCDE' for v in '01']
-# IDLE 人工覆盖 (视觉逐帧验证 2026-09-18): 启发式"贴行走带"在 B1A 抓到击飞带尾帧 43 (倒栽葱骑士,
-# 小图下即"黑软泥怪"); B1A 真立姿 = anim#116 (帧226, 金盔朝上标准站姿)
-IDLE_OVERRIDES = {}   # 引擎表 (dxanim_lib.ENGINE_IDLE_ANIM=#7) 已验证优于人工挑选, 覆盖表留空备用
+IDLE_OVERRIDES = {}
+
+
+def decode_timelines(data, offs, frame_count):
+    programs = dx.parse_program_blocks(data, offs)
+    timelines = []
+    for animation in range(len(programs[0])):
+        timeline = dx.interpret_animation(data, 0, animation, offs=offs)
+        for step_index, step in enumerate(timeline['steps']):
+            for layer in step['layers']:
+                if layer['frame'] >= frame_count:
+                    raise dx.DxAnimError(
+                        f'block0 animation {animation} step {step_index}: '
+                        f'frame {layer["frame"]} >= {frame_count}'
+                    )
+        timelines.append({
+            'id': animation,
+            'steps': timeline['steps'],
+            'loop_from': timeline['loop_from'],
+        })
+    return timelines
 
 
 def export_unit(name: str):
@@ -39,13 +55,7 @@ def export_unit(name: str):
     _, nf, foffs = dx.parse_container(data, b6)
     rects = dx.parse_block5_rects(data, b5, nf)
     _, npal, _ = dx.parse_container(data, b7)
-    anims = dx.parse_block0_anims(data, b0)
-    # 块1 合成动画 (引擎 off=1 朝向引用; 0x409b70/0x4214f0 链定案)
-    b1 = offs[1]
-    _, n1, eo1 = dx.parse_container(data, b1)
-    eo1 = eo1 + [struct.unpack_from('<I', data, b1)[0]]   # 终点=块长
-    composites = [{'id': i, 'records': dx.flatten_composite(data, b1, eo1, i, anims)}
-                  for i in range(n1)]
+    anims = decode_timelines(data, offs, nf)
 
     unit_dir = os.path.join(OUT_ASSETS, name[:-4])  # 去 .BIN
     os.makedirs(unit_dir, exist_ok=True)
@@ -65,65 +75,27 @@ def export_unit(name: str):
     return {
         'source': src, 'frame_count': nf, 'anim_count': len(anims),
         'recolor_palettes': npal, 'frames': frames, 'anims': anims,
-        'composites': composites,
         '_preview': f'{name[:-4]}/_preview.png',
     }, unit_dir
 
 
-def pick_anim_map(anims, composites, frame_count, unit_uid):
-    """自动挑默认序列 (JSON 可手改): MOVE=帧数最多的连续+等时长纯循环, IDLE=首条单帧动画。
-    只认界内引用 (-b ≥ frame_count 的外部引用语义未定, 见 _meta.open_items)。"""
-    move = None
-    for a in anims:
-        recs = a['records']
-        # 纯循环: 全部记录都是界内帧 (无空白帧 — 否则移动中会"隐身", 目检 2026-09-18 抓出)
-        if len(recs) < 4 or any(r['frame'] < 0 or r['frame'] >= frame_count for r in recs):
-            continue
-        fr = [r['frame'] for r in recs]
-        durs = {r['dur'] for r in recs}
-        if len(durs) == 1 and max(fr) - min(fr) + 1 == len(fr):  # 等时长 + 帧号连续
-            if move is None or len(recs) > len(move['records']):
-                move = a
-    idle = None
-    # IDLE 挑选: 单帧动画中取"帧号最贴近 MOVE 行走带"者 —— 立绘常紧邻行走帧带排版;
-    # 首条单帧会误选同档特效帧 (B0A 目检 2026-09-18: 抓到魔法阵帧)
-    if move is not None:
-        mv_fr = [r['frame'] for r in move['records']]
-        band = (min(mv_fr) + max(mv_fr)) * 0.5
-        best_d = None
-        for a in anims:
-            recs = a['records']
-            if len(recs) == 1 and 0 <= recs[0]['frame'] < frame_count:
-                dist = abs(recs[0]['frame'] - band)
-                if best_d is None or dist < best_d:
-                    idle, best_d = a, dist
-    if idle is None:
-        for a in anims:
-            recs = a['records']
-            if len(recs) == 1 and 0 <= recs[0]['frame'] < frame_count:
-                idle = a
-                break
-    amap = {}
+def pick_anim_map(anims, frame_count, unit_uid):
+    """生成数据驱动映射：MOVE 来自原版 no=3 八向表，IDLE 保留可覆盖默认值。"""
+    walk_by_dir, _unused = dx.engine_dir_map(anims, frame_count=frame_count)
+    amap = {'walk_by_dir': walk_by_dir}
+    move = walk_by_dir.get('W') or next(iter(walk_by_dir.values()), None)
     if move:
-        amap['MOVE'] = {'anim': move['id'], 'flip_x_when_facing_right': True}
-    # 引擎朝向表 (汇编链完整闭合): walk/idle 按朝向 → 块0(+5)/块1(直引)
-    walk_by_dir, idle_by_dir = dx.engine_dir_map(anims, composites, frame_count)
-    if walk_by_dir:
-        amap['walk_by_dir'] = walk_by_dir
-    if idle_by_dir:
-        amap['idle_by_dir'] = idle_by_dir
-    if idle_by_dir:
-        first_idle = idle_by_dir.get('W') or idle_by_dir.get('S') or {}
-        if 'anim' in first_idle:
-            idle = anims[first_idle['anim']]
+        amap['MOVE'] = {'anim': move['anim'], 'flags': move['flags']}
+
     idle_override = IDLE_OVERRIDES.get(unit_uid)
-    if idle_override is not None and 0 <= idle_override < len(anims):
-        idle = anims[idle_override]
-    if idle:
-        amap['IDLE'] = {'anim': idle['id'], 'flip_x_when_facing_right': True}
+    idle_id = idle_override if idle_override is not None else 7
+    if not (0 <= idle_id < len(anims)) or not any(step['layers'] for step in anims[idle_id]['steps']):
+        idle_id = next((a['id'] for a in anims if any(step['layers'] for step in a['steps'])), None)
+    if idle_id is not None:
+        amap['IDLE'] = {'anim': idle_id, 'flags': 0}
     for st in ('ATTACK', 'DEAD'):  # 语义标签未定案 → 跟随 IDLE (开口项)
-        if idle:
-            amap[st] = {'anim': idle['id'], 'flip_x_when_facing_right': True}
+        if idle_id is not None:
+            amap[st] = {'anim': idle_id, 'flags': 0}
     return amap
 
 
@@ -148,7 +120,7 @@ def main():
     units = {}
     for name in files:
         unit, unit_dir = export_unit(name)
-        unit['anim_map'] = pick_anim_map(unit['anims'], unit['composites'], unit['frame_count'], name[:-4])
+        unit['anim_map'] = pick_anim_map(unit['anims'], unit['frame_count'], name[:-4])
         make_preview(unit_dir, unit['frames'])
         units[name[:-4]] = unit
         mv = unit['anim_map'].get('MOVE', {})
@@ -162,16 +134,14 @@ def main():
             'tool': f'unit_anim_export v{TOOL_VER} (dxanim_lib)',
             'format_ref': 'docs/formats.md §DxAnim',
             'anchor_rule': '画布底中 = 脚底; anchor 为画布底中在帧图像内的像素偏移',
-            'dur_unit_seconds': 1.0 / 60.0,  # 记录 dur 的单位 (秒) — 引擎按 60fps 计帧的假设, 可改
-            'frame_index_rule': 'anims[].records[].frame: >=0 → frames 下标; -1 → 空白帧(不绘制)',
+            'schema_version': 2,
+            'tick_seconds': 1.0 / 60.0,
+            'timeline_rule': 'anims[].steps[] = {duration_ticks,layers[]}; loop_from 为 step 下标或 null',
+            'layer_rule': 'layers 按绘制顺序排列，含 frame/x/y/flip_x/flip_y/descriptor 与原始绘制属性',
             'open_items': [
-                '部分档 (D0A/D1A/E0A/E1A 等) 的动画记录存在 -b ≥ 本档帧数的外部引用 (anim#2→250 等; '
-                '同构位置在其他档全在界内) — 跨档续编/部件表两种假设均未证实, 默认序列只选界内引用',
-                '块1 合成动画表 (27条, 头0x0801) 未解码 — v1 不导出',
-                '块4 运动步进字节码 (0xFF06/0x7F06 记录) 未解码 — 攻击位移等细节缺失',
                 '块8 (帧数+1 × u8 标志) 语义未定',
-                '块7 换色调色板 (40×256) 选择字段未定位 — v1 用帧内嵌调色板',
-                '动画语义标签 (哪个 anim id = 何动作/朝向) 未从引擎定案; anim_map 为启发式默认, JSON 手改即生效',
+                '块7 换色调色板 (40×256) 的逐描述符选择规则只保留原值，当前仍用帧内嵌调色板',
+                'ATTACK/DEAD 的完整动作表尚未语义标注，暂沿用 IDLE；MOVE 八向已按原版动作3定案',
             ],
         },
         'units': units,

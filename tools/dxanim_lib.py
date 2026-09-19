@@ -431,6 +431,12 @@ def interpret_animation(data: bytes, block: int, animation: int, *, offs=None,
             f'block={block} animation={animation}'
         )
 
+    # 无限循环指令首次到达时，VM 的内部 repeat 状态会从 0 变为 0x7f；若这造成两个完全
+    # 相同的可见周期，折叠为单周期并从 0 循环，避免官方 JSON 重复保存同一组画面。
+    if loop_tick and loop_tick * 2 == len(ticks) and ticks[:loop_tick] == ticks[loop_tick:]:
+        ticks = ticks[:loop_tick]
+        loop_tick = 0
+
     steps = []
     loop_from = None
     for tick, layers in enumerate(ticks):
