@@ -28,6 +28,7 @@ var _world_size := Vector2.ZERO
 var _unit_sprites: Dictionary = {}
 var _sprites_meta: Dictionary = {}
 var _tex_cache: Dictionary = {}
+var _unit_anim_clocks: Dictionary = {}   # instance_id → {identity,start_frame}
 # 换色 (add-unit-recolor): 块7 表 + (档,色) 重映射字典 + 阵营默认色
 var _unit_recolors: Dictionary = {}
 var _recolor_maps: Dictionary = {}
@@ -98,6 +99,7 @@ func _start_battle(seed: int) -> void:
 	battle = Battle.start(setup, use_seed, map)
 	selected = null
 	_accum = 0.0
+	_unit_anim_clocks.clear()
 
 
 func _load_palette() -> void:
@@ -363,9 +365,7 @@ func _draw_units() -> void:
 	for i in battle.units.size():
 		var u: BattleUnit = battle.units[i]
 		var p := origin + _unit_world_pos(u) * view_scale
-		# 相位偏移按单位序错开 (同时出发不走齐步)
-		var phase: float = battle.frame * Battle.LOGIC_STEP + float(i % 7) * 0.37
-		if not _draw_sprite_unit(u, p, phase):
+		if not _draw_sprite_unit(u, p):
 			var col: Color = FACTION_COLOR[u.faction]
 			match u.state:
 				BattleUnit.State.DEAD:
@@ -386,21 +386,9 @@ func _draw_units() -> void:
 			draw_arc(p, r + 4, 0, TAU, 24, Color.YELLOW, 1.5)
 
 
-## 序表解析: 块0(anim) / 块1(composite) 双路径 (引擎 off=0/1)
-func _resolve_seq(udata: Dictionary, entry: Dictionary) -> Array:
-	if entry.is_empty():
-		return []
-	if int(entry.get("block", 0)) == 1:
-		var comps: Array = udata.get("composites", [])
-		var ci := int(entry.get("composite", -1))
-		if ci >= 0 and ci < comps.size():
-			return comps[ci].get("records", [])
-		return []
-	var anims: Array = udata.get("anims", [])
-	var ai := int(entry.get("anim", -1))
-	if ai >= 0 and ai < anims.size():
-		return anims[ai].get("records", [])
-	return []
+## v2 steps/layers 与 v1 records/composites 的统一入口。
+func _resolve_timeline(udata: Dictionary, entry: Dictionary) -> Dictionary:
+	return AnimTimeline.resolve(udata, entry)
 
 ## 朝向向量 → 8 向罗盘键 (引擎行走带选择)
 func _facing_dir8(f: Vector2i) -> String:
@@ -433,9 +421,9 @@ func _unit_world_pos(u: BattleUnit) -> Vector2:
 	return map.cell_to_world(u.from_cell.x, u.from_cell.y).lerp(cur, t)
 
 
-## 精灵绘制 (add-unit-sprites): 状态→anim_map 序列循环, 锚点=画布底中对格心, 脚底椭圆阴影。
+## 精灵绘制: 状态+八向选择时间线；身份变化时重置独立 sim 时钟，绘制当前 step 的全部图层。
 ## 返回 false = 无帧表/无序列/资产缺失 → 调用方走色块回退。
-func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
+func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 	if _unit_sprites.is_empty() or u.anim_id.is_empty():
 		return false
 	var udata: Dictionary = _unit_sprites.get(u.anim_id, {})
@@ -450,58 +438,78 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 			key = "ATTACK"
 		BattleUnit.State.DEAD:
 			key = "DEAD"
-	# 引擎朝向表 (汇编链闭合): MOVE/IDLE 按朝向 → 块0(anim)/块1(composite) 序列
-	var flip := false
-	var recs: Array = []
+	var direction := _facing_dir8(u.facing)
+	var entry: Dictionary = {}
 	if key == "MOVE" and amap.has("walk_by_dir"):
-		recs = _resolve_seq(udata, amap["walk_by_dir"].get(_facing_dir8(u.facing), {}))
-	if recs.is_empty() and key == "IDLE" and amap.has("idle_by_dir"):
-		recs = _resolve_seq(udata, amap["idle_by_dir"].get(_facing_dir8(u.facing), {}))
-	if recs.is_empty():
-		var entry: Dictionary = amap.get(key, amap.get("IDLE", {}))
-		recs = _resolve_seq(udata, entry)
-		flip = bool(entry.get("flip_x_when_facing_right", false)) and u.facing.x > 0
-	if recs.is_empty():
+		entry = amap["walk_by_dir"].get(direction, {})
+	if entry.is_empty() and key == "IDLE" and amap.has("idle_by_dir"):
+		entry = amap["idle_by_dir"].get(direction, {})
+	if entry.is_empty():
+		entry = amap.get(key, amap.get("IDLE", {}))
+	var timeline := _resolve_timeline(udata, entry)
+	if timeline.is_empty() or timeline.get("steps", []).is_empty():
 		return false
 	var frames: Array = udata.get("frames", [])
-	var dur_s: float = float(_sprites_meta.get("dur_unit_seconds", 1.0 / 60.0))
-	var total := 0.0
-	for r in recs:
-		total += maxf(1.0, float(r.get("dur", 1))) * dur_s
-	if total <= 0.0 or frames.is_empty():
+	if frames.is_empty():
 		return false
-	var phase_t := fposmod(maxf(0.0, phase), total)
-	var pick_frame := -1
-	for ri in recs.size():
-		var r: Dictionary = recs[ri]
-		var d := maxf(1.0, float(r.get("dur", 1))) * dur_s
-		if phase_t < d or ri == recs.size() - 1:
-			pick_frame = int(r.get("frame", -1))
-			break
-		phase_t -= d
+	var flags := int(timeline.get("flags", 0))
+	# v1 的 facing-right 开关只影响兼容输入；v2 使用方向表低两位 flags。
+	if bool(entry.get("flip_x_when_facing_right", false)) and u.facing.x > 0:
+		flags ^= 1
+	var identity := "%d/%s/%d/%d" % [u.state, direction, int(timeline.get("anim", -1)), flags]
+	var unit_id := u.get_instance_id()
+	var clock: Dictionary = _unit_anim_clocks.get(unit_id, {})
+	var elapsed_frames := AnimTimeline.clock_elapsed(clock, identity, battle.frame)
+	_unit_anim_clocks[unit_id] = clock
+	var tick_seconds: float = float(_sprites_meta.get(
+		"tick_seconds", _sprites_meta.get("dur_unit_seconds", 1.0 / 60.0)))
+	var elapsed_ticks := int(floor(elapsed_frames * Battle.LOGIC_STEP / maxf(tick_seconds, 0.000001)))
+	var picked := AnimTimeline.step_at(timeline, elapsed_ticks, true)
+	if picked.is_empty():
+		return false
+	var step: Dictionary = picked["step"]
 	# 脚底阴影 (43d270 印章语义的椭圆近似)
 	draw_set_transform(p_screen, 0.0, Vector2(1.0, 0.45))
 	draw_circle(Vector2.ZERO, 9.0 * view_scale, Color(0, 0, 0, 0.35))
 	draw_set_transform(Vector2.ZERO)
-	if pick_frame < 0 or pick_frame >= frames.size():
+	var layers: Array = step.get("layers", [])
+	if layers.is_empty():
 		return true   # 空白帧时段: 只画阴影不画本体 (序列本身有效)
 	var pal := u.palette_id if u.palette_id >= 0 else int(_faction_palettes.get(str(u.faction), 0))
-	_last_draw[u.name] = "anim=%s state=%s frame=%d pal=%d cell=%s" % [
-		u.anim_id, BattleUnit.State.keys()[u.state], pick_frame, pal, str(u.cell)]
-	var tex := _frame_tex(u.anim_id, pick_frame, pal)
-	if tex != null:
-		_check_dark_frame(u.anim_id, pick_frame, pal, u)
-	if tex == null:
-		return false
-	var f: Dictionary = frames[pick_frame]
-	var anchor: Dictionary = f.get("anchor",
-			{"x": float(f.get("w", 0)) * 0.5, "y": float(f.get("h", 0))})
 	var mod := Color(1, 1, 1, 0.55) if u.state == BattleUnit.State.WITHDRAWN else Color.WHITE
-	var fx := -1.0 if flip else 1.0   # flip 已按引擎朝向表/镜像位定
-	draw_set_transform_matrix(Transform2D(0.0, Vector2(view_scale * fx, view_scale), 0.0, p_screen))
-	draw_texture_rect(tex, Rect2(Vector2(-float(anchor.get("x", 0.0)),
-			-float(anchor.get("y", 0.0))), Vector2(tex.get_width(), tex.get_height())), false, mod)
-	draw_set_transform_matrix(Transform2D())
+	_last_draw[u.name] = "anim=%s state=%s dir=%s step=%d frames=%s pal=%d cell=%s" % [
+		u.anim_id, BattleUnit.State.keys()[u.state], direction, int(picked["index"]),
+		str(layers.map(func(layer): return int(layer.get("frame", -1)))), pal, str(u.cell)]
+	var drawn := _draw_timeline_layers(u.anim_id, frames, layers, p_screen, pal, flags, mod)
+	if drawn:
+		for layer: Dictionary in layers:
+			_check_dark_frame(u.anim_id, int(layer.get("frame", -1)), pal, u)
+	return drawn
+
+
+func _draw_timeline_layers(anim_id: String, frames: Array, layers: Array, p_screen: Vector2,
+		pal_id: int, selection_flags: int, modulate := Color.WHITE) -> bool:
+	var prepared: Array = []
+	for layer: Dictionary in layers:
+		var frame_index := int(layer.get("frame", -1))
+		if frame_index < 0 or frame_index >= frames.size():
+			return false
+		var tex := _frame_tex(anim_id, frame_index, pal_id)
+		if tex == null:
+			return false
+		var flip := AnimTimeline.combined_flip(layer, selection_flags)
+		prepared.append({
+			"texture": tex,
+			"rect": AnimTimeline.layer_rect(frames[frame_index], layer),
+			"flip_x": flip.x != 0,
+			"flip_y": flip.y != 0,
+		})
+	for item: Dictionary in prepared:
+		var sx := -view_scale if item["flip_x"] else view_scale
+		var sy := -view_scale if item["flip_y"] else view_scale
+		draw_set_transform_matrix(Transform2D(0.0, Vector2(sx, sy), 0.0, p_screen))
+		draw_texture_rect(item["texture"], item["rect"], false, modulate)
+		draw_set_transform_matrix(Transform2D())
 	return true
 
 
@@ -531,7 +539,8 @@ func _recolor_map(anim_id: String, pal_id: int) -> Dictionary:
 func _draw_fx() -> void:
 	if battle == null or _fx_effects.is_empty() or battle.fx_events.is_empty():
 		return
-	var dur_s: float = float(_sprites_meta.get("dur_unit_seconds", 1.0 / 60.0))
+	var tick_seconds: float = float(_sprites_meta.get(
+		"tick_seconds", _sprites_meta.get("dur_unit_seconds", 1.0 / 60.0)))
 	for ev in battle.fx_events:
 		var fx_name: String = _fx_job_map.get(str(ev.get("job_id", -1)), _fx_default)
 		var cfg: Dictionary = _fx_effects.get(fx_name, {})
@@ -543,40 +552,25 @@ func _draw_fx() -> void:
 		var anim_idx: int = int(cfg.get("anim", udata.get("anim_map", {}).get("PLAY", {}).get("anim", -1)))
 		if udata.is_empty() or anim_idx < 0 or anim_idx >= anims.size():
 			continue
-		var recs: Array = anims[anim_idx].get("records", [])
+		var timeline := AnimTimeline.normalize(anims[anim_idx])
 		var frames: Array = udata.get("frames", [])
-		var total := 0.0
-		for r in recs:
-			total += maxf(1.0, float(r.get("dur", 1))) * dur_s
 		var age: float = (battle.frame - int(ev.get("frame", 0))) * Battle.LOGIC_STEP
-		if age < 0.0 or age >= total:
+		var age_ticks := int(floor(age / maxf(tick_seconds, 0.000001)))
+		var picked := AnimTimeline.step_at(timeline, age_ticks, false)
+		if picked.is_empty():
 			continue
-		var t := age
-		var pick := -1
-		for ri in recs.size():
-			var dsec := maxf(1.0, float(recs[ri].get("dur", 1))) * dur_s
-			if t < dsec or ri == recs.size() - 1:
-				pick = int(recs[ri].get("frame", -1))
-				break
-			t -= dsec
-		if pick < 0 or pick >= frames.size():
+		var layers: Array = picked["step"].get("layers", [])
+		if layers.is_empty():
 			continue   # 空白帧时段 → 本帧不画
-		var tex := _frame_tex(fid, pick, 0)
-		if tex == null:
-			continue
 		var to_c: Array = ev.get("to_cell", [0, 0])
 		var from_c: Array = ev.get("from_cell", [0, 0])
 		var p := origin + map.cell_to_world(int(to_c[0]), int(to_c[1])) * view_scale
-		var f: Dictionary = frames[pick]
-		var anchor: Dictionary = f.get("anchor",
-				{"x": float(f.get("w", 0)) * 0.5, "y": float(f.get("h", 0))})
-		var fx := -1.0 if int(to_c[0]) < int(from_c[0]) else 1.0
-		_last_draw["FX"] = "file=%s anim#%d frame=%d age=%.2f at=(%d,%d)" % [
-			fid, anim_idx, pick, age, int(to_c[0]), int(to_c[1])]
-		draw_set_transform_matrix(Transform2D(0.0, Vector2(view_scale * fx, view_scale), 0.0, p))
-		draw_texture_rect(tex, Rect2(Vector2(-float(anchor.get("x", 0.0)),
-				-float(anchor.get("y", 0.0))), Vector2(tex.get_width(), tex.get_height())), false)
-		draw_set_transform_matrix(Transform2D())
+		var flags := 1 if int(to_c[0]) < int(from_c[0]) else 0
+		_last_draw["FX"] = "file=%s anim#%d step=%d frames=%s age=%.2f at=(%d,%d)" % [
+			fid, anim_idx, int(picked["index"]),
+			str(layers.map(func(layer): return int(layer.get("frame", -1)))),
+			age, int(to_c[0]), int(to_c[1])]
+		_draw_timeline_layers(fid, frames, layers, p, 0, flags)
 
 
 ## 暗帧检测 (调试): 记录每键平均亮度; 画出异常暗帧时打印 + 截图 (目检"黑色怪物"抓现行用)
