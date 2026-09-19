@@ -40,6 +40,12 @@ def export_unit(name: str):
     rects = dx.parse_block5_rects(data, b5, nf)
     _, npal, _ = dx.parse_container(data, b7)
     anims = dx.parse_block0_anims(data, b0)
+    # 块1 合成动画 (引擎 off=1 朝向引用; 0x409b70/0x4214f0 链定案)
+    b1 = offs[1]
+    _, n1, eo1 = dx.parse_container(data, b1)
+    eo1 = eo1 + [struct.unpack_from('<I', data, b1)[0]]   # 终点=块长
+    composites = [{'id': i, 'records': dx.flatten_composite(data, b1, eo1, i, anims)}
+                  for i in range(n1)]
 
     unit_dir = os.path.join(OUT_ASSETS, name[:-4])  # 去 .BIN
     os.makedirs(unit_dir, exist_ok=True)
@@ -59,11 +65,12 @@ def export_unit(name: str):
     return {
         'source': src, 'frame_count': nf, 'anim_count': len(anims),
         'recolor_palettes': npal, 'frames': frames, 'anims': anims,
+        'composites': composites,
         '_preview': f'{name[:-4]}/_preview.png',
     }, unit_dir
 
 
-def pick_anim_map(anims, frame_count, unit_uid):
+def pick_anim_map(anims, composites, frame_count, unit_uid):
     """自动挑默认序列 (JSON 可手改): MOVE=帧数最多的连续+等时长纯循环, IDLE=首条单帧动画。
     只认界内引用 (-b ≥ frame_count 的外部引用语义未定, 见 _meta.open_items)。"""
     move = None
@@ -99,13 +106,16 @@ def pick_anim_map(anims, frame_count, unit_uid):
     amap = {}
     if move:
         amap['MOVE'] = {'anim': move['id'], 'flip_x_when_facing_right': True}
-    # 引擎朝向表 (EXE 0x610510/0x60D160 逆向, 语义槽位全档一致): 优先于启发式
-    walk_by_dir = dx.engine_walk_map(anims, frame_count)
+    # 引擎朝向表 (汇编链完整闭合): walk/idle 按朝向 → 块0(+5)/块1(直引)
+    walk_by_dir, idle_by_dir = dx.engine_dir_map(anims, composites, frame_count)
     if walk_by_dir:
         amap['walk_by_dir'] = walk_by_dir
-    idle_engine = dx.engine_idle_anim(anims, frame_count)
-    if idle_engine is not None:
-        idle = anims[idle_engine]
+    if idle_by_dir:
+        amap['idle_by_dir'] = idle_by_dir
+    if idle_by_dir:
+        first_idle = idle_by_dir.get('W') or idle_by_dir.get('S') or {}
+        if 'anim' in first_idle:
+            idle = anims[first_idle['anim']]
     idle_override = IDLE_OVERRIDES.get(unit_uid)
     if idle_override is not None and 0 <= idle_override < len(anims):
         idle = anims[idle_override]
@@ -138,7 +148,7 @@ def main():
     units = {}
     for name in files:
         unit, unit_dir = export_unit(name)
-        unit['anim_map'] = pick_anim_map(unit['anims'], unit['frame_count'], name[:-4])
+        unit['anim_map'] = pick_anim_map(unit['anims'], unit['composites'], unit['frame_count'], name[:-4])
         make_preview(unit_dir, unit['frames'])
         units[name[:-4]] = unit
         mv = unit['anim_map'].get('MOVE', {})

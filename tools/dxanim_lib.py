@@ -122,39 +122,76 @@ def pick_play_sequence(anims, frame_count, min_frames=4):
     return best
 
 
-## ── 引擎动画表 (EXE .data 逆向定案 2026-09-18) ──────────────────────────────
-## UnitAnim.cpp 0x464d70: 单位动画号 → 表A@0x60E850(结构体表, 默认0x60D160) + 表B@0x60F070
-## 0x465040 SetDirNo(dir 1..9, no): 表A[布局表@0x610510[dir] + no*8] 取字节对 {b0, b1},
-##   经表B(恒等) → (动画号=b0, 变体=b1&3) → 0x409ff0 落帧。
-## 引擎动画号 → 块0 下标 = +5 (锚点: 引擎0=空 → 块0#5 空白; 引擎6..10 → 块0#11..#15 五条行走带)
-## 动作 no=2 (移动) 9 朝向的 (引擎号, off): d1=(9,0) d2=(10,0) d3=(10,1) d4=(8,0)
-##   d5=(6,0) d6=(8,1) d7=(7,0) d8=(6,0) d9=(7,1) → 块0: #14,#15,#15m,#13,#11,#13m,#12,#11,#12m
-## 朝向标注 (视觉): #11=面左 #12=面右 #13=右斜 #14=左斜 #15=正面(镜像=背面)
-## → 8 向罗盘映射 (off=1 即镜像标志):
-ENGINE_WALK_BY_DIR8 = {
-    'W': (11, 0), 'E': (12, 0), 'N': (15, 1), 'S': (15, 0),
-    'NW': (14, 0), 'NE': (13, 0), 'SW': (13, 1), 'SE': (12, 1),
+def flatten_composite(data, b1, eo, idx, block0_anims, block0_plus=5, sub_cap=8):
+    """块1[idx] → [{frame,dur}] 展平序列
+
+    记录语义 (0x409b70/0x4214f0 链 + 结构对比定案):
+      (0x0801=2049 / 0x0601=1537 / 0x0501=1281, X, dx, dy, 0) = 引用块0动画 #(X+block0_plus), 带位移
+      (0, -帧, -1, d, dur) = 直接帧;  (2,...) = 控制记录 (v1 跳过)
+    引用内联取子动画前 sub_cap 帧; 位移(dx,dy) v1 不应用 (开口)。
+    """
+    s, e = b1 + eo[idx], b1 + eo[idx + 1]
+    out = []
+    for k in range((e - s) // 10):
+        a, b, c, d_field, dur = struct.unpack_from('<5h', data, s + k * 10)
+        if a in (2049, 1537, 1281):
+            ref = b + block0_plus
+            if 0 <= ref < len(block0_anims):
+                for r in block0_anims[ref]['records'][:sub_cap]:
+                    out.append((r['frame'], r['dur']))
+        elif a == 0 and b <= -2:
+            out.append((-b, dur))
+    return [{'frame': f, 'dur': du} for f, du in out]
+
+
+## ── 引擎动画表 (EXE .data 逆向定案 2026-09-18/19, 汇编链完整闭合) ─────────────
+## UnitAnim.cpp 0x464d70/0x465040/0x409ff0 → DxAnim.cpp 0x40a400 → 0x4214f0 (容器访问器):
+##   表A@0x60D160[布局表@0x610510[dir] + no*8] 取字节对 (b0, b1) → 恒等表B → (动画号=b0, off=b1&3)
+##   → 0x409f70(manager, off) = 档案对象字段[off] = 块[off] → 0x4214f0(块[off], 动画号) = 该块第(动画号)条
+##   即: off=0 → 块0 条目(引擎号+5=块0下标), off=1 → 块1 条目(直引)
+## 移动 no=2 (dir → (b0, off)): d1=(9,0) d2=(10,0) d3=(10,1) d4=(8,0) d5=(6,0)
+##   d6=(8,1) d7=(7,0) d8=(6,0) d9=(7,1)
+## 待机 no=1 (dir → (b0, off)): d1=(4,0) d2=(4,0) d3=(4,1) d4=(4,0) d5=(2,0)
+##   d6=(4,1) d7=(2,0) d8=(2,0) d9=(2,1)
+## 朝向→罗盘 (视觉标注: d5/d8=块0#11 面左, d7=块0#12 面右, d4=块0#13 右斜, d1=块0#14 左斜, d2=块0#15 正面):
+ENGINE_DIR8 = {
+    # 罗盘: (dir号, no=2 移动, no=1 待机)
+    'W':  (5, (6, 0), (2, 0)),
+    'E':  (7, (7, 0), (2, 0)),
+    'NW': (1, (9, 0), (4, 0)),
+    'NE': (4, (8, 0), (4, 0)),
+    'S':  (2, (10, 0), (4, 0)),
+    'N':  (3, (10, 1), (4, 1)),
+    'SW': (6, (8, 1), (4, 1)),
+    'SE': (9, (7, 1), (2, 1)),
 }
-ENGINE_IDLE_ANIM = 7   # 动作 no=1 dir5/8 → 引擎6 → 块0#7 (正面持剑站立, 视觉验证)
+ENGINE_BLOCK0_PLUS = 5   # 引擎动画号 → 块0 下标 偏移 (锚: 引擎0=空→#5 空白; 引擎6..10→#11..15 行走带)
 
 
-def engine_walk_map(anims, frame_count):
-    """按引擎表生成 walk_by_dir (块0槽位语义在全部单位档一致); 槽位非纯循环时回退 None。"""
-    out = {}
-    for d, (slot, mirror) in ENGINE_WALK_BY_DIR8.items():
-        if slot >= len(anims):
-            continue
-        recs = anims[slot]['records']
-        ok = len(recs) >= 4 and all(0 <= r['frame'] < frame_count for r in recs)
-        if ok:
-            out[d] = {'anim': slot, 'flip': bool(mirror)}
-    return out
-
-
-def engine_idle_anim(anims, frame_count):
-    """引擎待机槽位 #7; 非法(非单帧界内)时回退 None。"""
-    if ENGINE_IDLE_ANIM < len(anims):
-        recs = anims[ENGINE_IDLE_ANIM]['records']
-        if len(recs) >= 1 and all(0 <= r['frame'] < frame_count for r in recs):
-            return ENGINE_IDLE_ANIM
-    return None
+def engine_dir_map(anims, composites, frame_count):
+    """生成 walk_by_dir / idle_by_dir: off=0 → 块0[#b0+5], off=1 → 块1[b0] (直引)"""
+    def entry(b0, off):
+        if off == 0:
+            slot = b0 + ENGINE_BLOCK0_PLUS
+            if slot >= len(anims):
+                return {}
+            recs = anims[slot]['records']
+            if not recs or any(r['frame'] >= frame_count for r in recs):
+                return {}
+            return {'block': 0, 'anim': slot}
+        else:
+            if b0 >= len(composites):
+                return {}
+            recs = composites[b0]['records']
+            if not recs or any(r['frame'] >= frame_count for r in recs):
+                return {}
+            return {'block': 1, 'composite': b0}
+    walk, idle = {}, {}
+    for d, (_dirno, mv, idl) in ENGINE_DIR8.items():
+        e1 = entry(*mv)
+        if e1:
+            walk[d] = e1
+        e2 = entry(*idl)
+        if e2:
+            idle[d] = e2
+    return walk, idle

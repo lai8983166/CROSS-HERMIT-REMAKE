@@ -386,6 +386,22 @@ func _draw_units() -> void:
 			draw_arc(p, r + 4, 0, TAU, 24, Color.YELLOW, 1.5)
 
 
+## 序表解析: 块0(anim) / 块1(composite) 双路径 (引擎 off=0/1)
+func _resolve_seq(udata: Dictionary, entry: Dictionary) -> Array:
+	if entry.is_empty():
+		return []
+	if int(entry.get("block", 0)) == 1:
+		var comps: Array = udata.get("composites", [])
+		var ci := int(entry.get("composite", -1))
+		if ci >= 0 and ci < comps.size():
+			return comps[ci].get("records", [])
+		return []
+	var anims: Array = udata.get("anims", [])
+	var ai := int(entry.get("anim", -1))
+	if ai >= 0 and ai < anims.size():
+		return anims[ai].get("records", [])
+	return []
+
 ## 朝向向量 → 8 向罗盘键 (引擎行走带选择)
 func _facing_dir8(f: Vector2i) -> String:
 	if f.x < 0 and f.y < 0:
@@ -434,24 +450,19 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2, phase: float) -> bool:
 			key = "ATTACK"
 		BattleUnit.State.DEAD:
 			key = "DEAD"
-	var entry: Dictionary = amap.get(key, amap.get("IDLE", {}))
-	var anims: Array = udata.get("anims", [])
-	# 引擎朝向表 (EXE 0x610510/0x60D160 逆向): MOVE 按朝向选 5 行走带之一, flip=引擎镜像位
-	var anim_idx := -1
+	# 引擎朝向表 (汇编链闭合): MOVE/IDLE 按朝向 → 块0(anim)/块1(composite) 序列
 	var flip := false
+	var recs: Array = []
 	if key == "MOVE" and amap.has("walk_by_dir"):
-		var wd: Dictionary = amap["walk_by_dir"].get(_facing_dir8(u.facing), {})
-		if not wd.is_empty():
-			anim_idx = int(wd.get("anim", -1))
-			flip = bool(wd.get("flip", false))
-	if anim_idx < 0:
-		anim_idx = int(entry.get("anim", -1))   # JSON 数字为 float, 统一 int 化
+		recs = _resolve_seq(udata, amap["walk_by_dir"].get(_facing_dir8(u.facing), {}))
+	if recs.is_empty() and key == "IDLE" and amap.has("idle_by_dir"):
+		recs = _resolve_seq(udata, amap["idle_by_dir"].get(_facing_dir8(u.facing), {}))
+	if recs.is_empty():
+		var entry: Dictionary = amap.get(key, amap.get("IDLE", {}))
+		recs = _resolve_seq(udata, entry)
 		flip = bool(entry.get("flip_x_when_facing_right", false)) and u.facing.x > 0
-	if entry.is_empty() and anim_idx < 0:
+	if recs.is_empty():
 		return false
-	if anim_idx < 0 or anim_idx >= anims.size():
-		return false
-	var recs: Array = anims[anim_idx].get("records", [])
 	var frames: Array = udata.get("frames", [])
 	var dur_s: float = float(_sprites_meta.get("dur_unit_seconds", 1.0 / 60.0))
 	var total := 0.0
