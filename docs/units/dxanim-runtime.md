@@ -39,17 +39,19 @@
 
 移动调用方传入动作号 `no=3`。表项的动画号直接对应块0 #11～#15；第二字节低两位是
 水平/垂直镜像标志，不是块号，也不存在旧文档中的“动画号 +5”。
+原版角度查表 `0x618D80/0x618DA4` 固定了罗盘关系：0° 为 d6/E，之后每45°依次为
+d3/SE、d2/S、d1/SW、d4/W、d7/NW、d8/N、d9/NE；d5 是中心位。
 
 | 罗盘方向 | 原版 dir | 块0动画 | flags |
 |---|---:|---:|---:|
-| W | 5 | 11 | 0 |
-| E | 7 | 12 | 0 |
-| NW | 1 | 14 | 0 |
-| NE | 4 | 13 | 0 |
+| W | 4 | 13 | 0 |
+| E | 6 | 13 | 1（水平镜像） |
+| NW | 7 | 12 | 0 |
+| NE | 9 | 12 | 1（水平镜像） |
 | S | 2 | 15 | 0 |
-| N | 3 | 14 | 1（水平镜像） |
-| SW | 6 | 13 | 1（水平镜像） |
-| SE | 9 | 12 | 1（水平镜像） |
+| N | 8 | 11 | 0 |
+| SW | 1 | 14 | 0 |
+| SE | 3 | 14 | 1（水平镜像） |
 
 ## 黄金样例
 
@@ -71,3 +73,7 @@ python -m unittest discover -s tools/tests -p "test_*.py" -v
 导出验证要求：10个单位档均有八方向 MOVE；所有 layer 帧号均小于对应 `frame_count`；
 A0A/B1A 与 01E 黄金链逐项相等。解释器对截断指令、越界描述符和不收敛控制流报错，不生成
 部分正确的 JSON。
+
+运行 `python tools/render_walk_comparison.py` 会先比较 A0A/B1A 的原始 BIN 解释结果与运行时
+JSON，再生成 [`analysis/dxanim_walk_comparison.png`](../../analysis/dxanim_walk_comparison.png)。
+图中16个方向行均为六步循环，标题同时列出 block0 动画号、镜像 flags 和 `raw=runtime` 结论。

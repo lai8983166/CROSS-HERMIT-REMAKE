@@ -16,8 +16,8 @@ class UnitExportTests(unittest.TestCase):
         self.assertEqual(self.data['_meta']['schema_version'], 2)
         expected_dirs = {'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'}
         expected_anims = {
-            'W': (11, 0), 'E': (12, 0), 'NW': (14, 0), 'NE': (13, 0),
-            'S': (15, 0), 'N': (14, 1), 'SW': (13, 1), 'SE': (12, 1),
+            'W': (13, 0), 'E': (13, 1), 'NW': (12, 0), 'NE': (12, 1),
+            'S': (15, 0), 'N': (11, 0), 'SW': (14, 0), 'SE': (14, 1),
         }
         self.assertEqual(len(self.data['units']), 10)
         for unit_id, unit in self.data['units'].items():

@@ -94,8 +94,8 @@ class DxAnimGoldenTests(unittest.TestCase):
         self.assertEqual(
             {direction: (entry['anim'], entry['flags']) for direction, entry in walk.items()},
             {
-                'W': (11, 0), 'E': (12, 0), 'NW': (14, 0), 'NE': (13, 0),
-                'S': (15, 0), 'N': (14, 1), 'SW': (13, 1), 'SE': (12, 1),
+                'W': (13, 0), 'E': (13, 1), 'NW': (12, 0), 'NE': (12, 1),
+                'S': (15, 0), 'N': (11, 0), 'SW': (14, 0), 'SE': (14, 1),
             },
         )
         self.assertTrue(all(entry['block'] == 0 and entry['action'] == 3 for entry in walk.values()))

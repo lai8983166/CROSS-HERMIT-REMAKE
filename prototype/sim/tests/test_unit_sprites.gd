@@ -13,6 +13,8 @@ func test_v2帧表与八方向完整() -> void:
 	assert_eq(int(parsed["_meta"].get("schema_version", 0)), 2, "schema v2")
 	assert_true(float(parsed["_meta"].get("tick_seconds", 0.0)) > 0.0, "tick 单位为正")
 	var directions := ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
+	var expected := {"N": [11, 0], "NE": [12, 1], "E": [13, 1], "SE": [14, 1],
+		"S": [15, 0], "SW": [14, 0], "W": [13, 0], "NW": [12, 0]}
 	for id in parsed["units"]:
 		var unit: Dictionary = parsed["units"][id]
 		var frames: Array = unit.get("frames", [])
@@ -22,8 +24,8 @@ func test_v2帧表与八方向完整() -> void:
 			assert_true(mapping.has(direction), "%s 有 %s 方向" % [id, direction])
 			var entry: Dictionary = mapping.get(direction, {})
 			assert_eq(int(entry.get("block", -1)), 0, "%s 直接使用 block0" % direction)
-			assert_true(int(entry.get("anim", -1)) >= 11 and int(entry.get("anim", -1)) <= 15,
-				"%s 使用 #11..#15" % direction)
+			assert_eq([int(entry.get("anim", -1)), int(entry.get("flags", -1))], expected[direction],
+				"%s 使用角度表指定动画和镜像" % direction)
 
 
 func test_时间线图层全部界内() -> void:
