@@ -1,40 +1,29 @@
 ## Why
 
-单位层（精灵+配色）落地后，战斗表现力的最大缺口是**攻击特效**：攻击命中只有日志和血条
-变化，画面上无事发生。而素材侧零成本——侦察定案：
-- `##E.BIN`（01E 实测）与单位档**同容器 9 块格式**：块0 #1..#121 全是 9 记录播放序列
-  （首帧 dur=20 + 后续 dur=6 的降序帧串，播一次的斩击演出），块5=帧数×8、块6=98 帧
-  BMP、块7=6 张换色板——`unit_anim_export` 的解码逻辑直接复用
-- `battle.gd _attack()` 是现成事件源（挂 typed 事件即可）
-
-攻击时在目标格播原版斩击特效，是当前 ROI 最高的一步。
+当前战斗攻击表现与原版不符：单位进入攻击状态时仍播放待机动作，同时所有普通攻击都被无条件叠加 `01E#21`。进一步逆向确认，样例职业的普通攻击使用单位档 action 5，挥砍残影已经包含在单位动作的复合图层中，而攻击 101/103 的外置特效字段均为 0。
 
 ## What Changes
 
-- **解码复用重构**：抽 `tools/dxanim_lib.py`（容器/BMP/序列解析），`unit_anim_export.py`
-  改为调用它；新 `tools/fx_export.py` 导出 `##E` 档 → `assets/fx/<档>/frame_*.png` +
-  `data/attack_effects.json`（同帧表 schema，anim_map 为 PLAY 播一次序列）。
-- **战斗事件**：`battle.gd` 增 typed `fx_events: Array[Dictionary]`（attack 事件：
-  帧/攻方格/守方格/命中/伤害），`_attack()` 挂点写入；纯数据不动逻辑。
-- **视图播放**：main.gd 特效实例表（sim 时间驱动，播一次即移除），锚点=画布底中对
-  目标格心，按攻→守方向水平翻转；帧纹理走既有 `_frame_tex`（特效表并入同一注册表，
-  换色/缓存路径复用）。
-- **配置**：`data/attack_effects.json` {effects: {名字: {file, anim}}, default} +
-  `battle_setup.json` 可选 `attack_effects: {"<job_id>": 名字}` 职业覆盖；资产/表缺失
-  → 无特效不报错。
+- 从原版单位动作表导出 action 5 的八方向攻击映射，并在每次攻击时从首帧播放一次，结束后视觉回到待机。
+- 攻击时让单位朝向目标，保证方向动画与实际攻击方向一致。
+- 攻击事件增加攻击条目 ID 与原版命中特效 ID，保留命中、伤害和双方格坐标。
+- 外置 `##E` 特效改为显式 ID/配置映射；特效 ID 为 0 或没有已验证映射时不播放，不再为所有攻击套默认 `01E#21`。
+- 保留 `##E` 解码与播放管线，供后续已完成语义标注的技能/命中特效使用。
 
 ## Capabilities
 
 ### New Capabilities
-- `assets/attack-effects` — ##E 特效档导出、特效事件流与播放配置（数据驱动）
 
-（battle.gd 的 typed 特效事件与视图播放都归入本 capability，不动既有 battle-sim 规约）
+- `assets/attack-effects`: 单位八方向攻击动作、攻击事件中的原版效果标识，以及按明确映射播放一次的外置攻击特效。
+
+### Modified Capabilities
+
+无。
 
 ## Impact
 
-- 新增 `tools/dxanim_lib.py`、`tools/fx_export.py`、`prototype/assets/fx/`、
-  `prototype/data/attack_effects.json`
-- `prototype/sim/battle.gd`（事件数组 + 挂点）、`prototype/main.gd`（特效实例绘制）、
-  `prototype/data/battle_setup.json`（可选职业映射）
-- 测试：特效表加载/播一次选序列/事件→实例生成/回退；全量 runner 绿
-- 风险：##E 动画语义（哪档哪条是何种斩击）未标注 → 默认映射可配置，语义标注记开口
+- `tools/unit_anim_export.py`、`tools/dxanim_lib.py`：增加 action 5 八方向映射。
+- `prototype/data/unit_sprites.json`：增加 `attack_by_dir`。
+- `prototype/sim/battle_unit.gd`、`prototype/sim/battle.gd`：记录攻击条目、效果 ID、攻击起始帧与目标朝向。
+- `prototype/main.gd`、`prototype/data/attack_effects.json`：攻击动作单次播放，外置特效由非零 ID 或显式职业覆盖驱动。
+- 自动化测试及用户目检需要重新验收攻击动作与外置效果。

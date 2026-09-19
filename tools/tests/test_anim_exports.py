@@ -29,6 +29,20 @@ class UnitExportTests(unittest.TestCase):
                 unit_id,
             )
 
+    def test_all_eight_attack_directions_use_action5(self):
+        expected = {
+            'N': (21, 0), 'NE': (22, 1), 'E': (23, 1), 'SE': (24, 1),
+            'S': (25, 0), 'SW': (24, 0), 'W': (23, 0), 'NW': (22, 0),
+        }
+        for unit_id, unit in self.data['units'].items():
+            mapping = unit['anim_map']['attack_by_dir']
+            self.assertEqual(
+                {direction: (entry['anim'], entry['flags']) for direction, entry in mapping.items()},
+                expected,
+                unit_id,
+            )
+            self.assertTrue(all(entry['action'] == 5 for entry in mapping.values()), unit_id)
+
     def test_every_exported_layer_references_an_existing_frame(self):
         for unit_id, unit in self.data['units'].items():
             self.assertEqual(len(unit['frames']), unit['frame_count'], unit_id)
@@ -71,6 +85,8 @@ class FxExportTests(unittest.TestCase):
 
     def test_slash_and_orb_use_resolved_descriptor_frames(self):
         self.assertEqual(self.data['_meta']['schema_version'], 2)
+        self.assertNotIn('default', self.data)
+        self.assertNotIn('0', self.data['effect_ids'])
         entry = self.data['files']['01E']
         slash_id = self.data['effects']['slash']['anim']
         orb_id = self.data['effects']['orb']['anim']

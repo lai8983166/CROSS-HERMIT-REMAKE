@@ -2,24 +2,19 @@
 
 ## 1. 导出管线
 
-- [x] 1.1 抽 tools/dxanim_lib.py（容器/BMP/块0 记录/块5 锚点），unit_anim_export
-       改调用。验证：unit 侧全量导出与重构前 diff 一致
-- [x] 1.2 tools/fx_export.py：01E → assets/fx/01E/ + data/attack_effects.json
-       （PLAY 播一次序列挑选）。验证：帧数与容器一致、PLAY 引用界内
-- [x] 1.3 formats.md §10 补 ##E 播一次序列结构行。验证：无待定表述
+- [x] 1.1 抽取 `tools/dxanim_lib.py` 的容器、BMP、动画程序与锚点解码，并验证单位导出结果不回退。
+- [x] 1.2 建立 `tools/fx_export.py` 与 `attack_effects.json`，验证 01E 帧数、时间线引用及复合图层均有效。
+- [x] 1.3 在格式与运行时文档记录 DxAnim 时间线、描述符和复合动画结构，并验证文档复现命令可运行。
+- [x] 1.4 从原版动作表导出 action 5 的八方向 `attack_by_dir`，验证 A0A/B1A 映射为 21/22/23/24/25 及正确镜像标志。
 
 ## 2. 事件与播放
 
-- [x] 2.1 battle.gd：fx_events typed 数组 + _attack 挂点（from/to/hit/damage）。
-       验证：既有测试全绿（逻辑零改动）
-- [x] 2.2 main.gd：特效表并入注册表 + 播一次绘制（锚点目标格心/方向翻转/帧号淘汰）。
-       验证：窗口攻击时目标格播斩击一次
-- [x] 2.3 配置：attack_effects.json {effects, default} + battle_setup 职业覆盖。
-       验证：改 default 即换特效；删表无报错
+- [x] 2.1 扩充战斗单位与攻击事件，记录 `attack_id`、`effect_id`、`attack_started_frame` 并在攻击时朝向目标；验证既有战斗确定性测试通过。
+- [x] 2.2 运行时按 `attack_by_dir` 单次播放单位攻击，时间线结束后回退待机；验证同方向连续攻击均从首帧开始且不循环。
+- [x] 2.3 将外置特效改为非零效果 ID 映射或显式职业覆盖驱动，移除普通攻击的默认 `01E#21`；验证攻击 101/103 不产生外置特效。
 
 ## 3. 回归与验收
 
-- [x] 3.1 测试：特效表加载/PLAY 序列有效/事件字段/回退 + 全量 runner 绿。
-       验证：0 failures
-- [ ] 3.2 用户目检：攻击命中目标格播原版斩击，播完消失。验证：用户确认
-- [ ] 3.3 提交 + 归档
+- [x] 3.1 增加动作映射、事件字段、攻击生命周期及特效过滤测试，并运行 Python 与 Godot 全量测试，要求 0 failures。
+- [x] 3.2 用户目检：攻击者面向目标播放原版挥砍动作一次，普通攻击无错误的独立蓝紫特效，播完回待机。
+- [ ] 3.3 提交实现并在用户确认后归档变更。

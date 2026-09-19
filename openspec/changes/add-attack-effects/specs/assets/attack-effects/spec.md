@@ -1,44 +1,49 @@
 ## Purpose
 
-把 DATA/DXANIM/##E.BIN 特效档（与单位档同容器格式）变成重制可用的攻击特效：
-导出帧资产 + 播放配置，战斗攻击事件驱动视图播一次原版斩击演出。
+让重制版按照原版数据播放单位攻击动作，并且只在攻击条目明确指定且已有映射时播放独立的 `##E` 特效，避免用错误的通用特效替代原版演出。
 
 ## ADDED Requirements
 
-### Requirement: 特效档导出
-`tools/fx_export.py` 经共享解码库 `tools/dxanim_lib.py`（容器/BMP/序列解析，与
-unit_anim_export 同源）导出 `##E` 档：`assets/fx/<档>/frame_*.png` +
-`data/attack_effects.json`（帧表 schema 同 unit_sprites：frames/anims/锚点；
-anim_map.PLAY = 播一次序列，挑全界内帧引用的 ≥4 帧序列，空白帧不否决——特效
-的显隐是其演出语义）。
+### Requirement: 单位八方向攻击动作
 
-#### Scenario: 导出与复用
-- **WHEN** 运行 fx_export
-- **THEN** 01E 全帧导出无错、PLAY 序列引用界内；unit_anim_export 改用 dxanim_lib
-  后产出与重构前逐字节一致（管线不回退）
+系统 SHALL 从原版单位动作表导出 action 5 的八方向映射，并在单位执行普通攻击时按照攻击目标方向选择对应时间线及镜像标志。
 
-#### Scenario: 配置驱动
-- **WHEN** 手改 attack_effects.json 的 default/anim 或 battle_setup 的职业映射
-- **THEN** 重载后攻击播放按新配置（无代码常量）
+#### Scenario: 普通攻击动作
+- **WHEN** 单位向相邻目标执行普通攻击
+- **THEN** 单位朝向目标并从首帧播放对应方向的 action 5 时间线一次
 
-### Requirement: 特效事件流
-`battle.gd` 维护 typed `fx_events: Array[Dictionary]`：`_attack()` 挂点写入
-{type:"attack", frame, from_cell, to_cell, hit, damage}。事件只追加不改判——
-战斗逻辑、确定性与既有测试不受影响。
+#### Scenario: 攻击结束
+- **WHEN** action 5 时间线播放完毕且尚未发生下一次攻击
+- **THEN** 单位视觉回到对应的待机动作，攻击时间线不得循环
 
-#### Scenario: 攻击产事件
-- **WHEN** 一次攻击结算（命中或 MISS）
-- **THEN** fx_events 追加一条含双方格坐标的 attack 事件，字段可驱动特效播放
+### Requirement: 攻击事件携带原版效果标识
 
-### Requirement: 视图播一次
-视图消费 fx_events 生成特效实例：按 attack_effects 配置选序列，sim 时间推进，
-播完即移除；锚点=画布底中对目标格心，攻→守方向 x 分量决定水平翻转。
-表缺失/配置无效/资产缺失 → 不播不报错，战斗功能不损。
+战斗攻击事件 SHALL 包含攻击条目 ID、命中特效 ID、攻击起始帧、双方格坐标、命中结果与伤害，且事件记录不得改变战斗判定结果。
 
-#### Scenario: 命中演出
-- **WHEN** 攻击命中
-- **THEN** 目标格播对应特效序列一次，时长=记录 dur 之和（dur_unit_seconds 计）
+#### Scenario: 样例职业普通攻击
+- **WHEN** 职业 1 或职业 3 使用其原版默认普通攻击
+- **THEN** 事件分别记录攻击 101 或 103，并记录命中特效 ID 0
 
-#### Scenario: 回退
-- **WHEN** attack_effects.json 或 assets/fx/ 缺失
-- **THEN** 无特效播放，无报错，战斗照常进行
+### Requirement: 外置特效仅按明确映射播放
+
+系统 SHALL 仅在攻击事件给出非零效果 ID 且配置存在对应资源映射，或战斗配置提供显式职业覆盖时，播放一次外置 `##E` 特效。系统 MUST NOT 为未映射攻击应用通用默认特效。
+
+#### Scenario: 无外置特效的普通攻击
+- **WHEN** 攻击事件的效果 ID 为 0 且没有显式职业覆盖
+- **THEN** 系统只播放单位攻击动作，不绘制 `01E#21` 或其他外置特效
+
+#### Scenario: 已映射外置特效
+- **WHEN** 攻击事件的非零效果 ID 在特效表中存在有效映射
+- **THEN** 系统在目标格播放对应 `##E` 时间线一次，并在播完后移除
+
+#### Scenario: 缺失或无效映射
+- **WHEN** 特效表、映射或资源缺失
+- **THEN** 系统不播放外置特效且不报错，单位攻击动作和战斗逻辑照常运行
+
+### Requirement: 特效档导出与复用
+
+`##E` 导出管线 SHALL 复用共享 DxAnim 解码器，输出可配置的帧与时间线数据；所有导出的帧引用 MUST 位于对应档案的帧范围内。
+
+#### Scenario: 导出特效档
+- **WHEN** 运行特效导出器处理已支持的 `##E` 档案
+- **THEN** 导出帧数与容器一致，时间线引用有效，并保留复合图层、持续时间和镜像信息

@@ -16,8 +16,10 @@ func test_特效表加载() -> void:
 	var entry: Dictionary = files.get("01E", {})
 	assert_eq(entry.get("frames", []).size(), int(entry.get("frame_count", -1)), "帧数一致")
 	var effects: Dictionary = parsed.get("effects", {})
-	var default_name: String = parsed.get("default", "")
-	assert_true(not default_name.is_empty() and effects.has(default_name), "default 指向已定义效果")
+	assert_false(parsed.has("default"), "不得为未映射攻击提供全局默认特效")
+	for effect_id in parsed.get("effect_ids", {}):
+		assert_true(int(effect_id) > 0, "仅允许非零原版效果 ID")
+		assert_true(effects.has(String(parsed["effect_ids"][effect_id])), "效果 ID 指向已定义效果")
 	for effect_name in effects:
 		assert_true(files.has(String(effects[effect_name].get("file", ""))),
 			"%s 指向已导出档" % effect_name)
@@ -61,13 +63,33 @@ func test_攻击事件字段与上限() -> void:
 		assert_true(event.get("from_cell", []).size() == 2 and event.get("to_cell", []).size() == 2,
 			"双方格坐标")
 		assert_true(event.get("hit") is bool and int(event.get("damage", -1)) >= 0, "命中和伤害字段")
+		assert_true(int(event.get("attack_id", -1)) >= 0, "包含攻击条目 ID")
+		assert_eq(int(event.get("effect_id", -1)), 0, "样例普通攻击无外置命中特效")
 	assert_true(battle.fx_events.size() <= battle.fx_events_keep, "事件流受上限约束")
 
 
-func test_职业覆盖配置与无效名回退() -> void:
+func test_普通攻击记录起始帧并朝向目标() -> void:
+	var setup := {"move_interval": 99, "attack_interval": 1, "units": [
+		{"name": "a", "faction": 0, "job_id": 1, "level": 10,
+			"stats": {}, "pos": [10, 10], "anim_id": "A0A"},
+		{"name": "d", "faction": 1, "job_id": 3, "level": 10,
+			"stats": {}, "pos": [9, 10], "anim_id": "B1A"},
+	]}
+	var battle := Battle.start(setup, 7, null)
+	battle.tick()
+	var attacker: BattleUnit = battle.units[0]
+	assert_eq(attacker.attack_started_frame, battle.frame, "攻击起始帧")
+	assert_eq(attacker.facing, Vector2i(-1, 0), "朝向左侧目标")
+	assert_eq(attacker.attack_id, 101, "职业1默认攻击")
+	assert_eq(attacker.effect_id, 0, "普通攻击效果 ID 为0")
+
+
+func test_显式职业覆盖与无映射回退() -> void:
 	var setup: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/battle_setup.json"))
-	var effects: Dictionary = _effects()["effects"]
+	var parsed := _effects()
+	var effects: Dictionary = parsed["effects"]
 	for key in setup.get("attack_effects", {}):
 		assert_true(effects.has(String(setup["attack_effects"][key])),
 			"attack_effects[%s] 指向已定义效果" % key)
+	assert_false(parsed.get("effect_ids", {}).has("0"), "effect 0 明确表示无外置特效")
 	assert_false(effects.has("__nope__"), "未知效果名由视图跳过")

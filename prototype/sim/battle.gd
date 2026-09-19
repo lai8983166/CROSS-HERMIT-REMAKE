@@ -154,6 +154,10 @@ func _step_straight(u: BattleUnit, target: Vector2i) -> void:
 
 func _attack(a: BattleUnit, d: BattleUnit) -> void:
 	a.state = BattleUnit.State.ATTACK
+	a.attack_started_frame = frame
+	var attack_delta := d.cell - a.cell
+	if attack_delta != Vector2i.ZERO:
+		a.facing = Vector2i(signi(attack_delta.x), signi(attack_delta.y))
 	var dmg: int = BattleMath.physical(
 		{"power": a.atk_power, "power_range": a.atk_power_range, "accuracy": a.atk_accuracy},
 		{"evasion": d.evasion, "evasion_coef": 100, "defense": d.defense, "defense_coef": 100},
@@ -180,6 +184,7 @@ func _emit_fx(a: BattleUnit, d: BattleUnit, hit: bool, damage: int) -> void:
 		"from_cell": [a.cell.x, a.cell.y], "to_cell": [d.cell.x, d.cell.y],
 		"hit": hit, "damage": damage,
 		"job_id": a.unit.job_id,
+		"attack_id": a.attack_id, "effect_id": a.effect_id,
 	})
 	if fx_events.size() > fx_events_keep:
 		fx_events = fx_events.slice(fx_events.size() - fx_events_keep)

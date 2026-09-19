@@ -540,6 +540,41 @@ ENGINE_DIR8 = {
 }
 ENGINE_MOVE_ACTION = 3
 
+# 同一方向表中 action 5 的普通攻击映射。UnitCtrlAi.cpp 从技能明细表
+# 0x611538 的 byte +1 取到动作号 5；UnitAnim.cpp 0x465040 再按方向查表。
+ENGINE_ATTACK_DIR8 = {
+    'W':  (4, 23, 0),
+    'E':  (6, 23, 1),
+    'NW': (7, 22, 0),
+    'NE': (9, 22, 1),
+    'S':  (2, 25, 0),
+    'N':  (8, 21, 0),
+    'SW': (1, 24, 0),
+    'SE': (3, 24, 1),
+}
+ENGINE_ATTACK_ACTION = 5
+
+
+def _engine_action_dir_map(anims, direction_table, action):
+    mapped = {}
+    for direction, (dir_no, animation, flags) in direction_table.items():
+        if animation >= len(anims):
+            continue
+        entry = anims[animation]
+        records = entry.get('records', entry.get('steps', []))
+        if not records:
+            continue
+        mapped[direction] = {
+            'block': 0,
+            'anim': animation,
+            'flags': flags,
+            'flip_x': bool(flags & 1),
+            'flip_y': bool(flags & 2),
+            'engine_dir': dir_no,
+            'action': action,
+        }
+    return mapped
+
 
 def engine_dir_map(anims, composites=None, frame_count=None):
     """生成经审计的八向 MOVE 映射。
@@ -547,21 +582,9 @@ def engine_dir_map(anims, composites=None, frame_count=None):
     ``composites`` 参数仅为旧调用方兼容保留；方向标志不再选择块1。idle 在任务2接入正式
     动作表前沿用首个可用单帧动画，由导出 JSON 覆盖。
     """
-    walk = {}
-    for direction, (dir_no, animation, flags) in ENGINE_DIR8.items():
-        if animation >= len(anims):
-            continue
-        entry = anims[animation]
-        records = entry.get('records', entry.get('steps', []))
-        if not records:
-            continue
-        walk[direction] = {
-            'block': 0,
-            'anim': animation,
-            'flags': flags,
-            'flip_x': bool(flags & 1),
-            'flip_y': bool(flags & 2),
-            'engine_dir': dir_no,
-            'action': ENGINE_MOVE_ACTION,
-        }
-    return walk, {}
+    return _engine_action_dir_map(anims, ENGINE_DIR8, ENGINE_MOVE_ACTION), {}
+
+
+def engine_attack_dir_map(anims, frame_count=None):
+    """生成原版 action 5 的八方向普通攻击映射。"""
+    return _engine_action_dir_map(anims, ENGINE_ATTACK_DIR8, ENGINE_ATTACK_ACTION)

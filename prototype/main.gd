@@ -33,9 +33,9 @@ var _unit_anim_clocks: Dictionary = {}   # instance_id → {identity,start_frame
 var _unit_recolors: Dictionary = {}
 var _recolor_maps: Dictionary = {}
 var _faction_palettes: Dictionary = {}
-# 攻击特效 (add-attack-effects): effects/default + 职业覆盖; 表缺失 → 不播不报错
+# 攻击特效: 原版非零 effect_id 映射 + 显式职业覆盖; 未映射 → 不播
 var _fx_effects: Dictionary = {}
-var _fx_default := ""
+var _fx_effect_ids: Dictionary = {}
 var _fx_job_map: Dictionary = {}
 
 
@@ -144,7 +144,7 @@ func _load_attack_effects() -> void:
 		entry["_base"] = "res://assets/fx/%s" % fid
 		_unit_sprites[fid] = entry   # 帧表 schema 同 units → 渲染/缓存路径直接复用
 	_fx_effects = parsed.get("effects", {})
-	_fx_default = String(parsed.get("default", ""))
+	_fx_effect_ids = parsed.get("effect_ids", {})
 
 
 func _fit_view() -> void:
@@ -442,6 +442,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 	var entry: Dictionary = {}
 	if key == "MOVE" and amap.has("walk_by_dir"):
 		entry = amap["walk_by_dir"].get(direction, {})
+	if key == "ATTACK" and amap.has("attack_by_dir"):
+		entry = amap["attack_by_dir"].get(direction, {})
 	if entry.is_empty() and key == "IDLE" and amap.has("idle_by_dir"):
 		entry = amap["idle_by_dir"].get(direction, {})
 	if entry.is_empty():
@@ -456,15 +458,38 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 	# v1 的 facing-right 开关只影响兼容输入；v2 使用方向表低两位 flags。
 	if bool(entry.get("flip_x_when_facing_right", false)) and u.facing.x > 0:
 		flags ^= 1
-	var identity := "%d/%s/%d/%d" % [u.state, direction, int(timeline.get("anim", -1)), flags]
-	var unit_id := u.get_instance_id()
-	var clock: Dictionary = _unit_anim_clocks.get(unit_id, {})
-	var elapsed_frames := AnimTimeline.clock_elapsed(clock, identity, battle.frame)
-	_unit_anim_clocks[unit_id] = clock
 	var tick_seconds: float = float(_sprites_meta.get(
 		"tick_seconds", _sprites_meta.get("dur_unit_seconds", 1.0 / 60.0)))
+	var unit_id := u.get_instance_id()
+	var clock: Dictionary = _unit_anim_clocks.get(unit_id, {})
+	var identity := "%d/%s/%d/%d" % [u.state, direction, int(timeline.get("anim", -1)), flags]
+	var elapsed_frames: int
+	if key == "ATTACK":
+		# 攻击时钟由 sim 挂点驱动；同方向连续攻击也会从首帧重新开始。
+		elapsed_frames = maxi(0, battle.frame - u.attack_started_frame)
+		identity += "/%d" % u.attack_started_frame
+		clock["identity"] = identity
+		clock["start_frame"] = u.attack_started_frame
+	else:
+		elapsed_frames = AnimTimeline.clock_elapsed(clock, identity, battle.frame)
+	_unit_anim_clocks[unit_id] = clock
 	var elapsed_ticks := int(floor(elapsed_frames * Battle.LOGIC_STEP / maxf(tick_seconds, 0.000001)))
-	var picked := AnimTimeline.step_at(timeline, elapsed_ticks, true)
+	var picked := AnimTimeline.step_at(timeline, elapsed_ticks, key != "ATTACK")
+	if picked.is_empty() and key == "ATTACK":
+		# 原版普通攻击是非循环动作；播完后视觉回待机，战斗状态无需依赖素材时长。
+		key = "IDLE"
+		entry = amap.get("idle_by_dir", {}).get(direction, {})
+		if entry.is_empty():
+			entry = amap.get("IDLE", {})
+		timeline = _resolve_timeline(udata, entry)
+		if timeline.is_empty() or timeline.get("steps", []).is_empty():
+			return false
+		flags = int(timeline.get("flags", 0))
+		identity = "IDLE/%s/%d/%d" % [direction, int(timeline.get("anim", -1)), flags]
+		elapsed_frames = AnimTimeline.clock_elapsed(clock, identity, battle.frame)
+		_unit_anim_clocks[unit_id] = clock
+		elapsed_ticks = int(floor(elapsed_frames * Battle.LOGIC_STEP / maxf(tick_seconds, 0.000001)))
+		picked = AnimTimeline.step_at(timeline, elapsed_ticks, true)
 	if picked.is_empty():
 		return false
 	var step: Dictionary = picked["step"]
@@ -477,8 +502,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 		return true   # 空白帧时段: 只画阴影不画本体 (序列本身有效)
 	var pal := u.palette_id if u.palette_id >= 0 else int(_faction_palettes.get(str(u.faction), 0))
 	var mod := Color(1, 1, 1, 0.55) if u.state == BattleUnit.State.WITHDRAWN else Color.WHITE
-	_last_draw[u.name] = "anim=%s state=%s dir=%s step=%d frames=%s pal=%d cell=%s" % [
-		u.anim_id, BattleUnit.State.keys()[u.state], direction, int(picked["index"]),
+	_last_draw[u.name] = "anim=%s state=%s visual=%s dir=%s step=%d frames=%s pal=%d cell=%s" % [
+		u.anim_id, BattleUnit.State.keys()[u.state], key, direction, int(picked["index"]),
 		str(layers.map(func(layer): return int(layer.get("frame", -1)))), pal, str(u.cell)]
 	var drawn := _draw_timeline_layers(u.anim_id, frames, layers, p_screen, pal, flags, mod)
 	if drawn:
@@ -542,7 +567,15 @@ func _draw_fx() -> void:
 	var tick_seconds: float = float(_sprites_meta.get(
 		"tick_seconds", _sprites_meta.get("dur_unit_seconds", 1.0 / 60.0)))
 	for ev in battle.fx_events:
-		var fx_name: String = _fx_job_map.get(str(ev.get("job_id", -1)), _fx_default)
+		var job_key := str(ev.get("job_id", -1))
+		var fx_name := String(_fx_job_map.get(job_key, ""))
+		if fx_name.is_empty():
+			var effect_id := int(ev.get("effect_id", 0))
+			if effect_id <= 0:
+				continue
+			fx_name = String(_fx_effect_ids.get(str(effect_id), ""))
+		if fx_name.is_empty():
+			continue   # 非零但尚未完成语义映射 → 不猜测默认特效
 		var cfg: Dictionary = _fx_effects.get(fx_name, {})
 		if cfg.is_empty():
 			continue   # 未配置/无效名 → 不播

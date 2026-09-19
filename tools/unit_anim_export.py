@@ -80,9 +80,10 @@ def export_unit(name: str):
 
 
 def pick_anim_map(anims, frame_count, unit_uid):
-    """生成数据驱动映射：MOVE 来自原版 no=3 八向表，IDLE 保留可覆盖默认值。"""
+    """生成数据驱动映射：MOVE=action 3，ATTACK=action 5。"""
     walk_by_dir, _unused = dx.engine_dir_map(anims, frame_count=frame_count)
-    amap = {'walk_by_dir': walk_by_dir}
+    attack_by_dir = dx.engine_attack_dir_map(anims, frame_count=frame_count)
+    amap = {'walk_by_dir': walk_by_dir, 'attack_by_dir': attack_by_dir}
     move = walk_by_dir.get('W') or next(iter(walk_by_dir.values()), None)
     if move:
         amap['MOVE'] = {'anim': move['anim'], 'flags': move['flags']}
@@ -93,9 +94,11 @@ def pick_anim_map(anims, frame_count, unit_uid):
         idle_id = next((a['id'] for a in anims if any(step['layers'] for step in a['steps'])), None)
     if idle_id is not None:
         amap['IDLE'] = {'anim': idle_id, 'flags': 0}
-    for st in ('ATTACK', 'DEAD'):  # 语义标签未定案 → 跟随 IDLE (开口项)
-        if idle_id is not None:
-            amap[st] = {'anim': idle_id, 'flags': 0}
+    attack = attack_by_dir.get('W') or next(iter(attack_by_dir.values()), None)
+    if attack:
+        amap['ATTACK'] = {'anim': attack['anim'], 'flags': attack['flags']}
+    if idle_id is not None:
+        amap['DEAD'] = {'anim': idle_id, 'flags': 0}  # DEAD 动作仍待后续语义标注
     return amap
 
 
@@ -141,7 +144,7 @@ def main():
             'open_items': [
                 '块8 (帧数+1 × u8 标志) 语义未定',
                 '块7 换色调色板 (40×256) 的逐描述符选择规则只保留原值，当前仍用帧内嵌调色板',
-                'ATTACK/DEAD 的完整动作表尚未语义标注，暂沿用 IDLE；MOVE 八向已按原版动作3定案',
+                'DEAD 的完整动作表尚未语义标注，暂沿用 IDLE；MOVE/ATTACK 已按原版动作3/5定案',
             ],
         },
         'units': units,

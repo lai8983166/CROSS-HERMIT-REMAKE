@@ -7,7 +7,7 @@
 解码在 tools/dxanim_lib.py。帧表 schema 与 unit_sprites.json 相同 (视图共用渲染路径)。
 
 attack_effects.json: {files: {档: {frames/anims/anim_map.PLAY}}, effects: {名字: {file, anim}},
-default: 名字} — anim 缺省取该档 PLAY 自动挑选结果。
+effect_ids: {原版非零效果ID: 名字}}。未完成语义标注的 ID 不猜测、不播放。
 
 用法: python tools/fx_export.py            # 默认 01E
       python tools/fx_export.py 01E 20E   # 多档
@@ -112,7 +112,7 @@ def main():
             'schema_version': 2,
             'playback': 'PLAY = 播一次; steps[].duration_ticks 使用 1/60 秒 tick',
             'open_items': [
-                '##E 动画语义未标注 (哪档哪条 = 何种斩击/魔法) — effects.default 可配置, 默认 01E',
+                '##E 动画语义未全部标注；只有 effect_ids 中有逆向证据的非零 ID 才在运行时播放',
                 '块7 特效换色板 (6×256) 选择规则未定 — v1 基色',
             ],
         },
@@ -123,11 +123,12 @@ def main():
             'slash': {'file': '01E', 'anim': 21},
             'orb': {'file': '01E', 'anim': 28},
         },
-        'default': 'slash',
+        # 原版效果 ID → 已验证命名效果。普通攻击 101/103 的效果 ID 为 0，必须跳过。
+        'effect_ids': {},
     }
     with open(OUT_JSON, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
-    print(f'-> {OUT_JSON} ({len(out_files)} 档, default=slash@01E)')
+    print(f'-> {OUT_JSON} ({len(out_files)} 档, effect_ids={len(out["effect_ids"])})')
 
 
 if __name__ == '__main__':

@@ -64,6 +64,25 @@ func test_A0A与B1A移动黄金序列() -> void:
 			assert_eq(got, expected[id][animation], "%s #%d 最终帧" % [id, animation])
 
 
+func test_攻击八方向与单次播放() -> void:
+	var parsed := _sprites()
+	var expected := {"N": [21, 0], "NE": [22, 1], "E": [23, 1], "SE": [24, 1],
+		"S": [25, 0], "SW": [24, 0], "W": [23, 0], "NW": [22, 0]}
+	for id in ["A0A", "B1A"]:
+		var unit: Dictionary = parsed["units"][id]
+		var mapping: Dictionary = unit["anim_map"]["attack_by_dir"]
+		for direction in expected:
+			var entry: Dictionary = mapping[direction]
+			assert_eq([int(entry["anim"]), int(entry["flags"])], expected[direction],
+				"%s %s action5 映射" % [id, direction])
+			assert_eq(int(entry["action"]), 5, "原版动作号")
+		var north := Timeline.resolve(unit, mapping["N"])
+		var total := Timeline.total_ticks(north)
+		assert_eq(total, 36 if id == "A0A" else 48, "%s 攻击总时长" % id)
+		assert_true(Timeline.step_at(north, total - 1, false).has("step"), "末 tick 可见")
+		assert_true(Timeline.step_at(north, total, false).is_empty(), "结束后不循环")
+
+
 func test_旧单帧记录兼容() -> void:
 	var timeline := Timeline.normalize({"records": [
 		{"frame": 3, "dur": 2}, {"frame": -1, "dur": 1}, {"frame": 4, "dur": 3}]})

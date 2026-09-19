@@ -100,6 +100,18 @@ class DxAnimGoldenTests(unittest.TestCase):
         )
         self.assertTrue(all(entry['block'] == 0 and entry['action'] == 3 for entry in walk.values()))
 
+    def test_engine_attack_table_is_action5_with_mirror_flags(self):
+        animations = [{'records': [{'frame': 0, 'dur': 1}]} for _ in range(26)]
+        attack = dx.engine_attack_dir_map(animations, 1)
+        self.assertEqual(
+            {direction: (entry['anim'], entry['flags']) for direction, entry in attack.items()},
+            {
+                'W': (23, 0), 'E': (23, 1), 'NW': (22, 0), 'NE': (22, 1),
+                'S': (25, 0), 'N': (21, 0), 'SW': (24, 0), 'SE': (24, 1),
+            },
+        )
+        self.assertTrue(all(entry['block'] == 0 and entry['action'] == 5 for entry in attack.values()))
+
 
 class DxAnimInterpreterTests(unittest.TestCase):
     def test_child_animation_runs_concurrently_with_parent(self):

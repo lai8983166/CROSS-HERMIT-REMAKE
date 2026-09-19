@@ -20,6 +20,7 @@ var state := State.IDLE
 var facing := Vector2i(1, 0)
 var from_cell := Vector2i.ZERO
 var move_started_frame := -100000
+var attack_started_frame := -100000
 var _tick_prev_cell := Vector2i.ZERO
 var anim_id := ""           # battle_setup 指定的精灵档 (unit_sprites.json 键, 空 = 色块回退)
 var palette_id := -1        # 换色表序号 (unit_recolors.json; -1 = 用阵营默认, 0 = 基色)
@@ -28,6 +29,8 @@ var palette_id := -1        # 换色表序号 (unit_recolors.json; -1 = 用阵�
 var atk_power := 1
 var atk_power_range := 0
 var atk_accuracy := 0
+var attack_id := -1
+var effect_id := 0
 # 防御快照 (v1: 回避=敏, 防御=耐 — 见 battle_mechanics.md §3.1 def 语义)
 var evasion := 0
 var defense := 0
@@ -62,7 +65,9 @@ func setup(def: Dictionary) -> void:
 	# 职业默认攻击 (职业表+0x18 → 攻击表条目, 4b93c0 用法)
 	# v1 威力快照 ≈ 48A380 模式4 (battle_mechanics.md §3.4): 力 + 主基数 + 力×A系数/100
 	# (默认攻击 power_base 多为 0, 原作伤害实际来自属性缩放链 — 完整快照链后续 change)
-	var atk: Dictionary = SimTables.attack(int(job.get("default_attack", 0)))
+	attack_id = int(job.get("default_attack", 0))
+	var atk: Dictionary = SimTables.attack(attack_id)
+	effect_id = int(atk.get("hit_effect", 0))
 	var str_: int = unit.strength
 	atk_power = maxi(1, str_ + int(atk.get("power_base", 0))
 			+ str_ * int(atk.get("power_a_scale", 0)) / 100)
