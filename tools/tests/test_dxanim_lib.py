@@ -112,6 +112,22 @@ class DxAnimGoldenTests(unittest.TestCase):
         )
         self.assertTrue(all(entry['block'] == 0 and entry['action'] == 5 for entry in attack.values()))
 
+    def test_skill_actions_11_through_16_use_five_program_direction_groups(self):
+        animations = [{'records': [{'frame': 0, 'dur': 1}]} for _ in range(81)]
+        expected_offsets = {
+            'N': (0, 0), 'NE': (1, 1), 'E': (2, 1), 'SE': (3, 1),
+            'S': (4, 0), 'SW': (3, 0), 'W': (2, 0), 'NW': (1, 0),
+        }
+        for action in range(11, 17):
+            mapping = dx.engine_action_dir_map(animations, action)
+            base = action * 5 - 4
+            self.assertEqual(
+                {direction: (entry['anim'] - base, entry['flags'])
+                 for direction, entry in mapping.items()},
+                expected_offsets,
+            )
+            self.assertTrue(all(entry['action'] == action for entry in mapping.values()))
+
 
 class DxAnimInterpreterTests(unittest.TestCase):
     def test_child_animation_runs_concurrently_with_parent(self):
@@ -132,6 +148,31 @@ class DxAnimInterpreterTests(unittest.TestCase):
         data = dxanim_file([program_block([[loop(0x7f, 0)]])])
         with self.assertRaisesRegex(dx.DxAnimError, 'zero-distance loop'):
             dx.interpret_animation(data, 0, 0, max_steps=20)
+
+    def test_loop_that_respawns_transient_child_converges(self):
+        parent = [child(0, 0, 0), visible(0, 1), loop(0x7f, 2)]
+        spawned = [visible(1, 1, 0x80)]
+        data = dxanim_file([
+            program_block([parent]), b'', b'', program_block([spawned]),
+            descriptor(10) + descriptor(11),
+        ])
+        timeline = dx.interpret_animation(data, 0, 0, max_ticks=20)
+        self.assertEqual(timeline['loop_from'], 0)
+        self.assertEqual(timeline['duration_ticks'], 1)
+        self.assertEqual([layer['frame'] for layer in timeline['steps'][0]['layers']], [10, 11])
+
+    def test_efct_sustained_cast_animations_converge(self):
+        data = (DXANIM_DIR / 'EFCT.BIN').read_bytes()
+        offs = dx.parse_dxanim(data)
+        for global_id in range(2044, 2052):
+            timeline = dx.interpret_animation(
+                data,
+                global_id // 1000 - 1,
+                global_id % 1000,
+                offs=offs,
+            )
+            self.assertIsNotNone(timeline['loop_from'], global_id)
+            self.assertGreater(timeline['duration_ticks'], 0, global_id)
 
     def test_truncated_instruction_is_rejected(self):
         malformed = program_block([[visible(0, 1) + b'\x01']])

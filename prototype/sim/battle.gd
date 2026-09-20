@@ -19,6 +19,10 @@ var walk_rules: Dictionary = {}
 # typed 特效事件流 (add-attack-effects): 只追加不改判, 战斗逻辑/确定性不受影响
 var fx_events: Array[Dictionary] = []
 var fx_events_keep := 64   # 最近保留条数 (视图消费用, 防长战内存涨; 数据字段非平衡常量)
+var skill_events: Array[Dictionary] = []
+var active_skills: Dictionary = {}   # caster instance id -> deterministic phase record
+var skill_demo: Dictionary = {}
+var _next_demo_frame := -1
 
 
 static func start(setup: Dictionary, seed: int, p_map: SimMapData = null) -> Battle:
@@ -29,6 +33,9 @@ static func start(setup: Dictionary, seed: int, p_map: SimMapData = null) -> Bat
 		FileAccess.get_file_as_string("res://data/walk_rules.json"))
 	b.move_interval = maxi(1, int(setup.get("move_interval", 12)))
 	b.attack_interval = maxi(1, int(setup.get("attack_interval", 30)))
+	b.skill_demo = setup.get("skill_demo", {})
+	if bool(b.skill_demo.get("enabled", false)):
+		b._next_demo_frame = maxi(0, int(b.skill_demo.get("start_frame", 0)))
 	for u in setup.get("units", []):
 		var bu := BattleUnit.new()
 		bu.setup(u)
@@ -41,6 +48,8 @@ func tick() -> void:
 	if finished:
 		return
 	frame += 1
+	_tick_skill_demo()
+	_advance_skills()
 	# ENGAGE 计时 (先扣再判, 归零→撤退; battle_mechanics.md §8 语义)
 	for u in units:
 		if u.state == BattleUnit.State.DEAD:
@@ -53,6 +62,10 @@ func tick() -> void:
 	# 行动
 	for u in units:
 		if u.state == BattleUnit.State.DEAD or u.state == BattleUnit.State.WITHDRAWN:
+			continue
+		if active_skills.has(u.get_instance_id()):
+			continue
+		if bool(skill_demo.get("enabled", false)) and bool(skill_demo.get("exclusive", false)):
 			continue
 		var t := _nearest_enemy(u)
 		if t == null:
@@ -72,6 +85,210 @@ func tick() -> void:
 			u.move_started_frame = frame
 			u._tick_prev_cell = u.cell
 	_check_finish()
+
+
+static func _anim_ticks_to_logic_frames(ticks: int) -> int:
+	# DxAnim and attack-table timing are 60 Hz; battle simulation is fixed 30 Hz.
+	return ceili(maxi(0, ticks) * (1.0 / 60.0) / LOGIC_STEP)
+
+
+func _tick_skill_demo() -> void:
+	if not bool(skill_demo.get("enabled", false)) or _next_demo_frame < 0 or frame < _next_demo_frame:
+		return
+	var caster_index := int(skill_demo.get("caster_unit", 0))
+	var target_index := int(skill_demo.get("target_unit", 1))
+	if caster_index < 0 or caster_index >= units.size() \
+			or target_index < 0 or target_index >= units.size():
+		_next_demo_frame = -1
+		return
+	var caster: BattleUnit = units[caster_index]
+	if active_skills.has(caster.get_instance_id()):
+		return
+	if not start_skill(caster, units[target_index], int(skill_demo.get("skill_id", 29))):
+		_next_demo_frame = -1
+		return
+	if not bool(skill_demo.get("repeat", true)):
+		_next_demo_frame = -1
+		return
+	var record: Dictionary = active_skills.get(caster.get_instance_id(), {})
+	var total_frames := 0
+	for stage: Dictionary in record.get("stages", []):
+		total_frames += int(stage.get("duration", 0))
+	_next_demo_frame = frame + total_frames + maxi(0, int(skill_demo.get("repeat_delay_frames", 60)))
+
+
+static func _fx_logic_frames(global_id: int) -> int:
+	if global_id <= 0:
+		return 0
+	return _anim_ticks_to_logic_frames(int(
+		SimTables.fx_animation(global_id).get("duration_ticks", 0)))
+
+
+## Start one deterministic skill presentation. This entry point is independent
+## of UI so tests and data-driven demos use the exact same phase machine.
+func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> bool:
+	if caster == null or target == null:
+		return false
+	if active_skills.has(caster.get_instance_id()):
+		return false
+	var attack := SimTables.attack(p_skill_id)
+	var visual := SimTables.skill_visual(p_skill_id)
+	if attack.is_empty() or visual.is_empty():
+		return false
+	var target_filter := int(attack.get("target_filter", 0))
+	if not _target_filter_allows(caster, target, target_filter):
+		return false
+	var delta := target.cell - caster.cell
+	if delta != Vector2i.ZERO:
+		caster.facing = Vector2i(signi(delta.x), signi(delta.y))
+	var cast_fx := int(visual.get("cast_fx", 0))
+	var release_fx := int(visual.get("release_fx", 0))
+	var sync_fx := int(visual.get("sync_fx", 0))
+	var impact_fx := int(visual.get("impact_fx", 0))
+	var stages := [
+		{"name": "cast", "state": BattleUnit.State.CAST,
+			"action": int(visual.get("cast_action", 0)), "global_id": cast_fx,
+			"duration": _anim_ticks_to_logic_frames(int(attack.get("cast_frames", 0))),
+			"anchor": "source"},
+		{"name": "release", "state": BattleUnit.State.RELEASE,
+			"action": int(visual.get("release_action", 0)), "global_id": release_fx,
+			"duration": _fx_logic_frames(release_fx), "anchor": "source"},
+		{"name": "sync", "state": BattleUnit.State.SYNC,
+			"action": int(visual.get("release_action", 0)), "global_id": sync_fx,
+			"duration": _fx_logic_frames(sync_fx), "anchor": "target"},
+		{"name": "impact", "state": BattleUnit.State.IMPACT,
+			"action": int(visual.get("release_action", 0)), "global_id": impact_fx,
+			"duration": _fx_logic_frames(impact_fx), "anchor": "target"},
+		{"name": "recovery", "state": BattleUnit.State.RECOVER,
+			"action": int(visual.get("recover_action", 0)), "global_id": 0,
+			"duration": _anim_ticks_to_logic_frames(int(attack.get("recovery_frames", 0))),
+			"anchor": "source"},
+	]
+	var record := {
+		"skill_id": p_skill_id, "caster": caster, "target": target,
+		"from_cell": [caster.cell.x, caster.cell.y],
+		"to_cell": [target.cell.x, target.cell.y],
+		"cast_action": int(visual.get("cast_action", 0)),
+		"release_action": int(visual.get("release_action", 0)),
+		"recover_action": int(visual.get("recover_action", 0)),
+		"cast_fx": cast_fx, "release_fx": release_fx,
+		"sync_fx": sync_fx, "impact_fx": impact_fx,
+		"gameplay_effect_id": int(attack.get("hit_effect", 0)),
+		"target_filter": target_filter,
+		"stages": stages, "phase_index": -1, "phase_started_frame": frame,
+	}
+	caster.skill_id = p_skill_id
+	caster.skill_started_frame = frame
+	active_skills[caster.get_instance_id()] = record
+	_enter_next_skill_phase(caster.get_instance_id())
+	return true
+
+
+func _enter_next_skill_phase(caster_key: int) -> void:
+	if not active_skills.has(caster_key):
+		return
+	var record: Dictionary = active_skills[caster_key]
+	var caster: BattleUnit = record["caster"]
+	while true:
+		record["phase_index"] = int(record["phase_index"]) + 1
+		if int(record["phase_index"]) >= record["stages"].size():
+			caster.state = BattleUnit.State.IDLE
+			caster.skill_id = -1
+			caster.skill_action = 0
+			active_skills.erase(caster_key)
+			return
+		var stage: Dictionary = record["stages"][int(record["phase_index"])]
+		record["phase_started_frame"] = frame
+		caster.state = int(stage["state"])
+		caster.skill_action = int(stage["action"])
+		caster.skill_phase_started_frame = frame
+		active_skills[caster_key] = record
+		_emit_skill_stage(record, stage)
+		if String(stage["name"]) == "impact":
+			_resolve_skill_impact(record)
+		if int(stage["duration"]) > 0:
+			return
+
+
+func _advance_skills() -> void:
+	for caster_key in active_skills.keys():
+		if not active_skills.has(caster_key):
+			continue
+		var record: Dictionary = active_skills[caster_key]
+		var stage: Dictionary = record["stages"][int(record["phase_index"])]
+		if frame - int(record["phase_started_frame"]) >= int(stage["duration"]):
+			_enter_next_skill_phase(int(caster_key))
+
+
+func _emit_skill_stage(record: Dictionary, stage: Dictionary) -> void:
+	var event := {
+		"type": "skill_stage", "frame": frame, "phase": stage["name"],
+		"duration_frames": stage["duration"], "global_id": stage["global_id"],
+		"anchor": stage["anchor"], "skill_id": record["skill_id"],
+		"from_cell": record["from_cell"], "to_cell": record["to_cell"],
+		"cast_action": record["cast_action"], "release_action": record["release_action"],
+		"recover_action": record["recover_action"], "cast_fx": record["cast_fx"],
+		"release_fx": record["release_fx"], "sync_fx": record["sync_fx"],
+		"impact_fx": record["impact_fx"],
+		"gameplay_effect_id": record["gameplay_effect_id"],
+		"target_filter": record["target_filter"],
+	}
+	skill_events.append(event)
+	fx_events.append(event)
+	if fx_events.size() > fx_events_keep:
+		fx_events = fx_events.slice(fx_events.size() - fx_events_keep)
+
+
+## Current stage-owned visual instances. Renderers consume this projection and
+## never decide their own hit timing or keep effects alive beyond the stage.
+func active_fx_events() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for event in fx_events:
+		if int(event.get("global_id", 0)) <= 0:
+			continue
+		var age := frame - int(event.get("frame", frame))
+		if age >= 0 and age < int(event.get("duration_frames", 0)):
+			result.append(event)
+	return result
+
+
+func _resolve_skill_impact(record: Dictionary) -> void:
+	var caster: BattleUnit = record["caster"]
+	var target: BattleUnit = record["target"]
+	if target.state == BattleUnit.State.DEAD or target.state == BattleUnit.State.WITHDRAWN:
+		return
+	# Friendly/self gameplay effects are not reconstructed yet. Preserve the
+	# original presentation and target semantics without inventing damage.
+	if target.faction == caster.faction:
+		_log("f%d %s->%s skill%d friendly effect unresolved" % [frame,
+			caster.name, target.name, int(record["skill_id"])])
+		return
+	var damage: int = BattleMath.physical(
+		{"power": caster.atk_power, "power_range": caster.atk_power_range,
+			"accuracy": caster.atk_accuracy},
+		{"evasion": target.evasion, "evasion_coef": 100,
+			"defense": target.defense, "defense_coef": 100}, rng)
+	var hit := damage != BattleMath.MISS
+	if hit:
+		target.hp = maxi(0, target.hp - damage)
+		if target.hp == 0:
+			target.state = BattleUnit.State.DEAD
+	_log("f%d %s->%s skill%d %s" % [frame, caster.name, target.name,
+		int(record["skill_id"]), "hit %d" % damage if hit else "MISS"])
+
+
+static func _target_filter_allows(caster: BattleUnit, target: BattleUnit,
+		target_filter: int) -> bool:
+	var same_faction := caster.faction == target.faction
+	match target_filter:
+		1:
+			return true
+		2, 5:
+			return not same_faction
+		3, 4:
+			return same_faction
+		_:
+			return false
 
 
 func _nearest_enemy(u: BattleUnit) -> BattleUnit:
@@ -184,7 +401,12 @@ func _emit_fx(a: BattleUnit, d: BattleUnit, hit: bool, damage: int) -> void:
 		"from_cell": [a.cell.x, a.cell.y], "to_cell": [d.cell.x, d.cell.y],
 		"hit": hit, "damage": damage,
 		"job_id": a.unit.job_id,
-		"attack_id": a.attack_id, "effect_id": a.effect_id,
+		"attack_id": a.attack_id,
+		"gameplay_effect_id": a.gameplay_effect_id,
+		"visual_ids": {
+			"cast": a.cast_fx, "release": a.release_fx,
+			"sync": a.sync_fx, "impact": a.impact_fx,
+		},
 	})
 	if fx_events.size() > fx_events_keep:
 		fx_events = fx_events.slice(fx_events.size() - fx_events_keep)

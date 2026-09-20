@@ -14,6 +14,13 @@ func test_attack_table() -> void:
 	assert_eq(SimTables.attack(2).level_points, 36000, "entry2")
 	assert_eq(SimTables.attack(1025).level_points > 0 or true, true, "尾部索引安全")
 
+func test_skill_visual_table() -> void:
+	assert_eq(SimTables.rows("skill_visuals").size(), 612, "技能演出明细 612 行")
+	var skill29 := SimTables.skill_visual(29)
+	assert_eq([int(skill29.cast_fx), int(skill29.release_fx), int(skill29.sync_fx), int(skill29.impact_fx)],
+		[2050, 2098, 3017, 3032], "技能29视觉链")
+	assert_eq(int(SimTables.skill_visual(22).gameplay_effect_id), 6, "玩法效果独立导出")
+
 func test_engage_table() -> void:
 	var rows := SimTables.engage_rows()
 	assert_eq(rows.size(), 51, "51 行")

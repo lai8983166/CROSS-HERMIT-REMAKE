@@ -21,7 +21,7 @@ import dxanim_lib as dx
 DX_DIR = 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM'
 OUT_ASSETS = 'prototype/assets/unit'
 OUT_JSON = 'prototype/data/unit_sprites.json'
-TOOL_VER = '2.0'
+TOOL_VER = '3.0'
 UNIT_FILES = [f'{g}{v}A.BIN' for g in 'ABCDE' for v in '01']
 IDLE_OVERRIDES = {}
 
@@ -83,7 +83,15 @@ def pick_anim_map(anims, frame_count, unit_uid):
     """生成数据驱动映射：MOVE=action 3，ATTACK=action 5。"""
     walk_by_dir, _unused = dx.engine_dir_map(anims, frame_count=frame_count)
     attack_by_dir = dx.engine_attack_dir_map(anims, frame_count=frame_count)
-    amap = {'walk_by_dir': walk_by_dir, 'attack_by_dir': attack_by_dir}
+    skill_actions = {
+        str(action): dx.engine_action_dir_map(anims, action)
+        for action in range(11, 17)
+    }
+    amap = {
+        'walk_by_dir': walk_by_dir,
+        'attack_by_dir': attack_by_dir,
+        'skill_actions': skill_actions,
+    }
     move = walk_by_dir.get('W') or next(iter(walk_by_dir.values()), None)
     if move:
         amap['MOVE'] = {'anim': move['anim'], 'flags': move['flags']}

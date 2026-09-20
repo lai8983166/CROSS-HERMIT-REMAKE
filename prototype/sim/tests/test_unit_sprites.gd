@@ -102,6 +102,18 @@ func test_相位在动作或方向变化时重置() -> void:
 	assert_eq(Timeline.clock_elapsed(clock, "IDLE/N/7/0", 110), 0, "换动作重置")
 
 
+func test_技能动作与空槽待机回退() -> void:
+	var parsed := _sprites()
+	var d0: Dictionary = parsed["units"]["D0A"]
+	var cast := Timeline.unit_action_entry(d0, 12, "N")
+	var recover := Timeline.unit_action_entry(d0, 15, "N")
+	assert_eq([int(cast.anim), int(cast.action)], [56, 12], "技能29施法 action12")
+	assert_eq([int(recover.anim), int(recover.action)], [71, 15], "技能29恢复 action15")
+	var a0: Dictionary = parsed["units"]["A0A"]
+	var fallback := Timeline.unit_action_entry(a0, 13, "N")
+	assert_eq(int(fallback.anim), int(a0["anim_map"]["IDLE"].anim), "空动作回退待机")
+
+
 func test_多图层坐标与顺序() -> void:
 	var frame := {"w": 40, "h": 51, "canvas": {"w": 128, "h": 128, "x": 41, "y": 54},
 		"anchor": {"x": 23, "y": 74}}
@@ -116,9 +128,9 @@ func test_多图层坐标与顺序() -> void:
 	assert_eq(Timeline.combined_flip({"flip_x": false, "flip_y": false}, 2), Vector2i(0, 1),
 		"方向表 bit1 垂直镜像")
 	var fx: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/attack_effects.json"))
-	var slash: Dictionary = fx["files"]["01E"]["anims"][21]
-	assert_eq([int(slash["steps"][4]["layers"][0]["frame"]),
-		int(slash["steps"][4]["layers"][1]["frame"])], [40, 4], "复合层保持绘制顺序")
+	var composite: Dictionary = fx["animations"]["2042"]
+	assert_eq([int(composite["steps"][3]["layers"][0]["frame"]),
+		int(composite["steps"][3]["layers"][1]["frame"])], [899, 893], "复合层保持绘制顺序")
 
 
 func test_朝向向量和移动起始帧() -> void:

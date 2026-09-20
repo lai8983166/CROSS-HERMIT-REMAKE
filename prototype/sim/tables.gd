@@ -7,13 +7,15 @@ static var _cache: Dictionary = {}
 
 static func _load(table: String) -> Dictionary:
 	if not _cache.has(table):
-		var txt := FileAccess.get_file_as_string("res://data/%s_table.json" % table)
+		var filename := "%s.json" % table if table in ["skill_visuals", "attack_effects"] \
+			else "%s_table.json" % table
+		var txt := FileAccess.get_file_as_string("res://data/%s" % filename)
 		if txt.is_empty():
-			push_error("数据表缺失: %s_table.json" % table)
+			push_error("数据表缺失: %s" % filename)
 			return {}
 		var parsed: Variant = JSON.parse_string(txt)
 		if parsed == null or not parsed is Dictionary:
-			push_error("数据表解析失败: %s_table.json" % table)
+			push_error("数据表解析失败: %s" % filename)
 			return {}
 		_cache[table] = parsed
 	return _cache[table]
@@ -33,6 +35,18 @@ static func job(id: int) -> Dictionary:
 static func attack(id: int) -> Dictionary:
 	var r := rows("attack")
 	return r[id] if 0 <= id and id < r.size() else {}
+
+
+## 技能视觉明细行 (0x611538；与攻击表玩法字段分离)
+static func skill_visual(id: int) -> Dictionary:
+	var r := rows("skill_visuals")
+	return r[id] if 0 <= id and id < r.size() else {}
+
+
+## EFCT 全局动画行；缺失 ID 安全返回空字典。
+static func fx_animation(global_id: int) -> Dictionary:
+	var data := _load("attack_effects")
+	return data.get("animations", {}).get(str(global_id), {})
 
 
 ## ENGAGE 表行 {level, minutes}

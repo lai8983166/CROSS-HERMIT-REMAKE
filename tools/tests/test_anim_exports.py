@@ -43,6 +43,22 @@ class UnitExportTests(unittest.TestCase):
             )
             self.assertTrue(all(entry['action'] == 5 for entry in mapping.values()), unit_id)
 
+    def test_skill_actions_use_generic_direction_mapping_and_omit_blank_slots(self):
+        expected_action12 = {
+            'N': (56, 0), 'NE': (57, 1), 'E': (58, 1), 'SE': (59, 1),
+            'S': (60, 0), 'SW': (59, 0), 'W': (58, 0), 'NW': (57, 0),
+        }
+        for unit_id, unit in self.data['units'].items():
+            self.assertEqual(set(unit['anim_map']['skill_actions']),
+                             {'11', '12', '13', '14', '15', '16'}, unit_id)
+        d0_action12 = self.data['units']['D0A']['anim_map']['skill_actions']['12']
+        self.assertEqual(
+            {direction: (entry['anim'], entry['flags'])
+             for direction, entry in d0_action12.items()},
+            expected_action12,
+        )
+        self.assertNotIn('N', self.data['units']['A0A']['anim_map']['skill_actions']['13'])
+
     def test_every_exported_layer_references_an_existing_frame(self):
         for unit_id, unit in self.data['units'].items():
             self.assertEqual(len(unit['frames']), unit['frame_count'], unit_id)
@@ -83,23 +99,88 @@ class FxExportTests(unittest.TestCase):
     def setUpClass(cls):
         cls.data = json.loads((ROOT / 'prototype/data/attack_effects.json').read_text('utf-8'))
 
-    def test_slash_and_orb_use_resolved_descriptor_frames(self):
-        self.assertEqual(self.data['_meta']['schema_version'], 2)
-        self.assertNotIn('default', self.data)
-        self.assertNotIn('0', self.data['effect_ids'])
-        entry = self.data['files']['01E']
-        slash_id = self.data['effects']['slash']['anim']
-        orb_id = self.data['effects']['orb']['anim']
-        self.assertEqual(slash_id, 21)
-        self.assertEqual(orb_id, 28)
+    def test_global_ids_map_to_efct_program_blocks(self):
+        self.assertEqual(self.data['_meta']['schema_version'], 3)
+        self.assertEqual(self.data['_meta']['source'], 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM/EFCT.BIN')
         self.assertEqual(
-            [[layer['frame'] for layer in step['layers']] for step in entry['anims'][slash_id]['steps']],
-            [[36], [37], [38], [39], [40, 4], [40, 5], [41, 5], [41], [42], [43], [12]],
+            (self.data['animations']['2042']['block'], self.data['animations']['2042']['animation']),
+            (1, 42),
         )
         self.assertEqual(
-            [[layer['frame'] for layer in step['layers']] for step in entry['anims'][orb_id]['steps']],
-            [[18], [19], [20], [21], [22], [6]],
+            (self.data['animations']['3027']['block'], self.data['animations']['3027']['animation']),
+            (2, 27),
         )
+
+    def test_skill_29_visual_chain_is_exported(self):
+        for global_id in ('2050', '2098', '3017', '3032'):
+            self.assertIn(global_id, self.data['animations'])
+        cast = self.data['animations']['2050']
+        self.assertIsNotNone(cast['loop_from'])
+        self.assertEqual(self.data['animations']['3017']['duration_ticks'], 120)
+        self.assertEqual(self.data['animations']['3017']['steps'], [
+            {'duration_ticks': 120, 'layers': []},
+        ])
+
+    def test_every_timeline_frame_is_exported_and_in_archive_range(self):
+        frame_count = self.data['_meta']['frame_count']
+        frames = self.data['frames']
+        for global_id, animation in self.data['animations'].items():
+            for step in animation['steps']:
+                self.assertGreater(step['duration_ticks'], 0, global_id)
+                for layer in step['layers']:
+                    frame = layer['frame']
+                    self.assertGreaterEqual(frame, 0, global_id)
+                    self.assertLess(frame, frame_count, global_id)
+                    self.assertIn(str(frame), frames, global_id)
+
+
+class SkillVisualExportTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.data = json.loads((ROOT / 'prototype/data/skill_visuals.json').read_text('utf-8'))
+        cls.rows = {row['id']: row for row in cls.data['rows']}
+
+    def test_table_shape_and_visual_gameplay_separation(self):
+        self.assertEqual(self.data['_meta']['source_va'], 0x611538)
+        self.assertEqual(self.data['_meta']['stride'], 0x10)
+        self.assertEqual(self.data['_meta']['count'], 612)
+        self.assertEqual(len(self.rows), 612)
+
+    def test_skill_22_golden_values(self):
+        self.assertEqual(
+            self.rows[22],
+            {
+                'id': 22, 'cast_action': 13, 'release_action': 31,
+                'recover_action': 16, 'flags': 0, 'cast_fx': 2044,
+                'release_fx': 3027, 'detail_id': 22, 'sync_fx': 0,
+                'impact_fx': 2029, 'shape': 0, 'gameplay_effect_id': 6,
+            },
+        )
+
+    def test_skill_29_golden_values(self):
+        self.assertEqual(
+            self.rows[29],
+            {
+                'id': 29, 'cast_action': 12, 'release_action': 7,
+                'recover_action': 15, 'flags': 0, 'cast_fx': 2050,
+                'release_fx': 2098, 'detail_id': 29, 'sync_fx': 3017,
+                'impact_fx': 3032, 'shape': 0, 'gameplay_effect_id': 0,
+            },
+        )
+
+    def test_basic_attacks_have_actions_but_no_external_visuals(self):
+        for skill_id in (101, 103):
+            row = self.rows[skill_id]
+            self.assertEqual(
+                (row['cast_action'], row['release_action'], row['recover_action']),
+                (11, 5, 14),
+            )
+            self.assertEqual(
+                (row['cast_fx'], row['release_fx'], row['sync_fx'], row['impact_fx']),
+                (0, 0, 0, 0),
+            )
+            self.assertEqual(row['detail_id'], skill_id)
+            self.assertEqual(row['gameplay_effect_id'], 0)
 
 
 if __name__ == '__main__':

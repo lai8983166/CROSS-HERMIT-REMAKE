@@ -1,134 +1,113 @@
 # -*- coding: utf-8 -*-
-"""攻击特效导出器: DATA/DXANIM/##E.BIN → prototype/assets/fx/<档>/ + prototype/data/attack_effects.json
+"""Export selected global animations from the runtime ``EFCT.BIN`` archive.
 
-##E 特效档 = 与单位档同容器 9 块格式 (01E 侦察 2026-09-18):
-  块0～3 是动画程序，块4 描述符解析到最终 BMP；opcode1 子动画与父动画并发。
-  块5=帧数×8B, 块6=帧 BMP, 块7=6 张换色板 (选择规则开口)
-解码在 tools/dxanim_lib.py。帧表 schema 与 unit_sprites.json 相同 (视图共用渲染路径)。
-
-attack_effects.json: {files: {档: {frames/anims/anim_map.PLAY}}, effects: {名字: {file, anim}},
-effect_ids: {原版非零效果ID: 名字}}。未完成语义标注的 ID 不猜测、不播放。
-
-用法: python tools/fx_export.py            # 默认 01E
-      python tools/fx_export.py 01E 20E   # 多档
+Global animation IDs use the executable's mapping:
+``block = global_id // 1000 - 1`` and ``animation = global_id % 1000``.
+Only frames referenced by the selected timelines are written.
 """
 import json
 import os
 import sys
+from pathlib import Path
 
-sys.stdout.reconfigure(encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dxanim_lib as dx
 
-DX_DIR = 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM'
-OUT_ASSETS = 'prototype/assets/fx'
-OUT_JSON = 'prototype/data/attack_effects.json'
-TOOL_VER = '2.0'
-DEFAULT_FILES = ['01E.BIN']
+
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE = ROOT / 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM/EFCT.BIN'
+OUT_ASSETS = ROOT / 'prototype/assets/fx/EFCT'
+OUT_JSON = ROOT / 'prototype/data/attack_effects.json'
+TOOL_VERSION = '3.0'
+
+# Skill 29's complete visual chain plus two reverse-engineering anchors.
+DEFAULT_GLOBAL_IDS = (2042, 2050, 2098, 3017, 3027, 3032)
 
 
-def decode_timelines(data, offs, frame_count):
+def split_global_id(global_id: int):
+    if global_id < 1000:
+        raise dx.DxAnimError(f'invalid global animation id {global_id}')
+    return global_id // 1000 - 1, global_id % 1000
+
+
+def export_fx(global_ids):
+    data = SOURCE.read_bytes()
+    offs = dx.parse_dxanim(data)
     programs = dx.parse_program_blocks(data, offs)
-    timelines = []
-    for animation in range(len(programs[0])):
-        timeline = dx.interpret_animation(data, 0, animation, offs=offs)
+    if len(offs) <= 6:
+        raise dx.DxAnimError('EFCT.BIN does not contain its frame block')
+    _, frame_count, frame_offsets = dx.parse_container(data, offs[6])
+    rects = dx.parse_block5_rects(data, offs[5], frame_count)
+
+    animations = {}
+    referenced_frames = set()
+    for global_id in sorted(set(global_ids)):
+        block, animation = split_global_id(global_id)
+        if block >= len(programs) or animation >= len(programs[block]):
+            raise dx.DxAnimError(
+                f'global animation {global_id} maps outside EFCT.BIN: '
+                f'block={block} animation={animation}'
+            )
+        timeline = dx.interpret_animation(data, block, animation, offs=offs)
         for step_index, step in enumerate(timeline['steps']):
             for layer in step['layers']:
-                if layer['frame'] >= frame_count:
+                frame = layer['frame']
+                if not 0 <= frame < frame_count:
                     raise dx.DxAnimError(
-                        f'block0 animation {animation} step {step_index}: '
-                        f'frame {layer["frame"]} >= {frame_count}'
+                        f'global animation {global_id} step {step_index}: '
+                        f'frame {frame} outside 0..{frame_count - 1}'
                     )
-        timelines.append({
-            'id': animation,
+                referenced_frames.add(frame)
+        animations[str(global_id)] = {
+            'global_id': global_id,
+            'block': block,
+            'animation': animation,
             'steps': timeline['steps'],
             'loop_from': timeline['loop_from'],
-        })
-    return timelines
+            'duration_ticks': timeline['duration_ticks'],
+        }
 
+    OUT_ASSETS.mkdir(parents=True, exist_ok=True)
+    frames = {}
+    for frame in sorted(referenced_frames):
+        width, height, indices, palette = dx.decode_bmp(data, offs[6] + frame_offsets[frame])
+        filename = f'frame_{frame:04d}.png'
+        dx.write_png(str(OUT_ASSETS / filename), width, height, indices, palette)
+        rect = rects[frame]
+        frames[str(frame)] = {
+            'file': filename,
+            'w': width,
+            'h': height,
+            'canvas': {'w': rect[0], 'h': rect[1], 'x': rect[2], 'y': rect[3]},
+            'anchor': dx.frame_anchor(rect),
+        }
 
-def pick_play_timeline(timelines, min_steps=4):
-    """选最长的非循环可见时间线作为未命名 PLAY；具名效果仍由 effects 显式指定。"""
-    candidates = []
-    for timeline in timelines:
-        visible = [step for step in timeline['steps'] if step['layers']]
-        if timeline['loop_from'] is None and len(visible) >= min_steps:
-            candidates.append((len(visible), sum(step['duration_ticks'] for step in visible), timeline))
-    return max(candidates, key=lambda item: (item[0], item[1]))[2] if candidates else None
-
-
-def export_fx(name: str):
-    src = os.path.join(DX_DIR, name)
-    data = open(src, 'rb').read()
-    offs = dx.parse_dxanim(data)
-    b0, b5, b6, b7 = offs[0], offs[5], offs[6], offs[7]
-
-    _, nf, foffs = dx.parse_container(data, b6)
-    rects = dx.parse_block5_rects(data, b5, nf)
-    _, npal, _ = dx.parse_container(data, b7)
-    anims = decode_timelines(data, offs, nf)
-
-    fx_dir = os.path.join(OUT_ASSETS, name[:-4])  # 去 .BIN
-    os.makedirs(fx_dir, exist_ok=True)
-
-    frames = []
-    for i in range(nf):
-        w, h, idx, pal = dx.decode_bmp(data, b6 + foffs[i])
-        rel = f'frame_{i:03d}.png'
-        dx.write_png(os.path.join(fx_dir, rel), w, h, idx, pal)
-        frames.append({
-            'file': rel, 'w': w, 'h': h,
-            'canvas': {'w': rects[i][0], 'h': rects[i][1], 'x': rects[i][2], 'y': rects[i][3]},
-            'anchor': dx.frame_anchor(rects[i]),
-        })
-
-    play = pick_play_timeline(anims)
-    amap = {'PLAY': {'anim': play['id']}} if play else {}
-    return name[:-4], {
-        'source': src, 'frame_count': nf, 'anim_count': len(anims),
-        'recolor_palettes': npal, 'frames': frames, 'anims': anims, 'anim_map': amap,
+    return {
+        '_meta': {
+            'source': str(SOURCE.relative_to(ROOT)).replace('\\', '/'),
+            'tool': f'fx_export v{TOOL_VERSION} (dxanim_lib)',
+            'format_ref': 'docs/formats.md §DxAnim',
+            'schema_version': 3,
+            'frame_count': frame_count,
+            'exported_frame_count': len(frames),
+            'block_animation_counts': [len(block_programs) for block_programs in programs],
+            'global_id_rule': 'block = global_id // 1000 - 1; animation = global_id % 1000',
+            'playback': 'steps[].duration_ticks use 1/60 second ticks; loop_from is a step index',
+        },
+        'frames': frames,
+        'animations': animations,
     }
 
 
 def main():
-    files = [f if f.endswith('.BIN') else f + '.BIN' for f in (sys.argv[1:] or DEFAULT_FILES)]
-    out_files = {}
-    for name in files:
-        fid, entry = export_fx(name)
-        out_files[fid] = entry
-        play = entry['anim_map'].get('PLAY', {}).get('anim')
-        recs = entry['anims'][play]['steps'] if play is not None else []
-        blanks = sum(1 for step in recs if not step['layers'])
-        print(f'{fid}: {entry["frame_count"]}帧 {entry["anim_count"]}动画 '
-              f'{entry["recolor_palettes"]}调色板 -> {OUT_ASSETS}/{fid} '
-              f'| PLAY=anim#{play} ({len(recs)}记录, 空白{blanks})')
-
-    out = {
-        '_meta': {
-            'source_dir': DX_DIR,
-            'tool': f'fx_export v{TOOL_VER} (dxanim_lib)',
-            'format_ref': 'docs/formats.md §DxAnim',
-            'schema': 'files.* 与 unit_sprites.json units.* 同 schema (视图共用渲染路径)',
-            'schema_version': 2,
-            'playback': 'PLAY = 播一次; steps[].duration_ticks 使用 1/60 秒 tick',
-            'open_items': [
-                '##E 动画语义未全部标注；只有 effect_ids 中有逆向证据的非零 ID 才在运行时播放',
-                '块7 特效换色板 (6×256) 选择规则未定 — v1 基色',
-            ],
-        },
-        'files': out_files,
-        # v2 按最终描述符帧逐步复核：#21 在蓝色本体动作中并发生成紫色斩击层；#28 为蓝色旋转体。
-        # 旧配置 #15 是纯软泥循环，是把指令短整数误作 BMP 帧号后产生的错误标签。
-        'effects': {
-            'slash': {'file': '01E', 'anim': 21},
-            'orb': {'file': '01E', 'anim': 28},
-        },
-        # 原版效果 ID → 已验证命名效果。普通攻击 101/103 的效果 ID 为 0，必须跳过。
-        'effect_ids': {},
-    }
-    with open(OUT_JSON, 'w', encoding='utf-8') as f:
-        json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
-    print(f'-> {OUT_JSON} ({len(out_files)} 档, effect_ids={len(out["effect_ids"])})')
+    global_ids = [int(value) for value in sys.argv[1:]] or list(DEFAULT_GLOBAL_IDS)
+    result = export_fx(global_ids)
+    OUT_JSON.write_text(json.dumps(result, ensure_ascii=False, indent=1), encoding='utf-8')
+    print(
+        f'EFCT: {len(result["animations"])} animations, '
+        f'{len(result["frames"])} / {result["_meta"]["frame_count"]} frames '
+        f'-> {OUT_JSON.relative_to(ROOT)}'
+    )
 
 
 if __name__ == '__main__':

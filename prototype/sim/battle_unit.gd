@@ -3,7 +3,7 @@ extends RefCounted
 ## 战斗侧单位 — 组合 SimUnit 纯数据 (design 决策 6: 不继承) + 战斗字段
 ## 字段语义对照原作 wk: hp/hp_max(+0x16/+0x18) mp(+0x1C/+0x1E) engage(4b93c0 派生)
 
-enum State { IDLE, MOVE, ATTACK, DEAD, WITHDRAWN }
+enum State { IDLE, MOVE, ATTACK, CAST, RELEASE, SYNC, IMPACT, RECOVER, DEAD, WITHDRAWN }
 
 var unit: SimUnit
 var faction := 0
@@ -21,6 +21,10 @@ var facing := Vector2i(1, 0)
 var from_cell := Vector2i.ZERO
 var move_started_frame := -100000
 var attack_started_frame := -100000
+var skill_started_frame := -100000
+var skill_phase_started_frame := -100000
+var skill_id := -1
+var skill_action := 0
 var _tick_prev_cell := Vector2i.ZERO
 var anim_id := ""           # battle_setup 指定的精灵档 (unit_sprites.json 键, 空 = 色块回退)
 var palette_id := -1        # 换色表序号 (unit_recolors.json; -1 = 用阵营默认, 0 = 基色)
@@ -30,7 +34,14 @@ var atk_power := 1
 var atk_power_range := 0
 var atk_accuracy := 0
 var attack_id := -1
-var effect_id := 0
+var gameplay_effect_id := 0
+var cast_action := 0
+var release_action := 0
+var recover_action := 0
+var cast_fx := 0
+var release_fx := 0
+var sync_fx := 0
+var impact_fx := 0
 # 防御快照 (v1: 回避=敏, 防御=耐 — 见 battle_mechanics.md §3.1 def 语义)
 var evasion := 0
 var defense := 0
@@ -67,7 +78,15 @@ func setup(def: Dictionary) -> void:
 	# (默认攻击 power_base 多为 0, 原作伤害实际来自属性缩放链 — 完整快照链后续 change)
 	attack_id = int(job.get("default_attack", 0))
 	var atk: Dictionary = SimTables.attack(attack_id)
-	effect_id = int(atk.get("hit_effect", 0))
+	var visual: Dictionary = SimTables.skill_visual(attack_id)
+	gameplay_effect_id = int(atk.get("hit_effect", visual.get("gameplay_effect_id", 0)))
+	cast_action = int(visual.get("cast_action", 0))
+	release_action = int(visual.get("release_action", 0))
+	recover_action = int(visual.get("recover_action", 0))
+	cast_fx = int(visual.get("cast_fx", 0))
+	release_fx = int(visual.get("release_fx", 0))
+	sync_fx = int(visual.get("sync_fx", 0))
+	impact_fx = int(visual.get("impact_fx", 0))
 	var str_: int = unit.strength
 	atk_power = maxi(1, str_ + int(atk.get("power_base", 0))
 			+ str_ * int(atk.get("power_a_scale", 0)) / 100)

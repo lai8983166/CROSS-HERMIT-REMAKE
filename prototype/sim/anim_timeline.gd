@@ -60,6 +60,20 @@ static func resolve(data: Dictionary, entry: Dictionary) -> Dictionary:
 	return timeline
 
 
+## Resolve a directional original action. Blank/missing action slots use the
+## unit's configured idle entry instead of inventing a substitute animation.
+static func unit_action_entry(data: Dictionary, action: int, direction: String) -> Dictionary:
+	var anim_map: Dictionary = data.get("anim_map", {})
+	var actions: Dictionary = anim_map.get("skill_actions", {})
+	var directions: Dictionary = actions.get(str(action), {})
+	var entry: Dictionary = directions.get(direction, {})
+	if not entry.is_empty():
+		return entry
+	var idle_directions: Dictionary = anim_map.get("idle_by_dir", {})
+	entry = idle_directions.get(direction, {})
+	return entry if not entry.is_empty() else anim_map.get("IDLE", {})
+
+
 static func total_ticks(timeline: Dictionary) -> int:
 	var total := 0
 	for step: Dictionary in timeline.get("steps", []):

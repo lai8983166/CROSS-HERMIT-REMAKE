@@ -33,10 +33,11 @@ var _unit_anim_clocks: Dictionary = {}   # instance_id → {identity,start_frame
 var _unit_recolors: Dictionary = {}
 var _recolor_maps: Dictionary = {}
 var _faction_palettes: Dictionary = {}
-# 攻击特效: 原版非零 effect_id 映射 + 显式职业覆盖; 未映射 → 不播
-var _fx_effects: Dictionary = {}
-var _fx_effect_ids: Dictionary = {}
-var _fx_job_map: Dictionary = {}
+# EFCT 全局动画；模拟层决定阶段、锚点和生命周期，视图只消费。
+var _fx_animations: Dictionary = {}
+var _fx_frames: Dictionary = {}
+var _fx_frame_list: Array = []
+var _fx_base := "res://assets/fx/EFCT"
 
 
 ## 静态地图画家 (烘进 SubViewport 一次性成像, _draw 每帧只贴纹理)
@@ -73,7 +74,7 @@ func _ready() -> void:
 	_load_attack_effects()
 	if FileAccess.file_exists("res://assets/map01_composed.png"):
 		_atlas = load("res://assets/map01_composed.png")   # 直角世界图 (add-map-composition)
-		_base_mode = 0
+		_base_mode = 0   # 默认纯贴图；单位与特效战斗层始终单独绘制
 	else:
 		_base_mode = 2   # 无贴图回退数据视图
 	if map.cell_w > 0:
@@ -85,17 +86,17 @@ func _ready() -> void:
 func _start_battle(seed: int) -> void:
 	var setup: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/battle_setup.json"))
+	if FileAccess.file_exists("res://data/skill_demo.json"):
+		var demo: Variant = JSON.parse_string(
+			FileAccess.get_file_as_string("res://data/skill_demo.json"))
+		if demo is Dictionary:
+			setup["skill_demo"] = demo
 	var use_seed: int = setup.get("seed", 42) if seed == 0 else seed
 	_faction_palettes = {}   # 阵营默认换色 (add-unit-recolor): {"阵营str": palette_id}
 	var fp: Variant = setup.get("faction_palettes", {})
 	if fp is Dictionary:
 		for k: String in fp:
 			_faction_palettes[k] = int(fp[k])
-	_fx_job_map = {}   # 职业特效覆盖 (add-attack-effects): {job_id str: effect 名}
-	var ja: Variant = setup.get("attack_effects", {})
-	if ja is Dictionary:
-		for k: String in ja:
-			_fx_job_map[k] = String(ja[k])
 	battle = Battle.start(setup, use_seed, map)
 	selected = null
 	_accum = 0.0
@@ -137,14 +138,20 @@ func _load_attack_effects() -> void:
 		return   # 无特效表 → 不播不报错
 	var parsed: Variant = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/attack_effects.json"))
-	if not (parsed is Dictionary and parsed.get("files") is Dictionary):
+	if not (parsed is Dictionary and parsed.get("animations") is Dictionary
+			and parsed.get("frames") is Dictionary):
 		return
-	for fid: String in parsed["files"]:
-		var entry: Dictionary = parsed["files"][fid]
-		entry["_base"] = "res://assets/fx/%s" % fid
-		_unit_sprites[fid] = entry   # 帧表 schema 同 units → 渲染/缓存路径直接复用
-	_fx_effects = parsed.get("effects", {})
-	_fx_effect_ids = parsed.get("effect_ids", {})
+	_fx_animations = parsed["animations"]
+	_fx_frames = parsed["frames"]
+	_fx_frame_list.resize(int(parsed.get("_meta", {}).get("frame_count", 0)))
+	_fx_frame_list.fill({})
+	for frame_key: String in _fx_frames:
+		var frame_index := int(frame_key)
+		if frame_index >= 0 and frame_index < _fx_frame_list.size():
+			_fx_frame_list[frame_index] = _fx_frames[frame_key]
+	# Reuse the proven unit texture cache/draw path. Sparse non-exported slots stay
+	# empty and can never be referenced by validated EFCT timelines.
+	_unit_sprites["EFCT"] = {"frames": _fx_frame_list, "_base": _fx_base}
 
 
 func _fit_view() -> void:
@@ -221,7 +228,7 @@ func _physics_process(delta: float) -> void:
 ## 调试: 自动轮转截图 (0.4s/张 × 8 滚动) — "窗口异常但数据全亮"类问题抓现行
 var _shot_timer := 0.0
 var _shot_idx := 0
-var auto_shots := false   # 键 A 切换; 抓现行时开
+var auto_shots := OS.has_environment("CH_AUTO_SHOTS")   # 键 A 或诊断环境变量开启
 var _last_draw: Dictionary = {}   # 单位名 → 最近一次绘制信息 (截图时落盘对账)
 
 func _auto_shot(delta: float) -> void:
@@ -316,9 +323,8 @@ func _draw() -> void:
 			HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color.ORANGE_RED)
 		return
 	_draw_map()
-	if _base_mode > 0:
-		_draw_units()
-		_draw_fx()
+	_draw_units()
+	_draw_fx()
 	_draw_hud()
 
 
@@ -436,6 +442,9 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 			key = "MOVE"
 		BattleUnit.State.ATTACK:
 			key = "ATTACK"
+		BattleUnit.State.CAST, BattleUnit.State.RELEASE, BattleUnit.State.SYNC, \
+				BattleUnit.State.IMPACT, BattleUnit.State.RECOVER:
+			key = "SKILL"
 		BattleUnit.State.DEAD:
 			key = "DEAD"
 	var direction := _facing_dir8(u.facing)
@@ -444,6 +453,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 		entry = amap["walk_by_dir"].get(direction, {})
 	if key == "ATTACK" and amap.has("attack_by_dir"):
 		entry = amap["attack_by_dir"].get(direction, {})
+	if key == "SKILL":
+		entry = AnimTimeline.unit_action_entry(udata, u.skill_action, direction)
 	if entry.is_empty() and key == "IDLE" and amap.has("idle_by_dir"):
 		entry = amap["idle_by_dir"].get(direction, {})
 	if entry.is_empty():
@@ -470,6 +481,13 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 		identity += "/%d" % u.attack_started_frame
 		clock["identity"] = identity
 		clock["start_frame"] = u.attack_started_frame
+	elif key == "SKILL":
+		# Simulation owns phase boundaries. Each new phase/action therefore begins
+		# at the first frame even when consecutive casts use the same direction.
+		elapsed_frames = maxi(0, battle.frame - u.skill_phase_started_frame)
+		identity += "/%d/%d/%d" % [u.skill_id, u.skill_action, u.skill_phase_started_frame]
+		clock["identity"] = identity
+		clock["start_frame"] = u.skill_phase_started_frame
 	else:
 		elapsed_frames = AnimTimeline.clock_elapsed(clock, identity, battle.frame)
 	_unit_anim_clocks[unit_id] = clock
@@ -558,52 +576,35 @@ func _recolor_map(anim_id: String, pal_id: int) -> Dictionary:
 	return m
 
 
-## 攻击特效播一次 (add-attack-effects): 消费 battle.fx_events, sim 时间推进,
-## age ≥ 序列总长即不画 (帧号淘汰 — 无需清理, 停机回看不残留)。
-## 锚点=画布底中对目标格心; 攻→守 x 分量 < 0 时水平镜像。
+## 按模拟层阶段事件播放 EFCT 全局动画。持续施法的循环在阶段结束时由
+## active_fx_events 淘汰；同步空白动画保留时长但没有可绘制图层。
 func _draw_fx() -> void:
-	if battle == null or _fx_effects.is_empty() or battle.fx_events.is_empty():
+	if battle == null or _fx_animations.is_empty() or _fx_frames.is_empty():
 		return
-	var tick_seconds: float = float(_sprites_meta.get(
-		"tick_seconds", _sprites_meta.get("dur_unit_seconds", 1.0 / 60.0)))
-	for ev in battle.fx_events:
-		var job_key := str(ev.get("job_id", -1))
-		var fx_name := String(_fx_job_map.get(job_key, ""))
-		if fx_name.is_empty():
-			var effect_id := int(ev.get("effect_id", 0))
-			if effect_id <= 0:
-				continue
-			fx_name = String(_fx_effect_ids.get(str(effect_id), ""))
-		if fx_name.is_empty():
-			continue   # 非零但尚未完成语义映射 → 不猜测默认特效
-		var cfg: Dictionary = _fx_effects.get(fx_name, {})
-		if cfg.is_empty():
-			continue   # 未配置/无效名 → 不播
-		var fid := String(cfg.get("file", ""))
-		var udata: Dictionary = _unit_sprites.get(fid, {})
-		var anims: Array = udata.get("anims", [])
-		var anim_idx: int = int(cfg.get("anim", udata.get("anim_map", {}).get("PLAY", {}).get("anim", -1)))
-		if udata.is_empty() or anim_idx < 0 or anim_idx >= anims.size():
+	for ev in battle.active_fx_events():
+		var global_id := int(ev.get("global_id", 0))
+		var animation: Dictionary = _fx_animations.get(str(global_id), {})
+		if animation.is_empty():
 			continue
-		var timeline := AnimTimeline.normalize(anims[anim_idx])
-		var frames: Array = udata.get("frames", [])
-		var age: float = (battle.frame - int(ev.get("frame", 0))) * Battle.LOGIC_STEP
-		var age_ticks := int(floor(age / maxf(tick_seconds, 0.000001)))
+		var timeline := AnimTimeline.normalize(animation)
+		var age_frames := battle.frame - int(ev.get("frame", 0))
+		var age_ticks := int(floor(age_frames * Battle.LOGIC_STEP / (1.0 / 60.0)))
 		var picked := AnimTimeline.step_at(timeline, age_ticks, false)
 		if picked.is_empty():
 			continue
 		var layers: Array = picked["step"].get("layers", [])
 		if layers.is_empty():
 			continue   # 空白帧时段 → 本帧不画
-		var to_c: Array = ev.get("to_cell", [0, 0])
 		var from_c: Array = ev.get("from_cell", [0, 0])
-		var p := origin + map.cell_to_world(int(to_c[0]), int(to_c[1])) * view_scale
+		var to_c: Array = ev.get("to_cell", [0, 0])
+		var at_c: Array = from_c if String(ev.get("anchor", "target")) == "source" else to_c
+		var p := origin + map.cell_to_world(int(at_c[0]), int(at_c[1])) * view_scale
 		var flags := 1 if int(to_c[0]) < int(from_c[0]) else 0
-		_last_draw["FX"] = "file=%s anim#%d step=%d frames=%s age=%.2f at=(%d,%d)" % [
-			fid, anim_idx, int(picked["index"]),
+		_last_draw["FX"] = "global=%d phase=%s step=%d frames=%s age_frames=%d at=(%d,%d)" % [
+			global_id, String(ev.get("phase", "")), int(picked["index"]),
 			str(layers.map(func(layer): return int(layer.get("frame", -1)))),
-			age, int(to_c[0]), int(to_c[1])]
-		_draw_timeline_layers(fid, frames, layers, p, 0, flags)
+			age_frames, int(at_c[0]), int(at_c[1])]
+		_draw_timeline_layers("EFCT", _fx_frame_list, layers, p, 0, flags)
 
 
 ## 暗帧检测 (调试): 记录每键平均亮度; 画出异常暗帧时打印 + 截图 (目检"黑色怪物"抓现行用)

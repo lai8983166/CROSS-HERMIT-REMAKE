@@ -259,8 +259,14 @@ def frame_anchor(rect):
 
 
 def _instance_key(instance):
+    # ``serial`` is an allocation identity, not VM state.  Sustained effects
+    # commonly loop by spawning the same short-lived child every cycle; keeping
+    # the ever-increasing serial in the signature made those stable loops look
+    # non-convergent forever.  Repeated structural keys are intentionally kept
+    # in the surrounding tuple, so simultaneous identical children still
+    # contribute their multiplicity.
     return (
-        instance['serial'], instance['block'], instance['animation'], instance['pc'],
+        instance['block'], instance['animation'], instance['pc'],
         instance['wait'], instance['loop_remaining'], instance['x'], instance['y'],
         instance['mirror_flags'], instance['done'],
     )
@@ -554,8 +560,20 @@ ENGINE_ATTACK_DIR8 = {
 }
 ENGINE_ATTACK_ACTION = 5
 
+ENGINE_ACTION_DIRECTIONS = {
+    # direction: (engine direction number, animation offset, mirror flags)
+    'W':  (4, 2, 0),
+    'E':  (6, 2, 1),
+    'NW': (7, 1, 0),
+    'NE': (9, 1, 1),
+    'S':  (2, 4, 0),
+    'N':  (8, 0, 0),
+    'SW': (1, 3, 0),
+    'SE': (3, 3, 1),
+}
 
-def _engine_action_dir_map(anims, direction_table, action):
+
+def _engine_action_dir_map(anims, direction_table, action, *, omit_blank=False):
     mapped = {}
     for direction, (dir_no, animation, flags) in direction_table.items():
         if animation >= len(anims):
@@ -563,6 +581,8 @@ def _engine_action_dir_map(anims, direction_table, action):
         entry = anims[animation]
         records = entry.get('records', entry.get('steps', []))
         if not records:
+            continue
+        if omit_blank and 'steps' in entry and not any(step.get('layers', []) for step in records):
             continue
         mapped[direction] = {
             'block': 0,
@@ -588,3 +608,21 @@ def engine_dir_map(anims, composites=None, frame_count=None):
 def engine_attack_dir_map(anims, frame_count=None):
     """生成原版 action 5 的八方向普通攻击映射。"""
     return _engine_action_dir_map(anims, ENGINE_ATTACK_DIR8, ENGINE_ATTACK_ACTION)
+
+
+def engine_action_dir_map(anims, action):
+    """Map an original unit action to its eight directional block-0 programs.
+
+    Actions 11 through 16 occupy consecutive five-program groups.  East-facing
+    directions mirror their west-facing counterpart exactly as the executable's
+    direction table specifies.  Archives may contain intentionally blank action
+    slots; those directions are omitted so the runtime can fall back to idle.
+    """
+    if not 11 <= action <= 16:
+        raise DxAnimError(f'unsupported skill action {action}; expected 11..16')
+    base_animation = action * 5 - 4
+    direction_table = {
+        direction: (engine_direction, base_animation + offset, flags)
+        for direction, (engine_direction, offset, flags) in ENGINE_ACTION_DIRECTIONS.items()
+    }
+    return _engine_action_dir_map(anims, direction_table, action, omit_blank=True)
