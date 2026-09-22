@@ -257,6 +257,13 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	var target: BattleUnit = record["target"]
 	if target.state == BattleUnit.State.DEAD or target.state == BattleUnit.State.WITHDRAWN:
 		return
+	# Nonzero gameplay effects have their own original dispatch. Until their
+	# field writes are reconstructed, a physical hit would fabricate gameplay.
+	var effect_id := int(record["gameplay_effect_id"])
+	if effect_id != 0:
+		_log("f%d %s->%s skill%d gameplay effect %d unresolved" % [frame,
+			caster.name, target.name, int(record["skill_id"]), effect_id])
+		return
 	# Friendly/self gameplay effects are not reconstructed yet. Preserve the
 	# original presentation and target semantics without inventing damage.
 	if target.faction == caster.faction:

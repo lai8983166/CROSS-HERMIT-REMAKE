@@ -61,6 +61,19 @@ func test_技能29只接受友方或自身目标且不伪造伤害() -> void:
 	assert_true(battle.start_skill(caster, caster, 29), "筛选值3允许对自身施放")
 
 
+func test_技能22效果6未还原时不退化为物理伤害() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var enemy: BattleUnit = battle.units[2]
+	var hp_before := enemy.hp
+	assert_true(battle.start_skill(caster, enemy, 22), "效果6允许敌方目标")
+	for _i in 120:
+		battle.tick()
+	assert_eq(enemy.hp, hp_before, "效果6不得套用普通物理伤害")
+	assert_true(battle.events.any(func(line): return String(line).contains("gameplay effect 6 unresolved")),
+		"未解析状态必须显式记录")
+
+
 func test_同种子阶段序列完全一致() -> void:
 	var a := _battle()
 	var b := _battle()
