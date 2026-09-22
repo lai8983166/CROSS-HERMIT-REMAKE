@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from tools.unit_action_table import EXE, decode_action
+from tools.unit_action_table import (EXE, archive_for_type, check_archive_programs,
+                                     decode_action, type_for_archive)
 
 
 class UnitActionTableTests(unittest.TestCase):
@@ -31,10 +32,36 @@ class UnitActionTableTests(unittest.TestCase):
 
     def test_special_type_17_uses_different_program_lookup(self):
         result = decode_action(self.image, 17, 31)
+        self.assertEqual(result['archive'], 'D0A')
         self.assertEqual(result['action_table_va'], 0x60D160)
         self.assertEqual(result['program_table_va'], 0x60DFC8)
         self.assertEqual((result['directions']['N']['block'],
                           result['directions']['N']['animation']), (0, 101))
+
+    def test_ten_archive_paths_share_the_runtime_type_index(self):
+        expected = ['B0A', 'B1A', 'A0A', 'A1A', 'C0A', 'C1A',
+                    'E0A', 'E1A', 'D0A', 'D1A']
+        self.assertEqual([archive_for_type(self.image, i) for i in range(9, 19)],
+                         expected)
+        for index, archive in enumerate(expected, start=9):
+            self.assertEqual(type_for_archive(self.image, archive), index)
+
+    def test_c0a_action_31_uses_block_one(self):
+        result = decode_action(self.image, type_for_archive(self.image, 'C0A'), 31)
+        self.assertEqual(result['archive'], 'C0A')
+        self.assertEqual((result['directions']['N']['block'],
+                          result['directions']['N']['animation']), (1, 6))
+
+    def test_action_31_program_availability_depends_on_archive(self):
+        available = set()
+        for type_index in range(9, 19):
+            action = check_archive_programs(decode_action(self.image, type_index, 31))
+            archive = action['archive']
+            if action['all_programs_present']:
+                available.add(archive)
+        self.assertIn('C0A', available)
+        self.assertIn('D0A', available)
+        self.assertNotIn('E0A', available)
 
     def test_missing_type_table_is_rejected(self):
         with self.assertRaisesRegex(ValueError, 'no action/program table'):

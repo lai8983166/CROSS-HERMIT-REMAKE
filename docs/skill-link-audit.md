@@ -21,4 +21,8 @@
 
 `python tools/unit_action_table.py 31 --type-index 0` 可直接从 `analysis/hermit_game.exe` 解出原版的动作/方向表。`0x464D70` 按单位类型索引取得动作表指针 `0x60E850[index]` 和程序表指针 `0x60F070[index]`。`0x465040` 再以 `action * 8 + 0x610510[direction]` 读动作表的二字节记录：第一字节是程序表索引，第二字节低两位是镜像标志。程序表的 16 位值高字节为动画块号、低字节为动画号，然后交给 `0x409FF0` 播放。
 
-标准类型索引 0 的 action 31 八方向分别指向 **block 1 的动画 6～10**，不是 block 0 的 151～155。类型索引 17/18 共用动作表，但换用另一程序表，action 31 指向 **block 0 的 101～105**。现阶段没有证明这些运行时类型索引分别对应哪个 `A0A`～`E1A` 单位资源包，因此解析器要求显式输入 `--type-index`，不能把这两个编号体系直接合并。此前 `unit_sprites.json` 只导出了 block 0 时间线；要支持 action 31，先要查清运行时类型到资源包的关系，并让导出器能读取所需动画块。
+`0x466C80` 用单位序号 `param_2` 在 `0x610538 + param_2*8` 取 `data\\DxAnim\\*.bin` 路径，同时把 `param_2 + 8` 交给 `0x464D70` 选择动作表。因此现在可以通过 `python tools/unit_action_table.py 31 --archive C0A` 直接查询资源包的原版动作映射。十个映射是：B0A=9、B1A=10、A0A=11、A1A=12、C0A=13、C1A=14、E0A=15、E1A=16、D0A=17、D1A=18。
+
+查询同时检查对应原始 BIN 中每个动画块/程序号是否真的存在，返回 `program_present` 与 `all_programs_present`。存在只代表素材可解析，不代表该单位在游戏中一定会施放这个技能。
+
+C0A 等常规单位的 action 31 八方向指向 **block 1 的动画 6～10**，不是 block 0 的 151～155。D0A/D1A 共用动作表，但换用另一程序表，action 31 指向 **block 0 的 101～105**。对原始 BIN 的程序块数量检查也与此吻合：C0A block 1 有 31 条程序，D0A block 1 仅 1 条但 block 0 有 121 条。不过 E0A 的 block 1 只有 1 条程序，不能播放表中 action 31 对应的 6～10；查表结果不能单独证明动作可用。此前 `unit_sprites.json` 只导出了 block 0 时间线；后续需要按资源包对应的原版查表结果和该 BIN 实际程序数量选择动画块，不能给所有单位套用同一套动作号公式。
