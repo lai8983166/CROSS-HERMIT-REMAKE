@@ -19,6 +19,12 @@ func test_特效表加载() -> void:
 		[2, 27], "3027 全局映射")
 	for global_id in ["2050", "2098", "3017", "3032"]:
 		assert_true(animations.has(global_id), "技能29包含 %s" % global_id)
+	for global_id in ["2044", "3027", "2029"]:
+		assert_true(animations.has(global_id), "技能22包含 %s" % global_id)
+	assert_eq([int(animations["2044"].block), int(animations["2044"].animation)],
+		[1, 44], "2044 持续施法全局映射")
+	assert_eq([int(animations["2029"].block), int(animations["2029"].animation)],
+		[1, 29], "2029 命中全局映射")
 
 
 func test_最终时间线与复合层有效() -> void:
@@ -34,6 +40,10 @@ func test_最终时间线与复合层有效() -> void:
 		int(animations["2042"]["steps"][3]["layers"][1]["frame"])],
 		[899, 893], "复合层保持绘制顺序")
 	assert_eq(int(animations["3017"].duration_ticks), 120, "空白同步时长保留")
+	assert_eq(int(animations["2044"].duration_ticks), 97, "持续施法原始时长")
+	assert_eq(int(animations["2044"].loop_from), 13, "持续施法循环起点")
+	assert_eq(int(animations["3027"].duration_ticks), 36, "释放原始时长")
+	assert_eq(int(animations["2029"].duration_ticks), 19, "命中原始时长")
 
 
 func test_EFCT导入纹理保留颜色与透明通道() -> void:

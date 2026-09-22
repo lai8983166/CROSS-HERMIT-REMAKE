@@ -9,7 +9,7 @@ class SkillLinkAuditTests(unittest.TestCase):
     def setUpClass(cls):
         cls.sources = load_sources()
 
-    def test_skill_22_exposes_two_valid_but_unexported_fx(self):
+    def test_skill_22_full_visual_chain_is_exported(self):
         result = audit_skill(22, 'C0A', 'N', self.sources)
         self.assertEqual(result['attack']['hit_effect'], 6)
         self.assertTrue(result['visual']['effect_id_matches_attack'])
@@ -18,9 +18,9 @@ class SkillLinkAuditTests(unittest.TestCase):
         self.assertEqual(result['visual']['actions']['release_action']['original']['block'], 1)
         self.assertEqual(result['visual']['actions']['release_action']['original']['animation'], 6)
         self.assertTrue(result['visual']['actions']['release_action']['original']['program_present'])
-        self.assertEqual(result['visual']['fx']['cast_fx']['status'], 'valid_not_exported')
+        self.assertEqual(result['visual']['fx']['cast_fx']['status'], 'exported')
         self.assertEqual(result['visual']['fx']['release_fx']['status'], 'exported')
-        self.assertEqual(result['visual']['fx']['impact_fx']['status'], 'valid_not_exported')
+        self.assertEqual(result['visual']['fx']['impact_fx']['status'], 'exported')
 
     def test_skill_29_distinguishes_action_gap_from_fx_export(self):
         result = audit_skill(29, 'D0A', 'N', self.sources)
@@ -41,7 +41,8 @@ class SkillLinkAuditTests(unittest.TestCase):
 
     def test_archive_bounds_are_separate_from_export_coverage(self):
         fx = self.sources['fx']
-        self.assertEqual(audit_fx(2044, fx)['status'], 'valid_not_exported')
+        self.assertEqual(audit_fx(2044, fx)['status'], 'exported')
+        self.assertEqual(audit_fx(2045, fx)['status'], 'valid_not_exported')
         self.assertEqual(audit_fx(2050, fx)['status'], 'exported')
         self.assertEqual(audit_fx(3999, fx)['status'], 'outside_archive')
 

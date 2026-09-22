@@ -142,6 +142,23 @@ class FxExportTests(unittest.TestCase):
             {'duration_ticks': 120, 'layers': []},
         ])
 
+    def test_skill_22_visual_chain_and_lifecycle_are_exported(self):
+        expected = {
+            2044: (1, 44, 97, 13, 25, 2),
+            3027: (2, 27, 36, None, 10, 2),
+            2029: (1, 29, 19, None, 7, 1),
+        }
+        for global_id, (block, animation, duration, loop_from, steps, max_layers) in expected.items():
+            timeline = self.data['animations'][str(global_id)]
+            self.assertEqual((timeline['block'], timeline['animation']), (block, animation))
+            self.assertEqual(timeline['duration_ticks'], duration)
+            self.assertEqual(timeline['loop_from'], loop_from)
+            self.assertEqual(len(timeline['steps']), steps)
+            self.assertEqual(max(len(step['layers']) for step in timeline['steps']), max_layers)
+            self.assertTrue(any(step['layers'] for step in timeline['steps']))
+        self.assertEqual(self.data['_meta']['exported_frame_count'], len(self.data['frames']))
+        self.assertEqual(self.data['_meta']['exported_frame_count'], 86)
+
     def test_every_timeline_frame_is_exported_and_in_archive_range(self):
         frame_count = self.data['_meta']['frame_count']
         frames = self.data['frames']

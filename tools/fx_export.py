@@ -20,8 +20,8 @@ OUT_ASSETS = ROOT / 'prototype/assets/fx/EFCT'
 OUT_JSON = ROOT / 'prototype/data/attack_effects.json'
 TOOL_VERSION = '3.0'
 
-# Skill 29's complete visual chain plus two reverse-engineering anchors.
-DEFAULT_GLOBAL_IDS = (2042, 2050, 2098, 3017, 3027, 3032)
+# Skill 29's complete visual chain, skill 22's three visual stages, and an anchor.
+DEFAULT_GLOBAL_IDS = (2029, 2042, 2044, 2050, 2098, 3017, 3027, 3032)
 
 
 def split_global_id(global_id: int):
