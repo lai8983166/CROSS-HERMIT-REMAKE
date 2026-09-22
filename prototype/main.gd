@@ -598,13 +598,13 @@ func _draw_fx() -> void:
 			continue   # 空白帧时段 → 本帧不画
 		var from_c: Array = ev.get("from_cell", [0, 0])
 		var to_c: Array = ev.get("to_cell", [0, 0])
-		var at_c: Array = from_c if String(ev.get("anchor", "target")) == "source" else to_c
-		var p := origin + map.cell_to_world(int(at_c[0]), int(at_c[1])) * view_scale
+		var at_c := FxPlacement.anchor_cell(ev)
+		var p := origin + map.cell_to_world(at_c.x, at_c.y) * view_scale
 		var flags := 1 if int(to_c[0]) < int(from_c[0]) else 0
 		_last_draw["FX"] = "global=%d phase=%s step=%d frames=%s age_frames=%d at=(%d,%d)" % [
 			global_id, String(ev.get("phase", "")), int(picked["index"]),
 			str(layers.map(func(layer): return int(layer.get("frame", -1)))),
-			age_frames, int(at_c[0]), int(at_c[1])]
+			age_frames, at_c.x, at_c.y]
 		_draw_timeline_layers("EFCT", _fx_frame_list, layers, p, 0, flags)
 
 
