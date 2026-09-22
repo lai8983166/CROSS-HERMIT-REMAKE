@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
+import sys
 import unittest
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / 'tools'))
+import dxanim_lib as dx
 
 
 class UnitExportTests(unittest.TestCase):
@@ -158,6 +161,24 @@ class FxExportTests(unittest.TestCase):
             self.assertTrue(any(step['layers'] for step in timeline['steps']))
         self.assertEqual(self.data['_meta']['exported_frame_count'], len(self.data['frames']))
         self.assertEqual(self.data['_meta']['exported_frame_count'], 86)
+
+    def test_skill_22_release_has_fixed_local_offset_and_no_event_flags(self):
+        archive = (ROOT / 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM/EFCT.BIN').read_bytes()
+        program = dx.parse_program_blocks(archive)[2][27]
+        self.assertEqual([ins['opcode'] for ins in program], [2, 0, 1, 0, 0, 0, 0, 0])
+        self.assertEqual(
+            (program[2]['child_animation'], program[2]['x'], program[2]['y']),
+            (16, 0, -40),
+        )
+        self.assertFalse(any(ins['flags'] & 0x0c for ins in program if ins['opcode'] == 0))
+        self.assertTrue(program[-1]['terminal'])
+        release = self.data['animations']['3027']
+        self.assertIsNone(release['loop_from'])
+        self.assertEqual(release['duration_ticks'], 36)
+        self.assertEqual(
+            {(layer['x'], layer['y']) for step in release['steps'] for layer in step['layers']},
+            {(0, -40)},
+        )
 
     def test_every_timeline_frame_is_exported_and_in_archive_range(self):
         frame_count = self.data['_meta']['frame_count']
