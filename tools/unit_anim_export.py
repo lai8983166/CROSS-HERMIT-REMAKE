@@ -17,6 +17,7 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dxanim_lib as dx
+from unit_action_table import EXE, check_archive_programs, decode_action, type_for_archive
 
 DX_DIR = 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM'
 OUT_ASSETS = 'prototype/assets/unit'
@@ -46,7 +47,7 @@ def decode_timelines(data, offs, frame_count):
     return timelines
 
 
-def export_unit(name: str):
+def export_unit(name: str, exe_data: bytes):
     src = os.path.join(DX_DIR, name)
     data = open(src, 'rb').read()
     offs = dx.parse_dxanim(data)
@@ -56,6 +57,30 @@ def export_unit(name: str):
     rects = dx.parse_block5_rects(data, b5, nf)
     _, npal, _ = dx.parse_container(data, b7)
     anims = decode_timelines(data, offs, nf)
+    unit_uid = name[:-4]
+    action31 = check_archive_programs(
+        decode_action(exe_data, type_for_archive(exe_data, unit_uid), 31)
+    )
+    block1_anims = {}
+    for entry in action31['directions'].values():
+        if not entry['program_present'] or entry['block'] != 1:
+            continue
+        animation = entry['animation']
+        if str(animation) in block1_anims:
+            continue
+        timeline = dx.interpret_animation(data, 1, animation, offs=offs)
+        for step in timeline['steps']:
+            for layer in step['layers']:
+                if not 0 <= layer['frame'] < nf:
+                    raise dx.DxAnimError(
+                        f'{unit_uid} block1 animation {animation}: '
+                        f'frame {layer["frame"]} outside 0..{nf - 1}'
+                    )
+        block1_anims[str(animation)] = {
+            'id': animation,
+            'steps': timeline['steps'],
+            'loop_from': timeline['loop_from'],
+        }
 
     unit_dir = os.path.join(OUT_ASSETS, name[:-4])  # 去 .BIN
     os.makedirs(unit_dir, exist_ok=True)
@@ -72,14 +97,17 @@ def export_unit(name: str):
             'anchor': dx.frame_anchor(rects[i]),
         })
 
-    return {
+    unit = {
         'source': src, 'frame_count': nf, 'anim_count': len(anims),
         'recolor_palettes': npal, 'frames': frames, 'anims': anims,
-        '_preview': f'{name[:-4]}/_preview.png',
-    }, unit_dir
+        '_preview': f'{unit_uid}/_preview.png',
+    }
+    if block1_anims:
+        unit['anim_blocks'] = {'1': block1_anims}
+    return unit, unit_dir, action31
 
 
-def pick_anim_map(anims, frame_count, unit_uid):
+def pick_anim_map(anims, frame_count, unit_uid, action31, block1_anims):
     """生成数据驱动映射：MOVE=action 3，ATTACK=action 5。"""
     walk_by_dir, _unused = dx.engine_dir_map(anims, frame_count=frame_count)
     attack_by_dir = dx.engine_attack_dir_map(anims, frame_count=frame_count)
@@ -87,6 +115,28 @@ def pick_anim_map(anims, frame_count, unit_uid):
         str(action): dx.engine_action_dir_map(anims, action)
         for action in range(11, 17)
     }
+    action31_map = {}
+    for direction, source in action31['directions'].items():
+        if not source['program_present']:
+            continue
+        animation = source['animation']
+        if source['block'] == 0:
+            timeline = anims[animation]
+        elif source['block'] == 1:
+            timeline = block1_anims.get(str(animation), {})
+        else:
+            continue
+        if not any(step['layers'] for step in timeline.get('steps', [])):
+            continue
+        action31_map[direction] = {
+            'block': source['block'], 'anim': animation,
+            'flags': source['flags'],
+            'flip_x': bool(source['flags'] & 1),
+            'flip_y': bool(source['flags'] & 2),
+            'engine_dir': source['engine_direction'],
+            'action': 31,
+        }
+    skill_actions['31'] = action31_map
     amap = {
         'walk_by_dir': walk_by_dir,
         'attack_by_dir': attack_by_dir,
@@ -128,10 +178,14 @@ def make_preview(unit_dir, frames, sample=18):
 
 def main():
     files = sys.argv[1:] or UNIT_FILES
+    exe_data = EXE.read_bytes()
     units = {}
     for name in files:
-        unit, unit_dir = export_unit(name)
-        unit['anim_map'] = pick_anim_map(unit['anims'], unit['frame_count'], name[:-4])
+        unit, unit_dir, action31 = export_unit(name, exe_data)
+        unit['anim_map'] = pick_anim_map(
+            unit['anims'], unit['frame_count'], name[:-4],
+            action31, unit.get('anim_blocks', {}).get('1', {}),
+        )
         make_preview(unit_dir, unit['frames'])
         units[name[:-4]] = unit
         mv = unit['anim_map'].get('MOVE', {})

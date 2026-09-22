@@ -42,21 +42,28 @@ static func resolve(data: Dictionary, entry: Dictionary) -> Dictionary:
 	if entry.is_empty():
 		return {}
 	var animation: Dictionary = {}
-	if int(entry.get("block", 0)) == 1:
-		var composites: Array = data.get("composites", [])
-		var composite := int(entry.get("composite", -1))
-		if composite >= 0 and composite < composites.size():
-			animation = composites[composite]
-	else:
+	var block := int(entry.get("block", 0))
+	var animation_id := int(entry.get("anim", -1))
+	if block == 0:
 		var animations: Array = data.get("anims", [])
-		var animation_id := int(entry.get("anim", -1))
 		if animation_id >= 0 and animation_id < animations.size():
 			animation = animations[animation_id]
+	else:
+		var blocks: Dictionary = data.get("anim_blocks", {})
+		var block_anims: Dictionary = blocks.get(str(block), {})
+		animation = block_anims.get(str(animation_id), {})
+		if animation.is_empty() and block == 1:
+			# Legacy v1 composites used a positional index instead of a block program.
+			var composites: Array = data.get("composites", [])
+			var composite := int(entry.get("composite", -1))
+			if composite >= 0 and composite < composites.size():
+				animation = composites[composite]
 	if animation.is_empty():
 		return {}
 	var timeline := normalize(animation)
 	timeline["flags"] = int(entry.get("flags", 0))
 	timeline["anim"] = int(entry.get("anim", entry.get("composite", -1)))
+	timeline["block"] = block
 	return timeline
 
 

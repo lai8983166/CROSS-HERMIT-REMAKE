@@ -473,7 +473,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 		"tick_seconds", _sprites_meta.get("dur_unit_seconds", 1.0 / 60.0)))
 	var unit_id := u.get_instance_id()
 	var clock: Dictionary = _unit_anim_clocks.get(unit_id, {})
-	var identity := "%d/%s/%d/%d" % [u.state, direction, int(timeline.get("anim", -1)), flags]
+	var identity := "%d/%s/%d/%d/%d" % [u.state, direction,
+		int(timeline.get("block", 0)), int(timeline.get("anim", -1)), flags]
 	var elapsed_frames: int
 	if key == "ATTACK":
 		# 攻击时钟由 sim 挂点驱动；同方向连续攻击也会从首帧重新开始。

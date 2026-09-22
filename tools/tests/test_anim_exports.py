@@ -50,7 +50,7 @@ class UnitExportTests(unittest.TestCase):
         }
         for unit_id, unit in self.data['units'].items():
             self.assertEqual(set(unit['anim_map']['skill_actions']),
-                             {'11', '12', '13', '14', '15', '16'}, unit_id)
+                             {'11', '12', '13', '14', '15', '16', '31'}, unit_id)
         d0_action12 = self.data['units']['D0A']['anim_map']['skill_actions']['12']
         self.assertEqual(
             {direction: (entry['anim'], entry['flags'])
@@ -58,6 +58,27 @@ class UnitExportTests(unittest.TestCase):
             expected_action12,
         )
         self.assertNotIn('N', self.data['units']['A0A']['anim_map']['skill_actions']['13'])
+
+    def test_action31_uses_original_block_and_all_exported_frames_exist(self):
+        expected = {
+            'C1A': (1, 6), 'D0A': (0, 101),
+        }
+        for unit_id, (block, animation) in expected.items():
+            unit = self.data['units'][unit_id]
+            mapping = unit['anim_map']['skill_actions']['31']
+            self.assertEqual(len(mapping), 8)
+            self.assertEqual((mapping['N']['block'], mapping['N']['anim']),
+                             (block, animation))
+            for entry in mapping.values():
+                timeline = (unit['anims'][entry['anim']] if entry['block'] == 0
+                            else unit['anim_blocks'][str(entry['block'])][str(entry['anim'])])
+                self.assertTrue(any(step['layers'] for step in timeline['steps']))
+                for step in timeline['steps']:
+                    for layer in step['layers']:
+                        self.assertGreaterEqual(layer['frame'], 0)
+                        self.assertLess(layer['frame'], unit['frame_count'])
+        for unit_id in ('E0A', 'E1A'):
+            self.assertFalse(self.data['units'][unit_id]['anim_map']['skill_actions']['31'])
 
     def test_every_exported_layer_references_an_existing_frame(self):
         for unit_id, unit in self.data['units'].items():

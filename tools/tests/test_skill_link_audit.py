@@ -14,7 +14,7 @@ class SkillLinkAuditTests(unittest.TestCase):
         self.assertEqual(result['attack']['hit_effect'], 6)
         self.assertTrue(result['visual']['effect_id_matches_attack'])
         self.assertEqual(result['visual']['actions']['cast_action']['status'], 'exported')
-        self.assertEqual(result['visual']['actions']['release_action']['status'], 'not_exported')
+        self.assertEqual(result['visual']['actions']['release_action']['status'], 'exported')
         self.assertEqual(result['visual']['actions']['release_action']['original']['block'], 1)
         self.assertEqual(result['visual']['actions']['release_action']['original']['animation'], 6)
         self.assertTrue(result['visual']['actions']['release_action']['original']['program_present'])
@@ -36,7 +36,7 @@ class SkillLinkAuditTests(unittest.TestCase):
     def test_e0a_action_31_is_not_present_in_original_archive(self):
         result = audit_skill(22, 'E0A', 'N', self.sources)
         action = result['visual']['actions']['release_action']
-        self.assertEqual(action['status'], 'not_exported')
+        self.assertEqual(action['status'], 'no_exported_direction')
         self.assertFalse(action['original']['program_present'])
 
     def test_archive_bounds_are_separate_from_export_coverage(self):

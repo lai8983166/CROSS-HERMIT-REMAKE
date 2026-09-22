@@ -41,6 +41,17 @@ func test_时间线图层全部界内() -> void:
 				for layer: Dictionary in step.get("layers", []):
 					var frame := int(layer.get("frame", -1))
 					assert_true(frame >= 0 and frame < frame_count, "%s 图层帧界内" % id)
+		var blocks: Dictionary = unit.get("anim_blocks", {})
+		for block_id in blocks:
+			var animations: Dictionary = blocks[block_id]
+			for animation_id in animations:
+				var timeline := Timeline.normalize(animations[animation_id])
+				assert_true(not timeline["steps"].is_empty(), "%s block%s/%s 非空" % [id, block_id, animation_id])
+				for step: Dictionary in timeline["steps"]:
+					assert_true(int(step["duration_ticks"]) > 0, "附加动画持续 tick 为正")
+					for layer: Dictionary in step["layers"]:
+						var frame := int(layer.get("frame", -1))
+						assert_true(frame >= 0 and frame < frame_count, "%s 附加动画帧界内" % id)
 
 
 func test_A0A与B1A移动黄金序列() -> void:
@@ -112,6 +123,26 @@ func test_技能动作与空槽待机回退() -> void:
 	var a0: Dictionary = parsed["units"]["A0A"]
 	var fallback := Timeline.unit_action_entry(a0, 13, "N")
 	assert_eq(int(fallback.anim), int(a0["anim_map"]["IDLE"].anim), "空动作回退待机")
+
+
+func test_技能22动作31跨块解析与空档回退() -> void:
+	var parsed := _sprites()
+	var c1: Dictionary = parsed["units"]["C1A"]
+	var cast := Timeline.unit_action_entry(c1, 13, "N")
+	var release := Timeline.unit_action_entry(c1, 31, "N")
+	var recover := Timeline.unit_action_entry(c1, 16, "N")
+	assert_eq([int(cast.block), int(cast.anim)], [0, 61], "C1A 施法 action13")
+	assert_eq([int(release.block), int(release.anim)], [1, 6], "C1A 释放 action31")
+	assert_eq([int(recover.block), int(recover.anim)], [0, 76], "C1A 恢复 action16")
+	var release_timeline := Timeline.resolve(c1, release)
+	assert_eq(int(release_timeline.block), 1, "从 block1 解析")
+	assert_true(release_timeline.steps.size() >= 10, "释放有多帧")
+	var d0: Dictionary = parsed["units"]["D0A"]
+	var d0_release := Timeline.unit_action_entry(d0, 31, "N")
+	assert_eq([int(d0_release.block), int(d0_release.anim)], [0, 101], "D0A 特例在 block0")
+	var e0: Dictionary = parsed["units"]["E0A"]
+	var e0_release := Timeline.unit_action_entry(e0, 31, "N")
+	assert_eq(int(e0_release.anim), int(e0["anim_map"]["IDLE"].anim), "E0A 缺失动作回待机")
 
 
 func test_多图层坐标与顺序() -> void:
