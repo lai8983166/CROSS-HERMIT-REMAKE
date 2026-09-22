@@ -6,7 +6,12 @@ An absent exported action/FX is not proof that the original game lacks it.
 """
 import argparse
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from unit_action_table import (EXE, check_archive_programs, decode_action,
+                               type_for_archive)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +29,7 @@ def load_sources(data_dir=DATA):
         'visual': read('skill_visuals.json'),
         'unit': read('unit_sprites.json'),
         'fx': read('attack_effects.json'),
+        'runtime_image': EXE.read_bytes(),
     }
 
 
@@ -69,6 +75,22 @@ def audit_fx(global_id, fx):
     return result
 
 
+def original_action(action_id, unit_id, direction, image):
+    if action_id == 0:
+        return {'status': 'none'}
+    type_index = type_for_archive(image, unit_id)
+    resolved = check_archive_programs(decode_action(image, type_index, action_id))
+    entry = resolved['directions'][direction]
+    return {
+        'type_index': type_index,
+        'block': entry['block'],
+        'animation': entry['animation'],
+        'flags': entry['flags'],
+        'program_present': entry['program_present'],
+        'all_directions_present': resolved['all_programs_present'],
+    }
+
+
 def audit_skill(skill_id, unit_id, direction, sources):
     attacks = sources['attack']['rows']
     visuals = sources['visual']['rows']
@@ -105,7 +127,11 @@ def audit_skill(skill_id, unit_id, direction, sources):
             'gameplay_effect_id': visual['gameplay_effect_id'],
             'effect_id_matches_attack': visual['gameplay_effect_id'] == attack['hit_effect'],
             'actions': {
-                field: audit_action(visual[field], units[unit_id], direction)
+                field: {
+                    **audit_action(visual[field], units[unit_id], direction),
+                    'original': original_action(visual[field], unit_id, direction,
+                                                sources['runtime_image']),
+                }
                 for field in ACTION_FIELDS
             },
             'fx': {
