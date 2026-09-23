@@ -40,6 +40,18 @@ class Effect6EvidenceTests(unittest.TestCase):
                        0x6d4e58 + 23 * 7 - IMAGE_BASE],
             bytes.fromhex('01 01 01 03 01 01 02'),
         )
+        self.assertEqual(
+            self.image[0x738af0 - IMAGE_BASE:0x738af7 - IMAGE_BASE],
+            bytes.fromhex('01 01 01 01 01 01 00'),
+        )
+
+    def test_effect6_has_no_job_resistance_modifier_and_uses_magic(self):
+        condition = self.image[0x6f4088 + 6 * 16 - IMAGE_BASE:
+                               0x6f4088 + 7 * 16 - IMAGE_BASE]
+        self.assertEqual((condition[3], condition[5], condition[14]), (2, 1, 0))
+        # FUN_4DFBA0 indexes the job table at +0x22 with 64-byte rows.
+        modifiers = [self.image[0x6b2daa + job * 0x40 - IMAGE_BASE] for job in range(30)]
+        self.assertEqual(modifiers, [0] * 30)
 
 
 if __name__ == '__main__':
