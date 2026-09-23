@@ -41,6 +41,19 @@ class Effect6EvidenceTests(unittest.TestCase):
             bytes.fromhex('01 01 01 03 01 01 02'),
         )
         self.assertEqual(
+            self.image[0x6c2dc8 + 22 * 0x48 + 0x1a - IMAGE_BASE],
+            6,
+        )
+        self.assertEqual(
+            self.image[0x6d4e58 + 22 * 7 + 6 - IMAGE_BASE],
+            2,  # 491EF0 dispatches this damage type to MP damage.
+        )
+        self.assertEqual(
+            self.image[0x611538 + 22 * 0x10 - IMAGE_BASE:
+                       0x611538 + 23 * 0x10 - IMAGE_BASE],
+            bytes.fromhex('0d 1f 10 00 fc 07 d3 0b 16 00 00 00 ed 07 00 00'),
+        )
+        self.assertEqual(
             self.image[0x738af0 - IMAGE_BASE:0x738af7 - IMAGE_BASE],
             bytes.fromhex('01 01 01 01 01 01 00'),
         )
