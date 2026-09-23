@@ -118,6 +118,10 @@ LEVEL_VA = 0x625300
 LEVEL_COUNT = 50
 ENGAGE_VA = 0x6E4528
 ENGAGE_COUNT = 51
+SKILL_ATTR_VA = 0x6D4E58
+SKILL_ATTR_STRIDE = 7
+SKILL_ATTR_COUNT = 101
+SKILL_ATTR_FALLBACK_VA = 0x738AF0
 
 
 def decode_engage(data, sha):
@@ -217,11 +221,41 @@ def decode_job(data, sha):
     }
 
 
+def decode_skill_attributes(data, sha):
+    """Skill calculation bytes selected by 4DE8F0 (ids 0..100; otherwise fallback row)."""
+    rows = []
+    for i in range(SKILL_ATTR_COUNT):
+        raw = data[SKILL_ATTR_VA + i * SKILL_ATTR_STRIDE - BASE:
+                   SKILL_ATTR_VA + (i + 1) * SKILL_ATTR_STRIDE - BASE]
+        if len(raw) != SKILL_ATTR_STRIDE:
+            sys.stderr.write(f'error: skill-attribute row {i} is truncated\n')
+            sys.exit(1)
+        rows.append({'id': i, 'bytes': list(raw)})
+    fallback = data[SKILL_ATTR_FALLBACK_VA - BASE:
+                    SKILL_ATTR_FALLBACK_VA - BASE + SKILL_ATTR_STRIDE]
+    if len(fallback) != SKILL_ATTR_STRIDE:
+        sys.stderr.write('error: skill-attribute fallback row is truncated\n')
+        sys.exit(1)
+    return {
+        '_meta': {
+            'table': 'skill_attributes', 'source_va': SKILL_ATTR_VA,
+            'stride': SKILL_ATTR_STRIDE, 'count': len(rows),
+            'fallback_va': SKILL_ATTR_FALLBACK_VA,
+            'selector_ref': '0x4DE8F0 (id < 101 uses indexed row; id >= 101 uses fallback)',
+            'naming_ref': 'docs/battle_mechanics.md#1 (raw bytes; per-field names remain conservative)',
+            'image_sha1_8': sha, 'tool': f'table_export v{TOOL_VER}',
+        },
+        'rows': rows,
+        'fallback': {'bytes': list(fallback)},
+    }
+
+
 TABLES = {
     'level': decode_level,
     'attack': decode_attack,
     'job': decode_job,
     'engage': decode_engage,
+    'skill_attributes': decode_skill_attributes,
 }
 
 

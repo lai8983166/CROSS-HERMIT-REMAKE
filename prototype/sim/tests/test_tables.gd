@@ -21,6 +21,13 @@ func test_skill_visual_table() -> void:
 		[2050, 2098, 3017, 3032], "技能29视觉链")
 	assert_eq(int(SimTables.skill_visual(22).gameplay_effect_id), 6, "玩法效果独立导出")
 
+
+func test_skill_attribute_table() -> void:
+	assert_eq(SimTables.rows("skill_attributes").size(), 101, "索引技能属性表 0..100")
+	assert_eq(SimTables.skill_attribute(22).bytes, [1, 1, 1, 3, 1, 1, 2], "技能 22 原始属性字节")
+	assert_eq(SimTables.skill_attribute(537).bytes, [1, 1, 1, 1, 1, 1, 0], "ID>=101 使用原版默认行")
+	assert_eq(SimTables.skill_attribute(-1), {}, "负 ID 不映射到属性行")
+
 func test_engage_table() -> void:
 	var rows := SimTables.engage_rows()
 	assert_eq(rows.size(), 51, "51 行")

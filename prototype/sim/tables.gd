@@ -43,6 +43,15 @@ static func skill_visual(id: int) -> Dictionary:
 	return r[id] if 0 <= id and id < r.size() else {}
 
 
+## 4DE8F0 selects the indexed skill-attribute row for ids < 101, otherwise the fallback row.
+static func skill_attribute(id: int) -> Dictionary:
+	if id < 0:
+		return {}
+	var data := _load("skill_attributes")
+	var r: Array = data.get("rows", [])
+	return r[id] if id < r.size() else data.get("fallback", {})
+
+
 ## EFCT 全局动画行；缺失 ID 安全返回空字典。
 static func fx_animation(global_id: int) -> Dictionary:
 	var data := _load("attack_effects")

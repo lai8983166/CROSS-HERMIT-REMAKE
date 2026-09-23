@@ -20,6 +20,8 @@ class Effect6EvidenceTests(unittest.TestCase):
         cls.image = (ROOT / 'analysis/hermit_game.exe').read_bytes()
         table = json.loads((ROOT / 'prototype/data/attack_table.json').read_text('utf-8'))
         cls.attacks = {row['id']: row for row in table['rows']}
+        cls.skill_attributes = json.loads(
+            (ROOT / 'prototype/data/skill_attributes_table.json').read_text('utf-8'))
 
     def test_condition6_dispatch_and_tick_callbacks(self):
         condition = self.image[0x6f4088 + 6 * 16 - IMAGE_BASE:
@@ -65,6 +67,18 @@ class Effect6EvidenceTests(unittest.TestCase):
         # FUN_4DFBA0 indexes the job table at +0x22 with 64-byte rows.
         modifiers = [self.image[0x6b2daa + job * 0x40 - IMAGE_BASE] for job in range(30)]
         self.assertEqual(modifiers, [0] * 30)
+
+    def test_skill_attribute_export_preserves_indexed_and_fallback_rows(self):
+        self.assertEqual(self.skill_attributes['_meta']['source_va'], 0x6d4e58)
+        self.assertEqual(len(self.skill_attributes['rows']), 101)
+        self.assertEqual(self.skill_attributes['rows'][22]['bytes'],
+                         [1, 1, 1, 3, 1, 1, 2])
+        self.assertEqual(self.skill_attributes['fallback']['bytes'],
+                         [1, 1, 1, 1, 1, 1, 0])
+        self.assertEqual(
+            self.image[0x738af0 - IMAGE_BASE:0x738af7 - IMAGE_BASE],
+            bytes(self.skill_attributes['fallback']['bytes']),
+        )
 
 
 if __name__ == '__main__':
