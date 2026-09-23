@@ -14,6 +14,7 @@ var hp_max := 0
 var mp := 0
 var mp_max := 0
 var spirit_max := 0
+var condition_slots: Array[Dictionary] = []  # Original unit condition slots +0x14, 3 × 0x10.
 var engage_left := 0.0    # 秒
 var state := State.IDLE
 # 朝向/插值/精灵 (add-unit-sprites): facing = 最近移动方向 8 向量化; from_cell+move_started_frame 供视图插值
@@ -60,6 +61,7 @@ func setup(def: Dictionary) -> void:
 	anim_id = String(def.get("anim_id", ""))
 	palette_id = int(def.get("palette_id", -1))
 	unit = SimUnit.new(def.get("stats", {}))
+	condition_slots = [{}, {}, {}]
 	unit.job_id = int(def.get("job_id", 0))
 	unit.level = int(def.get("level", 1))
 

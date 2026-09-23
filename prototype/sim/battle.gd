@@ -4,6 +4,11 @@ extends RefCounted
 ## 全部随机性经唯一注入 RNG; 单位按数组序遍历 → 同种子整场确定
 
 const LOGIC_STEP := 1.0 / 30.0
+const CONDITION6_ID := 6
+const CONDITION6_PRIORITY := 2
+const CONDITION6_MIN_TICKS_EXCLUSIVE := 0xB7
+const SOURCE_TICKS_PER_LOGIC_FRAME := 2
+const SKILL22_ID := 22
 const RANGE := 1          # 普攻射程 (格, 曼哈顿)
 
 var units: Array = []     # Array[BattleUnit] (无类型标注: 测试直接塞构造体)
@@ -48,6 +53,7 @@ func tick() -> void:
 	if finished:
 		return
 	frame += 1
+	_tick_condition_slots()
 	_tick_skill_demo()
 	_advance_skills()
 	# ENGAGE 计时 (先扣再判, 归零→撤退; battle_mechanics.md §8 语义)
@@ -260,6 +266,23 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	# Nonzero gameplay effects have their own original dispatch. Until their
 	# field writes are reconstructed, a physical hit would fabricate gameplay.
 	var effect_id := int(record["gameplay_effect_id"])
+	if effect_id == CONDITION6_ID:
+		var skill_id := int(record["skill_id"])
+		if skill_id != SKILL22_ID:
+			_log("f%d %s->%s skill%d effect6 base-hit path unresolved" % [frame,
+				caster.name, target.name, skill_id])
+			return
+		# Skill 22 is use_condition=2 / magic (4826F0), which clamps damage to >=1.
+		# Its single-cell target must still occupy the cell selected when the cast began.
+		var aim_cell: Array = record.get("to_cell", [])
+		if aim_cell.size() != 2 or target.cell != Vector2i(int(aim_cell[0]), int(aim_cell[1])):
+			_log("f%d %s skill22 effect6 target left aim cell" % [frame, target.name])
+			return
+		var result := _apply_effect6(caster, target, int(record["skill_id"]))
+		_log("f%d %s->%s skill%d effect6 %s (%d/%d ticks)" % [frame,
+			caster.name, target.name, int(record["skill_id"]), String(result["outcome"]),
+			int(result.get("applied_ticks", 0)), int(result.get("base_ticks", 0))])
+		return
 	if effect_id != 0:
 		_log("f%d %s->%s skill%d gameplay effect %d unresolved" % [frame,
 			caster.name, target.name, int(record["skill_id"]), effect_id])
@@ -282,6 +305,116 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 			target.state = BattleUnit.State.DEAD
 	_log("f%d %s->%s skill%d %s" % [frame, caster.name, target.name,
 		int(record["skill_id"]), "hit %d" % damage if hit else "MISS"])
+
+
+func _apply_effect6(caster: BattleUnit, target: BattleUnit, skill_id: int) -> Dictionary:
+	var attr_row := SimTables.skill_attribute(skill_id)
+	var attr_bytes: Array = attr_row.get("bytes", [])
+	if attr_bytes.size() != 7:
+		return {"outcome": "unresolved_attributes", "base_ticks": 0, "applied_ticks": 0}
+	var attack := SimTables.attack(skill_id)
+	if attack.is_empty():
+		return {"outcome": "unresolved_attack_row", "base_ticks": 0, "applied_ticks": 0}
+
+	var base_ticks := 0
+	match int(attr_bytes[3]):
+		1:
+			base_ticks = caster.unit.sp_effect
+		2:
+			base_ticks = int(attack.power_base) + int(caster.unit.char_no * int(attack.power_scale) / 100)
+		3:
+			base_ticks = int(attack.power_base) + int(caster.unit.agility * int(attack.power_scale) / 100)
+		4:
+			base_ticks = int(attack.power_base) + int(caster.unit.sense * int(attack.power_scale) / 100)
+		5:
+			base_ticks = int(attack.power_base) + int(caster.unit.vitality * int(attack.power_scale) / 100)
+		6:
+			base_ticks = int(attack.power_base) + int(caster.unit.strength * int(attack.power_scale) / 100)
+		_:
+			return {"outcome": "unresolved_value_selector", "base_ticks": 0, "applied_ticks": 0}
+
+	# 4828A0 consumes rand()%100 even though condition 6 bypasses the random resist gate.
+	var resistance_roll := rng.randi() % 100
+	var job := SimTables.job(target.unit.job_id)
+	var job_modifier := int(job.get("u16_0x22", 0)) & 0xff
+	var resistance_factor := mini(100, 100 - target.unit.magic_resist + job_modifier)
+	if resistance_factor == 0:
+		return {"outcome": "resisted", "base_ticks": base_ticks, "applied_ticks": 0,
+			"resistance_factor": 0, "resistance_roll": resistance_roll}
+	if resistance_factor < 0:
+		resistance_factor = 100 - resistance_factor
+	var applied_ticks := int(base_ticks * resistance_factor / 100)
+	if applied_ticks <= CONDITION6_MIN_TICKS_EXCLUSIVE:
+		return {"outcome": "resisted", "base_ticks": base_ticks, "applied_ticks": 0,
+			"resistance_factor": resistance_factor, "resistance_roll": resistance_roll}
+
+	# IDs above 100 use the fallback attribute row and an additional skill-type chance gate.
+	var high_id_roll := -1
+	if skill_id > 100:
+		high_id_roll = rng.randi() % 100
+		if caster.unit.skill_type <= high_id_roll:
+			return {"outcome": "resisted", "base_ticks": base_ticks, "applied_ticks": 0,
+				"resistance_factor": resistance_factor, "resistance_roll": resistance_roll,
+				"high_id_roll": high_id_roll}
+
+	# Condition 6 conflicts with 46/47; original removes the conflicting state and rejects apply.
+	var conflict_found := false
+	for slot_index in target.condition_slots.size():
+		var old_condition: Dictionary = target.condition_slots[slot_index]
+		var old_id := int(old_condition.get("condition_id", 0))
+		if old_id == 46 or old_id == 47:
+			target.condition_slots[slot_index] = {}
+			conflict_found = true
+	if conflict_found:
+		return {"outcome": "conflict_rejected", "base_ticks": base_ticks,
+			"applied_ticks": 0, "resistance_factor": resistance_factor}
+
+	var current: Dictionary = target.condition_slots[0]
+	var current_id := int(current.get("condition_id", 0))
+	if current_id != 0 and current_id != CONDITION6_ID:
+		# Other condition priorities have not been exported; do not overwrite an unknown state.
+		return {"outcome": "priority_unresolved", "base_ticks": base_ticks,
+			"applied_ticks": 0, "resistance_factor": resistance_factor}
+	if current_id == CONDITION6_ID and int(current.get("priority", 0)) > CONDITION6_PRIORITY:
+		return {"outcome": "priority_rejected", "base_ticks": base_ticks,
+			"applied_ticks": 0, "resistance_factor": resistance_factor}
+
+	target.condition_slots[0] = {
+		"condition_id": CONDITION6_ID,
+		"source_skill_id": skill_id,
+		"priority": CONDITION6_PRIORITY,
+		"ticks_remaining": applied_ticks,
+		"tick_counter": 0,
+		"base_ticks": base_ticks,
+		"resistance_factor": resistance_factor,
+		"applied_frame": frame,
+	}
+	return {"outcome": "applied", "base_ticks": base_ticks,
+		"applied_ticks": applied_ticks, "resistance_factor": resistance_factor,
+		"resistance_roll": resistance_roll, "high_id_roll": high_id_roll}
+
+
+func _tick_condition_slots() -> void:
+	for unit_variant in units:
+		var unit: BattleUnit = unit_variant
+		for slot_index in unit.condition_slots.size():
+			var condition: Dictionary = unit.condition_slots[slot_index]
+			if int(condition.get("condition_id", 0)) == 0:
+				continue
+			for _source_tick in SOURCE_TICKS_PER_LOGIC_FRAME:
+				var remaining := int(condition.get("ticks_remaining", 0))
+				if remaining <= 0:
+					unit.condition_slots[slot_index] = {}
+					break
+				remaining -= 1
+				condition["ticks_remaining"] = remaining
+				if remaining == 0:
+					unit.condition_slots[slot_index] = {}
+					_log("f%d %s condition%d expired" % [frame, unit.name,
+						int(condition.get("condition_id", 0))])
+					break
+				if int(condition.get("condition_id", 0)) == CONDITION6_ID:
+					condition["tick_counter"] = (int(condition.get("tick_counter", 0)) + 1) % 180
 
 
 static func _target_filter_allows(caster: BattleUnit, target: BattleUnit,

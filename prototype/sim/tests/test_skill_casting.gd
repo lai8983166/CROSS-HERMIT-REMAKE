@@ -61,7 +61,7 @@ func test_技能29只接受友方或自身目标且不伪造伤害() -> void:
 	assert_true(battle.start_skill(caster, caster, 29), "筛选值3允许对自身施放")
 
 
-func test_技能22效果6未还原时不退化为物理伤害() -> void:
+func test_技能22效果6写入限时状态且不伪造HP物理伤害() -> void:
 	var battle := _battle()
 	var caster: BattleUnit = battle.units[0]
 	var enemy: BattleUnit = battle.units[2]
@@ -70,8 +70,84 @@ func test_技能22效果6未还原时不退化为物理伤害() -> void:
 	for _i in 120:
 		battle.tick()
 	assert_eq(enemy.hp, hp_before, "效果6不得套用普通物理伤害")
-	assert_true(battle.events.any(func(line): return String(line).contains("gameplay effect 6 unresolved")),
-		"未解析状态必须显式记录")
+	assert_eq(int(enemy.condition_slots[0].get("condition_id", 0)), 6, "效果6写入状态槽0")
+	assert_eq(int(enemy.condition_slots[0].get("source_skill_id", -1)), 22, "状态记录来源技能")
+	assert_eq(int(enemy.condition_slots[0].get("ticks_remaining", 0)), 3746, "状态按原版时长递减")
+	assert_eq(int(enemy.condition_slots[0].get("tick_counter", 0)), 54, "状态辅助计数按原版180 tick回绕")
+
+
+func test_技能22仅命中敌方且目标离开选定格时不写入状态() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var ally: BattleUnit = battle.units[1]
+	var enemy: BattleUnit = battle.units[2]
+	assert_false(battle.start_skill(caster, ally, 22), "target_filter=2 拒绝友方目标")
+	assert_true(battle.start_skill(caster, enemy, 22), "target_filter=2 接受敌方目标")
+	enemy.cell += Vector2i(1, 0)
+	for _i in 100:
+		battle.tick()
+	assert_eq(int(enemy.condition_slots[0].get("condition_id", 0)), 0,
+		"技能22的单格落点已空，不应跟随离开的目标施加状态")
+
+
+func test_技能22效果6按魔抗缩放并执行原版下限() -> void:
+	var applicable := _battle()
+	var caster_a: BattleUnit = applicable.units[0]
+	var target_a: BattleUnit = applicable.units[2]
+	target_a.unit.magic_resist = 95
+	applicable.start_skill(caster_a, target_a, 22)
+	for _i in 93:
+		applicable.tick()
+	assert_eq(int(target_a.condition_slots[0].get("ticks_remaining", 0)), 190,
+		"AGI20 的3800基础值被5%魔抗通道缩至190，超过183")
+
+	var resisted := _battle()
+	var caster_b: BattleUnit = resisted.units[0]
+	var target_b: BattleUnit = resisted.units[2]
+	target_b.unit.magic_resist = 96
+	resisted.start_skill(caster_b, target_b, 22)
+	for _i in 93:
+		resisted.tick()
+	assert_eq(int(target_b.condition_slots[0].get("condition_id", 0)), 0,
+		"AGI20 的3800基础值被4%缩至152，低于184而拒绝")
+
+
+func test_技能22效果6过期并在重复施放时刷新() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var target: BattleUnit = battle.units[2]
+	caster.unit.agility = 0
+	target.unit.magic_resist = 90
+	battle.start_skill(caster, target, 22)
+	for _i in 133:
+		battle.tick()
+	assert_eq(int(target.condition_slots[0].get("ticks_remaining", 0)), 280,
+		"恢复阶段结束前已有40个30Hz更新经过")
+	assert_true(battle.start_skill(caster, target, 22), "同一施法者可再次施放")
+	for _i in 93:
+		battle.tick()
+	assert_eq(int(target.condition_slots[0].get("ticks_remaining", 0)), 360,
+		"相同优先级重新施加并刷新时长")
+	for _i in 180:
+		battle.tick()
+	assert_eq(int(target.condition_slots[0].get("condition_id", 0)), 0,
+		"180个30Hz更新后状态过期")
+
+
+func test_技能22效果6同种子保留相同状态和随机流() -> void:
+	var a := _battle()
+	var b := _battle()
+	var target_a: BattleUnit = a.units[2]
+	var target_b: BattleUnit = b.units[2]
+	a.start_skill(a.units[0], target_a, 22)
+	b.start_skill(b.units[0], target_b, 22)
+	for _i in 93:
+		a.tick()
+		b.tick()
+	assert_eq(target_a.condition_slots, target_b.condition_slots,
+		"相同种子应得到相同的条件6应用结果")
+	assert_eq(a.rng.state, b.rng.state,
+		"抵抗分支即使忽略随机值也要在两场战斗中消耗相同随机流")
 
 
 func test_同种子阶段序列完全一致() -> void:
