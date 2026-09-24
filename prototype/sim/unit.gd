@@ -22,7 +22,10 @@ var mp_max := 0
 
 var evasion := 0       # 回避 (wk+0x4D)
 var armor := 0         # 装甲/防御 (wk+0x4E)
-var magic_resist := 0  # 魔抗 (wk+0x50)
+var body := 0         # magic hit reduction input (wk+0x4F)
+var magic_resist := 0 # 魔抗 (wk+0x50)
+var body_modifier := 0 # target combat snapshot +0x18; terrain/condition-derived
+var magic_resist_modifier := 0 # target combat snapshot +0x1C; condition-derived
 var mental_resist := 0 # 精神抗性 (wk+0x52)
 var char_no := 0       # 角色编号 (属性块 +0x04; 48B720 selector 2)
 var skill_type := 0    # 命中技能效果分支 (wk+0x41)

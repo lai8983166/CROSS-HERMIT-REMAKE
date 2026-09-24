@@ -85,11 +85,19 @@ func test_技能22效果6写入限时状态且不伪造HP物理伤害() -> void:
 	var impact_event := _impact_event(battle)
 	var gameplay_result: Dictionary = impact_event.get("gameplay_result", {})
 	var application: Dictionary = gameplay_result.get("application", {})
+	var expected_mp_loss: int = mini(caster.atk_power, enemy.mp_max)
 	assert_eq(int(impact_event.get("gameplay_effect_id", 0)), 6, "事件记录玩法效果6")
 	assert_eq(int(impact_event.get("global_id", 0)), 2029, "命中特效ID仍独立")
 	assert_eq(String(gameplay_result.get("outcome", "")), "applied", "记录状态应用结果")
 	assert_eq(int(gameplay_result.get("resolved_frame", -1)), int(impact_event.get("frame", -2)),
 		"记录结算帧")
+	var mp_result: Dictionary = gameplay_result.get("mp_result", {})
+	assert_eq(int(mp_result.get("computed_damage", 0)), caster.atk_power,
+		"技能22的瞬时MP伤害取魔法命中快照，而非3600状态时长")
+	assert_eq(int(mp_result.get("applied_damage", 0)), expected_mp_loss,
+		"记录实际扣除MP")
+	assert_eq(int(mp_result.get("mp_after", enemy.mp_max)), enemy.mp_max - expected_mp_loss,
+		"MP命中效果从目标当前值扣减")
 	assert_eq([int(gameplay_result.get("condition_id", 0)),
 		int(gameplay_result.get("slot_index", -1)), int(application.get("ticks_remaining", 0))],
 		[6, 0, 3800], "记录效果参数和原始应用值")
@@ -110,6 +118,25 @@ func test_技能22抵抗结果进入impact事件且视觉ID独立() -> void:
 	assert_eq(String(gameplay_result.get("outcome", "")), "resisted", "事件记录抵抗")
 	assert_eq(int(gameplay_result.get("condition_id", 0)), 6, "记录被判定的状态参数")
 	assert_eq(int(enemy.condition_slots[0].get("condition_id", 0)), 0, "抵抗不写入状态")
+	var mp_result: Dictionary = gameplay_result.get("mp_result", {})
+	assert_eq(String(mp_result.get("outcome", "")), "drained",
+		"状态时长抵抗不抵消独立的魔法MP伤害")
+	assert_eq(int(enemy.mp), int(mp_result.get("mp_after", -1)), "抵抗事件保留实际MP结果")
+
+
+func test_技能22瞬时MP伤害按原版下限钳制并记录实际值() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var enemy: BattleUnit = battle.units[2]
+	enemy.mp = 1
+	assert_true(battle.start_skill(caster, enemy, 22), "技能22对敌人启动")
+	for _i in 100:
+		battle.tick()
+	var gameplay_result: Dictionary = _impact_event(battle).get("gameplay_result", {})
+	var mp_result: Dictionary = gameplay_result.get("mp_result", {})
+	assert_true(int(mp_result.get("computed_damage", 0)) >= 1, "魔法命中至少计算1点")
+	assert_eq([int(mp_result.get("applied_damage", 0)), int(mp_result.get("mp_after", -1)),
+		int(enemy.mp)], [1, 0, 0], "MP应用遵循472550的0下限")
 
 
 func test_技能29impact结果保持其玩法和视觉字段兼容() -> void:

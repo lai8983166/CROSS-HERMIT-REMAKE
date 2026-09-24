@@ -39,6 +39,19 @@ static func magic(base: int, resist: int, mod: int = 0) -> int:
 	return maxi(base * (100 - resist + mod) / 100, 1)
 
 
+## Snapshot magic formula (原作 4826F0); input keys mirror the 44-byte attack/defense snapshots.
+## Only consume RNG when the captured power range is nonzero.
+static func magic_from_snapshots(atk: Dictionary, def: Dictionary, rng) -> int:
+	var power: int = int(atk.get("power", 0))
+	var power_range: int = int(atk.get("power_range", 0))
+	if power_range > 0:
+		power += rng.randi() % power_range
+	var damage: int = power * (100 - int(def.get("magic_resist", 0))
+		+ int(def.get("magic_resist_modifier", 0))) / 100
+	damage -= int(def.get("body", 0)) * int(def.get("body_modifier", 0)) / 100
+	return maxi(damage, 1)
+
+
 ## 固定/特效伤害 (原作 482810): 无减项直接输出 — 见 battle_mechanics.md §3.3
 static func fixed(value: int) -> int:
 	return value

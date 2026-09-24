@@ -284,7 +284,9 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 				"target_cell": [target.cell.x, target.cell.y]})
 			_log("f%d %s skill22 effect6 target left aim cell" % [frame, target.name])
 			return
+		var mp_result := _apply_skill22_mp_damage(caster, target)
 		var result := _apply_effect6(caster, target, int(record["skill_id"]))
+		result["mp_result"] = mp_result
 		result["condition_id"] = CONDITION6_ID
 		result["slot_index"] = 0
 		if String(result.get("outcome", "")) == "applied":
@@ -325,6 +327,23 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	})
 	_log("f%d %s->%s skill%d %s" % [frame, caster.name, target.name,
 		int(record["skill_id"]), "hit %d" % damage if hit else "MISS"])
+
+
+func _apply_skill22_mp_damage(caster: BattleUnit, target: BattleUnit) -> Dictionary:
+	# Attribute byte +6=2 routes the independently computed magic hit to MP.
+	# Do this before effect6: the original calculates the base hit before condition resistance.
+	var mp_before := target.mp
+	var damage := BattleMath.magic_from_snapshots(
+		{"power": caster.atk_power, "power_range": caster.atk_power_range},
+		{"magic_resist": target.unit.magic_resist,
+			"magic_resist_modifier": target.unit.magic_resist_modifier,
+			"body": target.unit.body, "body_modifier": target.unit.body_modifier}, rng)
+	target.mp = clampi(target.mp - damage, 0, target.mp_max)
+	return {
+		"resource": "mp", "outcome": "drained" if target.mp < mp_before else "already_empty",
+		"computed_damage": damage, "applied_damage": mp_before - target.mp,
+		"mp_before": mp_before, "mp_after": target.mp,
+	}
 
 
 func _record_skill_gameplay_result(result: Dictionary) -> void:

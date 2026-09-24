@@ -54,6 +54,26 @@ func test_magic_resist() -> void:
 	assert_eq(BattleMath.magic(100, 0, 0), 100, "零抗")
 	assert_eq(BattleMath.magic(10, 100, 0), 1, "至少 1")
 
+
+func test_magic_snapshot_formula_includes_resist_and_body_modifiers() -> void:
+	var rng := _mock([74])
+	var damage := BattleMath.magic_from_snapshots(
+		{"power": 200, "power_range": 50},
+		{"magic_resist": 25, "magic_resist_modifier": 5,
+			"body": 10, "body_modifier": 50}, rng)
+	assert_eq(damage, 174, "(200+74%50)×80%-10×50% = 174")
+	assert_eq(rng.i, 1, "威力浮动非零时仅消费一次随机值")
+
+
+func test_magic_snapshot_does_not_consume_rng_without_power_range() -> void:
+	var rng := _mock([19])
+	var damage := BattleMath.magic_from_snapshots(
+		{"power": 80, "power_range": 0},
+		{"magic_resist": 100, "body": 99, "body_modifier": 100}, rng)
+	assert_eq(damage, 1, "魔法伤害下限仍为1")
+	assert_eq(rng.i, 0, "无浮动威力时不消费随机值")
+
+
 func test_fixed() -> void:
 	assert_eq(BattleMath.fixed(77), 77, "定值直出")
 
