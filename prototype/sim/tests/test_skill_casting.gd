@@ -352,10 +352,13 @@ func test_技能22演示绑定敌方和黄金动作档() -> void:
 	var unit: Dictionary = sprites["units"].get(String(caster["anim_id"]), {})
 	assert_eq(String(caster["anim_id"]), "C1A", "演示使用任务1.3选定的黄金动作档")
 	assert_false(unit.is_empty(), "演示施法者C1A精灵档存在")
+	setup["skill_demo"] = demo
 	var battle := Battle.start(setup, int(setup.get("seed", 42)), null)
 	for _i in int(demo["start_frame"]):
 		battle.tick()
 	assert_eq(battle.skill_events.size(), 1, "配置时刻只启动一个施法阶段")
+	if battle.skill_events.is_empty():
+		return
 	assert_eq(int(battle.skill_events[0].get("skill_id", -1)), 22, "样例事件来自技能22")
 	for direction in ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]:
 		for action in [13, 31, 16]:
