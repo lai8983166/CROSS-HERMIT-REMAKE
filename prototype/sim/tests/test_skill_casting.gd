@@ -39,6 +39,47 @@ func test_技能29固定阶段与120tick空白同步() -> void:
 	assert_eq(battle.units[0].state, BattleUnit.State.IDLE, "恢复完成后待机")
 
 
+func test_技能22五阶段动作特效顺序帧时长和清理() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var enemy: BattleUnit = battle.units[2]
+	assert_true(battle.start_skill(caster, enemy, 22), "技能22对敌方启动")
+	assert_eq([caster.skill_action, caster.skill_phase_started_frame], [13, 0],
+		"action13施法从阶段首帧开始")
+	for _i in 75:
+		battle.tick()
+	assert_eq([caster.skill_action, caster.skill_phase_started_frame], [31, 75],
+		"150个原版施法tick后进入action31")
+	assert_eq([int(battle.active_fx_events()[0].get("global_id", 0)),
+		battle.active_fx_events()[0].get("anchor", "")], [3027, "source"],
+		"3027在源点播放并独立于施法特效")
+	for _i in 18:
+		battle.tick()
+	var impact_fx := battle.active_fx_events()
+	assert_eq([int(impact_fx[0].get("global_id", 0)), impact_fx[0].get("anchor", ""),
+		impact_fx[0].get("to_cell", [])], [2029, "target", [30, 10]],
+		"3027结束后在选定敌方目标启动2029")
+	for _i in 10:
+		battle.tick()
+	assert_eq([caster.skill_action, caster.skill_phase_started_frame], [16, 103],
+		"impact结束后切换action16并重置动画时钟")
+	assert_eq(battle.active_fx_events().size(), 0, "恢复阶段没有残留特效")
+	for _i in 30:
+		battle.tick()
+	assert_eq(caster.state, BattleUnit.State.IDLE, "恢复时长结束回待机")
+	var phases: Array = battle.skill_events.map(func(event): return String(event.phase))
+	var starts: Array = battle.skill_events.map(func(event): return int(event.frame))
+	var durations: Array = battle.skill_events.map(func(event): return int(event.duration_frames))
+	var actions: Array = battle.skill_events.map(func(event): return int(event.action))
+	var visual_ids: Array = battle.skill_events.map(func(event): return int(event.global_id))
+	assert_eq(phases, ["cast", "release", "sync", "impact", "recovery"], "五阶段仅启动一次")
+	assert_eq(starts, [0, 75, 93, 93, 103], "阶段帧与原版150/36/0/19/60 tick对应")
+	assert_eq(durations, [75, 18, 0, 10, 30], "逻辑帧时长按60Hz原始tick换算")
+	assert_eq(actions, [13, 31, 31, 31, 16], "action13/31/16按阶段切换")
+	assert_eq(visual_ids, [2044, 3027, 0, 2029, 0], "视觉链2044→3027→2029不混入玩法ID")
+	assert_eq(battle.active_skills.size(), 0, "完整演出结束后无活动技能残留")
+
+
 func test_技能事件含完整且分离的数据() -> void:
 	var battle := _battle()
 	battle.start_skill(battle.units[0], battle.units[1], 29)

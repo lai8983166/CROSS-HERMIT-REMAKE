@@ -229,7 +229,8 @@ func _advance_skills() -> void:
 func _emit_skill_stage(record: Dictionary, stage: Dictionary) -> void:
 	var event := {
 		"type": "skill_stage", "frame": frame, "phase": stage["name"],
-		"duration_frames": stage["duration"], "global_id": stage["global_id"],
+		"duration_frames": stage["duration"], "action": stage["action"],
+		"global_id": stage["global_id"],
 		"anchor": stage["anchor"], "skill_id": record["skill_id"],
 		"from_cell": record["from_cell"], "to_cell": record["to_cell"],
 		"cast_action": record["cast_action"], "release_action": record["release_action"],
