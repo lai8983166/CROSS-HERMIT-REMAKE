@@ -200,6 +200,9 @@ func test_技能22仅命中敌方且目标离开选定格时不写入状态() ->
 	var caster: BattleUnit = battle.units[0]
 	var ally: BattleUnit = battle.units[1]
 	var enemy: BattleUnit = battle.units[2]
+	assert_eq(int(SimTables.attack(22).get("target_filter", -1)), 2,
+		"技能22原始目标筛选为敌方")
+	assert_false(battle.start_skill(caster, caster, 22), "target_filter=2 拒绝自身目标")
 	assert_false(battle.start_skill(caster, ally, 22), "target_filter=2 拒绝友方目标")
 	assert_true(battle.start_skill(caster, enemy, 22), "target_filter=2 接受敌方目标")
 	enemy.cell += Vector2i(1, 0)
@@ -335,22 +338,34 @@ func test_演示配置可切换技能或关闭() -> void:
 	assert_eq(disabled.skill_events.size(), 0, "配置可关闭演出")
 
 
-func test_技能29可见演示使用多帧施法动作() -> void:
+func test_技能22演示绑定敌方和黄金动作档() -> void:
 	var setup: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/battle_setup.json"))
 	var demo: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/skill_demo.json"))
 	var caster: Dictionary = setup["units"][int(demo["caster_unit"])]
+	var target: Dictionary = setup["units"][int(demo["target_unit"])]
+	assert_eq(int(demo["skill_id"]), 22, "可见样例运行技能22")
+	assert_true(int(caster["faction"]) != int(target["faction"]), "样例目标为敌方")
 	var sprites: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/unit_sprites.json"))
 	var unit: Dictionary = sprites["units"].get(String(caster["anim_id"]), {})
-	assert_false(unit.is_empty(), "演示施法者精灵档存在")
+	assert_eq(String(caster["anim_id"]), "C1A", "演示使用任务1.3选定的黄金动作档")
+	assert_false(unit.is_empty(), "演示施法者C1A精灵档存在")
+	var battle := Battle.start(setup, int(setup.get("seed", 42)), null)
+	for _i in int(demo["start_frame"]):
+		battle.tick()
+	assert_eq(battle.skill_events.size(), 1, "配置时刻只启动一个施法阶段")
+	assert_eq(int(battle.skill_events[0].get("skill_id", -1)), 22, "样例事件来自技能22")
 	for direction in ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]:
-		var entry := AnimTimeline.unit_action_entry(unit, 12, direction)
-		var timeline := AnimTimeline.resolve(unit, entry)
-		var visible_frames := {}
-		for step: Dictionary in timeline.get("steps", []):
-			for layer: Dictionary in step.get("layers", []):
-				visible_frames[int(layer.get("frame", -1))] = true
-		assert_true(visible_frames.size() >= 2,
-			"演示 action12 的 %s 方向必须肉眼可见地变化" % direction)
+		for action in [13, 31, 16]:
+			var entry := AnimTimeline.unit_action_entry(unit, action, direction)
+			var timeline := AnimTimeline.resolve(unit, entry)
+			assert_false(timeline.get("steps", []).is_empty(),
+				"C1A action%d 的 %s 方向时间线存在" % [action, direction])
+			var visible_frames := {}
+			for step: Dictionary in timeline.get("steps", []):
+				for layer: Dictionary in step.get("layers", []):
+					visible_frames[int(layer.get("frame", -1))] = true
+			assert_true(visible_frames.size() >= (2 if action == 31 else 1),
+				"C1A action%d 的 %s 方向达到演示可见帧要求" % [action, direction])
