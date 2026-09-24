@@ -262,6 +262,8 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	var caster: BattleUnit = record["caster"]
 	var target: BattleUnit = record["target"]
 	if target.state == BattleUnit.State.DEAD or target.state == BattleUnit.State.WITHDRAWN:
+		_record_skill_gameplay_result({"outcome": "target_unavailable",
+			"target_state": target.state})
 		return
 	# Nonzero gameplay effects have their own original dispatch. Until their
 	# field writes are reconstructed, a physical hit would fabricate gameplay.
@@ -269,6 +271,7 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	if effect_id == CONDITION6_ID:
 		var skill_id := int(record["skill_id"])
 		if skill_id != SKILL22_ID:
+			_record_skill_gameplay_result({"outcome": "unresolved_base_hit_path"})
 			_log("f%d %s->%s skill%d effect6 base-hit path unresolved" % [frame,
 				caster.name, target.name, skill_id])
 			return
@@ -276,23 +279,35 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 		# Its single-cell target must still occupy the cell selected when the cast began.
 		var aim_cell: Array = record.get("to_cell", [])
 		if aim_cell.size() != 2 or target.cell != Vector2i(int(aim_cell[0]), int(aim_cell[1])):
+			_record_skill_gameplay_result({"outcome": "target_left_aim_cell",
+				"aim_cell": aim_cell.duplicate(),
+				"target_cell": [target.cell.x, target.cell.y]})
 			_log("f%d %s skill22 effect6 target left aim cell" % [frame, target.name])
 			return
 		var result := _apply_effect6(caster, target, int(record["skill_id"]))
+		result["condition_id"] = CONDITION6_ID
+		result["slot_index"] = 0
+		if String(result.get("outcome", "")) == "applied":
+			result["application"] = target.condition_slots[0].duplicate(true)
+		_record_skill_gameplay_result(result)
 		_log("f%d %s->%s skill%d effect6 %s (%d/%d ticks)" % [frame,
 			caster.name, target.name, int(record["skill_id"]), String(result["outcome"]),
 			int(result.get("applied_ticks", 0)), int(result.get("base_ticks", 0))])
 		return
 	if effect_id != 0:
+		_record_skill_gameplay_result({"outcome": "unresolved_effect",
+			"effect_id": effect_id})
 		_log("f%d %s->%s skill%d gameplay effect %d unresolved" % [frame,
 			caster.name, target.name, int(record["skill_id"]), effect_id])
 		return
 	# Friendly/self gameplay effects are not reconstructed yet. Preserve the
 	# original presentation and target semantics without inventing damage.
 	if target.faction == caster.faction:
+		_record_skill_gameplay_result({"outcome": "friendly_effect_unresolved"})
 		_log("f%d %s->%s skill%d friendly effect unresolved" % [frame,
 			caster.name, target.name, int(record["skill_id"])])
 		return
+	var hp_before := target.hp
 	var damage: int = BattleMath.physical(
 		{"power": caster.atk_power, "power_range": caster.atk_power_range,
 			"accuracy": caster.atk_accuracy},
@@ -303,8 +318,26 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 		target.hp = maxi(0, target.hp - damage)
 		if target.hp == 0:
 			target.state = BattleUnit.State.DEAD
+	_record_skill_gameplay_result({
+		"outcome": "hit" if hit else "miss",
+		"applied_value": damage if hit else 0,
+		"hp_before": hp_before, "hp_after": target.hp,
+	})
 	_log("f%d %s->%s skill%d %s" % [frame, caster.name, target.name,
 		int(record["skill_id"]), "hit %d" % damage if hit else "MISS"])
+
+
+func _record_skill_gameplay_result(result: Dictionary) -> void:
+	if skill_events.is_empty():
+		return
+	var event_index := skill_events.size() - 1
+	var event: Dictionary = skill_events[event_index]
+	if String(event.get("phase", "")) != "impact" or int(event.get("frame", -1)) != frame:
+		return
+	var gameplay_result := result.duplicate(true)
+	gameplay_result["resolved_frame"] = frame
+	event["gameplay_result"] = gameplay_result
+	skill_events[event_index] = event
 
 
 func _apply_effect6(caster: BattleUnit, target: BattleUnit, skill_id: int) -> Dictionary:

@@ -16,6 +16,14 @@ func _battle() -> Battle:
 	return Battle.start(setup, 29, null)
 
 
+func _impact_event(battle: Battle) -> Dictionary:
+	for index in range(battle.skill_events.size() - 1, -1, -1):
+		var event: Dictionary = battle.skill_events[index]
+		if String(event.get("phase", "")) == "impact":
+			return event
+	return {}
+
+
 func test_技能29固定阶段与120tick空白同步() -> void:
 	var battle := _battle()
 	assert_true(battle.start_skill(battle.units[0], battle.units[1], 29), "技能可启动")
@@ -74,6 +82,49 @@ func test_技能22效果6写入限时状态且不伪造HP物理伤害() -> void:
 	assert_eq(int(enemy.condition_slots[0].get("source_skill_id", -1)), 22, "状态记录来源技能")
 	assert_eq(int(enemy.condition_slots[0].get("ticks_remaining", 0)), 3746, "状态按原版时长递减")
 	assert_eq(int(enemy.condition_slots[0].get("tick_counter", 0)), 54, "状态辅助计数按原版180 tick回绕")
+	var impact_event := _impact_event(battle)
+	var gameplay_result: Dictionary = impact_event.get("gameplay_result", {})
+	var application: Dictionary = gameplay_result.get("application", {})
+	assert_eq(int(impact_event.get("gameplay_effect_id", 0)), 6, "事件记录玩法效果6")
+	assert_eq(int(impact_event.get("global_id", 0)), 2029, "命中特效ID仍独立")
+	assert_eq(String(gameplay_result.get("outcome", "")), "applied", "记录状态应用结果")
+	assert_eq(int(gameplay_result.get("resolved_frame", -1)), int(impact_event.get("frame", -2)),
+		"记录结算帧")
+	assert_eq([int(gameplay_result.get("condition_id", 0)),
+		int(gameplay_result.get("slot_index", -1)), int(application.get("ticks_remaining", 0))],
+		[6, 0, 3800], "记录效果参数和原始应用值")
+
+
+func test_技能22抵抗结果进入impact事件且视觉ID独立() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var enemy: BattleUnit = battle.units[2]
+	enemy.unit.magic_resist = 96
+	assert_true(battle.start_skill(caster, enemy, 22), "技能22对敌人启动")
+	for _i in 100:
+		battle.tick()
+	var impact_event := _impact_event(battle)
+	var gameplay_result: Dictionary = impact_event.get("gameplay_result", {})
+	assert_eq(int(impact_event.get("gameplay_effect_id", 0)), 6, "抵抗分支仍记录玩法效果6")
+	assert_eq(int(impact_event.get("global_id", 0)), 2029, "抵抗不混淆命中特效ID")
+	assert_eq(String(gameplay_result.get("outcome", "")), "resisted", "事件记录抵抗")
+	assert_eq(int(gameplay_result.get("condition_id", 0)), 6, "记录被判定的状态参数")
+	assert_eq(int(enemy.condition_slots[0].get("condition_id", 0)), 0, "抵抗不写入状态")
+
+
+func test_技能29impact结果保持其玩法和视觉字段兼容() -> void:
+	var battle := _battle()
+	assert_true(battle.start_skill(battle.units[0], battle.units[1], 29), "技能29对友方启动")
+	for _i in 147:
+		battle.tick()
+	var impact_event := _impact_event(battle)
+	var gameplay_result: Dictionary = impact_event.get("gameplay_result", {})
+	assert_eq(int(impact_event.get("gameplay_effect_id", -1)), 0, "技能29玩法ID保持原值")
+	assert_eq(int(impact_event.get("global_id", 0)), 3032, "技能29视觉ID保持原值")
+	assert_eq(String(gameplay_result.get("outcome", "")), "friendly_effect_unresolved",
+		"未逆向的友方玩法结果显式记录但不伪造")
+	assert_eq(int(gameplay_result.get("resolved_frame", -1)), int(impact_event.get("frame", -2)),
+		"技能29记录玩法结算帧")
 
 
 func test_技能22仅命中敌方且目标离开选定格时不写入状态() -> void:
