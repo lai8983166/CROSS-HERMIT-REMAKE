@@ -68,6 +68,25 @@ class Effect6EvidenceTests(unittest.TestCase):
         modifiers = [self.image[0x6b2daa + job * 0x40 - IMAGE_BASE] for job in range(30)]
         self.assertEqual(modifiers, [0] * 30)
 
+    def test_skill22_mp_loss_uses_signed_magic_hit_value_not_condition_duration(self):
+        attack = (ROOT / 'analysis/decomp_all/488bc0.c').read_text('utf-8')
+        magic = (ROOT / 'analysis/decomp_all/4826f0.c').read_text('utf-8')
+        dispatch = (ROOT / 'analysis/decomp_all/491ef0.c').read_text('utf-8')
+        queue = (ROOT / 'analysis/decomp_all/493180.c').read_text('utf-8')
+        apply_queue = (ROOT / 'analysis/decomp_all/493450.c').read_text('utf-8')
+        apply_value = (ROOT / 'analysis/decomp_all/472550.c').read_text('utf-8')
+
+        self.assertIn('FUN__text__004826f0(local_44,local_70)', attack)
+        self.assertIn('sStack_e = -local_1c;', attack)
+        self.assertIn('((100 - (uint)*(byte *)(param_2 + 10)) + *(int *)(param_2 + 0x1c))',
+                      magic)
+        self.assertIn('(uint)*(byte *)(param_2 + 0xb) * *(int *)(param_2 + 0x18)', magic)
+        self.assertIn('*(uint *)(param_1 + 0x14) = local_c;', magic)
+        self.assertIn('FUN__text__00493180(param_2,*(undefined2 *)(param_3 + 10))', dispatch)
+        self.assertIn('*(short *)(local_c + 2) = param_2;', queue)
+        self.assertIn('FUN__text__00472550(param_2,1,(int)*(short *)(local_c + 2))', apply_queue)
+        self.assertIn('*(undefined2 *)(*(int *)(param_1 + 600) + 0x1c) =', apply_value)
+
     def test_skill_attribute_export_preserves_indexed_and_fallback_rows(self):
         self.assertEqual(self.skill_attributes['_meta']['source_va'], 0x6d4e58)
         self.assertEqual(len(self.skill_attributes['rows']), 101)
