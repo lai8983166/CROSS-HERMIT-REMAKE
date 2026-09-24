@@ -24,8 +24,14 @@ func test_skill_visual_table() -> void:
 
 func test_skill_attribute_table() -> void:
 	assert_eq(SimTables.rows("skill_attributes").size(), 101, "索引技能属性表 0..100")
-	assert_eq(SimTables.skill_attribute(22).bytes, [1, 1, 1, 3, 1, 1, 2], "技能 22 原始属性字节")
-	assert_eq(SimTables.skill_attribute(537).bytes, [1, 1, 1, 1, 1, 1, 0], "ID>=101 使用原版默认行")
+	var skill22_bytes: Array[int] = []
+	for value in SimTables.skill_attribute(22).bytes:
+		skill22_bytes.append(int(value))
+	assert_eq(skill22_bytes, [1, 1, 1, 3, 1, 1, 2], "技能 22 原始属性字节")
+	var fallback_bytes: Array[int] = []
+	for value in SimTables.skill_attribute(537).bytes:
+		fallback_bytes.append(int(value))
+	assert_eq(fallback_bytes, [1, 1, 1, 1, 1, 1, 0], "ID>=101 使用原版默认行")
 	assert_eq(SimTables.skill_attribute(-1), {}, "负 ID 不映射到属性行")
 
 func test_engage_table() -> void:
