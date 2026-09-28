@@ -22,7 +22,7 @@ from unit_action_table import EXE, check_archive_programs, decode_action, type_f
 DX_DIR = 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM'
 OUT_ASSETS = 'prototype/assets/unit'
 OUT_JSON = 'prototype/data/unit_sprites.json'
-TOOL_VER = '3.0'
+TOOL_VER = '3.1'
 UNIT_FILES = [f'{g}{v}A.BIN' for g in 'ABCDE' for v in '01']
 IDLE_OVERRIDES = {}
 
@@ -43,6 +43,8 @@ def decode_timelines(data, offs, frame_count):
             'id': animation,
             'steps': timeline['steps'],
             'loop_from': timeline['loop_from'],
+            'signals': {key: value for key, value in timeline.items()
+                        if key not in ('steps', 'loop_from', 'duration_ticks')},
         })
     return timelines
 
@@ -80,6 +82,8 @@ def export_unit(name: str, exe_data: bytes):
             'id': animation,
             'steps': timeline['steps'],
             'loop_from': timeline['loop_from'],
+            'signals': {key: value for key, value in timeline.items()
+                        if key not in ('steps', 'loop_from', 'duration_ticks')},
         }
 
     unit_dir = os.path.join(OUT_ASSETS, name[:-4])  # 去 .BIN
@@ -113,7 +117,7 @@ def pick_anim_map(anims, frame_count, unit_uid, action31, block1_anims):
     attack_by_dir = dx.engine_attack_dir_map(anims, frame_count=frame_count)
     skill_actions = {
         str(action): dx.engine_action_dir_map(anims, action)
-        for action in range(11, 17)
+        for action in [7, *range(11, 17)]
     }
     action31_map = {}
     for direction, source in action31['directions'].items():

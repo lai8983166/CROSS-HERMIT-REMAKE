@@ -130,6 +130,89 @@ class DxAnimGoldenTests(unittest.TestCase):
 
 
 class DxAnimInterpreterTests(unittest.TestCase):
+    def test_signals_from_blank_frame_and_adjacent_frame_boundary(self):
+        data = dxanim_file([program_block([[
+            visible(0xfff, 3, 4), visible(0xfff, 2, 0x88)]])])
+        result = dx.interpret_animation(data, 0, 0)
+        self.assertEqual([(event['tick'], event['flag']) for event in result['events']],
+                         [(0, 4), (2, 8)])
+        self.assertEqual(result['root_completion_ticks'], 5)
+        self.assertTrue(all(not step['layers'] for step in result['steps']))
+
+    def test_control_successor_decrements_in_same_update(self):
+        data = dxanim_file([program_block([[
+            visible(0xfff, 3), child(-1, 0, 0), visible(0xfff, 2, 0x84)]])])
+        result = dx.interpret_animation(data, 0, 0)
+        self.assertEqual(result['events'][0]['tick'], 2)
+        self.assertEqual(result['root_completion_ticks'], 4)
+        self.assertEqual(result['duration_ticks'], 5)  # Existing visual flattening.
+
+    def test_child_signals_do_not_replace_root_completion(self):
+        data = dxanim_file([
+            program_block([[child(0, 0, 0), visible(0xfff, 2, 0x80)]]),
+            b'', b'', program_block([[visible(0xfff, 5, 0x88)]])])
+        result = dx.interpret_animation(data, 0, 0)
+        self.assertEqual([(event['tick'], event['flag'], event['depth'])
+                          for event in result['events']], [(0, 8, 1)])
+        self.assertEqual(result['root_completion_ticks'], 2)
+        self.assertEqual(result['duration_ticks'], 5)
+
+    def test_dependent_child_does_not_signal_after_root_finished(self):
+        data = dxanim_file([
+            program_block([[child(0, 0, 0), visible(0xfff, 2, 0x80)]]),
+            b'', b'', program_block([[
+                visible(0xfff, 4), visible(0xfff, 2, 0x88)]])])
+        result = dx.interpret_animation(data, 0, 0)
+        self.assertEqual(result['root_completion_ticks'], 2)
+        self.assertEqual(result['events'], [])
+
+
+    def test_loop_has_no_fabricated_completion(self):
+        data = dxanim_file([program_block([[visible(0xfff, 2, 4), loop(0x7f, 1)]])])
+        result = dx.interpret_animation(data, 0, 0)
+        self.assertTrue(result['signal_supported'])
+        self.assertTrue(result['signal_looping'])
+        self.assertIsNone(result['root_completion_ticks'])
+
+    def test_original_sample_signals_in_all_eight_directions(self):
+        from unit_action_table import EXE, decode_action, type_for_archive
+
+        image = EXE.read_bytes()
+        expected = {'C1A': {31: (34, 46), 7: (0, 28)},
+                    'D0A': {31: (29, 55), 7: (0, 47)}}
+        for archive, actions in expected.items():
+            data = (DXANIM_DIR / f'{archive}.BIN').read_bytes()
+            for action, (event_tick, completion) in actions.items():
+                lookup = decode_action(image, type_for_archive(image, archive), action)
+                for direction, entry in lookup['directions'].items():
+                    result = dx.interpret_animation(data, entry['block'], entry['animation'])
+                    self.assertTrue(result['signal_supported'], (archive, action, direction))
+                    self.assertEqual([(event['tick'], event['flag']) for event in result['events']],
+                                     [(event_tick, 4)], (archive, action, direction))
+                    self.assertEqual(result['root_completion_ticks'], completion)
+        fx_data = (DXANIM_DIR / 'EFCT.BIN').read_bytes()
+        for global_id, events in {3017: [(0, 4)], 3027: [], 2029: [(0, 8)],
+                                  3032: [(23, 8)]}.items():
+            result = dx.interpret_animation(fx_data, global_id // 1000 - 1, global_id % 1000)
+            self.assertEqual([(event['tick'], event['flag']) for event in result['events']], events)
+
+    def test_action7_export_mapping_matches_executable_for_all_archives(self):
+        from unit_action_table import EXE, decode_action, type_for_archive
+
+        image = EXE.read_bytes()
+        for archive in (f'{group}{variant}A' for group in 'ABCDE' for variant in '01'):
+            data = (DXANIM_DIR / f'{archive}.BIN').read_bytes()
+            programs = dx.parse_program_blocks(data)
+            animations = [dx.interpret_animation(data, 0, index)
+                          for index in range(len(programs[0]))]
+            exported = dx.engine_action_dir_map(animations, 7)
+            original = decode_action(image, type_for_archive(image, archive), 7)
+            for direction, entry in exported.items():
+                raw = original['directions'][direction]
+                self.assertEqual((entry['block'], entry['anim'], entry['flags']),
+                                 (raw['block'], raw['animation'], raw['flags']),
+                                 (archive, direction))
+
     def test_child_animation_runs_concurrently_with_parent(self):
         parent = [visible(0, 2), child(0, 5, 6), visible(1, 2, 0x80)]
         spawned = [visible(2, 3, 0x80)]
@@ -160,6 +243,7 @@ class DxAnimInterpreterTests(unittest.TestCase):
         self.assertEqual(timeline['loop_from'], 0)
         self.assertEqual(timeline['duration_ticks'], 1)
         self.assertEqual([layer['frame'] for layer in timeline['steps'][0]['layers']], [10, 11])
+        self.assertFalse(timeline['signal_supported'], "Native update repeats within one call")
 
     def test_efct_sustained_cast_animations_converge(self):
         data = (DXANIM_DIR / 'EFCT.BIN').read_bytes()

@@ -35,7 +35,8 @@ static func normalize(animation: Dictionary) -> Dictionary:
 				"duration_ticks": maxi(1, int(record.get("dur", 1))),
 				"layers": layers,
 			})
-	return {"steps": steps, "loop_from": animation.get("loop_from", null)}
+	return {"steps": steps, "loop_from": animation.get("loop_from", null),
+		"signals": animation.get("signals", {})}
 
 
 static func resolve(data: Dictionary, entry: Dictionary) -> Dictionary:
@@ -81,6 +82,15 @@ static func unit_action_entry(data: Dictionary, action: int, direction: String) 
 	return entry if not entry.is_empty() else anim_map.get("IDLE", {})
 
 
+## Strict timing lookup: visual idle fallback must never become skill evidence.
+static func unit_action_signals(data: Dictionary, action: int, direction: String) -> Dictionary:
+	var actions: Dictionary = data.get("anim_map", {}).get("skill_actions", {})
+	var entry: Dictionary = actions.get(str(action), {}).get(direction, {})
+	if entry.is_empty():
+		return {}
+	return resolve(data, entry).get("signals", {})
+
+
 static func total_ticks(timeline: Dictionary) -> int:
 	var total := 0
 	for step: Dictionary in timeline.get("steps", []):
@@ -97,7 +107,8 @@ static func step_at(timeline: Dictionary, elapsed_ticks: int, repeat_without_loo
 		return {}
 	var tick := elapsed_ticks
 	var loop_value: Variant = timeline.get("loop_from", null)
-	if loop_value is int and int(loop_value) >= 0 and int(loop_value) < steps.size():
+	if (loop_value is int or loop_value is float) \
+			and int(loop_value) >= 0 and int(loop_value) < steps.size():
 		var loop_tick := 0
 		for index in int(loop_value):
 			loop_tick += maxi(1, int(steps[index].get("duration_ticks", 1)))

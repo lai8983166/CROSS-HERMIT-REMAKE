@@ -22,10 +22,11 @@ class SkillLinkAuditTests(unittest.TestCase):
         self.assertEqual(result['visual']['fx']['release_fx']['status'], 'exported')
         self.assertEqual(result['visual']['fx']['impact_fx']['status'], 'exported')
 
-    def test_skill_29_distinguishes_action_gap_from_fx_export(self):
+    def test_skill_29_release_action_gap_is_closed(self):
         result = audit_skill(29, 'D0A', 'N', self.sources)
         self.assertEqual(result['visual']['actions']['cast_action']['animation'], 56)
-        self.assertEqual(result['visual']['actions']['release_action']['status'], 'not_exported')
+        self.assertEqual(result['visual']['actions']['release_action']['status'], 'exported')
+        self.assertEqual(result['visual']['actions']['release_action']['animation'], 31)
         self.assertTrue(all(item['status'] == 'exported' for item in result['visual']['fx'].values()))
 
     def test_empty_direction_is_not_reported_as_absent_source_action(self):

@@ -53,7 +53,7 @@ class UnitExportTests(unittest.TestCase):
         }
         for unit_id, unit in self.data['units'].items():
             self.assertEqual(set(unit['anim_map']['skill_actions']),
-                             {'11', '12', '13', '14', '15', '16', '31'}, unit_id)
+                             {'7', '11', '12', '13', '14', '15', '16', '31'}, unit_id)
         d0_action12 = self.data['units']['D0A']['anim_map']['skill_actions']['12']
         self.assertEqual(
             {direction: (entry['anim'], entry['flags'])

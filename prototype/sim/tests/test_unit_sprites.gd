@@ -8,6 +8,29 @@ func _sprites() -> Dictionary:
 	return JSON.parse_string(FileAccess.get_file_as_string("res://data/unit_sprites.json"))
 
 
+func test_原版事件与完成信号不使用待机回退() -> void:
+	var parsed := _sprites()
+	for archive in ["C1A", "D0A"]:
+		var unit: Dictionary = parsed["units"][archive]
+		for direction in ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]:
+			var signals := Timeline.unit_action_signals(unit, 31, direction)
+			assert_true(bool(signals.get("signal_supported", false)), "action31信号可用")
+			var signal_events: Array = signals.get("events", [])
+			assert_eq(signal_events.size(), 1, "action31只发出一次攻击队列信号")
+			assert_eq(int(signal_events[0].get("tick", -1)), 34 if archive == "C1A" else 29,
+				"来源于40A800更新而非图层时长之和")
+			assert_eq(int(signals.get("root_completion_ticks", -1)),
+				46 if archive == "C1A" else 55, "根节点返回完成的更新次数")
+	assert_true(Timeline.unit_action_signals(parsed["units"]["C1A"], 999, "N").is_empty(),
+		"缺失映射不取待机完成信息")
+	var blank := Timeline.normalize(SimTables.fx_animation(3017))
+	assert_eq(int(blank["signals"]["events"][0]["tick"]), 0,
+		"空白3017在开始时发出信号，不等待120tick")
+	var looped := Timeline.normalize({"steps": [{"duration_ticks": 2, "layers": []}],
+		"loop_from": 0.0})
+	assert_false(Timeline.step_at(looped, 20).is_empty(), "JSON数值循环点正常读取")
+
+
 func test_v2帧表与八方向完整() -> void:
 	var parsed := _sprites()
 	assert_eq(int(parsed["_meta"].get("schema_version", 0)), 2, "schema v2")

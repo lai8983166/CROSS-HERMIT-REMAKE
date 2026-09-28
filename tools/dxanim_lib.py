@@ -11,6 +11,10 @@ class DxAnimError(Exception):
     pass
 
 
+class SignalTimingError(DxAnimError):
+    """Renderable offline program with non-converging original update semantics."""
+
+
 def parse_dxanim(data: bytes):
     """容器级解析 + 自洽校验，返回块偏移表。
 
@@ -272,6 +276,106 @@ def _instance_key(instance):
     )
 
 
+def interpret_signals(programs, block, animation, *, max_ticks=10000):
+    """40A400/40A520/40A800/40A100 signal clock, separate from render flattening.
+
+    tick 0 is the first update after selection; an opcode0 selected by 40A400
+    can signal before that update. Zero-time controls run on update, and a new
+    visible instruction reached via a control is decremented in that same
+    update (unlike a directly adjacent opcode0). This distinction is important.
+    root_completion_ticks counts updates; the AI consumes that return next update.
+    """
+    nodes = []
+    events = []
+    root_completion = None
+
+    def enter(node, tick):
+        program = programs[node['block']][node['animation']]
+        if not 0 <= node['pc'] < len(program):
+            raise DxAnimError('signal PC outside animation program')
+        op = program[node['pc']]
+        if op['opcode'] == 0:
+            node['wait'] = op['duration_ticks']
+            for flag in (4, 8):
+                if op['flags'] & flag:
+                    events.append({'tick': tick, 'flag': flag,
+                                   'block': node['block'], 'animation': node['animation'],
+                                   'pc': node['pc'], 'depth': node['depth']})
+        elif op['opcode'] == 3 and node['loop_remaining'] == 0:
+            repeat = op['repeat']
+            node['loop_remaining'] = 0x7f if repeat == 0x7f else repeat + 1
+
+    def create(b, a, depth, tick):
+        node = {'block': b, 'animation': a, 'pc': 0, 'wait': 0,
+                'loop_remaining': 0, 'depth': depth, 'done': False}
+        nodes.append(node)
+        enter(node, tick)
+        return node
+
+    root = create(block, animation, 0, 0)
+
+    def advance(node, tick):
+        # The original VM can execute controls and enter/decrement opcode0 in
+        # one update. A direct opcode0 successor is entered but not decremented.
+        update_seen = set()
+        for _operation in range(100000):
+            update_state = (node['pc'], node['wait'], node['loop_remaining'])
+            if update_state in update_seen:
+                raise SignalTimingError('signal control flow repeats within one update')
+            update_seen.add(update_state)
+            op = programs[node['block']][node['animation']][node['pc']]
+            opcode = op['opcode']
+            if opcode == 0:
+                node['wait'] -= 1
+                if node['wait'] > 0:
+                    return
+            elif opcode == 1:
+                if op['child_animation'] != -1 and node['depth'] < 8:
+                    child = create(3, op['child_animation'], node['depth'] + 1, tick)
+                    advance(child, tick)  # 40ADA0 calls 40A800 immediately.
+            elif opcode == 3:
+                remaining = node['loop_remaining']
+                if remaining == 0x7f or remaining > 1:
+                    if remaining != 0x7f:
+                        node['loop_remaining'] -= 1
+                    node['pc'] += op['jump'] if op['forward'] else -op['jump']
+                    enter(node, tick)
+                    continue
+                node['loop_remaining'] = 0
+            if op['terminal']:
+                node['done'] = True
+                return
+            node['pc'] += 1
+            enter(node, tick)
+            next_op = programs[node['block']][node['animation']][node['pc']]
+            if opcode == 0 and next_op['opcode'] == 0:
+                return
+        raise SignalTimingError('signal control flow did not converge')
+
+    seen = set()
+    for tick in range(max_ticks):
+        state = tuple(tuple(node[key] for key in
+                            ('block', 'animation', 'pc', 'wait', 'loop_remaining', 'depth'))
+                      for node in nodes if not node['done'])
+        if state in seen:
+            return {'events': events, 'root_completion_ticks': root_completion,
+                    'signal_looping': True, 'signal_supported': True}
+        seen.add(state)
+        current = [node for node in nodes if not node['done']]
+        if not current:
+            return {'events': events, 'root_completion_ticks': root_completion,
+                    'signal_looping': False, 'signal_supported': True}
+        for node in current:
+            advance(node, tick)
+        if root['done'] and root_completion is None:
+            root_completion = tick + 1
+            # On its next update the root clears dependent opcode1 children
+            # (40A800 -> 40AB80). They cannot emit later timing evidence.
+            return {'events': events, 'root_completion_ticks': root_completion,
+                    'signal_looping': False, 'signal_supported': True}
+    raise SignalTimingError('signal animation did not converge')
+
+
 def interpret_animation(data: bytes, block: int, animation: int, *, offs=None,
                         mirror_flags=0, max_ticks=10000, max_steps=100000):
     """离线解释一条 DxAnim 动画，输出渲染就绪的时间轴。
@@ -456,7 +560,14 @@ def interpret_animation(data: bytes, block: int, animation: int, *, offs=None,
             steps.append({'duration_ticks': 1, 'layers': layers})
     if loop_tick == 0:
         loop_from = 0
-    return {'steps': steps, 'loop_from': loop_from, 'duration_ticks': len(ticks)}
+    try:
+        signals = interpret_signals(programs, block, animation, max_ticks=max_ticks)
+    except SignalTimingError as error:
+        # Keep the established render timeline, but never manufacture timing
+        # evidence from a program whose native update flow does not converge.
+        signals = {'events': [], 'root_completion_ticks': None,
+                   'signal_supported': False, 'signal_error': str(error)}
+    return {'steps': steps, 'loop_from': loop_from, 'duration_ticks': len(ticks), **signals}
 
 
 def parse_block0_anims(data: bytes, b0: int):
@@ -618,8 +729,8 @@ def engine_action_dir_map(anims, action):
     direction table specifies.  Archives may contain intentionally blank action
     slots; those directions are omitted so the runtime can fall back to idle.
     """
-    if not 11 <= action <= 16:
-        raise DxAnimError(f'unsupported skill action {action}; expected 11..16')
+    if action != 7 and not 11 <= action <= 16:
+        raise DxAnimError(f'unsupported skill action {action}; expected 7 or 11..16')
     base_animation = action * 5 - 4
     direction_table = {
         direction: (engine_direction, base_animation + offset, flags)

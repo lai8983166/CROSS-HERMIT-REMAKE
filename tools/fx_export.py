@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'CROSS HERMIT/CROSS HERMIT/DATA/DXANIM/EFCT.BIN'
 OUT_ASSETS = ROOT / 'prototype/assets/fx/EFCT'
 OUT_JSON = ROOT / 'prototype/data/attack_effects.json'
-TOOL_VERSION = '3.0'
+TOOL_VERSION = '3.1'
 
 # Skill 29's complete visual chain, skill 22's three visual stages, and an anchor.
 DEFAULT_GLOBAL_IDS = (2029, 2042, 2044, 2050, 2098, 3017, 3027, 3032)
@@ -65,6 +65,8 @@ def export_fx(global_ids):
             'steps': timeline['steps'],
             'loop_from': timeline['loop_from'],
             'duration_ticks': timeline['duration_ticks'],
+            'signals': {key: value for key, value in timeline.items()
+                        if key not in ('steps', 'loop_from', 'duration_ticks')},
         }
 
     OUT_ASSETS.mkdir(parents=True, exist_ok=True)
