@@ -643,8 +643,11 @@ func _check_dark_frame(anim_id: String, frame_idx: int, pal_id: int, u: BattleUn
 		printerr("[暗帧] %s state=%s facing=%s frame=%d pal=%d 亮度=%.0f 覆盖=%.0f%%" % [
 			u.name, BattleUnit.State.keys()[u.state], str(u.facing), frame_idx,
 			pal_id, float(lv[0]), float(lv[1]) * 100.0])
+		if DisplayServer.get_name() == "headless":
+			return   # Dummy rendering has no viewport image to capture.
 		var shot := get_viewport().get_texture().get_image()
-		shot.save_png("user://dark_frame_%d.png" % now)
+		if shot != null:
+			shot.save_png("user://dark_frame_%d.png" % now)
 
 
 func _frame_tex(anim_id: String, frame_idx: int, pal_id: int = 0) -> Texture2D:

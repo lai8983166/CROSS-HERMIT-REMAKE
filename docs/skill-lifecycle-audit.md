@@ -75,6 +75,20 @@ Godot 保留独立 `skill_resource_events`，记录技能、单位数组索引�
 
 ## 本轮验证
 
-重新导出十档单位与八个 EFCT 动画，新增信号及 action7 映射；全部原有 PNG 未变化。`python -m unittest discover -s tools/tests`：52 项通过；Godot `--headless --path prototype -s res://sim/tests/test_runner.gd`：13 组、91 项通过；`openspec validate calibrate-skill-lifecycle-signals --strict` 通过。测试覆盖原始信号、循环/不支持边界、MP 准入及单次扣费。
+重新导出十档单位与八个 EFCT 动画，新增信号及 action7 映射；全部原有 PNG 未变化。2026-09-28 综合验证：
 
-30Hz 模拟的最终接入必须公开 60Hz 信号量化及跨单位消费顺序限制；本轮尚未替换人物/结算调度、未做原版实机逐 tick 差分或用户目检，本变更不归档。
+- `python -m unittest discover -s tools/tests`：52 项通过。
+- Godot `--headless --path prototype -s res://sim/tests/test_runner.gd`：13 组、104 项通过，其中技能施放 33 项。
+- 主场景 `--headless --path prototype --fixed-fps 30 --quit-after 500`：退出 0，无脚本/引擎错误；原有暗帧亮度诊断仍会打印，现已禁止 dummy renderer 尝试读取截图。
+- `openspec validate calibrate-skill-lifecycle-signals --strict`：通过。
+- 回归覆盖原始信号及八向映射、循环/不支持边界、MP 准入与单次费用、22/29 演员与视觉重叠、目标数组先后/自身、04 命中快照与 08 应用、源/目标退出、多施法者关联、连续施放/资源耗尽/同种子事件流。
+
+## 量化限制与验收边界
+
+技能队列使用内部 60Hz source tick，并保留每单位的根/槽消费顺序；事件同时记录 source tick 和 30Hz frame（奇数 tick 在该 frame 内第一子步发生）。渲染只在逻辑帧边界读取画面，奇数 tick 最多晚 1/60 秒才可见；不可把同 frame 的事件当作同 source tick。
+
+这不是整个战斗升到 60Hz：状态时长在每帧技能子步之前递减两次；普通移动/攻击和 ENGAGE 仍按 30Hz 推进。它们与技能之间的跨子系统边界尚不等价于原版逐单位 60Hz 全流程。ENGAGE 退出保持在本帧技能事件之后处理，中断于本帧完成；死亡/撤离完整演出及最终全槽注销未接入。
+
+兼容渲染图层展开与原版控制转场仍可能相差 1 source tick，事件/人物完成不再用该视觉总长猜测。3027 外部移动语义、技能29友方玩法效果等既有未闭合项仍保留，不以本次信号校准声称解决。
+
+原版实机逐 tick 差分和用户视觉确认均未完成；任务 4.2 等待实际目检，本变更不归档。
