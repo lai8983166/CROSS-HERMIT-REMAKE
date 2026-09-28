@@ -25,6 +25,7 @@ var walk_rules: Dictionary = {}
 var fx_events: Array[Dictionary] = []
 var fx_events_keep := 64   # 最近保留条数 (视图消费用, 防长战内存涨; 数据字段非平衡常量)
 var skill_events: Array[Dictionary] = []
+var skill_resource_events: Array[Dictionary] = []  # Source costs, not target MP damage.
 var active_skills: Dictionary = {}   # caster instance id -> deterministic phase record
 var skill_demo: Dictionary = {}
 var _next_demo_frame := -1
@@ -144,6 +145,12 @@ func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> boo
 	var target_filter := int(attack.get("target_filter", 0))
 	if not _target_filter_allows(caster, target, target_filter):
 		return false
+	# 46C930: admission checks current MP; 477980 spends only at release start.
+	var mp_cost := int(attack.get("mp_cost", 0))
+	if caster.mp < mp_cost:
+		_log("f%d %s skill%d rejected: MP %d < %d" % [frame,
+			caster.name, p_skill_id, caster.mp, mp_cost])
+		return false
 	var delta := target.cell - caster.cell
 	if delta != Vector2i.ZERO:
 		caster.facing = Vector2i(signi(delta.x), signi(delta.y))
@@ -181,6 +188,7 @@ func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> boo
 		"sync_fx": sync_fx, "impact_fx": impact_fx,
 		"gameplay_effect_id": int(attack.get("hit_effect", 0)),
 		"target_filter": target_filter,
+		"mp_cost": mp_cost, "mp_spent": false,
 		"stages": stages, "phase_index": -1, "phase_started_frame": frame,
 	}
 	caster.skill_id = p_skill_id
@@ -209,11 +217,30 @@ func _enter_next_skill_phase(caster_key: int) -> void:
 		caster.skill_action = int(stage["action"])
 		caster.skill_phase_started_frame = frame
 		active_skills[caster_key] = record
+		if String(stage["name"]) == "release":
+			_spend_skill_mp(record)
 		_emit_skill_stage(record, stage)
 		if String(stage["name"]) == "impact":
 			_resolve_skill_impact(record)
 		if int(stage["duration"]) > 0:
 			return
+
+
+func _spend_skill_mp(record: Dictionary) -> void:
+	if bool(record.get("mp_spent", false)):
+		return
+	record["mp_spent"] = true
+	var caster: BattleUnit = record["caster"]
+	var before := caster.mp
+	var cost := int(record["mp_cost"])
+	# 46C990 -> 472550(type=1): no release-time admission recheck, clamp to limits.
+	caster.mp = clampi(before - cost, 0, caster.mp_max)
+	skill_resource_events.append({
+		"type": "skill_resource_cost", "frame": frame, "phase": "release",
+		"skill_id": record["skill_id"], "caster_index": units.find(caster),
+		"resource": "mp", "requested_cost": cost, "applied_cost": before - caster.mp,
+		"mp_before": before, "mp_after": caster.mp,
+	})
 
 
 func _advance_skills() -> void:

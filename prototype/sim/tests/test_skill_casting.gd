@@ -24,6 +24,57 @@ func _impact_event(battle: Battle) -> Dictionary:
 	return {}
 
 
+func test_MP不足拒绝且不改变动作或事件() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	caster.mp = 9
+	assert_eq(int(SimTables.attack(22).get("mp_cost", -1)), 10, "原版技能22费用")
+	assert_false(battle.start_skill(caster, battle.units[2], 22), "9MP不足")
+	assert_eq(caster.mp, 9, "拒绝不扣MP")
+	assert_eq(caster.state, BattleUnit.State.IDLE, "拒绝不改变人物状态")
+	assert_eq(battle.skill_events.size(), 0, "无演出事件")
+	assert_eq(battle.skill_resource_events.size(), 0, "无扣费事件")
+	assert_eq(battle.active_skills.size(), 0, "无技能实例")
+
+
+func test_MP恰好足够在释放扣费一次且与目标伤害分开() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var enemy: BattleUnit = battle.units[2]
+	caster.mp = 10
+	assert_true(battle.start_skill(caster, enemy, 22), "恰好足够可施放")
+	for _i in 74:
+		battle.tick()
+	assert_eq(caster.mp, 10, "施法期间不扣费")
+	assert_eq(battle.skill_resource_events.size(), 0, "释放前无扣费记录")
+	battle.tick()
+	assert_eq(caster.mp, 0, "释放帧扣10MP")
+	assert_eq(battle.skill_resource_events.size(), 1, "释放恰好一次")
+	var event: Dictionary = battle.skill_resource_events[0]
+	assert_eq([int(event.frame), int(event.requested_cost), int(event.applied_cost)],
+		[75, 10, 10], "费用与发生帧独立记录")
+	for _i in 100:
+		battle.tick()
+	assert_eq(battle.skill_resource_events.size(), 1, "命中与恢复不再次扣费")
+	assert_eq(int(_impact_event(battle).get("gameplay_result", {}).get("mp_result", {})
+		.get("mp_after", -1)), enemy.mp, "目标MP伤害仍由玩法结果记录")
+
+
+func test_施法期间MP下降释放不重检并钳制到零() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	caster.mp = 10
+	assert_true(battle.start_skill(caster, battle.units[2], 22), "开始时通过准入")
+	caster.mp = 3
+	for _i in 75:
+		battle.tick()
+	assert_eq(caster.state, BattleUnit.State.RELEASE, "原版释放入口没有再次拒绝")
+	assert_eq(caster.mp, 0, "472550钳制")
+	var event: Dictionary = battle.skill_resource_events[0]
+	assert_eq([int(event.requested_cost), int(event.applied_cost)], [10, 3],
+		"记录费用和实际扣除差异")
+
+
 func test_技能29固定阶段与120tick空白同步() -> void:
 	var battle := _battle()
 	assert_true(battle.start_skill(battle.units[0], battle.units[1], 29), "技能可启动")
@@ -97,6 +148,9 @@ func test_技能事件含完整且分离的数据() -> void:
 func test_技能29只接受友方或自身目标且不伪造伤害() -> void:
 	var battle := _battle()
 	var caster: BattleUnit = battle.units[0]
+	# This target-filter regression requests two casts; provide two real costs.
+	caster.mp_max = 2 * int(SimTables.attack(29).get("mp_cost", 0))
+	caster.mp = caster.mp_max
 	var ally: BattleUnit = battle.units[1]
 	var enemy: BattleUnit = battle.units[2]
 	assert_false(battle.start_skill(caster, enemy, 29), "敌方目标应被筛选值3拒绝")
@@ -287,6 +341,8 @@ func test_同种子阶段序列完全一致() -> void:
 func test_连续施放动作时钟均从首帧开始() -> void:
 	var battle := _battle()
 	var caster: BattleUnit = battle.units[0]
+	caster.mp_max = 2 * int(SimTables.attack(29).get("mp_cost", 0))
+	caster.mp = caster.mp_max
 	var target: BattleUnit = battle.units[1]
 	battle.start_skill(caster, target, 29)
 	assert_eq(caster.skill_phase_started_frame, 0, "首轮施法起点")
