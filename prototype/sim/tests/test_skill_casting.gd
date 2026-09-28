@@ -138,6 +138,100 @@ func test_MP不足拒绝且不改变动作或事件() -> void:
 	assert_eq(battle.active_skills.size(), 0, "无技能实例")
 
 
+func test_释放前死亡或撤离停止演员和依附施法且不扣费() -> void:
+	for exit_state in [BattleUnit.State.DEAD, BattleUnit.State.WITHDRAWN]:
+		var battle := _battle()
+		var caster: BattleUnit = battle.units[0]
+		var mp_before := caster.mp
+		assert_true(battle.start_skill(caster, battle.units[2], 22), "启动施法")
+		battle.tick()
+		caster.state = exit_state
+		battle.tick()
+		assert_eq(caster.state, exit_state, "中断不能把退出状态写回待机")
+		assert_eq(caster.skill_id, -1, "清除演员技能")
+		assert_eq(battle.active_skills.size(), 0, "实例不再推进")
+		assert_eq(battle.pending_skill_signals.size(), 0, "无根队列残留")
+		assert_eq(battle.active_fx_events().size(), 0, "清除依附持续施法FX")
+		assert_eq(caster.mp, mp_before, "未释放不扣费")
+		assert_eq(battle.skill_resource_events.size(), 0, "无费用事件")
+		assert_eq(String(battle.skill_events[-1].phase), "interrupted", "有中断诊断")
+		assert_false(battle.start_skill(caster, battle.units[2], 22), "退出单位不能再施法")
+
+
+func test_释放后死亡不退费且保留独立释放视觉但取消人物04() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	caster.anim_id = "C1A"
+	var mp_before := caster.mp
+	battle.start_skill(caster, battle.units[2], 22)
+	for _i in 75:
+		battle.tick()
+	caster.state = BattleUnit.State.DEAD
+	battle.tick()
+	assert_eq(caster.mp, mp_before - 10, "已释放费用不退")
+	assert_eq(battle.skill_resource_events.size(), 1, "保持单次费用")
+	assert_eq(battle.active_fx_events().map(func(event): return int(event.global_id)),
+		[3027], "独立释放特效不随人物死亡删除")
+	assert_eq(battle.pending_skill_signals.size(), 0, "未来人物根04取消")
+	for _i in 30:
+		battle.tick()
+	assert_true(_impact_event(battle).is_empty(), "没有捏造尚未发出的攻击")
+	assert_eq(battle.active_fx_events().size(), 0, "独立释放特效自然消退")
+
+
+func test_已产生的命中视觉在源退出后保留但08玩法被抑制() -> void:
+	for exit_state in [BattleUnit.State.DEAD, BattleUnit.State.WITHDRAWN]:
+		var battle := _battle()
+		var caster: BattleUnit = battle.units[0]
+		var enemy: BattleUnit = battle.units[2]
+		caster.anim_id = "C1A"
+		battle.units = [enemy, caster, battle.units[1]]
+		battle.start_skill(caster, enemy, 22)
+		for _i in 92:
+			battle.tick()
+		var mp_before := enemy.mp
+		caster.state = exit_state
+		battle.tick()
+		assert_eq(String(_impact_event(battle).gameplay_result.outcome), "source_unavailable",
+			"4919F0再次验证源单位，不施加已排队的玩法")
+		assert_eq(enemy.mp, mp_before, "未应用缓存MP伤害")
+		assert_true(enemy.condition_slots[0].is_empty(), "未应用效果6")
+		assert_true(battle.active_fx_events().any(func(event): return int(event.global_id) == 2029),
+			"已生成的命中视觉继续播放")
+		assert_eq(battle.pending_skill_signals.size(), 0, "08已消费，无孤立队列")
+
+
+func test_目标退出拒绝准入并抑制已释放08() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var target: BattleUnit = battle.units[1]
+	target.state = BattleUnit.State.DEAD
+	assert_false(battle.start_skill(caster, target, 29), "失效目标不能准入")
+	target.state = BattleUnit.State.IDLE
+	battle.start_skill(caster, target, 29)
+	for _i in 60:
+		battle.tick()
+	target.state = BattleUnit.State.WITHDRAWN
+	for _i in 12:
+		battle.tick()
+	assert_eq(String(_impact_event(battle).gameplay_result.outcome), "target_unavailable",
+		"目标退出后消费08但不执行玩法")
+	assert_eq(battle.active_skills.size(), 1, "目标退出不是源演员中断")
+	assert_eq(battle.pending_skill_signals.size(), 0, "目标队列正常排空")
+
+
+func test_ENGAGE撤离在本帧事件后清理技能() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	battle.start_skill(caster, battle.units[2], 22)
+	caster.engage_left = 0.0
+	battle.tick()
+	assert_eq(caster.state, BattleUnit.State.WITHDRAWN, "归零进入退出")
+	assert_eq(battle.active_skills.size(), 0, "本帧退出即停止技能")
+	assert_eq(battle.active_fx_events().size(), 0, "持续施法停止")
+	assert_eq(battle.skill_resource_events.size(), 0, "未进入释放")
+
+
 func test_MP恰好足够在释放扣费一次且与目标伤害分开() -> void:
 	var battle := _battle()
 	var caster: BattleUnit = battle.units[0]

@@ -95,6 +95,7 @@ func tick() -> void:
 			u.from_cell = u._tick_prev_cell
 			u.move_started_frame = frame
 			u._tick_prev_cell = u.cell
+	_cancel_unavailable_skills()
 	_check_finish()
 
 
@@ -141,6 +142,8 @@ func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> boo
 	if caster == null or target == null:
 		return false
 	if not units.has(caster) or not units.has(target):
+		return false
+	if _skill_unit_unavailable(caster) or _skill_unit_unavailable(target):
 		return false
 	if active_skills.has(caster.get_instance_id()):
 		return false
@@ -272,6 +275,8 @@ func _advance_skills() -> void:
 		_skill_source_tick = source_tick
 		for owner_index in units.size():
 			var caster_key: int = units[owner_index].get_instance_id()
+			if _skill_unit_unavailable(units[owner_index]):
+				_interrupt_skill(caster_key)
 			if active_skills.has(caster_key):
 				var record: Dictionary = active_skills[caster_key]
 				var stage: Dictionary = record["stages"][int(record["phase_index"])]
@@ -283,6 +288,45 @@ func _advance_skills() -> void:
 			for slot in range(-1, 5):
 				_consume_skill_signals(owner_index, 8, slot)
 	_advancing_skill_clock = false
+
+
+static func _skill_unit_unavailable(unit: BattleUnit) -> bool:
+	# 4690A0 returns 1 for original AI states 0x0C/0x0D (withdrawal/death).
+	return unit.state == BattleUnit.State.DEAD or unit.state == BattleUnit.State.WITHDRAWN
+
+
+func _cancel_unavailable_skills() -> void:
+	for caster_key in active_skills.keys():
+		if _skill_unit_unavailable(active_skills[caster_key]["caster"]):
+			_interrupt_skill(caster_key)
+
+
+func _interrupt_skill(caster_key: int) -> void:
+	if not active_skills.has(caster_key):
+		return
+	var record: Dictionary = active_skills[caster_key]
+	var caster: BattleUnit = record["caster"]
+	active_skills.erase(caster_key)
+	caster.skill_id = -1
+	caster.skill_action = 0
+	# Only the old actor root and attached sustained cast are cancelled.
+	# Independent release/sync/impact FX survive until their own natural end.
+	var remaining: Array[Dictionary] = []
+	for signal_task in pending_skill_signals:
+		if int(signal_task["record"]["instance_id"]) != int(record["instance_id"]) \
+				or int(signal_task["slot"]) != -1:
+			remaining.append(signal_task)
+	pending_skill_signals = remaining
+	for event in fx_events:
+		if int(event.get("instance_id", -1)) == int(record["instance_id"]) \
+				and String(event.get("phase", "")) == "cast":
+			event["visual_duration_ticks"] = maxi(0, _current_skill_tick() - int(event["source_tick"]))
+	var event_index := _emit_skill_stage(record, {"name": "interrupted", "action": 0,
+		"global_id": 0, "duration": 0, "anchor": "source", "category": "diagnostic"})
+	skill_events[event_index]["reason"] = "source_unavailable"
+	skill_events[event_index]["source_state"] = caster.state
+	skill_events[event_index]["cleanup_scope"] = "actor_root_and_sustained_cast"
+
 
 
 func _current_skill_tick() -> int:
@@ -322,6 +366,17 @@ func _consume_skill_signals(owner_index: int, flag: int, slot: int) -> void:
 	for signal_task in ready:
 		var record: Dictionary = signal_task["record"]
 		var route := String(signal_task["route"])
+		# 482B50 and 4919F0 reject both source and target via 4690A0.
+		var unavailable := "source_unavailable" if _skill_unit_unavailable(record["caster"]) \
+			else ("target_unavailable" if _skill_unit_unavailable(record["target"]) else "")
+		if not unavailable.is_empty():
+			if flag == 8 and not bool(record["resolved"]):
+				record["resolved"] = true
+				_record_skill_gameplay_result(record, {"outcome": unavailable})
+			else:
+				_log("f%d skill%d instance%d signal%d suppressed: %s" % [frame,
+					int(record["skill_id"]), int(record["instance_id"]), flag, unavailable])
+			continue
 		if flag == 8:
 			if not bool(record["resolved"]):
 				record["resolved"] = true
