@@ -24,6 +24,7 @@ var move_started_frame := -100000
 var attack_started_frame := -100000
 var skill_started_frame := -100000
 var skill_phase_started_frame := -100000
+var skill_phase_started_tick := -200000
 var skill_id := -1
 var skill_action := 0
 var _tick_prev_cell := Vector2i.ZERO

@@ -7,7 +7,7 @@ static var _cache: Dictionary = {}
 
 static func _load(table: String) -> Dictionary:
 	if not _cache.has(table):
-		var filename := "%s.json" % table if table in ["skill_visuals", "attack_effects"] \
+		var filename := "%s.json" % table if table in ["skill_visuals", "attack_effects", "unit_sprites"] \
 			else "%s_table.json" % table
 		var txt := FileAccess.get_file_as_string("res://data/%s" % filename)
 		if txt.is_empty():
@@ -56,6 +56,10 @@ static func skill_attribute(id: int) -> Dictionary:
 static func fx_animation(global_id: int) -> Dictionary:
 	var data := _load("attack_effects")
 	return data.get("animations", {}).get(str(global_id), {})
+
+
+static func unit_animation(archive: String) -> Dictionary:
+	return _load("unit_sprites").get("units", {}).get(archive, {})
 
 
 ## ENGAGE 表行 {level, minutes}

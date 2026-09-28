@@ -24,6 +24,107 @@ func _impact_event(battle: Battle) -> Dictionary:
 	return {}
 
 
+func test_C1A人物恢复不等待2029且释放特效与命中重叠() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	caster.anim_id = "C1A"
+	assert_true(battle.start_skill(caster, battle.units[2], 22), "黄金档可施放")
+	for _i in 92:
+		battle.tick()
+	assert_eq(caster.skill_action, 31, "命中时人物仍是释放动作")
+	assert_eq(battle.active_fx_events().map(func(event): return int(event.global_id)),
+		[3027, 2029], "184tick命中时3027还没自然结束")
+	assert_eq(int(_impact_event(battle)["trigger"]["signal"]["tick"]), 34, "来源于C1A事件")
+	for _i in 6:
+		battle.tick()
+	assert_eq([caster.skill_action, caster.skill_phase_started_tick], [16, 196],
+		"46次更新完成后进入恢复，不用47tick图层总长")
+	assert_eq(battle.active_fx_events().map(func(event): return int(event.global_id)),
+		[2029], "人物恢复时目标命中特效仍在播放")
+	for _i in 30:
+		battle.tick()
+	assert_eq(caster.state, BattleUnit.State.IDLE, "256tick演员完成")
+	assert_eq(battle.pending_skill_signals.size(), 0, "无信号残留")
+
+
+func test_同步按人物根与特效槽顺序消费并保留目标先后差异() -> void:
+	for target_mode in ["later", "earlier", "self"]:
+		var battle := _battle()
+		var caster: BattleUnit = battle.units[0]
+		var target: BattleUnit = battle.units[1]
+		if target_mode == "earlier":
+			battle.units = [target, caster, battle.units[2]]
+		elif target_mode == "self":
+			target = caster
+		assert_true(battle.start_skill(caster, target, 29), "技能29启动")
+		for _i in 73:
+			battle.tick()
+		var event := _impact_event(battle)
+		var expected_tick := 121 if target_mode == "earlier" else 120
+		assert_eq(int(event.source_tick), expected_tick, "%s: 目标槽消费顺序" % target_mode)
+		assert_eq(int(event.gameplay_result.resolved_source_tick), expected_tick + 23,
+			"0x08相对于命中视觉，不能跟随演员阶段")
+		assert_eq(int(event.gameplay_result.resolved_frame), 72, "两次60Hz更新投影到同逻辑帧")
+
+
+func test_多施法者结果按实例关联而非最近事件() -> void:
+	var battle := _battle()
+	var first: BattleUnit = battle.units[0]
+	var second: BattleUnit = battle.units[1]
+	second.anim_id = "C1A"
+	second.mp_max = 100
+	second.mp = 100
+	assert_true(battle.start_skill(first, second, 29), "首个友方技能")
+	assert_true(battle.start_skill(second, battle.units[2], 22), "第二个敌方技能")
+	for _i in 100:
+		battle.tick()
+	var impacts: Array = battle.skill_events.filter(func(event): return event.phase == "impact")
+	assert_eq(impacts.size(), 2, "两个命中视觉实例")
+	assert_eq([int(impacts[0].instance_id), int(impacts[1].instance_id)], [1, 2], "确定性实例号")
+	assert_eq(String(impacts[0].gameplay_result.outcome), "friendly_effect_unresolved",
+		"技能29的延迟结果关联原事件，期间已经记录第二个人的cast")
+	assert_eq(String(impacts[1].gameplay_result.outcome), "applied", "技能22状态属于第二次施放")
+	assert_eq([int(impacts[0].gameplay_result.resolved_source_tick),
+		int(impacts[1].gameplay_result.resolved_source_tick)], [143, 184], "各自结算时钟")
+	assert_eq(battle.skill_resource_events.size(), 2, "各自一次扣费")
+
+
+func test_无动作完成证据时拒绝而非使用待机时长() -> void:
+	var battle := _battle()
+	battle.units[0].anim_id = "E0A"
+	var mp_before: int = battle.units[0].mp
+	assert_false(battle.start_skill(battle.units[0], battle.units[2], 22), "E0A原始action31缺失")
+	assert_eq(battle.units[0].mp, mp_before, "拒绝不扣费用")
+	assert_eq(battle.skill_events.size(), 0, "不产生虚构技能时间线")
+
+
+func test_命中快照在04计算且08不重新选择移动后的目标() -> void:
+	var battle := _battle()
+	var caster: BattleUnit = battle.units[0]
+	var enemy: BattleUnit = battle.units[2]
+	caster.anim_id = "C1A"
+	caster.atk_power = 10
+	caster.atk_power_range = 0
+	enemy.unit.magic_resist = 0
+	enemy.unit.magic_resist_modifier = 0
+	enemy.unit.body = 0
+	enemy.unit.body_modifier = 100
+	battle.units = [enemy, caster, battle.units[1]]
+	assert_true(battle.start_skill(caster, enemy, 22), "目标先于施法者")
+	for _i in 92:
+		battle.tick()
+	var event := _impact_event(battle)
+	assert_eq(int(event.source_tick), 184, "04创建命中视觉")
+	assert_false(event.has("gameplay_result"), "目标已经更新，08须等下个source tick")
+	caster.atk_power = 999
+	enemy.cell.x += 1
+	battle.tick()
+	assert_eq(int(event.gameplay_result.mp_result.computed_damage), 10,
+		"08应用04缓存的数值，不能重新读取施法者攻击力")
+	assert_eq(int(event.gameplay_result.resolved_source_tick), 185, "下一次目标更新结算")
+	assert_eq(String(event.gameplay_result.outcome), "applied", "04已选中的单位移动后仍接收命中")
+
+
 func test_MP不足拒绝且不改变动作或事件() -> void:
 	var battle := _battle()
 	var caster: BattleUnit = battle.units[0]
@@ -75,7 +176,7 @@ func test_施法期间MP下降释放不重检并钳制到零() -> void:
 		"记录费用和实际扣除差异")
 
 
-func test_技能29固定阶段与120tick空白同步() -> void:
+func test_技能29同步首帧事件与独立人物恢复() -> void:
 	var battle := _battle()
 	assert_true(battle.start_skill(battle.units[0], battle.units[1], 29), "技能可启动")
 	for _i in 221:
@@ -83,14 +184,16 @@ func test_技能29固定阶段与120tick空白同步() -> void:
 	var phases: Array = battle.skill_events.map(func(event): return String(event.phase))
 	var starts: Array = battle.skill_events.map(func(event): return int(event.frame))
 	assert_eq(phases, ["cast", "release", "sync", "impact", "recovery"], "阶段顺序")
-	assert_eq(starts, [0, 60, 86, 146, 176], "阶段起始固定")
+	assert_eq(starts, [0, 60, 60, 60, 84], "3017首指令触发而非等待120tick")
+	assert_eq(battle.skill_events.map(func(event): return int(event.source_tick)),
+		[0, 120, 120, 120, 167], "保留奇数tick完成信号，不丢失半帧")
 	assert_eq(int(battle.skill_events[2].duration_frames), 60,
 		"3017 的120动画tick换算为60逻辑帧")
-	assert_eq(int(battle.skill_events[3].global_id), 3032, "同步结束后才启动命中")
+	assert_eq(int(battle.skill_events[3].global_id), 3032, "同步0x04信号启动命中视觉")
 	assert_eq(battle.units[0].state, BattleUnit.State.IDLE, "恢复完成后待机")
 
 
-func test_技能22五阶段动作特效顺序帧时长和清理() -> void:
+func test_技能22动作完成独立于释放与命中特效寿命() -> void:
 	var battle := _battle()
 	var caster: BattleUnit = battle.units[0]
 	var enemy: BattleUnit = battle.units[2]
@@ -109,11 +212,11 @@ func test_技能22五阶段动作特效顺序帧时长和清理() -> void:
 	var impact_fx := battle.active_fx_events()
 	assert_eq([int(impact_fx[0].get("global_id", 0)), impact_fx[0].get("anchor", ""),
 		impact_fx[0].get("to_cell", [])], [2029, "target", [30, 10]],
-		"3027结束后在选定敌方目标启动2029")
+		"2029由人物0x04信号启动，不依赖3027结束")
 	for _i in 10:
 		battle.tick()
 	assert_eq([caster.skill_action, caster.skill_phase_started_frame], [16, 103],
-		"impact结束后切换action16并重置动画时钟")
+		"action31根完成55tick后切换action16")
 	assert_eq(battle.active_fx_events().size(), 0, "恢复阶段没有残留特效")
 	for _i in 30:
 		battle.tick()
@@ -123,11 +226,13 @@ func test_技能22五阶段动作特效顺序帧时长和清理() -> void:
 	var durations: Array = battle.skill_events.map(func(event): return int(event.duration_frames))
 	var actions: Array = battle.skill_events.map(func(event): return int(event.action))
 	var visual_ids: Array = battle.skill_events.map(func(event): return int(event.global_id))
-	assert_eq(phases, ["cast", "release", "sync", "impact", "recovery"], "五阶段仅启动一次")
-	assert_eq(starts, [0, 75, 93, 93, 103], "阶段帧与原版150/36/0/19/60 tick对应")
-	assert_eq(durations, [75, 18, 0, 10, 30], "逻辑帧时长按60Hz原始tick换算")
-	assert_eq(actions, [13, 31, 31, 31, 16], "action13/31/16按阶段切换")
-	assert_eq(visual_ids, [2044, 3027, 0, 2029, 0], "视觉链2044→3027→2029不混入玩法ID")
+	assert_eq(phases, ["cast", "release", "impact", "recovery"], "缺失sync不生成假阶段")
+	assert_eq(starts, [0, 75, 90, 103], "人物信号与演员生命周期独立")
+	assert_eq(durations, [75, 28, 10, 30], "release记录演员完成时长，不是FX时长")
+	assert_eq(actions, [13, 31, 31, 16], "action13/31/16按人物阶段切换")
+	assert_eq(visual_ids, [2044, 3027, 2029, 0], "视觉链不混入玩法ID")
+	assert_eq(battle.skill_events.map(func(event): return int(event.source_tick)),
+		[0, 150, 179, 205], "0x04在29tick，人物根完成55tick")
 	assert_eq(battle.active_skills.size(), 0, "完整演出结束后无活动技能残留")
 
 
@@ -175,8 +280,8 @@ func test_技能22效果6写入限时状态且不伪造HP物理伤害() -> void:
 	assert_eq(enemy.hp, hp_before, "效果6不得套用普通物理伤害")
 	assert_eq(int(enemy.condition_slots[0].get("condition_id", 0)), 6, "效果6写入状态槽0")
 	assert_eq(int(enemy.condition_slots[0].get("source_skill_id", -1)), 22, "状态记录来源技能")
-	assert_eq(int(enemy.condition_slots[0].get("ticks_remaining", 0)), 3746, "状态按原版时长递减")
-	assert_eq(int(enemy.condition_slots[0].get("tick_counter", 0)), 54, "状态辅助计数按原版180 tick回绕")
+	assert_eq(int(enemy.condition_slots[0].get("ticks_remaining", 0)), 3740, "新命中帧90后的30次更新")
+	assert_eq(int(enemy.condition_slots[0].get("tick_counter", 0)), 60, "辅助计数经过60原版tick")
 	var impact_event := _impact_event(battle)
 	var gameplay_result: Dictionary = impact_event.get("gameplay_result", {})
 	var application: Dictionary = gameplay_result.get("application", {})
@@ -245,8 +350,10 @@ func test_技能29impact结果保持其玩法和视觉字段兼容() -> void:
 	assert_eq(int(impact_event.get("global_id", 0)), 3032, "技能29视觉ID保持原值")
 	assert_eq(String(gameplay_result.get("outcome", "")), "friendly_effect_unresolved",
 		"未逆向的友方玩法结果显式记录但不伪造")
-	assert_eq(int(gameplay_result.get("resolved_frame", -1)), int(impact_event.get("frame", -2)),
-		"技能29记录玩法结算帧")
+	assert_eq([int(impact_event.get("source_tick", -1)),
+		int(gameplay_result.get("resolved_source_tick", -1)),
+		int(gameplay_result.get("resolved_frame", -1))], [120, 143, 72],
+		"视觉首帧不等于3032途中0x08结算时刻")
 
 
 func test_技能22仅命中敌方且目标离开选定格时不写入状态() -> void:
@@ -272,7 +379,7 @@ func test_技能22效果6按魔抗缩放并执行原版下限() -> void:
 	var target_a: BattleUnit = applicable.units[2]
 	target_a.unit.magic_resist = 95
 	applicable.start_skill(caster_a, target_a, 22)
-	for _i in 93:
+	for _i in 90:
 		applicable.tick()
 	assert_eq(int(target_a.condition_slots[0].get("ticks_remaining", 0)), 190,
 		"AGI20 的3800基础值被5%魔抗通道缩至190，超过183")
@@ -282,7 +389,7 @@ func test_技能22效果6按魔抗缩放并执行原版下限() -> void:
 	var target_b: BattleUnit = resisted.units[2]
 	target_b.unit.magic_resist = 96
 	resisted.start_skill(caster_b, target_b, 22)
-	for _i in 93:
+	for _i in 90:
 		resisted.tick()
 	assert_eq(int(target_b.condition_slots[0].get("condition_id", 0)), 0,
 		"AGI20 的3800基础值被4%缩至152，低于184而拒绝")
@@ -297,10 +404,10 @@ func test_技能22效果6过期并在重复施放时刷新() -> void:
 	battle.start_skill(caster, target, 22)
 	for _i in 133:
 		battle.tick()
-	assert_eq(int(target.condition_slots[0].get("ticks_remaining", 0)), 280,
-		"恢复阶段结束前已有40个30Hz更新经过")
+	assert_eq(int(target.condition_slots[0].get("ticks_remaining", 0)), 274,
+		"命中帧90之后已有43个30Hz状态更新")
 	assert_true(battle.start_skill(caster, target, 22), "同一施法者可再次施放")
-	for _i in 93:
+	for _i in 90:
 		battle.tick()
 	assert_eq(int(target.condition_slots[0].get("ticks_remaining", 0)), 360,
 		"相同优先级重新施加并刷新时长")
@@ -354,7 +461,7 @@ func test_连续施放动作时钟均从首帧开始() -> void:
 	assert_eq(caster.skill_action, 12, "第二轮仍从 action12 开始")
 
 
-func test_特效生命周期与锚点由阶段事件决定() -> void:
+func test_特效寿命与人物恢复允许重叠() -> void:
 	var battle := _battle()
 	battle.start_skill(battle.units[0], battle.units[1], 29)
 	assert_eq(battle.active_fx_events().size(), 1, "施法特效启动")
@@ -363,15 +470,16 @@ func test_特效生命周期与锚点由阶段事件决定() -> void:
 	for _i in 60:
 		battle.tick()
 	var release := battle.active_fx_events()
-	assert_eq(release.size(), 1, "释放时持续施法已清除")
-	assert_eq(int(release[0].global_id), 2098, "释放实例唯一")
-	for _i in 86:
+	assert_eq(release.map(func(event): return int(event.global_id)), [2098, 3017, 3032],
+		"释放时施法已清除；释放、同步和命中视觉同时存在")
+	for _i in 24:
 		battle.tick()
 	var impact := battle.active_fx_events()
-	assert_eq(impact.size(), 1, "命中特效启动")
-	assert_eq([int(impact[0].global_id), impact[0].anchor, impact[0].to_cell],
+	assert_eq(battle.units[0].state, BattleUnit.State.RECOVER, "演员已进入恢复")
+	assert_eq(impact.size(), 3, "恢复不会提前删除仍存活的特效")
+	assert_eq([int(impact[2].global_id), impact[2].anchor, impact[2].to_cell],
 		[3032, "target", [12, 10]], "3032 位于目标格")
-	for _i in 75:
+	for _i in 45:
 		battle.tick()
 	assert_eq(battle.active_fx_events().size(), 0, "恢复完成后无特效残留")
 

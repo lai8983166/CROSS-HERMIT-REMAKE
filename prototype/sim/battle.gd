@@ -27,6 +27,10 @@ var fx_events_keep := 64   # 最近保留条数 (视图消费用, 防长战内�
 var skill_events: Array[Dictionary] = []
 var skill_resource_events: Array[Dictionary] = []  # Source costs, not target MP damage.
 var active_skills: Dictionary = {}   # caster instance id -> deterministic phase record
+var pending_skill_signals: Array[Dictionary] = []  # Independent animation queues.
+var _next_skill_instance := 1
+var _skill_source_tick := 0
+var _advancing_skill_clock := false
 var skill_demo: Dictionary = {}
 var _next_demo_frame := -1
 
@@ -136,6 +140,8 @@ static func _fx_logic_frames(global_id: int) -> int:
 func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> bool:
 	if caster == null or target == null:
 		return false
+	if not units.has(caster) or not units.has(target):
+		return false
 	if active_skills.has(caster.get_instance_id()):
 		return false
 	var attack := SimTables.attack(p_skill_id)
@@ -152,8 +158,18 @@ func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> boo
 			caster.name, p_skill_id, caster.mp, mp_cost])
 		return false
 	var delta := target.cell - caster.cell
+	var facing := caster.facing
 	if delta != Vector2i.ZERO:
-		caster.facing = Vector2i(signi(delta.x), signi(delta.y))
+		facing = Vector2i(signi(delta.x), signi(delta.y))
+	var direction := _skill_direction(facing)
+	var release_signals := AnimTimeline.unit_action_signals(
+		SimTables.unit_animation(caster.anim_id), int(visual.get("release_action", 0)), direction)
+	if not bool(release_signals.get("signal_supported", false)) \
+			or release_signals.get("root_completion_ticks") == null:
+		_log("f%d %s skill%d rejected: release action signals unavailable" % [frame,
+			caster.name, p_skill_id])
+		return false
+	caster.facing = facing
 	var cast_fx := int(visual.get("cast_fx", 0))
 	var release_fx := int(visual.get("release_fx", 0))
 	var sync_fx := int(visual.get("sync_fx", 0))
@@ -162,23 +178,23 @@ func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> boo
 		{"name": "cast", "state": BattleUnit.State.CAST,
 			"action": int(visual.get("cast_action", 0)), "global_id": cast_fx,
 			"duration": _anim_ticks_to_logic_frames(int(attack.get("cast_frames", 0))),
+			"source_duration_ticks": int(attack.get("cast_frames", 0)),
 			"anchor": "source"},
 		{"name": "release", "state": BattleUnit.State.RELEASE,
 			"action": int(visual.get("release_action", 0)), "global_id": release_fx,
-			"duration": _fx_logic_frames(release_fx), "anchor": "source"},
-		{"name": "sync", "state": BattleUnit.State.SYNC,
-			"action": int(visual.get("release_action", 0)), "global_id": sync_fx,
-			"duration": _fx_logic_frames(sync_fx), "anchor": "target"},
-		{"name": "impact", "state": BattleUnit.State.IMPACT,
-			"action": int(visual.get("release_action", 0)), "global_id": impact_fx,
-			"duration": _fx_logic_frames(impact_fx), "anchor": "target"},
+			"duration": _anim_ticks_to_logic_frames(int(release_signals["root_completion_ticks"])),
+			"source_duration_ticks": int(release_signals["root_completion_ticks"]), "anchor": "source"},
 		{"name": "recovery", "state": BattleUnit.State.RECOVER,
 			"action": int(visual.get("recover_action", 0)), "global_id": 0,
 			"duration": _anim_ticks_to_logic_frames(int(attack.get("recovery_frames", 0))),
+			"source_duration_ticks": int(attack.get("recovery_frames", 0)),
 			"anchor": "source"},
 	]
 	var record := {
 		"skill_id": p_skill_id, "caster": caster, "target": target,
+		"instance_id": _next_skill_instance, "caster_index": units.find(caster),
+		"target_index": units.find(target), "release_signals": release_signals,
+		"impact_event_index": -1, "resolved": false,
 		"from_cell": [caster.cell.x, caster.cell.y],
 		"to_cell": [target.cell.x, target.cell.y],
 		"cast_action": int(visual.get("cast_action", 0)),
@@ -191,6 +207,7 @@ func start_skill(caster: BattleUnit, target: BattleUnit, p_skill_id: int) -> boo
 		"mp_cost": mp_cost, "mp_spent": false,
 		"stages": stages, "phase_index": -1, "phase_started_frame": frame,
 	}
+	_next_skill_instance += 1
 	caster.skill_id = p_skill_id
 	caster.skill_started_frame = frame
 	active_skills[caster.get_instance_id()] = record
@@ -213,15 +230,20 @@ func _enter_next_skill_phase(caster_key: int) -> void:
 			return
 		var stage: Dictionary = record["stages"][int(record["phase_index"])]
 		record["phase_started_frame"] = frame
+		record["phase_started_tick"] = _current_skill_tick()
 		caster.state = int(stage["state"])
 		caster.skill_action = int(stage["action"])
 		caster.skill_phase_started_frame = frame
+		caster.skill_phase_started_tick = _current_skill_tick()
 		active_skills[caster_key] = record
 		if String(stage["name"]) == "release":
 			_spend_skill_mp(record)
 		_emit_skill_stage(record, stage)
-		if String(stage["name"]) == "impact":
-			_resolve_skill_impact(record)
+		if String(stage["name"]) == "release":
+			_queue_skill_signals(record, record["release_signals"], _current_skill_tick(),
+				int(record["caster_index"]), "release", -1)
+			_queue_skill_signals(record, SimTables.fx_animation(int(record["release_fx"])).get("signals", {}),
+				_current_skill_tick(), int(record["caster_index"]), "release")
 		if int(stage["duration"]) > 0:
 			return
 
@@ -238,22 +260,118 @@ func _spend_skill_mp(record: Dictionary) -> void:
 	skill_resource_events.append({
 		"type": "skill_resource_cost", "frame": frame, "phase": "release",
 		"skill_id": record["skill_id"], "caster_index": units.find(caster),
+		"instance_id": record["instance_id"], "source_tick": _current_skill_tick(),
 		"resource": "mp", "requested_cost": cost, "applied_cost": before - caster.mp,
 		"mp_before": before, "mp_after": caster.mp,
 	})
 
 
 func _advance_skills() -> void:
-	for caster_key in active_skills.keys():
-		if not active_skills.has(caster_key):
-			continue
-		var record: Dictionary = active_skills[caster_key]
-		var stage: Dictionary = record["stages"][int(record["phase_index"])]
-		if frame - int(record["phase_started_frame"]) >= int(stage["duration"]):
-			_enter_next_skill_phase(int(caster_key))
+	_advancing_skill_clock = true
+	for source_tick in range(frame * 2 - 1, frame * 2 + 1):
+		_skill_source_tick = source_tick
+		for owner_index in units.size():
+			var caster_key: int = units[owner_index].get_instance_id()
+			if active_skills.has(caster_key):
+				var record: Dictionary = active_skills[caster_key]
+				var stage: Dictionary = record["stages"][int(record["phase_index"])]
+				if source_tick - int(record["phase_started_tick"]) >= int(stage["source_duration_ticks"]):
+					_enter_next_skill_phase(caster_key)
+			# 46B760: AI/action update, attack queue snapshot, then damage queue.
+			for slot in range(-1, 5):
+				_consume_skill_signals(owner_index, 4, slot)
+			for slot in range(-1, 5):
+				_consume_skill_signals(owner_index, 8, slot)
+	_advancing_skill_clock = false
 
 
-func _emit_skill_stage(record: Dictionary, stage: Dictionary) -> void:
+func _current_skill_tick() -> int:
+	return _skill_source_tick if _advancing_skill_clock else frame * 2
+
+
+static func _skill_direction(facing: Vector2i) -> String:
+	var vertical := "N" if facing.y < 0 else ("S" if facing.y > 0 else "")
+	var horizontal := "W" if facing.x < 0 else ("E" if facing.x > 0 else "")
+	return vertical + horizontal if facing != Vector2i.ZERO else "S"
+
+
+func _queue_skill_signals(record: Dictionary, signals: Dictionary, start_tick: int,
+		owner_index: int, route: String, slot := 0) -> void:
+	if not bool(signals.get("signal_supported", false)):
+		return
+	for signal_event: Dictionary in signals.get("events", []):
+		var flag := int(signal_event.get("flag", 0))
+		if (flag == 4 and route in ["release", "sync"]) or (flag == 8 and route == "impact"):
+			pending_skill_signals.append({"record": record, "owner_index": owner_index,
+				"flag": flag, "route": route, "slot": slot,
+				"due_tick": start_tick + int(signal_event["tick"]),
+				"signal": signal_event.duplicate(true)})
+
+
+func _consume_skill_signals(owner_index: int, flag: int, slot: int) -> void:
+	var ready: Array[Dictionary] = []
+	for signal_task in pending_skill_signals:
+		if int(signal_task["owner_index"]) == owner_index and int(signal_task["flag"]) == flag \
+				and int(signal_task["slot"]) == slot \
+				and int(signal_task["due_tick"]) <= _skill_source_tick:
+			ready.append(signal_task)
+	# Snapshot per node/slot (482AC0). Root-created self FX is in a later slot
+	# and can be consumed this update; a new event in this same slot waits.
+	for signal_task in ready:
+		pending_skill_signals.erase(signal_task)
+	for signal_task in ready:
+		var record: Dictionary = signal_task["record"]
+		var route := String(signal_task["route"])
+		if flag == 8:
+			if not bool(record["resolved"]):
+				record["resolved"] = true
+				_resolve_skill_impact(record)
+		elif route == "release":
+			if bool(record.get("attack_dispatched", false)):
+				continue
+			record["attack_dispatched"] = true
+			if int(record["sync_fx"]) > 0:
+				_start_skill_visual(record, "sync", int(record["sync_fx"]), signal_task)
+			else:
+				_start_skill_visual(record, "impact", int(record["impact_fx"]), signal_task)
+		elif route == "sync" and int(record["impact_event_index"]) < 0:
+			_start_skill_visual(record, "impact", int(record["impact_fx"]), signal_task)
+
+
+func _start_skill_visual(record: Dictionary, phase: String, global_id: int, trigger: Dictionary) -> void:
+	# 488BC0 chooses the target and computes the base hit at 0x04, not at 0x08.
+	var selection_result: Dictionary = {}
+	if phase == "impact" and int(record["skill_id"]) == SKILL22_ID:
+		var target: BattleUnit = record["target"]
+		var aim_cell: Array = record["to_cell"]
+		if target.cell != Vector2i(int(aim_cell[0]), int(aim_cell[1])):
+			selection_result = {"outcome": "target_left_aim_cell", "aim_cell": aim_cell.duplicate(),
+				"target_cell": [target.cell.x, target.cell.y]}
+			global_id = 0
+		else:
+			var caster: BattleUnit = record["caster"]
+			record["prepared_mp_damage"] = BattleMath.magic_from_snapshots(
+				{"power": caster.atk_power, "power_range": caster.atk_power_range},
+				{"magic_resist": target.unit.magic_resist,
+					"magic_resist_modifier": target.unit.magic_resist_modifier,
+					"body": target.unit.body, "body_modifier": target.unit.body_modifier}, rng)
+			record["prepared_source_tick"] = _current_skill_tick()
+	var stage := {"name": phase, "action": record["release_action"], "global_id": global_id,
+		"duration": _fx_logic_frames(global_id), "anchor": "target", "category": "visual",
+		"trigger": {"flag": trigger["flag"], "due_tick": trigger["due_tick"],
+			"consumed_tick": _current_skill_tick(), "route": trigger["route"], "signal": trigger["signal"]}}
+	var event_index := _emit_skill_stage(record, stage)
+	if phase == "impact":
+		record["impact_event_index"] = event_index
+		if not selection_result.is_empty():
+			record["resolved"] = true
+			_record_skill_gameplay_result(record, selection_result)
+			return
+	_queue_skill_signals(record, SimTables.fx_animation(global_id).get("signals", {}),
+		_current_skill_tick(), int(record["target_index"]), phase)
+
+
+func _emit_skill_stage(record: Dictionary, stage: Dictionary) -> int:
 	var event := {
 		"type": "skill_stage", "frame": frame, "phase": stage["name"],
 		"duration_frames": stage["duration"], "action": stage["action"],
@@ -266,22 +384,33 @@ func _emit_skill_stage(record: Dictionary, stage: Dictionary) -> void:
 		"impact_fx": record["impact_fx"],
 		"gameplay_effect_id": record["gameplay_effect_id"],
 		"target_filter": record["target_filter"],
+		"instance_id": record["instance_id"], "caster_index": record["caster_index"],
+		"target_index": record["target_index"], "source_tick": _current_skill_tick(),
+		"category": stage.get("category", "actor"), "trigger": stage.get("trigger", {}),
+		"source_duration_ticks": stage.get("source_duration_ticks", 0),
 	}
+	var phase := String(stage["name"])
+	event["visual_duration_ticks"] = int(stage.get("source_duration_ticks", 0)) if phase == "cast" \
+		else int(SimTables.fx_animation(int(stage["global_id"])).get("duration_ticks", 0))
 	skill_events.append(event)
 	fx_events.append(event)
 	if fx_events.size() > fx_events_keep:
 		fx_events = fx_events.slice(fx_events.size() - fx_events_keep)
+	return skill_events.size() - 1
 
 
-## Current stage-owned visual instances. Renderers consume this projection and
-## never decide their own hit timing or keep effects alive beyond the stage.
+## Visual lifetimes do not control the actor or gameplay queues.
 func active_fx_events() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 	for event in fx_events:
 		if int(event.get("global_id", 0)) <= 0:
 			continue
-		var age := frame - int(event.get("frame", frame))
-		if age >= 0 and age < int(event.get("duration_frames", 0)):
+		var source_clock := event.has("source_tick")
+		var age := frame * 2 - int(event["source_tick"]) if source_clock \
+			else frame - int(event.get("frame", frame))
+		var duration := int(event.get("visual_duration_ticks", 0)) if source_clock \
+			else int(event.get("duration_frames", 0))
+		if age >= 0 and age < duration:
 			result.append(event)
 	return result
 
@@ -290,7 +419,7 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	var caster: BattleUnit = record["caster"]
 	var target: BattleUnit = record["target"]
 	if target.state == BattleUnit.State.DEAD or target.state == BattleUnit.State.WITHDRAWN:
-		_record_skill_gameplay_result({"outcome": "target_unavailable",
+		_record_skill_gameplay_result(record, {"outcome": "target_unavailable",
 			"target_state": target.state})
 		return
 	# Nonzero gameplay effects have their own original dispatch. Until their
@@ -299,33 +428,24 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	if effect_id == CONDITION6_ID:
 		var skill_id := int(record["skill_id"])
 		if skill_id != SKILL22_ID:
-			_record_skill_gameplay_result({"outcome": "unresolved_base_hit_path"})
+			_record_skill_gameplay_result(record, {"outcome": "unresolved_base_hit_path"})
 			_log("f%d %s->%s skill%d effect6 base-hit path unresolved" % [frame,
 				caster.name, target.name, skill_id])
 			return
-		# Skill 22 is use_condition=2 / magic (4826F0), which clamps damage to >=1.
-		# Its single-cell target must still occupy the cell selected when the cast began.
-		var aim_cell: Array = record.get("to_cell", [])
-		if aim_cell.size() != 2 or target.cell != Vector2i(int(aim_cell[0]), int(aim_cell[1])):
-			_record_skill_gameplay_result({"outcome": "target_left_aim_cell",
-				"aim_cell": aim_cell.duplicate(),
-				"target_cell": [target.cell.x, target.cell.y]})
-			_log("f%d %s skill22 effect6 target left aim cell" % [frame, target.name])
-			return
-		var mp_result := _apply_skill22_mp_damage(caster, target)
+		var mp_result := _apply_skill22_mp_damage(target, int(record["prepared_mp_damage"]))
 		var result := _apply_effect6(caster, target, int(record["skill_id"]))
 		result["mp_result"] = mp_result
 		result["condition_id"] = CONDITION6_ID
 		result["slot_index"] = 0
 		if String(result.get("outcome", "")) == "applied":
 			result["application"] = target.condition_slots[0].duplicate(true)
-		_record_skill_gameplay_result(result)
+		_record_skill_gameplay_result(record, result)
 		_log("f%d %s->%s skill%d effect6 %s (%d/%d ticks)" % [frame,
 			caster.name, target.name, int(record["skill_id"]), String(result["outcome"]),
 			int(result.get("applied_ticks", 0)), int(result.get("base_ticks", 0))])
 		return
 	if effect_id != 0:
-		_record_skill_gameplay_result({"outcome": "unresolved_effect",
+		_record_skill_gameplay_result(record, {"outcome": "unresolved_effect",
 			"effect_id": effect_id})
 		_log("f%d %s->%s skill%d gameplay effect %d unresolved" % [frame,
 			caster.name, target.name, int(record["skill_id"]), effect_id])
@@ -333,7 +453,7 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 	# Friendly/self gameplay effects are not reconstructed yet. Preserve the
 	# original presentation and target semantics without inventing damage.
 	if target.faction == caster.faction:
-		_record_skill_gameplay_result({"outcome": "friendly_effect_unresolved"})
+		_record_skill_gameplay_result(record, {"outcome": "friendly_effect_unresolved"})
 		_log("f%d %s->%s skill%d friendly effect unresolved" % [frame,
 			caster.name, target.name, int(record["skill_id"])])
 		return
@@ -348,7 +468,7 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 		target.hp = maxi(0, target.hp - damage)
 		if target.hp == 0:
 			target.state = BattleUnit.State.DEAD
-	_record_skill_gameplay_result({
+	_record_skill_gameplay_result(record, {
 		"outcome": "hit" if hit else "miss",
 		"applied_value": damage if hit else 0,
 		"hp_before": hp_before, "hp_after": target.hp,
@@ -357,15 +477,10 @@ func _resolve_skill_impact(record: Dictionary) -> void:
 		int(record["skill_id"]), "hit %d" % damage if hit else "MISS"])
 
 
-func _apply_skill22_mp_damage(caster: BattleUnit, target: BattleUnit) -> Dictionary:
+func _apply_skill22_mp_damage(target: BattleUnit, damage: int) -> Dictionary:
 	# Attribute byte +6=2 routes the independently computed magic hit to MP.
-	# Do this before effect6: the original calculates the base hit before condition resistance.
+	# 491EF0 applies the cached base hit before computing effect6 resistance.
 	var mp_before := target.mp
-	var damage := BattleMath.magic_from_snapshots(
-		{"power": caster.atk_power, "power_range": caster.atk_power_range},
-		{"magic_resist": target.unit.magic_resist,
-			"magic_resist_modifier": target.unit.magic_resist_modifier,
-			"body": target.unit.body, "body_modifier": target.unit.body_modifier}, rng)
 	target.mp = clampi(target.mp - damage, 0, target.mp_max)
 	return {
 		"resource": "mp", "outcome": "drained" if target.mp < mp_before else "already_empty",
@@ -374,15 +489,14 @@ func _apply_skill22_mp_damage(caster: BattleUnit, target: BattleUnit) -> Diction
 	}
 
 
-func _record_skill_gameplay_result(result: Dictionary) -> void:
-	if skill_events.is_empty():
+func _record_skill_gameplay_result(record: Dictionary, result: Dictionary) -> void:
+	var event_index := int(record.get("impact_event_index", -1))
+	if event_index < 0 or event_index >= skill_events.size():
 		return
-	var event_index := skill_events.size() - 1
 	var event: Dictionary = skill_events[event_index]
-	if String(event.get("phase", "")) != "impact" or int(event.get("frame", -1)) != frame:
-		return
 	var gameplay_result := result.duplicate(true)
 	gameplay_result["resolved_frame"] = frame
+	gameplay_result["resolved_source_tick"] = _current_skill_tick()
 	event["gameplay_result"] = gameplay_result
 	skill_events[event_index] = event
 

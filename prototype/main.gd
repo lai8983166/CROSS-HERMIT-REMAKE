@@ -493,6 +493,8 @@ func _draw_sprite_unit(u: BattleUnit, p_screen: Vector2) -> bool:
 		elapsed_frames = AnimTimeline.clock_elapsed(clock, identity, battle.frame)
 	_unit_anim_clocks[unit_id] = clock
 	var elapsed_ticks := int(floor(elapsed_frames * Battle.LOGIC_STEP / maxf(tick_seconds, 0.000001)))
+	if key == "SKILL":
+		elapsed_ticks = maxi(0, battle.frame * 2 - u.skill_phase_started_tick)
 	var picked := AnimTimeline.step_at(timeline, elapsed_ticks, key != "ATTACK")
 	if picked.is_empty() and key == "ATTACK":
 		# 原版普通攻击是非循环动作；播完后视觉回待机，战斗状态无需依赖素材时长。
@@ -590,6 +592,8 @@ func _draw_fx() -> void:
 		var timeline := AnimTimeline.normalize(animation)
 		var age_frames := battle.frame - int(ev.get("frame", 0))
 		var age_ticks := int(floor(age_frames * Battle.LOGIC_STEP / (1.0 / 60.0)))
+		if ev.has("source_tick"):
+			age_ticks = maxi(0, battle.frame * 2 - int(ev["source_tick"]))
 		var picked := AnimTimeline.step_at(timeline, age_ticks, false)
 		if picked.is_empty():
 			continue
