@@ -728,6 +728,20 @@ func _draw_hud() -> void:
 			selected.hp, selected.hp_max, selected.mp, selected.mp_max,
 			int(selected.engage_left), BattleUnit.State.keys()[selected.state]]
 		draw_string(font, Vector2(16, 78), s, HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(0.4, 1.0, 0.6))
+	if bool(battle.skill_demo.get("enabled", false)):
+		var labels := {"waiting": "等待下一次", "casting": "施放中", "busy": "人物忙碌",
+			"insufficient_mp": "MP不足，演示已停止（R重开）", "completed": "本次演示完成",
+			"unit_unavailable": "源或目标已退出", "source_unavailable": "源退出，施法中断",
+			"invalid_config": "演示配置无效", "start_rejected": "施放被拒绝，请检查资源/动作映射"}
+		var caster_index := int(battle.skill_demo.get("caster_unit", -1))
+		var mp_text := ""
+		if caster_index >= 0 and caster_index < battle.units.size():
+			var caster: BattleUnit = battle.units[caster_index]
+			mp_text = " | 施法者 MP %d/%d" % [caster.mp, caster.mp_max]
+		draw_string(font, Vector2(16, 98), "技能%d演示: %s%s" % [
+			int(battle.skill_demo.get("skill_id", 29)),
+			String(labels.get(battle.skill_demo_status, battle.skill_demo_status)), mp_text],
+			HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color(1.0, 0.85, 0.3))
 	draw_string(font, Vector2(16, 758),
 		"[1/2/3]速度 [空格]暂停 [R]重开 [T]底图: 纯贴图/贴图+数据+单位/纯数据+单位 [F]回验证窗口 | 滚轮=缩放 中键拖=平移 点击=选单位",
 		HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(0.7, 0.7, 0.7))

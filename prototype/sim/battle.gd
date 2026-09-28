@@ -32,7 +32,9 @@ var _next_skill_instance := 1
 var _skill_source_tick := 0
 var _advancing_skill_clock := false
 var skill_demo: Dictionary = {}
+var skill_demo_status := "disabled"
 var _next_demo_frame := -1
+var _demo_waiting_instance := -1
 
 
 static func start(setup: Dictionary, seed: int, p_map: SimMapData = null) -> Battle:
@@ -46,6 +48,7 @@ static func start(setup: Dictionary, seed: int, p_map: SimMapData = null) -> Bat
 	b.skill_demo = setup.get("skill_demo", {})
 	if bool(b.skill_demo.get("enabled", false)):
 		b._next_demo_frame = maxi(0, int(b.skill_demo.get("start_frame", 0)))
+		b.skill_demo_status = "waiting"
 	for u in setup.get("units", []):
 		var bu := BattleUnit.new()
 		bu.setup(u)
@@ -112,21 +115,39 @@ func _tick_skill_demo() -> void:
 	if caster_index < 0 or caster_index >= units.size() \
 			or target_index < 0 or target_index >= units.size():
 		_next_demo_frame = -1
+		skill_demo_status = "invalid_config"
 		return
 	var caster: BattleUnit = units[caster_index]
+	if _skill_unit_unavailable(caster) or _skill_unit_unavailable(units[target_index]):
+		_next_demo_frame = -1
+		skill_demo_status = "unit_unavailable"
+		return
 	if active_skills.has(caster.get_instance_id()):
+		skill_demo_status = "busy"
 		return
 	if not start_skill(caster, units[target_index], int(skill_demo.get("skill_id", 29))):
 		_next_demo_frame = -1
-		return
-	if not bool(skill_demo.get("repeat", true)):
-		_next_demo_frame = -1
+		skill_demo_status = "insufficient_mp" if caster.mp < int(
+			SimTables.attack(int(skill_demo.get("skill_id", 29))).get("mp_cost", 0)) else "start_rejected"
 		return
 	var record: Dictionary = active_skills.get(caster.get_instance_id(), {})
-	var total_frames := 0
-	for stage: Dictionary in record.get("stages", []):
-		total_frames += int(stage.get("duration", 0))
-	_next_demo_frame = frame + total_frames + maxi(0, int(skill_demo.get("repeat_delay_frames", 60)))
+	_demo_waiting_instance = int(record["instance_id"])
+	_next_demo_frame = -1
+	skill_demo_status = "casting"
+
+
+func _skill_demo_actor_finished(record: Dictionary, interrupted := false) -> void:
+	if int(record["instance_id"]) != _demo_waiting_instance:
+		return
+	_demo_waiting_instance = -1
+	if interrupted:
+		skill_demo_status = "source_unavailable"
+	elif bool(skill_demo.get("repeat", true)):
+		# Schedule from observed completion, never from summed visual/phase lengths.
+		_next_demo_frame = frame + maxi(1, int(skill_demo.get("repeat_delay_frames", 60)))
+		skill_demo_status = "waiting"
+	else:
+		skill_demo_status = "completed"
 
 
 static func _fx_logic_frames(global_id: int) -> int:
@@ -230,6 +251,7 @@ func _enter_next_skill_phase(caster_key: int) -> void:
 			caster.skill_id = -1
 			caster.skill_action = 0
 			active_skills.erase(caster_key)
+			_skill_demo_actor_finished(record)
 			return
 		var stage: Dictionary = record["stages"][int(record["phase_index"])]
 		record["phase_started_frame"] = frame
@@ -326,6 +348,7 @@ func _interrupt_skill(caster_key: int) -> void:
 	skill_events[event_index]["reason"] = "source_unavailable"
 	skill_events[event_index]["source_state"] = caster.state
 	skill_events[event_index]["cleanup_scope"] = "actor_root_and_sustained_cast"
+	_skill_demo_actor_finished(record, true)
 
 
 

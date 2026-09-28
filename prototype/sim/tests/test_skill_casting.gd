@@ -555,6 +555,82 @@ func test_连续施放动作时钟均从首帧开始() -> void:
 	assert_eq(caster.skill_action, 12, "第二轮仍从 action12 开始")
 
 
+func _repeat_demo(skill_id: int) -> Battle:
+	var battle := _battle()
+	if skill_id == 22:
+		battle.units[0].anim_id = "C1A"
+	var cost := int(SimTables.attack(skill_id).get("mp_cost", 0))
+	battle.units[0].mp_max = cost * 2
+	battle.units[0].mp = cost * 2
+	battle.skill_demo = {"enabled": true, "skill_id": skill_id, "caster_unit": 0,
+		"target_unit": 2 if skill_id == 22 else 1, "repeat": true,
+		"repeat_delay_frames": 4, "exclusive": true}
+	battle._next_demo_frame = 1
+	battle.skill_demo_status = "waiting"
+	return battle
+
+
+func test_重复演示按实际演员完成安排且MP耗尽明确停止() -> void:
+	for skill_id in [22, 29]:
+		var battle := _repeat_demo(skill_id)
+		var finish_frame := 129 if skill_id == 22 else 130
+		for _i in finish_frame - 1:
+			battle.tick()
+		assert_eq(battle.skill_demo_status, "casting", "恢复未完成时不预设下一次")
+		assert_eq(battle._next_demo_frame, -1, "演员在途时未排重复计时")
+		battle.tick()
+		assert_eq(battle.skill_demo_status, "waiting", "实际完成后开始等待")
+		assert_eq(battle._next_demo_frame, finish_frame + 4, "延迟相对于完成帧")
+		assert_eq(battle.pending_skill_signals.size(), 0, "第一轮队列排空")
+		assert_eq(battle.active_fx_events().size(), 0, "第一轮特效已自然结束")
+		for _i in 4:
+			battle.tick()
+		var casts: Array = battle.skill_events.filter(func(event): return event.phase == "cast")
+		assert_eq(casts.map(func(event): return int(event.frame)), [1, finish_frame + 4],
+			"第二轮从自己首帧启动")
+		assert_eq(casts.map(func(event): return int(event.instance_id)), [1, 2], "新实例无复用")
+		while battle.frame < 300:
+			battle.tick()
+		assert_eq(battle.skill_demo_status, "insufficient_mp", "第三次准入失败有可见反馈")
+		assert_eq(battle.skill_resource_events.size(), 2, "只有两次释放费用")
+		assert_eq(battle.units[0].mp, 0, "不为演示暗中补MP")
+		assert_eq(battle.active_skills.size(), 0, "不足时无演员实例")
+		assert_eq(battle.pending_skill_signals.size(), 0, "无泄漏队列")
+		assert_eq(battle.active_fx_events().size(), 0, "无泄漏视觉")
+		assert_eq(battle._demo_waiting_instance, -1, "等待实例已解绑")
+		assert_eq(battle._next_demo_frame, -1, "不足后不每帧重试")
+		var count := battle.skill_events.size()
+		for _i in 20:
+			battle.tick()
+		assert_eq(battle.skill_events.size(), count, "失败请求不产生更多演出")
+
+
+func test_重复演示同种子全部事件资源状态和随机流一致() -> void:
+	for skill_id in [22, 29]:
+		var a := _repeat_demo(skill_id)
+		var b := _repeat_demo(skill_id)
+		for _i in 300:
+			a.tick()
+			b.tick()
+		assert_eq(a.events, b.events, "诊断日志确定")
+		assert_eq(a.skill_events, b.skill_events, "实例关联和奇数tick结算确定")
+		assert_eq(a.skill_resource_events, b.skill_resource_events, "费用事件确定")
+		assert_eq(a.fx_events, b.fx_events, "视觉事件确定")
+		assert_eq(a.units[2].condition_slots, b.units[2].condition_slots, "状态刷新确定")
+		assert_eq(a.rng.state, b.rng.state, "随机流确定")
+
+
+func test_重复演示中断不安排下一次或遗留等待实例() -> void:
+	var battle := _repeat_demo(22)
+	battle.tick()
+	battle.units[0].state = BattleUnit.State.DEAD
+	battle.tick()
+	assert_eq(battle.skill_demo_status, "source_unavailable", "中断反馈")
+	assert_eq(battle._demo_waiting_instance, -1, "解绑演示实例")
+	assert_eq(battle._next_demo_frame, -1, "中断不安排下一轮")
+	assert_eq(battle.skill_resource_events.size(), 0, "未释放不扣费")
+
+
 func test_特效寿命与人物恢复允许重叠() -> void:
 	var battle := _battle()
 	battle.start_skill(battle.units[0], battle.units[1], 29)
