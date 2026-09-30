@@ -97,6 +97,23 @@ class Scene5RoundSourceEvidenceTests(unittest.TestCase):
         self.assertEqual(self.at(0x4da93a, 7), bytes.fromhex(
             '8b55fcc6420900'))
 
+    def test_mode_flag_is_not_a_static_task_record_field(self):
+        mode = self.fixture['mode_flag_provenance']
+        self.assertEqual(mode['address'], '0x7f4491')
+        self.assertEqual(mode['config_loader_reset_va'], '0x4da93a')
+        self.assertEqual(self.call_target(int(mode['network_task_caller_va'], 0)),
+                         0x448a30)
+        self.assertEqual(self.call_target(int(mode['network_config_load_va'], 0)),
+                         0x4da860)
+        for name in ('network_set_one_va', 'other_set_one_va'):
+            self.assertEqual(self.at(int(mode[name], 0), 7),
+                             bytes.fromhex('c60591447f0001'))
+        self.assertEqual(self.at(int(mode['saved_value_restore_va'], 0), 5),
+                         bytes.fromhex('a291447f00'))
+        self.assertEqual(self.at(int(mode['conditional_clear_va'], 0), 7),
+                         bytes.fromhex('c60591447f0000'))
+        self.assertTrue(mode['state12_branch_requires_live_value'])
+
 
 if __name__ == '__main__':
     unittest.main()
