@@ -46,6 +46,13 @@ class BattleParallelExitEvidenceTests(unittest.TestCase):
                 self.assert_call(call_va, 0x4549d0)
                 self.assertEqual(self.at(fourth_push_va, 2), bytes.fromhex('6a00'))
 
+    def test_other_conditional_callers_do_set_exit_flag(self):
+        self.assert_call(0x454bf8, 0x4549d0)
+        self.assert_call(0x454c1f, 0x4549d0)
+        self.assertEqual(self.at(0x454c10, 2), bytes.fromhex('6a01'))
+        self.assert_call(0x432740, 0x4549d0)
+        self.assertEqual(self.at(0x43272f, 2), bytes.fromhex('6a01'))
+
 
 if __name__ == '__main__':
     unittest.main()
