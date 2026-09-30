@@ -17,6 +17,7 @@ var frame := 0
 var events: Array[String] = []
 var finished := false
 var winner := -1          # -1 进行中/平局
+var _terminal_snapshot: Dictionary = {}
 var move_interval := 12
 var attack_interval := 30
 var map: SimMapData = null                      # 传入则启用寻路 (add-pathfinding)
@@ -825,6 +826,8 @@ func _emit_fx(a: BattleUnit, d: BattleUnit, hit: bool, damage: int) -> void:
 
 
 func _check_finish() -> void:
+	if finished:
+		return
 	var alive := [false, false]
 	for u in units:
 		if u.state != BattleUnit.State.DEAD and u.state != BattleUnit.State.WITHDRAWN:
@@ -833,11 +836,44 @@ func _check_finish() -> void:
 		if not alive[0]:
 			finished = true
 			winner = -1
+			_capture_terminal_snapshot()
 			_log("f%d finish draw" % frame)
 	else:
 		finished = true
 		winner = 0 if alive[0] else 1
+		_capture_terminal_snapshot()
 		_log("f%d finish winner=%d" % [frame, winner])
+
+
+## Local simulation fact only. Script exit/result branch is a separate input.
+## Return a copy so consumers cannot alter the once-captured terminal state.
+func get_terminal_snapshot() -> Dictionary:
+	return _terminal_snapshot.duplicate(true)
+
+
+func _capture_terminal_snapshot() -> void:
+	if not _terminal_snapshot.is_empty():
+		return
+	var unit_states: Array[Dictionary] = []
+	for index in units.size():
+		var u: BattleUnit = units[index]
+		unit_states.append({
+			"battle_index": index,
+			"character_id": u.character_id,
+			"name": u.name,
+			"faction": u.faction,
+			"cell": [u.cell.x, u.cell.y],
+			"state": u.state,
+			"hp": u.hp,
+			"hp_max": u.hp_max,
+			"mp": u.mp,
+			"mp_max": u.mp_max,
+			"engage_left": u.engage_left,
+		})
+	_terminal_snapshot = {
+		"source": "local_simulation", "frame": frame, "winner": winner,
+		"units": unit_states,
+	}
 
 
 func _log(msg: String) -> void:

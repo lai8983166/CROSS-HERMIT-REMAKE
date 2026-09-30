@@ -6,6 +6,7 @@ extends RefCounted
 enum State { IDLE, MOVE, ATTACK, CAST, RELEASE, SYNC, IMPACT, RECOVER, DEAD, WITHDRAWN }
 
 var unit: SimUnit
+var character_id := -1  # Explicit original persistent ID; never inferred from array position/name.
 var faction := 0
 var name := ""
 var cell := Vector2i.ZERO
@@ -55,6 +56,7 @@ var path_target := Vector2i(-1, -1)
 
 func setup(def: Dictionary) -> void:
 	name = def.get("name", "unit")
+	character_id = int(def.get("character_id", -1))
 	faction = int(def.get("faction", 0))
 	cell = Vector2i(int(def.pos[0]), int(def.pos[1]))
 	from_cell = cell

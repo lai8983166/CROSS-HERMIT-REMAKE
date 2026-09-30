@@ -36,6 +36,60 @@ func test_battle_runs_to_finish() -> void:
 	assert_true(has_move, "日志含移动")
 
 
+func test_terminal_snapshot_is_once_only_and_deep_copied() -> void:
+	var setup := _load_setup()
+	var red: Dictionary = setup.units[0]
+	var blue: Dictionary = {}
+	for candidate in setup.units:
+		if int(candidate.faction) == 1:
+			blue = candidate
+			break
+	setup.units = [red, blue]
+	var b := Battle.start(setup, 42)
+	assert_true(b.get_terminal_snapshot().is_empty(), "结束前没有终局快照")
+	b.units[1].state = BattleUnit.State.DEAD
+	b.units[1].hp = 0
+	b._check_finish()
+	var snapshot := b.get_terminal_snapshot()
+	assert_eq(snapshot["winner"], 0, "红方胜利快照")
+	assert_eq(snapshot["frame"], 0, "记录首次结束帧")
+	assert_eq(snapshot["units"].size(), 2, "保留终局阵容")
+	assert_eq(snapshot["units"][1]["state"], BattleUnit.State.DEAD, "保留单位终态")
+	assert_eq(snapshot["units"][0]["character_id"], -1, "缺少角色 ID 不猜测")
+	snapshot["units"][0]["cell"][0] = 999
+	snapshot["units"].clear()
+	b.units[0].hp = 0
+	b.units[0].cell = Vector2i(99, 99)
+	b.units.clear()
+	b.tick()
+	b._check_finish()
+	var again := b.get_terminal_snapshot()
+	assert_eq(again["units"].size(), 2, "读者和阵容变更不能改写快照")
+	assert_true(again["units"][0]["cell"][0] != 999, "嵌套数组已深拷贝")
+	assert_true(again["units"][0]["cell"][0] != 99, "单位位置变化不回写")
+	assert_eq(again["winner"], 0, "重复检查不改胜方")
+	assert_eq(b.frame, 0, "结束后 tick 不推进")
+
+
+func test_terminal_snapshot_both_sides_empty() -> void:
+	var setup := _load_setup()
+	var red: Dictionary = setup.units[0]
+	var blue: Dictionary = {}
+	for candidate in setup.units:
+		if int(candidate.faction) == 1:
+			blue = candidate
+			break
+	setup.units = [red, blue]
+	var b := Battle.start(setup, 42)
+	for u in b.units:
+		u.state = BattleUnit.State.WITHDRAWN
+	b._check_finish()
+	assert_eq(b.winner, -1, "双方都空为平局")
+	var snapshot := b.get_terminal_snapshot()
+	assert_eq(snapshot["winner"], -1, "平局被快照")
+	assert_eq(snapshot["units"].size(), 2, "平局也保留双方单位")
+
+
 func test_determinism_same_seed() -> void:
 	var a := Battle.start(_load_setup(), 42)
 	a.run_to_finish()
