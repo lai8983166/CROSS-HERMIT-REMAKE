@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "analysis/hermit_game.exe",
+  "evidence_kind": "original_branch_predicates_not_playthrough",
+  "controller_jump_table_va": 4842707,
+  "dispatch": [
+    {"state": 11, "case_va": 4842408, "constructor_va": 4970224, "task_update_va": 4970080},
+    {"state": 10, "case_va": 4842350, "constructor_va": 4952352, "task_update_va": 4952048},
+    {"state": 12, "case_va": 4842366, "constructor_va": 4988208, "task_update_va": 4987552},
+    {"state": 16, "case_va": 4842398, "constructor_va": 4526208, "task_update_va": 4527728}
+  ],
+  "transition_checks": [
+    {"va": 4970180, "next_state": 10},
+    {"va": 4952095, "next_state": 12},
+    {"va": 4952282, "next_state": 16}
+  ],
+  "preparation_paths": [
+    {
+      "name": "all_rounds_complete",
+      "counter_before": {"current": 1, "total": 1},
+      "next_state": 12,
+      "counter_after": {"current": 1, "total": 1},
+      "preparation_writes": false
+    },
+    {
+      "name": "another_round_pending",
+      "counter_before": {"current": 0, "total": 1},
+      "next_state": 16,
+      "counter_after": {"current": 1, "total": 1},
+      "preparation_writes": true
+    }
+  ]
+}
