@@ -28,7 +28,7 @@ class AllResultRecipientEvidenceTests(unittest.TestCase):
 
     def test_only_mode_zero_calls_selector_and_resets_sentinel(self):
         f = self.fixture
-        self.assertEqual(f['schema_version'], 1)
+        self.assertEqual(f['schema_version'], 2)
         self.assertEqual(f['evidence_kind'],
                          'original_selection_rule_not_runtime_result')
         self.assertEqual(f['reset_va'], 0x4bd8ed)
@@ -75,6 +75,35 @@ class AllResultRecipientEvidenceTests(unittest.TestCase):
         self.assertEqual(f['scene5_reached_state12'], 'unresolved')
         self.assertEqual(f['role_mapping_for_current_battle_setup'], 'unresolved')
         self.assertFalse(f['authorizes_persistent_write'])
+
+    def test_participant_id_and_group_slot_index_share_builder(self):
+        builder = self.fixture['participant_list_builder']
+        self.assertEqual(builder['function_va'], 0x4d3e90)
+        self.assertEqual(builder['regular_id_max_exclusive'], 101)
+        self.assertEqual(self.at(0x4d3edd, 3), bytes.fromhex('83f865'))
+        self.assertEqual(builder['participant_id_write_va'], 0x4d3f0f)
+        self.assertEqual(self.at(builder['participant_id_write_va'], 8),
+                         bytes.fromhex('66890c4510527a00'))
+        self.assertEqual(builder['group_slot_index_write_va'], 0x4d3f39)
+        self.assertEqual(self.at(builder['group_slot_index_write_va'], 8),
+                         bytes.fromhex('668984cae0aa7a00'))
+
+    def test_initial_roster_calls_pass_explicit_id_group_and_slot(self):
+        builder = self.fixture['participant_list_builder']
+        self.assertEqual([entry['init_va'] for entry in
+                          builder['conditional_initial_roster']],
+                         [0x49e930, 0x49ee30])
+        for entry in builder['conditional_initial_roster']:
+            self.assertEqual(entry['character_ids'], [3, 4, 9])
+            self.assertEqual(entry['group'], 0)
+            self.assertEqual(entry['slots'], [0, 1, 2])
+            for call_va, character_id, slot in zip(
+                    entry['calls'], entry['character_ids'], entry['slots']):
+                with self.subTest(init=hex(entry['init_va']), call=hex(call_va)):
+                    self.assert_call(call_va, builder['function_va'])
+                    self.assertEqual(self.at(call_va - 11, 6),
+                                     bytes((0x6a, slot, 0x6a, entry['group'],
+                                            0x6a, character_id)))
 
 
 if __name__ == '__main__':

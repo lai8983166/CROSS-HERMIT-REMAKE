@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "evidence_kind": "original_selection_rule_not_runtime_result",
   "source_exe": "analysis/hermit_game.exe",
   "reset_va": 4970733,
@@ -18,6 +18,16 @@
   "tie_rule": "first_strictly_greater",
   "recipient_output_va": 8262016,
   "branch_write_field_offset": 288,
+  "participant_list_builder": {
+    "function_va": 5062288,
+    "participant_id_write_va": 5062415,
+    "group_slot_index_write_va": 5062457,
+    "regular_id_max_exclusive": 101,
+    "conditional_initial_roster": [
+      {"init_va": 4843824, "calls": [4844984, 4845000, 4845016], "character_ids": [3, 4, 9], "group": 0, "slots": [0, 1, 2]},
+      {"init_va": 4845104, "calls": [4845976, 4845992, 4846008], "character_ids": [3, 4, 9], "group": 0, "slots": [0, 1, 2]}
+    ]
+  },
   "scene5_reached_state12": "unresolved",
   "role_mapping_for_current_battle_setup": "unresolved",
   "authorizes_persistent_write": false
