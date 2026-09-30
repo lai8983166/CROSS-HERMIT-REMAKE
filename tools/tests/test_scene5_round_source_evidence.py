@@ -1,0 +1,102 @@
+"""Pin the conditional scene-5 round source to original EXE bytes."""
+import json
+import struct
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[2]
+IMAGE_BASE = 0x400000
+
+
+class Scene5RoundSourceEvidenceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.fixture = json.loads((
+            ROOT / 'prototype/data/scene5_round_source_evidence.json'
+        ).read_text('utf-8'))
+        cls.exe = (ROOT / cls.fixture['source']).read_bytes()
+
+    @classmethod
+    def at(cls, va, size):
+        offset = va - IMAGE_BASE
+        return cls.exe[offset:offset + size]
+
+    @classmethod
+    def call_target(cls, va):
+        instruction = cls.at(va, 5)
+        assert instruction[0] == 0xe8
+        return va + 5 + struct.unpack_from('<i', instruction, 1)[0]
+
+    def test_task_five_calendar_and_round_record(self):
+        f = self.fixture
+        self.assertEqual(f['schema_version'], 1)
+        self.assertEqual(f['evidence_kind'],
+                         'static_task_record_and_conditional_round_source_not_playthrough')
+        table = int(f['task_table_va'], 0)
+        record = int(f['task_record_va'], 0)
+        self.assertEqual(record, table + f['task_id'] * f['task_record_stride'])
+        self.assertEqual(self.at(table, 20), bytes(20))  # Empty ID 0 is not ID 5.
+        gate = f['calendar_gate']
+        for field in ('enabled', 'month', 'week'):
+            self.assertEqual(self.at(record + gate[field + '_offset'], 1)[0],
+                             gate[field])
+        rounds = f['rounds']
+        self.assertEqual(self.at(record + rounds['count_offset'], 1)[0],
+                         rounds['count'])
+        for field in ('first_config', 'first_selector'):
+            value, = struct.unpack('<H', self.at(record + rounds[field + '_offset'], 2))
+            self.assertEqual(value, rounds[field + ('_id' if field == 'first_config'
+                                                       else '_word')])
+
+    def test_selected_task_id_is_the_round_table_index(self):
+        # Calendar fields gate task availability, but selection is a separate
+        # event. The 0x100-stride task ID is copied through two runtime lists.
+        self.assertEqual(self.at(0x4a1833, 11), bytes.fromhex(
+            'c1e00833c98a88d1be7300'))
+        self.assertEqual(self.at(0x4a1850, 11), bytes.fromhex(
+            'c1e20833c08a82d2be7300'))
+        self.assertEqual(self.at(0x4a1874, 11), bytes.fromhex(
+            'c1e20833c08a82d3be7300'))
+        self.assertEqual(self.at(0x4a9db5, 11), bytes.fromhex(
+            'c1e00833c98a88d6be7300'))
+        self.assertEqual(self.at(0x4aa033, 11), bytes.fromhex(
+            '668b4d0866898862567a00'))
+        self.assertEqual(self.at(0x4a1dcb, 15), bytes.fromhex(
+            '668b9262567a00668994089e597d00'))
+        self.assertEqual(self.at(0x4a1f1b, 6), bytes.fromhex(
+            '66a316ab7a00'))
+        self.assertEqual(self.at(0x4a2290, 6), bytes.fromhex(
+            '66a316ab7a00'))
+        # No eligible group: both counters are cleared, regardless of the
+        # selected task's nonzero static round count.
+        self.assertEqual(self.at(0x4a6b0e, 26), bytes.fromhex(
+            '0fbf45b085c0751766c70596527a00000066c70598527a000000'))
+        self.assertEqual(self.at(0x4a6b4d, 21), bytes.fromhex(
+            '0fbf5598c1e208660fb682dfbe730066a398527a00'))
+        self.assertEqual(self.at(0x4a6b94, 26), bytes.fromhex(
+            '0fbf5598c1e2080fbf45ac0fbf4dac6bc970668b9482e0be7300'))
+
+    def test_first_round_config_selects_scene_five(self):
+        f = self.fixture
+        config = int(f['config_record_va'], 0)
+        self.assertEqual(config, int(f['config_table_va'], 0) +
+                         f['rounds']['first_config_id'] * f['config_stride'])
+        scene_id, = struct.unpack('<H', self.at(config, 2))
+        self.assertEqual(scene_id, f['config_scene_id'])
+        self.assertEqual(scene_id, 5)
+        # The preparation task passes this ID to the configuration loader.
+        self.assertEqual(self.call_target(0x4b9052), 0x4da860)
+        self.assertEqual(self.call_target(0x4da87e), 0x4da8a0)
+        self.assertEqual(self.call_target(0x4da8bc), 0x4da8e0)
+        self.assertEqual(self.at(0x4da8f8, 11), bytes.fromhex(
+            '8b45086bc02a05d0d16a00'))
+        self.assertEqual(self.at(0x4da913, 6), bytes.fromhex(
+            '668b02668901'))
+        # Configuration loading resets the mode flag; a later branch may set it.
+        self.assertEqual(self.at(0x4da93a, 7), bytes.fromhex(
+            '8b55fcc6420900'))
+
+
+if __name__ == '__main__':
+    unittest.main()

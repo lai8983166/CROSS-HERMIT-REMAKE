@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "source": "analysis/hermit_game.exe",
+  "evidence_kind": "static_task_record_and_conditional_round_source_not_playthrough",
+  "task_table_va": "0x73bed0",
+  "task_record_stride": 256,
+  "task_id": 5,
+  "task_record_va": "0x73c3d0",
+  "calendar_gate": {
+    "enabled_offset": 1,
+    "enabled": 1,
+    "month_offset": 2,
+    "month": 4,
+    "week_offset": 3,
+    "week": 5
+  },
+  "rounds": {
+    "count_offset": 15,
+    "count": 1,
+    "first_config_offset": 16,
+    "first_config_id": 5,
+    "first_selector_offset": 18,
+    "first_selector_word": 1
+  },
+  "config_table_va": "0x6ad1d0",
+  "config_stride": 42,
+  "config_record_va": "0x6ad2a2",
+  "config_scene_id": 5,
+  "source_chain": [
+    "4A17B0 calendar/availability scan",
+    "4A9D90 task ID into 7A5662",
+    "4A1C70 or 4A1FF0 selected ID into 7AAB16",
+    "4A6A10 eligible-group gate and round table",
+    "4B8FF0 first-round config ID into 4DA860",
+    "4DA860 -> 4DA8A0 -> 4DA8E0 scene config"
+  ],
+  "unresolved": [
+    "task_id_5_selected_in_same_scene5_playthrough",
+    "eligible_group_state_2_in_same_scene5_playthrough",
+    "scene5_terminal_call_to_state11_in_same_playthrough"
+  ]
+}
