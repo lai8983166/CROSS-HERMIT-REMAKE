@@ -10,12 +10,12 @@ from tools.ybc32_disasm import parse
 ROOT = Path(__file__).resolve().parents[2]
 
 
-class BattleExitFixtureTests(unittest.TestCase):
+class BattleScriptSignalFixtureTests(unittest.TestCase):
     def test_source_offset_and_raw_instruction(self):
-        fixture = json.loads((ROOT / 'prototype/data/battle_exit_requests.json').read_text('utf-8'))
-        self.assertEqual(fixture['schema_version'], 1)
-        self.assertEqual(len(fixture['requests']), 1)
-        request = fixture['requests'][0]
+        fixture = json.loads((ROOT / 'prototype/data/battle_script_signals.json').read_text('utf-8'))
+        self.assertEqual(fixture['schema_version'], 2)
+        self.assertEqual(len(fixture['signals']), 1)
+        request = fixture['signals'][0]
         data = (ROOT / 'CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/SCRIPT' /
                 request['script']).read_bytes()
         records = parse(data)
@@ -32,7 +32,7 @@ class BattleExitFixtureTests(unittest.TestCase):
                          request['raw_cells'])
         self.assertEqual(data[offset:offset + advance].hex(), request['raw_instruction_hex'])
         self.assertEqual(struct.unpack_from('<H', data, offset + advance)[0], 146)
-        self.assertEqual(request['interpretation'], 'script_exit_request_only')
+        self.assertEqual(request['interpretation'], 'intermediate_script_signal_only')
 
 
 if __name__ == '__main__':
