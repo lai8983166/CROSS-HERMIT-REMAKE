@@ -48,7 +48,7 @@ cell = u32: type<<28|value   t2=立即数  t0=变量引用
 | 146 | NETKEYWAIT | 190 | 21 | 联机键等待 |
 | 49 | TEXTWAIT | 151 | 6 |  |
 | 133 | TACTENEMYEXITGROUP | 150 | 11 | 敌班组退出 |
-| 130 | TACTPLAYERAPPEARGROUP | 96 | 20 | 操作班组一斉出現 |
+| 130 | TACTPLAYERAPPEARGROUP | 96 | 20 | 编译器名；`T0005.BIN` 子程序 20 的五条首参数为 type 2 立即数，原生处理器 `42E910 → 4C1F40` 不直接生成角色列表或组槽，不能据名称推断持久角色 ID（见 [战斗返回链审计](battle_return_audit.md)） |
 | 113 | TACTPLAYERAPPEAR | 72 | 16 | 操作单位出现 |
 | 142 | TACTANIMSTOP | 49 | 9 | 动画停止 |
 | 165 | UNITWK_PUTBIT | 45 | 18 | bit 写 |
