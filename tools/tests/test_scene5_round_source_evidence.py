@@ -114,6 +114,29 @@ class Scene5RoundSourceEvidenceTests(unittest.TestCase):
                          bytes.fromhex('c60591447f0000'))
         self.assertTrue(mode['state12_branch_requires_live_value'])
 
+    def test_first_round_uses_original_group_member_ids(self):
+        source = self.fixture['first_round_roster_source']
+        self.assertEqual(self.fixture['rounds']['first_selector_word'] & 0x7ff,
+                         source['selector_low_11_bits'])
+        self.assertEqual(source['selector_low_11_bits'], 1)
+        self.assertEqual(source['eligible_group_state'], 2)
+        self.assertEqual(self.at(0x4a6bdb, 18), bytes.fromhex(
+            '0fbf5598c1e208668b82e2be73006625ff07'))
+        self.assertEqual(self.at(0x4a6c60, 3), bytes.fromhex('83fa02'))
+        self.assertEqual(self.at(int(source['group_member_id_write_va'], 0), 8),
+                         bytes.fromhex('6689845122aa7a00'))
+        self.assertEqual(self.at(int(source['round_member_id_read_va'], 0), 8),
+                         bytes.fromhex('668b944222aa7a00'))
+        self.assertEqual(self.at(int(source['round_member_id_write_va'], 0), 8),
+                         bytes.fromhex('66899471d0527a00'))
+        self.assertEqual(source['group_member_id_table_va'], '0x7aaa22')
+        self.assertEqual(source['round_member_id_table_va'], '0x7a52d0')
+        prior = json.loads((ROOT / 'prototype/data/all_result_recipient_evidence.json')
+                           .read_text('utf-8'))
+        for init in prior['participant_list_builder']['conditional_initial_roster']:
+            self.assertEqual(init['character_ids'],
+                             source['conditional_initial_group0_ids'])
+
 
 if __name__ == '__main__':
     unittest.main()
