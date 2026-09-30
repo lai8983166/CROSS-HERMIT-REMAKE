@@ -52,7 +52,7 @@ cell = u32: type<<28|value   t2=立即数  t0=变量引用
 | 113 | TACTPLAYERAPPEAR | 72 | 16 | 操作单位出现 |
 | 142 | TACTANIMSTOP | 49 | 9 | 动画停止 |
 | 165 | UNITWK_PUTBIT | 45 | 18 | bit 写 |
-| 112 | TACTGAMEEND | 40 | 5 | 战斗结束 |
+| 112 | TACTGAMEEND | 40 | 5 | 编译器名为战斗结束；原生处理先进入战术工作区计时/等待，非直接结算（见 [战斗返回链审计](battle_return_audit.md)） |
 | 26 | BORDCHANGE | 38 | 5 |  |
 | 159 | UNITWK_GET16 | 33 | 7 | u16 读 |
 | 164 | UNITWK_PUT8 | 29 | 4 | u8 写 |
@@ -64,7 +64,7 @@ cell = u32: type<<28|value   t2=立即数  t0=变量引用
 | 140 | TACTANIMSETCELL | 15 | 1 |  |
 | 40 | CHARFACEWAIT | 13 | 4 |  |
 | 120 | TACTFADEIN | 10 | 5 | 战斗淡入 |
-| 148 | PUTTACTRET | 9 | 1 | 写战果 |
+| 148 | PUTTACTRET | 9 | 1 | 9 条均为 T0080 的 `adv=4` 疑似占位记录；原生处理器需 3 个 cell，不能据此认定写战果（见 [战斗返回链审计](battle_return_audit.md)） |
 | 141 | TACTANIMSETUNIT | 8 | 1 | 动画指定格 |
 | 32 | BORDPACKOFFWAIT | 7 | 2 |  |
 | 139 | TACTANIMSET | 7 | 1 |  |
