@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "evidence_kind": "original_branch_conditions_not_runtime_trace",
   "scene_id": 5,
   "script": "T0005.BIN",
@@ -13,7 +13,24 @@
   },
   "conditional_terminal_subs": [2, 5, 8, 11, 14],
   "terminal_wrapper_calls": [4405421, 4405439, 4405492, 4405512, 4405562, 4405582],
+  "terminal_branches": [
+    {"call_va": 4405421, "wrapper_va": 4541104, "selector_arg": 2, "script_sub": 2, "code_offset": 1228, "destroy_opcode_offset": 1900},
+    {"call_va": 4405439, "wrapper_va": 4541104, "selector_arg": 5, "script_sub": 5, "code_offset": 2316, "destroy_opcode_offset": 2988},
+    {"call_va": 4405492, "wrapper_va": 4541168, "selector_arg": 8, "script_sub": 8, "code_offset": 3404, "destroy_opcode_offset": 4038},
+    {"call_va": 4405512, "wrapper_va": 4541168, "selector_arg": 11, "script_sub": 11, "code_offset": 4504, "destroy_opcode_offset": 5784},
+    {"call_va": 4405562, "wrapper_va": 4541168, "selector_arg": 14, "script_sub": 8, "code_offset": 3404, "destroy_opcode_offset": 4038},
+    {"call_va": 4405582, "wrapper_va": 4541168, "selector_arg": 14, "script_sub": 14, "code_offset": 6932, "destroy_opcode_offset": 8212}
+  ],
   "tactics_exit_flag_argument": 1,
+  "static_handoff": {
+    "wrapper_to_script_call_va": 4541304,
+    "exit_flag_store_va": 4541050,
+    "phase5_exit_flag_check_va": 4542018,
+    "vm_update_call_va": 4536812,
+    "task_update_call_va": 4528823,
+    "state11_request_va": 4528472
+  },
   "scene5_reached_terminal_call": "unresolved",
+  "same_instance_reached_state11": "unresolved",
   "opcode_112_causes_terminal_call": "unresolved"
 }

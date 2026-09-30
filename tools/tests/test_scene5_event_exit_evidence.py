@@ -45,7 +45,7 @@ class Scene5EventExitEvidenceTests(unittest.TestCase):
         return opcodes
 
     def test_scene_dispatch_and_parallel_gate(self):
-        self.assertEqual(self.fixture['schema_version'], 1)
+        self.assertEqual(self.fixture['schema_version'], 2)
         self.assertEqual(self.fixture['scene_id'], 5)
         self.assertEqual(self.fixture['evidence_kind'],
                          'original_branch_conditions_not_runtime_trace')
@@ -88,6 +88,56 @@ class Scene5EventExitEvidenceTests(unittest.TestCase):
         self.assert_call(0x454b78, 0x454bb0)
         self.assertEqual(self.fixture['scene5_reached_terminal_call'], 'unresolved')
         self.assertEqual(self.fixture['opcode_112_causes_terminal_call'], 'unresolved')
+
+    def test_terminal_branch_selector_and_script_sub_are_distinct(self):
+        branches = self.fixture['terminal_branches']
+        self.assertEqual([b['call_va'] for b in branches],
+                         self.fixture['terminal_wrapper_calls'])
+        self.assertEqual({b['script_sub'] for b in branches},
+                         set(self.fixture['conditional_terminal_subs']))
+        for branch in branches:
+            with self.subTest(call=hex(branch['call_va'])):
+                va = branch['call_va']
+                self.assert_call(va, branch['wrapper_va'])
+                # The final two immediate pushes before the receiver-load
+                # are selector followed by script sub (cdecl stack order).
+                pushes = self.at(va - 13 if branch['wrapper_va'] == 0x454af0
+                                 else va - 11,
+                                 4 if branch['wrapper_va'] == 0x454af0 else 2)
+                if branch['wrapper_va'] == 0x454af0:
+                    self.assertEqual(pushes,
+                                     bytes((0x6a, branch['script_sub'], 0x6a,
+                                            branch['selector_arg'])))
+                else:
+                    self.assertEqual(pushes, bytes((0x6a, branch['script_sub'])))
+                    self.assertEqual(branch['selector_arg'], branch['script_sub'])
+                self.assertEqual(self.records[(0, branch['script_sub'])],
+                                 branch['code_offset'])
+                self.assertIn((branch['destroy_opcode_offset'], 118),
+                              self.opcodes_in_sub(branch['script_sub']))
+                self.assertNotIn(112, [opcode for _, opcode in
+                                       self.opcodes_in_sub(branch['script_sub'])])
+        self.assertEqual([(b['selector_arg'], b['script_sub']) for b in branches
+                          if b['selector_arg'] != b['script_sub']], [(14, 8)])
+
+    def test_terminal_flag_to_state11_is_conditional_not_observed(self):
+        handoff = self.fixture['static_handoff']
+        self.assert_call(handoff['wrapper_to_script_call_va'], 0x454bb0)
+        self.assertEqual(self.at(0x454b71, 4), bytes.fromhex('6a006a01'))
+        # 454BB0 can pass flag 1 through either path into 4549D0.
+        self.assertEqual(self.at(0x454be7, 3), bytes.fromhex('8b5508'))
+        self.assertEqual(self.at(0x454c10, 2), bytes.fromhex('6a01'))
+        self.assertEqual(self.at(handoff['exit_flag_store_va'], 3),
+                         bytes.fromhex('89424c'))
+        self.assertEqual(self.at(handoff['phase5_exit_flag_check_va'], 4),
+                         bytes.fromhex('83794c01'))
+        self.assert_call(handoff['vm_update_call_va'], 0x454cf0)
+        self.assert_call(handoff['task_update_call_va'], 0x4539b0)
+        self.assertEqual(self.at(handoff['state11_request_va'], 2),
+                         bytes.fromhex('6a0b'))
+        self.assert_call(0x451963, 0x439e30)
+        self.assertEqual(self.fixture['same_instance_reached_state11'],
+                         'unresolved')
 
 
 if __name__ == '__main__':
