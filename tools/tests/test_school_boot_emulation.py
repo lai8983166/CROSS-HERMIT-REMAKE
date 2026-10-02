@@ -31,6 +31,21 @@ class SchoolBootTests(unittest.TestCase):
                     source = ROOT / 'CROSS HERMIT/CROSS HERMIT' / event['path']
                     self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), event['source_sha256'])
 
+    def test_godot_projection_fixture_is_exported_from_native_reexecution_and_source_templates(self):
+        from tools.school_boot_fixture import fixture
+        path = ROOT / 'prototype/data/school_boot_evidence.json'
+        self.assertEqual(path.read_text(encoding='utf-8'), report_text(fixture(self.report)))
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),
+                         '066ac6af7eb1f8b4b5a8b7d363cff5fcb62760652065b06fc9cf77cb8546301e')
+        data = json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(data['native_report_sha256'], REPORT_SHA256)
+        self.assertEqual([c['expected_supported'] for c in data['cases']], [True, True, False])
+        self.assertEqual([len(data['boot_rules'][k]) for k in ('adventures', 'lectures')], [100, 100])
+        self.assertEqual(data['boot_rules']['adventures'][7], {'id': 8, 'present': 1,
+            'month': 5, 'week': 1, 'duration': 5, 'kind': 2, 'subkind': 2, 'gate': 1})
+        for flag in ('school_initialized', 'interactive_school_ready', 'live_witness', 'authorizes_persistent_write'):
+            self.assertFalse(data[flag])
+
     def test_full_same_cpu_predecessor_and_complete_native_group_initialization(self):
         prior = json.loads((ROOT/'analysis/school-dispatch-v1-20261003.json').read_text(encoding='utf-8'))['cases']
         for c, predecessor in zip(self.report['cases'], [prior[0], prior[1], prior[3]]):

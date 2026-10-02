@@ -687,3 +687,12 @@ OpenSpec严格校验与diff检查通过，验证后立即提交本阶段；本�
 样例 `prototype/data/school_dispatch_evidence.json` SHA-256 `e4a3fbd1fb8492c7e3a6279d8cf10d6282ea43b041e780a5667de3100c986b05`。生成器 `tools/school_dispatch_fixture.py`从同一次原版双任务调度报告导出输入和整份期望，既有规则样例仅用于布局校验，不拼接旧结果。新增Python逐字节重执行样例校验，已包含§44的15项通过运行。Godot新增5项测试，包含四条原版路径、职务室/CH002→学校的联合回放、重送/深拷贝、无来源/缺角色拒绝及原始JSON/角色数组重排；全部27套件201项通过，语法检查、OpenSpec严格校验及diff检查通过，验证后立即提交。
 
 Godot本阶段只投影状态9消费和任务描述，没有投影§44的完整学校初始化规则；构造成功与交互就绪仍分别记录。所有输出school_initialized=false/live_witness=false/authorizes_persistent_write=false；真实BattleReturn持久应用及条件性战斗前置仍未闭合，3.1/3.2/4.1保持未完成，进度10/13。下一段应把原版班级清理、排名/待命名单及带模板来源的课程/冒险初始化接入Godot学校控制器，再接完整战后返回链。
+
+
+## 46. 学校已捕获字段的Godot来源样例（2026-10-03）
+
+新增生成器 `tools/school_boot_fixture.py`，输入及整份期望直接导出自§44同一次原版执行；课程/冒险规则另从经SHA-256核对的原版映像提取100项模板原始字段，不从期望结果反推。规则保留原始字节/有符号短整数域，未将模板尾部字段擅自限制为正常日历范围。既有周规则只用于角色布局校验。
+
+样例 `prototype/data/school_boot_evidence.json` SHA-256 `066ac6af7eb1f8b4b5a8b7d363cff5fcb62760652065b06fc9cf77cb8546301e`；原版报告哈希保持 `1537a81c4d92732464a1ce8182628b1e07a9b85ce469598784707da86514359a`。学校原版重执行9项测试全部通过（49.888秒），包含生成样例逐字节、模板8原始字段及无权限标记核对；验证后立即提交此样例阶段。
+
+投影范围明确为已捕获school_control及班级学生ID/索引，输入限本次5/1、四名学生、无教师及已有工作表的初次学校任务体。原版4A24A0还会生成20个教师模板的课程工作表，本次快照没有捕获该表，因此样例与后续投影均不声称覆盖这些明细、全部控制字段、真实资源就绪或完整菜单交互。school_initialized/interactive_school_ready/live_witness/authorizes_persistent_write仍为false；3.1/3.2/4.1保持未完成，10/13。
