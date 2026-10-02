@@ -98,6 +98,9 @@ func test_completed_output_is_deeply_copied_and_changed_input_is_rejected() -> v
 	var changed: Dictionary = example["before"].duplicate(true)
 	changed["week"] = 4
 	assert_false(replay.begin("once", example["context"], changed, fixture["rules"])["supported"])
+	assert_false(replay.begin("once", {"task_state": 7, "adv_completed": false},
+		example["before"], fixture["rules"])["supported"], "修改完成输入不能把已推进实例显示为未推进")
+	assert_eq(replay.finish("once", false)["after"], example["expected_after"])
 
 
 func test_reordered_characters_and_raw_json_equipment_match_native_owners() -> void:

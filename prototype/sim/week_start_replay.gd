@@ -10,6 +10,11 @@ var _instances: Dictionary = {}
 func begin(instance_id: String, context: Dictionary, before: Dictionary, rules: Dictionary) -> Dictionary:
 	if instance_id.is_empty():
 		return _unsupported("missing_instance_id")
+	var input := {"context": context.duplicate(true), "before": before.duplicate(true), "rules": rules.duplicate(true)}
+	if _instances.has(instance_id):
+		if _instances[instance_id]["input"] != input:
+			return _unsupported("instance_input_conflict")
+		return _view(_instances[instance_id], "duplicate")
 	if not Week._integer(context.get("task_state")) or int(context["task_state"]) != 7:
 		return _unsupported("pending_state7_gate")
 	if not context.get("adv_completed") is bool:
@@ -18,11 +23,6 @@ func begin(instance_id: String, context: Dictionary, before: Dictionary, rules: 
 		return {"supported": true, "status": "waiting_adv", "after": before.duplicate(true),
 			"week_executed": false, "requested_state": 6, "script_requests": [],
 			"school_initialized": false, "live_witness": false, "authorizes_persistent_write": false}
-	var input := {"context": context.duplicate(true), "before": before.duplicate(true), "rules": rules.duplicate(true)}
-	if _instances.has(instance_id):
-		if _instances[instance_id]["input"] != input:
-			return _unsupported("instance_input_conflict")
-		return _view(_instances[instance_id], "duplicate")
 	if not Week._bounded(before.get("month"), 4, 14):
 		return _unsupported("outside_week_start_calendar_subset")
 	# Directly project the known 4D3510 body. Do not fabricate a state12 context:
