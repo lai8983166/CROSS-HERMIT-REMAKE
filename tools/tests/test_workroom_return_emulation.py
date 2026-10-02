@@ -37,6 +37,18 @@ class WorkroomReturnTests(unittest.TestCase):
                 self.assertEqual(struct.unpack_from('<HH', source, instruction['offset']),
                                  (instruction['opcode'], instruction['advance']))
 
+    def test_godot_fixture_comes_from_same_native_run_and_keeps_declared_authority(self):
+        from tools.workroom_return_fixture import fixture
+        path = ROOT / 'prototype/data/workroom_return_evidence.json'
+        self.assertEqual(path.read_text(encoding='utf-8'), report_text(fixture(self.report)))
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),
+                         '1b7a965ee08fef6e53bf5eddbfc3f7ca5787e02d3f1c778a6cf25afab8f89c8f')
+        data = json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(data['native_report_sha256'], REPORT_SHA256)
+        self.assertFalse(data['school_initialized'])
+        self.assertFalse(data['live_witness'])
+        self.assertFalse(data['authorizes_persistent_write'])
+
     def test_pending8_from_real_ch001_constructs_original_workroom(self):
         upstream = json.loads((ROOT / 'analysis/new-week-adv-v1-20261002.json').read_text())['cases'][0]
         for c in self.cases.values():

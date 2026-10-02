@@ -633,3 +633,16 @@ continue=false反例停在职务室phase1，既不装载CH002也无新状态请�
 报告 `analysis/workroom-return-v1-20261002.json` SHA-256 `75bec06bce23826fb89228ab466b603c64cd030232fac05764df519f3d215bae`。新增7项Python测试通过（61.911秒）：逐字节重执行、源指令/资源哈希、实际前置请求与构造、完整新闻来源、首次/等待/再次进入差异、无关字段不变、缺请求/重送/非法输入拒绝。OpenSpec严格校验及diff检查通过，验证后立即提交。
 
 本次闭合隔离“原版CH001 END→真实pending8→职务室→CH002 END→真实pending9”，学校状态9的两个任务构造/本体及前置战斗条件尚未执行。`school_initialized=false`、`live_witness=false`、`authorizes_persistent_write=false`，3.1/3.2/4.1仍未完成，进度10/13。
+
+
+## 42. Godot职务室/CH002阶段投影、完整快照与一次性边界（2026-10-02）
+
+新增 `WorkroomReturnReplay`，支持本次原版执行核对过的5/1、音乐9/暂停1、背景8及四名可用学生3/4/5/9。begin要求明确CH001完成输入、pending8/active0及Chapter208真实END的路径/偏移/opcode来源；校验整份周字段布局、所有可用角色、名单/班级索引和背景后才建立实例。周规则只用于共享布局校验，不调用周结算或再次加入角色。
+
+continue=false保持整份输入及无待处理请求；continue=true首次进入只写职务室标记1、产生CH002/next9装载请求及pending6。start_ch002必须取得对应真实装载边界的state6/pending1/active1/PC0/next9来源输入，随后投影5/1原版脚本opcode151写入音乐11/暂停0，保持pending6但清pending_flag。只有明确的CH002结束就绪输入才请求9；等待时保留已写字段，不提前请求学校。再次进入的标记1路径直接请求9，保留原版音乐差异，不允许随后开始CH002。
+
+这些API分别冻结输入、阶段输出和请求列表；相同实例重送、阶段完成后再送等待、返回值及调用方嵌套对象被修改都不能重新写字段、重新结算或撤销已完成请求。同ID输入冲突、缺失可用角色、错名单/日期/背景、缺CH001结束来源及缺CH002装载字段均在缓存或新写入前拒绝。JSON整数/浮点表示及角色数组重排按ID验证，完整源快照比较先规范数值。
+
+样例 `prototype/data/workroom_return_evidence.json` SHA-256 `1b7a965ee08fef6e53bf5eddbfc3f7ca5787e02d3f1c778a6cf25afab8f89c8f`。生成器 `tools/workroom_return_fixture.py`从本次原版四条联合执行提取前置输入、职务室输出、CH002输出和请求；既有规则样例仅用于验证布局，未拼接旧输出当作本次期望。新增Python样例逐字节重执行断言；职务室8项、新周CH001 7项和前置ADV/周交接7项，共22项Python回归在同一次运行通过（137.216秒）。Godot新增7项测试，全部26套件196项通过。OpenSpec严格校验与diff检查通过，验证后立即提交；本阶段未重新运行全部Python套件。
+
+Godot实现是已证实控制字段的隔离投影，不执行ADV VM、新闻渲染或学校任务。CH001/CH002完成与输入准备仍明确为调用方提供的回放输入；样例的值来自本次真实END，未转化为现场BattleReturn权限。所有输出保持school_initialized=false/live_witness=false/authorizes_persistent_write=false。3.1/3.2/4.1保持未完成，进度10/13；下一段需继续实际消费pending9并执行学校两个任务的构造/必要初始化。
