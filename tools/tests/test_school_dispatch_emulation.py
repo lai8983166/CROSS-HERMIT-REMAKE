@@ -27,6 +27,18 @@ class SchoolDispatchTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), REPORT_SHA256)
         self.assertNotIn(b'\r', path.read_bytes())
 
+    def test_godot_fixture_is_exported_from_the_same_native_run(self):
+        from tools.school_dispatch_fixture import fixture
+        path = ROOT / 'prototype/data/school_dispatch_evidence.json'
+        self.assertEqual(path.read_text(encoding='utf-8'), report_text(fixture(self.report)))
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),
+                         'e4a3fbd1fb8492c7e3a6279d8cf10d6282ea43b041e780a5667de3100c986b05')
+        data = json.loads(path.read_text(encoding='utf-8'))
+        self.assertEqual(data['native_report_sha256'], REPORT_SHA256)
+        self.assertFalse(data['school_initialized'])
+        self.assertFalse(data['live_witness'])
+        self.assertFalse(data['authorizes_persistent_write'])
+
     def test_all_cases_preserve_same_cpu_workroom_output_and_whole_role_snapshots(self):
         prior = json.loads((ROOT / 'analysis/workroom-return-v1-20261002.json').read_text(encoding='utf-8'))['cases']
         for c, predecessor in zip(self.report['cases'], [prior[0], prior[2], prior[1], prior[3]]):
