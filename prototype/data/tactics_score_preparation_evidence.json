@@ -1,0 +1,694 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "native_task5_score_projection_fixture",
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "source_report_sha256": "4ecaf2ea1295c258f20347ea806ac7633c4f52bc61f7f46239356a9e6a09df2b",
+  "source_rules": {
+    "base_points_va": "0x73c3f4",
+    "bonus_va": "0x73c408",
+    "rates_va": "0x61c508",
+    "distributions_va": "0x61c58c",
+    "attribute_thresholds_va": "0x6e4308",
+    "growth_limit_va": "0x6253c4"
+  },
+  "rules": {
+    "task_id": 5,
+    "base_points": [
+      60000,
+      50000,
+      40000,
+      30000,
+      20000
+    ],
+    "unit_bonus": 120,
+    "time_bonuses": [
+      115,
+      110,
+      105
+    ],
+    "count_bonuses": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      0
+    ],
+    "contribution_thresholds": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      25,
+      50,
+      75,
+      90,
+      100
+    ],
+    "rates": [
+      [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        25,
+        50,
+        75,
+        90,
+        100
+      ],
+      [
+        70,
+        80,
+        90,
+        100,
+        105,
+        105,
+        105,
+        110,
+        115,
+        120,
+        125
+      ],
+      [
+        80,
+        90,
+        100,
+        105,
+        110,
+        115,
+        120,
+        125,
+        130,
+        135,
+        135
+      ],
+      [
+        80,
+        90,
+        100,
+        105,
+        110,
+        115,
+        120,
+        125,
+        130,
+        135,
+        135
+      ],
+      [
+        80,
+        100,
+        105,
+        110,
+        115,
+        120,
+        125,
+        130,
+        135,
+        135,
+        135
+      ],
+      [
+        70,
+        80,
+        90,
+        100,
+        105,
+        110,
+        115,
+        120,
+        125,
+        130,
+        135
+      ]
+    ],
+    "distributions": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        35,
+        6,
+        3,
+        3,
+        3,
+        35,
+        15
+      ],
+      [
+        3,
+        35,
+        6,
+        3,
+        3,
+        28,
+        22
+      ],
+      [
+        3,
+        6,
+        35,
+        3,
+        3,
+        25,
+        25
+      ],
+      [
+        3,
+        3,
+        6,
+        35,
+        3,
+        22,
+        28
+      ],
+      [
+        3,
+        3,
+        6,
+        3,
+        35,
+        15,
+        35
+      ]
+    ],
+    "attribute_thresholds": [
+      0,
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900,
+      1000,
+      1200,
+      1400,
+      1600,
+      1800,
+      2000,
+      2200,
+      2400,
+      2600,
+      2800,
+      3000,
+      3300,
+      3600,
+      3900,
+      4200,
+      4500,
+      4800,
+      5100,
+      5400,
+      5700,
+      6000,
+      6400,
+      6800,
+      7200,
+      7600,
+      8000,
+      8400,
+      8800,
+      9200,
+      9600,
+      10000,
+      10500,
+      11000,
+      11500,
+      12000,
+      12500,
+      13000,
+      13500,
+      14000,
+      14500,
+      15000,
+      15600,
+      16200,
+      16800,
+      17400,
+      18000,
+      18600,
+      19200,
+      19800,
+      20400,
+      21000,
+      21700,
+      22400,
+      23100,
+      23800,
+      24500,
+      25200,
+      25900,
+      26600,
+      27300,
+      28000,
+      28800,
+      29600,
+      30400,
+      31200,
+      32000,
+      32800,
+      33600,
+      34400,
+      35200,
+      36000,
+      36900,
+      37800,
+      38700,
+      39600,
+      40500,
+      41400,
+      42300,
+      43200,
+      44100,
+      45000,
+      46000,
+      47000,
+      48000,
+      49000,
+      50000,
+      51000,
+      52000,
+      53000,
+      54000,
+      55000,
+      56100,
+      57200,
+      58300,
+      59400,
+      60500,
+      61600,
+      62700,
+      63800,
+      64900,
+      66000,
+      67200,
+      68400,
+      69600,
+      70800,
+      72000,
+      73200,
+      74400,
+      75600,
+      76800,
+      78000,
+      79300,
+      80600,
+      81900,
+      83200,
+      84500,
+      85800,
+      87100,
+      88400,
+      89700,
+      91000,
+      92400,
+      93800,
+      95200,
+      96600,
+      98000
+    ],
+    "growth_limit": 8500000
+  },
+  "cases": [
+    {
+      "name": "task5_sub2",
+      "inputs": {
+        "task_id": 5,
+        "mode": 0,
+        "cap_mode": 0,
+        "result_selector": 1,
+        "time_key": 1,
+        "unit_key": 2,
+        "initial_grade": 5,
+        "initial_total": 1000,
+        "characters": [
+          {
+            "character_id": 3,
+            "rate_class": 5,
+            "growth_pools": [
+              13500,
+              9700,
+              55900,
+              109000,
+              487200,
+              67000,
+              632100
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 10,
+            "contribution_field_ac": 40,
+            "status_field_ae": 0
+          },
+          {
+            "character_id": 4,
+            "rate_class": 3,
+            "growth_pools": [
+              600,
+              33400,
+              93400,
+              13500,
+              3600,
+              4500,
+              9700
+            ],
+            "skill_points": 64000,
+            "group_bonus": 10,
+            "count_field_aa": 20,
+            "contribution_field_ac": 60,
+            "status_field_ae": 1
+          },
+          {
+            "character_id": 9,
+            "rate_class": 4,
+            "growth_pools": [
+              1000,
+              8100,
+              2800,
+              101000,
+              1500,
+              3600,
+              600
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 0,
+            "contribution_field_ac": 0,
+            "status_field_ae": 2
+          }
+        ]
+      },
+      "expected": {
+        "task_grade": 1,
+        "grade_index": 0,
+        "time_display": 0,
+        "unit_display": 0,
+        "total_delta": 78486,
+        "total_after": 79486,
+        "characters": [
+          {
+            "character_id": 3,
+            "staged_package": [
+              2818,
+              2818,
+              5637,
+              2818,
+              32886,
+              14094,
+              32886,
+              0
+            ],
+            "staged_total": 93957
+          },
+          {
+            "character_id": 4,
+            "staged_package": [
+              3061,
+              6123,
+              35721,
+              3061,
+              3061,
+              25515,
+              25515,
+              0
+            ],
+            "staged_total": 102057
+          },
+          {
+            "character_id": 9,
+            "staged_package": [
+              1968,
+              1968,
+              3936,
+              22963,
+              1968,
+              14434,
+              18370,
+              0
+            ],
+            "staged_total": 65607
+          }
+        ]
+      },
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "task5_selector14_sub8",
+      "inputs": {
+        "task_id": 5,
+        "mode": 0,
+        "cap_mode": 0,
+        "result_selector": 5,
+        "time_key": 1,
+        "unit_key": 2,
+        "initial_grade": 5,
+        "initial_total": 1000,
+        "characters": [
+          {
+            "character_id": 3,
+            "rate_class": 5,
+            "growth_pools": [
+              13500,
+              9700,
+              55900,
+              109000,
+              487200,
+              67000,
+              632100
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 10,
+            "contribution_field_ac": 40,
+            "status_field_ae": 0
+          },
+          {
+            "character_id": 4,
+            "rate_class": 3,
+            "growth_pools": [
+              600,
+              33400,
+              93400,
+              13500,
+              3600,
+              4500,
+              9700
+            ],
+            "skill_points": 64000,
+            "group_bonus": 10,
+            "count_field_aa": 20,
+            "contribution_field_ac": 60,
+            "status_field_ae": 1
+          },
+          {
+            "character_id": 9,
+            "rate_class": 4,
+            "growth_pools": [
+              1000,
+              8100,
+              2800,
+              101000,
+              1500,
+              3600,
+              600
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 0,
+            "contribution_field_ac": 0,
+            "status_field_ae": 2
+          }
+        ]
+      },
+      "expected": {
+        "task_grade": 5,
+        "grade_index": 4,
+        "time_display": 3,
+        "unit_display": 0,
+        "total_delta": 23254,
+        "total_after": 24254,
+        "characters": [
+          {
+            "character_id": 3,
+            "staged_package": [
+              835,
+              835,
+              1670,
+              835,
+              9744,
+              4176,
+              9744,
+              0
+            ],
+            "staged_total": 27839
+          },
+          {
+            "character_id": 4,
+            "staged_package": [
+              907,
+              1814,
+              10584,
+              907,
+              907,
+              7560,
+              7560,
+              0
+            ],
+            "staged_total": 30239
+          },
+          {
+            "character_id": 9,
+            "staged_package": [
+              583,
+              583,
+              1166,
+              6804,
+              583,
+              4276,
+              5443,
+              0
+            ],
+            "staged_total": 19438
+          }
+        ]
+      },
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "character3_cap_probe",
+      "inputs": {
+        "task_id": 5,
+        "mode": 0,
+        "cap_mode": 0,
+        "result_selector": 1,
+        "time_key": 1,
+        "unit_key": 2,
+        "initial_grade": 5,
+        "initial_total": 1000,
+        "characters": [
+          {
+            "character_id": 3,
+            "rate_class": 5,
+            "growth_pools": [
+              1952500,
+              1952500,
+              1952500,
+              1952500,
+              1952500,
+              1952500,
+              1952500
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 10,
+            "contribution_field_ac": 40,
+            "status_field_ae": 0
+          },
+          {
+            "character_id": 4,
+            "rate_class": 3,
+            "growth_pools": [
+              600,
+              33400,
+              93400,
+              13500,
+              3600,
+              4500,
+              9700
+            ],
+            "skill_points": 64000,
+            "group_bonus": 10,
+            "count_field_aa": 20,
+            "contribution_field_ac": 60,
+            "status_field_ae": 1
+          },
+          {
+            "character_id": 9,
+            "rate_class": 4,
+            "growth_pools": [
+              1000,
+              8100,
+              2800,
+              101000,
+              1500,
+              3600,
+              600
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 0,
+            "contribution_field_ac": 0,
+            "status_field_ae": 2
+          }
+        ]
+      },
+      "expected": {
+        "task_grade": 1,
+        "grade_index": 0,
+        "time_display": 0,
+        "unit_display": 0,
+        "total_delta": 97277,
+        "total_after": 98277,
+        "characters": [
+          {
+            "character_id": 3,
+            "staged_package": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "staged_total": 0
+          },
+          {
+            "character_id": 4,
+            "staged_package": [
+              3061,
+              6123,
+              35721,
+              3061,
+              3061,
+              25515,
+              25515,
+              0
+            ],
+            "staged_total": 102057
+          },
+          {
+            "character_id": 9,
+            "staged_package": [
+              1968,
+              1968,
+              3936,
+              22963,
+              1968,
+              14434,
+              18370,
+              0
+            ],
+            "staged_total": 65607
+          }
+        ]
+      },
+      "authorizes_persistent_write": false
+    }
+  ],
+  "authorizes_persistent_write": false
+}
