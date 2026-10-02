@@ -68,25 +68,7 @@ static func project(before: Dictionary, rules: Dictionary) -> Dictionary:
 	var records := {}
 	for record in after["participants"]:
 		records[int(record["character_id"])] = record
-		var total := 0
-		for attribute in record["attributes"]:
-			total += int(attribute)
-		for category in range(30):
-			var rule: Dictionary = rules["unlock_rules"][category]
-			# The source compares month*6+week, although the calendar has 5 weeks.
-			var dated := int(rule["month"]) != 0 and int(rule["week"]) != 0 \
-				and (int(record["job_progress"][category + 1]) == 100 \
-					or int(rule["month"]) * 6 + int(rule["week"]) <= int(after["month"]) * 6 + int(after["week"]))
-			var capable := total >= int(rule["minimum_total"])
-			for k in range(7):
-				if int(record["attributes"][k]) < int(rule["minimum_attributes"][k]):
-					capable = false
-			for requirement in rule["job_requirements"]:
-				var kind := int(requirement["type"])
-				if kind != 0 and int(record["job_progress"][kind]) < int(requirement["count"]):
-					capable = false
-			if dated or capable:
-				record["unlock_flags"][category] = 1
+		apply_unlocks(record, int(after["month"]), int(after["week"]), rules)
 	for item in range(1, 361):
 		var flags := int(after["item_flags"][item - 1])
 		var kind := (flags >> 8) & 15
@@ -107,6 +89,29 @@ static func project(before: Dictionary, rules: Dictionary) -> Dictionary:
 	after["flags"]["0x7a55f6"] = 11
 	after["flags"]["0x7e11a0"] = 0
 	return {"supported": true, "after": after, "authorizes_persistent_write": false}
+
+
+# Caller must validate the record and rules before applying this native helper.
+static func apply_unlocks(record: Dictionary, month: int, week: int, rules: Dictionary) -> void:
+	var total := 0
+	for attribute in record["attributes"]:
+		total += int(attribute)
+	for category in range(30):
+		var rule: Dictionary = rules["unlock_rules"][category]
+		# The source compares month*6+week, although the calendar has 5 weeks.
+		var dated := int(rule["month"]) != 0 and int(rule["week"]) != 0 \
+			and (int(record["job_progress"][category + 1]) == 100 \
+				or int(rule["month"]) * 6 + int(rule["week"]) <= month * 6 + week)
+		var capable := total >= int(rule["minimum_total"])
+		for k in range(7):
+			if int(record["attributes"][k]) < int(rule["minimum_attributes"][k]):
+				capable = false
+		for requirement in rule["job_requirements"]:
+			var kind := int(requirement["type"])
+			if kind != 0 and int(record["job_progress"][kind]) < int(requirement["count"]):
+				capable = false
+		if dated or capable:
+			record["unlock_flags"][category] = 1
 
 
 static func _validate(before: Dictionary, rules: Dictionary) -> String:
