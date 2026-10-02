@@ -5,7 +5,7 @@
 
 ## 当前状态 (2026-10-02)
 
-已建立素材解析工具和 Godot 离屏战斗原型。当前推进 `trace-battle-result-school-transition`，计划任务完成 10/13；两条场景 5 终结分支已在隔离环境中从原版脚本入口执行至退出，并将收尾接入 Godot 逐帧核对。界面/世界回调仍为显式模拟，角色持久回写、完整周结算与真实条件性终结回放仍未完成。最新证据及限制见 `docs/battle_return_audit.md` §17。
+已建立素材解析工具和 Godot 离屏战斗原型。当前推进 `trace-battle-result-school-transition`，计划任务完成 10/13；两条场景 5 终结分支已在隔离环境中执行原版工作更新、VM、战术主循环及状态 11 分派，构造战术结果任务，并接入 Godot 收尾/分派核对。世界初态、界面、并行事件和调度器仍有显式模拟，角色持久回写、完整周结算与真实条件性终结回放仍未完成。最新证据及限制见 `docs/battle_return_audit.md` §18。
 
 入口文档：
 
@@ -67,6 +67,14 @@ python -m venv --system-site-packages .venv-audit
 ```
 
 此工具从真实请求初始化、同步检查和脚本入口开始，执行原版 VM 的寄存器/条件跳转、定时等待、END 及收尾指令，不再模拟 VM 返回值。它模拟界面、世界命令与完成回调；成功案例不等于实机场景已走通。报告含两条退出案例和三个阻塞反例。原型测试以报告中实际执行到 END 的交接状态核对收尾模块；持久事务仍关闭。VM 分派使用 opcode−5，早期将 opcode 112 误映射到等待处理器的解释已纠正。
+
+进一步执行工作完成、战术主循环与战果分派：
+
+```bash
+.venv-audit/Scripts/python.exe -m tools.scene5_task_emulation --out analysis/new-task-report.json --godot-out analysis/new-task-handoff.json
+```
+
+此工具保留明确声明的世界/任务初态，执行原版淡入淡出计时和等待清零、`451670 → 451A60 → 4539B0` 主循环、`439E30` 请求及 `49E2B0` 分派，再执行战果构造函数；不注入 `4CDF80` 完成回调。报告包含两条战果路径、四个阻塞反例和一个主菜单退出分支。原型 `TacticsResultTransition` 仅投影已核对的场景 5 收尾后请求，实际剧情条件、战果任务体、状态 10/12 及持久事务仍待闭合。
 
 - Python 3.8+（PIL 用于图像渲染）
 - Ghidra 12.1.3 + JDK21（仅重新反编译时需要，产出已入库）
