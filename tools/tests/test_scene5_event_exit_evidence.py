@@ -45,7 +45,7 @@ class Scene5EventExitEvidenceTests(unittest.TestCase):
         return opcodes
 
     def test_scene_dispatch_and_parallel_gate(self):
-        self.assertEqual(self.fixture['schema_version'], 3)
+        self.assertEqual(self.fixture['schema_version'], 4)
         self.assertEqual(self.fixture['scene_id'], 5)
         self.assertEqual(self.fixture['evidence_kind'],
                          'original_branch_conditions_not_runtime_trace')
@@ -139,11 +139,11 @@ class Scene5EventExitEvidenceTests(unittest.TestCase):
         self.assertEqual(self.fixture['same_instance_reached_state11'],
                          'unresolved')
 
-    def test_sub20_named_group_opcodes_do_not_supply_roster_ids(self):
+    def test_sub20_group_opcode_consumes_immediate_values_in_world_request(self):
         entry = self.fixture['sub20_pre112_opcode130']
-        self.assertEqual(entry['handler_va'], 0x42e910)
-        self.assertEqual(entry['assignment_helper_va'], 0x4c1f40)
-        self.assertEqual(entry['immediate_destination_type'], 2)
+        self.assertEqual(entry['handler_va'], 0x42e340)
+        self.assertEqual(entry['world_request_va'], 0x4988d0)
+        self.assertEqual(entry['first_cell_type'], 2)
         for offset, value in zip(entry['instruction_offsets'],
                                  entry['first_immediate_values']):
             with self.subTest(offset=hex(offset)):
@@ -154,15 +154,10 @@ class Scene5EventExitEvidenceTests(unittest.TestCase):
                                                                    self.script, offset)
                 self.assertEqual((opcode, advance), (130, 20))
                 self.assertEqual(first_cell, 0x20000000 | value)
-        self.assert_call(0x42e954, 0x4c1eb0)
-        self.assert_call(0x42e982, 0x4c1eb0)
-        self.assert_call(0x42e9bc, 0x4c1f40)
-        # 4C1F40 dispatches type-2 destinations to a return-0 path,
-        # not to its type-0 or type-1 memory write paths.
-        destination, = struct.unpack('<I', self.at(0x4c1fad + 2 * 4, 4))
-        self.assertEqual(destination, 0x4c1f9e)
-        self.assertEqual(self.at(destination, 4), bytes.fromhex('32c0eb02'))
-        self.assertFalse(entry['direct_persistent_roster_write'])
+        for call in (0x42e384, 0x42e3b2, 0x42e3e0, 0x42e40e):
+            self.assert_call(call, 0x4c1eb0)
+        self.assert_call(0x42e444, 0x4988d0)
+        self.assertEqual(entry['persistent_roster_effect'], 'unresolved')
         self.assertEqual(entry['actual_group_appearance'], 'unresolved')
 
 

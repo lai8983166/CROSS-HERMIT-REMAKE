@@ -43,16 +43,16 @@ cell = u32: type<<28|value   t2=立即数  t0=变量引用
 | 56 | FADESETWAIT | 281 | 43 | 淡出+等待 |
 | 36 | CHARWAIT | 272 | 15 |  |
 | 163 | UNITWK_PUT16 | 248 | 9 | u16 写 |
-| 118 | TACTSETDESTROYSCRIPT | 241 | 40 | 破坏时脚本指定 |
+| 118 | TACTSETDESTROYSCRIPT | 241 | 40 | 编译器名；真实消费者 `42D9F0 → 497980` 进入工作区等待，不能据名称解释为脚本注册（见战斗返回链审计） |
 | 124 | TACTPLAYEREXIT | 214 | 17 | 操作单位退出 |
 | 146 | NETKEYWAIT | 190 | 21 | 联机键等待 |
 | 49 | TEXTWAIT | 151 | 6 |  |
 | 133 | TACTENEMYEXITGROUP | 150 | 11 | 敌班组退出 |
-| 130 | TACTPLAYERAPPEARGROUP | 96 | 20 | 编译器名；`T0005.BIN` 子程序 20 的五条首参数为 type 2 立即数，原生处理器 `42E910 → 4C1F40` 不直接生成角色列表或组槽，不能据名称推断持久角色 ID（见 [战斗返回链审计](battle_return_audit.md)） |
+| 130 | TACTPLAYERAPPEARGROUP | 96 | 20 | 编译器名；`T0005.BIN` 子程序 20 的五条首参数为 type 2 立即数，真实消费者 `42E340 → 4988D0` 求值四个参数并发出世界命令，不能将首参数直接当作持久角色 ID（见 [战斗返回链审计](battle_return_audit.md)） |
 | 113 | TACTPLAYERAPPEAR | 72 | 16 | 操作单位出现 |
 | 142 | TACTANIMSTOP | 49 | 9 | 动画停止 |
 | 165 | UNITWK_PUTBIT | 45 | 18 | bit 写 |
-| 112 | TACTGAMEEND | 40 | 5 | 编译器名为战斗结束；原生处理先进入战术工作区计时/等待，非直接结算（见 [战斗返回链审计](battle_return_audit.md)） |
+| 112 | TACTGAMEEND | 40 | 5 | 编译器名为战斗结束；真实消费者 `42DCF0 → 4987C0` 求值三个参数并发出单位命令，处理器本身不置 VM 工作区等待，非直接结算（见 [战斗返回链审计](battle_return_audit.md)） |
 | 26 | BORDCHANGE | 38 | 5 |  |
 | 159 | UNITWK_GET16 | 33 | 7 | u16 读 |
 | 164 | UNITWK_PUT8 | 29 | 4 | u8 写 |
@@ -64,7 +64,7 @@ cell = u32: type<<28|value   t2=立即数  t0=变量引用
 | 140 | TACTANIMSETCELL | 15 | 1 |  |
 | 40 | CHARFACEWAIT | 13 | 4 |  |
 | 120 | TACTFADEIN | 10 | 5 | 战斗淡入 |
-| 148 | PUTTACTRET | 9 | 1 | 9 条均为 T0080 的 `adv=4` 疑似占位记录；原生处理器需 3 个 cell，不能据此认定写战果（见 [战斗返回链审计](battle_return_audit.md)） |
+| 148 | PUTTACTRET | 9 | 1 | 9 条均为 T0080 的 `adv=4` 疑似占位记录；真实处理器 `4D0FB0` 读取指令 +8/+12 两个 cell 到 VM 临时字段，仍超出声明长度，不能据此认定写战果（见 [战斗返回链审计](battle_return_audit.md)） |
 | 141 | TACTANIMSETUNIT | 8 | 1 | 动画指定格 |
 | 32 | BORDPACKOFFWAIT | 7 | 2 |  |
 | 139 | TACTANIMSET | 7 | 1 |  |

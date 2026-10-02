@@ -1,0 +1,910 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "original_vm_control_with_synthetic_callbacks",
+  "source_report_sha256": "6bb6d76ddd36eb123f0560a120c0939346a544916db9346bdffd90ac5e252836",
+  "script_sha256": "44ca546b5ea90ec23a4bc7d8dffeac6547a44bfd035383c91983f7c13ae72a52",
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "script": "T0005.BIN",
+  "script_sub": 2,
+  "limitations": [
+    "Scene event selection and initial battle phase are synthetic.",
+    "UI opcode bodies, rendering, audio and world callbacks are simulated.",
+    "4CDF80 completion callbacks are supplied externally; live caller unresolved.",
+    "No full 4539B0 loop or state11 dispatch; no persistent writes."
+  ],
+  "preflight_commands": [
+    {
+      "frame": -1,
+      "offset": 1228,
+      "opcode": 167,
+      "advance": 8
+    },
+    {
+      "frame": -1,
+      "offset": 1236,
+      "opcode": 8,
+      "advance": 20
+    },
+    {
+      "frame": -1,
+      "offset": 1256,
+      "opcode": 166,
+      "advance": 8
+    },
+    {
+      "frame": -1,
+      "offset": 1264,
+      "opcode": 11,
+      "advance": 8
+    },
+    {
+      "frame": -1,
+      "offset": 1908,
+      "opcode": 19,
+      "advance": 4
+    }
+  ],
+  "commands": [
+    {
+      "frame": 2,
+      "offset": 1228,
+      "opcode": 167,
+      "advance": 8
+    },
+    {
+      "frame": 3,
+      "offset": 1236,
+      "opcode": 8,
+      "advance": 20
+    },
+    {
+      "frame": 4,
+      "offset": 1272,
+      "opcode": 136,
+      "advance": 32
+    },
+    {
+      "frame": 7,
+      "offset": 1304,
+      "opcode": 146,
+      "advance": 28
+    },
+    {
+      "frame": 8,
+      "offset": 1332,
+      "opcode": 142,
+      "advance": 12
+    },
+    {
+      "frame": 11,
+      "offset": 1344,
+      "opcode": 117,
+      "advance": 8
+    },
+    {
+      "frame": 14,
+      "offset": 1352,
+      "opcode": 56,
+      "advance": 8
+    },
+    {
+      "frame": 16,
+      "offset": 1360,
+      "opcode": 20,
+      "advance": 8
+    },
+    {
+      "frame": 17,
+      "offset": 1368,
+      "opcode": 12,
+      "advance": 8
+    },
+    {
+      "frame": 49,
+      "offset": 1376,
+      "opcode": 30,
+      "advance": 20
+    },
+    {
+      "frame": 51,
+      "offset": 1396,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 52,
+      "offset": 1404,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 53,
+      "offset": 1410,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 55,
+      "offset": 1414,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 57,
+      "offset": 1418,
+      "opcode": 30,
+      "advance": 20
+    },
+    {
+      "frame": 59,
+      "offset": 1438,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 60,
+      "offset": 1446,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 61,
+      "offset": 1452,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 62,
+      "offset": 1458,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 63,
+      "offset": 1464,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 65,
+      "offset": 1468,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 67,
+      "offset": 1472,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 68,
+      "offset": 1480,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 69,
+      "offset": 1484,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 70,
+      "offset": 1490,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 72,
+      "offset": 1494,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 74,
+      "offset": 1498,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 75,
+      "offset": 1506,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 76,
+      "offset": 1510,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 77,
+      "offset": 1516,
+      "opcode": 27,
+      "advance": 16
+    },
+    {
+      "frame": 79,
+      "offset": 1532,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 80,
+      "offset": 1540,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 81,
+      "offset": 1546,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 83,
+      "offset": 1550,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 85,
+      "offset": 1554,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 86,
+      "offset": 1562,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 87,
+      "offset": 1566,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 88,
+      "offset": 1572,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 89,
+      "offset": 1580,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 90,
+      "offset": 1584,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 91,
+      "offset": 1590,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 93,
+      "offset": 1594,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 95,
+      "offset": 1598,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 96,
+      "offset": 1606,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 97,
+      "offset": 1610,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 98,
+      "offset": 1616,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 100,
+      "offset": 1620,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 102,
+      "offset": 1624,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 103,
+      "offset": 1632,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 104,
+      "offset": 1636,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 105,
+      "offset": 1642,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 107,
+      "offset": 1646,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 109,
+      "offset": 1650,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 110,
+      "offset": 1658,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 111,
+      "offset": 1662,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 112,
+      "offset": 1668,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 113,
+      "offset": 1676,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 114,
+      "offset": 1680,
+      "opcode": 33,
+      "advance": 16
+    },
+    {
+      "frame": 115,
+      "offset": 1696,
+      "opcode": 36,
+      "advance": 4
+    },
+    {
+      "frame": 117,
+      "offset": 1700,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 118,
+      "offset": 1708,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 119,
+      "offset": 1714,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 120,
+      "offset": 1720,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 122,
+      "offset": 1724,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 124,
+      "offset": 1728,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 125,
+      "offset": 1736,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 126,
+      "offset": 1740,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 127,
+      "offset": 1748,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 128,
+      "offset": 1752,
+      "opcode": 33,
+      "advance": 16
+    },
+    {
+      "frame": 129,
+      "offset": 1768,
+      "opcode": 33,
+      "advance": 16
+    },
+    {
+      "frame": 130,
+      "offset": 1784,
+      "opcode": 36,
+      "advance": 4
+    },
+    {
+      "frame": 132,
+      "offset": 1788,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 133,
+      "offset": 1796,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 134,
+      "offset": 1802,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 135,
+      "offset": 1810,
+      "opcode": 17,
+      "advance": 6
+    },
+    {
+      "frame": 136,
+      "offset": 1816,
+      "opcode": 50,
+      "advance": 4
+    },
+    {
+      "frame": 138,
+      "offset": 1820,
+      "opcode": 51,
+      "advance": 4
+    },
+    {
+      "frame": 140,
+      "offset": 1824,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 141,
+      "offset": 1828,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 142,
+      "offset": 1836,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 143,
+      "offset": 1840,
+      "opcode": 43,
+      "advance": 8
+    },
+    {
+      "frame": 144,
+      "offset": 1848,
+      "opcode": 44,
+      "advance": 4
+    },
+    {
+      "frame": 145,
+      "offset": 1852,
+      "opcode": 31,
+      "advance": 12
+    },
+    {
+      "frame": 146,
+      "offset": 1864,
+      "opcode": 31,
+      "advance": 12
+    },
+    {
+      "frame": 147,
+      "offset": 1876,
+      "opcode": 24,
+      "advance": 12
+    },
+    {
+      "frame": 149,
+      "offset": 1888,
+      "opcode": 12,
+      "advance": 8
+    },
+    {
+      "frame": 211,
+      "offset": 1896,
+      "opcode": 21,
+      "advance": 4
+    },
+    {
+      "frame": 212,
+      "offset": 1900,
+      "opcode": 118,
+      "advance": 8
+    },
+    {
+      "frame": 215,
+      "offset": 1908,
+      "opcode": 19,
+      "advance": 4
+    }
+  ],
+  "external_callbacks": [
+    {
+      "frame": 6,
+      "va": "0x4cdf80",
+      "evidence_kind": "synthetic_work_completion_callback"
+    },
+    {
+      "frame": 10,
+      "va": "0x4cdf80",
+      "evidence_kind": "synthetic_work_completion_callback"
+    },
+    {
+      "frame": 13,
+      "va": "0x4cdf80",
+      "evidence_kind": "synthetic_work_completion_callback"
+    },
+    {
+      "frame": 214,
+      "va": "0x4cdf80",
+      "evidence_kind": "synthetic_work_completion_callback"
+    }
+  ],
+  "handoff_frame": 216,
+  "initial_state": {
+    "transition_phase": 5,
+    "script_phase": 5,
+    "script_control_active": 1,
+    "exit_flag": 1,
+    "script_completion_phase": 2,
+    "fade_in_value": 0,
+    "fade_out_value": 0,
+    "finish_flags": [
+      0,
+      0,
+      0
+    ],
+    "execute_vm": 1,
+    "result_selector": 1,
+    "vm_active": 0,
+    "vm_pc": 680,
+    "vm_wait_state": 0,
+    "vm_work_wait": 0,
+    "register": 1,
+    "register_request": 1,
+    "variable0": 0,
+    "script_function_return": 0,
+    "transition_function_return": 0
+  },
+  "states": [
+    {
+      "transition_phase": 15,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 0,
+      "fade_out_value": 0,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 1,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 16,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 0,
+      "fade_out_value": 0,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 17,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 0,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 18,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 0,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 19,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 1279,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 19,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 1024,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 19,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 769,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 19,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 514,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 19,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 259,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 19,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": 4,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 0
+    },
+    {
+      "transition_phase": 20,
+      "script_phase": 6,
+      "script_control_active": 1,
+      "exit_flag": 1,
+      "script_completion_phase": 3,
+      "fade_in_value": 255,
+      "fade_out_value": -251,
+      "finish_flags": [
+        0,
+        1,
+        1
+      ],
+      "execute_vm": 1,
+      "result_selector": 1,
+      "vm_active": 0,
+      "vm_pc": 680,
+      "vm_wait_state": 0,
+      "vm_work_wait": 0,
+      "register": 1,
+      "register_request": 1,
+      "variable0": 0,
+      "script_function_return": 0,
+      "transition_function_return": 1
+    }
+  ],
+  "state11_observed": false,
+  "authorizes_persistent_write": false
+}

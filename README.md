@@ -5,7 +5,7 @@
 
 ## 当前状态 (2026-10-02)
 
-已建立素材解析工具和 Godot 离屏战斗原型。当前战后转接变更完成 10/13；七组原版收尾函数隔离回放及 Godot 逐帧核对已建立，VM 完成与外部输入仍为合成前提，不授权持久事务。最新记录见 `docs/battle_return_audit.md` §16。
+已建立素材解析工具和 Godot 离屏战斗原型。当前推进 `trace-battle-result-school-transition`，计划任务完成 10/13；两条场景 5 终结分支已在隔离环境中从原版脚本入口执行至退出，并将收尾接入 Godot 逐帧核对。界面/世界回调仍为显式模拟，角色持久回写、完整周结算与真实条件性终结回放仍未完成。最新证据及限制见 `docs/battle_return_audit.md` §17。
 
 入口文档：
 
@@ -59,6 +59,14 @@ python -m venv --system-site-packages .venv-audit
 ```
 
 该工具在隔离内存中执行经 SHA-256 核对的原版 x86 指令，不需要启动或操作游戏。输出必须使用新文件名；时间、动画及 VM 等外部输入明确模拟，不代表真实场景已经走通，也不授权角色或日历写入。Godot 模块 `prototype/sim/tactics_exit_handshake.gd` 只复现已核对的脚本完成后收尾部分，其七组逐帧期望值由上述原版指令执行导出。尚未接入学校持久事务。
+
+进一步执行原版脚本与 VM 控制逻辑：
+
+```bash
+.venv-audit/Scripts/python.exe -m tools.scene5_script_emulation --out analysis/new-script-report.json --godot-out analysis/new-script-handoff.json
+```
+
+此工具从真实请求初始化、同步检查和脚本入口开始，执行原版 VM 的寄存器/条件跳转、定时等待、END 及收尾指令，不再模拟 VM 返回值。它模拟界面、世界命令与完成回调；成功案例不等于实机场景已走通。报告含两条退出案例和三个阻塞反例。原型测试以报告中实际执行到 END 的交接状态核对收尾模块；持久事务仍关闭。VM 分派使用 opcode−5，早期将 opcode 112 误映射到等待处理器的解释已纠正。
 
 - Python 3.8+（PIL 用于图像渲染）
 - Ghidra 12.1.3 + JDK21（仅重新反编译时需要，产出已入库）

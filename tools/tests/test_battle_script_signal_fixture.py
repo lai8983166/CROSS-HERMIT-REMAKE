@@ -28,6 +28,8 @@ class BattleScriptSignalFixtureTests(unittest.TestCase):
         opcode, advance = struct.unpack_from('<HH', data, offset)
         self.assertEqual((opcode, advance), (request['opcode'], request['advance']))
         self.assertEqual((opcode, advance), (112, 16))
+        self.assertEqual(request['handler_va'], 0x42dcf0)
+        self.assertEqual(request['dispatcher_switch_index'], opcode-5)
         self.assertEqual(list(struct.unpack_from('<III', data, offset + 4)),
                          request['raw_cells'])
         self.assertEqual(data[offset:offset + advance].hex(), request['raw_instruction_hex'])

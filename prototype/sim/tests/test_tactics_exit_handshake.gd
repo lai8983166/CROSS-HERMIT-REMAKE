@@ -50,3 +50,29 @@ func test_no_implicit_clock_or_animation_defaults() -> void:
 	assert_false(Handshake.step(state, {})["supported"], "外部输入必须显式提供")
 	assert_false(Handshake.step(state, {"fade_step": -1, "animation_ready": true})["supported"],
 		"未核对的时间范围保持未解析")
+
+
+func test_native_script_execution_supplies_post_vm_handoff() -> void:
+	var fixture: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
+		"res://data/scene5_script_execution_evidence.json"))
+	assert_false(fixture["state11_observed"], "原版 CPU 回放不是状态 11 实机轨迹")
+	assert_false(fixture["authorizes_persistent_write"], "模拟完成回调不授权持久事务")
+	var last_command: Dictionary = fixture["commands"][-1]
+	assert_eq(int(last_command["opcode"]), 19, "必须真正执行脚本 END")
+	assert_eq(int(last_command["offset"]), 0x774, "来自场景 5 子程序 2 的 END")
+	assert_true(int(last_command["frame"]) < int(fixture["handoff_frame"]),
+		"END 先于收尾交接")
+	var state: Dictionary = fixture["initial_state"].duplicate(true)
+	assert_eq(int(state["script_phase"]), 5, "交接阶段来自原版 VM 执行")
+	for expected in fixture["states"]:
+		var result := Handshake.step(state, {"fade_step": 255, "animation_ready": true})
+		assert_true(result["supported"], "已执行脚本交接到已核对收尾部分")
+		for key in ["transition_phase", "script_phase", "script_completion_phase",
+				"fade_in_value", "fade_out_value"]:
+			assert_eq(int(result["state"][key]), int(expected[key]), "script handoff:" + key)
+		for index in range(3):
+			assert_eq(int(result["state"]["finish_flags"][index]),
+				int(expected["finish_flags"][index]), "script handoff:flags")
+		assert_eq(int(result["transition_function_return"]),
+			int(expected["transition_function_return"]), "只有收尾返回值表示局部退出")
+		state = result["state"]
