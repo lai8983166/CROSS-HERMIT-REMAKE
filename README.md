@@ -93,4 +93,13 @@ python -m venv --system-site-packages .venv-audit
 同一隔离实例继续执行原版场次比较、配置标量装载、临时名单与人数写入、场次递增及状态 12/16 请求；Godot `BattleRoundGate` 用来源样例逐字段核对这些变化。场次表是显式合成输入，配置资源与单位派生未执行，12/16 仅到构造入口边界；完整结算和学校返回仍待实现。详见审计 §20。
 
 - Python 3.8+（PIL 用于图像渲染）
+战果输入来源核对：
+
+```bash
+.venv-audit/Scripts/python.exe -m tools.battle_result_inputs_emulation --out analysis/new-result-inputs.json
+```
+
+执行原版 UnitCtrl 收尾，从同一任务读取结果选择参、计算两个条件键，并在身份匹配后复制多角色结算字段；单位和时限初态仍为合成输入，独立条件探针与完整任务回放分开记录。详见审计 §21。
+
+- Python 3.8+（PIL 用于图像渲染）
 - Ghidra 12.1.3 + JDK21（仅重新反编译时需要，产出已入库）
