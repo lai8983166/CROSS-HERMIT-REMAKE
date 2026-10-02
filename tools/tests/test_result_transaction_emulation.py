@@ -88,7 +88,7 @@ class ResultTransactionTests(unittest.TestCase):
             self.assertFalse(c['school_task_executed'])
 
     def test_joint_fixture_and_school_requests_have_native_provenance(self):
-        f = fixture()
+        f = fixture(schema_version=1)
         path = ROOT / 'prototype/data/result_transaction_evidence.json'
         self.assertEqual(path.read_text(encoding='utf-8'), report_text(f))
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -104,6 +104,24 @@ class ResultTransactionTests(unittest.TestCase):
         self.assertEqual(f['source_week_rules_report_sha256'],
             'f4d954f44de9b0c95a4747e8a92bbb0c55a42f047c4123ca20ec28a9019a2364')
         self.assertFalse(f['authorizes_persistent_write'])
+
+    def test_v2_corrects_parameter_semantics_without_rewriting_old_evidence(self):
+        from tools.result_transaction_fixture import ADV_REPORT_SHA256
+        f = fixture()
+        path = ROOT / 'prototype/data/result_transaction_evidence_v2.json'
+        self.assertEqual(path.read_text(encoding='utf-8'), report_text(f))
+        self.assertEqual(f['schema_version'], 2)
+        semantics = f['script_request_parameter_semantics']
+        self.assertEqual(semantics['source_report_sha256'], ADV_REPORT_SHA256)
+        self.assertEqual(semantics['next_task_field_va'], '0x7e0f04')
+        self.assertEqual(semantics['code_file_offset'], 0x14)
+        for index, state in [(0, 7), (5, 18)]:
+            self.assertEqual(f['cases'][index]['expected_school_script'],
+                             [{'path': 'Data\\Adv\\dat\\CH003.ybc', 'next_task_state': state}])
+            self.assertEqual(f['cases'][index]['expected_requested_state'], 6)
+        for corrected, historical in zip(f['cases'], fixture(schema_version=1)['cases']):
+            for key in corrected.keys()-{'expected_school_script'}:
+                self.assertEqual(corrected[key], historical[key])
 
     def test_undeclared_mode_inputs_reject(self):
         for kwargs in ({'mode': 2}, {'mode': 0.5}, {'result_flag': 2}):

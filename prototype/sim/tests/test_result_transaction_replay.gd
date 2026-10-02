@@ -5,7 +5,7 @@ const Roles = preload("res://sim/all_result_role_replay.gd")
 
 
 func _fixture() -> Dictionary:
-	return Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/result_transaction_evidence.json")))
+	return Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/result_transaction_evidence_v2.json")))
 
 
 func test_joint_snapshot_matches_all_six_native_task_paths() -> void:
@@ -71,7 +71,7 @@ func test_ordinary_month_end_preserves_calendar_unlocks_and_cleanup_inputs() -> 
 	assert_eq(result["after"]["characters"][0]["unlock_flags"], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 	assert_eq(result["phase_log"].size(), 2)
-	assert_eq(result["school_script_requests"], [{"path": "Data\\Adv\\dat\\CH003.ybc", "subroutine": 7}])
+	assert_eq(result["school_script_requests"], [{"path": "Data\\Adv\\dat\\CH003.ybc", "next_task_state": 7}])
 
 
 func test_waits_publish_only_initialized_roles_and_keep_confirmation_across_deliveries() -> void:
@@ -111,7 +111,7 @@ func test_duplicate_initialization_and_finish_preserve_entire_completed_week() -
 	complete["after"]["week"] = 1
 	complete["before_week"]["characters"][1]["recipient_count"] = 5
 	complete["phase_log"][2]["after"]["item_flags"][0] = 0
-	complete["school_script_requests"][0]["subroutine"] = 7
+	complete["school_script_requests"][0]["next_task_state"] = 7
 	for k in range(3):
 		duplicate = replay.finish("once", false, false)
 		assert_eq(duplicate["status"], "duplicate")
@@ -202,7 +202,7 @@ func test_reordered_role_records_and_participant_indices_preserve_native_week_id
 
 
 func test_raw_json_numeric_equipment_preserves_real_membership_during_cleanup() -> void:
-	var fixture: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/result_transaction_evidence.json"))
+	var fixture: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/result_transaction_evidence_v2.json"))
 	for example in fixture["cases"]:
 		var replay := Transaction.new()
 		var initial := replay.begin("json", example["context"], example["before"], fixture["rules"])

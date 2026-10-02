@@ -9,6 +9,8 @@ from tools.tactics_exit_emulation import ROOT, SOURCE_SHA256, report_text
 
 REPORT = ROOT / 'analysis/result-transaction-v1-20261002.json'
 REPORT_SHA256 = '92662631d86f36b07b1af6ab4847bfb37856b73fe408ba7368d68b231aa63a0e'
+ADV_REPORT = ROOT / 'analysis/adv-return-state-v1-20261002.json'
+ADV_REPORT_SHA256 = 'b8b93554b9a459b0c01bab7d21c70d2fca31aacd09ee0157b8aa360c0eb09ef6'
 
 
 def snapshot(raw):
@@ -23,7 +25,9 @@ def snapshot(raw):
     return result
 
 
-def fixture():
+def fixture(schema_version=2):
+    if schema_version not in (1, 2):
+        raise ValueError('unknown transaction fixture schema')
     raw = REPORT.read_bytes()
     if hashlib.sha256(raw).hexdigest() != REPORT_SHA256:
         raise ValueError('joint native report differs from audited bytes')
@@ -43,16 +47,33 @@ def fixture():
             'expected_week_executed': case['native_week_body_executed'],
             'expected_learning_draws': [d['rand'] for d in case['learning_draws']],
             'expected_rand_state': case['native_rand_state'],
-            'expected_school_script': [{'path': e['path'], 'subroutine': e['sub']}
+            # V1 is retained only to reproduce the historical artifact exactly.
+            # Original raw `sub` is the 4CE210 second argument, not a subroutine.
+            'expected_school_script': [{'path': e['path'],
+                ('subroutine' if schema_version == 1 else 'next_task_state'): e['sub']}
                 for e in case['events'] if e.get('path') == 'Data\\Adv\\dat\\CH003.ybc'],
             'school_task_executed': False, 'authorizes_persistent_write': False})
-    return {'schema_version': 1, 'source_image_sha256': SOURCE_SHA256,
+    result = {'schema_version': schema_version, 'source_image_sha256': SOURCE_SHA256,
         'source_report_sha256': REPORT_SHA256,
         'source_role_rules_report_sha256': roles['source_report_sha256'],
         'source_week_rules_report_sha256': week['source_report_sha256'],
         'evidence_kind': native['evidence_kind'], 'limitations': native['limitations'],
         'rules': {'role': roles['rules'], 'week': week['rules']}, 'cases': cases,
         'live_witness': False, 'authorizes_persistent_write': False}
+    if schema_version == 2:
+        proof_bytes = ADV_REPORT.read_bytes()
+        if hashlib.sha256(proof_bytes).hexdigest() != ADV_REPORT_SHA256:
+            raise ValueError('ADV parameter proof differs from audited bytes')
+        proof = json.loads(proof_bytes)
+        if proof['source_image_sha256'] != SOURCE_SHA256:
+            raise ValueError('unexpected ADV parameter proof image')
+        result['script_request_parameter_semantics'] = {
+            'source_report_sha256': ADV_REPORT_SHA256, 'loader_va': '0x4ce210',
+            'initializer_va': '0x4ce560', 'next_task_field_va': proof['next_task_field_va'],
+            'adv_task_body_va': proof['adv_task_body_vtable_entry'],
+            'code_file_offset': proof['cases'][0]['initialized']['code_file_offset'],
+            'meaning': 'next task state requested after ADV VM completion'}
+    return result
 
 
 def main():

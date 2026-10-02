@@ -2,6 +2,7 @@ class_name ResultTransactionReplay
 extends RefCounted
 ## One isolated result instance owns role initialization, confirmed fields and
 ## complete week settlement. State6/CH003 is a request; no school task/save runs.
+## next_task_state is requested after ADV completion, not a script entry index.
 
 const Roles = preload("res://sim/all_result_role_replay.gd")
 const Week = preload("res://sim/week_settlement_replay.gd")
@@ -76,9 +77,9 @@ func finish(instance_id: String, confirmed: bool, mvp_ready: bool) -> Dictionary
 			"after": candidate.duplicate(true)})
 		did_week = true
 		requested = 6
-		scripts.append({"path": "Data\\Adv\\dat\\CH003.ybc", "subroutine": 18})
+		scripts.append({"path": "Data\\Adv\\dat\\CH003.ybc", "next_task_state": 18})
 	elif requested == 6:
-		scripts.append({"path": "Data\\Adv\\dat\\CH003.ybc", "subroutine": 7})
+		scripts.append({"path": "Data\\Adv\\dat\\CH003.ybc", "next_task_state": 7})
 	completed["after"] = candidate
 	completed["week_pending"] = false
 	entry["role_view"] = completed
