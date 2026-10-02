@@ -646,3 +646,16 @@ continue=false保持整份输入及无待处理请求；continue=true首次进�
 样例 `prototype/data/workroom_return_evidence.json` SHA-256 `1b7a965ee08fef6e53bf5eddbfc3f7ca5787e02d3f1c778a6cf25afab8f89c8f`。生成器 `tools/workroom_return_fixture.py`从本次原版四条联合执行提取前置输入、职务室输出、CH002输出和请求；既有规则样例仅用于验证布局，未拼接旧输出当作本次期望。新增Python样例逐字节重执行断言；职务室8项、新周CH001 7项和前置ADV/周交接7项，共22项Python回归在同一次运行通过（137.216秒）。Godot新增7项测试，全部26套件196项通过。OpenSpec严格校验与diff检查通过，验证后立即提交；本阶段未重新运行全部Python套件。
 
 Godot实现是已证实控制字段的隔离投影，不执行ADV VM、新闻渲染或学校任务。CH001/CH002完成与输入准备仍明确为调用方提供的回放输入；样例的值来自本次真实END，未转化为现场BattleReturn权限。所有输出保持school_initialized=false/live_witness=false/authorizes_persistent_write=false。3.1/3.2/4.1保持未完成，进度10/13；下一段需继续实际消费pending9并执行学校两个任务的构造/必要初始化。
+
+
+## 43. 真实pending9调度及学校两个任务的原版构造（2026-10-03）
+
+新增 `tools/school_dispatch_emulation.py`。每条样例在同一CPU重新执行CH003/加入/完整周/CH001/职务室/CH002，从原版实际请求9开始运行49E2B0。状态9依次调用4ABA70/4AB570创建编班任务，4B89A0/4B8A90创建个人资料任务；两个大小分别0x1419C/0x3A5E4，vtable分别5A0A40/5A0C18，全局7A4AD8/7A4ADC及active=1由原版写入。调度器实际消费pending_flag，保持状态9，无额外请求。
+
+个人任务的56DDA0异常安全向量构造循环实际执行，依次将this+19D20、stride6424、count5送到4D5FB0边界；没有把整个循环替换成一次成功值。内嵌UI基类/文字/动画/绘图构造、堆分配、字体与调度注册仍是显式模拟。图形组件及学校初始化/交互任务体尚未执行，构造不等于学校可操作。
+
+首次CH002 END与显式visited_override1路径均创建两个任务，且保留各自音乐差异；continue=false及CH002 fade=false均不运行状态9调度、不分配学校任务。整份角色、装备、名单、班级索引、日历及ADV全局快照与本次前置执行一致且构造后不变。缺pending9、错状态、ADV仍active及重复探针均在分配前拒绝。
+
+报告 `analysis/school-dispatch-v1-20261003.json` SHA-256 `2a12cb13114c9b372da7ce565bdddb811c1c97ebcc943b9dee0ce626fa2774dd`。新增6项Python测试通过（63.818秒），覆盖逐字节重执行、同内存前置快照、双任务顺序/大小/vtable/注册、真实五元素循环、等待反例及入口拒绝。OpenSpec严格校验与diff检查通过，验证后立即提交。
+
+本阶段school_constructed=true仅描述成功的原版构造；school_initialized=false/school_task_bodies_executed=false/live_witness=false/authorizes_persistent_write=false。3.1/3.2/4.1仍未完成，进度10/13。
