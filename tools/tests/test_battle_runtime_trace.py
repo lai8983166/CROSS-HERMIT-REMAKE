@@ -65,7 +65,7 @@ class RuntimeTraceTests(unittest.TestCase):
         self.assertEqual(obs['first_round_config_id'], 5)
         self.assertEqual(obs['current_round'], obs['total_rounds'])
         self.assertEqual(obs['tactics']['exit_flag'], 1)
-        self.assertEqual(obs['tactics']['vm']['wait112'], 1)
+        self.assertEqual(obs['tactics']['vm']['script_work_wait'], 1)
         self.assertEqual(result['consistency'], 'equal_endpoints_not_atomic')
         self.assertFalse(result['authorizes_persistent_write'])
 
@@ -77,6 +77,36 @@ class RuntimeTraceTests(unittest.TestCase):
         obs = sample(read)['observation']
         self.assertEqual(obs['request_dispatch_state'], 11)
         self.assertIsNone(obs['tactics'])
+
+    def test_distinct_script_transition_and_completion_phases(self):
+        m = memory()
+        m.number(0x1100038, 19)
+        m.number(0x1100044, 6, 'B')
+        m.number(0x1100058, 0, 'B')
+        m.number(0x1100059, 3, 'B')
+        m.put(0x1100170, bytes([1, 1, 1]))
+        result = sample(m.read)
+        self.assertTrue(result['valid'])
+        task = result['observation']['tactics']
+        self.assertEqual(task['transition_phase'], 19)
+        self.assertEqual(task['script_phase'], 6)
+        self.assertEqual(task['control_phase'], 0)
+        self.assertEqual(task['script_completion_phase'], 3)
+        self.assertEqual(task['finish_flags'], [1, 1, 1])
+        self.assertFalse(result['authorizes_persistent_write'])
+
+    def test_changing_transition_phase_rejects_entire_snapshot(self):
+        m, calls = memory(), 0
+        def read(address, size):
+            nonlocal calls
+            if address == 0x1100000:
+                calls += 1
+                if calls == 2:
+                    m.number(0x1100038, 20)
+            return m.read(address, size)
+        result = sample(read)
+        self.assertFalse(result['valid'])
+        self.assertNotIn('observation', result)
 
     def test_matches_real_subrecord_bytes_but_not_call_provenance(self):
         source = SCENE5_SCRIPT.read_bytes()

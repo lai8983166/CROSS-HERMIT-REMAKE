@@ -3,9 +3,11 @@
 2002 年 EnterBrain 出品的 SRPG+养成游戏，2004 年光谱资讯繁体中文版。
 本工作区用于**私下研究**：黑盒规则逆向 + 素材格式分析 + 复刻原型（Godot）。
 
-## 当前状态 (2026-09-17)
+## 当前状态 (2026-10-02)
 
-逆向主体完成（21 提交）。入口文档：
+已建立素材解析工具和 Godot 离屏战斗原型。当前战后转接变更完成 10/13；本阶段保存原版启动、研究存档及只读学校观测，后续优先自主离屏验证。目标终结场次与持久事务仍未闭合，见 `docs/battle_return_audit.md` §8–15。
+
+入口文档：
 
 - **`docs/REMAKE_BLUEPRINT.md`** — 重制蓝图总览（按模块组织，公式结论+分档案指针）
 - `docs/formats.md` — 数据格式档案（脚本 VM/地图/容器/图像/音频）
@@ -21,7 +23,7 @@
 | `docs/` | 逆向笔记 + 蓝图（见上） |
 | `extracted/` | 素材解包输出（PNG/文本，`manifest.csv` 全清单） |
 | `tools/` | 分析脚本（脱壳管线、YBC32 反汇编、容器枚举、纹理渲染） |
-| `prototype/` | Godot 复刻原型（待启动，建议从战斗模拟器起步） |
+| `prototype/` | Godot 复刻原型、离屏战斗模拟器及测试 |
 
 ## 关键工具
 
@@ -36,6 +38,16 @@
 原版游戏目录（`CROSS HERMIT/`、`超魔法大戰繁体中文版/`）不入库（.gitignore）。
 
 ## 运行环境
+
+### 启动原版取证
+
+```bash
+python tools/launch_original.py --check  # 检查本地原版与关键资源
+python tools/launch_original.py          # 使用安装快捷方式对应的中文启动入口
+python tools/launch_original.py --direct-game  # 仅在明确诊断时直接启动游戏 EXE
+```
+
+启动器由自身位置解析原版路径，因此可以从其他目录调用。默认入口为 `CROSS HERMIT CHT.EXE`，与安装快捷方式一致，工作目录固定为其所在的游戏目录。不要把项目根目录当作原版的工作目录：原版使用当前目录解析资源。2026-10-02 排查中，不显式指定工作目录的直接启动出现 `DXAudio.CPP:568 / DMUS_E_LOADER_FAILEDOPEN / RegistWaveData()`；显式指定游戏目录后错误消失，用户确认可见标题菜单。用户随后检查两个入口并确认没有区别，显示问题已停止追查。启动成功不等于战斗/结算流程已完成，详见 `docs/battle_return_audit.md` §8–9。
 
 - Python 3.8+（PIL 用于图像渲染）
 - Ghidra 12.1.3 + JDK21（仅重新反编译时需要，产出已入库）

@@ -159,10 +159,13 @@ def sample(read, scene5_source=None):
                 raise TraceError('tactics vtable mismatch')
             vm = unpack(data, 'I', 0x60)
             tactics = {'pointer': hex(task), 'task_phase': unpack(data, 'I', 0x34),
+                       'transition_phase': unpack(data, 'I', 0x38),
                        'script_control_active': data[0x43],
+                       'script_phase': data[0x44],
                        'execute_vm': unpack(data, 'I', 0x48),
                        'exit_flag': unpack(data, 'I', 0x4c),
                        'control_phase': data[0x58],
+                       'script_completion_phase': data[0x59],
                        'finish_flags': list(data[0x170:0x173]),
                        'result_selector': unpack(data, 'I', 0x174),
                        'script_file_pointer': hex(unpack(data, 'I', 0x64)),
@@ -177,7 +180,7 @@ def sample(read, scene5_source=None):
                                  'pc': unpack(v, 'I', 0x1c),
                                  'wait_state': unpack(v, 'H', 0x20),
                                  'opcode_slot': unpack(v, 'H', 0x22),
-                                 'wait112': take(vm + 0x92e0, 1)[0]}
+                                 'script_work_wait': take(vm + 0x92e0, 1)[0]}
             result['tactics'] = tactics
             if result['scene_id'] == 5:
                 tactics['scene5_script_selection'] = resolve_scene5_script(
@@ -275,7 +278,7 @@ def main(argv=None):
         reader = ProcessReader(select_pid(args.pid))
         verification = verify_image(reader.read, SOURCE.read_bytes())
         scene5_source = SCENE5_SCRIPT.read_bytes()
-        metadata = {'kind': 'trace_metadata', 'schema_version': 1,
+        metadata = {'kind': 'trace_metadata', 'schema_version': 2,
                     'trace_id': str(uuid.uuid4()), 'process': reader.identity,
                     'started_utc': datetime.now(timezone.utc).isoformat(),
                     'verification': verification, 'interval_ms': args.interval_ms,
