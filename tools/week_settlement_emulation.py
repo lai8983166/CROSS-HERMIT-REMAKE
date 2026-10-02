@@ -7,12 +7,12 @@ Calendar probes are separate direct calls, never claims of a scene branch.
 import argparse
 import hashlib
 
-from unicorn.x86_const import UC_X86_REG_ESP
+from unicorn.x86_const import UC_X86_REG_ECX, UC_X86_REG_EIP, UC_X86_REG_ESP
 
 from tools.all_result_emulation import AllResultEmulator
 from tools.battle_preparation_emulation import CHAR_BASE, CHAR_STRIDE, PACKAGE_BASE, PACKAGE_STRIDE
 from tools.scene5_task_emulation import TaskEmulator
-from tools.tactics_exit_emulation import ROOT, SOURCE_SHA256, report_text
+from tools.tactics_exit_emulation import ROOT, SOURCE_SHA256, STACK, RETURN, TASK, report_text
 
 WEEK_NATIVE = ((0x4D31F0, 0x4D3510), (0x4D3510, 0x4D3600), (0x4D3AA0, 0x4D3D00),
                (0x4D46E0, 0x4D4730))
@@ -92,13 +92,31 @@ class WeekSettlementEmulator(AllResultEmulator):
         self.write(0x7A528E, month, 'h')
         self.write(0x7A5290, week, 'h')
         before = self.week_snapshot()
-        self.call(0x4D3510)
+        self.call_week()
         return {'name': name, 'evidence_kind': 'direct_week_function_probe',
             'before_week': before, 'after_week': self.week_snapshot(),
             'week_events': self.week_events,
             'visited_original_addresses': [hex(a) for a in sorted(self.visited)],
             'state12_executed': False, 'native_week_body_executed': True,
             'school_task_executed': False, 'authorizes_persistent_write': False}
+
+    def call_week(self):
+        """Bounded whole-body call, with the same budget as its state12 caller.
+
+        ExitEmulator.call's one-second budget is for short exit helpers. The
+        complete week scans all 360 items and 44 availability/skill records;
+        Python instruction hooks can exceed one second under full-suite load.
+        Ret0/return and all fail-closed instruction boundaries still apply.
+        """
+        sp = STACK+0xFF00
+        self.write(sp, RETURN)
+        self.uc.reg_write(UC_X86_REG_ESP, sp)
+        self.uc.reg_write(UC_X86_REG_ECX, TASK)
+        self.uc.emu_start(0x4D3510, RETURN, timeout=10_000_000, count=2_000_000)
+        if self.uc.reg_read(UC_X86_REG_EIP) != RETURN:
+            raise RuntimeError('whole-week probe exceeded instruction/time bounds')
+        if self.uc.reg_read(UC_X86_REG_ESP) != sp+4:
+            raise RuntimeError('whole-week probe ret0 stack mismatch')
 
 
 def report():
