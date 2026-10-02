@@ -1,0 +1,1766 @@
+{
+  "schema_version": 2,
+  "evidence_kind": "original_x86_with_synthetic_external_inputs",
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "function_ranges": [
+    [
+      "0x4549d0",
+      "0x454ab0"
+    ],
+    [
+      "0x454c40",
+      "0x454cf0"
+    ],
+    [
+      "0x454cf0",
+      "0x454ee0"
+    ],
+    [
+      "0x453f10",
+      "0x4547c3"
+    ]
+  ],
+  "limitations": [
+    "VM completion and initial task phase are synthetic inputs.",
+    "Rendering, animation, clock, audio and cleanup are stubbed.",
+    "4539B0 full loop and 451670 dispatch are not emulated.",
+    "4539B0 ignores 454CF0 return; only 453F10 return controls this exit edge.",
+    "No live scene5 branch or persistent-write authorization."
+  ],
+  "authorizes_persistent_write": false,
+  "source_report_sha256": "3e7e0429c0b00242ad295139be54ea2575bc2cc50b3a5329b826d312296ec372",
+  "cases": [
+    {
+      "name": "terminal_handshake",
+      "initial_state": {
+        "exit_flag": 1,
+        "transition_phase": 5,
+        "script_phase": 5,
+        "result_selector": 1,
+        "script_control_active": 1,
+        "script_completion_phase": 1,
+        "finish_flags": [
+          0,
+          0,
+          0
+        ],
+        "fade_in_value": 0,
+        "fade_out_value": 0
+      },
+      "external_inputs": {
+        "fade_step": 255,
+        "animation_ready": true,
+        "script_work_busy": false,
+        "vm_busy": false
+      },
+      "states": [
+        {
+          "transition_phase": 15,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 18,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 1279,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 1024,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 769,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 514,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 259,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 4,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 20,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": -251,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 1
+        }
+      ],
+      "state11_observed": false,
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "intermediate_signal",
+      "initial_state": {
+        "exit_flag": 0,
+        "transition_phase": 5,
+        "script_phase": 5,
+        "result_selector": 1,
+        "script_control_active": 1,
+        "script_completion_phase": 1,
+        "finish_flags": [
+          0,
+          0,
+          0
+        ],
+        "fade_in_value": 0,
+        "fade_out_value": 0
+      },
+      "external_inputs": {
+        "fade_step": 255,
+        "animation_ready": true,
+        "script_work_busy": false,
+        "vm_busy": false
+      },
+      "states": [
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 5,
+          "script_control_active": 0,
+          "exit_flag": 0,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            0,
+            0
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        }
+      ],
+      "state11_observed": false,
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "completion_flag_overwritten",
+      "initial_state": {
+        "exit_flag": 1,
+        "transition_phase": 4,
+        "script_phase": 5,
+        "result_selector": 1,
+        "script_control_active": 1,
+        "script_completion_phase": 1,
+        "finish_flags": [
+          0,
+          0,
+          0
+        ],
+        "fade_in_value": 0,
+        "fade_out_value": 0
+      },
+      "external_inputs": {
+        "fade_step": 255,
+        "animation_ready": true,
+        "script_work_busy": false,
+        "vm_busy": false
+      },
+      "states": [
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 5,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            1,
+            0,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        }
+      ],
+      "state11_observed": false,
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "clock_stalled",
+      "initial_state": {
+        "exit_flag": 1,
+        "transition_phase": 5,
+        "script_phase": 5,
+        "result_selector": 1,
+        "script_control_active": 1,
+        "script_completion_phase": 1,
+        "finish_flags": [
+          0,
+          0,
+          0
+        ],
+        "fade_in_value": 0,
+        "fade_out_value": 0
+      },
+      "external_inputs": {
+        "fade_step": 0,
+        "animation_ready": true,
+        "script_work_busy": false,
+        "vm_busy": false
+      },
+      "states": [
+        {
+          "transition_phase": 15,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        }
+      ],
+      "state11_observed": false,
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "animation_stalled",
+      "initial_state": {
+        "exit_flag": 1,
+        "transition_phase": 5,
+        "script_phase": 5,
+        "result_selector": 1,
+        "script_control_active": 1,
+        "script_completion_phase": 1,
+        "finish_flags": [
+          0,
+          0,
+          0
+        ],
+        "fade_in_value": 0,
+        "fade_out_value": 0
+      },
+      "external_inputs": {
+        "fade_step": 255,
+        "animation_ready": false,
+        "script_work_busy": false,
+        "vm_busy": false
+      },
+      "states": [
+        {
+          "transition_phase": 15,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        }
+      ],
+      "state11_observed": false,
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "no_result_animation",
+      "initial_state": {
+        "exit_flag": 1,
+        "transition_phase": 5,
+        "script_phase": 5,
+        "result_selector": 0,
+        "script_control_active": 1,
+        "script_completion_phase": 1,
+        "finish_flags": [
+          0,
+          0,
+          0
+        ],
+        "fade_in_value": 0,
+        "fade_out_value": 0
+      },
+      "external_inputs": {
+        "fade_step": 255,
+        "animation_ready": true,
+        "script_work_busy": false,
+        "vm_busy": false
+      },
+      "states": [
+        {
+          "transition_phase": 15,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 18,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 1279,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 1024,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 769,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 514,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 259,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 4,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 20,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": -251,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 1
+        }
+      ],
+      "state11_observed": false,
+      "authorizes_persistent_write": false
+    },
+    {
+      "name": "other_result_selector",
+      "initial_state": {
+        "exit_flag": 1,
+        "transition_phase": 5,
+        "script_phase": 5,
+        "result_selector": 5,
+        "script_control_active": 1,
+        "script_completion_phase": 1,
+        "finish_flags": [
+          0,
+          0,
+          0
+        ],
+        "fade_in_value": 0,
+        "fade_out_value": 0
+      },
+      "external_inputs": {
+        "fade_step": 255,
+        "animation_ready": true,
+        "script_work_busy": false,
+        "vm_busy": false
+      },
+      "states": [
+        {
+          "transition_phase": 15,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 1,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 16,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 0,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 17,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 18,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 0,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 1279,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 1024,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 769,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 514,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 259,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 19,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": 4,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 0
+        },
+        {
+          "transition_phase": 20,
+          "script_phase": 6,
+          "script_control_active": 1,
+          "exit_flag": 1,
+          "script_completion_phase": 3,
+          "fade_in_value": 255,
+          "fade_out_value": -251,
+          "finish_flags": [
+            0,
+            1,
+            1
+          ],
+          "script_function_return": 0,
+          "transition_function_return": 1
+        }
+      ],
+      "state11_observed": false,
+      "authorizes_persistent_write": false
+    }
+  ]
+}
