@@ -39,11 +39,11 @@ func journal() -> Array:
 	return _journal.duplicate(true)
 
 
-func begin_result(instance_id: String, context: Dictionary) -> Dictionary:
+func begin_result(instance_id: String, context: Dictionary, source_inputs: Dictionary = {}) -> Dictionary:
 	if _snapshot.is_empty() or instance_id.is_empty():
 		return _unsupported("missing_campaign_or_instance")
 	if _sessions.has(instance_id):
-		if _sessions[instance_id]["context"] != context:
+		if _sessions[instance_id]["context"] != context or _sessions[instance_id]["source_inputs"] != source_inputs:
 			return _unsupported("instance_input_conflict")
 		return _view(_sessions[instance_id], "duplicate")
 	if not _active.is_empty():
@@ -54,7 +54,7 @@ func begin_result(instance_id: String, context: Dictionary) -> Dictionary:
 	var result := transaction.begin(instance_id, context, _snapshot, _rules)
 	if not result["supported"]:
 		return result
-	var session := {"context": context.duplicate(true), "transaction": transaction,
+	var session := {"context": context.duplicate(true), "source_inputs": source_inputs.duplicate(true), "transaction": transaction,
 		"result": result.duplicate(true), "completed": false}
 	_sessions[instance_id] = session
 	_active = instance_id
@@ -90,6 +90,7 @@ func _publish(instance_id: String, after: Dictionary, phases: Array) -> void:
 		var record: Dictionary = phase.duplicate(true)
 		record["instance_id"] = instance_id
 		record["revision"] = _revision
+		record["source_inputs"] = _sessions[instance_id]["source_inputs"].duplicate(true)
 		_journal.append(record)
 
 

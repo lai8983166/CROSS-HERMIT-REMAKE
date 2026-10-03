@@ -1,7 +1,8 @@
 class_name AllResultRoleReplay
 extends RefCounted
 ## Isolated state12 role store. Native fixtures authorize this projection only;
-## BattleReturn/persistent saves do not consume it. Week/school stay explicit boundaries.
+## Shared campaign replay can consume it through ResultTransactionReplay.
+## Original saves remain outside its authority; week/school are separate stages.
 
 var _instances: Dictionary = {}
 

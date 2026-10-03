@@ -1,7 +1,8 @@
 class_name WeekSettlementReplay
 extends RefCounted
 ## Isolated projection of the COMPLETE 4D3510 body for the audited record layout.
-## No live scene/persistent authority; BattleReturn does not consume these writes.
+## Shared campaign replay consumes this through its result transaction.
+## No original live scene or save authority is inferred from the projection.
 
 var _instances: Dictionary = {}
 
