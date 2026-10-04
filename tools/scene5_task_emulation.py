@@ -62,6 +62,7 @@ class TaskEmulator(Scene5Emulator):
         if not 1 <= max_frames <= 2000:
             raise ValueError('max_frames must be 1..2000')
         self.max_frames = max_frames
+        self.task_timeout_us = 20_000_000
         self.freeze_fade = freeze_fade
         self._function_ranges += WORK_NATIVE+TASK_NATIVE
         self._stubs.update(TASK_EXTERNAL)
@@ -167,7 +168,7 @@ class TaskEmulator(Scene5Emulator):
         self.write(sp+4, 0)  # Task thread's opaque argument, unused on this path.
         self.uc.reg_write(UC_X86_REG_ESP, sp)
         self.uc.reg_write(UC_X86_REG_ECX, TASK)
-        self.uc.emu_start(0x451670, RETURN, timeout=20_000_000, count=5_000_000)
+        self.uc.emu_start(0x451670, RETURN, timeout=self.task_timeout_us, count=5_000_000)
         if not self.bounded_stop:
             if self.uc.reg_read(UC_X86_REG_EIP) != RETURN:
                 raise RuntimeError('task loop exceeded instruction/time bounds')
