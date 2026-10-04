@@ -119,6 +119,10 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
 
     def boot_snapshot(self):
         result = self.flow_snapshot()
+        result['school_control'] = self.boot_control_snapshot()
+        return result
+
+    def boot_control_snapshot(self):
         count = self.read(0x7D57DE, 'h')
         teacher_count = self.read(0x7D58B0, 'h')
         if not 0 <= count <= 20 or not 0 <= teacher_count <= 20:
@@ -126,7 +130,7 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
         adventure_counts = [self.read(0x7D62FA+k*2, 'h') for k in range(3)]
         if any(not 0 <= n <= 80 for n in adventure_counts):
             raise RuntimeError('school adventure count outside source table stride')
-        result['school_control'] = {'selected_group': self.read(0x7D57D8, 'b'),
+        return {'selected_group': self.read(0x7D57D8, 'b'),
             'person_phase': self.read(0x7A4E60, 'h'), 'person_ready': self.read(0x7A4AE0, 'B'),
             'idle_student_ids': [self.read(0x7D57E2+k*2, 'h') for k in range(count)],
             'idle_teacher_ids': [self.read(0x7D58B4+k*2, 'h') for k in range(teacher_count)],
@@ -140,7 +144,6 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
             'group_rankings': [[self.read(GROUP_TASK+0x76CA+k*0x10+j*2, 'h') for j in range(8)] for k in range(4)],
             'group_task_controls': [self.read(GROUP_TASK+k, 'h') for k in (0x76BC,0x76BE,0x76C0,0x76C6,0x76C8)],
             'person_selection': self.read(PERSON_TASK+0x391DA, 'h')}
-        return result
 
     def run_boot(self, name):
         if self._ran_boot:
