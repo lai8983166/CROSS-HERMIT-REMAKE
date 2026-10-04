@@ -17,6 +17,7 @@ var _result_gate: Dictionary = {}
 var _result_instance := ""
 var _result_context: Dictionary = {}
 var _campaign: Campaign
+var _school_return_instance := ""
 var _replay_status := ""
 
 
@@ -137,7 +138,8 @@ func begin_result_replay(instance_id: String, context: Dictionary, campaign: Cam
 	_result_instance = instance_id
 	_result_context = context.duplicate(true)
 	_campaign = campaign
-	_replay_status = "result_completed" if result["result"]["completed"] else "pending_result_confirmation"
+	if _school_return_instance.is_empty():
+		_replay_status = "result_completed" if result["result"]["completed"] else "pending_result_confirmation"
 	return result
 
 
@@ -145,8 +147,29 @@ func finish_result_replay(instance_id: String, confirmed: bool, mvp_ready: bool)
 	if _campaign == null or _result_instance != instance_id:
 		return _unsupported("missing_bound_result_instance")
 	var result := _campaign.finish_result(instance_id, confirmed, mvp_ready)
-	if result["supported"]:
+	if result["supported"] and _school_return_instance.is_empty():
 		_replay_status = "result_completed" if result["result"]["completed"] else result["status"]
+	return result
+
+
+func begin_school_return_replay(instance_id: String) -> Dictionary:
+	if _campaign == null or _result_instance.is_empty():
+		return _unsupported("missing_bound_result_instance")
+	if not _school_return_instance.is_empty() and _school_return_instance != instance_id:
+		return _unsupported("school_return_instance_conflict")
+	var result := _campaign.begin_school_return(instance_id, _result_instance)
+	if result["supported"]:
+		_school_return_instance = instance_id
+		_replay_status = "school_constructed" if result["result"]["completed"] else "pending_school_return"
+	return result
+
+
+func advance_school_return_replay(instance_id: String, chapter_key_ready: bool, continue_ready: bool, school_fade_ready: bool) -> Dictionary:
+	if _campaign == null or _school_return_instance != instance_id:
+		return _unsupported("missing_bound_school_return")
+	var result := _campaign.advance_school_return(instance_id, chapter_key_ready, continue_ready, school_fade_ready)
+	if result["supported"]:
+		_replay_status = "school_constructed" if result["result"]["completed"] else "pending_school_return"
 	return result
 
 

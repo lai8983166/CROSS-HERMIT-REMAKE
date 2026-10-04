@@ -783,3 +783,16 @@ BattleReturn集成测试明确保留独立声明的退出/轮次入口证据，�
 报告 `analysis/campaign-return-chain-v1-20261004.json` SHA-256 `639b76faacecb652f4db5a0663592e0ecbd9e9e8063b2a1b7d5cf8153f045b9a`；样例 `prototype/data/campaign_return_chain_evidence.json` SHA-256 `76f2cd6ef371840db07a383f067ae8002c28602389f3bc81eec4dbb85a4c2a1e`。新增6项Python测试重执行五条路径，逐字节核对报告/样例、实际装载调用与无重装、完整请求/唯一周/源END及双构造、四类等待、别名/关系/历史/成长连续性、单次执行与无权限边界；全部通过（308.843秒）。组合指令钩子的成本更高，Chapter任务预算由30秒提高到60秒，8百万指令和6000帧上限、实际ret4/RETURN与来源边界仍保留；最终完成的Chapter帧数2893与旧独立报告一致。
 
 OpenSpec严格校验及diff检查通过后立即提交证据阶段。仍有初始战斗/世界/角色/场次输入、条件子程序选择、MVP完成、演出就绪及部分调度/资源/分配/注册的明确声明边界；未提供完整同世界条件事件到学校的实机见证、存档写入、教师工作表或学校交互。school_initialized/live_witness/authorizes_persistent_write为false，3.1/3.2/4.1保持未完成，10/13；本轮未重跑全部Python套件。Godot拥有计算的连续发布另行验证和提交。
+
+
+## 54. Godot共享状态拥有剧情返回检查点与学校任务构造发布（2026-10-04）
+
+新增 `SchoolReturnContinuation`，限定§53已核对的4/5、学生[3,4,9]、候选5、recipient4与初始ADV字段子集，内部调用入学、状态7完整周结算、职务室/CH002及学校双任务描述计算器。按源顺序保存chapter020_join→chapter021_end→state7_week→ch001_end→workroom_constructed→workroom_continue→ch002_opcode151→ch002_end→school_dispatch的完整前后值与源地址/END偏移。不接受调用方after-image；规则来自初始化时冻结的同一份角色/周规则。该模块投影有限的原版检查点与已捕获字段，不实现通用ADV VM/演出；CH001及周淡入就绪固定ready，只暴露已核对的Chapter按键、职务室继续和CH002淡入等待。
+
+`CampaignResultState.begin_school_return/advance_school_return`绑定当前版本已完成普通结果，自身拥有该计算器与共享发布。开始执行入学后等待Chapter结束；确认Chapter按键后在原版顺序进行完整周与新周/职务室；继续后先写CH002已捕获音乐字段，再等待其END，最后构造两条学校任务描述。每次先验证全部新增阶段的before连续性、完整规范布局及最终after一致，再共同发布和增加版本。等待且没有新增阶段时不发布；恢复不重新入学、写历史或第二次结算周。未完成返回锁定新的结果、其他返回和直接数据探针；同ID重复返回缓存与当前共享状态，不回滚。缺来源父实例、等待战果、特殊结果、旧版本父实例、实例名冲突和超出已捕获目录/别名/日期的输入在占用前拒绝。
+
+职务室校验扩展为两个已观察recipient值0/4，不再把旧独立剧情的0误当CH001清零行为，其他值仍不开放。本次检查点保留recipient4与7E1182初始0，仅应用确实变化的背景/音乐字段；完整角色目录、20条关系、成长包/增长池/历史/领取计数都持续保留。`BattleReturn`新增绑定的学校返回begin/advance入口，从已绑定共享结果进入，完成时状态为school_constructed；迟到的旧结果begin/finish不把该状态降回result_completed，也不能更换返回实例或共享对象。
+
+新增9项Godot测试直接对照§53五条原版路径的完整目录、独立学校布局、全部阶段检查点/顺序/版本/源END及双任务描述；另验证三段等待恢复、一次周/无重复入学历史、活动锁与实例冲突、等待/特殊/旧父实例拒绝且可重试、坏目录/日期/recipient/背景子集拒绝、0/4别名保留与其他值拒绝、原始JSON/数组重排/无关小数元数据/冻结规则来源和输入输出日志隔离、BattleReturn绑定与迟到旧结果不回滚状态。全部33套件250项通过；模块语法、OpenSpec严格校验和diff检查通过后立即提交实现阶段。Python本轮§53新增6项通过，未重跑全部Python套件。
+
+本阶段闭合了统一内存数据在有来源检查点回放中的战果→剧情END→完整周→职务室→学校任务构造，不能据此称为同世界实机终结条件全链、实际演出/菜单或存档完成。BattleReturn测试的前置任务/轮次输入仍是独立声明证据；本次角色返回段才由同一原版CPU报告核对。school_initialized/live_witness/authorizes_persistent_write为false，3.1/3.2/4.1保持未完成，10/13。下一步应把已捕获学校初始化字段/班级清理接入这一规范目录，并继续核对同世界条件性战术结束前置与完整回归；教师工作表和交互另有明确未捕获边界。

@@ -111,9 +111,14 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		return "outside_ch001_workroom_flags"
 	if not before.get("adv_globals") is Dictionary:
 		return "missing_adv_globals"
-	for pair in [["0x7a5292", 8], ["0x7e1180", 0], ["0x7e1182", 0]]:
+	for pair in [["0x7a5292", 8], ["0x7e1182", 0]]:
 		if not Week._integer(before["adv_globals"].get(pair[0])) or int(before["adv_globals"][pair[0]]) != pair[1]:
 			return "outside_ch001_background_subset"
+	# CH001 does not clear the result-recipient alias. The original standalone
+	# ADV probe began at0; the same-CPU result continuation retains recipient4.
+	if not Week._integer(before["adv_globals"].get("0x7e1180")) \
+			or not int(before["adv_globals"]["0x7e1180"]) in [0, 4]:
+		return "outside_ch001_background_subset"
 	if not Week._bounded(before.get("student_count"), 4, 4) \
 			or not Week._vector(before.get("student_ids"), 20, -1, 44) \
 			or not Week._bounded(before.get("teacher_count"), 0, 0) \

@@ -9,12 +9,15 @@ const Roles = preload("res://sim/all_result_role_replay.gd")
 const Week = preload("res://sim/week_settlement_replay.gd")
 const Layout = preload("res://sim/campaign_school_layout.gd")
 const Join = preload("res://sim/roster_join_replay.gd")
+const Continuation = preload("res://sim/school_return_continuation.gd")
 
 var _snapshot: Dictionary = {}
 var _rules: Dictionary = {}
 var _sessions: Dictionary = {}
 var _probes: Dictionary = {}
+var _returns: Dictionary = {}
 var _active := ""
+var _active_return := ""
 var _revision := 0
 var _journal: Array = []
 
@@ -53,13 +56,13 @@ func journal() -> Array:
 func begin_result(instance_id: String, context: Dictionary, source_inputs: Dictionary = {}) -> Dictionary:
 	if _snapshot.is_empty() or instance_id.is_empty():
 		return _unsupported("missing_campaign_or_instance")
-	if _probes.has(instance_id):
+	if _probes.has(instance_id) or _returns.has(instance_id):
 		return _unsupported("instance_belongs_to_school_probe")
 	if _sessions.has(instance_id):
 		if _sessions[instance_id]["context"] != context or _sessions[instance_id]["source_inputs"] != source_inputs:
 			return _unsupported("instance_input_conflict")
 		return _view(_sessions[instance_id], "duplicate")
-	if not _active.is_empty():
+	if not _active.is_empty() or not _active_return.is_empty():
 		return _unsupported("another_result_pending")
 	# The calculator validates the entire state12 context and both role/week
 	# inputs before it can produce any growth. No source fixture is a commit token.
@@ -116,7 +119,7 @@ func probe_school_join(instance_id: String, result_instance: String, context: Di
 	var cached := _probe_guard(instance_id, input)
 	if not cached.is_empty():
 		return cached
-	if not _active.is_empty() or not _sessions.has(result_instance):
+	if not _active.is_empty() or not _active_return.is_empty() or not _sessions.has(result_instance):
 		return _unsupported("pending_or_missing_result_parent")
 	var parent: Dictionary = _sessions[result_instance]
 	if not parent["completed"] or parent["completed_revision"] != _revision \
@@ -147,7 +150,7 @@ func probe_school_week(instance_id: String, join_instance: String) -> Dictionary
 	var cached := _probe_guard(instance_id, input)
 	if not cached.is_empty():
 		return cached
-	if not _active.is_empty() or not _probes.has(join_instance) \
+	if not _active.is_empty() or not _active_return.is_empty() or not _probes.has(join_instance) \
 			or _probes[join_instance]["input"]["kind"] != "join" \
 			or _probes[join_instance]["revision"] != _revision:
 		return _unsupported("pending_missing_or_stale_join_parent")
@@ -167,11 +170,92 @@ func probe_school_week(instance_id: String, join_instance: String) -> Dictionary
 	return _probe_view(_probes[instance_id], result["status"])
 
 
+func begin_school_return(instance_id: String, result_instance: String) -> Dictionary:
+	if _snapshot.is_empty() or instance_id.is_empty():
+		return _unsupported("missing_campaign_or_return_instance")
+	if _sessions.has(instance_id) or _probes.has(instance_id):
+		return _unsupported("instance_belongs_to_another_operation")
+	if _returns.has(instance_id):
+		return _school_view(_returns[instance_id], "duplicate") if _returns[instance_id]["parent"] == result_instance \
+			else _unsupported("instance_input_conflict")
+	if not _active.is_empty() or not _active_return.is_empty() or not _sessions.has(result_instance):
+		return _unsupported("pending_or_missing_result_parent")
+	var parent: Dictionary = _sessions[result_instance]
+	if not parent["completed"] or parent["completed_revision"] != _revision \
+			or int(parent["result"]["branch"]) != 0 or parent["result"]["requested_state"] != 6 \
+			or parent["result"]["week_executed"]:
+		return _unsupported("outside_completed_ordinary_result_return")
+	var calculator := Continuation.new()
+	var result := calculator.begin(instance_id, _snapshot, _rules)
+	if not result["supported"]:
+		return result
+	var reason := _validate_school_publication(result, result["phase_log"])
+	if not reason.is_empty():
+		return _unsupported(reason)
+	var session := {"parent": result_instance, "calculator": calculator, "result": result.duplicate(true),
+		"source_inputs": {"result_instance": result_instance, "result_context": parent["context"].duplicate(true),
+			"result_source_inputs": parent["source_inputs"].duplicate(true)}, "completed": false}
+	_returns[instance_id] = session
+	_active_return = instance_id
+	_publish(instance_id, result["after"], result["phase_log"], session["source_inputs"])
+	return _school_view(session, result["status"])
+
+
+func advance_school_return(instance_id: String, chapter_key_ready: bool, continue_ready: bool, school_fade_ready: bool) -> Dictionary:
+	if not _returns.has(instance_id):
+		return _unsupported("missing_return_instance")
+	var session: Dictionary = _returns[instance_id]
+	if session["completed"]:
+		return _school_view(session, "duplicate")
+	if _active_return != instance_id:
+		return _unsupported("return_is_not_active")
+	var result: Dictionary = session["calculator"].advance(instance_id, chapter_key_ready, continue_ready, school_fade_ready)
+	if not result["supported"]:
+		return result
+	var phases: Array = result["phase_log"].slice(session["result"]["phase_log"].size())
+	var reason := _validate_school_publication(result, phases)
+	if not reason.is_empty():
+		return _unsupported(reason)
+	if not phases.is_empty():
+		var sources: Dictionary = session["source_inputs"].duplicate(true)
+		sources["declared_readiness"] = {"chapter_key_ready": chapter_key_ready,
+			"continue_ready": continue_ready, "school_fade_ready": school_fade_ready}
+		_publish(instance_id, result["after"], phases, sources)
+	session["result"] = result.duplicate(true)
+	if result["completed"]:
+		session["completed"] = true
+		_active_return = ""
+	return _school_view(session, result["status"])
+
+
+func _validate_school_publication(result: Dictionary, phases: Array) -> String:
+	var candidate := _snapshot.duplicate(true)
+	for phase in phases:
+		if phase["before"] != candidate:
+			return "school_phase_before_conflict"
+		var reason := Layout.validate(phase["after"], _rules["week"])
+		if not reason.is_empty():
+			return reason
+		candidate = phase["after"].duplicate(true)
+	return "" if candidate == result["after"] else "school_phase_publication_mismatch"
+
+
+func _school_view(session: Dictionary, status: String) -> Dictionary:
+	var result: Dictionary = session["result"].duplicate(true)
+	result["status"] = status
+	return {"supported": true, "status": status, "result": result,
+		"campaign_snapshot": read_snapshot(), "campaign_revision": _revision,
+		"execution_scope": "isolated_sourced_return_checkpoints", "school_constructed": result["school_constructed"],
+		"school_initialized": false, "live_witness": false, "authorizes_persistent_write": false}
+
+
 func _probe_guard(instance_id: String, input: Dictionary) -> Dictionary:
 	if _snapshot.is_empty() or instance_id.is_empty():
 		return _unsupported("missing_campaign_or_instance")
 	if _sessions.has(instance_id):
 		return _unsupported("instance_belongs_to_result")
+	if _returns.has(instance_id):
+		return _unsupported("instance_belongs_to_school_return")
 	if _probes.has(instance_id):
 		if _probes[instance_id]["input"] != input:
 			return _unsupported("instance_input_conflict")
