@@ -9,6 +9,7 @@ const RoundGate = preload("res://sim/battle_round_gate.gd")
 const Week = preload("res://sim/week_settlement_replay.gd")
 const Roles = preload("res://sim/all_result_role_replay.gd")
 const Campaign = preload("res://sim/campaign_result_state.gd")
+const SceneSelection = preload("res://sim/scene5_condition_selection.gd")
 
 var _terminal_snapshot: Dictionary = {}
 var _script_signal: Dictionary = {}
@@ -19,6 +20,7 @@ var _result_context: Dictionary = {}
 var _campaign: Campaign
 var _school_return_instance := ""
 var _replay_status := ""
+var _scene_condition_input: Dictionary = {}
 
 
 func accept_terminal_snapshot(snapshot: Dictionary) -> bool:
@@ -117,9 +119,30 @@ func prepare_result_replay(exit_frame: Dictionary, dispatch_context: Dictionary,
 	return _gate_view(_replay_status)
 
 
+func prepare_scene5_result_replay(event_world: Dictionary, exit_frame: Dictionary, dispatch_context: Dictionary,
+		round_before: Dictionary, round_table: Dictionary, state11_complete: bool) -> Dictionary:
+	var selected := SceneSelection.select(event_world)
+	if not selected["supported"]:
+		return selected
+	if not Week._integer(exit_frame.get("result_selector")) \
+			or int(exit_frame["result_selector"]) != selected["tactical_result_selector"]:
+		return _unsupported("scene5_selection_does_not_match_task_exit")
+	if not _result_gate.is_empty() and (_scene_condition_input.is_empty() or _scene_condition_input != event_world):
+		return _unsupported("scene5_condition_input_conflict")
+	var result := prepare_result_replay(exit_frame, dispatch_context, round_before, round_table, state11_complete)
+	if not result["supported"] or _result_gate.is_empty():
+		return result
+	_scene_condition_input = event_world.duplicate(true)
+	_result_gate["scene5_condition_selection"] = selected.duplicate(true)
+	return _gate_view(result["status"])
+
+
 func begin_result_replay(instance_id: String, context: Dictionary, campaign: Campaign) -> Dictionary:
 	if _result_gate.is_empty() or _result_gate["requested_state"] != 12:
 		return _unsupported("pending_state12_result_gate")
+	if _result_gate.has("scene5_condition_selection") and (not Week._integer(context.get("round_grade")) \
+			or int(context["round_grade"]) != _result_gate["scene5_condition_selection"]["round_grade_index"]):
+		return _unsupported("result_grade_does_not_match_scene5_selection")
 	for pair in [["task_state", 12], ["current", _result_gate["current"]], ["total", _result_gate["total"]]]:
 		if not Week._integer(context.get(pair[0])) or int(context[pair[0]]) != pair[1]:
 			return _unsupported("result_context_does_not_match_gate")
