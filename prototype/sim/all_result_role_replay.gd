@@ -297,10 +297,12 @@ static func _validate_context(context: Dictionary, before: Dictionary, gate: boo
 	return ""
 
 
-static func _validate_snapshot(before: Dictionary) -> String:
+static func _validate_snapshot(before: Dictionary, allow_terminal_calendar: bool = false) -> String:
 	if not _bounded(before.get("month"), 4, 15) or not _bounded(before.get("week"), 1, 5):
 		return "outside_calendar_bounds"
-	if (int(before["month"]) - 4) * 5 + int(before["week"]) - 1 >= 59:
+	# The terminal 15/5 snapshot can be read after week settlement. Beginning a
+	# new result still forbids its history slot, which overlaps progress fields.
+	if (int(before["month"]) - 4) * 5 + int(before["week"]) - 1 >= 59 and not allow_terminal_calendar:
 		return "history_overlaps_progress_fields"
 	if not _bounded(before.get("global_total_511c"), -0x80000000, 0x7fffffff) or not _bounded(before.get("recipient_id"), -1, 12):
 		return "invalid_global_fields"
