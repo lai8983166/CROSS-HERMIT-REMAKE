@@ -160,7 +160,7 @@ func begin_school_return_replay(instance_id: String) -> Dictionary:
 	var result := _campaign.begin_school_return(instance_id, _result_instance)
 	if result["supported"]:
 		_school_return_instance = instance_id
-		_replay_status = "school_constructed" if result["result"]["completed"] else "pending_school_return"
+		_replay_status = _school_replay_status(result)
 	return result
 
 
@@ -169,8 +169,23 @@ func advance_school_return_replay(instance_id: String, chapter_key_ready: bool, 
 		return _unsupported("missing_bound_school_return")
 	var result := _campaign.advance_school_return(instance_id, chapter_key_ready, continue_ready, school_fade_ready)
 	if result["supported"]:
-		_replay_status = "school_constructed" if result["result"]["completed"] else "pending_school_return"
+		_replay_status = _school_replay_status(result)
 	return result
+
+
+func project_school_return_boot_replay(instance_id: String) -> Dictionary:
+	if _campaign == null or _school_return_instance != instance_id:
+		return _unsupported("missing_bound_school_return")
+	var result := _campaign.project_school_return_boot(instance_id)
+	if result["supported"]:
+		_replay_status = _school_replay_status(result)
+	return result
+
+
+static func _school_replay_status(result: Dictionary) -> String:
+	if result.get("school_boot_data_projected", false):
+		return "school_boot_data_projected"
+	return "school_constructed" if result["result"]["completed"] else "pending_school_return"
 
 
 func _validate_terminal_ids(context: Dictionary) -> String:

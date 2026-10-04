@@ -6,6 +6,7 @@ extends RefCounted
 const Roles = preload("res://sim/all_result_role_replay.gd")
 const Week = preload("res://sim/week_settlement_replay.gd")
 const Transaction = preload("res://sim/result_transaction_replay.gd")
+const Boot = preload("res://sim/school_boot_replay.gd")
 const RESULT_ONLY = ["staged_package", "staged_total", "recipient_count", "week_records"]
 const SHARED = ["month", "week", "flags", "availability", "item_flags"]
 
@@ -60,6 +61,40 @@ static func validate(snapshot: Dictionary, rules: Dictionary) -> String:
 	for key in ["0x7a5292", "0x7e1182"]:
 		if not Week._bounded(school["adv_globals"].get(key), -32768, 32767):
 			return "invalid_adv_global"
+	if school.has("school_control"):
+		return _validate_control(school)
+	return ""
+
+
+static func _validate_control(school: Dictionary) -> String:
+	if not school["school_control"] is Dictionary:
+		return "invalid_school_control"
+	var control: Dictionary = school["school_control"]
+	for spec in [["selected_group", -1, 0], ["person_phase", 0, 0], ["person_ready", 0, 1], ["person_selection", -1, 0]]:
+		if not Week._bounded(control.get(spec[0]), spec[1], spec[2]):
+			return "outside_captured_school_control"
+	for spec in [["group_raw_bytes", 140, 0, 255], ["group_task_controls", 5, 0, 2],
+			["adventure_counts", 3, 0, 80], ["lecture_counts", 3, 0, 255],
+			["adventure_unlock_flags", 100, 0, 255], ["lecture_unlock_flags", 100, 0, 255]]:
+		if not Week._vector(control.get(spec[0]), spec[1], spec[2], spec[3]):
+			return "invalid_school_control_" + spec[0]
+	if not Boot._matrix(control.get("group_rankings"), 4, 8, 0, 4):
+		return "invalid_school_rankings"
+	for key in ["idle_student_ids", "idle_teacher_ids"]:
+		if not control.get(key) is Array or control[key].size() > 20 \
+				or not Week._vector(control[key], control[key].size(), 1, 12):
+			return "invalid_school_idle_list"
+	if not control.get("adventure_entries") is Array or control["adventure_entries"].size() != 3:
+		return "invalid_school_adventure_entries"
+	for category in range(3):
+		if not Boot._matrix(control["adventure_entries"][category], int(control["adventure_counts"][category]), 5, -32768, 32767):
+			return "invalid_school_adventure_entries"
+	for group in range(5):
+		for slot in range(4):
+			var offset := group * 28 + 16 + slot * 2
+			var packed := int(control["group_raw_bytes"][offset]) | (int(control["group_raw_bytes"][offset + 1]) << 8)
+			if packed != (int(school["group_student_ids"][group][slot]) & 65535):
+				return "inconsistent_school_group_bytes"
 	return ""
 
 

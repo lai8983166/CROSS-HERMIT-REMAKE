@@ -9,6 +9,7 @@ const Join = preload("res://sim/roster_join_replay.gd")
 const Start = preload("res://sim/week_start_replay.gd")
 const Workroom = preload("res://sim/workroom_return_replay.gd")
 const School = preload("res://sim/school_entry_replay.gd")
+const Boot = preload("res://sim/school_boot_replay.gd")
 const JOIN_CONTEXT = {"task_state": 6, "script_path": "DATA/ADV/DAT/Chapter020.ybc",
 	"script_file_offset": 20, "opcode": 144, "character_id": 5, "group": -1, "slot": -1, "difficulty": 0}
 const WORK_CONTEXT = {"task_state": 8, "pending_flag": 1, "vm_active": 0,
@@ -70,7 +71,7 @@ func begin(instance_id: String, before: Dictionary, rules: Dictionary) -> Dictio
 func advance(instance_id: String, chapter_key_ready: bool, continue_ready: bool, school_fade_ready: bool) -> Dictionary:
 	if _instance.is_empty() or _instance != instance_id:
 		return _unsupported("missing_return_instance")
-	if _phase == "school_constructed":
+	if _phase in ["school_constructed", "school_boot_data"]:
 		return _view("duplicate")
 	if _phase == "chapter":
 		if not chapter_key_ready:
@@ -148,6 +149,29 @@ func advance(instance_id: String, chapter_key_ready: bool, continue_ready: bool,
 	return _view("completed_once")
 
 
+func project_school_boot(instance_id: String) -> Dictionary:
+	if _instance.is_empty() or _instance != instance_id:
+		return _unsupported("missing_return_instance")
+	if _phase == "school_boot_data":
+		return _view("duplicate")
+	if _phase != "school_constructed":
+		return _unsupported("pending_school_construction")
+	if not _rules.get("school_boot") is Dictionary:
+		return _unsupported("missing_frozen_school_boot_rules")
+	var school := Layout.school_view(_snapshot, _rules["week"])
+	var boot := Boot.new().initialize_once(_instance, {"task_state": 9, "pending_flag": 0,
+		"school_constructed": true, "tasks": _tasks}, school["snapshot"], _rules["week"], _rules["school_boot"])
+	if not boot["supported"]:
+		return boot
+	var merged := Layout.merge_school(_snapshot, boot["after"], _rules["week"])
+	if not merged["supported"]:
+		return merged
+	_record("school_boot_data", merged["snapshot"], {"group_body_va": "0x4ab7a0", "person_body_va": "0x4b8d50",
+		"group_menu_boundary_va": "0x4a7c40", "projection": "captured_school_boot_fields"})
+	_phase = "school_boot_data"
+	return _view("projected_once")
+
+
 func _record(phase: String, after: Dictionary, source: Dictionary) -> void:
 	_log.append({"phase": phase, "before": _snapshot.duplicate(true), "after": after.duplicate(true),
 		"source": source.duplicate(true)})
@@ -158,7 +182,9 @@ func _view(status: String) -> Dictionary:
 	return {"supported": true, "status": status, "after": _snapshot.duplicate(true),
 		"phase": _phase, "phase_log": _log.duplicate(true), "requested_state": _requested_state,
 		"pending_flag": _pending_flag, "week_executed": _week_executed, "tasks": _tasks.duplicate(true),
-		"completed": _phase == "school_constructed", "school_constructed": _phase == "school_constructed",
+		"completed": _phase in ["school_constructed", "school_boot_data"],
+		"school_constructed": _phase in ["school_constructed", "school_boot_data"],
+		"school_boot_data_projected": _phase == "school_boot_data", "interactive_school_ready": false,
 		"execution_scope": "isolated_sourced_return_checkpoints", "school_initialized": false,
 		"live_witness": false, "authorizes_persistent_write": false}
 

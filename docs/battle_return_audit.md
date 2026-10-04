@@ -811,3 +811,16 @@ OpenSpec严格校验及diff检查通过后立即提交证据阶段。仍有初�
 新增6项Python测试核对原版报告/样例逐字节重执行、旧返回段回归、同CPU目录和控制表连续性、班级/排序/排名/模板数据、等待阻断、资源哈希、单次执行及交互权限边界；另运行既有9项学校初始化测试验证共享读取方法的行为未变，合计15项全部通过（239.060秒）。OpenSpec严格校验和diff检查通过后立即提交证据阶段。本轮未运行全部Python套件，Godot连续发布另行记录和提交。
 
 原版初始战斗/世界/场次、条件子程序选择、MVP与演出完成、分配/调度及资源API仍为声明边界；教师课程工作表没有捕获，实际菜单交互没有执行。已捕获数据初始化不等于完整学校初始化，school_initialized/interactive_school_ready/live_witness/authorizes_persistent_write仍为false；任务3.1/3.2/4.1保持未完成，进度10/13。
+
+
+## 56. 共享返回链拥有学校数据初始化与一次性连续发布（2026-10-04）
+
+规范目录school元数据新增可选school_control；存在时验证已捕获控制字段、数组形状、有符号范围及班级学生ID与原始140字节记录的一致性。学校视图和回合并沿用同一控制表，从战果前连续保留，不在学校构造后注入旧样例。既有不含控制表的输入仍能完成返回任务构造，但不能宣称已经投影学校初始化字段。
+
+`SchoolReturnContinuation.project_school_boot`在双任务构造完成后拥有既有SchoolBootReplay计算器，使用返回实例中的完整目录、真实构造描述和初始化时冻结的school_boot模板规则；调用者只提交已绑定实例名，不能提交after快照或临时规则。完成班级清理、排名/待命重建及冒险/课程开放字段计算后按稳定ID合并完整目录，保留战果私有字段与20条关系，新增school_boot_data前后值和源任务体/菜单边界日志。school_boot_data_projected与完整school_initialized/interactive_school_ready分别记录，后两者仍为false。
+
+`CampaignResultState.project_school_return_boot`仅接受当前版本完成的学校构造，校验完整新增阶段连续性后一次发布；返回仍在等待、其他战果已活动或版本已过期时拒绝，不发布也不占用新实例。投影成功后同实例重送返回缓存和当前共享状态，不重新初始化、不重复周结算、不覆盖后续战果。`BattleReturn.project_school_return_boot_replay`绑定原返回实例，成功后状态为school_boot_data_projected；迟到的begin/advance返回或旧战果送达不会降回school_constructed。
+
+新增8项Godot测试直接核对§55完整与等待两条原版路径的全部规范目录/独立学校布局及初始化前值，覆盖等待恢复、一次周/一次初始化、重复与后续结果不回滚、未投影的过期版本拒绝、缺规则/控制表/错误实例/坏模板/待定构造无发布、9类控制字段及班级字节冲突拒绝初始化、原始JSON/角色关系数组重排/冻结模板/小数元数据和嵌套读写隔离、阶段日志及recipient4连续性、BattleReturn绑定和迟到调用状态保留。首次运行全部34套件258项通过，模块语法检查、OpenSpec严格校验及diff检查通过后立即提交实现阶段；本轮Python§55的15项通过，未运行全部Python套件。
+
+这一阶段闭合有来源检查点中的统一数据战果→剧情→唯一整周→职务室→学校构造→已捕获学校初始化字段。教师课程工作表、未捕获控制、实际菜单交互与同世界条件性战术终结前置仍未完成，未宣称实机/原版存档写入。school_initialized/interactive_school_ready/live_witness/authorizes_persistent_write为false，任务3.1/3.2/4.1保持未完成，进度10/13。下一步优先核对条件性战术终结前置与现有结果返回段的同一场次输入，再补完整回归；完整教师明细和菜单须按各自源输入另行实现。

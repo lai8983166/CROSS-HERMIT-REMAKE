@@ -224,7 +224,30 @@ func advance_school_return(instance_id: String, chapter_key_ready: bool, continu
 	session["result"] = result.duplicate(true)
 	if result["completed"]:
 		session["completed"] = true
+		session["completed_revision"] = _revision
 		_active_return = ""
+	return _school_view(session, result["status"])
+
+
+func project_school_return_boot(instance_id: String) -> Dictionary:
+	if not _returns.has(instance_id):
+		return _unsupported("missing_return_instance")
+	var session: Dictionary = _returns[instance_id]
+	if session["result"].get("school_boot_data_projected", false):
+		return _school_view(session, "duplicate")
+	if not session["completed"] or session.get("completed_revision", -1) != _revision \
+			or not _active.is_empty() or not _active_return.is_empty():
+		return _unsupported("pending_or_stale_school_construction")
+	var result: Dictionary = session["calculator"].project_school_boot(instance_id)
+	if not result["supported"]:
+		return result
+	var phases: Array = result["phase_log"].slice(session["result"]["phase_log"].size())
+	var reason := _validate_school_publication(result, phases)
+	if not reason.is_empty():
+		return _unsupported(reason)
+	_publish(instance_id, result["after"], phases, session["source_inputs"])
+	session["result"] = result.duplicate(true)
+	session["completed_revision"] = _revision
 	return _school_view(session, result["status"])
 
 
@@ -246,6 +269,7 @@ func _school_view(session: Dictionary, status: String) -> Dictionary:
 	return {"supported": true, "status": status, "result": result,
 		"campaign_snapshot": read_snapshot(), "campaign_revision": _revision,
 		"execution_scope": "isolated_sourced_return_checkpoints", "school_constructed": result["school_constructed"],
+		"school_boot_data_projected": result.get("school_boot_data_projected", false), "interactive_school_ready": false,
 		"school_initialized": false, "live_witness": false, "authorizes_persistent_write": false}
 
 
