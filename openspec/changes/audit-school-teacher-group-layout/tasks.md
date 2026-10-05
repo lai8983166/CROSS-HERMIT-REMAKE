@@ -6,7 +6,7 @@
 
 ## 2. Isolated data module
 
-- [ ] 2.1 Implement sourced registration, reconciliation and defined rating outputs with complete refusal validation; compare every native checkpoint, verify input isolation and unrelated-field preservation, document API, run full Godot suites and commit.
+- [x] 2.1 Implement sourced registration, reconciliation and defined rating outputs with complete refusal validation; compare every native checkpoint, verify input isolation and unrelated-field preservation, document API, run full Godot suites and commit.
 
 ## 3. Compatibility acceptance
 
