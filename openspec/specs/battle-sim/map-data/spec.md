@@ -5,7 +5,7 @@
 ## Requirements
 
 ### Requirement: 地图逻辑层导出
-导出工具接收地图编号（如 `01`），解析对应 `MAP##.BIN`：16B 头 `[px_w px_h cell_w cell_h 256 256 page_x page_y]` + `cell_w×cell_h` 格 × 3×u16 **cell-major 交错**（第 k 格 = [terrain][variant][object]，add-map-composition 修正定案），写出 `prototype/data/map##.json` = `{_meta:{px_w,px_h,cell_w,cell_h,page_x,page_y,source_bin}, layers:{terrain,variant,object}}`（层数组按行优先，长度=格数）。头部长度校验不符（文件大小 ≠ 16 + 6×格数）时报错退出。
+导出工具 SHALL 接收地图编号（如 `01`），解析对应 `MAP##.BIN`：16B 头 `[px_w px_h cell_w cell_h 256 256 page_x page_y]` + `cell_w×cell_h` 格 × 3×u16 **cell-major 交错**（第 k 格 = [terrain][variant][object]，add-map-composition 修正定案），写出 `prototype/data/map##.json` = `{_meta:{px_w,px_h,cell_w,cell_h,page_x,page_y,source_bin}, layers:{terrain,variant,object}}`（层数组按行优先，长度=格数）。头部长度校验不符（文件大小 ≠ 16 + 6×格数）时报错退出。
 
 #### Scenario: 导出 MAP01
 - **WHEN** 运行 `python tools/map_export.py 01`
@@ -16,7 +16,7 @@
 - **THEN** 非零退出码 + 明确错误信息，不产出 JSON
 
 ### Requirement: sim 地图数据访问
-`SimMapData` 加载 `map##.json` 并提供：维度只读、`layer(layer_name, x, y)` 格值、`cell_to_world(x, y)` / `world_to_cell(px)` **直角网格**换算（add-map-composition 定案：格 (x,y) = 像素矩形 `[32x,16y,32,16]`，格心 `(32x+16,16y+8)`，`world_to_cell` = floor(px/32), floor(py/16)）。越界格访问返回 -1。
+`SimMapData` SHALL 加载 `map##.json` 并提供：维度只读、`layer(layer_name, x, y)` 格值、`cell_to_world(x, y)` / `world_to_cell(px)` **直角网格**换算（add-map-composition 定案：格 (x,y) = 像素矩形 `[32x,16y,32,16]`，格心 `(32x+16,16y+8)`，`world_to_cell` = floor(px/32), floor(py/16)）。越界格访问返回 -1。
 
 #### Scenario: 加载与格值
 - **WHEN** headless 加载 map01.json 后读取 terrain(0,0) 与 (63,95)

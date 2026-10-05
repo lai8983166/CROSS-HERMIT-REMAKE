@@ -7,7 +7,7 @@
 ## Requirements
 
 ### Requirement: 换色表导出
-`tools/unit_recolor_export.py` 从单位档块7 导出 `prototype/data/unit_recolors.json`：
+`tools/unit_recolor_export.py` SHALL 从单位档块7 导出 `prototype/data/unit_recolors.json`：
 每档 40×256 hex RRGGBB 数组 + 每档预览图 `assets/unit/<档>/_recolors.png`
 （基帧 × 40 色，供目检选 palette_id）。换色表与帧表分离存放，互不耦合。
 
@@ -20,7 +20,7 @@
 - **THEN** sim 渲染按新表换色（数据驱动）
 
 ### Requirement: sim 换色渲染
-配了 palette_id 的单位，其精灵帧按 (档, 帧, palette_id) 重映射后渲染：基色像素
+配了 palette_id 的单位，其精灵帧 SHALL 按 (档, 帧, palette_id) 重映射后渲染：基色像素
 （=块7[0] 条目）精确匹配替换为换色表对应条目；重映射纹理缓存复用。palette_id
 越界、换色表缺失、或像素无匹配 → 保持基色（渲染不报错不出花屏）。
 

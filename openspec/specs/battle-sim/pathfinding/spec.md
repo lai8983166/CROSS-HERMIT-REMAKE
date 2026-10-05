@@ -5,7 +5,7 @@
 ## Requirements
 
 ### Requirement: 可行走规则数据驱动
-阻挡规则由 `data/walk_rules.json` 定义：三层的"阻挡值集合"（`blocked_terrain`/`blocked_variant` 为数组，`blocked_objects` 支持 `"nonzero"` 或数组）。默认规则 = 全开放（实测 object 层为横条纹装饰非墙、terrain 为逐格散点，均非可行走语义——真实碰撞待实机对照）。SimMapData 暴露 `is_walkable(x, y, rules)`；改 JSON 不改代码即可改变通行语义。
+阻挡规则 SHALL 由 `data/walk_rules.json` 定义：三层的"阻挡值集合"（`blocked_terrain`/`blocked_variant` 为数组，`blocked_objects` 支持 `"nonzero"` 或数组）。默认规则 = 全开放（实测 object 层为横条纹装饰非墙、terrain 为逐格散点，均非可行走语义——真实碰撞待实机对照）。SimMapData 暴露 `is_walkable(x, y, rules)`；改 JSON 不改代码即可改变通行语义。
 
 #### Scenario: 默认规则
 - **WHEN** 以默认规则（空阻挡表）查询任意界内格子
@@ -16,7 +16,7 @@
 - **THEN** 该 terrain 的格子变为不可行走，无需改代码
 
 ### Requirement: BFS 最短路
-`find_path(from, to)` 返回从 from 到 to 的格坐标序列（不含 from，含 to），满足四连通、每格可行走；四连通等距下 BFS 即最短。路径确定性：同输入恒同输出（邻居扩展顺序固定）。
+`find_path(from, to)` SHALL 返回从 from 到 to 的格坐标序列（不含 from，含 to），满足四连通、每格可行走；四连通等距下 BFS 即最短。路径确定性：同输入恒同输出（邻居扩展顺序固定）。
 
 #### Scenario: 直线可达
 - **WHEN** 无障碍、同行两格寻路
@@ -31,7 +31,7 @@
 - **THEN** 返回空数组（调用方原地等待）
 
 ### Requirement: 动态占格
-寻路可接收"额外临时阻挡格"集合（存活单位所占格）；目标格本身被占时路径终点退化为相邻可达格。战斗移动消费该接口实现单位不重叠。
+寻路 SHALL 支持接收"额外临时阻挡格"集合（存活单位所占格）；目标格本身被占时路径终点退化为相邻可达格。战斗移动消费该接口实现单位不重叠。
 
 #### Scenario: 占格绕行
 - **WHEN** 最短路被一个存活单位占据

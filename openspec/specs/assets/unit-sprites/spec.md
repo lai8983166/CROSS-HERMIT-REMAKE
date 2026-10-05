@@ -8,7 +8,7 @@
 ## Requirements
 
 ### Requirement: DxAnim 容器解码
-导出工具解析 DxAnim 容器：`{u32 总长; u32 块数; u32 offs[]}`（offs[0]==8+4n 自洽、
+导出工具 SHALL 解析 DxAnim 容器：`{u32 总长; u32 块数; u32 offs[]}`（offs[0]==8+4n 自洽、
 相邻相等=空块、头部总长==文件长度，不符报错退出不产出半成品）。块0=动画序列表
 （10B 记录：b≤-2→帧索引、-1→空白帧、b≥0→控制/终止记录）、块5=帧画布矩形
 （帧数×8B 直排无头）、块6=帧容器（每帧标准 8bpp BMP 内嵌 1024B 调色板，索引 0 透明）。
@@ -25,7 +25,7 @@
   （块7 换色调色板的选择字段未定位 → 记开口）
 
 ### Requirement: 精灵资产产出
-每个被导出的档产出 `assets/unit/<档>/frame_*.png` + `_preview.png`（抽样条带，目检/
+每个被导出的档 SHALL 产出 `assets/unit/<档>/frame_*.png` + `_preview.png`（抽样条带，目检/
 语义标注用）+ `prototype/data/unit_sprites.json` 汇总表（帧路径、尺寸、画布矩形、
 锚点=画布底中在帧内的像素偏移、动画序列、anim_map 默认序列、_meta 时长单位与开口项）。
 默认序列（MOVE=帧数最多的连续+等时长**纯循环**（全部记录为界内帧，无空白帧——空白帧
@@ -41,7 +41,7 @@
 - **THEN** 渲染立即按新表工作（数据驱动，视图不含代码常量）
 
 ### Requirement: sim 精灵渲染
-战斗视图中配了 anim_id 的单位以精灵渲染：状态（待机/移动/攻击/死亡）→ anim_map 选
+战斗视图中配了 anim_id 的单位 SHALL 以精灵渲染：状态（待机/移动/攻击/死亡）→ anim_map 选
 序列循环（相位按 sim 逻辑帧推进，单位间错相），锚点对格心、格间平滑插值（跨
 move_interval 逻辑帧）、脚底椭圆阴影、朝向右行水平翻转（anim_map 数据标志）。
 配 palette_id（或阵营默认）时按换色表重映射渲染（见 assets/unit-recolor）。
