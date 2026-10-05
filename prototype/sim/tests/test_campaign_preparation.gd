@@ -290,3 +290,17 @@ func test_loot_owned_duplicate_draws_cascade_and_keep_nonownership_flag_bits() -
 	projected = Preparation.project(before, prep["inputs"], data["rules"])
 	assert_true(projected["supported"])
 	assert_eq(projected["after"]["item_flags"][13], 0xa105)
+
+
+func test_three_unit_preparation_cannot_award_then_lock_an_uncovered_four_student_result() -> void:
+	var data := _data()
+	var prep: Dictionary = data["preparation"]["cases"][0]
+	var before: Dictionary = data["chain"]["cases"][0]["expected_after"]
+	var campaign := Campaign.new()
+	assert_true(campaign.initialize(before, data["rules"]))
+	var handoff := _handoff(data["chain"]["cases"][0])
+	assert_false(handoff.prepare_tactics_replay("prep", prep["inputs"], campaign)["supported"])
+	assert_eq(campaign.revision(), 0)
+	assert_eq(campaign.journal(), [])
+	assert_eq(campaign.read_snapshot(), before)
+	assert_eq(handoff.status(), "pending_result_transaction")

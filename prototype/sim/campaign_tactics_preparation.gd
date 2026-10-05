@@ -60,6 +60,12 @@ static func project(before: Dictionary, inputs: Dictionary, rules: Dictionary) -
 			if not Week._bounded(unit.get(spec[0]), spec[1], spec[2]):
 				return _unsupported("invalid_tactical_unit_" + spec[0])
 	units.sort_custom(func(a, b): return int(a["ordinal"]) < int(b["ordinal"]))
+	# The next owned result currently requires complete week participants.
+	# Reject a catalog we cannot carry forward before awarding anything or
+	# occupying a preparation instance (e.g. three units with four active roles).
+	var result_view := Layout.result_view(before, units.map(func(unit): return int(unit["character_id"])), rules["week"])
+	if not result_view["supported"]:
+		return result_view
 	var score_inputs := {"task_id": 5, "mode": 0, "cap_mode": 0,
 		"result_selector": tactical["result_selector"], "time_key": tactical["time_key"],
 		"unit_key": tactical["unit_condition_key"], "initial_grade": inputs["initial_grade"],
