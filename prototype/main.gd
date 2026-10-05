@@ -6,6 +6,11 @@ const MARGIN := 8.0
 const OBJECT_OUTLINE := Color(1.0, 0.85, 0.2, 0.9)
 const FACTION_COLOR := [Color(0.85, 0.25, 0.2), Color(0.25, 0.45, 0.9)]
 const LOGIC_STEP := 1.0 / 30.0
+const ReturnDemo = preload("res://sim/campaign_return_demo.gd")
+const ReturnPanel = preload("res://ui/campaign_return_panel.gd")
+
+var return_demo: ReturnDemo
+var return_panel: ReturnPanel
 
 var map: SimMapData
 var palette: Dictionary = {}
@@ -80,13 +85,21 @@ func _ready() -> void:
 	if map.cell_w > 0:
 		_fit_view()
 	_start_battle(0)
+	return_panel = ReturnPanel.new()
+	add_child(return_panel)
+	return_panel.start_requested.connect(_start_return_demo)
+	return_panel.default_requested.connect(_return_default_battle)
 	queue_redraw()
 
 
-func _start_battle(seed: int) -> void:
+func _start_battle(seed: int, demo_mode := false) -> bool:
 	var setup: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/battle_setup.json"))
-	if FileAccess.file_exists("res://data/skill_demo.json"):
+	if demo_mode:
+		setup = ReturnDemo.battle_setup(setup)
+		if setup.is_empty():
+			return false
+	elif FileAccess.file_exists("res://data/skill_demo.json"):
 		var demo: Variant = JSON.parse_string(
 			FileAccess.get_file_as_string("res://data/skill_demo.json"))
 		if demo is Dictionary:
@@ -101,6 +114,28 @@ func _start_battle(seed: int) -> void:
 	selected = null
 	_accum = 0.0
 	_unit_anim_clocks.clear()
+	_panning = false
+	hover = Vector2i(-1, -1)
+	locked_cell = Vector2i(-1, -1)
+	return true
+
+
+func _start_return_demo(route: int) -> void:
+	return_demo = ReturnDemo.new()
+	if return_demo.start(route):
+		Engine.time_scale = 1.0
+		if not _start_battle(42, true):
+			return_demo._fail("demo_requires_three_allies")
+	return_panel.bind_session(return_demo)
+	queue_redraw()
+
+
+func _return_default_battle() -> void:
+	return_demo = null
+	return_panel.bind_session(null)
+	Engine.time_scale = 1.0
+	_start_battle(0)
+	queue_redraw()
 
 
 func _load_palette() -> void:
@@ -213,6 +248,8 @@ func _bake_map() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if return_panel != null and return_panel.blocks_battle_input():
+		return
 	if battle == null or battle.finished:
 		return
 	_accum += delta * Engine.time_scale
@@ -220,6 +257,9 @@ func _physics_process(delta: float) -> void:
 		battle.tick()
 		_accum -= LOGIC_STEP
 		if battle.finished:
+			if return_demo != null and return_demo.stage == "battle":
+				return_demo.accept_terminal(battle.get_terminal_snapshot())
+				return_panel.refresh()
 			break
 	_auto_shot(delta)
 	queue_redraw()
@@ -253,6 +293,8 @@ func _capture(tag: String) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if return_panel != null and return_panel.blocks_battle_input():
+		return
 	if event is InputEventMouseMotion:
 		hover = _cell_at(event.position)
 		if _panning:
@@ -279,7 +321,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_1: Engine.time_scale = 1.0
 			KEY_2: Engine.time_scale = 2.0
 			KEY_3: Engine.time_scale = 3.0
-			KEY_R: _start_battle(int(Time.get_ticks_msec()) % 100000)
+			KEY_R:
+				if return_demo != null:
+					_start_return_demo(return_demo.route)
+				else:
+					_start_battle(int(Time.get_ticks_msec()) % 100000)
 			KEY_SPACE: Engine.time_scale = 0.0 if Engine.time_scale > 0 else 1.0
 			KEY_T:
 				_base_mode = (_base_mode + 1) % 3

@@ -1,0 +1,81 @@
+extends "res://sim/tests/test_base.gd"
+
+const Demo = preload("res://sim/campaign_return_demo.gd")
+const ReturnPanel = preload("res://ui/campaign_return_panel.gd")
+
+
+func _terminal() -> Dictionary:
+	var base: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/battle_setup.json"))
+	var battle := Battle.start(Demo.battle_setup(base), 42)
+	battle.run_to_finish()
+	return battle.get_terminal_snapshot()
+
+
+func test_real_buttons_confirm_enter_browse_and_back_without_mutation() -> void:
+	var panel := ReturnPanel.new()
+	panel._ready()
+	var demo := Demo.new()
+	assert_true(demo.start(0))
+	panel.bind_session(demo)
+	assert_false(panel.blocks_battle_input())
+	assert_true(demo.accept_terminal(_terminal()))
+	panel.refresh()
+	assert_true(panel.blocks_battle_input())
+	assert_false(panel.confirm_button.disabled)
+	assert_true(panel.school_button.disabled)
+	assert_true(panel.result_text.text.contains("+34881"))
+	panel.confirm_button.pressed.emit()
+	assert_eq(demo.stage, "settled")
+	assert_true(panel.confirm_button.disabled)
+	assert_false(panel.school_button.disabled)
+	panel.school_button.pressed.emit()
+	assert_eq(demo.stage, "school")
+	assert_true(panel.school_content.visible)
+	assert_eq(panel.roster.item_count, 4)
+	var view := demo.view()
+	var journal := demo.journal()
+	panel.roster.item_selected.emit(3)
+	assert_true(panel.detail.text.contains("学生 #5"))
+	panel.back_button.pressed.emit()
+	assert_true(panel.result_text.visible)
+	panel.school_button.pressed.emit()
+	panel.confirm_button.pressed.emit()
+	assert_eq(demo.view(), view)
+	assert_eq(demo.journal(), journal)
+	assert_true(panel.notice.text.contains("不由当前战斗胜负计算"))
+	panel.free()
+
+
+func test_launcher_and_default_mode_are_independent_of_old_session() -> void:
+	var panel := ReturnPanel.new()
+	panel._ready()
+	var requests := []
+	panel.start_requested.connect(func(route): requests.append(route))
+	panel.route_select.select(1)
+	panel.start_button.pressed.emit()
+	assert_eq(requests, [1])
+	var demo := Demo.new()
+	assert_true(demo.start(1))
+	assert_true(demo.accept_terminal(_terminal()))
+	panel.bind_session(demo)
+	panel.bind_session(null)
+	assert_false(panel.blocks_battle_input())
+	assert_true(panel.default_button.disabled)
+	assert_eq(panel.status_label.text, "战斗原型")
+	assert_false(panel.body.visible)
+	panel.free()
+
+
+func test_error_page_blocks_progress_and_still_allows_restart() -> void:
+	var panel := ReturnPanel.new()
+	panel._ready()
+	var demo := Demo.new()
+	assert_false(demo.start(0, "res://missing-source.json"))
+	panel.bind_session(demo)
+	assert_true(panel.blocks_battle_input())
+	assert_true(panel.confirm_button.disabled)
+	assert_true(panel.school_button.disabled)
+	assert_false(panel.default_button.disabled)
+	assert_false(panel.start_button.disabled)
+	assert_true(panel.result_text.text.contains("来源文件"))
+	panel.free()
