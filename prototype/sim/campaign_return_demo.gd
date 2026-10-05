@@ -8,6 +8,8 @@ const CHAIN_PATH := "res://data/campaign_scene5_evidence.json"
 const PREP_PATH := "res://data/campaign_preparation_evidence.json"
 const CHAIN_SHA := "b349bb3d0bfcd51407595f8cec02e37fd744684332e31f08d3279d9f615f79f0"
 const PREP_SHA := "db3c9f1f133d307f2e1cbb874a17642995b82d6d8f478f5162a7f5ea19ad7a48"
+const WAITLIST_PATH := "res://data/school_waitlist_evidence.json"
+const WAITLIST_SHA := "3dc11db027bf6e821055bbe7c06d204bfc98160b8797ece209547b61596e823a"
 const NOTICE := "返回流程演示：战果使用已核对源样例，不由当前战斗胜负计算。"
 const IDS := [3, 4, 9]
 
@@ -23,13 +25,14 @@ var _before: Dictionary = {}
 var _terminal: Dictionary = {}
 
 
-func start(selected_route: int, chain_path := CHAIN_PATH, prep_path := PREP_PATH) -> bool:
+func start(selected_route: int, chain_path := CHAIN_PATH, prep_path := PREP_PATH, waitlist_path := WAITLIST_PATH) -> bool:
 	reset()
 	if selected_route not in [0, 1]:
 		return _fail("invalid_route")
-	if not FileAccess.file_exists(chain_path) or not FileAccess.file_exists(prep_path):
+	if not FileAccess.file_exists(chain_path) or not FileAccess.file_exists(prep_path) or not FileAccess.file_exists(waitlist_path):
 		return _fail("missing_source")
-	if FileAccess.get_sha256(chain_path) != CHAIN_SHA or FileAccess.get_sha256(prep_path) != PREP_SHA:
+	if FileAccess.get_sha256(chain_path) != CHAIN_SHA or FileAccess.get_sha256(prep_path) != PREP_SHA \
+			or FileAccess.get_sha256(waitlist_path) != WAITLIST_SHA:
 		return _fail("source_integrity_mismatch")
 	var chain: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(chain_path))
 	var preparation: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(prep_path))
@@ -42,6 +45,8 @@ func start(selected_route: int, chain_path := CHAIN_PATH, prep_path := PREP_PATH
 	_before = Roles._integers(prep["before_world"])
 	var rules: Dictionary = chain["rules"].duplicate(true)
 	rules["preparation"] = preparation["rules"].duplicate(true)
+	var waitlist: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(waitlist_path))
+	rules["school_waitlist"] = waitlist["rules"].duplicate(true)
 	_campaign = Campaign.new()
 	if not _campaign.initialize(_before, rules):
 		return _fail("invalid_source_catalog")
@@ -132,6 +137,12 @@ func enter_school() -> bool:
 		return _fail(result.get("reason", "school_boot_failed"))
 	stage = "school"
 	return true
+
+
+func sort_waitlist(mode: Variant) -> bool:
+	if stage != "school":
+		return false
+	return _campaign.sort_school_waitlist("demo-school", mode).get("supported", false)
 
 
 func view() -> Dictionary:

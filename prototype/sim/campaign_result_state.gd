@@ -11,6 +11,7 @@ const Layout = preload("res://sim/campaign_school_layout.gd")
 const Join = preload("res://sim/roster_join_replay.gd")
 const Continuation = preload("res://sim/school_return_continuation.gd")
 const Preparation = preload("res://sim/campaign_tactics_preparation.gd")
+const Waitlist = preload("res://sim/school_waitlist_sort.gd")
 
 var _snapshot: Dictionary = {}
 var _rules: Dictionary = {}
@@ -298,6 +299,34 @@ func project_school_return_boot(instance_id: String) -> Dictionary:
 	session["result"] = result.duplicate(true)
 	session["completed_revision"] = _revision
 	return _school_view(session, result["status"])
+
+
+func sort_school_waitlist(instance_id: String, mode: Variant) -> Dictionary:
+	if not _returns.has(instance_id):
+		return _unsupported("missing_return_instance")
+	var session: Dictionary = _returns[instance_id]
+	if not session["completed"] or not session["result"].get("school_boot_data_projected", false) \
+			or session.get("completed_revision", -1) != _revision \
+			or not _active.is_empty() or not _active_return.is_empty() or not _active_preparation.is_empty():
+		return _unsupported("pending_or_stale_school_construction")
+	if not _rules.get("school_waitlist") is Dictionary:
+		return _unsupported("missing_waitlist_sort_rules")
+	var result := Waitlist.project(_snapshot, mode, _rules["school_waitlist"], _rules["week"])
+	if not result["supported"]:
+		return result
+	var status := "unchanged"
+	if result["changed"]:
+		var phase := {"phase": "school_waitlist_sort", "before": read_snapshot(),
+			"after": result["after"].duplicate(true)}
+		_publish(instance_id, result["after"], [phase], {"command": 11 + int(mode),
+			"mode": int(mode), "source_image_sha256": _rules["school_waitlist"]["source_image_sha256"],
+			"native_consumers": ["4A3CA0", "4A8BF0"]})
+		session["completed_revision"] = _revision
+		status = "sorted"
+	return {"supported": true, "status": status, "campaign_snapshot": read_snapshot(),
+		"campaign_revision": _revision, "execution_scope": result["execution_scope"],
+		"live_witness": false, "authorizes_persistent_write": false,
+		"school_initialized": false, "interactive_school_ready": false}
 
 
 func _validate_school_publication(result: Dictionary, phases: Array) -> String:

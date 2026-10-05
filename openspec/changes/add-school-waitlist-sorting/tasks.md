@@ -6,7 +6,7 @@
 
 ## 2. Catalog operation
 
-- [ ] 2.1 Implement exact sorting and guarded shared-state publication; cover native cases, invalid/premature inputs, no-change repetition, unchanged rewards/date and late duplicate return events; document API, run Godot suites and commit.
+- [x] 2.1 Implement exact sorting and guarded shared-state publication; cover native cases, invalid/premature inputs, no-change repetition, unchanged rewards/date and late duplicate return events; document API, run Godot suites and commit.
 
 ## 3. School window
 

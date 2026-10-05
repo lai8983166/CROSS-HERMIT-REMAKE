@@ -70,6 +70,8 @@ static func _validate_control(school: Dictionary) -> String:
 	if not school["school_control"] is Dictionary:
 		return "invalid_school_control"
 	var control: Dictionary = school["school_control"]
+	if control.has("idle_sort_mode") and not Week._bounded(control["idle_sort_mode"], 0, 2):
+		return "invalid_waitlist_sort_mode"
 	for spec in [["selected_group", -1, 0], ["person_phase", 0, 0], ["person_ready", 0, 1], ["person_selection", -1, 0]]:
 		if not Week._bounded(control.get(spec[0]), spec[1], spec[2]):
 			return "outside_captured_school_control"
