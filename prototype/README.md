@@ -47,4 +47,4 @@ exe 直达路径 (cmd 用):
 ~/bin/godot --headless --path prototype -s res://sim/tests/test_runner.gd
 ```
 
-当前37套件277项通过。主窗口仍提供上面的战斗操作，战后回放尚未接入实际菜单；教师课程工作表、完整战术VM和存档另有未完成边界。完整来源、输入域及验收见 [战斗返回审计](../docs/battle_return_audit.md) §57–63。
+当前37套件277项通过；全部Python279项回归及项目级OpenSpec严格检查也通过，当前返回变更13/13完成实现验收。主窗口仍提供上面的战斗操作，战后回放尚未接入实际菜单；教师课程工作表、完整战术VM和存档另有未完成边界。完整来源、输入域及验收见 [战斗返回审计](../docs/battle_return_audit.md) §57–66。
