@@ -1,5 +1,5 @@
 extends CanvasLayer
-## Read-only view; session methods alone publish campaign state.
+## Window view and waiting-order controls; session methods publish campaign state.
 
 signal start_requested(route: int)
 signal default_requested
@@ -16,6 +16,7 @@ var confirm_button: Button
 var school_button: Button
 var back_button: Button
 var roster: ItemList
+var sort_select: OptionButton
 var detail: RichTextLabel
 var result_text: RichTextLabel
 var status_label: Label
@@ -101,11 +102,23 @@ func _ready() -> void:
 	school_content.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	school_content.add_theme_constant_override("separation", 20)
 	column.add_child(school_content)
+	var waiting := VBoxContainer.new()
+	waiting.custom_minimum_size.x = 230
+	waiting.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	school_content.add_child(waiting)
+	var waiting_label := Label.new()
+	waiting_label.text = "待命学生"
+	waiting.add_child(waiting_label)
+	sort_select = OptionButton.new()
+	sort_select.add_item("等级 · 从高到低")
+	sort_select.add_item("职业类别")
+	sort_select.add_item("属性合计 · 从高到低")
+	sort_select.item_selected.connect(_sort_waitlist)
+	waiting.add_child(sort_select)
 	roster = ItemList.new()
-	roster.custom_minimum_size.x = 230
 	roster.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	roster.item_selected.connect(_select_student)
-	school_content.add_child(roster)
+	waiting.add_child(roster)
 	detail = _rich()
 	school_content.add_child(detail)
 	var footer := HBoxContainer.new()
@@ -141,12 +154,13 @@ func refresh() -> void:
 		return
 	var view := session.view() if session != null else {"stage": "idle"}
 	var stage: String = view["stage"]
+	sort_select.disabled = stage != "school"
 	body.visible = stage in ["result", "settled", "school", "error"]
 	default_button.disabled = stage == "idle"
 	start_button.text = "开始返回流程演示" if stage == "idle" else "重开返回流程演示"
 	notice.text = "选择源路线，开始本地战斗 → 查看战果 → 确认 → 学校名单。" if stage == "idle" else Demo.NOTICE
 	status_label.text = {"idle": "战斗原型", "battle": "演示 · 战斗中", "result": "待确认战果",
-		"settled": "可进入学校", "school": "学校数据浏览", "error": "演示未完成"}[stage]
+		"settled": "可进入学校", "school": "学校 · 待命名单", "error": "演示未完成"}[stage]
 	confirm_button.disabled = stage != "result"
 	school_button.disabled = stage not in ["settled", "school"]
 	back_button.visible = stage == "school" and _page == "school"
@@ -213,10 +227,16 @@ func _render_result(view: Dictionary) -> void:
 
 
 func _render_roster(snapshot: Dictionary) -> void:
-	_student_ids = snapshot["school"]["student_ids"].slice(0, int(snapshot["school"]["student_count"]))
+	var control: Dictionary = snapshot["school"]["school_control"]
+	_student_ids = control["idle_student_ids"].duplicate()
+	sort_select.select(int(control.get("idle_sort_mode", 0)))
 	roster.clear()
 	for id in _student_ids:
 		roster.add_item("学生 #%d" % id)
+	if _student_ids.is_empty():
+		_selected_id = -1
+		detail.text = "暂无待命学生。"
+		return
 	var index := _student_ids.find(_selected_id)
 	if index < 0:
 		index = 0
@@ -224,9 +244,18 @@ func _render_roster(snapshot: Dictionary) -> void:
 	_select_student(index)
 
 
+func _sort_waitlist(mode: int) -> void:
+	if session != null and session.sort_waitlist(mode):
+		refresh()
+	else:
+		refresh()
+		status_label.text = "待命排序未通过检查"
+
+
 func _select_student(index: int) -> void:
 	if index < 0 or index >= _student_ids.size() or session == null:
 		return
+	var changed := _selected_id != int(_student_ids[index])
 	_selected_id = int(_student_ids[index])
 	var snapshot: Dictionary = session.view()["snapshot"]
 	var record: Dictionary = Roles._records(snapshot)[_selected_id]
@@ -241,8 +270,10 @@ func _select_student(index: int) -> void:
 	for i in range(5):
 		var members: Array = school["group_student_ids"][i].filter(func(id): return int(id) >= 0)
 		lines.append("%d班  %s" % [i + 1, "未编班" if members.is_empty() else str(members)])
-	lines.append("\n学校名单与详情可浏览；教师课程、编班和排课尚未开放。")
+	lines.append("\n待命名单可排序，详情可浏览；教师课程、编班和排课尚未开放。")
 	detail.text = "\n".join(lines)
+	if changed:
+		detail.scroll_to_line(0)
 
 
 static func _rich() -> RichTextLabel:

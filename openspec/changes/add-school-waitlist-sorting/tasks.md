@@ -10,4 +10,4 @@
 
 ## 3. School window
 
-- [ ] 3.1 Expose three choices and waiting order with selected-ID preservation; verify actual window input for both routes, browsing and restart, archive fresh screenshots, update user docs, run integration/strict checks and commit.
+- [x] 3.1 Expose three choices and waiting order with selected-ID preservation; verify actual window input for both routes, browsing and restart, archive fresh screenshots, update user docs, run integration/strict checks and commit.
