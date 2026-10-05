@@ -20,6 +20,14 @@ EVENT_NATIVE = ((0x4337F0, 0x43396A), (0x431D40, 0x431DC8),
 
 
 class CampaignScene5Emulator(CampaignSchoolBootEmulator):
+    def _thread(self, address, receiver, *, timeout=10_000_000, count=2_000_000):
+        # The combined event/task/result/boot hook stack can exceed the old
+        # CH003 wall-clock budget under load. Keep the same native instruction
+        # and frame limits, stack checks and original default budgets elsewhere.
+        if address == 0x4D1A80 and self.phase == 'chapter':
+            timeout = max(timeout, 120_000_000)
+        return super()._thread(address, receiver, timeout=timeout, count=count)
+
     def __init__(self, *, event_bit=0):
         if type(event_bit) is not int or event_bit not in (0, 1):
             raise ValueError('event bit outside captured scene5 subset')

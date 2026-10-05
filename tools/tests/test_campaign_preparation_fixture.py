@@ -2,13 +2,32 @@ import hashlib
 import json
 import struct
 import unittest
+from unittest.mock import patch
 from capstone import Cs, CS_ARCH_X86, CS_MODE_32
 
 from tools.campaign_preparation_fixture import fixture
+from tools.campaign_scene5_emulation import CampaignScene5Emulator
+from tools.campaign_school_boot_emulation import CampaignSchoolBootEmulator
 from tools.tactics_exit_emulation import ROOT, SOURCE, report_text
 
 
 class CampaignPreparationFixtureTests(unittest.TestCase):
+    def test_combined_chapter_budget_keeps_instruction_and_other_task_limits(self):
+        # Avoid emulating here: observe exactly the arguments forwarded to the
+        # existing native thread runner, whose ret4/stack guards remain intact.
+        instance = CampaignScene5Emulator(event_bit=0)
+        instance.phase = 'chapter'
+        with patch.object(CampaignSchoolBootEmulator, '_thread', autospec=True) as run:
+            instance._thread(0x4D1A80, 123, timeout=60_000_000, count=8_000_000)
+            run.assert_called_once_with(instance, 0x4D1A80, 123, timeout=120_000_000, count=8_000_000)
+            run.reset_mock()
+            instance._thread(0x4D1A80, 123, timeout=150_000_000, count=8_000_000)
+            run.assert_called_once_with(instance, 0x4D1A80, 123, timeout=150_000_000, count=8_000_000)
+            run.reset_mock()
+            instance.phase = 'ch002_adv'
+            instance._thread(0x4D1A80, 123, timeout=60_000_000, count=8_000_000)
+            run.assert_called_once_with(instance, 0x4D1A80, 123, timeout=60_000_000, count=8_000_000)
+
     def test_export_is_byte_exact_and_keeps_continuous_native_before_and_after(self):
         exported = fixture()
         raw = report_text(exported).encode('utf-8')
