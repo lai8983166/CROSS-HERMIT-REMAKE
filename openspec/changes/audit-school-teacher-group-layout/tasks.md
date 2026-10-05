@@ -10,4 +10,4 @@
 
 ## 3. Compatibility acceptance
 
-- [ ] 3.1 Verify existing return/sorting window remains unchanged, rerun relevant native checks and strict validation, update current progress and evidence limitations, commit final acceptance.
+- [x] 3.1 Verify existing return/sorting window remains unchanged, rerun relevant native checks and strict validation, update current progress and evidence limitations, commit final acceptance.
