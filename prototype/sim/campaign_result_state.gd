@@ -10,12 +10,15 @@ const Week = preload("res://sim/week_settlement_replay.gd")
 const Layout = preload("res://sim/campaign_school_layout.gd")
 const Join = preload("res://sim/roster_join_replay.gd")
 const Continuation = preload("res://sim/school_return_continuation.gd")
+const Preparation = preload("res://sim/campaign_tactics_preparation.gd")
 
 var _snapshot: Dictionary = {}
 var _rules: Dictionary = {}
 var _sessions: Dictionary = {}
 var _probes: Dictionary = {}
 var _returns: Dictionary = {}
+var _preparations: Dictionary = {}
+var _active_preparation := ""
 var _active := ""
 var _active_return := ""
 var _revision := 0
@@ -53,17 +56,61 @@ func journal() -> Array:
 	return _journal.duplicate(true)
 
 
-func begin_result(instance_id: String, context: Dictionary, source_inputs: Dictionary = {}) -> Dictionary:
+func prepare_tactics(instance_id: String, inputs: Dictionary, source_inputs: Dictionary = {}) -> Dictionary:
 	if _snapshot.is_empty() or instance_id.is_empty():
 		return _unsupported("missing_campaign_or_instance")
-	if _probes.has(instance_id) or _returns.has(instance_id):
+	if _sessions.has(instance_id) or _probes.has(instance_id) or _returns.has(instance_id):
+		return _unsupported("instance_belongs_to_another_operation")
+	if _preparations.has(instance_id):
+		var cached: Dictionary = _preparations[instance_id]
+		if cached["inputs"] != inputs or cached["source_inputs"] != source_inputs:
+			return _unsupported("instance_input_conflict")
+		return _preparation_view(cached, "duplicate")
+	if not _active.is_empty() or not _active_return.is_empty() or not _active_preparation.is_empty():
+		return _unsupported("another_operation_pending")
+	var result := Preparation.project(_snapshot, inputs, _rules)
+	if not result["supported"]:
+		return result
+	var entry := {"inputs": inputs.duplicate(true), "source_inputs": source_inputs.duplicate(true),
+		"result": result.duplicate(true)}
+	var publication_sources: Dictionary = entry["source_inputs"].duplicate(true)
+	publication_sources["tactical_preparation_inputs"] = entry["inputs"].duplicate(true)
+	_publish(instance_id, result["after"], result["phase_log"], publication_sources)
+	entry["revision"] = _revision
+	_preparations[instance_id] = entry
+	_active_preparation = instance_id
+	return _preparation_view(entry, "prepared_once")
+
+
+func _preparation_view(entry: Dictionary, status: String) -> Dictionary:
+	return {"supported": true, "status": status, "result": entry["result"].duplicate(true),
+		"campaign_snapshot": read_snapshot(), "campaign_revision": _revision,
+		"live_witness": false, "authorizes_persistent_write": false, "school_initialized": false}
+
+
+func begin_result(instance_id: String, context: Dictionary, source_inputs: Dictionary = {}, preparation_instance: String = "") -> Dictionary:
+	if _snapshot.is_empty() or instance_id.is_empty():
+		return _unsupported("missing_campaign_or_instance")
+	if _probes.has(instance_id) or _returns.has(instance_id) or _preparations.has(instance_id):
 		return _unsupported("instance_belongs_to_school_probe")
 	if _sessions.has(instance_id):
-		if _sessions[instance_id]["context"] != context or _sessions[instance_id]["source_inputs"] != source_inputs:
+		if _sessions[instance_id]["context"] != context or _sessions[instance_id]["source_inputs"] != source_inputs \
+				or _sessions[instance_id]["preparation_instance"] != preparation_instance:
 			return _unsupported("instance_input_conflict")
 		return _view(_sessions[instance_id], "duplicate")
 	if not _active.is_empty() or not _active_return.is_empty():
 		return _unsupported("another_result_pending")
+	if not _active_preparation.is_empty() or not preparation_instance.is_empty():
+		if preparation_instance.is_empty() or preparation_instance != _active_preparation \
+				or not _preparations.has(preparation_instance):
+			return _unsupported("missing_bound_preparation")
+		var prepared: Dictionary = _preparations[preparation_instance]
+		if prepared["revision"] != _revision or not Week._integer(context.get("round_grade")) \
+				or int(context["round_grade"]) != prepared["result"]["summary"]["grade_index"] \
+				or not Week._vector(context.get("round_ids"), 3, 1, 12) \
+				or Roles._integers(context["round_ids"]) != prepared["result"]["ordered_ids"] \
+				or not Week._integer(context.get("mode")) or int(context["mode"]) != int(prepared["inputs"]["mode"]):
+			return _unsupported("preparation_result_context_conflict")
 	# The calculator validates the entire state12 context and both role/week
 	# inputs before it can produce any growth. No source fixture is a commit token.
 	var before := _snapshot.duplicate(true)
@@ -80,10 +127,12 @@ func begin_result(instance_id: String, context: Dictionary, source_inputs: Dicti
 	if not staged["supported"]:
 		return staged
 	var session := {"context": context.duplicate(true), "source_inputs": source_inputs.duplicate(true), "transaction": transaction,
-		"result": result.duplicate(true), "completed": false, "completed_revision": 0}
+		"result": result.duplicate(true), "completed": false, "completed_revision": 0,
+		"preparation_instance": preparation_instance}
 	_sessions[instance_id] = session
 	_active = instance_id
-	_publish(instance_id, staged["after"], staged["phases"], session["source_inputs"])
+	_active_preparation = ""
+	_publish(instance_id, staged["after"], staged["phases"], _result_sources(session))
 	return _view(session, result["status"])
 
 
@@ -104,7 +153,7 @@ func finish_result(instance_id: String, confirmed: bool, mvp_ready: bool) -> Dic
 		var staged := _stage_result_publication(result["after"], result["phase_log"].slice(1))
 		if not staged["supported"]:
 			return staged
-		_publish(instance_id, staged["after"], staged["phases"], session["source_inputs"])
+		_publish(instance_id, staged["after"], staged["phases"], _result_sources(session))
 		session["completed"] = true
 		session["completed_revision"] = _revision
 		_active = ""
@@ -119,7 +168,7 @@ func probe_school_join(instance_id: String, result_instance: String, context: Di
 	var cached := _probe_guard(instance_id, input)
 	if not cached.is_empty():
 		return cached
-	if not _active.is_empty() or not _active_return.is_empty() or not _sessions.has(result_instance):
+	if not _active.is_empty() or not _active_return.is_empty() or not _active_preparation.is_empty() or not _sessions.has(result_instance):
 		return _unsupported("pending_or_missing_result_parent")
 	var parent: Dictionary = _sessions[result_instance]
 	if not parent["completed"] or parent["completed_revision"] != _revision \
@@ -140,7 +189,7 @@ func probe_school_join(instance_id: String, result_instance: String, context: Di
 		return merged
 	var sources := {"direct_source_call": "Chapter020 opcode144", "result_instance": result_instance,
 		"result_context": parent["context"].duplicate(true),
-		"result_source_inputs": parent["source_inputs"].duplicate(true), "join_context": context.duplicate(true)}
+		"result_source_inputs": _result_sources(parent), "join_context": context.duplicate(true)}
 	_publish_probe(instance_id, input, result, merged["snapshot"], "direct_join_probe", sources)
 	return _probe_view(_probes[instance_id], result["status"])
 
@@ -150,7 +199,7 @@ func probe_school_week(instance_id: String, join_instance: String) -> Dictionary
 	var cached := _probe_guard(instance_id, input)
 	if not cached.is_empty():
 		return cached
-	if not _active.is_empty() or not _active_return.is_empty() or not _probes.has(join_instance) \
+	if not _active.is_empty() or not _active_return.is_empty() or not _active_preparation.is_empty() or not _probes.has(join_instance) \
 			or _probes[join_instance]["input"]["kind"] != "join" \
 			or _probes[join_instance]["revision"] != _revision:
 		return _unsupported("pending_missing_or_stale_join_parent")
@@ -173,12 +222,12 @@ func probe_school_week(instance_id: String, join_instance: String) -> Dictionary
 func begin_school_return(instance_id: String, result_instance: String) -> Dictionary:
 	if _snapshot.is_empty() or instance_id.is_empty():
 		return _unsupported("missing_campaign_or_return_instance")
-	if _sessions.has(instance_id) or _probes.has(instance_id):
+	if _sessions.has(instance_id) or _probes.has(instance_id) or _preparations.has(instance_id):
 		return _unsupported("instance_belongs_to_another_operation")
 	if _returns.has(instance_id):
 		return _school_view(_returns[instance_id], "duplicate") if _returns[instance_id]["parent"] == result_instance \
 			else _unsupported("instance_input_conflict")
-	if not _active.is_empty() or not _active_return.is_empty() or not _sessions.has(result_instance):
+	if not _active.is_empty() or not _active_return.is_empty() or not _active_preparation.is_empty() or not _sessions.has(result_instance):
 		return _unsupported("pending_or_missing_result_parent")
 	var parent: Dictionary = _sessions[result_instance]
 	if not parent["completed"] or parent["completed_revision"] != _revision \
@@ -194,7 +243,7 @@ func begin_school_return(instance_id: String, result_instance: String) -> Dictio
 		return _unsupported(reason)
 	var session := {"parent": result_instance, "calculator": calculator, "result": result.duplicate(true),
 		"source_inputs": {"result_instance": result_instance, "result_context": parent["context"].duplicate(true),
-			"result_source_inputs": parent["source_inputs"].duplicate(true)}, "completed": false}
+			"result_source_inputs": _result_sources(parent)}, "completed": false}
 	_returns[instance_id] = session
 	_active_return = instance_id
 	_publish(instance_id, result["after"], result["phase_log"], session["source_inputs"])
@@ -236,7 +285,7 @@ func project_school_return_boot(instance_id: String) -> Dictionary:
 	if session["result"].get("school_boot_data_projected", false):
 		return _school_view(session, "duplicate")
 	if not session["completed"] or session.get("completed_revision", -1) != _revision \
-			or not _active.is_empty() or not _active_return.is_empty():
+			or not _active.is_empty() or not _active_return.is_empty() or not _active_preparation.is_empty():
 		return _unsupported("pending_or_stale_school_construction")
 	var result: Dictionary = session["calculator"].project_school_boot(instance_id)
 	if not result["supported"]:
@@ -280,6 +329,8 @@ func _probe_guard(instance_id: String, input: Dictionary) -> Dictionary:
 		return _unsupported("instance_belongs_to_result")
 	if _returns.has(instance_id):
 		return _unsupported("instance_belongs_to_school_return")
+	if _preparations.has(instance_id):
+		return _unsupported("instance_belongs_to_preparation")
 	if _probes.has(instance_id):
 		if _probes[instance_id]["input"] != input:
 			return _unsupported("instance_input_conflict")
@@ -343,6 +394,16 @@ func _view(session: Dictionary, status: String) -> Dictionary:
 		"campaign_snapshot": read_snapshot(), "campaign_revision": _revision,
 		"execution_scope": "isolated_campaign_replay", "live_witness": false,
 		"authorizes_persistent_write": false, "school_initialized": false}
+
+
+func _result_sources(session: Dictionary) -> Dictionary:
+	var sources: Dictionary = session["source_inputs"].duplicate(true)
+	var parent: String = session["preparation_instance"]
+	if not parent.is_empty():
+		var prepared: Dictionary = _preparations[parent]
+		sources["tactical_preparation_parent"] = {"instance_id": parent, "revision": prepared["revision"],
+			"inputs": prepared["inputs"].duplicate(true), "source_inputs": prepared["source_inputs"].duplicate(true)}
+	return sources
 
 
 static func _unsupported(reason: String) -> Dictionary:

@@ -21,6 +21,8 @@ var _campaign: Campaign
 var _school_return_instance := ""
 var _replay_status := ""
 var _scene_condition_input: Dictionary = {}
+var _preparation_instance := ""
+var _preparation_inputs: Dictionary = {}
 
 
 func accept_terminal_snapshot(snapshot: Dictionary) -> bool:
@@ -137,6 +139,44 @@ func prepare_scene5_result_replay(event_world: Dictionary, exit_frame: Dictionar
 	return _gate_view(result["status"])
 
 
+func prepare_tactics_replay(instance_id: String, preparation_inputs: Dictionary, campaign: Campaign) -> Dictionary:
+	if _result_gate.is_empty() or _result_gate["requested_state"] != 12 \
+			or not _result_gate.has("scene5_condition_selection"):
+		return _unsupported("pending_sourced_state12_gate")
+	if not preparation_inputs.get("result_inputs") is Dictionary:
+		return _unsupported("missing_tactical_result_inputs")
+	var tactical: Dictionary = preparation_inputs["result_inputs"]
+	if not Week._integer(tactical.get("result_selector")) \
+			or int(tactical["result_selector"]) != _result_gate["scene5_condition_selection"]["tactical_result_selector"]:
+		return _unsupported("preparation_selector_does_not_match_scene5")
+	if not tactical.get("units") is Array:
+		return _unsupported("missing_tactical_units")
+	var ids := []
+	for unit in tactical["units"]:
+		if not unit is Dictionary:
+			return _unsupported("invalid_tactical_unit")
+		ids.append(unit.get("character_id"))
+	var reason := _validate_terminal_ids({"round_ids": ids})
+	if not reason.is_empty():
+		return _unsupported(reason)
+	if campaign == null or instance_id.is_empty():
+		return _unsupported("missing_campaign_or_instance")
+	if not _preparation_instance.is_empty():
+		if _preparation_instance != instance_id or _preparation_inputs != preparation_inputs or _campaign != campaign:
+			return _unsupported("preparation_instance_input_conflict")
+	elif not _result_instance.is_empty():
+		return _unsupported("result_already_started")
+	var result := campaign.prepare_tactics(instance_id, preparation_inputs, {"terminal_snapshot": _terminal_snapshot,
+		"result_gate": _result_gate, "script_signal": _script_signal})
+	if result["supported"]:
+		_preparation_instance = instance_id
+		_preparation_inputs = preparation_inputs.duplicate(true)
+		_campaign = campaign
+		if _result_instance.is_empty():
+			_replay_status = "tactical_result_prepared"
+	return result
+
+
 func begin_result_replay(instance_id: String, context: Dictionary, campaign: Campaign) -> Dictionary:
 	if _result_gate.is_empty() or _result_gate["requested_state"] != 12:
 		return _unsupported("pending_state12_result_gate")
@@ -151,11 +191,13 @@ func begin_result_replay(instance_id: String, context: Dictionary, campaign: Cam
 		return _unsupported(reason)
 	if campaign == null or instance_id.is_empty():
 		return _unsupported("missing_campaign_or_instance")
+	if not _preparation_instance.is_empty() and _campaign != campaign:
+		return _unsupported("preparation_campaign_conflict")
 	if not _result_instance.is_empty() and (_result_instance != instance_id \
 			or _result_context != context or _campaign != campaign):
 		return _unsupported("return_instance_input_conflict")
 	var result := campaign.begin_result(instance_id, context, {"terminal_snapshot": _terminal_snapshot,
-		"result_gate": _result_gate, "script_signal": _script_signal})
+		"result_gate": _result_gate, "script_signal": _script_signal}, _preparation_instance)
 	if not result["supported"]:
 		return result
 	_result_instance = instance_id
