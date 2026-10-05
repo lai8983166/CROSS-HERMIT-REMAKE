@@ -36,3 +36,15 @@
 
 exe 直达路径 (cmd 用):
 `%LOCALAPPDATA%\Microsoft\WinGet\Packages\GodotEngine.GodotEngine.Mono_Microsoft.Winget.Source_8wekyb3d8bbwe\Godot_v4.7.2-stable_mono_win64\Godot_v4.7.2-stable_mono_win64_console.exe`
+
+## 战后返回验收 (2026-10-05)
+
+`sim/tests/test_battle_campaign_replay.gd` 已使用实际Battle终局和明确提供的原版场景5回放输入，验证共享目录的评分/成长包/战利品→角色战果→剧情入学→完整周结算→职务室→学校数据初始化。两条源子程序11/8路径的完整角色与学校快照均与同CPU原版报告一致，重复送达不重发奖励或结算；本地伤害、HP和winner不代替原版事件/结果输入。
+
+运行全部离屏测试：
+
+```bash
+~/bin/godot --headless --path prototype -s res://sim/tests/test_runner.gd
+```
+
+当前37套件277项通过。主窗口仍提供上面的战斗操作，战后回放尚未接入实际菜单；教师课程工作表、完整战术VM和存档另有未完成边界。完整来源、输入域及验收见 [战斗返回审计](../docs/battle_return_audit.md) §57–63。
