@@ -10,4 +10,4 @@
 
 ## 3. Compatibility acceptance
 
-- [ ] 3.1 Rerun teacher/student/sorting native checks and current window checks, verify existing code/evidence unchanged, run strict validation, update current progress and source boundaries, commit final acceptance.
+- [x] 3.1 Rerun teacher/student/sorting native checks and current window checks, verify existing code/evidence unchanged, run strict validation, update current progress and source boundaries, commit final acceptance.
