@@ -10,4 +10,4 @@
 
 ## 3. Compatibility acceptance
 
-- [ ] 3.1 Rerun relevant native and current UI checks, verify previous code/evidence unchanged, run global strict validation, update progress and teacher provenance boundary, commit acceptance.
+- [x] 3.1 Rerun relevant native and current UI checks, verify previous code/evidence unchanged, run global strict validation, update progress and teacher provenance boundary, commit acceptance.

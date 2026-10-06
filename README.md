@@ -5,13 +5,13 @@
 
 ## 当前状态 (2026-10-06)
 
-已建立素材解析工具和 Godot 战斗原型。返回数据变更 `trace-battle-result-school-transition` 完成13/13；界面变更 `add-campaign-return-ui`、待命排序 `add-school-waitlist-sorting`、教师/班级 `audit-school-teacher-group-layout`、学生移动 `audit-school-student-movement` 和教师移动/工作表 `audit-school-teacher-movement` 均完成3/3，尚未归档。主窗口可演示战果确认、浏览学校详情，并按等级、原版职业类别或七属性合计排序待命学生；选中学生与浏览后的顺序保留。独立模块已支持来源教师登记、学生/教师移动、班级整理/评级与工作列表刷新；新增52组教师移动及11组工作列表/分页案例，尚未接入当前零教师演示或开放编班按钮。
+已建立素材解析工具和 Godot 战斗原型。返回数据变更 `trace-battle-result-school-transition` 完成13/13；界面变更 `add-campaign-return-ui`、待命排序 `add-school-waitlist-sorting`、教师/班级 `audit-school-teacher-group-layout`、学生移动 `audit-school-student-movement`、教师移动/工作表 `audit-school-teacher-movement` 和课程解锁 `audit-school-course-unlocking` 均完成3/3，尚未归档。主窗口可演示战果确认、浏览学校详情，并按等级、原版职业类别或七属性合计排序待命学生；选中学生与浏览后的顺序保留。独立模块已支持来源教师登记、学生/教师移动、班级整理/评级、工作列表刷新和来源日期课程解锁；新增15组解锁案例及全部100条课程日期/教师掩码，容量溢出整体拒绝，尚未接入当前零教师演示或开放编班/排课按钮。
 
-最新Godot全部43套件314项通过，主窗口两路线79项离屏交互检查再次通过，既有86项实际渲染验收仍适用未改动的窗口；项目级OpenSpec严格检查19项全部通过。Python教师移动/工作表10项、学生移动10项、教师/班级11项和排序9项本轮合计40项通过，重新生成原版报告逐字节一致；既有279项全量沿用已归档基线，本轮未重跑既有全量。每个小阶段验证后立即提交，无push。
+最新Godot全部44套件321项通过，主窗口两路线79项离屏交互检查再次通过，既有86项实际渲染验收仍适用未改动的窗口；项目级OpenSpec严格检查20项全部通过。Python课程解锁9项、教师移动/工作表10项、学生移动10项、教师/班级11项和排序9项本轮合计49项通过，重新生成原版报告逐字节一致；既有279项全量沿用已归档基线，本轮未重跑既有全量。每个小阶段验证后立即提交，无push。
 
-原版隔离执行已在同一CPU核对场景5条件实际选择子程序11/8→战术收尾→状态11/10/12→战果→剧情入学→唯一完整周→职务室→学校任务构造与已捕获初始化字段。共享 Godot 目录现在自行计算任务5评分、成长包、总点数及战利品，再连续完成角色、周历与学校数据发布；实际本地Battle终局也已接入这条显式回放接口，重复送达不重发奖励或推进周。操作见 [返回流程演示](docs/campaign_return_ui.md)，最新验收和边界见 [战斗返回审计](docs/battle_return_audit.md) §57–81；排序API见 [待命名单排序](docs/school_waitlist_sort.md)，教师/班级API见 [教师登记与班级数据](docs/school_teacher_group_layout.md)，学生操作API见 [学生移动数据](docs/school_student_movement.md)，教师/工作列表API见 [教师移动数据](docs/school_teacher_movement.md)，最新界面见 [验收归档](analysis/school-waitlist-ui-final-20261005/README.md)。既有全量Python日志见 [回归记录](analysis/python-regression-20261005.txt)。
+原版隔离执行已在同一CPU核对场景5条件实际选择子程序11/8→战术收尾→状态11/10/12→战果→剧情入学→唯一完整周→职务室→学校任务构造与已捕获初始化字段。共享 Godot 目录现在自行计算任务5评分、成长包、总点数及战利品，再连续完成角色、周历与学校数据发布；实际本地Battle终局也已接入这条显式回放接口，重复送达不重发奖励或推进周。操作见 [返回流程演示](docs/campaign_return_ui.md)，最新验收和边界见 [战斗返回审计](docs/battle_return_audit.md) §57–84；排序API见 [待命名单排序](docs/school_waitlist_sort.md)，教师/班级API见 [教师登记与班级数据](docs/school_teacher_group_layout.md)，学生操作API见 [学生移动数据](docs/school_student_movement.md)，教师/工作列表API见 [教师移动数据](docs/school_teacher_movement.md)，课程解锁与教师来源见 [课程解锁数据](docs/school_course_unlocking.md)，最新界面见 [验收归档](analysis/school-waitlist-ui-final-20261005/README.md)。既有全量Python日志见 [回归记录](analysis/python-regression-20261005.txt)。
 
-原版终场世界、资源/演出、时钟/准备初态等仍有声明输入；本地Battle伤害与HP不派生原版事件谓词或状态11结果记录。默认入口保留战斗原型，可从顶部启动独立返回演示；完整战术动态、并行事件调度、教师来源迁移/课程日期解锁/选择执行、编班/排课窗口、完整原版学校菜单及原版存档仍未完成。以下独立取证工具的说明描述各自执行边界，较早补充记录保留为历史进度；当前组合能力以本节和审计最新章节为准。
+原版终场世界、资源/演出、时钟/准备初态等仍有声明输入；本地Battle伤害与HP不派生原版事件谓词或状态11结果记录。已核对新局49E930登记教师101的调用字节，Chapter012117仍仅是加入前缀；当前零教师目录是声明回放，不是完整原版初始名单。下一步补初始化/教师字段归属和一致的会话迁移，再接可操作编班窗口。默认入口保留战斗原型，可从顶部启动独立返回演示；完整战术动态、并行事件调度、教师来源迁移与课程解锁接入/选择执行、编班/排课窗口、完整原版学校菜单及原版存档仍未完成。以下独立取证工具的说明描述各自执行边界，较早补充记录保留为历史进度；当前组合能力以本节和审计最新章节为准。
 
 入口文档：
 

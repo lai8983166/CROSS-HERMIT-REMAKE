@@ -36,6 +36,7 @@ before必需month（整数0..255）、week（整数0..5）、course_unlocked_fla
 
 ```bash
 PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_school_course_unlock_emulation -v
+godot --headless --path prototype -s sim/tests/test_runner.gd
 ```
 
 新报告生成命令必须指定未存在的两个路径；工具拒绝覆盖已冻结输出：
