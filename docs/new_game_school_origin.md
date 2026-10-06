@@ -34,7 +34,7 @@
 
 `prepare_school(expected_revision)`仅接受当前整数版本；过期、浮点、布尔、未初始化调用拒绝。按课程解锁、班级整理、评级预计算全部三步，全部成功才发布单个revision2及三个顺序日志；中途缺关系等失败不发布任何部分状态。prepared后以当前版本重复调用返回duplicate。`school_data_prepared`说明数据准备完成，完整原版school_initialized/interactive_school_ready/live_witness/存档权限仍false。
 
-`read_snapshot()`、`journal()`及`read_teacher_profile(101)`返回独立深拷贝，教师资料明确是静态源模板；无其他教师来源的ID拒绝。多会话互不共享可变数据。该会话尚无编班移动或排课操作，下一步扩展101移动规则并接独立新局学校窗口。
+`read_snapshot()`、`journal()`及`read_teacher_profile(101)`返回独立深拷贝，教师资料明确是静态源模板；无其他教师来源的ID拒绝。多会话互不共享可变数据。后续变更已接通101/学生移动和独立新局编班窗口，接口和操作见 [新局编班](new_game_school_grouping.md)；排课尚未开放。
 
 ## 验证
 

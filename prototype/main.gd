@@ -8,9 +8,11 @@ const FACTION_COLOR := [Color(0.85, 0.25, 0.2), Color(0.25, 0.45, 0.9)]
 const LOGIC_STEP := 1.0 / 30.0
 const ReturnDemo = preload("res://sim/campaign_return_demo.gd")
 const ReturnPanel = preload("res://ui/campaign_return_panel.gd")
+const NewSchoolPanel = preload("res://ui/new_game_school_panel.gd")
 
 var return_demo: ReturnDemo
 var return_panel: ReturnPanel
+var school_panel: NewSchoolPanel
 
 var map: SimMapData
 var palette: Dictionary = {}
@@ -89,7 +91,16 @@ func _ready() -> void:
 	add_child(return_panel)
 	return_panel.start_requested.connect(_start_return_demo)
 	return_panel.default_requested.connect(_return_default_battle)
+	school_panel = NewSchoolPanel.new()
+	add_child(school_panel)
+	return_panel.new_school_requested.connect(_open_new_school)
+	school_panel.closed.connect(func(): return_panel.show())
 	queue_redraw()
+
+
+func _open_new_school() -> void:
+	return_panel.hide()
+	school_panel.open_school()
 
 
 func _start_battle(seed: int, demo_mode := false) -> bool:
@@ -248,6 +259,8 @@ func _bake_map() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if school_panel != null and school_panel.blocks_battle_input():
+		return
 	if return_panel != null and return_panel.blocks_battle_input():
 		return
 	if battle == null or battle.finished:
@@ -293,6 +306,8 @@ func _capture(tag: String) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if school_panel != null and school_panel.blocks_battle_input():
+		return
 	if return_panel != null and return_panel.blocks_battle_input():
 		return
 	if event is InputEventMouseMotion:

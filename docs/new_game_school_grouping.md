@@ -25,3 +25,17 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 `move_member({kind, member_id, target_group, target_slot}, expected_revision)` 只接受逻辑目标。kind为student或teacher；班外target_group为−1，班内为0..4；教师target_slot必须−1，学生班内为0..3、班外为−1。源位置、待命索引、关系评级、学生资料、教师工作记录均从会话自身推导。
 
 会话先完整计算移动→整理→评级，再发布一个版本和三条分阶段日志；日志使用规范学校字段，临时拖动控件不会泄漏到持有快照。无状态变化返回duplicate，不增加版本/日志。过期版本、无资料成员、额外源字段/after字段及无效目标全部拒绝，任何拒绝不会部分发布。所有读取和返回对象均为深复制；仍不操作原版存档。
+
+## 窗口操作
+
+启动Godot原型，从顶部点击“新局编班”。初始1班由教师101带领学生3/4/9，其他班为空。点击教师或学生，再点同类的班级位置；学生可交换已占位置，也可点击“移至学生待命”。选中教师可移至其他班或教师待命；移至空班会使原班学生全部退回待命，需要逐个再编入。先为班级安排教师，才可安排学生。
+
+Esc或“取消选择”只清除选择。“返回战斗”后再次进入会保留编班结果；“重开学校新局”才重新建立来源初态。学校打开期间战斗暂停处理，R、空格和地图输入被隔离，关闭后恢复。打开新局学校也不会修改已完成返回演示的日期、名单、点数或页面。
+
+当前只开放这一来源目录的编班试玩，成员用原始ID标示，课程选择执行和存档尚未开放。源码入口 `prototype/ui/new_game_school_panel.gd`；新编班真实鼠标/键盘94项、实际渲染99项检查，跨会话导航22项检查均通过。截图见 [编班窗口验收](../analysis/new-game-school-ui-20261006/README.md)。
+
+```bash
+godot --path prototype
+godot --headless --path prototype -s ui/tests/test_new_game_school_window.gd
+godot --headless --path prototype -s ui/tests/test_school_navigation.gd
+```

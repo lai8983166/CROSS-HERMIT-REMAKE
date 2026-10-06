@@ -10,4 +10,4 @@
 
 ## 3. Window integration
 
-- [ ] 3.1 Add main-window school entry and usable class/waiting point-and-click controls with cancel/navigation/restart, test real input and battle isolation, inspect screenshots, rerun existing window/native checks, update progress, pass global strict validation and commit.
+- [x] 3.1 Add main-window school entry and usable class/waiting point-and-click controls with cancel/navigation/restart, test real input and battle isolation, inspect screenshots, rerun existing window/native checks, update progress, pass global strict validation and commit.

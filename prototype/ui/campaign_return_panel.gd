@@ -3,6 +3,7 @@ extends CanvasLayer
 
 signal start_requested(route: int)
 signal default_requested
+signal new_school_requested
 
 const Demo = preload("res://sim/campaign_return_demo.gd")
 const Roles = preload("res://sim/all_result_role_replay.gd")
@@ -12,6 +13,7 @@ var session: Demo
 var route_select: OptionButton
 var start_button: Button
 var default_button: Button
+var new_school_button: Button
 var confirm_button: Button
 var school_button: Button
 var back_button: Button
@@ -60,6 +62,8 @@ func _ready() -> void:
 	row.add_child(start_button)
 	default_button = _button("回到战斗原型", func(): default_requested.emit())
 	row.add_child(default_button)
+	new_school_button = _button("新局编班",func(): new_school_requested.emit())
+	row.add_child(new_school_button)
 	status_label = Label.new()
 	status_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
