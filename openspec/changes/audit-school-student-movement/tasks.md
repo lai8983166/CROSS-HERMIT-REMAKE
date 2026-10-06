@@ -10,4 +10,4 @@
 
 ## 3. Compatibility acceptance
 
-- [ ] 3.1 Rerun relevant native tests and current return/sorting window checks, verify old runtime/fixtures unchanged, run strict validation, update current progress/boundaries and commit.
+- [x] 3.1 Rerun relevant native tests and current return/sorting window checks, verify old runtime/fixtures unchanged, run strict validation, update current progress/boundaries and commit.

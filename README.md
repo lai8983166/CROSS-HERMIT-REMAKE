@@ -5,11 +5,11 @@
 
 ## 当前状态 (2026-10-06)
 
-已建立素材解析工具和 Godot 战斗原型。返回数据变更 `trace-battle-result-school-transition` 完成13/13；界面变更 `add-campaign-return-ui`、待命排序变更 `add-school-waitlist-sorting` 和教师/班级数据取证变更 `audit-school-teacher-group-layout` 均完成3/3，尚未归档。主窗口可演示战果确认、浏览学校详情，并按等级、原版职业类别或七属性合计排序待命学生；选中学生与浏览后的顺序保留。独立教师/班级模块已核对26组原版登记、清理和评级案例，尚未接入当前零教师演示或开放编班按钮。
+已建立素材解析工具和 Godot 战斗原型。返回数据变更 `trace-battle-result-school-transition` 完成13/13；界面变更 `add-campaign-return-ui`、待命排序变更 `add-school-waitlist-sorting`、教师/班级变更 `audit-school-teacher-group-layout` 和学生移动变更 `audit-school-student-movement` 均完成3/3，尚未归档。主窗口可演示战果确认、浏览学校详情，并按等级、原版职业类别或七属性合计排序待命学生；选中学生与浏览后的顺序保留。独立模块已核对26组教师登记/班级清理/评级案例及37组学生加入、替换、交换、移出和未释放案例，尚未接入当前零教师演示或开放编班按钮。
 
-最新Godot全部41套件300项通过，主窗口两路线79项离屏交互检查再次通过，既有86项实际渲染验收仍适用未改动的窗口；项目级OpenSpec严格检查17项全部通过。Python新增11项教师/班级专项及9项排序专项本轮合计20项通过，重新生成原版报告逐字节一致；既有279项全量沿用已归档基线，本轮未重跑既有全量。每个小阶段验证后立即提交，无push。
+最新Godot全部42套件307项通过，主窗口两路线79项离屏交互检查再次通过，既有86项实际渲染验收仍适用未改动的窗口；项目级OpenSpec严格检查18项全部通过。Python学生移动10项、教师/班级11项和排序9项本轮合计30项通过，重新生成原版报告逐字节一致；既有279项全量沿用已归档基线，本轮未重跑既有全量。每个小阶段验证后立即提交，无push。
 
-原版隔离执行已在同一CPU核对场景5条件实际选择子程序11/8→战术收尾→状态11/10/12→战果→剧情入学→唯一完整周→职务室→学校任务构造与已捕获初始化字段。共享 Godot 目录现在自行计算任务5评分、成长包、总点数及战利品，再连续完成角色、周历与学校数据发布；实际本地Battle终局也已接入这条显式回放接口，重复送达不重发奖励或推进周。操作见 [返回流程演示](docs/campaign_return_ui.md)，最新验收和边界见 [战斗返回审计](docs/battle_return_audit.md) §57–75；排序API见 [待命名单排序](docs/school_waitlist_sort.md)，教师/班级API见 [教师登记与班级数据](docs/school_teacher_group_layout.md)，最新界面见 [验收归档](analysis/school-waitlist-ui-final-20261005/README.md)。既有全量Python日志见 [回归记录](analysis/python-regression-20261005.txt)。
+原版隔离执行已在同一CPU核对场景5条件实际选择子程序11/8→战术收尾→状态11/10/12→战果→剧情入学→唯一完整周→职务室→学校任务构造与已捕获初始化字段。共享 Godot 目录现在自行计算任务5评分、成长包、总点数及战利品，再连续完成角色、周历与学校数据发布；实际本地Battle终局也已接入这条显式回放接口，重复送达不重发奖励或推进周。操作见 [返回流程演示](docs/campaign_return_ui.md)，最新验收和边界见 [战斗返回审计](docs/battle_return_audit.md) §57–78；排序API见 [待命名单排序](docs/school_waitlist_sort.md)，教师/班级API见 [教师登记与班级数据](docs/school_teacher_group_layout.md)，学生操作API见 [学生移动数据](docs/school_student_movement.md)，最新界面见 [验收归档](analysis/school-waitlist-ui-final-20261005/README.md)。既有全量Python日志见 [回归记录](analysis/python-regression-20261005.txt)。
 
 原版终场世界、资源/演出、时钟/准备初态等仍有声明输入；本地Battle伤害与HP不派生原版事件谓词或状态11结果记录。默认入口保留战斗原型，可从顶部启动独立返回演示；完整战术动态、并行事件调度、教师课程工作表、编班/排课、完整原版学校菜单及原版存档仍未完成。以下独立取证工具的说明描述各自执行边界，较早补充记录保留为历史进度；当前组合能力以本节和审计最新章节为准。
 
