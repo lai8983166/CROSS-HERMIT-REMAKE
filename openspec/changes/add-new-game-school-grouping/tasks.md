@@ -6,7 +6,7 @@
 
 ## 2. Owned commands
 
-- [ ] 2.1 Add revision-guarded owned member moves with derived controls, source profiles and atomic phase journal; compare sequence checkpoints, test stale/invalid/deep ownership cases, document API, pass full Godot tests and commit.
+- [x] 2.1 Add revision-guarded owned member moves with derived controls, source profiles and atomic phase journal; compare sequence checkpoints, test stale/invalid/deep ownership cases, document API, pass full Godot tests and commit.
 
 ## 3. Window integration
 

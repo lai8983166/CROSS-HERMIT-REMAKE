@@ -15,3 +15,13 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 ```
 
 20个连续案例包含等待/班级来源、学生空位/换位/替换/班外/无教师目标、教师空班/班外/同班、等待无效目标，以及两个未松开探针。未松开探针单独取证；会话用户操作将只提交松开后的逻辑移动。没有新增教师交换证据，因为新局只有教师101。
+
+## 会话操作
+
+运行时仅加载 `prototype/data/new_game_school_rules.json` 的来源初始化/课程/排序/教师工作规则，不加载期望快照。文件可由 `tools/new_game_school_rules.py --out <新文件>` 从原映像重新导出。来源规则未知字段逐层去除，已知字段的指纹/资料和职业类别哈希严格核对。
+
+`NewGameSchoolSession.initialize(origin_rules, course_rules, movement_rules)` 保留两参只读会话用法；第三参提供 `sort_rules`、`work_rules` 后允许操作。初始化与 `prepare_school(1)` 仍分别是版本1/2，原有来源快照不新增拖动字段。
+
+`move_member({kind, member_id, target_group, target_slot}, expected_revision)` 只接受逻辑目标。kind为student或teacher；班外target_group为−1，班内为0..4；教师target_slot必须−1，学生班内为0..3、班外为−1。源位置、待命索引、关系评级、学生资料、教师工作记录均从会话自身推导。
+
+会话先完整计算移动→整理→评级，再发布一个版本和三条分阶段日志；日志使用规范学校字段，临时拖动控件不会泄漏到持有快照。无状态变化返回duplicate，不增加版本/日志。过期版本、无资料成员、额外源字段/after字段及无效目标全部拒绝，任何拒绝不会部分发布。所有读取和返回对象均为深复制；仍不操作原版存档。
