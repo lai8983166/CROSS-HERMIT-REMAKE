@@ -58,8 +58,8 @@ static func move_teacher(before: Dictionary, command: Dictionary, profiles: Vari
 		if not sorted["supported"]:
 			return sorted
 		after["idle_student_ids"] = sorted["idle_student_ids"]
-	# Sourced teachers117/118 have identical job, level and attribute sort keys.
-	# Native teacher sorting therefore retains the append/removal order in all modes.
+	# Legacy117/118 have identical keys; the origin domain has only101.
+	# Both domains retain append/removal order in every teacher sort mode.
 	for key in ["drag_kind", "drag_origin", "drag_group", "drag_slot", "drag_id"]:
 		after[key] = -1
 	after["task_command"] = 0
@@ -143,10 +143,14 @@ static func _basic(before: Dictionary, group_rules: Dictionary, rules: Dictionar
 	var reason := Group._validate(before, group_rules)
 	if not reason.is_empty():
 		return reason
+	var domain := Group._teacher_rule_domain(group_rules)
+	var origin := domain == [101]
 	if rules.get("source_image_sha256") != Group.SOURCE_SHA \
 			or rules.get("template_fields_sha256") != TEMPLATE_HASH or not rules.get("templates") is Array \
-			or not rules.get("teacher_profiles") is Array or rules["teacher_profiles"].size() != 2:
+			or not rules.get("teacher_profiles") is Array or rules["teacher_profiles"].size() != domain.size():
 		return "invalid_teacher_work_rules"
+	if origin and rules.get("origin_fields_sha256") != Group.ORIGIN_SHA:
+		return "teacher_work_origin_mismatch"
 	var encoded := ""
 	for row in rules["templates"]:
 		if not row is Dictionary or not Week._bounded(row.get("work_id"),1,100) \
@@ -155,17 +159,19 @@ static func _basic(before: Dictionary, group_rules: Dictionary, rules: Dictionar
 		encoded += "%d:%d:%d;" % [int(row["work_id"]), int(row["category"]), int(row["sort_key"])]
 	if encoded.sha256_text() != TEMPLATE_HASH:
 		return "teacher_work_template_source_mismatch"
-	for index in range(2):
+	for index in range(domain.size()):
 		var row: Variant = rules["teacher_profiles"][index]
-		if not row is Dictionary or not Week._bounded(row.get("teacher_id"),117 + index,117 + index) \
+		var identity: int = domain[index]
+		var attribute := 1 if origin else 0
+		if not row is Dictionary or not Week._bounded(row.get("teacher_id"),identity,identity) \
 				or not Week._bounded(row.get("job"),1,1) or not Week._bounded(row.get("level_50"),0,0) \
-				or not Week._vector(row.get("attributes"),7,0,0):
+				or not Week._vector(row.get("attributes"),7,attribute,attribute):
 			return "teacher_sort_template_source_mismatch"
 	var work: Variant = before.get("teacher_work_records")
-	if not work is Dictionary or work.size() != 2:
+	if not work is Dictionary or work.size() != domain.size():
 		return "invalid_teacher_work_records"
 	var templates := _templates(rules)
-	for identity in [117,118]:
+	for identity in domain:
 		if not work.get(str(identity)) is Array or work[str(identity)].size() > 100:
 			return "invalid_teacher_work_slots"
 		var seen := {}
@@ -200,13 +206,16 @@ static func _basic(before: Dictionary, group_rules: Dictionary, rules: Dictionar
 
 static func _move_validation(before: Dictionary, command: Dictionary, profiles: Variant,
 		group_rules: Dictionary, sort_rules: Dictionary) -> String:
+	var domain := Group._teacher_rule_domain(group_rules)
 	for spec in [["idle_sort_mode",0,2], ["teacher_sort_mode",0,2], ["drag_kind",1,1],
-			["drag_origin",0,1], ["drag_group",-1,4], ["drag_slot",-1,19], ["drag_id",117,118],
+			["drag_origin",0,1], ["drag_group",-1,4], ["drag_slot",-1,19], ["drag_id",101,120],
 			["drag_source_rank",0,7], ["task_drag_state",0,2], ["task_command",0,65535]]:
 		if not Week._bounded(before.get(spec[0]), spec[1], spec[2]):
 			return "invalid_teacher_drag_control"
+	if not domain.has(before["drag_id"]):
+		return "invalid_teacher_drag_control"
 	if command.get("kind") != "teacher" or not command.get("released") is bool \
-			or not Week._bounded(command.get("teacher_id"),117,118) \
+			or not Week._bounded(command.get("teacher_id"),101,120) or not domain.has(command.get("teacher_id")) \
 			or not Week._bounded(command.get("source_group"),-1,4) \
 			or not Week._bounded(command.get("source_slot"),-1,19) \
 			or not Week._bounded(command.get("target_group"),-1,4):
