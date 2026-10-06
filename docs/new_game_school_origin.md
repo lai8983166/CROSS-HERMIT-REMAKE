@@ -24,10 +24,23 @@
 
 报告保留每次写入实际守卫，导出确定的8058项初始化非栈写次数、顺序哈希、合并地址范围、实际入口/地址哈希、memset边界、成员记录哈希及加入入口调用来源。模块只移植学校字段与所列成员资料；完整学生包/道具/成长结构虽在CPU执行，未声明全部移植。现有返回演示保持零教师冻结场景，未插入新局教师。完整学校就绪、实机与存档权限均false。
 
+## 来源构造与会话API
+
+`new_game_school_origin.construct(origin_rules, selected_group=-1)`只读已验证源字段，重新编码绑定源字段SHA，按四条登记调用构造学校字段，并从原成长/技能资料计算学生等级。selected_group仅接受原指令病例核对的−1/0，表示函数外工作区状态。返回after深拷贝；非法源、类型、调用顺序、关系、点数/阈值或选择值拒绝且无after。原始尾零与规范目录尾−1同时保留。`group_rules()`返回单独的新局101规则域。
+
+既有`school_teacher_group_replay`只在teacher_scope=new_game_initializer、49E930及源字段SHA一致时允许教师101；旧Chapter012规则继续只允许117/118，旧`TEACHERS`与`_domain`保持。新局规则也不能调用旧117登记接口。名单、原始/派生教师、待命和关系两端均检查各自规则域，避免把允许101扩散到旧移动规则。
+
+`new_game_school_session.initialize(origin_rules, course_rules)`创建独立会话，只有源规则字段及各行白名单被保留，嵌套expected_after等字段也被丢弃。校验初始化和课程规则全部成功后才发布revision1及initialize日志。相同输入重复初始化返回duplicate且保留现态；不同输入返回school_origin_input_conflict，无发布。当前返回CampaignResultState不被修改。
+
+`prepare_school(expected_revision)`仅接受当前整数版本；过期、浮点、布尔、未初始化调用拒绝。按课程解锁、班级整理、评级预计算全部三步，全部成功才发布单个revision2及三个顺序日志；中途缺关系等失败不发布任何部分状态。prepared后以当前版本重复调用返回duplicate。`school_data_prepared`说明数据准备完成，完整原版school_initialized/interactive_school_ready/live_witness/存档权限仍false。
+
+`read_snapshot()`、`journal()`及`read_teacher_profile(101)`返回独立深拷贝，教师资料明确是静态源模板；无其他教师来源的ID拒绝。多会话互不共享可变数据。该会话尚无编班移动或排课操作，下一步扩展101移动规则并接独立新局学校窗口。
+
 ## 验证
 
 ```bash
 PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_new_game_school_emulation -v
+godot --headless --path prototype -s sim/tests/test_runner.gd
 ```
 
 生成新报告必须使用两个尚未存在的路径，工具拒绝覆盖输出：

@@ -6,12 +6,15 @@ const Week = preload("res://sim/week_settlement_replay.gd")
 const SOURCE_SHA := "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
 const CHAPTER_SHA := "dfbdb1dc1f197f2d198a9d6b71e68c12d8f8f7fb72d1b2a4328f8f164affd5cf"
 const TEACHERS := [117, 118]
+const ORIGIN_SHA := "d06bdeb2e5951237481a121d0ccec4b46db3e3f9c5509622d19a5b9444a08f76"
 
 
 static func register_teacher(before: Dictionary, context: Dictionary, rules: Dictionary) -> Dictionary:
 	var reason := _validate(before, rules)
 	if not reason.is_empty():
 		return _unsupported(reason)
+	if _teacher_rule_domain(rules) != TEACHERS:
+		return _unsupported("outside_teacher_join_context")
 	if context.get("kind") not in ["chapter012_prefix", "direct_helper"] \
 			or not Week._bounded(context.get("teacher_id"), 117, 117) \
 			or not Week._bounded(context.get("group"), -1, 4) \
@@ -155,15 +158,14 @@ static func rate(before: Dictionary, rules: Dictionary) -> Dictionary:
 
 
 static func _validate(before: Dictionary, rules: Dictionary) -> String:
-	if rules.get("source_image_sha256") != SOURCE_SHA or rules.get("chapter_sha256") != CHAPTER_SHA \
-			or rules.get("teacher_id") != 117 or rules.get("script_file_offset") != 20 \
-			or rules.get("opcode") != 144 or rules.get("relationship_thresholds") != [16, 31, 46, 61, 76, 91]:
+	var teacher_domain := _teacher_rule_domain(rules)
+	if teacher_domain.is_empty():
 		return "invalid_teacher_group_rules"
 	if not Week._vector(before.get("availability"), 121, 0, 1) \
 			or not Week._vector(before.get("group_raw_bytes"), 140, 0, 255):
 		return "invalid_school_group_buffers"
 	var present := {}
-	for spec in [["student", 12], ["teacher", 2]]:
+	for spec in [["student", 12], ["teacher", teacher_domain.size()]]:
 		var prefix: String = spec[0]
 		var ids: Variant = before.get(prefix + "_ids")
 		if not Week._bounded(before.get(prefix + "_count"), 0, spec[1]) or not ids is Array or ids.size() != 20:
@@ -175,7 +177,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			if index >= int(before[prefix + "_count"]):
 				if int(identity) != -1:
 					return "invalid_school_roster_tail"
-			elif not _domain(identity, prefix == "teacher") or present.has(int(identity)):
+			elif not (_scoped_teacher(identity,teacher_domain) if prefix == "teacher" else _domain(identity,false)) or present.has(int(identity)):
 				return "unsupported_or_duplicate_school_identity"
 			else:
 				present[int(identity)] = true
@@ -193,13 +195,13 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			or not Week._vector(before.get("derived_teacher_indices"), 5, -1, 19):
 		return "invalid_school_derived_buffers"
 	for id in before["derived_teacher_ids"]:
-		if int(id) != -1 and not _domain(id, true):
+		if int(id) != -1 and not _scoped_teacher(id,teacher_domain):
 			return "invalid_derived_teacher"
 	for pair in [["idle_student_ids", false], ["idle_teacher_ids", true]]:
 		if not before.get(pair[0]) is Array or before[pair[0]].size() > 20:
 			return "invalid_school_waiting_buffer"
 		for identity in before[pair[0]]:
-			if not _domain(identity, pair[1]):
+			if not (_scoped_teacher(identity,teacher_domain) if pair[1] else _domain(identity,false)):
 				return "invalid_school_waiting_identity"
 	var teachers := {}
 	for group in range(5):
@@ -207,7 +209,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		var base := group * 28
 		var teacher := _word(raw, base)
 		if teacher != -1:
-			if not _domain(teacher, true) or teachers.has(teacher):
+			if not _scoped_teacher(teacher,teacher_domain) or teachers.has(teacher):
 				return "unsupported_or_duplicate_group_teacher"
 			teachers[teacher] = true
 		if int(raw[base + 3]) not in [0, 1]:
@@ -220,7 +222,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		return "missing_school_relationships"
 	var pairs := {}
 	for row in before["relationships"]:
-		if not row is Dictionary or not _identity(row.get("from")) or not _identity(row.get("to")) \
+		if not row is Dictionary or not _scoped_identity(row.get("from"),teacher_domain) or not _scoped_identity(row.get("to"),teacher_domain) \
 				or row["from"] == row["to"] or not Week._bounded(row.get("value"), 1, 100):
 			return "invalid_school_relationship"
 		var key := _pair(row["from"], row["to"])
@@ -228,6 +230,28 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			return "duplicate_school_relationship"
 		pairs[key] = true
 	return ""
+
+
+static func _teacher_rule_domain(rules: Dictionary) -> Array:
+	if rules.get("source_image_sha256") != SOURCE_SHA or rules.get("relationship_thresholds") != [16,31,46,61,76,91]:
+		return []
+	if rules.has("teacher_scope"):
+		if rules["teacher_scope"] == "new_game_initializer" and rules.get("initializer_va") is int \
+				and rules["initializer_va"] == 0x49E930 and rules.get("origin_fields_sha256") == ORIGIN_SHA:
+			return [101]
+		return []
+	if rules.get("chapter_sha256") == CHAPTER_SHA and rules.get("teacher_id") == 117 \
+			and rules.get("script_file_offset") == 20 and rules.get("opcode") == 144:
+		return TEACHERS.duplicate()
+	return []
+
+
+static func _scoped_teacher(identity: Variant, domain: Array) -> bool:
+	return Week._integer(identity) and int(identity) in domain
+
+
+static func _scoped_identity(identity: Variant, domain: Array) -> bool:
+	return _domain(identity,false) or _scoped_teacher(identity,domain)
 
 
 static func _available(snapshot: Dictionary, identity: int) -> bool:
