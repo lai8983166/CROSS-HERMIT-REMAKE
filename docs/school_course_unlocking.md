@@ -22,6 +22,16 @@
 
 因此当前回放teacher_count=0是声明场景的边界，不能将其当作完整原版新局事实；也不能直接把101或117塞入已冻结返回目录。后续需完整初始化/教师字段归属与一致的会话迁移，再接编班。课程解锁证据可以先补齐，且不需要用户操作原版。完整学校就绪、实机见证和存档写入权限仍为false。
 
+## 纯数据API
+
+`prototype/sim/school_course_unlocking.gd`提供`unlock_courses(before, rules)`。rules必须包含上述原映像SHA、模板字段SHA及完整100条顺序模板，模型重新编码核对全部日期/元数据/类别/键/掩码；模板病例不作为运行时课程来源。
+
+before必需month（整数0..255）、week（整数0..5）、course_unlocked_flags（101字节值）、course_counts（20个整数0..100）、course_buffers（20组稀疏物理记录）。日期域保证原版短整型month×6+week不溢出，周0保留原版初始化语义，不改为自然日历。每条稀疏记录格式为`[slot, enabled, blocked, work_id, metadata, progress, opaque0, opaque1]`，槽0..99严格升序且唯一；字节字段0..255，三个word字段−32768..32767。全零槽须省略，未提供的槽默认零；记录可包含count之外的物理哨兵。此处是原始缓冲边界，未把历史记录ID/启用值强行解释为合法排课项目。
+
+成功返回supported=true、reason为unlocked或unchanged、after的深拷贝，以及本次升序unlocked_work_ids（也包含有效空掩码课程）。拒绝返回supported=false和reason，不含after；不修改任何输入。先验证全状态，再预检所有教师新增条数，任何投影count>100返回course_capacity_exceeded，避免部分教师已写入而后续溢出。规则错误为unsupported_course_rules，状态格式错误为invalid_course_state。日期、名单、可用标记、旧工作视图和其他附加元数据保持；没有发布当前会话、刷新工作列表或授课。四个权限标记始终false。
+
+7项Godot专项逐一对照15组原指令病例的所有检查点，同时验证容量恰好100与溢出整体拒绝、全部源字段篡改、类型/范围/顺序拒绝、物理尾槽与已有进度、无人教师/空掩码/非零标记、输入/规则/两份输出深隔离及重复状态。
+
 ## 验证命令
 
 ```bash

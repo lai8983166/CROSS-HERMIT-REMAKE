@@ -6,7 +6,7 @@
 
 ## 2. Pure course unlock operation
 
-- [ ] 2.1 Implement validated isolated unlock with capacity preflight and physical opaque-byte preservation, compare all native checkpoints and refusal/input isolation, document API, pass full Godot suites and commit.
+- [x] 2.1 Implement validated isolated unlock with capacity preflight and physical opaque-byte preservation, compare all native checkpoints and refusal/input isolation, document API, pass full Godot suites and commit.
 
 ## 3. Compatibility acceptance
 
