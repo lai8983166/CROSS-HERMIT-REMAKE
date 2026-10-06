@@ -10,4 +10,4 @@
 
 ## 3. Compatibility acceptance
 
-- [ ] 3.1 Rerun relevant native and existing window tests, verify old evidence/campaign/UI unchanged, pass global strict validation, update current progress/remaining initialization boundary and commit.
+- [x] 3.1 Rerun relevant native and existing window tests, verify old evidence/campaign/UI unchanged, pass global strict validation, update current progress/remaining initialization boundary and commit.
