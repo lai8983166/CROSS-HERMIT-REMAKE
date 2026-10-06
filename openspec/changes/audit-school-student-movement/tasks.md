@@ -6,7 +6,7 @@
 
 ## 2. Isolated student movement operation
 
-- [ ] 2.1 Implement validated student movement with immediate original fields and explicit later cleanup/rating, compare all source checkpoints and refusal/input isolation, document API, run full Godot suites and commit.
+- [x] 2.1 Implement validated student movement with immediate original fields and explicit later cleanup/rating, compare all source checkpoints and refusal/input isolation, document API, run full Godot suites and commit.
 
 ## 3. Compatibility acceptance
 
