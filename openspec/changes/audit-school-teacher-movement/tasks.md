@@ -6,7 +6,7 @@
 
 ## 2. Isolated teacher data operations
 
-- [ ] 2.1 Implement validated teacher movement, work selection and explicit reconciliation, compare all native checkpoints plus refusal/input isolation, document API, run full Godot suites and commit.
+- [x] 2.1 Implement validated teacher movement, work selection and explicit reconciliation, compare all native checkpoints plus refusal/input isolation, document API, run full Godot suites and commit.
 
 ## 3. Compatibility acceptance
 
