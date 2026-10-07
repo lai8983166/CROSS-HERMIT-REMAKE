@@ -27,9 +27,15 @@ func _check(ok: bool, message: String) -> void:
 
 
 func _click(control: Control) -> void:
-	await process_frame
+	# Native window resize and tab/roster reflow can finish after the first frame.
+	for index in range(3):
+		await process_frame
 	var pos := control.get_global_rect().get_center()
-	_check(control.is_visible_in_tree() and Rect2(Vector2.ZERO,Vector2(root.size)).has_point(pos),"clickable control is visible and inside viewport")
+	var ready := control.is_visible_in_tree() and Rect2(Vector2.ZERO,Vector2(root.size)).has_point(pos)
+	_check(ready,"clickable control is visible and inside viewport")
+	if not ready:
+		quit(1)
+		return
 	var motion := InputEventMouseMotion.new()
 	motion.position = pos
 	root.push_input(motion,true)

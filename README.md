@@ -3,15 +3,17 @@
 2002 年 EnterBrain 出品的 SRPG+养成游戏，2004 年光谱资讯繁体中文版。
 本工作区用于**私下研究**：黑盒规则逆向 + 素材格式分析 + 复刻原型（Godot）。
 
-## 当前状态 (2026-10-07)
+## 当前状态 (2026-10-08)
 
-已建立素材解析工具和 Godot 战斗原型。返回数据变更 `trace-battle-result-school-transition` 完成13/13；返回界面、待命排序、教师/班级、学生移动、教师移动/工作表、课程解锁、新局学校初始化、编班、课程安排、成长结算及本轮 `add-school-course-confirmation` 均完成3/3，尚未归档。主窗口可演示战果确认、学校详情、待命排序和独立来源新局编班。第4周示例可安排教师101的来源课程12/11/10，结算一次更新属性/等级/新技能/成长加成，再确认一次关系/职业进度/本周记录；两次操作各有一次性守卫，后续改课不重写已结算结果，显式重开才建立新示例。原第0周与示例分别保留数据。日期仍为声明4/4，MVP、剧情交接、真正周推进和存档尚未执行。
+已建立素材解析工具和Godot战斗原型。返回数据变更完成13/13；既有学校返回、排序、成员移动、新局编班、课程安排/成长/确认及本轮 `add-school-course-result-handoff` 均完成3/3，尚未归档。独立第4周示例可安排教师101的来源课程12/11/10，结算成长、确认关系/职业/本周记录，再在“授课结果”页一次性记录MVP与待播放剧情入口。普通课程10选学生3，学生3待命则选学生4；重复点击和后续编班/改课不会重选或累计次数。原第0周与示例分别保留数据，显式重开才建立新示例。日期仍为声明4/4，章节正文、真实周推进与存档尚未执行。
 
-最新Godot全部53套件360项通过；确认窗口66项离屏输入/71项实际渲染、成长窗口81/86、课程窗口77/83、编班94/99、跨会话导航22项和旧返回两路线79项输入检查全部通过，21张本轮截图已逐一检查归档。旧返回页面未改布局，86项渲染沿用20261006基线。项目级OpenSpec严格检查25项全部通过。Python来源确认4项（153.273秒）及课程安排/解锁/运行规则15项（27.030秒）分别通过，合计19项；相关原版报告、期望和运行规则逐字节再生成一致。既有55项和279项全量沿用各自基线。每个小阶段验证后立即提交，无push。
+最新Godot全部55套件367项通过；MVP结果页73项离屏输入/78项实际渲染、确认窗口66/71、成长81/86、课程77/83、编班94/99、跨会话导航22项和旧返回两路线79项输入检查全部通过。最终26张v4截图已逐一检查；修复确认页面板底框超出768的布局问题，补充完整面板/页脚边界检查。旧返回86项渲染沿用20261006基线。OpenSpec严格检查26项全部通过。Python来源4项（152.923秒）及兼容20项（25.962秒）分别通过，合计24项；新报告、期望和运行规则逐字节再生成一致。此前55项/279项全量保留各自基线。每个小阶段验证后立即本地提交，无push。
 
-原版隔离执行已在同一CPU核对场景5条件选择→战术收尾→战果→剧情入学→唯一完整周→职务室→学校任务构造与已捕获初始化字段；实际本地Battle终局已接入显式返回回放。来源新局初始化、成员移动、课程安排和八组成长均已核对；本轮六组案例在同一CPU继续直接执行4C1350→4BF9E0/4D3960确认字段及原评级。所有在校学生包括待命者增加职业进度，定向关系逐次夹值，本周记录保留未写字节；来源/API见 [授课确认字段](docs/school_course_confirmation.md)。此前公式修正见 [授课成长](docs/school_course_settlement.md)，其他操作见 [课程安排](docs/school_course_planning.md) 和 [新局编班](docs/new_game_school_grouping.md)，最新边界见 [战斗返回审计](docs/battle_return_audit.md) §97–99。最新 [确认验收](analysis/school-course-confirmation-ui-20261007/README.md)、[成长兼容](analysis/school-course-confirmation-growth-compat-20261007/README.md)、[课程兼容](analysis/school-course-confirmation-course-compat-20261007/README.md) 和 [编班兼容](analysis/school-course-confirmation-grouping-compat-20261007/README.md) 含截图；本轮Python日志见 [来源4项](analysis/python-regression-course-confirmation-source-20261007.txt) 和 [兼容15项](analysis/python-regression-course-confirmation-compat-20261007.txt)，既有基线见 [55项](analysis/python-regression-new-game-school-20261006.txt) 和 [279项](analysis/python-regression-20261005.txt)。
+原版隔离执行在同一CPU由来源新局、声明4/4、课程10进入完整4C1AA0，执行真实成长、MVP主/子脚本及END、确认字段、MVP次数封顶、CH003装载和ADV请求6/结束后任务7；随后真实CH003日期分派到Chapter016入口。确认按钮或MVP按键等待时不会增加次数/请求剧情，平手次序、全零与更高值选择由独立反事实探针核对。角色属性/技能/等级/成长池在MVP后保持；运行时纯模块不读取期望快照。来源/API见[授课MVP与剧情交接](docs/school_course_result_handoff.md)，最新边界见[战斗返回审计](docs/battle_return_audit.md) §100–102；既有[确认](docs/school_course_confirmation.md)、[成长](docs/school_course_settlement.md)、[课程](docs/school_course_planning.md)与[编班](docs/new_game_school_grouping.md)结论保留。
 
-原版终场世界、资源/演出、时钟/准备初态等仍有声明输入；本地Battle伤害与HP不派生原版事件谓词或状态11结果记录。49E930、成员移动、课程安排、成长及确认字段已隔离执行；原确认按钮/MVP VM、前驱学生模板加载、鼠标命中/松开及呈现仍有边界，完整新局剧情/原版学校菜单未执行。Chapter012117仍仅是加入前缀；旧返回演示保持零教师目录，新局/课程示例有来源教师101。下一步补齐课程MVP及剧情交接，再接真正周推进的来源链。默认入口保留战斗原型；完整战术动态、并行事件调度、返回会话教师迁移、完整授课结果任务、完整原版学校菜单及原版存档仍未完成。以下独立取证工具说明各自边界，较早补充记录保留为历史进度；当前能力以本节和审计最新章节为准。
+最新[结果页验收](analysis/school-course-result-result-ui-v4-20261007/README.md)、[确认兼容](analysis/school-course-result-confirmation-ui-v4-20261007/README.md)、[成长兼容](analysis/school-course-result-settlement-ui-v4-20261007/README.md)、[课程兼容](analysis/school-course-result-course-ui-v4-20261007/README.md)和[编班兼容](analysis/school-course-result-grouping-ui-v4-20261007/README.md)含截图。日志见[Godot367项](analysis/godot-regression-course-result-20261007.txt)、[Python来源4项](analysis/python-regression-course-result-source-20261007.txt)和[兼容20项](analysis/python-regression-course-result-compat-20261007.txt)；此前[55项](analysis/python-regression-new-game-school-20261006.txt)和[279项](analysis/python-regression-20261005.txt)仍是历史基线。
+
+下一步执行本4/4来源结果的Chapter016→Chapter017真实END，再接后继任务7的完整周推进与CH001学校交接。原版终场世界/资源演出、时钟/准备初态、前驱学生模板、鼠标命中/松开和完整新局前四周仍有声明输入或边界；本地Battle伤害/HP不能派生原版事件谓词或状态11记录。原型结果页呈现MVP字段，没有播放MVP台词或Chapter016正文。旧返回示例仍为零教师目录，新局/课程示例有来源教师101。默认入口保留战斗原型；完整战术动态、并行事件调度、旧返回会话教师迁移、完整原版学校菜单和原版存档尚未完成。以下独立工具说明各自边界，较早补充保留为历史进度；当前能力以本节和审计最新章节为准。
 
 入口文档：
 

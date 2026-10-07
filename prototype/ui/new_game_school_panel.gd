@@ -29,6 +29,7 @@ var _message := ""
 var _view: Dictionary = {}
 var group_button: Button
 var course_button: Button
+var result_button: Button
 var source_button: Button
 var example_button: Button
 var course_group: OptionButton
@@ -42,6 +43,9 @@ var confirmation_summary: Label
 var course_info: Label
 var _group_content: VBoxContainer
 var _course_content: VBoxContainer
+var _result_content: VBoxContainer
+var complete_result_button: Button
+var result_summary: Label
 var _note: Label
 var _source_session: Session
 var _example_session: Session
@@ -89,9 +93,10 @@ func _ready() -> void:
 	navigation.add_child(heading)
 	group_button = _button("编班",func(): _show_page("groups"))
 	course_button = _button("课程安排",func(): _show_page("courses"))
+	result_button = _button("授课结果",func(): _show_page("results"))
 	source_button = _button("第0周新局",func(): _switch_school(false))
 	example_button = _button("第4周课程示例",func(): _switch_school(true))
-	for button in [group_button,course_button,source_button,example_button]:
+	for button in [group_button,course_button,result_button,source_button,example_button]:
 		navigation.add_child(button)
 	var actions := HBoxContainer.new()
 	actions.add_theme_constant_override("separation",12)
@@ -287,8 +292,9 @@ func refresh() -> void:
 	var snapshot := session.read_snapshot()
 	_group_content.visible = _page == "groups"
 	_course_content.visible = _page == "courses"
+	_result_content.visible = _page == "results"
 	status_label.text = ("4月 · 第4周课程示例" if _example_mode else "4月 · 开学准备") + "  |  学生%d / 教师%d" % [snapshot["student_count"],snapshot["teacher_count"]]
-	_note.text = "第4周日期为独立示例输入；结算后可确认关系与职业，尚不推进日历或存档。" if _example_mode else "第0周来源新局；编班和课程模式可操作，教师101最早在4月第4周开放课程。"
+	_note.text = "第4周日期为独立示例输入；MVP完成后停在本周剧情入口，日历与存档尚未推进。" if _example_mode else "第0周来源新局；编班和课程模式可操作，教师101最早在4月第4周开放课程。"
 	restart_button.text = "重开课程示例" if _example_mode else "重开学校新局"
 	var levels := {}
 	for row in snapshot["member_profiles"]:
@@ -309,8 +315,12 @@ func refresh() -> void:
 	_rebuild_waiting(_teacher_wait_box,waiting_teachers,snapshot["idle_teacher_ids"],"teacher",levels)
 	_rebuild_waiting(_student_wait_box,waiting_students,snapshot["idle_student_ids"],"student",levels)
 	_refresh_courses(snapshot)
+	_refresh_result()
 	if _page == "courses":
 		instruction.text = "选择班级，切换为授课，再从教师可用课程中选课并安排。" + ("\n" + _message if not _message.is_empty() else "")
+		cancel_button.disabled = true
+	if _page == "results":
+		instruction.text = "先在课程安排中结算并确认，再完成本次授课结果。" + ("\n" + _message if not _message.is_empty() else "")
 		cancel_button.disabled = true
 
 
@@ -347,7 +357,7 @@ func _build_courses(column: VBoxContainer) -> void:
 		caption.text = ["初级课程","中级课程","高级课程"][category]
 		box.add_child(caption)
 		var list := ItemList.new()
-		list.custom_minimum_size = Vector2(250,140)
+		list.custom_minimum_size = Vector2(250,128)
 		list.item_selected.connect(func(index): _choose_course(category,index))
 		box.add_child(list)
 		course_lists.append(list)
@@ -372,6 +382,45 @@ func _build_courses(column: VBoxContainer) -> void:
 	confirmation_summary.add_theme_font_size_override("font_size",16)
 	confirmation_summary.add_theme_color_override("font_color",Color("b9d5ef"))
 	_course_content.add_child(confirmation_summary)
+	_result_content = VBoxContainer.new()
+	_result_content.add_theme_constant_override("separation",18)
+	column.add_child(_result_content)
+	var heading := Label.new()
+	heading.text = "本次授课结果"
+	heading.add_theme_font_size_override("font_size",24)
+	_result_content.add_child(heading)
+	complete_result_button = _button("完成授课结果",_complete_result)
+	complete_result_button.custom_minimum_size = Vector2(220,44)
+	complete_result_button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	_result_content.add_child(complete_result_button)
+	result_summary = Label.new()
+	result_summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	result_summary.add_theme_font_size_override("font_size",20)
+	result_summary.add_theme_color_override("font_color",Color("d6e4c4"))
+	_result_content.add_child(result_summary)
+
+
+func _complete_result() -> void:
+	var rules: Dictionary = Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_result_handoff_rules.json")))
+	var result := session.complete_course_result(rules,session.revision())
+	if result["supported"]:
+		_view = result
+		_message = "本次MVP已记录；本周剧情待播放，日期保持第4周。"
+	else:
+		_message = "未能完成：" + str(result.get("reason",""))
+	refresh()
+
+
+func _refresh_result() -> void:
+	var completed := session.read_result_handoff()
+	complete_result_button.disabled = not _example_mode or session.read_confirmation().is_empty() or not completed.is_empty()
+	complete_result_button.text = "本次MVP已记录" if not completed.is_empty() else "完成授课结果"
+	if not _example_mode:
+		result_summary.text = "第0周尚未开放授课。\n可切换到第4周课程示例，安排并结算一次课程。"
+	elif completed.is_empty():
+		result_summary.text = "授课结果待完成。\n请先安排课程、结算成长，并确认关系与职业。" if session.read_confirmation().is_empty() else "成长和本周记录已确认。\n完成结果后记录本次MVP，并准备进入本周剧情。"
+	else:
+		result_summary.text = "本次MVP · 学生 #%d\n累计成长值 %d · MVP次数 %d→%d\n\n本周剧情已准备，等待播放。\n日期保持4月第4周；剧情完成后才能进入下一周。" % [completed["recipient"],completed["staged_total"],completed["old_count"],mini(completed["old_count"]+1,5)]
 
 
 func _show_page(page: String) -> void:
@@ -417,7 +466,7 @@ func _confirm_courses() -> void:
 	var result := session.confirm_courses(rules,session.revision())
 	if result["supported"]:
 		_view = result
-		_message = "关系、职业进度和本周记录已确认；第4周日期不变。"
+		_message = "关系、职业进度和本周记录已确认；可在授课结果中记录MVP。"
 	else:
 		_message = "未能确认：" + str(result.get("reason",""))
 	refresh()

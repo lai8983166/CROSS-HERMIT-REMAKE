@@ -10,4 +10,4 @@
 
 ## 3. Visible result
 
-- [ ] 3.1 Add usable MVP completion/result display at1024x768 with explicit pending story/date, verify rendered input/restart/source and earlier school compatibility plus strict OpenSpec validation; update progress and commit this stage.
+- [x] 3.1 Add usable MVP completion/result display at1024x768 with explicit pending story/date, verify rendered input/restart/source and earlier school compatibility plus strict OpenSpec validation; update progress and commit this stage.
