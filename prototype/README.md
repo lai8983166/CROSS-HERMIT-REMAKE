@@ -1,8 +1,8 @@
 # prototype/ — Godot 4 复刻原型
 
-默认入口: `school_playground.tscn`（图形化学校养成试玩，2026-10-08）。四位原版角色头像、五班编成、课程卡片、成长与MVP结果，使用独立4月第4周会话。点击「授课安排」选课，再按底部按钮依次结算、确认、评选MVP。自动保存，顶部可保存/读取/确认重开；本段完成后停在待接入剧情，日历不推进。
+默认入口: `school_playground.tscn`（图形化学校养成试玩，2026-10-08）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的两段原版剧情（背景、立绘、109页对话），完成后一次推进到4月第5周。顶部可保存/读取/确认重开；阅读位置、第五周到达会自动保存，兼容原version1试玩存档。第五周学校安排尚未接入。
 
-[操作与存档说明](../docs/school_playground.md) · [最终截图与验收](../analysis/school-playground-final-20261008/README.md)。全量56套件371项通过。
+[操作与存档说明](../docs/school_playground.md) · [剧情与周推进来源](../docs/school_story_continuation.md)。全量57套件376项通过；实际剧情阅读与第五周/战斗往返窗口已验证。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 

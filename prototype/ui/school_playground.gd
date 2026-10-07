@@ -4,6 +4,7 @@ extends Control
 const Playground := preload("res://sim/school_playground.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const StoryReader := preload("res://ui/school_story_reader.gd")
+const Arrival := preload("res://ui/school_week_arrival.gd")
 const ART := "res://assets/school/"
 
 var model := Playground.new()
@@ -48,6 +49,8 @@ var _stage_labels: Array = []
 var footer: Label
 var panel: MarginContainer
 var story_reader: StoryReader
+var arrival: Arrival
+var calendar: Label
 
 
 func _ready() -> void:
@@ -100,7 +103,7 @@ func _ready() -> void:
 	heading.add_child(title_box)
 	title_box.add_child(_label("纯洁之盾 · 学校",30,Color("ead6a3")))
 	title_box.add_child(_label("安排课程，让每一位学生有所成长。",15,Color("bacac0")))
-	var calendar := _label("APRIL\n4月 · 第4周",20,Color("ead6a3"))
+	calendar = _label("APRIL\n4月 · 第4周",20,Color("ead6a3"))
 	calendar.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	heading.add_child(calendar)
 	var toolbar := HBoxContainer.new()
@@ -182,6 +185,13 @@ func _ready() -> void:
 	story_reader.command.connect(_story_command)
 	story_reader.return_requested.connect(_close_story)
 	story_reader.save_requested.connect(_manual_save)
+	arrival = Arrival.new()
+	add_child(arrival)
+	arrival.visible = false
+	arrival.review_requested.connect(func(): page = "results"; _message = ""; refresh())
+	arrival.battle_requested.connect(_open_battle)
+	arrival.save_requested.connect(_manual_save)
+	arrival.restart_requested.connect(func(): restart_dialog.popup_centered(Vector2i(440,180)))
 	model.start()
 	if auto_load:
 		var loaded := model.load_file(save_path)
@@ -215,12 +225,14 @@ func _restore_view() -> void:
 	page = "groups" if model.stage() == "planning" else "results"
 	if model.stage() == "story":
 		page = "story"
+	elif model.stage() == "arrival":
+		page = "arrival"
 
 
 func _manual_save() -> void:
 	var result := model.save_file(save_path)
 	_save_message = "已保存试玩进度" if result["supported"] else "保存失败，当前进度尚未写入"
-	_message = "编班、课程和成长结果已保存。" if result["supported"] else "保存未成功。请保留当前窗口，稍后重试。"
+	_message = "安排、成长和剧情进度已保存。" if result["supported"] else "保存未成功。请保留当前窗口，稍后重试。"
 	refresh()
 
 
@@ -396,6 +408,13 @@ func _next() -> void:
 				page = "story"
 		"story":
 			page = "story"
+		"story_completed":
+			if _act({"op":"week"}):
+				page = "arrival"
+				_message = ""
+		"arrival":
+			page = "arrival"
+			_message = ""
 	refresh()
 
 
@@ -419,6 +438,8 @@ func refresh() -> void:
 		return
 	var stage := model.stage()
 	var snapshot := model.session.read_snapshot()
+	var week: Dictionary = model.state()["week"]
+	calendar.text = "APRIL\n4月 · 第%d周" % (4 if week.is_empty() else week["after"]["week"])
 	_status.text = _save_message
 	_groups.visible = page == "groups"
 	_courses.visible = page == "courses"
@@ -463,16 +484,16 @@ func refresh() -> void:
 	_refresh_detail()
 	_refresh_results()
 	next_button.text = {"planning":"开始授课","grown":"确认本周记录","confirmed":"评选本次MVP",
-		"completed":"阅读本周剧情","story":"继续阅读剧情","story_completed":"本周剧情已完成","arrival":"已到达第五周"}[stage]
+		"completed":"阅读本周剧情","story":"继续阅读剧情","story_completed":"进入第五周","arrival":"返回第五周"}[stage]
 	var ready := false
 	for rating in model.session.view()["ratings"]:
 		if rating["state"] == 4:
 			ready = true
-	next_button.disabled = stage in ["story_completed","arrival"] or (stage == "planning" and not ready)
+	next_button.disabled = stage == "planning" and not ready
 	_guidance.text = {"planning":"选择成员，再点目标位置。进入「授课安排」选择课程。",
 		"grown":"学生成长已完成。确认记录后，可评选本次MVP。","confirmed":"本周记录已确认。下一步记录MVP。",
 		"completed":"本次MVP已记录，接下来阅读本周剧情。","story":"可从保存的位置继续阅读本周剧情。",
-		"story_completed":"本周剧情已结束，成长和MVP均已保留。","arrival":"已到达第五周。"}[stage]
+		"story_completed":"本周剧情已结束，接下来进入第五周。","arrival":"这是第四周的成长回顾。第五周学校安排仍在开发。"}[stage]
 	if selected_id >= 0:
 		_guidance.text = "已选%s · 点击目标%s位置，或移到待命。Esc取消。" % [_name(selected_id),"教师" if selected_kind == "teacher" else "学生"]
 	if not _message.is_empty():
@@ -481,6 +502,12 @@ func refresh() -> void:
 	if story_reader.visible:
 		story_reader.show_page(model.read_story_page(),model.state()["story"]["cursor"],
 			model.state()["story"]["total"],model.story_catalog(),_save_message)
+	arrival.visible = page == "arrival" and stage == "arrival"
+	if arrival.visible:
+		arrival.show_arrival(model.state(),catalog,_save_message)
+	footer.text = "第四周养成试玩 · 授课、成长、MVP与两段原版剧情。"
+	if stage == "arrival":
+		footer.text = "已到达4月第5周 · 后续学校安排正在开发。"
 
 
 func _refresh_courses() -> void:
@@ -658,6 +685,8 @@ func _refresh_results() -> void:
 		note.text = "本次MVP已记录。继续阅读本周剧情，进度会自动保存。"
 		if model.stage() == "story_completed":
 			note.text = "本周剧情已结束。授课成长、关系、职业进度和MVP均已保留。"
+		elif model.stage() == "arrival":
+			note.text = "第四周成长回顾 · 当前已到达第五周。\n成长和MVP不会再次发放；可返回第五周或进入战斗预览。"
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_results.add_child(note)
 

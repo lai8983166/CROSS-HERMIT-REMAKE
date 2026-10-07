@@ -16,7 +16,7 @@
 
 ## 5. Next-week arrival
 
-- [ ] 5.1 Connect story completion to fifth-week arrival, retain result review and battle roundtrip; verify duplicate advance refusal, restored arrival and rendered navigation; update entry documentation.
+- [x] 5.1 Connect story completion to fifth-week arrival, retain result review and battle roundtrip; verify duplicate advance refusal, restored arrival and rendered navigation; update entry documentation.
 
 ## 6. Integrated acceptance
 
