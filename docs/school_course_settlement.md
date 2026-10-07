@@ -29,3 +29,11 @@
 ```bash
 PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_school_course_settlement_emulation
 ```
+
+## 持有会话的一次性结算
+
+`NewGameSchoolSession.settle_courses(rules, expected_revision)` 只允许独立4/4课程示例、已经准备的来源规则和当前严格整数版本。由会话自己的来源起点构造完整成长记录，固定声明时钟种子4660；不接受外部成长记录、任意点包或任意日期。三门来源课均已逐字段与原版核对。
+
+先算全部成长记录、学校成员资料/全局加成和评级，再发布一个版本，依次记`course_result_prepare`、`course_growth`和`course_growth_rate`三个阶段。成长日志含来源初始记录、点包、随机结果和新记录；`read_growth_records`、`read_settlement`与view均深复制，未结算前两个读接口为空。学校快照更新属性/等级和全局加成，不额外附加成长数据或改写原初始化期望。
+
+同一示例完成后，当前版本重复结算返回duplicate，所有数据/日志/版本不变；过期版本和改动规则仍拒绝。之后可继续修改编班/安排，但不会重新开放成长结算；只有创建新的示例（界面显式重开）才能再次演示。来源第0周会话拒绝结算，旧返回会话保持独立。

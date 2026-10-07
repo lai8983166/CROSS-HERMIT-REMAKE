@@ -6,7 +6,7 @@
 
 ## 2. Owned once-only course settlement
 
-- [ ] 2.1 Derive growth records from owned source origin, atomically publish example settlement/profile/rating and journal with strict revision/duplicate guards; verify source checkpoints, deep copies, failures and independent sessions, document APIs, run full Godot checks and commit.
+- [x] 2.1 Derive growth records from owned source origin, atomically publish example settlement/profile/rating and journal with strict revision/duplicate guards; verify source checkpoints, deep copies, failures and independent sessions, document APIs, run full Godot checks and commit.
 
 ## 3. Example settlement window
 

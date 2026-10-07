@@ -8,6 +8,7 @@ const Student := preload("res://sim/school_student_movement.gd")
 const Teacher := preload("res://sim/school_teacher_movement.gd")
 const Sort := preload("res://sim/school_waitlist_sort.gd")
 const Planning := preload("res://sim/school_course_planning.gd")
+const Settlement := preload("res://sim/school_course_settlement.gd")
 const CONTROLS := ["idle_sort_mode","teacher_sort_mode","drag_kind","drag_origin","drag_group",
 	"drag_slot","drag_id","drag_source_rank","task_drag_state","task_command","teacher_work_records"]
 
@@ -20,6 +21,9 @@ var _revision := 0
 var _prepared := false
 var _movement_rules: Dictionary = {}
 var _context := "source_new_game"
+var _settlement_rules: Dictionary = {}
+var _growth_records: Array = []
+var _settlement: Dictionary = {}
 
 
 func initialize(origin_rules: Dictionary, course_rules: Dictionary, movement_rules: Dictionary = {}) -> Dictionary:
@@ -107,6 +111,64 @@ func school_context() -> String:
 
 func view() -> Dictionary:
 	return _view("school")
+
+
+func read_growth_records() -> Array:
+	return _growth_records.duplicate(true)
+
+
+func read_settlement() -> Dictionary:
+	return _settlement.duplicate(true)
+
+
+func settle_courses(rules: Dictionary, expected_revision: Variant) -> Dictionary:
+	if not _prepared or _movement_rules.is_empty() or _context != "declared_course_example_4_4":
+		return Origin.failure("course_settlement_requires_explicit_example")
+	if not Courses._integer(expected_revision,_revision,_revision):
+		return Origin.failure("stale_school_revision")
+	var source := Settlement.source_subset(rules)
+	source.merge(Origin.field_subset(rules,["initial_job_sums","initial_job_sums_sha256"]))
+	var initial := Settlement.initial_records(_origin_rules,source)
+	if not initial["supported"]:
+		return initial
+	if not _settlement.is_empty():
+		if source != _settlement_rules:
+			return Origin.failure("course_settlement_input_conflict")
+		return _view("duplicate")
+	# All growth and profile/rating calculations precede publication.
+	var result := Settlement.settle(_snapshot,initial["records"],source,_movement_rules["work_rules"],4660)
+	if not result["supported"]:
+		return result
+	var candidate := read_snapshot()
+	for record in result["records"]:
+		for profile in candidate["member_profiles"]:
+			if profile["member_id"] == record["character_id"]:
+				profile["attributes"] = record["attributes"].duplicate()
+				profile["level_50"] = record["level_50"]
+	candidate["global_total_511c"] = result["global_total_511c"]
+	var prepared := Groups.rate(_snapshot,Origin.group_rules())
+	if not prepared["supported"]:
+		return prepared
+	var rated := Groups.rate(candidate,Origin.group_rules())
+	if not rated["supported"]:
+		return rated
+	var growth: Dictionary = result.duplicate(true)
+	growth["before_records"] = initial["records"].duplicate(true)
+	_revision += 1
+	var before := read_snapshot()
+	var after_prepare := _canonical(prepared["after"])
+	_journal.append({"revision":_revision,"phase":"course_result_prepare","before":before,
+		"after":after_prepare,"ratings":prepared["ratings"].duplicate(true)})
+	_journal.append({"revision":_revision,"phase":"course_growth","before":after_prepare,
+		"after":candidate.duplicate(true),"growth":growth.duplicate(true)})
+	_journal.append({"revision":_revision,"phase":"course_growth_rate","before":candidate.duplicate(true),
+		"after":_canonical(rated["after"])})
+	_snapshot = _canonical(rated["after"])
+	_ratings = rated["ratings"].duplicate(true)
+	_growth_records = result["records"].duplicate(true)
+	_settlement_rules = source.duplicate(true)
+	_settlement = growth
+	return _view("courses_settled_once")
 
 
 func list_courses(group: Variant) -> Dictionary:
@@ -398,4 +460,6 @@ func _view(status: String) -> Dictionary:
 	result["school_data_prepared"] = _prepared
 	if _context != "source_new_game":
 		result["school_context"] = _context
+	if not _settlement.is_empty():
+		result["course_settlement"] = read_settlement()
 	return result

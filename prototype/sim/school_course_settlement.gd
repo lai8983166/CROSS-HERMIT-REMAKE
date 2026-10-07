@@ -71,7 +71,8 @@ static func initial_records(origin_rules: Dictionary, rules: Dictionary) -> Dict
 	var values := []
 	for index in range(3):
 		var row: Variant = rules["initial_job_sums"][index]
-		if not row is Dictionary or row.get("character_id") != [3,4,9][index] or not Origin._vector(row.get("job_sums"),5,0,600):
+		if not row is Dictionary or not Courses._integer(row.get("character_id"),[3,4,9][index],[3,4,9][index]) \
+				or not Origin._vector(row.get("job_sums"),5,0,600):
 			return Origin.failure("invalid_course_growth_origin")
 		values.append(str(row["character_id"]))
 		for value in row["job_sums"]:
@@ -282,7 +283,7 @@ static func _validate_records(before: Dictionary, records: Array, rules: Diction
 	var cap := _pool_cap(before["difficulty"],rules)
 	for index in range(3):
 		var record: Variant = records[index]
-		if not record is Dictionary or record.get("character_id") != [3,4,9][index]:
+		if not record is Dictionary or not Courses._integer(record.get("character_id"),[3,4,9][index],[3,4,9][index]):
 			return "invalid_course_growth_identity"
 		for spec in [["job",1,30],["level_50",0,50],["staged_total",0,0x7fffffff]]:
 			if not Courses._integer(record.get(spec[0]),spec[1],spec[2]):
