@@ -10,6 +10,7 @@ const Sort := preload("res://sim/school_waitlist_sort.gd")
 const Planning := preload("res://sim/school_course_planning.gd")
 const Settlement := preload("res://sim/school_course_settlement.gd")
 const Confirmation := preload("res://sim/school_course_confirmation.gd")
+const ResultHandoff := preload("res://sim/school_course_result_handoff.gd")
 const CONTROLS := ["idle_sort_mode","teacher_sort_mode","drag_kind","drag_origin","drag_group",
 	"drag_slot","drag_id","drag_source_rank","task_drag_state","task_command","teacher_work_records"]
 
@@ -29,6 +30,9 @@ var _settled_school: Dictionary = {}
 var _confirmation_rules: Dictionary = {}
 var _confirmation_records: Array = []
 var _confirmation: Dictionary = {}
+var _result_rules: Dictionary = {}
+var _mvp_counts: Array = []
+var _result_handoff: Dictionary = {}
 
 
 func initialize(origin_rules: Dictionary, course_rules: Dictionary, movement_rules: Dictionary = {}) -> Dictionary:
@@ -132,6 +136,46 @@ func read_confirmation_records() -> Array:
 
 func read_confirmation() -> Dictionary:
 	return _confirmation.duplicate(true)
+
+
+func read_mvp_counts() -> Array:
+	return _mvp_counts.duplicate(true)
+
+
+func read_result_handoff() -> Dictionary:
+	return _result_handoff.duplicate(true)
+
+
+func complete_course_result(rules: Dictionary, expected_revision: Variant) -> Dictionary:
+	if not _prepared or _context != "declared_course_example_4_4" or _confirmation.is_empty():
+		return Origin.failure("course_result_requires_confirmed_example")
+	if not Courses._integer(expected_revision,_revision,_revision):
+		return Origin.failure("stale_school_revision")
+	var source := ResultHandoff.source_subset(rules)
+	if not ResultHandoff.valid_rules(source):
+		return Origin.failure("invalid_course_result_rules")
+	if not _result_handoff.is_empty():
+		if source != _result_rules:
+			return Origin.failure("course_result_input_conflict")
+		return _view("duplicate")
+	# The MVP belongs to the captured settlement, independent of later planning.
+	var result := ResultHandoff.apply(_settled_school,_settlement["records"],source["initial_counts"],source)
+	if not result["supported"]:
+		return result
+	var snapshot := read_snapshot()
+	var revision_next := _revision+1
+	var entries := [
+		{"revision":revision_next,"phase":"course_mvp_count","before":snapshot.duplicate(true),
+			"after":snapshot.duplicate(true),"recipient":result["recipient"],
+			"before_counts":result["before_counts"].duplicate(true),"counts":result["counts"].duplicate(true)},
+		{"revision":revision_next,"phase":"course_adv_request","before":snapshot.duplicate(true),
+			"after":snapshot.duplicate(true),"adv_request":result["adv_request"].duplicate(true)}]
+	_result_rules = source.duplicate(true)
+	_mvp_counts = result["counts"].duplicate(true)
+	_result_handoff = result.duplicate(true)
+	_journal.append_array(entries)
+	_revision = revision_next
+	return _view("course_result_completed_once")
 
 
 func confirm_courses(rules: Dictionary, expected_revision: Variant) -> Dictionary:
@@ -524,4 +568,6 @@ func _view(status: String) -> Dictionary:
 		result["course_settlement"] = read_settlement()
 	if not _confirmation.is_empty():
 		result["course_confirmation"] = read_confirmation()
+	if not _result_handoff.is_empty():
+		result["course_result_handoff"] = read_result_handoff()
 	return result

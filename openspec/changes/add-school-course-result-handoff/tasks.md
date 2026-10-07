@@ -6,7 +6,7 @@
 
 ## 2. Owned completion
 
-- [ ] 2.1 Add revision-checked once-only completion of the session's frozen confirmed course result; verify atomic journal/count/handoff, duplicate/stale/changed-plan/restart/deep-copy protection; document and commit this stage.
+- [x] 2.1 Add revision-checked once-only completion of the session's frozen confirmed course result; verify atomic journal/count/handoff, duplicate/stale/changed-plan/restart/deep-copy protection; document and commit this stage.
 
 ## 3. Visible result
 

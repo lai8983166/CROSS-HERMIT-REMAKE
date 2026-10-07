@@ -29,3 +29,11 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 输出必须使用新文件名。已有成长/确认报告保持原字节，不扩展其已声明边界。
 
 2026-10-07来源阶段：五组完整结果/等待案例、四组独立选择探针；Python4项在152.923秒通过并逐字节再生成一致，Godot纯模块3项通过。报告SHA为`4d62f393f524b11590fd4324e6b56d7dfb7f926be992366bafcc3e5787220d9b`，期望SHA为`db29c6572f8d784bdb0c6796ed7a4b799fa82501dfd54925b189688da675c072`，规则SHA为`01704f531df3b9cf127d2529b5715f343f96f6750ac26b88bc52e6a72043937d`。普通课程10的MVP为3，学生3待命则为4；全零探针没有接收者。结算累计值、技能、属性、等级与成长池在MVP后保持，仅确认职业进度影响派生职业合计。
+
+## 会话API
+
+`NewGameSchoolSession.complete_course_result(rules, expected_revision)`只接受已确认的独立第4周示例。它剥除传入期望/接收者等无关字段，校验来源与当前整数revision，从内部冻结学校和原结算记录选择MVP，使用来源初始化次数产生一次写入。`read_mvp_counts()`、`read_result_handoff()`和`view().course_result_handoff`返回深拷贝。
+
+成功只增加一个revision，同一revision下依次发布`course_mvp_count`、`course_adv_request`两条日志；学校、日期、成长与确认记录保持。重复且规则相符的当前revision请求返回duplicate，不加次数或日志；过期/浮点revision、未确认/第0周学校、被改动规则或缺少正值MVP全部拒绝，不发表半成品。后续改课/移动继续保留已冻结的MVP；新Session重开时没有MVP次数或交接字段。
+
+会话4项覆盖普通/学生3待命的原版完整结果、重复/拒绝原子性、深拷贝、后续计划编辑和源会话隔离。2026-10-07全套Godot55套件367项零失败，日志见`analysis/godot-regression-course-result-20261007.txt`。
