@@ -12,7 +12,7 @@
 
 ## 4. Results and recovery interface
 
-- [ ] 4.1 Add graphical growth/MVP results, readable stage feedback, save/load and restart confirmation; verify complete flows, cancellation, backup recovery, once-only results and layout; document and commit.
+- [x] 4.1 Add graphical growth/MVP results, readable stage feedback, save/load and restart confirmation; verify complete flows, cancellation, backup recovery, once-only results and layout; document and commit.
 
 ## 5. Launch and integration
 

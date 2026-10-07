@@ -28,6 +28,12 @@ var tab_buttons: Dictionary = {}
 var wait_target: Button
 var cancel_button: Button
 var next_button: Button
+var save_button: Button
+var load_button: Button
+var restart_button: Button
+var restart_dialog: ConfirmationDialog
+var result_cards: Dictionary = {}
+var mvp_label: Label
 var _groups: VBoxContainer
 var _courses: VBoxContainer
 var _results: VBoxContainer
@@ -100,6 +106,19 @@ func _ready() -> void:
 		button.custom_minimum_size = Vector2(115,38)
 		toolbar.add_child(button)
 		tab_buttons[key] = button
+	save_button = _button("保存",_manual_save)
+	load_button = _button("读取",_load)
+	restart_button = _button("重开",func(): restart_dialog.popup_centered(Vector2i(440,180)))
+	for button in [save_button,load_button,restart_button]:
+		button.custom_minimum_size = Vector2(64,38)
+		toolbar.add_child(button)
+	restart_dialog = ConfirmationDialog.new()
+	restart_dialog.title = "重新开始本段试玩"
+	restart_dialog.dialog_text = "将清空本段的编班、课程和成长结果，\n并替换当前保存的试玩进度。"
+	restart_dialog.ok_button_text = "确认重开"
+	restart_dialog.cancel_button_text = "保留当前进度"
+	restart_dialog.confirmed.connect(_restart_confirmed)
+	add_child(restart_dialog)
 	_status = _label("",14,Color("becfc3"))
 	_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -153,8 +172,55 @@ func _ready() -> void:
 		var loaded := model.load_file(save_path)
 		if loaded["supported"]:
 			_save_message = "已恢复备份" if loaded["status"] == "recovered_backup" else "已读取试玩存档"
+			_restore_view()
 		elif loaded["reason"] != "save_missing":
 			_save_message = "存档读取失败，当前为新试玩"
+	refresh()
+
+
+func _restore_view() -> void:
+	selected_id = -1
+	selected_kind = ""
+	detail_id = 3
+	for group in range(5):
+		if _identity("teacher",group,-1) >= 0:
+			selected_class = group
+	page = "groups" if model.stage() == "planning" else "results"
+
+
+func _manual_save() -> void:
+	var result := model.save_file(save_path)
+	_save_message = "已保存试玩进度" if result["supported"] else "保存失败，当前进度尚未写入"
+	_message = "编班、课程和成长结果已保存。" if result["supported"] else "保存未成功。请保留当前窗口，稍后重试。"
+	refresh()
+
+
+func _load() -> void:
+	var result := model.load_file(save_path)
+	if result["supported"]:
+		_restore_view()
+		_save_message = "已恢复备份" if result["status"] == "recovered_backup" else "已读取试玩存档"
+		_message = "当前存档无法读取，已恢复上一份备份。" if result["status"] == "recovered_backup" else "已恢复保存的安排与成长。"
+	else:
+		_message = "尚无试玩存档，请先保存。" if result["reason"] == "save_missing" else "存档读取失败，当前进度已保留。"
+	refresh()
+
+
+func _restart_confirmed() -> void:
+	var candidate := Playground.new()
+	if not candidate.start()["supported"]:
+		_message = "重新开始失败，当前进度已保留。"
+		refresh()
+		return
+	if autosave and not candidate.save_file(save_path)["supported"]:
+		_message = "无法替换存档，当前进度已保留。"
+		refresh()
+		return
+	model = candidate
+	_restore_view()
+	selected_class = 0
+	_save_message = "新试玩已保存" if autosave else "尚未保存"
+	_message = "已重新开始，可尝试其他课程或安排。"
 	refresh()
 
 
@@ -456,10 +522,83 @@ func _refresh_detail() -> void:
 
 func _refresh_results() -> void:
 	_clear(_results)
+	result_cards.clear()
+	mvp_label = null
 	_results.add_child(_label("本周成长",22,Color("ead6a3")))
-	var result := _label("安排课程并开始授课后，可以在这里查看成长与MVP。",18,Color("bacdbf"))
-	result.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_results.add_child(result)
+	var growth := model.session.read_settlement()
+	if growth.is_empty():
+		var hint := _label("安排课程并开始授课后，可以在这里查看成长与MVP。\n\n进入「授课安排」，选择一门课程后点击「开始授课」。",18,Color("bacdbf"))
+		hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_results.add_child(hint)
+		return
+	var completed := model.session.read_result_handoff()
+	if not completed.is_empty():
+		var hero := PanelContainer.new()
+		hero.add_theme_stylebox_override("panel",_style("3b4935",10))
+		_results.add_child(hero)
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation",16)
+		hero.add_child(row)
+		row.add_child(_label("MVP",27,Color("f4d386")))
+		row.add_child(_portrait(completed["recipient"],Vector2(64,64)))
+		var text := VBoxContainer.new()
+		row.add_child(text)
+		mvp_label = _label(_name(completed["recipient"]),24,Color("f4dfad"))
+		text.add_child(mvp_label)
+		text.add_child(_label("本次成长累计 %d · MVP次数 %d→%d" % [completed["staged_total"],completed["old_count"],mini(completed["old_count"]+1,5)],14))
+	var participants := []
+	for packet in growth["packets"]:
+		participants.append(packet["character_id"])
+	var confirmation := model.session.read_confirmation()
+	for index in range(3):
+		var record: Dictionary = growth["records"][index]
+		var old: Dictionary = growth["before_records"][index]
+		var identity: int = record["character_id"]
+		var card := PanelContainer.new()
+		card.add_theme_stylebox_override("panel",_style("213a34",8))
+		_results.add_child(card)
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation",12)
+		card.add_child(row)
+		var portrait := _button("",func(): detail_id = identity; refresh())
+		portrait.custom_minimum_size = Vector2(68,60)
+		_set_member(portrait,identity,"")
+		portrait.text = ""
+		portrait.add_theme_constant_override("icon_max_width",56)
+		row.add_child(portrait)
+		result_cards[identity] = portrait
+		var content := VBoxContainer.new()
+		content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(content)
+		var skill_count := 0
+		for skill in range(84):
+			if old["skill_statuses"][skill] != 2 and record["skill_statuses"][skill] == 2:
+				skill_count += 1
+		var caption := "%s · Lv.%d → %d" % [_name(identity),old["level_50"],record["level_50"]]
+		if skill_count > 0:
+			caption += " · 领悟%d项技能" % skill_count
+		content.add_child(_label(caption,16,Color("e9d9ac")))
+		var changes := PackedStringArray()
+		for attribute in range(7):
+			if old["attributes"][attribute] != record["attributes"][attribute]:
+				changes.append("%s %d→%d" % [catalog["attribute_names"][attribute],old["attributes"][attribute],record["attributes"][attribute]])
+		var summary := " · ".join(changes)
+		if identity not in participants:
+			summary = "本周待命 · 未参加授课"
+		elif summary.is_empty():
+			summary = "成长点已累计，属性尚未跨越下一阈值。"
+		if not confirmation.is_empty() and identity in participants:
+			summary += " · 本周记录已确认"
+		var description := _label(summary,13,Color("bdd3bf"))
+		description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		content.add_child(description)
+	var note := _label("成长已结算；确认后记录关系、职业进度及本周活动。",15,Color("a9c6af"))
+	if not confirmation.is_empty():
+		note.text = "关系与职业进度已确认；本次结算不会重复发放。"
+	if not completed.is_empty():
+		note.text = "本段已完成，4月第4周的剧情仍待接入。\n可以保存结果，或重开比较不同课程的成长。"
+	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_results.add_child(note)
 
 
 func _set_member(button: Button, identity: int, empty: String) -> void:
