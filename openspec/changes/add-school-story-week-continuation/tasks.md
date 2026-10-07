@@ -4,7 +4,7 @@
 
 ## 2. Original presentation
 
-- [ ] 2.1 Export the two scenes' ordered text, speakers and original visual assets with hashes; verify strict decoding, byte-identical regeneration and resource coverage; document export.
+- [x] 2.1 Export the two scenes' ordered text, speakers and original visual assets with hashes; verify strict decoding, byte-identical regeneration and resource coverage; document export.
 
 ## 3. Durable continuation model
 

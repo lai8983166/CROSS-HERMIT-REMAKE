@@ -28,7 +28,8 @@ SIZE_TABLE = {
 
 
 def render(path: str) -> Image.Image:
-    raw = open(path, "rb").read()
+    with open(path, "rb") as source:
+        raw = source.read()
     body = raw[HEADER:]
     if len(body) not in SIZE_TABLE:
         raise ValueError(f"未知像素体大小: {len(body)}")
