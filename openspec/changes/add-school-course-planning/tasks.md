@@ -10,4 +10,4 @@
 
 ## 3. Course window
 
-- [ ] 3.1 Add course page and explicit example navigation, class modes/course categories/assignment controls, test real input plus existing windows and independent sessions, inspect rendered screenshots, run relevant native checks, update progress, pass strict validation and commit.
+- [x] 3.1 Add course page and explicit example navigation, class modes/course categories/assignment controls, test real input plus existing windows and independent sessions, inspect rendered screenshots, run relevant native checks, update progress, pass strict validation and commit.

@@ -1,5 +1,5 @@
 extends CanvasLayer
-## Point-and-click grouping over the independently owned source new-game school.
+## Grouping and course planning over independent source and declared-date schools.
 
 signal closed
 
@@ -27,6 +27,23 @@ var _selected_id := -1
 var _selected_kind := ""
 var _message := ""
 var _view: Dictionary = {}
+var group_button: Button
+var course_button: Button
+var source_button: Button
+var example_button: Button
+var course_group: OptionButton
+var class_mode: OptionButton
+var course_lists: Array = []
+var assign_button: Button
+var course_info: Label
+var _group_content: VBoxContainer
+var _course_content: VBoxContainer
+var _note: Label
+var _source_session: Session
+var _example_session: Session
+var _example_mode := false
+var _page := "groups"
+var _course_selected := -1
 
 
 func _ready() -> void:
@@ -61,7 +78,17 @@ func _ready() -> void:
 	heading.text = "学校 · 新局编班"
 	heading.add_theme_font_size_override("font_size",27)
 	heading.add_theme_color_override("font_color",Color("f0d797"))
-	column.add_child(heading)
+	var navigation := HBoxContainer.new()
+	column.add_child(navigation)
+	heading.text = "学校"
+	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	navigation.add_child(heading)
+	group_button = _button("编班",func(): _show_page("groups"))
+	course_button = _button("课程安排",func(): _show_page("courses"))
+	source_button = _button("第0周新局",func(): _switch_school(false))
+	example_button = _button("第4周课程示例",func(): _switch_school(true))
+	for button in [group_button,course_button,source_button,example_button]:
+		navigation.add_child(button)
 	var actions := HBoxContainer.new()
 	actions.add_theme_constant_override("separation",12)
 	column.add_child(actions)
@@ -80,9 +107,12 @@ func _ready() -> void:
 	instruction.add_theme_color_override("font_color",Color("bed0de"))
 	column.add_child(instruction)
 	column.add_child(HSeparator.new())
+	_group_content = VBoxContainer.new()
+	_group_content.add_theme_constant_override("separation",10)
+	column.add_child(_group_content)
 	var header := HBoxContainer.new()
 	header.add_theme_constant_override("separation",8)
-	column.add_child(header)
+	_group_content.add_child(header)
 	var names := ["班级","教师","学生1","学生2","学生3","学生4","班级情况"]
 	for index in range(7):
 		var label := Label.new()
@@ -93,7 +123,7 @@ func _ready() -> void:
 	for group in range(5):
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation",8)
-		column.add_child(row)
+		_group_content.add_child(row)
 		var name_label := Label.new()
 		name_label.text = "%d班" % (group + 1)
 		name_label.custom_minimum_size.x = WIDTHS[0]
@@ -118,10 +148,10 @@ func _ready() -> void:
 		rating.add_theme_font_size_override("font_size",15)
 		row.add_child(rating)
 		_ratings.append(rating)
-	column.add_child(HSeparator.new())
+	_group_content.add_child(HSeparator.new())
 	var waiting := HBoxContainer.new()
 	waiting.add_theme_constant_override("separation",18)
-	column.add_child(waiting)
+	_group_content.add_child(waiting)
 	var teacher_column := VBoxContainer.new()
 	teacher_column.custom_minimum_size.x = 220
 	waiting.add_child(teacher_column)
@@ -136,14 +166,14 @@ func _ready() -> void:
 	student_column.add_child(wait_student_target)
 	_student_wait_box = HBoxContainer.new()
 	student_column.add_child(_student_wait_box)
+	_build_courses(column)
 	var spacer := Control.new()
 	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(spacer)
-	var note := Label.new()
-	note.text = "本页用于新局编班试玩；课程安排和存档功能尚未开放。"
-	note.add_theme_font_size_override("font_size",14)
-	note.add_theme_color_override("font_color",Color("96aabc"))
-	column.add_child(note)
+	_note = Label.new()
+	_note.add_theme_font_size_override("font_size",14)
+	_note.add_theme_color_override("font_color",Color("96aabc"))
+	column.add_child(_note)
 	hide()
 
 
@@ -161,20 +191,25 @@ func blocks_battle_input() -> bool:
 func _restart() -> void:
 	var parsed: Variant = Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/new_game_school_rules.json")))
 	var fresh := Session.new()
-	var started := fresh.initialize(parsed["origin_rules"],parsed["course_rules"],parsed)
+	var started := fresh.initialize_course_example(parsed["origin_rules"],parsed["course_rules"],parsed) if _example_mode else fresh.initialize(parsed["origin_rules"],parsed["course_rules"],parsed)
 	if not started["supported"]:
 		_message = "学校初始化失败：" + str(started.get("reason",""))
 		refresh()
 		return
-	var prepared := fresh.prepare_school(started["revision"])
+	var prepared: Dictionary = fresh.view() if _example_mode else fresh.prepare_school(started["revision"])
 	if not prepared["supported"]:
 		_message = "学校准备失败：" + str(prepared.get("reason",""))
 		refresh()
 		return
 	session = fresh
+	if _example_mode:
+		_example_session = fresh
+	else:
+		_source_session = fresh
 	_view = prepared
 	_selected_id = -1
 	_selected_kind = ""
+	_course_selected = -1
 	_message = ""
 	refresh()
 
@@ -246,7 +281,10 @@ func refresh() -> void:
 	if session == null:
 		return
 	var snapshot := session.read_snapshot()
-	status_label.text = "4月 · 开学准备  |  学生%d / 教师%d" % [snapshot["student_count"],snapshot["teacher_count"]]
+	_group_content.visible = _page == "groups"
+	_course_content.visible = _page == "courses"
+	status_label.text = ("4月 · 第4周课程示例" if _example_mode else "4月 · 开学准备") + "  |  学生%d / 教师%d" % [snapshot["student_count"],snapshot["teacher_count"]]
+	_note.text = "第4周日期为独立示例输入；课程安排尚不执行成长、周推进或存档。" if _example_mode else "第0周来源新局；编班和课程模式可操作，教师101最早在4月第4周开放课程。"
 	var levels := {}
 	for row in snapshot["member_profiles"]:
 		levels[row["member_id"]] = row["level_50"]
@@ -260,8 +298,124 @@ func refresh() -> void:
 			student_buttons[group][slot].button_pressed = identity != -1 and identity == _selected_id
 		var rating: Dictionary = _view["ratings"][group]
 		_ratings[group].text = "未编班" if teacher == -1 else "%d名学生\n关系%d · %d级" % [snapshot["group_raw_bytes"][group * 28 + 14],rating["relationship_mean"],rating["relationship_rank"]]
+		if teacher != -1 and snapshot["group_raw_bytes"][group * 28 + 3] == 1:
+			_ratings[group].text = "授课\n课程 #%d" % Group._word(snapshot["group_raw_bytes"],group * 28 + 10) if Group._word(snapshot["group_raw_bytes"],group * 28 + 8) >= 0 else "授课\n未安排课程"
 	_rebuild_waiting(_teacher_wait_box,waiting_teachers,snapshot["idle_teacher_ids"],"teacher",levels)
 	_rebuild_waiting(_student_wait_box,waiting_students,snapshot["idle_student_ids"],"student",levels)
+	_refresh_courses(snapshot)
+	if _page == "courses":
+		instruction.text = "选择班级，切换为授课，再从教师可用课程中选课并安排。" + ("\n" + _message if not _message.is_empty() else "")
+		cancel_button.disabled = true
+
+
+func _build_courses(column: VBoxContainer) -> void:
+	_course_content = VBoxContainer.new()
+	_course_content.add_theme_constant_override("separation",16)
+	column.add_child(_course_content)
+	var controls := HBoxContainer.new()
+	_course_content.add_child(controls)
+	course_group = OptionButton.new()
+	course_group.custom_minimum_size.x = 180
+	for group in range(5):
+		course_group.add_item("%d班" % (group + 1))
+	course_group.item_selected.connect(func(_index): _course_selected = -1; _message = ""; refresh())
+	controls.add_child(course_group)
+	class_mode = OptionButton.new()
+	class_mode.custom_minimum_size.x = 200
+	class_mode.add_item("冒险")
+	class_mode.add_item("授课")
+	class_mode.item_selected.connect(func(index): _plan_mode(index == 1))
+	controls.add_child(class_mode)
+	course_info = Label.new()
+	course_info.custom_minimum_size.y = 60
+	course_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_course_content.add_child(course_info)
+	var categories := HBoxContainer.new()
+	categories.add_theme_constant_override("separation",18)
+	_course_content.add_child(categories)
+	for category in range(3):
+		var box := VBoxContainer.new()
+		box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		categories.add_child(box)
+		var caption := Label.new()
+		caption.text = ["初级课程","中级课程","高级课程"][category]
+		box.add_child(caption)
+		var list := ItemList.new()
+		list.custom_minimum_size = Vector2(250,280)
+		list.item_selected.connect(func(index): _choose_course(category,index))
+		box.add_child(list)
+		course_lists.append(list)
+	assign_button = _button("安排选中课程",_assign_course)
+	_course_content.add_child(assign_button)
+
+
+func _show_page(page: String) -> void:
+	_page = page
+	_cancel()
+
+
+func _switch_school(example: bool) -> void:
+	_example_mode = example
+	_page = "courses" if example else "groups"
+	session = _example_session if example else _source_session
+	_course_selected = -1
+	if session == null:
+		_restart()
+	else:
+		_view = session.view()
+		_cancel()
+
+
+func _plan_mode(teaching: bool) -> void:
+	var result := session.set_class_mode(course_group.selected,teaching,session.revision())
+	_plan_result(result)
+
+
+func _assign_course() -> void:
+	var result := session.assign_course(course_group.selected,_course_selected,session.revision())
+	_plan_result(result)
+
+
+func _plan_result(result: Dictionary) -> void:
+	if result["supported"]:
+		_view = result
+		_message = "课程安排已更新。" if result["status"] != "duplicate" else "安排未变化。"
+	else:
+		_message = "未能安排：" + str(result.get("reason",""))
+	refresh()
+
+
+func _choose_course(category: int, index: int) -> void:
+	_course_selected = course_lists[category].get_item_metadata(index)
+	refresh()
+
+
+func _refresh_courses(snapshot: Dictionary) -> void:
+	var group := course_group.selected
+	var teacher := Group._word(snapshot["group_raw_bytes"],group * 28)
+	var teaching: bool = snapshot["group_raw_bytes"][group * 28 + 3] == 1
+	class_mode.select(1 if teaching else 0)
+	class_mode.disabled = teacher == -1
+	var result := session.list_courses(group)
+	var available := false
+	var selected_available := false
+	for category in range(3):
+		var list: ItemList = course_lists[category]
+		list.clear()
+		if result["supported"]:
+			for row in result["courses"][category]:
+				var index := list.add_item("课程 #%d" % row[1])
+				list.set_item_metadata(index,row[1])
+				available = true
+				if row[1] == _course_selected:
+					list.select(index)
+					selected_available = true
+	assign_button.disabled = teacher == -1 or not teaching or not selected_available
+	course_info.text = "请先在编班页面为这个班安排教师。" if teacher == -1 else "教师 #%d · %s" % [teacher,"授课模式" if teaching else "冒险模式"]
+	if teacher != -1 and not available:
+		course_info.text += "\n当前没有可用课程；教师101最早在4月第4周开放，可进入独立课程示例。"
+	elif teacher != -1:
+		course_info.text += "\n当前课程：#%d" % Group._word(snapshot["group_raw_bytes"],group * 28 + 10) if Group._word(snapshot["group_raw_bytes"],group * 28 + 8) >= 0 else "\n当前未安排课程。"
 
 
 func _rebuild_waiting(box: HBoxContainer, buttons: Dictionary, identities: Array, kind: String, levels: Dictionary) -> void:
