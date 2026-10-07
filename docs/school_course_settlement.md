@@ -46,4 +46,4 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 
 新窗口81项离屏真实输入/86项Windows实际渲染检查通过，覆盖原版完整学校/成长记录对照、摘要属性/等级/新技能、重复/按键/导航、重开后另一门课、控件边界和两份会话隔离。全部51套件353项Godot通过；原课程77/83、编班94/99、导航22及旧返回79项重新通过。16张渲染截图逐一检查，见 [结算窗口](../analysis/school-course-settlement-ui-20261007/README.md)、[课程兼容](../analysis/school-course-settlement-course-compat-20261007/README.md) 和 [编班兼容](../analysis/school-course-settlement-grouping-compat-20261007/README.md)。旧返回页面布局不改，其86项渲染保持20261006基线。
 
-Python来源4项181.844秒及兼容15项23.395秒分别通过，日志见 [来源检查](../analysis/python-regression-course-settlement-source-20261007.txt) 和 [兼容检查](../analysis/python-regression-course-settlement-compat-20261007.txt)；项目级OpenSpec24项严格验证通过。当前完成成长阶段，下一步研究结果确认后的关系/职业进度处理及真实周推进，不把独立示例视为完整原版授课流程。
+成长阶段Python来源4项181.844秒及兼容15项23.395秒分别通过，日志见 [来源检查](../analysis/python-regression-course-settlement-source-20261007.txt) 和 [兼容检查](../analysis/python-regression-course-settlement-compat-20261007.txt)，当时OpenSpec24项严格验证通过。现已另接一次性关系/职业/本周记录确认，见 [授课确认字段](school_course_confirmation.md) 及 [最新成长兼容](../analysis/school-course-confirmation-growth-compat-20261007/README.md)。MVP、剧情交接及真实周推进仍未闭合，不把独立示例视为完整原版授课流程。

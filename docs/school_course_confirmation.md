@@ -37,3 +37,11 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 所有确认字段、当前学校评级及完整成长记录的五个职业合计先计算，再发布一个版本及`course_confirmation_fields`/`course_confirmation_rate`两条日志。`read_confirmation_records`和`read_confirmation`完成前为空，完成后读接口/view/日志均深复制。来源记录/表、过期或浮点版本、未成长或第0周请求拒绝；后段评级失败不留下字段、日志或版本。相同源表的当前版本重复返回duplicate，不再写入；修改源表仍拒绝。
 
 四项新增会话测试逐字段匹配五个正常原例的完整学校/职业/历史/职业合计，覆盖改课后原结果确认、晚期失败、重复、读取/输入/日志深复制与来源新局/新示例隔离。最终53套件360项Godot通过。源报告与规则保持冻结字节，仍不执行MVP/周推进/存档。
+
+## 窗口与最终验收
+
+在独立第4周示例安排课程并结算成长后，点击“确认关系与职业”。显示实际定向关系变化的数量、每位学生当前职业进度前后值及本周授课课程ID或待命。本周记录使用结算时名单/课程；后续改课不会重写。编班页授课班同时展示关系均值/档位与课程，三人例均值65→66。按钮完成后显示“本次结果已确认”并禁用，切换/关闭再进保留；“重开课程示例”才清空。原第0周隐藏该操作，底部仍明确未推进日历或存档。
+
+确认窗口66项离屏/71项Windows渲染通过；既有成长81/86、课程77/83、编班94/99、跨会话22及旧返回79项全部重跑通过。21张截图逐一检查，见 [确认](../analysis/school-course-confirmation-ui-20261007/README.md)、[成长兼容](../analysis/school-course-confirmation-growth-compat-20261007/README.md)、[课程兼容](../analysis/school-course-confirmation-course-compat-20261007/README.md) 和 [编班兼容](../analysis/school-course-confirmation-grouping-compat-20261007/README.md)。旧返回86项渲染沿用20261006基线。
+
+最终53套件360项Godot全通过。Python来源4项153.273秒与课程安排/解锁/运行规则15项27.030秒分别通过，合计19项；后者日志见 [兼容回归](../analysis/python-regression-course-confirmation-compat-20261007.txt)。冻结报告/期望/运行规则逐字节再生成一致，OpenSpec25项严格验证通过。下一步补齐MVP及剧情交接，再接真实周推进；当前只是明确的确认字段子集。

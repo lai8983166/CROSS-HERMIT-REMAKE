@@ -10,4 +10,4 @@
 
 ## 3. Confirmation fields window
 
-- [ ] 3.1 Add actual-input confirmation button and visible career/history/relationship summary, verify once-only navigation/restart and layout, rerun relevant legacy windows/native checks, inspect screenshots, update progress, pass strict OpenSpec validation and commit.
+- [x] 3.1 Add actual-input confirmation button and visible career/history/relationship summary, verify once-only navigation/restart and layout, rerun relevant legacy windows/native checks, inspect screenshots, update progress, pass strict OpenSpec validation and commit.

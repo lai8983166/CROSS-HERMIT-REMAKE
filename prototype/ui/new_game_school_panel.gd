@@ -37,6 +37,8 @@ var course_lists: Array = []
 var assign_button: Button
 var settle_button: Button
 var growth_summary: Label
+var confirm_button: Button
+var confirmation_summary: Label
 var course_info: Label
 var _group_content: VBoxContainer
 var _course_content: VBoxContainer
@@ -286,7 +288,7 @@ func refresh() -> void:
 	_group_content.visible = _page == "groups"
 	_course_content.visible = _page == "courses"
 	status_label.text = ("4月 · 第4周课程示例" if _example_mode else "4月 · 开学准备") + "  |  学生%d / 教师%d" % [snapshot["student_count"],snapshot["teacher_count"]]
-	_note.text = "第4周日期为独立示例输入；可结算授课一次，尚不推进日历或存档。" if _example_mode else "第0周来源新局；编班和课程模式可操作，教师101最早在4月第4周开放课程。"
+	_note.text = "第4周日期为独立示例输入；结算后可确认关系与职业，尚不推进日历或存档。" if _example_mode else "第0周来源新局；编班和课程模式可操作，教师101最早在4月第4周开放课程。"
 	restart_button.text = "重开课程示例" if _example_mode else "重开学校新局"
 	var levels := {}
 	for row in snapshot["member_profiles"]:
@@ -302,7 +304,8 @@ func refresh() -> void:
 		var rating: Dictionary = _view["ratings"][group]
 		_ratings[group].text = "未编班" if teacher == -1 else "%d名学生\n关系%d · %d级" % [snapshot["group_raw_bytes"][group * 28 + 14],rating["relationship_mean"],rating["relationship_rank"]]
 		if teacher != -1 and snapshot["group_raw_bytes"][group * 28 + 3] == 1:
-			_ratings[group].text = "授课\n课程 #%d" % Group._word(snapshot["group_raw_bytes"],group * 28 + 10) if Group._word(snapshot["group_raw_bytes"],group * 28 + 8) >= 0 else "授课\n未安排课程"
+			_ratings[group].text = "关系%d · %d级\n" % [rating["relationship_mean"],rating["relationship_rank"]]
+			_ratings[group].text += "授课 · 课程 #%d" % Group._word(snapshot["group_raw_bytes"],group * 28 + 10) if Group._word(snapshot["group_raw_bytes"],group * 28 + 8) >= 0 else "授课 · 未安排课程"
 	_rebuild_waiting(_teacher_wait_box,waiting_teachers,snapshot["idle_teacher_ids"],"teacher",levels)
 	_rebuild_waiting(_student_wait_box,waiting_students,snapshot["idle_student_ids"],"student",levels)
 	_refresh_courses(snapshot)
@@ -344,7 +347,7 @@ func _build_courses(column: VBoxContainer) -> void:
 		caption.text = ["初级课程","中级课程","高级课程"][category]
 		box.add_child(caption)
 		var list := ItemList.new()
-		list.custom_minimum_size = Vector2(250,190)
+		list.custom_minimum_size = Vector2(250,140)
 		list.item_selected.connect(func(index): _choose_course(category,index))
 		box.add_child(list)
 		course_lists.append(list)
@@ -356,11 +359,19 @@ func _build_courses(column: VBoxContainer) -> void:
 	settle_button = _button("结算授课示例",_settle_courses)
 	settle_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	actions.add_child(settle_button)
+	confirm_button = _button("确认关系与职业",_confirm_courses)
+	confirm_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	actions.add_child(confirm_button)
 	growth_summary = Label.new()
 	growth_summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	growth_summary.add_theme_font_size_override("font_size",16)
 	growth_summary.add_theme_color_override("font_color",Color("d6e4c4"))
 	_course_content.add_child(growth_summary)
+	confirmation_summary = Label.new()
+	confirmation_summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	confirmation_summary.add_theme_font_size_override("font_size",16)
+	confirmation_summary.add_theme_color_override("font_color",Color("b9d5ef"))
+	_course_content.add_child(confirmation_summary)
 
 
 func _show_page(page: String) -> void:
@@ -398,6 +409,17 @@ func _settle_courses() -> void:
 		_message = "授课示例已结算；学生成长已更新，日期保持第4周。"
 	else:
 		_message = "未能结算：" + str(result.get("reason",""))
+	refresh()
+
+
+func _confirm_courses() -> void:
+	var rules: Dictionary = Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_confirmation_rules.json")))
+	var result := session.confirm_courses(rules,session.revision())
+	if result["supported"]:
+		_view = result
+		_message = "关系、职业进度和本周记录已确认；第4周日期不变。"
+	else:
+		_message = "未能确认：" + str(result.get("reason",""))
 	refresh()
 
 
@@ -442,6 +464,42 @@ func _refresh_courses(snapshot: Dictionary) -> void:
 	elif teacher != -1:
 		course_info.text += "\n当前课程：#%d" % Group._word(snapshot["group_raw_bytes"],group * 28 + 10) if Group._word(snapshot["group_raw_bytes"],group * 28 + 8) >= 0 else "\n当前未安排课程。"
 	_refresh_settlement()
+	_refresh_confirmation()
+
+
+func _refresh_confirmation() -> void:
+	confirm_button.visible = _example_mode
+	var completed := session.read_confirmation()
+	confirm_button.disabled = not _example_mode or session.read_settlement().is_empty() or not completed.is_empty()
+	confirm_button.text = "本次结果已确认" if not completed.is_empty() else "确认关系与职业"
+	confirmation_summary.visible = _example_mode and not completed.is_empty()
+	if completed.is_empty():
+		confirmation_summary.text = ""
+		return
+	var differences := {}
+	for index in range(completed["after"]["relationships"].size()):
+		var delta: int = completed["after"]["relationships"][index]["value"] - completed["settled_school"]["relationships"][index]["value"]
+		if delta != 0:
+			differences[delta] = differences.get(delta,0)+1
+	var relation_parts := PackedStringArray()
+	for delta in differences:
+		relation_parts.append("%s%d×%d条" % ["+" if delta > 0 else "",delta,differences[delta]])
+	var lines := PackedStringArray(["确认完成 · 关系变化 %s · 第4周日期不变" % " / ".join(relation_parts)])
+	for index in range(3):
+		var record: Dictionary = completed["records"][index]
+		var job := 0
+		for profile in completed["settled_school"]["member_profiles"]:
+			if profile["member_id"] == record["character_id"]:
+				job = profile["job"]
+		var activity := "待命"
+		if record["week_records"][9] == 1:
+			for group in range(5):
+				for slot in range(4):
+					if Group._word(completed["settled_school"]["group_raw_bytes"],group*28+16+2*slot) == record["character_id"]:
+						activity = "授课 #%d" % Group._word(completed["settled_school"]["group_raw_bytes"],group*28+10)
+		lines.append("学生 #%d · 职业 #%d 进度%d→%d · 本周%s" % [record["character_id"],job,
+			completed["before_records"][index]["job_progress"][job],record["job_progress"][job],activity])
+	confirmation_summary.text = "\n".join(lines)
 
 
 func _refresh_settlement() -> void:

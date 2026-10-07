@@ -36,4 +36,4 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 
 无教师班禁用模式/安排，冒险模式或没有选中课程时禁用安排。课程以来源ID标示，中/高级分类在4/4为空。示例安排有效课程后可点击“结算授课示例”，显示成长摘要；原第0周隐藏结算操作。返回战斗后重新进入保留当前会话和页面；“重开学校新局”或“重开课程示例”只重置当前会话，另一会话保留。顶部与页底明确标示示例日期边界。
 
-窗口使用实际Viewport鼠标事件，包括在主视口坐标中命中嵌入式下拉窗口；测试不直接发送控件信号代替点击。接入成长窗口后，课程77项离屏/83项Windows渲染、编班94项离屏/99项渲染、跨会话导航22项及旧返回两路线79项均重新通过。最新截图和哈希见 [课程兼容验收](../analysis/school-course-settlement-course-compat-20261007/README.md) 和 [编班兼容验收](../analysis/school-course-settlement-grouping-compat-20261007/README.md)，此前截图按历史版本保留。
+窗口使用实际Viewport鼠标事件，包括在主视口坐标中命中嵌入式下拉窗口；测试不直接发送控件信号代替点击。接入成长与确认字段后，课程77项离屏/83项Windows渲染、编班94项离屏/99项渲染、跨会话导航22项及旧返回两路线79项均重新通过。最新截图和哈希见 [课程兼容验收](../analysis/school-course-confirmation-course-compat-20261007/README.md) 和 [编班兼容验收](../analysis/school-course-confirmation-grouping-compat-20261007/README.md)。成长后可另点“确认关系与职业”，见 [授课确认字段](school_course_confirmation.md)；此前截图按历史版本保留。
