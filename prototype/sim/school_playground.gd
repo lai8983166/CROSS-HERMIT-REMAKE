@@ -3,11 +3,16 @@ extends RefCounted
 
 const Session := preload("res://sim/new_game_school_session.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
+const Week := preload("res://sim/week_settlement_replay.gd")
 const RULE_PATHS := {
 	"school":"res://data/new_game_school_rules.json",
 	"growth":"res://data/school_course_settlement_rules.json",
 	"confirmation":"res://data/school_course_confirmation_rules.json",
-	"result":"res://data/school_course_result_handoff_rules.json"}
+	"result":"res://data/school_course_result_handoff_rules.json",
+	"week":"res://data/school_story_week_rules.json",
+	"story":"res://assets/school_story/catalog.json"}
+const LEGACY_KEYS := ["school","growth","confirmation","result"]
+const SCHOOL_OPS := ["move","mode","course","grow","confirm","complete"]
 const SAVE_PATH := "user://school_playground.json"
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -16,12 +21,22 @@ var session: Session
 var _commands: Array = []
 var _rules: Dictionary = {}
 var _fingerprints: Dictionary = {}
+var _story_pages: Array = []
+var _story_cursor := -1
+var _continuation_revision := 0
+var _week: Dictionary = {}
 
 
 func _init() -> void:
 	for key in RULE_PATHS:
 		_rules[key] = Roles._integers(JSON.parse_string(FileAccess.get_file_as_string(RULE_PATHS[key])))
 		_fingerprints[key] = FileAccess.get_sha256(RULE_PATHS[key])
+	for scene in _rules["story"]["scenes"]:
+		for page in scene["pages"]:
+			var entry: Dictionary = page.duplicate(true)
+			entry["chapter"] = scene["chapter"]
+			entry["scene_label"] = scene["label"]
+			_story_pages.append(entry)
 
 
 func start() -> Dictionary:
@@ -32,12 +47,21 @@ func start() -> Dictionary:
 		return result
 	session = fresh
 	_commands = []
+	_story_cursor = -1
+	_continuation_revision = 0
+	_week = {}
 	return {"supported":true,"status":"started"}
 
 
 func stage() -> String:
 	if session == null:
 		return "uninitialized"
+	if not _week.is_empty():
+		return "arrival"
+	if _story_cursor == _story_pages.size():
+		return "story_completed"
+	if _story_cursor >= 0:
+		return "story"
 	if not session.read_result_handoff().is_empty():
 		return "completed"
 	if not session.read_confirmation().is_empty():
@@ -54,9 +78,11 @@ func execute(command: Variant) -> Dictionary:
 		return _failure("invalid_command")
 	if _commands.size() >= MAX_COMMANDS:
 		return _failure("save_command_limit")
-	var previous := session.revision()
+	if _story_cursor >= 0 and command["op"] in SCHOOL_OPS:
+		return _failure("story_locks_school")
+	var previous := revision()
 	var result := _dispatch(command)
-	if result["supported"] and session.revision() != previous:
+	if result["supported"] and revision() != previous:
 		_commands.append(command.duplicate(true))
 	return result
 
@@ -77,6 +103,8 @@ func _dispatch(command: Dictionary) -> Dictionary:
 			return session.confirm_courses(_rules["confirmation"],session.revision())
 		"complete":
 			return session.complete_course_result(_rules["result"],session.revision())
+		"story_start","story_next","story_prev","story_skip","week":
+			return _continue(command["op"])
 	return _failure("invalid_command")
 
 
@@ -96,7 +124,7 @@ static func _valid_command(command: Dictionary) -> bool:
 			keys = ["op","group","course"]
 			if not _integer(command.get("group"),0,4) or not _integer(command.get("course"),10,12):
 				return false
-		"grow","confirm","complete":
+		"grow","confirm","complete","story_start","story_next","story_prev","story_skip","week":
 			keys = ["op"]
 		_:
 			return false
@@ -107,7 +135,69 @@ static func _integer(value: Variant, low: int, high: int) -> bool:
 	return value is int and value >= low and value <= high
 
 
-func state() -> Dictionary:
+func revision() -> int:
+	return 0 if session == null else session.revision()+_continuation_revision
+
+
+func read_story_page() -> Dictionary:
+	return {} if _story_cursor < 0 or _story_cursor >= _story_pages.size() else _story_pages[_story_cursor].duplicate(true)
+
+
+func story_catalog() -> Dictionary:
+	return _rules["story"].duplicate(true)
+
+
+func _continue(op: String) -> Dictionary:
+	if session.read_result_handoff().is_empty():
+		return _failure("story_requires_course_result")
+	if not _week.is_empty():
+		return {"supported":true,"status":"duplicate"} if op == "week" else _failure("week_already_arrived")
+	if op == "week":
+		if _story_cursor != _story_pages.size():
+			return _failure("week_requires_completed_story")
+		var before := _week_input()
+		var projected := Week.project(before,_rules["week"]["week_rules"])
+		if not projected["supported"]:
+			return projected
+		_week = {"before":before,"after":projected["after"],
+			"handoff":{"pending_state":6,"next_task":8,"script":"adv/dat/ch001.ybc",
+				"school_initialized":false,"ch001_body_executed":false}}
+	elif op == "story_start":
+		if _story_cursor >= 0:
+			return {"supported":true,"status":"duplicate"}
+		_story_cursor = 0
+	elif _story_cursor < 0:
+		return _failure("story_not_started")
+	elif op == "story_next":
+		if _story_cursor == _story_pages.size():
+			return {"supported":true,"status":"duplicate"}
+		_story_cursor += 1
+	elif op == "story_prev":
+		if _story_cursor == 0:
+			return {"supported":true,"status":"duplicate"}
+		_story_cursor -= 1
+	elif op == "story_skip":
+		if _story_cursor == _story_pages.size():
+			return {"supported":true,"status":"duplicate"}
+		_story_cursor = _story_pages.size()
+	_continuation_revision += 1
+	return {"supported":true,"status":"continued_once"}
+
+
+func _week_input() -> Dictionary:
+	var before: Dictionary = _rules["week"]["baseline"].duplicate(true)
+	before["month"] = 4
+	before["week"] = 4
+	var growth := session.read_growth_records()
+	var confirmation := session.read_confirmation_records()
+	for index in range(before["participants"].size()):
+		before["participants"][index]["attributes"] = growth[index]["attributes"].duplicate(true)
+		before["participants"][index]["skill_statuses"] = growth[index]["skill_statuses"].duplicate(true)
+		before["participants"][index]["job_progress"] = confirmation[index]["job_progress"].slice(0,31)
+	return before
+
+
+func _school_state() -> Dictionary:
 	if session == null:
 		return {}
 	return {"snapshot":session.read_snapshot(),"growth":session.read_growth_records(),
@@ -115,10 +205,20 @@ func state() -> Dictionary:
 		"counts":session.read_mvp_counts(),"revision":session.revision()}
 
 
+func state() -> Dictionary:
+	var result := _school_state()
+	if result.is_empty():
+		return result
+	result["revision"] = revision()
+	result["story"] = {"cursor":_story_cursor,"total":_story_pages.size(),"completed":_story_cursor == _story_pages.size()}
+	result["week"] = _week.duplicate(true)
+	return result
+
+
 func export_save() -> Dictionary:
 	if session == null:
 		return {}
-	return {"version":1,"context":"school_playground_4_4","rules":_fingerprints.duplicate(true),
+	return {"version":2,"context":"school_playground_story_4_4","rules":_fingerprints.duplicate(true),
 		"commands":_commands.duplicate(true),"state_sha256":JSON.stringify(state(),"",true).sha256_text()}
 
 
@@ -126,9 +226,15 @@ func restore(payload: Variant) -> Dictionary:
 	if not payload is Dictionary or payload.size() != 5 \
 			or not ["version","context","rules","commands","state_sha256"].all(func(k): return payload.has(k)):
 		return _failure("invalid_save")
-	if not _integer(payload["version"],1,1) or payload["context"] != "school_playground_4_4":
+	var legacy: bool = payload["version"] == 1
+	if not _integer(payload["version"],1,2) or payload["context"] != ("school_playground_4_4" if legacy else "school_playground_story_4_4"):
 		return _failure("unsupported_save_version")
-	if payload["rules"] != _fingerprints:
+	var fingerprints: Dictionary = _fingerprints.duplicate(true)
+	if legacy:
+		fingerprints = {}
+		for key in LEGACY_KEYS:
+			fingerprints[key] = _fingerprints[key]
+	if payload["rules"] != fingerprints:
 		return _failure("save_rules_changed")
 	if not payload["commands"] is Array or payload["commands"].size() > MAX_COMMANDS \
 			or not payload["state_sha256"] is String or payload["state_sha256"].length() != 64:
@@ -138,14 +244,20 @@ func restore(payload: Variant) -> Dictionary:
 	if not begun["supported"]:
 		return begun
 	for command in payload["commands"]:
-		var previous: int = candidate.session.revision()
-		var result: Dictionary = candidate.execute(command)
-		if not result["supported"] or candidate.session.revision() == previous:
+		if legacy and (not command is Dictionary or command.get("op") not in SCHOOL_OPS):
 			return _failure("save_command_rejected")
-	if candidate.export_save()["state_sha256"] != payload["state_sha256"]:
+		var previous: int = candidate.revision()
+		var result: Dictionary = candidate.execute(command)
+		if not result["supported"] or candidate.revision() == previous:
+			return _failure("save_command_rejected")
+	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate.state()
+	if JSON.stringify(candidate_state,"",true).sha256_text() != payload["state_sha256"]:
 		return _failure("save_state_mismatch")
 	session = candidate.session
 	_commands = candidate._commands.duplicate(true)
+	_story_cursor = candidate._story_cursor
+	_continuation_revision = candidate._continuation_revision
+	_week = candidate._week.duplicate(true)
 	return {"supported":true,"status":"restored"}
 
 

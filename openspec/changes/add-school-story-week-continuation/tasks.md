@@ -8,7 +8,7 @@
 
 ## 3. Durable continuation model
 
-- [ ] 3.1 Implement story cursor, completion and once-only week projection with version1 save migration; test native comparison, replay refusal, migration and atomic restore; document save behavior.
+- [x] 3.1 Implement story cursor, completion and once-only week projection with version1 save migration; test native comparison, replay refusal, migration and atomic restore; document save behavior.
 
 ## 4. Graphical reader
 

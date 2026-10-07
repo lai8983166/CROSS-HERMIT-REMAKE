@@ -50,7 +50,7 @@ func test_refusals_are_atomic_and_owned() -> void:
 	var bad: Dictionary = good.duplicate(true)
 	bad["commands"].append({"op":"complete"})
 	assert_false(model.restore(bad)["supported"])
-	bad = good.duplicate(true); bad["version"] = 2
+	bad = good.duplicate(true); bad["version"] = 99
 	assert_false(model.restore(bad)["supported"])
 	bad = good.duplicate(true); bad["rules"]["school"] = "changed"
 	assert_false(model.restore(bad)["supported"])
