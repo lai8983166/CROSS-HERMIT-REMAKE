@@ -3,6 +3,7 @@ extends Control
 
 const Playground := preload("res://sim/school_playground.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
+const StoryReader := preload("res://ui/school_story_reader.gd")
 const ART := "res://assets/school/"
 
 var model := Playground.new()
@@ -46,6 +47,7 @@ var _guidance: Label
 var _stage_labels: Array = []
 var footer: Label
 var panel: MarginContainer
+var story_reader: StoryReader
 
 
 func _ready() -> void:
@@ -172,8 +174,14 @@ func _ready() -> void:
 	next_button = _button("",_next)
 	next_button.custom_minimum_size = Vector2(210,48)
 	bottom.add_child(next_button)
-	footer = _label("第四周养成试玩 · 本段结束停在剧情入口，后续周数仍在开发。",13,Color("9ab1a4"))
+	footer = _label("第四周养成试玩 · 授课、成长、MVP与两段原版剧情。",13,Color("9ab1a4"))
 	column.add_child(footer)
+	story_reader = StoryReader.new()
+	add_child(story_reader)
+	story_reader.visible = false
+	story_reader.command.connect(_story_command)
+	story_reader.return_requested.connect(_close_story)
+	story_reader.save_requested.connect(_manual_save)
 	model.start()
 	if auto_load:
 		var loaded := model.load_file(save_path)
@@ -205,6 +213,8 @@ func _restore_view() -> void:
 		if _identity("teacher",group,-1) >= 0:
 			selected_class = group
 	page = "groups" if model.stage() == "planning" else "results"
+	if model.stage() == "story":
+		page = "story"
 
 
 func _manual_save() -> void:
@@ -381,6 +391,26 @@ func _next() -> void:
 		"confirmed":
 			if _act({"op":"complete"}):
 				_message = "本次MVP已记录。"
+		"completed":
+			if _act({"op":"story_start"}):
+				page = "story"
+		"story":
+			page = "story"
+	refresh()
+
+
+func _story_command(op: String) -> void:
+	if page != "story" or model.stage() != "story":
+		return
+	if _act({"op":op}):
+		page = "story" if model.stage() == "story" else "results"
+		_message = "" if page == "story" else "本周剧情已结束，成长和MVP已保留。"
+	refresh()
+
+
+func _close_story() -> void:
+	page = "results"
+	_message = "阅读位置已保留，可继续阅读。"
 	refresh()
 
 
@@ -396,6 +426,8 @@ func refresh() -> void:
 	for key in tab_buttons:
 		tab_buttons[key].button_pressed = page == key
 	var current := ["planning","grown","confirmed","completed"].find(stage)
+	if current < 0:
+		current = 3
 	for index in range(4):
 		_stage_labels[index].add_theme_color_override("font_color",Color("ead6a3") if index <= current else Color("728b7d"))
 	for group in range(5):
@@ -430,17 +462,25 @@ func refresh() -> void:
 	_refresh_courses()
 	_refresh_detail()
 	_refresh_results()
-	next_button.text = {"planning":"开始授课","grown":"确认本周记录","confirmed":"评选本次MVP","completed":"本段试玩已完成"}[stage]
+	next_button.text = {"planning":"开始授课","grown":"确认本周记录","confirmed":"评选本次MVP",
+		"completed":"阅读本周剧情","story":"继续阅读剧情","story_completed":"本周剧情已完成","arrival":"已到达第五周"}[stage]
 	var ready := false
 	for rating in model.session.view()["ratings"]:
 		if rating["state"] == 4:
 			ready = true
-	next_button.disabled = stage == "completed" or (stage == "planning" and not ready)
-	_guidance.text = {"planning":"选择成员，再点目标位置。进入「授课安排」选择课程。","grown":"学生成长已完成。确认记录后，可评选本次MVP。","confirmed":"本周记录已确认。下一步记录MVP。","completed":"本周剧情待接入；可保存结果或重开，尝试其他课程安排。"}[stage]
+	next_button.disabled = stage in ["story_completed","arrival"] or (stage == "planning" and not ready)
+	_guidance.text = {"planning":"选择成员，再点目标位置。进入「授课安排」选择课程。",
+		"grown":"学生成长已完成。确认记录后，可评选本次MVP。","confirmed":"本周记录已确认。下一步记录MVP。",
+		"completed":"本次MVP已记录，接下来阅读本周剧情。","story":"可从保存的位置继续阅读本周剧情。",
+		"story_completed":"本周剧情已结束，成长和MVP均已保留。","arrival":"已到达第五周。"}[stage]
 	if selected_id >= 0:
 		_guidance.text = "已选%s · 点击目标%s位置，或移到待命。Esc取消。" % [_name(selected_id),"教师" if selected_kind == "teacher" else "学生"]
 	if not _message.is_empty():
 		_guidance.text = _message
+	story_reader.visible = page == "story" and stage == "story"
+	if story_reader.visible:
+		story_reader.show_page(model.read_story_page(),model.state()["story"]["cursor"],
+			model.state()["story"]["total"],model.story_catalog(),_save_message)
 
 
 func _refresh_courses() -> void:
@@ -615,7 +655,9 @@ func _refresh_results() -> void:
 	if not confirmation.is_empty():
 		note.text = "关系与职业进度已确认；本次结算不会重复发放。"
 	if not completed.is_empty():
-		note.text = "本段已完成，4月第4周的剧情仍待接入。\n可以保存结果，或重开比较不同课程的成长。"
+		note.text = "本次MVP已记录。继续阅读本周剧情，进度会自动保存。"
+		if model.stage() == "story_completed":
+			note.text = "本周剧情已结束。授课成长、关系、职业进度和MVP均已保留。"
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_results.add_child(note)
 
@@ -688,6 +730,21 @@ static func _clear(container: Node) -> void:
 	for child in container.get_children():
 		container.remove_child(child)
 		child.queue_free()
+
+
+func _input(event: InputEvent) -> void:
+	if story_reader.visible and event is InputEventKey and event.pressed and not event.echo \
+			and not story_reader.skip_dialog.visible:
+		if event.keycode in [KEY_ENTER,KEY_SPACE,KEY_RIGHT]:
+			_story_command("story_next")
+		elif event.keycode == KEY_LEFT:
+			_story_command("story_prev")
+		elif event.keycode == KEY_ESCAPE:
+			_close_story()
+		else:
+			return
+		get_viewport().set_input_as_handled()
+		return
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

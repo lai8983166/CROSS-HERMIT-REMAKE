@@ -12,7 +12,7 @@
 
 ## 4. Graphical reader
 
-- [ ] 4.1 Add scene imagery, speaker text, next/previous/return and skip confirmation controls; verify headless input tests and rendered scene/partial-save captures; document controls.
+- [x] 4.1 Add scene imagery, speaker text, next/previous/return and skip confirmation controls; verify headless input tests and rendered scene/partial-save captures; document controls.
 
 ## 5. Next-week arrival
 
