@@ -10,4 +10,4 @@
 
 ## 3. Example settlement window
 
-- [ ] 3.1 Add explicit course settlement button and student changes, test actual input and session navigation/restart/duplicate prevention, rerun existing windows and relevant native checks, inspect rendered screenshots, update progress, pass strict OpenSpec validation and commit.
+- [x] 3.1 Add explicit course settlement button and student changes, test actual input and session navigation/restart/duplicate prevention, rerun existing windows and relevant native checks, inspect rendered screenshots, update progress, pass strict OpenSpec validation and commit.

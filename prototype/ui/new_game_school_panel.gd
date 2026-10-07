@@ -35,6 +35,8 @@ var course_group: OptionButton
 var class_mode: OptionButton
 var course_lists: Array = []
 var assign_button: Button
+var settle_button: Button
+var growth_summary: Label
 var course_info: Label
 var _group_content: VBoxContainer
 var _course_content: VBoxContainer
@@ -284,7 +286,8 @@ func refresh() -> void:
 	_group_content.visible = _page == "groups"
 	_course_content.visible = _page == "courses"
 	status_label.text = ("4月 · 第4周课程示例" if _example_mode else "4月 · 开学准备") + "  |  学生%d / 教师%d" % [snapshot["student_count"],snapshot["teacher_count"]]
-	_note.text = "第4周日期为独立示例输入；课程安排尚不执行成长、周推进或存档。" if _example_mode else "第0周来源新局；编班和课程模式可操作，教师101最早在4月第4周开放课程。"
+	_note.text = "第4周日期为独立示例输入；可结算授课一次，尚不推进日历或存档。" if _example_mode else "第0周来源新局；编班和课程模式可操作，教师101最早在4月第4周开放课程。"
+	restart_button.text = "重开课程示例" if _example_mode else "重开学校新局"
 	var levels := {}
 	for row in snapshot["member_profiles"]:
 		levels[row["member_id"]] = row["level_50"]
@@ -310,7 +313,7 @@ func refresh() -> void:
 
 func _build_courses(column: VBoxContainer) -> void:
 	_course_content = VBoxContainer.new()
-	_course_content.add_theme_constant_override("separation",16)
+	_course_content.add_theme_constant_override("separation",12)
 	column.add_child(_course_content)
 	var controls := HBoxContainer.new()
 	_course_content.add_child(controls)
@@ -327,7 +330,7 @@ func _build_courses(column: VBoxContainer) -> void:
 	class_mode.item_selected.connect(func(index): _plan_mode(index == 1))
 	controls.add_child(class_mode)
 	course_info = Label.new()
-	course_info.custom_minimum_size.y = 60
+	course_info.custom_minimum_size.y = 48
 	course_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_course_content.add_child(course_info)
 	var categories := HBoxContainer.new()
@@ -341,12 +344,23 @@ func _build_courses(column: VBoxContainer) -> void:
 		caption.text = ["初级课程","中级课程","高级课程"][category]
 		box.add_child(caption)
 		var list := ItemList.new()
-		list.custom_minimum_size = Vector2(250,280)
+		list.custom_minimum_size = Vector2(250,190)
 		list.item_selected.connect(func(index): _choose_course(category,index))
 		box.add_child(list)
 		course_lists.append(list)
 	assign_button = _button("安排选中课程",_assign_course)
-	_course_content.add_child(assign_button)
+	var actions := HBoxContainer.new()
+	_course_content.add_child(actions)
+	assign_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	actions.add_child(assign_button)
+	settle_button = _button("结算授课示例",_settle_courses)
+	settle_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	actions.add_child(settle_button)
+	growth_summary = Label.new()
+	growth_summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	growth_summary.add_theme_font_size_override("font_size",16)
+	growth_summary.add_theme_color_override("font_color",Color("d6e4c4"))
+	_course_content.add_child(growth_summary)
 
 
 func _show_page(page: String) -> void:
@@ -374,6 +388,17 @@ func _plan_mode(teaching: bool) -> void:
 func _assign_course() -> void:
 	var result := session.assign_course(course_group.selected,_course_selected,session.revision())
 	_plan_result(result)
+
+
+func _settle_courses() -> void:
+	var rules: Dictionary = Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_settlement_rules.json")))
+	var result := session.settle_courses(rules,session.revision())
+	if result["supported"]:
+		_view = result
+		_message = "授课示例已结算；学生成长已更新，日期保持第4周。"
+	else:
+		_message = "未能结算：" + str(result.get("reason",""))
+	refresh()
 
 
 func _plan_result(result: Dictionary) -> void:
@@ -416,6 +441,45 @@ func _refresh_courses(snapshot: Dictionary) -> void:
 		course_info.text += "\n当前没有可用课程；教师101最早在4月第4周开放，可进入独立课程示例。"
 	elif teacher != -1:
 		course_info.text += "\n当前课程：#%d" % Group._word(snapshot["group_raw_bytes"],group * 28 + 10) if Group._word(snapshot["group_raw_bytes"],group * 28 + 8) >= 0 else "\n当前未安排课程。"
+	_refresh_settlement()
+
+
+func _refresh_settlement() -> void:
+	settle_button.visible = _example_mode
+	var completed := session.read_settlement()
+	var ready := false
+	var supported := true
+	for rating in _view.get("ratings",[]):
+		if rating["state"] in [2,3,5]:
+			supported = false
+		if rating["state"] == 4:
+			ready = true
+			if rating["work_fields"][2] not in [10,11,12]:
+				supported = false
+	settle_button.disabled = not _example_mode or not ready or not supported or not completed.is_empty()
+	settle_button.text = "本次示例已结算" if not completed.is_empty() else "结算授课示例"
+	growth_summary.visible = _example_mode and not completed.is_empty()
+	if completed.is_empty():
+		growth_summary.text = ""
+		return
+	var lines := PackedStringArray(["授课结果 · 成长加成 +%d · 第4周日期不变；重开示例可再次演示。" % completed["bonus"]])
+	var ids := []
+	for packet in completed["packets"]:
+		ids.append(packet["character_id"])
+	for index in range(3):
+		var old: Dictionary = completed["before_records"][index]
+		var record: Dictionary = completed["records"][index]
+		if record["character_id"] not in ids:
+			continue
+		var changes := PackedStringArray()
+		for k in range(7):
+			if old["attributes"][k] != record["attributes"][k]:
+				changes.append("%s%d→%d" % [["力","敏","感","活","智","耐","精"][k],old["attributes"][k],record["attributes"][k]])
+		for sid in range(84):
+			if old["skill_statuses"][sid] != 2 and record["skill_statuses"][sid] == 2:
+				changes.append("新技能 #%d" % (sid+1))
+		lines.append("学生 #%d · Lv.%d→%d · %s" % [record["character_id"],old["level_50"],record["level_50"]," / ".join(changes)])
+	growth_summary.text = "\n".join(lines)
 
 
 func _rebuild_waiting(box: HBoxContainer, buttons: Dictionary, identities: Array, kind: String, levels: Dictionary) -> void:
