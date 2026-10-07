@@ -20,4 +20,4 @@
 
 ## 6. Integrated acceptance
 
-- [ ] 6.1 Run relevant regressions and strict OpenSpec validation, inspect final rendered captures, record reproducible acceptance artifacts and locally commit the completed batch.
+- [x] 6.1 Run relevant regressions and strict OpenSpec validation, inspect final rendered captures, record reproducible acceptance artifacts and locally commit the completed batch.

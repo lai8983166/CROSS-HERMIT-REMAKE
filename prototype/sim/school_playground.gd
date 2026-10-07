@@ -40,6 +40,8 @@ func _init() -> void:
 
 
 func start() -> Dictionary:
+	if not _valid_story_art():
+		return _failure("invalid_story_assets")
 	var fresh := Session.new()
 	var rules: Dictionary = _rules["school"]
 	var result := fresh.initialize_course_example(rules["origin_rules"],rules["course_rules"],rules)
@@ -51,6 +53,17 @@ func start() -> Dictionary:
 	_continuation_revision = 0
 	_week = {}
 	return {"supported":true,"status":"started"}
+
+
+func _valid_story_art() -> bool:
+	var expected := ["actor_4.png","actor_7.png","actor_130.png","background_8.png","background_52.png"]
+	var outputs: Variant = _rules["story"].get("outputs_sha256")
+	if not outputs is Dictionary or outputs.size() != expected.size():
+		return false
+	for filename in expected:
+		if outputs.get(filename) != FileAccess.get_sha256("res://assets/school_story/"+filename):
+			return false
+	return true
 
 
 func stage() -> String:

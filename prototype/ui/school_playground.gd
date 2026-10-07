@@ -192,7 +192,12 @@ func _ready() -> void:
 	arrival.battle_requested.connect(_open_battle)
 	arrival.save_requested.connect(_manual_save)
 	arrival.restart_requested.connect(func(): restart_dialog.popup_centered(Vector2i(440,180)))
-	model.start()
+	var started := model.start()
+	if not started["supported"]:
+		_status.text = "试玩初始化失败"
+		_guidance.text = "试玩素材缺失或已损坏，请恢复项目文件后重试。"
+		next_button.disabled = true
+		return
 	if auto_load:
 		var loaded := model.load_file(save_path)
 		if loaded["supported"]:
@@ -370,7 +375,8 @@ func _cancel() -> void:
 func _act(command: Dictionary) -> bool:
 	var result := model.execute(command)
 	if not result["supported"]:
-		_message = "当前安排还不能完成这一步，请检查教师、学生和课程。"
+		_message = "本段操作次数已达保存上限，当前进度已保留。" if result.get("reason") == "save_command_limit" \
+			else "当前安排还不能完成这一步，请检查教师、学生和课程。"
 		return false
 	_save()
 	return true

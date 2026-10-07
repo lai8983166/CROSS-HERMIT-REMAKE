@@ -150,3 +150,14 @@ func test_other_course_and_waiting_inputs_preserved_through_week() -> void:
 	assert_eq(week["after"]["week"],5)
 	assert_eq(model._school_state(),before)
 	_restore(model)
+
+
+func test_corrupt_art_is_refused_before_resetting_existing_progress() -> void:
+	var model = _course()
+	model.execute({"op":"story_start"})
+	var before: Dictionary = model.state()
+	var saved: Dictionary = model.export_save()
+	model._rules["story"]["outputs_sha256"]["actor_4.png"] = "changed"
+	assert_false(model.start()["supported"])
+	assert_eq(model.state(),before)
+	assert_eq(model.export_save(),saved)
