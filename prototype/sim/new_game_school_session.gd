@@ -9,6 +9,7 @@ const Teacher := preload("res://sim/school_teacher_movement.gd")
 const Sort := preload("res://sim/school_waitlist_sort.gd")
 const Planning := preload("res://sim/school_course_planning.gd")
 const Settlement := preload("res://sim/school_course_settlement.gd")
+const Confirmation := preload("res://sim/school_course_confirmation.gd")
 const CONTROLS := ["idle_sort_mode","teacher_sort_mode","drag_kind","drag_origin","drag_group",
 	"drag_slot","drag_id","drag_source_rank","task_drag_state","task_command","teacher_work_records"]
 
@@ -24,6 +25,10 @@ var _context := "source_new_game"
 var _settlement_rules: Dictionary = {}
 var _growth_records: Array = []
 var _settlement: Dictionary = {}
+var _settled_school: Dictionary = {}
+var _confirmation_rules: Dictionary = {}
+var _confirmation_records: Array = []
+var _confirmation: Dictionary = {}
 
 
 func initialize(origin_rules: Dictionary, course_rules: Dictionary, movement_rules: Dictionary = {}) -> Dictionary:
@@ -121,6 +126,60 @@ func read_settlement() -> Dictionary:
 	return _settlement.duplicate(true)
 
 
+func read_confirmation_records() -> Array:
+	return _confirmation_records.duplicate(true)
+
+
+func read_confirmation() -> Dictionary:
+	return _confirmation.duplicate(true)
+
+
+func confirm_courses(rules: Dictionary, expected_revision: Variant) -> Dictionary:
+	if not _prepared or _context != "declared_course_example_4_4" or _settlement.is_empty():
+		return Origin.failure("course_confirmation_requires_completed_example_growth")
+	if not Courses._integer(expected_revision,_revision,_revision):
+		return Origin.failure("stale_school_revision")
+	var source := Confirmation.source_subset(rules)
+	if not Confirmation.valid_rules(source):
+		return Origin.failure("invalid_confirmation_source_rules")
+	if not _confirmation.is_empty():
+		if source != _confirmation_rules:
+			return Origin.failure("course_confirmation_input_conflict")
+		return _view("duplicate")
+	# Confirm the captured result, even if the current class plan has changed.
+	var result := Confirmation.apply(_settled_school,source["initial_records"],source)
+	if not result["supported"]:
+		return result
+	var candidate := read_snapshot()
+	candidate["relationships"] = result["after"]["relationships"].duplicate(true)
+	var rated := Groups.rate(candidate,Origin.group_rules())
+	if not rated["supported"]:
+		return rated
+	var growth := read_growth_records()
+	for index in range(3):
+		var progress: Array = result["records"][index]["job_progress"]
+		for k in range(5):
+			var total := 0
+			for offset in [0,1,10,11,20,21]:
+				total += int(progress[1+2*k+offset])
+			growth[index]["job_sums"][k] = total
+	var confirmation: Dictionary = result.duplicate(true)
+	confirmation["before_records"] = source["initial_records"].duplicate(true)
+	confirmation["settled_school"] = _settled_school.duplicate(true)
+	_revision += 1
+	_journal.append({"revision":_revision,"phase":"course_confirmation_fields","before":read_snapshot(),
+		"after":candidate.duplicate(true),"confirmation":confirmation.duplicate(true)})
+	_journal.append({"revision":_revision,"phase":"course_confirmation_rate","before":candidate.duplicate(true),
+		"after":_canonical(rated["after"])})
+	_snapshot = _canonical(rated["after"])
+	_ratings = rated["ratings"].duplicate(true)
+	_growth_records = growth
+	_confirmation_rules = source.duplicate(true)
+	_confirmation_records = result["records"].duplicate(true)
+	_confirmation = confirmation
+	return _view("course_confirmation_fields_once")
+
+
 func settle_courses(rules: Dictionary, expected_revision: Variant) -> Dictionary:
 	if not _prepared or _movement_rules.is_empty() or _context != "declared_course_example_4_4":
 		return Origin.failure("course_settlement_requires_explicit_example")
@@ -166,6 +225,7 @@ func settle_courses(rules: Dictionary, expected_revision: Variant) -> Dictionary
 	_snapshot = _canonical(rated["after"])
 	_ratings = rated["ratings"].duplicate(true)
 	_growth_records = result["records"].duplicate(true)
+	_settled_school = read_snapshot()
 	_settlement_rules = source.duplicate(true)
 	_settlement = growth
 	return _view("courses_settled_once")
@@ -462,4 +522,6 @@ func _view(status: String) -> Dictionary:
 		result["school_context"] = _context
 	if not _settlement.is_empty():
 		result["course_settlement"] = read_settlement()
+	if not _confirmation.is_empty():
+		result["course_confirmation"] = read_confirmation()
 	return result

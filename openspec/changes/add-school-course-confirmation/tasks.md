@@ -6,7 +6,7 @@
 
 ## 2. Owned confirmation transaction
 
-- [ ] 2.1 Capture settled context and source confirmation records, atomically confirm once with strict revisions/deep copies/ordered journals, verify native checkpoints and changed-plan/session isolation/refusals, document API, pass full Godot checks and commit.
+- [x] 2.1 Capture settled context and source confirmation records, atomically confirm once with strict revisions/deep copies/ordered journals, verify native checkpoints and changed-plan/session isolation/refusals, document API, pass full Godot checks and commit.
 
 ## 3. Confirmation fields window
 

@@ -14,7 +14,7 @@ See proposal.md. Existing source growth leaves4C1350 pending. Its native body bu
 
 - Execute4C1350 and real subordinate bodies after source initialization/planning/growth in the same CPU; finite guards permit only enrolled career/history, known relationships and exact task workspace. Freeze before/after and separate subsequent native rating for the port's publication.
 - Export full initial career bytes and cleared histories from source initialization plus original job categories, independently fingerprinted. Runtime exports contain no expected cases.
-- Capture a canonical settlement school and initial confirmation records when growth publishes. Pure confirmation uses that frozen roster and post-growth levels. Apply resulting relationships to the current school, preserving later plans; ratings use the current school. This models confirmation of an already settled result, rather than retroactively executing a changed plan.
+- Capture a canonical settlement school when growth publishes; derive its immutable initial confirmation records from the fingerprinted source rules at confirmation. Pure confirmation uses that frozen roster and post-growth levels. Apply resulting relationships to the current school, preserving later plans; ratings use the current school. This models confirmation of an already settled result, rather than retroactively executing a changed plan.
 - Validate every field before computing and publish one revision with confirmation/rating journals. Duplicate current revisions preserve state; stale, float, pre-growth and invalid-rule requests refuse.
 - Keep a separate confirmation summary/button in the example course page. Combine compact summaries to remain within1024×768, and verify actual input and legacy windows.
 

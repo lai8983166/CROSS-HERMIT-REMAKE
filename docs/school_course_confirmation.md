@@ -29,3 +29,11 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 草稿的职业向量索引及探针输入在验收前修正，未验收v1/v2移至系统临时目录；历史已提交证据不改写。最终v3报告/期望用于逐字节再生成及Godot独立期望，运行时只读取来源规则。
 
 来源报告`analysis/school-course-confirmation-v3-20261007.json` SHA-256 `071e0ad22e79bcc8f649443b34e1e30aafd82dfac90b6c56236a018f3732c9b8`；期望`prototype/data/school_course_confirmation_evidence_v3.json` SHA-256 `743e4f00eec61f09dbef58904d3b85a460a95a3329e45fe2401fd75747f56d82`。Python四项153.273秒全部通过，报告/期望/运行规则逐字节再生成一致，有限写守卫及非参与者保持检查通过；日志见 [来源回归](../analysis/python-regression-course-confirmation-source-20261007.txt)。纯模块三项测试含六案例完整字段/调用顺序、源初始化和13种拒绝/深复制，52套件356项Godot全部通过。教师101静态模板等级为0，资料校验保留这个实际来源值。
+
+## 持有会话
+
+`NewGameSchoolSession.confirm_courses(source_rules, expected_revision)`仅允许已成长的独立4/4示例和当前严格整数版本。成长发布时捕获学校/班级及成长后等级；确认时从带指纹源表得到不可变初始职业/历史，按捕获名单计算。用户之后改课/编班不改变这个结果，也不重放成长。确认关系投影到当前学校，保留当前安排和待命名单，按当前班级重新评级。
+
+所有确认字段、当前学校评级及完整成长记录的五个职业合计先计算，再发布一个版本及`course_confirmation_fields`/`course_confirmation_rate`两条日志。`read_confirmation_records`和`read_confirmation`完成前为空，完成后读接口/view/日志均深复制。来源记录/表、过期或浮点版本、未成长或第0周请求拒绝；后段评级失败不留下字段、日志或版本。相同源表的当前版本重复返回duplicate，不再写入；修改源表仍拒绝。
+
+四项新增会话测试逐字段匹配五个正常原例的完整学校/职业/历史/职业合计，覆盖改课后原结果确认、晚期失败、重复、读取/输入/日志深复制与来源新局/新示例隔离。最终53套件360项Godot通过。源报告与规则保持冻结字节，仍不执行MVP/周推进/存档。
