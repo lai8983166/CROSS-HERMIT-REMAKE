@@ -16,4 +16,4 @@
 
 ## 5. Launch and integration
 
-- [ ] 5.1 Set the graphical playground as default launch, connect battle/research navigation and return, run full Godot plus relevant UI/resource checks and strict specs, inspect final screenshots, update current status/remaining work and commit.
+- [x] 5.1 Set the graphical playground as default launch, connect battle/research navigation and return, run full Godot plus relevant UI/resource checks and strict specs, inspect final screenshots, update current status/remaining work and commit.

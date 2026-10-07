@@ -1,6 +1,10 @@
 # prototype/ — Godot 4 复刻原型
 
-入口: `main.tscn`（**战斗模拟器**：MAP01 底图 + 红蓝两队实时互殴 + 单位点选 + 速度档）。
+默认入口: `school_playground.tscn`（图形化学校养成试玩，2026-10-08）。四位原版角色头像、五班编成、课程卡片、成长与MVP结果，使用独立4月第4周会话。点击「授课安排」选课，再按底部按钮依次结算、确认、评选MVP。自动保存，顶部可保存/读取/确认重开；本段完成后停在待接入剧情，日历不推进。
+
+[操作与存档说明](../docs/school_playground.md) · [最终截图与验收](../analysis/school-playground-final-20261008/README.md)。全量56套件371项通过。
+
+「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 
 操作: `[1/2/3]` 速度 `[空格]` 暂停 `[R]` 新种子重开；点击单位看摘要、点击空地锁格看三层值。
 
@@ -37,7 +41,7 @@
 exe 直达路径 (cmd 用):
 `%LOCALAPPDATA%\Microsoft\WinGet\Packages\GodotEngine.GodotEngine.Mono_Microsoft.Winget.Source_8wekyb3d8bbwe\Godot_v4.7.2-stable_mono_win64\Godot_v4.7.2-stable_mono_win64_console.exe`
 
-## 战后返回验收 (2026-10-05)
+## 战后返回基线 (2026-10-05)
 
 `sim/tests/test_battle_campaign_replay.gd` 已使用实际Battle终局和明确提供的原版场景5回放输入，验证共享目录的评分/成长包/战利品→角色战果→剧情入学→完整周结算→职务室→学校数据初始化。两条源子程序11/8路径的完整角色与学校快照均与同CPU原版报告一致，重复送达不重发奖励或结算；本地伤害、HP和winner不代替原版事件/结果输入。
 
@@ -47,4 +51,4 @@ exe 直达路径 (cmd 用):
 ~/bin/godot --headless --path prototype -s res://sim/tests/test_runner.gd
 ```
 
-当前39套件284项Godot测试通过；Python279项已于返回变更13/13验收时通过。主窗口“返回流程演示”变更3/3完成：选择两条源路线之一，运行本地战斗、确认战果，再浏览学校学生名单和详情。可重开或返回默认战斗，操作说明见 [返回流程演示](../docs/campaign_return_ui.md)。这是有来源的数据演示，教师课程、编班/排课、完整战术VM和存档仍未开放，完整学校就绪标记保持false。完整来源及边界见 [战斗返回审计](../docs/battle_return_audit.md) §57–69。
+当时39套件284项Godot测试通过；Python279项已于返回变更13/13验收时通过。主窗口“返回流程演示”变更3/3完成：选择两条源路线之一，运行本地战斗、确认战果，再浏览学校学生名单和详情。可重开或返回默认战斗，操作说明见 [返回流程演示](../docs/campaign_return_ui.md)。这是有来源的数据演示，教师课程、编班/排课、完整战术VM和存档仍未开放，完整学校就绪标记保持false。完整来源及边界见 [战斗返回审计](../docs/battle_return_audit.md) §57–69。

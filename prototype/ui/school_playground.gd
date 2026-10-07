@@ -31,6 +31,7 @@ var next_button: Button
 var save_button: Button
 var load_button: Button
 var restart_button: Button
+var battle_button: Button
 var restart_dialog: ConfirmationDialog
 var result_cards: Dictionary = {}
 var mvp_label: Label
@@ -48,6 +49,9 @@ var panel: MarginContainer
 
 
 func _ready() -> void:
+	Engine.time_scale = 1.0
+	if get_tree().root.has_meta("school_playground_save_path"):
+		save_path = get_tree().root.get_meta("school_playground_save_path")
 	catalog = JSON.parse_string(FileAccess.get_file_as_string(ART+"catalog.json"))
 	var theme := Theme.new()
 	var font := SystemFont.new()
@@ -112,6 +116,9 @@ func _ready() -> void:
 	for button in [save_button,load_button,restart_button]:
 		button.custom_minimum_size = Vector2(64,38)
 		toolbar.add_child(button)
+	battle_button = _button("战斗预览",_open_battle)
+	battle_button.custom_minimum_size = Vector2(96,38)
+	toolbar.add_child(battle_button)
 	restart_dialog = ConfirmationDialog.new()
 	restart_dialog.title = "重新开始本段试玩"
 	restart_dialog.dialog_text = "将清空本段的编班、课程和成长结果，\n并替换当前保存的试玩进度。"
@@ -176,6 +183,18 @@ func _ready() -> void:
 		elif loaded["reason"] != "save_missing":
 			_save_message = "存档读取失败，当前为新试玩"
 	refresh()
+
+
+func _open_battle() -> void:
+	var saved := model.save_file(save_path)
+	if not saved["supported"]:
+		_save_message = "保存失败"
+		_message = "进度未能保存，暂时不能离开学校。"
+		refresh()
+		return
+	get_tree().root.set_meta("school_playground_save_path",save_path)
+	Engine.time_scale = 1.0
+	get_tree().change_scene_to_file("res://main.tscn")
 
 
 func _restore_view() -> void:

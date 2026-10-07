@@ -13,6 +13,7 @@ const NewSchoolPanel = preload("res://ui/new_game_school_panel.gd")
 var return_demo: ReturnDemo
 var return_panel: ReturnPanel
 var school_panel: NewSchoolPanel
+var playground_button: Button
 
 var map: SimMapData
 var palette: Dictionary = {}
@@ -95,6 +96,26 @@ func _ready() -> void:
 	add_child(school_panel)
 	return_panel.new_school_requested.connect(_open_new_school)
 	school_panel.closed.connect(func(): return_panel.show())
+	var navigation := CanvasLayer.new()
+	navigation.layer = 11
+	add_child(navigation)
+	var overlay := Control.new()
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	navigation.add_child(overlay)
+	playground_button = Button.new()
+	playground_button.text = "返回学校试玩"
+	playground_button.theme = return_panel.get_child(0).theme
+	playground_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	playground_button.offset_left = -168
+	playground_button.offset_right = -16
+	playground_button.offset_top = 2
+	playground_button.offset_bottom = 30
+	overlay.add_child(playground_button)
+	playground_button.pressed.connect(func():
+		Engine.time_scale = 1.0
+		get_tree().change_scene_to_file("res://school_playground.tscn"))
+	school_panel.visibility_changed.connect(func(): playground_button.visible = not school_panel.visible)
 	queue_redraw()
 
 
