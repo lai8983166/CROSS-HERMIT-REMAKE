@@ -8,7 +8,7 @@
 
 ## 3. Graphical planning
 
-- [ ] 3.1 Implement portrait class/waiting cards, character details, course cards and guided stage controls over the controller; verify actual input, teacher/student moves and unavailable classes in rendered screenshots; document and commit.
+- [x] 3.1 Implement portrait class/waiting cards, character details, course cards and guided stage controls over the controller; verify actual input, teacher/student moves and unavailable classes in rendered screenshots; document and commit.
 
 ## 4. Results and recovery interface
 
