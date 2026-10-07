@@ -4,7 +4,7 @@
 
 ## 2. Persistent playground controller
 
-- [ ] 2.1 Implement owned commands and versioned bounded replay saves with rule fingerprints, state digest, atomic replacement and backup recovery; test full/partial recovery, corrupt/incompatible saves, duplicates and write failures; document and commit.
+- [x] 2.1 Implement owned commands and versioned bounded replay saves with rule fingerprints, state digest, atomic replacement and backup recovery; test full/partial recovery, corrupt/incompatible saves, duplicates and write failures; document and commit.
 
 ## 3. Graphical planning
 

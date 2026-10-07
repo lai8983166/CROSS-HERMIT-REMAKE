@@ -7,3 +7,11 @@
 `python -m tools.school_presentation_export` 从原版 `ADV/BIN/HAN001.BIN` 裁出四张头像，从 `BG001_A.BIN` 导出背景。输出在 `prototype/assets/school`，catalog.json记录原文件SHA、矩形与输出SHA；四个姓名对应已有中文角色ID资料。课程10/11/12使用根据源成长表编写的描述性名称“全面训练/综合研习/身心锻炼”，并非已恢复的原版课程标题。显示文案可独立修改，不参与来源规则指纹。
 
 2026-10-08：6个输出在临时目录逐字节重新生成一致；头像对照见 `analysis/school-playground-assets-20261008/portraits.png`。原素材及历史证据保持原字节。
+
+## 本地试玩存档
+
+`prototype/sim/school_playground.gd`封装已有会话；支持move/mode/course/grow/confirm/complete命令。只保存实际改变版本的命令，重复成长/确认/MVP不增加存档序列。保存格式version1，固定context=school_playground_4_4、四个源规则文件SHA、最多512条命令和最终状态SHA；JSON最多256KiB。恢复逐条执行到新候选会话并验证最终角色/成长/确认/MVP/版本，成功才替换当前会话。未知版本、规则变化、非法命令、重复命令、状态不符及过大文件均拒绝且不改当前状态。
+
+默认位置是Godot `user://school_playground.json`（Windows通常在 `%APPDATA%/Godot/app_userdata/Cross Hermit Remake/`）。写入同目录 `.tmp`，将上次合法存档移至 `.bak`再发布；坏主文件移至 `.corrupt`而不覆盖合法备份。已有`.corrupt`时保留两份损坏数据并拒绝再次替换。读取主文件失败可恢复合法备份，返回recovered_backup；读取失败不会自动覆盖文件。该格式不是原版SAV，历史研究窗口和原版游戏数据均独立。
+
+2026-10-08：完整和部分结算、教师移到第三班/学生重新安排、一次性恢复、修改/损坏拒绝、备份恢复与写入失败四组测试通过；全量56套件371项零失败，日志 `analysis/godot-playground-controller-20261008.txt`。
