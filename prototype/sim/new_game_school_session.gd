@@ -7,6 +7,7 @@ const Courses := preload("res://sim/school_course_unlocking.gd")
 const Student := preload("res://sim/school_student_movement.gd")
 const Teacher := preload("res://sim/school_teacher_movement.gd")
 const Sort := preload("res://sim/school_waitlist_sort.gd")
+const Planning := preload("res://sim/school_course_planning.gd")
 const CONTROLS := ["idle_sort_mode","teacher_sort_mode","drag_kind","drag_origin","drag_group",
 	"drag_slot","drag_id","drag_source_rank","task_drag_state","task_command","teacher_work_records"]
 
@@ -18,6 +19,7 @@ var _journal: Array = []
 var _revision := 0
 var _prepared := false
 var _movement_rules: Dictionary = {}
+var _context := "source_new_game"
 
 
 func initialize(origin_rules: Dictionary, course_rules: Dictionary, movement_rules: Dictionary = {}) -> Dictionary:
@@ -34,7 +36,7 @@ func initialize(origin_rules: Dictionary, course_rules: Dictionary, movement_rul
 			else:
 				course_source[key] = course_rules[key].duplicate(true) if course_rules[key] is Array or course_rules[key] is Dictionary else course_rules[key]
 	if not _snapshot.is_empty():
-		if _origin_rules != origin_source or _course_rules != course_source or _movement_rules != movement_source:
+		if _context != "source_new_game" or _origin_rules != origin_source or _course_rules != course_source or _movement_rules != movement_source:
 			return Origin.failure("school_origin_input_conflict")
 		return _view("duplicate")
 	var result := Origin.construct(origin_source)
@@ -53,6 +55,145 @@ func initialize(origin_rules: Dictionary, course_rules: Dictionary, movement_rul
 	_revision = 1
 	_journal.append({"revision":1,"phase":"initialize","before":{},"after":read_snapshot()})
 	return _view("initialized_once")
+
+
+func initialize_course_example(origin_rules: Dictionary, course_rules: Dictionary, movement_rules: Dictionary) -> Dictionary:
+	# Build a complete independent candidate; any refusal leaves this session untouched.
+	var candidate = get_script().new()
+	var begun: Dictionary = candidate.initialize(origin_rules,course_rules,movement_rules)
+	if not begun["supported"]:
+		return begun
+	if candidate._movement_rules.is_empty():
+		return Origin.failure("missing_owned_movement_rules")
+	if not _snapshot.is_empty():
+		if _context != "declared_course_example_4_4" or _origin_rules != candidate._origin_rules \
+				or _course_rules != candidate._course_rules or _movement_rules != candidate._movement_rules:
+			return Origin.failure("school_origin_input_conflict")
+		return _view("duplicate")
+	var original: Dictionary = candidate.read_snapshot()
+	candidate._snapshot["week"] = 4
+	candidate._revision = 2
+	candidate._journal.append({"revision":2,"phase":"declared_course_example_date",
+		"declared_date":[4,4],"before":original,"after":candidate.read_snapshot()})
+	var unlocked := Courses.unlock_courses(candidate._snapshot,candidate._course_rules)
+	if not unlocked["supported"]:
+		return unlocked
+	var clean := Teacher.reconcile(_working(unlocked["after"]),Origin.group_rules(),candidate._movement_rules["work_rules"])
+	if not clean["supported"]:
+		return clean
+	var rated := Groups.rate(clean["after"],Origin.group_rules())
+	if not rated["supported"]:
+		return rated
+	var before: Dictionary = candidate.read_snapshot()
+	for pair in [["unlock",unlocked],["reconcile",clean],["rate",rated]]:
+		var after := _canonical(pair[1]["after"])
+		candidate._journal.append({"revision":3,"phase":pair[0],"before":before,"after":after})
+		before = after.duplicate(true)
+	_origin_rules = candidate._origin_rules.duplicate(true)
+	_course_rules = candidate._course_rules.duplicate(true)
+	_movement_rules = candidate._movement_rules.duplicate(true)
+	_snapshot = _canonical(rated["after"])
+	_ratings = rated["ratings"].duplicate(true)
+	_journal = candidate._journal.duplicate(true)
+	_revision = 3
+	_prepared = true
+	_context = "declared_course_example_4_4"
+	return _view("course_example_initialized")
+
+
+func school_context() -> String:
+	return _context
+
+
+func view() -> Dictionary:
+	return _view("school")
+
+
+func list_courses(group: Variant) -> Dictionary:
+	var reason := _planning_guard(group,_revision)
+	if not reason.is_empty():
+		return Origin.failure(reason)
+	var selected := Teacher.select_group(_working(_snapshot),group,Origin.group_rules(),_movement_rules["work_rules"])
+	if not selected["supported"]:
+		return selected
+	var result := Origin.success("course_list")
+	result["courses"] = selected["after"]["work_rows"].duplicate(true)
+	result["group"] = int(group)
+	return result
+
+
+func set_class_mode(group: Variant, teaching: Variant, expected_revision: Variant) -> Dictionary:
+	var reason := _planning_guard(group,expected_revision)
+	if not reason.is_empty():
+		return Origin.failure(reason)
+	var changed := Planning.set_mode(_working(_snapshot),group,teaching,Origin.group_rules(),_movement_rules["work_rules"])
+	if not changed["supported"]:
+		return changed
+	var rated := Groups.rate(changed["after"],Origin.group_rules())
+	if not rated["supported"]:
+		return rated
+	return _publish_planning([["class_mode",changed],["planning_rate",rated]],rated,{"group":group,"teaching":teaching})
+
+
+func assign_course(group: Variant, work_id: Variant, expected_revision: Variant) -> Dictionary:
+	var reason := _planning_guard(group,expected_revision)
+	if not reason.is_empty():
+		return Origin.failure(reason)
+	if not Courses._integer(work_id,1,100):
+		return Origin.failure("invalid_owned_course")
+	var selected := Teacher.select_group(_working(_snapshot),group,Origin.group_rules(),_movement_rules["work_rules"])
+	if not selected["supported"]:
+		return selected
+	var working: Dictionary = selected["after"]
+	var category := -1
+	var ordinal := -1
+	for index in range(3):
+		for row in working["work_rows"][index]:
+			if row[1] == work_id:
+				category = index
+				ordinal = row[2]
+	if category == -1:
+		return Origin.failure("owned_course_unavailable")
+	var page := maxi(0,int(ceil((ordinal - 9) / 2.0)))
+	working["course_category"] = category
+	working["work_pages"][category] = page
+	working["detail_work_id"] = -1
+	working["detail_previous_work_id"] = -1
+	var command := {"group":int(group),"category":category,"row":ordinal - page * 2,"page":page,"clicked":true}
+	var chosen := Planning.select_course(working,command,Origin.group_rules(),_movement_rules["work_rules"])
+	if not chosen["supported"]:
+		return chosen
+	var rated := Groups.rate(chosen["after"],Origin.group_rules())
+	if not rated["supported"]:
+		return rated
+	return _publish_planning([["course_view",selected],["course_assignment",chosen],["planning_rate",rated]],rated,{"group":group,"work_id":work_id})
+
+
+func _planning_guard(group: Variant, expected_revision: Variant) -> String:
+	if not _prepared or _movement_rules.is_empty():
+		return "school_planning_not_prepared"
+	if not Courses._integer(expected_revision,_revision,_revision):
+		return "stale_school_revision"
+	if not Courses._integer(group,0,4):
+		return "invalid_owned_class"
+	if Groups._word(_snapshot["group_raw_bytes"],int(group) * 28) == -1:
+		return "class_has_no_teacher"
+	return ""
+
+
+func _publish_planning(phases: Array, rated: Dictionary, command: Dictionary) -> Dictionary:
+	var final := _canonical(rated["after"])
+	if final == _snapshot and rated["ratings"] == _ratings:
+		return _view("duplicate")
+	_revision += 1
+	var before := read_snapshot()
+	for pair in phases:
+		var after := _canonical(pair[1]["after"])
+		_journal.append({"revision":_revision,"phase":pair[0],"command":command.duplicate(true),"before":before,"after":after})
+		before = after.duplicate(true)
+	_snapshot = final
+	_ratings = rated["ratings"].duplicate(true)
+	return _view("planning_updated")
 
 
 func prepare_school(expected_revision: Variant) -> Dictionary:
@@ -188,6 +329,8 @@ static func _canonical(snapshot: Dictionary) -> Dictionary:
 	var result := snapshot.duplicate(true)
 	for key in CONTROLS:
 		result.erase(key)
+	for key in ["course_category","detail_work_id","detail_previous_work_id"]:
+		result.erase(key)
 	return result
 
 
@@ -253,4 +396,6 @@ func _view(status: String) -> Dictionary:
 	result["revision"] = _revision
 	result["ratings"] = _ratings.duplicate(true)
 	result["school_data_prepared"] = _prepared
+	if _context != "source_new_game":
+		result["school_context"] = _context
 	return result

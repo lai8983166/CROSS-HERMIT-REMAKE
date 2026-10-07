@@ -6,7 +6,7 @@
 
 ## 2. Owned course commands
 
-- [ ] 2.1 Add independent explicit4/4 example initialization and revision-guarded class mode/course assignment/list APIs; compare native checkpoints, verify refusal/ownership/session isolation, document APIs, pass full Godot tests and commit.
+- [x] 2.1 Add independent explicit4/4 example initialization and revision-guarded class mode/course assignment/list APIs; compare native checkpoints, verify refusal/ownership/session isolation, document APIs, pass full Godot tests and commit.
 
 ## 3. Course window
 

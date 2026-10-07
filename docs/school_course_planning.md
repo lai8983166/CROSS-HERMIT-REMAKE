@@ -21,3 +21,11 @@
 ```bash
 PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_school_course_planning_emulation
 ```
+
+## 持有会话
+
+`initialize_course_example(origin_rules, course_rules, movement_rules)` 仅在独立空会话中建立4/4课程示例；不接受任意日期或外部快照。先完整计算候选状态，再发布初始化revision1、声明日期revision2、来源解锁/整理/工作列表/评级revision3及五条日志。源输入冲突/无操作规则拒绝不留半个会话；相同输入重复保留已有编班。原`initialize`及第0周准备行为保持。
+
+`list_courses(group)` 返回该班教师当前可用三类课程的深复制，只读、不发布版本。`set_class_mode(group, teaching, expected_revision)` 发布模式和评级两个阶段；`assign_course(group, work_id, expected_revision)` 从持有教师记录推导类别、行/页和源列表，再发布视图/选择/评级三个阶段。每个成功逻辑操作只有一个版本，重复不增加版本/日志；过期或非整数版本、无教师、无课程或非授课模式拒绝时所有数据不变。
+
+课程示例与原新局目录独立，仍可用既有成员移动。教师离开班级会按原规则清除类别/key两个word，保留原版未清除的其他word；UI只把有教师且类别/key有效的安排作为当前课程显示。当前仅安排课程，不执行授课完成或自动推进日期。
