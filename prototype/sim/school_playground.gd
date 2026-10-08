@@ -4,6 +4,7 @@ extends RefCounted
 const Session := preload("res://sim/new_game_school_session.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
+const AdventurePreparation := preload("res://sim/school_adventure_preparation.gd")
 const RULE_PATHS := {
 	"school":"res://data/new_game_school_rules.json",
 	"growth":"res://data/school_course_settlement_rules.json",
@@ -236,6 +237,16 @@ func revision() -> int:
 
 func planning_session() -> Session:
 	return session if fifth_session == null else fifth_session
+
+
+func adventure_preparation() -> Dictionary:
+	if stage() != "fifth_planning" or fifth_session == null:
+		return _failure("adventure_preparation_requires_fifth_school")
+	var text := FileAccess.get_file_as_string(AdventurePreparation.RULE_PATH)
+	var parsed: Variant = JSON.parse_string(text)
+	if not parsed is Dictionary:
+		return _failure("missing_adventure_preparation_rules")
+	return AdventurePreparation.project(fifth_session.read_snapshot(),Roles._integers(parsed))
 
 
 func read_work_page() -> Dictionary:

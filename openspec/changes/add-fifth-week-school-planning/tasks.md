@@ -26,7 +26,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 6. Current squad projection
 
-- [ ] 6.1 Implement a pure current-school departure projection from validated source rules, without changing v4 saves or clearing the mandatory gate; verify native-equivalent ratings/round lists, edits, refusal and immutable input with model tests, document API and commit locally.
+- [x] 6.1 Implement a pure current-school departure projection from validated source rules, without changing v4 saves or clearing the mandatory gate; verify native-equivalent ratings/round lists, edits, refusal and immutable input with model tests, document API and commit locally.
 
 ## 7. Graphical departure preparation
 

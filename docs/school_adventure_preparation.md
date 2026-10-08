@@ -21,3 +21,5 @@
 `SchoolAdventurePreparation.project(school, rules)`是当前第五周学校的纯投影；验证任务5、日期/gate/工作字段与来源记录，复用已验证评级，再生成ready、class_ratings和prepared.rounds。无有效班级时仍返回supported=true、ready=false与原因。非法来源或学校输入返回unsupported；输入不变。
 
 `SchoolPlayground.adventure_preparation()`只在fifth_planning可调用，读取独立来源规则。它不加入保存重放指纹，不新增命令、不递增revision；version4和原有十项指纹保持原字节。准备页是当前班级的重复查看，编辑后重新生成。该输出尚未由战斗任务消费，不能清除gate或发奖励。
+
+模型新增6项测试，逐字段核对全部五个native案例、当前完整学校、相对成员移动、重复查看/输出副本、保存版本4往返与成长资料保留、提前请求、非法来源和错误学校输入。全量60套件397项通过，最终日志无SCRIPT ERROR；首次测试误用了不存在的current_attributes字段，已改为实际member_profiles并重新跑全量，首次诊断日志保留。
