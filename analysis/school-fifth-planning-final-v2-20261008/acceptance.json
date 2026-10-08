@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-08",
+  "change": "add-fifth-week-school-planning",
+  "verified_subset_passed": true,
+  "full_change_complete": false,
+  "tasks_checked": 1,
+  "tasks_total": 4,
+  "scope_choice_pending": true,
+  "scope_issue": "Native fifth-week mandatory adventure gate prevents the originally specified direct course selection. Await user choice; do not clear gate or silently narrow scope.",
+  "implementation_commits": [
+    "95be8fa",
+    "77c6231",
+    "d380278",
+    "195b7c2"
+  ],
+  "model": {
+    "suites": 59,
+    "tests": 391,
+    "failures": 0
+  },
+  "python": {
+    "source_export_tests": 23,
+    "legacy_tests": 28,
+    "overlap": 4,
+    "unique_union": 47,
+    "failures": 0
+  },
+  "new_window": {
+    "headless_checks": 163,
+    "rendered_checks": 177,
+    "failures": 0,
+    "screenshots": 14,
+    "all_individually_viewed": true,
+    "verification_sha256": "1828abd5d959fcc1105d4b1fe1d25b3c64ebf36dcf969d5a005429b8ce2a1b2a"
+  },
+  "compatibility_windows": {
+    "school_playground_window": {
+      "checks": 80,
+      "failures": 0,
+      "log": "analysis/school-fifth-planning-compat-school_playground_window-20261008.log",
+      "sha256": "adea6e64f0e9f040e5b34c9abb99dc48b53bf0c3a4ecbe4b5dbb9fcd243d6341"
+    },
+    "school_playground_results_window": {
+      "checks": 72,
+      "failures": 0,
+      "log": "analysis/school-fifth-planning-compat-school_playground_results_window-20261008.log",
+      "sha256": "2b9f70f2457326d2e8ec8368c57f2b8f7f5ba2f5e2fb2313ace76f7cb2bd3e71"
+    },
+    "school_playground_navigation": {
+      "checks": 26,
+      "failures": 0,
+      "log": "analysis/school-fifth-planning-compat-school_playground_navigation-20261008.log",
+      "sha256": "0e9f8d4bae435132450a84cbe7b8637281c846b33090cf9a13b57eca76fab8a2"
+    },
+    "school_story_window": {
+      "checks": 76,
+      "failures": 0,
+      "log": "analysis/school-fifth-planning-compat-school_story_window-20261008.log",
+      "sha256": "61325d0e612f10cf0499f545c950c873caf216b50a7697b153f49ac2b832cf32"
+    },
+    "school_week_arrival_window": {
+      "checks": 51,
+      "failures": 0,
+      "log": "analysis/school-fifth-planning-compat-school_week_arrival_window-20261008.log",
+      "sha256": "a39ae87eb8d3f03dce7735c29b293f4b1d12b63aac8cdca904ab3237fc0bfdd1"
+    },
+    "school_fifth_story_window": {
+      "checks": 157,
+      "failures": 0,
+      "log": "analysis/school-fifth-planning-compat-school_fifth_story_window-20261008.log",
+      "sha256": "34409429cb0577a5129e8afa57ebe74ac537c88610c6be7837e735f8b8a69178"
+    },
+    "school_navigation": {
+      "checks": 22,
+      "failures": 0,
+      "log": "analysis/school-fifth-planning-compat-school_navigation-20261008.log",
+      "sha256": "c91a38c134a97d935800e46b826bea7a3ba12c1db0aba7a1aa523b54c791e3c9"
+    }
+  },
+  "openspec": {
+    "strict_passed": 30,
+    "failed": 0,
+    "proves_completion": false
+  },
+  "save": {
+    "version": 4,
+    "compatible_versions": [
+      1,
+      2,
+      3
+    ],
+    "actual_user_save_modified": false,
+    "original_sav_modified": false
+  },
+  "boundaries": {
+    "same_cpu_native_workroom_and_ch002_executed": true,
+    "native_school_data_prefix_executed": true,
+    "native_school_interactive_menu_executed": false,
+    "live_witness": false,
+    "authorizes_original_persistent_write": false,
+    "fifth_week_member_planning_enabled": true,
+    "fifth_week_course_selection_enabled": false,
+    "mandatory_adventure_executed": false,
+    "second_growth_executed": false,
+    "battle_preview_shares_school_team": false
+  },
+  "source_sha256": {
+    "analysis/hermit_game.exe": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "analysis/school-fifth-planning-v2-20261008.json": "56459f057bb1faa1d51e3b665449240e15fdd0c60e4161830c09e5deacc92e7c",
+    "prototype/data/school_fifth_planning_evidence.json": "cc8a367494a049f36122165e2f3c139b03a5d32408593bd596f1ca00c2694cf5",
+    "prototype/data/school_fifth_planning_rules.json": "10a804e9f71809dd56392e83c33436b3fc975d4591dcd4e0eee3bca33633cc8a",
+    "prototype/data/school_playground_legacy_v3.json": "7458f4cee1fd15c5a83076fea8536ed139249882a7feb3f77df62ac4ca0b1005"
+  },
+  "save_fingerprints": {
+    "school": {
+      "path": "prototype/data/new_game_school_rules.json",
+      "sha256": "ac4faffab74cb73b7f39c0c1a28a05a96f20f426aa1c5124eec58e1541bbef97",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "growth": {
+      "path": "prototype/data/school_course_settlement_rules.json",
+      "sha256": "5f2738db67bdacf1677e6de1c823ac8dfa542e6b103cd913af9c51a2fe93c439",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "confirmation": {
+      "path": "prototype/data/school_course_confirmation_rules.json",
+      "sha256": "2a75e6e4dd30ae8e99a5e014dc3ba87b646f65b73b3a04d03999d2ceaebaf6a6",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "result": {
+      "path": "prototype/data/school_course_result_handoff_rules.json",
+      "sha256": "01704f531df3b9cf127d2529b5715f343f96f6750ac26b88bc52e6a72043937d",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "week": {
+      "path": "prototype/data/school_story_week_rules.json",
+      "sha256": "51c64571fc4d90e63439ed26564c909cce2171b11e138566f350d304edddc5aa",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "story": {
+      "path": "prototype/assets/school_story/catalog.json",
+      "sha256": "e6d0c109295145c419a20f30d093c2bcb795ef010919f32f659419e8aa3ec98a",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "fifth": {
+      "path": "prototype/data/school_fifth_week_rules.json",
+      "sha256": "0cbc82bb9fae9c887df8b85aa47e823a2f7990725bb42b1cd9951d1218df2a5b",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "fifth_story": {
+      "path": "prototype/assets/school_fifth_story/catalog.json",
+      "sha256": "d007793d07f398d10a4a7b7e8284b94a597e1f4889e15d078de0b73b50e82e63",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "planning": {
+      "path": "prototype/data/school_fifth_planning_rules.json",
+      "sha256": "10a804e9f71809dd56392e83c33436b3fc975d4591dcd4e0eee3bca33633cc8a",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    },
+    "workroom": {
+      "path": "prototype/assets/school_workroom/catalog.json",
+      "sha256": "e62527f7e592d9c5e0e346ba9abe1a42ea11626c869a17b5739e39f3fbc574cc",
+      "matches_git_blob": true,
+      "lf_bytes": true
+    }
+  },
+  "logs_sha256": {
+    "analysis/school-fifth-planning-model-final-20261008.log": "f444eaeb7e85188bbe8a743408f907d849375efd438777c2a73b5ff551790048",
+    "analysis/school-fifth-planning-model-focused-20261008.log": "ee716cffcd0d9c7379512ef6a7bdf4614b370830c209604c72f846e7da0e9db4",
+    "analysis/school-fifth-planning-python-final-20261008.log": "06bd1e6688b55bc384bfbde0e800a9a7fde8eabddb807caacd981a17b0a3c81d",
+    "analysis/school-fifth-planning-legacy-python-20261008.log": "947ba9ef56917dc76b4b1e8b0b922f10af68cd77d79bfc2ef2a8796855941779",
+    "analysis/school-fifth-planning-native-v2-20261008.log": "33ceb1bed7bbebadb10aaa3900e574b444284b245948d94ab11592ac326ff6be",
+    "analysis/school-fifth-planning-legacy-native-20261008.log": "24e51816d13daf5502632dd4dee1c1d5545e017c10f248801e3f013d5a9b37c4",
+    "analysis/school-fifth-planning-window-headless-20261008.log": "7a223cbc5770d3b54a4e0534fb4a1e985b0bbaec305fab8f835cfae3dfebbe0e",
+    "analysis/school-fifth-planning-window-final-20261008.log": "36dfe5592b435666a1edeb5f69d2257def3c9dca231c10188ab21761e8ef1e70",
+    "analysis/school-fifth-planning-specs-20261008.log": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775"
+  },
+  "pushed": false,
+  "diagnostic_artifacts_preserved": true
+}

@@ -27,3 +27,9 @@ heap分配、GDI字体、图形/音频/文字API、调度器注册和继续按�
 第五周调动在独立fifth_session中计算，第四周session和成长回顾不变。school_entry记录角色字段前后与school_data_prepared，原版菜单正文仍未执行。班级选择与成员详情使用当前第五周snapshot，结果页保留第四周记录；职务室返回不会重复CH002、奖励或周推进。战斗预览仍是独立队伍，往返保留第五周计划并恢复time_scale。
 
 新保存version4/context school_playground_fifth_planning_4_5，共十项source/asset指纹。v1/v2/v3分别严格验证其原始字段、规则集合与状态hash；新版字段单独增加，不重写旧fixture。旧版本命令白名单禁止携带workroom/plan操作。精确的历史CRLF/LF story指纹兼容继续保留。存读档在完整候选重放成功后发布；主档/备份/损坏副本机制沿用，任何失败保留当前进度。本轮只触碰自有测试存档，未读写原版SAV。
+
+## 已验证子集验收
+
+59套件391项模型测试零失败；Python来源/素材23项与旧兼容28项均通过，4项重叠，去重47项。新窗口离屏163检查、实际渲染177检查零失败，14张截图逐张查看；旧编班/结果/导航/第四周剧情/周到达/第五周剧情/会话导航分别80/72/26/76/51/157/22检查通过。OpenSpec严格30项通过，但这不代表未实现的必修冒险或原定选课目标完成。
+
+来源、素材、模型与UI分别本地提交95be8fa、77c6231、d380278、195b7c2，未push。十项存档指纹的工作区字节与Git版本一致，正式报告/目录采用LF。最终证据、边界、诊断记录和截图见[验收记录](../analysis/school-fifth-planning-final-v2-20261008/README.md)与[机器可读验收](../analysis/school-fifth-planning-final-v2-20261008/acceptance.json)。范围选择确认前保留原始任务，不标记整个变更完成。
