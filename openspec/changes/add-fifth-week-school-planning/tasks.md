@@ -1,8 +1,8 @@
 # Tasks
 
-Implementation note (2026-10-08): Native evidence revealed that the fifth-week adventure gate forces class mode0 and prevents teaching. A user choice is pending between following the original mandatory adventure sequence and creating a separate declared course example. Do not mark the originally specified direct course-selection behavior complete until this scope decision is resolved. The verified workroom, v4 migration and source-gated fifth-week member planning are being committed as reviewable subsets; current model and window evidence is recorded in docs/school_fifth_week_planning.md.
+Scope decision (2026-10-08): The user's continue instruction follows the recommended original mandatory adventure route. Replace the conflicting direct course selection target with source-gated course viewing. Existing verified stages are complete under this explicit revised scope; keep the prior subset acceptance immutable as a dated record. Extend planning into source readiness and departure preparation, with actual battle and post-adventure teaching still pending future implementation.
 
-Verified subset commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2. Final subset evidence is analysis/school-fifth-planning-final-v2-20261008/README.md (391 model tests, 177 rendered checks, 14 individually inspected captures). These results do not fulfill the originally specified direct course-selection behavior; pending checkboxes remain pending.
+Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, acceptance f2480cd.
 
 ## 1. Native continuation
 
@@ -10,12 +10,28 @@ Verified subset commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7
 
 ## 2. Durable fifth-week planning
 
-- [ ] 2.1 Implement once-only workroom/school entry and an independent fifth-week planning session carrying actual growth and relationships; add v4 command replay with v1/v2/v3 migration, document the new state/save boundary and verify native-equivalent projection, edits, refusals, duplicate entry, atomic failures and old fixtures with model tests. Commit this stage locally.
+- [x] 2.1 Implement once-only workroom/school entry and an independent fifth-week planning session carrying actual growth and relationships; add v4 command replay with v1/v2/v3 migration, document the new state/save boundary and verify native-equivalent projection, edits, refusals, duplicate entry, atomic failures and old fixtures with model tests. Commit this stage locally.
 
 ## 3. Graphical workroom and school
 
-- [ ] 3.1 Export original workroom art with byte/pixel provenance tests, integrate workroom controls and fifth-week member/course planning plus fourth-week review, saves and battle round trip, document the interaction and verify actual input/window behavior and screenshots. Commit this stage locally.
+- [x] 3.1 Export original workroom art with byte/pixel provenance tests, integrate workroom controls and fifth-week member planning and source-gated course viewing plus fourth-week review, saves and battle round trip, document the interaction and verify actual input/window behavior and screenshots. Commit this stage locally.
 
 ## 4. Integration acceptance
 
-- [ ] 4.1 Run appropriate complete model and compatibility window suites, source/export tests and strict OpenSpec validation; inspect rendered workroom/school/save/battle screenshots, publish acceptance evidence and current README/progress documentation, verify a clean tracked tree and commit the acceptance stage locally without pushing.
+- [x] 4.1 Run appropriate complete model and compatibility window suites, source/export tests and strict OpenSpec validation; inspect rendered workroom/school/save/battle screenshots, publish acceptance evidence and current README/progress documentation, verify a clean tracked tree and commit the acceptance stage locally without pushing.
+
+## 5. Native departure preparation
+
+- [ ] 5.1 Continue the actual fifth-week CPU through readiness and round preparation; capture source table inputs separately from fixture outputs, verify initial/edited/waiting/teacher-only cases, finite write guards and retained records, document exact execution boundaries and commit locally.
+
+## 6. Current squad projection
+
+- [ ] 6.1 Implement a pure current-school departure projection from validated source rules, without changing v4 saves or clearing the mandatory gate; verify native-equivalent ratings/round lists, edits, refusal and immutable input with model tests, document API and commit locally.
+
+## 7. Graphical departure preparation
+
+- [ ] 7.1 Add the mandatory adventure preparation screen with current portraits, source task/scene, readiness feedback and return/edit/save/load/review controls; keep actual battle unavailable, verify input and rendered screenshots, document operation and commit locally.
+
+## 8. Extended integration acceptance
+
+- [ ] 8.1 Run complete model tests, relevant source and compatibility window checks and strict OpenSpec validation, inspect final captures, publish updated acceptance and progress documentation, verify clean tracked files and commit locally without pushing.

@@ -16,11 +16,11 @@ The system SHALL verify workroom, CH002, school dispatch and school data initial
 - **THEN** school preparation does not execute and earned records remain intact
 
 ### Requirement: Durable workroom and school planning
-The system SHALL allow entering the workroom and then fifth-week school once, retaining current member growth, relationships, equipment, MVP and fourth-week review. Fifth-week members and courses SHALL be editable using verified movement and current course availability. Second settlement MUST remain unavailable in this change.
+The system SHALL allow entering the workroom and then fifth-week school once, retaining current member growth, relationships, equipment, MVP and fourth-week review. Fifth-week members SHALL be editable using verified movement. Courses SHALL be viewable but selection MUST be refused while the source mandatory adventure gate is active. Second settlement MUST remain unavailable in this change.
 
 #### Scenario: Enter and edit new week
 - **WHEN** the player enters school after the fifth-week workroom
-- **THEN** the calendar shows 4/5, current members and attributes carry forward, and class movements and available course selections update only the fifth-week plan
+- **THEN** the calendar shows 4/5, current members and attributes carry forward, and class movements update only the fifth-week plan and mandatory adventure prevents direct course selection
 
 #### Scenario: Repeat or invalid commands
 - **WHEN** an entry command repeats or a command is premature, malformed or chooses an unavailable course
@@ -34,11 +34,11 @@ The system SHALL preserve v1/v2/v3 save loading with their original fingerprints
 - **THEN** its exact progress and earned records restore before any new workroom or school command runs
 
 #### Scenario: Restore edited school plan
-- **WHEN** the player saves in the workroom or after fifth-week class/course edits and relaunches
+- **WHEN** the player saves in the workroom or after fifth-week class edits and relaunches
 - **THEN** the correct screen and exact plan restore, without replaying the fourth-week reward into the fifth-week records
 
 ### Requirement: Graphical workroom navigation
-The system SHALL show a source-derived workroom background and clear actions to enter school, review the prior course, save or preview battle. The fifth-week school SHALL show usable member/course controls and communicate the next settlement boundary. Restart and skip confirmations and battle return SHALL retain their existing behavior.
+The system SHALL show a source-derived workroom background and clear actions to enter school, review the prior course, save or preview battle. The fifth-week school SHALL show usable member controls and viewable locked courses and communicate the next settlement boundary. Restart and skip confirmations and battle return SHALL retain their existing behavior.
 
 #### Scenario: Use workroom controls
 - **WHEN** the player finishes fifth-week dialogue and chooses to enter the workroom
@@ -47,3 +47,21 @@ The system SHALL show a source-derived workroom background and clear actions to 
 #### Scenario: Battle round trip and review
 - **WHEN** the player reviews fourth-week results or enters and returns from battle during the new continuation
 - **THEN** the fifth-week location and plan remain available and no date, reward or class edits are lost
+
+### Requirement: Source verified mandatory adventure preparation
+The system SHALL derive departure readiness and round teacher/student lists from current fifth-week classes using source-verified conditions and adventure records. Preparation MUST preserve all school records and MUST NOT execute battle, grant rewards or clear the mandatory gate.
+
+#### Scenario: Prepare current classes
+- **WHEN** at least one source-valid adventure class is ready and no nonempty invalid class exists
+- **THEN** preparation shows the current teachers, students, class indices and source scene selection without changing school or save state
+
+#### Scenario: Incomplete class prevents departure
+- **WHEN** a teacher has no student or no class qualifies
+- **THEN** preparation reports not ready and preserves the current plan and rewards
+
+### Requirement: Graphical departure preparation
+The system SHALL allow viewing fifth-week mandatory adventure preparation from school, showing source adventure and scene identities and current member portraits. Returning to class editing and reopening MUST recompute from current classes. Actual battle execution MUST remain visibly unavailable until its next chain is implemented.
+
+#### Scenario: Edit and reopen preparation
+- **WHEN** the player views preparation, returns to edit classes and opens it again
+- **THEN** the screen reflects the updated current members, offers school save/load/review navigation and does not substitute the independent battle preview roster
