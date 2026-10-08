@@ -178,7 +178,7 @@ def export(out):
         'presentation_scope':'Original text order, board speakers, backgrounds, default character art and visibility; remake layout and click timing; audio/fades not reproduced.',
         'tables':{'names':'0x621f2c','backgrounds':'0x621bbc','characters':'0x622250',
             'body_draw':'0x4c9690','expression_draw':'0x4c97a0'}}
-    (out/'catalog.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    (out/'catalog.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     return deepcopy(catalog)
 
 

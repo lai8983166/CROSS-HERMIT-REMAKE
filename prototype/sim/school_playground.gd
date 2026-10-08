@@ -15,6 +15,8 @@ const RULE_PATHS := {
 	"fifth_story":"res://assets/school_fifth_story/catalog.json"}
 const LEGACY_KEYS := ["school","growth","confirmation","result"]
 const VERSION2_KEYS := ["school","growth","confirmation","result","week","story"]
+const STORY_LF_SHA := "e6d0c109295145c419a20f30d093c2bcb795ef010919f32f659419e8aa3ec98a"
+const LEGACY_STORY_CRLF_SHA := "fb7a98f8bdf021f601a4001cc0b69efc021002f7e037cb4fb7b2faeef09430bf"
 const SCHOOL_OPS := ["move","mode","course","grow","confirm","complete"]
 const SAVE_PATH := "user://school_playground.json"
 const MAX_COMMANDS := 512
@@ -356,7 +358,12 @@ func restore(payload: Variant) -> Dictionary:
 		fingerprints = {}
 		for key in LEGACY_KEYS if legacy else VERSION2_KEYS:
 			fingerprints[key] = _fingerprints[key]
-	if payload["rules"] != fingerprints:
+	var previous_line_endings: Dictionary = fingerprints.duplicate(true)
+	if not legacy and fingerprints.get("story") == STORY_LF_SHA:
+		# Earlier Windows exports wrote CRLF before the Git LF attribute took
+		# effect in the working copy. This alias is for those exact source bytes.
+		previous_line_endings["story"] = LEGACY_STORY_CRLF_SHA
+	if payload["rules"] != fingerprints and payload["rules"] != previous_line_endings:
 		return _failure("save_rules_changed")
 	if not payload["commands"] is Array or payload["commands"].size() > MAX_COMMANDS \
 			or not payload["state_sha256"] is String or payload["state_sha256"].length() != 64:

@@ -25,3 +25,5 @@ Preserve the existing school and arrival state while adding a bounded fifth-week
 ## Migration Plan
 
 Existing source data and version1/2 saves stay readable. New saves use version3; invalid migration leaves memory and files unchanged. Each verified stage is committed locally with no push; final acceptance includes all model suites and relevant sequential UI windows.
+
+Post-commit fingerprint verification found the old Windows Chapter016/017 catalog working copy still used CRLF although the Git blob was LF. Stabilize that exporter at explicit LF and migrate only the corresponding exact known CRLF fingerprint for version2/3 saves when the current catalog matches the verified LF digest. This does not accept arbitrary changed catalogs; keep the frozen old save fixtures unchanged and test both known fingerprints plus tamper rejection.

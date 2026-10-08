@@ -46,4 +46,4 @@
 
 后续目标：接通原版职务室、CH002和第五周学校初始化，再开放第五周编班/授课，随后让学校阵容进入可操作战斗并返回同一会话。
 
-上一轮续篇六项验收保留，57套件377项测试和12张截图见[历史验收](../analysis/school-story-final-20261008/README.md)。本轮第五周四项完成，58套件383项、第五周输入157项/渲染169项通过，12张截图逐一检查，见[当前验收](../analysis/school-fifth-playground-final-20261008/README.md)。
+上一轮续篇六项验收保留，57套件377项测试和12张截图见[历史验收](../analysis/school-story-final-20261008/README.md)。本轮第五周四项完成，58套件384项、第五周输入157项/渲染169项通过，12张截图逐一检查，见[当前验收](../analysis/school-fifth-playground-final-20261008/README.md)。

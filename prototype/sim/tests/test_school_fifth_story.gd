@@ -169,3 +169,28 @@ func test_fifth_bad_assets_and_handoff_keep_progress() -> void:
 	model._rules["fifth_story"]["outputs_sha256"]["portrait_31.png"] = "changed"
 	assert_false(model.start()["supported"])
 	assert_eq(model.state(),before)
+
+
+func test_known_crlf_and_lf_story_save_fingerprints_migrate() -> void:
+	assert_eq(FileAccess.get_sha256("res://assets/school_story/catalog.json"),Playground.STORY_LF_SHA)
+	var legacy: Dictionary = _json("res://data/school_playground_legacy_v2.json")["cases"][1]["save"]
+	assert_eq(legacy["rules"]["story"],Playground.LEGACY_STORY_CRLF_SHA)
+	var model := Playground.new()
+	model.start()
+	assert_true(model.restore(legacy)["supported"],"previous Windows CRLF version2 remains readable")
+	var expected: Dictionary = model.state()
+	legacy = legacy.duplicate(true)
+	legacy["rules"]["story"] = Playground.STORY_LF_SHA
+	assert_true(model.restore(legacy)["supported"],"LF checkouts remain readable too")
+	assert_eq(model.state(),expected)
+	model.execute({"op":"fifth_start"})
+	var current: Dictionary = model.export_save()
+	assert_eq(current["rules"]["story"],Playground.STORY_LF_SHA)
+	var previous_v3: Dictionary = current.duplicate(true)
+	previous_v3["rules"]["story"] = Playground.LEGACY_STORY_CRLF_SHA
+	assert_true(model.restore(previous_v3)["supported"])
+	assert_eq(model.export_save(),current,"known CRLF version3 migrates to canonical LF")
+	var before: Dictionary = model.state()
+	previous_v3["rules"]["story"] = "0".repeat(64)
+	assert_false(model.restore(previous_v3)["supported"])
+	assert_eq(model.state(),before,"unknown catalog bytes cannot use the migration alias")
