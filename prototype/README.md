@@ -1,10 +1,10 @@
 # prototype/ — Godot 4 复刻原型
 
-默认入口: `school_playground.tscn`（图形化学校养成试玩，2026-10-08）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的两段原版剧情（背景、立绘、109页对话），完成后一次推进到4月第5周。顶部可保存/读取/确认重开；阅读位置、第五周到达会自动保存，兼容原version1试玩存档。第五周学校安排尚未接入。
+默认入口: `school_playground.tscn`（图形化学校养成试玩，2026-10-08）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。到达卡点击“阅读第五周剧情”，继续Chapter018的126页原版背景、大立绘和小头像剧情，结束或确认跳过后进入职务室入口。阅读位置及出口会自动保存，version3兼容旧version1/2。职务室本体和第五周学校安排尚未接入。
 
-[操作与存档说明](../docs/school_playground.md) · [剧情与周推进来源](../docs/school_story_continuation.md)。全量57套件377项通过；实际剧情阅读与第五周/战斗往返窗口已验证。
+[操作与存档说明](../docs/school_playground.md) · [第四周与周推进来源](../docs/school_story_continuation.md) · [第五周剧情来源](../docs/school_fifth_week_story.md)。全量58套件383项通过；第五周输入157项/实际渲染169项、旧窗口兼容和战斗往返已验证。
 
-[本轮综合验收](../analysis/school-story-final-20261008/README.md)：六项完成，12张实际截图已检查，OpenSpec严格28项通过。
+[本轮综合验收](../analysis/school-fifth-playground-final-20261008/README.md)：四项完成，12张实际截图已检查，OpenSpec严格29项通过。上一轮[六项记录](../analysis/school-story-final-20261008/README.md)保留。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 

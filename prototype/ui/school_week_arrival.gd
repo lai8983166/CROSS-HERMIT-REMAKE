@@ -3,12 +3,16 @@ signal review_requested
 signal battle_requested
 signal save_requested
 signal restart_requested
+signal continue_requested
 
 const ART := "res://assets/school/"
 var review_button: Button
 var battle_button: Button
 var save_button: Button
 var restart_button: Button
+var continue_button: Button
+var boundary: Label
+var introduction: Label
 var calendar: Label
 var status: Label
 var summaries: Array = []
@@ -34,15 +38,16 @@ func _ready() -> void:
 	for side in ["left","right"]:
 		margin.add_theme_constant_override("margin_"+side,80)
 	for side in ["top","bottom"]:
-		margin.add_theme_constant_override("margin_"+side,60)
+		margin.add_theme_constant_override("margin_"+side,48)
 	add_child(margin)
 	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation",18)
+	column.add_theme_constant_override("separation",14)
 	margin.add_child(column)
 	column.add_child(_label("纯洁之盾 · 新的一周",24,Color("b7cbbc")))
 	calendar = _label("4月 · 第5周",42,Color("ead6a3"))
 	column.add_child(calendar)
-	column.add_child(_label("本周剧情已结束，学生们带着成长进入新的一周。",19,Color("c6d6c6")))
+	introduction = _label("本周剧情已结束，学生们带着成长进入新的一周。",19,Color("c6d6c6"))
+	column.add_child(introduction)
 	var cards := HBoxContainer.new()
 	cards.add_theme_constant_override("separation",16)
 	cards.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -59,7 +64,7 @@ func _ready() -> void:
 		portrait.texture = _texture("portrait_%d.png" % identity)
 		portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		portrait.custom_minimum_size = Vector2(110,110)
+		portrait.custom_minimum_size = Vector2(88,88)
 		portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		content.add_child(portrait)
 		var summary := _label("",18,Color("ead6a3"))
@@ -67,9 +72,12 @@ func _ready() -> void:
 		summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		content.add_child(summary)
 		summaries.append(summary)
-	var boundary := _label("第五周的学校安排正在开发，本段试玩到这里结束。\n可以回顾授课成长，或进入战斗预览。",18,Color("bfd0c0"))
+	boundary = _label("第五周剧情已开放，可继续阅读并前往职务室。\n学校安排正在开发，也可以回顾授课成长。",18,Color("bfd0c0"))
 	boundary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(boundary)
+	continue_button = _button("阅读第五周剧情  →",func(): continue_requested.emit())
+	continue_button.custom_minimum_size.y = 48
+	column.add_child(continue_button)
 	var toolbar := HBoxContainer.new()
 	toolbar.add_theme_constant_override("separation",12)
 	column.add_child(toolbar)
@@ -87,7 +95,12 @@ func _ready() -> void:
 
 func show_arrival(state: Dictionary, catalog: Dictionary, save_status: String) -> void:
 	var week: Dictionary = state["week"]
-	calendar.text = "%d月 · 第%d周" % [week["after"]["month"],week["after"]["week"]]
+	var exited: bool = not state.get("fifth_exit",{}).is_empty()
+	calendar.text = "4月 · 第5周　职务室入口" if exited else "%d月 · 第%d周" % [week["after"]["month"],week["after"]["week"]]
+	introduction.text = "第五周剧情已结束，已到达职务室入口。" if exited else "学生们带着成长进入新的一周，可以继续阅读剧情。"
+	boundary.text = "职务室操作与第五周学校安排正在开发。\n可以回顾授课成长、保存进度或进入战斗预览。" if exited else "第五周剧情已开放，可继续阅读并前往职务室。\n学校安排正在开发，也可以回顾授课成长。"
+	continue_button.visible = not exited
+	continue_button.text = "前往职务室  →" if state.get("fifth_story",{}).get("completed",false) else "继续第五周剧情  →" if state.get("fifth_story",{}).get("cursor",-1) >= 0 else "阅读第五周剧情  →"
 	for index in range(3):
 		var before: Dictionary = week["before"]["participants"][index]
 		var after: Dictionary = week["after"]["participants"][index]

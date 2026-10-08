@@ -7,6 +7,7 @@ signal save_requested
 const ART := "res://assets/school_story/"
 var background: TextureRect
 var actors: Array = []
+var portraits: Array = []
 var heading: Label
 var speaker: Label
 var dialogue: Label
@@ -19,6 +20,8 @@ var save_button: Button
 var skip_button: Button
 var skip_dialog: ConfirmationDialog
 var _textures: Dictionary = {}
+var _command_prefix := "story"
+var _art_root := ART
 
 
 func _ready() -> void:
@@ -40,6 +43,13 @@ func _ready() -> void:
 		actor.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		add_child(actor)
 		actors.append(actor)
+	for slot in range(3):
+		var portrait := _image()
+		portrait.position = Vector2(116+slot*280,108)
+		portrait.size = Vector2(232,268)
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		add_child(portrait)
+		portraits.append(portrait)
 	var toolbar := PanelContainer.new()
 	toolbar.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 	toolbar.offset_left = 24
@@ -78,13 +88,13 @@ func _ready() -> void:
 	var navigation := HBoxContainer.new()
 	navigation.add_theme_constant_override("separation",16)
 	column.add_child(navigation)
-	previous_button = _button("上一页",func(): command.emit("story_prev"))
+	previous_button = _button("上一页",func(): command.emit(_command_prefix+"_prev"))
 	previous_button.custom_minimum_size = Vector2(100,40)
 	navigation.add_child(previous_button)
 	progress = _label("",14,Color("adbfaf"))
 	progress.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	navigation.add_child(progress)
-	next_button = _button("下一页  →",func(): command.emit("story_next"))
+	next_button = _button("下一页  →",func(): command.emit(_command_prefix+"_next"))
 	next_button.custom_minimum_size = Vector2(170,40)
 	navigation.add_child(next_button)
 	status = _label("",13,Color("adbfaf"))
@@ -94,33 +104,40 @@ func _ready() -> void:
 	skip_dialog.dialog_text = "将结束本周的两段剧情。\n授课成长和本次MVP会保留。"
 	skip_dialog.ok_button_text = "确认跳过"
 	skip_dialog.cancel_button_text = "继续阅读"
-	skip_dialog.confirmed.connect(func(): command.emit("story_skip"))
+	skip_dialog.confirmed.connect(func(): command.emit(_command_prefix+"_skip"))
 	add_child(skip_dialog)
 
 
-func show_page(page: Dictionary, cursor: int, total: int, catalog: Dictionary, save_status: String) -> void:
-	heading.text = "4月 · 第4周　｜　"+page["scene_label"]
+func show_page(page: Dictionary, cursor: int, total: int, catalog: Dictionary, save_status: String, options := {}) -> void:
+	_command_prefix = options.get("command_prefix","story")
+	_art_root = options.get("art_root",ART)
+	heading.text = options.get("calendar","4月 · 第4周")+"　｜　"+page["scene_label"]
+	return_button.text = options.get("return_label","返回结果")
+	skip_dialog.dialog_text = options.get("skip_prompt","将结束本周的两段剧情。\n授课成长和本次MVP会保留。")
 	speaker.text = catalog["actors"][str(page["speaker"])]["name"]
 	dialogue.text = page["text"]
 	background.texture = _texture(catalog["backgrounds"][str(page["background"])]["image"])
-	for actor in actors:
+	for actor in actors+portraits:
 		actor.visible = false
 	for member in page["characters"]:
-		var actor: TextureRect = actors[0 if member["slot"] == 5 else 1]
-		actor.texture = _texture(catalog["actors"][str(member["id"])]["image"])
+		var actor: TextureRect = portraits[member["slot"]-7] if member.get("kind") == "portrait" else actors[0 if member["slot"] == 5 else 1]
+		var key: String = member.get("asset_key",str(member["id"]))
+		actor.texture = _texture(catalog["actors"][key]["image"])
 		actor.visible = true
-		actor.modulate = Color.WHITE if member["id"] == page["speaker"] else Color(0.68,0.72,0.73)
+		actor.modulate = Color.WHITE if key == str(page["speaker"]) else Color(0.68,0.72,0.73)
 	previous_button.disabled = cursor == 0
-	next_button.text = "结束本周剧情  →" if cursor == total-1 else "下一页  →"
+	next_button.custom_minimum_size.x = 280 if _command_prefix == "fifth" else 170
+	next_button.text = options.get("ending_text","结束本周剧情  →") if cursor == total-1 else "下一页  →"
 	progress.text = "%d / %d　 ·　Enter / Space 下一页，← 上一页" % [cursor+1,total]
 	status.text = save_status
 
 
 func _texture(filename: String) -> Texture2D:
-	if not _textures.has(filename):
-		var source := Image.load_from_file(ART+filename)
-		_textures[filename] = ImageTexture.create_from_image(source)
-	return _textures[filename]
+	var key := _art_root+filename
+	if not _textures.has(key):
+		var source := Image.load_from_file(key)
+		_textures[key] = ImageTexture.create_from_image(source)
+	return _textures[key]
 
 
 static func _image() -> TextureRect:

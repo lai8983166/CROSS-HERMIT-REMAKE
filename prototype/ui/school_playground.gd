@@ -192,6 +192,7 @@ func _ready() -> void:
 	arrival.battle_requested.connect(_open_battle)
 	arrival.save_requested.connect(_manual_save)
 	arrival.restart_requested.connect(func(): restart_dialog.popup_centered(Vector2i(440,180)))
+	arrival.continue_requested.connect(_open_fifth)
 	var started := model.start()
 	if not started["supported"]:
 		_status.text = "试玩初始化失败"
@@ -232,6 +233,12 @@ func _restore_view() -> void:
 		page = "story"
 	elif model.stage() == "arrival":
 		page = "arrival"
+	elif model.stage() == "fifth_story":
+		page = "fifth_story"
+	elif model.stage() == "fifth_completed":
+		page = "arrival"
+	elif model.stage() == "workroom_entry":
+		page = "workroom_entry"
 
 
 func _manual_save() -> void:
@@ -421,10 +428,36 @@ func _next() -> void:
 		"arrival":
 			page = "arrival"
 			_message = ""
+		"fifth_story","fifth_completed":
+			_open_fifth()
+		"workroom_entry":
+			page = "workroom_entry"
+			_message = ""
+	refresh()
+
+
+func _open_fifth() -> void:
+	if model.stage() == "arrival":
+		if not _act({"op":"fifth_start"}):
+			refresh()
+			return
+	if model.stage() == "fifth_completed":
+		if _act({"op":"fifth_finish"}):
+			page = "workroom_entry"
+	elif model.stage() == "fifth_story":
+		page = "fifth_story"
+	_message = ""
 	refresh()
 
 
 func _story_command(op: String) -> void:
+	if page == "fifth_story" and model.stage() == "fifth_story":
+		if _act({"op":op}):
+			if model.stage() == "fifth_completed":
+				page = "workroom_entry" if _act({"op":"fifth_finish"}) else "arrival"
+			_message = ""
+		refresh()
+		return
 	if page != "story" or model.stage() != "story":
 		return
 	if _act({"op":op}):
@@ -434,7 +467,7 @@ func _story_command(op: String) -> void:
 
 
 func _close_story() -> void:
-	page = "results"
+	page = "arrival" if page == "fifth_story" else "results"
 	_message = "阅读位置已保留，可继续阅读。"
 	refresh()
 
@@ -490,7 +523,8 @@ func refresh() -> void:
 	_refresh_detail()
 	_refresh_results()
 	next_button.text = {"planning":"开始授课","grown":"确认本周记录","confirmed":"评选本次MVP",
-		"completed":"阅读本周剧情","story":"继续阅读剧情","story_completed":"进入第五周","arrival":"返回第五周"}[stage]
+		"completed":"阅读本周剧情","story":"继续阅读剧情","story_completed":"进入第五周","arrival":"返回第五周",
+		"fifth_story":"继续第五周剧情","fifth_completed":"前往职务室","workroom_entry":"返回职务室入口"}[stage]
 	var ready := false
 	for rating in model.session.view()["ratings"]:
 		if rating["state"] == 4:
@@ -499,21 +533,30 @@ func refresh() -> void:
 	_guidance.text = {"planning":"选择成员，再点目标位置。进入「授课安排」选择课程。",
 		"grown":"学生成长已完成。确认记录后，可评选本次MVP。","confirmed":"本周记录已确认。下一步记录MVP。",
 		"completed":"本次MVP已记录，接下来阅读本周剧情。","story":"可从保存的位置继续阅读本周剧情。",
-		"story_completed":"本周剧情已结束，接下来进入第五周。","arrival":"这是第四周的成长回顾。第五周学校安排仍在开发。"}[stage]
+		"story_completed":"本周剧情已结束，接下来进入第五周。","arrival":"这是第四周的成长回顾，可返回第五周继续剧情。",
+		"fifth_story":"第五周阅读位置已保存，可以继续剧情。","fifth_completed":"第五周剧情已读完，接下来前往职务室。",
+		"workroom_entry":"已到达职务室入口。第五周学校安排仍在开发。"}[stage]
 	if selected_id >= 0:
 		_guidance.text = "已选%s · 点击目标%s位置，或移到待命。Esc取消。" % [_name(selected_id),"教师" if selected_kind == "teacher" else "学生"]
 	if not _message.is_empty():
 		_guidance.text = _message
-	story_reader.visible = page == "story" and stage == "story"
-	if story_reader.visible:
+	story_reader.visible = (page == "story" and stage == "story") or (page == "fifth_story" and stage == "fifth_story")
+	if story_reader.visible and page == "story":
 		story_reader.show_page(model.read_story_page(),model.state()["story"]["cursor"],
 			model.state()["story"]["total"],model.story_catalog(),_save_message)
-	arrival.visible = page == "arrival" and stage == "arrival"
+	elif story_reader.visible:
+		story_reader.show_page(model.read_fifth_page(),model.state()["fifth_story"]["cursor"],
+			model.state()["fifth_story"]["total"],model.fifth_catalog(),_save_message,{
+				"command_prefix":"fifth","art_root":"res://assets/school_fifth_story/",
+				"calendar":"4月 · 第5周","return_label":"返回第五周",
+				"ending_text":"结束剧情，前往职务室  →",
+				"skip_prompt":"将跳过第五周剩余剧情并前往职务室。\n授课成长和本次MVP会保留。"})
+	arrival.visible = page in ["arrival","workroom_entry"] and stage in ["arrival","fifth_story","fifth_completed","workroom_entry"]
 	if arrival.visible:
 		arrival.show_arrival(model.state(),catalog,_save_message)
-	footer.text = "第四周养成试玩 · 授课、成长、MVP与两段原版剧情。"
-	if stage == "arrival":
-		footer.text = "已到达4月第5周 · 后续学校安排正在开发。"
+	footer.text = "第四周养成试玩 · 授课、成长、MVP与原版剧情，可续接第五周。"
+	if not week.is_empty():
+		footer.text = "4月第5周 · 剧情可继续至职务室入口，学校安排正在开发。"
 
 
 func _refresh_courses() -> void:
@@ -691,7 +734,7 @@ func _refresh_results() -> void:
 		note.text = "本次MVP已记录。继续阅读本周剧情，进度会自动保存。"
 		if model.stage() == "story_completed":
 			note.text = "本周剧情已结束。授课成长、关系、职业进度和MVP均已保留。"
-		elif model.stage() == "arrival":
+		elif model.stage() in ["arrival","fifth_story","fifth_completed","workroom_entry"]:
 			note.text = "第四周成长回顾 · 当前已到达第五周。\n成长和MVP不会再次发放；可返回第五周或进入战斗预览。"
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_results.add_child(note)
@@ -770,10 +813,11 @@ static func _clear(container: Node) -> void:
 func _input(event: InputEvent) -> void:
 	if story_reader.visible and event is InputEventKey and event.pressed and not event.echo \
 			and not story_reader.skip_dialog.visible:
+		var prefix := "fifth" if page == "fifth_story" else "story"
 		if event.keycode in [KEY_ENTER,KEY_SPACE,KEY_RIGHT]:
-			_story_command("story_next")
+			_story_command(prefix+"_next")
 		elif event.keycode == KEY_LEFT:
-			_story_command("story_prev")
+			_story_command(prefix+"_prev")
 		elif event.keycode == KEY_ESCAPE:
 			_close_story()
 		else:

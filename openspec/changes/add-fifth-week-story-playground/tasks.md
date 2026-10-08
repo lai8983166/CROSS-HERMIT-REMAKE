@@ -14,4 +14,4 @@
 
 ## 4. Playable integration
 
-- [ ] 4.1 Connect arrival, configurable mixed-art reader and workroom-entry summary, save/load and battle return; verify mouse/keyboard/skip-cancel/resume and rendered screenshots, run full model suites and strict OpenSpec validation, update current progress documentation and acceptance artifact; commit locally.
+- [x] 4.1 Connect arrival, configurable mixed-art reader and workroom-entry summary, save/load and battle return; verify mouse/keyboard/skip-cancel/resume and rendered screenshots, run full model suites and strict OpenSpec validation, update current progress documentation and acceptance artifact; commit locally.
