@@ -98,9 +98,9 @@ func show_arrival(state: Dictionary, catalog: Dictionary, save_status: String) -
 	var exited: bool = not state.get("fifth_exit",{}).is_empty()
 	calendar.text = "4月 · 第5周　职务室入口" if exited else "%d月 · 第%d周" % [week["after"]["month"],week["after"]["week"]]
 	introduction.text = "第五周剧情已结束，已到达职务室入口。" if exited else "学生们带着成长进入新的一周，可以继续阅读剧情。"
-	boundary.text = "职务室操作与第五周学校安排正在开发。\n可以回顾授课成长、保存进度或进入战斗预览。" if exited else "第五周剧情已开放，可继续阅读并前往职务室。\n学校安排正在开发，也可以回顾授课成长。"
-	continue_button.visible = not exited
-	continue_button.text = "前往职务室  →" if state.get("fifth_story",{}).get("completed",false) else "继续第五周剧情  →" if state.get("fifth_story",{}).get("cursor",-1) >= 0 else "阅读第五周剧情  →"
+	boundary.text = "可以进入职务室，听取巡逻班建议，再前往第五周学校编班。" if exited else "第五周剧情已开放，可继续阅读并前往职务室。\n也可以回顾第四周授课成长。"
+	continue_button.visible = true
+	continue_button.text = "进入职务室  →" if exited else "前往职务室  →" if state.get("fifth_story",{}).get("completed",false) else "继续第五周剧情  →" if state.get("fifth_story",{}).get("cursor",-1) >= 0 else "阅读第五周剧情  →"
 	for index in range(3):
 		var before: Dictionary = week["before"]["participants"][index]
 		var after: Dictionary = week["after"]["participants"][index]

@@ -96,7 +96,7 @@ func _run() -> void:
 	_check(panel.model.state()["fifth_story"]["cursor"] == 125 and reader.next_button.text.contains("职务室"),"last source page exposes correct exit")
 	await _key(KEY_ENTER)
 	_check(panel.model.stage() == "workroom_entry" and panel.arrival.visible and not reader.visible,"last page enters workroom summary")
-	_check(not panel.arrival.continue_button.visible and panel.arrival.calendar.text.contains("职务室"),"exit cannot repeat story action")
+	_check(panel.arrival.continue_button.visible and panel.arrival.continue_button.text.contains("进入职务室"),"exit offers separate workroom entry without repeating story")
 	_check(panel.model._school_state() == school and panel.model.state()["week"] == week,"all fifth reading and exit preserve course/MVP/week")
 	_check(panel.model.state()["fifth_exit"]["after"]["flags"]["0x7a55f6"] == 2,"verified native exit flag applied")
 	_check(not panel.model.state()["fifth_exit"]["handoff"]["school_initialized"],"workroom entry does not invent school boot")

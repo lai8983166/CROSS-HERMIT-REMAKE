@@ -5,6 +5,7 @@ const Playground := preload("res://sim/school_playground.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const StoryReader := preload("res://ui/school_story_reader.gd")
 const Arrival := preload("res://ui/school_week_arrival.gd")
+const Workroom := preload("res://ui/school_workroom.gd")
 const ART := "res://assets/school/"
 
 var model := Playground.new()
@@ -51,6 +52,9 @@ var panel: MarginContainer
 var story_reader: StoryReader
 var arrival: Arrival
 var calendar: Label
+var workroom: Workroom
+var workroom_button: Button
+var school_subtitle: Label
 
 
 func _ready() -> void:
@@ -102,7 +106,8 @@ func _ready() -> void:
 	title_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	heading.add_child(title_box)
 	title_box.add_child(_label("纯洁之盾 · 学校",30,Color("ead6a3")))
-	title_box.add_child(_label("安排课程，让每一位学生有所成长。",15,Color("bacac0")))
+	school_subtitle = _label("安排课程，让每一位学生有所成长。",15,Color("bacac0"))
+	title_box.add_child(school_subtitle)
 	calendar = _label("APRIL\n4月 · 第4周",20,Color("ead6a3"))
 	calendar.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	heading.add_child(calendar)
@@ -124,6 +129,9 @@ func _ready() -> void:
 	battle_button = _button("战斗预览",_open_battle)
 	battle_button.custom_minimum_size = Vector2(96,38)
 	toolbar.add_child(battle_button)
+	workroom_button = _button("职务室",func(): page = "workroom"; _message = ""; refresh())
+	workroom_button.custom_minimum_size = Vector2(74,38)
+	toolbar.add_child(workroom_button)
 	restart_dialog = ConfirmationDialog.new()
 	restart_dialog.title = "重新开始本段试玩"
 	restart_dialog.dialog_text = "将清空本段的编班、课程和成长结果，\n并替换当前保存的试玩进度。"
@@ -193,6 +201,14 @@ func _ready() -> void:
 	arrival.save_requested.connect(_manual_save)
 	arrival.restart_requested.connect(func(): restart_dialog.popup_centered(Vector2i(440,180)))
 	arrival.continue_requested.connect(_open_fifth)
+	workroom = Workroom.new()
+	add_child(workroom)
+	workroom.visible = false
+	workroom.continue_requested.connect(_open_work_story)
+	workroom.review_requested.connect(func(): page = "results"; _message = ""; refresh())
+	workroom.save_requested.connect(_manual_save)
+	workroom.battle_requested.connect(_open_battle)
+	workroom.restart_requested.connect(func(): restart_dialog.popup_centered(Vector2i(440,180)))
 	var started := model.start()
 	if not started["supported"]:
 		_status.text = "试玩初始化失败"
@@ -228,7 +244,7 @@ func _restore_view() -> void:
 	for group in range(5):
 		if _identity("teacher",group,-1) >= 0:
 			selected_class = group
-	page = "groups" if model.stage() == "planning" else "results"
+	page = "groups" if model.stage() in ["planning","fifth_planning"] else "results"
 	if model.stage() == "story":
 		page = "story"
 	elif model.stage() == "arrival":
@@ -239,6 +255,10 @@ func _restore_view() -> void:
 		page = "arrival"
 	elif model.stage() == "workroom_entry":
 		page = "workroom_entry"
+	elif model.stage() == "work_story":
+		page = "work_story"
+	elif model.stage() in ["workroom","work_completed"]:
+		page = "workroom"
 
 
 func _manual_save() -> void:
@@ -328,7 +348,7 @@ func _build_groups(parent: VBoxContainer) -> void:
 
 
 func _cell(kind: String, group: int, slot: int) -> void:
-	if model.stage() != "planning":
+	if model.stage() not in ["planning","fifth_planning"]:
 		var existing := _identity(kind,group,slot)
 		if existing >= 0:
 			detail_id = existing
@@ -349,17 +369,17 @@ func _cell(kind: String, group: int, slot: int) -> void:
 
 
 func _identity(kind: String, group: int, slot: int) -> int:
-	return Groups._word(model.session.read_snapshot()["group_raw_bytes"],group*28+(0 if kind == "teacher" else 16+slot*2))
+	return Groups._word(model.planning_session().read_snapshot()["group_raw_bytes"],group*28+(0 if kind == "teacher" else 16+slot*2))
 
 
 func _move(group: int, slot: int) -> void:
-	if selected_id < 0 or model.stage() != "planning":
+	if selected_id < 0 or model.stage() not in ["planning","fifth_planning"]:
 		return
 	if selected_kind == "student" and group >= 0 and _identity("teacher",group,-1) == -1:
 		_message = "请先为这个班安排教师。"
 		refresh()
 		return
-	var result := model.execute({"op":"move","kind":selected_kind,"member_id":selected_id,
+	var result := model.execute({"op":"plan_move" if model.stage() == "fifth_planning" else "move","kind":selected_kind,"member_id":selected_id,
 		"target_group":group,"target_slot":slot})
 	if result["supported"]:
 		selected_class = group if group >= 0 else selected_class
@@ -380,6 +400,9 @@ func _cancel() -> void:
 
 
 func _act(command: Dictionary) -> bool:
+	if model.stage() == "fifth_planning" and command["op"] in ["mode","course"]:
+		command = command.duplicate(true)
+		command["op"] = "plan_"+command["op"]
 	var result := model.execute(command)
 	if not result["supported"]:
 		_message = "本段操作次数已达保存上限，当前进度已保留。" if result.get("reason") == "save_command_limit" \
@@ -397,7 +420,7 @@ func _save() -> void:
 
 
 func _choose(course: int) -> void:
-	if model.stage() != "planning":
+	if model.stage() not in ["planning","fifth_planning"]:
 		return
 	if _act({"op":"mode","group":selected_class,"teaching":true}) and _act({"op":"course","group":selected_class,"course":course}):
 		_message = "%d班已安排%s。" % [selected_class+1,catalog["courses"][str(course)]["name"]]
@@ -433,10 +456,21 @@ func _next() -> void:
 		"workroom_entry":
 			page = "workroom_entry"
 			_message = ""
+		"workroom","work_completed","work_story":
+			page = "workroom"
+			_message = ""
+		"fifth_planning":
+			page = "groups"
+			_message = ""
 	refresh()
 
 
 func _open_fifth() -> void:
+	if model.stage() == "workroom_entry":
+		if _act({"op":"workroom_open"}):
+			page = "workroom"
+		refresh()
+		return
 	if model.stage() == "arrival":
 		if not _act({"op":"fifth_start"}):
 			refresh()
@@ -450,7 +484,32 @@ func _open_fifth() -> void:
 	refresh()
 
 
+func _open_work_story() -> void:
+	if model.stage() == "fifth_planning":
+		page = "groups"
+	elif model.stage() == "workroom":
+		if _act({"op":"work_start"}):
+			page = "work_story"
+	elif model.stage() == "work_story":
+		page = "work_story"
+	elif model.stage() == "work_completed":
+		if _act({"op":"school_enter"}):
+			_restore_view()
+	_message = ""
+	refresh()
+
+
 func _story_command(op: String) -> void:
+	if page == "work_story" and model.stage() == "work_story":
+		if _act({"op":op}):
+			if model.stage() == "work_completed":
+				if _act({"op":"school_enter"}):
+					_restore_view()
+				else:
+					page = "workroom"
+			_message = ""
+		refresh()
+		return
 	if page == "fifth_story" and model.stage() == "fifth_story":
 		if _act({"op":op}):
 			if model.stage() == "fifth_completed":
@@ -467,7 +526,7 @@ func _story_command(op: String) -> void:
 
 
 func _close_story() -> void:
-	page = "arrival" if page == "fifth_story" else "results"
+	page = "workroom" if page == "work_story" else "arrival" if page == "fifth_story" else "results"
 	_message = "阅读位置已保留，可继续阅读。"
 	refresh()
 
@@ -476,10 +535,13 @@ func refresh() -> void:
 	if model.session == null:
 		return
 	var stage := model.stage()
-	var snapshot := model.session.read_snapshot()
+	var snapshot := model.planning_session().read_snapshot()
+	var fifth_planning: bool = stage == "fifth_planning"
+	school_subtitle.text = "调整本周的教师与学生，准备第五周必修冒险。" if fifth_planning else "安排课程，让每一位学生有所成长。"
 	var week: Dictionary = model.state()["week"]
 	calendar.text = "APRIL\n4月 · 第%d周" % (4 if week.is_empty() else week["after"]["week"])
 	_status.text = _save_message
+	workroom_button.visible = fifth_planning
 	_groups.visible = page == "groups"
 	_courses.visible = page == "courses"
 	_results.visible = page == "results"
@@ -489,6 +551,7 @@ func refresh() -> void:
 	if current < 0:
 		current = 3
 	for index in range(4):
+		_stage_labels[index].visible = not fifth_planning
 		_stage_labels[index].add_theme_color_override("font_color",Color("ead6a3") if index <= current else Color("728b7d"))
 	for group in range(5):
 		class_buttons[group].button_pressed = selected_class == group
@@ -501,12 +564,14 @@ func refresh() -> void:
 		var teaching: bool = snapshot["group_raw_bytes"][group*28+3] == 1
 		var caption := "尚无教师 · 可安排教师后加入学生"
 		if teacher >= 0:
-			caption = "%d名学生 · 关系 %d" % [count,model.session.view()["ratings"][group]["relationship_mean"]]
+			caption = "%d名学生 · 关系 %d" % [count,model.planning_session().view()["ratings"][group]["relationship_mean"]]
 			caption += " · "+catalog["courses"].get(str(course),{"name":"未选课程"})["name"] if teaching else " · 等待安排授课"
+			if fifth_planning:
+				caption = "%d名学生 · 第五周必修冒险" % count
 		class_labels[group].text = caption
 		class_buttons[group].tooltip_text = caption
 	_class_caption.text = "%d班 · %s" % [selected_class+1,class_labels[selected_class].text]
-	wait_target.disabled = selected_id < 0 or stage != "planning"
+	wait_target.disabled = selected_id < 0 or stage not in ["planning","fifth_planning"]
 	cancel_button.disabled = selected_id < 0
 	_clear(_waiting)
 	waiting_buttons.clear()
@@ -524,39 +589,58 @@ func refresh() -> void:
 	_refresh_results()
 	next_button.text = {"planning":"开始授课","grown":"确认本周记录","confirmed":"评选本次MVP",
 		"completed":"阅读本周剧情","story":"继续阅读剧情","story_completed":"进入第五周","arrival":"返回第五周",
-		"fifth_story":"继续第五周剧情","fifth_completed":"前往职务室","workroom_entry":"返回职务室入口"}[stage]
+		"fifth_story":"继续第五周剧情","fifth_completed":"前往职务室","workroom_entry":"返回职务室入口",
+		"workroom":"返回职务室","work_story":"返回职务室","work_completed":"返回职务室",
+		"fifth_planning":"必修冒险\n入口正在接通"}[stage]
 	var ready := false
-	for rating in model.session.view()["ratings"]:
+	for rating in model.planning_session().view()["ratings"]:
 		if rating["state"] == 4:
 			ready = true
-	next_button.disabled = stage == "planning" and not ready
+	next_button.disabled = (stage == "planning" and not ready) or (fifth_planning and page != "results")
+	if fifth_planning and page == "results":
+		next_button.text = "返回第五周编班"
 	_guidance.text = {"planning":"选择成员，再点目标位置。进入「授课安排」选择课程。",
 		"grown":"学生成长已完成。确认记录后，可评选本次MVP。","confirmed":"本周记录已确认。下一步记录MVP。",
 		"completed":"本次MVP已记录，接下来阅读本周剧情。","story":"可从保存的位置继续阅读本周剧情。",
 		"story_completed":"本周剧情已结束，接下来进入第五周。","arrival":"这是第四周的成长回顾，可返回第五周继续剧情。",
 		"fifth_story":"第五周阅读位置已保存，可以继续剧情。","fifth_completed":"第五周剧情已读完，接下来前往职务室。",
-		"workroom_entry":"已到达职务室入口。第五周学校安排仍在开发。"}[stage]
+		"workroom_entry":"已到达职务室入口，可以听取巡逻班建议后进入学校。",
+		"workroom":"职务室对白与阅读位置已保留。","work_story":"职务室对白可以继续阅读。",
+		"work_completed":"巡逻班建议已听完，可以进入第五周学校。",
+		"fifth_planning":"本周有必修冒险，完成前不能授课。可以先调整教师与学生。"}[stage]
 	if selected_id >= 0:
 		_guidance.text = "已选%s · 点击目标%s位置，或移到待命。Esc取消。" % [_name(selected_id),"教师" if selected_kind == "teacher" else "学生"]
 	if not _message.is_empty():
 		_guidance.text = _message
-	story_reader.visible = (page == "story" and stage == "story") or (page == "fifth_story" and stage == "fifth_story")
+	story_reader.visible = (page == "story" and stage == "story") or (page == "fifth_story" and stage == "fifth_story") or (page == "work_story" and stage == "work_story")
 	if story_reader.visible and page == "story":
 		story_reader.show_page(model.read_story_page(),model.state()["story"]["cursor"],
 			model.state()["story"]["total"],model.story_catalog(),_save_message)
-	elif story_reader.visible:
+	elif story_reader.visible and page == "fifth_story":
 		story_reader.show_page(model.read_fifth_page(),model.state()["fifth_story"]["cursor"],
 			model.state()["fifth_story"]["total"],model.fifth_catalog(),_save_message,{
 				"command_prefix":"fifth","art_root":"res://assets/school_fifth_story/",
 				"calendar":"4月 · 第5周","return_label":"返回第五周",
 				"ending_text":"结束剧情，前往职务室  →",
 				"skip_prompt":"将跳过第五周剩余剧情并前往职务室。\n授课成长和本次MVP会保留。"})
+	elif story_reader.visible:
+		story_reader.show_page(model.read_work_page(),model.state()["work_story"]["cursor"],
+			model.state()["work_story"]["total"],model.work_catalog(),_save_message,{
+				"command_prefix":"work","art_root":"res://assets/school_workroom/",
+				"portrait_slots":[8,7,10],
+				"center_portraits":true,
+				"calendar":"4月 · 第5周","return_label":"返回职务室",
+				"ending_text":"结束对白，进入学校  →",
+				"skip_prompt":"将跳过剩余巡逻班对白并进入第五周学校。\n成长、关系、MVP与必修冒险安排都会保留。"})
 	arrival.visible = page in ["arrival","workroom_entry"] and stage in ["arrival","fifth_story","fifth_completed","workroom_entry"]
 	if arrival.visible:
 		arrival.show_arrival(model.state(),catalog,_save_message)
+	workroom.visible = page == "workroom" and stage in ["workroom","work_story","work_completed","fifth_planning"]
+	if workroom.visible:
+		workroom.show_workroom(model.state(),_save_message)
 	footer.text = "第四周养成试玩 · 授课、成长、MVP与原版剧情，可续接第五周。"
 	if not week.is_empty():
-		footer.text = "4月第5周 · 剧情可继续至职务室入口，学校安排正在开发。"
+		footer.text = "4月第5周 · 职务室与学校编班已开放；必修冒险入口正在接通。"
 
 
 func _refresh_courses() -> void:
@@ -579,12 +663,12 @@ func _refresh_courses() -> void:
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_courses.add_child(info)
 	var available := []
-	var listed := model.session.list_courses(selected_class)
+	var listed := model.planning_session().list_courses(selected_class)
 	if listed["supported"]:
 		for category in listed["courses"]:
 			for row in category:
 				available.append(row[1])
-	var snapshot := model.session.read_snapshot()
+	var snapshot := model.planning_session().read_snapshot()
 	var assigned := Groups._word(snapshot["group_raw_bytes"],selected_class*28+10)
 	var teaching: bool = snapshot["group_raw_bytes"][selected_class*28+3] == 1
 	for course in [10,11,12]:
@@ -599,6 +683,9 @@ func _refresh_courses() -> void:
 		_courses.add_child(button)
 		course_buttons[course] = button
 	var note := _label("课程影响成长点和技能学习机会。\n实际属性提升可在授课后查看；待命学生不参加。",15,Color("9db6a6"))
+	if model.stage() == "fifth_planning":
+		info.text = "第五周有必修冒险，完成前无法切换到授课。\n当前课程可以查看，授课选择暂时锁定。"
+		note.text = "请先返回编班，调整本周冒险队伍。\n必修冒险入口正在接通，当前安排可以保存。"
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_courses.add_child(note)
 
@@ -606,7 +693,7 @@ func _refresh_courses() -> void:
 func _refresh_detail() -> void:
 	_clear(_detail)
 	var profile := {}
-	for row in model.session.read_snapshot()["member_profiles"]:
+	for row in model.planning_session().read_snapshot()["member_profiles"]:
 		if row["member_id"] == detail_id:
 			profile = row
 	if profile.is_empty():
@@ -651,6 +738,8 @@ func _refresh_detail() -> void:
 		row.add_child(value)
 	_detail.add_child(HSeparator.new())
 	var info := _label("点击头像查看能力。\n同班成员共同授课，待命成员保留原有成长。",15,Color("9db6a6"))
+	if model.stage() == "fifth_planning":
+		info.text = "点击头像查看能力。\n同班成员为本周冒险做好准备；待命成员保留原有成长。"
 	info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_detail.add_child(info)
 
@@ -659,7 +748,7 @@ func _refresh_results() -> void:
 	_clear(_results)
 	result_cards.clear()
 	mvp_label = null
-	_results.add_child(_label("本周成长",22,Color("ead6a3")))
+	_results.add_child(_label("第四周成长回顾" if model.stage() in ["workroom","work_story","work_completed","fifth_planning"] else "本周成长",22,Color("ead6a3")))
 	var growth := model.session.read_settlement()
 	if growth.is_empty():
 		var hint := _label("安排课程并开始授课后，可以在这里查看成长与MVP。\n\n进入「授课安排」，选择一门课程后点击「开始授课」。",18,Color("bacdbf"))
@@ -734,7 +823,7 @@ func _refresh_results() -> void:
 		note.text = "本次MVP已记录。继续阅读本周剧情，进度会自动保存。"
 		if model.stage() == "story_completed":
 			note.text = "本周剧情已结束。授课成长、关系、职业进度和MVP均已保留。"
-		elif model.stage() in ["arrival","fifth_story","fifth_completed","workroom_entry"]:
+		elif model.stage() in ["arrival","fifth_story","fifth_completed","workroom_entry","workroom","work_story","work_completed","fifth_planning"]:
 			note.text = "第四周成长回顾 · 当前已到达第五周。\n成长和MVP不会再次发放；可返回第五周或进入战斗预览。"
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_results.add_child(note)
@@ -813,7 +902,7 @@ static func _clear(container: Node) -> void:
 func _input(event: InputEvent) -> void:
 	if story_reader.visible and event is InputEventKey and event.pressed and not event.echo \
 			and not story_reader.skip_dialog.visible:
-		var prefix := "fifth" if page == "fifth_story" else "story"
+		var prefix := "work" if page == "work_story" else "fifth" if page == "fifth_story" else "story"
 		if event.keycode in [KEY_ENTER,KEY_SPACE,KEY_RIGHT]:
 			_story_command(prefix+"_next")
 		elif event.keycode == KEY_LEFT:

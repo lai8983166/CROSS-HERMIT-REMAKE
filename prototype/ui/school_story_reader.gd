@@ -119,14 +119,21 @@ func show_page(page: Dictionary, cursor: int, total: int, catalog: Dictionary, s
 	background.texture = _texture(catalog["backgrounds"][str(page["background"])]["image"])
 	for actor in actors+portraits:
 		actor.visible = false
+	for index in range(portraits.size()):
+		portraits[index].position = Vector2(116+index*280,108)
+	var ordinal := 0
 	for member in page["characters"]:
-		var actor: TextureRect = portraits[member["slot"]-7] if member.get("kind") == "portrait" else actors[0 if member["slot"] == 5 else 1]
+		var portrait_index: int = options.get("portrait_slots",[7,8,9]).find(member["slot"])
+		var actor: TextureRect = portraits[portrait_index] if member.get("kind") == "portrait" else actors[0 if member["slot"] == 5 else 1]
+		if member.get("kind") == "portrait" and options.get("center_portraits",false):
+			actor.position = Vector2(396 if page["characters"].size() == 1 else 186+ordinal*420,108)
+		ordinal += 1
 		var key: String = member.get("asset_key",str(member["id"]))
 		actor.texture = _texture(catalog["actors"][key]["image"])
 		actor.visible = true
 		actor.modulate = Color.WHITE if key == str(page["speaker"]) else Color(0.68,0.72,0.73)
 	previous_button.disabled = cursor == 0
-	next_button.custom_minimum_size.x = 280 if _command_prefix == "fifth" else 170
+	next_button.custom_minimum_size.x = 280 if _command_prefix in ["fifth","work"] else 170
 	next_button.text = options.get("ending_text","结束本周剧情  →") if cursor == total-1 else "下一页  →"
 	progress.text = "%d / %d　 ·　Enter / Space 下一页，← 上一页" % [cursor+1,total]
 	status.text = save_status
