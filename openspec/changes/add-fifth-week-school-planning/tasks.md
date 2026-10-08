@@ -34,4 +34,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 8. Extended integration acceptance
 
-- [ ] 8.1 Run complete model tests, relevant source and compatibility window checks and strict OpenSpec validation, inspect final captures, publish updated acceptance and progress documentation, verify clean tracked files and commit locally without pushing.
+- [x] 8.1 Run complete model tests, relevant source and compatibility window checks and strict OpenSpec validation, inspect final captures, publish updated acceptance and progress documentation, verify clean tracked files and commit locally without pushing.
