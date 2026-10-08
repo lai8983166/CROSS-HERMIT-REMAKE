@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 149, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 121, in report
+    cases = [e.probe('initial'),e.probe('student9_waiting',[('student',9,-1)]),
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 73, in probe
+    moves = [self.run_move(name+'_'+str(i),*command) for i,command in enumerate(commands)]
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 73, in <listcomp>
+    moves = [self.run_move(name+'_'+str(i),*command) for i,command in enumerate(commands)]
+  File "F:\project\chaomofa\tools\new_game_school_movement_emulation.py", line 116, in run_move
+    self.call(address)
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 213, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 108, in call
+    self.uc.emu_start(address, RETURN, timeout=1_000_000, count=100_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 43, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_fifth_planning_emulation.py", line 115, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_fifth_week_emulation.py", line 131, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_story_week_emulation.py", line 154, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_course_result_handoff_emulation.py", line 152, in _hook
+    raise RuntimeError('unexpected result button input')
+RuntimeError: unexpected result button input

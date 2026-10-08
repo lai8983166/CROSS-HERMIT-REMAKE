@@ -22,7 +22,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 5. Native departure preparation
 
-- [ ] 5.1 Continue the actual fifth-week CPU through readiness and round preparation; capture source table inputs separately from fixture outputs, verify initial/edited/waiting/teacher-only cases, finite write guards and retained records, document exact execution boundaries and commit locally.
+- [x] 5.1 Continue the actual fifth-week CPU through readiness and round preparation; capture source table inputs separately from fixture outputs, verify initial/edited/waiting/teacher-only cases, finite write guards and retained records, document exact execution boundaries and commit locally.
 
 ## 6. Current squad projection
 
