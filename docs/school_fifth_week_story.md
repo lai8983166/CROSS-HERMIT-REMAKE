@@ -27,3 +27,5 @@ PYTHONIOENCODING=utf-8 .venv-audit/Scripts/python.exe -m unittest tools.tests.te
 ```
 
 原版执行和素材导出不要求用户手动操作旧游戏。
+
+素材验证覆盖重新导出的JSON/PNG逐字节一致、162条文本全覆盖、资源替换后的说话者、MC/SC尺寸与表情合成像素，以及拒绝未知跳转和TC头部误作SC。原版证据SHA-256为 `a7cf35d5e3bfe555e232a09917cb816f8daaf55a308cbf5345a2fd3451fc23f1`。

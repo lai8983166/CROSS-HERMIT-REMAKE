@@ -6,7 +6,7 @@
 
 ## 2. Source presentation
 
-- [ ] 2.1 Export strict Chapter018 text, MC/SC character images, replacements and scene background into a separate hashed catalog; verify all text coverage, resource tables and deterministic regeneration in Python tests and document presentation limits; commit locally.
+- [x] 2.1 Export strict Chapter018 text, MC/SC character images, replacements and scene background into a separate hashed catalog; verify all text coverage, resource tables and deterministic regeneration in Python tests and document presentation limits; commit locally.
 
 ## 3. Continuation and migration
 
