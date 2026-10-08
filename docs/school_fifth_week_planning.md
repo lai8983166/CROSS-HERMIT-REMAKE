@@ -8,7 +8,9 @@ Chapter018 END 实际请求8；原版49E2B0构造职务室，4A1570控制读取1
 
 原版state9构造两项学校任务；组任务的4A5CE0初始化前缀执行冒险解锁、授课课程解锁、名单清理、评分和当前工作表准备，停在4A7C40菜单入口。个人任务停在4B8EE2空闲yield。数据前缀执行不等于原版交互菜单完整执行；live_witness与原版存档写入授权始终false。
 
-实际第五周准备保留成长属性、等级、关系、装备、技能、MVP次数、成员名单、课程缓冲区与日期。源冒险表0x73BED0中id5记录（4/5，kind4，ordinal5）生成默认工作字段[3,4,5,0]，adventure_gate/lecture_active置1；有教师的班级默认mode0，其余mode1。重制项目可将班级切到授课再选择当前教师可用课程。本轮不执行第五周第二次成长或冒险任务。
+实际第五周准备保留成长属性、等级、关系、装备、技能、MVP次数、成员名单、课程缓冲区与日期。源冒险表0x73BED0中id5记录（4/5，kind4，ordinal5）生成默认工作字段[3,4,5,0]，adventure_gate/lecture_active置1；有教师的班级默认mode0，其余mode1。
+
+**必修冒险限制**：进一步调用已验证的4A3CA0模式操作发现，adventure_gate=1时原版强制mode0，因此第五周不能直接授课。控制器原子拒绝plan_mode(teaching=true)与plan_course，不清除gate；GUI允许调动教师/学生、查看课程与第四周结果，授课按钮禁用。初始OpenSpec的直接选课目标需要根据此发现调整，已向用户发出范围选择；确认前不把该目标标记完成。必修冒险入口和第五周第二次成长尚未执行。
 
 ## 边界与验证
 
@@ -17,3 +19,11 @@ heap分配、GDI字体、图形/音频/文字API、调度器注册和继续按�
 探索报告 `analysis/school-fifth-planning-v1-20261008.json` 的fade=false仍能初始化学校，说明该输入不控制当前对白按键；它只作为诊断保留。正式证据使用v2的实际按键等待。不得把fade=false声称为阻断学校的见证。
 
 旧边界helper提取后，旧学校完整native前缀重跑通过；旧职务室/派发/学校/第五周Python测试28项通过。v3两个不可再生成的真实存档在controller改为v4之前捕获，保留于school_playground_legacy_v3.json。
+
+## 当前重制操作与存档
+
+第四周成长与第五周126页剧情结束后，点击「进入职务室」可进入原版BG002_B背景。点击「听取巡逻班建议」阅读Chapter205的32页62条原文，支持前后页、Esc返回、保存和确认跳过；正常读完或确认跳过均初始化同一第五周学校数据前缀。Chapter205采用SC101/117默认原版头像，narrator单独命名，资源身份与可操作成员身份分离。
+
+第五周调动在独立fifth_session中计算，第四周session和成长回顾不变。school_entry记录角色字段前后与school_data_prepared，原版菜单正文仍未执行。班级选择与成员详情使用当前第五周snapshot，结果页保留第四周记录；职务室返回不会重复CH002、奖励或周推进。战斗预览仍是独立队伍，往返保留第五周计划并恢复time_scale。
+
+新保存version4/context school_playground_fifth_planning_4_5，共十项source/asset指纹。v1/v2/v3分别严格验证其原始字段、规则集合与状态hash；新版字段单独增加，不重写旧fixture。旧版本命令白名单禁止携带workroom/plan操作。精确的历史CRLF/LF story指纹兼容继续保留。存读档在完整候选重放成功后发布；主档/备份/损坏副本机制沿用，任何失败保留当前进度。本轮只触碰自有测试存档，未读写原版SAV。

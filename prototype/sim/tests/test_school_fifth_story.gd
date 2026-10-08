@@ -104,7 +104,7 @@ func test_frozen_version2_partial_story_and_arrival_migrate() -> void:
 		assert_true(model.restore(case["save"])["supported"])
 		assert_eq(model._version2_state(),case["state"])
 		assert_eq(model.state()["fifth_story"]["cursor"],-1)
-		assert_eq(model.export_save()["version"],3)
+		assert_eq(model.export_save()["version"],4)
 		assert_eq(model.export_save()["commands"],case["save"]["commands"])
 		_restore(model)
 		if case["name"] == "arrival":

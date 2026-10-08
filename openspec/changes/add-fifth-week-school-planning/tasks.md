@@ -1,5 +1,7 @@
 # Tasks
 
+Implementation note (2026-10-08): Native evidence revealed that the fifth-week adventure gate forces class mode0 and prevents teaching. A user choice is pending between following the original mandatory adventure sequence and creating a separate declared course example. Do not mark the originally specified direct course-selection behavior complete until this scope decision is resolved. The verified workroom, v4 migration and source-gated fifth-week member planning are being committed as reviewable subsets; current model and window evidence is recorded in docs/school_fifth_week_planning.md.
+
 ## 1. Native continuation
 
 - [x] 1.1 Capture immutable pre-change v3 partial/exit saves; extend the actual fifth-week CPU through workroom, CH002, school dispatch and initialization prefix, export source-only rules and separate fixtures, document boundaries, and verify normal/wait cases, source hashes, field preservation and finite write guards with Python tests. Commit this stage locally.

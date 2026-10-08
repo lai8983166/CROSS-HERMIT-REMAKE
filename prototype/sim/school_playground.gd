@@ -12,9 +12,14 @@ const RULE_PATHS := {
 	"week":"res://data/school_story_week_rules.json",
 	"story":"res://assets/school_story/catalog.json",
 	"fifth":"res://data/school_fifth_week_rules.json",
-	"fifth_story":"res://assets/school_fifth_story/catalog.json"}
+	"fifth_story":"res://assets/school_fifth_story/catalog.json",
+	"planning":"res://data/school_fifth_planning_rules.json",
+	"workroom":"res://assets/school_workroom/catalog.json"}
 const LEGACY_KEYS := ["school","growth","confirmation","result"]
 const VERSION2_KEYS := ["school","growth","confirmation","result","week","story"]
+const VERSION3_KEYS := VERSION2_KEYS+["fifth","fifth_story"]
+const VERSION2_OPS := ["story_start","story_next","story_prev","story_skip","week"]
+const VERSION3_OPS := VERSION2_OPS+["fifth_start","fifth_next","fifth_prev","fifth_skip","fifth_finish"]
 const STORY_LF_SHA := "e6d0c109295145c419a20f30d093c2bcb795ef010919f32f659419e8aa3ec98a"
 const LEGACY_STORY_CRLF_SHA := "fb7a98f8bdf021f601a4001cc0b69efc021002f7e037cb4fb7b2faeef09430bf"
 const SCHOOL_OPS := ["move","mode","course","grow","confirm","complete"]
@@ -33,6 +38,11 @@ var _week: Dictionary = {}
 var _fifth_pages: Array = []
 var _fifth_cursor := -1
 var _fifth_exit: Dictionary = {}
+var fifth_session: Session
+var _workroom: Dictionary = {}
+var _work_pages: Array = []
+var _work_cursor := -1
+var _school_entry: Dictionary = {}
 
 
 func _init() -> void:
@@ -51,10 +61,16 @@ func _init() -> void:
 			entry["chapter"] = scene["chapter"]
 			entry["scene_label"] = scene["label"]
 			_fifth_pages.append(entry)
+	for scene in _rules["workroom"]["scenes"]:
+		for page in scene["pages"]:
+			var entry: Dictionary = page.duplicate(true)
+			entry["chapter"] = scene["chapter"]
+			entry["scene_label"] = scene["label"]
+			_work_pages.append(entry)
 
 
 func start() -> Dictionary:
-	if not _valid_story_art() or not _valid_fifth_art():
+	if not _valid_story_art() or not _valid_fifth_art() or not _valid_workroom_art():
 		return _failure("invalid_story_assets")
 	var fresh := Session.new()
 	var rules: Dictionary = _rules["school"]
@@ -68,6 +84,10 @@ func start() -> Dictionary:
 	_week = {}
 	_fifth_cursor = -1
 	_fifth_exit = {}
+	fifth_session = null
+	_workroom = {}
+	_work_cursor = -1
+	_school_entry = {}
 	return {"supported":true,"status":"started"}
 
 
@@ -97,6 +117,14 @@ func _valid_fifth_art() -> bool:
 func stage() -> String:
 	if session == null:
 		return "uninitialized"
+	if fifth_session != null:
+		return "fifth_planning"
+	if _work_cursor == _work_pages.size():
+		return "work_completed"
+	if _work_cursor >= 0:
+		return "work_story"
+	if not _workroom.is_empty():
+		return "workroom"
 	if not _fifth_exit.is_empty():
 		return "workroom_entry"
 	if _fifth_cursor == _fifth_pages.size():
@@ -154,27 +182,44 @@ func _dispatch(command: Dictionary) -> Dictionary:
 			return _continue(command["op"])
 		"fifth_start","fifth_next","fifth_prev","fifth_skip","fifth_finish":
 			return _continue_fifth(command["op"])
+		"workroom_open","work_start","work_next","work_prev","work_skip","school_enter":
+			return _continue_workroom(command["op"])
+		"plan_move","plan_mode","plan_course":
+			if fifth_session == null:
+				return _failure("fifth_planning_not_ready")
+			if command["op"] == "plan_move":
+				var input := command.duplicate(true)
+				input.erase("op")
+				return fifth_session.move_member(input,fifth_session.revision())
+			if command["op"] == "plan_mode":
+				if command["teaching"] and fifth_session.read_snapshot()["adventure_gate"] != 0:
+					return _failure("fifth_requires_mandatory_adventure")
+				return fifth_session.set_class_mode(command["group"],command["teaching"],fifth_session.revision())
+			if fifth_session.read_snapshot()["adventure_gate"] != 0:
+				return _failure("fifth_requires_mandatory_adventure")
+			return fifth_session.assign_course(command["group"],command["course"],fifth_session.revision())
 	return _failure("invalid_command")
 
 
 static func _valid_command(command: Dictionary) -> bool:
 	var keys: Array
 	match command.get("op"):
-		"move":
+		"move","plan_move":
 			keys = ["op","kind","member_id","target_group","target_slot"]
 			if command.get("kind") not in ["student","teacher"] or not _integer(command.get("member_id"),1,118) \
 					or not _integer(command.get("target_group"),-1,4) or not _integer(command.get("target_slot"),-1,3):
 				return false
-		"mode":
+		"mode","plan_mode":
 			keys = ["op","group","teaching"]
 			if not _integer(command.get("group"),0,4) or not command.get("teaching") is bool:
 				return false
-		"course":
+		"course","plan_course":
 			keys = ["op","group","course"]
 			if not _integer(command.get("group"),0,4) or not _integer(command.get("course"),10,12):
 				return false
 		"grow","confirm","complete","story_start","story_next","story_prev","story_skip","week",\
-		"fifth_start","fifth_next","fifth_prev","fifth_skip","fifth_finish":
+		"fifth_start","fifth_next","fifth_prev","fifth_skip","fifth_finish",\
+		"workroom_open","work_start","work_next","work_prev","work_skip","school_enter":
 			keys = ["op"]
 		_:
 			return false
@@ -186,7 +231,81 @@ static func _integer(value: Variant, low: int, high: int) -> bool:
 
 
 func revision() -> int:
-	return 0 if session == null else session.revision()+_continuation_revision
+	return 0 if session == null else session.revision()+_continuation_revision+(0 if fifth_session == null else fifth_session.revision())
+
+
+func planning_session() -> Session:
+	return session if fifth_session == null else fifth_session
+
+
+func read_work_page() -> Dictionary:
+	return {} if _work_cursor < 0 or _work_cursor >= _work_pages.size() else _work_pages[_work_cursor].duplicate(true)
+
+
+func work_catalog() -> Dictionary:
+	return _rules["workroom"].duplicate(true)
+
+
+func _valid_workroom_art() -> bool:
+	var expected := ["background.png","portrait_101.png","portrait_117.png"]
+	var outputs: Variant = _rules["workroom"].get("outputs_sha256")
+	if not outputs is Dictionary or outputs.size() != expected.size():
+		return false
+	for filename in expected:
+		if outputs.get(filename) != FileAccess.get_sha256("res://assets/school_workroom/"+filename):
+			return false
+	return true
+
+
+func _continue_workroom(op: String) -> Dictionary:
+	if _fifth_exit.is_empty():
+		return _failure("workroom_requires_fifth_exit")
+	if op == "workroom_open":
+		if not _workroom.is_empty():
+			return {"supported":true,"status":"duplicate"}
+		if _fifth_exit["handoff"]["pending_state"] != 8:
+			return _failure("invalid_workroom_handoff")
+		_workroom = {"entry_state":8,"date":[4,5],"original_menu_body_executed":false}
+	elif _workroom.is_empty():
+		return _failure("workroom_not_open")
+	elif op == "school_enter":
+		if fifth_session != null:
+			return {"supported":true,"status":"duplicate"}
+		if _work_cursor != _work_pages.size():
+			return _failure("school_requires_workroom_story")
+		var candidate := Session.new()
+		var initialized := candidate.initialize_fifth_planning(session,_rules["planning"])
+		if not initialized["supported"]:
+			return initialized
+		var before: Dictionary = _fifth_exit["after"].duplicate(true)
+		var after: Dictionary = before.duplicate(true)
+		after["flags"]["0x7a4e62"] = 1
+		after["flags"]["0x7a55fa"] = candidate.read_snapshot()["adventure_gate"]
+		_school_entry = {"before":before,"after":after,"pending_state":9,
+			"source_school_data_prepared":true,"original_menu_body_executed":false}
+		fifth_session = candidate
+	elif fifth_session != null:
+		return _failure("school_already_entered")
+	elif op == "work_start":
+		if _work_cursor >= 0:
+			return {"supported":true,"status":"duplicate"}
+		_work_cursor = 0
+	elif _work_cursor < 0:
+		return _failure("work_story_not_started")
+	elif op == "work_next":
+		if _work_cursor == _work_pages.size():
+			return {"supported":true,"status":"duplicate"}
+		_work_cursor += 1
+	elif op == "work_prev":
+		if _work_cursor == 0:
+			return {"supported":true,"status":"duplicate"}
+		_work_cursor -= 1
+	elif op == "work_skip":
+		if _work_cursor == _work_pages.size():
+			return {"supported":true,"status":"duplicate"}
+		_work_cursor = _work_pages.size()
+	_continuation_revision += 1
+	return {"supported":true,"status":"continued_once"}
 
 
 func read_story_page() -> Dictionary:
@@ -328,7 +447,7 @@ func _version2_state() -> Dictionary:
 	return result
 
 
-func state() -> Dictionary:
+func _version3_state() -> Dictionary:
 	var result := _version2_state()
 	if not result.is_empty():
 		result["fifth_story"] = {"cursor":_fifth_cursor,"total":_fifth_pages.size(),
@@ -337,10 +456,21 @@ func state() -> Dictionary:
 	return result
 
 
+func state() -> Dictionary:
+	var result := _version3_state()
+	if not result.is_empty():
+		result["workroom"] = _workroom.duplicate(true)
+		result["work_story"] = {"cursor":_work_cursor,"total":_work_pages.size(),"completed":_work_cursor == _work_pages.size()}
+		result["school_entry"] = _school_entry.duplicate(true)
+		result["fifth_school"] = {} if fifth_session == null else {"snapshot":fifth_session.read_snapshot(),
+			"revision":fifth_session.revision()}
+	return result
+
+
 func export_save() -> Dictionary:
 	if session == null:
 		return {}
-	return {"version":3,"context":"school_playground_fifth_4_5","rules":_fingerprints.duplicate(true),
+	return {"version":4,"context":"school_playground_fifth_planning_4_5","rules":_fingerprints.duplicate(true),
 		"commands":_commands.duplicate(true),"state_sha256":JSON.stringify(state(),"",true).sha256_text()}
 
 
@@ -350,13 +480,14 @@ func restore(payload: Variant) -> Dictionary:
 		return _failure("invalid_save")
 	var legacy: bool = payload["version"] == 1
 	var version2: bool = payload["version"] == 2
-	var contexts := {1:"school_playground_4_4",2:"school_playground_story_4_4",3:"school_playground_fifth_4_5"}
-	if not _integer(payload["version"],1,3) or payload["context"] != contexts[payload["version"]]:
+	var version3: bool = payload["version"] == 3
+	var contexts := {1:"school_playground_4_4",2:"school_playground_story_4_4",3:"school_playground_fifth_4_5",4:"school_playground_fifth_planning_4_5"}
+	if not _integer(payload["version"],1,4) or payload["context"] != contexts[payload["version"]]:
 		return _failure("unsupported_save_version")
 	var fingerprints: Dictionary = _fingerprints.duplicate(true)
-	if legacy or version2:
+	if legacy or version2 or version3:
 		fingerprints = {}
-		for key in LEGACY_KEYS if legacy else VERSION2_KEYS:
+		for key in LEGACY_KEYS if legacy else VERSION2_KEYS if version2 else VERSION3_KEYS:
 			fingerprints[key] = _fingerprints[key]
 	var previous_line_endings: Dictionary = fingerprints.duplicate(true)
 	if not legacy and fingerprints.get("story") == STORY_LF_SHA:
@@ -375,13 +506,13 @@ func restore(payload: Variant) -> Dictionary:
 	for command in payload["commands"]:
 		if legacy and (not command is Dictionary or command.get("op") not in SCHOOL_OPS):
 			return _failure("save_command_rejected")
-		if version2 and (not command is Dictionary or str(command.get("op")).begins_with("fifth_")):
+		if (version2 or version3) and (not command is Dictionary or command.get("op") not in SCHOOL_OPS+(VERSION2_OPS if version2 else VERSION3_OPS)):
 			return _failure("save_command_rejected")
 		var previous: int = candidate.revision()
 		var result: Dictionary = candidate.execute(command)
 		if not result["supported"] or candidate.revision() == previous:
 			return _failure("save_command_rejected")
-	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate._version2_state() if version2 else candidate.state()
+	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate._version2_state() if version2 else candidate._version3_state() if version3 else candidate.state()
 	if JSON.stringify(candidate_state,"",true).sha256_text() != payload["state_sha256"]:
 		return _failure("save_state_mismatch")
 	session = candidate.session
@@ -391,6 +522,10 @@ func restore(payload: Variant) -> Dictionary:
 	_week = candidate._week.duplicate(true)
 	_fifth_cursor = candidate._fifth_cursor
 	_fifth_exit = candidate._fifth_exit.duplicate(true)
+	fifth_session = candidate.fifth_session
+	_workroom = candidate._workroom.duplicate(true)
+	_work_cursor = candidate._work_cursor
+	_school_entry = candidate._school_entry.duplicate(true)
 	return {"supported":true,"status":"restored"}
 
 

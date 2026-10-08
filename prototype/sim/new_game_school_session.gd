@@ -118,6 +118,55 @@ func school_context() -> String:
 	return _context
 
 
+func initialize_fifth_planning(previous: RefCounted, rules: Dictionary) -> Dictionary:
+	if not _snapshot.is_empty():
+		return Origin.failure("fifth_session_already_initialized")
+	if previous.get_script() != get_script() or previous.school_context() != "declared_course_example_4_4" \
+			or previous.read_result_handoff().is_empty():
+		return Origin.failure("fifth_requires_completed_source_session")
+	var template := {"id":5,"enabled":1,"month":4,"week":5,"metadata":0,"limit":1,"kind":4,
+		"ordinal":5,"condition":1,"record_sha256":"65beefd33bf2734d05aaff2ff446ce1a9c2d6e8d978823747181d0b2e4fe9e0b"}
+	if rules.get("source_image_sha256") != Courses.SOURCE_SHA or rules.get("required_date") != [4,5] \
+			or rules.get("entry_state") != 8 or rules.get("school_state") != 9 \
+			or rules.get("adventure_template") != template:
+		return Origin.failure("invalid_fifth_planning_source")
+	var before: Dictionary = previous.read_snapshot()
+	if [before.get("month"),before.get("week")] != [4,4] or before.get("reset_groups") != 0:
+		return Origin.failure("unsupported_fifth_school_predecessor")
+	var candidate: Dictionary = before.duplicate(true)
+	candidate["month"] = template["month"]
+	candidate["week"] = template["week"]
+	# Native 4A17B0 -> 4A1C70: source kind4 opens the first adventure offer.
+	candidate["adventure_gate"] = 1
+	candidate["lecture_active"] = 1
+	candidate["lecture_work_fields"] = [template["kind"]-1,template["ordinal"]-1,template["id"],0]
+	var unlocked := Courses.unlock_courses(candidate,previous._course_rules)
+	if not unlocked["supported"]:
+		return unlocked
+	var selected := Teacher.select_group(_working(unlocked["after"]),-1,Origin.group_rules(),previous._movement_rules["work_rules"])
+	if not selected["supported"]:
+		return selected
+	var clean := Teacher.reconcile(selected["after"],Origin.group_rules(),previous._movement_rules["work_rules"])
+	if not clean["supported"]:
+		return clean
+	# 4A5CE0's adventure gate write follows reconciliation.
+	for group in range(5):
+		clean["after"]["group_raw_bytes"][group*28+3] = 1 if Groups._word(clean["after"]["group_raw_bytes"],group*28) == -1 else 0
+	var rated := Groups.rate(clean["after"],Origin.group_rules())
+	if not rated["supported"]:
+		return rated
+	_origin_rules = previous._origin_rules.duplicate(true)
+	_course_rules = previous._course_rules.duplicate(true)
+	_movement_rules = previous._movement_rules.duplicate(true)
+	_snapshot = _canonical(rated["after"])
+	_ratings = rated["ratings"].duplicate(true)
+	_revision = 1
+	_prepared = true
+	_context = "source_fifth_week_planning_4_5"
+	_journal = [{"revision":1,"phase":"fifth_school_prefix","before":before,"after":read_snapshot()}]
+	return _view("fifth_school_prepared_once")
+
+
 func view() -> Dictionary:
 	return _view("school")
 
