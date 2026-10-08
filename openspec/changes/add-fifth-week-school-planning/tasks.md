@@ -30,7 +30,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 7. Graphical departure preparation
 
-- [ ] 7.1 Add the mandatory adventure preparation screen with current portraits, source task/scene, readiness feedback and return/edit/save/load/review controls; keep actual battle unavailable, verify input and rendered screenshots, document operation and commit locally.
+- [x] 7.1 Add the mandatory adventure preparation screen with current portraits, source task/scene, readiness feedback and return/edit/save/load/review controls; keep actual battle unavailable, verify input and rendered screenshots, document operation and commit locally.
 
 ## 8. Extended integration acceptance
 

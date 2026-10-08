@@ -55,6 +55,12 @@ var calendar: Label
 var workroom: Workroom
 var workroom_button: Button
 var school_subtitle: Label
+var _adventure: VBoxContainer
+var adventure_projection: Dictionary = {}
+var adventure_member_buttons: Dictionary = {}
+var adventure_start_button: Button
+var adventure_status: Label
+var adventure_round_label: Label
 
 
 func _ready() -> void:
@@ -168,6 +174,9 @@ func _ready() -> void:
 	_results = VBoxContainer.new()
 	_results.add_theme_constant_override("separation",12)
 	contents.add_child(_results)
+	_adventure = VBoxContainer.new()
+	_adventure.add_theme_constant_override("separation",12)
+	contents.add_child(_adventure)
 	var right := PanelContainer.new()
 	right.custom_minimum_size.x = 300
 	body.add_child(right)
@@ -460,7 +469,9 @@ func _next() -> void:
 			page = "workroom"
 			_message = ""
 		"fifth_planning":
-			page = "groups"
+			page = "groups" if page in ["results","adventure"] else "adventure"
+			selected_id = -1
+			selected_kind = ""
 			_message = ""
 	refresh()
 
@@ -545,6 +556,7 @@ func refresh() -> void:
 	_groups.visible = page == "groups"
 	_courses.visible = page == "courses"
 	_results.visible = page == "results"
+	_adventure.visible = fifth_planning and page == "adventure"
 	for key in tab_buttons:
 		tab_buttons[key].button_pressed = page == key
 	var current := ["planning","grown","confirmed","completed"].find(stage)
@@ -587,17 +599,19 @@ func refresh() -> void:
 	_refresh_courses()
 	_refresh_detail()
 	_refresh_results()
+	if _adventure.visible:
+		_refresh_adventure()
 	next_button.text = {"planning":"开始授课","grown":"确认本周记录","confirmed":"评选本次MVP",
 		"completed":"阅读本周剧情","story":"继续阅读剧情","story_completed":"进入第五周","arrival":"返回第五周",
 		"fifth_story":"继续第五周剧情","fifth_completed":"前往职务室","workroom_entry":"返回职务室入口",
 		"workroom":"返回职务室","work_story":"返回职务室","work_completed":"返回职务室",
-		"fifth_planning":"必修冒险\n入口正在接通"}[stage]
+		"fifth_planning":"必修冒险 · 出发准备"}[stage]
 	var ready := false
 	for rating in model.planning_session().view()["ratings"]:
 		if rating["state"] == 4:
 			ready = true
-	next_button.disabled = (stage == "planning" and not ready) or (fifth_planning and page != "results")
-	if fifth_planning and page == "results":
+	next_button.disabled = stage == "planning" and not ready
+	if fifth_planning and page in ["results","adventure"]:
 		next_button.text = "返回第五周编班"
 	_guidance.text = {"planning":"选择成员，再点目标位置。进入「授课安排」选择课程。",
 		"grown":"学生成长已完成。确认记录后，可评选本次MVP。","confirmed":"本周记录已确认。下一步记录MVP。",
@@ -608,6 +622,9 @@ func refresh() -> void:
 		"workroom":"职务室对白与阅读位置已保留。","work_story":"职务室对白可以继续阅读。",
 		"work_completed":"巡逻班建议已听完，可以进入第五周学校。",
 		"fifth_planning":"本周有必修冒险，完成前不能授课。可以先调整教师与学生。"}[stage]
+	if _adventure.visible:
+		_guidance.text = "当前队伍已准备好；战斗暂未开放，可返回编班调整。" if adventure_projection.get("ready",false) \
+			else "请返回编班，为教师安排至少一名学生，再查看出发准备。"
 	if selected_id >= 0:
 		_guidance.text = "已选%s · 点击目标%s位置，或移到待命。Esc取消。" % [_name(selected_id),"教师" if selected_kind == "teacher" else "学生"]
 	if not _message.is_empty():
@@ -640,7 +657,7 @@ func refresh() -> void:
 		workroom.show_workroom(model.state(),_save_message)
 	footer.text = "第四周养成试玩 · 授课、成长、MVP与原版剧情，可续接第五周。"
 	if not week.is_empty():
-		footer.text = "4月第5周 · 职务室与学校编班已开放；必修冒险入口正在接通。"
+		footer.text = "4月第5周 · 编班与必修冒险出发准备已开放；战斗暂未开放。"
 
 
 func _refresh_courses() -> void:
@@ -685,9 +702,73 @@ func _refresh_courses() -> void:
 	var note := _label("课程影响成长点和技能学习机会。\n实际属性提升可在授课后查看；待命学生不参加。",15,Color("9db6a6"))
 	if model.stage() == "fifth_planning":
 		info.text = "第五周有必修冒险，完成前无法切换到授课。\n当前课程可以查看，授课选择暂时锁定。"
-		note.text = "请先返回编班，调整本周冒险队伍。\n必修冒险入口正在接通，当前安排可以保存。"
+		note.text = "请先返回编班，调整本周冒险队伍。\n点击「必修冒险 · 出发准备」查看参战名单。"
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_courses.add_child(note)
+
+
+func _refresh_adventure() -> void:
+	_clear(_adventure)
+	adventure_member_buttons.clear()
+	adventure_projection = model.adventure_preparation()
+	_adventure.add_child(_label("第五周 · 必修冒险",24,Color("ead6a3")))
+	adventure_round_label = _label("任务5 · 第1场 · 场景5",16,Color("becfc3"))
+	_adventure.add_child(adventure_round_label)
+	var supported: bool = adventure_projection.get("supported",false)
+	var ready: bool = adventure_projection.get("ready",false)
+	var text := "队伍已准备好"
+	if not supported:
+		text = "出发准备资料暂时无法读取，请保留当前编班。"
+	elif not ready:
+		var incomplete: Array = adventure_projection["incomplete_classes"]
+		text = "请安排至少一个有教师与学生的班级。" if incomplete.is_empty() \
+			else "%d班尚无学生，请返回编班补齐队伍。" % (incomplete[0]+1)
+	adventure_status = _label(text,18,Color("cadbbd") if ready else Color("e6c095"))
+	adventure_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_adventure.add_child(adventure_status)
+	if ready:
+		var round: Dictionary = adventure_projection["prepared"]["rounds"][0]
+		_adventure.add_child(_label("参战队伍 · %d位教师 / %d名学生" % [round["teacher_ids"].size(),round["student_ids"].size()],18,Color("ead6a3")))
+		var grid := GridContainer.new()
+		grid.columns = 2
+		grid.add_theme_constant_override("h_separation",12)
+		grid.add_theme_constant_override("v_separation",12)
+		_adventure.add_child(grid)
+		for identity in round["teacher_ids"]+round["student_ids"]:
+			var member := int(identity)
+			var button := _button("",func(): detail_id = member; refresh())
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.custom_minimum_size = Vector2(278,90)
+			grid.add_child(button)
+			_set_member(button,member,"")
+			button.add_theme_constant_override("icon_max_width",58)
+			button.add_theme_font_size_override("font_size",17)
+			button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+			button.toggle_mode = false
+			button.tooltip_text = "查看"+_name(member)+"的当前能力"
+			var group := -1
+			for index in range(5):
+				if _identity("teacher",index,-1) == member:
+					group = index
+				for slot in range(4):
+					if _identity("student",index,slot) == member:
+						group = index
+			button.text += "\n%d班 · %s" % [group+1,"教师" if member >= 101 else "学生"]
+			adventure_member_buttons[member] = button
+	if supported:
+		var names := PackedStringArray()
+		for member in adventure_projection["idle_teacher_ids"]+adventure_projection["idle_student_ids"]:
+			names.append(_name(member))
+		var idle := _label("待命成员 · "+("无" if names.is_empty() else "、".join(names)),16,Color("a3bcaf"))
+		idle.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_adventure.add_child(idle)
+	var space := Control.new()
+	space.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_adventure.add_child(space)
+	adventure_start_button = _button("开始战斗 · 暂未开放",func(): pass)
+	adventure_start_button.disabled = true
+	adventure_start_button.custom_minimum_size.y = 46
+	_adventure.add_child(adventure_start_button)
 
 
 func _refresh_detail() -> void:
@@ -712,6 +793,8 @@ func _refresh_detail() -> void:
 	title.add_child(_label("教师" if detail_id >= 101 else "Lv.%d" % profile["level_50"],18))
 	if detail_id >= 101:
 		var note := _label("负责授课与班级安排。\n点击教师头像可调整班级。",16,Color("bacdbf"))
+		if model.stage() == "fifth_planning":
+			note.text = "负责本周冒险队伍。\n返回编班可调整教师与学生。"
 		note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		_detail.add_child(note)
 		return

@@ -82,7 +82,7 @@ func _run() -> void:
 	_check(reader.next_button.text.contains("学校"),"last patrol page has correct school destination")
 	await _key(KEY_ENTER)
 	_check(panel.model.stage() == "fifth_planning" and panel.page == "groups","normal source END opens fifth-week school")
-	_check(panel.calendar.text.contains("第5周") and panel.next_button.disabled,"fifth calendar with locked mandatory adventure boundary")
+	_check(panel.calendar.text.contains("第5周") and not panel.next_button.disabled and panel.next_button.text.contains("出发准备"),"fifth calendar offers mandatory adventure preparation")
 	_check(panel._guidance.text.contains("必修冒险") and panel.workroom_button.visible,"school explains native course lock and offers workroom return")
 	_check(panel.model._school_state()["counts"] == fixture["cases"][1]["state"]["counts"],"MVP preserved without second award")
 	await process_frame
