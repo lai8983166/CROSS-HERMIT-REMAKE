@@ -47,7 +47,7 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
                                 'source_sha256': hashlib.sha256(source).hexdigest(), **extra})
         return source
 
-    def _hook(self, uc, address, size, user):
+    def _school_boot_boundary(self, uc, address, size, user):
         if self.phase in ('school_group_boot', 'school_person_boot'):
             sp = uc.reg_read(UC_X86_REG_ESP)
             receiver = uc.reg_read(UC_X86_REG_ECX)
@@ -66,7 +66,7 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
                 self.boot_events.append({'kind': 'group_menu_entry_boundary', 'va': hex(address),
                     'body_executed': False})
                 uc.emu_stop()
-                return
+                return True
             if address == 0x4B8D50:
                 if self.person_started or not self.group_initialized or receiver != PERSON_TASK \
                         or self.read(0x7A4AD8) != GROUP_TASK or self.read(0x7A4ADC) != PERSON_TASK:
@@ -85,7 +85,7 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
                 uc.mem_write(BOOT_GRAPHICS+offset, source)
                 self.stub_calls['declared_school_graphics_bytes'] += 1
                 self._stub_return(BOOT_GRAPHICS+offset, 0)
-                return
+                return True
             if address == 0x422360:
                 if self.phase != 'school_person_boot' or self.read(sp) != 0x4B8EE2 \
                         or self.read(0x7A4E60, 'h') != 0 or self.read(PERSON_TASK+0x391DA, 'h') != -1 \
@@ -96,7 +96,7 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
                     self.person_resource_initialized = True
                     self.stop_reason = 'school_person_idle_boundary'
                     uc.emu_stop()
-                    return
+                    return True
             if address in BOOT_STUBS:
                 name, pop = BOOT_STUBS[address]
                 if address in (0x4D6420, 0x4CDE10, 0x416B80):
@@ -112,7 +112,12 @@ class SchoolBootEmulator(SchoolDispatchEmulator):
                     self.boot_events.append({'kind': 'music_api_boundary', 'music': self.read(sp+4, 'i')})
                 self.stub_calls[name] += 1
                 self._stub_return(0x3456 if address == FONT_IMPORT else 0, pop)
-                return
+                return True
+        return False
+
+    def _hook(self, uc, address, size, user):
+        if self._school_boot_boundary(uc, address, size, user):
+            return
         if self.phase in ('school_group_boot', 'school_person_boot') and any(a <= address < b for a,b in BOOT_NATIVE):
             return ExitEmulator._hook(self, uc, address, size, user)
         return super()._hook(uc, address, size, user)

@@ -36,7 +36,7 @@ class SchoolDispatchEmulator(WorkroomReturnEmulator):
         self.school_allocated = []
         self._ran_school = False
 
-    def _hook(self, uc, address, size, user):
+    def _school_dispatch_boundary(self, uc, address, size, user):
         if self.phase == 'school_dispatch':
             sp = uc.reg_read(UC_X86_REG_ESP)
             receiver = uc.reg_read(UC_X86_REG_ECX)
@@ -58,7 +58,7 @@ class SchoolDispatchEmulator(WorkroomReturnEmulator):
                                            'size': count, 'source_wrapper': hex(wrapper)})
                 self.stub_calls['isolated_school_allocation'] += 1
                 self._stub_return(pointer, 0)
-                return
+                return True
             if address == 0x4216C0:
                 args = [self.read(sp+k) for k in (4, 8, 12)]
                 registered = sum(e['kind'] == 'registration_boundary' for e in self.school_events)
@@ -72,7 +72,7 @@ class SchoolDispatchEmulator(WorkroomReturnEmulator):
                     'global_pointer_va': hex(global_pointer), 'vtable': hex(vtable), 'active': 1})
                 self.stub_calls['isolated_school_registration'] += 1
                 self._stub_return(0, 0)
-                return
+                return True
             if address == 0x56DDA0:
                 args = [self.read(sp+k) for k in (4, 8, 12, 16, 20)]
                 if args != [PERSON_TASK+0x19D20, 0x6424, 5, 0x4D5FB0, 0x4D6010]:
@@ -87,7 +87,12 @@ class SchoolDispatchEmulator(WorkroomReturnEmulator):
                     'receiver': hex(receiver)})
                 self.stub_calls[name] += 1
                 self._stub_return(receiver if name.endswith('_constructor') else 0x2345, pop)
-                return
+                return True
+        return False
+
+    def _hook(self, uc, address, size, user):
+        if self._school_dispatch_boundary(uc, address, size, user):
+            return
         if any(a <= address < b for a,b in SCHOOL_NATIVE):
             return ExitEmulator._hook(self, uc, address, size, user)
         return super()._hook(uc, address, size, user)

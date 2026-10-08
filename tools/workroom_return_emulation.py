@@ -71,7 +71,7 @@ class WorkroomReturnEmulator(NewWeekAdvEmulator):
             return name, source
         return super()._resource(pointer)
 
-    def _hook(self, uc, address, size, user):
+    def _workroom_boundary(self, uc, address, size, user):
         if self.phase == 'workroom':
             sp = uc.reg_read(UC_X86_REG_ESP)
             receiver = uc.reg_read(UC_X86_REG_ECX)
@@ -89,7 +89,7 @@ class WorkroomReturnEmulator(NewWeekAdvEmulator):
                 self.work_events.append({'kind': 'allocation_boundary', 'size': self.read(sp+4), 'pointer': hex(WORKROOM)})
                 self.stub_calls['isolated_workroom_allocation'] += 1
                 self._stub_return(WORKROOM, 0)
-                return
+                return True
             if address == 0x4216C0:
                 args = [self.read(sp+k) for k in (4, 8, 12)]
                 if args != [WORKROOM, 0, 2] or self.read(WORKROOM) != 0x5A0904:
@@ -98,10 +98,10 @@ class WorkroomReturnEmulator(NewWeekAdvEmulator):
                                          'vtable': hex(self.read(WORKROOM)), 'active': self.read(WORKROOM+0x28, 'B')})
                 self.stub_calls['isolated_workroom_registration'] += 1
                 self._stub_return(0, 0)
-                return
+                return True
             if address == 0x42AE20:
                 path = self._raw_path(uc, self.read(sp+4))
-                if path in ('data/workroom/workroom.bin', 'data/adv/bin/bg002_d.bin'):
+                if path in ('data/workroom/workroom.bin', getattr(self,'workroom_background_path','data/adv/bin/bg002_d.bin')):
                     source = (ROOT/'CROSS HERMIT/CROSS HERMIT'/path).read_bytes()
                     offset = 0 if path.startswith('data/workroom') else 0x400000
                     maximum = 0x400000
@@ -112,7 +112,7 @@ class WorkroomReturnEmulator(NewWeekAdvEmulator):
                                              'source_sha256': hashlib.sha256(source).hexdigest()})
                     self.stub_calls['declared_workroom_graphics_bytes'] += 1
                     self._stub_return(GRAPHICS+offset, 0)
-                    return
+                    return True
             if address == 0x4D5EC0:
                 target, x, y, w, h = [self.read(sp+k) for k in (4, 8, 12, 16, 20)]
                 if not STACK <= target <= STACK+0x10000-8 or x not in (0x28E, 0x34F) or (y,w,h) != (0x2D6,0x8D,0x1E):
@@ -123,13 +123,13 @@ class WorkroomReturnEmulator(NewWeekAdvEmulator):
                 self.work_events.append({'kind': 'button_input_boundary', 'x': x, 'clicked': clicked})
                 self.stub_calls['declared_workroom_continue_input'] += 1
                 self._stub_return(0, 20)
-                return
+                return True
             if address == 0x422360:
                 self.work_yields += 1
                 if self.work_yields > 70:
                     self.stop_reason = 'workroom_waiting_continue'
                     uc.emu_stop()
-                    return
+                    return True
             if address == 0x4A15A0:
                 self.work_events.append({'kind': 'control_phase', 'value': self.read(WORKROOM+0x30, 'h')})
             if address in WORK_STUBS:
@@ -138,7 +138,12 @@ class WorkroomReturnEmulator(NewWeekAdvEmulator):
                     raise RuntimeError('constructor boundary outside workroom allocation')
                 self.stub_calls[name] += 1
                 self._stub_return(receiver if name.endswith('_constructor') else 0x1234 if address == FONT_IMPORT else 0, pop)
-                return
+                return True
+        return False
+
+    def _hook(self, uc, address, size, user):
+        if self._workroom_boundary(uc, address, size, user):
+            return
         if self.phase == 'ch002_adv' and address == 0x4D1A80:
             if self.ch002_consumed is not None or self.read(CONTROLLER+0x2C) != 1 \
                     or self.read(CONTROLLER+0x30) != 6 or self.active_path != 'ch002.ybc' \
