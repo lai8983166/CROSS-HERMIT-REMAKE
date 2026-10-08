@@ -10,7 +10,7 @@
 
 ## 3. Continuation and migration
 
-- [ ] 3.1 Add guarded fifth-week commands, immutable page reads, once-only exit projection and version3 saves; capture old version2 fixtures, verify both migrations, tamper rejection and preserved course/week/MVP state in model tests, update save documentation; commit locally.
+- [x] 3.1 Add guarded fifth-week commands, immutable page reads, once-only exit projection and version3 saves; capture old version2 fixtures, verify both migrations, tamper rejection and preserved course/week/MVP state in model tests, update save documentation; commit locally.
 
 ## 4. Playable integration
 

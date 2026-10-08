@@ -97,7 +97,7 @@ func test_legacy_v1_restores_and_migrates_without_losing_result() -> void:
 	assert_eq(model.stage(),"completed")
 	assert_eq(model._school_state(),_course()._school_state())
 	assert_eq(model.state()["story"]["cursor"],-1)
-	assert_eq(model.export_save()["version"],2)
+	assert_eq(model.export_save()["version"],3)
 	assert_eq(model.export_save()["commands"],legacy["commands"])
 	assert_true(model.execute({"op":"story_start"})["supported"])
 	_restore(model)

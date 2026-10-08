@@ -10,8 +10,11 @@ const RULE_PATHS := {
 	"confirmation":"res://data/school_course_confirmation_rules.json",
 	"result":"res://data/school_course_result_handoff_rules.json",
 	"week":"res://data/school_story_week_rules.json",
-	"story":"res://assets/school_story/catalog.json"}
+	"story":"res://assets/school_story/catalog.json",
+	"fifth":"res://data/school_fifth_week_rules.json",
+	"fifth_story":"res://assets/school_fifth_story/catalog.json"}
 const LEGACY_KEYS := ["school","growth","confirmation","result"]
+const VERSION2_KEYS := ["school","growth","confirmation","result","week","story"]
 const SCHOOL_OPS := ["move","mode","course","grow","confirm","complete"]
 const SAVE_PATH := "user://school_playground.json"
 const MAX_COMMANDS := 512
@@ -25,6 +28,9 @@ var _story_pages: Array = []
 var _story_cursor := -1
 var _continuation_revision := 0
 var _week: Dictionary = {}
+var _fifth_pages: Array = []
+var _fifth_cursor := -1
+var _fifth_exit: Dictionary = {}
 
 
 func _init() -> void:
@@ -37,10 +43,16 @@ func _init() -> void:
 			entry["chapter"] = scene["chapter"]
 			entry["scene_label"] = scene["label"]
 			_story_pages.append(entry)
+	for scene in _rules["fifth_story"]["scenes"]:
+		for page in scene["pages"]:
+			var entry: Dictionary = page.duplicate(true)
+			entry["chapter"] = scene["chapter"]
+			entry["scene_label"] = scene["label"]
+			_fifth_pages.append(entry)
 
 
 func start() -> Dictionary:
-	if not _valid_story_art():
+	if not _valid_story_art() or not _valid_fifth_art():
 		return _failure("invalid_story_assets")
 	var fresh := Session.new()
 	var rules: Dictionary = _rules["school"]
@@ -52,6 +64,8 @@ func start() -> Dictionary:
 	_story_cursor = -1
 	_continuation_revision = 0
 	_week = {}
+	_fifth_cursor = -1
+	_fifth_exit = {}
 	return {"supported":true,"status":"started"}
 
 
@@ -66,9 +80,27 @@ func _valid_story_art() -> bool:
 	return true
 
 
+func _valid_fifth_art() -> bool:
+	var expected := ["body_9.png","body_10.png","body_12.png","portrait_12.png","portrait_27.png",
+		"portrait_29.png","portrait_30.png","portrait_31.png","background_47.png"]
+	var outputs: Variant = _rules["fifth_story"].get("outputs_sha256")
+	if not outputs is Dictionary or outputs.size() != expected.size():
+		return false
+	for filename in expected:
+		if outputs.get(filename) != FileAccess.get_sha256("res://assets/school_fifth_story/"+filename):
+			return false
+	return true
+
+
 func stage() -> String:
 	if session == null:
 		return "uninitialized"
+	if not _fifth_exit.is_empty():
+		return "workroom_entry"
+	if _fifth_cursor == _fifth_pages.size():
+		return "fifth_completed"
+	if _fifth_cursor >= 0:
+		return "fifth_story"
 	if not _week.is_empty():
 		return "arrival"
 	if _story_cursor == _story_pages.size():
@@ -118,6 +150,8 @@ func _dispatch(command: Dictionary) -> Dictionary:
 			return session.complete_course_result(_rules["result"],session.revision())
 		"story_start","story_next","story_prev","story_skip","week":
 			return _continue(command["op"])
+		"fifth_start","fifth_next","fifth_prev","fifth_skip","fifth_finish":
+			return _continue_fifth(command["op"])
 	return _failure("invalid_command")
 
 
@@ -137,7 +171,8 @@ static func _valid_command(command: Dictionary) -> bool:
 			keys = ["op","group","course"]
 			if not _integer(command.get("group"),0,4) or not _integer(command.get("course"),10,12):
 				return false
-		"grow","confirm","complete","story_start","story_next","story_prev","story_skip","week":
+		"grow","confirm","complete","story_start","story_next","story_prev","story_skip","week",\
+		"fifth_start","fifth_next","fifth_prev","fifth_skip","fifth_finish":
 			keys = ["op"]
 		_:
 			return false
@@ -158,6 +193,69 @@ func read_story_page() -> Dictionary:
 
 func story_catalog() -> Dictionary:
 	return _rules["story"].duplicate(true)
+
+
+func read_fifth_page() -> Dictionary:
+	return {} if _fifth_cursor < 0 or _fifth_cursor >= _fifth_pages.size() else _fifth_pages[_fifth_cursor].duplicate(true)
+
+
+func fifth_catalog() -> Dictionary:
+	return _rules["fifth_story"].duplicate(true)
+
+
+func _continue_fifth(op: String) -> Dictionary:
+	if _week.is_empty():
+		return _failure("fifth_requires_arrival")
+	if not _fifth_exit.is_empty():
+		return {"supported":true,"status":"duplicate"} if op == "fifth_finish" else _failure("fifth_already_finished")
+	if op == "fifth_start":
+		if _fifth_cursor >= 0:
+			return {"supported":true,"status":"duplicate"}
+		_fifth_cursor = 0
+	elif op == "fifth_finish":
+		if _fifth_cursor != _fifth_pages.size():
+			return _failure("fifth_requires_completed_story")
+		var before := _fifth_input()
+		var rules: Dictionary = _rules["fifth"]
+		if [before["month"],before["week"]] != rules["required_date"] \
+				or _week["handoff"]["pending_state"] != rules["entry_state"] \
+				or _week["handoff"]["next_task"] != rules["next_task"] \
+				or _week["handoff"]["script"] != rules["entry_script"]:
+			return _failure("invalid_fifth_handoff")
+		var after: Dictionary = before.duplicate(true)
+		for field in rules["flag_writes"]:
+			after["flags"][field] = rules["flag_writes"][field]
+		for field in rules["adv_global_writes"]:
+			after["adv_globals"][field] = rules["adv_global_writes"][field]
+		_fifth_exit = {"before":before,"after":after,"handoff":{
+			"pending_state":rules["exit_state"],"next_task":rules["next_task"],
+			"script":rules["selected_script"],"ch001_body_executed":true,
+			"workroom_body_executed":false,"school_initialized":false}}
+	elif _fifth_cursor < 0:
+		return _failure("fifth_not_started")
+	elif op == "fifth_next":
+		if _fifth_cursor == _fifth_pages.size():
+			return {"supported":true,"status":"duplicate"}
+		_fifth_cursor += 1
+	elif op == "fifth_prev":
+		if _fifth_cursor == 0:
+			return {"supported":true,"status":"duplicate"}
+		_fifth_cursor -= 1
+	elif op == "fifth_skip":
+		if _fifth_cursor == _fifth_pages.size():
+			return {"supported":true,"status":"duplicate"}
+		_fifth_cursor = _fifth_pages.size()
+	_continuation_revision += 1
+	return {"supported":true,"status":"continued_once"}
+
+
+func _fifth_input() -> Dictionary:
+	var before: Dictionary = _week["after"].duplicate(true)
+	before["adv_globals"] = _rules["fifth"]["entry_adv_globals"].duplicate(true)
+	var result := session.read_result_handoff()
+	before["adv_globals"]["0x7e1180"] = result["recipient"]
+	before["adv_globals"]["0x7e1182"] = result["old_count"]
+	return before
 
 
 func _continue(op: String) -> Dictionary:
@@ -218,7 +316,7 @@ func _school_state() -> Dictionary:
 		"counts":session.read_mvp_counts(),"revision":session.revision()}
 
 
-func state() -> Dictionary:
+func _version2_state() -> Dictionary:
 	var result := _school_state()
 	if result.is_empty():
 		return result
@@ -228,10 +326,19 @@ func state() -> Dictionary:
 	return result
 
 
+func state() -> Dictionary:
+	var result := _version2_state()
+	if not result.is_empty():
+		result["fifth_story"] = {"cursor":_fifth_cursor,"total":_fifth_pages.size(),
+			"completed":_fifth_cursor == _fifth_pages.size()}
+		result["fifth_exit"] = _fifth_exit.duplicate(true)
+	return result
+
+
 func export_save() -> Dictionary:
 	if session == null:
 		return {}
-	return {"version":2,"context":"school_playground_story_4_4","rules":_fingerprints.duplicate(true),
+	return {"version":3,"context":"school_playground_fifth_4_5","rules":_fingerprints.duplicate(true),
 		"commands":_commands.duplicate(true),"state_sha256":JSON.stringify(state(),"",true).sha256_text()}
 
 
@@ -240,12 +347,14 @@ func restore(payload: Variant) -> Dictionary:
 			or not ["version","context","rules","commands","state_sha256"].all(func(k): return payload.has(k)):
 		return _failure("invalid_save")
 	var legacy: bool = payload["version"] == 1
-	if not _integer(payload["version"],1,2) or payload["context"] != ("school_playground_4_4" if legacy else "school_playground_story_4_4"):
+	var version2: bool = payload["version"] == 2
+	var contexts := {1:"school_playground_4_4",2:"school_playground_story_4_4",3:"school_playground_fifth_4_5"}
+	if not _integer(payload["version"],1,3) or payload["context"] != contexts[payload["version"]]:
 		return _failure("unsupported_save_version")
 	var fingerprints: Dictionary = _fingerprints.duplicate(true)
-	if legacy:
+	if legacy or version2:
 		fingerprints = {}
-		for key in LEGACY_KEYS:
+		for key in LEGACY_KEYS if legacy else VERSION2_KEYS:
 			fingerprints[key] = _fingerprints[key]
 	if payload["rules"] != fingerprints:
 		return _failure("save_rules_changed")
@@ -259,11 +368,13 @@ func restore(payload: Variant) -> Dictionary:
 	for command in payload["commands"]:
 		if legacy and (not command is Dictionary or command.get("op") not in SCHOOL_OPS):
 			return _failure("save_command_rejected")
+		if version2 and (not command is Dictionary or str(command.get("op")).begins_with("fifth_")):
+			return _failure("save_command_rejected")
 		var previous: int = candidate.revision()
 		var result: Dictionary = candidate.execute(command)
 		if not result["supported"] or candidate.revision() == previous:
 			return _failure("save_command_rejected")
-	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate.state()
+	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate._version2_state() if version2 else candidate.state()
 	if JSON.stringify(candidate_state,"",true).sha256_text() != payload["state_sha256"]:
 		return _failure("save_state_mismatch")
 	session = candidate.session
@@ -271,6 +382,8 @@ func restore(payload: Variant) -> Dictionary:
 	_story_cursor = candidate._story_cursor
 	_continuation_revision = candidate._continuation_revision
 	_week = candidate._week.duplicate(true)
+	_fifth_cursor = candidate._fifth_cursor
+	_fifth_exit = candidate._fifth_exit.duplicate(true)
 	return {"supported":true,"status":"restored"}
 
 
