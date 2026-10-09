@@ -1,0 +1,16 @@
+Declared isolated zero-student diagnostic; not current-school evidence
+Traceback (most recent call last):
+  File "<stdin>", line 6, in <module>
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 282, in resources
+    self.run_resource_thread()
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 266, in run_resource_thread
+    self.uc.emu_start(self.uc.reg_read(UC_X86_REG_EIP),0x3000000,
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1077, in __hook_mem_access_cb
+    callback(uc, access, address, size, value, user_data)
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 74, in _write_hook
+    raise RuntimeError(f'resource finite guard: {address:#x}/{size} at {uc.reg_read(UC_X86_REG_EIP):#x}')
+RuntimeError: resource finite guard: 0x1000b14/4 at 0x41f1e1

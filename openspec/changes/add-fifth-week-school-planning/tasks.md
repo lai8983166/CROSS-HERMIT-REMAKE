@@ -74,7 +74,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 18. Native resource buffers and scene script
 
-- [ ] 18.1 Continue actual current-school pending16 startup through source path/file loading, bounded texture-container traversal and current-scene script selection/loading. Verify three ready and two refusal cases, exact resource bytes, closed handles, declared graphics/audio boundaries and persistent retention; preserve historical reports, document and commit locally.
+- [x] 18.1 Continue actual current-school pending16 startup through source path/file loading, bounded texture-container traversal and current-scene script selection/loading. Verify three ready and two refusal cases, exact resource bytes, closed handles, declared graphics/audio boundaries and persistent retention; preserve historical reports, document and commit locally.
 
 ## 19. Independent resource catalog
 

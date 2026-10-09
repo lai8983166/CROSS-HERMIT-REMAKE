@@ -1,0 +1,29 @@
+test_finite_guard_rejects_persistent_freed_and_outside_memory (tools.tests.test_school_tactical_resources_emulation.SchoolTacticalResourcesTests) ... ok
+test_original_file_loader_and_balanced_read_only_handles (tools.tests.test_school_tactical_resources_emulation.SchoolTacticalResourcesTests) ... ok
+test_refusal_and_persistent_retention (tools.tests.test_school_tactical_resources_emulation.SchoolTacticalResourcesTests) ... ok
+test_source_identity_and_actual_resource_order (tools.tests.test_school_tactical_resources_emulation.SchoolTacticalResourcesTests) ... FAIL
+test_texture_records_and_script_buffer_ownership (tools.tests.test_school_tactical_resources_emulation.SchoolTacticalResourcesTests) ... ok
+
+======================================================================
+FAIL: test_source_identity_and_actual_resource_order (tools.tests.test_school_tactical_resources_emulation.SchoolTacticalResourcesTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_tactical_resources_emulation.py", line 25, in test_source_identity_and_actual_resource_order
+    self.assertEqual([r['caller_return_va'] for r in c['requests']],
+AssertionError: Lists differ: ['0x451b3d', '0x451c4f', '0x45490d', '0x454ff9'] != ['0x451b3d', '0x451c4f', '0x45490d', '0x45500e']
+
+First differing element 3:
+'0x454ff9'
+'0x45500e'
+
+- ['0x451b3d', '0x451c4f', '0x45490d', '0x454ff9']
+?                                           ^^^^
+
++ ['0x451b3d', '0x451c4f', '0x45490d', '0x45500e']
+?                                           ^^^^
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.065s
+
+FAILED (failures=1)
