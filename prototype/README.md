@@ -1,10 +1,10 @@
 # prototype/ — Godot 4 复刻原型
 
-默认入口: `school_playground.tscn`（图形化学校养成试玩，2026-10-08）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。Chapter018有126页，结束后可进入原版BG002_B职务室、阅读Chapter205的32页巡逻班对白，再调整第五周教师与学生。点击「必修冒险 · 出发准备」显示当前参战头像/班号、待命成员和就绪原因；教师孤班会阻断。实际冒险战斗暂未开放，授课保持锁定。新存档version4兼容旧version1/2/3，保留成长、MVP、阅读位置与第五周编班，十项指纹未改。
+默认入口: school_playground.tscn（图形化学校养成试玩，2026-10-09）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。Chapter018有126页，结束后可进入原版BG002_B职务室、阅读Chapter205的32页巡逻班对白，再调整第五周教师与学生。点击「必修冒险 · 出发准备」显示当前队伍，实际冒险战斗暂未开放，授课保持锁定。存档version4兼容version1/2/3，十项指纹未改。
 
-[操作与存档说明](../docs/school_playground.md) · [出发准备来源](../docs/school_adventure_preparation.md) · [职务室与第五周学校来源](../docs/school_fifth_week_planning.md) · [第四周与周推进来源](../docs/school_story_continuation.md) · [第五周剧情来源](../docs/school_fifth_week_story.md)。全量60套件397项通过；本轮131项输入/140项实际渲染、八组旧窗口兼容通过。
+本轮沿原版实际第五周学校CPU继续完成出发提交、pending10消费、首场学生名单/配置交接及pending16；资源装载和战术单位派生仍未执行。重制SchoolPlayground.adventure_ledger()/adventure_handoff()提供当前班级的纯计算接口，拒绝未验证的账本，不执行玩家出发或改变存档。全量61套件403项、Python17项、出发准备131项/第五周学校163项/跨会话导航22项离屏兼容通过，严格规格30项通过。
 
-[本轮综合验收](../analysis/school-adventure-preparation-final-v2-20261008/README.md)：9张实际截图已检查，OpenSpec严格30项通过；按用户继续指令采用原版必修顺序，八项任务完成，本地提交未push。上轮[职务室子集验收](../analysis/school-fifth-planning-final-v2-20261008/README.md)、[第五周剧情记录](../analysis/school-fifth-playground-final-20261008/README.md)与[第四周记录](../analysis/school-story-final-20261008/README.md)保留。
+[本轮交接验收](../analysis/school-adventure-handoff-final-20261009/README.md) · [交接来源/API](../docs/school_adventure_handoff.md) · [试玩操作](../docs/school_playground.md) · [出发准备来源](../docs/school_adventure_preparation.md) · [职务室与第五周学校](../docs/school_fifth_week_planning.md)。11项任务完成，本地提交未push。[上一轮视觉验收](../analysis/school-adventure-preparation-final-v2-20261008/README.md)的9张截图、140项实际渲染保留，本轮未修改界面。历史[职务室子集](../analysis/school-fifth-planning-final-v2-20261008/README.md)、[第五周剧情](../analysis/school-fifth-playground-final-20261008/README.md)与[第四周](../analysis/school-story-final-20261008/README.md)记录保留。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 

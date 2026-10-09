@@ -46,4 +46,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 11. Handoff integration acceptance
 
-- [ ] 11.1 Run the full model suite, relevant source/export and departure compatibility checks and strict OpenSpec validation. Publish immutable handoff acceptance and current progress, retain historical reports, verify tracked tree and commit locally without pushing. Actual battle remains a stated next stage.
+- [x] 11.1 Run the full model suite, relevant source/export and departure compatibility checks and strict OpenSpec validation. Publish immutable handoff acceptance and current progress, retain historical reports, verify tracked tree and commit locally without pushing. Actual battle remains a stated next stage.

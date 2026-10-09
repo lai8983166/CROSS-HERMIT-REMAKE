@@ -3,19 +3,21 @@
 2002 年 EnterBrain 出品的 SRPG+养成游戏，2004 年光谱资讯繁体中文版。
 本工作区用于**私下研究**：黑盒规则逆向 + 素材格式分析 + 复刻原型（Godot）。
 
-## 当前状态 (2026-10-08)
+## 当前状态 (2026-10-09)
 
 默认启动为**图形化学校养成试玩**。已接通编班/选课→授课成长→确认记录→评选MVP→第四周两段原版剧情→4月第5周→第五周原版剧情→职务室与巡逻班对白→第五周编班→必修冒险出发准备。准备页显示实际当前队伍头像、班号、待命成员与未就绪原因。Chapter018有126页、Chapter205有32页62条原文，累计267页386条剧情原文。初始4/4仍是独立声明样例，尚无完整前四周经历。
 
-试玩自动保存安排、成长、MVP、三段阅读进度、周结果和第五周编班。新存档version4，兼容旧version1/2/3；第五周调动保留实际第四周属性、等级、关系和MVP。存档重放命令并核对最终状态，不是原版SAV。战斗预览保留原地图/精灵及研究窗口，返回时恢复试玩进度；预览还未共享学校阵容与战后奖励。
+试玩自动保存安排、成长、MVP、三段阅读进度、周结果和第五周编班。存档version4，兼容version1/2/3；第五周调动保留第四周属性、等级、关系和MVP。存档重放命令并核对最终状态，不是原版SAV。战斗预览仍是独立示例，尚未共享学校阵容与战后奖励。
 
-本轮同一原版CPU继续执行4A7D30出发就绪和4A6A10队伍准备；任务5有一场场景5，原班/学生待命/换到第五班/教师孤班/教师待命五种案例均核对。准备保留学校、角色、日期和MVP，不清除必修gate。Godot60套件397项、Python来源/素材12项、新窗口输入131项/实际渲染140项通过；八组旧窗口兼容通过。完整菜单、学校提交/状态10和实际必修冒险战斗尚未执行。
+本轮原版隔离CPU从实际第五周学校检查点继续执行学校提交4A1920、已捕获group协程的pending10、原版state10构造及4B8FF0首场准备，生成pending16。初始/成员待命/第五班三种队伍的学生名单与配置5→场景5实际交接；教师孤班和教师待命不提交。原版任务5在出发提交时从活动冒险账本移除，日期、成长、MVP及必修gate保持。配置资源4DAB10和战术单位派生4B9340仍是明确未执行边界，尚无实际本周战斗。
 
-用户继续指令已确认按原版必修路线推进，直接选课目标修正为课程查看，并扩展出发准备；本变更八项已完成、分阶段本地提交，未push。[当前验收](analysis/school-adventure-preparation-final-v2-20261008/README.md)含9张已检查截图与30项严格规格校验。上一轮[职务室子集验收](analysis/school-fifth-planning-final-v2-20261008/README.md)、[第五周剧情验收](analysis/school-fifth-playground-final-20261008/README.md)与[第四周记录](analysis/school-story-final-20261008/README.md)保留。存档与原版证据JSON固定LF，version4十项指纹保持原字节。
+重制新增当前学校的纯账本/首场交接接口：按当前编班计算账本和名单，逐字段匹配原版案例，不修改玩家存档、revision或奖励；尚未接为可执行战斗按钮。全量Godot61套件403项、Python来源/素材17项通过；出发准备131项、第五周学校163项、跨会话导航22项离屏兼容检查通过，OpenSpec严格30项通过。最终原版复跑与冻结报告逐字节一致。
 
-运行本机Godot的prototype项目即可进入；完成职务室对白后编班，点击“必修冒险 · 出发准备”查看当前队伍。参见[试玩操作](docs/school_playground.md)、[出发准备来源](docs/school_adventure_preparation.md)、[职务室与第五周学校来源](docs/school_fifth_week_planning.md)、[第四周与周推进来源](docs/school_story_continuation.md)及[第五周剧情来源](docs/school_fifth_week_story.md)。
+现有变更11项完成，按阶段本地提交，未push。[本轮交接验收](analysis/school-adventure-handoff-final-20261009/README.md)记录来源、测试和未实现边界；[上一轮出发准备视觉验收](analysis/school-adventure-preparation-final-v2-20261008/README.md)的9张实渲染截图与140项检查保留，本轮未修改界面、未重做视觉验收。历史[职务室子集](analysis/school-fifth-planning-final-v2-20261008/README.md)、[第五周剧情](analysis/school-fifth-playground-final-20261008/README.md)及[第四周](analysis/school-story-final-20261008/README.md)证据保留。version4十项规则指纹保持原字节。
 
-**仍待完成**：消费学校提交与当前名单、接场景5实际战斗及完成后的授课解锁，学校阵容和可操作战斗的共享状态，完整战术AI/技能/任务事件、其他教师与全年内容。原版学校交互菜单、MVP台词、电影演出时序及音频也尚未复现。
+运行本机Godot的prototype项目即可进入；完成职务室对白后编班，点击「必修冒险 · 出发准备」查看当前队伍。「开始战斗」仍未开放。参见[试玩操作](docs/school_playground.md)、[学校到首场交接](docs/school_adventure_handoff.md)、[出发准备来源](docs/school_adventure_preparation.md)、[职务室与第五周学校来源](docs/school_fifth_week_planning.md)。
+
+**接下来**：解析配置资源并执行当前角色的战术单位派生，消费pending16建立准确的场景5初始战场，再接当前学校队伍的图形战斗入口。战斗完成事件、奖励与授课解锁、完整战术AI/技能、其他教师及全年内容仍待完成；原版完整学校菜单、MVP台词、电影演出时序和音频也未复现。
 
 ## 规则验证基线（2026-10-07，保留来源细节）
 
