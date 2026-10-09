@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-09",
+  "change": "add-fifth-week-school-planning",
+  "tasks": {
+    "total": 14,
+    "complete": 14,
+    "remaining": 0
+  },
+  "stage_commits": [
+    "cd1438a",
+    "6438df9",
+    "b8cd1ef"
+  ],
+  "native": {
+    "report": "analysis/school-combat-records-v2-20261009.json",
+    "sha256": "ac743212f773dc2aa2daee6aa3ee2278239d384b47532610cb144a4ed4807e6f",
+    "ready_cases": 3,
+    "refusal_cases": 2,
+    "declared_counterfactuals": 3,
+    "v1_v2_complete_records_equal": true,
+    "full_student_records_executed": true,
+    "pending_state": 16,
+    "resource_loading_executed": false,
+    "battle_world_constructed": false
+  },
+  "model": {
+    "suites": 62,
+    "tests": 409,
+    "new_tests": 6,
+    "failures": 0,
+    "log": "analysis/school-combat-records-model-v2-20261009.log",
+    "full_combat_records": false,
+    "limits_projection_only": true
+  },
+  "python": {
+    "tests": 22,
+    "failures": 0,
+    "log": "analysis/school-combat-records-source-v2-20261009.log"
+  },
+  "compatibility": {
+    "departure": {
+      "checks": 131,
+      "failures": 0,
+      "rendered": false,
+      "log": "analysis/school-combat-records-departure-compat-20261009.log"
+    },
+    "fifth": {
+      "checks": 163,
+      "failures": 0,
+      "rendered": false,
+      "log": "analysis/school-combat-records-fifth-compat-20261009.log"
+    },
+    "navigation": {
+      "checks": 22,
+      "failures": 0,
+      "rendered": false,
+      "log": "analysis/school-combat-records-navigation-compat-20261009.log"
+    }
+  },
+  "strict_specs": {
+    "passed": 30,
+    "failed": 0,
+    "log": "analysis/school-combat-records-specs-20261009.log"
+  },
+  "save_version": 4,
+  "save_rules": {
+    "school": {
+      "path": "prototype/data/new_game_school_rules.json",
+      "sha256": "ac4faffab74cb73b7f39c0c1a28a05a96f20f426aa1c5124eec58e1541bbef97",
+      "unchanged_from": "b7391cc"
+    },
+    "growth": {
+      "path": "prototype/data/school_course_settlement_rules.json",
+      "sha256": "5f2738db67bdacf1677e6de1c823ac8dfa542e6b103cd913af9c51a2fe93c439",
+      "unchanged_from": "b7391cc"
+    },
+    "confirmation": {
+      "path": "prototype/data/school_course_confirmation_rules.json",
+      "sha256": "2a75e6e4dd30ae8e99a5e014dc3ba87b646f65b73b3a04d03999d2ceaebaf6a6",
+      "unchanged_from": "b7391cc"
+    },
+    "result": {
+      "path": "prototype/data/school_course_result_handoff_rules.json",
+      "sha256": "01704f531df3b9cf127d2529b5715f343f96f6750ac26b88bc52e6a72043937d",
+      "unchanged_from": "b7391cc"
+    },
+    "week": {
+      "path": "prototype/data/school_story_week_rules.json",
+      "sha256": "51c64571fc4d90e63439ed26564c909cce2171b11e138566f350d304edddc5aa",
+      "unchanged_from": "b7391cc"
+    },
+    "story": {
+      "path": "prototype/assets/school_story/catalog.json",
+      "sha256": "e6d0c109295145c419a20f30d093c2bcb795ef010919f32f659419e8aa3ec98a",
+      "unchanged_from": "b7391cc"
+    },
+    "fifth": {
+      "path": "prototype/data/school_fifth_week_rules.json",
+      "sha256": "0cbc82bb9fae9c887df8b85aa47e823a2f7990725bb42b1cd9951d1218df2a5b",
+      "unchanged_from": "b7391cc"
+    },
+    "fifth_story": {
+      "path": "prototype/assets/school_fifth_story/catalog.json",
+      "sha256": "d007793d07f398d10a4a7b7e8284b94a597e1f4889e15d078de0b73b50e82e63",
+      "unchanged_from": "b7391cc"
+    },
+    "planning": {
+      "path": "prototype/data/school_fifth_planning_rules.json",
+      "sha256": "10a804e9f71809dd56392e83c33436b3fc975d4591dcd4e0eee3bca33633cc8a",
+      "unchanged_from": "b7391cc"
+    },
+    "workroom": {
+      "path": "prototype/assets/school_workroom/catalog.json",
+      "sha256": "e62527f7e592d9c5e0e346ba9abe1a42ea11626c869a17b5739e39f3fbc574cc",
+      "unchanged_from": "b7391cc"
+    }
+  },
+  "new_visual_validation": false,
+  "ui_changed": false,
+  "live_witness": false,
+  "authorizes_original_persistent_write": false,
+  "pushed": false,
+  "remaining": [
+    "consume pending16 and construct native tactical task",
+    "resolve configuration5 actual scene resources",
+    "verify allied spawn/enemy/event initial state",
+    "complete remake unit records and graphical current-squad battle",
+    "completion/rewards/gate clearance/next settlement"
+  ]
+}

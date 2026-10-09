@@ -58,4 +58,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 14. Combat-record integration acceptance
 
-- [ ] 14.1 Run full model and relevant source/export/compatibility checks and strict specs; publish immutable acceptance/current progress with native record readiness separated from partial runtime limits and unconstructed battlefield, verify tracked bytes/tree and commit locally without pushing.
+- [x] 14.1 Run full model and relevant source/export/compatibility checks and strict specs; publish immutable acceptance/current progress with native record readiness separated from partial runtime limits and unconstructed battlefield, verify tracked bytes/tree and commit locally without pushing.

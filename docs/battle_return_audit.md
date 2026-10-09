@@ -1256,3 +1256,8 @@ Godot46套件332项通过；Python6项包含逐字节再生成、连续性/不�
 Godot55套件367项通过；Python来源4项152.923秒及兼容20项25.962秒通过，合计24项，报告/期望/规则逐字节再生成一致。OpenSpec14个变更和12个主规格全部26项严格通过，本变更3/3完成未归档。最新[结果页验收](../analysis/school-course-result-result-ui-v4-20261007/README.md)及[API](school_course_result_handoff.md)记录范围，Python日志见[来源](../analysis/python-regression-course-result-source-20261007.txt)/[兼容](../analysis/python-regression-course-result-compat-20261007.txt)。此前279项全量、55项原新局基线等仍保留各自历史记录，不宣称本轮重复执行。
 
 下一步从本源4/4结果继续执行Chapter016→Chapter017真实END，再接任务7、完整周函数和CH001学校交接；当前仅到Chapter016入口，没有周推进或存档授权。完整原版学校菜单、实时世界事件和前置模板/新局剧情仍有边界。
+
+
+## 103. Current fifth-school combat records (2026-10-09)
+
+Native work reset and complete student record bodies now execute on the actual fifth-school checkpoint. Five squad cases and three declared counterfactuals are verified. 4DAB10 only resets 666 bytes, correcting the prior resource classification without changing frozen reports. The remake queries owned current-role HP/MP/recovery/ENGAGE only; pending16 world construction remains unexecuted. Full model: 62 suites/409 tests; source/export: 22 tests; compatibility: 131/163/22; strict specs: 30, all passing. Save v4 fingerprints remain byte-identical to b7391cc. See [current source/API](school_combat_records.md) and [acceptance](../analysis/school-combat-records-final-20261009/README.md).

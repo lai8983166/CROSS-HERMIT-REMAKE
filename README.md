@@ -9,15 +9,15 @@
 
 试玩自动保存安排、成长、MVP、三段阅读进度、周结果和第五周编班。存档version4，兼容version1/2/3；第五周调动保留第四周属性、等级、关系和MVP。存档重放命令并核对最终状态，不是原版SAV。战斗预览仍是独立示例，尚未共享学校阵容与战后奖励。
 
-本轮原版隔离CPU从实际第五周学校检查点继续执行学校提交4A1920、已捕获group协程的pending10、原版state10构造及4B8FF0首场准备，生成pending16。初始/成员待命/第五班三种队伍的学生名单与配置5→场景5实际交接；教师孤班和教师待命不提交。原版任务5在出发提交时从活动冒险账本移除，日期、成长、MVP及必修gate保持。配置资源4DAB10和战术单位派生4B9340仍是明确未执行边界，尚无实际本周战斗。
+本轮沿实际第五周学校CPU继续首场准备，执行4DAB10工作区重置、4B9340/4B93C0完整学生战术记录生成、4DB340/4DCF00当前技能组合及源浮点转换。初始3名学生、待命和第五班、两种不可出发情况均验证；另有3组明确反事实探针覆盖属性/等级边界。角色记录、成长、MVP、日历和必修gate保留。更正上一轮分类：4DAB10只清零666字节工作区，并非资源加载。pending16仍未消费，尚无本周实际战场、敌人或事件初态。
 
-重制新增当前学校的纯账本/首场交接接口：按当前编班计算账本和名单，逐字段匹配原版案例，不修改玩家存档、revision或奖励；尚未接为可执行战斗按钮。全量Godot61套件403项、Python来源/素材17项通过；出发准备131项、第五周学校163项、跨会话导航22项离屏兼容检查通过，OpenSpec严格30项通过。最终原版复跑与冻结报告逐字节一致。
+重制新增SchoolPlayground.adventure_combat_limits()，从当前班级和携带成长/装备/技能计算HP、MP、恢复间隔和ENGAGE，逐字段匹配原版记录；拒绝未验证的装备/职业/技能，不修改存档或revision。这仍是部分数值派生，未构造完整战术记录或开放实际战斗。全量Godot62套件409项、Python来源/导出/素材22项通过；出发准备131项、第五周学校163项、跨会话导航22项离屏兼容及严格规格30项通过。
 
-现有变更11项完成，按阶段本地提交，未push。[本轮交接验收](analysis/school-adventure-handoff-final-20261009/README.md)记录来源、测试和未实现边界；[上一轮出发准备视觉验收](analysis/school-adventure-preparation-final-v2-20261008/README.md)的9张实渲染截图与140项检查保留，本轮未修改界面、未重做视觉验收。历史[职务室子集](analysis/school-fifth-planning-final-v2-20261008/README.md)、[第五周剧情](analysis/school-fifth-playground-final-20261008/README.md)及[第四周](analysis/school-story-final-20261008/README.md)证据保留。version4十项规则指纹保持原字节。
+现有变更14项完成，按阶段本地提交，未push。[本轮学生记录验收](analysis/school-combat-records-final-20261009/README.md)记录原版完整记录、重制部分派生与未构造战场的区别。[上一轮学校交接](analysis/school-adventure-handoff-final-20261009/README.md)及[出发准备视觉验收](analysis/school-adventure-preparation-final-v2-20261008/README.md)的9张实渲染截图与140项检查保留，本轮未修改界面或重做视觉验收。职务室/第五周/第四周历史证据与version4十项规则指纹保持原字节。
 
 运行本机Godot的prototype项目即可进入；完成职务室对白后编班，点击「必修冒险 · 出发准备」查看当前队伍。「开始战斗」仍未开放。参见[试玩操作](docs/school_playground.md)、[学校到首场交接](docs/school_adventure_handoff.md)、[出发准备来源](docs/school_adventure_preparation.md)、[职务室与第五周学校来源](docs/school_fifth_week_planning.md)。
 
-**接下来**：解析配置资源并执行当前角色的战术单位派生，消费pending16建立准确的场景5初始战场，再接当前学校队伍的图形战斗入口。战斗完成事件、奖励与授课解锁、完整战术AI/技能、其他教师及全年内容仍待完成；原版完整学校菜单、MVP台词、电影演出时序和音频也未复现。
+**接下来**：消费pending16、核实战术构造与配置5实际资源，建立准确的场景5双方出场、敌人和事件初态；补齐重制完整单位记录，再接当前学校队伍的图形战斗入口。战斗完成事件、奖励与授课解锁、完整战术AI/技能、其他教师及全年内容仍待完成；原版完整学校菜单、MVP台词、电影演出时序和音频也未复现。见[本轮来源/API](docs/school_combat_records.md)。
 
 ## 规则验证基线（2026-10-07，保留来源细节）
 
