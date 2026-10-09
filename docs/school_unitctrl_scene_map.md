@@ -26,4 +26,12 @@
 
 正式学校证据覆盖初始三学生、学生9待命、第五班两学生三种可出发分支，以及教师空班、教师待命两种拒绝分支。拒绝状态没有UnitCtrl或地图分配。diagnostic-v1的60秒单段超限与diagnostic-v2的零学生构造成功日志仅为声明诊断，不能替代真实学校链路。
 
+## 独立来源导出与预览
+
+`tools/school_scene_map_catalog.py`独立从原始EXE选择表和原始文件解析，导出 `prototype/data/school_scene_map_rules.json`。BIN每格为三个交错u16：terrain/variant/object；6144格都有非零地形，object层全部为零，但不能由此推断场景没有敌人或事件。
+
+原版43A9F6将MAP缓冲+**0x404（十六进制）**交给容器解析。该处包含48个独立DX RGB555页，每页头12字节、像素131072字节。导出器按原始容器偏移解析全部页，以高/中/低五位分别展开R/G/B并按8×6行优先拼接，输出 `analysis/school-scene5-source-atlas-20261009.png`。每页记录文件/像素偏移、尺寸和SHA；测试核对所有格三元组、每页边角/中点像素及完整保存图片。预览已人工检查：建筑、道路、水岸在页边界连续。
+
+这是一张当前场景的原始贴图预览，尚无当前队伍、相机或战斗输入。来源规则、独立解析和固定SHA的原生输出fixture分开保存，不接入Godot运行时或v4存档指纹。
+
 接下来需继续场景贴图/bmp/vpt加载和已装载t0005的VM入口，取得敌人、事件与双方站位，再把当前地图和完整单位接入图形战斗。`unitctrl_constructed/logical_map_loaded=true`只覆盖本阶段逻辑体；`graphics_subcomponents_constructed/gpu_textures_uploaded/battle_world_constructed=false`仍是准确边界。

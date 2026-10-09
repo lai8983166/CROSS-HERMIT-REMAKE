@@ -90,7 +90,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 22. Independent current-map export
 
-- [ ] 22.1 Export source-only current scene map selection/logic metadata and original map texture preview with byte/pixel provenance, separate from native fixtures. Verify native map/scratch fields and generic grid invariants, malformed data and old resource regressions; inspect the decoded original-map preview, document and commit locally.
+- [x] 22.1 Export source-only current scene map selection/logic metadata and original map texture preview with byte/pixel provenance, separate from native fixtures. Verify native map/scratch fields and generic grid invariants, malformed data and old resource regressions; inspect the decoded original-map preview, document and commit locally.
 
 ## 23. Scene map integration acceptance
 
