@@ -62,7 +62,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 15. Native tactical startup boundary
 
-- [ ] 15.1 Continue the actual current-school CPU through pending16 dispatch, native outer task construction and script-work initialization with explicit graphics/UnitCtrl/scheduler boundaries; execute startup current-unit normalization up to first common-resource request, and a separately declared current-scene start-resource selection probe. Record bounded writes, persistent retention, refusal cases and local resource provenance, export separate source rules/fixtures, document exact unconstructed-world boundary, verify and commit locally.
+- [x] 15.1 Continue the actual current-school CPU through pending16 dispatch, native outer task construction and script-work initialization with explicit graphics/UnitCtrl/scheduler boundaries; execute startup current-unit normalization up to first common-resource request, and a separately declared current-scene start-resource selection probe. Record bounded writes, persistent retention, refusal cases and local resource provenance, export separate source rules/fixtures, document exact unconstructed-world boundary, verify and commit locally.
 
 ## 16. Graphical current combat limits
 

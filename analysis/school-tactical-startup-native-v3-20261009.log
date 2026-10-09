@@ -1,0 +1,66 @@
+Native departure case: initial ready=True
+Native ledger before initial: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 219, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 197, in report
+    e.uc.context_restore(cpu);cases.append(e.startup(name,commands))
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 148, in startup
+    self.clear_trace('tactical_dispatch');self.call(0x49E2B0)
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 213, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 108, in call
+    self.uc.emu_start(address, RETURN, timeout=1_000_000, count=100_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 127, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_combat_records_emulation.py", line 64, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_adventure_handoff_emulation.py", line 76, in _hook
+    return super()._hook(uc, address, size, context)
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 48, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_fifth_planning_emulation.py", line 115, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_fifth_week_emulation.py", line 131, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_story_week_emulation.py", line 154, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_course_result_handoff_emulation.py", line 200, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_course_confirmation_emulation.py", line 60, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_course_settlement_emulation.py", line 124, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_course_planning_emulation.py", line 58, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\new_game_school_movement_emulation.py", line 51, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 109, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\roster_join_emulation.py", line 65, in _hook
+    return super()._hook(uc, address, size, user)
+  File "F:\project\chaomofa\tools\week_settlement_emulation.py", line 59, in _hook
+    return super()._hook(uc, address, size, user)
+  File "F:\project\chaomofa\tools\all_result_emulation.py", line 133, in _hook
+    return super()._hook(uc, address, size, user)
+  File "F:\project\chaomofa\tools\battle_preparation_emulation.py", line 99, in _hook
+    return super()._hook(uc, address, size, user)
+  File "F:\project\chaomofa\tools\battle_result_emulation.py", line 108, in _hook
+    return super()._hook(uc, address, size, user)
+  File "F:\project\chaomofa\tools\scene5_task_emulation.py", line 161, in _hook
+    return super()._hook(uc, address, size, user)
+  File "F:\project\chaomofa\tools\scene5_script_emulation.py", line 163, in _hook
+    return super()._hook(uc, address, size, user)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 76, in _hook
+    raise RuntimeError(f'undeclared external code at {address:#x}')
+RuntimeError: undeclared external code at 0x496b20

@@ -1,0 +1,37 @@
+Native departure case: initial ready=True
+Native ledger before initial: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Native tactical startup initial: True
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 220, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 198, in report
+    e.uc.context_restore(cpu);e.stop_reason=None;cases.append(e.startup(name,commands))
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 142, in startup
+    handoff=self.handoff(name,commands)
+  File "F:\project\chaomofa\tools\school_combat_records_emulation.py", line 119, in handoff
+    result=super().handoff(name,commands)
+  File "F:\project\chaomofa\tools\school_adventure_handoff_emulation.py", line 135, in handoff
+    probe = self.probe(name, commands)
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 78, in probe
+    moves = [self.run_move(name+'_'+str(i),*command) for i,command in enumerate(commands)]
+  File "F:\project\chaomofa\tools\school_adventure_preparation_emulation.py", line 78, in <listcomp>
+    moves = [self.run_move(name+'_'+str(i),*command) for i,command in enumerate(commands)]
+  File "F:\project\chaomofa\tools\new_game_school_movement_emulation.py", line 104, in run_move
+    rating = self.rate()[source]['defined']['relationship_rank'] if source >= 0 else 0
+  File "F:\project\chaomofa\tools\school_teacher_group_emulation.py", line 123, in rate
+    self.call(0x4A95F0, (pointer,group))
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 220, in call
+    self.uc.emu_start(address,RETURN,timeout=20_000_000,count=4_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1077, in __hook_mem_access_cb
+    callback(uc, access, address, size, value, user_data)
+  File "F:\project\chaomofa\tools\school_tactical_startup_emulation.py", line 72, in _write_hook
+    raise RuntimeError(f'tactical finite guard: {address:#x}/{size} at {uc.reg_read(UC_X86_REG_EIP):#x}')
+RuntimeError: tactical finite guard: 0x7aaaae/2 at 0x4a9641
