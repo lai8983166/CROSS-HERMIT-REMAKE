@@ -47,3 +47,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 11. Handoff integration acceptance
 
 - [x] 11.1 Run the full model suite, relevant source/export and departure compatibility checks and strict OpenSpec validation. Publish immutable handoff acceptance and current progress, retain historical reports, verify tracked tree and commit locally without pushing. Actual battle remains a stated next stage.
+
+## 12. Native current-student combat records
+
+- [ ] 12.1 Correct the 4DAB10 classification without overwriting historical evidence; extend the actual fifth-school first-round CPU through source work reset and complete current-student combat derivation, bounded native skill composition and floating conversion. Capture current inputs/defined outputs, ordered/wait/refusal and declared counterfactual cases, enforce finite writes and record retention, export source-only rules/separate fixtures, document pending16 resource boundary, verify and commit locally.
+
+## 13. Current-role combat limits
+
+- [ ] 13.1 Assemble current owned student combat inputs and implement a pure source-validated no-item combat limits projection (attributes/job/level/skills, HP/MP/recovery/ENGAGE) matching new native outputs. Refuse unsupported inputs, preserve v4 saves/revision/gate and input ownership, document its partial-record boundary, run model tests and commit locally.
+
+## 14. Combat-record integration acceptance
+
+- [ ] 14.1 Run full model and relevant source/export/compatibility checks and strict specs; publish immutable acceptance/current progress with native record readiness separated from partial runtime limits and unconstructed battlefield, verify tracked bytes/tree and commit locally without pushing.

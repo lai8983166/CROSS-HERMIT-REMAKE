@@ -87,3 +87,25 @@ The system SHALL derive a handoff from current school and its adventure ledger u
 #### Scenario: Malformed or unsupported handoff inputs
 - **WHEN** source rules, ledger or school data are malformed or outside the verified subset
 - **THEN** projection refuses atomically without changing input, save, calendar or rewards
+
+### Requirement: Source verified current student combat derivation
+The system SHALL execute the original first-round work reset and complete current-student combat record derivation on the actual fifth-school CPU checkpoint, retaining roles, calendar, growth and MVP. It MUST distinguish prepared combat records from a constructed battlefield and retain pending16 as an explicit boundary.
+
+#### Scenario: Prepare actual current students
+- **WHEN** the source first-round preparation receives a ready current squad
+- **THEN** it resets the exact source work range and derives records from ordered current student job, attributes, level and loadout before requesting16, without substituting demo units
+
+#### Scenario: Invalid class cannot derive units
+- **WHEN** source readiness refuses the squad
+- **THEN** work reset, combat derivation and request16 do not occur and all persistent records remain unchanged
+
+### Requirement: Pure current role combat limits
+The system SHALL assemble owned current-student inputs and calculate source-equivalent HP, MP, recovery fields and engagement limits for the verified no-item subset using independent source tables. It MUST refuse unsupported inputs and expose its partial-record projection boundary without changing saved plans, rewards or mandatory gate.
+
+#### Scenario: Current growth and equipped skills affect combat limits
+- **WHEN** a supported current-school squad is queried
+- **THEN** current carried-forward attributes, job, level and equipped skill effects produce native-equivalent limits in current member order with copied output and unchanged v4 save state
+
+#### Scenario: Unsupported loadout or source data
+- **WHEN** a role has an unverified item, malformed fields or incompatible source tables
+- **THEN** projection refuses atomically without claiming a complete combat record or constructed battle
