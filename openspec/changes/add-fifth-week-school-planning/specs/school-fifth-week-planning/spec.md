@@ -175,3 +175,25 @@ The system SHALL export current scene map selection and logical map bytes indepe
 #### Scenario: Reject inconsistent map data
 - **WHEN** map header, container offsets, texture dimensions or source identities differ
 - **THEN** export refuses the input without accepting scene placement or modifying saves
+
+### Requirement: Native current scene resource initialization
+The system SHALL continue actual current-school CPU branches naturally through current MAP/BMP/VPT read-only loading, original texture/minimap headers, fog calculation and pathfinding section rebasing. It MUST declare GPU/renderer primitives and bounded allocations, retain current/persistent records and stop before following unit-art initialization.
+
+#### Scenario: Ready squad loads scene resources
+- **WHEN** natural tactical phase2 reaches the verified scene graphics request
+- **THEN** all three scene resource buffers, texture records and pathfinding relocations match original bytes, handles close, and execution stops at the following unit-art reset entry
+
+#### Scenario: Refused school loads no scene resources
+- **WHEN** readiness refuses departure
+- **THEN** no scene texture, minimap, fog or pathfinding data is loaded
+
+### Requirement: Graphical current scene map preview
+The system SHALL provide a pan/zoom preview of the independently verified current scene map from a supported ready departure plan. It MUST retain school state, saves and mandatory gate, provide usable return, and MUST NOT invent unit/enemy placement or enable battle.
+
+#### Scenario: Inspect and return from current map
+- **WHEN** a ready player opens the current-map preview, pans or zooms and returns
+- **THEN** original MAP05 pixels render within the viewport and the same squad, state and saved commands remain
+
+#### Scenario: Unready or unsupported departure
+- **WHEN** current departure readiness or scene identity is unsupported
+- **THEN** the current-map action refuses without changing school/save state or substituting the standalone demo

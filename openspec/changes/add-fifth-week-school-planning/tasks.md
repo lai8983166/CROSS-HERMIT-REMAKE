@@ -95,3 +95,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 23. Scene map integration acceptance
 
 - [x] 23.1 Run relevant source/export regression, full model and strict spec checks; verify old evidence and save fingerprints, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing. Actual scene VM/enemies/events/battle remain explicit next stages.
+
+## 24. Native scene textures, minimap and pathfinding
+
+- [ ] 24.1 Continue actual three ready/two refusal school branches from the paused scene graphics request through native MAP texture traversal, BMP minimap/fog initialization and VPT loading/rebasing; stop before467EB0 unit-art reset. Verify exact buffers/closed handles/finite guards, retained current/persistent records and declared GPU/renderer inputs, document and commit locally.
+
+## 25. Independent scene resource provenance
+
+- [ ] 25.1 Export source-only minimap/pathfinding/texture inputs, separate frozen native fixtures and exact current-map runtime atlas/manifest. Verify native dimensions/fog/relocations against original bytes, malformed inputs, old source regressions and saved image pixels; inspect previews, document and commit locally.
+
+## 26. Interactive current-map preview
+
+- [ ] 26.1 Add a graphical pan/zoom/fit MAP05 viewer to the supported ready current departure screen with close/Escape and immutable state/save behavior. Refuse unready/unsupported scene contexts, preserve actual battle/gate boundaries, verify input/layout/compatibility and rendered captures, document and commit locally.
+
+## 27. Scene resource and preview acceptance
+
+- [ ] 27.1 Run relevant source/export and complete model/UI/strict specification checks, inspect new renders, retain historical evidence and v4 fingerprints, publish immutable acceptance/current progress, verify tracked artifact bytes and commit locally without pushing. Unit-art initialization/VM/placements remain subsequent stages.

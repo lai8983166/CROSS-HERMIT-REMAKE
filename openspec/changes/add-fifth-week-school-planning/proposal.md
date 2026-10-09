@@ -39,3 +39,7 @@ Continue the same current-school pending16 pipeline through original path compos
 ## UnitCtrl and logical scene map extension (2026-10-09)
 
 Continue actual pending16 through native logical UnitCtrl, AI/animation/event linked lists and generic appearance-table construction. Continue natural startup through phase0 into phase2 and source-selected logical scene map loading, stopping at the scene graphics request. Export independently decoded current-map inputs and original texture preview with source/pixel provenance. Graphics/fonts/audio remain declared primitives; enemy/event/VM placement and playable battle remain subsequent stages.
+
+## Native scene resources and graphical current-map preview (2026-10-09)
+
+Continue naturally from the verified scene graphics request through original MAP texture traversal, BMP minimap/fog preparation and VPT loading/rebasing, stopping before the following unit-art reset/initialization entry. Export independent original minimap/pathfinding inputs and separate native fixtures. Add an interactive current MAP05 preview to the graphical departure screen with pan/zoom and state-preserving return. This preview contains no invented squad/enemy placement or executable battle; unit assets, t0005 VM, scene events and placements remain the following dependencies.
