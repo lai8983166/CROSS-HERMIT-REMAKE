@@ -38,7 +38,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 9. Native school-to-round handoff
 
-- [ ] 9.1 Continue the actual fifth-school checkpoint through confirmed native school commit, the captured group coroutine's request10, native state10 construction and first-round preparation/request16. Verify initial/waiting/fifth-class and invalid readiness, ledger changes, explicit unresolved resources/units, source hashes and finite guards; export independent rules/fixtures, document and commit locally.
+- [x] 9.1 Continue the actual fifth-school checkpoint through confirmed native school commit, the captured group coroutine's request10, native state10 construction and first-round preparation/request16. Verify initial/waiting/fifth-class and invalid readiness, ledger changes, explicit unresolved resources/units, source hashes and finite guards; export independent rules/fixtures, document and commit locally.
 
 ## 10. Current-school handoff projection
 

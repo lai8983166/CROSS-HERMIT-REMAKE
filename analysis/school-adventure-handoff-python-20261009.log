@@ -1,0 +1,38 @@
+test_actual_native_handoff_and_retained_records (tools.tests.test_school_adventure_handoff_emulation.SchoolAdventureHandoffTests) ... ok
+test_finite_guards_and_actual_ranges (tools.tests.test_school_adventure_handoff_emulation.SchoolAdventureHandoffTests) ... FAIL
+test_ledger_is_derived_from_source_initialization (tools.tests.test_school_adventure_handoff_emulation.SchoolAdventureHandoffTests) ... ok
+test_source_and_exports (tools.tests.test_school_adventure_handoff_emulation.SchoolAdventureHandoffTests) ... ok
+test_student_order_and_unresolved_unit_calls (tools.tests.test_school_adventure_handoff_emulation.SchoolAdventureHandoffTests) ... ok
+test_actual_chain_and_records_preserved (tools.tests.test_school_adventure_preparation_emulation.DeparturePreparationTests) ... ok
+test_current_squads_and_refusals (tools.tests.test_school_adventure_preparation_emulation.DeparturePreparationTests) ... ok
+test_finite_write_guard (tools.tests.test_school_adventure_preparation_emulation.DeparturePreparationTests) ... ok
+test_report_writes_never_touch_date_or_roles (tools.tests.test_school_adventure_preparation_emulation.DeparturePreparationTests) ... ok
+test_source_and_exports_exact (tools.tests.test_school_adventure_preparation_emulation.DeparturePreparationTests) ... ok
+test_actual_chain_and_native_school_fields (tools.tests.test_school_fifth_planning_emulation.FifthPlanningNativeTests) ... ok
+test_preserves_earned_roles_relationships_and_mvp (tools.tests.test_school_fifth_planning_emulation.FifthPlanningNativeTests) ... ok
+test_source_only_exports_hashes_and_declared_authority (tools.tests.test_school_fifth_planning_emulation.FifthPlanningNativeTests) ... ok
+test_waits_prevent_school_and_guard_refuses_growth_date_mvp (tools.tests.test_school_fifth_planning_emulation.FifthPlanningNativeTests) ... ok
+test_school_workroom_art (unittest.loader._FailedTest) ... ERROR
+
+======================================================================
+ERROR: test_school_workroom_art (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_school_workroom_art
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'tools.tests.test_school_workroom_art'
+
+
+======================================================================
+FAIL: test_finite_guards_and_actual_ranges (tools.tests.test_school_adventure_handoff_emulation.SchoolAdventureHandoffTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_adventure_handoff_emulation.py", line 91, in test_finite_guards_and_actual_ranges
+    self.assertFalse(start<high and end>low)
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.434s
+
+FAILED (failures=1, errors=1)

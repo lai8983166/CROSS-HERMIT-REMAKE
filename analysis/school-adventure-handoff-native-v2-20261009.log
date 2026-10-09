@@ -1,0 +1,27 @@
+Native departure case: initial ready=True
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_adventure_handoff_emulation.py", line 241, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_adventure_handoff_emulation.py", line 212, in report
+    cases.append(e.handoff(name,commands))
+  File "F:\project\chaomofa\tools\school_adventure_handoff_emulation.py", line 142, in handoff
+    self.call(0x4A1920, receiver=GROUP_TASK)
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 213, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 108, in call
+    self.uc.emu_start(address, RETURN, timeout=1_000_000, count=100_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_adventure_handoff_emulation.py", line 123, in _hook
+    return ExitEmulator._hook(self, uc, address, size, context)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 76, in _hook
+    raise RuntimeError(f'undeclared external code at {address:#x}')
+RuntimeError: undeclared external code at 0x4aa301
