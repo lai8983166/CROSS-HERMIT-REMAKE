@@ -110,4 +110,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 27. Scene resource and preview acceptance
 
-- [ ] 27.1 Run relevant source/export and complete model/UI/strict specification checks, inspect new renders, retain historical evidence and v4 fingerprints, publish immutable acceptance/current progress, verify tracked artifact bytes and commit locally without pushing. Unit-art initialization/VM/placements remain subsequent stages.
+- [x] 27.1 Run relevant source/export and complete model/UI/strict specification checks, inspect new renders, retain historical evidence and v4 fingerprints, publish immutable acceptance/current progress, verify tracked artifact bytes and commit locally without pushing. Unit-art initialization/VM/placements remain subsequent stages.
