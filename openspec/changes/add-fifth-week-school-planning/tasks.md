@@ -94,4 +94,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 23. Scene map integration acceptance
 
-- [ ] 23.1 Run relevant source/export regression, full model and strict spec checks; verify old evidence and save fingerprints, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing. Actual scene VM/enemies/events/battle remain explicit next stages.
+- [x] 23.1 Run relevant source/export regression, full model and strict spec checks; verify old evidence and save fingerprints, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing. Actual scene VM/enemies/events/battle remain explicit next stages.

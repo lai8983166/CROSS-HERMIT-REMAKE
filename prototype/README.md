@@ -2,9 +2,9 @@
 
 默认入口: school_playground.tscn（图形化学校养成试玩，2026-10-09）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。Chapter018有126页，结束后可进入原版BG002_B职务室、阅读Chapter205的32页巡逻班对白，再调整第五周教师与学生。点击「必修冒险 · 出发准备」显示当前队伍，实际冒险战斗暂未开放，授课保持锁定。存档version4兼容version1/2/3，十项指纹未改。
 
-本轮沿实际第五周CPU自然执行战术资源路径/文件装载及贴图容器解析，按顺序读取common、TactStart05、Gybc_00和场景脚本t0005，停在首次战术阶段更新前。583个条目的偏移/类型/尺寸匹配独立字节目录；三个就绪队伍成功、两个拒绝状态零资源。图形上传/音频/UnitCtrl和地图、敌人、事件初态仍有边界。界面保持当前学生HP/MP与明确不可用状态，实际本周战斗未开放。完整62套件409项、Python35项、严格规格30项通过；本轮界面未改，前轮10张截图和155/165项出发页面验证作为历史记录保留。
+本轮沿实际第五周CPU执行逻辑UnitCtrl、AI/动画/事件链表和通用出现顺序表，再自然进入战术阶段2并加载原版map05.bin（64×96格）。三个就绪队伍成功，两个拒绝状态无构造/装载；当前学生与持久记录保留。另导出[当前场景原始贴图预览](../analysis/school-scene5-source-atlas-20261009.png)，48页RGB555按8×6拼接，字节/逐页像素与连续性已核对。原生链停在map05.map资源请求前；场景VM、敌人、事件和单位站位未执行，实际本周战斗未开放。62套件409项模型、Python46项和严格规格30项通过；本轮界面未改，前轮10张截图与155/165项出发页面验证作为历史记录保留。
 
-[本轮资源装载验收](../analysis/school-tactical-resources-final-20261009/README.md) · [资源来源/边界](../docs/school_tactical_resources.md) · [前轮启动与视觉验收](../analysis/school-tactical-startup-final-20261009/README.md) · [数值API](../docs/school_combat_records.md) · [试玩操作](../docs/school_playground.md)。20项完成，本地提交未push。历史报告和v4十项存档指纹不改；下一步是UnitCtrl与场景脚本的战场初始化，再接学校队伍的图形战斗。
+[本轮逻辑构造/地图验收](../analysis/school-unitctrl-map-final-20261009/README.md) · [构造来源/边界](../docs/school_unitctrl_scene_map.md) · [前轮资源装载](../analysis/school-tactical-resources-final-20261009/README.md) · [数值API](../docs/school_combat_records.md) · [试玩操作](../docs/school_playground.md)。23项完成，本地提交未push。历史报告和v4十项存档指纹不改；下一步继续地图资源与t0005场景VM，取得双方站位/事件，再接图形战斗。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 

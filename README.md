@@ -9,15 +9,15 @@
 
 试玩自动保存安排、成长、MVP、三段阅读进度、周结果和第五周编班。存档version4，兼容version1/2/3；第五周调动保留第四周属性、等级、关系和MVP。存档重放命令并核对最终状态，不是原版SAV。战斗预览仍是独立示例，尚未共享学校阵容与战后奖励。
 
-本轮沿实际第五周学校CPU、pending10与pending16继续原版451670自然启动，执行路径组成、文件装载及贴图容器/头字段解析，按顺序读入common.bin、TactStart05.bin、Gybc_00.bin和当前场景战术脚本t0005.bin，停在首次战术阶段更新4519C0前。三种可出发队伍均装载成功，两种未就绪状态零资源；583个贴图条目逐项匹配独立原始字节解析。UnitCtrl子构造、GPU上传、音频与地图/敌人/事件初态仍有明确边界。日期、成长、MVP、必修gate和v4存档指纹保留。
+本轮沿实际第五周学校CPU完成原版逻辑UnitCtrl、AI/动画/事件链表和通用65×65出现顺序表构造，再自然执行首次阶段0→2，读取源表选择的map05.bin（64×96格、2048×1536像素）。三种可出发队伍均成功，两种未就绪状态无构造或地图分配。原版文件缓冲与零临时层逐项核对，当前学生记录、日期、成长、MVP、必修gate和v4存档指纹保留。执行停在场景map05.map贴图请求前，图形/字体/音频与CRT随机输入为明确边界。
 
-重制出发准备卡片保持当前学生HP/MP显示，按当前成长/职业/技能计算，待命、改班和存档重开后重新显示；无法派生时明确显示暂不可用。教师仍只作为班级负责人。当前接口是部分数值派生，实际本周战斗未开放。本轮完整Godot62套件409项、Python来源/资源/导出35项及严格规格30项通过；本轮未修改界面，前轮出发准备离屏155项/实际渲染165项、10张截图和兼容验证保留为历史证据。
+重制出发准备卡片保持当前学生HP/MP显示和明确不可用状态，实际本周战斗未开放。本轮新增独立当前地图来源目录与[原始贴图预览](analysis/school-scene5-source-atlas-20261009.png)，48张RGB555页按8×6拼接，逐页像素核对并已检查连续性；预览尚无单位/战斗输入。完整Godot62套件409项、Python来源/地图/导出46项及严格规格30项通过。本轮未修改界面，前轮离屏155项/实际渲染165项与10张出发页面截图保留为历史证据。
 
-现有变更17项完成，按阶段本地提交，未push。[本轮启动验收](analysis/school-tactical-startup-final-20261009/README.md)含原版启动边界和10张逐一检查的新界面截图。[前轮学生记录](analysis/school-combat-records-final-20261009/README.md)、学校交接及旧视觉证据保持，version4十项规则指纹未改。
+现有变更23项完成，按阶段本地提交，未push。[本轮构造与地图验收](analysis/school-unitctrl-map-final-20261009/README.md)区分逻辑初始化、原始贴图预览和未执行的场景世界；[前轮资源装载](analysis/school-tactical-resources-final-20261009/README.md)及旧视觉证据保持，version4十项规则指纹未改。
 
 运行本机Godot的prototype项目即可进入；完成职务室对白后编班，点击「必修冒险 · 出发准备」查看当前队伍。「开始战斗」仍未开放。参见[试玩操作](docs/school_playground.md)、[学校到首场交接](docs/school_adventure_handoff.md)、[出发准备来源](docs/school_adventure_preparation.md)、[职务室与第五周学校来源](docs/school_fifth_week_planning.md)。
 
-**接下来**：执行UnitCtrl子构造及首次战术阶段链，解析已装载的t0005场景脚本，核实地图、双方出场与事件初态，再补齐重制地图/完整单位并开放当前队伍的图形战斗。战斗完成事件、奖励与授课解锁、完整战术AI/技能、其他教师及全年内容仍待完成；原版完整学校菜单、电影演出时序和音频也未复现。见[本轮资源装载/边界](docs/school_tactical_resources.md)、[本轮验收](analysis/school-tactical-resources-final-20261009/README.md)与[当前数值API](docs/school_combat_records.md)。
+**接下来**：继续场景贴图、缩略图与VPT装载，执行已装载t0005的VM入口，核实敌人、双方出场与事件初态，再把当前地图和完整单位接入学校队伍的图形战斗。战斗完成事件、奖励与授课解锁、完整战术AI/技能、其他教师及全年内容仍待完成；原版完整学校菜单、电影演出时序和音频也未复现。见[本轮构造/地图边界](docs/school_unitctrl_scene_map.md)、[本轮验收](analysis/school-unitctrl-map-final-20261009/README.md)与[当前数值API](docs/school_combat_records.md)。
 
 ## 规则验证基线（2026-10-07，保留来源细节）
 
