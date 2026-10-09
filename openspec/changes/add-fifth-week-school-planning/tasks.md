@@ -111,3 +111,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 27. Scene resource and preview acceptance
 
 - [x] 27.1 Run relevant source/export and complete model/UI/strict specification checks, inspect new renders, retain historical evidence and v4 fingerprints, publish immutable acceptance/current progress, verify tracked artifact bytes and commit locally without pushing. Unit-art initialization/VM/placements remain subsequent stages.
+
+## 28. Native unit reset and effect metadata
+
+- [ ] 28.1 Continue actual three ready/two refusal school branches through467EB0 reset/relation/text requests and466000 effect controller/file/metadata preparation. Declare platform text/graphics primitives, stop before41EBF0 effect texture binding, verify bounded writes/allocations/closed handles and retained current/persistent records, document and commit locally.
+
+## 29. Independent unit text and effect inputs
+
+- [ ] 29.1 Export original text tables and effect container/metadata inputs independently from frozen native fixtures, compare every text request/color record and effect copied bytes/section pointers, reject malformed inputs, document exact pending unit/VM/placement boundary, test and commit locally.
+
+## 30. Unit reset and effect metadata acceptance
+
+- [ ] 30.1 Run relevant source/export regression, complete model and strict specification checks, retain prior map UI evidence and verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing.

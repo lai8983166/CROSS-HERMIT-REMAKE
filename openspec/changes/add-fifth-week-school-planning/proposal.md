@@ -43,3 +43,7 @@ Continue actual pending16 through native logical UnitCtrl, AI/animation/event li
 ## Native scene resources and graphical current-map preview (2026-10-09)
 
 Continue naturally from the verified scene graphics request through original MAP texture traversal, BMP minimap/fog preparation and VPT loading/rebasing, stopping before the following unit-art reset/initialization entry. Export independent original minimap/pathfinding inputs and separate native fixtures. Add an interactive current MAP05 preview to the graphical departure screen with pan/zoom and state-preserving return. This preview contains no invented squad/enemy placement or executable battle; unit assets, t0005 VM, scene events and placements remain the following dependencies.
+
+## Unit reset and effect animation metadata extension (2026-10-10)
+
+Continue the paused original school CPU through467EB0 work reset, original relation setup and text-cache request loops, then466000 effect controller construction and exact read-only Efct.bin loading/metadata copy. Text rasterization and existing graphics objects remain explicitly declared boundaries. Stop at the effect texture binding entry before accepting a fabricated animation object. Independently decode text-table inputs and effect animation/container metadata, verify original pointers, retained records and refusal cases, and preserve the current graphical map/save behavior. Current/enemy work construction, scene VM and placement remain later dependencies.

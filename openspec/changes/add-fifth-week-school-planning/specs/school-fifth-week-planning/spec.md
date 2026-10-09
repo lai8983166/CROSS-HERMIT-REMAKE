@@ -197,3 +197,21 @@ The system SHALL provide a pan/zoom preview of the independently verified curren
 #### Scenario: Unready or unsupported departure
 - **WHEN** current departure readiness or scene identity is unsupported
 - **THEN** the current-map action refuses without changing school/save state or substituting the standalone demo
+
+### Requirement: Native unit reset and effect metadata preparation
+The system SHALL continue the actual current-school CPU from the scene-resource pause through original unit work reset, relation setup, text-cache requests and effect animation file/metadata preparation. Text rasterization and unresolved graphics objects MUST be declared boundaries. It MUST preserve current/persistent records, use bounded allocations and stop before effect texture binding rather than fabricating a loaded animation or battlefield.
+
+#### Scenario: Ready school prepares unit reset and effect metadata
+- **WHEN** the actual ready scene-resource continuation reaches467EB0
+- **THEN** original work reset and text request loops execute, the original effect controller and exact Efct.bin file/metadata pointers are prepared, handles close and execution stops before41EBF0 texture binding
+
+#### Scenario: Unready school prepares no unit assets
+- **WHEN** school readiness refuses departure
+- **THEN** no unit reset, text requests, effect allocation or file load occurs
+
+### Requirement: Independent unit text and effect provenance
+The system SHALL independently decode original text pointer tables and effect container offsets/metadata, separate from frozen native outputs. It MUST validate source identity, each request and copied section pointers, retain historical evidence and save fingerprints, and reject malformed input without claiming effect rendering or squad placement.
+
+#### Scenario: Compare native preparation to source bytes
+- **WHEN** supported original text and effect inputs are decoded
+- **THEN** every requested string/destination and effect metadata byte/pointer matches the original source, while current graphical map behavior remains unchanged
