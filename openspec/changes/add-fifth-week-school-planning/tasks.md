@@ -42,7 +42,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 10. Current-school handoff projection
 
-- [ ] 10.1 Implement a pure source-validated current-school/ledger handoff projection matching the new native cases, with strict invalid-input refusal, member order, copied output and no save/reward/gate mutations. Document the API, run model tests and commit locally.
+- [x] 10.1 Implement a pure source-validated current-school/ledger handoff projection matching the new native cases, with strict invalid-input refusal, member order, copied output and no save/reward/gate mutations. Document the API, run model tests and commit locally.
 
 ## 11. Handoff integration acceptance
 

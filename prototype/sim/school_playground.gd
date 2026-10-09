@@ -4,6 +4,7 @@ extends RefCounted
 const Session := preload("res://sim/new_game_school_session.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
+const AdventureHandoff := preload("res://sim/school_adventure_handoff.gd")
 const AdventurePreparation := preload("res://sim/school_adventure_preparation.gd")
 const RULE_PATHS := {
 	"school":"res://data/new_game_school_rules.json",
@@ -247,6 +248,23 @@ func adventure_preparation() -> Dictionary:
 	if not parsed is Dictionary:
 		return _failure("missing_adventure_preparation_rules")
 	return AdventurePreparation.project(fifth_session.read_snapshot(),Roles._integers(parsed))
+
+
+
+func adventure_ledger() -> Dictionary:
+	if stage() != "fifth_planning" or fifth_session == null:
+		return _failure("adventure_ledger_requires_fifth_school")
+	return AdventureHandoff.initial_ledger(_rules["planning"]["adventure_template"])
+
+
+func adventure_handoff() -> Dictionary:
+	var ledger := adventure_ledger()
+	if not ledger["supported"]:
+		return ledger
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(AdventureHandoff.RULE_PATH))
+	if not parsed is Dictionary:
+		return _failure("missing_adventure_handoff_rules")
+	return AdventureHandoff.project(fifth_session.read_snapshot(),ledger["ledger"],Roles._integers(parsed))
 
 
 func read_work_page() -> Dictionary:
