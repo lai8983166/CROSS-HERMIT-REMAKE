@@ -6,6 +6,7 @@ const Roles := preload("res://sim/all_result_role_replay.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const AdventureHandoff := preload("res://sim/school_adventure_handoff.gd")
 const AdventurePreparation := preload("res://sim/school_adventure_preparation.gd")
+const CombatLimits := preload("res://sim/school_combat_limits.gd")
 const RULE_PATHS := {
 	"school":"res://data/new_game_school_rules.json",
 	"growth":"res://data/school_course_settlement_rules.json",
@@ -265,6 +266,45 @@ func adventure_handoff() -> Dictionary:
 	if not parsed is Dictionary:
 		return _failure("missing_adventure_handoff_rules")
 	return AdventureHandoff.project(fifth_session.read_snapshot(),ledger["ledger"],Roles._integers(parsed))
+
+
+func adventure_combat_limits() -> Dictionary:
+	var handoff := adventure_handoff()
+	if not handoff["supported"]:
+		return handoff
+	var rules: Variant = JSON.parse_string(FileAccess.get_file_as_string(CombatLimits.RULE_PATH))
+	if not rules is Dictionary or not CombatLimits._rules_valid(rules):
+		return _failure("invalid_current_combat_source")
+	var output := {"supported":true,"ready":handoff["ready"],"reason":handoff["reason"],
+		"projection_only":true,"students":[],"full_combat_records":false,
+		"battle_world_constructed":false,"battle_executed":false,"mandatory_gate_cleared":false,
+		"live_witness":false,"authorizes_persistent_write":false}
+	if not handoff["ready"]:
+		return output
+	# Current profiles own post-course job/level/attributes; the carried entry
+	# owns equipment/skills. Neither source rules nor audit fixtures supply roles.
+	var profiles: Array = fifth_session.read_snapshot()["member_profiles"]
+	var roles: Array = _school_entry["after"]["participants"]
+	for id in handoff["prepared"]["rounds"][0]["student_ids"]:
+		var profile := {}
+		var role := {}
+		for entry in profiles:
+			if entry["member_id"] == id:
+				profile = entry
+		for entry in roles:
+			if entry["character_id"] == id:
+				role = entry
+		if profile.is_empty() or role.is_empty():
+			return _failure("missing_current_combat_role")
+		var input := {"character_id":id,"job":profile["job"],"level":profile["level_50"],
+			"attributes":profile["attributes"].duplicate(true),
+			"equipped_items":role["equipped_items"].duplicate(true),
+			"equipped_skills":role["equipped_skills"].duplicate(true)}
+		var projected := CombatLimits.project(input,rules)
+		if not projected["supported"]:
+			return projected
+		output["students"].append({"input":input,"limits":projected["limits"]})
+	return output
 
 
 func read_work_page() -> Dictionary:

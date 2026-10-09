@@ -54,7 +54,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 13. Current-role combat limits
 
-- [ ] 13.1 Assemble current owned student combat inputs and implement a pure source-validated no-item combat limits projection (attributes/job/level/skills, HP/MP/recovery/ENGAGE) matching new native outputs. Refuse unsupported inputs, preserve v4 saves/revision/gate and input ownership, document its partial-record boundary, run model tests and commit locally.
+- [x] 13.1 Assemble current owned student combat inputs and implement a pure source-validated no-item combat limits projection (attributes/job/level/skills, HP/MP/recovery/ENGAGE) matching new native outputs. Refuse unsupported inputs, preserve v4 saves/revision/gate and input ownership, document its partial-record boundary, run model tests and commit locally.
 
 ## 14. Combat-record integration acceptance
 
