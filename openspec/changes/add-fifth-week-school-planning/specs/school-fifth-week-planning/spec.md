@@ -131,3 +131,25 @@ The system SHALL show source-verified current student HP and MP in graphical dep
 #### Scenario: Unsupported combat derivation
 - **WHEN** current combat inputs or source limits are unsupported
 - **THEN** the preparation page reports unavailable combat values, retains usable return/save navigation and does not substitute demo limits
+
+### Requirement: Source verified tactical resource loading
+The system SHALL continue actual pending16 startup through native path composition, file-buffer loading and texture-container traversal before loading the source-selected current-scene script. File, heap, CRT, empty graphics table, GPU and audio boundaries MUST be declared. It MUST preserve persistent roles, date and MVP, and MUST NOT claim an initialized battlefield.
+
+#### Scenario: Current squad loads natural startup resources
+- **WHEN** the current school is ready and native startup proceeds
+- **THEN** common, current TactStart, dialogue texture and the source-selected scene script are loaded from original bytes in natural order, all texture entries are accounted for, handles close and execution stops before the first tactical phase update
+
+#### Scenario: Unready squad loads nothing
+- **WHEN** school readiness fails
+- **THEN** no tactical resource buffer, texture entry or scene script is loaded
+
+### Requirement: Independent tactical resource provenance
+The system SHALL export byte-derived container inputs and script selection independently of native output fixtures and verify source hashes, exact entry offsets/types/dimensions and finite memory bounds. Existing saves and historical evidence MUST remain unchanged.
+
+#### Scenario: Compare native entries with original bytes
+- **WHEN** supported original resource files are audited
+- **THEN** each native texture record matches the independently decoded source entry and the selected script identity matches the original scene table
+
+#### Scenario: Malformed resource refusal
+- **WHEN** container sizes, offsets, entry types or source identities are inconsistent
+- **THEN** validation refuses the resource without accepting fabricated battlefield data

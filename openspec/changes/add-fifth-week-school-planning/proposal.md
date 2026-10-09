@@ -31,3 +31,7 @@
 ## Tactical startup extension (2026-10-09)
 
 Continue actual pending16 dispatch and native outer tactical construction with explicit unresolved graphics/UnitCtrl subcomponents, source script-work setup and startup normalization up to the first resource request. Capture common resource and independently declared current-scene start-resource selection probes, resolve local file identities without claiming their loader/VM/world has run. Display already verified current-role HP/MP on graphical departure cards. World construction, enemies/events and executable battle remain subsequent stages.
+
+## Native resource loading extension (2026-10-09)
+
+Continue the same current-school pending16 pipeline through original path composition, file loader and texture-container traversal for common/TactStart05/Gybc_00, then load the source-selected current scene script. Stop before the first tactical phase update. File/heap/CRT and DirectX upload remain explicit external primitives; UnitCtrl construction remains unresolved. Export an independent byte-derived resource catalog and verify all parsed entries, exact script selection, refusal cases and persistent retention. No battlefield or actual battle is claimed.

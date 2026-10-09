@@ -71,3 +71,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 17. Tactical startup integration acceptance
 
 - [x] 17.1 Run full model, relevant source/export, graphical compatibility/rendering and strict spec checks; inspect captures, publish immutable startup acceptance/current progress, verify saved fingerprints and tracked bytes/tree, commit locally without pushing.
+
+## 18. Native resource buffers and scene script
+
+- [ ] 18.1 Continue actual current-school pending16 startup through source path/file loading, bounded texture-container traversal and current-scene script selection/loading. Verify three ready and two refusal cases, exact resource bytes, closed handles, declared graphics/audio boundaries and persistent retention; preserve historical reports, document and commit locally.
+
+## 19. Independent resource catalog
+
+- [ ] 19.1 Export source-only resource/container/script selection metadata separately from frozen native output fixtures; verify all native entry offsets/types/dimensions against original bytes, malformed containers and finite guards. Document the actual first phase boundary and commit locally.
+
+## 20. Resource loading acceptance
+
+- [ ] 20.1 Run relevant source/export regression, complete model and strict spec checks, verify unchanged save fingerprints and historical evidence, publish immutable acceptance/current progress, verify tracked bytes and commit locally without pushing.
