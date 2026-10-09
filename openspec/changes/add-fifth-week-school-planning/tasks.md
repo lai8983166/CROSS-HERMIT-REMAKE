@@ -78,7 +78,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 19. Independent resource catalog
 
-- [ ] 19.1 Export source-only resource/container/script selection metadata separately from frozen native output fixtures; verify all native entry offsets/types/dimensions against original bytes, malformed containers and finite guards. Document the actual first phase boundary and commit locally.
+- [x] 19.1 Export source-only resource/container/script selection metadata separately from frozen native output fixtures; verify all native entry offsets/types/dimensions against original bytes, malformed containers and finite guards. Document the actual first phase boundary and commit locally.
 
 ## 20. Resource loading acceptance
 

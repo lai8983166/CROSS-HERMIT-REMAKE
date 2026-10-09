@@ -27,4 +27,10 @@ C++数组迭代器是外部原语，但每个条目构造体真实执行。驱�
 
 工具为 `tools/school_tactical_resources_emulation.py`。完整学校连续回放在native-v1日志成功；diagnostic-v1至v6仅是明确声明的零学生构造排错，包含初始化时机、调用地址、Unicorn重入、贴图表位置和执行速度修复，不能替代学校证据。首版测试错误猜测脚本路径函数返回地址45500E，反汇编454FF4的call核实454FF9后修正；失败日志保留。
 
+## 独立来源目录与输出fixture
+
+`tools/school_tactical_resource_catalog.py`直接读取原始EXE两张场景选择表及四份原始资源，导出 `prototype/data/school_tactical_resources_rules.json`；不调用模拟器、不读取输出fixture。每个容器分段保存原始偏移、长度和SHA，贴图输入另外保存类型/尺寸/格式/BMP行宽与调色板信息。原始BMP有两种bfSize写法：像素末尾真实长度或包含四字节对齐填充的长度，二者均经容器实际边界校验。脚本两段仅记录原始字节身份，未把未执行的字节码解释成场景世界。
+
+`school_tactical_resources_evidence.json`只从固定SHA的native-v1报告导出测试输出，规则与fixture分离；两者不接入Godot运行时或存档指纹。独立解析逐条匹配三种就绪队伍的583个原版记录及464个GPU请求尺寸，并验证脚本来源身份。专项8项通过，覆盖尺寸/未知类型/错误调色板/无贴图标记/容器长度和偏移拒绝、有限写入及释放后写入拒绝。源码规则诊断导出保留为只读来源输入记录。
+
 下一步执行UnitCtrl和首次战术阶段链，解析已定位的t0005场景脚本，并核实地图、敌人、事件和当前学生出场；完整单位/地图接入Godot后才开放本周实际战斗。存档version4、十项指纹、成长、必修gate与玩家界面保持。
