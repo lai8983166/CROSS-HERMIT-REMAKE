@@ -114,7 +114,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 28. Native unit reset and effect metadata
 
-- [ ] 28.1 Continue actual three ready/two refusal school branches through467EB0 reset/relation/text requests and466000 effect controller/file/metadata preparation. Declare platform text/graphics primitives, stop before41EBF0 effect texture binding, verify bounded writes/allocations/closed handles and retained current/persistent records, document and commit locally.
+- [x] 28.1 Continue actual three ready/two refusal school branches through467EB0 reset/relation/text requests and466000 effect controller/file/metadata preparation. Declare platform text/graphics primitives, stop before41EBF0 effect texture binding, verify bounded writes/allocations/closed handles and retained current/persistent records, document and commit locally.
 
 ## 29. Independent unit text and effect inputs
 

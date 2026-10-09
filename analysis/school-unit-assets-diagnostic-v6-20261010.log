@@ -1,0 +1,17 @@
+DECLARED independent reset: 1344 1536
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\unit_assets_diagnostic.py", line 19, in <module>
+    declared_call(0x466000)
+  File "F:\project\chaomofa\.venv-audit\unit_assets_diagnostic.py", line 16, in declared_call
+    e.uc.emu_start(address,RETURN,timeout=30_000_000,count=12_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_unit_assets_emulation.py", line 212, in _hook
+    return ExitEmulator._hook(self,uc,address,size,context)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 77, in _hook
+    raise RuntimeError(f'undeclared external code at {address:#x}')
+RuntimeError: undeclared external code at 0x41eb21

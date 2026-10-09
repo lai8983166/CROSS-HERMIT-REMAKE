@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\unit_assets_diagnostic.py", line 12, in <module>
+    e.call(0x467EB0,receiver=UNITCTRL)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 214, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 213, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 109, in call
+    self.uc.emu_start(address, RETURN, timeout=1_000_000, count=100_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_unit_assets_emulation.py", line 158, in _hook
+    raise RuntimeError('unit exact reset primitive bounds')
+RuntimeError: unit exact reset primitive bounds
