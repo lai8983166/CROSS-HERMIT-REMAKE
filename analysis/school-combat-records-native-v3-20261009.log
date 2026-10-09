@@ -1,0 +1,31 @@
+Native departure case: initial ready=True
+Native ledger before initial: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Native combat records initial: 3
+Native departure case: student9_waiting ready=True
+Native ledger before student9_waiting: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Native combat records student9_waiting: 2
+Native departure case: fifth_class ready=True
+Native ledger before fifth_class: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Native combat records fifth_class: 2
+Native departure case: teacher_only ready=False
+Native ledger before teacher_only: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Native combat records teacher_only: 0
+Native departure case: teacher_waiting ready=False
+Native ledger before teacher_waiting: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Native combat records teacher_waiting: 0
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_combat_records_emulation.py", line 209, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_combat_records_emulation.py", line 184, in report
+    probes=[e.probe_limits('clamped_attributes_level',3,[0,255,1,135,50,255,0],255,[0]*8),
+  File "F:\project\chaomofa\tools\school_combat_records_emulation.py", line 139, in probe_limits
+    self.call(0x4B9340,(identity,0))
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 213, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 112, in call
+    raise RuntimeError('calling convention/stack mismatch')
+RuntimeError: calling convention/stack mismatch

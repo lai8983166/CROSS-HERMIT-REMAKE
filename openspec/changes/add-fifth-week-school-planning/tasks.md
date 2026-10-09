@@ -50,7 +50,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 12. Native current-student combat records
 
-- [ ] 12.1 Correct the 4DAB10 classification without overwriting historical evidence; extend the actual fifth-school first-round CPU through source work reset and complete current-student combat derivation, bounded native skill composition and floating conversion. Capture current inputs/defined outputs, ordered/wait/refusal and declared counterfactual cases, enforce finite writes and record retention, export source-only rules/separate fixtures, document pending16 resource boundary, verify and commit locally.
+- [x] 12.1 Correct the 4DAB10 classification without overwriting historical evidence; extend the actual fifth-school first-round CPU through source work reset and complete current-student combat derivation, bounded native skill composition and floating conversion. Capture current inputs/defined outputs, ordered/wait/refusal and declared counterfactual cases, enforce finite writes and record retention, export source-only rules/separate fixtures, document pending16 resource boundary, verify and commit locally.
 
 ## 13. Current-role combat limits
 

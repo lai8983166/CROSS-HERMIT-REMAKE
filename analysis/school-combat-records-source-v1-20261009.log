@@ -1,0 +1,29 @@
+test_actual_native_records_and_retention (tools.tests.test_school_combat_records_emulation.SchoolCombatRecordsTests) ... FAIL
+test_counterfactual_clamps_and_floating_truncation (tools.tests.test_school_combat_records_emulation.SchoolCombatRecordsTests) ... ok
+test_finite_guard_protects_other_ordinals_and_persistent_records (tools.tests.test_school_combat_records_emulation.SchoolCombatRecordsTests) ... ok
+test_independent_source_and_frozen_exports (tools.tests.test_school_combat_records_emulation.SchoolCombatRecordsTests) ... ok
+test_owned_order_defined_output_and_modifier_slots (tools.tests.test_school_combat_records_emulation.SchoolCombatRecordsTests) ... ok
+
+======================================================================
+FAIL: test_actual_native_records_and_retention (tools.tests.test_school_combat_records_emulation.SchoolCombatRecordsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_combat_records_emulation.py", line 41, in test_actual_native_records_and_retention
+    self.assertEqual(c['work_resets'],[{'target':'0x8093f8','count':WORK_SIZE,'caller_return_va':'0x4dab3a'}])
+AssertionError: Lists differ: [{'target': '0x8093f8', 'count': 666, 'caller_return_va': '0x4dab39'}] != [{'target': '0x8093f8', 'count': 666, 'caller_return_va': '0x4dab3a'}]
+
+First differing element 0:
+{'target': '0x8093f8', 'count': 666, 'caller_return_va': '0x4dab39'}
+{'target': '0x8093f8', 'count': 666, 'caller_return_va': '0x4dab3a'}
+
+- [{'caller_return_va': '0x4dab39', 'count': 666, 'target': '0x8093f8'}]
+?                               ^
+
++ [{'caller_return_va': '0x4dab3a', 'count': 666, 'target': '0x8093f8'}]
+?                               ^
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.161s
+
+FAILED (failures=1)
