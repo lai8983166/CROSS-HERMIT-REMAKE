@@ -1,0 +1,48 @@
+Declared map/scratch inputs; isolated source map/BMP/VPT functions, not actual school evidence
+EIP 0xe320030 stop None alloc [{'pointer': 252706816, 'bytes': 6293260, 'kind': 'file_buffer', 'caller_return_va': '0x42ad54', 'freed': False}]
+Traceback (most recent call last):
+  File "<stdin>", line 13, in <module>
+  File "F:\project\chaomofa\tools\school_scene_resources_emulation.py", line 169, in run_scene_thread
+    self.uc.emu_start(self.uc.reg_read(UC_X86_REG_EIP),RETURN,timeout=30_000_000,count=12_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_scene_resources_emulation.py", line 154, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 199, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 173, in _hook
+    self._file_api(address,sp);return
+  File "F:\project\chaomofa\tools\school_scene_resources_emulation.py", line 69, in _file_api
+    return super()._file_api(address,sp)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 210, in _file_api
+    return super()._file_api(address,sp)
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 149, in _file_api
+    if count!=len(raw) or self.resource_allocations[-1]['pointer']!=target:
+IndexError: list index out of range
+Traceback (most recent call last):
+  File "<stdin>", line 13, in <module>
+  File "F:\project\chaomofa\tools\school_scene_resources_emulation.py", line 169, in run_scene_thread
+    self.uc.emu_start(self.uc.reg_read(UC_X86_REG_EIP),RETURN,timeout=30_000_000,count=12_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_scene_resources_emulation.py", line 154, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 199, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 173, in _hook
+    self._file_api(address,sp);return
+  File "F:\project\chaomofa\tools\school_scene_resources_emulation.py", line 69, in _file_api
+    return super()._file_api(address,sp)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 210, in _file_api
+    return super()._file_api(address,sp)
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 149, in _file_api
+    if count!=len(raw) or self.resource_allocations[-1]['pointer']!=target:
+IndexError: list index out of range

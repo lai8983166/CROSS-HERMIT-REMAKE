@@ -98,7 +98,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 24. Native scene textures, minimap and pathfinding
 
-- [ ] 24.1 Continue actual three ready/two refusal school branches from the paused scene graphics request through native MAP texture traversal, BMP minimap/fog initialization and VPT loading/rebasing; stop before467EB0 unit-art reset. Verify exact buffers/closed handles/finite guards, retained current/persistent records and declared GPU/renderer inputs, document and commit locally.
+- [x] 24.1 Continue actual three ready/two refusal school branches from the paused scene graphics request through native MAP texture traversal, BMP minimap/fog initialization and VPT loading/rebasing; stop before467EB0 unit-art reset. Verify exact buffers/closed handles/finite guards, retained current/persistent records and declared GPU/renderer inputs, document and commit locally.
 
 ## 25. Independent scene resource provenance
 
