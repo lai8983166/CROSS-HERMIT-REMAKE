@@ -1,1 +1,10 @@
 Declared isolated zero-student diagnostic; not current-school evidence
+Traceback (most recent call last):
+  File "<stdin>", line 6, in <module>
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 266, in resources
+    def run_resource_thread(self):
+  File "F:\project\chaomofa\tools\workroom_return_emulation.py", line 165, in _thread
+    self.uc.emu_start(address, RETURN, timeout=timeout, count=count)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 763, in emu_start
+    status = uclib.uc_emu_start(self._uch, begin, until, timeout, count)
+OSError: exception: access violation writing 0x0000000000000024
