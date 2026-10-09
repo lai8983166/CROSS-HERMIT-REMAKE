@@ -122,4 +122,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 30. Unit reset and effect metadata acceptance
 
-- [ ] 30.1 Run relevant source/export regression, complete model and strict specification checks, retain prior map UI evidence and verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing.
+- [x] 30.1 Run relevant source/export regression, complete model and strict specification checks, retain prior map UI evidence and verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing.
