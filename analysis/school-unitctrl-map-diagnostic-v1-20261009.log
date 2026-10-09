@@ -1,0 +1,24 @@
+Declared zero-student constructor diagnostic; not actual school evidence
+EIP 0x43b001 stop unitctrl_grid_batch unit_allocs [{'pointer': 251658240, 'bytes': 3600, 'kind': 'linked_list', 'caller_return_va': '0x4276e1', 'freed': False}, {'pointer': 251661840, 'bytes': 3600, 'kind': 'linked_list', 'caller_return_va': '0x4276e1', 'freed': False}, {'pointer': 251665440, 'bytes': 3600, 'kind': 'linked_list', 'caller_return_va': '0x4276e1', 'freed': False}, {'pointer': 251669040, 'bytes': 8450, 'kind': 'appearance_grid', 'caller_return_va': '0x43ab5e', 'freed': False}, {'pointer': 251677504, 'bytes': 25350, 'kind': 'appearance_grid', 'caller_return_va': '0x43aba8', 'freed': False}, {'pointer': 251702864, 'bytes': 8450, 'kind': 'appearance_grid', 'caller_return_va': '0x43abfd', 'freed': False}] map_allocs []
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 286, in resources
+    result=super().resources(name,commands)
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 292, in resources
+    self.clear_trace('tactical_dispatch');self.call(0x49E2B0)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 219, in call
+    if self.stop_reason=='unitctrl_grid_batch':self.run_grid_batch()
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 258, in run_grid_batch
+    raise RuntimeError('native appearance grid exceeded batch bounds')
+RuntimeError: native appearance grid exceeded batch bounds
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 286, in resources
+    result=super().resources(name,commands)
+  File "F:\project\chaomofa\tools\school_tactical_resources_emulation.py", line 292, in resources
+    self.clear_trace('tactical_dispatch');self.call(0x49E2B0)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 219, in call
+    if self.stop_reason=='unitctrl_grid_batch':self.run_grid_batch()
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 258, in run_grid_batch
+    raise RuntimeError('native appearance grid exceeded batch bounds')
+RuntimeError: native appearance grid exceeded batch bounds

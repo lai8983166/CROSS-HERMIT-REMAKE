@@ -54,7 +54,8 @@ class ExitEmulator:
         self.visited = set()
         self._function_ranges = FUNCTIONS
         self._stubs = dict(STUBS)
-        self.uc.hook_add(UC_HOOK_CODE, self._hook)
+        self._audit_code_hook = self.uc.hook_add(UC_HOOK_CODE, self._hook)
+        self._audit_write_hooks = []
         self.write(0x7A49FC, TASK)  # Render-context pointer only used by stubbed calls.
         self.write(TASK+0x43, 1, 'B')
         self.write(TASK+0x59, 1, 'B')

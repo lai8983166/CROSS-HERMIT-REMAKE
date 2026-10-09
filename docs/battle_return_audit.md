@@ -1272,3 +1272,7 @@ The original dispatcher now consumes actual pending16 and executes outer tactica
 沿同一学校CPU的实际pending16执行451670，原版4500B0/42AE20/42AC50自然读取common、TactStart05、Gybc_00和源表60BC78[5]的t0005。贴图表/条目构造、容器定位和BMP/DX头处理由原指令执行；583条逐项匹配独立字节目录，119条为无贴图标记，464条有创建/上传请求。三个就绪队伍成功，两个未就绪状态零资源。四份缓冲加载SHA与原始文件相同，句柄全部关闭，脚本指针由源代码写入task+100并保留。
 
 空图形表槽、GPU/音频和UnitCtrl是明确边界，停于4519C0首次阶段更新前。尚无地图、双方出场、敌人/事件初态或本周实际战斗；禁止把TactStart贴图或t0005文件名猜成MAP05。日期、角色、MVP、gate及v4十项指纹保留，历史报告不改。本轮全量62套件409项、Python35项、严格规格30项通过；界面与素材未改，前轮视觉记录只作为历史证据。详见[资源审计](school_tactical_resources.md)、[本轮验收](../analysis/school-tactical-resources-final-20261009/README.md)。本地阶段提交，无push或原版SAV写入。
+
+## 106. 当前学校的原版逻辑 UnitCtrl 与场景5逻辑图（2026-10-09）
+
+实际学校CPU的三种可出发分支完成4653D0逻辑子构造、链表与原版43AB10/43B110通用出现顺序表，再自然执行4519C0阶段0→2，加载源表6B13F0选择的map05.bin（64×96格），原版清零CM与三份临时层。两种拒绝状态没有构造或地图装载。新报告school-unitctrl-map-v1-20261009.json保留旧报告字节，停在43A920的map05.map资源请求；图形/字体/音频和CRT随机输入为明确边界，t0005 VM、敌人、事件、双方站位与实际战斗未执行。通用网格采用同CPU原指令分段执行、静态控制流检查、禁区写入hook和所有权/全表后验核对，明确不逐条追踪该体内部指令。持久角色、MVP、日历及装载后当前学生记录保持。详见[构造与地图边界](school_unitctrl_scene_map.md)。

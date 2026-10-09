@@ -76,7 +76,7 @@ class CourseUnlockEmulator(ExitEmulator):
         self.visited.clear()
         self.stub_calls.clear()
         self.writes = []
-        self.uc.hook_add(UC_HOOK_MEM_WRITE,self._write_hook)
+        self._audit_write_hooks.append(self.uc.hook_add(UC_HOOK_MEM_WRITE,self._write_hook))
 
     def _write_hook(self,uc,access,address,size,value,context):
         if STACK <= address and address+size <= STACK+0x10000:

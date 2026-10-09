@@ -91,7 +91,7 @@ class NewGameSchoolEmulator(TeacherGroupEmulator):
         self.visited.clear()
         self.stub_calls.clear()
         self.writes,self.boundaries = [],[]
-        self.uc.hook_add(UC_HOOK_MEM_WRITE,self._write_hook)
+        self._audit_write_hooks.append(self.uc.hook_add(UC_HOOK_MEM_WRITE,self._write_hook))
 
     def _hook(self,uc,address,size,context):
         if address == 0x56CEC0:
