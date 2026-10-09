@@ -118,7 +118,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 29. Independent unit text and effect inputs
 
-- [ ] 29.1 Export original text tables and effect container/metadata inputs independently from frozen native fixtures, compare every text request/color record and effect copied bytes/section pointers, reject malformed inputs, document exact pending unit/VM/placement boundary, test and commit locally.
+- [x] 29.1 Export original text tables and effect container/metadata inputs independently from frozen native fixtures, compare every text request/color record and effect copied bytes/section pointers, reject malformed inputs, document exact pending unit/VM/placement boundary, test and commit locally.
 
 ## 30. Unit reset and effect metadata acceptance
 

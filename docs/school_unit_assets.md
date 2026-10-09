@@ -21,3 +21,13 @@
 ## 独立诊断与错误记录
 
 独立诊断用声明的零学校/UnitCtrl和font句柄，仅帮助核对执行范围，不作为真实学校证据。v1缺少Python路径；v2/v3未覆盖492F00的8字节子记录清零；v4超过通用单函数100000条指令限制，诊断改用独立有界调用；v5/v6函数范围未覆盖41EAD0的完整尾声；v7–v12补齐实际文件路径的全局缓冲、目录查询与%s诊断格式。v13通过，记录1344项文字请求和效果元数据边界。正式连续学校回放v1首次完整成功，没有使用声明诊断的对象地址或输出快照。
+
+## 独立来源导出与验证
+
+`tools/school_unit_asset_catalog.py`直接从固定SHA原映像解出四个文字指针表和全部1344份原字节，另外读取原始Efct.bin七段偏移、前77212字节元数据、四类动画程序、原版效果动画/位置表与默认关系表。四类动画计数为47/169/115/155，共3497条指令；程序解码复用独立DxAnim解析器，没有执行效果播放或VM。
+
+文字来源表、效果输入保存为`prototype/data/school_unit_assets_rules.json`，固定SHA正式报告输出另存`school_unit_assets_evidence.json`。逐项核对原版文字指针、目标偏移、颜色和关系表，元数据完整SHA、五段指针，以及41EBF0入口的元数据/原文件参数。规则不包含cases，fixture只用于验证，不作为可运行单位或战场输入。
+
+八项专项验证通过：真实学校就绪/拒绝、源文件与句柄、重置与文本、有限分配/写入、当前记录保留与执行边界，独立输入/fixture再生成、所有来源指针/SHA，以及损坏原映像、截断/改长/错序/越界效果容器拒绝。效果第四/第五段为绘制描述符与画布矩形，不能像程序/图像段一样猜作偏移容器；原字节和范围保留。
+
+导出命令：`python -m tools.school_unit_asset_catalog --rules-out prototype/data/school_unit_assets_rules.json --fixture-out prototype/data/school_unit_assets_evidence.json`。正式报告需要新路径，历史报告不会覆盖。Godot界面/模型、version4十项指纹与旧地图素材本轮均未修改。
