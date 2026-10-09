@@ -2,9 +2,9 @@
 
 默认入口: school_playground.tscn（图形化学校养成试玩，2026-10-09）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。Chapter018有126页，结束后可进入原版BG002_B职务室、阅读Chapter205的32页巡逻班对白，再调整第五周教师与学生。点击「必修冒险 · 出发准备」显示当前队伍，实际冒险战斗暂未开放，授课保持锁定。存档version4兼容version1/2/3，十项指纹未改。
 
-本轮沿原版实际第五周学校CPU执行工作重置、当前学生完整战术记录、技能组合和源浮点转换；5个班级状态及3组反事实边界已验证。4DAB10仅清零工作区，并非资源装载，pending16仍未消费。SchoolPlayground.adventure_combat_limits()从当前角色生成HP/MP/恢复间隔/ENGAGE，与原版字段匹配；它只提供部分记录，不构造战场，不改变存档或必修gate。全量62套件409项、Python22项、出发准备131项/第五周学校163项/导航22项离屏兼容及严格规格30项通过。
+本轮沿实际第五周CPU消费pending16并执行外层战术任务、脚本工作区和学生启动规范化，自然停止在common.bin资源入口；另行标注的源选择探针确认TactStart05.bin。图形/UnitCtrl子构造、资源加载与战場仍有边界。出发准备卡片新增当前学生HP/MP，改班/待命/重开后重算；不支持的派生明确显示暂不可用。完整战场及实际战斗未开放。全量62套件409项、Python27项、出发准备离屏155项/实际渲染165项、第五周163项/导航22项兼容及严格规格30项通过。
 
-[本轮记录验收](../analysis/school-combat-records-final-20261009/README.md) · [来源/API](../docs/school_combat_records.md) · [前次交接](../analysis/school-adventure-handoff-final-20261009/README.md) · [试玩操作](../docs/school_playground.md)。14项任务完成，本地提交未push。前次视觉验收9张截图及140项实际渲染保持，本轮未修改界面。当前仍需pending16战术构造、真实场景资源和双方初态，再接学校队伍的图形战斗。
+[本轮启动与视觉验收](../analysis/school-tactical-startup-final-20261009/README.md) · [来源/边界](../docs/school_tactical_startup.md) · [数值API](../docs/school_combat_records.md) · [试玩操作](../docs/school_playground.md)。17项完成，本地提交未push，10张新截图逐一检查。历史报告和v4十项存档指纹不改；下一步是UnitCtrl及实际资源解析、双方初态，再接学校队伍的图形战斗。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 

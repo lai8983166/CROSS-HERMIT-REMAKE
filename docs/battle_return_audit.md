@@ -1261,3 +1261,8 @@ Godot55套件367项通过；Python来源4项152.923秒及兼容20项25.962秒通
 ## 103. Current fifth-school combat records (2026-10-09)
 
 Native work reset and complete student record bodies now execute on the actual fifth-school checkpoint. Five squad cases and three declared counterfactuals are verified. 4DAB10 only resets 666 bytes, correcting the prior resource classification without changing frozen reports. The remake queries owned current-role HP/MP/recovery/ENGAGE only; pending16 world construction remains unexecuted. Full model: 62 suites/409 tests; source/export: 22 tests; compatibility: 131/163/22; strict specs: 30, all passing. Save v4 fingerprints remain byte-identical to b7391cc. See [current source/API](school_combat_records.md) and [acceptance](../analysis/school-combat-records-final-20261009/README.md).
+
+
+## 104. Actual fifth-school tactical startup boundary (2026-10-09)
+
+The original dispatcher now consumes actual pending16 and executes outer tactical construction, source script-work setup and current-student normalization on the same school CPU. Graphics/UnitCtrl subconstructors, font/vector/scheduler and resource loading remain named boundaries. Natural startup stops at common.bin; a separate explicitly labelled same-scene probe selects TactStart05.bin. Neither resource has been loaded by the original loader and no map/enemy/event world is constructed. Departure cards now show current student HP/MP with unavailable-state refusal. Full model 62/409, source 27, departure headless/rendered 155/165 (10 inspected captures), fifth-school/navigation 163/22, strict specs30 all pass. V4 save fingerprints remain byte-identical. See [source boundaries](school_tactical_startup.md) and [acceptance](../analysis/school-tactical-startup-final-20261009/README.md).

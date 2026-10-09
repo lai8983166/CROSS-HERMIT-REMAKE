@@ -70,4 +70,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 17. Tactical startup integration acceptance
 
-- [ ] 17.1 Run full model, relevant source/export, graphical compatibility/rendering and strict spec checks; inspect captures, publish immutable startup acceptance/current progress, verify saved fingerprints and tracked bytes/tree, commit locally without pushing.
+- [x] 17.1 Run full model, relevant source/export, graphical compatibility/rendering and strict spec checks; inspect captures, publish immutable startup acceptance/current progress, verify saved fingerprints and tracked bytes/tree, commit locally without pushing.
