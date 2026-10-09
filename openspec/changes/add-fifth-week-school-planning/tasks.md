@@ -82,4 +82,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 20. Resource loading acceptance
 
-- [ ] 20.1 Run relevant source/export regression, complete model and strict spec checks, verify unchanged save fingerprints and historical evidence, publish immutable acceptance/current progress, verify tracked bytes and commit locally without pushing.
+- [x] 20.1 Run relevant source/export regression, complete model and strict spec checks, verify unchanged save fingerprints and historical evidence, publish immutable acceptance/current progress, verify tracked bytes and commit locally without pushing.

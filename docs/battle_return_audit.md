@@ -1266,3 +1266,9 @@ Native work reset and complete student record bodies now execute on the actual f
 ## 104. Actual fifth-school tactical startup boundary (2026-10-09)
 
 The original dispatcher now consumes actual pending16 and executes outer tactical construction, source script-work setup and current-student normalization on the same school CPU. Graphics/UnitCtrl subconstructors, font/vector/scheduler and resource loading remain named boundaries. Natural startup stops at common.bin; a separate explicitly labelled same-scene probe selects TactStart05.bin. Neither resource has been loaded by the original loader and no map/enemy/event world is constructed. Departure cards now show current student HP/MP with unavailable-state refusal. Full model 62/409, source 27, departure headless/rendered 155/165 (10 inspected captures), fifth-school/navigation 163/22, strict specs30 all pass. V4 save fingerprints remain byte-identical. See [source boundaries](school_tactical_startup.md) and [acceptance](../analysis/school-tactical-startup-final-20261009/README.md).
+
+## 105. 当前学校自然战术资源与场景脚本装载（2026-10-09）
+
+沿同一学校CPU的实际pending16执行451670，原版4500B0/42AE20/42AC50自然读取common、TactStart05、Gybc_00和源表60BC78[5]的t0005。贴图表/条目构造、容器定位和BMP/DX头处理由原指令执行；583条逐项匹配独立字节目录，119条为无贴图标记，464条有创建/上传请求。三个就绪队伍成功，两个未就绪状态零资源。四份缓冲加载SHA与原始文件相同，句柄全部关闭，脚本指针由源代码写入task+100并保留。
+
+空图形表槽、GPU/音频和UnitCtrl是明确边界，停于4519C0首次阶段更新前。尚无地图、双方出场、敌人/事件初态或本周实际战斗；禁止把TactStart贴图或t0005文件名猜成MAP05。日期、角色、MVP、gate及v4十项指纹保留，历史报告不改。本轮全量62套件409项、Python35项、严格规格30项通过；界面与素材未改，前轮视觉记录只作为历史证据。详见[资源审计](school_tactical_resources.md)、[本轮验收](../analysis/school-tactical-resources-final-20261009/README.md)。本地阶段提交，无push或原版SAV写入。

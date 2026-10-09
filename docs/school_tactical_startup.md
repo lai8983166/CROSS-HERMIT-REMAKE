@@ -30,3 +30,5 @@
 来源工具：`tools/school_tactical_startup_emulation.py`。独立规则/fixture：`prototype/data/school_tactical_startup_rules.json`、`school_tactical_startup_evidence.json`。当前来源/导出/既有路径27项通过。
 
 下一步重点是执行UnitCtrl子构造、真实common资源装载/解析，再连接当前场景的双方出场、敌人和事件初态。地图和完整单位重制完成后才开放实际本周图形战斗；完成奖励、gate清除和后继授课仍在其后。
+
+后续进展：本报告保留为启动入口阶段记录。自然文件/贴图容器/场景脚本装载已在新独立报告验证，见[战术资源装载](school_tactical_resources.md)；UnitCtrl与实际战场仍待完成。
