@@ -6,9 +6,9 @@
 
 ## Goals / Non-Goals
 
-Goals: 扩展实际 4/5 同一 CPU 的 state8→CH002→state9→学校数据前缀；保留旧会话作为成长回顾，创建独立第五周规划会话，复用已经验证的调动、解锁与查看操作；核对原版4A7D30就绪与4A6A10参战准备，提供当前队伍的出发准备页。
+Goals: 扩展实际 4/5 同一 CPU 的 state8→CH002→state9→学校数据前缀；保留旧会话作为成长回顾，创建独立第五周规划会话，复用已经验证的调动、解锁与查看操作；核对原版4A7D30就绪与4A6A10参战准备，提供当前队伍的出发准备页；继续核对学校提交和state10场次交接，并提供当前班级的纯交接投影。
 
-Non-Goals: 不模拟原版完整任务调度器、音视频或所有职务室菜单；不执行第二次成长、冒险战斗或第五周后续剧情。准备画面与已实际执行的战斗分开，必修gate保持有效。
+Non-Goals: 不模拟原版完整任务调度器、音视频或所有职务室菜单；不执行第二次成长、冒险战斗或第五周后续剧情。准备/交接数据与已实际执行的战斗分开，必修gate保持有效。
 
 ## Decisions
 
@@ -19,7 +19,7 @@ Non-Goals: 不模拟原版完整任务调度器、音视频或所有职务室菜
 - 职务室使用独立 source background/catalog；不生成仿制游戏美术。返回、保存、战斗预览沿用当前事务机制。
 
 - 出发准备由当前第五周school snapshot纯计算生成，读取独立来源规则并验证；不把native fixture复制到运行时，不改角色/日历/gate，不发奖励。准备页为当前班级的可重复查看投影，不新增持久命令或改变version4存档指纹；修改班级后重算。
-- 原版同一CPU前缀继续执行4A7D30与4A6A10，保留就绪条件和defined rating/round字段，覆盖原班、换班、成员待命与教师孤班。战斗状态10、准备场景/事件执行留待后续链路接入。
+- 原版同一CPU前缀继续执行4A7D30与4A6A10，保留就绪条件和defined rating/round字段，覆盖原班、换班、成员待命与教师孤班。原准备阶段未执行战斗状态10。新增阶段继续执行实际学校提交、恢复已捕获的group协程、消费pending10和场次准备；菜单确认输入、调度器、配置资源和战术单位派生仍逐项声明边界。
 
 ## Risks / Trade-offs
 
@@ -31,3 +31,10 @@ Non-Goals: 不模拟原版完整任务调度器、音视频或所有职务室菜
 ## Migration Plan
 
 捕获 v3 fixture；验证并提交 source audit；实现原子续接和 v4 重放；接图形职务室与第五周规划；完成兼容、窗口与视觉验收。新功能仅在用户主动进入职务室/学校时执行。可回退本轮 commits，既有 v1/v2/v3 fixture 与源规则均保留。
+
+## 2026-10-09 departure handoff extension
+
+- Capture the source group coroutine register/stack checkpoint at its existing menu boundary; after native readiness, execute 4A1920 with explicit confirmed-menu input, resume that actual coroutine with return code8, then let its own 4A6A10/request10 execute. Never synthesize request10 or round-table outputs.
+- Consume the actual pending10 with the original dispatcher/constructor and execute 4B8FF0 using its source-prepared table. Configuration scalar loading, roster/counts and request16 are native. Resource loading4DAB10 and unit derivation4B9340 remain explicit unresolved boundaries; combat_units_ready stays false.
+- Fork isolated branches from the same captured fifth-school checkpoint for initial, waiting and fifth-class squads; invalid readiness executes no commit. Record adventure ledger before/after independently from school/role snapshots, enforce finite writes and date/role/MVP retention.
+- Export source table inputs separately from test fixtures. Implement a pure handoff projection taking current school plus its owned adventure ledger and validating source rules. It does not add saved commands, consume the player plan, change v4 fingerprints or expose an executable battle action.

@@ -35,3 +35,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 8. Extended integration acceptance
 
 - [x] 8.1 Run complete model tests, relevant source and compatibility window checks and strict OpenSpec validation, inspect final captures, publish updated acceptance and progress documentation, verify clean tracked files and commit locally without pushing.
+
+## 9. Native school-to-round handoff
+
+- [ ] 9.1 Continue the actual fifth-school checkpoint through confirmed native school commit, the captured group coroutine's request10, native state10 construction and first-round preparation/request16. Verify initial/waiting/fifth-class and invalid readiness, ledger changes, explicit unresolved resources/units, source hashes and finite guards; export independent rules/fixtures, document and commit locally.
+
+## 10. Current-school handoff projection
+
+- [ ] 10.1 Implement a pure source-validated current-school/ledger handoff projection matching the new native cases, with strict invalid-input refusal, member order, copied output and no save/reward/gate mutations. Document the API, run model tests and commit locally.
+
+## 11. Handoff integration acceptance
+
+- [ ] 11.1 Run the full model suite, relevant source/export and departure compatibility checks and strict OpenSpec validation. Publish immutable handoff acceptance and current progress, retain historical reports, verify tracked tree and commit locally without pushing. Actual battle remains a stated next stage.

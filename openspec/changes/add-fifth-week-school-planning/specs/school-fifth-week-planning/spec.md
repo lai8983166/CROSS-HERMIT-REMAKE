@@ -65,3 +65,25 @@ The system SHALL allow viewing fifth-week mandatory adventure preparation from s
 #### Scenario: Edit and reopen preparation
 - **WHEN** the player views preparation, returns to edit classes and opens it again
 - **THEN** the screen reflects the updated current members, offers school save/load/review navigation and does not substitute the independent battle preview roster
+
+### Requirement: Source verified school to first round handoff
+The system SHALL verify native school commit, source group request10, native state10 construction and first-round preparation on the current fifth-school CPU checkpoint. It MUST distinguish native configuration scalar and roster writes from unresolved resource loading and combat-unit derivation, and MUST NOT claim playable battle, rewards or mandatory-gate clearance.
+
+#### Scenario: Current squad enters source round preparation
+- **WHEN** current classes satisfy source readiness and the confirmed-menu input boundary is supplied
+- **THEN** native school commit updates the adventure ledger, the resumed source group requests10, and the consumed native preparation task transfers current students to configuration5 and requests16 while role records, MVP and calendar remain unchanged
+
+#### Scenario: Invalid squad never commits
+- **WHEN** current classes fail readiness
+- **THEN** neither commit nor request10 occurs and the complete school, role and adventure ledger state remains unchanged
+
+### Requirement: Pure current school handoff projection
+The system SHALL derive a handoff from current school and its adventure ledger using independent validated source inputs. The projection MUST match native ledger and first-round defined outputs, preserve member order and input ownership, and MUST NOT mutate the player's saved plan or add persistent commands.
+
+#### Scenario: Project edited or waiting members
+- **WHEN** a supported current school and ledger are projected
+- **THEN** the output contains the native-equivalent committed ledger, ordered students, source configuration and request sequence, with combat unit readiness explicitly false
+
+#### Scenario: Malformed or unsupported handoff inputs
+- **WHEN** source rules, ledger or school data are malformed or outside the verified subset
+- **THEN** projection refuses atomically without changing input, save, calendar or rewards
