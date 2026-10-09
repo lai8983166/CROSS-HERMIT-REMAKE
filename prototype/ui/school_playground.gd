@@ -6,6 +6,7 @@ const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const StoryReader := preload("res://ui/school_story_reader.gd")
 const Arrival := preload("res://ui/school_week_arrival.gd")
 const Workroom := preload("res://ui/school_workroom.gd")
+const MapPreview := preload("res://ui/school_scene_map_preview.gd")
 const ART := "res://assets/school/"
 
 var model := Playground.new()
@@ -62,6 +63,8 @@ var adventure_member_buttons: Dictionary = {}
 var adventure_start_button: Button
 var adventure_status: Label
 var adventure_round_label: Label
+var map_preview: MapPreview
+var adventure_map_button: Button
 
 
 func _ready() -> void:
@@ -219,6 +222,10 @@ func _ready() -> void:
 	workroom.save_requested.connect(_manual_save)
 	workroom.battle_requested.connect(_open_battle)
 	workroom.restart_requested.connect(func(): restart_dialog.popup_centered(Vector2i(440,180)))
+	map_preview = MapPreview.new()
+	add_child(map_preview)
+	map_preview.closed.connect(func():
+		if is_instance_valid(adventure_map_button): adventure_map_button.grab_focus())
 	var started := model.start()
 	if not started["supported"]:
 		_status.text = "试玩初始化失败"
@@ -713,7 +720,14 @@ func _refresh_adventure() -> void:
 	adventure_member_buttons.clear()
 	adventure_projection = model.adventure_preparation()
 	adventure_limits = model.adventure_combat_limits()
-	_adventure.add_child(_label("第五周 · 必修冒险",24,Color("ead6a3")))
+	var heading := HBoxContainer.new()
+	_adventure.add_child(heading)
+	var caption := _label("第五周 · 必修冒险",24,Color("ead6a3"))
+	caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	heading.add_child(caption)
+	adventure_map_button = _button("查看本关地图",_open_current_map)
+	adventure_map_button.disabled = not MapPreview.supports(adventure_projection)
+	heading.add_child(adventure_map_button)
 	adventure_round_label = _label("任务5 · 第1场 · 场景5",16,Color("becfc3"))
 	_adventure.add_child(adventure_round_label)
 	var supported: bool = adventure_projection.get("supported",false)
@@ -779,6 +793,14 @@ func _refresh_adventure() -> void:
 	adventure_start_button.disabled = true
 	adventure_start_button.custom_minimum_size.y = 46
 	_adventure.add_child(adventure_start_button)
+
+
+func _open_current_map() -> void:
+	if page != "adventure" or model.stage() != "fifth_planning":
+		return
+	if not map_preview.open_preview(model.adventure_preparation()):
+		_message = "本关地图暂时无法查看，请保留当前编班。"
+		refresh()
 
 
 func _refresh_detail() -> void:

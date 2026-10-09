@@ -106,7 +106,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 26. Interactive current-map preview
 
-- [ ] 26.1 Add a graphical pan/zoom/fit MAP05 viewer to the supported ready current departure screen with close/Escape and immutable state/save behavior. Refuse unready/unsupported scene contexts, preserve actual battle/gate boundaries, verify input/layout/compatibility and rendered captures, document and commit locally.
+- [x] 26.1 Add a graphical pan/zoom/fit MAP05 viewer to the supported ready current departure screen with close/Escape and immutable state/save behavior. Refuse unready/unsupported scene contexts, preserve actual battle/gate boundaries, verify input/layout/compatibility and rendered captures, document and commit locally.
 
 ## 27. Scene resource and preview acceptance
 
