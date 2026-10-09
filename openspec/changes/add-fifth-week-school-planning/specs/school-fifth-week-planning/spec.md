@@ -109,3 +109,25 @@ The system SHALL assemble owned current-student inputs and calculate source-equi
 #### Scenario: Unsupported loadout or source data
 - **WHEN** a role has an unverified item, malformed fields or incompatible source tables
 - **THEN** projection refuses atomically without claiming a complete combat record or constructed battle
+
+### Requirement: Source verified tactical startup boundary
+The system SHALL consume actual pending16 and execute native outer tactical construction and script-work initialization with explicitly declared subcomponent boundaries. It SHALL verify current-unit startup normalization and first resource request, and keep separately invoked scene-resource selection probes distinct from natural startup. It MUST retain persistent records and MUST NOT claim loaded resources, enemies or a constructed battlefield.
+
+#### Scenario: Ready squad starts tactical task
+- **WHEN** source first-round preparation requests16
+- **THEN** native dispatch constructs the outer task, initializes its source script work and normalizes current student records before stopping at the common-resource loader boundary
+
+#### Scenario: Unready school never creates a tactical task
+- **WHEN** readiness refuses departure
+- **THEN** no tactical allocation, dispatch or resource request occurs
+
+### Requirement: Graphical current student combat limits
+The system SHALL show source-verified current student HP and MP in graphical departure cards. It MUST recompute from current owned roles, report unavailable values when unsupported, preserve saves and keep actual battle visibly unavailable.
+
+#### Scenario: Edit and restore current squad
+- **WHEN** the player changes classes, waits a student or restores a fifth-week save
+- **THEN** departure cards show the correct current members and derived HP/MP without mutating growth, save commands or mandatory gate
+
+#### Scenario: Unsupported combat derivation
+- **WHEN** current combat inputs or source limits are unsupported
+- **THEN** the preparation page reports unavailable combat values, retains usable return/save navigation and does not substitute demo limits

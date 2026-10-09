@@ -59,3 +59,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 14. Combat-record integration acceptance
 
 - [x] 14.1 Run full model and relevant source/export/compatibility checks and strict specs; publish immutable acceptance/current progress with native record readiness separated from partial runtime limits and unconstructed battlefield, verify tracked bytes/tree and commit locally without pushing.
+
+## 15. Native tactical startup boundary
+
+- [ ] 15.1 Continue the actual current-school CPU through pending16 dispatch, native outer task construction and script-work initialization with explicit graphics/UnitCtrl/scheduler boundaries; execute startup current-unit normalization up to first common-resource request, and a separately declared current-scene start-resource selection probe. Record bounded writes, persistent retention, refusal cases and local resource provenance, export separate source rules/fixtures, document exact unconstructed-world boundary, verify and commit locally.
+
+## 16. Graphical current combat limits
+
+- [ ] 16.1 Show verified current student HP/MP on departure portrait cards using owned current inputs, with an explicit unavailable state for unsupported derivation. Preserve class/member navigation, save/revision/gate and disabled battle; test current edits/restores/refusals and rendered card/detail bounds, document and commit locally.
+
+## 17. Tactical startup integration acceptance
+
+- [ ] 17.1 Run full model, relevant source/export, graphical compatibility/rendering and strict spec checks; inspect captures, publish immutable startup acceptance/current progress, verify saved fingerprints and tracked bytes/tree, commit locally without pushing.
