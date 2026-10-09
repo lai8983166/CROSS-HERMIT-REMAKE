@@ -33,6 +33,22 @@ func _run() -> void:
 	await _click(panel.next_button)
 	_check(panel.page == "adventure" and panel._adventure.visible,"mandatory button opens squad preparation")
 	_check(panel.adventure_projection["ready"] and panel.adventure_member_buttons.size() == 4,"initial squad shows current teacher and three students")
+	for pair in [[3,"HP 117  ·  MP 445"],[4,"HP 75  ·  MP 69"],[9,"HP 57  ·  MP 87"]]:
+		_check(panel.adventure_member_buttons[pair[0]].text.contains(pair[1]),"current grown student shows source HP/MP")
+	_check(not panel.adventure_member_buttons[101].text.contains("HP"),"teacher leader is not assigned student combat limits")
+	# Declared fault injection, restored before subsequent saved-state checks.
+	var entry_before: Dictionary = panel.model._school_entry.duplicate(true)
+	panel.model._school_entry["after"]["participants"][0]["equipped_items"][0] = 1
+	var refused_state: Dictionary = panel.model.state()
+	panel.refresh()
+	_check(not panel.adventure_limits["supported"],"unsupported loadout refuses entire limits projection")
+	for student in [3,4,9]:
+		_check(panel.adventure_member_buttons[student].text.contains("战斗数值暂不可用"),"unsupported limits show no demo fallback")
+	_check(panel.model.state() == refused_state and panel.adventure_start_button.disabled,"unavailable limits preserve state and disabled battle")
+	await _preparation_bounds(panel)
+	await _capture("departure_limits_unavailable")
+	panel.model._school_entry = entry_before
+	panel.refresh()
 	_check(panel.adventure_round_label.text.contains("任务5") and panel.adventure_round_label.text.contains("场景5"),"source adventure and scene shown")
 	_check(panel.model.state() == state and FileAccess.get_sha256(TEST_PATH) == disk,"opening projection changes neither school nor save")
 	await _preparation_bounds(panel)
@@ -49,6 +65,7 @@ func _run() -> void:
 	await _click(panel.next_button)
 	_check(panel.adventure_projection["prepared"]["rounds"][0]["student_ids"] == [3,4],"waiting student removed from source squad")
 	_check(panel.adventure_projection["idle_student_ids"] == [9],"waiting identity preserved separately")
+	_check(panel.adventure_limits["students"].size() == 2 and panel.adventure_member_buttons[3].text.contains("HP 117"),"waiting edit recomputes current limits")
 	_check(panel.adventure_member_buttons.size() == 3 and not panel.adventure_member_buttons.has(9),"waiting member does not appear as participant")
 	_check(panel.model.state() == state and FileAccess.get_sha256(TEST_PATH) == disk,"repeated preparation never persists new commands")
 	await _preparation_bounds(panel)
@@ -69,6 +86,7 @@ func _run() -> void:
 	var round: Dictionary = panel.adventure_projection["prepared"]["rounds"][0]
 	_check(round["teacher_ids"] == [101] and round["student_ids"] == [3,4] and round["student_groups"] == [4,4],"edited current fifth class feeds native-equivalent round")
 	_check(panel.adventure_member_buttons[4].text.contains("5班"),"card displays actual updated class")
+	_check(panel.adventure_member_buttons[4].text.contains("HP 75  ·  MP 69"),"class change retains current role limits")
 	await _preparation_bounds(panel)
 	await _capture("departure_fifth_class")
 	await _click(panel.save_button)
@@ -81,6 +99,7 @@ func _run() -> void:
 	_check(panel.page == "groups" and panel.model.state() == state,"fresh launch restores fifth class rather than invented battle state")
 	await _click(panel.next_button)
 	_check(panel.adventure_projection["prepared"]["rounds"][0] == round,"reopening derives identical saved squad")
+	_check(panel.adventure_member_buttons[3].text.contains("HP 117  ·  MP 445"),"fresh save restore retains earned combat limits")
 	await _preparation_bounds(panel)
 	await _capture("departure_restored")
 	disk = FileAccess.get_sha256(TEST_PATH)

@@ -66,7 +66,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 16. Graphical current combat limits
 
-- [ ] 16.1 Show verified current student HP/MP on departure portrait cards using owned current inputs, with an explicit unavailable state for unsupported derivation. Preserve class/member navigation, save/revision/gate and disabled battle; test current edits/restores/refusals and rendered card/detail bounds, document and commit locally.
+- [x] 16.1 Show verified current student HP/MP on departure portrait cards using owned current inputs, with an explicit unavailable state for unsupported derivation. Preserve class/member navigation, save/revision/gate and disabled battle; test current edits/restores/refusals and rendered card/detail bounds, document and commit locally.
 
 ## 17. Tactical startup integration acceptance
 

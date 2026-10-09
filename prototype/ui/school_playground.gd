@@ -57,6 +57,7 @@ var workroom_button: Button
 var school_subtitle: Label
 var _adventure: VBoxContainer
 var adventure_projection: Dictionary = {}
+var adventure_limits: Dictionary = {}
 var adventure_member_buttons: Dictionary = {}
 var adventure_start_button: Button
 var adventure_status: Label
@@ -711,6 +712,7 @@ func _refresh_adventure() -> void:
 	_clear(_adventure)
 	adventure_member_buttons.clear()
 	adventure_projection = model.adventure_preparation()
+	adventure_limits = model.adventure_combat_limits()
 	_adventure.add_child(_label("第五周 · 必修冒险",24,Color("ead6a3")))
 	adventure_round_label = _label("任务5 · 第1场 · 场景5",16,Color("becfc3"))
 	_adventure.add_child(adventure_round_label)
@@ -754,6 +756,14 @@ func _refresh_adventure() -> void:
 					if _identity("student",index,slot) == member:
 						group = index
 			button.text += "\n%d班 · %s" % [group+1,"教师" if member >= 101 else "学生"]
+			if member < 101:
+				var limits := {}
+				if adventure_limits.get("supported",false):
+					for entry in adventure_limits["students"]:
+						if entry["input"]["character_id"] == member:
+							limits = entry["limits"]
+				button.text += "\n战斗数值暂不可用" if limits.is_empty() \
+					else "\nHP %d  ·  MP %d" % [limits["hp_max"],limits["mp_max"]]
 			adventure_member_buttons[member] = button
 	if supported:
 		var names := PackedStringArray()
