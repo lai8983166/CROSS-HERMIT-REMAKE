@@ -1,0 +1,41 @@
+test_finite_scene_guard_denies_current_persistent_freed_and_outside (tools.tests.test_school_scene_resources_emulation.SceneResourcesTests) ... ok
+test_frozen_school_cases_order_handles_and_original_buffers (tools.tests.test_school_scene_resources_emulation.SceneResourcesTests) ... FAIL
+test_native_texture_minimap_fog_and_owned_allocations (tools.tests.test_school_scene_resources_emulation.SceneResourcesTests) ... ok
+test_refusal_retention_and_next_boundary (tools.tests.test_school_scene_resources_emulation.SceneResourcesTests) ... FAIL
+test_all_native_map_texture_fields_match_source_entries (tools.tests.test_school_scene_resource_catalog.SceneResourceCatalogTests) ... ok
+test_native_vpt_relocations_against_all_original_offsets (tools.tests.test_school_scene_resource_catalog.SceneResourceCatalogTests) ... ok
+test_refuses_malformed_minimap_sizes_dimensions_and_format (tools.tests.test_school_scene_resource_catalog.SceneResourceCatalogTests) ... ok
+test_refuses_malformed_vpt_counts_offsets_marker_and_cell_layers (tools.tests.test_school_scene_resource_catalog.SceneResourceCatalogTests) ... ok
+test_runtime_art_pixels_file_hashes_and_independent_minimap (tools.tests.test_school_scene_resource_catalog.SceneResourceCatalogTests) ... ok
+
+======================================================================
+FAIL: test_frozen_school_cases_order_handles_and_original_buffers (tools.tests.test_school_scene_resources_emulation.SceneResourcesTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_scene_resources_emulation.py", line 21, in test_frozen_school_cases_order_handles_and_original_buffers
+    self.assertEqual([r['caller_return_va'] for r in c['scene_requests']],['0x43a989','0x43aa6e','0x44e491'])
+AssertionError: Lists differ: ['0x43a989', '0x43aa6e', '0x44e49b'] != ['0x43a989', '0x43aa6e', '0x44e491']
+
+First differing element 2:
+'0x44e49b'
+'0x44e491'
+
+- ['0x43a989', '0x43aa6e', '0x44e49b']
+?                                  ^
+
++ ['0x43a989', '0x43aa6e', '0x44e491']
+?                                  ^
+
+
+======================================================================
+FAIL: test_refusal_retention_and_next_boundary (tools.tests.test_school_scene_resources_emulation.SceneResourcesTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_scene_resources_emulation.py", line 58, in test_refusal_retention_and_next_boundary
+    self.assertIn(va,visited)
+AssertionError: '0x43a920' not found in ['0x4214f0', '0x56cfcc', '0x56cfcc', '0x420990', '0x4500b0', '0x42ae20', '0x42ac50', '0x4167e0', '0x41f090', '0x41f0e0', '0x41f4e0', '0x41f830', '0x403620', '0x41f930', '0x41f340', '0x4214f0', '0x4209f0', '0x420b50', '0x4048d0', '0x420a40', '0x404fb0', '0x44e440', '0x44e4c0', '0x44e5d0', '0x4404a0', '0x440a10', '0x440af0', '0x440c10', '0x43d1a0', '0x43d200', '0x4142b0', '0x42ae70', '0x404870', '0x404b40', '0x404b90', '0x4077c0', '0x56cfcc']
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.549s
+
+FAILED (failures=2)

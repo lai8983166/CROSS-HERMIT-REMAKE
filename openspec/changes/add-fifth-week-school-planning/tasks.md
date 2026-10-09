@@ -102,7 +102,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 25. Independent scene resource provenance
 
-- [ ] 25.1 Export source-only minimap/pathfinding/texture inputs, separate frozen native fixtures and exact current-map runtime atlas/manifest. Verify native dimensions/fog/relocations against original bytes, malformed inputs, old source regressions and saved image pixels; inspect previews, document and commit locally.
+- [x] 25.1 Export source-only minimap/pathfinding/texture inputs, separate frozen native fixtures and exact current-map runtime atlas/manifest. Verify native dimensions/fog/relocations against original bytes, malformed inputs, old source regressions and saved image pixels; inspect previews, document and commit locally.
 
 ## 26. Interactive current-map preview
 
