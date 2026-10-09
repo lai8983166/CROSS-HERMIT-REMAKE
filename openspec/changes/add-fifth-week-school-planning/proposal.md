@@ -35,3 +35,7 @@ Continue actual pending16 dispatch and native outer tactical construction with e
 ## Native resource loading extension (2026-10-09)
 
 Continue the same current-school pending16 pipeline through original path composition, file loader and texture-container traversal for common/TactStart05/Gybc_00, then load the source-selected current scene script. Stop before the first tactical phase update. File/heap/CRT and DirectX upload remain explicit external primitives; UnitCtrl construction remains unresolved. Export an independent byte-derived resource catalog and verify all parsed entries, exact script selection, refusal cases and persistent retention. No battlefield or actual battle is claimed.
+
+## UnitCtrl and logical scene map extension (2026-10-09)
+
+Continue actual pending16 through native logical UnitCtrl, AI/animation/event linked lists and generic appearance-table construction. Continue natural startup through phase0 into phase2 and source-selected logical scene map loading, stopping at the scene graphics request. Export independently decoded current-map inputs and original texture preview with source/pixel provenance. Graphics/fonts/audio remain declared primitives; enemy/event/VM placement and playable battle remain subsequent stages.

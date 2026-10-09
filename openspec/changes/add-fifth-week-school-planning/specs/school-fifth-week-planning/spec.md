@@ -153,3 +153,25 @@ The system SHALL export byte-derived container inputs and script selection indep
 #### Scenario: Malformed resource refusal
 - **WHEN** container sizes, offsets, entry types or source identities are inconsistent
 - **THEN** validation refuses the resource without accepting fabricated battlefield data
+
+### Requirement: Native logical UnitCtrl and scene map initialization
+The system SHALL execute native logical UnitCtrl, linked-list and vector initialization and the original generic appearance-grid construction on actual ready current-school CPU branches. It SHALL continue natural tactical phases to source-selected logical map loading and stop at the next scene graphics resource request. It MUST retain finite memory bounds and explicit graphics/font/audio/random primitives without claiming enemy/event/VM placement or playable battle.
+
+#### Scenario: Ready current squad initializes logical scene map
+- **WHEN** native pending16 startup proceeds from a ready current school
+- **THEN** original logical constructors and appearance-grid code execute, phase0 transitions naturally to phase2, and source-selected logical map and cleared map scratch buffers have verified ownership while roles/date/MVP remain unchanged
+
+#### Scenario: Refused school initializes no scene map
+- **WHEN** school readiness fails
+- **THEN** UnitCtrl, appearance grid and logical map allocation do not execute
+
+### Requirement: Independent current map and original texture provenance
+The system SHALL export current scene map selection and logical map bytes independently from native output fixtures. It SHALL decode the original map texture container selected by the source table and validate entry offsets, dimensions and pixels with strict malformed-input refusal. Existing saves and historical reports MUST remain unchanged.
+
+#### Scenario: Verify current scene map resources
+- **WHEN** the selected original scene map files are decoded
+- **THEN** metadata matches native logical map ownership and original texture pixels form an inspected source preview, without substituting demo units or a fabricated battlefield
+
+#### Scenario: Reject inconsistent map data
+- **WHEN** map header, container offsets, texture dimensions or source identities differ
+- **THEN** export refuses the input without accepting scene placement or modifying saves

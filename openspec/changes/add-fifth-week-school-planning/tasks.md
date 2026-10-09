@@ -83,3 +83,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 20. Resource loading acceptance
 
 - [x] 20.1 Run relevant source/export regression, complete model and strict spec checks, verify unchanged save fingerprints and historical evidence, publish immutable acceptance/current progress, verify tracked bytes and commit locally without pushing.
+
+## 21. Native logical UnitCtrl and scene map
+
+- [ ] 21.1 Execute native logical UnitCtrl child/list/vector initialization and original generic appearance-grid construction on actual ready school CPU branches; continue natural tactical phases through source-selected logical map loading, stopping at the next scene graphics resource request. Verify refusals, retained persistent/current records, finite guards, exact map buffers and explicit graphics/font/audio/random boundaries; document and commit locally.
+
+## 22. Independent current-map export
+
+- [ ] 22.1 Export source-only current scene map selection/logic metadata and original map texture preview with byte/pixel provenance, separate from native fixtures. Verify native map/scratch fields and generic grid invariants, malformed data and old resource regressions; inspect the decoded original-map preview, document and commit locally.
+
+## 23. Scene map integration acceptance
+
+- [ ] 23.1 Run relevant source/export regression, full model and strict spec checks; verify old evidence and save fingerprints, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing. Actual scene VM/enemies/events/battle remain explicit next stages.
