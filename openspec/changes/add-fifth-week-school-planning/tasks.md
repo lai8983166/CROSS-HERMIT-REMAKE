@@ -138,7 +138,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 34. Native map common and first current-unit input
 
-- [ ] 34.1 Continue actual three ready/two refusal school branches through mapcom load/pointer traversal, original current-record preparation and first176-byte copy; stop before4680B0 work construction, verify finite ownership/read-only handles, allowed current changes and persistent/effect retention, document and commit locally.
+- [x] 34.1 Continue actual three ready/two refusal school branches through mapcom load/pointer traversal, original current-record preparation and first176-byte copy; stop before4680B0 work construction, verify finite ownership/read-only handles, allowed current changes and persistent/effect retention, document and commit locally.
 
 ## 35. Independent map common and preparation provenance
 
