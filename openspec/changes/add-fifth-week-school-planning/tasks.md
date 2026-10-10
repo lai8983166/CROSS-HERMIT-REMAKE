@@ -234,7 +234,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 58. Native second scene-unit input and cache queries
 
-- [ ] 58.1 Resume actual first NPC return through original progress, ordinal1 record/work prefix and distinct controller allocation; stop before mode0 archive load, retain all other mapped bytes and three-ready/two-refusal cases. Separately run declared all35 ordered466DA0 queries/insertion inputs plus signed/duplicate/empty/full boundary probes, document and commit locally.
+- [x] 58.1 Resume actual first NPC return through original progress, ordinal1 record/work prefix and distinct controller allocation; stop before mode0 archive load, retain all other mapped bytes and three-ready/two-refusal cases. Separately run declared all35 ordered466DA0 queries/insertion inputs plus signed/duplicate/empty/full boundary probes, document and commit locally.
 
 ## 59. Independent second scene input and cache provenance
 
