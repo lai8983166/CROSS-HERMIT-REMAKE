@@ -210,7 +210,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 52. Native scene-unit work prefixes
 
-- [ ] 52.1 Resume actual first scene-unit4680B0 through original NPC status/template and job/palette/cache/controller initialization, stop before natural animation loading; separately execute all35 isolated scene5 prefixes with declared inputs, verify finite writes/retained bytes/refusals, document and commit locally.
+- [x] 52.1 Resume actual first scene-unit4680B0 through original NPC status/template and job/palette/cache/controller initialization, stop before natural animation loading; separately execute all35 isolated scene5 prefixes with declared inputs, verify finite writes/retained bytes/refusals, document and commit locally.
 
 ## 53. Independent scene-unit work provenance
 
