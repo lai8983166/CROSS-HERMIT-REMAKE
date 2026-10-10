@@ -47,3 +47,7 @@ Continue naturally from the verified scene graphics request through original MAP
 ## Unit reset and effect animation metadata extension (2026-10-10)
 
 Continue the paused original school CPU through467EB0 work reset, original relation setup and text-cache request loops, then466000 effect controller construction and exact read-only Efct.bin loading/metadata copy. Text rasterization and existing graphics objects remain explicitly declared boundaries. Stop at the effect texture binding entry before accepting a fabricated animation object. Independently decode text-table inputs and effect animation/container metadata, verify original pointers, retained records and refusal cases, and preserve the current graphical map/save behavior. Current/enemy work construction, scene VM and placement remain later dependencies.
+
+## Effect texture and work initialization extension (2026-10-10)
+
+Continue actual school CPU through original effect texture slot selection, all Efct texture/header records and effect work/initial animation setup. Declare GPU upload and the source dynamic-slot assertion-dialog ignore input explicitly. Stop at the following mapcom resource request before current/enemy work. Independently verify every texture entry and effect work/program input; preserve historical/save/UI evidence and commit each stage locally.

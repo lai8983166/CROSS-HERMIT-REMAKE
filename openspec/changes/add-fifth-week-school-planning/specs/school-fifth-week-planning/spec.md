@@ -215,3 +215,21 @@ The system SHALL independently decode original text pointer tables and effect co
 #### Scenario: Compare native preparation to source bytes
 - **WHEN** supported original text and effect inputs are decoded
 - **THEN** every requested string/destination and effect metadata byte/pointer matches the original source, while current graphical map behavior remains unchanged
+
+### Requirement: Native effect textures and work initialization
+The system SHALL continue actual current-school CPU through source-selected effect texture slot, original texture/header records, metadata retention/file release and effect work/initial animation setup. GPU and the unconditional allocation debug-dialog input MUST be declared. It MUST stop at the following mapcom request and preserve roles/current records without claiming current/enemy placement or battlefield rendering.
+
+#### Scenario: Ready school initializes effect textures and work
+- **WHEN** the actual ready unit-assets checkpoint reaches41EBF0
+- **THEN** every original effect texture entry and work record is verified, the original file releases only after binding, and execution stops at the next mapcom resource request
+
+#### Scenario: Unready school initializes no effects
+- **WHEN** current school readiness fails
+- **THEN** no effect texture slot, work or animation setup executes
+
+### Requirement: Independent effect texture provenance
+The system SHALL independently validate original effect image records and initial animation/program/work inputs, separate from frozen native outputs, with malformed data refusal and historical/save/runtime retention.
+
+#### Scenario: Match original effect image and work data
+- **WHEN** supported effect resources are decoded
+- **THEN** all native offsets, headers, dimensions, work/program pointers and initial duration/descriptor fields match independent original bytes

@@ -123,3 +123,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 30. Unit reset and effect metadata acceptance
 
 - [x] 30.1 Run relevant source/export regression, complete model and strict specification checks, retain prior map UI evidence and verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifacts/tree and commit locally without pushing.
+
+## 31. Native effect texture and work initialization
+
+- [ ] 31.1 Continue actual three ready/two refusal school branches through41EBF0 native effect texture binding, file release and effect work/initial animation setup; declare GPU and exact debug-dialog input, stop at mapcom request, verify finite writes/allocations/record retention, document and commit locally.
+
+## 32. Independent effect texture and work provenance
+
+- [ ] 32.1 Export original effect texture headers and animation/work inputs independently from fixed native fixtures, verify all entries and initial work fields, reject malformed containers/images, preserve historical source parsers, document and commit locally.
+
+## 33. Effect initialization integration acceptance
+
+- [ ] 33.1 Run relevant source/export regression, full model and strict specs; verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked bytes/tree and commit locally without pushing.
