@@ -202,7 +202,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 50. Independent scene-unit record provenance
 
-- [ ] 50.1 Independently decode original scene/template/profile/job/archetype/formula/normalization/overlay inputs; compare complete176-byte native records for all35 declared scene5 templates and actual first record, distinguish active/deferred/NPC categories from deployed enemies, reject unsupported inputs, export separate rules/evidence and document/commit locally.
+- [x] 50.1 Independently decode original scene/template/profile/job/archetype/formula/normalization/overlay inputs; compare complete176-byte native records for all35 declared scene5 templates and actual first record, distinguish active/deferred/NPC categories from deployed enemies, reject unsupported inputs, export separate rules/evidence and document/commit locally.
 
 ## 51. Scene-unit record preparation acceptance
 
