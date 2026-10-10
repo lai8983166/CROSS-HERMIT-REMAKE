@@ -16,4 +16,6 @@
 
 规则导出到`prototype/data/school_first_unit_animation_rules.json`，固定SHA执行fixture另存`prototype/data/school_first_unit_animation_evidence.json`。它们不能作为运行时已出场单位快照。正式连续学校报告与最终检查见[验收记录](../analysis/school-first-unit-animation-final-20261010/README.md)。旧报告、Godot运行时/界面/素材和version4十项存档规则保持；本轮没有新窗口渲染。
 
+三种实际就绪分支的完整数据逐项匹配独立来源，释放时文件SHA均为`770f212ec26b960778285472da544ab60a92bdecb28489e03ddc242a166bdf40`。八项原版/来源专项检查通过，包含坏段偏移、图像、标记/填充、调色板长度、控制对象、变体及内存范围/重叠拒绝。原版执行阶段本地提交`b511f8e`，未push。
+
 下一步从`467147`执行动画工作绑定、初始动作和单位构造后续，再完成剩余当前队伍、敌人、`t0005` VM及真实位置/事件，最后接当前学校阵容的图形战斗。

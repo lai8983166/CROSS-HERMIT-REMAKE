@@ -166,7 +166,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 41. Independent first unit animation provenance
 
-- [ ] 41.1 Decode original archive/EXE metadata, texture records and palette/mask upload inputs independently from fixed native fixtures; compare complete pointers/records/pixels/palettes, reject malformed inputs, export separate rules/evidence, document and commit locally.
+- [x] 41.1 Decode original archive/EXE metadata, texture records and palette/mask upload inputs independently from fixed native fixtures; compare complete pointers/records/pixels/palettes, reject malformed inputs, export separate rules/evidence, document and commit locally.
 
 ## 42. First unit animation integration acceptance
 
