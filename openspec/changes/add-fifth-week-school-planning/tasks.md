@@ -190,7 +190,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 47. Independent current-unit constructor provenance
 
-- [ ] 47.1 Independently decode original selection/order, progress, cache/job/palette/resource and constructor inputs for jobs6/7/10; compare every current work/record/controller/metadata/texture/palette/cell byte, test declared cache reuse separately from actual school cases, reject unsupported inputs, export separate rules/evidence and document/commit locally.
+- [x] 47.1 Independently decode original selection/order, progress, cache/job/palette/resource and constructor inputs for jobs6/7/10; compare every current work/record/controller/metadata/texture/palette/cell byte, test declared cache reuse separately from actual school cases, reject unsupported inputs, export separate rules/evidence and document/commit locally.
 
 ## 48. Current-unit construction integration acceptance
 
