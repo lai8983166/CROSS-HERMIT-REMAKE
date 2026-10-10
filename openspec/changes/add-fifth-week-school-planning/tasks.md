@@ -126,7 +126,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 31. Native effect texture and work initialization
 
-- [ ] 31.1 Continue actual three ready/two refusal school branches through41EBF0 native effect texture binding, file release and effect work/initial animation setup; declare GPU and exact debug-dialog input, stop at mapcom request, verify finite writes/allocations/record retention, document and commit locally.
+- [x] 31.1 Continue actual three ready/two refusal school branches through41EBF0 native effect texture binding, file release and effect work/initial animation setup; declare GPU, verify source slot100 bypasses dynamic-slot assertion, stop at mapcom request, verify finite writes/allocations/record retention, document and commit locally.
 
 ## 32. Independent effect texture and work provenance
 

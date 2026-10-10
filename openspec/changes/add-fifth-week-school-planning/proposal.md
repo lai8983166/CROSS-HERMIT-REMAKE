@@ -50,4 +50,4 @@ Continue the paused original school CPU through467EB0 work reset, original relat
 
 ## Effect texture and work initialization extension (2026-10-10)
 
-Continue actual school CPU through original effect texture slot selection, all Efct texture/header records and effect work/initial animation setup. Declare GPU upload and the source dynamic-slot assertion-dialog ignore input explicitly. Stop at the following mapcom resource request before current/enemy work. Independently verify every texture entry and effect work/program input; preserve historical/save/UI evidence and commit each stage locally.
+Continue actual school CPU through original effect texture slot selection, all Efct texture/header records and effect work/initial animation setup. Declare GPU upload explicitly and reject unexpected assertions: source4660FC selects slot100, bypassing the dynamic-slot assertion dialog. Stop at the following mapcom resource request before current/enemy work. Independently verify every texture entry and effect work/program input; preserve historical/save/UI evidence and commit each stage locally.

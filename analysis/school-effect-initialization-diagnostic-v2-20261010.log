@@ -1,0 +1,8 @@
+DECLARED independent reset 1344
+DECLARED independent metadata before_effect_texture_binding
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\effect_diagnostic.py", line 24, in <module>
+    e.run_effect_thread()
+  File "F:\project\chaomofa\tools\school_effect_initialization_emulation.py", line 182, in run_effect_thread
+    raise RuntimeError(f'effect missed mapcom boundary at {self.uc.reg_read(UC_X86_REG_EIP):#x}')
+RuntimeError: effect missed mapcom boundary at 0x404993

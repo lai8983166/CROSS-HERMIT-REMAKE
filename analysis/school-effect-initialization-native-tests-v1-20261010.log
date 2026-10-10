@@ -1,0 +1,17 @@
+test_actual_school_cases_source_slot_and_stop (tools.tests.test_school_effect_initialization_emulation.EffectNativeTests) ... ok
+test_guard_rejects_roles_other_slots_freed_buffers_and_assertions (tools.tests.test_school_effect_initialization_emulation.EffectNativeTests) ... ERROR
+test_texture_count_owned_allocations_and_explicit_gpu_boundaries (tools.tests.test_school_effect_initialization_emulation.EffectNativeTests) ... ok
+test_work_initialization_and_retention (tools.tests.test_school_effect_initialization_emulation.EffectNativeTests) ... ok
+
+======================================================================
+ERROR: test_guard_rejects_roles_other_slots_freed_buffers_and_assertions (tools.tests.test_school_effect_initialization_emulation.EffectNativeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_effect_initialization_emulation.py", line 84, in test_guard_rejects_roles_other_slots_freed_buffers_and_assertions
+    for p in (CHAR_BASE,UNITS,0x7CF34C,0x7A528E,ASSET_POOL,e.texture_table,e.texture_table+101*8):
+AttributeError: 'SchoolEffectInitializationEmulator' object has no attribute 'texture_table'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.256s
+
+FAILED (errors=1)

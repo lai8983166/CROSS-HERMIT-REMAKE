@@ -1,0 +1,16 @@
+DECLARED independent reset 1344
+DECLARED independent metadata before_effect_texture_binding
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\effect_diagnostic.py", line 24, in <module>
+    e.run_effect_thread()
+  File "F:\project\chaomofa\tools\school_effect_initialization_emulation.py", line 173, in run_effect_thread
+    self.uc.emu_start(self.uc.reg_read(UC_X86_REG_EIP),RETURN,timeout=30_000_000,count=12_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1077, in __hook_mem_access_cb
+    callback(uc, access, address, size, value, user_data)
+  File "F:\project\chaomofa\tools\school_effect_initialization_emulation.py", line 50, in _write_hook
+    raise RuntimeError(f'effect finite guard {address:#x}/{size} at {uc.reg_read(UC_X86_REG_EIP):#x}')
+RuntimeError: effect finite guard 0x1000b64/4 at 0x41f1e1

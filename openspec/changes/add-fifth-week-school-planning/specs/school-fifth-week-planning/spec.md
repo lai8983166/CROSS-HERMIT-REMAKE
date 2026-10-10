@@ -217,7 +217,7 @@ The system SHALL independently decode original text pointer tables and effect co
 - **THEN** every requested string/destination and effect metadata byte/pointer matches the original source, while current graphical map behavior remains unchanged
 
 ### Requirement: Native effect textures and work initialization
-The system SHALL continue actual current-school CPU through source-selected effect texture slot, original texture/header records, metadata retention/file release and effect work/initial animation setup. GPU and the unconditional allocation debug-dialog input MUST be declared. It MUST stop at the following mapcom request and preserve roles/current records without claiming current/enemy placement or battlefield rendering.
+The system SHALL continue actual current-school CPU through source-selected effect texture slot, original texture/header records, metadata retention/file release and effect work/initial animation setup. GPU MUST be declared. Source slot100 selection MUST bypass dynamic-slot search and its assertion dialog; unexpected assertions MUST fail. It MUST stop at the following mapcom request and preserve roles/current records without claiming current/enemy placement or battlefield rendering.
 
 #### Scenario: Ready school initializes effect textures and work
 - **WHEN** the actual ready unit-assets checkpoint reaches41EBF0
