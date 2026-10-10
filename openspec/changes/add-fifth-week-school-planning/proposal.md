@@ -75,3 +75,7 @@ Continue the actual school CPU from the first constructor return through both cu
 ## Scene-unit template records (2026-10-10)
 
 Continue453540 scene-selected template preparation. Scene5 contains35 templates, including NPC/friendly, active enemies and deferred event waves; do not label all templates deployed enemies. Execute first4DA450/4DA5F0/4DFC20/4E0A00 on the actual school stack and stop before enemy-loop4680B0. Separately derive all35 records on the original CPU with explicitly declared driver calls, independently verify full numeric/scene overlays, preserve prior units/resources/runtime/save/history and commit stages locally. Full enemy work/assets/placement/VM remain subsequent stages.
+
+## Scene-unit work prefixes (2026-10-10)
+
+Continue the actual first scene-unit4680B0 through NPC status/template and job/palette/cache/controller construction, stopping at its natural animation file request before loading. Separately execute all35 scene5 constructor prefixes with declared isolated records/cache inputs; inventory exact source-selected archives without claiming that the actual full loop, textures, constructor tails, placement or VM ran. Verify complete initialized bytes independently, preserve runtime/save/history and commit each completed stage locally.

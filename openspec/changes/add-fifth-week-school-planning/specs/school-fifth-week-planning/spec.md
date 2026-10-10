@@ -341,3 +341,21 @@ The system SHALL decode original template/profile/job/archetype/formula/normaliz
 #### Scenario: Verify scene templates without claiming deployment
 - **WHEN** original scene5 templates are transformed under their declared character inputs
 - **THEN** every record byte matches independent source derivation and active/deferred/NPC fields remain distinct from unexecuted unit construction, placement and VM/event scheduling
+
+### Requirement: Native scene-unit work prefix preparation
+The system SHALL resume the actual first scene-unit4680B0 through original category/status/template, job/palette/cache and controller initialization, stopping before natural animation loading. It MUST bound selected work/record/cache/counter/controller ownership, retain other mapped bytes and distinguish separately declared all35 isolated prefix calls from actual scene-loop completion, constructor tails, placement and VM.
+
+#### Scenario: Ready school requests first NPC animation
+- **WHEN** actual scene5 first record preparation has completed
+- **THEN** original NPC status and scene template branches execute, a finite controller is initialized and the source-selected file request is recorded without loading the archive or completing4680B0
+
+#### Scenario: Refused school prepares no scene work
+- **WHEN** departure readiness refuses
+- **THEN** no scene-unit work prefix, cache/controller allocation or animation request executes
+
+### Requirement: Independent scene-unit work provenance
+The system SHALL independently decode original work/controller stores, category/status/template overlays and job/palette/cache selection for all35 scene5 templates, compare full initialized bytes and resource arguments separately from frozen native output, reject unsupported inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify source-selected scene work and resources
+- **WHEN** original scene5 records are constructed under explicitly declared isolated inputs
+- **THEN** all initialized bytes and mode0/1/2 animation arguments match source-derived rules, exact archives are inventoried read-only and no deployed scene or loaded native animation is claimed
