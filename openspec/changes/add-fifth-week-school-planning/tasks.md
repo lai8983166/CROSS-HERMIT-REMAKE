@@ -178,7 +178,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 44. Independent first unit constructor provenance
 
-- [ ] 44.1 Decode original EXE action/direction/program and constructor tail inputs independently, compare complete work/record/scratch and cell bytes against frozen native cases, reject unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 44.1 Decode original EXE action/direction/program and constructor tail inputs independently, compare complete work/record/scratch and cell bytes against frozen native cases, reject unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 45. First unit constructor integration acceptance
 

@@ -17,3 +17,5 @@
 来源工具：`tools/school_first_unit_constructor_emulation.py`与`tools/school_first_unit_constructor_catalog.py`。本阶段不改变Godot界面、素材、运行时或存档规则。最终学校分支、回归和原字节验收见[本轮验收](../analysis/school-first-unit-constructor-final-20261010/README.md)。下一步继续调用方的其余当前队伍及敌人构造，再执行`t0005` VM、双方真实站位/事件并接入学校阵容的图形战斗。
 
 三种实际就绪分支均完成首个构造体，两种拒绝分支不建立单位工作。四项原版专项检查通过。正式报告SHA256为`406331ecf5f8441f17d56a34a0324a16c9be9c68f610b208e532f3a7a8faf921`；完整链各11次只读文件句柄闭合。
+
+原版执行阶段本地提交`d7898f9`。独立来源读取48处EXE指令输入及五段分支体，核对完整1,312字节工作、176字节记录、42字节共享区和12,288字节计数区。八项原版/来源专项通过，包含编码/长度、身份/职业/状态/方向、坐标边界、分配范围/重叠、未绑定工作/复制记录所有权、计数溢出和未支持程序拒绝。规则导出`prototype/data/school_first_unit_constructor_rules.json`，固定执行fixture另存`prototype/data/school_first_unit_constructor_evidence.json`；它们不作为已部署战斗世界使用。
