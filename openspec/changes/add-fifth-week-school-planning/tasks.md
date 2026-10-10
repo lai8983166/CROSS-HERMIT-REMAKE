@@ -150,7 +150,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 37. Native first unit work and animation cache request
 
-- [ ] 37.1 Continue actual three ready/two refusal school branches through first4680B0 work/status initialization, original job/palette/cache lookup, finite controller allocation/construction/binding; stop at the natural unit animation file request before loading, verify bounded writes and current/persistent/map/effect retention, document and commit locally.
+- [x] 37.1 Continue actual three ready/two refusal school branches through first4680B0 work/status initialization, original job/palette/cache lookup, finite controller allocation/construction/binding; stop at the natural unit animation file request before loading, verify bounded writes and current/persistent/map/effect retention, document and commit locally.
 
 ## 38. Independent first unit work provenance
 
