@@ -251,3 +251,21 @@ The system SHALL decode original mapcom offsets and executable preparation/selec
 #### Scenario: Compare native map common and selected record to original inputs
 - **WHEN** supported original inputs are independently decoded
 - **THEN** each retained pointer and first selected/copied record matches original bytes and policy, while full current/enemy work, VM and placement remain pending
+
+### Requirement: Native first unit work and animation cache request
+The system SHALL resume actual4680B0 through work clearing/record binding/sentinels/status initialization and source job/palette/cache lookup, finite controller allocation/construction/binding. It MUST stop at the natural unit animation file request before loading, preserve current global/persistent/map/effect bytes, restrict writes to the selected work/copied record/cache/counter/controller and declare primitives without claiming a completed constructor or unit appearance.
+
+#### Scenario: Ready school reaches the first unit art request
+- **WHEN** the actual ready map common checkpoint resumes4680B0
+- **THEN** initialized work/status/cache/controller bytes and source-selected resource arguments are recorded, and execution stops at4500B0 called by464EB0 without returning constructor success
+
+#### Scenario: Unready school initializes no current work
+- **WHEN** departure readiness refuses
+- **THEN** no current work, animation-cache allocation or unit art request occurs
+
+### Requirement: Independent first unit work provenance
+The system SHALL independently derive original work/status/controller bytes and job/palette/cache/resource inputs from EXE source bytes, separate from frozen native output, with unsupported/malformed input refusal and historical/runtime/save retention.
+
+#### Scenario: Compare complete first work prefix to original source
+- **WHEN** supported original source inputs are decoded
+- **THEN** every initialized work/copied-record/controller byte and natural file argument matches original rules, while resource loading and the constructor tail remain unexecuted

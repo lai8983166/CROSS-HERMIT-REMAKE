@@ -55,3 +55,7 @@ Continue actual school CPU through original effect texture slot selection, all E
 ## Map common resource and first current-unit input (2026-10-10)
 
 Continue the actual paused school CPU through read-only mapcom.bin loading and native top-level/nested pointer traversal. Follow original current-record preparation and the first source-selected 176-byte unit-record copy, stopping before4680B0 constructs its work. Verify only original state/recovery fields may change in current records, retain persistent roles/MVP/date and prior effects, independently decode the map common container and preparation/selection policy, and preserve old runtime/save evidence. Full current/enemy construction, VM and placement remain subsequent dependencies.
+
+## First unit work and animation cache request (2026-10-10)
+
+Continue the actual first4680B0 input through finite work clearing, record binding/sentinels, initial status and original animation-cache lookup/allocation/controller construction. Follow original job/palette selection and stop at the natural unit animation resource request before file loading. Independently decode every initialized work/record byte, status template and job/cache/controller input; retain current global records, persistent data, previous map/effect bytes and runtime/save evidence. The constructor tail, unit animation resources, remaining current/enemy work, VM and placement remain following dependencies.

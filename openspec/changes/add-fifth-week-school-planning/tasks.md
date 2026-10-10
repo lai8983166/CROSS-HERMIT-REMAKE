@@ -147,3 +147,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 36. Map common integration acceptance
 
 - [x] 36.1 Run relevant source/export regression, full model and strict specs, verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
+
+## 37. Native first unit work and animation cache request
+
+- [ ] 37.1 Continue actual three ready/two refusal school branches through first4680B0 work/status initialization, original job/palette/cache lookup, finite controller allocation/construction/binding; stop at the natural unit animation file request before loading, verify bounded writes and current/persistent/map/effect retention, document and commit locally.
+
+## 38. Independent first unit work provenance
+
+- [ ] 38.1 Decode original EXE work/status/cache/controller/job/palette inputs independently from native output, compare complete initialized bytes and source-selected file arguments, reject unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 39. First unit work integration acceptance
+
+- [ ] 39.1 Run relevant source/export regression, full model and strict specs; retain runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
