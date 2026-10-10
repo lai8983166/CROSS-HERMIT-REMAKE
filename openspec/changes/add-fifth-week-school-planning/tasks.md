@@ -158,4 +158,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 39. First unit work integration acceptance
 
-- [ ] 39.1 Run relevant source/export regression, full model and strict specs; retain runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
+- [x] 39.1 Run relevant source/export regression, full model and strict specs; retain runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
