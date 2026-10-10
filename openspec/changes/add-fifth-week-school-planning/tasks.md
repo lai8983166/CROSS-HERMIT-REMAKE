@@ -154,7 +154,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 38. Independent first unit work provenance
 
-- [ ] 38.1 Decode original EXE work/status/cache/controller/job/palette inputs independently from native output, compare complete initialized bytes and source-selected file arguments, reject unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 38.1 Decode original EXE work/status/cache/controller/job/palette inputs independently from native output, compare complete initialized bytes and source-selected file arguments, reject unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 39. First unit work integration acceptance
 
