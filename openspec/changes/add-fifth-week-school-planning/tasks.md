@@ -186,7 +186,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 46. Native complete current-unit construction
 
-- [ ] 46.1 Resume4533FA on the actual school CPU, execute both source current-record loops, exact copy and loading-progress boundaries, remaining4680B0 constructors, job-selected archive/cache handling and native initial work; stop before453540 enemy construction, verify finite ownership/current-persistent-resource retention and document/commit locally.
+- [x] 46.1 Resume4533FA on the actual school CPU, execute both source current-record loops, exact copy and loading-progress boundaries, remaining4680B0 constructors, job-selected archive/cache handling and native initial work; stop before453540 enemy construction, verify finite ownership/current-persistent-resource retention and document/commit locally.
 
 ## 47. Independent current-unit constructor provenance
 
