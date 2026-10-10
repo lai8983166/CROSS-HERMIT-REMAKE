@@ -87,3 +87,7 @@ Resume the actual first scene-unit animation request, load/bind its exact a1a ar
 ## Second scene-unit input and cache policy (2026-10-10)
 
 Continue the actual first NPC return through original progress and the second template record/work prefix, stopping before its mode0 animation load. Independently verify the complete next record/prefix/progress bytes and retained first NPC/current resources. Separately run original cache lookup for all35 ordered template keys with explicitly declared cache insertions, plus signed/duplicate/empty/full-table probes. This establishes lookup policy, not completed remaining constructors, cache binding or deployment. Commit native/source/acceptance stages locally.
+
+## Second scene-unit complete constructor (2026-10-10)
+
+Continue the actual second scene-unit51e variant0/mode0 request through read-only archive loading, native binding and complete special-role387 constructor. Independently derive resource/palette-mode and complete work/record/scratch/cell bytes, retain prior NPC/current/resources and runtime/save/history. Stop at natural453630 before ordinal2. Commit native/source/acceptance stages locally.

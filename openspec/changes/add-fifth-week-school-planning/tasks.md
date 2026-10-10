@@ -243,3 +243,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 60. Second scene input and cache acceptance
 
 - [x] 60.1 Run source/export, full model and strict-spec regression; preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 61. Native second scene-unit constructor completion
+
+- [ ] 61.1 Resume actual51e variant0/mode0 request through native read-only binding and complete special-role387 constructor, stop at natural453630 before ordinal2, verify three-ready/two-refusal/finite ownership/all-other-byte retention, document and commit locally.
+
+## 62. Independent second scene-unit constructor provenance
+
+- [ ] 62.1 Decode original51e/EXE mode0 palette/texture/initial program and special-role branch inputs independently, compare complete controller/metadata/texture/work/record/scratch/cell bytes, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 63. Second scene-unit constructor acceptance
+
+- [ ] 63.1 Run full source/model/strict-spec regression, retain runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.

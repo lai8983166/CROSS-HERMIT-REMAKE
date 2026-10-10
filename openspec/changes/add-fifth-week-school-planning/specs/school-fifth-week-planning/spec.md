@@ -391,3 +391,17 @@ The system SHALL independently derive second record/prefix/progress and original
 #### Scenario: Verify ordered cache keys and boundary queries
 - **WHEN** declared ordered keys and signed/duplicate/empty/full cache probes execute original lookup
 - **THEN** pure source lookup matches native return pointers and unchanged cache bytes; missing-key insertions remain explicitly declared driver operations
+
+### Requirement: Native second scene-unit constructor completion
+The system SHALL resume the actual second scene-unit mode0 archive request through original read-only51e loading, metadata/texture/controller binding, file release and complete special-role387 constructor. It MUST enforce finite owned writes and retained prior/current/persistent/resource bytes, declare external primitives precisely and stop at natural453630 before ordinal2, deployment or VM.
+
+#### Scenario: Ready school completes second scene unit
+- **WHEN** actual school execution reaches51e variant0/mode0 loading
+- **THEN** native binding and complete constructor return naturally with closed handles and verified special-role record/work/cell changes; refusal branches execute neither
+
+### Requirement: Independent second scene-unit constructor provenance
+The system SHALL independently derive51e archive/EXE mode0 palette, texture and initial-program/special-role constructor inputs, compare complete resource/controller/work/record/scratch/cell bytes separately from frozen native output, reject malformed or unsupported inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify mode0 resource and special-role tail bytes
+- **WHEN** original second scene-unit inputs are decoded
+- **THEN** independent byte rules match all native binding and constructor outputs without claiming live GPU, complete scene loop, final deployment or VM execution
