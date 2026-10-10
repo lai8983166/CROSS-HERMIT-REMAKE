@@ -14,6 +14,8 @@
 
 独立EXE规则解析记录/工作/控制器初始化、进度和缓存扫描条件，核对完整实际第二个单位输入，以及每一次查询的返回地址、查询前后不变的缓存和声明插入后的全部缓存字节。规则与冻结输出分开导出，坏编码、错误长度、非法查询整数/接收器和不支持的记录/前缀输入拒绝。
 
+[规则导出](../prototype/data/school_scene_next_input_rules.json)和[冻结证据导出](../prototype/data/school_scene_next_input_evidence.json)逐字节再生成一致。原版边界检查4项、独立来源检查4项通过；实际三组完整记录/工作/缓存/控制器/计数器/进度，以及声明35次查询和6个边界探针均与来源规则一致。查询驱动还在写入前拒绝错误长度的缓存和非法整数，保证声明输入不能越过4096字节缓存范围。见[原版检查](../analysis/school-scene-next-input-native-tests-v1-20261010.log)与[来源检查](../analysis/school-scene-next-input-source-v1-20261010.log)。
+
 [实际学校报告](../analysis/school-scene-next-input-v1-20261010.json) · [声明缓存报告](../analysis/school-scene-cache-query-v1-20261010.json) · [原版驱动](../tools/school_scene_next_input_emulation.py) · [独立来源](../tools/school_scene_next_input_catalog.py) · [前轮首个NPC](school_scene_unit_constructor.md)。
 
 接下来加载并绑定51e的颜色0资源，完成特殊角色的构造尾部，再继续实际后续单位与缓存绑定复用。场景部署、t0005事件VM/波次和学校阵容的图形战斗仍待完成。本轮不改变试玩画面。

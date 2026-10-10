@@ -238,7 +238,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 59. Independent second scene input and cache provenance
 
-- [ ] 59.1 Independently decode original next template record/prefix/progress and cache lookup inputs, compare complete record/work/cache/controller/counter/progress and all query returns/unchanged bytes, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 59.1 Independently decode original next template record/prefix/progress and cache lookup inputs, compare complete record/work/cache/controller/counter/progress and all query returns/unchanged bytes, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 60. Second scene input and cache acceptance
 
