@@ -130,7 +130,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 32. Independent effect texture and work provenance
 
-- [ ] 32.1 Export original effect texture headers and animation/work inputs independently from fixed native fixtures, verify all entries and initial work fields, reject malformed containers/images, preserve historical source parsers, document and commit locally.
+- [x] 32.1 Export original effect texture headers and animation/work inputs independently from fixed native fixtures, verify all entries and initial work fields, reject malformed containers/images, preserve historical source parsers, document and commit locally.
 
 ## 33. Effect initialization integration acceptance
 
