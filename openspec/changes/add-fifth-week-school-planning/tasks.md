@@ -214,7 +214,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 53. Independent scene-unit work provenance
 
-- [ ] 53.1 Decode original work/controller/category/status/template and job/palette/cache inputs independently, compare complete bytes/resource arguments for actual first and all35 declared prefixes, inventory exact source archives, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 53.1 Decode original work/controller/category/status/template and job/palette/cache inputs independently, compare complete bytes/resource arguments for actual first and all35 declared prefixes, inventory exact source archives, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 54. Scene-unit work prefix acceptance
 
