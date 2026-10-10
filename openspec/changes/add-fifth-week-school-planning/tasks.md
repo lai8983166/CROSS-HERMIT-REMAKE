@@ -222,7 +222,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 55. Native first scene-unit animation and constructor
 
-- [ ] 55.1 Resume actual first scene-unit4500B0 through read-only archive, native metadata/palette/mask/textures and file release, capture467147 then finish constructor at natural453630; verify finite ownership/all-other-memory retention/three-ready-two-refusal cases, separately execute declared palette1/40 loader probes, document and commit locally.
+- [x] 55.1 Resume actual first scene-unit4500B0 through read-only archive, native metadata/palette/mask/textures and file release, capture467147 then finish constructor at natural453630; verify finite ownership/all-other-memory retention/three-ready-two-refusal cases, separately execute declared palette1/40 loader probes, document and commit locally.
 
 ## 56. Independent first scene-unit constructor provenance
 
