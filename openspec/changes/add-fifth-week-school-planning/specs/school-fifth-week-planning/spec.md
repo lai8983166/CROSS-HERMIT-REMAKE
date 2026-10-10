@@ -323,3 +323,21 @@ The system SHALL derive selection/order/progress/cache/job/palette/archive and c
 #### Scenario: Verify complete current units and cache ownership
 - **WHEN** supported original current-record inputs are decoded
 - **THEN** selected indices and every initialized work/record/controller/metadata/texture/palette/cell byte match the source, unsupported inputs are rejected and no final scene placement or live GPU output is claimed
+
+### Requirement: Native scene-unit record preparation
+The system SHALL continue actual453540 through scene5 template selection and original4DA450 first record derivation, stopping before enemy-loop4680B0. It MUST declare separate all35 template driver calls, bound writes to the selected record and exact transient profile scratch, retain all other current/persistent/resource bytes and distinguish templates from deployed enemies.
+
+#### Scenario: Actual school prepares first scene-unit record
+- **WHEN** the actual current-unit constructors have completed
+- **THEN** original scene/count/index selection and profile/numeric/overlay conversion prepare the first176-byte record at index249 without starting its unit-work constructor
+
+#### Scenario: Refused school has no scene-unit record
+- **WHEN** departure readiness refuses
+- **THEN** no453540 continuation or scene-unit record derivation runs
+
+### Requirement: Independent scene-unit record provenance
+The system SHALL decode original template/profile/job/archetype/formula/normalization/overlay inputs independently, compare complete176-byte records for all35 declared scene5 templates and the actual first record, reject unsupported inputs and preserve historical/runtime/save bytes.
+
+#### Scenario: Verify scene templates without claiming deployment
+- **WHEN** original scene5 templates are transformed under their declared character inputs
+- **THEN** every record byte matches independent source derivation and active/deferred/NPC fields remain distinct from unexecuted unit construction, placement and VM/event scheduling

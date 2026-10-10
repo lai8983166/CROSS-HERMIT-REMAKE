@@ -71,3 +71,7 @@ Finish the first source-selected4680B0 constructor on the actual school CPU, inc
 ## Complete current-unit construction (2026-10-10)
 
 Continue the actual school CPU from the first constructor return through both current-record selection loops and remaining unit constructors. Execute original loading-progress updates with explicit graphics/scheduler primitives; load exact original job6/7 archives and retain native cache/metadata/texture ownership. Stop at453540 before enemies. Independently verify selection/order, cache/resource/initial-work bytes and every retained object; preserve runtime/save/history and commit completed stages locally.
+
+## Scene-unit template records (2026-10-10)
+
+Continue453540 scene-selected template preparation. Scene5 contains35 templates, including NPC/friendly, active enemies and deferred event waves; do not label all templates deployed enemies. Execute first4DA450/4DA5F0/4DFC20/4E0A00 on the actual school stack and stop before enemy-loop4680B0. Separately derive all35 records on the original CPU with explicitly declared driver calls, independently verify full numeric/scene overlays, preserve prior units/resources/runtime/save/history and commit stages locally. Full enemy work/assets/placement/VM remain subsequent stages.
