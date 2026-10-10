@@ -19,3 +19,5 @@
 独立规则为`prototype/data/school_map_common_rules.json`，原版fixture为`prototype/data/school_map_common_evidence.json`，由`tools/school_map_common_catalog.py`分别导出。8项原版/来源专项检查通过；声明测试还读取实际拷贝目标内存核对176字节。原版执行阶段本地提交`829edbe`，未push。
 
 Godot界面、运行时、素材和version4十项存档规则保持。本阶段没有新窗口渲染或真实GPU见证，实际本周战斗仍关闭。下一步从首个`4680B0`构造体继续，完成当前/敌人工作体，再验证t0005 VM、真实双方出场和事件，最后接学校阵容的图形战斗。
+
+综合验收通过79项Python来源/导出、62套件409项Godot模型和30项严格规格。181个历史证据/运行时/界面/素材文件与上一提交`12a1923`原字节一致，十项存档指纹仍等于`b7391cc`。原版阶段`829edbe`、独立来源阶段`3c8fb43`按完成阶段本地提交，未push。[最终验收](../analysis/school-map-common-final-20261010/README.md)提供日志、当前记录变化和逐文件SHA；先前效果/地图验收保持。

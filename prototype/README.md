@@ -2,11 +2,11 @@
 
 默认入口: school_playground.tscn（图形化学校养成试玩，2026-10-09）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。Chapter018有126页，结束后可进入原版BG002_B职务室、阅读Chapter205的32页巡逻班对白，再调整第五周教师与学生。点击「必修冒险 · 出发准备」显示当前队伍，实际冒险战斗暂未开放，授课保持锁定。存档version4兼容version1/2/3，十项指纹未改。
 
-本轮继续实际第五周CPU，完成1,959条效果贴图记录绑定、原始Efct文件释放、25个效果工作槽与首条动画指令初始化。原版选择槽100，动态槽搜索/断言不执行。三种就绪分支成功，两种拒绝状态无效果初始化；当前学生与持久记录保持。GPU创建/上传仍为外部边界，停在mapcom资源请求前，当前/敌人工作体、t0005 VM和双方站位尚未执行。
+本轮继续实际第五周CPU，完成mapcom的69,368字节只读装载、4个顶层与33个子表指针选择、当前角色整理及首个176字节记录拷贝。三种就绪分支到达4680B0构造入口，两种拒绝状态无装载/拷贝；当前状态+0F从0变为1，持久角色/MVP/日期/头字段和已初始化效果保持。单位构造体、敌人工作、t0005 VM和双方站位尚未执行，GPU仍为外部边界。
 
-独立EXE指令/资源解析核对全部图片头/字节SHA、工作区与首动画/描述符。62套件409项模型、Python71项和严格规格30项通过。默认地图查看仍可拖动/缩放/适配/返回；163个历史证据、运行时/界面/素材文件及v4十项指纹保持原字节，上一轮92/100项地图窗口、155/165项出发页面与18张截图保留为历史证据。
+独立EXE指令/资源解析核对所有指针、整理前后记录和首个选择/拷贝，16组声明输入与原版CPU/拷贝目标逐字节一致。62套件409项模型、Python79项和严格规格30项通过。默认地图查看仍可拖动/缩放/适配/返回；181个历史证据、运行时/界面/素材文件及v4十项指纹保持原字节，上一轮92/100项地图窗口、155/165项出发页面与18张截图保留为历史证据。
 
-[本轮效果初始化验收](../analysis/school-effect-initialization-final-20261010/README.md) · [来源/边界](../docs/school_effect_initialization.md) · [前轮单位重置/元数据](../analysis/school-unit-assets-final-20261010/README.md) · [地图查看](../analysis/school-scene-resources-final-20261009/README.md) · [数值API](../docs/school_combat_records.md) · [试玩操作](../docs/school_playground.md)。33项完成，本地提交未push。下一步mapcom、当前/敌人工作体、t0005 VM和双方出场，再接图形战斗。
+[本轮地图共通资源验收](../analysis/school-map-common-final-20261010/README.md) · [来源/边界](../docs/school_map_common.md) · [前轮效果初始化](../analysis/school-effect-initialization-final-20261010/README.md) · [地图查看](../analysis/school-scene-resources-final-20261009/README.md) · [数值API](../docs/school_combat_records.md) · [试玩操作](../docs/school_playground.md)。36项完成，本地提交未push。下一步从4680B0继续当前/敌人工作体、t0005 VM和双方出场，再接图形战斗。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 
