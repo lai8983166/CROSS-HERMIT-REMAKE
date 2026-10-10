@@ -171,3 +171,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 42. First unit animation integration acceptance
 
 - [x] 42.1 Run relevant source/export regression, full model and strict specs, verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
+
+## 43. Native first unit constructor completion
+
+- [ ] 43.1 Resume the actual school CPU at467147, execute initial action/program binding and the remaining4680B0 constructor including coordinate/status/scratch initialization, stop at its natural4533FA return; verify finite writes, original map cell accounting and retained current/persistent/resource bytes, document and commit locally.
+
+## 44. Independent first unit constructor provenance
+
+- [ ] 44.1 Decode original EXE action/direction/program and constructor tail inputs independently, compare complete work/record/scratch and cell bytes against frozen native cases, reject unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 45. First unit constructor integration acceptance
+
+- [ ] 45.1 Run relevant source/export regression, full model and strict specs, verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.

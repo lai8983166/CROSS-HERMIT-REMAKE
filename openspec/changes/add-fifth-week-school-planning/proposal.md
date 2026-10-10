@@ -63,3 +63,7 @@ Continue the actual first4680B0 input through finite work clearing, record bindi
 ## First unit animation resource binding (2026-10-10)
 
 Resume the actual school CPU at the first unit-art request, load the exact source-selected archive read-only and execute original metadata copying, selected palette/mask lookup, complete texture record/header traversal, controller mode setting and temporary file release. Stop before467147 binds animation work into the selected unit, preserving its work/copied record and previous map/effect resources. Independently verify all archive/texture/palette inputs, native records and bounded ownership; retain historical/runtime/save evidence. GPU remains a declared primitive and this stage does not complete the unit constructor or place units.
+
+## First unit constructor completion (2026-10-10)
+
+Finish the first source-selected4680B0 constructor on the actual school CPU, including initial action/program binding, pre-placement coordinates, logical cell accounting and remaining status/scratch defaults. Stop at the natural caller4533FA before the next unit, independently verify complete work/record/scratch/cell bytes from original source, and preserve previous resources, runtime/save and history. This completes one constructor; remaining current/enemy units, scene VM, actual placement and graphical battle integration remain subsequent work.

@@ -287,3 +287,21 @@ The system SHALL independently decode original archive/EXE metadata, texture and
 #### Scenario: Verify original unit animation binding
 - **WHEN** supported original unit animation bytes are independently decoded
 - **THEN** retained pointers/controller fields, complete texture records and pixel/palette/mask inputs match the original sources without claiming GPU rendering or finished unit construction
+
+### Requirement: Native first unit constructor completion
+The system SHALL resume467147 on the actual school CPU, execute initial animation action/program binding and the remaining4680B0 coordinate, cell-accounting, scratch and status initialization, stopping at its natural4533FA return. It MUST restrict writes to finite original ownership and preserve copied/global records, persistent data and retained resource bytes. Constructor coordinates MUST be distinguished from later scene placement.
+
+#### Scenario: Ready school completes exactly its first constructor
+- **WHEN** the actual ready school CPU resumes after first unit resource loading
+- **THEN** the original constructor returns zero at4533FA with complete work/scratch/cell bytes recorded, before other unit constructors, scene VM or468910 placement execute
+
+#### Scenario: Refusal creates no completed unit
+- **WHEN** school departure readiness refuses
+- **THEN** no first unit constructor completion, animation work binding or map cell mutation occurs
+
+### Requirement: Independent first unit constructor provenance
+The system SHALL derive initial action/direction/program and constructor defaults independently from original EXE/archive inputs, compare complete resulting work/record/scratch/cell bytes separately from frozen native cases, reject unsupported inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify complete first constructor bytes
+- **WHEN** supported original pre-constructor inputs are decoded
+- **THEN** independent rules match the actual three-ready/two-refusal native outcomes without claiming final spawn positions, live GPU output or a completed battle world
