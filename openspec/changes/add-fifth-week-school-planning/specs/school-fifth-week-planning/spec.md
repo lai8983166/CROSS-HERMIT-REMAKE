@@ -233,3 +233,21 @@ The system SHALL independently validate original effect image records and initia
 #### Scenario: Match original effect image and work data
 - **WHEN** supported effect resources are decoded
 - **THEN** all native offsets, headers, dimensions, work/program pointers and initial duration/descriptor fields match independent original bytes
+
+### Requirement: Native map common and first current-unit input
+The system SHALL resume actual school execution through mapcom loading, four top-level and33 nested pointer selections, original current-record preparation and the first source-selected176-byte record copy. It MUST stop before4680B0 work construction, allow current writes only to source state/recovery fields, retain persistent roles/MVP/date and effects, and label file/heap/CRT boundaries without claiming battle placement.
+
+#### Scenario: Ready school reaches first unit constructor input
+- **WHEN** the actual ready effect checkpoint resumes at4500B0
+- **THEN** mapcom loads read-only into a finite retained buffer, all handles close, current preparation matches original policy, and the copied first record reaches4680B0 without executing its body
+
+#### Scenario: Unready school reaches no map common input
+- **WHEN** school readiness refuses departure
+- **THEN** no mapcom request, allocation, preparation or current-record copy occurs
+
+### Requirement: Independent map common and current preparation provenance
+The system SHALL decode original mapcom offsets and executable preparation/selection constants independently from native evidence, reject malformed containers, verify all copied/prepared bytes and retain historical/runtime/save fingerprints.
+
+#### Scenario: Compare native map common and selected record to original inputs
+- **WHEN** supported original inputs are independently decoded
+- **THEN** each retained pointer and first selected/copied record matches original bytes and policy, while full current/enemy work, VM and placement remain pending

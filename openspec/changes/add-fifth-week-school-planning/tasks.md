@@ -135,3 +135,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 33. Effect initialization integration acceptance
 
 - [x] 33.1 Run relevant source/export regression, full model and strict specs; verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked bytes/tree and commit locally without pushing.
+
+## 34. Native map common and first current-unit input
+
+- [ ] 34.1 Continue actual three ready/two refusal school branches through mapcom load/pointer traversal, original current-record preparation and first176-byte copy; stop before4680B0 work construction, verify finite ownership/read-only handles, allowed current changes and persistent/effect retention, document and commit locally.
+
+## 35. Independent map common and preparation provenance
+
+- [ ] 35.1 Decode original mapcom container and executable preparation/selection inputs independently from frozen native output; compare all pointers, source-policy current bytes and first copied record, reject malformed input, export separate rules/evidence, document and commit locally.
+
+## 36. Map common integration acceptance
+
+- [ ] 36.1 Run relevant source/export regression, full model and strict specs, verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
