@@ -16,4 +16,6 @@
 
 独立来源导出从原始EXE读取准备分支、常量、当前记录字段与选择顺序，从原始mapcom读取偏移和SHA；规则不读取执行报告。固定SHA原版fixture单独提取。声明输入测试覆盖八种标志组合、状态0–6、类别0/4、两个首选类别和32位溢出，并与原版CPU逐字节核对。坏容器、数量、记录与未拥有/持久地址拒绝。
 
+独立规则为`prototype/data/school_map_common_rules.json`，原版fixture为`prototype/data/school_map_common_evidence.json`，由`tools/school_map_common_catalog.py`分别导出。8项原版/来源专项检查通过；声明测试还读取实际拷贝目标内存核对176字节。原版执行阶段本地提交`829edbe`，未push。
+
 Godot界面、运行时、素材和version4十项存档规则保持。本阶段没有新窗口渲染或真实GPU见证，实际本周战斗仍关闭。下一步从首个`4680B0`构造体继续，完成当前/敌人工作体，再验证t0005 VM、真实双方出场和事件，最后接学校阵容的图形战斗。

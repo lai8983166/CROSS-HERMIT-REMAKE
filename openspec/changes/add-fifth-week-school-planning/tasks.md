@@ -142,7 +142,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 35. Independent map common and preparation provenance
 
-- [ ] 35.1 Decode original mapcom container and executable preparation/selection inputs independently from frozen native output; compare all pointers, source-policy current bytes and first copied record, reject malformed input, export separate rules/evidence, document and commit locally.
+- [x] 35.1 Decode original mapcom container and executable preparation/selection inputs independently from frozen native output; compare all pointers, source-policy current bytes and first copied record, reject malformed input, export separate rules/evidence, document and commit locally.
 
 ## 36. Map common integration acceptance
 
