@@ -359,3 +359,21 @@ The system SHALL independently decode original work/controller stores, category/
 #### Scenario: Verify source-selected scene work and resources
 - **WHEN** original scene5 records are constructed under explicitly declared isolated inputs
 - **THEN** all initialized bytes and mode0/1/2 animation arguments match source-derived rules, exact archives are inventoried read-only and no deployed scene or loaded native animation is claimed
+
+### Requirement: Native first scene-unit animation and constructor completion
+The system SHALL resume actual first scene-unit4500B0 through exact read-only animation loading, native metadata/palette/mask/texture/controller binding and file release, then finish4680B0 initial animation work, coordinates, cell accounting and defaults at natural453630. It MUST use finite ownership, reject assertions, declare GPU/vector primitives precisely, retain other mapped bytes and stop before remaining scene templates, deployment or VM.
+
+#### Scenario: Ready school completes first scene NPC
+- **WHEN** actual school execution reaches the first scene-unit archive request
+- **THEN** a1a archive binding and original constructor tail complete, all file handles close and the native zero return at453630 is recorded without executing the next template or scene placement
+
+#### Scenario: Refused school loads no scene-unit archive
+- **WHEN** departure readiness refuses
+- **THEN** no scene-unit animation allocation/load, constructor completion or cell mutation occurs
+
+### Requirement: Independent first scene-unit constructor provenance
+The system SHALL independently derive original archive/EXE metadata, texture/palette/mask, initial visible descriptor/program and constructor defaults, compare full work/record/scratch/cell/controller/resource bytes separately from frozen native output, reject unsupported inputs and preserve historical/runtime/save evidence. Declared palette-boundary loader calls MUST remain distinct from actual school execution.
+
+#### Scenario: Verify actual NPC bytes and declared palette boundaries
+- **WHEN** supported first NPC inputs and declared palette1/40 requests are independently decoded
+- **THEN** every native binding input and complete actual constructor byte matches original source, with no live GPU, full35-template loop or final spawn claim

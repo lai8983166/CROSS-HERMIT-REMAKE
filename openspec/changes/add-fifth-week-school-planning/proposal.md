@@ -79,3 +79,7 @@ Continue453540 scene-selected template preparation. Scene5 contains35 templates,
 ## Scene-unit work prefixes (2026-10-10)
 
 Continue the actual first scene-unit4680B0 through NPC status/template and job/palette/cache/controller construction, stopping at its natural animation file request before loading. Separately execute all35 scene5 constructor prefixes with declared isolated records/cache inputs; inventory exact source-selected archives without claiming that the actual full loop, textures, constructor tails, placement or VM ran. Verify complete initialized bytes independently, preserve runtime/save/history and commit each completed stage locally.
+
+## First scene-unit animation and constructor completion (2026-10-10)
+
+Resume the actual first scene-unit animation request, load/bind its exact a1a archive and finish4680B0 through initial program, coordinates, cell accounting and defaults. Stop at natural453630 before scene-loop progress/next template. Independently verify metadata, every texture/palette/mask input and complete work/record/scratch/cell bytes; label separately declared palette-boundary calls, retain prior/runtime/save/history and commit stages locally. Other34 templates, placement and VM remain subsequent work.

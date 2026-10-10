@@ -219,3 +219,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 54. Scene-unit work prefix acceptance
 
 - [x] 54.1 Run source/export regression, full model and strict specs, preserve runtime/save/historical bytes, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 55. Native first scene-unit animation and constructor
+
+- [ ] 55.1 Resume actual first scene-unit4500B0 through read-only archive, native metadata/palette/mask/textures and file release, capture467147 then finish constructor at natural453630; verify finite ownership/all-other-memory retention/three-ready-two-refusal cases, separately execute declared palette1/40 loader probes, document and commit locally.
+
+## 56. Independent first scene-unit constructor provenance
+
+- [ ] 56.1 Decode original archive/EXE binding, visible initial program/descriptor and constructor defaults independently, compare complete work/record/scratch/cell/controller/metadata/texture/palette bytes for actual school and declared loader calls, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 57. First scene-unit constructor acceptance
+
+- [ ] 57.1 Run source/export regression, full model and strict specs, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
