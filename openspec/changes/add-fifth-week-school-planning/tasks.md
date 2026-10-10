@@ -174,7 +174,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 43. Native first unit constructor completion
 
-- [ ] 43.1 Resume the actual school CPU at467147, execute initial action/program binding and the remaining4680B0 constructor including coordinate/status/scratch initialization, stop at its natural4533FA return; verify finite writes, original map cell accounting and retained current/persistent/resource bytes, document and commit locally.
+- [x] 43.1 Resume the actual school CPU at467147, execute initial action/program binding and the remaining4680B0 constructor including coordinate/status/scratch initialization, stop at its natural4533FA return; verify finite writes, original map cell accounting and retained current/persistent/resource bytes, document and commit locally.
 
 ## 44. Independent first unit constructor provenance
 

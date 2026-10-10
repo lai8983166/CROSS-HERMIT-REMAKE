@@ -1,0 +1,28 @@
+Native departure case: initial ready=True
+Native ledger before initial: {"entries": [{"id": 5, "metadata": [3, 4, 0], "busy": 0, "limit": 1, "duration": 0, "busy_elapsed": 0, "elapsed": 0}]}
+Native appearance grid batch 1: 0x43b23f
+Native appearance grid batch 2: 0x43ae2b
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_first_unit_constructor_emulation.py", line 189, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_first_unit_constructor_emulation.py", line 176, in report
+    cases.append(e.resources(name,commands))
+  File "F:\project\chaomofa\tools\school_first_unit_constructor_emulation.py", line 136, in resources
+    self.run_constructor()
+  File "F:\project\chaomofa\tools\school_first_unit_constructor_emulation.py", line 115, in run_constructor
+    self.uc.emu_start(self.uc.reg_read(UC_X86_REG_EIP),RETURN,timeout=30_000_000,count=500_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_first_unit_constructor_emulation.py", line 83, in _hook
+    return ExitEmulator._hook(self,uc,address,size,context)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 77, in _hook
+    raise RuntimeError(f'undeclared external code at {address:#x}')
+RuntimeError: undeclared external code at 0x480fc2
