@@ -198,7 +198,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 49. Native scene-unit template record preparation
 
-- [ ] 49.1 Continue actual school CPU at453540 through scene-selected template lookup and first4DA450 record derivation, stop before first enemy-loop4680B0 constructor; separately execute every scene5 template through native record derivation with declared driver inputs, verify finite destination/scratch writes and retained current/persistent/resource bytes, document and commit locally.
+- [x] 49.1 Continue actual school CPU at453540 through scene-selected template lookup and first4DA450 record derivation, stop before first enemy-loop4680B0 constructor; separately execute every scene5 template through native record derivation with declared driver inputs, verify finite destination/scratch writes and retained current/persistent/resource bytes, document and commit locally.
 
 ## 50. Independent scene-unit record provenance
 
