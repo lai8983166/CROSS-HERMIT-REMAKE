@@ -305,3 +305,21 @@ The system SHALL derive initial action/direction/program and constructor default
 #### Scenario: Verify complete first constructor bytes
 - **WHEN** supported original pre-constructor inputs are decoded
 - **THEN** independent rules match the actual three-ready/two-refusal native outcomes without claiming final spawn positions, live GPU output or a completed battle world
+
+### Requirement: Native complete current-unit construction
+The system SHALL continue actual4533FA through both original current-record loops, loading-progress updates and remaining4680B0 constructors with exact read-only supported job archives and finite cache/controller/texture ownership. It MUST stop before453540 enemies, retain previous units/resources and current/persistent records, reject assertions and declare graphics/scheduler primitives explicitly.
+
+#### Scenario: Ready school completes every selected current unit
+- **WHEN** the actual school CPU resumes the first constructor return
+- **THEN** original selection/order, copies, archive/cache handling and complete work initialization run for every current record before453540, with no enemy construction, scene placement or VM execution
+
+#### Scenario: Refusal creates no current-unit batch
+- **WHEN** school departure readiness refuses
+- **THEN** no current-unit loop continuation, additional resources or work constructors execute
+
+### Requirement: Independent current-unit constructor provenance
+The system SHALL derive selection/order/progress/cache/job/palette/archive and constructor results independently from original source for supported jobs6/7/10, compare complete bytes separately from immutable native cases and preserve historical/runtime/save evidence. Declared cache reuse tests MUST be identified separately from actual school witnesses.
+
+#### Scenario: Verify complete current units and cache ownership
+- **WHEN** supported original current-record inputs are decoded
+- **THEN** selected indices and every initialized work/record/controller/metadata/texture/palette/cell byte match the source, unsupported inputs are rejected and no final scene placement or live GPU output is claimed

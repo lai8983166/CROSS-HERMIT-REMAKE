@@ -183,3 +183,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 45. First unit constructor integration acceptance
 
 - [x] 45.1 Run relevant source/export regression, full model and strict specs, verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
+
+## 46. Native complete current-unit construction
+
+- [ ] 46.1 Resume4533FA on the actual school CPU, execute both source current-record loops, exact copy and loading-progress boundaries, remaining4680B0 constructors, job-selected archive/cache handling and native initial work; stop before453540 enemy construction, verify finite ownership/current-persistent-resource retention and document/commit locally.
+
+## 47. Independent current-unit constructor provenance
+
+- [ ] 47.1 Independently decode original selection/order, progress, cache/job/palette/resource and constructor inputs for jobs6/7/10; compare every current work/record/controller/metadata/texture/palette/cell byte, test declared cache reuse separately from actual school cases, reject unsupported inputs, export separate rules/evidence and document/commit locally.
+
+## 48. Current-unit construction integration acceptance
+
+- [ ] 48.1 Run source/export regression, full model and strict specs, verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked bytes/tree and commit locally without pushing.

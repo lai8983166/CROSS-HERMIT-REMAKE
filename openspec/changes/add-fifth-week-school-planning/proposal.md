@@ -67,3 +67,7 @@ Resume the actual school CPU at the first unit-art request, load the exact sourc
 ## First unit constructor completion (2026-10-10)
 
 Finish the first source-selected4680B0 constructor on the actual school CPU, including initial action/program binding, pre-placement coordinates, logical cell accounting and remaining status/scratch defaults. Stop at the natural caller4533FA before the next unit, independently verify complete work/record/scratch/cell bytes from original source, and preserve previous resources, runtime/save and history. This completes one constructor; remaining current/enemy units, scene VM, actual placement and graphical battle integration remain subsequent work.
+
+## Complete current-unit construction (2026-10-10)
+
+Continue the actual school CPU from the first constructor return through both current-record selection loops and remaining unit constructors. Execute original loading-progress updates with explicit graphics/scheduler primitives; load exact original job6/7 archives and retain native cache/metadata/texture ownership. Stop at453540 before enemies. Independently verify selection/order, cache/resource/initial-work bytes and every retained object; preserve runtime/save/history and commit completed stages locally.
