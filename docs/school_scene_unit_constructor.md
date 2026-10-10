@@ -18,4 +18,8 @@
 
 完整原版运行证据：[构造报告](../analysis/school-scene-unit-constructor-v1-20261010.json)、[声明颜色边界报告](../analysis/school-scene-unit-animation-palettes-v1-20261010.json)。驱动：[完整构造](../tools/school_scene_unit_constructor_emulation.py)、[声明颜色边界](../tools/school_scene_unit_animation_palettes_emulation.py)。此前[工作前缀](school_scene_unit_work.md)及全部历史证据保持原字节。
 
+独立来源模块直接解析原档和EXE的职业4动作/位置表、通用构造常量、状态/方向表及绘制描述。描述579引用原档第36张图像，偏移(2,-38)，绘制组7；初始程序仅有这一层，没有翻转。独立计算结果与三组实际学校样本及两组声明颜色加载的控制器、元数据、全部244条纹理记录、像素/颜色和释放指纹一致；完整1312字节工作区、176字节记录、42字节共享区和12288字节地图计数一致。前缀的缓存与计数器也再次核对。
+
+来源规则与冻结输出分开导出到[规则](../prototype/data/school_scene_unit_constructor_rules.json)和[证据](../prototype/data/school_scene_unit_constructor_evidence.json)，规则不读取native输出。原档损坏、非法颜色、错位/重叠指针、不支持的身份/状态/坐标和初始程序均拒绝；[来源检查](../analysis/school-scene-unit-constructor-source-v1-20261010.log)5项、[原版边界检查](../analysis/school-scene-unit-constructor-native-tests-v1-20261010.log)4项通过。
+
 下一段工作是完成实际场景循环中余下34个单位，再验证 `468910` 部署、`t0005` VM与波次事件。Godot学校阵容的图形战斗、战斗完成事件、奖励和完整返回仍未完成。本轮没有改变试玩画面，也没有要求手动操作原版。

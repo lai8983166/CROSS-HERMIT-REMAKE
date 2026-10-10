@@ -226,7 +226,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 56. Independent first scene-unit constructor provenance
 
-- [ ] 56.1 Decode original archive/EXE binding, visible initial program/descriptor and constructor defaults independently, compare complete work/record/scratch/cell/controller/metadata/texture/palette bytes for actual school and declared loader calls, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 56.1 Decode original archive/EXE binding, visible initial program/descriptor and constructor defaults independently, compare complete work/record/scratch/cell/controller/metadata/texture/palette bytes for actual school and declared loader calls, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 57. First scene-unit constructor acceptance
 
