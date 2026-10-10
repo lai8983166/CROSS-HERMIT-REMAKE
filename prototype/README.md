@@ -2,11 +2,11 @@
 
 默认入口: school_playground.tscn（图形化学校养成试玩，2026-10-09）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。Chapter018有126页，结束后可进入原版BG002_B职务室、阅读Chapter205的32页巡逻班对白，再调整第五周教师与学生。点击「必修冒险 · 出发准备」显示当前队伍，实际冒险战斗暂未开放，授课保持锁定。存档version4兼容version1/2/3，十项指纹未改。
 
-本轮沿实际第五周CPU首个场景单位4680B0执行NPC状态、模板覆盖与职业颜色/缓存/控制器初始化。三种就绪分支成功、两种拒绝分支不进入。角色5/职业4/类别7请求a1a.bin、颜色5，在动画加载前停止；35条模板的工作前缀另以声明驱动执行，不是实际完整场景循环或部署。
+本轮沿实际学校调用栈完成首个场景NPC的a1a加载和4680B0构造，在自然返回453630处停止；三种就绪分支成功、两种拒绝分支不进入。角色5/职业4/类别7加载244张纹理、颜色5，初始动作指定绘制描述579、持续40个时间单位。后续34个单位、实际完整场景循环、部署和VM仍未执行。
 
-独立EXE规则核对完整工作区、记录、缓存与控制器，六次模板/类别/关系变更测试一致，清点10个职业的9份原动画档案。Python130项、Godot62套件409项与严格规格30项通过；265个历史/运行时/界面/素材文件及v4十项指纹保持原字节。地图查看、旧窗口检查和18张截图保留，本轮画面未改。
+独立原档/EXE规则核对完整元数据、控制器、244条纹理记录、像素/颜色和NPC工作区/记录/共享区/地图格计数；颜色1/40探针有明确声明输入。Python139项、Godot62套件409项与严格规格30项通过；279个历史/运行时/界面/素材文件及v4十项指纹保持原字节。地图查看、旧窗口检查和18张截图保留，本轮画面未改。
 
-[本轮场景单位工作前缀验收](../analysis/school-scene-unit-work-final-20261010/README.md) · [来源边界](../docs/school_scene_unit_work.md) · [前轮场景记录](../analysis/school-enemy-records-final-20261010/README.md) · [地图查看](../analysis/school-scene-resources-final-20261009/README.md) · [试玩操作](../docs/school_playground.md)。54项完成，仅为已规划阶段，本地提交未push。下一步装载场景动画、完成构造尾部和实际模板循环，再执行部署/VM，随后接图形战斗。
+[本轮首个场景NPC构造验收](../analysis/school-scene-unit-constructor-final-20261010/README.md) · [来源边界](../docs/school_scene_unit_constructor.md) · [前轮工作前缀](../analysis/school-scene-unit-work-final-20261010/README.md) · [地图查看](../analysis/school-scene-resources-final-20261009/README.md) · [试玩操作](../docs/school_playground.md)。57项完成，仅为已规划阶段，本地提交未push。下一步完成余下34个单位及缓存复用，再执行部署/VM，随后接图形战斗。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 

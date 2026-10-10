@@ -23,3 +23,5 @@
 来源规则与冻结输出分开导出到[规则](../prototype/data/school_scene_unit_constructor_rules.json)和[证据](../prototype/data/school_scene_unit_constructor_evidence.json)，规则不读取native输出。原档损坏、非法颜色、错位/重叠指针、不支持的身份/状态/坐标和初始程序均拒绝；[来源检查](../analysis/school-scene-unit-constructor-source-v1-20261010.log)5项、[原版边界检查](../analysis/school-scene-unit-constructor-native-tests-v1-20261010.log)4项通过。
 
 下一段工作是完成实际场景循环中余下34个单位，再验证 `468910` 部署、`t0005` VM与波次事件。Godot学校阵容的图形战斗、战斗完成事件、奖励和完整返回仍未完成。本轮没有改变试玩画面，也没有要求手动操作原版。
+
+最终Python139项、Godot62套件409项与严格规格30项通过；279个历史/运行时/界面/素材文件与6cf7dfe原字节一致，十项v4指纹与b7391cc一致。任务55–57完成，57/57仅代表已规划阶段。详见[本轮验收](../analysis/school-scene-unit-constructor-final-20261010/README.md)。
