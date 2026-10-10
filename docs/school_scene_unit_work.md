@@ -40,3 +40,5 @@ PYTHONPATH=. .venv-audit/Scripts/python.exe -m tools.school_scene_unit_work_cata
 ```
 
 需要继续装载并绑定场景单位动画，完成构造函数尾部与实际35次循环，然后执行`468910`部署、`t0005` VM及波次事件，最后接入当前学校阵容的图形战斗。本轮没有改变Godot画面或开放学校战斗，也未清除必修门槛。
+
+最终Python130项、Godot62套件409项与严格规格30项通过；265个历史/运行时/界面/素材文件与a26ef73原字节一致，十项v4指纹与b7391cc一致。任务52–54完成，54/54仅代表已规划阶段。详见[本轮验收](../analysis/school-scene-unit-work-final-20261010/README.md)。
