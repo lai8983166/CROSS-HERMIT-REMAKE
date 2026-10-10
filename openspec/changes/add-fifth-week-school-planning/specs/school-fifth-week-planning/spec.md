@@ -377,3 +377,17 @@ The system SHALL independently derive original archive/EXE metadata, texture/pal
 #### Scenario: Verify actual NPC bytes and declared palette boundaries
 - **WHEN** supported first NPC inputs and declared palette1/40 requests are independently decoded
 - **THEN** every native binding input and complete actual constructor byte matches original source, with no live GPU, full35-template loop or final spawn claim
+
+### Requirement: Native second scene-unit input preparation
+The system SHALL resume actual453630 through original loading progress, ordinal1 template record derivation and4680B0 work/cache/controller prefix, stopping at its mode0 archive request before loading. It MUST use distinct finite controller ownership, preserve first NPC/current/persistent/resource bytes, and distinguish this boundary from complete scene constructors or deployment.
+
+#### Scenario: Ready school requests second scene animation
+- **WHEN** the first NPC has naturally returned
+- **THEN** original progress and second record/work preparation select51e.bin with variant0/mode0 and stop before loading, while refusal cases do not enter
+
+### Requirement: Independent scene cache lookup provenance
+The system SHALL independently derive second record/prefix/progress and original466DA0 lookup semantics, compare complete bytes separately from frozen native output, and execute all35 source-selected keys under declared cache insertion inputs. It MUST verify signed fields, nonzero occupancy, first-match order, holes and full-table miss without claiming allocation, cache binding or full scene-loop completion.
+
+#### Scenario: Verify ordered cache keys and boundary queries
+- **WHEN** declared ordered keys and signed/duplicate/empty/full cache probes execute original lookup
+- **THEN** pure source lookup matches native return pointers and unchanged cache bytes; missing-key insertions remain explicitly declared driver operations

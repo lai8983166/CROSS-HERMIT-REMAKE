@@ -231,3 +231,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 57. First scene-unit constructor acceptance
 
 - [x] 57.1 Run source/export regression, full model and strict specs, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 58. Native second scene-unit input and cache queries
+
+- [ ] 58.1 Resume actual first NPC return through original progress, ordinal1 record/work prefix and distinct controller allocation; stop before mode0 archive load, retain all other mapped bytes and three-ready/two-refusal cases. Separately run declared all35 ordered466DA0 queries/insertion inputs plus signed/duplicate/empty/full boundary probes, document and commit locally.
+
+## 59. Independent second scene input and cache provenance
+
+- [ ] 59.1 Independently decode original next template record/prefix/progress and cache lookup inputs, compare complete record/work/cache/controller/counter/progress and all query returns/unchanged bytes, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 60. Second scene input and cache acceptance
+
+- [ ] 60.1 Run source/export, full model and strict-spec regression; preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.

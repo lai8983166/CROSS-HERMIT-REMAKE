@@ -83,3 +83,7 @@ Continue the actual first scene-unit4680B0 through NPC status/template and job/p
 ## First scene-unit animation and constructor completion (2026-10-10)
 
 Resume the actual first scene-unit animation request, load/bind its exact a1a archive and finish4680B0 through initial program, coordinates, cell accounting and defaults. Stop at natural453630 before scene-loop progress/next template. Independently verify metadata, every texture/palette/mask input and complete work/record/scratch/cell bytes; label separately declared palette-boundary calls, retain prior/runtime/save/history and commit stages locally. Other34 templates, placement and VM remain subsequent work.
+
+## Second scene-unit input and cache policy (2026-10-10)
+
+Continue the actual first NPC return through original progress and the second template record/work prefix, stopping before its mode0 animation load. Independently verify the complete next record/prefix/progress bytes and retained first NPC/current resources. Separately run original cache lookup for all35 ordered template keys with explicitly declared cache insertions, plus signed/duplicate/empty/full-table probes. This establishes lookup policy, not completed remaining constructors, cache binding or deployment. Commit native/source/acceptance stages locally.
