@@ -159,3 +159,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 39. First unit work integration acceptance
 
 - [x] 39.1 Run relevant source/export regression, full model and strict specs; retain runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.
+
+## 40. Native first unit animation resource binding
+
+- [ ] 40.1 Continue actual three-ready/two-refusal school branches through first unit archive loading, native metadata/palette/mask/texture binding, source release and controller mode setting; stop before467147 unit animation-work binding, verify finite ownership/read-only handles and previous work/current/persistent/map/effect retention, document and commit locally.
+
+## 41. Independent first unit animation provenance
+
+- [ ] 41.1 Decode original archive/EXE metadata, texture records and palette/mask upload inputs independently from fixed native fixtures; compare complete pointers/records/pixels/palettes, reject malformed inputs, export separate rules/evidence, document and commit locally.
+
+## 42. First unit animation integration acceptance
+
+- [ ] 42.1 Run relevant source/export regression, full model and strict specs, verify runtime/save/historical bytes, publish immutable acceptance/current progress, verify tracked artifact bytes/tree and commit locally without pushing.

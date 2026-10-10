@@ -269,3 +269,21 @@ The system SHALL independently derive original work/status/controller bytes and 
 #### Scenario: Compare complete first work prefix to original source
 - **WHEN** supported original source inputs are decoded
 - **THEN** every initialized work/copied-record/controller byte and natural file argument matches original rules, while resource loading and the constructor tail remain unexecuted
+
+### Requirement: Native first unit animation resource binding
+The system SHALL resume the actual first unit-art request through read-only archive loading, native metadata copy and palette/mask selection, complete texture/header traversal, temporary source release and controller mode setting. It MUST retain finite ownership, reject assertions, declare GPU primitives and stop before selected unit animation-work binding while retaining previous work/record/cache/map/effect/persistent bytes.
+
+#### Scenario: Ready school loads first unit animation
+- **WHEN** the actual ready school CPU resumes4500B0 called by464EB0
+- **THEN** source d1a.bin loads with exact bytes and closed handles, its retained metadata/texture records and selected palette/mask inputs are verified, and execution stops at467147 without completing4680B0 or placing a unit
+
+#### Scenario: Unready school loads no unit animation
+- **WHEN** current school readiness refuses departure
+- **THEN** no unit animation file, metadata or texture records are allocated or loaded
+
+### Requirement: Independent first unit animation provenance
+The system SHALL independently decode original archive/EXE metadata, texture and palette/mask inputs separately from frozen native evidence, compare every initialized byte and upload input, reject malformed resources and preserve historical/runtime/save rules.
+
+#### Scenario: Verify original unit animation binding
+- **WHEN** supported original unit animation bytes are independently decoded
+- **THEN** retained pointers/controller fields, complete texture records and pixel/palette/mask inputs match the original sources without claiming GPU rendering or finished unit construction

@@ -59,3 +59,7 @@ Continue the actual paused school CPU through read-only mapcom.bin loading and n
 ## First unit work and animation cache request (2026-10-10)
 
 Continue the actual first4680B0 input through finite work clearing, record binding/sentinels, initial status and original animation-cache lookup/allocation/controller construction. Follow original job/palette selection and stop at the natural unit animation resource request before file loading. Independently decode every initialized work/record byte, status template and job/cache/controller input; retain current global records, persistent data, previous map/effect bytes and runtime/save evidence. The constructor tail, unit animation resources, remaining current/enemy work, VM and placement remain following dependencies.
+
+## First unit animation resource binding (2026-10-10)
+
+Resume the actual school CPU at the first unit-art request, load the exact source-selected archive read-only and execute original metadata copying, selected palette/mask lookup, complete texture record/header traversal, controller mode setting and temporary file release. Stop before467147 binds animation work into the selected unit, preserving its work/copied record and previous map/effect resources. Independently verify all archive/texture/palette inputs, native records and bounded ownership; retain historical/runtime/save evidence. GPU remains a declared primitive and this stage does not complete the unit constructor or place units.
