@@ -162,7 +162,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 40. Native first unit animation resource binding
 
-- [ ] 40.1 Continue actual three-ready/two-refusal school branches through first unit archive loading, native metadata/palette/mask/texture binding, source release and controller mode setting; stop before467147 unit animation-work binding, verify finite ownership/read-only handles and previous work/current/persistent/map/effect retention, document and commit locally.
+- [x] 40.1 Continue actual three-ready/two-refusal school branches through first unit archive loading, native metadata/palette/mask/texture binding, source release and controller mode setting; stop before467147 unit animation-work binding, verify finite ownership/read-only handles and previous work/current/persistent/map/effect retention, document and commit locally.
 
 ## 41. Independent first unit animation provenance
 
