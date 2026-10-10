@@ -19,3 +19,5 @@
 [实际学校报告](../analysis/school-scene-next-input-v1-20261010.json) · [声明缓存报告](../analysis/school-scene-cache-query-v1-20261010.json) · [原版驱动](../tools/school_scene_next_input_emulation.py) · [独立来源](../tools/school_scene_next_input_catalog.py) · [前轮首个NPC](school_scene_unit_constructor.md)。
 
 接下来加载并绑定51e的颜色0资源，完成特殊角色的构造尾部，再继续实际后续单位与缓存绑定复用。场景部署、t0005事件VM/波次和学校阵容的图形战斗仍待完成。本轮不改变试玩画面。
+
+最终Python147项、Godot62套件409项与严格规格30项通过；292个历史/运行时/界面/素材文件与302d26d原字节一致，十项v4指纹与b7391cc一致。任务58–60完成，60/60仅代表已规划阶段。详见[本轮验收](../analysis/school-scene-next-input-final-20261010/README.md)。
