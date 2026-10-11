@@ -246,7 +246,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 61. Native second scene-unit constructor completion
 
-- [ ] 61.1 Resume actual51e variant0/mode0 request through native read-only binding and complete special-role387 constructor, stop at natural453630 before ordinal2, verify three-ready/two-refusal/finite ownership/all-other-byte retention, document and commit locally.
+- [x] 61.1 Resume actual51e variant0/mode0 request through native read-only binding and complete special-role387 constructor, stop at natural453630 before ordinal2, verify three-ready/two-refusal/finite ownership/all-other-byte retention, document and commit locally.
 
 ## 62. Independent second scene-unit constructor provenance
 
