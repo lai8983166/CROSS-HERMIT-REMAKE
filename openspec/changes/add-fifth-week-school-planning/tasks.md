@@ -354,7 +354,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 88. Native first board and readiness
 
-- [ ] 88.1 Replay six pinned actual parents; resume natural first board call and execute native active-layer/readiness updates to pending text activation, verify finite writes/exact terminal drawing/retention, document and commit locally.
+- [x] 88.1 Replay six pinned actual parents; resume natural first board call and execute native active-layer/readiness updates to pending text activation, verify finite writes/exact terminal drawing/retention, document and commit locally.
 
 ## 89. Independent board rules
 
