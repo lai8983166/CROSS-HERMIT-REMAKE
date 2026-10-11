@@ -250,7 +250,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 62. Independent second scene-unit constructor provenance
 
-- [ ] 62.1 Decode original51e/EXE mode0 palette/texture/initial program and special-role branch inputs independently, compare complete controller/metadata/texture/work/record/scratch/cell bytes, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 62.1 Decode original51e/EXE mode0 palette/texture/initial program and special-role branch inputs independently, compare complete controller/metadata/texture/work/record/scratch/cell bytes, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 63. Second scene-unit constructor acceptance
 

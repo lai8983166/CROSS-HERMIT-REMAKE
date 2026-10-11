@@ -12,4 +12,6 @@
 
 [原版报告](../analysis/school-scene-second-constructor-v1-20261011.json) · [执行日志](../analysis/school-scene-second-constructor-native-v1-20261011.log) · [边界检查](../analysis/school-scene-second-constructor-native-tests-v1-20261011.log) · [驱动](../tools/school_scene_second_constructor_emulation.py) · [前轮停止点](school_scene_next_input.md)。
 
-下一步完成独立原档/EXE字节规则与冻结证据导出，再做全量来源、模型、规格和历史/存档验收。当前Godot画面保持原状。
+独立原档/EXE规则已核对原场景模板派生、完整构造前缀、控制器、元数据、126个纹理记录和每个调色板/像素输入，以及完整工作、记录、共享区、CM字节。颜色0的两个零指针直接从41EBF0的push指令取得；角色387范围、记录单字节写入及关系/方向表均从原EXE解析，初始动画来自51e的程序与描述符。规则不从原版输出生成，冻结证据单独导出。坏档案、错长度/编码、非法指针/接收器、错误角色/状态/地图坐标及未支持的关系/动画输入均拒绝，输入保持不变。
+
+[规则导出](../prototype/data/school_scene_second_constructor_rules.json)与[冻结证据导出](../prototype/data/school_scene_second_constructor_evidence.json)再生成一致；独立来源检查5项通过，见[日志](../analysis/school-scene-second-constructor-source-v1-20261011.log)与[来源规则](../tools/school_scene_second_constructor_catalog.py)。下一步做全量来源、模型、规格和历史/存档验收，再继续剩余33个模板构造、实际缓存绑定复用、部署与VM。当前Godot画面保持原状。
