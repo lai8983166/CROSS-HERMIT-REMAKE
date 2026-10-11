@@ -5,6 +5,9 @@ signal closed
 
 const CATALOG := "res://assets/current_scene/catalog.json"
 const ATLAS := "res://assets/current_scene/map05.png"
+const DIALOGUE := "res://data/school_opening_dialogue.json"
+const DIALOGUE_SHA256 := "645cf3b69aecc6806886b79080dc66eac583527d74dac6dc90e93431c35a7a10"
+const SCRIPT_SHA256 := "44ca546b5ea90ec23a4bc7d8dffeac6547a44bfd035383c91983f7c13ae72a52"
 
 class MapCanvas extends Control:
 
@@ -75,6 +78,15 @@ var fit_button: Button
 var zoom_in_button: Button
 var zoom_out_button: Button
 var title: Label
+var dialogue_button: Button
+var dialogue_panel: PanelContainer
+var dialogue_text: Label
+var dialogue_position: Label
+var dialogue_previous: Button
+var dialogue_next: Button
+var dialogue_close: Button
+var dialogue_pages: Array = []
+var dialogue_index := 0
 
 
 func _ready() -> void:
@@ -100,6 +112,8 @@ func _ready() -> void:
 	title.add_theme_font_size_override("font_size",22)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
+	dialogue_button = _button("开场对白",open_dialogue)
+	header.add_child(dialogue_button)
 	fit_button = _button("显示全图",func(): canvas.fit_map())
 	header.add_child(fit_button)
 	zoom_out_button = _button("−",func(): canvas.zoom_at(0.8,canvas.size*0.5))
@@ -111,11 +125,138 @@ func _ready() -> void:
 	canvas = MapCanvas.new()
 	canvas.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(canvas)
+	_build_dialogue()
 	var footer := Label.new()
 	footer.text = "拖动查看 · 滚轮缩放 · Esc 返回    |    地图预览，战斗暂未开放"
 	footer.add_theme_font_size_override("font_size",14)
 	column.add_child(footer)
 	visible = false
+
+
+func _build_dialogue() -> void:
+	dialogue_panel = PanelContainer.new()
+	dialogue_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas.add_child(dialogue_panel)
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.045,0.09,0.10,0.97)
+	style.border_color = Color("bfa66b")
+	style.set_border_width_all(2)
+	style.set_corner_radius_all(6)
+	style.content_margin_left = 24
+	style.content_margin_right = 24
+	style.content_margin_top = 18
+	style.content_margin_bottom = 18
+	dialogue_panel.add_theme_stylebox_override("panel",style)
+	var content := VBoxContainer.new()
+	content.add_theme_constant_override("separation",12)
+	dialogue_panel.add_child(content)
+	var heading := HBoxContainer.new()
+	content.add_child(heading)
+	var label := Label.new()
+	label.text = "开场对白预览"
+	label.add_theme_font_size_override("font_size",18)
+	label.add_theme_color_override("font_color",Color("e2c890"))
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	heading.add_child(label)
+	dialogue_position = Label.new()
+	heading.add_child(dialogue_position)
+	dialogue_text = Label.new()
+	dialogue_text.add_theme_font_size_override("font_size",24)
+	dialogue_text.add_theme_color_override("font_color",Color("f6f1e7"))
+	dialogue_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	dialogue_text.custom_minimum_size.y = 76
+	content.add_child(dialogue_text)
+	var controls := HBoxContainer.new()
+	controls.add_theme_constant_override("separation",12)
+	content.add_child(controls)
+	dialogue_previous = _button("上一段",func(): _turn_dialogue(-1))
+	controls.add_child(dialogue_previous)
+	dialogue_next = _button("下一段",func(): _turn_dialogue(1))
+	controls.add_child(dialogue_next)
+	var spacer := Control.new()
+	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	controls.add_child(spacer)
+	dialogue_close = _button("关闭对白",close_dialogue)
+	controls.add_child(dialogue_close)
+	canvas.resized.connect(_layout_dialogue)
+	dialogue_panel.minimum_size_changed.connect(_layout_dialogue)
+	dialogue_panel.visible = false
+
+
+func _layout_dialogue() -> void:
+	if dialogue_panel == null:
+		return
+	# Width first permits wrapped text to determine the panel's minimum height.
+	dialogue_panel.size.x = maxf(0,canvas.size.x-32)
+	dialogue_panel.size.y = dialogue_panel.get_combined_minimum_size().y
+	dialogue_panel.position = Vector2(16,maxf(16,canvas.size.y-dialogue_panel.size.y-16))
+
+
+static func valid_dialogue(catalog: Variant) -> bool:
+	if not catalog is Dictionary or catalog.get("schema_version") != 1 \
+			or catalog.get("adventure_id") != 5 or catalog.get("scene_id") != 5 \
+			or catalog.get("source_script_sha256") != SCRIPT_SHA256 \
+			or catalog.get("encoding") != "Big5" or catalog.get("mode") != "read_only_opening_preview":
+		return false
+	for key in ["schema_version","adventure_id","scene_id"]:
+		if typeof(catalog.get(key)) not in [TYPE_INT,TYPE_FLOAT]:
+			return false
+	var pages = catalog.get("pages")
+	if not pages is Array or pages.size() != 10:
+		return false
+	for index in range(pages.size()):
+		var page = pages[index]
+		if not page is Dictionary or typeof(page.get("text_index")) not in [TYPE_INT,TYPE_FLOAT] \
+				or page.get("text_index") != index or not page.get("text") is String \
+				or page["text"].is_empty() or page["text"].length() > 127:
+			return false
+	return true
+
+
+func open_dialogue() -> bool:
+	if not visible or not FileAccess.file_exists(DIALOGUE):
+		return false
+	var catalog := validated_dialogue_text(FileAccess.get_file_as_string(DIALOGUE))
+	if catalog.is_empty():
+		return false
+	dialogue_pages = catalog["pages"].duplicate(true)
+	dialogue_index = 0
+	canvas.dragging = false
+	_refresh_dialogue()
+	dialogue_panel.visible = true
+	_layout_dialogue()
+	dialogue_close.grab_focus()
+	return true
+
+
+static func validated_dialogue_text(raw: String) -> Dictionary:
+	# Git may check UTF-8 JSON out with CRLF on Windows; pin the original LF text.
+	if raw.replace("\r\n","\n").sha256_text() != DIALOGUE_SHA256:
+		return {}
+	var catalog = JSON.parse_string(raw)
+	return catalog if valid_dialogue(catalog) else {}
+
+
+func _refresh_dialogue() -> void:
+	dialogue_text.text = dialogue_pages[dialogue_index]["text"]
+	dialogue_position.text = "%d / %d" % [dialogue_index+1,dialogue_pages.size()]
+	dialogue_previous.disabled = dialogue_index == 0
+	dialogue_next.disabled = dialogue_index == dialogue_pages.size()-1
+
+
+func _turn_dialogue(delta: int) -> void:
+	if not dialogue_panel.visible:
+		return
+	dialogue_index = clampi(dialogue_index+delta,0,dialogue_pages.size()-1)
+	_refresh_dialogue()
+
+
+func close_dialogue() -> void:
+	dialogue_panel.visible = false
+	dialogue_pages.clear()
+	dialogue_index = 0
+	if visible:
+		dialogue_button.grab_focus()
 
 
 static func supports(projection: Dictionary) -> bool:
@@ -147,6 +288,7 @@ func open_preview(projection: Dictionary) -> bool:
 	if image == null or image.get_size() != Vector2i(2048,1536):
 		return false
 	canvas.texture = ImageTexture.create_from_image(image)
+	close_dialogue()
 	canvas.dragging = false
 	canvas.fit_map()
 	visible = true
@@ -155,14 +297,30 @@ func open_preview(projection: Dictionary) -> bool:
 
 
 func close_preview() -> void:
+	close_dialogue()
 	canvas.dragging = false
 	visible = false
 	closed.emit()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if visible and event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		close_preview()
+	if not visible or not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if event.keycode == KEY_ESCAPE:
+		if dialogue_panel.visible:
+			close_dialogue()
+		else:
+			close_preview()
+	else:
+		return
+	get_viewport().set_input_as_handled()
+
+
+func _input(event: InputEvent) -> void:
+	# Handle paging before focused buttons consume arrow keys for GUI navigation.
+	if visible and dialogue_panel.visible and event is InputEventKey and event.pressed \
+			and not event.echo and event.keycode in [KEY_RIGHT,KEY_LEFT]:
+		_turn_dialogue(1 if event.keycode == KEY_RIGHT else -1)
 		get_viewport().set_input_as_handled()
 
 

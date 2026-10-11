@@ -374,7 +374,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 93. Graphical opening preview
 
-- [ ] 93.1 Integrate original ten opening texts into existing MAP05 viewer with readable previous/next/close preview controls; verify navigation, supported/malformed identity handling, viewport layout and state/save/gate preservation, document and commit locally.
+- [x] 93.1 Integrate original ten opening texts into existing MAP05 viewer with readable previous/next/close preview controls; verify navigation, supported/malformed identity handling, viewport layout and state/save/gate preservation, document and commit locally.
 
 ## 94. Text and preview acceptance
 
