@@ -255,3 +255,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 63. Second scene-unit constructor acceptance
 
 - [x] 63.1 Run full source/model/strict-spec regression, retain runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 64. Native eight-unit scene batch and cache reuse
+
+- [ ] 64.1 Resume actual school CPU through complete ordinals2–9 constructors and original cache reuse, load only missing52e/50e archives, stop after ordinal9 at453630, verify three-ready/two-refusal/finite ownership/all-other-memory retention, document and commit locally.
+
+## 65. Independent scene batch provenance
+
+- [ ] 65.1 Decode original job393/383 archive, action/program, special/hostile constructor and ordered cache inputs independently; compare complete record/work/cache/controller/metadata/texture/palette/progress/scratch/cell bytes, reject unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 66. Scene batch acceptance
+
+- [ ] 66.1 Run relevant source/export regression, full model and strict specs, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.

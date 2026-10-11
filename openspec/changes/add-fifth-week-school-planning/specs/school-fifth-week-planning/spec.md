@@ -405,3 +405,17 @@ The system SHALL independently derive51e archive/EXE mode0 palette, texture and 
 #### Scenario: Verify mode0 resource and special-role tail bytes
 - **WHEN** original second scene-unit inputs are decoded
 - **THEN** independent byte rules match all native binding and constructor outputs without claiming live GPU, complete scene loop, final deployment or VM execution
+
+### Requirement: Native eight-unit scene batch and cache reuse
+The system SHALL resume actual school execution through complete scene5 ordinals2–9 with original record/progress/cache/resource/constructor bodies. It MUST load only missing52e mode0 and50e variant1 archives, execute native cache hits without new allocation/loading/cache mutation, retain finite ownership and other mapped bytes, declare external primitives and stop at natural453630 after ordinal9 before deployment or VM.
+
+#### Scenario: Ready school constructs eight more scene units
+- **WHEN** the second scene unit has returned on the actual ready school CPU
+- **THEN** ordinal2 and seven job383 units complete, six actual cache hits reuse the same owned controller/resources, and refusal cases execute none of this batch
+
+### Requirement: Independent scene batch provenance
+The system SHALL independently derive original job393/383 binding, action/program, special/hostile constructor and ordered cache/progress policy, compare complete bytes separately from frozen native output, reject malformed or unsupported inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify every constructor and cache transition
+- **WHEN** supported original scene batch inputs are decoded
+- **THEN** every record/work/cache/controller/metadata/texture/palette/progress/scratch/cell byte matches independent source rules, without claiming the remaining25 constructors, deployment, VM or live GPU rendering

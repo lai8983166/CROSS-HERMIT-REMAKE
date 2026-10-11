@@ -91,3 +91,7 @@ Continue the actual first NPC return through original progress and the second te
 ## Second scene-unit complete constructor (2026-10-10)
 
 Continue the actual second scene-unit51e variant0/mode0 request through read-only archive loading, native binding and complete special-role387 constructor. Independently derive resource/palette-mode and complete work/record/scratch/cell bytes, retain prior NPC/current/resources and runtime/save/history. Stop at natural453630 before ordinal2. Commit native/source/acceptance stages locally.
+
+## Scene-unit batch and actual cache reuse (2026-10-11)
+
+Continue the original school CPU through ordinals2–9: special-role393 mode0 and seven job383 variant1 units. Execute each complete constructor and actual native cache reuse, load only the two missing archives, and stop at453630 after ordinal9. Independently verify all record, prefix, binding, tail, progress and cache bytes. Retain prior resources/runtime/saves/history and commit native/source/acceptance stages locally. The remaining25 templates, deployment, VM and graphical battle remain subsequent work.
