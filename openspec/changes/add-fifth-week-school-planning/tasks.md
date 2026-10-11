@@ -306,7 +306,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 76. Native initialization and opening request
 
-- [ ] 76.1 Replay pinned actual placement/deployment, complete natural452FC0/4519C0 return and execute bounded explicitly driven original opening through phase5/script-work request; validate every caller/rectangle, finite writes and retained memory, document and commit locally.
+- [x] 76.1 Replay pinned actual placement/deployment, complete natural452FC0/4519C0 return and execute bounded explicitly driven original opening through phase5/script-work request; validate every caller/rectangle, finite writes and retained memory, document and commit locally.
 
 ## 77. Independent opening source rules
 
