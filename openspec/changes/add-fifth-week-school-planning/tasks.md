@@ -342,7 +342,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 85. Native normal script opening and fade
 
-- [ ] 85.1 Replay pinned actual parents; execute declared original normal VM/fade updates through natural first board-on handler entry, verify finite writes/exact presentation/retention, document and commit locally.
+- [x] 85.1 Replay pinned actual parents; execute declared original normal VM/fade updates through natural first board-on handler entry, verify finite writes/exact presentation/retention, document and commit locally.
 
 ## 86. Independent normal opening rules
 
