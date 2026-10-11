@@ -322,7 +322,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 80. Independent entry source rules
 
-- [ ] 80.1 Independently decode dispatch, camera clamp, native180 delay and preflight args; compare complete memory/every update, reject malformed/unsupported inputs, export separate source rules/evidence, document and commit locally.
+- [x] 80.1 Independently decode dispatch, camera clamp, native180 delay and preflight args; compare complete memory/every update, reject malformed/unsupported inputs, export separate source rules/evidence, document and commit locally.
 
 ## 81. Entry acceptance
 

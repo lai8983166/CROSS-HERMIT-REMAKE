@@ -14,4 +14,8 @@
 
 [原版报告](../analysis/school-entry-control-v1-20261011.json) · [原版驱动](../tools/school_entry_control_emulation.py) · [前轮开场边界](school_scene_opening.md)
 
+独立模型解码原EXE的31处关键指令和14项控制器跳转表，从执行前内存重新计算相机、170消费、busy/状态/计数变化及自然预检查参数。三组完整内存、每次更新、原版计数函数调用和待处理调用均与冻结的原版报告相等。源模型不读取原版输出作为期望值，并拒绝错误内存归属、大小、编码、类型、交互状态、活动VM和提前完成输入。
+
+源规则与原版证据独立导出，未接入Godot运行时：[源模型](../tools/school_entry_control_catalog.py)、[源规则](../prototype/data/school_entry_control_rules.json)、[原版证据](../prototype/data/school_entry_control_evidence.json)。
+
 下一步从保留的4551C0调用栈执行真实脚本预检查，核对0/1对应的t0005脚本段及返回后的实际选择，再接VM绑定和事件指令。
