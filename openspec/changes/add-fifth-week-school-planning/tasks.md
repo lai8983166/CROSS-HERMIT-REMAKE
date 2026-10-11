@@ -258,7 +258,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 64. Native eight-unit scene batch and cache reuse
 
-- [ ] 64.1 Resume actual school CPU through complete ordinals2–9 constructors and original cache reuse, load only missing52e/50e archives, stop after ordinal9 at453630, verify three-ready/two-refusal/finite ownership/all-other-memory retention, document and commit locally.
+- [x] 64.1 Resume actual school CPU through complete ordinals2–9 constructors and original cache reuse, load only missing52e/50e archives, stop after ordinal9 at453630, verify three-ready/two-refusal/finite ownership/all-other-memory retention, document and commit locally.
 
 ## 65. Independent scene batch provenance
 

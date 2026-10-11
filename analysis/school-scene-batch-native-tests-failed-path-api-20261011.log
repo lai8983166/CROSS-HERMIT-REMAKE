@@ -1,0 +1,33 @@
+test_actual_eight_constructor_returns_and_two_refusals (tools.tests.test_school_scene_batch_emulation.SceneBatchNativeTests) ... ok
+test_actual_six_hits_retain_controller_without_file_allocation_or_cache_writes (tools.tests.test_school_scene_batch_emulation.SceneBatchNativeTests) ... FAIL
+test_cache_hit_and_tail_write_guards_reject_previous_objects_and_new_resources (tools.tests.test_school_scene_batch_emulation.SceneBatchNativeTests) ... ok
+test_failed_batch_restores_parent_controller_and_phase_flags (tools.tests.test_school_scene_batch_emulation.SceneBatchNativeTests) ... ok
+test_prior_current_npc_resource_bytes_and_all_other_memory_retained (tools.tests.test_school_scene_batch_emulation.SceneBatchNativeTests) ... ok
+
+======================================================================
+FAIL: test_actual_six_hits_retain_controller_without_file_allocation_or_cache_writes (tools.tests.test_school_scene_batch_emulation.SceneBatchNativeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_scene_batch_emulation.py", line 39, in test_actual_six_hits_retain_controller_without_file_allocation_or_cache_writes
+    self.assertEqual([e['name'] for e in u['file_events']],['CreateFileA','GetFileSize','ReadFile','CloseHandle'])
+AssertionError: Lists differ: ['GetCurrentDirectoryA', 'CreateFileA', 'Ge[33 chars]dle'] != ['CreateFileA', 'GetFileSize', 'ReadFile', 'CloseHandle']
+
+First differing element 0:
+'GetCurrentDirectoryA'
+'CreateFileA'
+
+First list contains 1 additional elements.
+First extra element 4:
+'CloseHandle'
+
++ ['CreateFileA', 'GetFileSize', 'ReadFile', 'CloseHandle']
+- ['GetCurrentDirectoryA',
+-  'CreateFileA',
+-  'GetFileSize',
+-  'ReadFile',
+-  'CloseHandle']
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.284s
+
+FAILED (failures=1)
