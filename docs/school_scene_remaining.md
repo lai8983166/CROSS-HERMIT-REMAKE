@@ -12,7 +12,7 @@ role406先按status2绑定原版初始动作，然后469C60命中405/406分支�
 
 来源规则只从原EXE、场景表、档案和已有独立公式产生；原版输出单独冻结。声明的短诊断使用合成调用栈与前置缓存，与实际三组就绪/两组拒绝学校流程分开。
 
-正式学校流程已完成：三组就绪输入各完成剩余25个构造、六次装载532个纹理、19次实际缓存命中和26次原版进度更新；两组拒绝不进入。累计35/35个场景构造，停在45363D。原版专项5项和独立来源专项6项通过；全量来源与规格验收另行记录。
+正式学校流程已完成：三组就绪输入各完成剩余25个构造、六次装载532个纹理、19次实际缓存命中和26次原版进度更新；两组拒绝不进入。累计35/35个场景构造，停在45363D。原版专项5项、独立来源专项6项、全量来源177项、Godot62套件409项和30项严格规格通过；331个历史/运行时/界面/素材文件和十项v4存档指纹保持原字节。见[完整验收](../analysis/school-scene-remaining-final-20261011/README.md)。
 
 正式报告：[school-scene-remaining-v1-20261011.json](../analysis/school-scene-remaining-v1-20261011.json)，SHA-256 `8ad911442a5835c9c98b5d279068e10956be955c606227cc1de1b380b0eab820`。来源驱动：[school_scene_remaining_catalog.py](../tools/school_scene_remaining_catalog.py)；原版驱动：[school_scene_remaining_emulation.py](../tools/school_scene_remaining_emulation.py)。原版输出与独立规则分别导出为 `school_scene_remaining_evidence.json` 和 `school_scene_remaining_rules.json`，不读取输出生成来源规则。
 
