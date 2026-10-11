@@ -366,7 +366,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 91. Native first text preparation
 
-- [ ] 91.1 Replay seven pinned actual parents; resume text activation, execute first text lookup/split/record preparation to natural font API entry, verify exact arguments/finite writes/retention, document and commit locally.
+- [x] 91.1 Replay seven pinned actual parents; resume text activation, execute first text lookup/split/record preparation to natural font API entry, verify exact arguments/finite writes/retention, document and commit locally.
 
 ## 92. Independent text rules and catalog
 
