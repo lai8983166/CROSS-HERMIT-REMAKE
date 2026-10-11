@@ -450,3 +450,21 @@ The audit SHALL independently decode original formation grid, rotation, selectio
 
 - **WHEN** supported source placement inputs are decoded
 - **THEN** every record/work/reservation/cell byte matches pure source rules, including retained unselected and deferred units, without claiming later search initialization or VM execution
+
+### Requirement: Native deployment tail completion
+
+The audit SHALL continue468A49 through original search workspace, unit/display indexes, scratch clearing and category linked lists to natural4534A1. It SHALL enforce finite writes and retain other mapped bytes. Actual checkpoint recovery SHALL require pinned identity and complete prior placement equality, publish provenance and distinguish inherited refusal fixtures from newly executed suffix cases.
+
+#### Scenario: Ready checkpoint completes original deployment
+
+- **WHEN** a trusted actual school checkpoint reproduces its immutable placement output
+- **THEN** the original deployment tail returns zero naturally, with no next467AA0, scene VM or live GPU claim
+
+### Requirement: Independent deployment byte provenance
+
+The audit SHALL independently derive original allocation order, search/free-list pointers, category/state selection, work/display stores, scratch and descending category insertion; compare complete bytes separately from frozen native evidence, reject unsupported inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify full deployment tail bytes
+
+- **WHEN** supported current-scene inputs are decoded from original source
+- **THEN** all buffers, wrappers, work, category nodes and scratch match source-derived bytes while existing runtime/UI and ten save fingerprints remain unchanged

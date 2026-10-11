@@ -103,3 +103,7 @@ Continue ordinals10–34 on the original CPU, including the24 inactive status11 
 ## Current-school deployment positions (2026-10-11)
 
 Continue the actual35-constructor CPU through its natural epilogue/caller into468910 and complete49A480 school formation placement. Stop at468A49 before search-workspace allocation; independently verify original formation rotation, terrain/occupancy filtering, selected-unit records/work/cell changes and all retained bytes. Keep VM, later deployment initialization and graphical battle as explicit subsequent dependencies. Commit native/source/acceptance stages locally.
+
+## Native deployment completion (2026-10-11)
+
+Continue468A49 through both search-workspace constructors, current-category unit/display indexes, scratch clearing and category linked lists, stopping at natural468910 return4534A1. Resume trusted private actual CPU checkpoints only after pinned identity and complete immutable placement equality checks; publish checkpoint provenance separately from inherited upstream refusal evidence. Independently verify every owned buffer, wrapper, work and linked-list byte and retain runtime/save/history. Event VM, next467AA0 and graphical battle remain subsequent stages. Commit each completed stage locally.

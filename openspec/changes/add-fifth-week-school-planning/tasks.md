@@ -291,3 +291,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 72. Placement acceptance
 
 - [x] 72.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 73. Native deployment tail
+
+- [ ] 73.1 Continue source468A49 through search constructors, unit/display indexes, scratch and category lists to natural4534A1; validate trusted actual checkpoint identity/full placement equality, finite owned writes and retained memory, distinguish inherited refusals, document and commit locally.
+
+## 74. Independent deployment provenance
+
+- [ ] 74.1 Independently decode original allocation/list/predicate/store inputs, compare all complete native buffer/wrapper/work/list/scratch bytes, reject malformed/unsupported inputs, export rules and separate evidence, document and commit locally.
+
+## 75. Deployment acceptance
+
+- [ ] 75.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
