@@ -330,7 +330,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 82. Native script preflight and binding
 
-- [ ] 82.1 Replay pinned actual parent stages; execute natural preflight VM and selected binding through controller return, validate finite writes/exact primitives/retention, document and commit locally.
+- [x] 82.1 Replay pinned actual parent stages; execute natural preflight VM and selected binding through controller return, validate finite writes/exact primitives/retention, document and commit locally.
 
 ## 83. Independent preflight source rules
 
