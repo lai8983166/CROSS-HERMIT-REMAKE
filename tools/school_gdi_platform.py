@@ -35,7 +35,8 @@ class WindowsGDI:
   if not value:raise RuntimeError('GDI nonzero 32-bit handle required')
   value=int(value)
   # Win64 may sign-extend the shared 32-bit GDI handle into HANDLE.
-  if value>>32 not in (0,0xFFFFFFFF) or not value&0xFFFFFFFF:raise RuntimeError('GDI nonzero 32-bit handle required')
+  low=value&0xFFFFFFFF;high=value>>32
+  if high not in (0,0xFFFFFFFF) or low in (0,0xFFFFFFFF) or (high==0xFFFFFFFF and low<0x80000000):raise RuntimeError('GDI nonzero 32-bit handle required')
   return value&0xFFFFFFFF
 
  @staticmethod

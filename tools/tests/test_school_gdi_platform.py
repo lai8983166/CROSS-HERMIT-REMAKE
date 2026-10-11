@@ -29,7 +29,7 @@ class GDIPlatformTests(unittest.TestCase):
 
  def test_zero_oversized_handles_and_closed_adapter_refused(self):
   self.assertEqual(WindowsGDI.handle(0xFFFFFFFF80000001),0x80000001)
-  for value in (None,0,0x100000000,-1):
+  for value in (None,0,0x100000000,-1,0xFFFFFFFF,0xFFFFFFFFFFFFFFFF,0xFFFFFFFF00000001):
    with self.assertRaises(RuntimeError):WindowsGDI.handle(value)
   g=WindowsGDI();g.close()
   with self.assertRaises(RuntimeError):g.dc()

@@ -386,7 +386,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 96. Native first text raster
 
-- [ ] 96.1 Replay eight pinned actual parents; resume natural font frame through original raster geometry to pending texture creation, verify full bytes/strict calls/retention and platform cleanup, publish immutable evidence and commit locally.
+- [x] 96.1 Replay eight pinned actual parents; resume natural font frame through original raster geometry to pending texture creation, verify full bytes/strict calls/retention and platform cleanup, publish immutable evidence and commit locally.
 
 ## 97. Independent raster geometry and conversion
 
