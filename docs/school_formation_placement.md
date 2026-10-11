@@ -18,6 +18,11 @@ and state1. Teachers, scene NPCs/enemies and deferred templates keep their prior
 coordinates. This is student formation placement, not evidence that every
 scene template has been activated or an event wave has spawned.
 
+`fifth_class` names the upstream school-edit case. After the original handoff,
+all three actual scene samples have selected deployment category0; this field
+must not be confused with the school class number. The actual header and bound
+record categories are captured, rather than copied from the school-edit label.
+
 Original43D660 rotates a five-element permutation using the retained appearance
 counter, checks the original ordered4225 candidate rows and requested formation
 radius, then rejects out-of-map, impassable, occupied and already-reserved
