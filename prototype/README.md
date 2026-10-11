@@ -2,11 +2,11 @@
 
 默认入口: school_playground.tscn（图形化学校养成试玩，2026-10-09）。独立4月第4周会话支持编班、选课、成长与MVP，再播放Chapter016/017的109页原版剧情，完成后一次推进到4月第5周。Chapter018有126页，结束后可进入原版BG002_B职务室、阅读Chapter205的32页巡逻班对白，再调整第五周教师与学生。点击「必修冒险 · 出发准备」显示当前队伍，实际冒险战斗暂未开放，授课保持锁定。存档version4兼容version1/2/3，十项指纹未改。
 
-本轮恢复上轮真实CPU检查点，完整复核学校学生落点后，从468A49执行搜索结构、单位/显示索引、scratch与分类链表，部署函数468910以零值自然返回4534A1。三组就绪样本实际执行新尾段；两组拒绝明确沿用上轮不可变证据，没有重跑全部上游。下一467AA0、事件VM和本周图形战斗尚未完成。
+本轮恢复真实CPU检查点，完整复核学生落点与部署后，原版467AA0计时初始化、任务绑定和两个初始化函数自然返回到主循环45170E。随后在同一状态上显式驱动原版开场215次更新，到阶段5并发出脚本工作请求。三组就绪样本执行新阶段；两组拒绝继承不可变父证据，没有重跑全部上游。世界循环、工作回调、事件VM和本周图形战斗尚未完成。
 
-独立原EXE规则核对7块589824字节缓冲、完整搜索包装器、所有非空单位工作区、分类链表及scratch，保留原落点/占格/记录/资源。Python193项、Godot62套件409项、严格规格30项通过；355个历史/运行时/界面/素材文件和十项v4存档指纹保持原字节。本轮画面未改。
+独立EXE规则核对完整计时区、任务字段、开场跳转及每组27392个绘制请求的全部参数哈希；16个明确声明的signed32计时边界通过原指令验证。Python202项、Godot62套件409项、严格规格30项通过；367个历史/运行时/界面/素材文件和十项v4存档指纹保持原字节。本轮画面未改。
 
-[本轮部署尾段验收](../analysis/school-deployment-tail-final-20261011/README.md) · [来源边界](../docs/school_deployment_tail.md) · [前轮学生落点](../analysis/school-formation-placement-final-20261011/README.md) · [地图查看](../analysis/school-scene-resources-final-20261009/README.md) · [试玩操作](../docs/school_playground.md)。75项完成，仅为已规划阶段，本地提交未push。下一步继续467AA0、调用者初始化和事件VM，再接实际单位位置与学校阵容图形战斗。
+[本轮开场请求验收](../analysis/school-scene-opening-final-20261011/README.md) · [来源边界](../docs/school_scene_opening.md) · [前轮部署](../analysis/school-deployment-tail-final-20261011/README.md) · [地图查看](../analysis/school-scene-resources-final-20261009/README.md) · [试玩操作](../docs/school_playground.md)。78项完成，仅为已规划阶段，本地提交未push。下一步处理实际开场工作请求、事件VM/波次，再接学校阵容图形战斗。
 
 「战斗预览」打开旧 `main.tscn`（MAP01底图、红蓝实时互殴、点选、速度档及研究窗口），右上返回学校试玩。研究窗口的新局/旧返回数据与默认试玩独立。直接运行旧场景：`~/bin/godot --path prototype res://main.tscn`。
 
