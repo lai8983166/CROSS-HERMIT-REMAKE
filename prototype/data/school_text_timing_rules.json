@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "code_inputs": [
+    {
+      "va": "0x4cb2af",
+      "hex": "0f879f010000",
+      "mnemonic": "ja",
+      "operands": "0x4cb454"
+    },
+    {
+      "va": "0x4cb30d",
+      "hex": "66c74410180300",
+      "mnemonic": "mov",
+      "operands": "word ptr [eax + edx + 0x18], 3"
+    },
+    {
+      "va": "0x4cb32d",
+      "hex": "668b440a22",
+      "mnemonic": "mov",
+      "operands": "ax, word ptr [edx + ecx + 0x22]"
+    },
+    {
+      "va": "0x4cb371",
+      "hex": "66050100",
+      "mnemonic": "add",
+      "operands": "ax, 1"
+    },
+    {
+      "va": "0x4cb3ba",
+      "hex": "7e46",
+      "mnemonic": "jle",
+      "operands": "0x4cb402"
+    },
+    {
+      "va": "0x4cb3ce",
+      "hex": "66c7440a180100",
+      "mnemonic": "mov",
+      "operands": "word ptr [edx + ecx + 0x18], 1"
+    },
+    {
+      "va": "0x4cb443",
+      "hex": "99",
+      "mnemonic": "cdq",
+      "operands": ""
+    },
+    {
+      "va": "0x4cb444",
+      "hex": "f7f9",
+      "mnemonic": "idiv",
+      "operands": "ecx"
+    },
+    {
+      "va": "0x4cb44a",
+      "hex": "33d2",
+      "mnemonic": "xor",
+      "operands": "edx, edx"
+    },
+    {
+      "va": "0x4cb4ad",
+      "hex": "e84e0a0000",
+      "mnemonic": "call",
+      "operands": "0x4cbf00"
+    },
+    {
+      "va": "0x4cb4c7",
+      "hex": "660354016a",
+      "mnemonic": "add",
+      "operands": "dx, word ptr [ecx + eax + 0x6a]"
+    },
+    {
+      "va": "0x4cb503",
+      "hex": "83f901",
+      "mnemonic": "cmp",
+      "operands": "ecx, 1"
+    },
+    {
+      "va": "0x4cb524",
+      "hex": "6683c101",
+      "mnemonic": "add",
+      "operands": "cx, 1"
+    },
+    {
+      "va": "0x4cb56f",
+      "hex": "7e45",
+      "mnemonic": "jle",
+      "operands": "0x4cb5b6"
+    },
+    {
+      "va": "0x4cb5af",
+      "hex": "66c74401220100",
+      "mnemonic": "mov",
+      "operands": "word ptr [ecx + eax + 0x22], 1"
+    },
+    {
+      "va": "0x4cb663",
+      "hex": "837dec02",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp - 0x14], 2"
+    },
+    {
+      "va": "0x4cb669",
+      "hex": "837dec04",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp - 0x14], 4"
+    },
+    {
+      "va": "0x4cb68b",
+      "hex": "b001",
+      "mnemonic": "mov",
+      "operands": "al, 1"
+    },
+    {
+      "va": "0x4cb68f",
+      "hex": "32c0",
+      "mnemonic": "xor",
+      "operands": "al, al"
+    }
+  ],
+  "line_stride": 272,
+  "first_line_fade_limit": 24,
+  "last_line_interval_limit": 12,
+  "mode2_changes_to3_before_fade": true,
+  "scope": "declared isolated counters; no natural GPU/VM continuation",
+  "school_initialized": false,
+  "interactive_school_ready": false,
+  "live_witness": false,
+  "authorizes_persistent_write": false
+}
