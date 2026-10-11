@@ -370,7 +370,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 92. Independent text rules and catalog
 
-- [ ] 92.1 Independently decode source text table/order/activation/splitting/record/font inputs; compare complete bytes/trace, reject malformed inputs, export separate rules/evidence and compact original dialogue catalog, document and commit locally.
+- [x] 92.1 Independently decode source text table/order/activation/splitting/record/font inputs; compare complete bytes/trace, reject malformed inputs, export separate rules/evidence and compact original dialogue catalog, document and commit locally.
 
 ## 93. Graphical opening preview
 
