@@ -379,3 +379,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 94. Text and preview acceptance
 
 - [x] 94.1 Run source/model/UI/strict-spec regression, preserve unaffected runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 95. Real Windows font platform adapter
+
+- [ ] 95.1 Implement strict real Windows GDI adapter for original font/measure/DIB/draw calls; verify resource lifecycle, finite buffers, host encoding/font provenance and rejection cases, document and commit locally.
+
+## 96. Native first text raster
+
+- [ ] 96.1 Replay eight pinned actual parents; resume natural font frame through original raster geometry to pending texture creation, verify full bytes/strict calls/retention and platform cleanup, publish immutable evidence and commit locally.
+
+## 97. Independent raster geometry and conversion
+
+- [ ] 97.1 Independently decode raster/texture/pixel-channel rules; execute original conversion on real captured DIB bytes and declared memory surfaces, compare complete pixels/padding and native geometry, reject malformed inputs, export separate audit rules/evidence and commit locally.
+
+## 98. Isolated original text fade and readiness
+
+- [ ] 98.1 Execute original text update/readiness on explicitly declared isolated records; verify fade/interval/wrap/multiline boundaries and exact draws against independent source rules without claiming pending GPU/VM completion, document and commit locally.
+
+## 99. Font raster and timing acceptance
+
+- [ ] 99.1 Run source/model/UI/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.

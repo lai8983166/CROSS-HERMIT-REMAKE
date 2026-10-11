@@ -585,3 +585,21 @@ The existing current MAP05 preview SHALL offer a readable overlay for the ten so
 
 - **WHEN** a supported ready MAP05 projection is open
 - **THEN** the opening preview displays all ten original texts in order, paging and Escape close safely, reopening starts at the first text, map controls remain usable and state/save/gate remain unchanged
+
+### Requirement: Real host font and natural first text raster
+
+The audit SHALL replay eight pinned actual parents and resume the natural CreateFontA call through real host GDI APIs. It SHALL execute original raster geometry and stop naturally at texture creation before GPU instructions, recording exact caller/arguments, host code page/font selection, finite writes, complete memory and cleanup. It SHALL NOT fabricate a font handle, metrics, texture success or dialogue readiness.
+
+#### Scenario: First text produces a real offscreen raster
+
+- **WHEN** the preserved original first-line font request is resumed
+- **THEN** real GDI creation/measurement/drawing produce captured DIB bytes and original geometry reaches the pending texture call while GPU and full playback remain unexecuted
+
+### Requirement: Independent raster conversion and isolated text timing
+
+The audit SHALL independently decode source raster/texture geometry and pixel conversion and compare original CPU conversion on a declared memory surface. It SHALL separately probe original text fade/cadence/readiness with declared isolated records, compare every state/output, reject malformed inputs and preserve runtime/save/history.
+
+#### Scenario: Conversion and counter branches are fully checked
+
+- **WHEN** real captured raster bytes and bounded isolated timing cases are supplied
+- **THEN** converted pixels/padding and every original counter/readiness state match independent source rules without claiming GPU upload or natural VM completion
