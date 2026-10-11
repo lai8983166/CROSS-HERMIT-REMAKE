@@ -107,3 +107,7 @@ Continue the actual35-constructor CPU through its natural epilogue/caller into46
 ## Native deployment completion (2026-10-11)
 
 Continue468A49 through both search-workspace constructors, current-category unit/display indexes, scratch clearing and category linked lists, stopping at natural468910 return4534A1. Resume trusted private actual CPU checkpoints only after pinned identity and complete immutable placement equality checks; publish checkpoint provenance separately from inherited upstream refusal evidence. Independently verify every owned buffer, wrapper, work and linked-list byte and retain runtime/save/history. Event VM, next467AA0 and graphical battle remain subsequent stages. Commit each completed stage locally.
+
+## Scene initialization return and opening request (2026-10-11)
+
+Continue actual4534A1 through native timer/owner binding and complete452FC0/4519C0 return. Execute original453F10 opening updates under an explicit bounded driver on that actual state, including native415040 increments and exact declared rectangle presentation, until phase5 emits script-work request170=1. Independently verify complete timer/task/global bytes and every presentation parameter; distinguish driver updates from a full world scheduler or executed event VM. Preserve runtime/save/history and commit native/source/acceptance stages locally.

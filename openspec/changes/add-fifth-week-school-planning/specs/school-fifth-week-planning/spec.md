@@ -468,3 +468,21 @@ The audit SHALL independently derive original allocation order, search/free-list
 
 - **WHEN** supported current-scene inputs are decoded from original source
 - **THEN** all buffers, wrappers, work, category nodes and scratch match source-derived bytes while existing runtime/UI and ten save fingerprints remain unchanged
+
+### Requirement: Complete scene initialization and original opening request
+
+The audit SHALL continue actual4534A1 through complete natural452FC0/4519C0 return after pinned placement/deployment equality. It SHALL explicitly distinguish bounded original453F10 driver updates from natural initializer execution, verify exact presentation/scheduler primitives and stop at phase5/script-work request without claiming event VM, work completion or live rendering.
+
+#### Scenario: Actual initialized school reaches opening work request
+
+- **WHEN** a trusted actual school CPU reproduces the previous placement and deployment
+- **THEN** native timers/owner binding and initializer returns complete, original opening updates reach phase5 with request170=1, and all other mapped bytes remain unchanged
+
+### Requirement: Independent complete opening byte provenance
+
+The audit SHALL independently decode original signed timer decomposition, initializer stores, opening jump table, native increment and ordered rectangle/alpha inputs, compare complete output bytes and every canonical presentation hash, reject malformed/unsupported inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify opening bytes and declared timer boundaries
+
+- **WHEN** supported actual opening inputs and separately declared signed32 timer calls are decoded
+- **THEN** source rules match every memory/presentation result without substituting native outputs as expectations or claiming script/world callbacks ran
