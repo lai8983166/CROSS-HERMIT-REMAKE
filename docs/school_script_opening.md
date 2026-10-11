@@ -15,3 +15,7 @@
 [原版报告](../analysis/school-script-opening-v1-20261012.json) · [原版驱动](../tools/school_script_opening_emulation.py) · [前轮绑定](school_script_preflight.md)
 
 本轮继承部署阶段的诊断时间预算为120秒，指令上限仍为四百万；这是当前机器执行Python保护回调的预算，既有父驱动/报告不修改，五个父阶段仍逐项比较完整结果。新VM调用继续使用有限指令/时间预算。
+
+独立模型从原EXE和T0005重新解码比较/赋值、全局字段、组20分派、渐入常数与转整数、工作等待和延时检查；从执行前内存重新计算八个完整区域、107次状态/返回、14条指令及所有绘制参数哈希。三组全部相等。错误内存归属/大小/编码、未绑定脚本、提前完成、活动演出字段和错误驱动输入均拒绝，原版未写的全局位和工作字节保留。
+
+[独立源模型](../tools/school_script_opening_catalog.py) · [源规则](../prototype/data/school_script_opening_rules.json) · [分离的原版证据](../prototype/data/school_script_opening_evidence.json)。两份导出均未接入Godot运行时。

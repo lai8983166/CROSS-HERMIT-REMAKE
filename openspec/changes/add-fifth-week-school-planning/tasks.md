@@ -346,7 +346,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 86. Independent normal opening rules
 
-- [ ] 86.1 Independently derive startup operands/global/group/fade/wait and presentation inputs; compare complete bytes/every update/trace, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 86.1 Independently derive startup operands/global/group/fade/wait and presentation inputs; compare complete bytes/every update/trace, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 87. Normal opening acceptance
 
