@@ -298,7 +298,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 74. Independent deployment provenance
 
-- [ ] 74.1 Independently decode original allocation/list/predicate/store inputs, compare all complete native buffer/wrapper/work/list/scratch bytes, reject malformed/unsupported inputs, export rules and separate evidence, document and commit locally.
+- [x] 74.1 Independently decode original allocation/list/predicate/store inputs, compare all complete native buffer/wrapper/work/list/scratch bytes, reject malformed/unsupported inputs, export rules and separate evidence, document and commit locally.
 
 ## 75. Deployment acceptance
 
