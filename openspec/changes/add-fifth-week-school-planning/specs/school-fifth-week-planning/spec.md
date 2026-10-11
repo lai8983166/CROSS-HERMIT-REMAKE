@@ -558,3 +558,30 @@ The audit SHALL decode source board configuration, frame pieces, animation count
 
 - **WHEN** supported actual board inputs are modeled from original code and tables
 - **THEN** all memory, update and drawing records match native evidence while text/font/GPU/full-task/audio/world/waves remain explicit subsequent dependencies
+
+### Requirement: Natural first text preparation to font boundary
+
+The audit SHALL replay seven pinned actual parents, resume the selected text-active call, complete its original VM return and execute first text lookup/split/record preparation to a natural CreateFontA API entry before its first instruction. It SHALL verify exact stack/font/text inputs, finite owned writes and retained bytes without substituting font/texture/width/readiness outputs.
+
+#### Scenario: Actual first text reaches the font interface
+
+- **WHEN** board4 is ready on the original selected script
+- **THEN** original activation selects layer7, first opcode17 resolves text0 and prepares the first line/record, and the original indirect font call reaches its API entry with14 source-derived arguments
+
+### Requirement: Independent original opening text catalog
+
+The source model SHALL independently decode complete text preparation bytes, first line and font inputs, compare every native result, reject malformed/unsupported inputs and export the original ten Big5 opening texts with a bounded opcode17 sequence separately from native evidence.
+
+#### Scenario: Complete text preparation and original ten entries
+
+- **WHEN** supported original source headers, offsets and text are decoded
+- **THEN** complete owned bytes, first text/split/font inputs match native execution and the compact runtime catalog contains the ten original source entries in verified instruction order
+
+### Requirement: Read-only graphical opening dialogue preview
+
+The existing current MAP05 preview SHALL offer a readable overlay for the ten source opening texts with previous/next/close controls and page position. Navigation SHALL NOT mutate model state, append commands, change save bytes or clear the adventure gate. It SHALL be labeled as a preview and SHALL NOT claim native font/layout/world or battle execution.
+
+#### Scenario: Read and close opening dialogue over the current map
+
+- **WHEN** a supported ready MAP05 projection is open
+- **THEN** the opening preview displays all ten original texts in order, paging and Escape close safely, reopening starts at the first text, map controls remain usable and state/save/gate remain unchanged

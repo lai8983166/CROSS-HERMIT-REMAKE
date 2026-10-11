@@ -363,3 +363,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 90. Board acceptance
 
 - [x] 90.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 91. Native first text preparation
+
+- [ ] 91.1 Replay seven pinned actual parents; resume text activation, execute first text lookup/split/record preparation to natural font API entry, verify exact arguments/finite writes/retention, document and commit locally.
+
+## 92. Independent text rules and catalog
+
+- [ ] 92.1 Independently decode source text table/order/activation/splitting/record/font inputs; compare complete bytes/trace, reject malformed inputs, export separate rules/evidence and compact original dialogue catalog, document and commit locally.
+
+## 93. Graphical opening preview
+
+- [ ] 93.1 Integrate original ten opening texts into existing MAP05 viewer with readable previous/next/close preview controls; verify navigation, supported/malformed identity handling, viewport layout and state/save/gate preservation, document and commit locally.
+
+## 94. Text and preview acceptance
+
+- [ ] 94.1 Run source/model/UI/strict-spec regression, preserve unaffected runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
