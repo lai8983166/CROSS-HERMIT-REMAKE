@@ -358,7 +358,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 89. Independent board rules
 
-- [ ] 89.1 Independently decode board configuration/frame pieces/setters/animation/readiness/raw drawing inputs; compare complete bytes/every update/trace, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 89.1 Independently decode board configuration/frame pieces/setters/animation/readiness/raw drawing inputs; compare complete bytes/every update/trace, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 90. Board acceptance
 
