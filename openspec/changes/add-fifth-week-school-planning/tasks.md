@@ -282,7 +282,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 70. Native school formation placement
 
-- [ ] 70.1 Resume actual45363D through natural caller468910 and complete49A480 school placement; stop at468A49 before search-workspace allocation, verify three-ready/two-refusal/finite writes/all-other-byte retention, document and commit locally.
+- [x] 70.1 Resume actual45363D through natural caller468910 and complete49A480 school placement; stop at468A49 before search-workspace allocation, verify three-ready/two-refusal/finite writes/all-other-byte retention, document and commit locally.
 
 ## 71. Independent placement rules
 
