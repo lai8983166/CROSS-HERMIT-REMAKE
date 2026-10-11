@@ -382,7 +382,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 95. Real Windows font platform adapter
 
-- [ ] 95.1 Implement strict real Windows GDI adapter for original font/measure/DIB/draw calls; verify resource lifecycle, finite buffers, host encoding/font provenance and rejection cases, document and commit locally.
+- [x] 95.1 Implement strict real Windows GDI adapter for original font/measure/DIB/draw calls; verify resource lifecycle, finite buffers, host encoding/font provenance and rejection cases, document and commit locally.
 
 ## 96. Native first text raster
 
