@@ -262,7 +262,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 65. Independent scene batch provenance
 
-- [ ] 65.1 Decode original job393/383 archive, action/program, special/hostile constructor and ordered cache inputs independently; compare complete record/work/cache/controller/metadata/texture/palette/progress/scratch/cell bytes, reject unsupported inputs, export separate rules/evidence, document and commit locally.
+- [x] 65.1 Decode original job393/383 archive, action/program, special/hostile constructor and ordered cache inputs independently; compare complete record/work/cache/controller/metadata/texture/palette/progress/scratch/cell bytes, reject unsupported inputs, export separate rules/evidence, document and commit locally.
 
 ## 66. Scene batch acceptance
 
