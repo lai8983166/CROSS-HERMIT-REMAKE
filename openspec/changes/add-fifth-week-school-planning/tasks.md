@@ -274,7 +274,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 68. Independent remaining scene source rules
 
-- [ ] 68.1 Decode original archives and inactive action dispatch independently, compare complete record/prefix/cache/resource/work/shared/cell/progress bytes, reject malformed inputs, export rules and separate evidence, document and commit locally.
+- [x] 68.1 Decode original archives and inactive action dispatch independently, compare complete record/prefix/cache/resource/work/shared/cell/progress bytes, reject malformed inputs, export rules and separate evidence, document and commit locally.
 
 ## 69. Remaining scene acceptance
 
