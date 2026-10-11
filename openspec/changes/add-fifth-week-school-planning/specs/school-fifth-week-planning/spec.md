@@ -522,3 +522,21 @@ The audit SHALL independently decode source nested headers, preflight opcodes an
 
 - **WHEN** supported actual source inputs are decoded
 - **THEN** every VM/work/task/control/global/sparse-resource word matches source rules while all other mapped memory and ten save fingerprints remain unchanged
+
+### Requirement: Actual normal script startup and native fade wait
+
+The audit SHALL replay pinned actual parents before continuing selected0/1 normal playback under declared original VM and fade calls. It SHALL execute source startup setters, work wait and original sixty-count fade release, presentation-mode initialization and thirty-count delay; stop on the natural first board-on handler stack before its first instruction. Only exact declared presentation interfaces SHALL be skipped; no world callback or readiness result SHALL be fabricated.
+
+#### Scenario: Normal branch reaches the first board request
+
+- **WHEN** actual bank0/PC0 is selected and activated by the prior native binding
+- **THEN** original normal playback completes107 VM/fade updates, with60 native fade counts and31 delay wait checks, then reaches4C5EA0 on its natural stack before board rendering
+
+### Requirement: Independent normal startup memory and presentation provenance
+
+The audit SHALL independently decode original script instructions, global/group setters, fade conversion/release and wait boundaries. It SHALL compare complete owned bytes, all updates/commands and exact presentation digests separately from frozen native evidence, reject malformed/unsupported inputs and preserve runtime/save/history.
+
+#### Scenario: Source rules equal actual normal startup
+
+- **WHEN** supported actual source inputs are modeled
+- **THEN** complete task/control/work/VM/global/counter bytes, every update and pending board arguments match native execution while the full task wrapper, audio gating, dialogue/waves/world scheduling and graphics remain explicitly pending

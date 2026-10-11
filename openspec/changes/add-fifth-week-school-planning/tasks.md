@@ -339,3 +339,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 84. Preflight acceptance
 
 - [x] 84.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 85. Native normal script opening and fade
+
+- [ ] 85.1 Replay pinned actual parents; execute declared original normal VM/fade updates through natural first board-on handler entry, verify finite writes/exact presentation/retention, document and commit locally.
+
+## 86. Independent normal opening rules
+
+- [ ] 86.1 Independently derive startup operands/global/group/fade/wait and presentation inputs; compare complete bytes/every update/trace, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 87. Normal opening acceptance
+
+- [ ] 87.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
