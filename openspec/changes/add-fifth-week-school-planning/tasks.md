@@ -310,7 +310,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 77. Independent opening source rules
 
-- [ ] 77.1 Independently decode timer, initializer, opening jump table, native increment, alpha/rectangle and request stores; compare complete memory and all presentation argument hashes, verify declared signed timer boundaries and malformed/refusal cases, export separate source rules/evidence, document and commit locally.
+- [x] 77.1 Independently decode timer, initializer, opening jump table, native increment, alpha/rectangle and request stores; compare complete memory and all presentation argument hashes, verify declared signed timer boundaries and malformed/refusal cases, export separate source rules/evidence, document and commit locally.
 
 ## 78. Opening acceptance
 

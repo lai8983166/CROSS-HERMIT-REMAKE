@@ -12,4 +12,12 @@
 
 原版报告：[school-scene-opening-v1-20261011.json](../analysis/school-scene-opening-v1-20261011.json)。原版驱动：[school_scene_opening_emulation.py](../tools/school_scene_opening_emulation.py)。前一阶段：[部署尾段](school_deployment_tail.md)。
 
+独立来源模型解码原EXE的56处关键指令和21项开场跳转表，重新计算上述完整内存结果与全部215次更新的参数哈希，与三组原版报告完全相等。源规则和原版证据分别导出，均未接入Godot运行时。
+
+计时467AA0使用signed32的idiv向零截断，不能用Python负数整除直接替代。24字节完整结果依次为输入、0、输入，以及按12960000/216000、216000/3600、3600/60拆分出的余数商。实际三组输入108000，输出108000、0、108000、0、30、0。另以明确声明的独立CPU调用核对16个边界值，包括负数、−2147483648与2147483647；它们不是新增学校流程样本。
+
+来源模型拒绝错误内存归属、大小、类型、超出signed32的计时值、不支持的驱动与活动VM输入。测试比较完整24字节计时输出、原版返回值及其余内存保留结果，确认非法输入不会留下活动驱动状态。
+
+来源模型：[school_scene_opening_catalog.py](../tools/school_scene_opening_catalog.py)。独立导出：[源规则](../prototype/data/school_scene_opening_rules.json)与[原版证据](../prototype/data/school_scene_opening_evidence.json)。
+
 下一步沿主循环、场景事件路由和工作回调追踪真实请求的处理，再进入t0005事件VM。
