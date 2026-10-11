@@ -315,3 +315,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 78. Opening acceptance
 
 - [x] 78.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 79. Native entry request continuation
+
+- [ ] 79.1 Replay pinned actual placement/deployment/opening; execute bounded original entry control and phase5 waiting through natural4551C0 entry before preflight/VM, validate exact callers, finite writes and retention, document and commit locally.
+
+## 80. Independent entry source rules
+
+- [ ] 80.1 Independently decode dispatch, camera clamp, native180 delay and preflight args; compare complete memory/every update, reject malformed/unsupported inputs, export separate source rules/evidence, document and commit locally.
+
+## 81. Entry acceptance
+
+- [ ] 81.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.

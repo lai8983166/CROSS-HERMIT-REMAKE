@@ -111,3 +111,7 @@ Continue468A49 through both search-workspace constructors, current-category unit
 ## Scene initialization return and opening request (2026-10-11)
 
 Continue actual4534A1 through native timer/owner binding and complete452FC0/4519C0 return. Execute original453F10 opening updates under an explicit bounded driver on that actual state, including native415040 increments and exact declared rectangle presentation, until phase5 emits script-work request170=1. Independently verify complete timer/task/global bytes and every presentation parameter; distinguish driver updates from a full world scheduler or executed event VM. Preserve runtime/save/history and commit native/source/acceptance stages locally.
+
+## Opening request consumption and preflight entry (2026-10-11)
+
+Continue actual opening state into original499DA0 under declared controller updates. Verify camera setup, request consumption and native180-tick waiting, interleave original phase5 waiting and stop at the natural4551C0 preflight call with selector0/sub1 before its first instruction. The170 request belongs to entry control rather than directly to the VM. Preserve source/VM/runtime/save/history and commit native/source/acceptance stages locally. Full world-loop scheduling, preflight VM execution, script binding and graphical battle remain following work.

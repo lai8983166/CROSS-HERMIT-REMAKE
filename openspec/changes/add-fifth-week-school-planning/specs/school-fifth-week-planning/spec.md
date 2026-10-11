@@ -486,3 +486,21 @@ The audit SHALL independently decode original signed timer decomposition, initia
 
 - **WHEN** supported actual opening inputs and separately declared signed32 timer calls are decoded
 - **THEN** source rules match every memory/presentation result without substituting native outputs as expectations or claiming script/world callbacks ran
+
+### Requirement: Native opening request consumption and preflight entry
+
+The audit SHALL reproduce pinned placement/deployment/opening on actual school checkpoints before declared499DA0 controller updates. It SHALL execute camera setup, request consumption and native180 delay, interleave original phase5 waiting and stop at the natural4551C0 selector0/sub1 entry before executing preflight or VM code. Finite writes and all other mapped memory SHALL be verified; the170 request SHALL be distinguished from direct VM execution.
+
+#### Scenario: Actual entry controller reaches script preflight
+
+- **WHEN** supported actual noninteractive opening state has request170=1 and completion171=0
+- **THEN** 183 complete controller updates reach state6 with request consumed, 183 original phase5 calls continue waiting, and the next controller update stops at natural4551C0 before its first instruction
+
+### Requirement: Independent entry control byte provenance
+
+The audit SHALL independently decode original entry dispatch, camera clamping, native delay and selected preflight arguments, compare complete task/control/camera bytes and every update separately from frozen native evidence, reject unsupported inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify complete entry control stores
+
+- **WHEN** actual controller inputs are decoded from source
+- **THEN** complete memory and natural pending-call arguments match independent rules while VM, runtime, UI and ten save fingerprints remain unchanged
