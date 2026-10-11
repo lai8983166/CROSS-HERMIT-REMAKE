@@ -318,7 +318,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 79. Native entry request continuation
 
-- [ ] 79.1 Replay pinned actual placement/deployment/opening; execute bounded original entry control and phase5 waiting through natural4551C0 entry before preflight/VM, validate exact callers, finite writes and retention, document and commit locally.
+- [x] 79.1 Replay pinned actual placement/deployment/opening; execute bounded original entry control and phase5 waiting through natural4551C0 entry before preflight/VM, validate exact callers, finite writes and retention, document and commit locally.
 
 ## 80. Independent entry source rules
 
