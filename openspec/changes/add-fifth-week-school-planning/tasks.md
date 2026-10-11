@@ -294,7 +294,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 73. Native deployment tail
 
-- [ ] 73.1 Continue source468A49 through search constructors, unit/display indexes, scratch and category lists to natural4534A1; validate trusted actual checkpoint identity/full placement equality, finite owned writes and retained memory, distinguish inherited refusals, document and commit locally.
+- [x] 73.1 Continue source468A49 through search constructors, unit/display indexes, scratch and category lists to natural4534A1; validate trusted actual checkpoint identity/full placement equality, finite owned writes and retained memory, distinguish inherited refusals, document and commit locally.
 
 ## 74. Independent deployment provenance
 
