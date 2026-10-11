@@ -286,7 +286,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 71. Independent placement rules
 
-- [ ] 71.1 Independently decode formation/grid/map/terrain/selection/rotation inputs, compare full selected and unselected work/record/reservation/cell bytes, reject malformed inputs, export separate rules/evidence, document and commit locally.
+- [x] 71.1 Independently decode formation/grid/map/terrain/selection/rotation inputs, compare full selected and unselected work/record/reservation/cell bytes, reject malformed inputs, export separate rules/evidence, document and commit locally.
 
 ## 72. Placement acceptance
 
