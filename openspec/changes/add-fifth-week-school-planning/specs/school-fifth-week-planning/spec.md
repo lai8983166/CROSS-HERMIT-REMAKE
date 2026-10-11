@@ -540,3 +540,21 @@ The audit SHALL independently decode original script instructions, global/group 
 
 - **WHEN** supported actual source inputs are modeled
 - **THEN** complete task/control/work/VM/global/counter bytes, every update and pending board arguments match native execution while the full task wrapper, audio gating, dialogue/waves/world scheduling and graphics remain explicitly pending
+
+### Requirement: Actual first board animation and readiness
+
+The audit SHALL replay six pinned actual parents, resume the natural pending board handler and complete bounded native VM/layer/readiness updates. It SHALL execute active logical presentation updates and declare only exact terminal drawing interfaces. It SHALL stop at the following text-active handler before its first instruction, verify finite writes and retain all other memory without manufacturing readiness.
+
+#### Scenario: First board becomes naturally ready
+
+- **WHEN** the original selected script requests board4 on the preserved VM stack
+- **THEN** source configuration maps it to layer7,47 completed updates animate and release the original wait, and the next VM call stops naturally at4C4DC0 for offset676 before text activation
+
+### Requirement: Independent complete board provenance
+
+The audit SHALL decode source board configuration, frame pieces, animation counters, alpha interpolation, readiness predicate and raw drawing arguments independently. It SHALL compare complete captured bytes, every update and every presentation digest, reject malformed or unsupported inputs, preserve runtime/save/history and distinguish terminal draw stubs from live rendering.
+
+#### Scenario: Independent board rules equal native execution
+
+- **WHEN** supported actual board inputs are modeled from original code and tables
+- **THEN** all memory, update and drawing records match native evidence while text/font/GPU/full-task/audio/world/waves remain explicit subsequent dependencies

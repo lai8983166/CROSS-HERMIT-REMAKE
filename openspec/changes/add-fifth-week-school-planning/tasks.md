@@ -351,3 +351,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 87. Normal opening acceptance
 
 - [x] 87.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 88. Native first board and readiness
+
+- [ ] 88.1 Replay six pinned actual parents; resume natural first board call and execute native active-layer/readiness updates to pending text activation, verify finite writes/exact terminal drawing/retention, document and commit locally.
+
+## 89. Independent board rules
+
+- [ ] 89.1 Independently decode board configuration/frame pieces/setters/animation/readiness/raw drawing inputs; compare complete bytes/every update/trace, reject malformed/unsupported inputs, export separate rules/evidence, document and commit locally.
+
+## 90. Board acceptance
+
+- [ ] 90.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
