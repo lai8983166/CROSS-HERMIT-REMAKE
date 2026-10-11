@@ -254,4 +254,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 63. Second scene-unit constructor acceptance
 
-- [ ] 63.1 Run full source/model/strict-spec regression, retain runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+- [x] 63.1 Run full source/model/strict-spec regression, retain runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
