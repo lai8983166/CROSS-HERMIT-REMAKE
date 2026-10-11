@@ -99,3 +99,7 @@ Continue the original school CPU through ordinals2–9: special-role393 mode0 an
 ## Remaining scene constructors (2026-10-11)
 
 Continue ordinals10–34 on the original CPU, including the24 inactive status11 records and one active role406. Execute missing resource loads and native cache reuse; stop at45363D after the final original loading-progress call, before the loop epilogue and subsequent deployment. Derive inactive action-skipping from original code, verify all complete bytes independently, preserve existing reports/runtime/saves and commit stages locally. Deployment, VM and graphical battle remain following work.
+
+## Current-school deployment positions (2026-10-11)
+
+Continue the actual35-constructor CPU through its natural epilogue/caller into468910 and complete49A480 school formation placement. Stop at468A49 before search-workspace allocation; independently verify original formation rotation, terrain/occupancy filtering, selected-unit records/work/cell changes and all retained bytes. Keep VM, later deployment initialization and graphical battle as explicit subsequent dependencies. Commit native/source/acceptance stages locally.

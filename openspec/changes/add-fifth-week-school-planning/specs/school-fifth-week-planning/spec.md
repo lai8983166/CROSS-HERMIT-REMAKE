@@ -432,3 +432,21 @@ The audit SHALL execute original scene5 ordinals10–34 after the verified first
 
 - **WHEN** a valid school branch completes all35 scene constructors
 - **THEN** the audit captures exact final progress and retained bytes at45363D, with deployment and scene VM explicitly unexecuted
+
+### Requirement: Native current-school formation placement
+
+The audit SHALL resume the actual35-constructor CPU through its natural epilogue/caller and original468910 school branch, execute complete49A480 formation/terrain/occupancy placement and stop at468A49 before search-workspace allocation. It SHALL retain all other mapped bytes and distinguish this boundary from full deployment, VM or live graphical battle.
+
+#### Scenario: Ready school obtains original formation coordinates
+
+- **WHEN** all35 scene constructors have completed on the actual school CPU
+- **THEN** source-selected active current students receive original record/work/grid coordinates and exact occupancy updates; refusal cases execute no placement
+
+### Requirement: Independent formation placement provenance
+
+The audit SHALL independently decode original formation grid, rotation, selection and terrain/occupancy inputs, compare full native output bytes separately from frozen evidence, reject malformed inputs and preserve historical/runtime/save evidence.
+
+#### Scenario: Verify selection and placement bytes
+
+- **WHEN** supported source placement inputs are decoded
+- **THEN** every record/work/reservation/cell byte matches pure source rules, including retained unselected and deferred units, without claiming later search initialization or VM execution
