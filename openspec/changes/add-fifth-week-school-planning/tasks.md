@@ -334,7 +334,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 83. Independent preflight source rules
 
-- [ ] 83.1 Independently derive original script headers/opcodes/branch/reset/binding stores, compare complete bytes and trace, reject malformed/unsupported inputs, export separate source rules/evidence, document and commit locally.
+- [x] 83.1 Independently derive original script headers/opcodes/branch/reset/binding stores, compare complete bytes and trace, reject malformed/unsupported inputs, export separate source rules/evidence, document and commit locally.
 
 ## 84. Preflight acceptance
 

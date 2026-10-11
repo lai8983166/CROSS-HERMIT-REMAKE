@@ -11,3 +11,7 @@
 外部接口使用明确的有限实现：字符串比较按实际字节计算；系统 tick 返回声明值 0，原版仅存入栈临时量且不参与选择；两次调试输出和音频结束/停止接口仅记录参数并返回；memset 只清理任务中指定的 28 字节。原版 VM、操作数、条件、跳转、重置、选段和绑定指令实际执行，音频及窗口/GPU 没有执行。继承的父阶段仍由显式诊断驱动调度，完整世界更新、正常事件播放和本周图形战斗待完成。
 
 [原版报告](../analysis/school-script-preflight-v1-20261011.json) · [原版驱动](../tools/school_script_preflight_emulation.py) · [前轮自然入口](school_entry_control.md)
+
+独立模型读取原 EXE 和脚本文件，从执行前内存重新推导两个返回点的全部 47 个区域、五条指令、选段调用、七个外部接口参数及返回值。三种编班案例逐项一致。条件操作数使用高四位类型和低 28 位索引/立即数，比较操作码 1 对应相等；条件为假，因此继续设置请求，再执行无条件跳转。两次绑定和 END 清理均保留原版未写的字节，指令计数从输入重新计算并按 32 位溢出处理。
+
+模型拒绝错误输入类型、内存归属/大小/编码、提前完成、错误控制状态、活动 VM 和需要释放的旧堆脚本；嵌套脚本头单独检查长度、数量、排序及偏移边界。源规则与原版结果分别导出，均未接入 Godot 运行时：[源模型](../tools/school_script_preflight_catalog.py)、[源规则](../prototype/data/school_script_preflight_rules.json)、[原版证据](../prototype/data/school_script_preflight_evidence.json)。
