@@ -95,3 +95,7 @@ Continue the actual second scene-unit51e variant0/mode0 request through read-onl
 ## Scene-unit batch and actual cache reuse (2026-10-11)
 
 Continue the original school CPU through ordinals2–9: special-role393 mode0 and seven job383 variant1 units. Execute each complete constructor and actual native cache reuse, load only the two missing archives, and stop at453630 after ordinal9. Independently verify all record, prefix, binding, tail, progress and cache bytes. Retain prior resources/runtime/saves/history and commit native/source/acceptance stages locally. The remaining25 templates, deployment, VM and graphical battle remain subsequent work.
+
+## Remaining scene constructors (2026-10-11)
+
+Continue ordinals10–34 on the original CPU, including the24 inactive status11 records and one active role406. Execute missing resource loads and native cache reuse; stop at45363D after the final original loading-progress call, before the loop epilogue and subsequent deployment. Derive inactive action-skipping from original code, verify all complete bytes independently, preserve existing reports/runtime/saves and commit stages locally. Deployment, VM and graphical battle remain following work.

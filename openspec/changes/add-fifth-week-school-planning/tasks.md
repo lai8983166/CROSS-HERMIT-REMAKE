@@ -267,3 +267,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 66. Scene batch acceptance
 
 - [x] 66.1 Run relevant source/export regression, full model and strict specs, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 67. Remaining native scene constructors
+
+- [ ] 67.1 Continue actual ordinals10–34, inactive status11 and active406, exact original resource/cache/constructor bodies and final progress; stop at45363D, verify three-ready/two-refusal and finite ownership/retained bytes, document and commit locally.
+
+## 68. Independent remaining scene source rules
+
+- [ ] 68.1 Decode original archives and inactive action dispatch independently, compare complete record/prefix/cache/resource/work/shared/cell/progress bytes, reject malformed inputs, export rules and separate evidence, document and commit locally.
+
+## 69. Remaining scene acceptance
+
+- [ ] 69.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.

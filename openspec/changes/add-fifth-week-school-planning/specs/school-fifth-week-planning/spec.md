@@ -419,3 +419,16 @@ The system SHALL independently derive original job393/383 binding, action/progra
 #### Scenario: Verify every constructor and cache transition
 - **WHEN** supported original scene batch inputs are decoded
 - **THEN** every record/work/cache/controller/metadata/texture/palette/progress/scratch/cell byte matches independent source rules, without claiming the remaining25 constructors, deployment, VM or live GPU rendering
+### Requirement: Remaining scene templates execute complete native constructors
+
+The audit SHALL execute original scene5 ordinals10–34 after the verified first10 constructors, preserve inactive status11 behavior and original cache reuse, and stop at45363D after final progress before deployment. Source rules SHALL be decoded independently from original inputs and compared with separate immutable native fixtures, retaining prior runtime/save/history bytes.
+
+#### Scenario: Inactive templates retain original animation defaults
+
+- **WHEN** an original record has state0
+- **THEN** its complete native constructor and resource binding execute with status11 and original action-dispatch behavior, without inventing an idle animation
+
+#### Scenario: Full scene constructor loop reaches its final boundary
+
+- **WHEN** a valid school branch completes all35 scene constructors
+- **THEN** the audit captures exact final progress and retained bytes at45363D, with deployment and scene VM explicitly unexecuted
