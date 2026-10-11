@@ -270,7 +270,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 67. Remaining native scene constructors
 
-- [ ] 67.1 Continue actual ordinals10–34, inactive status11 and active406, exact original resource/cache/constructor bodies and final progress; stop at45363D, verify three-ready/two-refusal and finite ownership/retained bytes, document and commit locally.
+- [x] 67.1 Continue actual ordinals10–34, inactive status11 and active406, exact original resource/cache/constructor bodies and final progress; stop at45363D, verify three-ready/two-refusal and finite ownership/retained bytes, document and commit locally.
 
 ## 68. Independent remaining scene source rules
 
