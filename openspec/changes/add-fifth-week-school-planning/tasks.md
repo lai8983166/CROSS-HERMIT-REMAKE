@@ -390,7 +390,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 97. Independent raster geometry and conversion
 
-- [ ] 97.1 Independently decode raster/texture/pixel-channel rules; execute original conversion on real captured DIB bytes and declared memory surfaces, compare complete pixels/padding and native geometry, reject malformed inputs, export separate audit rules/evidence and commit locally.
+- [x] 97.1 Independently decode raster/texture/pixel-channel rules; execute original conversion on real captured DIB bytes and declared memory surfaces, compare complete pixels/padding and native geometry, reject malformed inputs, export separate audit rules/evidence and commit locally.
 
 ## 98. Isolated original text fade and readiness
 
