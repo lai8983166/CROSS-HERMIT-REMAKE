@@ -327,3 +327,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 81. Entry acceptance
 
 - [x] 81.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 82. Native script preflight and binding
+
+- [ ] 82.1 Replay pinned actual parent stages; execute natural preflight VM and selected binding through controller return, validate finite writes/exact primitives/retention, document and commit locally.
+
+## 83. Independent preflight source rules
+
+- [ ] 83.1 Independently derive original script headers/opcodes/branch/reset/binding stores, compare complete bytes and trace, reject malformed/unsupported inputs, export separate source rules/evidence, document and commit locally.
+
+## 84. Preflight acceptance
+
+- [ ] 84.1 Run source/model/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.

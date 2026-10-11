@@ -504,3 +504,21 @@ The audit SHALL independently decode original entry dispatch, camera clamping, n
 
 - **WHEN** actual controller inputs are decoded from source
 - **THEN** complete memory and natural pending-call arguments match independent rules while VM, runtime, UI and ten save fingerprints remain unchanged
+
+### Requirement: Natural original script preflight and actual binding
+
+The audit SHALL reproduce pinned parent stages before resuming natural4551C0. It SHALL execute original preflight VM, capture its return and continue actual selected script binding through controller return, with finite writes and exact declared external primitives. VM SHALL NOT be synthetically reset before execution. Playback/world/battle execution SHALL remain explicitly distinguished.
+
+#### Scenario: Actual preflight selects original school script
+
+- **WHEN** a trusted school CPU reproduces the pending preflight call
+- **THEN** original register/condition/request/jump/END instructions select the actual0/1 segment, original binding activates it and controller returns naturally before playback
+
+### Requirement: Independent preflight and VM binding bytes
+
+The audit SHALL independently decode source nested headers, preflight opcodes and all reset/binding/register stores, compare complete captured bytes and opcode trace separately from frozen native evidence, reject malformed/unsupported inputs and preserve runtime/save/history.
+
+#### Scenario: Verify preflight results and owned sparse resets
+
+- **WHEN** supported actual source inputs are decoded
+- **THEN** every VM/work/task/control/global/sparse-resource word matches source rules while all other mapped memory and ten save fingerprints remain unchanged

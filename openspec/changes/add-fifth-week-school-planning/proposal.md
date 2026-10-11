@@ -115,3 +115,7 @@ Continue actual4534A1 through native timer/owner binding and complete452FC0/4519
 ## Opening request consumption and preflight entry (2026-10-11)
 
 Continue actual opening state into original499DA0 under declared controller updates. Verify camera setup, request consumption and native180-tick waiting, interleave original phase5 waiting and stop at the natural4551C0 preflight call with selector0/sub1 before its first instruction. The170 request belongs to entry control rather than directly to the VM. Preserve source/VM/runtime/save/history and commit native/source/acceptance stages locally. Full world-loop scheduling, preflight VM execution, script binding and graphical battle remain following work.
+
+## Actual script preflight and selected VM binding (2026-10-11)
+
+Continue the natural pending4551C0(0,1) call after complete pinned parent replay. Execute original nested script lookup, preflight VM/register/condition/jump/END and cleanup, capture natural preflight return, then actual caller selection and selected script binding through controller return. Stop with controller7 and active selected VM before normal playback updates. Declare exact C-string/tick/debug/audio/clear primitives without changing existing globals or simulating world work. Independently verify full memory, source script spans and opcode trace; preserve runtime/save/history and commit native/source/acceptance locally.
