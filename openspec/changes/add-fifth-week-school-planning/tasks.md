@@ -406,7 +406,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 101. Real32-bit Direct3D8 texture probe
 
-- [ ] 101.1 Implement strict x86 host helper for hidden windowed real device/managed texture, verify full original CPU pixel upload/readback, platform provenance/HRESULTs/pointers/cleanup and malformed cases without native device patching, publish immutable evidence and commit locally.
+- [x] 101.1 Implement strict x86 host helper for hidden windowed real device/managed texture, verify full original CPU pixel upload/readback, platform provenance/HRESULTs/pointers/cleanup and malformed cases without native device patching, publish immutable evidence and commit locally.
 
 ## 102. Device feasibility acceptance
 
