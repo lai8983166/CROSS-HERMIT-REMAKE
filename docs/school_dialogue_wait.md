@@ -19,3 +19,9 @@
 ## 独立逐更新比较
 
 `tools/school_dialogue_wait_verification.py`独立核对52次更新的每个完整区域、自然输入参数/栈地址/返回和命中标志、360次实际原版就绪调用、文本计时/绘图、14次确认箭头、原面板呈现摘要、双纹理实际读回和真实清理。期望只来自原图像/脚本/前状态及声明输入；不复制当前更新after。来源输出为`analysis/school-dialogue-wait-source-v1-20261013.json`。错误中间区域、就绪、箭头、输入栈、根返回、事件、呈现或像素均拒绝。初次来源测试把命中标志误当事件零值的失败日志保留；修正原命中语义后比较通过。
+
+## 声明确认与下一条自然处理函数入口
+
+另一次独立重放仍先完成全部52次无输入更新。随后明确把隔离TASK+0x1990从0绑定为鼠标按钮1；这不是现场输入或原游戏内存操作。原4CCE20/4CCB30函数体读取此值，在update52中解除确认等待，PC仍为252。再执行一次原VM分派，捕获opcode30的4C61C0自然栈：三个参数为0、原脚本指针+704、1；返回地址4CEDA7，根返回地址3000000。处理函数第一条指令尚未执行，PC仍252，opcode/size变为30/20。
+
+三个实际案例均由`tools/school_dialogue_confirmation_emulation.py`执行并由`tools/school_dialogue_confirmation_catalog.py`独立核对完整内存、原查询结果、声明绑定、自然栈、纹理与清理。证据`analysis/school-dialogue-confirmation-v1-20261013.json`，SHA256 `94fc8592a2516586fac60dda54157ecbc5b733ab96da71b3714a4212584392c7`；独立来源输出`analysis/school-dialogue-confirmation-source-v1-20261013.json`。后继指令的图层处理、后续对白和完整任务/世界仍待执行。

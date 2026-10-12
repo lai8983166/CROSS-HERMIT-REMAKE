@@ -470,7 +470,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 117. Declared confirmation and next-handler boundary
 
-- [ ] 117.1 Record a bounded declared mouse pulse at the actual held gate, execute original confirmation and next VM command to its natural handler entry without executing that handler, verify source-derived full regions/stack/inputs/pixels/cleanup and refusals, publish evidence and commit locally.
+- [x] 117.1 Record a bounded declared mouse pulse at the actual held gate, execute original confirmation and next VM command to its natural handler entry without executing that handler, verify source-derived full regions/stack/inputs/pixels/cleanup and refusals, publish evidence and commit locally.
 
 ## 118. Dialogue wait and confirmation acceptance
 
