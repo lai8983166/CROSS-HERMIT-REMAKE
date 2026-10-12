@@ -120,7 +120,8 @@ class SchoolFontRasterEmulator(SchoolTextPreparationEmulator):
   if address==0x56CE80:return super()._hook(uc,address,size,context)
   raise RuntimeError(f'raster unsupported original instruction {address:#x}')
 
- def run_font_raster(self,parent):
+ def run_font_raster(self,parent,*,keep_resources=False):
+  if type(keep_resources)is not bool:raise ValueError('raster resource lifetime flag')
   if self.raster_loading or self.uc.reg_read(UC_X86_REG_EIP)!=0xE300000:raise RuntimeError('actual pending font CPU required')
   sp=self.uc.reg_read(UC_X86_REG_ESP)
   if self.read(sp)!=0x4CAD09 or [self.read(sp+4+i*4) for i in range(14)]!=parent['pending_font']['args']:raise RuntimeError('actual pending font stack required')
@@ -152,8 +153,11 @@ class SchoolFontRasterEmulator(SchoolTextPreparationEmulator):
     'natural_VM_returned':False,'dialogue_playback_completed':False,'waves_executed':False,'full_task_wrapper_executed':False,'world_update_loop_executed':False,
     **self.verify_scene_memory(retained)}
   finally:
-   cleanup=self.platform.close();self.raster_loading=False
-   if result is not None:result['platform_cleanup']=cleanup
+   self.raster_loading=False
+   if result is not None and keep_resources:result['platform_resources_live']=True
+   else:
+    cleanup=self.platform.close()
+    if result is not None:result['platform_cleanup']=cleanup
   return result
 
 def report():

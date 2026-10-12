@@ -81,6 +81,16 @@ class WindowsGDI:
   if not self.g.GdiFlush():raise RuntimeError('GDI flush failed')
   b=self.bitmaps[obj];return C.string_at(b['pointer'],b['bytes'])
 
+ def delete_object(self,obj):
+  if self.closed or obj not in self.fonts and obj not in self.bitmaps:raise ValueError('GDI owned live object required')
+  if not self.g.DeleteObject(obj):raise RuntimeError('real GDI DeleteObject failed')
+  self.fonts.discard(obj);self.bitmaps.pop(obj,None);return 1
+
+ def delete_dc(self,dc):
+  if self.closed or dc not in self.dcs:raise ValueError('GDI owned live DC required')
+  if not self.g.DeleteDC(dc):raise RuntimeError('real GDI DeleteDC failed')
+  self.dcs.remove(dc);self.selections.pop(dc,None);return 1
+
  def close(self):
   if self.closed:return {'already_closed':True,'all_resources_released':True}
   errors=[]

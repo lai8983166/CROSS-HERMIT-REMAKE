@@ -418,7 +418,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 104. Natural first text texture and VM return
 
-- [ ] 104.1 Replay eight pinned parents, bind explicitly declared live host device, keep GDI resources through original texture create/lock/pixel upload/unlock/cleanup and first-line/text-handler/VM return; verify finite writes/retention and real pixel readback, preserve unexecuted readiness/render/world/wave boundaries, publish evidence and commit locally.
+- [x] 104.1 Replay eight pinned parents, bind explicitly declared live host device, keep GDI resources through original texture create/lock/pixel upload/unlock/cleanup and first-line/text-handler/VM return; verify finite writes/retention and real pixel readback, preserve unexecuted readiness/render/world/wave boundaries, publish evidence and commit locally.
 
 ## 105. Independent completed-text rules
 
