@@ -438,4 +438,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 109. Consecutive text acceptance
 
-- [ ] 109.1 Run relevant native/source/platform regression and strict specs, preserve historical/runtime/UI/save evidence, publish updated progress and immutable acceptance with multi-text/fade/render/world boundaries, verify tracked/index/HEAD bytes and commit locally without pushing.
+- [x] 109.1 Run relevant native/source/platform regression and strict specs, preserve historical/runtime/UI/save evidence, publish updated progress and immutable acceptance with multi-text/fade/render/world boundaries, verify tracked/index/HEAD bytes and commit locally without pushing.
