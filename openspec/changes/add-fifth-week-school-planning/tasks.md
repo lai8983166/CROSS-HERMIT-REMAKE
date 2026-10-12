@@ -399,3 +399,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 99. Font raster and timing acceptance
 
 - [x] 99.1 Run source/model/UI/strict-spec regression, preserve runtime/save/history, publish immutable acceptance/current progress, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 100. Original device and texture contracts
+
+- [ ] 100.1 Decode source factory/device fallback/texture allocation; execute original bounded dimension and null-device isolated cases, independently verify arguments/bytes/refusals, document and commit locally.
+
+## 101. Real32-bit Direct3D8 texture probe
+
+- [ ] 101.1 Implement strict x86 host helper for hidden windowed real device/managed texture, verify full original CPU pixel upload/readback, platform provenance/HRESULTs/pointers/cleanup and malformed cases without native device patching, publish immutable evidence and commit locally.
+
+## 102. Device feasibility acceptance
+
+- [ ] 102.1 Run source/strict-spec regression, retain prior model/UI acceptance and unchanged runtime/save/history, publish immutable platform acceptance/current progress, verify working/index/HEAD bytes and commit locally.

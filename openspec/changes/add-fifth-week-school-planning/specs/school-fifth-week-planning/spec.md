@@ -603,3 +603,17 @@ The audit SHALL independently decode source raster/texture geometry and pixel co
 
 - **WHEN** real captured raster bytes and bounded isolated timing cases are supplied
 - **THEN** converted pixels/padding and every original counter/readiness state match independent source rules without claiming GPU upload or natural VM completion
+
+### Requirement: Real32-bit Direct3D8 feasibility remains separate from natural VM continuation
+The system SHALL independently verify original texture allocation and device dependencies and probe actual32-bit Direct3D8 resources without replacing native device0 or manufacturing texture success.
+
+#### Scenario: Original dimensions and null-device boundary
+- **WHEN** source-pinned bounded isolated texture cases execute original403B70/403BD0
+- **THEN** power-of-two dimensions and full prepared CreateTexture arguments match independent rules
+- **AND** device0 stops before null-vtable dereference without any COM call or GPU success
+
+#### Scenario: Real host texture roundtrip
+- **WHEN** a bounded32-bit helper creates a hidden windowed device and a managed format25 texture
+- **THEN** source-derived dimensions, levels, usage and pool, actual HRESULTs/pointers/row pitch and complete uploaded/read-back pixels are recorded
+- **AND** all resources are released and malformed requests rejected before platform calls
+- **AND** probe success does not imply native renderer initialization, VM return, dialogue, waves or persistent state changes
