@@ -434,7 +434,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 108. Independent second text source rules
 
-- [ ] 108.1 Independently derive consecutive script order, second text lookup/split/row fields and natural stack/header/counter effects; compare complete memory and all arguments/pixels/provenance, reject malformed/stale/unsupported input, preserve earlier exports/runtime/UI/saves, document and commit locally.
+- [x] 108.1 Independently derive consecutive script order, second text lookup/split/row fields and natural stack/header/counter effects; compare complete memory and all arguments/pixels/provenance, reject malformed/stale/unsupported input, preserve earlier exports/runtime/UI/saves, document and commit locally.
 
 ## 109. Consecutive text acceptance
 
