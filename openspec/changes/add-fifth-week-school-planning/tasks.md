@@ -474,4 +474,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 118. Dialogue wait and confirmation acceptance
 
-- [ ] 118.1 Run relevant native/source/platform/strict-spec regression, preserve prior historical/runtime/UI/save/REA bytes, publish current progress and immutable acceptance with exact native/render/input/world boundaries, verify worktree/index/HEAD bytes and commit locally without pushing.
+- [x] 118.1 Run relevant native/source/platform/strict-spec regression, preserve prior historical/runtime/UI/save/REA bytes, publish current progress and immutable acceptance with exact native/render/input/world boundaries, verify worktree/index/HEAD bytes and commit locally without pushing.
