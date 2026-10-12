@@ -427,3 +427,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 106. Live first text acceptance
 
 - [x] 106.1 Run source/model/strict-spec regression, preserve runtime/UI/save/history and immutable prior window acceptance, publish current progress/immutable acceptance, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 107. Natural consecutive second text prefix
+
+- [x] 107.1 Replay eight pinned actual parents and real first-text completion with a fixed owned helper; observe first-record original readiness without CPU/stack/program changes, resume the next original opcode17 to second font entry, verify finite writes/full retention/live first pixels/cleanup, publish immutable evidence and commit locally.
+
+## 108. Independent second text source rules
+
+- [ ] 108.1 Independently derive consecutive script order, second text lookup/split/row fields and natural stack/header/counter effects; compare complete memory and all arguments/pixels/provenance, reject malformed/stale/unsupported input, preserve earlier exports/runtime/UI/saves, document and commit locally.
+
+## 109. Consecutive text acceptance
+
+- [ ] 109.1 Run relevant native/source/platform regression and strict specs, preserve historical/runtime/UI/save evidence, publish updated progress and immutable acceptance with multi-text/fade/render/world boundaries, verify tracked/index/HEAD bytes and commit locally without pushing.

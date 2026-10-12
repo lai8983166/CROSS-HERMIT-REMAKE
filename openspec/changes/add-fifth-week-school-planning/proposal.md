@@ -143,3 +143,7 @@ Trace the original renderer factory/device initialization and texture allocation
 ## Live real-device bridge and first text completion (2026-10-12)
 
 Keep real32-bit Direct3D8 objects alive in an owned helper process across bounded calls. Declare the live host device as a platform binding in the existing renderer device slot; this is not original renderer startup or a fabricated pointer. Continue the real-GDI first-line frame through original texture creation, descriptor, lock, original pixel upload, unlock, GDI cleanup, line-count completion and VM return. Independently verify complete regions and pixel rows; retain GPU drawing/readiness/world/wave boundaries and commit bridge/native/source/acceptance stages locally.
+
+## Natural next opening text (2026-10-12)
+
+The selected script contains consecutive opcode17 entries at offsets684 and690. Continue the actual first-text VM return with its real texture still alive to the second text lookup/split/record preparation and natural font API entry. Observe the original first-record readiness predicate separately without changing its CPU/stack/state. Do not delay the VM until first-line fade completion or claim single-line timing is the selected script cadence. Independently compare complete bytes/stack/source arguments, preserve prior evidence/runtime/UI/saves, and commit native/source/acceptance stages locally. Multiple text textures, natural fade/readiness after those entries, world/waves and actual rendering remain subsequent dependencies.

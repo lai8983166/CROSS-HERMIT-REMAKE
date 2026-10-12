@@ -1,0 +1,23 @@
+Parent initial/formation_placement: complete frozen equality
+Parent initial/deployment_tail: complete frozen equality
+Parent initial/scene_opening: complete frozen equality
+Parent initial/entry_control: complete frozen equality
+Parent initial/script_preflight: complete frozen equality
+Parent initial/script_opening: complete frozen equality
+Parent initial/board_opening: complete frozen equality
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_next_text_emulation.py", line 129, in <module>
+    path.write_text(report_text(report(ROOT/'.venv-audit'/f'{path.stem}-bridge.exe')),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_next_text_emulation.py", line 119, in report
+    first=e.run_live_text(text,helper,continuation=e.run_next_text)
+  File "F:\project\chaomofa\tools\school_live_text_emulation.py", line 136, in run_live_text
+    if continuation is not None:result['continuation']=continuation(result)
+  File "F:\project\chaomofa\tools\school_next_text_emulation.py", line 83, in run_next_text
+    readiness=self.observe_first_readiness();pointer=self.read(TACT+0x64)
+  File "F:\project\chaomofa\tools\school_next_text_emulation.py", line 71, in observe_first_readiness
+    if bytes(self.uc.mem_read(STACK,65536))!=stack or bytes(self.uc.context_save())!=bytes(cpu):raise RuntimeError('predicate original CPU/stack not restored')
+RuntimeError: predicate original CPU/stack not restored

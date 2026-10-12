@@ -96,7 +96,8 @@ class SchoolLiveTextEmulator(SchoolFontRasterEmulator):
   if address in BOARD_CODE or address in SCRIPT_CODE or address in (0x4D29E0,0x4CA1B0,0x4C99E0,0x4CD4D0,0x4C7770,0x4CBA60,0x4CBDB0,0x410310):return SchoolBoardOpeningEmulator._hook(self,uc,address,size,context)
   raise RuntimeError(f'live unsupported original instruction {address:#x}')
 
- def run_live_text(self,parent,helper):
+ def run_live_text(self,parent,helper,*,continuation=None):
+  if continuation is not None and not callable(continuation):raise ValueError('live continuation callback')
   if self.uc.reg_read(UC_X86_REG_EIP)!=0xE300000 or self.live_loading:raise RuntimeError('live actual pending font required')
   self.bridge=LiveD3D8(helper);self.live_loading=False;result=None
   try:
@@ -132,6 +133,7 @@ class SchoolLiveTextEmulator(SchoolFontRasterEmulator):
     'original_texture_create_upload_executed':True,'text_record_completed':True,'text_handler_completed':True,'natural_VM_returned':True,
     'text_readiness_executed':False,'GPU_draw_or_present_executed':False,'original_renderer_startup_executed':False,'dialogue_playback_completed':False,
     'waves_executed':False,'world_update_loop_executed':False,'full_task_wrapper_executed':False,**self.verify_scene_memory(retained)}
+   if continuation is not None:result['continuation']=continuation(result)
   finally:
    self.live_loading=False;self.board_loading=False
    try:gdi=self.platform.close() if hasattr(self,'platform') else None
@@ -139,12 +141,13 @@ class SchoolLiveTextEmulator(SchoolFontRasterEmulator):
    if result is not None:result['remaining_GDI_cleanup']=gdi;result['COM_process_cleanup']=cleanup;result['process_exited']=self.bridge.process.poll()==0
   return result
 
-def restored_case(index,parents):
+def restored_case(index,parents,emulator_type=SchoolLiveTextEmulator):
  name,expected=CHECKPOINTS[index];raw=(ROOT/f'.venv-audit/formation-actual-checkpoint-{index}.pkl').read_bytes()
  if hashlib.sha256(raw).hexdigest()!=expected:raise ValueError('live actual checkpoint identity')
  payload=pickle.loads(raw)
  if payload['source_sha']!=SOURCE_SHA256 or payload['evidence_kind']!='private_actual_cpu_after_full35_before_placement':raise ValueError('live checkpoint provenance')
- e=SchoolLiveTextEmulator();e.__dict__.update({k:v for k,v in payload['state'].items() if k!='uc' and not k.startswith('_audit_')})
+ if not isinstance(emulator_type,type) or not issubclass(emulator_type,SchoolLiveTextEmulator):raise ValueError('live checkpoint emulator type')
+ e=emulator_type();e.__dict__.update({k:v for k,v in payload['state'].items() if k!='uc' and not k.startswith('_audit_')})
  for at,data in payload['memory']:e.uc.mem_write(at,data)
  e.uc.context_restore(payload['cpu']);original=e.uc.emu_start
  def bounded(begin,end,timeout=0,count=0):

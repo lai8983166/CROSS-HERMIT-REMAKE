@@ -631,3 +631,15 @@ The system SHALL bridge live owned32-bit Direct3D8 resources to the original fir
 #### Scenario: Foreign or stale live resources are rejected
 - **WHEN** a bridge request names an unsupported method, malformed buffer or dead/foreign pointer
 - **THEN** no fabricated resource/result is returned and the request is refused with cleanup available
+
+### Requirement: Natural consecutive second text prefix retains live first resources
+The audit SHALL continue the actual first-text VM return while the real first texture is alive, observe original first-record readiness on actual bytes without altering the restored CPU/stack/state, and resume the next original opcode17 to the natural second font API entry. It SHALL compare complete memory and source-derived stack arguments, preserve old evidence/runtime/UI/saves, and close resources on success/failure. It SHALL NOT delay the selected VM for an invented first-line wait or claim that second font/texture creation, natural complete fade, GPU drawing or world/waves have executed.
+
+#### Scenario: Consecutive text is prepared before first fade completes
+- **WHEN** the first text naturally returns at PC238 with mode3/fade0
+- **THEN** original first-record readiness is false and the next original VM update selects text index1 and prepares the next record on its natural font stack
+- **AND** first texture pixels and all non-owned mapped memory are retained while the second font API remains unexecuted
+
+#### Scenario: Missing live ownership or foreign writes refuse continuation
+- **WHEN** a continuation has stale resource ownership, unsupported source state or writes beyond the finite second-row/header/stack/counter ranges
+- **THEN** it fails without a fabricated font/texture/readiness result and cleanup remains mandatory
