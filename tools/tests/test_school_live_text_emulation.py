@@ -3,9 +3,10 @@ from tools.school_live_text_emulation import *
 
 class LiveNativeTests(unittest.TestCase):
  def test_three_actual_parents_text_texture_root_return_and_resources(self):
-  raw=(ROOT/'analysis/school-live-text-v1-20261012.json').read_bytes();data=json.loads(raw)
-  self.assertEqual(hashlib.sha256(raw).hexdigest(),'de4828ab6f278822b0f2d5ac0508c3db56b24be1ee66f4f7dd390cdf610b7818')
+  raw=(ROOT/'analysis/school-live-text-v2-20261012.json').read_bytes();data=json.loads(raw)
+  self.assertEqual(hashlib.sha256(raw).hexdigest(),'2f503342934a8c1e89cee8f893e66ec4d625cf041309a2d8d41c03664d69ecef')
   self.assertEqual(len(data['cases']),3)
+  for c in data['cases']:self.assertEqual(c['provenance']['helper_sha256'],data['bridge_build']['helper_sha256'])
   for i,c in enumerate(data['cases']):
    self.assertEqual((c['name'],c['provenance']['checkpoint_sha256']),CHECKPOINTS[i]);self.assertEqual(c['provenance']['complete_parent_stages'],8);self.assertTrue(c['provenance']['complete_parent_stages_equal'])
    p=c['live_text'];self.assertEqual(p['raster']['before'],read_text_parent()['cases'][i]['text_preparation']['after'])

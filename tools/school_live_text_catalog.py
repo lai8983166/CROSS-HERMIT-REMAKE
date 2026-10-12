@@ -6,8 +6,8 @@ from tools.school_font_raster_catalog import ROOT,SOURCE,SOURCE_SHA256,BASE,VM,R
 from tools.school_text_preparation_catalog import OBJECT_OFFSET,NODE_OFFSET
 from tools.school_text_timing_catalog import expected_update,BYTES
 
-EVIDENCE=ROOT/'analysis/school-live-text-v1-20261012.json'
-EVIDENCE_SHA256='de4828ab6f278822b0f2d5ac0508c3db56b24be1ee66f4f7dd390cdf610b7818'
+EVIDENCE=ROOT/'analysis/school-live-text-v2-20261012.json'
+EVIDENCE_SHA256='2f503342934a8c1e89cee8f893e66ec4d625cf041309a2d8d41c03664d69ecef'
 
 @lru_cache(maxsize=1)
 def source_catalog():

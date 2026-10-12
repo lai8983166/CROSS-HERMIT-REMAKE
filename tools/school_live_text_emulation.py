@@ -161,13 +161,18 @@ def restored_case(index,parents):
  if text!=read_text_parent()['cases'][index]['text_preparation']:raise ValueError('live complete text parent mismatch')
  return e,text,{'name':name,'provenance':{'checkpoint_sha256':expected,'complete_parent_stages':8,'complete_parent_stages_equal':True,'parent_text_sha256':TEXT_SHA,'upstream_rerun':False}}
 
-def report():
- helper,build_info=build();parents=(parent_evidence(),read_deployment(),read_opening(),read_entry(),read_preflight(),read_script_opening(),read_parent());cases=[]
+def report(helper_path):
+ helper,build_info=build(helper_path);parents=(parent_evidence(),read_deployment(),read_opening(),read_entry(),read_preflight(),read_script_opening(),read_parent());cases=[]
  for i in range(3):
-  e,text,c=restored_case(i,parents);c['live_text']=e.run_live_text(text,helper);cases.append(c);print('Native '+c['name']+': real texture and natural text/VM return',flush=True)
+  e,text,c=restored_case(i,parents)
+  if hashlib.sha256(helper.read_bytes()).hexdigest()!=build_info['helper_sha256']:raise ValueError('fixed live evidence helper changed')
+  c['provenance']['helper_sha256']=build_info['helper_sha256'];c['live_text']=e.run_live_text(text,helper)
+  if hashlib.sha256(helper.read_bytes()).hexdigest()!=build_info['helper_sha256']:raise ValueError('fixed live evidence helper changed during case')
+  cases.append(c);print('Native '+c['name']+': real texture and natural text/VM return',flush=True)
  return {'schema_version':1,'source_image_sha256':SOURCE_SHA256,'bridge_build':build_info,'cases':cases,'inherited_refusals':deepcopy(read_text_parent()['inherited_refusals']),**AUTHORITY}
 
 if __name__=='__main__':
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);a=p.parse_args();out=ROOT/a.out
  if out.exists():p.error('use new immutable path')
- out.write_text(report_text(report()),encoding='utf-8',newline='\n')
+ helper_path=ROOT/'.venv-audit'/f'{out.stem}-bridge.exe'
+ out.write_text(report_text(report(helper_path)),encoding='utf-8',newline='\n')

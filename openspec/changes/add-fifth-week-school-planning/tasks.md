@@ -426,4 +426,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 106. Live first text acceptance
 
-- [ ] 106.1 Run source/model/strict-spec regression, preserve runtime/UI/save/history and immutable prior window acceptance, publish current progress/immutable acceptance, verify working/index/HEAD bytes and commit locally without pushing.
+- [x] 106.1 Run source/model/strict-spec regression, preserve runtime/UI/save/history and immutable prior window acceptance, publish current progress/immutable acceptance, verify working/index/HEAD bytes and commit locally without pushing.
