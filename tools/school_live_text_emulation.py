@@ -39,6 +39,8 @@ class SchoolLiveTextEmulator(SchoolFontRasterEmulator):
 
  def _hook(self,uc,address,size,context):
   if not self.live_loading:return super()._hook(uc,address,size,context)
+  texture=getattr(self,"live_texture_address",TEXTURE);mirror=getattr(self,"live_mirror_address",MIRROR)
+  width,height=getattr(self,"live_texture_size",(256,32))
   sp=uc.reg_read(UC_X86_REG_ESP);frame=uc.reg_read(UC_X86_REG_EBP)
   reg=lambda r:uc.reg_read(r)
   if address in (0x403C81,0x403CB8,0x403958,0x4039CD):
@@ -48,7 +50,7 @@ class SchoolLiveTextEmulator(SchoolFontRasterEmulator):
   if address in (0x403C87,0x403CBB,0x40395B,0x4039D0):
    count={0x403C87:8,0x403CBB:3,0x40395B:5,0x4039D0:2}[address];args=[self.read(sp+4*i) for i in range(count)]
    if address==0x403C87:
-    if args!=[self.device,256,32,1,0,25,1,TEXTURE+0x2C]:raise RuntimeError('original exact live CreateTexture')
+    if args!=[self.device,width,height,1,0,25,1,texture+0x2C]:raise RuntimeError('original exact live CreateTexture')
     result=self.bridge.create(*args[1:3],*args[3:7]);self._live_write(args[-1],struct.pack('<I',result['texture']['pointer']));table=reg(UC_X86_REG_ECX);offset=0x50
    elif address==0x403CBB:
     if args!=[self.bridge.texture['pointer'],0,frame-0x34]:raise RuntimeError('original live level descriptor')
@@ -56,13 +58,13 @@ class SchoolLiveTextEmulator(SchoolFontRasterEmulator):
    elif address==0x40395B:
     if args!=[self.bridge.texture['pointer'],0,self.lock_output,0,0x800]:raise RuntimeError('original exact texture lock')
     result=self.bridge.lock(args[0]);raw=bytes.fromhex(result['hex']);self.lock_before=raw;self.lock_bytes=len(raw);self.lock_pitch=result['pitch'];self.host_bits=result['bits']
-    self._live_write(MIRROR,raw);self._live_write(args[2],struct.pack('<2I',self.lock_pitch,MIRROR));table=reg(UC_X86_REG_ECX);offset=0x40
+    self._live_write(mirror,raw);self._live_write(args[2],struct.pack('<2I',self.lock_pitch,mirror));table=reg(UC_X86_REG_ECX);offset=0x40
    else:
     if args!=[self.bridge.texture['pointer'],0]:raise RuntimeError('original exact texture unlock')
-    raw=bytes(uc.mem_read(MIRROR,self.lock_bytes));self.lock_after=raw;result=self.bridge.unlock(args[0],raw);table=reg(UC_X86_REG_EAX);offset=0x44
+    raw=bytes(uc.mem_read(mirror,self.lock_bytes));self.lock_after=raw;result=self.bridge.unlock(args[0],raw);table=reg(UC_X86_REG_EAX);offset=0x44
    self._dispatch(address,table,offset,args,4*count,result);return
   if address==0x403910:
-   if self.read(sp)!=0x405796 or reg(UC_X86_REG_ECX)!=TEXTURE:raise RuntimeError('natural font lock caller')
+   if self.read(sp)!=0x405796 or reg(UC_X86_REG_ECX)!=texture:raise RuntimeError('natural font lock caller')
    self.lock_output=self.read(sp+4)
   if address in (0xE310000,0xE310010,0xE310020):
    ret=self.read(sp);g=self.platform
@@ -96,10 +98,11 @@ class SchoolLiveTextEmulator(SchoolFontRasterEmulator):
   if address in BOARD_CODE or address in SCRIPT_CODE or address in (0x4D29E0,0x4CA1B0,0x4C99E0,0x4CD4D0,0x4C7770,0x4CBA60,0x4CBDB0,0x410310):return SchoolBoardOpeningEmulator._hook(self,uc,address,size,context)
   raise RuntimeError(f'live unsupported original instruction {address:#x}')
 
- def run_live_text(self,parent,helper,*,continuation=None):
+ def run_live_text(self,parent,helper,*,continuation=None,bridge_type=LiveD3D8):
   if continuation is not None and not callable(continuation):raise ValueError('live continuation callback')
   if self.uc.reg_read(UC_X86_REG_EIP)!=0xE300000 or self.live_loading:raise RuntimeError('live actual pending font required')
-  self.bridge=LiveD3D8(helper);self.live_loading=False;result=None
+  if not isinstance(bridge_type,type) or not issubclass(bridge_type,LiveD3D8):raise ValueError('live owned bridge type')
+  self.bridge=bridge_type(helper);self.live_loading=False;result=None
   try:
    renderer=self.read(0x7A49FC);slot=renderer+0xB210;old=self.read(slot)
    if old!=0:raise RuntimeError('explicit empty original renderer device slot required')

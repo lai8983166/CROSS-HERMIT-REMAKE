@@ -1,0 +1,21 @@
+Parent initial/formation_placement: complete frozen equality
+Parent initial/deployment_tail: complete frozen equality
+Parent initial/scene_opening: complete frozen equality
+Parent initial/entry_control: complete frozen equality
+Parent initial/script_preflight: complete frozen equality
+Parent initial/script_opening: complete frozen equality
+Parent initial/board_opening: complete frozen equality
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_second_live_text_emulation.py", line 91, in <module>
+    path.write_text(report_text(report(ROOT/'.venv-audit'/f'{path.stem}-bridge.exe')),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_second_live_text_emulation.py", line 82, in report
+    first=e.run_live_text(text,helper,bridge_type=MultiD3D8,continuation=e.complete_second)
+  File "F:\project\chaomofa\tools\school_live_text_emulation.py", line 139, in run_live_text
+    if continuation is not None:result['continuation']=continuation(result)
+  File "F:\project\chaomofa\tools\school_second_live_text_emulation.py", line 63, in complete_second
+    if conv!=self.lock_after or self.text_draws!=self.update_expected['draws'] or bytes(self.uc.mem_read(OBJECT,BYTES)).hex()!=self.update_expected['after_hex']:raise RuntimeError('second independent pixel/timing equality')
+RuntimeError: second independent pixel/timing equality

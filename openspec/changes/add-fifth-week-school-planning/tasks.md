@@ -446,7 +446,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 111. Natural second texture and VM return
 
-- [ ] 111.1 Replay eight pinned parents and first live texture/VM, continue actual second font through real raster/texture upload/cleanup and natural text/VM return with exact declared two-row terminal drawing, verify live first pixels/finite ownership/full retention/cleanup and fixed helper identity, publish evidence and commit locally.
+- [x] 111.1 Replay eight pinned parents and first live texture/VM, continue actual second font through real raster/texture upload/cleanup and natural text/VM return with exact declared two-row terminal drawing, verify live first pixels/finite ownership/full retention/cleanup and fixed helper identity, publish evidence and commit locally.
 
 ## 112. Independent second completed-text rules
 

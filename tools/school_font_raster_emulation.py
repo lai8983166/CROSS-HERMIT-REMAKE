@@ -29,7 +29,7 @@ def read_text_parent():
 
 class SchoolFontRasterEmulator(SchoolTextPreparationEmulator):
  def __init__(self):
-  self.raster_loading=False
+  self.raster_loading=False;self.raster_address=RASTER;self.font_texture_address=TEXTURE
   super().__init__()
 
  def _write_hook(self,uc,access,address,size,value,context):
@@ -67,7 +67,7 @@ class SchoolFontRasterEmulator(SchoolTextPreparationEmulator):
    frame=self.uc.reg_read(UC_X86_REG_EBP)
    if args!=[self.raster_dc,frame-0x38,0,frame-0x3C,0,0]:raise RuntimeError('raster DIB input')
    header=bytes(self.uc.mem_read(args[1],40));result=g.dib(self.raster_dc,header);self.bitmap=result
-   self._raster_write(args[3],struct.pack('<I',RASTER));extra={'header_hex':header.hex(),'virtual_bits_pointer':RASTER}
+   self._raster_write(args[3],struct.pack('<I',self.raster_address));extra={'header_hex':header.hex(),'virtual_bits_pointer':self.raster_address}
   elif name=='GetStockObject':
    if args!=[4]:raise RuntimeError('raster source brush')
    result=g.handle(g.g.GetStockObject(4));self.brush=result
@@ -113,41 +113,42 @@ class SchoolFontRasterEmulator(SchoolTextPreparationEmulator):
    if ret!=0x4051D7 or recv!=self.graphics:raise RuntimeError('raster measurement context acquisition')
    self.measure_dc=self.platform.dc();self._stub_return(self.measure_dc,0);return
   if address==0x403BD0:
-   if (ret,recv,[self.read(sp+4),self.read(sp+8)])!=(0x405779,TEXTURE,[self.device,0]):raise RuntimeError('raster pending original texture caller')
+   if (ret,recv,[self.read(sp+4),self.read(sp+8)])!=(0x405779,self.font_texture_address,[self.device,0]):raise RuntimeError('raster pending original texture caller')
    self.pending_texture={'va':hex(address),'receiver':recv,'args':[self.device,0],'return_va':hex(ret),'first_instruction_executed':False,'natural_stack_verified':True}
    uc.emu_stop();return
   if address in RASTER_CODE:self.visited.add(address);return
   if address==0x56CE80:return super()._hook(uc,address,size,context)
   raise RuntimeError(f'raster unsupported original instruction {address:#x}')
 
- def run_font_raster(self,parent,*,keep_resources=False):
+ def run_font_raster(self,parent,*,keep_resources=False,platform=None,parent_sha=TEXT_SHA):
   if type(keep_resources)is not bool:raise ValueError('raster resource lifetime flag')
   if self.raster_loading or self.uc.reg_read(UC_X86_REG_EIP)!=0xE300000:raise RuntimeError('actual pending font CPU required')
   sp=self.uc.reg_read(UC_X86_REG_ESP)
   if self.read(sp)!=0x4CAD09 or [self.read(sp+4+i*4) for i in range(14)]!=parent['pending_font']['args']:raise RuntimeError('actual pending font stack required')
   self.raster_parent=parent;self.graphics=self.read(0x7A49FC);self.device=self.read(self.graphics+0xB210)
-  if self.read(TEXTURE+0x2C) or self.read(TEXTURE+0x30) or not self.graphics:raise RuntimeError('raster empty source texture/context required')
-  self.uc.mem_map(RASTER,RASTER_BYTES)
+  texture=self.font_texture_address;raster=self.raster_address
+  if self.read(texture+0x2C) or self.read(texture+0x30) or not self.graphics:raise RuntimeError('raster empty source texture/context required')
+  self.uc.mem_map(raster,RASTER_BYTES)
   bindings=[]
   for api,(slot,name,_,_) in API.items():
    bindings.append({'slot':hex(slot),'before':self.read(slot),'bound':api,'name':name});self.write(slot,api)
-  self.raster_allowed=[(STACK,STACK+65536),(TEXTURE+0x28,TEXTURE+0x44),(TEXTURE+0x4C,TEXTURE+0x50),(TEXTURE+0x64,TEXTURE+0x68),(RASTER,RASTER+RASTER_BYTES)]
+  self.raster_allowed=[(STACK,STACK+65536),(texture+0x28,texture+0x44),(texture+0x4C,texture+0x50),(texture+0x64,texture+0x68),(raster,raster+RASTER_BYTES)]
   before=self.script_regions();retained=self.capture_scene_memory(self.raster_allowed[1:]);null=bytes(self.uc.mem_read(0,4))
   self.raster_loading=True;self.api_records=[];self.crt_records=[];self.pending_texture=None
   self.measure_dc=self.raster_dc=self.bitmap=self.font_handle=self.old_measure_font=self.brush=0
-  self.platform=WindowsGDI();result=None
+  self.platform=WindowsGDI() if platform is None else platform;result=None
   try:
    # The previous run ended at this exact address. Invalidate Unicorn's cached
    # exit translation so the natural CPU frame can now execute its API hook.
    self.uc.ctl_remove_cache(0xE300000,0xE300001)
    self.uc.emu_start(0xE300000,RETURN,timeout=5_000_000,count=100000)
    if self.pending_texture is None:raise RuntimeError(f'natural texture boundary not reached: EIP={self.uc.reg_read(UC_X86_REG_EIP):#x}, APIs={self.api_records}')
-   raw=self.platform.raster(self.bitmap);self._raster_write(RASTER,raw)
+   raw=self.platform.raster(self.bitmap);self._raster_write(raster,raw)
    if bytes(self.uc.mem_read(0,4))!=null:raise RuntimeError('raster null retention')
    result={'inputs':{'graphics_context':self.graphics,'device':self.device,'import_bindings':bindings,'host_ansi_code_page':self.platform.acp,
-    'platform':'real_host_GDI_offscreen_measurement_DC','parent_text_sha256':TEXT_SHA},'before':before,'after':self.script_regions(),
+    'platform':'real_host_GDI_offscreen_measurement_DC','parent_text_sha256':parent_sha},'before':before,'after':self.script_regions(),
     'font_api':self.api_records,'crt':self.crt_records,'measured':self.measured,'selected_face':self.selected_face,
-    'text_hex':self.text_raw.hex(),'raster':{'pointer':RASTER,'size':self.platform.bitmaps[self.bitmap]['size'],'hex':raw.hex(),'sha256':hashlib.sha256(raw).hexdigest()},
+    'text_hex':self.text_raw.hex(),'raster':{'pointer':raster,'size':self.platform.bitmaps[self.bitmap]['size'],'hex':raw.hex(),'sha256':hashlib.sha256(raw).hexdigest()},
     'pending_texture':self.pending_texture,'font_api_executed':True,'original_raster_geometry_executed':True,'real_offscreen_GDI_drawing':True,
     'original_gpu_executed':False,'texture_creation_executed':False,'text_record_completed':False,'text_readiness_executed':False,
     'natural_VM_returned':False,'dialogue_playback_completed':False,'waves_executed':False,'full_task_wrapper_executed':False,'world_update_loop_executed':False,
