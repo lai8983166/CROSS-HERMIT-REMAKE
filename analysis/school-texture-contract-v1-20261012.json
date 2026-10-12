@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "source": {
+    "schema_version": 1,
+    "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "code_inputs": [
+      {
+        "va": "0x4136ed",
+        "hex": "68dc000000",
+        "mnemonic": "push",
+        "operands": "0xdc"
+      },
+      {
+        "va": "0x4136f2",
+        "hex": "e849351100",
+        "mnemonic": "call",
+        "operands": "0x526c40"
+      },
+      {
+        "va": "0x4136fa",
+        "hex": "89810cb20000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + 0xb20c], eax"
+      },
+      {
+        "va": "0x413750",
+        "hex": "c780f8b1000001000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [eax + 0xb1f8], 1"
+      },
+      {
+        "va": "0x41375d",
+        "hex": "c781fcb1000040000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + 0xb1fc], 0x40"
+      },
+      {
+        "va": "0x413797",
+        "hex": "c782fcb1000020000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [edx + 0xb1fc], 0x20"
+      },
+      {
+        "va": "0x4137c1",
+        "hex": "c782f8b1000002000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [edx + 0xb1f8], 2"
+      },
+      {
+        "va": "0x4137ce",
+        "hex": "c780fcb1000040000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [eax + 0xb1fc], 0x40"
+      },
+      {
+        "va": "0x4137f8",
+        "hex": "c780f8b1000002000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [eax + 0xb1f8], 2"
+      },
+      {
+        "va": "0x413805",
+        "hex": "c781fcb1000020000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + 0xb1fc], 0x20"
+      },
+      {
+        "va": "0x4139cd",
+        "hex": "0510b20000",
+        "mnemonic": "add",
+        "operands": "eax, 0xb210"
+      },
+      {
+        "va": "0x4139e8",
+        "hex": "0c04",
+        "mnemonic": "or",
+        "operands": "al, 4"
+      },
+      {
+        "va": "0x413a10",
+        "hex": "ff503c",
+        "mnemonic": "call",
+        "operands": "dword ptr [eax + 0x3c]"
+      },
+      {
+        "va": "0x413c76",
+        "hex": "ff513c",
+        "mnemonic": "call",
+        "operands": "dword ptr [ecx + 0x3c]"
+      },
+      {
+        "va": "0x403ba2",
+        "hex": "0fbf4df4",
+        "mnemonic": "movsx",
+        "operands": "ecx, word ptr [ebp - 0xc]"
+      },
+      {
+        "va": "0x403ba6",
+        "hex": "0fbf5508",
+        "mnemonic": "movsx",
+        "operands": "edx, word ptr [ebp + 8]"
+      },
+      {
+        "va": "0x403bb4",
+        "hex": "66d1e0",
+        "mnemonic": "shl",
+        "operands": "ax, 1"
+      },
+      {
+        "va": "0x403bf0",
+        "hex": "0fbf4838",
+        "mnemonic": "movsx",
+        "operands": "ecx, word ptr [eax + 0x38]"
+      },
+      {
+        "va": "0x403c06",
+        "hex": "83793400",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [ecx + 0x34], 0"
+      },
+      {
+        "va": "0x403c2f",
+        "hex": "e8fcfaffff",
+        "mnemonic": "call",
+        "operands": "0x403730"
+      },
+      {
+        "va": "0x403c3f",
+        "hex": "e82cffffff",
+        "mnemonic": "call",
+        "operands": "0x403b70"
+      },
+      {
+        "va": "0x403c53",
+        "hex": "e818ffffff",
+        "mnemonic": "call",
+        "operands": "0x403b70"
+      },
+      {
+        "va": "0x403c65",
+        "hex": "6a01",
+        "mnemonic": "push",
+        "operands": "1"
+      },
+      {
+        "va": "0x403c72",
+        "hex": "6a01",
+        "mnemonic": "push",
+        "operands": "1"
+      },
+      {
+        "va": "0x403c81",
+        "hex": "8b08",
+        "mnemonic": "mov",
+        "operands": "ecx, dword ptr [eax]"
+      },
+      {
+        "va": "0x403c87",
+        "hex": "ff5150",
+        "mnemonic": "call",
+        "operands": "dword ptr [ecx + 0x50]"
+      },
+      {
+        "va": "0x403c98",
+        "hex": "7d0a",
+        "mnemonic": "jge",
+        "operands": "0x403ca4"
+      },
+      {
+        "va": "0x403cbb",
+        "hex": "ff5038",
+        "mnemonic": "call",
+        "operands": "dword ptr [eax + 0x38]"
+      },
+      {
+        "va": "0x403d2c",
+        "hex": "895128",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + 0x28], edx"
+      }
+    ],
+    "sdk_version": 220,
+    "device_fallbacks": [
+      [
+        1,
+        68
+      ],
+      [
+        1,
+        36
+      ],
+      [
+        2,
+        68
+      ],
+      [
+        2,
+        36
+      ]
+    ],
+    "renderer_factory_offset": 45580,
+    "renderer_device_offset": 45584,
+    "CreateDevice_vtable_offset": 60,
+    "CreateTexture_vtable_offset": 80,
+    "GetLevelDesc_vtable_offset": 56,
+    "texture_levels": 1,
+    "texture_pool": 1,
+    "font_texture_format": 25,
+    "scope": "isolated source contract, not natural native device initialization",
+    "school_initialized": false,
+    "interactive_school_ready": false,
+    "live_witness": false,
+    "authorizes_persistent_write": false
+  },
+  "dimensions": [
+    {
+      "input": 1,
+      "original": 1,
+      "independent": 1
+    },
+    {
+      "input": 2,
+      "original": 2,
+      "independent": 2
+    },
+    {
+      "input": 3,
+      "original": 4,
+      "independent": 4
+    },
+    {
+      "input": 24,
+      "original": 32,
+      "independent": 32
+    },
+    {
+      "input": 174,
+      "original": 256,
+      "independent": 256
+    },
+    {
+      "input": 255,
+      "original": 256,
+      "independent": 256
+    },
+    {
+      "input": 256,
+      "original": 256,
+      "independent": 256
+    },
+    {
+      "input": 257,
+      "original": 512,
+      "independent": 512
+    },
+    {
+      "input": 1024,
+      "original": 1024,
+      "independent": 1024
+    },
+    {
+      "input": 16384,
+      "original": 16384,
+      "independent": 16384
+    }
+  ],
+  "cases": [
+    {
+      "name": "initial",
+      "texture": {
+        "before_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae00180000000000ae00180000000000",
+        "after_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae00180000000000ae00180000000000",
+        "pending": [
+          {
+            "va": "0x403c81",
+            "device": 0,
+            "prepared_args": [
+              256,
+              32,
+              1,
+              0,
+              25,
+              1,
+              301989932
+            ],
+            "device_this_not_yet_pushed": true,
+            "null_dereference_executed": false,
+            "COM_call_executed": false
+          }
+        ],
+        "original_returned": false,
+        "return_value": null,
+        "GPU_executed": false,
+        "native_VM_continuation_executed": false
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "texture": {
+        "before_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae00180000000000ae00180000000000",
+        "after_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae00180000000000ae00180000000000",
+        "pending": [
+          {
+            "va": "0x403c81",
+            "device": 0,
+            "prepared_args": [
+              256,
+              32,
+              1,
+              0,
+              25,
+              1,
+              301989932
+            ],
+            "device_this_not_yet_pushed": true,
+            "null_dereference_executed": false,
+            "COM_call_executed": false
+          }
+        ],
+        "original_returned": false,
+        "return_value": null,
+        "GPU_executed": false,
+        "native_VM_continuation_executed": false
+      }
+    },
+    {
+      "name": "fifth_class",
+      "texture": {
+        "before_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae00180000000000ae00180000000000",
+        "after_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae00180000000000ae00180000000000",
+        "pending": [
+          {
+            "va": "0x403c81",
+            "device": 0,
+            "prepared_args": [
+              256,
+              32,
+              1,
+              0,
+              25,
+              1,
+              301989932
+            ],
+            "device_this_not_yet_pushed": true,
+            "null_dereference_executed": false,
+            "COM_call_executed": false
+          }
+        ],
+        "original_returned": false,
+        "return_value": null,
+        "GPU_executed": false,
+        "native_VM_continuation_executed": false
+      }
+    }
+  ],
+  "invalid_geometry": [
+    {
+      "before_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000001800000000000000000000000000",
+      "after_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000001800000000000000000000000000",
+      "pending": [],
+      "original_returned": true,
+      "return_value": 1,
+      "GPU_executed": false,
+      "native_VM_continuation_executed": false
+    },
+    {
+      "before_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae000000000000000000000000000000",
+      "after_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000019000000ae000000000000000000000000000000",
+      "pending": [],
+      "original_returned": true,
+      "return_value": 1,
+      "GPU_executed": false,
+      "native_VM_continuation_executed": false
+    },
+    {
+      "before_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ae001800000000000000000000000000",
+      "after_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ae001800000000000000000000000000",
+      "pending": [],
+      "original_returned": true,
+      "return_value": 1,
+      "GPU_executed": false,
+      "native_VM_continuation_executed": false
+    }
+  ],
+  "school_initialized": false,
+  "interactive_school_ready": false,
+  "live_witness": false,
+  "authorizes_persistent_write": false
+}
