@@ -655,3 +655,16 @@ The audit SHALL support bounded independently owned real32-bit textures in a sep
 #### Scenario: Invalid ownership and multiple-lock cleanup
 - **WHEN** a request references a foreign/released object, reuses a retired address, exceeds the resource limit or violates that texture lock state
 - **THEN** it refuses without cross-object buffer changes and close unlocks/releases every remaining owned texture and device/window
+
+### Requirement: Natural text wait and confirmation preserve live resources
+The audit SHALL decode actual source opcode/wait dispatch tables and execute the original VM-driven text fade, cadence and readiness on two completed real textures. It SHALL hold the next confirmation gate without input, separately record a declared mouse confirmation pulse, and resume the original VM to the next source handler boundary. It SHALL independently compare complete per-update regions, exact terminal draw/arrow arguments, both full real texture readbacks, finite retained memory and cleanup; preserve historical/runtime/UI/save/REA bytes. Live input capture, GPU/Present, next-handler execution and full world/dialogue SHALL NOT be inferred.
+
+#### Scenario: Text completes before confirmation is accepted
+- **WHEN** the actual second-text return resumes with no input
+- **THEN** original opcode50 waits through natural two-row fade/readiness and opcode51 remains waiting without input
+- **AND** complete first/second texture bytes remain unchanged while original counters and terminal arrow inputs are verified
+
+#### Scenario: Declared confirmation reaches the next command boundary
+- **WHEN** a separately recorded bounded mouse-button pulse is provided at the held confirmation gate
+- **THEN** original input query and confirmation return clear the wait without fabricated readiness and the next original handler's natural stack is captured before execution
+- **AND** unsupported state, event values and out-of-range writes are refused with complete resource cleanup

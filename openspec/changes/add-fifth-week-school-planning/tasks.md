@@ -455,3 +455,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 113. Second completed text acceptance
 
 - [x] 113.1 Run relevant source/native/platform regression and strict specs, preserve historical/runtime/UI/save/REA artifacts, publish current progress and immutable acceptance with later text/fade/render/world boundaries, verify working/index/HEAD bytes and commit locally without pushing.
+
+## 114. Original text and confirmation wait contracts
+
+- [x] 114.1 Decode actual command/wait dispatch tables, source input/readiness/arrow contracts and independently predict bounded two-row completion/held confirmation timing; verify isolated source rules and refusal cases, document and commit locally.
+
+## 115. Natural VM text wait and held confirmation
+
+- [ ] 115.1 Replay pinned parents and two real texture returns, execute original no-input VM waits/readiness/draws/arrow animation to bounded held confirmation, verify finite writes/full retention/both real textures/cleanup and fixed helper identity, publish evidence and commit locally.
+
+## 116. Independent natural wait comparison
+
+- [ ] 116.1 Independently derive every complete update region, original predicate/input calls, draw/arrow parameters and cadence/ready/held timing; compare all actual cases and malformed counter/state/event/region inputs, document and commit locally.
+
+## 117. Declared confirmation and next-handler boundary
+
+- [ ] 117.1 Record a bounded declared mouse pulse at the actual held gate, execute original confirmation and next VM command to its natural handler entry without executing that handler, verify source-derived full regions/stack/inputs/pixels/cleanup and refusals, publish evidence and commit locally.
+
+## 118. Dialogue wait and confirmation acceptance
+
+- [ ] 118.1 Run relevant native/source/platform/strict-spec regression, preserve prior historical/runtime/UI/save/REA bytes, publish current progress and immutable acceptance with exact native/render/input/world boundaries, verify worktree/index/HEAD bytes and commit locally without pushing.
