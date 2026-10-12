@@ -414,7 +414,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 103. Live real32-bit texture bridge
 
-- [ ] 103.1 Implement owned persistent x86 Direct3D8 request bridge with actual pointer/method provenance, bounded full buffers, lifecycle/foreign/stale refusal and cleanup; keep previous standalone probe/evidence unchanged, document and commit locally.
+- [x] 103.1 Implement owned persistent x86 Direct3D8 request bridge with actual pointer/method provenance, bounded full buffers, lifecycle/foreign/stale refusal and cleanup; keep previous standalone probe/evidence unchanged, document and commit locally.
 
 ## 104. Natural first text texture and VM return
 
