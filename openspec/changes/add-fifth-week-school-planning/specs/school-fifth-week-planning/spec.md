@@ -643,3 +643,15 @@ The audit SHALL continue the actual first-text VM return while the real first te
 #### Scenario: Missing live ownership or foreign writes refuse continuation
 - **WHEN** a continuation has stale resource ownership, unsupported source state or writes beyond the finite second-row/header/stack/counter ranges
 - **THEN** it fails without a fabricated font/texture/readiness result and cleanup remains mandatory
+
+### Requirement: Natural second text completes with independent live textures
+The audit SHALL support bounded independently owned real32-bit textures in a separate helper and continue the natural second font/raster/texture/cleanup/text/VM path. It SHALL preserve the complete first texture and independently verify second pixels, complete program regions and original two-row counter/terminal drawing inputs. Previous helper/evidence/runtime/UI/save bytes SHALL remain unchanged. It SHALL close every resource and refuse foreign, released, reused-address, malformed and invalid-lock requests. Actual GPU drawing/Present and full world/dialogue SHALL NOT be inferred.
+
+#### Scenario: Two completed text records retain separate real resources
+- **WHEN** the second original font call is resumed with the first actual texture still alive
+- **THEN** a distinct real texture receives the original converted second raster, both complete readbacks match independent rules and the original text/VM caller returns with two records
+- **AND** original counters and exact declared drawing inputs are verified while GPU drawing and later script/world execution remain pending
+
+#### Scenario: Invalid ownership and multiple-lock cleanup
+- **WHEN** a request references a foreign/released object, reuses a retired address, exceeds the resource limit or violates that texture lock state
+- **THEN** it refuses without cross-object buffer changes and close unlocks/releases every remaining owned texture and device/window

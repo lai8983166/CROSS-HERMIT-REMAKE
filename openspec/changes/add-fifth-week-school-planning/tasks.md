@@ -439,3 +439,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 109. Consecutive text acceptance
 
 - [x] 109.1 Run relevant native/source/platform regression and strict specs, preserve historical/runtime/UI/save evidence, publish updated progress and immutable acceptance with multi-text/fade/render/world boundaries, verify tracked/index/HEAD bytes and commit locally without pushing.
+
+## 110. Multiple real texture ownership
+
+- [x] 110.1 Add a separate bounded x86 multi-texture helper/client with per-resource ownership/locks/cleanup and retired-address refusal, verify actual independent buffers, limits, foreign/stale/locked failure cases and preserve old helper/evidence; document and commit locally.
+
+## 111. Natural second texture and VM return
+
+- [ ] 111.1 Replay eight pinned parents and first live texture/VM, continue actual second font through real raster/texture upload/cleanup and natural text/VM return with exact declared two-row terminal drawing, verify live first pixels/finite ownership/full retention/cleanup and fixed helper identity, publish evidence and commit locally.
+
+## 112. Independent second completed-text rules
+
+- [ ] 112.1 Independently derive second raster geometry, original stack/COM/buffer/accounting/record/VM and two-row timing effects, compare complete regions and both full textures including padding, reject malformed/unsupported input, preserve earlier exports/runtime/UI/saves, document and commit locally.
+
+## 113. Second completed text acceptance
+
+- [ ] 113.1 Run relevant source/native/platform regression and strict specs, preserve historical/runtime/UI/save/REA artifacts, publish current progress and immutable acceptance with later text/fade/render/world boundaries, verify working/index/HEAD bytes and commit locally without pushing.
