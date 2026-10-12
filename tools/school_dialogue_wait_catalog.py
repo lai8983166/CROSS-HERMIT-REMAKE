@@ -7,7 +7,7 @@ from tools.school_text_preparation_catalog import script_layout
 from tools.school_text_timing_catalog import expected_update,BYTES
 
 COMMAND_TABLE=0x4D03CF;WAIT_INDEX=0x4D06AB;WAIT_TABLE=0x4D066F
-TASK=0x10000000
+TASK=0x1000000
 HOLD_UPDATES=14
 
 @lru_cache(maxsize=1)

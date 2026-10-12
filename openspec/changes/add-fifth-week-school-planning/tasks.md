@@ -466,7 +466,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 116. Independent natural wait comparison
 
-- [ ] 116.1 Independently derive every complete update region, original predicate/input calls, draw/arrow parameters and cadence/ready/held timing; compare all actual cases and malformed counter/state/event/region inputs, document and commit locally.
+- [x] 116.1 Independently derive every complete update region, original predicate/input calls, draw/arrow parameters and cadence/ready/held timing; compare all actual cases and malformed counter/state/event/region inputs, document and commit locally.
 
 ## 117. Declared confirmation and next-handler boundary
 

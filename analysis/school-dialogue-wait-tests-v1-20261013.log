@@ -1,0 +1,21 @@
+test_actual_three_parent_replays_natural_wait_and_retained_texture_resources (tools.tests.test_school_dialogue_wait_emulation.WaitNativeTests) ... ok
+test_wait_guard_refuses_texture_input_and_unowned_counter_writes (tools.tests.test_school_dialogue_wait_emulation.WaitNativeTests) ... ok
+test_all_actual_update_regions_inputs_stack_readiness_and_pixels (tools.tests.test_school_dialogue_wait_verification.WaitSourceTests) ... ERROR
+test_intermediate_memory_readiness_arrow_and_input_stack_tampering_refused (tools.tests.test_school_dialogue_wait_verification.WaitSourceTests) ... ok
+
+======================================================================
+ERROR: test_all_actual_update_regions_inputs_stack_readiness_and_pixels (tools.tests.test_school_dialogue_wait_verification.WaitSourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_dialogue_wait_verification.py", line 8, in test_all_actual_update_regions_inputs_stack_readiness_and_pixels
+    r=compare_case(c);self.assertEqual(r['updates'],52);self.assertEqual(r['predicate_calls'],360);self.assertEqual(r['arrow_draws'],14);self.assertEqual(r['actual_texture_bytes'],[16384,32768])
+  File "F:\project\chaomofa\tools\school_dialogue_wait_verification.py", line 45, in compare_case
+    e=compare_step(step,current);current=e['after']
+  File "F:\project\chaomofa\tools\school_dialogue_wait_verification.py", line 27, in compare_step
+    if record['kind']=='mouse' and record['output_hex']!='00'*14:raise ValueError('no-mouse original queried output')
+ValueError: no-mouse original queried output
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.048s
+
+FAILED (errors=1)

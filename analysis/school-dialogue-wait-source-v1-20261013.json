@@ -1,0 +1,224 @@
+{
+  "source": {
+    "schema_version": 1,
+    "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "script": {
+      "source_script_sha256": "44ca546b5ea90ec23a4bc7d8dffeac6547a44bfd035383c91983f7c13ae72a52",
+      "file_size": 13752,
+      "groups": [
+        16,
+        12936
+      ],
+      "group_size": 12920,
+      "sub_count": 101,
+      "selected_sub": 1,
+      "selected_span": [
+        432,
+        1208
+      ],
+      "vm_offsets": [
+        20,
+        516,
+        516,
+        516
+      ],
+      "code_span": [
+        452,
+        948
+      ]
+    },
+    "commands": [
+      {
+        "offset": 696,
+        "PC": 244,
+        "opcode": 50,
+        "size": 4,
+        "dispatch_entry": "0x4cf008",
+        "handler": "0x4c5260",
+        "return_va": "0x4cf020",
+        "wait_selector": 5,
+        "wait_dispatch_entry": "0x4d0153"
+      },
+      {
+        "offset": 700,
+        "PC": 248,
+        "opcode": 51,
+        "size": 4,
+        "dispatch_entry": "0x4cf028",
+        "handler": "0x4c4210",
+        "return_va": "0x4cf040",
+        "wait_selector": 6,
+        "wait_dispatch_entry": "0x4d0181"
+      },
+      {
+        "offset": 704,
+        "PC": 252,
+        "opcode": 30,
+        "size": 20,
+        "dispatch_entry": "0x4ced8f",
+        "handler": "0x4c61c0",
+        "return_va": "0x4ceda7"
+      }
+    ],
+    "code_inputs": [
+      {
+        "va": "0x4cea7a",
+        "hex": "83e905",
+        "mnemonic": "sub",
+        "operands": "ecx, 5"
+      },
+      {
+        "va": "0x4cea90",
+        "hex": "ff2495cf034d00",
+        "mnemonic": "jmp",
+        "operands": "dword ptr [edx*4 + 0x4d03cf]"
+      },
+      {
+        "va": "0x4cff94",
+        "hex": "83e80c",
+        "mnemonic": "sub",
+        "operands": "eax, 0xc"
+      },
+      {
+        "va": "0x4cffac",
+        "hex": "8a8aab064d00",
+        "mnemonic": "mov",
+        "operands": "cl, byte ptr [edx + 0x4d06ab]"
+      },
+      {
+        "va": "0x4cffb2",
+        "hex": "ff248d6f064d00",
+        "mnemonic": "jmp",
+        "operands": "dword ptr [ecx*4 + 0x4d066f]"
+      },
+      {
+        "va": "0x4d0160",
+        "hex": "e8ebd1ffff",
+        "mnemonic": "call",
+        "operands": "0x4cd350"
+      },
+      {
+        "va": "0x4d018d",
+        "hex": "e88eccffff",
+        "mnemonic": "call",
+        "operands": "0x4cce20"
+      },
+      {
+        "va": "0x4cd3b2",
+        "hex": "e839e2ffff",
+        "mnemonic": "call",
+        "operands": "0x4cb5f0"
+      },
+      {
+        "va": "0x4cd3fd",
+        "hex": "e8be8a0000",
+        "mnemonic": "call",
+        "operands": "0x4d5ec0"
+      },
+      {
+        "va": "0x4cd42d",
+        "hex": "e8be54f4ff",
+        "mnemonic": "call",
+        "operands": "0x4128f0"
+      },
+      {
+        "va": "0x4cd483",
+        "hex": "e818e2ffff",
+        "mnemonic": "call",
+        "operands": "0x4cb6a0"
+      },
+      {
+        "va": "0x4cd49f",
+        "hex": "e85c10f5ff",
+        "mnemonic": "call",
+        "operands": "0x41e500"
+      },
+      {
+        "va": "0x4ccff2",
+        "hex": "e8f958f4ff",
+        "mnemonic": "call",
+        "operands": "0x4128f0"
+      },
+      {
+        "va": "0x4cd028",
+        "hex": "e803fbffff",
+        "mnemonic": "call",
+        "operands": "0x4ccb30"
+      },
+      {
+        "va": "0x4ccfca",
+        "hex": "e8115a0000",
+        "mnemonic": "call",
+        "operands": "0x4d29e0"
+      },
+      {
+        "va": "0x4d01b5",
+        "hex": "66c74410200000",
+        "mnemonic": "mov",
+        "operands": "word ptr [eax + edx + 0x20], 0"
+      }
+    ],
+    "readiness_objects": 10,
+    "mouse_result_words": 4,
+    "space_key": 57,
+    "keyboard_mode": 0,
+    "confirmation_arrow_delay": 5,
+    "scope": "Bounded original VM wait sequence with retained real textures; declared input, terminal drawing, no GPU/world/live input.",
+    "school_initialized": false,
+    "interactive_school_ready": false,
+    "live_witness": false,
+    "authorizes_persistent_write": false
+  },
+  "native_report_sha256": "7188b484705e4aa999ebfb04db2c2ad4425872479705eddffa89ada0f9035d27",
+  "cases": [
+    {
+      "name": "initial",
+      "updates": 52,
+      "complete_regions_per_update": 8,
+      "text_wait_release_update": 36,
+      "confirmation_started_update": 37,
+      "held_confirmation_updates": 14,
+      "actual_texture_bytes": [
+        16384,
+        32768
+      ],
+      "predicate_calls": 360,
+      "text_draws": 93,
+      "arrow_draws": 14,
+      "retained_bytes": 123695059
+    },
+    {
+      "name": "student9_waiting",
+      "updates": 52,
+      "complete_regions_per_update": 8,
+      "text_wait_release_update": 36,
+      "confirmation_started_update": 37,
+      "held_confirmation_updates": 14,
+      "actual_texture_bytes": [
+        16384,
+        32768
+      ],
+      "predicate_calls": 360,
+      "text_draws": 93,
+      "arrow_draws": 14,
+      "retained_bytes": 123695059
+    },
+    {
+      "name": "fifth_class",
+      "updates": 52,
+      "complete_regions_per_update": 8,
+      "text_wait_release_update": 36,
+      "confirmation_started_update": 37,
+      "held_confirmation_updates": 14,
+      "actual_texture_bytes": [
+        16384,
+        32768
+      ],
+      "predicate_calls": 360,
+      "text_draws": 93,
+      "arrow_draws": 14,
+      "retained_bytes": 123695059
+    }
+  ]
+}
+
