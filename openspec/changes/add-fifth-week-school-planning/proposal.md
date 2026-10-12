@@ -139,3 +139,7 @@ Resume the natural first font call with real Windows GDI rather than a fake hand
 ## Real32-bit Direct3D8 platform feasibility (2026-10-12)
 
 Trace the original renderer factory/device initialization and texture allocation contract. Independently execute original signed-WORD power-of-two size selection and null-device boundary on declared isolated records. Build a bounded32-bit helper using the real installed Direct3D8 runtime to create a hidden windowed device and managedA1R5G5B5 texture, upload/read back independently verified original CPU pixels, and release all resources. Report real pointers, HRESULTs, actual format/dimensions/row pitch and host provenance without replacing the existing zero device or claiming natural original graphics/VM continuation. Commit source/platform/acceptance stages locally; preserve prior evidence/runtime/saves.
+
+## Live real-device bridge and first text completion (2026-10-12)
+
+Keep real32-bit Direct3D8 objects alive in an owned helper process across bounded calls. Declare the live host device as a platform binding in the existing renderer device slot; this is not original renderer startup or a fabricated pointer. Continue the real-GDI first-line frame through original texture creation, descriptor, lock, original pixel upload, unlock, GDI cleanup, line-count completion and VM return. Independently verify complete regions and pixel rows; retain GPU drawing/readiness/world/wave boundaries and commit bridge/native/source/acceptance stages locally.

@@ -411,3 +411,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 102. Device feasibility acceptance
 
 - [x] 102.1 Run source/strict-spec regression, retain prior model/UI acceptance and unchanged runtime/save/history, publish immutable platform acceptance/current progress, verify working/index/HEAD bytes and commit locally.
+
+## 103. Live real32-bit texture bridge
+
+- [ ] 103.1 Implement owned persistent x86 Direct3D8 request bridge with actual pointer/method provenance, bounded full buffers, lifecycle/foreign/stale refusal and cleanup; keep previous standalone probe/evidence unchanged, document and commit locally.
+
+## 104. Natural first text texture and VM return
+
+- [ ] 104.1 Replay eight pinned parents, bind explicitly declared live host device, keep GDI resources through original texture create/lock/pixel upload/unlock/cleanup and first-line/text-handler/VM return; verify finite writes/retention and real pixel readback, preserve unexecuted readiness/render/world/wave boundaries, publish evidence and commit locally.
+
+## 105. Independent completed-text rules
+
+- [ ] 105.1 Decode original texture/lock/accounting/line-count/VM-return effects and compare complete regions, mirrors, platform calls and whole texture/padding independently; verify malformed/stale inputs, export separate audit rules/evidence, document and commit locally.
+
+## 106. Live first text acceptance
+
+- [ ] 106.1 Run source/model/strict-spec regression, preserve runtime/UI/save/history and immutable prior window acceptance, publish current progress/immutable acceptance, verify working/index/HEAD bytes and commit locally without pushing.

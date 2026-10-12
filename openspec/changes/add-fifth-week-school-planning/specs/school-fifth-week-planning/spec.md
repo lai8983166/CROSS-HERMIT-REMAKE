@@ -617,3 +617,17 @@ The system SHALL independently verify original texture allocation and device dep
 - **THEN** source-derived dimensions, levels, usage and pool, actual HRESULTs/pointers/row pitch and complete uploaded/read-back pixels are recorded
 - **AND** all resources are released and malformed requests rejected before platform calls
 - **AND** probe success does not imply native renderer initialization, VM return, dialogue, waves or persistent state changes
+
+### Requirement: Natural first text completes with a live real platform binding
+The system SHALL bridge live owned32-bit Direct3D8 resources to the original first text call and keep source execution distinct from declared external-memory and API adapters.
+
+#### Scenario: Original first text returns after real texture upload
+- **WHEN** eight pinned parents replay and a real host device is explicitly bound before font continuation
+- **THEN** original texture creation/descriptor/lock/conversion/unlock and text/VM caller return execute with actual platform results
+- **AND** full regions, actual texture bytes/padding and retained memory match independent source rules
+- **AND** owned GDI/COM/process resources close on success and failure
+- **AND** original renderer startup, GPU drawing, text readiness, world scheduling and waves are not inferred
+
+#### Scenario: Foreign or stale live resources are rejected
+- **WHEN** a bridge request names an unsupported method, malformed buffer or dead/foreign pointer
+- **THEN** no fabricated resource/result is returned and the request is refused with cleanup available
