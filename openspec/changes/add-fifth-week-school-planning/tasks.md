@@ -450,7 +450,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 112. Independent second completed-text rules
 
-- [ ] 112.1 Independently derive second raster geometry, original stack/COM/buffer/accounting/record/VM and two-row timing effects, compare complete regions and both full textures including padding, reject malformed/unsupported input, preserve earlier exports/runtime/UI/saves, document and commit locally.
+- [x] 112.1 Independently derive second raster geometry, original stack/COM/buffer/accounting/record/VM and two-row timing effects, compare complete regions and both full textures including padding, reject malformed/unsupported input, preserve earlier exports/runtime/UI/saves, document and commit locally.
 
 ## 113. Second completed text acceptance
 

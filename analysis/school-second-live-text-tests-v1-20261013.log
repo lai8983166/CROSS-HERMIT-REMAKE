@@ -1,0 +1,27 @@
+test_actual_three_parents_two_completed_records_real_independent_resources (tools.tests.test_school_second_live_text_emulation.SecondNativeTests) ... ERROR
+test_second_guard_protects_first_texture_and_actual_locked_buffer_extent (tools.tests.test_school_second_live_text_emulation.SecondNativeTests) ... ok
+test_all_three_actual_cases_full_regions_pixels_stack_counters_cleanup (tools.tests.test_school_second_live_text_catalog.SecondSourceTests) ... ok
+test_band_split_keeps_partial_last_column_and_allocation_padding (tools.tests.test_school_second_live_text_catalog.SecondSourceTests) ... ok
+test_complete_memory_com_draw_and_first_padding_tampering_rejected (tools.tests.test_school_second_live_text_catalog.SecondSourceTests) ... FAIL
+test_malformed_pitch_pointer_string_and_raster_digest_refused (tools.tests.test_school_second_live_text_catalog.SecondSourceTests) ... ok
+
+======================================================================
+ERROR: test_actual_three_parents_two_completed_records_real_independent_resources (tools.tests.test_school_second_live_text_emulation.SecondNativeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_second_live_text_emulation.py", line 18, in test_actual_three_parents_two_completed_records_real_independent_resources
+    vm=bytes.fromhex(p['after'][3]['hex']);self.assertEqual(struct.unpack_from('<I',vm,28)[0],244);self.assertEqual(struct.unpack_from('<7H',vm,OBJECT_OFFSET+22),(2,3,1,24,2,12,0))
+NameError: name 'OBJECT_OFFSET' is not defined
+
+======================================================================
+FAIL: test_complete_memory_com_draw_and_first_padding_tampering_rejected (tools.tests.test_school_second_live_text_catalog.SecondSourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_second_live_text_catalog.py", line 37, in test_complete_memory_com_draw_and_first_padding_tampering_rejected
+    with self.assertRaises(ValueError):compare_case(bad)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.896s
+
+FAILED (failures=1, errors=1)

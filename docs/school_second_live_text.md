@@ -11,3 +11,7 @@
 固定原版证据为`analysis/school-second-live-text-v2-20261013.json`，SHA256 `bbd276d0bbdb8b18809a4395ab57127b41a663c42c48ad4dcd3f76f18f17eaed`。v1日志保留首次核对遗漏第二个光栅区段的失败；该次原CPU也已返回，未发布成功证据。v2重新执行全部三个实际案例。旧单纹理helper及旧证据保持不变。
 
 入口：`tools/school_second_live_text_emulation.py`；多个真实纹理的所有权说明见`docs/school_multi_texture.md`。后续连续文本、原等待指令、自然淡入/就绪、世界/事件/波次、完整任务音频、GPU呈现与整段对白仍待推进。
+
+独立规则入口`tools/school_second_live_text_catalog.py`从原图像、脚本、旧首句输入和主机测量/句柄派生结果，未读取原CPU的after来生成期望。它核对第二句准备、光栅前缀、八个完整程序区域、两次区段转换、四次COM调用及真实vtable方法、自然栈、内存记账32768字节、两行计时、九项终端绘图参数、完整两块读回与清理。单独输出为`analysis/school-second-live-text-source-v2-20261013.json`，不导出或修改Godot运行数据。
+
+负面检查覆盖错误pitch/映射/真实指针、来源文本、光栅摘要、完整区域、COM参数、淡入绘图参数、首句填充、实际锁定bits、读回pitch、DIB头和释放计数；来源分段样例同时检查最后一段未占用列与底部填充。

@@ -1,0 +1,636 @@
+{
+  "source": {
+    "schema_version": 1,
+    "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "band_code_inputs": [
+      {
+        "va": "0x4057b4",
+        "hex": "3b4da0",
+        "mnemonic": "cmp",
+        "operands": "ecx, dword ptr [ebp - 0x60]"
+      },
+      {
+        "va": "0x4057c7",
+        "hex": "81fa00010000",
+        "mnemonic": "cmp",
+        "operands": "edx, 0x100"
+      },
+      {
+        "va": "0x4057cd",
+        "hex": "0f839b000000",
+        "mnemonic": "jae",
+        "operands": "0x40586e"
+      },
+      {
+        "va": "0x4057d6",
+        "hex": "c1e008",
+        "mnemonic": "shl",
+        "operands": "eax, 8"
+      },
+      {
+        "va": "0x4057dc",
+        "hex": "2bc8",
+        "mnemonic": "sub",
+        "operands": "ecx, eax"
+      },
+      {
+        "va": "0x4057de",
+        "hex": "81f900010000",
+        "mnemonic": "cmp",
+        "operands": "ecx, 0x100"
+      },
+      {
+        "va": "0x405806",
+        "hex": "c1e108",
+        "mnemonic": "shl",
+        "operands": "ecx, 8"
+      },
+      {
+        "va": "0x40583b",
+        "hex": "0faf4d9c",
+        "mnemonic": "imul",
+        "operands": "ecx, dword ptr [ebp - 0x64]"
+      },
+      {
+        "va": "0x405869",
+        "hex": "e812020000",
+        "mnemonic": "call",
+        "operands": "0x405a80"
+      }
+    ],
+    "inherited_raster_code": [
+      {
+        "va": "0x4cad1e",
+        "hex": "e8ed2a0a00",
+        "mnemonic": "call",
+        "operands": "0x56d810"
+      },
+      {
+        "va": "0x4cad43",
+        "hex": "e878caf3ff",
+        "mnemonic": "call",
+        "operands": "0x4077c0"
+      },
+      {
+        "va": "0x4cad5b",
+        "hex": "e85095f4ff",
+        "mnemonic": "call",
+        "operands": "0x4142b0"
+      },
+      {
+        "va": "0x4cad77",
+        "hex": "e8b4e0f3ff",
+        "mnemonic": "call",
+        "operands": "0x408e30"
+      },
+      {
+        "va": "0x40780d",
+        "hex": "89514c",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + 0x4c], edx"
+      },
+      {
+        "va": "0x4142d0",
+        "hex": "8b8010b20000",
+        "mnemonic": "mov",
+        "operands": "eax, dword ptr [eax + 0xb210]"
+      },
+      {
+        "va": "0x4051a9",
+        "hex": "e882e5ffff",
+        "mnemonic": "call",
+        "operands": "0x403730"
+      },
+      {
+        "va": "0x4037d5",
+        "hex": "c7402800000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [eax + 0x28], 0"
+      },
+      {
+        "va": "0x405240",
+        "hex": "ff15bc205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x5920bc]"
+      },
+      {
+        "va": "0x4052c2",
+        "hex": "b90a000000",
+        "mnemonic": "mov",
+        "operands": "ecx, 0xa"
+      },
+      {
+        "va": "0x4052cc",
+        "hex": "837d9400",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [ebp - 0x6c], 0"
+      },
+      {
+        "va": "0x4052d9",
+        "hex": "837d9403",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [ebp - 0x6c], 3"
+      },
+      {
+        "va": "0x4052ec",
+        "hex": "8d0c50",
+        "mnemonic": "lea",
+        "operands": "ecx, [eax + edx*2]"
+      },
+      {
+        "va": "0x4052f8",
+        "hex": "8d0c50",
+        "mnemonic": "lea",
+        "operands": "ecx, [eax + edx*2]"
+      },
+      {
+        "va": "0x4052fe",
+        "hex": "b800010000",
+        "mnemonic": "mov",
+        "operands": "eax, 0x100"
+      },
+      {
+        "va": "0x405304",
+        "hex": "f77db0",
+        "mnemonic": "idiv",
+        "operands": "dword ptr [ebp - 0x50]"
+      },
+      {
+        "va": "0x40530a",
+        "hex": "c1e008",
+        "mnemonic": "shl",
+        "operands": "eax, 8"
+      },
+      {
+        "va": "0x405340",
+        "hex": "c745c828000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ebp - 0x38], 0x28"
+      },
+      {
+        "va": "0x405353",
+        "hex": "8945d0",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ebp - 0x30], eax"
+      },
+      {
+        "va": "0x405356",
+        "hex": "66c745d40100",
+        "mnemonic": "mov",
+        "operands": "word ptr [ebp - 0x2c], 1"
+      },
+      {
+        "va": "0x405363",
+        "hex": "66c745d62000",
+        "mnemonic": "mov",
+        "operands": "word ptr [ebp - 0x2a], 0x20"
+      },
+      {
+        "va": "0x4053c6",
+        "hex": "ff1598205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x592098]"
+      },
+      {
+        "va": "0x405652",
+        "hex": "8bf4",
+        "mnemonic": "mov",
+        "operands": "esi, esp"
+      },
+      {
+        "va": "0x405654",
+        "hex": "6808080800",
+        "mnemonic": "push",
+        "operands": "0x80808"
+      },
+      {
+        "va": "0x40568e",
+        "hex": "034d94",
+        "mnemonic": "add",
+        "operands": "ecx, dword ptr [ebp - 0x6c]"
+      },
+      {
+        "va": "0x4056a5",
+        "hex": "68ffffff00",
+        "mnemonic": "push",
+        "operands": "0xffffff"
+      },
+      {
+        "va": "0x405701",
+        "hex": "66894240",
+        "mnemonic": "mov",
+        "operands": "word ptr [edx + 0x40], ax"
+      },
+      {
+        "va": "0x40570c",
+        "hex": "66895142",
+        "mnemonic": "mov",
+        "operands": "word ptr [ecx + 0x42], dx"
+      },
+      {
+        "va": "0x405713",
+        "hex": "c1e808",
+        "mnemonic": "shr",
+        "operands": "eax, 8"
+      },
+      {
+        "va": "0x405716",
+        "hex": "83c001",
+        "mnemonic": "add",
+        "operands": "eax, 1"
+      },
+      {
+        "va": "0x405745",
+        "hex": "66894a3a",
+        "mnemonic": "mov",
+        "operands": "word ptr [edx + 0x3a], cx"
+      },
+      {
+        "va": "0x405764",
+        "hex": "c7403419000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [eax + 0x34], 0x19"
+      },
+      {
+        "va": "0x405774",
+        "hex": "e857e4ffff",
+        "mnemonic": "call",
+        "operands": "0x403bd0"
+      },
+      {
+        "va": "0x405b30",
+        "hex": "25ffffff00",
+        "mnemonic": "and",
+        "operands": "eax, 0xffffff"
+      },
+      {
+        "va": "0x405b3c",
+        "hex": "81e10000f800",
+        "mnemonic": "and",
+        "operands": "ecx, 0xf80000"
+      },
+      {
+        "va": "0x405b42",
+        "hex": "c1e909",
+        "mnemonic": "shr",
+        "operands": "ecx, 9"
+      },
+      {
+        "va": "0x405b4c",
+        "hex": "81e200f80000",
+        "mnemonic": "and",
+        "operands": "edx, 0xf800"
+      },
+      {
+        "va": "0x405b52",
+        "hex": "c1ea06",
+        "mnemonic": "shr",
+        "operands": "edx, 6"
+      },
+      {
+        "va": "0x405b5c",
+        "hex": "25f8000000",
+        "mnemonic": "and",
+        "operands": "eax, 0xf8"
+      },
+      {
+        "va": "0x405b61",
+        "hex": "c1e803",
+        "mnemonic": "shr",
+        "operands": "eax, 3"
+      },
+      {
+        "va": "0x405b71",
+        "hex": "80cd80",
+        "mnemonic": "or",
+        "operands": "ch, 0x80"
+      },
+      {
+        "va": "0x405b9b",
+        "hex": "66c7044a0000",
+        "mnemonic": "mov",
+        "operands": "word ptr [edx + ecx*2], 0"
+      }
+    ],
+    "inherited_live_code": [
+      {
+        "va": "0x408e33",
+        "hex": "83ec44",
+        "mnemonic": "sub",
+        "operands": "esp, 0x44"
+      },
+      {
+        "va": "0x405163",
+        "hex": "81ecec000000",
+        "mnemonic": "sub",
+        "operands": "esp, 0xec"
+      },
+      {
+        "va": "0x403bd3",
+        "hex": "83ec74",
+        "mnemonic": "sub",
+        "operands": "esp, 0x74"
+      },
+      {
+        "va": "0x403cf9",
+        "hex": "6689423c",
+        "mnemonic": "mov",
+        "operands": "word ptr [edx + 0x3c], ax"
+      },
+      {
+        "va": "0x403d04",
+        "hex": "6689513e",
+        "mnemonic": "mov",
+        "operands": "word ptr [ecx + 0x3e], dx"
+      },
+      {
+        "va": "0x403d0d",
+        "hex": "0345dc",
+        "mnemonic": "add",
+        "operands": "eax, dword ptr [ebp - 0x24]"
+      },
+      {
+        "va": "0x403d10",
+        "hex": "a320577600",
+        "mnemonic": "mov",
+        "operands": "dword ptr [0x765720], eax"
+      },
+      {
+        "va": "0x403d1c",
+        "hex": "80ca02",
+        "mnemonic": "or",
+        "operands": "dl, 2"
+      },
+      {
+        "va": "0x403d2c",
+        "hex": "895128",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + 0x28], edx"
+      },
+      {
+        "va": "0x40393f",
+        "hex": "6800080000",
+        "mnemonic": "push",
+        "operands": "0x800"
+      },
+      {
+        "va": "0x40395b",
+        "hex": "ff5140",
+        "mnemonic": "call",
+        "operands": "dword ptr [ecx + 0x40]"
+      },
+      {
+        "va": "0x4039d0",
+        "hex": "ff5044",
+        "mnemonic": "call",
+        "operands": "dword ptr [eax + 0x44]"
+      },
+      {
+        "va": "0x405869",
+        "hex": "e812020000",
+        "mnemonic": "call",
+        "operands": "0x405a80"
+      },
+      {
+        "va": "0x40588b",
+        "hex": "0c04",
+        "mnemonic": "or",
+        "operands": "al, 4"
+      },
+      {
+        "va": "0x4058d2",
+        "hex": "ff15a4205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x5920a4]"
+      },
+      {
+        "va": "0x40591b",
+        "hex": "ff15c4205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x5920c4]"
+      },
+      {
+        "va": "0x405964",
+        "hex": "ff1560205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x592060]"
+      },
+      {
+        "va": "0x4d1c15",
+        "hex": "ff15c4205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x5920c4]"
+      },
+      {
+        "va": "0x4cad9b",
+        "hex": "6683c101",
+        "mnemonic": "add",
+        "operands": "cx, 1"
+      },
+      {
+        "va": "0x4cada2",
+        "hex": "66894a16",
+        "mnemonic": "mov",
+        "operands": "word ptr [edx + 0x16], cx"
+      },
+      {
+        "va": "0x4cd52c",
+        "hex": "668b4820",
+        "mnemonic": "mov",
+        "operands": "cx, word ptr [eax + 0x20]"
+      },
+      {
+        "va": "0x4cd534",
+        "hex": "668b421e",
+        "mnemonic": "mov",
+        "operands": "ax, word ptr [edx + 0x1e]"
+      },
+      {
+        "va": "0x4cd53c",
+        "hex": "e8dfdcffff",
+        "mnemonic": "call",
+        "operands": "0x4cb220"
+      },
+      {
+        "va": "0x4cd54b",
+        "hex": "66894104",
+        "mnemonic": "mov",
+        "operands": "word ptr [ecx + 4], ax"
+      }
+    ],
+    "inherited_timing_code": [
+      {
+        "va": "0x4cb2af",
+        "hex": "0f879f010000",
+        "mnemonic": "ja",
+        "operands": "0x4cb454"
+      },
+      {
+        "va": "0x4cb30d",
+        "hex": "66c74410180300",
+        "mnemonic": "mov",
+        "operands": "word ptr [eax + edx + 0x18], 3"
+      },
+      {
+        "va": "0x4cb32d",
+        "hex": "668b440a22",
+        "mnemonic": "mov",
+        "operands": "ax, word ptr [edx + ecx + 0x22]"
+      },
+      {
+        "va": "0x4cb371",
+        "hex": "66050100",
+        "mnemonic": "add",
+        "operands": "ax, 1"
+      },
+      {
+        "va": "0x4cb3ba",
+        "hex": "7e46",
+        "mnemonic": "jle",
+        "operands": "0x4cb402"
+      },
+      {
+        "va": "0x4cb3ce",
+        "hex": "66c7440a180100",
+        "mnemonic": "mov",
+        "operands": "word ptr [edx + ecx + 0x18], 1"
+      },
+      {
+        "va": "0x4cb443",
+        "hex": "99",
+        "mnemonic": "cdq",
+        "operands": ""
+      },
+      {
+        "va": "0x4cb444",
+        "hex": "f7f9",
+        "mnemonic": "idiv",
+        "operands": "ecx"
+      },
+      {
+        "va": "0x4cb44a",
+        "hex": "33d2",
+        "mnemonic": "xor",
+        "operands": "edx, edx"
+      },
+      {
+        "va": "0x4cb4ad",
+        "hex": "e84e0a0000",
+        "mnemonic": "call",
+        "operands": "0x4cbf00"
+      },
+      {
+        "va": "0x4cb4c7",
+        "hex": "660354016a",
+        "mnemonic": "add",
+        "operands": "dx, word ptr [ecx + eax + 0x6a]"
+      },
+      {
+        "va": "0x4cb503",
+        "hex": "83f901",
+        "mnemonic": "cmp",
+        "operands": "ecx, 1"
+      },
+      {
+        "va": "0x4cb524",
+        "hex": "6683c101",
+        "mnemonic": "add",
+        "operands": "cx, 1"
+      },
+      {
+        "va": "0x4cb56f",
+        "hex": "7e45",
+        "mnemonic": "jle",
+        "operands": "0x4cb5b6"
+      },
+      {
+        "va": "0x4cb5af",
+        "hex": "66c74401220100",
+        "mnemonic": "mov",
+        "operands": "word ptr [ecx + eax + 0x22], 1"
+      },
+      {
+        "va": "0x4cb663",
+        "hex": "837dec02",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [ebp - 0x14], 2"
+      },
+      {
+        "va": "0x4cb669",
+        "hex": "837dec04",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [ebp - 0x14], 4"
+      },
+      {
+        "va": "0x4cb68b",
+        "hex": "b001",
+        "mnemonic": "mov",
+        "operands": "al, 1"
+      },
+      {
+        "va": "0x4cb68f",
+        "hex": "32c0",
+        "mnemonic": "xor",
+        "operands": "al, al"
+      }
+    ],
+    "row_stride": 272,
+    "second_texture_offset": 20592,
+    "next_PC": 244,
+    "draw_body_executed": false,
+    "scope": "Original second text/VM completion with real declared platform and exact terminal drawing; no renderer startup/GPU/Present/world/waves.",
+    "school_initialized": false,
+    "interactive_school_ready": false,
+    "live_witness": false,
+    "authorizes_persistent_write": false
+  },
+  "native_report_sha256": "bbd276d0bbdb8b18809a4395ab57127b41a663c42c48ad4dcd3f76f18f17eaed",
+  "cases": [
+    {
+      "name": "initial",
+      "complete_regions_compared": 8,
+      "second_actual_texture_bytes": 32768,
+      "first_actual_texture_bytes": 16384,
+      "texture_size": [
+        256,
+        64
+      ],
+      "band_calls": 2,
+      "terminal_text_draws": 1,
+      "PC": 244,
+      "completed_text_records": 2,
+      "retained_bytes": 122646453
+    },
+    {
+      "name": "student9_waiting",
+      "complete_regions_compared": 8,
+      "second_actual_texture_bytes": 32768,
+      "first_actual_texture_bytes": 16384,
+      "texture_size": [
+        256,
+        64
+      ],
+      "band_calls": 2,
+      "terminal_text_draws": 1,
+      "PC": 244,
+      "completed_text_records": 2,
+      "retained_bytes": 122646453
+    },
+    {
+      "name": "fifth_class",
+      "complete_regions_compared": 8,
+      "second_actual_texture_bytes": 32768,
+      "first_actual_texture_bytes": 16384,
+      "texture_size": [
+        256,
+        64
+      ],
+      "band_calls": 2,
+      "terminal_text_draws": 1,
+      "PC": 244,
+      "completed_text_records": 2,
+      "retained_bytes": 122646453
+    }
+  ]
+}
+
