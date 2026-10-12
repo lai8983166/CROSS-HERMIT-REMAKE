@@ -462,7 +462,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 115. Natural VM text wait and held confirmation
 
-- [ ] 115.1 Replay pinned parents and two real texture returns, execute original no-input VM waits/readiness/draws/arrow animation to bounded held confirmation, verify finite writes/full retention/both real textures/cleanup and fixed helper identity, publish evidence and commit locally.
+- [x] 115.1 Replay pinned parents and two real texture returns, execute original no-input VM waits/readiness/draws/arrow animation to bounded held confirmation, verify finite writes/full retention/both real textures/cleanup and fixed helper identity, publish evidence and commit locally.
 
 ## 116. Independent natural wait comparison
 
