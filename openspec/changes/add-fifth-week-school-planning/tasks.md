@@ -422,7 +422,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 105. Independent completed-text rules
 
-- [ ] 105.1 Decode original texture/lock/accounting/line-count/VM-return effects and compare complete regions, mirrors, platform calls and whole texture/padding independently; verify malformed/stale inputs, export separate audit rules/evidence, document and commit locally.
+- [x] 105.1 Decode original texture/lock/accounting/line-count/VM-return effects and compare complete regions, mirrors, platform calls and whole texture/padding independently; verify malformed/stale inputs, export separate audit rules/evidence, document and commit locally.
 
 ## 106. Live first text acceptance
 
