@@ -486,4 +486,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 121. Character prefix acceptance
 
-- [ ] 121.1 Run relevant source/native/strict-spec regression, preserve prior evidence/runtime/UI/saves, publish exact progress and acceptance, verify committed bytes and commit locally without pushing.
+- [x] 121.1 Run relevant source/native/strict-spec regression, preserve prior evidence/runtime/UI/saves, publish exact progress and acceptance, verify committed bytes and commit locally without pushing.

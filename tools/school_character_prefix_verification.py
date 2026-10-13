@@ -13,6 +13,8 @@ def compare_case(case):
   'texture_bytes':[len(bytes.fromhex(r['hex'])) for r in p['actual_readbacks']],'retained_bytes':p['retained_bytes'],'name_font_executed':False,'image_load_executed':False}
 
 if __name__=='__main__':
+ import sys
+ sys.stdout.reconfigure(encoding='utf-8')
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('report');a=parser.parse_args();path=ROOT/a.report
  raw=path.read_bytes();d=json.loads(raw)
  print(report_text({'source':source_catalog(),'native_report_sha256':hashlib.sha256(raw).hexdigest(),'cases':[compare_case(c) for c in d['cases']]}))

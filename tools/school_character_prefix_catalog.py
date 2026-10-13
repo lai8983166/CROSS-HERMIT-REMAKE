@@ -60,4 +60,6 @@ def expected_prefix(before):
   'node_word_stores':stores}
 
 if __name__=='__main__':
+ import sys
+ sys.stdout.reconfigure(encoding='utf-8')
  print(report_text(source_catalog()))

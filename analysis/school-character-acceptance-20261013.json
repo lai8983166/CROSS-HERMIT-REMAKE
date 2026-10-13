@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "baseline": "636dcfe",
+  "tasks": {
+    "total": 121,
+    "complete": 121
+  },
+  "stage_commits": {
+    "source": "763853f",
+    "native": "0daaaf6"
+  },
+  "native": {
+    "path": "analysis/school-character-prefix-v1-20261013.json",
+    "bytes": 23678176,
+    "sha256": "66606d60959a28b49f5b469cad13b55d87f6d3298fc91b081cd11f56c2a1c2f5"
+  },
+  "source": {
+    "path": "analysis/school-character-source-v2-20261013.json",
+    "bytes": 2892,
+    "sha256": "4341d3e5e62ad78fc0fb8ab5448008c1242ef02d920de8c0edefe86498c70c45"
+  },
+  "comparison": {
+    "path": "analysis/school-character-comparison-v2-20261013.json",
+    "bytes": 4277,
+    "sha256": "02285a411a51d5ea45922930768ff0a30d6aa386ce9c38628193e8e036f1bfba"
+  },
+  "cases": [
+    {
+      "name": "initial",
+      "layer": 5,
+      "PC": 252,
+      "complete_regions": 8,
+      "pending_font_return": "0x4ca7cb",
+      "texture_bytes": [
+        16384,
+        32768
+      ],
+      "retained_bytes": 123695040,
+      "name_font_executed": false,
+      "image_load_executed": false
+    },
+    {
+      "name": "student9_waiting",
+      "layer": 5,
+      "PC": 252,
+      "complete_regions": 8,
+      "pending_font_return": "0x4ca7cb",
+      "texture_bytes": [
+        16384,
+        32768
+      ],
+      "retained_bytes": 123695040,
+      "name_font_executed": false,
+      "image_load_executed": false
+    },
+    {
+      "name": "fifth_class",
+      "layer": 5,
+      "PC": 252,
+      "complete_regions": 8,
+      "pending_font_return": "0x4ca7cb",
+      "texture_bytes": [
+        16384,
+        32768
+      ],
+      "retained_bytes": 123695040,
+      "name_font_executed": false,
+      "image_load_executed": false
+    }
+  ],
+  "validation": {
+    "python_modules": 36,
+    "python_tests": 136,
+    "strict_specs": 30,
+    "source_log": "analysis/school-character-source-final-20261013.log",
+    "spec_log": "analysis/school-character-specs-final-20261013.log"
+  },
+  "preservation": {
+    "files": 661,
+    "save_rules": 10,
+    "snapshot": "analysis/school-character-preservation-20261013.json",
+    "unchanged": true
+  },
+  "historical_not_rerun": {
+    "godot_suites": 62,
+    "godot_tests": 409,
+    "actual_window_checks": 253
+  },
+  "encoding_note": "Initial source/comparison v1 console exports use Windows GBK. Preserved as historical outputs; authoritative v2 exports are validated UTF-8. Native evidence v1 is UTF-8 and unchanged.",
+  "next": [
+    "real character name font/raster/texture",
+    "original sc004.bin resource loading",
+    "character animation readiness",
+    "third dialogue text"
+  ],
+  "boundaries": [
+    "name CreateFontA not executed",
+    "image table decoded, not loaded",
+    "no character animation",
+    "no third text",
+    "no GPU draw/Present",
+    "no original world scheduler"
+  ],
+  "push_performed": false
+}
