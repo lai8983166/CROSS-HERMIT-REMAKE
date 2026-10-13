@@ -590,7 +590,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 147. Isolated current-squad movement model
 
-- [ ] 147.1 Project current ready school students and verified limits to an isolated source-positioned session; implement deterministic exact-destination movement/stop/pause with terrain/occupancy/refusal and preservation tests, document boundaries and commit locally.
+- [x] 147.1 Project current ready school students and verified limits to an isolated source-positioned session; implement deterministic exact-destination movement/stop/pause with terrain/occupancy/refusal and preservation tests, document boundaries and commit locally.
 
 ## 148. Graphical field controls
 
