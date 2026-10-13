@@ -558,7 +558,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 139. Third natural fade and readiness
 
-- [ ] 139.1 Declare and record no-input reset, execute original VM fade/all-object readiness/input queries to PC290 wait0 without text skipping, compare full state/parameters/five resources and commit locally.
+- [x] 139.1 Declare and record no-input reset, execute original VM fade/all-object readiness/input queries to PC290 wait0 without text skipping, compare full state/parameters/five resources and commit locally.
 
 ## 140. Independent third live text comparison
 
