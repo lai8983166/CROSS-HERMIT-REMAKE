@@ -1,0 +1,27 @@
+Parent initial/formation_placement: complete frozen equality
+Parent initial/deployment_tail: complete frozen equality
+Parent initial/scene_opening: complete frozen equality
+Parent initial/entry_control: complete frozen equality
+Parent initial/script_preflight: complete frozen equality
+Parent initial/script_opening: complete frozen equality
+Parent initial/board_opening: complete frozen equality
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 125, in <module>
+    path.write_text(report_text(report(ROOT/'.venv-audit'/f'{path.stem}-bridge.exe')),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 116, in report
+    e,text,c=restored_case(index,parents,SchoolThirdLiveTextEmulator);c['provenance']['helper_sha256']=identity['helper_sha256'];first=e.run_live_text(text,helper,bridge_type=ImageD3D8,continuation=e.complete_second)
+  File "F:\project\chaomofa\tools\school_live_text_emulation.py", line 139, in run_live_text
+    if continuation is not None:result['continuation']=continuation(result)
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 111, in complete_second
+    result=super().complete_second(first);result['third_live_text']=self.upload_third(result['third_text_prefix']);result['third_text_wait']=self.wait_third(result['third_live_text'],result['third_text_prefix']);return result
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 79, in upload_third
+    natural={'va':self.uc.reg_read(UC_X86_REG_EIP),'sp':self.uc.reg_read(UC_X86_REG_ESP),'eax':self.uc.reg_read(UC_X86_REG_EAX)};texture=deepcopy(self.bridge.texture);pixels=self.bridge.readback(texture['pointer']);prior=[self.bridge.readback(t['pointer']) for t in self.animation_textures]
+  File "F:\project\chaomofa\tools\school_d3d8_bridge.py", line 56, in readback
+    def readback(self,pointer):return self.request('readback',pointer=pointer)
+  File "F:\project\chaomofa\tools\school_d3d8_bridge.py", line 45, in request
+    if reply.get('ok') is not True:raise ValueError(reply.get('error','real bridge refused'))
+ValueError: ArgumentException: unlocked texture required

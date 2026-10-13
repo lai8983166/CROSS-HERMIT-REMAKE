@@ -554,7 +554,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 138. Fifth actual texture
 
-- [ ] 138.1 Replay three actual live parents, complete original text2 font/raster/texture/handler with full source state/converted pixel/old-resource checks; preserve evidence and commit locally.
+- [x] 138.1 Replay three actual live parents, complete original text2 font/raster/texture/handler with full source state/converted pixel/old-resource checks; preserve evidence and commit locally.
 
 ## 139. Third natural fade and readiness
 

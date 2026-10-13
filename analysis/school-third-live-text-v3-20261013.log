@@ -1,0 +1,23 @@
+Parent initial/formation_placement: complete frozen equality
+Parent initial/deployment_tail: complete frozen equality
+Parent initial/scene_opening: complete frozen equality
+Parent initial/entry_control: complete frozen equality
+Parent initial/script_preflight: complete frozen equality
+Parent initial/script_opening: complete frozen equality
+Parent initial/board_opening: complete frozen equality
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 127, in <module>
+    path.write_text(report_text(report(ROOT/'.venv-audit'/f'{path.stem}-bridge.exe')),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 118, in report
+    e,text,c=restored_case(index,parents,SchoolThirdLiveTextEmulator);c['provenance']['helper_sha256']=identity['helper_sha256'];first=e.run_live_text(text,helper,bridge_type=ImageD3D8,continuation=e.complete_second)
+  File "F:\project\chaomofa\tools\school_live_text_emulation.py", line 139, in run_live_text
+    if continuation is not None:result['continuation']=continuation(result)
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 113, in complete_second
+    result=super().complete_second(first);result['third_live_text']=self.upload_third(result['third_text_prefix']);result['third_text_wait']=self.wait_third(result['third_live_text'],result['third_text_prefix']);return result
+  File "F:\project\chaomofa\tools\school_third_live_text_emulation.py", line 80, in upload_third
+    if natural!={'va':RETURN,'sp':STACK+0xFF04,'eax':1}:raise RuntimeError('third upload did not naturally return; '+repr({'CPU':natural,'measured':raster['measured'],'raster_size':expected['raster_size'],'conversion_calls':len(self.conversion_calls),'COM_calls':len(self.com_records)}))
+RuntimeError: third upload did not naturally return; {'CPU': {'va': 4217624, 'sp': 33615992, 'eax': 171}, 'measured': [370, 20], 'raster_size': [374, 24], 'conversion_calls': 1, 'COM_calls': 3}
