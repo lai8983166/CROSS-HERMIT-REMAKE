@@ -716,3 +716,16 @@ The map preview SHALL render the original actor/frame assets and source-projecte
 - **WHEN** a ready current squad opens and navigates the graphical opening at supported window sizes
 - **THEN** source-selected characters/names/text banks appear with bounded fades and previous/next/finish/close controls
 - **AND** school state, save bytes and mandatory adventure gate remain unchanged, including close/reopen and unsupported inputs
+
+### Requirement: Current-school deployment and movement trial
+The system SHALL expose a labelled MAP05 movement trial using the current ready student squad, verified current limits, source formation/passability and original directional sprites. It SHALL keep session commands transient, preserve school/save/gate state, and distinguish remake navigation from original world/AI execution.
+
+#### Scenario: Current students move on the current map
+- **WHEN** a ready supported fifth-week squad opens the trial and the player selects a student and a reachable free destination
+- **THEN** source-derived deployment appears with current HP/MP, and deterministic movement follows a contiguous walkable path without overlapping students or reserved source cells
+- **AND** pause, stop, recenter, zoom, pan and return remain usable
+
+#### Scenario: Refusal and school return preserve progress
+- **WHEN** the roster/loadout/assets are unsupported, a destination is blocked/occupied/outside/unreachable, or the trial closes
+- **THEN** no persistent school/save commands, rewards or mandatory-gate clearing occur; invalid movement preserves the current command
+- **AND** reopening after valid school edits uses the newly prepared student list, with formal adventure combat still unavailable

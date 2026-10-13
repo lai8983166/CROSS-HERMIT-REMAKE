@@ -583,3 +583,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 145. Graphical opening acceptance
 
 - [x] 145.1 Run relevant source/model/UI/spec compatibility checks, preserve save fingerprints and prior evidence, document playable change/limits and verify work/index/HEAD; commit locally without pushing.
+
+## 146. Current-field source export
+
+- [x] 146.1 Export source-only MAP05 terrain/formation/reserved cells and current student directional idle/walk assets with palette/provenance, verify original inputs and malformed source and commit locally.
+
+## 147. Isolated current-squad movement model
+
+- [ ] 147.1 Project current ready school students and verified limits to an isolated source-positioned session; implement deterministic exact-destination movement/stop/pause with terrain/occupancy/refusal and preservation tests, document boundaries and commit locally.
+
+## 148. Graphical field controls
+
+- [ ] 148.1 Integrate labelled trial entry, original MAP05/student sprites, selection/command/stop/pause/recenter/full-map/zoom/pan/return controls; test actual input, edited/refused states and responsive windows, inspect captures and commit locally.
+
+## 149. Field interaction acceptance
+
+- [ ] 149.1 Run relevant source/model/UI/old-opening/preparation/spec regression, verify retained historical/save fingerprints, document exact playable scope and local commits, and commit acceptance without pushing.

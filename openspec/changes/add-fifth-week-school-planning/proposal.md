@@ -173,3 +173,7 @@ The next bounded continuation executes opcode30 return, layer5 delay/frame/backg
 Continue the natural layer5 text2 font entry through actual host GDI, fifth real texture and original one-line fade/readiness, retaining all four previous textures and stopping before the next confirmation instruction.
 
 Render the already verified opening character/text layers in the Godot map preview. Project all ten source pages with original actors/frame art/layout, bounded visual timing, keyboard/button navigation and unchanged school/save/gate state.
+
+## Current-school field interaction (2026-10-14)
+
+Continue toward the playable current-squad battle by first exposing a separately labelled, read-only MAP05 deployment/movement trial. Export source terrain/formation and original current-student idle/walk art; carry current student identities and verified limits. Teacher remains a class leader. This bounded interaction does not invent enemy activation, waves, victory or persistent settlement. Verify model and actual window controls and commit source/model/UI/acceptance stages locally.
