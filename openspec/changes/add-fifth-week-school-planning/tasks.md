@@ -618,7 +618,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 154. Isolated source-based combat model
 
-- [ ] 154.1 Add admitted target attacks, deterministic local health/death and declared opponent scheduling to the current-school isolated trial, verify current data, collisions, range/admission, stop/pause/refusal/determinism and school/save preservation, and commit locally.
+- [x] 154.1 Add admitted target attacks, deterministic local health/death and declared opponent scheduling to the current-school isolated trial, verify current data, collisions, range/admission, stop/pause/refusal/determinism and school/save preservation, and commit locally.
 
 ## 155. Graphical combat commands
 

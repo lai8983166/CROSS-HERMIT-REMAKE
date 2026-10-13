@@ -105,9 +105,17 @@ func read_units() -> Array:
 	return units.duplicate(true)
 
 
+static func unit_key(unit: Dictionary) -> int:
+	return int(unit.get("instance_id",unit["character_id"]))
+
+
+func controlled_units() -> Array:
+	return units
+
+
 func find_unit(identity: int) -> Dictionary:
 	for unit in units:
-		if unit["character_id"] == identity: return unit
+		if unit_key(unit) == identity: return unit
 	return {}
 
 
@@ -120,7 +128,7 @@ func select(identity: int) -> bool:
 func _blocked(identity: int) -> Dictionary:
 	var blocked: Dictionary = _reserved.duplicate()
 	for unit in units:
-		if unit["character_id"] != identity: blocked[unit["cell"]] = true
+		if unit_key(unit) != identity: blocked[unit["cell"]] = true
 	return blocked
 
 
@@ -161,7 +169,7 @@ func tick() -> void:
 			if frame-unit["move_started_frame"] >= interval: _visual(unit,"idle")
 			continue
 		if frame%interval != 0: continue
-		var blocked := _blocked(unit["character_id"])
+		var blocked := _blocked(unit_key(unit))
 		if blocked.has(unit["path"][0]):
 			unit["path"] = SimPath.find_path(_maps[unit["movement_type"]],{"blocked_terrain":[0]},
 				unit["cell"],unit["destination"],blocked)
