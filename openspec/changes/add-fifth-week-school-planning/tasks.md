@@ -538,7 +538,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 134. Third text natural prefix
 
-- [ ] 134.1 Execute config8 activation and text2 lookup/split/initial record to natural unexecuted font entry, compare state/stack/resource retention and commit locally.
+- [x] 134.1 Execute config8 activation and text2 lookup/split/initial record to natural unexecuted font entry, compare state/stack/resource retention and commit locally.
 
 ## 135. Independent continuation verification
 
