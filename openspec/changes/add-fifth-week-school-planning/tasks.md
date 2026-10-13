@@ -522,7 +522,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 130. Independent image resource comparison
 
-- [ ] 130.1 Independently verify original file/heap/constructor/COM/row-copy/return inputs, complete regions/table/record/pixels/cleanup and malformed ownership/geometry/scope; document and commit locally.
+- [x] 130.1 Independently verify original file/heap/constructor/COM/row-copy/return inputs, complete regions/table/record/pixels/cleanup and malformed ownership/geometry/scope; document and commit locally.
 
 ## 131. Character image acceptance
 

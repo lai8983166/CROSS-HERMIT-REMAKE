@@ -28,6 +28,7 @@ def compare_prefix(case,completed=False):
  if p['file_cleanup']!={'actual_handles_closed':1,'open_handles':0,'all_owned_files_closed':True}:raise ValueError('image real file close')
  alloc=[{'pointer':FILE_BUFFER,'bytes':262168,'kind':'file_buffer','return_va':'0x42ad54','freed':False},{'pointer':ARRAY,'bytes':88,'kind':'texture_array','return_va':'0x41f142','freed':False}]
  if p['allocations']!=alloc or p['SEH_pending_hex']!=struct.pack('<I',f['container']-12).hex():raise ValueError('image original allocation/SEH')
+ if not {0x4CDE10,0x42AC50,0x41F830,0x41F0E0,0x404FB0}.issubset(p['visited']):raise ValueError('image original required function bodies')
  if p['prior_actual_readbacks']!=parent['prior_actual_readbacks']+[parent['actual_readback']] or not p['retained_ranges_unchanged']:raise ValueError('image all three prior pixels/retention')
  if not p['real_file_API_executed'] or not p['original_vector_constructor_executed'] or any(p[k] is not False for k in ('image_texture_created','image_loader_returned','GPU_draw_or_present_executed')):raise ValueError('image prefix exact scope')
  return {'name':case['name'],'loaded_bytes':262168,'table_slot':32,'complete_regions':len(REGIONS),'prior_texture_bytes':[len(bytes.fromhex(x['hex'])) for x in p['prior_actual_readbacks']],

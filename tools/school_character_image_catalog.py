@@ -25,7 +25,8 @@ def source_rules():
  if hashlib.sha256(src).hexdigest()!=SOURCE_SHA256:raise ValueError('original image source identity')
  pairs={0x4CDE31:('call','0x42ae20'),0x4CDE85:('call','0x416790'),0x4CDE96:('mov','byte ptr [edx + ecx + 0x92a0], 1'),
   0x4CDEA8:('call','0x428ad0'),0x41F174:('call','0x56dda0'),0x4050AF:('call','0x403bd0'),0x4050CE:('call','0x4046f0'),
-  0x42AC96:('call','dword ptr [0x5921ec]'),0x42AD07:('call','dword ptr [0x5921f0]'),0x42AD7C:('call','dword ptr [0x5921e8]'),0x42AD9F:('call','dword ptr [0x592270]')}
+  0x42AC96:('call','dword ptr [0x5921ec]'),0x42AD07:('call','dword ptr [0x5921f0]'),0x42AD7C:('call','dword ptr [0x5921e8]'),0x42AD9F:('call','dword ptr [0x592270]'),
+  0x40483A:('call','0x56d4d0'),0x404847:('call','0x403990'),0x4047CE:('call','0x403910'),0x41F950:('call','0x420990')}
  proof=[]
  for at,pair in pairs.items():
   i=next(md.disasm(src[at-BASE:at-BASE+16],at,count=1))
@@ -33,7 +34,10 @@ def source_rules():
   proof.append({'va':hex(at),'hex':i.bytes.hex(),'mnemonic':i.mnemonic,'operands':i.op_str})
  return {'source_image_sha256':SOURCE_SHA256,'resource_sha256':RESOURCE_SHA,'container':c,'code_inputs':proof,
   'heap':{'file_buffer':FILE_BUFFER,'array':ARRAY,'record':RECORD,'array_bytes':88,'kind':'declared finite emulator heap'},
-  'resource_slot':32,'renderer_table_offset':0x844,'row_bytes':512,'rows':512,'scope':'Original resource loading and real fourth texture; GPU draw/world and animation remain later work.'}
+  'resource_slot':32,'renderer_table_offset':0x844,'row_bytes':512,'rows':512,
+  'frame_offsets':{'image_to_file_loader':204,'image_to_dx':712,'image_to_texture_sp':812},
+  'platform':{'actual_read_only_APIs':['CreateFileA','GetFileSize','ReadFile','CloseHandle'],'working_directory_is_declared_binding':True,'extra_texture_shape':[256,512]},
+  'scope':'Original resource loading and real fourth texture; GPU draw/world and animation remain later work.'}
 
 def frames(parent):
  i=parent['pending_image']['frames']['sp']-4
