@@ -514,7 +514,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 128. Real file and natural image texture entry
 
-- [ ] 128.1 Replay three actual live parents, execute original file loading/container/vector/header to pending texture creation using real Windows file APIs and bounded heap/CRT primitives, compare complete state/retention/old pixels/cleanup, publish evidence and commit locally.
+- [x] 128.1 Replay three actual live parents, execute original file loading/container/vector/header to pending texture creation using real Windows file APIs and bounded heap/CRT primitives, compare complete state/retention/old pixels/cleanup, publish evidence and commit locally.
 
 ## 129. Fourth real texture and image-loader return
 

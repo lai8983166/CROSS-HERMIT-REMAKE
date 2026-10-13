@@ -37,7 +37,7 @@ def source_rules():
 
 def frames(parent):
  i=parent['pending_image']['frames']['sp']-4
- reg=i-104;ereg=reg-100;f090=ereg-104;f0e0=f090-112;entry=f0e0-160;dx=entry-128
+ reg=i-104;ereg=reg-100;f090=ereg-108;f0e0=f090-112;entry=f0e0-160;dx=entry-128
  return {'image':i,'file_wrapper':i-100,'file_loader':i-204,'register':reg,'extended_register':ereg,'container_wrapper':f090,'container':f0e0,'entry':entry,'dx':dx,'texture_sp':dx-100}
 
 def record_prefix():
