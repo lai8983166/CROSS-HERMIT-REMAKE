@@ -25,7 +25,7 @@ def digest(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
-def skin_inputs(character, job, rules):
+def skin_inputs(character, job, rules, *, actions=None, variant=None):
     identity = rules['source']
     raw = (ROOT / identity['local_file']).read_bytes()
     if digest(raw) != identity['sha256']:
@@ -33,15 +33,17 @@ def skin_inputs(character, job, rules):
     offsets = dx.parse_dxanim(raw)
     _, count, image_offsets = dx.parse_container(raw, offsets[6])
     rects = dx.parse_block5_rects(raw, offsets[5], count)
-    palette_index = rules['job_input']['palettes_by_character'][character]
-    variant = palette_index + 1 if palette_index else 0
+    if variant is None:
+        palette_index = rules['job_input']['palettes_by_character'][character]
+        variant = palette_index + 1 if palette_index else 0
     _, palette_count, palette_offsets = dx.parse_container(raw, offsets[7])
-    if not 1 <= variant <= palette_count:
+    if not 0 <= variant <= palette_count:
         raise ValueError('field palette index')
-    at = offsets[7] + palette_offsets[variant-1]
-    external = normalize_palette(raw[at:at+1024])
+    at = offsets[7] + palette_offsets[variant-1] if variant else 0
+    external = normalize_palette(raw[at:at+1024]) if variant else None
+    selected_actions = actions or [('idle', 1), ('move', 3)]
     actions, frames, images = {}, {}, {}
-    for name, action in [('idle', 1), ('move', 3)]:
+    for name, action in selected_actions:
         directions = {}
         for direction, engine_direction in DIRECTIONS.items():
             mapped = rules['direction_map'][engine_direction]
@@ -61,7 +63,8 @@ def skin_inputs(character, job, rules):
                     frame_at = offsets[6] + image_offsets[frame]
                     w, h, indices, _ = dx.decode_bmp(raw, frame_at)
                     embedded = normalize_palette(raw[frame_at+54:frame_at+1078])
-                    palette = external if raw[offsets[8]+frame] == 0 else embedded
+                    use_external = bool(variant) and raw[offsets[8]+frame] == 0
+                    palette = external if use_external else embedded
                     # Existing DxAnim export convention: indexed zero is transparent.
                     rgba = b''.join(palette[i*4:i*4+3][::-1] + bytes([0 if i == 0 else 255]) for i in indices)
                     image = Image.frombytes('RGBA', (w, h), rgba)
@@ -70,7 +73,7 @@ def skin_inputs(character, job, rules):
                     frames[str(frame)] = {'file': filename, 'w': w, 'h': h,
                         'canvas': {'w': cw, 'h': ch, 'x': x, 'y': y},
                         'rgba_sha256': digest(rgba), 'palette_sha256': digest(palette),
-                        'external_palette': raw[offsets[8]+frame] == 0}
+                        'external_palette': use_external}
                     images[filename] = image
         actions[name] = directions
     return {'character_id': character, 'job': job, 'source': identity,

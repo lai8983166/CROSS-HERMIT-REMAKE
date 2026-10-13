@@ -614,7 +614,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 153. Initial scene combat presentation
 
-- [ ] 153.1 Export source initial active scene actors, records and directional art with checked palette/geometry/provenance; exclude inactive/deferred templates, validate source/native construction distinctions and commit locally.
+- [x] 153.1 Export source initial active scene actors, records and directional art with checked palette/geometry/provenance; exclude inactive/deferred templates, validate source/native construction distinctions and commit locally.
 
 ## 154. Isolated source-based combat model
 
@@ -622,7 +622,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 155. Graphical combat commands
 
-- [ ] 155.1 Add source-positioned actor display, current HP/MP, attack/target feedback and original directional attack/death presentation to the labelled trial with accessible select/move/pause/stop/return controls; verify real window inputs/captures and commit locally.
+- [ ] 155.1 Add source-positioned actor display, current HP/MP, attack/target feedback and original directional attack and explicitly declared death-removal presentation to the labelled trial with accessible select/move/pause/stop/return controls; verify real window inputs/captures and commit locally.
 
 ## 156. Extended trial compatibility
 
