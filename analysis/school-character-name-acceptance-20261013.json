@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "baseline": "3eb9cf8",
+  "tasks": {
+    "total": 126,
+    "complete": 126,
+    "remaining": 0
+  },
+  "stage_commits": {
+    "source": "ac3e639",
+    "real_raster": "31cb64f",
+    "third_texture": "ca6b8ce",
+    "independent_comparison": "5006ae5"
+  },
+  "canonical_source": {
+    "path": "analysis/school-character-name-rules-v5-20261013.json",
+    "bytes": 5733,
+    "sha256": "82e0ba22c15cb4e279f2573e92e17448ea85b1c0e8cde870bca9f0a57c5aec47"
+  },
+  "native_raster": {
+    "path": "analysis/school-character-name-raster-v2-20261013.json",
+    "bytes": 24661194,
+    "sha256": "390720ac62b729046ccbb721e2af677287197092ec77939ef5aedd059cffd760"
+  },
+  "native_texture": {
+    "path": "analysis/school-character-name-texture-v3-20261013.json",
+    "bytes": 25793345,
+    "sha256": "de5d82eda44a0d3e773140c400bdacefd2fb4c06459fbc778b7de7ccf305ec56"
+  },
+  "comparison": {
+    "path": "analysis/school-character-name-texture-comparison-v2-20261013.json",
+    "bytes": 1707,
+    "sha256": "30b795eb0ffe14c08d07d4e625b535ffc3006f8bef4556a2a64b08a394057511"
+  },
+  "cases": [
+    {
+      "name": "initial",
+      "measured": [
+        84,
+        20
+      ],
+      "raster_size": [
+        88,
+        24
+      ],
+      "raster_bytes": 8448,
+      "complete_regions": 8,
+      "prior_texture_bytes": [
+        16384,
+        32768
+      ],
+      "retained_bytes": 124743607,
+      "name_texture_created": true,
+      "third_texture_bytes": 8192,
+      "texture_size": [
+        128,
+        32
+      ],
+      "band_calls": 1,
+      "image_path": "data\\adv\\bin\\sc004.bin",
+      "image_slot": 32
+    },
+    {
+      "name": "student9_waiting",
+      "measured": [
+        84,
+        20
+      ],
+      "raster_size": [
+        88,
+        24
+      ],
+      "raster_bytes": 8448,
+      "complete_regions": 8,
+      "prior_texture_bytes": [
+        16384,
+        32768
+      ],
+      "retained_bytes": 124743607,
+      "name_texture_created": true,
+      "third_texture_bytes": 8192,
+      "texture_size": [
+        128,
+        32
+      ],
+      "band_calls": 1,
+      "image_path": "data\\adv\\bin\\sc004.bin",
+      "image_slot": 32
+    },
+    {
+      "name": "fifth_class",
+      "measured": [
+        84,
+        20
+      ],
+      "raster_size": [
+        88,
+        24
+      ],
+      "raster_bytes": 8448,
+      "complete_regions": 8,
+      "prior_texture_bytes": [
+        16384,
+        32768
+      ],
+      "retained_bytes": 124743607,
+      "name_texture_created": true,
+      "third_texture_bytes": 8192,
+      "texture_size": [
+        128,
+        32
+      ],
+      "band_calls": 1,
+      "image_path": "data\\adv\\bin\\sc004.bin",
+      "image_slot": 32
+    }
+  ],
+  "validation": {
+    "python_modules": 39,
+    "python_tests": 144,
+    "strict_specs": 30,
+    "source_log": "analysis/school-character-name-source-final-20261013.log",
+    "spec_log": "analysis/school-character-name-specs-final-20261013.log"
+  },
+  "preservation": {
+    "files": 681,
+    "save_rules": 10,
+    "snapshot": "analysis/school-character-name-preservation-20261013.json",
+    "byte_identical": true
+  },
+  "historical_not_rerun": {
+    "godot_suites": 62,
+    "godot_tests": 409,
+    "actual_window_checks": 253
+  },
+  "native_state": {
+    "PC": 252,
+    "opcode": 30,
+    "wait": 0,
+    "name_texture": [
+      128,
+      32
+    ],
+    "name_texture_bytes": 8192,
+    "pending_image_loader": "0x4cde10",
+    "image_path": "data\u0007dv\bin\\sc004.bin",
+    "resource_slot": 32,
+    "deleted_font_field_retains_old_numeric_handle": true
+  },
+  "cleanup": {
+    "textures": 3,
+    "remaining_measurement_DCs": 3,
+    "all_owned_resources_released": true,
+    "helper_processes_exited": true
+  },
+  "verification_projection": "Observed full cleanup is checked first; the two original texture releases and their two measurement DCs are projected only in the independent parent verification view. Native evidence retains actual complete cleanup.",
+  "preserved_failed_attempts": {
+    "raster_v1": "incorrect stack-distance prediction; original328 versus dialogue336 corrected",
+    "texture_v1": "source directory copy clears register high word; full resource argument corrected to32",
+    "texture_v2": "original DeleteObject releases font without clearing node field; old numeric handle retained"
+  },
+  "source_versions": "v5 is authoritative; v1-v4 immutable exports retained as history. Successful actual raster v2 and texture v3 remain unchanged.",
+  "boundaries": [
+    "image loader first instruction not executed",
+    "no image file read/decode",
+    "no character animation",
+    "no third dialogue",
+    "no GPU draw/Present",
+    "no original world scheduler"
+  ],
+  "next": [
+    "execute original image file/resource loading",
+    "character animation/readiness",
+    "third dialogue and subsequent waits"
+  ],
+  "Godot_runtime_changed": false,
+  "push_performed": false
+}
