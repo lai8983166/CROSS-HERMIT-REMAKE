@@ -498,7 +498,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 124. Third real texture and image-load entry
 
-- [ ] 124.1 Replay original name raster and upload/cleanup with third owned real texture, continue source caller and path construction to original image-loader entry, verify finite writes/full memory/pixels/cleanup, publish evidence and commit locally.
+- [x] 124.1 Replay original name raster and upload/cleanup with third owned real texture, continue source caller and path construction to original image-loader entry, verify finite writes/full memory/pixels/cleanup, publish evidence and commit locally.
 
 ## 125. Independent character completion comparison
 

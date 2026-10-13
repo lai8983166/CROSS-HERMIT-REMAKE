@@ -16,7 +16,7 @@ def name_rules():
  pairs={0x4CA773:('sub','esp, 0x148'),0x408E33:('sub','esp, 0x44'),0x405163:('sub','esp, 0xec'),0x4CA7D5:('mov','dword ptr [ecx + 0x5c], eax'),0x4CA800:('call','0x4077c0'),0x4CA81B:('call','0x4142b0'),
   0x4CA827:('call','0x408e30'),0x4CA838:('call','0x4d1bf0'),0x4CC25F:('mov','word ptr [ecx + eax*2 + 0x34], dx'),
   0x4CC268:('call','0x4cbf90'),0x4CC091:('mov','dword ptr [ecx + eax*4 + 0x44], edx'),
-  0x4CC0A4:('call','0x4cd7b0'),0x4CC0B9:('call','0x4cd810'),0x4CC0CD:('call','0x4cde10')}
+  0x4CC0A4:('call','0x4cd7b0'),0x4CC0B9:('call','0x4cd810'),0x4CC0CD:('call','0x4cde10'),0x4CD7E3:('xor','edx, edx')}
  proof=[]
  for at,pair in pairs.items():
   i=next(md.disasm(raw[at-BASE:at-BASE+16],at,count=1))
@@ -41,12 +41,12 @@ def expected_complete(raster,texture_pointer,device,before_accounting):
  if struct.unpack_from('<2I',v,o+0x2C)!=(0,0):raise ValueError('name empty pending native texture')
  width,height=[power_of_two(x) for x in cfg['texture_size']]
  struct.pack_into('<2I',v,o+0x28,device,texture_pointer);struct.pack_into('<2H',v,o+0x3C,width,height)
- struct.pack_into('<H',v,o+0x44,struct.unpack_from('<H',v,o+0x44)[0]|6);struct.pack_into('<I',v,NODE_OFFSET+0x5C,0)
+ struct.pack_into('<H',v,o+0x44,struct.unpack_from('<H',v,o+0x44)[0]|6)
  # Original caller selects first slot and scene row before executing the loader.
  for at,val in ((0x2C,736),(0x2E,214),(0x30,0),(0x34,4)):struct.pack_into('<H',v,NODE_OFFSET+at,val)
  struct.pack_into('<I',v,NODE_OFFSET+0x44,0x622758)
  return {'after':regions(mem),'texture_size':[width,height],'accounting_after':(before_accounting+width*height*2)&0xFFFFFFFF,
-  'path':name_rules()['image_path'],'args':[PATH,0x620020]}
+  'path':name_rules()['image_path'],'args':[PATH,32]}
 
 def pending_texture(prefix):
  f=prefix['pending_font']['frames']['name']
@@ -54,7 +54,7 @@ def pending_texture(prefix):
 
 def pending_image(prefix):
  frames=prefix['pending_font']['frames'];resource=frames['layer']-120
- return {'va':0x4CDE10,'receiver':VM,'args':[PATH,0x620020],'return_va':0x4CC0D2,
+ return {'va':0x4CDE10,'receiver':VM,'args':[PATH,32],'return_va':0x4CC0D2,
   'frames':{'resource':resource,'layer':frames['layer'],'handler':frames['handler'],'vm':frames['vm'],'sp':resource-116},'first_instruction_executed':False}
 
 if __name__=='__main__':
