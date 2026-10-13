@@ -20,4 +20,13 @@ class CharacterPrefixTests(unittest.TestCase):
    with self.subTest(offset=offset):
     with self.assertRaises(ValueError):expected_prefix(regions(mem))
 
+ def test_prefix_write_guard_refuses_texture_and_live_input(self):
+  from tools.school_character_prefix_emulation import SchoolCharacterPrefixEmulator
+  e=SchoolCharacterPrefixEmulator();e.character_loading=True;e.character_allowed=[(NODE,NODE+2)]
+  e._write_hook(e.uc,0,NODE,2,1,None)
+  for address in (NODE+2,VM+0x430+7*0xAB8+0x28,0x1001990):
+   with self.assertRaises(RuntimeError):e._write_hook(e.uc,0,address,2,1,None)
+  e.character_loading=False
+  with self.assertRaises(RuntimeError):e.continue_character({})
+
 if __name__=='__main__':unittest.main()

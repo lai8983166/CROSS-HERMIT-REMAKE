@@ -482,7 +482,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 120. Natural character layer name-font prefix
 
-- [ ] 120.1 Replay three actual parents with two live textures, execute original layer prefix to name-font entry, compare complete regions/stack/pixels/retention/cleanup independently, publish evidence and commit locally.
+- [x] 120.1 Replay three actual parents with two live textures, execute original layer prefix to name-font entry, compare complete regions/stack/pixels/retention/cleanup independently, publish evidence and commit locally.
 
 ## 121. Character prefix acceptance
 
