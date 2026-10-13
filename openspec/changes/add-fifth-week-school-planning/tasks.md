@@ -542,7 +542,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 135. Independent continuation verification
 
-- [ ] 135.1 Verify source/native continuation separately, test corrupted counters/draws/predicates/stack/pixels/ownership/scope and document boundaries; commit locally.
+- [x] 135.1 Verify source/native continuation separately, test corrupted counters/draws/predicates/stack/pixels/ownership/scope and document boundaries; commit locally.
 
 ## 136. Character animation acceptance
 
