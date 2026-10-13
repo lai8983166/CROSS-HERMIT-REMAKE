@@ -610,7 +610,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 152. Current attack and defense derivation
 
-- [ ] 152.1 Export source-only current-role combat inputs, independently project the supported attack/defense subset and compare original bounded calculations including malformed inputs; keep fixtures out of runtime and commit locally.
+- [x] 152.1 Export source-only current-role combat inputs, independently project the supported attack/defense subset and compare original bounded calculations including malformed inputs; keep fixtures out of runtime and commit locally.
 
 ## 153. Initial scene combat presentation
 
