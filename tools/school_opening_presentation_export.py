@@ -66,5 +66,21 @@ def export(out):
   p['sources'][name]=hashlib.sha256(raw).hexdigest();p['outputs'][filename]={'sha256':hashlib.sha256((out/filename).read_bytes()).hexdigest(),'size':list(image.size)}
  (out/'catalog.json').write_text(json.dumps(p,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n');return p
 
+def native_visual_fixture():
+ from tools.school_character_animation_verification import fixture,EVIDENCE_SHA256
+ from tools.school_third_live_text_verification import fixture as third_fixture,EVIDENCE_SHA256 as third_sha
+ case=fixture()['cases'][0];points=[]
+ for tick in (0,30,31,45,60,61,76,77):
+  records=case['character_animation']['steps'][tick]['presentation']
+  body=next(r for r in records if r['return_va']=='0x4c9778')
+  frame=next((r for r in records if r['va']=='0x4cbdb0' and r['args'][:2]==[254,368]),None)
+  fill=next((r for r in records if r['va']=='0x410310' and r['args'][:2]==[277,381]),None)
+  points.append({'tick':tick,'actor_alpha':body['args'][2]&255,'frame_alpha':0 if frame is None else frame['args'][2]&255,'fill_alpha':0 if fill is None else fill['args'][5]>>24,'name_visible':any(r['va']=='0x408f90' for r in records)})
+ third=third_fixture()['cases'][0];text=[]
+ for index in (0,1,12,23,24,25):
+  draw=next(r for r in third['third_text_wait']['steps'][index]['text_draws'] if r['args'][0]==0x7DB618)
+  text.append({'tick':79+index,'alpha':draw['args'][4]&255})
+ return {'native_animation_sha256':EVIDENCE_SHA256,'native_third_text_sha256':third_sha,'character_points':points,'text_points':text,'runtime_fixture':False}
+
 if __name__=='__main__':
  parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=ROOT/'prototype/assets/school_opening');args=parser.parse_args();export(args.out)

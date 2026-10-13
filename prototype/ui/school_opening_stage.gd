@@ -112,7 +112,7 @@ func show_page(index: int) -> void:
 		paint.add_child(column)
 		var records: Array = []
 		for text_index in bank["text_indices"]:
-			var label := _label(catalog["pages"][int(text_index)]["text"],22)
+			var label := _label(catalog["pages"][int(text_index)]["text"],21)
 			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			label.custom_minimum_size.y = 26
 			column.add_child(label)

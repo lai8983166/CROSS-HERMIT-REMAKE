@@ -14,5 +14,8 @@ class PresentationExportTests(unittest.TestCase):
   raw=(GAME/'SC004.BIN').read_bytes()
   for data in (raw[:-2],b'',bytes(24),raw[:14]+b'\x01\x00'+raw[16:],raw[:16]+b'\x80\x00'+raw[18:]):
    with self.assertRaises(ValueError):dx_image(data)
+ def test_visual_expectations_are_regenerated_from_pinned_native_records(self):
+  fixture=json.loads((ROOT/'prototype/ui/tests/fixtures/school_opening_native_visual.json').read_text(encoding='utf-8'))
+  self.assertEqual(fixture,native_visual_fixture());self.assertFalse(fixture['runtime_fixture'])
 
 if __name__=='__main__':unittest.main()

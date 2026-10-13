@@ -578,7 +578,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 144. Graphical opening verification
 
-- [ ] 144.1 Exercise ten pages, actor switches, timing, close/reopen, input and unsupported states at 1024/1280/800 sizes, preserve school/save/gate, run actual rendered captures and inspect them; commit locally.
+- [x] 144.1 Exercise ten pages, actor switches, timing, close/reopen, input and unsupported states at 1024/1280/800 sizes, preserve school/save/gate, run actual rendered captures and inspect them; commit locally.
 
 ## 145. Graphical opening acceptance
 
