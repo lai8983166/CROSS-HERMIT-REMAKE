@@ -630,4 +630,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 157. Extended trial acceptance
 
-- [ ] 157.1 Run appropriate source/native/model/UI/spec regression, verify retained evidence/save fingerprints and owned Git bytes, document exact scope/remaining world and settlement work, and commit locally without pushing.
+- [x] 157.1 Run appropriate source/native/model/UI/spec regression, verify retained evidence/save fingerprints and owned Git bytes, document exact scope/remaining world and settlement work, and commit locally without pushing.

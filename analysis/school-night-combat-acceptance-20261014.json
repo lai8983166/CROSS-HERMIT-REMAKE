@@ -1,0 +1,111 @@
+{
+  "scope": "Eight staged extensions 150–157 of the current-school isolated graphical combat trial",
+  "baseline": "7b61e34",
+  "local_stage_commits_before_acceptance": [
+    "12d2c6c Verify rendered combat and movement trials plus school entry compatibility",
+    "dd33826 Add graphical current-school combat trial with source sprites and health feedback",
+    "b7566ee Add isolated current school combat orders with source damage and stationary opponents",
+    "5b29ccb Export source initial scene opponents and current squad attack presentation",
+    "c63585c Verify original current squad attack snapshots and scalar damage inputs",
+    "6fd300d Audit original world admission on actual current-school checkpoints",
+    "592eaac Correct current student sprites to original palette binding variants"
+  ],
+  "acceptance_commit": "Recorded by final local Git commit; no push",
+  "native": {
+    "world_report": "analysis/school-night-world-admission-v2-20261014.json",
+    "actual_school_cases": 3,
+    "world_tick_executed": false,
+    "opening_completed": false,
+    "attack_report": "analysis/school-night-attack-probe-v3-20261014.json",
+    "actual_school_cases_attack": 3,
+    "actual_snapshot_count": 7,
+    "declared_scalar_damage_probes": 24,
+    "new_native_reports_executed_this_turn": true
+  },
+  "checks": {
+    "godot_model": {
+      "suites": 65,
+      "tests": 426,
+      "failures": 0,
+      "log": "analysis/school-night-full-model-20261014.log"
+    },
+    "python_source": {
+      "tests": 14,
+      "failures": 0,
+      "log": "analysis/school-night-source-regression-20261014.log"
+    },
+    "ui": [
+      {
+        "log": "analysis/school-night-combat-ui-v3-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 145 checks, 0 failures"
+      },
+      {
+        "log": "analysis/school-night-field-ui-compat-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 136 checks, 0 failures"
+      },
+      {
+        "log": "analysis/school-night-opening-ui-compat-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 262 checks, 0 failures"
+      },
+      {
+        "log": "analysis/school-night-map-ui-compat-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 92 checks, 0 failures"
+      },
+      {
+        "log": "analysis/school-night-departure-ui-compat-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 155 checks, 0 failures"
+      },
+      {
+        "log": "analysis/school-night-navigation-ui-compat-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 26 checks, 0 failures"
+      }
+    ],
+    "rendered_windows": [
+      {
+        "log": "analysis/school-night-combat-window-v2-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 157 checks, 0 failures"
+      },
+      {
+        "log": "analysis/school-night-field-window-compat-20261014.log",
+        "exit": 0,
+        "summary": "Graphical school: 147 checks, 0 failures"
+      }
+    ],
+    "spec": {
+      "strict_items": 30,
+      "failures": 0,
+      "log": "analysis/school-night-spec-final-20261014.log"
+    },
+    "apply_progress": {
+      "total": 157,
+      "complete": 157,
+      "remaining": 0
+    },
+    "apply_report": "analysis/school-night-apply-complete-20261014.json"
+  },
+  "visual_review": "analysis/school-night-trial-compatibility-20261014.json",
+  "preservation": "analysis/school-night-preservation-20261014.json",
+  "artifact_manifest": "analysis/school-night-artifact-manifest-20261014.json",
+  "remaining": [
+    "Original world continuation and opening completion",
+    "Original action/AI, range shape,491EF0 damage/effect application and death animation",
+    "24 inactive templates, event predicates and wave triggers",
+    "Original victory/result/reward/growth and persistent return/gate closure",
+    "Exported package, original camera, audio and broader skills/characters/year content"
+  ],
+  "authority": {
+    "school_save_changed_by_trial": false,
+    "formal_adventure_enabled": false,
+    "reward_or_gate_clear": false,
+    "full_game_completion": false
+  },
+  "failed_intermediate_logs_retained": true,
+  "known_warnings": "Three legacy opening raw-image export warnings; source run passes, package not tested"
+}
