@@ -606,7 +606,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 151. Original world admission audit
 
-- [ ] 151.1 Decode original world/controller admission and verify bounded native calls using pinned actual-school state and separately declared gates; document full-world/VM boundaries, preserve historical state and commit locally.
+- [x] 151.1 Decode original world/controller admission and verify bounded native calls using pinned actual-school state and separately declared gates; document full-world/VM boundaries, preserve historical state and commit locally.
 
 ## 152. Current attack and defense derivation
 
