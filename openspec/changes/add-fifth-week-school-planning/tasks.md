@@ -598,4 +598,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 149. Field interaction acceptance
 
-- [ ] 149.1 Run relevant source/model/UI/old-opening/preparation/spec regression, verify retained historical/save fingerprints, document exact playable scope and local commits, and commit acceptance without pushing.
+- [x] 149.1 Run relevant source/model/UI/old-opening/preparation/spec regression, verify retained historical/save fingerprints, document exact playable scope and local commits, and commit acceptance without pushing.
