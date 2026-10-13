@@ -526,4 +526,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 131. Character image acceptance
 
-- [ ] 131.1 Run relevant source/native/strict-spec regression, preserve historical/runtime/UI/save bytes, publish exact resource-loading progress/acceptance, verify work/index/HEAD and commit locally without pushing.
+- [x] 131.1 Run relevant source/native/strict-spec regression, preserve historical/runtime/UI/save bytes, publish exact resource-loading progress/acceptance, verify work/index/HEAD and commit locally without pushing.

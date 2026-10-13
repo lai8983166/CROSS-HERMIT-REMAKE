@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "baseline": "e37aa50",
+  "tasks": {
+    "total": 131,
+    "complete": 131,
+    "remaining": 0
+  },
+  "stage_commits": {
+    "source": "51a90b8",
+    "file_prefix": "187bc56",
+    "fourth_texture": "d2b3778",
+    "comparison": "0d7c625"
+  },
+  "source": {
+    "path": "analysis/school-character-image-rules-v2-20261013.json",
+    "bytes": 3131,
+    "sha256": "79a2de394656d339b820032647c0854df9715b566d5b42ab6fd18581ed16f7d3"
+  },
+  "native_prefix": {
+    "path": "analysis/school-character-image-prefix-v2-20261013.json",
+    "bytes": 26798536,
+    "sha256": "fc03ed4a812e339ba57da1ed52121892dd1ba68f5cff594507114aa132136749"
+  },
+  "native_live": {
+    "path": "analysis/school-character-image-live-v3-20261013.json",
+    "bytes": 34353405,
+    "sha256": "725d85f5f757ebda961c8b55dbcdf15b645f5a341a1012c0e856e2ed5e9b1908"
+  },
+  "comparison": {
+    "path": "analysis/school-character-image-live-comparison-v2-20261013.json",
+    "bytes": 1296,
+    "sha256": "5a58e7315734dd0a625a40736ea929ca0f9274e454ee3d128edb9888ebcce11e"
+  },
+  "cases": [
+    {
+      "name": "initial",
+      "loaded_bytes": 262168,
+      "table_slot": 32,
+      "complete_regions": 8,
+      "prior_texture_bytes": [
+        16384,
+        32768,
+        8192
+      ],
+      "retained_bytes": 126582395,
+      "image_texture_created": true,
+      "image_loader_returned": true,
+      "image_bytes": 262144,
+      "original_row_copies": 512,
+      "PC": 252
+    },
+    {
+      "name": "student9_waiting",
+      "loaded_bytes": 262168,
+      "table_slot": 32,
+      "complete_regions": 8,
+      "prior_texture_bytes": [
+        16384,
+        32768,
+        8192
+      ],
+      "retained_bytes": 126582395,
+      "image_texture_created": true,
+      "image_loader_returned": true,
+      "image_bytes": 262144,
+      "original_row_copies": 512,
+      "PC": 252
+    },
+    {
+      "name": "fifth_class",
+      "loaded_bytes": 262168,
+      "table_slot": 32,
+      "complete_regions": 8,
+      "prior_texture_bytes": [
+        16384,
+        32768,
+        8192
+      ],
+      "retained_bytes": 126582395,
+      "image_texture_created": true,
+      "image_loader_returned": true,
+      "image_bytes": 262144,
+      "original_row_copies": 512,
+      "PC": 252
+    }
+  ],
+  "validation": {
+    "python_modules": 43,
+    "python_tests": 154,
+    "strict_specs": 30,
+    "source_log": "analysis/school-character-image-source-final-20261013.log",
+    "spec_log": "analysis/school-character-image-specs-final-20261013.log"
+  },
+  "preservation": {
+    "files": 712,
+    "save_rules": 10,
+    "byte_identical": true,
+    "snapshot": "analysis/school-character-image-preservation-20261013.json"
+  },
+  "historical_not_rerun": {
+    "godot_suites": 62,
+    "godot_tests": 409,
+    "actual_window_checks": 253
+  },
+  "state": {
+    "PC": 252,
+    "opcode": 30,
+    "loaded_resource": 32,
+    "texture": [
+      256,
+      512
+    ],
+    "texture_bytes": 262144,
+    "row_copies": 512,
+    "loader_return": "0x4cc0d2",
+    "caller_first_instruction_executed": false
+  },
+  "platform": {
+    "actual_Windows_file_APIs": [
+      "CreateFileA",
+      "GetFileSize",
+      "ReadFile",
+      "CloseHandle"
+    ],
+    "directory_binding": "declared original game directory and fixed absolute source path",
+    "heap_and_CRT": "bounded explicit emulator primitives",
+    "image_bridge": "separate exact256x512 extension; old helpers preserved"
+  },
+  "cleanup": {
+    "textures": 4,
+    "remaining_measurement_DCs": 3,
+    "file_handles_closed": true,
+    "all_owned_COM_resources_released": true,
+    "helpers_exited": true,
+    "source_file_buffer_declared_freed": true,
+    "source_texture_array_remains_registered": true
+  },
+  "preserved_failed_attempts": {
+    "prefix_v1": "missing fourth register-wrapper argument in stack prediction; corrected from original instructions",
+    "live_v1": "old helper height256 cap; separate exact image extension added",
+    "live_v2": "new DX upload body required explicit native instruction routing; corrected before successful live_v3"
+  },
+  "boundaries": [
+    "no layer animation setup/update",
+    "no third dialogue",
+    "no original GPU drawing/Present",
+    "no world scheduling",
+    "Godot playable scope unchanged"
+  ],
+  "next": [
+    "continue original layer handler after loader return",
+    "character animation/readiness",
+    "third dialogue and graphical presentation"
+  ],
+  "push_performed": false
+}
