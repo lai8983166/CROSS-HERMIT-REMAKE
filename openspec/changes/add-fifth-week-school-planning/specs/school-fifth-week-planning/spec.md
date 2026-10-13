@@ -708,3 +708,11 @@ The audit SHALL complete layer5 text2 using actual GDI and an independently owne
 - **WHEN** the original text handler completes and explicitly declared no-input VM updates continue
 - **THEN** the third row naturally fades to mode1 and original all-object readiness releases opcode50 at PC290
 - **AND** the following confirmation, GPU presentation and world scheduling remain unexecuted boundaries
+
+### Requirement: Graphical current-adventure opening preview
+The map preview SHALL render the original actor/frame assets and source-projected retained dialogue layers for ten ordered opening texts, with readable responsive layout and keyboard/button navigation.
+
+#### Scenario: Graphical preview preserves school state
+- **WHEN** a ready current squad opens and navigates the graphical opening at supported window sizes
+- **THEN** source-selected characters/names/text banks appear with bounded fades and previous/next/finish/close controls
+- **AND** school state, save bytes and mandatory adventure gate remain unchanged, including close/reopen and unsupported inputs

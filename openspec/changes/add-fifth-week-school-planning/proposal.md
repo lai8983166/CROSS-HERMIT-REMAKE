@@ -171,3 +171,5 @@ Continue actual4CDE10 for pinned sc004.bin. Execute original file loader/contain
 The next bounded continuation executes opcode30 return, layer5 delay/frame/background animation and both source readiness predicates with all four actual textures alive, then activates config8 and prepares text2 to its natural unexecuted font entry.
 
 Continue the natural layer5 text2 font entry through actual host GDI, fifth real texture and original one-line fade/readiness, retaining all four previous textures and stopping before the next confirmation instruction.
+
+Render the already verified opening character/text layers in the Godot map preview. Project all ten source pages with original actors/frame art/layout, bounded visual timing, keyboard/button navigation and unchanged school/save/gate state.

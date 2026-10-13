@@ -567,3 +567,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 141. Third live text acceptance
 
 - [x] 141.1 Run relevant regression and strict specs, preserve historical/runtime/save files, publish acceptance/progress and verify work/index/HEAD byte equality; commit locally without pushing.
+
+## 142. Source opening presentation export
+
+- [x] 142.1 Export lossless original actor/frame art and source page/layer/name/layout catalog with deterministic and malformed-source checks; commit locally.
+
+## 143. Godot graphical opening
+
+- [ ] 143.1 Implement fitted original-art layers, readable text/name banks, source-derived bounded fades and keyboard/button controls in the current map preview; verify and commit locally.
+
+## 144. Graphical opening verification
+
+- [ ] 144.1 Exercise ten pages, actor switches, timing, close/reopen, input and unsupported states at 1024/1280/800 sizes, preserve school/save/gate, run actual rendered captures and inspect them; commit locally.
+
+## 145. Graphical opening acceptance
+
+- [ ] 145.1 Run relevant source/model/UI/spec compatibility checks, preserve save fingerprints and prior evidence, document playable change/limits and verify work/index/HEAD; commit locally without pushing.

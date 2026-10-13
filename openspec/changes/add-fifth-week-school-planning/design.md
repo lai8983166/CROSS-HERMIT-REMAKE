@@ -227,3 +227,7 @@ Use EXE dispatch tables, config8/style5/SC004 geometry and independently decoded
 ## Third live text continuation
 
 Reuse unchanged original font and texture function bodies at the layer5 record, with separate raster/lock mirrors. Independently derive all record bytes, bands, COM/GDI stack inputs and dual-layer presentation. Reset only the explicitly declared prior confirmation pulse to no input before bounded VM wait calls; preserve all other memory and actual textures. Execute original readiness/input-query bodies and stop when opcode50 releases at PC290, leaving opcode51 pending.
+
+## Graphical opening projection
+
+Export lossless RGB555 GYBC/SC004/SC009 art and EXE frame/config/name tables with source identities. Parse the selected opening command sequence into per-page retained layer/text banks; runtime reads only this small catalog and images, never native audit cases. Fit a 1024x768 stage into the map viewport, display Unicode source text with Godot fonts, and implement bounded presentation fades with finish-display and paging controls. The local 60Hz presentation clock is declared; first-three native proof and later static source projection are distinguished in documentation. All controls preserve read-only map and school/save/gate semantics.
