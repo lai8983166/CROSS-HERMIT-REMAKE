@@ -547,3 +547,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 136. Character animation acceptance
 
 - [x] 136.1 Run relevant regression and strict specs, preserve prior evidence/runtime/save files, publish acceptance and exact progress, verify work/index/HEAD and commit without pushing.
+
+## 137. Third live text contracts
+
+- [x] 137.1 Derive layer5 raster/texture/full-row and original dual-object fade/readiness rules, verify counter/parent/geometry boundaries and commit locally.
+
+## 138. Fifth actual texture
+
+- [ ] 138.1 Replay three actual live parents, complete original text2 font/raster/texture/handler with full source state/converted pixel/old-resource checks; preserve evidence and commit locally.
+
+## 139. Third natural fade and readiness
+
+- [ ] 139.1 Declare and record no-input reset, execute original VM fade/all-object readiness/input queries to PC290 wait0 without text skipping, compare full state/parameters/five resources and commit locally.
+
+## 140. Independent third live text comparison
+
+- [ ] 140.1 Independently verify every original GDI/COM/band/cleanup/natural stack/dual-layer update/input/readiness, test corrupted fixtures and guards, document exact boundaries and commit locally.
+
+## 141. Third live text acceptance
+
+- [ ] 141.1 Run relevant regression and strict specs, preserve historical/runtime/save files, publish acceptance/progress and verify work/index/HEAD byte equality; commit locally without pushing.

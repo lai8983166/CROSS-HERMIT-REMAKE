@@ -169,3 +169,5 @@ Continue the actual character name font request through real host GDI and origin
 Continue actual4CDE10 for pinned sc004.bin. Execute original file loader/container/header bodies using real owned Windows read-only file APIs, bounded declared working-directory/heap/CRT adapters, original texture vector construction and a fourth live real texture. Compare source DX header, full pixels, program/table/record states and resource ownership independently. Complete image-loader return before subsequent layer animation/presentation, preserve all earlier artifacts and commit source/file/upload/comparison/acceptance stages locally.
 
 The next bounded continuation executes opcode30 return, layer5 delay/frame/background animation and both source readiness predicates with all four actual textures alive, then activates config8 and prepares text2 to its natural unexecuted font entry.
+
+Continue the natural layer5 text2 font entry through actual host GDI, fifth real texture and original one-line fade/readiness, retaining all four previous textures and stopping before the next confirmation instruction.

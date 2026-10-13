@@ -223,3 +223,7 @@ sc004.bin is a pinned262168-byte one-entry container containing DX mode2/256x512
 ## Character animation continuation
 
 Use EXE dispatch tables, config8/style5/SC004 geometry and independently decoded counters to predict every full-region update and terminal draw. Resume the actual image-loader CPU; subsequent calls are declared bounded VM calls. Execute both readiness bodies, preserve layer7 and four native resources, and stop text2 before CreateFontA. Rendering, world scheduling and third-text raster remain later boundaries.
+
+## Third live text continuation
+
+Reuse unchanged original font and texture function bodies at the layer5 record, with separate raster/lock mirrors. Independently derive all record bytes, bands, COM/GDI stack inputs and dual-layer presentation. Reset only the explicitly declared prior confirmation pulse to no input before bounded VM wait calls; preserve all other memory and actual textures. Execute original readiness/input-query bodies and stop when opcode50 releases at PC290, leaving opcode51 pending.

@@ -700,3 +700,11 @@ The audit SHALL execute original character delay, frame/background fades and bot
 - **WHEN** both original readiness predicates succeed after bounded VM updates
 - **THEN** config8 selects layer5 and original text2 lookup/split/record setup reaches unexecuted CreateFontA with exact natural stack
 - **AND** full rendering, third-text raster and world execution remain unclaimed
+
+### Requirement: Third original live text and natural readiness
+The audit SHALL complete layer5 text2 using actual GDI and an independently owned fifth actual texture, compare source-derived full state/pixels/calls and retain previous resources.
+
+#### Scenario: Third text reaches readiness without skip input
+- **WHEN** the original text handler completes and explicitly declared no-input VM updates continue
+- **THEN** the third row naturally fades to mode1 and original all-object readiness releases opcode50 at PC290
+- **AND** the following confirmation, GPU presentation and world scheduling remain unexecuted boundaries
