@@ -562,7 +562,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 140. Independent third live text comparison
 
-- [ ] 140.1 Independently verify every original GDI/COM/band/cleanup/natural stack/dual-layer update/input/readiness, test corrupted fixtures and guards, document exact boundaries and commit locally.
+- [x] 140.1 Independently verify every original GDI/COM/band/cleanup/natural stack/dual-layer update/input/readiness, test corrupted fixtures and guards, document exact boundaries and commit locally.
 
 ## 141. Third live text acceptance
 
