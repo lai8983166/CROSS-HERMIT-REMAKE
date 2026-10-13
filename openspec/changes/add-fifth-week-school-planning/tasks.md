@@ -594,7 +594,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 148. Graphical field controls
 
-- [ ] 148.1 Integrate labelled trial entry, original MAP05/student sprites, selection/command/stop/pause/recenter/full-map/zoom/pan/return controls; test actual input, edited/refused states and responsive windows, inspect captures and commit locally.
+- [x] 148.1 Integrate labelled trial entry, original MAP05/student sprites, selection/command/stop/pause/recenter/full-map/zoom/pan/return controls; test actual input, edited/refused states and responsive windows, inspect captures and commit locally.
 
 ## 149. Field interaction acceptance
 

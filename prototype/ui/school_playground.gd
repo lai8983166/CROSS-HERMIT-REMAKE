@@ -7,6 +7,7 @@ const StoryReader := preload("res://ui/school_story_reader.gd")
 const Arrival := preload("res://ui/school_week_arrival.gd")
 const Workroom := preload("res://ui/school_workroom.gd")
 const MapPreview := preload("res://ui/school_scene_map_preview.gd")
+const FieldTrial := preload("res://ui/school_field_trial.gd")
 const ART := "res://assets/school/"
 
 var model := Playground.new()
@@ -65,6 +66,8 @@ var adventure_status: Label
 var adventure_round_label: Label
 var map_preview: MapPreview
 var adventure_map_button: Button
+var adventure_trial_button: Button
+var field_trial: FieldTrial
 
 
 func _ready() -> void:
@@ -226,6 +229,10 @@ func _ready() -> void:
 	add_child(map_preview)
 	map_preview.closed.connect(func():
 		if is_instance_valid(adventure_map_button): adventure_map_button.grab_focus())
+	field_trial = FieldTrial.new()
+	add_child(field_trial)
+	field_trial.closed.connect(func():
+		if is_instance_valid(adventure_trial_button): adventure_trial_button.grab_focus())
 	var started := model.start()
 	if not started["supported"]:
 		_status.text = "试玩初始化失败"
@@ -728,6 +735,9 @@ func _refresh_adventure() -> void:
 	adventure_map_button = _button("查看本关地图",_open_current_map)
 	adventure_map_button.disabled = not MapPreview.supports(adventure_projection)
 	heading.add_child(adventure_map_button)
+	adventure_trial_button = _button("队伍操作试验",_open_field_trial)
+	adventure_trial_button.disabled = not adventure_limits.get("supported",false) or not adventure_limits.get("ready",false)
+	heading.add_child(adventure_trial_button)
 	adventure_round_label = _label("任务5 · 第1场 · 场景5",16,Color("becfc3"))
 	_adventure.add_child(adventure_round_label)
 	var supported: bool = adventure_projection.get("supported",false)
@@ -800,6 +810,15 @@ func _open_current_map() -> void:
 		return
 	if not map_preview.open_preview(model.adventure_preparation()):
 		_message = "本关地图暂时无法查看，请保留当前编班。"
+		refresh()
+
+
+func _open_field_trial() -> void:
+	if page != "adventure" or model.stage() != "fifth_planning": return
+	var names := {}
+	for identity in [3,4,9,101]: names[identity] = _name(identity)
+	if not field_trial.open_trial(model.adventure_preparation(),model.adventure_combat_limits(),names):
+		_message = "队伍操作试验暂时无法开启，请保留当前编班。"
 		refresh()
 
 
