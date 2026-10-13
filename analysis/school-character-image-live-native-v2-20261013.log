@@ -1,0 +1,33 @@
+Parent initial/formation_placement: complete frozen equality
+Parent initial/deployment_tail: complete frozen equality
+Parent initial/scene_opening: complete frozen equality
+Parent initial/entry_control: complete frozen equality
+Parent initial/script_preflight: complete frozen equality
+Parent initial/script_opening: complete frozen equality
+Parent initial/board_opening: complete frozen equality
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_character_image_live_emulation.py", line 66, in <module>
+    path.write_text(report_text(report(ROOT/'.venv-audit'/f'{path.stem}-bridge.exe')),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_character_image_live_emulation.py", line 58, in report
+    case['provenance']['helper_sha256']=identity['helper_sha256'];first=e.run_live_text(text,helper,bridge_type=ImageD3D8,continuation=e.complete_second)
+  File "F:\project\chaomofa\tools\school_live_text_emulation.py", line 139, in run_live_text
+    if continuation is not None:result['continuation']=continuation(result)
+  File "F:\project\chaomofa\tools\school_character_image_live_emulation.py", line 51, in complete_second
+    result=super().complete_second(first);result['image_live']=self.complete_image(result['name_texture'],result['image_prefix']);return result
+  File "F:\project\chaomofa\tools\school_character_image_live_emulation.py", line 35, in complete_image
+    self.uc.ctl_remove_cache(0x403BD0,0x403BD1);self.uc.emu_start(0x403BD0,RETURN,timeout=10_000_000,count=300000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_character_image_live_emulation.py", line 24, in _hook
+    if address==0x403BD0 or address in LIVE_CODE or 0x4046F0<=address<0x40486C:return SchoolLiveTextEmulator._hook(self,uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_live_text_emulation.py", line 99, in _hook
+    raise RuntimeError(f'live unsupported original instruction {address:#x}')
+RuntimeError: live unsupported original instruction 0x4046f0

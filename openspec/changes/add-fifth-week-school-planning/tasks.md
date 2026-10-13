@@ -518,7 +518,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 129. Fourth real texture and image-loader return
 
-- [ ] 129.1 Execute original image texture creation/row-copy/unlock and source loader return/file release, compare full pixels/table/record/program bytes with retained prior resources, stop before subsequent animation, publish evidence and commit locally.
+- [x] 129.1 Execute original image texture creation/row-copy/unlock and source loader return/file release, compare full pixels/table/record/program bytes with retained prior resources, stop before subsequent animation, publish evidence and commit locally.
 
 ## 130. Independent image resource comparison
 
