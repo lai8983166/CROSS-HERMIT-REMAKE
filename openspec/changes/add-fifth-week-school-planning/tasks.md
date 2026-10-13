@@ -487,3 +487,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 121. Character prefix acceptance
 
 - [x] 121.1 Run relevant source/native/strict-spec regression, preserve prior evidence/runtime/UI/saves, publish exact progress and acceptance, verify committed bytes and commit locally without pushing.
+
+## 122. Character name source rules
+
+- [x] 122.1 Decode original name raster/upload/cleanup/resource-call contracts, derive complete bounded geometry/state/stack rules, verify unsupported inputs and commit locally.
+
+## 123. Real character name raster
+
+- [ ] 123.1 Replay three actual live parents, continue original name font/GDI to natural texture entry, independently compare full regions and existing pixels/retention/cleanup, publish immutable evidence and commit locally.
+
+## 124. Third real texture and image-load entry
+
+- [ ] 124.1 Replay original name raster and upload/cleanup with third owned real texture, continue source caller and path construction to original image-loader entry, verify finite writes/full memory/pixels/cleanup, publish evidence and commit locally.
+
+## 125. Independent character completion comparison
+
+- [ ] 125.1 Verify every original stack/platform/COM/conversion/cleanup/input and full state against source rules, reject malformed resources/stacks/pixels/scope, document and commit locally.
+
+## 126. Character name texture acceptance
+
+- [ ] 126.1 Run relevant source/native/strict-spec regression, preserve historical/runtime/UI/save bytes, publish exact execution progress/acceptance, verify work/index/HEAD and commit locally without pushing.

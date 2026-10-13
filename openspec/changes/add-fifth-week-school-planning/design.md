@@ -211,3 +211,7 @@ Resolve opcode and wait dispatch by decoding actual original tables, including t
 ## Character layer prefix and name-font boundary
 
 Configuration8 maps to layer5, not layer8. Decode the pinned 19-WORD row and encoded opcode30 operands before extending execution. Derive all node/text-object initialization stores and natural nested stack independently. Resume the real pending handler while two owned textures live, permit only source-proven initialization writes and stop before the name CreateFontA adapter. Do not stub name rendering or resource loading. Keep existing evidence and helpers unchanged; verify complete regions, retained memory, live pixels and cleanup.
+
+## Independent character name surface
+
+Use separate raster and lock mirrors for NODE5+0x60 rather than a dialogue row. Preserve all existing modules/evidence. Strictly admit CreateFontA return4CA7CB, source name copy, original405160 GDI geometry, three live texture ownership and original name-font cleanup. Derive source stores, stack, power-of-two allocation, bands, accounting and next image-loader arguments independently; explicitly compare retained first/second pixels. Continue actual path-copy bodies with one exact bounded CRT concatenation adapter; stop before4CDE10 image loading. Parent verification may project observed cleanup to the two old resources, but actual three-resource cleanup and third measurement DC must be checked separately and never rewritten in evidence.

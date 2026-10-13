@@ -676,3 +676,11 @@ The audit SHALL resolve configuration8 to its actual layer and independently der
 - **WHEN** the original confirmed handler entry is resumed
 - **THEN** source configuration and initialization execute to the exact name-font request, both real texture readbacks remain unchanged and cleanup completes
 - **AND** name raster, image loading, animation, GPU drawing and world scheduling remain unexecuted
+
+### Requirement: Character name owns a third real texture
+The audit SHALL continue the actual pending character-name font request with real GDI, original geometry and original texture upload/cleanup. It SHALL compare all complete regions, original stack and platform calls, converted pixels, retained prior textures and three-resource cleanup. It SHALL continue original resource selection/path construction to the natural image-loader call and stop before file/image loading. It SHALL preserve prior evidence/runtime/UI/saves and refuse unsupported parents, surfaces, ownership or writes.
+
+#### Scenario: Character name completes before image loading
+- **WHEN** the original character name request resumes with two live dialogue textures
+- **THEN** a distinct real third texture receives the original converted name raster, original font cleanup executes and the natural image-loader call names sc004.bin/resource32
+- **AND** file loading, image decoding, animation, third dialogue, GPU drawing and world scheduling remain unexecuted

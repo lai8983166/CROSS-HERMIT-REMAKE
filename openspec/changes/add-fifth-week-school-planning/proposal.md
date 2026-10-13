@@ -159,3 +159,7 @@ Decode actual dispatcher tables for selected opcode50/51, independent of mislead
 ## First character layer dependency (2026-10-13)
 
 Continue the confirmed opcode30 entry by decoding its actual configuration index, layer, name and image resource references. Execute the original prefix to its first new name-font request with live prior textures; independently compare complete memory and natural stack. Preserve later name raster/image loading/animation as explicit subsequent work, and publish source/native/regression stages with local commits.
+
+## Character name raster and live texture (2026-10-13)
+
+Continue the actual character name font request through real host GDI and original geometry, then upload to a third owned real texture and execute name cleanup. Continue the actual source caller through bounded path construction to original image loader entry. Independently compare complete regions, stack, COM, pixels and cleanup; preserve later file/image decode, animation, third dialogue and world/GPU as subsequent dependencies. Commit source/raster/upload/comparison/acceptance separately.
