@@ -502,7 +502,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 125. Independent character completion comparison
 
-- [ ] 125.1 Verify every original stack/platform/COM/conversion/cleanup/input and full state against source rules, reject malformed resources/stacks/pixels/scope, document and commit locally.
+- [x] 125.1 Verify every original stack/platform/COM/conversion/cleanup/input and full state against source rules, reject malformed resources/stacks/pixels/scope, document and commit locally.
 
 ## 126. Character name texture acceptance
 

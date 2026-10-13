@@ -16,7 +16,8 @@ def name_rules():
  pairs={0x4CA773:('sub','esp, 0x148'),0x408E33:('sub','esp, 0x44'),0x405163:('sub','esp, 0xec'),0x4CA7D5:('mov','dword ptr [ecx + 0x5c], eax'),0x4CA800:('call','0x4077c0'),0x4CA81B:('call','0x4142b0'),
   0x4CA827:('call','0x408e30'),0x4CA838:('call','0x4d1bf0'),0x4CC25F:('mov','word ptr [ecx + eax*2 + 0x34], dx'),
   0x4CC268:('call','0x4cbf90'),0x4CC091:('mov','dword ptr [ecx + eax*4 + 0x44], edx'),
-  0x4CC0A4:('call','0x4cd7b0'),0x4CC0B9:('call','0x4cd810'),0x4CC0CD:('call','0x4cde10'),0x4CD7E3:('xor','edx, edx')}
+  0x4CC0A4:('call','0x4cd7b0'),0x4CC0B9:('call','0x4cd810'),0x4CC0CD:('call','0x4cde10'),0x4CD7E3:('xor','edx, edx'),
+  0x4D1C15:('call','dword ptr [0x5920c4]')}
  proof=[]
  for at,pair in pairs.items():
   i=next(md.disasm(raw[at-BASE:at-BASE+16],at,count=1))
@@ -24,7 +25,9 @@ def name_rules():
   proof.append({'va':hex(at),'hex':i.bytes.hex(),'mnemonic':i.mnemonic,'operands':i.op_str})
  return {'prefix':c,'code_inputs':proof,'texture':TEXTURE,'raster':RASTER,'mirror':MIRROR,
   'font_to_raster_frame':0x1D4,'font_to_texture_entry_sp':0x2D8,'image_entry':0x4CDE10,'image_return':0x4CC0D2,
-  'image_path':'data\\adv\\bin\\sc004.bin','image_slot':32,'image_path_buffer':PATH,'scope':'Name GDI/upload and natural image-loader entry; image loading not executed.'}
+  'image_path':'data\\adv\\bin\\sc004.bin','image_slot':32,'image_path_buffer':PATH,
+  'font_cleanup':{'function':'0x4d1bf0','handle_field':NODE+0x5C,'API_release':True,'stored_handle_cleared':False},
+  'scope':'Name GDI/upload and natural image-loader entry; image loading not executed.'}
 
 def expected_raster(before,measured,graphics,font_handle):
  name_rules();mem=memory_regions(before);v=mem[VM];o=TEXTURE_OFFSET;cfg=geometry(measured)
