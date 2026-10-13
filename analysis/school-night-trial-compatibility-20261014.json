@@ -1,0 +1,88 @@
+{
+  "scope": "Current-school isolated combat and earlier graphical entry compatibility; no formal world or settlement completion",
+  "rendered": [
+    {
+      "log": "analysis/school-night-combat-window-v2-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 157 checks, 0 failures"
+    },
+    {
+      "log": "analysis/school-night-field-window-compat-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 147 checks, 0 failures"
+    }
+  ],
+  "headless": [
+    {
+      "log": "analysis/school-night-combat-ui-v3-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 145 checks, 0 failures"
+    },
+    {
+      "log": "analysis/school-night-field-ui-compat-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 136 checks, 0 failures"
+    },
+    {
+      "log": "analysis/school-night-opening-ui-compat-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 262 checks, 0 failures"
+    },
+    {
+      "log": "analysis/school-night-map-ui-compat-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 92 checks, 0 failures"
+    },
+    {
+      "log": "analysis/school-night-departure-ui-compat-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 155 checks, 0 failures"
+    },
+    {
+      "log": "analysis/school-night-navigation-ui-compat-20261014.log",
+      "exit": 0,
+      "summary": "Graphical school: 26 checks, 0 failures"
+    }
+  ],
+  "capture_review": {
+    "method": "Agent viewed contact sheets of all final captures and full-size combat entry, enemy focus, health/attack, retaliation and compact layouts",
+    "directories": [
+      "analysis/school-night-combat-window-v2-20261014",
+      "analysis/school-night-field-window-compat-20261014"
+    ],
+    "counts": [
+      12,
+      11
+    ],
+    "sizes": [
+      [
+        1024,
+        768
+      ],
+      [
+        1280,
+        800
+      ],
+      [
+        800,
+        600
+      ]
+    ],
+    "issues_remaining": []
+  },
+  "guards": [
+    "school state unchanged",
+    "test save bytes unchanged",
+    "formal adventure disabled",
+    "waiting edit changes controllable roster",
+    "invalid reopen retains owned state",
+    "unsupported loadout refuses",
+    "teacher unready refuses",
+    "old map opening still accessible"
+  ],
+  "limitations": [
+    "Source-run viewport verification; exported package not verified",
+    "Three old opening Image.load_from_file export warnings retained",
+    "Native GPU output and original complete world loop not claimed"
+  ]
+}

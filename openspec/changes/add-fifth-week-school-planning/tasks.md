@@ -626,7 +626,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 156. Extended trial compatibility
 
-- [ ] 156.1 Verify actual rendered trial at supported window sizes and current/edited/refused school squads; inspect captures, preserve old opening/map/preparation/navigation semantics and commit locally.
+- [x] 156.1 Verify actual rendered trial at supported window sizes and current/edited/refused school squads; inspect captures, preserve old opening/map/preparation/navigation semantics and commit locally.
 
 ## 157. Extended trial acceptance
 
