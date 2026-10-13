@@ -155,3 +155,7 @@ Extend real owned32-bit texture resources to bounded multiple concurrent objects
 ## Natural dialogue waits and confirmation (2026-10-13)
 
 Decode actual dispatcher tables for selected opcode50/51, independent of misleading decompiler case labels. Continue the two completed real textures through natural VM-driven fade/cadence/readiness, then hold the confirmation gate without input. Execute original mouse/key query helpers on the captured zero event buffers; separately declare a bounded mouse-button pulse and continue through the real confirmation return to the next source command boundary. Independently compare every update's complete regions, actual texture retention, terminal draws, wait/arrow effects and resource cleanup. Commit source/native/source/confirmation/acceptance stages locally and preserve old evidence/runtime/UI/saves/REA. No live input capture, GPU/Present, portraits, world/waves or full dialogue is inferred.
+
+## First character layer dependency (2026-10-13)
+
+Continue the confirmed opcode30 entry by decoding its actual configuration index, layer, name and image resource references. Execute the original prefix to its first new name-font request with live prior textures; independently compare complete memory and natural stack. Preserve later name raster/image loading/animation as explicit subsequent work, and publish source/native/regression stages with local commits.

@@ -668,3 +668,11 @@ The audit SHALL decode actual source opcode/wait dispatch tables and execute the
 - **WHEN** a separately recorded bounded mouse-button pulse is provided at the held confirmation gate
 - **THEN** original input query and confirmation return clear the wait without fabricated readiness and the next original handler's natural stack is captured before execution
 - **AND** unsupported state, event values and out-of-range writes are refused with complete resource cleanup
+
+### Requirement: Character layer prefix preserves live dialogue resources
+The audit SHALL resolve configuration8 to its actual layer and independently derive original node/text-object initialization and nested font stack. It SHALL execute the natural confirmed opcode30 prefix with prior real textures alive, compare full regions and retain all non-owned memory. It SHALL stop before the first name-font API and distinguish decoded later image dependencies from executed loading or animation.
+
+#### Scenario: Original character name font is reached
+- **WHEN** the original confirmed handler entry is resumed
+- **THEN** source configuration and initialization execute to the exact name-font request, both real texture readbacks remain unchanged and cleanup completes
+- **AND** name raster, image loading, animation, GPU drawing and world scheduling remain unexecuted

@@ -475,3 +475,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 118. Dialogue wait and confirmation acceptance
 
 - [x] 118.1 Run relevant native/source/platform/strict-spec regression, preserve prior historical/runtime/UI/save/REA bytes, publish current progress and immutable acceptance with exact native/render/input/world boundaries, verify worktree/index/HEAD bytes and commit locally without pushing.
+
+## 119. Character layer source dependency
+
+- [x] 119.1 Decode pinned opcode30/configuration/name/resource dependencies, derive complete name-font prefix state and stack, verify unsupported parents and commit locally.
+
+## 120. Natural character layer name-font prefix
+
+- [ ] 120.1 Replay three actual parents with two live textures, execute original layer prefix to name-font entry, compare complete regions/stack/pixels/retention/cleanup independently, publish evidence and commit locally.
+
+## 121. Character prefix acceptance
+
+- [ ] 121.1 Run relevant source/native/strict-spec regression, preserve prior evidence/runtime/UI/saves, publish exact progress and acceptance, verify committed bytes and commit locally without pushing.
