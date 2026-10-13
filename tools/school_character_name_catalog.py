@@ -13,7 +13,7 @@ PREFIX_SHA='66606d60959a28b49f5b469cad13b55d87f6d3298fc91b081cd11f56c2a1c2f5'
 
 def name_rules():
  c=source_catalog();raw=SOURCE.read_bytes();md=Cs(CS_ARCH_X86,CS_MODE_32)
- pairs={0x4CA7D5:('mov','dword ptr [ecx + 0x5c], eax'),0x4CA800:('call','0x4077c0'),0x4CA81B:('call','0x4142b0'),
+ pairs={0x4CA773:('sub','esp, 0x148'),0x408E33:('sub','esp, 0x44'),0x405163:('sub','esp, 0xec'),0x4CA7D5:('mov','dword ptr [ecx + 0x5c], eax'),0x4CA800:('call','0x4077c0'),0x4CA81B:('call','0x4142b0'),
   0x4CA827:('call','0x408e30'),0x4CA838:('call','0x4d1bf0'),0x4CC25F:('mov','word ptr [ecx + eax*2 + 0x34], dx'),
   0x4CC268:('call','0x4cbf90'),0x4CC091:('mov','dword ptr [ecx + eax*4 + 0x44], edx'),
   0x4CC0A4:('call','0x4cd7b0'),0x4CC0B9:('call','0x4cd810'),0x4CC0CD:('call','0x4cde10')}
@@ -23,7 +23,7 @@ def name_rules():
   if (i.mnemonic,i.op_str)!=pair:raise ValueError('name original instruction '+hex(at))
   proof.append({'va':hex(at),'hex':i.bytes.hex(),'mnemonic':i.mnemonic,'operands':i.op_str})
  return {'prefix':c,'code_inputs':proof,'texture':TEXTURE,'raster':RASTER,'mirror':MIRROR,
-  'font_to_raster_frame':0x17C,'font_to_texture_entry_sp':0x280,'image_entry':0x4CDE10,'image_return':0x4CC0D2,
+  'font_to_raster_frame':0x1D4,'font_to_texture_entry_sp':0x2D8,'image_entry':0x4CDE10,'image_return':0x4CC0D2,
   'image_path':'data\\adv\\bin\\sc004.bin','image_slot':32,'image_path_buffer':PATH,'scope':'Name GDI/upload and natural image-loader entry; image loading not executed.'}
 
 def expected_raster(before,measured,graphics,font_handle):
@@ -50,7 +50,7 @@ def expected_complete(raster,texture_pointer,device,before_accounting):
 
 def pending_texture(prefix):
  f=prefix['pending_font']['frames']['name']
- return {'sp':f-0x280,'ebp':f-0x17C,'return_va':0x405779}
+ return {'sp':f-0x2D8,'ebp':f-0x1D4,'return_va':0x405779}
 
 def pending_image(prefix):
  frames=prefix['pending_font']['frames'];resource=frames['layer']-120

@@ -1,0 +1,23 @@
+Parent initial/formation_placement: complete frozen equality
+Parent initial/deployment_tail: complete frozen equality
+Parent initial/scene_opening: complete frozen equality
+Parent initial/entry_control: complete frozen equality
+Parent initial/script_preflight: complete frozen equality
+Parent initial/script_opening: complete frozen equality
+Parent initial/board_opening: complete frozen equality
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_character_name_emulation.py", line 72, in <module>
+    path.write_text(report_text(report(ROOT/'.venv-audit'/f'{path.stem}-bridge.exe',SchoolCharacterNameEmulator)),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_dialogue_wait_emulation.py", line 104, in report
+    case['provenance']['helper_sha256']=identity['helper_sha256'];first=e.run_live_text(text,helper,bridge_type=MultiD3D8,continuation=e.complete_second)
+  File "F:\project\chaomofa\tools\school_live_text_emulation.py", line 139, in run_live_text
+    if continuation is not None:result['continuation']=continuation(result)
+  File "F:\project\chaomofa\tools\school_character_name_emulation.py", line 67, in complete_second
+    result=super().complete_second(first);result['name_raster']=self.run_name_raster(result['character_prefix']);return result
+  File "F:\project\chaomofa\tools\school_character_name_emulation.py", line 55, in run_name_raster
+    if entry!=pending_texture(prefix):raise RuntimeError('name exact original texture stack')
+RuntimeError: name exact original texture stack

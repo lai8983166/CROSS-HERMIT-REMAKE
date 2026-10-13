@@ -494,7 +494,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 123. Real character name raster
 
-- [ ] 123.1 Replay three actual live parents, continue original name font/GDI to natural texture entry, independently compare full regions and existing pixels/retention/cleanup, publish immutable evidence and commit locally.
+- [x] 123.1 Replay three actual live parents, continue original name font/GDI to natural texture entry, independently compare full regions and existing pixels/retention/cleanup, publish immutable evidence and commit locally.
 
 ## 124. Third real texture and image-load entry
 

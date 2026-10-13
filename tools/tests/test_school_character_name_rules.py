@@ -9,7 +9,7 @@ class NameRuleTests(unittest.TestCase):
   prefix=expected_prefix(confirmation_fixture()['cases'][0]['confirmation']['after'])
   p=expected_raster(prefix['after'],[80,20],0x1000000,0x1234)
   m=memory_regions(p['after']);self.assertEqual(struct.unpack_from('<I',m[VM],NODE_OFFSET+0x5C)[0],0x1234)
-  self.assertEqual(p['raster_size'],[84,24]);self.assertEqual(pending_texture(prefix)['return_va'],0x405779)
+  self.assertEqual(p['raster_size'],[84,24]);self.assertEqual(pending_texture(prefix),{'sp':prefix['pending_font']['frames']['name']-728,'ebp':prefix['pending_font']['frames']['name']-468,'return_va':0x405779})
  def test_bad_handles_extent_and_nonempty_surface_refused(self):
   p=expected_prefix(confirmation_fixture()['cases'][0]['confirmation']['after'])
   for size,g,f in (([0,20],1,1),([80,0],1,1),([80,20],0,1),([80,20],1,0)):
