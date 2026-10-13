@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "baseline": "39e8937",
+  "tasks": {
+    "total": 136,
+    "complete": 136,
+    "remaining": 0
+  },
+  "stage_commits": {
+    "source": "97bce10",
+    "native_animation": "ba45328",
+    "third_prefix": "50ed1f4",
+    "verification": "0be72a0"
+  },
+  "source": {
+    "path": "analysis/school-character-animation-rules-20261013.json",
+    "bytes": 3627,
+    "sha256": "efbdd2331d61a8877558adb3e470a54376d729449742b62e5ad331c1f5c414a6"
+  },
+  "native": {
+    "path": "analysis/school-character-animation-live-v4-20261013.json",
+    "bytes": 66854556,
+    "sha256": "9b09e8ae8c68d51a81ccf6eeeab65505170f5f5c7b779cff58bf61fac1711b1e"
+  },
+  "comparison": {
+    "path": "analysis/school-character-animation-comparison-20261013.json",
+    "bytes": 1408,
+    "sha256": "e5ac4125512859b3c3aa00db76f9b68df197aba6dae1cd7f9cbe3bc977c6d2f6"
+  },
+  "third_text": {
+    "path": "analysis/school-character-third-prefix-20261013.json",
+    "bytes": 7117,
+    "sha256": "16c0c3fb05eb0d0d04a91e9ca9d7cfe2b648a560c485fbbb8c2ef4bc9ea69bc3"
+  },
+  "cases": [
+    {
+      "name": "initial",
+      "updates": 78,
+      "readiness_calls": 154,
+      "terminal_calls": 4620,
+      "complete_regions_per_update": 8,
+      "four_texture_bytes": [
+        16384,
+        32768,
+        8192,
+        262144
+      ],
+      "released_PC": 272,
+      "third_text_index": 2,
+      "third_layer": 5,
+      "pending_PC": 280,
+      "third_font_executed": false
+    },
+    {
+      "name": "student9_waiting",
+      "updates": 78,
+      "readiness_calls": 154,
+      "terminal_calls": 4620,
+      "complete_regions_per_update": 8,
+      "four_texture_bytes": [
+        16384,
+        32768,
+        8192,
+        262144
+      ],
+      "released_PC": 272,
+      "third_text_index": 2,
+      "third_layer": 5,
+      "pending_PC": 280,
+      "third_font_executed": false
+    },
+    {
+      "name": "fifth_class",
+      "updates": 78,
+      "readiness_calls": 154,
+      "terminal_calls": 4620,
+      "complete_regions_per_update": 8,
+      "four_texture_bytes": [
+        16384,
+        32768,
+        8192,
+        262144
+      ],
+      "released_PC": 272,
+      "third_text_index": 2,
+      "third_layer": 5,
+      "pending_PC": 280,
+      "third_font_executed": false
+    }
+  ],
+  "validation": {
+    "python_modules": 46,
+    "python_tests": 162,
+    "strict_specs": 30,
+    "source_log": "analysis/school-character-animation-source-final-20261013.log",
+    "spec_log": "analysis/school-character-animation-specs-final-20261013.log"
+  },
+  "preservation": {
+    "files": 744,
+    "save_rules": 10,
+    "byte_identical": true,
+    "snapshot": "analysis/school-character-animation-preservation-20261013.json"
+  },
+  "historical_not_rerun": {
+    "godot_suites": 62,
+    "godot_tests": 409,
+    "actual_window_checks": 253
+  },
+  "state": {
+    "animation_updates": 78,
+    "readiness_calls_per_case": 154,
+    "wait_released_PC": 272,
+    "pending_PC": 280,
+    "wait": 0,
+    "opcode": 17,
+    "opcode_size": 6,
+    "text_index": 2,
+    "layer": 5,
+    "font_entry": "CreateFontA",
+    "font_first_instruction_executed": false
+  },
+  "cleanup": {
+    "textures": 4,
+    "remaining_measurement_DCs": 3,
+    "all_owned_COM_resources_released": true,
+    "helpers_exited": true,
+    "pixels_unchanged_bytes": [
+      16384,
+      32768,
+      8192,
+      262144
+    ]
+  },
+  "declared_boundaries": [
+    "explicit bounded original VM updates; no actual world clock",
+    "existing bounded heap/CRT adapters",
+    "exact terminal drawing adapters; no GPU draw/Present"
+  ],
+  "preserved_attempts": {
+    "v1": "adapter missing stack-check import; failed run preserved",
+    "v2": "interrupted during parent replay after finding a missing native return-range suffix",
+    "v3": "interrupted during parent replay to correct third activation into a separate original VM update",
+    "v4": "all three complete actual cases passed"
+  },
+  "boundaries": [
+    "third CreateFontA/raster/texture still pending",
+    "third text handler/readiness not complete",
+    "no original draw queue or GPU Present",
+    "no world scheduling",
+    "Godot playable scope unchanged"
+  ],
+  "next": [
+    "complete third actual font/raster/texture",
+    "third text natural fade/readiness",
+    "render source-verified character layers in Godot"
+  ],
+  "push_performed": false
+}
