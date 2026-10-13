@@ -574,7 +574,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 143. Godot graphical opening
 
-- [ ] 143.1 Implement fitted original-art layers, readable text/name banks, source-derived bounded fades and keyboard/button controls in the current map preview; verify and commit locally.
+- [x] 143.1 Implement fitted original-art layers, readable text/name banks, source-derived bounded fades and keyboard/button controls in the current map preview; verify and commit locally.
 
 ## 144. Graphical opening verification
 
