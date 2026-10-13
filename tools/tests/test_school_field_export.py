@@ -37,7 +37,7 @@ class FieldExportTests(unittest.TestCase):
         source = unit_source()
         for identity, skin in self.catalog['skins'].items():
             rules = source['jobs'][str(skin['job'])]
-            self.assertEqual(skin['palette_variant'], rules['job_input']['palettes_by_character'][int(identity)])
+            self.assertEqual(skin['palette_variant'], rules['job_input']['palettes_by_character'][int(identity)]+1)
             self.assertEqual(skin['movement_type'], 0)
             for directions in skin['actions'].values():
                 self.assertEqual(set(directions), {'N', 'S', 'E', 'W', 'NW', 'NE', 'SW', 'SE'})
@@ -75,6 +75,15 @@ class FieldExportTests(unittest.TestCase):
         corrupt['job_input']['palettes_by_character'][3] = 255
         with self.assertRaisesRegex(ValueError, 'palette'):
             skin_inputs(3, 10, corrupt)
+
+    def test_palette_selection_matches_actual_original_role_bindings(self):
+        # Frozen outputs are comparisons only; exporter never loads these cases.
+        current = json.loads((ROOT/'prototype/data/school_current_units_evidence.json').read_text('utf-8'))
+        first = json.loads((ROOT/'prototype/data/school_first_unit_work_evidence.json').read_text('utf-8'))
+        native = {u['role']: u['variant'] for u in current['cases'][0]['current_units'] if 'variant' in u}
+        native[3] = first['cases'][0]['first_unit_work']['resource_request']['args'][1]
+        self.assertEqual(native, {3:3, 4:4, 9:2})
+        self.assertEqual({int(k):s['palette_variant'] for k,s in self.catalog['skins'].items()}, native)
 
 
 if __name__ == '__main__':

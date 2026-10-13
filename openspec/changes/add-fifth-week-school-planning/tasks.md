@@ -599,3 +599,35 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 149. Field interaction acceptance
 
 - [x] 149.1 Run relevant source/model/UI/old-opening/preparation/spec regression, verify retained historical/save fingerprints, document exact playable scope and local commits, and commit acceptance without pushing.
+
+## 150. Original palette correction
+
+- [x] 150.1 Correct mode2 table+1/loader-1 selection, compare original current-role binding variants and all exported pixels, regenerate current art/catalog, verify model/UI and commit locally.
+
+## 151. Original world admission audit
+
+- [ ] 151.1 Decode original world/controller admission and verify bounded native calls using pinned actual-school state and separately declared gates; document full-world/VM boundaries, preserve historical state and commit locally.
+
+## 152. Current attack and defense derivation
+
+- [ ] 152.1 Export source-only current-role combat inputs, independently project the supported attack/defense subset and compare original bounded calculations including malformed inputs; keep fixtures out of runtime and commit locally.
+
+## 153. Initial scene combat presentation
+
+- [ ] 153.1 Export source initial active scene actors, records and directional art with checked palette/geometry/provenance; exclude inactive/deferred templates, validate source/native construction distinctions and commit locally.
+
+## 154. Isolated source-based combat model
+
+- [ ] 154.1 Add admitted target attacks, deterministic local health/death and declared opponent scheduling to the current-school isolated trial, verify current data, collisions, range/admission, stop/pause/refusal/determinism and school/save preservation, and commit locally.
+
+## 155. Graphical combat commands
+
+- [ ] 155.1 Add source-positioned actor display, current HP/MP, attack/target feedback and original directional attack/death presentation to the labelled trial with accessible select/move/pause/stop/return controls; verify real window inputs/captures and commit locally.
+
+## 156. Extended trial compatibility
+
+- [ ] 156.1 Verify actual rendered trial at supported window sizes and current/edited/refused school squads; inspect captures, preserve old opening/map/preparation/navigation semantics and commit locally.
+
+## 157. Extended trial acceptance
+
+- [ ] 157.1 Run appropriate source/native/model/UI/spec regression, verify retained evidence/save fingerprints and owned Git bytes, document exact scope/remaining world and settlement work, and commit locally without pushing.

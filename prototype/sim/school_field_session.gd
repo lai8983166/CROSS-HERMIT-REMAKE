@@ -2,7 +2,7 @@ extends RefCounted
 ## Transient deployment/navigation. Original enemy/world/result loops are absent.
 const Limits := preload("res://sim/school_combat_limits.gd")
 const CATALOG := "res://assets/school_field/catalog.json"
-const CATALOG_SHA := "fe2ff7fefa104089ab7f7815fd2f62548e55699169f90bcfb5444f81958b7bf8"
+const CATALOG_SHA := "10473769a06554f7427a73d8c170e17365ff24eabe1b9170478e3aa7be962ab4"
 
 var catalog: Dictionary = {}
 var units: Array[Dictionary] = []

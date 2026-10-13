@@ -177,3 +177,7 @@ Render the already verified opening character/text layers in the Godot map previ
 ## Current-school field interaction (2026-10-14)
 
 Continue toward the playable current-squad battle by first exposing a separately labelled, read-only MAP05 deployment/movement trial. Export source terrain/formation and original current-student idle/walk art; carry current student identities and verified limits. Teacher remains a class leader. This bounded interaction does not invent enemy activation, waves, victory or persistent settlement. Verify model and actual window controls and commit source/model/UI/acceptance stages locally.
+
+## Extended overnight battle integration (2026-10-14)
+
+The user authorizes multiple consecutive rounds. Correct the discovered original character-palette indirection before adding combat. Independently audit the original world/controller gates and current attack/defense derivation; compare bounded native probes with source rules. Export source initial active scene actors and directional art, then extend the isolated current-school trial with explicit attack/health and source-positioned opponents under declared remake scheduling. Keep original full world/VM/waves, authoritative victory and persistent rewards/gate clearing as unresolved until verified; never fabricate their completion. Verify graphical and save compatibility and commit each completed stage locally.

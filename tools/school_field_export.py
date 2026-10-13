@@ -33,7 +33,8 @@ def skin_inputs(character, job, rules):
     offsets = dx.parse_dxanim(raw)
     _, count, image_offsets = dx.parse_container(raw, offsets[6])
     rects = dx.parse_block5_rects(raw, offsets[5], count)
-    variant = rules['job_input']['palettes_by_character'][character]
+    palette_index = rules['job_input']['palettes_by_character'][character]
+    variant = palette_index + 1 if palette_index else 0
     _, palette_count, palette_offsets = dx.parse_container(raw, offsets[7])
     if not 1 <= variant <= palette_count:
         raise ValueError('field palette index')

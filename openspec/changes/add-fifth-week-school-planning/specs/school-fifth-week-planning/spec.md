@@ -729,3 +729,22 @@ The system SHALL expose a labelled MAP05 movement trial using the current ready 
 - **WHEN** the roster/loadout/assets are unsupported, a destination is blocked/occupied/outside/unreachable, or the trial closes
 - **THEN** no persistent school/save commands, rewards or mandatory-gate clearing occur; invalid movement preserves the current command
 - **AND** reopening after valid school edits uses the newly prepared student list, with formal adventure combat still unavailable
+
+### Requirement: Correct original palette indirection
+The presentation SHALL resolve original mode2 character palette selection through the actual table+1/loader-1 contract and SHALL compare current roles with the original binding evidence.
+
+#### Scenario: Current student colors match original selected palettes
+- **WHEN** current-school sprite assets are exported
+- **THEN** original role3/4/9 use the captured palette variants and correct external/embedded mask choice; unsupported palette/source inputs refuse
+
+### Requirement: Audited source combat inputs and isolated trial
+The system SHALL independently verify original world admission boundaries and the current-role attack/defense input subset before presenting a current-school combat trial. Initial actors SHALL derive from source scene records and original presentation; deferred templates SHALL remain absent until their activation is verified.
+
+#### Scenario: Source based current combat trial
+- **WHEN** a ready supported school squad enters the isolated trial and issues an admitted attack against a source-initial enemy
+- **THEN** derived current attack/defense values drive deterministic local health changes and original directional presentation, with pause/stop/return controls
+- **AND** full original world/AI/waves/victory, school rewards and mandatory-gate clearing remain unclaimed and unchanged
+
+#### Scenario: Invalid or protected targets refuse atomically
+- **WHEN** a target or source/input is unsupported, absent, dead or protected, or the trial is closed/reopened
+- **THEN** invalid attacks grant no damage or reward and closing discards transient combat while preserving school/save bytes
