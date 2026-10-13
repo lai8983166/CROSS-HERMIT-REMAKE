@@ -566,4 +566,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 141. Third live text acceptance
 
-- [ ] 141.1 Run relevant regression and strict specs, preserve historical/runtime/save files, publish acceptance/progress and verify work/index/HEAD byte equality; commit locally without pushing.
+- [x] 141.1 Run relevant regression and strict specs, preserve historical/runtime/save files, publish acceptance/progress and verify work/index/HEAD byte equality; commit locally without pushing.
