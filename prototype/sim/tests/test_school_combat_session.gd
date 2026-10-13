@@ -73,6 +73,25 @@ func test_protected_invalid_dead_and_nonplayer_commands_refuse_atomically() -> v
 	assert_false(session.command_attack(3,1243)); assert_eq(session.read_units(),before)
 
 
+func test_ranged_attack_reaches_firing_cell_without_enemy_adjacency() -> void:
+	var session = _combat(_school())
+	var player: Dictionary = session.find_unit(3); var enemy: Dictionary = session.find_unit(1243)
+	# Declared obstruction geometry exercises range seeking, rather than original placement.
+	var blockers := [1249,1248,1247,1217]
+	for index in range(4):
+		var obstacle: Dictionary = session.find_unit(blockers[index])
+		obstacle["cell"] = enemy["cell"]+[Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN][index]
+		obstacle["from_cell"] = obstacle["cell"]
+	var path: Array = session._attack_path(player,enemy)
+	assert_false(path.is_empty(),"ranged firing cell is reachable even when all adjacent cells are occupied")
+	var goal: Vector2i = path.back()
+	var distance := absi(goal.x-enemy["cell"].x)+absi(goal.y-enemy["cell"].y)
+	assert_true(distance > 1 and distance <= player["combat"]["attack_range"])
+	for cell in path:
+		assert_true(session.walkable(cell,player["movement_type"]))
+		assert_false(session._blocked(3).has(cell))
+
+
 func test_nearby_cast_pause_stop_and_enemy_retaliation() -> void:
 	var session = _combat(_school()); _declared_nearby_geometry(session)
 	assert_true(session.command_attack(3,1243)); session.tick()

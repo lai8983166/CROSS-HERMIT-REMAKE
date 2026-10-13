@@ -20,8 +20,8 @@ class FieldCanvas extends MapPreview.MapCanvas:
 		if session == null or not session.ready: return
 		zoom = 1.25; fit_mode = false
 		var center := Vector2.ZERO
-		for unit in session.units: center += session.position(unit)
-		center /= session.units.size()
+		for unit in session.controlled_units(): center += session.position(unit)
+		center /= session.controlled_units().size()
 		origin = size*0.5-center*zoom; clamp_origin()
 
 	func _gui_input(event: InputEvent) -> void:
@@ -33,11 +33,12 @@ class FieldCanvas extends MapPreview.MapCanvas:
 				# Hit visible sprites as well as the selected unit's ground marker.
 				var best := -1; var distance := INF
 				for unit in session.units:
+					if unit["limits"]["hp"] <= 0: continue
 					var ground := origin+session.position(unit)*zoom
 					var region := Rect2(ground-Vector2(23,100)*zoom,Vector2(46,116)*zoom)
 					var current: float = ground.distance_to(event.position)
 					if region.has_point(event.position) and current < distance:
-						best = unit["character_id"]; distance = current
+						best = session.unit_key(unit); distance = current
 				if best >= 0: chosen.emit(best)
 				accept_event()
 			elif event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
@@ -73,16 +74,17 @@ class FieldCanvas extends MapPreview.MapCanvas:
 		var ordered: Array = session.units.duplicate()
 		ordered.sort_custom(func(a,b): return session.position(a).y < session.position(b).y)
 		for unit in ordered:
+			if unit.get("dead_at",-1) >= 0 and session.frame-unit["dead_at"] >= 30: continue
 			var ground := origin+session.position(unit)*zoom
 			draw_set_transform(ground,0,Vector2(1,0.45))
 			draw_circle(Vector2.ZERO,13*zoom,Color(0,0,0,0.4))
-			if unit["character_id"] == session.selected_id:
+			if session.unit_key(unit) == session.selected_id:
 				draw_arc(Vector2.ZERO,17*zoom,0,TAU,32,Color("ffe38a"),2.0,true)
 			draw_set_transform_matrix(Transform2D())
 			_draw_student(unit,ground)
 
 	func _draw_student(unit: Dictionary, ground: Vector2) -> void:
-		var skin: Dictionary = session.catalog["skins"][str(unit["character_id"])]
+		var skin: Dictionary = session.catalog["skins"][unit.get("skin_key",str(unit["character_id"]))]
 		var timeline: Dictionary = skin["actions"][unit["visual"]][unit["facing"]]
 		var picked := AnimTimeline.step_at(timeline,(session.frame-unit["visual_started_frame"])*2,true)
 		if picked.is_empty(): return
@@ -93,11 +95,12 @@ class FieldCanvas extends MapPreview.MapCanvas:
 			# Original layer y already offsets the canvas center to the ground.
 			var flip := AnimTimeline.combined_flip(layer,timeline["flags"])
 			draw_set_transform_matrix(Transform2D(0,Vector2(-zoom if flip.x else zoom,-zoom if flip.y else zoom),0,ground))
-			draw_texture_rect(image,rect,false)
+			var alpha := clampf(1.0-(session.frame-unit["dead_at"])/30.0,0,1) if unit.get("dead_at",-1) >= 0 else 1.0
+			draw_texture_rect(image,rect,false,Color(1,1,1,alpha))
 			draw_set_transform_matrix(Transform2D())
 
 
-var session := Field.new()
+var session = Field.new()
 var canvas: FieldCanvas
 var close_button: Button
 var pause_button: Button
@@ -111,6 +114,8 @@ var member_buttons: Dictionary = {}
 var roster: HBoxContainer
 var info: Label
 var status: Label
+var title_label: Label
+var help_label: Label
 var _names: Dictionary = {}
 var _sprites: Dictionary = {}
 
@@ -132,6 +137,7 @@ func _ready() -> void:
 	var heading := HBoxContainer.new()
 	column.add_child(heading)
 	var title := Label.new()
+	title_label = title
 	title.text = "第五周 · 队伍操作试验"
 	title.add_theme_font_size_override("font_size",22)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -145,7 +151,7 @@ func _ready() -> void:
 	zoom_out_button = _button("−",func(): canvas.zoom_at(0.8,canvas.size*0.5)); tools.add_child(zoom_out_button)
 	zoom_in_button = _button("＋",func(): canvas.zoom_at(1.25,canvas.size*0.5)); tools.add_child(zoom_in_button)
 	terrain_button = _button("显示阻挡",func(): canvas.show_terrain = not canvas.show_terrain; _refresh()); tools.add_child(terrain_button)
-	canvas = FieldCanvas.new(); canvas.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	canvas = _new_canvas(); canvas.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(canvas)
 	canvas.resized.connect(func():
 		if visible and session.ready: canvas.focus_units())
@@ -160,6 +166,7 @@ func _ready() -> void:
 	status = Label.new(); status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	status.add_theme_font_size_override("font_size",14); column.add_child(status)
 	var help := Label.new()
+	help_label = help
 	help.text = "左键选人 · 右键移动 · 中键拖图 · 滚轮缩放 · 空格暂停 · Esc 返回\n移动试验 · 敌人与战斗结算待接"
 	help.add_theme_font_size_override("font_size",14)
 	column.add_child(help)
@@ -167,7 +174,7 @@ func _ready() -> void:
 
 
 func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
-	var next := Field.new()
+	var next = _new_session()
 	if not next.open(preparation,combat): return false
 	var map_catalog = JSON.parse_string(FileAccess.get_file_as_string(MapPreview.CATALOG))
 	if not map_catalog is Dictionary or FileAccess.get_sha256(MapPreview.ATLAS) != map_catalog.get("atlas_file_sha256"):
@@ -178,7 +185,7 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 		var images := {}
 		for skin in next.catalog["skins"].values():
 			for frame_data in skin["frames"].values():
-				var path: String = ART+frame_data["file"]
+				var path: String = frame_data["file"] if String(frame_data["file"]).begins_with("res://") else ART+frame_data["file"]
 				if FileAccess.get_sha256(path) != frame_data["file_sha256"]: return false
 				var image := Image.load_from_file(path)
 				if image == null or image.get_size() != Vector2i(frame_data["w"],frame_data["h"]): return false
@@ -190,7 +197,7 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 	_names = names.duplicate(true)
 	for child in roster.get_children(): roster.remove_child(child); child.queue_free()
 	member_buttons.clear()
-	for unit in session.units:
+	for unit in session.controlled_units():
 		var identity: int = unit["character_id"]
 		var button := _button("",func(): session.select(identity); _refresh())
 		button.toggle_mode = true; button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -206,15 +213,23 @@ func _refresh() -> void:
 	if not session.ready: return
 	pause_button.text = "继续" if session.paused else "暂停"
 	terrain_button.text = "隐藏阻挡" if canvas.show_terrain else "显示阻挡"
-	for unit in session.units:
+	for unit in session.controlled_units():
 		var identity: int = unit["character_id"]
 		var limits: Dictionary = unit["limits"]
 		member_buttons[identity].text = "%s\nHP %d/%d · MP %d/%d" % [_names.get(identity,str(identity)),limits["hp"],limits["hp_max"],limits["mp"],limits["mp_max"]]
 		member_buttons[identity].set_pressed_no_signal(identity == session.selected_id)
-	var selected := session.find_unit(session.selected_id)
+	var selected: Dictionary = session.find_unit(session.selected_id)
 	info.text = "%s · 格 %d,%d · %s    |    班级领队：%s" % [_names.get(session.selected_id,str(session.selected_id)),
 		selected["cell"].x,selected["cell"].y,"已暂停" if session.paused else "移动中" if not selected["path"].is_empty() else "待命",_names.get(101,"101")]
 	canvas.queue_redraw()
+
+
+func _new_session():
+	return Field.new()
+
+
+func _new_canvas() -> FieldCanvas:
+	return FieldCanvas.new()
 
 
 func _process(delta: float) -> void:

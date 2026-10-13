@@ -109,6 +109,31 @@ func _distance(a: Dictionary, b: Dictionary) -> int:
 	return absi(a["cell"].x-b["cell"].x)+absi(a["cell"].y-b["cell"].y)
 
 
+func _attack_path(unit: Dictionary, target: Dictionary) -> Array[Vector2i]:
+	# Reach a free firing cell, including across water; enemy-adjacent tiles need not be walkable.
+	var blocked := _blocked(unit_key(unit)); var previous := PackedInt32Array()
+	previous.resize(6144); previous.fill(-1)
+	var start: int = unit["cell"].y*64+unit["cell"].x
+	previous[start] = start
+	var queue := PackedInt32Array([start]); var head := 0; var goal := -1
+	while head < queue.size():
+		var index: int = queue[head]; head += 1
+		var cell := Vector2i(index%64,index/64)
+		if absi(cell.x-target["cell"].x)+absi(cell.y-target["cell"].y) <= unit["combat"]["attack_range"]:
+			goal = index; break
+		for delta in SimPath.DIRS:
+			var next: Vector2i = cell+delta
+			if not walkable(next,unit["movement_type"]) or blocked.has(next): continue
+			var next_index: int = next.y*64+next.x
+			if previous[next_index] >= 0: continue
+			previous[next_index] = index; queue.append(next_index)
+	var result: Array[Vector2i] = []
+	while goal >= 0 and goal != start:
+		result.append(Vector2i(goal%64,goal/64)); goal = previous[goal]
+	result.reverse()
+	return result
+
+
 func _face(unit: Dictionary, target: Dictionary) -> void:
 	var delta: Vector2i = target["cell"]-unit["cell"]
 	unit["facing"] = "NW" if delta.x < 0 and delta.y < 0 else "NE" if delta.x > 0 and delta.y < 0 \
@@ -168,8 +193,8 @@ func tick() -> void:
 		if _distance(unit,target) <= unit["combat"]["attack_range"]:
 			_start_attack(unit,target)
 		elif unit["combat"]["movement_rate"] > 0 and (unit["path"].is_empty() or frame%12 == 0):
-			unit["path"] = SimPath.find_path(_maps[unit["movement_type"]],{"blocked_terrain":[0]},unit["cell"],target["cell"],_blocked(identity))
-			unit["destination"] = target["cell"]
+			unit["path"] = _attack_path(unit,target)
+			unit["destination"] = unit["path"].back() if not unit["path"].is_empty() else Vector2i(-1,-1)
 	super.tick()
 	for identity in phases.keys():
 		if not phases.has(identity): continue
