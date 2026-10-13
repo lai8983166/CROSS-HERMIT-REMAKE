@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "baseline": "e905156",
+  "tasks": {
+    "total": 145,
+    "complete": 145,
+    "remaining": 0
+  },
+  "stage_commits": {
+    "export": "f4f1e0f",
+    "graphical_ui": "30572fd",
+    "window_verification": "dd1fa8c"
+  },
+  "playable_change": "current adventure map now offers original-art ten-page graphical opening with retained actors/text banks, bounded fades and keyboard/button interaction",
+  "entry": [
+    "必修冒险 · 出发准备",
+    "查看本关地图",
+    "开场演出"
+  ],
+  "runtime_catalog": {
+    "path": "prototype/assets/school_opening/catalog.json",
+    "bytes": 9199,
+    "sha256": "9d19edc6ceb0ba650ef5f60c21112f6bbff8bec58d4492d9862f12b830768d4d"
+  },
+  "native_visual_expectations": {
+    "path": "prototype/ui/tests/fixtures/school_opening_native_visual.json",
+    "bytes": 1648,
+    "sha256": "940d2989af30b4fa752136f1e17fb68d20a81a9038c0ccc0de2226f99a64c496"
+  },
+  "validation": {
+    "source_tests": 4,
+    "school_model_suites": 3,
+    "school_model_tests": 17,
+    "new_offscreen_checks": 262,
+    "new_actual_window_checks": 269,
+    "map_compat_checks": 92,
+    "departure_compat_checks": 155,
+    "text_preview_compat_checks": 148,
+    "strict_specs": 30,
+    "final_captures": 7,
+    "window_report": {
+      "path": "analysis/school-graphical-opening-window-final-20261013/verification.json",
+      "bytes": 741,
+      "sha256": "af25bc3afb354effc5e29083a94411a709affba62d6209e744a757d0e7f50083"
+    },
+    "requested_window_sizes": [
+      [
+        1024,
+        768
+      ],
+      [
+        1280,
+        800
+      ],
+      [
+        800,
+        600
+      ]
+    ],
+    "all_final_capture_bytes_equal_to_visually_inspected_v3": true
+  },
+  "preservation": {
+    "files": 785,
+    "save_rules": 10,
+    "school_state_and_save_bytes_checked_in_window_tests": true,
+    "snapshot": "analysis/school-graphical-opening-preservation-20261013.json",
+    "intentional_changed_existing_files": [
+      "prototype/ui/school_scene_map_preview.gd",
+      "docs/school_playground.md"
+    ]
+  },
+  "historical_not_rerun": {
+    "all_Godot_suites": 62,
+    "all_Godot_tests": 409,
+    "original_source_tests": 172
+  },
+  "boundaries": [
+    "read-only preview; no battle or rewards/gate changes",
+    "original first-three native proof plus later script/table projection",
+    "Godot Unicode text and full-map backdrop; not original GDI/camera rendering",
+    "local visual clock; no original VM/world scheduling",
+    "source run verified; export package not verified; Image-file loading follows existing project limitation"
+  ],
+  "preserved_attempts": [
+    "v1 legacy compatibility refused JSON numeric arrays; fixed integer dimension comparison",
+    "v2 renders used font22 with isolated final character wrapping",
+    "v3 font21 renders visually checked",
+    "v4 visual clock tests; final data-driven timing/actor entry produces identical inspected capture pixels"
+  ],
+  "next": [
+    "connect a playable current-school battle",
+    "unit commands, attacks, event/wave progression",
+    "battle result and school return/gate-unlock loop"
+  ],
+  "push_performed": false
+}

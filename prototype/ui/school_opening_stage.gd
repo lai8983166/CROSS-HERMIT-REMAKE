@@ -84,8 +84,10 @@ func show_page(index: int) -> void:
 	age_ticks = 0
 	_fraction = 0.0
 	var page: Dictionary = catalog["pages"][index]
-	var new_actor := index in [2,4]
-	ready_ticks = 104 if new_actor else (73 if index == 0 else 25)
+	var new_actor := _entering_actor(index)
+	var timing: Dictionary = catalog["timing"]
+	var text_start := int(timing["frame_delay"])+int(timing["frame_limit"])+3
+	ready_ticks = text_start+int(timing["text_limit"])+2 if new_actor else (int(timing["frame_limit"])+int(timing["text_limit"])+4 if index == 0 else int(timing["text_limit"])+1)
 	for bank in page["layers"]:
 		var config: Dictionary = catalog["configs"][str(int(bank["config"]))]
 		var paint := LayerCanvas.new()
@@ -151,7 +153,7 @@ func display_ready() -> bool:
 func _process(delta: float) -> void:
 	if not is_visible_in_tree() or catalog.is_empty() or display_ready():
 		return
-	_fraction += minf(delta,0.2)*60.0
+	_fraction += minf(delta,0.2)*float(catalog["timing"]["presentation_hz"])
 	var ticks := int(_fraction)
 	_fraction -= ticks
 	if ticks > 0:
@@ -159,18 +161,36 @@ func _process(delta: float) -> void:
 
 
 func _refresh() -> void:
+	var timing: Dictionary = catalog["timing"]
+	var frame_delay := int(timing["frame_delay"])
+	var frame_limit := int(timing["frame_limit"])
+	var text_limit := int(timing["text_limit"])
 	for layer in layers:
 		var paint: LayerCanvas = layer["canvas"]
-		paint.actor_alpha = _opacity(age_ticks,60,255) if layer["entering"] else 1.0
-		var frame_count := maxi(0,age_ticks-31) if layer["entering"] else age_ticks
-		paint.frame_alpha = _opacity(frame_count,45,255) if layer["entering"] or layer["initial"] else 1.0
-		paint.fill_alpha = _opacity(frame_count,45,204) if layer["entering"] or layer["initial"] else 204.0/255
+		paint.actor_alpha = _opacity(age_ticks,int(timing["background_limit"]),255) if layer["entering"] else 1.0
+		var frame_count := maxi(0,age_ticks-frame_delay-1) if layer["entering"] else age_ticks
+		paint.frame_alpha = _opacity(frame_count,frame_limit,255) if layer["entering"] or layer["initial"] else 1.0
+		paint.fill_alpha = _opacity(frame_count,frame_limit,204) if layer["entering"] or layer["initial"] else 204.0/255
 		if layer["name"] != null:
-			layer["name"].visible = not layer["entering"] or age_ticks >= 77
-		var start := 78 if layer["entering"] else (48 if layer["initial"] else 0)
+			layer["name"].visible = not layer["entering"] or age_ticks >= frame_delay+frame_limit+2
+		var start := frame_delay+frame_limit+3 if layer["entering"] else (frame_limit+3 if layer["initial"] else 0)
 		for record in layer["records"]:
-			record["label"].modulate.a = _opacity(maxi(0,age_ticks-start),24,255) if record["current"] else 1.0
+			record["label"].modulate.a = _opacity(maxi(0,age_ticks-start),text_limit,255) if record["current"] else 1.0
 		paint.queue_redraw()
+
+
+func _entering_actor(index: int) -> bool:
+	if index == 0:
+		return false
+	var page: Dictionary = catalog["pages"][index]
+	for bank in page["layers"]:
+		if bank["config"] != page["config"] or bank["actor"] == 0:
+			continue
+		for previous in catalog["pages"][index-1]["layers"]:
+			if previous["config"] == bank["config"] and previous["actor"] == bank["actor"]:
+				return false
+		return true
+	return false
 
 
 static func _opacity(count: int, limit: int, maximum: int) -> float:

@@ -582,4 +582,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 145. Graphical opening acceptance
 
-- [ ] 145.1 Run relevant source/model/UI/spec compatibility checks, preserve save fingerprints and prior evidence, document playable change/limits and verify work/index/HEAD; commit locally without pushing.
+- [x] 145.1 Run relevant source/model/UI/spec compatibility checks, preserve save fingerprints and prior evidence, document playable change/limits and verify work/index/HEAD; commit locally without pushing.
