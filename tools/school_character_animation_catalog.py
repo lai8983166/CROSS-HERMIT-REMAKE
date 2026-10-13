@@ -15,7 +15,8 @@ def source_rules():
  pairs={0x4CC406:('call','0x4cc420'),0x4CC48D:('call','0x4c9610'),0x4CC49A:('call','0x4c9650'),
   0x4CA225:('jle','0x4ca239'),0x4CA42F:('jle','0x4ca443'),0x4C9D88:('jle','0x4c9d9c'),
   0x4D0074:('call','0x4cd060'),0x4D0089:('call','0x4cd120'),0x4CD1B2:('jle','0x4cd1b6'),
-  0x4CA8DF:('call','0x4077c0'),0x40780D:('mov','dword ptr [ecx + 0x4c], edx'),0x4CA936:('call','0x408f90')}
+  0x4CA8DF:('call','0x4077c0'),0x40780D:('mov','dword ptr [ecx + 0x4c], edx'),0x4CA936:('call','0x408f90'),
+  0x4C4E9A:('mov','eax, dword ptr [ebp + 0x10]'),0x4CFF1B:('jmp','0x4d01e1')}
  proof=[]
  for at,pair in pairs.items():
   i=next(md.disasm(raw[at-BASE:at-BASE+16],at,count=1))
@@ -100,7 +101,7 @@ def advance(before,index,renderer):
   off=obj-VM;origin=list(struct.unpack_from('<2H',v,node-VM+30));raw=bytes(v[off:off+BYTES])
   if obj==OBJECT7:
    text=expected_update(raw,origin,obj);v[off:off+BYTES]=bytes.fromhex(text['after_hex']);textdraws+=text['draws']
-  updates.append({'receiver':obj,'args':origin,'return_va':'0x4cd54b'})
+  updates.append({'receiver':obj,'args':[(node&0xFFFF0000)|origin[0],origin[1]],'return_va':'0x4cd541'})
  after=regions(m)
  return {'index':index,'before_state':old,'after_state':state(after),'after':after,'predicates':predicates,'presentation':records,'text_draws':textdraws,'text_updates':updates,'natural_return':{'va':RETURN,'sp':STACK+0xFF04,'eax':1}}
 
@@ -110,10 +111,22 @@ def third_prefix(before,pointer):
  if struct.unpack_from('<I3H',v,28)!=(272,0,30,20) or struct.unpack_from('<2H',v,n)!=(1,2) or struct.unpack_from('<H',v,n+34)[0]!=2 or struct.unpack_from('<H',v,o+22)[0]:raise ValueError('third natural released animation parent')
  if struct.unpack_from('<I',v,16)[0]!=pointer+452 or struct.unpack_from('<I',v,24)[0]!=pointer+948:raise ValueError('third original script binding')
  struct.pack_into('<I',v,0x9250,8);v[0x1CC]=5;struct.pack_into('<2HI',v,0x34,715,491,NODE)
- struct.pack_into('<I3H',v,28,280,0,17,6);v[0x93E2]=0;struct.pack_into('<2I',m[0x7A4E18],0,2,0)
+ struct.pack_into('<I3H',v,28,280,0,43,8);v[0x93E2]=0;struct.pack_into('<2I',m[0x7A4E18],0,1,0)
+ # The original interpreter executes one command per update even for return0.
+ # Presentation is the already steady layer5/layer7 frame; no readiness query.
+ records=stable_board_records([struct.unpack('<H',m[TASK+x])[0] for x in (0x196C,0x1970)])
+ def call(va,recv,args,ret):return {'va':hex(va),'receiver':recv,'args':args,'return_va':hex(ret),'return_value':0}
+ draws=[call(0x4CBDB0,VM,[254+r[0],368+r[1],0x6200FF,0xFFFFFFFF,66,*r[2:],20,0],0x4CA6FC) for r in rules['frame_table']['pieces']]
+ draws += [call(0x410310,TASK+0x1058,[277,381,695,154,0xFFFF0043,0xCC223438,1],0x4CA319),call(0x408F90,NAME_TEXTURE,[811,517],0x4CA93B),
+  call(0x4CBDB0,VM,[736,214,255,0xFFFFFFFF,64,0,0,256,296,32,0],0x4C9778),call(0x4CBDB0,VM,[736,214,255,0xFFFFFFFF,63,0,296,108,108,32,0],0x4C99BF)]
+ records[16:19]=draws
+ textdraws=expected_update(bytes(v[OBJECT7-VM:OBJECT7-VM+BYTES]),list(struct.unpack_from('<2H',v,NODE7-VM+30)),OBJECT7)['draws']
+ activation={'after':regions(m),'presentation':records,'text_draws':textdraws,'text_updates':[{'receiver':obj,'args':[(node&0xFFFF0000)|struct.unpack_from('<H',v,node-VM+30)[0],struct.unpack_from('<H',v,node-VM+32)[0]],'return_va':'0x4cd541'} for node,obj in ((NODE,OBJECT),(NODE7,OBJECT7))],
+  'predicates':[],'natural_return':{'va':RETURN,'sp':STACK+0xFF04,'eax':1}}
+ struct.pack_into('<2H',v,34,17,6);struct.pack_into('<2I',m[0x7A4E18],0,2,0)
  for at,value in ((24,2),(26,0),(28,24),(30,0),(32,12),(34,0),(36,22)):struct.pack_into('<H',v,o+at,value)
  vm=STACK+0xFF00-4;t=vm-112-32;f=t-2676-28;sp=f-336-12-56-4;line=t-0xA04;array=t-0xA2C;entry=rules['third_text']
- return {'after':regions(m),'third_text':{'index':2,'pointer':pointer+entry['offset'],'hex':entry['hex'],'decoded_big5':entry['text']},
+ return {'after':regions(m),'activation':activation,'third_text':{'index':2,'pointer':pointer+entry['offset'],'hex':entry['hex'],'decoded_big5':entry['text']},
   'calls':[{'va':'0x4c4dc0','receiver':VM,'args':[0,pointer+724,0],'return_va':'0x4cef42'},
    {'va':'0x4c4b80','receiver':VM,'args':[0,pointer+732,0],'return_va':'0x4cec2b'},
    {'va':'0x4c2120','receiver':VM,'args':[pointer+948,2],'return_va':'0x4c4bcc'},
