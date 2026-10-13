@@ -692,3 +692,11 @@ The audit SHALL execute the actual sc004 image-loader entry using real read-only
 - **WHEN** the original sc004 loading entry resumes
 - **THEN** pinned file bytes and source mode2 image produce a distinct real256x512 texture and original loaded flag/table/file release reach natural4CC0D2 return
 - **AND** prior textures remain unchanged while subsequent animation, GPU drawing, third dialogue and world scheduling remain unexecuted
+
+### Requirement: Bounded original character animation continuation
+The audit SHALL execute original character delay, frame/background fades and both readiness predicates from the actual image-loader return, compare full state and terminal parameters independently, and preserve all four actual textures.
+
+#### Scenario: Animation releases third-text prefix
+- **WHEN** both original readiness predicates succeed after bounded VM updates
+- **THEN** config8 selects layer5 and original text2 lookup/split/record setup reaches unexecuted CreateFontA with exact natural stack
+- **AND** full rendering, third-text raster and world execution remain unclaimed

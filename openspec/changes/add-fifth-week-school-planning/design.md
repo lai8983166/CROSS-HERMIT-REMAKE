@@ -219,3 +219,7 @@ Use separate raster and lock mirrors for NODE5+0x60 rather than a dialogue row. 
 ## Scene image resource32
 
 sc004.bin is a pinned262168-byte one-entry container containing DX mode2/256x512 image data. Require the captured resource32 table pair and VM loaded flag to be empty without rewriting them. Use actual owned Win32 CreateFileA/GetFileSize/ReadFile/CloseHandle on the exact source path; declare game working-directory translation separately. Use a finite declared emulator heap for the original file/texture-array allocations and exact CRT adapters. Execute original container/vector constructors and image row-copy body; never fabricate texture success or upload. Keep the three prior real textures alive, create/upload/read back a distinct fourth texture, free the owned file buffer and stop on natural4CC0D2 return before animation. Independent rules compare all regions plus exact table/record bytes, every row and platform/COM provenance. Verification may project observed full cleanup to prior resources only after actual four-resource cleanup is checked.
+
+## Character animation continuation
+
+Use EXE dispatch tables, config8/style5/SC004 geometry and independently decoded counters to predict every full-region update and terminal draw. Resume the actual image-loader CPU; subsequent calls are declared bounded VM calls. Execute both readiness bodies, preserve layer7 and four native resources, and stop text2 before CreateFontA. Rendering, world scheduling and third-text raster remain later boundaries.

@@ -527,3 +527,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 131. Character image acceptance
 
 - [x] 131.1 Run relevant source/native/strict-spec regression, preserve historical/runtime/UI/save bytes, publish exact resource-loading progress/acceptance, verify work/index/HEAD and commit locally without pushing.
+
+## 132. Character animation source contracts
+
+- [x] 132.1 Decode actual dispatch, delay/fade/readiness and frame/face/name contracts with independent source models and malformed-parent tests; commit locally.
+
+## 133. Original character animation execution
+
+- [ ] 133.1 Replay all three live parents, execute original handler return and all animation/readiness updates, compare full regions/terminal calls/four retained textures and publish immutable evidence; commit locally.
+
+## 134. Third text natural prefix
+
+- [ ] 134.1 Execute config8 activation and text2 lookup/split/initial record to natural unexecuted font entry, compare state/stack/resource retention and commit locally.
+
+## 135. Independent continuation verification
+
+- [ ] 135.1 Verify source/native continuation separately, test corrupted counters/draws/predicates/stack/pixels/ownership/scope and document boundaries; commit locally.
+
+## 136. Character animation acceptance
+
+- [ ] 136.1 Run relevant regression and strict specs, preserve prior evidence/runtime/save files, publish acceptance and exact progress, verify work/index/HEAD and commit without pushing.
