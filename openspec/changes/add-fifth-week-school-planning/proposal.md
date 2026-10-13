@@ -163,3 +163,7 @@ Continue the confirmed opcode30 entry by decoding its actual configuration index
 ## Character name raster and live texture (2026-10-13)
 
 Continue the actual character name font request through real host GDI and original geometry, then upload to a third owned real texture and execute name cleanup. Continue the actual source caller through bounded path construction to original image loader entry. Independently compare complete regions, stack, COM, pixels and cleanup; preserve later file/image decode, animation, third dialogue and world/GPU as subsequent dependencies. Commit source/raster/upload/comparison/acceptance separately.
+
+## Original character image loading (2026-10-13)
+
+Continue actual4CDE10 for pinned sc004.bin. Execute original file loader/container/header bodies using real owned Windows read-only file APIs, bounded declared working-directory/heap/CRT adapters, original texture vector construction and a fourth live real texture. Compare source DX header, full pixels, program/table/record states and resource ownership independently. Complete image-loader return before subsequent layer animation/presentation, preserve all earlier artifacts and commit source/file/upload/comparison/acceptance stages locally.

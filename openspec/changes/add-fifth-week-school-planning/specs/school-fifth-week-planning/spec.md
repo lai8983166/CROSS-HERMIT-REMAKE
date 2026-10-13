@@ -684,3 +684,11 @@ The audit SHALL continue the actual pending character-name font request with rea
 - **WHEN** the original character name request resumes with two live dialogue textures
 - **THEN** a distinct real third texture receives the original converted name raster, original font cleanup executes and the natural image-loader call names sc004.bin/resource32
 - **AND** file loading, image decoding, animation, third dialogue, GPU drawing and world scheduling remain unexecuted
+
+### Requirement: Original character image completes with a fourth owned real texture
+The audit SHALL execute the actual sc004 image-loader entry using real read-only Windows file APIs, original container/header/vector/texture/row-copy bodies and explicit bounded working-directory/heap/CRT adapters. It SHALL require an empty captured resource32 slot without patching prior resources, retain all three earlier textures, verify complete program/table/record bytes and all image pixels independently, and close every owned file/COM resource.
+
+#### Scenario: Original scene image returns before animation
+- **WHEN** the original sc004 loading entry resumes
+- **THEN** pinned file bytes and source mode2 image produce a distinct real256x512 texture and original loaded flag/table/file release reach natural4CC0D2 return
+- **AND** prior textures remain unchanged while subsequent animation, GPU drawing, third dialogue and world scheduling remain unexecuted

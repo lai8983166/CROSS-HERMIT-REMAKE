@@ -507,3 +507,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 126. Character name texture acceptance
 
 - [x] 126.1 Run relevant source/native/strict-spec regression, preserve historical/runtime/UI/save bytes, publish exact execution progress/acceptance, verify work/index/HEAD and commit locally without pushing.
+
+## 127. Original character image contracts
+
+- [x] 127.1 Decode pinned sc004 container/header/row rules and original file/resource call contracts, verify malformed buffers and commit locally.
+
+## 128. Real file and natural image texture entry
+
+- [ ] 128.1 Replay three actual live parents, execute original file loading/container/vector/header to pending texture creation using real Windows file APIs and bounded heap/CRT primitives, compare complete state/retention/old pixels/cleanup, publish evidence and commit locally.
+
+## 129. Fourth real texture and image-loader return
+
+- [ ] 129.1 Execute original image texture creation/row-copy/unlock and source loader return/file release, compare full pixels/table/record/program bytes with retained prior resources, stop before subsequent animation, publish evidence and commit locally.
+
+## 130. Independent image resource comparison
+
+- [ ] 130.1 Independently verify original file/heap/constructor/COM/row-copy/return inputs, complete regions/table/record/pixels/cleanup and malformed ownership/geometry/scope; document and commit locally.
+
+## 131. Character image acceptance
+
+- [ ] 131.1 Run relevant source/native/strict-spec regression, preserve historical/runtime/UI/save bytes, publish exact resource-loading progress/acceptance, verify work/index/HEAD and commit locally without pushing.
