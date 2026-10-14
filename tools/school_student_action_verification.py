@@ -66,7 +66,9 @@ def verify_case(case,phase):
     if phase=='animation':
         w=inputs['work_pointer'];anim=[r for r in calls if r['va']=='0x40a100'];steps=[r['args'][0] for r in calls if r['va']=='0x40a800']
         if [r['args'] for r in anim]!=[[w+0x48]]+[[w+0xA0+i*NODE] for i in range(5)] or steps!=[w+0x48]+expected['linked_order']:raise ValueError('student all original main/linked/auxiliary updates')
-        if [(r['va'],r['eax']) for r in a['returns']]!=[('0x46b80c',0)]+[('0x46b85b',1)]*5 or a['native_clears']:raise ValueError('student original distinct animation returns')
+        wanted_returns=[{'va':'0x46b80c','sp':STACK+0xFF00-196,'eax':0}]+[{'va':'0x46b85b','sp':STACK+0xFF00-196,'eax':1}]*5
+        if a['returns']!=wanted_returns or a['native_clears']:raise ValueError('student original distinct animation returns')
+        if not {0x40A141,0x40A160,0x40A1AB}<=set(a['visited']):raise ValueError('student original child flag reset/main and linked updates')
     if a['source_metadata_all_bytes_verified'] is not True or a['retained_ranges_unchanged'] is not True or a['retained_bytes']<100000000:raise ValueError('student source/retained memory')
     for k in ('owned_bodies_stubbed','GPU_rendering_executed','full_unit_or_world_completed','VM_or_AI_completed'):
         if a.get(k) is not False:raise ValueError('student exact scope/authority')

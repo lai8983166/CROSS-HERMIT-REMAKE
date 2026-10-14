@@ -718,7 +718,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 179. Original student animation updates
 
-- [ ] 179.1 Continue original main/linked and five auxiliary animation updates to482A30, compare complete source work/pool/counter/call/retained state, pin verified next-boundary checkpoints and commit locally.
+- [x] 179.1 Continue original main/linked and five auxiliary animation updates to482A30, compare complete source work/pool/counter/call/retained state, pin verified next-boundary checkpoints and commit locally.
 
 ## 180. Student initialization and animation acceptance
 
