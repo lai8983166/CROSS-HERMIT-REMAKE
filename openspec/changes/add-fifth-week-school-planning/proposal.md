@@ -197,3 +197,7 @@ Continue49B180 through the opening-specific visibility stamp and original displa
 ## Original paused command/input/unit suffix (2026-10-14)
 
 Restore the pinned verified private48CD90 checkpoint, execute the original empty queue, no-command input/selection normalization, closed cursor reset and all250 work-slot tests through46B618. Independently project full owned memory, per-unit vision and cell bookkeeping; prove skipped action/animation/AI branches under actual opening gates. Preserve runtime/save/history and commit source/native/acceptance stages locally. Nonempty command consumption and enabled actions remain later dependencies.
+
+## Original paused world tail (2026-10-14)
+
+Continue the verified490FC0 CPU through the source post-unit cursor/menu/hover, ten idle effect slots, five inactive secondary slots and empty command-forwarding queue. Independently verify all owned bytes, natural inner stack and original46B470 return to its existing declared audit driver. Complete this first paused UnitCtrl update only; do not equate it with an enabled gameplay tick, full task frame or opening VM completion. Verify declared counter wrap probes with full restoration and commit source/native/acceptance locally.

@@ -679,3 +679,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 169. Paused suffix acceptance
 
 - [x] 169.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact owned Git bytes, document remaining nonempty queue/action/VM work and commit locally without pushing.
+
+## 170. Paused world-tail source policy
+
+- [x] 170.1 Decode post-unit closed gates, ten idle effect updates, secondary-slot skip and empty command forwarding with exact return scope; verify independent whole-region source/refusal/counter tests and commit locally.
+
+## 171. Original paused world function return
+
+- [ ] 171.1 Restore verified490FC0 private checkpoints, execute original suffix through46B662 to the existing declared driver, verify complete owned/retained bytes and exact stack/EAX plus restored counter probes and commit locally.
+
+## 172. Paused world-tail acceptance
+
+- [ ] 172.1 Run relevant new/parent/spec checks, preserve runtime/save/history and owned Git bytes, document first paused function return versus remaining gameplay/VM work and commit locally without pushing.

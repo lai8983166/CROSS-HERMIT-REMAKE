@@ -800,3 +800,16 @@ The audit SHALL restore verified private checkpoint provenance and independently
 - **WHEN** finite work selection bytes are temporarily bound for a source predicate probe
 - **THEN** full source selection output is compared and CPU/stack/input bytes are completely restored
 - **AND** these probes are not labelled real player input, command consumption or opening completion
+
+### Requirement: Original paused world-tail return evidence
+The audit SHALL verify the original post-unit suffix and complete first paused46B470 update against independent source byte projections, while distinguishing its declared audit-driver return from a full game task frame or enabled gameplay tick.
+
+#### Scenario: Actual empty paused tail
+- **WHEN** three verified school checkpoints continue at490FC0 with opening1, empty queues and idle effect animation PCs
+- **THEN** the original post-unit routines, all ten effect updates and empty command forwarding execute with exact owned/retained bytes and natural inner calls
+- **AND** original46B662 returns EAX0 to the existing declared driver with the root stack restored, without claiming opening/VM/AI completion
+
+#### Scenario: Declared idle-effect counter boundaries
+- **WHEN** finite signed-short counter values are explicitly bound in all ten effect slots
+- **THEN** original466880/40A100 results match unsigned16 wrapping and the complete effect region
+- **AND** CPU/stack/owned inputs restore exactly and no active animation, user command or gameplay progress is inferred
