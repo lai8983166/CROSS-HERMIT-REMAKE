@@ -638,7 +638,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 159. Actual nested world prefix and declared mode probes
 
-- [ ] 159.1 Resume pinned actual-school world admission through original mode return and first natural499DA0 update to493630 entry; independently compare full state/stack, execute isolated mode requests with exact restoration and retained-byte guards, and commit locally.
+- [x] 159.1 Resume pinned actual-school world admission through original mode return and first natural499DA0 update to493630 entry; independently compare full state/stack, execute isolated mode requests with exact restoration and retained-byte guards, and commit locally.
 
 ## 160. World mode continuation acceptance
 

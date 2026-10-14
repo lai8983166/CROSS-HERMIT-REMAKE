@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_world_mode_emulation.py", line 195, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_world_mode_emulation.py", line 184, in report
+    probes=e.run_mode_probes();actual=e.run_actual_prefix()
+  File "F:\project\chaomofa\tools\school_world_mode_emulation.py", line 116, in run_mode_probes
+    if restored_stack!=stack or restored_cpu!=bytes(cpu):raise RuntimeError('world probe complete CPU/stack restoration')
+RuntimeError: world probe complete CPU/stack restoration

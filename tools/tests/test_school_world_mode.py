@@ -1,5 +1,6 @@
 import unittest
-from tools.school_world_mode import source_contract,project,admitted_request
+from copy import deepcopy
+from tools.school_world_mode import source_contract,project,admitted_request,first_entry_update
 from tools.tactics_exit_emulation import SOURCE
 
 
@@ -36,6 +37,18 @@ class WorldModeSourceTests(unittest.TestCase):
         for kind,flag in [(0,1),(3,1),(-2,0),(True,0),(1,256),(1,-1),(1,False)]:
             with self.assertRaises(ValueError):admitted_request(kind,flag)
         with self.assertRaises(ValueError):project(self.before[:2],1,1,self.contract)
+
+    def test_source_first_controller_update_preserves_request_and_full_regions(self):
+        from tools.school_entry_control_catalog import native_fixture
+        before=deepcopy(native_fixture()['cases'][0]['entry_control']['before'])
+        original=deepcopy(before);after=first_entry_update(before)
+        self.assertEqual(before,original)
+        self.assertEqual(after[0],before[0])
+        expected=bytearray.fromhex(before[1]['hex']);expected[26]=4
+        self.assertEqual(bytes.fromhex(after[1]['hex']),expected)
+        self.assertEqual(bytes.fromhex(after[2]['hex']),b'\0'*4)
+        bad=deepcopy(after)
+        with self.assertRaises(ValueError):first_entry_update(bad)
 
 
 if __name__=='__main__':unittest.main()
