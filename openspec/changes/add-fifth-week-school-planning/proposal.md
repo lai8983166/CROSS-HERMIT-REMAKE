@@ -193,3 +193,7 @@ Continue the captured493630 world stack through the original clock gate and map 
 ## Original selection/vision and unit-list suffix (2026-10-14)
 
 Continue49B180 through the opening-specific visibility stamp and original display/category list builders, stopping before48CD90 command-queue processing. Independently decode source masks, activity/status/relation predicates, viewport inclusion and original sorting/tie behavior; compare full owned buffers and actual current/scene rows. Preserve trial/save/history and save verified private next-boundary checkpoints with pinned provenance for faster subsequent bounded audits. Commit source/native/acceptance stages locally; full world/action/AI/events/VM remain later work.
+
+## Original paused command/input/unit suffix (2026-10-14)
+
+Restore the pinned verified private48CD90 checkpoint, execute the original empty queue, no-command input/selection normalization, closed cursor reset and all250 work-slot tests through46B618. Independently project full owned memory, per-unit vision and cell bookkeeping; prove skipped action/animation/AI branches under actual opening gates. Preserve runtime/save/history and commit source/native/acceptance stages locally. Nonempty command consumption and enabled actions remain later dependencies.

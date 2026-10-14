@@ -667,3 +667,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 166. Visibility/list acceptance
 
 - [x] 166.1 Run relevant source/native/parent/spec regression, verify old runtime/save/history and owned Git bytes, document exact scope/remaining command/animation/world work and commit locally without pushing.
+
+## 167. Paused command and unit source policy
+
+- [x] 167.1 Decode original empty queue, input predicates, selection normalization, cursor reset and paused-unit vision/cell bookkeeping; independently project full buffers, verify refusal/boundary tests and commit locally.
+
+## 168. Original paused unit-loop continuation
+
+- [ ] 168.1 Restore verified private school checkpoints, execute original command/input/cursor and all250 work tests through46B618, compare full bytes/stack/retained memory and declared selection probes with restoration, save verified next checkpoints and commit locally.
+
+## 169. Paused suffix acceptance
+
+- [ ] 169.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact owned Git bytes, document remaining nonempty queue/action/VM work and commit locally without pushing.

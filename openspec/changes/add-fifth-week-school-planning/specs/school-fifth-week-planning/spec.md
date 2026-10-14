@@ -787,3 +787,16 @@ The audit SHALL execute the actual opening-specific selection/visibility route a
 - **WHEN** complete source/native/retention comparisons pass for a current-school case
 - **THEN** a private checkpoint records exact CPU/memory state, source and parent identities with a published SHA for later bounded continuation
 - **AND** checkpoints grant no runtime/save authority and malformed source/projection inputs refuse
+
+### Requirement: Original paused command and unit suffix evidence
+The audit SHALL restore verified private checkpoint provenance and independently verify the original empty queue, no-command input, selection normalization, closed cursor and complete paused unit loop without granting persistent or full-world authority.
+
+#### Scenario: Actual paused opening continuation
+- **WHEN** the three pinned school cases resume at48CD90 with empty queue and closed action/event/cursor/input gates
+- **THEN** original bodies and all250 work tests execute with exact natural callers, full owned bytes match the independent source projection and retained memory is unchanged
+- **AND** original action/animation/AI branches remain skipped and execution stops before490FC0
+
+#### Scenario: Declared selection normalization inputs
+- **WHEN** finite work selection bytes are temporarily bound for a source predicate probe
+- **THEN** full source selection output is compared and CPU/stack/input bytes are completely restored
+- **AND** these probes are not labelled real player input, command consumption or opening completion
