@@ -730,7 +730,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 182. Complete original first student and recovery probes
 
-- [ ] 182.1 Restore verified482A30 cases, execute original first-unit tail and natural return to next slot1 entry, compare full bytes/stack/retained memory and restored declared regen probes, pin continuation checkpoints and commit locally.
+- [x] 182.1 Restore verified482A30 cases, execute original first-unit tail and natural return to next slot1 entry, compare full bytes/stack/retained memory and restored declared regen probes, pin continuation checkpoints and commit locally.
 
 ## 183. First-unit return acceptance
 

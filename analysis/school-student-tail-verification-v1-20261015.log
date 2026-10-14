@@ -1,0 +1,15 @@
+E...
+======================================================================
+ERROR: test_all_private_checkpoints_match_restored_complete_state (tools.tests.test_school_student_tail_emulation.StudentTailNativeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_student_tail_emulation.py", line 40, in test_all_private_checkpoints_match_restored_complete_state
+    payload,cp=load_verified_checkpoint(row['name'])
+  File "F:\project\chaomofa\tools\school_student_tail_verification.py", line 111, in load_verified_checkpoint
+    if cpu_digest(architectural_cpu(cpu))!=restoration['cpu_after_sha256'] or hashlib.sha256(read(STACK,65536)).hexdigest()!=restoration['stack_after_sha256']:raise ValueError('tail restored live CPU/full stack identity')
+ValueError: tail restored live CPU/full stack identity
+
+----------------------------------------------------------------------
+Ran 4 tests in 6.720s
+
+FAILED (errors=1)

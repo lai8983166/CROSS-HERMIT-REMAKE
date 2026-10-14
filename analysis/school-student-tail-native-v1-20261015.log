@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_student_tail_emulation.py", line 148, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_student_tail_emulation.py", line 138, in report
+    e.uc.context_restore(payload['cpu']);actual=e.run_tail();probes=e.run_regen_probes();saved=e.save_checkpoint(name)
+  File "F:\project\chaomofa\tools\school_student_tail_emulation.py", line 94, in run_tail
+    self.uc.emu_start(0x482A30,RETURN,timeout=5_000_000,count=150000);after=self.regions()
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_student_tail_emulation.py", line 51, in _hook
+    if (recv,ret,args)!=(MAPCTRL,0x43046F,[10,17]):raise RuntimeError('unit actual source map cell lookup')
+RuntimeError: unit actual source map cell lookup
