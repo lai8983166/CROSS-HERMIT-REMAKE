@@ -7,7 +7,7 @@ from tools.tactics_exit_emulation import SOURCE,SOURCE_SHA256,BASE
 
 RANGES=((0x493630,0x493665),(0x467B60,0x467C19),(0x46E9C0,0x46EA04),
  (0x43B350,0x43B3B6),(0x43D230,0x43D266),(0x43D130,0x43D19A),(0x43D0C0,0x43D122),
- (0x43B530,0x43B70E),(0x43B710,0x43B7AD),(0x43B7B0,0x43B8B0),
+ (0x43B530,0x43B70A),(0x43B710,0x43B7AF),(0x43B7B0,0x43B8B0),
  (0x43C9C0,0x43CAA6),(0x43C700,0x43C917),(0x4406F0,0x440973),
  (0x481610,0x4816BB),(0x415040,0x415069),(0x56CEC0,0x56CF18))
 MAP_STATE_BASE=0x2646C
@@ -31,6 +31,8 @@ def source_contract(raw=None):
         if (i.mnemonic,i.op_str)!=wanted:raise ValueError('world map source instruction '+hex(a))
         proof.append({'va':hex(a),'hex':i.bytes.hex(),'mnemonic':i.mnemonic,'operands':i.op_str})
     functions=[{'va':hex(a),'end':hex(b),'sha256':hashlib.sha256(raw[a-BASE:b-BASE]).hexdigest()} for a,b in RANGES]
+    for a,b in RANGES:
+        if list(md.disasm(raw[a-BASE:b-BASE],a))[-1].mnemonic!='ret':raise ValueError('world map exact return-inclusive range '+hex(a))
     code='\n'.join(i.op_str for a,b in RANGES for i in md.disasm(raw[a-BASE:b-BASE],a))
     for required in ['ecx, dword ptr [eax + 0xa8]','dword ptr [edx + 0xa4], ecx',
                      'dword ptr [edx + 0xa8], eax','0x240','0x23a']:

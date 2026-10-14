@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_world_map_emulation.py", line 179, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_world_map_emulation.py", line 169, in report
+    probes=e.run_probes();suffix=e.run_map_suffix()
+  File "F:\project\chaomofa\tools\school_world_map_emulation.py", line 105, in run_probes
+    self.call(0x43B530,receiver=MAPCTRL);self.call(0x43B710,receiver=MAPCTRL)
+  File "F:\project\chaomofa\tools\school_formation_placement_emulation.py", line 26, in call
+    if not self.placement_loading:return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\school_unitctrl_map_emulation.py", line 214, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\new_game_school_emulation.py", line 213, in call
+    return super().call(address,args,receiver=receiver)
+  File "F:\project\chaomofa\tools\tactics_exit_emulation.py", line 109, in call
+    self.uc.emu_start(address, RETURN, timeout=1_000_000, count=100_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_world_map_emulation.py", line 55, in _hook
+    raise RuntimeError('world map undeclared instruction '+hex(address))
+RuntimeError: world map undeclared instruction 0x43b7ae
