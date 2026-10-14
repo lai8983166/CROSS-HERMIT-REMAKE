@@ -813,3 +813,16 @@ The audit SHALL verify the original post-unit suffix and complete first paused46
 - **WHEN** finite signed-short counter values are explicitly bound in all ten effect slots
 - **THEN** original466880/40A100 results match unsigned16 wrapping and the complete effect region
 - **AND** CPU/stack/owned inputs restore exactly and no active animation, user command or gameplay progress is inferred
+
+### Requirement: Natural second-world action admission evidence
+The audit SHALL independently verify the next declared46B470 invocation through natural controller action enabling and the first student status dispatch, without substituting controller-only waiting for the enabled world updates.
+
+#### Scenario: Controller state4 in original world order
+- **WHEN** three verified first-paused-return cases invoke the next declared world update
+- **THEN** original499DA0 consumes request170, sets action1/state5 and180 delay, then actual map/list/input calls match complete independent owned-byte projections
+- **AND** the first occupied unit naturally executes the closed command-generation/empty work-queue/status preamble and stops before475D60 with exact caller/stack
+
+#### Scenario: Continuation and refusal provenance
+- **WHEN** actual full state is verified at the student handler entry
+- **THEN** private CPU/all-memory checkpoints are pinned by immutable report/file identities and source/parent/case/owned-byte/stack checks
+- **AND** unsupported current mode, pending transition, command queue or initial controller state is rejected without claiming activity/VM/AI completion

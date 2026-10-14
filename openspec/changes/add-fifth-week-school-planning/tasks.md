@@ -691,3 +691,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 172. Paused world-tail acceptance
 
 - [x] 172.1 Run relevant new/parent/spec checks, preserve runtime/save/history and owned Git bytes, document first paused function return versus remaining gameplay/VM work and commit locally without pushing.
+
+## 173. Second-world action admission source policy
+
+- [x] 173.1 Decode native state4 action enabling and first-student command/status dispatch; compose independent full map/list/selection/work projections and refusal tests, then commit locally.
+
+## 174. Natural second-world and student handler entry
+
+- [ ] 174.1 Replay the pinned first tail, invoke the declared next world update through original controller/action enabling/map/list/input/first-unit status calls, verify complete bytes/stack/retained memory to475D60 entry, pin next checkpoints and commit locally.
+
+## 175. Second-world prefix acceptance
+
+- [ ] 175.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document remaining student-action/180 enabled updates/VM work and commit locally without pushing.

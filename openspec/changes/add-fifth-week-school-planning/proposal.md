@@ -201,3 +201,7 @@ Restore the pinned verified private48CD90 checkpoint, execute the original empty
 ## Original paused world tail (2026-10-14)
 
 Continue the verified490FC0 CPU through the source post-unit cursor/menu/hover, ten idle effect slots, five inactive secondary slots and empty command-forwarding queue. Independently verify all owned bytes, natural inner stack and original46B470 return to its existing declared audit driver. Complete this first paused UnitCtrl update only; do not equate it with an enabled gameplay tick, full task frame or opening VM completion. Verify declared counter wrap probes with full restoration and commit source/native/acceptance locally.
+
+## Original second update and first student action admission (2026-10-14)
+
+Continue the verified first paused world return using a separately declared next46B470 invocation. Execute its original controller state4 branch in natural world order, consume request170, enable action34, set state5 and native180 delay, then original timer/map/list/empty input prefix and first occupied unit command/status dispatch to475D60 entry. Preserve task/event/AI/VM completion boundaries; do not skip the required enabled-unit updates during the180 interval. Verify whole owned bytes, source refusal rules, private next-boundary provenance and local source/native/acceptance commits.

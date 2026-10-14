@@ -1,0 +1,129 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x48d720",
+      "end": "0x48dc40",
+      "sha256": "96335c13fcebdb8b7934bf8ded00ae218f25478bbfaa1d31f75b71a73e19ff53"
+    },
+    {
+      "va": "0x48e2a0",
+      "end": "0x48e483",
+      "sha256": "a7bd18f394169b46bc7ef4ba45e507aaf36557a5acdeebbdcefbcc120c633096"
+    },
+    {
+      "va": "0x475700",
+      "end": "0x475c6b",
+      "sha256": "1f4859176a3edd80c217f856a83626918680438ec3ffa96c585c0b721b71d336"
+    },
+    {
+      "va": "0x4751f0",
+      "end": "0x47526f",
+      "sha256": "bc3c84feb24c85c16f7a12e986397c6dd737dfc397259f198953fba4c1f4fcda"
+    },
+    {
+      "va": "0x4697f0",
+      "end": "0x469895",
+      "sha256": "2c297742f335df08e99ace9b25362e848a07db1dbb6d9f0e4ee675ca5b64098e"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x49a038",
+      "hex": "c6827001000000",
+      "mnemonic": "mov",
+      "operands": "byte ptr [edx + 0x170], 0"
+    },
+    {
+      "va": "0x49a042",
+      "hex": "c680348b100001",
+      "mnemonic": "mov",
+      "operands": "byte ptr [eax + 0x108b34], 1"
+    },
+    {
+      "va": "0x49a058",
+      "hex": "68b4000000",
+      "mnemonic": "push",
+      "operands": "0xb4"
+    },
+    {
+      "va": "0x49a063",
+      "hex": "e808b0f7ff",
+      "mnemonic": "call",
+      "operands": "0x415070"
+    },
+    {
+      "va": "0x49a06b",
+      "hex": "6689410e",
+      "mnemonic": "mov",
+      "operands": "word ptr [ecx + 0xe], ax"
+    },
+    {
+      "va": "0x46b7b1",
+      "hex": "247f",
+      "mnemonic": "and",
+      "operands": "al, 0x7f"
+    },
+    {
+      "va": "0x46b7c4",
+      "hex": "e8571f0200",
+      "mnemonic": "call",
+      "operands": "0x48d720"
+    },
+    {
+      "va": "0x46b7d0",
+      "hex": "e8cb2a0200",
+      "mnemonic": "call",
+      "operands": "0x48e2a0"
+    },
+    {
+      "va": "0x46b7dc",
+      "hex": "e81f9f0000",
+      "mnemonic": "call",
+      "operands": "0x475700"
+    },
+    {
+      "va": "0x48d740",
+      "hex": "0fbe88358b1000",
+      "mnemonic": "movsx",
+      "operands": "ecx, byte ptr [eax + 0x108b35]"
+    },
+    {
+      "va": "0x48d74b",
+      "hex": "e9dd040000",
+      "mnemonic": "jmp",
+      "operands": "0x48dc2d"
+    },
+    {
+      "va": "0x47572f",
+      "hex": "e8bcfaffff",
+      "mnemonic": "call",
+      "operands": "0x4751f0"
+    },
+    {
+      "va": "0x47573b",
+      "hex": "e8b040ffff",
+      "mnemonic": "call",
+      "operands": "0x4697f0"
+    },
+    {
+      "va": "0x46986e",
+      "hex": "0fbe88a7020000",
+      "mnemonic": "movsx",
+      "operands": "ecx, byte ptr [eax + 0x2a7]"
+    },
+    {
+      "va": "0x47579e",
+      "hex": "e8bd050000",
+      "mnemonic": "call",
+      "operands": "0x475d60"
+    }
+  ],
+  "first_work_mode": 25,
+  "mode25_target": "0x475797",
+  "next_controller_state": 5,
+  "native_delay": 180,
+  "next_handler": "0x475d60",
+  "next_return": "0x4757a3",
+  "scope": "Declared second world call, natural enabled action prefix; stops before first student handler, no180 ticks/VM/AI completion"
+}
