@@ -662,7 +662,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 165. Actual visibility and complete list suffix
 
-- [ ] 165.1 Replay pinned actual-school parents, execute opening visibility and original display/category loops through48CD90 entry, independently verify full owned/retained bytes and source boundary probes, publish verified private checkpoint provenance and commit locally.
+- [x] 165.1 Replay pinned actual-school parents, execute opening visibility and original display/category loops through48CD90 entry, independently verify full owned/retained bytes and source boundary probes, publish verified private checkpoint provenance and commit locally.
 
 ## 166. Visibility/list acceptance
 

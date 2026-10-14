@@ -33,6 +33,8 @@ class WorldListSourceTests(unittest.TestCase):
         r=bytearray.fromhex(inputs['works'][2]['record_hex']);r[164]=1;inputs['works'][2]['record_hex']=r.hex()
         p=project(inputs,regions);self.assertEqual(p['occupied_slots'],3);self.assertEqual(p['display_state1_slots'],2)
         self.assertEqual(p['category_counts'],[2,0,1,1,1]);self.assertNotIn(1,p['display_indices'])
+        r=bytearray.fromhex(inputs['works'][1]['record_hex']);r[15]=0;inputs['works'][1]['record_hex']=r.hex()
+        p=project(inputs,regions);self.assertEqual(p['category_counts'],[2,1,1,1,1]);self.assertNotIn(1,p['display_indices'])
         inputs['team']=16
         with self.assertRaises(ValueError):project(inputs,regions)
 

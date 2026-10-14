@@ -25,7 +25,9 @@ def source_contract():
        0x4694D5:('cmp','eax, 1'),0x46962C:('cmp','byte ptr [ebp - 8], 1'),0x469632:('cmp','byte ptr [ebp - 8], 5'),
        0x46A48C:('mov','cl, byte ptr [eax + 0xa4]'),0x46A497:('mov','al, byte ptr [edx + 0x2ef44]'),
        0x46A98F:('shl','edx, 4'),0x46A995:('lea','ecx, [eax + edx + 0x115aac]'),
-       0x46A9BD:('jmp','dword ptr [ecx*4 + 0x46aa22]')}
+       0x46A9BD:('jmp','dword ptr [ecx*4 + 0x46aa22]'),
+       0x46B4EB:('call','0x46e520'),0x46B4F3:('call','0x46e730'),0x46B4FB:('call','0x48cd90'),
+       0x49BA39:('call','0x43d270')}
     proof=[]
     for a,wanted in checks.items():
         i=next(md.disasm(raw[a-BASE:a-BASE+16],a))
