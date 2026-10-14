@@ -1,0 +1,245 @@
+{
+  "baseline": "232a28c",
+  "scope": "Stages176–180: source rules, original main pose, two attached animations/initializer and first main/linked/auxiliary update before482A30",
+  "completed_source_native_commits": [
+    "11e1ee6 Verify original main linked and auxiliary student animation updates",
+    "d44a80c Execute original attached animations and student initializer return",
+    "24d26e8 Verify original student direction and main pose binding",
+    "b41ebcf Decode first student pose attachments and first animation frame policy"
+  ],
+  "native_reports": [
+    {
+      "phase": "binding",
+      "path": "analysis/school-student-action-binding-v2-20261015.json",
+      "sha256": "22ff3c2c74fcdd344730a3ac6e2d207e3e9f2a4e02559a63c9d8470af0afa735"
+    },
+    {
+      "phase": "initializer",
+      "path": "analysis/school-student-action-initializer-v1-20261015.json",
+      "sha256": "d418bd9ce6fc64d4bfe546f617a0bc407a4e9a6b24bb2eded72e0429d73ee0a7"
+    },
+    {
+      "phase": "animation",
+      "path": "analysis/school-student-action-animation-v1-20261015.json",
+      "sha256": "038fb1bb24b8042439fdb101c7cb243a2ab9ade87720adbb7d27598a1386dca8"
+    }
+  ],
+  "source_contract": "analysis/school-student-action-source-contract-20261015.json",
+  "actual_cases": 3,
+  "complete_original_prior_phases_replayed_equal": true,
+  "actual_counts": [
+    {
+      "name": "initial",
+      "allocated_nodes": [
+        7755560,
+        7755648
+      ],
+      "linked_order": [
+        7755648,
+        7755560
+      ],
+      "frame_waits": [
+        29,
+        4,
+        28
+      ],
+      "main_return": 0,
+      "auxiliary_returns": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "work_counter": 1,
+      "pending": {
+        "va": "0x482a30",
+        "receiver": 234881424,
+        "return_va": "0x46b86d",
+        "sp": 33619504,
+        "args": [
+          235408508,
+          0
+        ],
+        "first_instruction_executed": false
+      },
+      "retained_bytes": 119495212
+    },
+    {
+      "name": "student9_waiting",
+      "allocated_nodes": [
+        7755560,
+        7755648
+      ],
+      "linked_order": [
+        7755648,
+        7755560
+      ],
+      "frame_waits": [
+        29,
+        4,
+        28
+      ],
+      "main_return": 0,
+      "auxiliary_returns": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "work_counter": 1,
+      "pending": {
+        "va": "0x482a30",
+        "receiver": 234881424,
+        "return_va": "0x46b86d",
+        "sp": 33619504,
+        "args": [
+          235408508,
+          0
+        ],
+        "first_instruction_executed": false
+      },
+      "retained_bytes": 119495212
+    },
+    {
+      "name": "fifth_class",
+      "allocated_nodes": [
+        7755560,
+        7755648
+      ],
+      "linked_order": [
+        7755648,
+        7755560
+      ],
+      "frame_waits": [
+        29,
+        4,
+        28
+      ],
+      "main_return": 0,
+      "auxiliary_returns": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "work_counter": 1,
+      "pending": {
+        "va": "0x482a30",
+        "receiver": 234881424,
+        "return_va": "0x46b86d",
+        "sp": 33619504,
+        "args": [
+          235408508,
+          0
+        ],
+        "first_instruction_executed": false
+      },
+      "retained_bytes": 119495212
+    }
+  ],
+  "source_archive_metadata_all_bytes_verified": [
+    11476,
+    77212
+  ],
+  "private_continuation_checkpoints": [
+    {
+      "phase": "initializer",
+      "name": "initial",
+      "path": ".venv-audit/student-action-initializer-initial.pkl",
+      "bytes": 135515758,
+      "sha256": "5c29c543ec67783e2ba7ddd9592b548ebd1d8a45b2b3dfaf802434c1327d373f",
+      "pending_eip": "0x40a100",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "initializer",
+      "name": "student9_waiting",
+      "path": ".venv-audit/student-action-initializer-student9_waiting.pkl",
+      "bytes": 134985549,
+      "sha256": "d8cdef156aafa4bd1f7bb801f042bb8766deac4c2dc690959c3244e2a3a8ffff",
+      "pending_eip": "0x40a100",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "initializer",
+      "name": "fifth_class",
+      "path": ".venv-audit/student-action-initializer-fifth_class.pkl",
+      "bytes": 134985547,
+      "sha256": "a54d31fe44050c0ab25525eda0e3d81e6b689b7178136c8c28602a4ce31b1604",
+      "pending_eip": "0x40a100",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "animation",
+      "name": "initial",
+      "path": ".venv-audit/student-action-animation-initial.pkl",
+      "bytes": 135510202,
+      "sha256": "7b73bbb31c2b69a7286bc760c90995ee3361ebda1650c90aa7e61b52772329e9",
+      "pending_eip": "0x482a30",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "animation",
+      "name": "student9_waiting",
+      "path": ".venv-audit/student-action-animation-student9_waiting.pkl",
+      "bytes": 134979993,
+      "sha256": "6de0933212b8d6b349a0cccbc7fa69d8e6e2f22ec00834aeb0344d2efa5fd4e0",
+      "pending_eip": "0x482a30",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "animation",
+      "name": "fifth_class",
+      "path": ".venv-audit/student-action-animation-fifth_class.pkl",
+      "bytes": 134979991,
+      "sha256": "c722def958a444f755e89f1845bc6b15c05b2fde9c47e674d2ecef35c0776e43",
+      "pending_eip": "0x482a30",
+      "runtime_or_original_save": false
+    }
+  ],
+  "checkpoint_validation": "Current fixed report/file SHA before every unpickle; source/parent/case/phase, complete work/pool/control/task/current pointer and natural CPU/return/arguments verified",
+  "preserved_failure_logs": [
+    "analysis/school-student-action-binding-v1-20261015.log",
+    "analysis/school-student-action-initializer-verification-v1-20261015.log"
+  ],
+  "corrections": [
+    "Added the original415070 instruction body to the finite native range; no wait-return substitution",
+    "Removed false verifier requirement for383–406-only480A60; current job3 correctly skips it"
+  ],
+  "regression": {
+    "python_tests": 70,
+    "failures": 0,
+    "log": "analysis/school-student-action-final-regression-20261015.log",
+    "strict_specs": 30,
+    "spec_log": "analysis/school-student-action-spec-final-20261015.log"
+  },
+  "preservation": "analysis/school-student-action-preservation-20261015.json",
+  "retained_files": 1360,
+  "unchanged_save_rule_fingerprints": 10,
+  "prior_Godot_model_window_checks": "Preserved prior baseline; no runtime/art edits, GPU rendering or redundant window replay claimed",
+  "progress": {
+    "total": 180,
+    "complete": 180,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-student-action-artifact-manifest-20261015.json",
+  "remaining": [
+    "Original482A30 effects and4918D0/damage/regen/map work to complete first student",
+    "Remaining occupied units and second world function return",
+    "Animation expiry/next opcodes and required180 enabled world updates",
+    "Original opening/VM/AI/events/waves and authoritative victory/reward/persistent school return"
+  ],
+  "authority": {
+    "full_unit_or_world_completed": false,
+    "original_opening_completed": false,
+    "VM_or_AI_completed": false,
+    "GPU_rendering_executed": false,
+    "live_input_captured": false,
+    "persistent_write": false,
+    "formal_adventure_enabled": false
+  },
+  "local_acceptance_commit": "Recorded in local Git history; no push"
+}
