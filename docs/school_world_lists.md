@@ -17,3 +17,5 @@
 最终报告 `analysis/school-world-lists-native-v1-20261014.json` 发布三份 `.venv-audit/world-lists-before-queue-*.pkl` 的SHA、来源、父案例和自然边界。文件只在私有忽略目录保存，包含验证后的原CPU/全内存，不是SAV或运行数据；完整验证后才生成。`load_verified_checkpoint` 先验证固定原版报告SHA和文件SHA再反序列化，核对源/父/案例身份、完整拥有缓冲和原调用栈。后续可直接恢复此边界，减少长初始化链重复开销；恢复新的审计子类时仍须先在构造时注册回调，不能更换已注册对象的类。
 
 完整world tick、队列消费、单位动画/行动/AI、VM/开场完成、波次和结算仍未执行。Godot当前试验和存档规则保持原字节；后续沿48CD90继续原命令队列与单位动画调度。
+
+最终新/父来源与原版报告回归29项、严格OpenSpec30项通过，保全1286个历史/运行时文件和十项存档规则。验收见 `analysis/school-world-lists-acceptance-20261014.json`。旧65套件426项和图形窗口结果保留为此前基线，本轮未改Godot代码或声称重复运行旧窗口。三个阶段分别本地提交，未push。

@@ -666,4 +666,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 166. Visibility/list acceptance
 
-- [ ] 166.1 Run relevant source/native/parent/spec regression, verify old runtime/save/history and owned Git bytes, document exact scope/remaining command/animation/world work and commit locally without pushing.
+- [x] 166.1 Run relevant source/native/parent/spec regression, verify old runtime/save/history and owned Git bytes, document exact scope/remaining command/animation/world work and commit locally without pushing.

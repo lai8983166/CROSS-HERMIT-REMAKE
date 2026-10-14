@@ -1,0 +1,133 @@
+{
+  "baseline": "2615390",
+  "scope": "Stages164–166: original opening visibility and complete 250-slot display/category lists before command queue",
+  "completed_source_native_commits": [
+    "8d9abf0 Execute original visibility and complete display/category loops and pin continuation checkpoints",
+    "4f4fafc Decode original vision masks and display/category list predicates and sorting"
+  ],
+  "native_report": "analysis/school-world-lists-native-v1-20261014.json",
+  "native_report_sha256": "a53782f2d596964181721cf81c837773a3eb378242667a1031f6c818f7400bbd",
+  "source_contract": "analysis/school-world-lists-source-contract-v2-20261014.json",
+  "actual_school_cases": 3,
+  "complete_original_parent_reports_equal": true,
+  "actual_counts": [
+    {
+      "name": "initial",
+      "occupied_slots": 38,
+      "display_state1_slots": 14,
+      "display_indices": [
+        0,
+        248,
+        2,
+        1
+      ],
+      "category_counts": [
+        14,
+        24,
+        8,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "student9_waiting",
+      "occupied_slots": 37,
+      "display_state1_slots": 13,
+      "display_indices": [
+        0,
+        248,
+        1
+      ],
+      "category_counts": [
+        13,
+        24,
+        8,
+        3,
+        3
+      ]
+    },
+    {
+      "name": "fifth_class",
+      "occupied_slots": 37,
+      "display_state1_slots": 13,
+      "display_indices": [
+        0,
+        248,
+        1
+      ],
+      "category_counts": [
+        13,
+        24,
+        8,
+        3,
+        3
+      ]
+    }
+  ],
+  "view_masks_all_bytes_verified": 33,
+  "declared_viewport_probes": 21,
+  "declared_sort_probes": 9,
+  "actual_pending": "48CD90 entry; natural return46B500; first instruction not executed",
+  "private_continuation_checkpoints": [
+    {
+      "path": ".venv-audit/world-lists-before-queue-initial.pkl",
+      "sha256": "c082fdb2bab9dab0d7cb4cb3a688ddaa083ea250ac328dd688d2612fe09521b8",
+      "bytes": 134469883,
+      "parent_case_sha256": "28aebf468dddf625154145b65d425976d26c663b9d8c47ddb303b16f68acfc73",
+      "evidence_kind": "private_actual_school_after_verified_lists_before_queue",
+      "pending_eip": "0x48cd90",
+      "runtime_or_original_save": false
+    },
+    {
+      "path": ".venv-audit/world-lists-before-queue-student9_waiting.pkl",
+      "sha256": "3bde844c4136d0f81d04667330738f055aab785e96958284d6c17b98f51a41a8",
+      "bytes": 133939698,
+      "parent_case_sha256": "a47dfef4227b17069aeec437dd4f9316f775a273394a9e875efd34b9dac8ff2d",
+      "evidence_kind": "private_actual_school_after_verified_lists_before_queue",
+      "pending_eip": "0x48cd90",
+      "runtime_or_original_save": false
+    },
+    {
+      "path": ".venv-audit/world-lists-before-queue-fifth_class.pkl",
+      "sha256": "b66d5d4c0c98eb3b45d60cdedbc1684cb6762d20dadac4aeeff9ea6b867b91d8",
+      "bytes": 133939696,
+      "parent_case_sha256": "6d9191b9615ce4df84a6f04d8e9d3c88896ab05dfb330965b25bf6bd9fde46b8",
+      "evidence_kind": "private_actual_school_after_verified_lists_before_queue",
+      "pending_eip": "0x48cd90",
+      "runtime_or_original_save": false
+    }
+  ],
+  "checkpoint_validation": "Fixed report/file SHA before unpickle, source/parent/case identities, complete owned buffers and original CPU/stack verified; no replay authority outside private audit",
+  "regression": {
+    "python_tests": 29,
+    "failures": 0,
+    "log": "analysis/school-world-lists-final-regression-20261014.log",
+    "strict_specs": 30,
+    "spec_log": "analysis/school-world-lists-spec-final-20261014.log"
+  },
+  "prior_Godot_model_window_checks": "Preserved as prior baseline; no runtime/art changes or redundant old window rerun claimed",
+  "preservation": "analysis/school-world-lists-preservation-20261014.json",
+  "retained_files": 1286,
+  "unchanged_save_rule_fingerprints": 10,
+  "progress": {
+    "total": 166,
+    "complete": 166,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-world-lists-artifact-manifest-20261014.json",
+  "remaining": [
+    "Original command queue and per-unit animation/action continuation",
+    "Full world tick and opening VM completion",
+    "Original AI/events/waves/491EF0 effects",
+    "Victory/rewards and persistent school/gate return"
+  ],
+  "authority": {
+    "world_tick_completed": false,
+    "opening_completed": false,
+    "AI_or_waves_executed": false,
+    "live_input_captured": false,
+    "persistent_write": false,
+    "formal_adventure_enabled": false
+  },
+  "local_acceptance_commit": "Final local stage commit recorded in Git history; no push"
+}
