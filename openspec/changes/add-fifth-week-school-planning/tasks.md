@@ -734,4 +734,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 183. First-unit return acceptance
 
-- [ ] 183.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document complete first-unit scope and remaining units/world/VM work, then commit locally without pushing.
+- [x] 183.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document complete first-unit scope and remaining units/world/VM work, then commit locally without pushing.

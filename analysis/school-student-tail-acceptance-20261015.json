@@ -1,0 +1,202 @@
+{
+  "baseline": "d8c836c",
+  "scope": "Stages181–183: complete original first enabled student unit through natural ret8 and next slot1 entry; declared isolated regeneration probes restored",
+  "completed_source_native_commits": [
+    "37b4515 Verify original first student return region vision and restored regen probes",
+    "ea54141 Decode first student update tail region statistics and regeneration"
+  ],
+  "source_contract": "analysis/school-student-tail-source-contract-20261015.json",
+  "native_report": {
+    "path": "analysis/school-student-tail-native-v2-20261015.json",
+    "sha256": "e6d66cf9386c9d2222aefeb716047b06f43eb3612769931a27e70d9f549fd6ce"
+  },
+  "actual_cases": 3,
+  "actual_units_completed_per_case": 1,
+  "actual_counts": [
+    {
+      "name": "initial",
+      "cell": [
+        10,
+        17
+      ],
+      "region_first_row_hex": "01001000",
+      "vision_args": [
+        10,
+        17,
+        9
+      ],
+      "actual_heals": [],
+      "real_ret": {
+        "va": "0x46ba07",
+        "sp": 33619612,
+        "return_va": "0x46b584",
+        "eax": 17
+      },
+      "returned": {
+        "va": "0x46b584",
+        "sp": 33619624
+      },
+      "pending": {
+        "va": "0x46b760",
+        "receiver": 234881424,
+        "return_va": "0x46b584",
+        "sp": 33619612,
+        "args": [
+          235409820,
+          1
+        ],
+        "first_instruction_executed": false
+      },
+      "declared_probe_count": 6,
+      "retained_bytes": 119484400
+    },
+    {
+      "name": "student9_waiting",
+      "cell": [
+        10,
+        17
+      ],
+      "region_first_row_hex": "01001000",
+      "vision_args": [
+        10,
+        17,
+        9
+      ],
+      "actual_heals": [],
+      "real_ret": {
+        "va": "0x46ba07",
+        "sp": 33619612,
+        "return_va": "0x46b584",
+        "eax": 17
+      },
+      "returned": {
+        "va": "0x46b584",
+        "sp": 33619624
+      },
+      "pending": {
+        "va": "0x46b760",
+        "receiver": 234881424,
+        "return_va": "0x46b584",
+        "sp": 33619612,
+        "args": [
+          235409820,
+          1
+        ],
+        "first_instruction_executed": false
+      },
+      "declared_probe_count": 6,
+      "retained_bytes": 119484400
+    },
+    {
+      "name": "fifth_class",
+      "cell": [
+        10,
+        17
+      ],
+      "region_first_row_hex": "01001000",
+      "vision_args": [
+        10,
+        17,
+        9
+      ],
+      "actual_heals": [],
+      "real_ret": {
+        "va": "0x46ba07",
+        "sp": 33619612,
+        "return_va": "0x46b584",
+        "eax": 17
+      },
+      "returned": {
+        "va": "0x46b584",
+        "sp": 33619624
+      },
+      "pending": {
+        "va": "0x46b760",
+        "receiver": 234881424,
+        "return_va": "0x46b584",
+        "sp": 33619612,
+        "args": [
+          235409820,
+          1
+        ],
+        "first_instruction_executed": false
+      },
+      "declared_probe_count": 6,
+      "retained_bytes": 119484400
+    }
+  ],
+  "declared_restored_regeneration_probes": 18,
+  "complete_MAP05_source_bytes_verified": 36880,
+  "complete_owned_regions": 10,
+  "private_continuation_checkpoints": [
+    {
+      "name": "initial",
+      "path": ".venv-audit/student-tail-before-slot1-initial.pkl",
+      "bytes": 135511539,
+      "sha256": "28decb4359d6a1277de40cddeaef6ba3e27125504c636195172ee41949ad0753",
+      "pending_eip": "0x46b760",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "path": ".venv-audit/student-tail-before-slot1-student9_waiting.pkl",
+      "bytes": 134981330,
+      "sha256": "cdf55b45f182897016cf436d7ea1362dc21b0eb673bc81a78b5e5bb5a914d897",
+      "pending_eip": "0x46b760",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "path": ".venv-audit/student-tail-before-slot1-fifth_class.pkl",
+      "bytes": 134981328,
+      "sha256": "4b855746633696c62bf6391cc7e4e42db10fd2280974be088995ca7b0a9f035b",
+      "pending_eip": "0x46b760",
+      "runtime_or_original_save": false
+    }
+  ],
+  "checkpoint_validation": "Fixed current report/file SHA before each unpickle, exact source/parent/case, complete owned bytes, next slot1 CPU/natural return and arguments; restore context to live Uc for 50-register digest and full64KiB stack",
+  "preserved_failure_logs": [
+    "analysis/school-student-tail-native-v1-20261015.log",
+    "analysis/school-student-tail-verification-v1-20261015.log"
+  ],
+  "corrections": [
+    "Guard43BB90 uses original call430480 return430485; no source return substituted",
+    "Verify restored live registers instead of UcContext scalar FP/descriptor representation"
+  ],
+  "regression": {
+    "python_tests": 78,
+    "failures": 0,
+    "log": "analysis/school-student-tail-final-regression-20261015.log",
+    "strict_specs": 30,
+    "spec_log": "analysis/school-student-tail-spec-final-20261015.log"
+  },
+  "preservation": "analysis/school-student-tail-preservation-20261015.json",
+  "retained_files": 1386,
+  "unchanged_save_rule_fingerprints": 10,
+  "prior_Godot_model_window_checks": "Preserved prior baseline; no runtime/art edits or window replay claimed",
+  "progress": {
+    "total": 183,
+    "complete": 183,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-student-tail-artifact-manifest-20261015.json",
+  "remaining": [
+    "Remaining occupied units and second world function return",
+    "Animation expiry and subsequent original opcodes",
+    "Required180 enabled world updates with controller in world order",
+    "Original opening/VM/AI/events/waves and authoritative victory/rewards/persistent school return"
+  ],
+  "authority": {
+    "first_unit_completed": true,
+    "next_unit_executed": false,
+    "second_world_completed": false,
+    "original_opening_completed": false,
+    "VM_or_AI_completed": false,
+    "nonempty_effect_or_damage_executed": false,
+    "GPU_rendering_executed": false,
+    "live_input_captured": false,
+    "persistent_write": false,
+    "formal_adventure_enabled": false
+  },
+  "local_acceptance_commit": "Recorded in local Git history; no push"
+}
