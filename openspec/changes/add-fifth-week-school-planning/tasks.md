@@ -642,4 +642,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 160. World mode continuation acceptance
 
-- [ ] 160.1 Run relevant new/parent source/native/spec checks, preserve prior trial/runtime/save/evidence bytes, document precise progress and remaining world boundary, verify owned Git bytes and commit locally without pushing.
+- [x] 160.1 Run relevant new/parent source/native/spec checks, preserve prior trial/runtime/save/evidence bytes, document precise progress and remaining world boundary, verify owned Git bytes and commit locally without pushing.
