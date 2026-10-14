@@ -702,4 +702,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 175. Second-world prefix acceptance
 
-- [ ] 175.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document remaining student-action/180 enabled updates/VM work and commit locally without pushing.
+- [x] 175.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document remaining student-action/180 enabled updates/VM work and commit locally without pushing.
