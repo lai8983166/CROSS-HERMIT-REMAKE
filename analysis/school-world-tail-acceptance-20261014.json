@@ -1,0 +1,154 @@
+{
+  "baseline": "e5b0a5f",
+  "scope": "Stages170–172: original post-unit paused world tail and first46B470 function return to declared driver",
+  "completed_source_native_commits": [
+    "77a1736 Execute original paused world tail through real function return",
+    "8f686a0 Decode original paused world tail and idle effect scheduling"
+  ],
+  "native_report": "analysis/school-world-tail-native-v1-20261014.json",
+  "native_report_sha256": "e2ea4525d3530b00b3a36af387f06dc0af414ba494f008ee1efd0cf10206fd7f",
+  "source_contract": "analysis/school-world-tail-source-contract-20261014.json",
+  "driver": "pinned verified CPU/all-memory restoration; original inner calls; declared audit RETURN sentinel",
+  "actual_cases": 3,
+  "actual_counts": [
+    {
+      "name": "initial",
+      "idle_effect_calls": 10,
+      "idle_effect_returns": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "real_ret": {
+        "va": "0x46b662",
+        "return_va": "0x3000000",
+        "sp": 33619712,
+        "eax": 0,
+        "original_outer_caller": false
+      },
+      "driver_return": {
+        "va": "0x3000000",
+        "sp": 33619716,
+        "ebp": 33619708,
+        "expected_caller_ebp": 33619708,
+        "eax": 0,
+        "declared_audit_sentinel": true
+      },
+      "retained_bytes": 119496667
+    },
+    {
+      "name": "student9_waiting",
+      "idle_effect_calls": 10,
+      "idle_effect_returns": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "real_ret": {
+        "va": "0x46b662",
+        "return_va": "0x3000000",
+        "sp": 33619712,
+        "eax": 0,
+        "original_outer_caller": false
+      },
+      "driver_return": {
+        "va": "0x3000000",
+        "sp": 33619716,
+        "ebp": 33619708,
+        "expected_caller_ebp": 33619708,
+        "eax": 0,
+        "declared_audit_sentinel": true
+      },
+      "retained_bytes": 119496667
+    },
+    {
+      "name": "fifth_class",
+      "idle_effect_calls": 10,
+      "idle_effect_returns": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "real_ret": {
+        "va": "0x46b662",
+        "return_va": "0x3000000",
+        "sp": 33619712,
+        "eax": 0,
+        "original_outer_caller": false
+      },
+      "driver_return": {
+        "va": "0x3000000",
+        "sp": 33619716,
+        "ebp": 33619708,
+        "expected_caller_ebp": 33619708,
+        "eax": 0,
+        "declared_audit_sentinel": true
+      },
+      "retained_bytes": 119496667
+    }
+  ],
+  "declared_counter_probes": 9,
+  "declared_idle_animation_calls": 90,
+  "declared_counter_inputs": [
+    0,
+    32767,
+    65535
+  ],
+  "first_paused_46B470_body_completed": true,
+  "whole_first_body_evidence": "Prior pinned admission/mode/map/list/command prefix plus this original suffix; outer caller remains declared audit sentinel",
+  "regression": {
+    "python_tests": 45,
+    "failures": 0,
+    "log": "analysis/school-world-tail-final-regression-20261014.log",
+    "strict_specs": 30,
+    "spec_log": "analysis/school-world-tail-spec-final-20261014.log"
+  },
+  "preservation": "analysis/school-world-tail-preservation-20261014.json",
+  "retained_files": 1324,
+  "unchanged_save_rule_fingerprints": 10,
+  "prior_Godot_model_window_checks": "Preserved prior baseline; no runtime/art edits or redundant window replay claimed",
+  "progress": {
+    "total": 172,
+    "complete": 172,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-world-tail-artifact-manifest-20261014.json",
+  "remaining": [
+    "Subsequent original opening controller/VM start and completion",
+    "Enabled unit action/active animation/AI and nonempty command paths",
+    "Original outer game task frame and events/waves/effect491EF0",
+    "Authoritative victory/reward/persistent school return"
+  ],
+  "authority": {
+    "enabled_gameplay_tick_completed": false,
+    "original_outer_task_frame_completed": false,
+    "original_opening_completed": false,
+    "active_animation_commands_executed": false,
+    "nonempty_queue_forwarded": false,
+    "live_input_captured": false,
+    "persistent_write": false,
+    "formal_adventure_enabled": false
+  },
+  "local_acceptance_commit": "Recorded in local Git history; no push"
+}

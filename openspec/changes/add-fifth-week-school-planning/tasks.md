@@ -690,4 +690,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 172. Paused world-tail acceptance
 
-- [ ] 172.1 Run relevant new/parent/spec checks, preserve runtime/save/history and owned Git bytes, document first paused function return versus remaining gameplay/VM work and commit locally without pushing.
+- [x] 172.1 Run relevant new/parent/spec checks, preserve runtime/save/history and owned Git bytes, document first paused function return versus remaining gameplay/VM work and commit locally without pushing.
