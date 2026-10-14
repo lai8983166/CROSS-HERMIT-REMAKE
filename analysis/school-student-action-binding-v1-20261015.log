@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_student_action_emulation.py", line 134, in <module>
+    path.write_text(report_text(report(a.phase)),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_student_action_emulation.py", line 119, in report
+    actual=e.run_phase(p)
+  File "F:\project\chaomofa\tools\school_student_action_emulation.py", line 82, in run_phase
+    self.uc.emu_start(begin,RETURN,timeout=5_000_000,count=150000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_student_action_emulation.py", line 51, in _hook
+    raise RuntimeError('student undeclared original instruction '+hex(address))
+RuntimeError: student undeclared original instruction 0x415070

@@ -710,7 +710,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 177. Native student direction and main pose binding
 
-- [ ] 177.1 Restore verified475D60 cases, execute original direction/main pose and eligibility functions to first465140, compare source bindings/full work/retained bytes and commit locally.
+- [x] 177.1 Restore verified475D60 cases, execute original direction/main pose and eligibility functions to first465140, compare source bindings/full work/retained bytes and commit locally.
 
 ## 178. Native attached animations and handler return
 
