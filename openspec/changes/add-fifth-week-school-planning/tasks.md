@@ -735,3 +735,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 183. First-unit return acceptance
 
 - [x] 183.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document complete first-unit scope and remaining units/world/VM work, then commit locally without pushing.
+
+## 184. Following students source projections
+
+- [x] 184.1 Derive per-job source pose/attachment/animation and complete stationary unit projections/refusals for remaining current friendly slots, then commit locally.
+
+## 185. Original remaining friendly unit returns
+
+- [ ] 185.1 Continue verifiedslot1 cases through all remaining friendly units and original empty-slot tests to unexecutedslot215, compare complete owned/retained bytes and natural calls, pin checkpoints and commit locally.
+
+## 186. First inactive mode11 template handlers
+
+- [ ] 186.1 Derive phase0 mode11 source early-return rules, execute originalslots215/216 to unexecutedscene217 with complete byte/stack/provenance checks, pin continuation and commit locally.
+
+## 187. Following-unit acceptance
+
+- [ ] 187.1 Run related new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document pending scene/world/180/VM work and commit locally without pushing.

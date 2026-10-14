@@ -213,3 +213,7 @@ Continue the verified475D60 CPU through its source phase0 initialization: direct
 ## First student update return and regeneration (2026-10-15)
 
 Continue the verified482A30 actual CPU through six empty effect scans, six empty damage-event scans, empty damage queue, full HP/MP regeneration/death guard, source MAP05 region statistics, vision and cell maintenance. Verify the original first46B760 return and next slot1 admission, stopping before its first instruction. Independently source-project full work/record/region/vision/occupancy and source class mask; execute finite declared regeneration thresholds/status/short-wrap/dead-HP probes with full restoration. Preserve runtime/save/history, pin next CPU and commit source/native/acceptance stages locally. Later units, nonempty effects/damage, full world/180 updates/VM/AI remain unresolved.
+
+## Following friendly units and first deferred templates (2026-10-15)
+
+Continue the verified next-slot1 CPU through all remaining current friendly mode25 initializers, original animations, empty-queue tails and map statistics, then through first inactive mode11 slots215/216 to unexecuted scene slot217. Derive per-job source archives/pose/attachment differences, validate whole work/record/pool/region/vision/retained memory and natural unit/loop calls. Preserve runtime/history/save and commit each source/native/deferred/acceptance stage locally. Complete second-world return remains subsequent work after the scene-specific handlers.

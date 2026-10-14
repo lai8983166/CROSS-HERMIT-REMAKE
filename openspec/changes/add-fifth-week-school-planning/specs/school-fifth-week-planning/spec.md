@@ -852,3 +852,16 @@ The audit SHALL independently verify the complete first enabled unit tail and it
 - **WHEN** finite HP/MP gaps, state1/2 and signed-short counters are explicitly bound for isolated472370 calls
 - **THEN** original positive recovery/threshold/short-wrap/dead-HP results match independent source rules and full inputs/CPU/stack restore
 - **AND** these probes are not presented as actual damage/healing, world advancement or persistent state
+
+### Requirement: Following friendly and inactive unit evidence
+The audit SHALL verify the remaining current friendly initializers and first inactive mode11 template handlers in natural world-loop order without granting unexecuted scene/world/VM authority.
+
+#### Scenario: Remaining current friendly units
+- **WHEN** verifiedslot1 cases resume with source jobs4/class6 and optionaljob9/class7 in mode25 phase0
+- **THEN** original pose/attachments/animations and stationary unit tails match complete independent work/records/pool/region/vision bytes and natural returns
+- **AND** original empty-slot tests stop before the first deferredslot215 unit instruction with a verified continuation
+
+#### Scenario: First inactive mode11 handlers
+- **WHEN** source state0 templates in slots215/216 enter mode11 phase0
+- **THEN** original479F40 movement clearing/phase advance and return1 skip subsequent animation/regen/map while records and map remain unchanged
+- **AND** execution stops before scene217 without implying activation, AI/events or whole-world completion
