@@ -43,7 +43,7 @@ def verify_case(case,phase):
         previous=prev['actual']['after']
     if a['before']!=previous or a['pending']!=boundary(phase,inputs):raise ValueError('student phase before/natural pending stack')
     calls=a['calls'];required={'binding':{0x475D60,0x46C040,0x46BCC0,0x465040,0x409FF0,0x40A400,0x40A520,0x468EB0,0x46BE50},
-      'initializer':{0x465140,0x40AF40,0x40B5E0,0x409EF0,0x40A400,0x40A520,0x40A800,0x47A8E0,0x480A60,0x490350,0x490A50},
+      'initializer':{0x465140,0x40AF40,0x40B5E0,0x409EF0,0x40A400,0x40A520,0x40A800,0x47A8E0,0x490350,0x490A50},
       'animation':{0x40A100,0x40A800}}[phase]
     if not required<={int(r['va'],16) for r in calls} or not required<=set(a['visited']):raise ValueError('student original required bodies')
     if phase=='binding':
@@ -51,11 +51,18 @@ def verify_case(case,phase):
         maincalls=[r for r in calls if r['va']=='0x409ff0']
         if len(maincalls)!=1 or maincalls[0]['args']!=[inputs['work_pointer']+0x48,0,89,0]:raise ValueError('student original pose program call')
     if phase=='initializer':
+        if 0x480A60 in a['visited']:raise ValueError('student job3 must skip383–406-only post-dispatch helper')
         nodes=expected['allocated_nodes'];clears=[{'return_va':'0x409f1a','args':[p,0,88]} for p in nodes]
         if a['native_clears']!=clears or len([r for r in calls if r['va']=='0x40b5e0'])!=2:raise ValueError('student original first-free nodes/clears')
         if [r['args'][0] for r in calls if r['va']=='0x40a800']!=nodes:raise ValueError('student immediate attached original steps')
+        attached=[r for r in calls if r['va']=='0x40af40']
+        wanted=[]
+        for p in s['attachments']:
+            definition=bytes.fromhex(p['definition_hex']);va=0x60F890+(p['animation']//1000-1)*800+(p['animation']%1000)*4
+            wanted.append([inputs['work_pointer']+0x48,inputs['effect_controller'],definition[1],definition[2],0,va&0xFFFF0000,7,definition[0]])
+        if [r['args'] for r in attached]!=wanted or any(r['receiver']!=inputs['main_controller'] or r['return_va']!='0x465269' for r in attached):raise ValueError('student original typed/raw attachment arguments')
         if [r['args'] for r in calls if r['va']=='0x490a50']!=[[n,inputs['work_pointer'],0] for n in range(3)]:raise ValueError('student original empty status slots')
-        if [(r['va'],r['eax']) for r in a['returns']]!=[('0x4757a3',0),('0x46b7e1',0)]:raise ValueError('student initializer/status original returns')
+        if a['returns']!=[{'va':'0x4757a3','sp':STACK+0xFF00-308,'eax':0},{'va':'0x46b7e1','sp':STACK+0xFF00-196,'eax':0}]:raise ValueError('student initializer/status original returns')
     if phase=='animation':
         w=inputs['work_pointer'];anim=[r for r in calls if r['va']=='0x40a100'];steps=[r['args'][0] for r in calls if r['va']=='0x40a800']
         if [r['args'] for r in anim]!=[[w+0x48]]+[[w+0xA0+i*NODE] for i in range(5)] or steps!=[w+0x48]+expected['linked_order']:raise ValueError('student all original main/linked/auxiliary updates')
@@ -68,6 +75,8 @@ def verify_case(case,phase):
 
 def load_verified_checkpoint(name,phase='animation'):
     if phase not in ('initializer','animation'):raise ValueError('student private phase')
+    report_raw=REPORTS[phase].read_bytes()
+    if hashlib.sha256(report_raw).hexdigest()!=PHASE_SHAS[phase]:raise ValueError('student current report SHA before unpickle')
     report=pinned(REPORTS[phase],PHASE_SHAS[phase]);case=next((r for r in report['cases'] if r['name']==name),None)
     if case is None:raise ValueError('student private case')
     verify_case(case,phase);cp=case['continuation_checkpoint'];path=ROOT/f'.venv-audit/student-action-{phase}-{name}.pkl'

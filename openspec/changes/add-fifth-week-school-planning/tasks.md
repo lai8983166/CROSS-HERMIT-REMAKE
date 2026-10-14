@@ -714,7 +714,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 178. Native attached animations and handler return
 
-- [ ] 178.1 Execute original two first-free pool allocations/links/immediate child frames, student cell scratch/phase and handler/status returns to primary40A100; compare entire work/pool and exact calls, pin next state and commit locally.
+- [x] 178.1 Execute original two first-free pool allocations/links/immediate child frames, student cell scratch/phase and handler/status returns to primary40A100; compare entire work/pool and exact calls, pin next state and commit locally.
 
 ## 179. Original student animation updates
 

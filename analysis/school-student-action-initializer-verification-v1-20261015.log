@@ -1,0 +1,27 @@
+.EE.
+======================================================================
+ERROR: test_precise_original_call_or_verified_private_state (tools.tests.test_school_student_action_emulation.InitializerTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_student_action_emulation.py", line 40, in test_precise_original_call_or_verified_private_state
+    payload,cp=load_verified_checkpoint(row['name'],self.phase);self.assertEqual(hex(payload['pending_eip']),cp['pending_eip']);self.assertFalse(cp['runtime_or_original_save'])
+  File "F:\project\chaomofa\tools\school_student_action_verification.py", line 81, in load_verified_checkpoint
+    verify_case(case,phase);cp=case['continuation_checkpoint'];path=ROOT/f'.venv-audit/student-action-{phase}-{name}.pkl'
+  File "F:\project\chaomofa\tools\school_student_action_verification.py", line 48, in verify_case
+    if not required<={int(r['va'],16) for r in calls} or not required<=set(a['visited']):raise ValueError('student original required bodies')
+ValueError: student original required bodies
+
+======================================================================
+ERROR: test_three_actual_full_source_native_phases (tools.tests.test_school_student_action_emulation.InitializerTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_student_action_emulation.py", line 14, in test_three_actual_full_source_native_phases
+    for row in self.data['cases']:self.assertTrue(verify_case(row,self.phase))
+  File "F:\project\chaomofa\tools\school_student_action_verification.py", line 48, in verify_case
+    if not required<={int(r['va'],16) for r in calls} or not required<=set(a['visited']):raise ValueError('student original required bodies')
+ValueError: student original required bodies
+
+----------------------------------------------------------------------
+Ran 4 tests in 3.124s
+
+FAILED (errors=2)

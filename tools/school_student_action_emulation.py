@@ -12,6 +12,7 @@ PHASES=('binding','initializer','animation')
 REPORTS={p:ROOT/f'analysis/school-student-action-{p}-v1-20261015.json' for p in PHASES}
 REPORTS['binding']=ROOT/'analysis/school-student-action-binding-v2-20261015.json'
 PHASE_SHAS={'binding':'22ff3c2c74fcdd344730a3ac6e2d207e3e9f2a4e02559a63c9d8470af0afa735'}
+PHASE_SHAS['initializer']='d418bd9ce6fc64d4bfe546f617a0bc407a4e9a6b24bb2eded72e0429d73ee0a7'
 
 
 class StudentActionEmulator(WorldSecondEmulator):
