@@ -1,0 +1,56 @@
+{
+  "baseline": "8d10364",
+  "scope": "Stages161–163: original opening-gated clock and complete locked map update through49B180 entry",
+  "completed_source_native_commits": [
+    "228e279 Execute original gated clock and complete map update with native memset",
+    "5d5fad0 Decode original gated clock and map buffer/pointer frame rules"
+  ],
+  "native_report": "analysis/school-world-map-native-v4-20261014.json",
+  "native_report_sha256": "7df722cc90844e668d9007d2da2e619aa3185e03476ffe3e0873b02994c82c41",
+  "source_contract": "analysis/school-world-map-source-contract-v2-20261014.json",
+  "actual_school_cases": 3,
+  "full_actual_parent_reports_equal": true,
+  "declared_clock_probes": 24,
+  "declared_mouse_probes": 27,
+  "total_new_declared_probes": 51,
+  "actual_pending": "49B180 entry; natural return46B4E8; first instruction not executed",
+  "original_clock_24_bytes_unchanged": true,
+  "original_memset_body_executed": true,
+  "plane_clear_bytes": 6144,
+  "complete_owned_map_region_bytes": 18864,
+  "restoration": "Full saved CPU context and64KiB stack; 50 live x86 register values and all owned input regions restored for every probe",
+  "retained_native_bytes_min": 119490488,
+  "regression": {
+    "python_tests": 21,
+    "failures": 0,
+    "log": "analysis/school-world-map-final-regression-20261014.log",
+    "strict_specs": 30,
+    "spec_log": "analysis/school-world-map-spec-final-20261014.log"
+  },
+  "prior_Godot_model_window_checks": "Preserved as prior baseline; runtime/art unchanged; no redundant old window rerun claimed",
+  "preservation": "analysis/school-world-map-preservation-20261014.json",
+  "retained_files": 1260,
+  "unchanged_save_rule_fingerprints": 10,
+  "progress": {
+    "total": 163,
+    "complete": 163,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-world-map-artifact-manifest-20261014.json",
+  "intermediate_reports_logs": "Retained; JSON tuple/array publishing comparison and exact ret-inclusive ranges corrected without mutating original input or historical evidence",
+  "remaining": [
+    "49B180 selection/window processing",
+    "Unit display lists and action/animation/world continuation",
+    "Original opening completion and AI/events/waves",
+    "491EF0 damage/effects and victory/rewards/persistent school return"
+  ],
+  "authority": {
+    "world_tick_completed": false,
+    "opening_completed": false,
+    "AI_or_waves_executed": false,
+    "live_input_captured": false,
+    "persistent_write": false,
+    "formal_adventure_enabled": false
+  },
+  "local_acceptance_commit": "Final local stage commit recorded in Git history; no push"
+}

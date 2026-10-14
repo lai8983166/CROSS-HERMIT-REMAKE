@@ -654,4 +654,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 163. World time/map acceptance
 
-- [ ] 163.1 Run appropriate source/native/parent/spec checks, verify retained history/runtime/save and owned Git bytes, document exact scope/remaining world dependencies and commit locally without pushing.
+- [x] 163.1 Run appropriate source/native/parent/spec checks, verify retained history/runtime/save and owned Git bytes, document exact scope/remaining world dependencies and commit locally without pushing.
