@@ -863,5 +863,5 @@ The audit SHALL verify the remaining current friendly initializers and first ina
 
 #### Scenario: First inactive mode11 handlers
 - **WHEN** source state0 templates in slots215/216 enter mode11 phase0
-- **THEN** original479F40 movement clearing/phase advance and return1 skip subsequent animation/regen/map while records and map remain unchanged
+- **THEN** original479F40 work flags6/7 clearing/phase advance and return1 skip subsequent animation/regen/map while records and map remain unchanged
 - **AND** execution stops before scene217 without implying activation, AI/events or whole-world completion

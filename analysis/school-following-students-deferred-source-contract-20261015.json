@@ -1,0 +1,78 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x479f40",
+      "end": "0x47a23c",
+      "sha256": "3991329d3119b13b5e732aeff56f7aebebcb1389ebe3b645df79b3cfa5172e84"
+    },
+    {
+      "va": "0x46b0b0",
+      "end": "0x46b0ec",
+      "sha256": "643701d81719c8d2cd5d15c24d7b9daf31dbca35b437069c1a9ccaca0044486f"
+    },
+    {
+      "va": "0x46b0f0",
+      "end": "0x46b12c",
+      "sha256": "5bd8ddc8ee9818d7a49469c791199aaffb763f4c070946f41b8a0987b9a91727"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x475b05",
+      "hex": "e836440000",
+      "mnemonic": "call",
+      "operands": "0x479f40"
+    },
+    {
+      "va": "0x479f93",
+      "hex": "e81811ffff",
+      "mnemonic": "call",
+      "operands": "0x46b0b0"
+    },
+    {
+      "va": "0x479fa1",
+      "hex": "e84a11ffff",
+      "mnemonic": "call",
+      "operands": "0x46b0f0"
+    },
+    {
+      "va": "0x479fa9",
+      "hex": "66c7400a0000",
+      "mnemonic": "mov",
+      "operands": "word ptr [eax + 0xa], 0"
+    },
+    {
+      "va": "0x479fba",
+      "hex": "8810",
+      "mnemonic": "mov",
+      "operands": "byte ptr [eax], dl"
+    },
+    {
+      "va": "0x47a224",
+      "hex": "b801000000",
+      "mnemonic": "mov",
+      "operands": "eax, 1"
+    },
+    {
+      "va": "0x46b7e3",
+      "hex": "7405",
+      "mnemonic": "je",
+      "operands": "0x46b7ea"
+    },
+    {
+      "va": "0x46b7e5",
+      "hex": "e90d020000",
+      "mnemonic": "jmp",
+      "operands": "0x46b9f7"
+    }
+  ],
+  "indices": [
+    215,
+    216
+  ],
+  "next_slot": 217,
+  "handler_return": 1,
+  "template_activation": false,
+  "scope": "First two actual state0 mode11 templates phase0, natural early return; no animation/regen/map or template activation"
+}

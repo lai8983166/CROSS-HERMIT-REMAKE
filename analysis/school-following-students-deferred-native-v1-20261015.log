@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_deferred_units_emulation.py", line 75, in <module>
+    path.write_text(report_text(report()),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_deferred_units_emulation.py", line 67, in report
+    e.uc.context_restore(payload['cpu']);a=e.run_deferred();cases.append({'name':name,'parent_checkpoint':cp,'actual':a,'continuation_checkpoint':e.save_deferred(name)})
+  File "F:\project\chaomofa\tools\school_deferred_units_emulation.py", line 39, in run_deferred
+    before=self.following_regions();expected=project(before);self.deferred_allowed=[(STACK,STACK+65536),(0x7A49E0,0x7A49E4)]
+  File "F:\project\chaomofa\tools\school_deferred_units.py", line 41, in project
+    if w[at+0x290]!=11 or w[at+0x292] or w[at+0x293] or w[at+0x2A7] or struct.unpack_from('<I',w,at+0x518)[0]:raise ValueError('deferred exact mode/phase/empty queue')
+ValueError: deferred exact mode/phase/empty queue
