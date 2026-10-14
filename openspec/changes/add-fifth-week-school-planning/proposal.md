@@ -181,3 +181,7 @@ Continue toward the playable current-squad battle by first exposing a separately
 ## Extended overnight battle integration (2026-10-14)
 
 The user authorizes multiple consecutive rounds. Correct the discovered original character-palette indirection before adding combat. Independently audit the original world/controller gates and current attack/defense derivation; compare bounded native probes with source rules. Export source initial active scene actors and directional art, then extend the isolated current-school trial with explicit attack/health and source-positioned opponents under declared remake scheduling. Keep original full world/VM/waves, authoritative victory and persistent rewards/gate clearing as unresolved until verified; never fabricate their completion. Verify graphical and save compatibility and commit each completed stage locally.
+
+## Original world mode continuation (2026-10-14)
+
+Continue the actual admitted world prefix through4678C0 and the first naturally nested499DA0 entry-controller update, stopping before493630. Independently decode mode request consumption and its UnitCtrl/map/task flags; execute separately declared mode probes on captured school memory with full restoration, never label these as original opening completion. Compare exact source-derived stores, stack and retained bytes, preserve the current playable trial/save/evidence and commit source/native/acceptance stages locally. Full world/action/AI/events remain subsequent dependencies.

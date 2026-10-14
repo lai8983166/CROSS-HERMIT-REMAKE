@@ -748,3 +748,16 @@ The system SHALL independently verify original world admission boundaries and th
 #### Scenario: Invalid or protected targets refuse atomically
 - **WHEN** a target or source/input is unsupported, absent, dead or protected, or the trial is closed/reopened
 - **THEN** invalid attacks grant no damage or reward and closing discards transient combat while preserving school/save bytes
+
+### Requirement: Original world mode and natural nested controller audit
+The audit SHALL independently decode original mode-request effects and execute the actual current-school world prefix through its first nested entry-controller update, comparing full owned and retained bytes.
+
+#### Scenario: Current opening state progresses inside world prefix
+- **WHEN** the SHA-pinned actual school state reaches4678C0 with no pending mode request
+- **THEN** the original callee returns naturally, the enabled entry controller performs its first native camera/state update, and execution stops before493630
+- **AND** full world/AI/VM/opening completion and school persistence remain unclaimed
+
+#### Scenario: Declared mode requests remain isolated
+- **WHEN** separately declared supported requests execute on captured school memory
+- **THEN** original UnitCtrl/map/task stores match independently source-derived complete bytes, and CPU/stack/owned memory are restored afterwards
+- **AND** invalid mode requests refuse before execution and no probe grants gameplay or settlement authority

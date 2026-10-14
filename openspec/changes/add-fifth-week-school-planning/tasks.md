@@ -631,3 +631,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 157. Extended trial acceptance
 
 - [x] 157.1 Run appropriate source/native/model/UI/spec regression, verify retained evidence/save fingerprints and owned Git bytes, document exact scope/remaining world and settlement work, and commit locally without pushing.
+
+## 158. Original world mode source contract
+
+- [x] 158.1 Independently decode4678C0 mode requests and map/task/UnitCtrl stores, derive complete owned-region effects and refusal semantics, verify source identity and commit locally.
+
+## 159. Actual nested world prefix and declared mode probes
+
+- [ ] 159.1 Resume pinned actual-school world admission through original mode return and first natural499DA0 update to493630 entry; independently compare full state/stack, execute isolated mode requests with exact restoration and retained-byte guards, and commit locally.
+
+## 160. World mode continuation acceptance
+
+- [ ] 160.1 Run relevant new/parent source/native/spec checks, preserve prior trial/runtime/save/evidence bytes, document precise progress and remaining world boundary, verify owned Git bytes and commit locally without pushing.
