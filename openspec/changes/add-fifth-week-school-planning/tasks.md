@@ -674,7 +674,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 168. Original paused unit-loop continuation
 
-- [ ] 168.1 Restore verified private school checkpoints, execute original command/input/cursor and all250 work tests through46B618, compare full bytes/stack/retained memory and declared selection probes with restoration, save verified next checkpoints and commit locally.
+- [x] 168.1 Restore verified private school checkpoints, execute original command/input/cursor and all250 work tests through46B618, compare full bytes/stack/retained memory and declared selection probes with restoration, save verified next checkpoints and commit locally.
 
 ## 169. Paused suffix acceptance
 
