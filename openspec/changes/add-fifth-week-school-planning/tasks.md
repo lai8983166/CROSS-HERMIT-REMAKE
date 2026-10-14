@@ -655,3 +655,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 163. World time/map acceptance
 
 - [x] 163.1 Run appropriate source/native/parent/spec checks, verify retained history/runtime/save and owned Git bytes, document exact scope/remaining world dependencies and commit locally without pushing.
+
+## 164. Vision and unit-list source policy
+
+- [x] 164.1 Independently decode source vision mask construction/clipping, work/record predicates, original display sorting/ties and category relationships; verify full-region projection/refusals and commit locally.
+
+## 165. Actual visibility and complete list suffix
+
+- [ ] 165.1 Replay pinned actual-school parents, execute opening visibility and original display/category loops through48CD90 entry, independently verify full owned/retained bytes and source boundary probes, publish verified private checkpoint provenance and commit locally.
+
+## 166. Visibility/list acceptance
+
+- [ ] 166.1 Run relevant source/native/parent/spec regression, verify old runtime/save/history and owned Git bytes, document exact scope/remaining command/animation/world work and commit locally without pushing.

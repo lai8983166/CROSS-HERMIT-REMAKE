@@ -774,3 +774,16 @@ The audit SHALL execute the actual current-school world suffix through original 
 - **WHEN** separately declared supported clock and mouse inputs run
 - **THEN** exact source-derived signed arithmetic, hover boundaries and owned buffer writes match original bodies, and complete captured inputs/context/stack are restored
 - **AND** no live input or persistent school/reward authority is granted
+
+### Requirement: Original visibility stamp and unit lists
+The audit SHALL execute the actual opening-specific selection/visibility route and complete original display/category-list builders, independently verifying masks, predicates, sorting and full owned bytes.
+
+#### Scenario: Original opening updates visibility and admitted lists
+- **WHEN** actual school world state continues at49B180 with opening still enabled
+- **THEN** the source-selected mask stamps current/history planes and original250-slot loops rebuild exactly admitted display/category lists, stopping before48CD90
+- **AND** occupied deferred templates remain distinguished from record-state1 display candidates; no AI, activation waves or full world tick is claimed
+
+#### Scenario: Verified private continuation checkpoints
+- **WHEN** complete source/native/retention comparisons pass for a current-school case
+- **THEN** a private checkpoint records exact CPU/memory state, source and parent identities with a published SHA for later bounded continuation
+- **AND** checkpoints grant no runtime/save authority and malformed source/projection inputs refuse

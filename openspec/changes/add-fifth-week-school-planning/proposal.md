@@ -189,3 +189,7 @@ Continue the actual admitted world prefix through4678C0 and the first naturally 
 ## Original map/time world suffix (2026-10-14)
 
 Continue the captured493630 world stack through the original clock gate and map update, stopping at49B180 before its first instruction. Decode complete source timer, double-buffer clearing and map-pointer/input stores, verify actual-school retained memory and separately declared timer/mouse probes with exact restoration. Preserve graphical trial/save evidence and commit source/native/acceptance stages locally; full world/action/AI/events remain later dependencies.
+
+## Original selection/vision and unit-list suffix (2026-10-14)
+
+Continue49B180 through the opening-specific visibility stamp and original display/category list builders, stopping before48CD90 command-queue processing. Independently decode source masks, activity/status/relation predicates, viewport inclusion and original sorting/tie behavior; compare full owned buffers and actual current/scene rows. Preserve trial/save/history and save verified private next-boundary checkpoints with pinned provenance for faster subsequent bounded audits. Commit source/native/acceptance stages locally; full world/action/AI/events/VM remain later work.
