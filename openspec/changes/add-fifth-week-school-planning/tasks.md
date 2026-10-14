@@ -750,4 +750,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 187. Following-unit acceptance
 
-- [ ] 187.1 Run related new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document pending scene/world/180/VM work and commit locally without pushing.
+- [x] 187.1 Run related new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document pending scene/world/180/VM work and commit locally without pushing.
