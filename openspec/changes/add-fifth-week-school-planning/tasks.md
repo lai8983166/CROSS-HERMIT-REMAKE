@@ -643,3 +643,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 160. World mode continuation acceptance
 
 - [x] 160.1 Run relevant new/parent source/native/spec checks, preserve prior trial/runtime/save/evidence bytes, document precise progress and remaining world boundary, verify owned Git bytes and commit locally without pushing.
+
+## 161. Time/map source contracts
+
+- [x] 161.1 Decode original timer gates/signed arithmetic, map double-buffer ownership and pointer boundaries independently; derive full owned-region changes/refusals, verify source tests and commit locally.
+
+## 162. Actual world time/map suffix
+
+- [ ] 162.1 Replay pinned actual school/world parents, continue493630 through original timer/map helpers and native buffer clearing to49B180 entry, compare complete bytes/stack and isolated clock/mouse probes with restoration, and commit locally.
+
+## 163. World time/map acceptance
+
+- [ ] 163.1 Run appropriate source/native/parent/spec checks, verify retained history/runtime/save and owned Git bytes, document exact scope/remaining world dependencies and commit locally without pushing.

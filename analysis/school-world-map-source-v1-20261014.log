@@ -1,0 +1,27 @@
+E..E
+======================================================================
+ERROR: test_complete_map_swap_clear_preserves_history_and_unwritten_bytes (tools.tests.test_school_world_map.WorldMapSourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_world_map.py", line 41, in test_complete_map_swap_clear_preserves_history_and_unwritten_bytes
+    out=project_map_frame(before)
+  File "F:\project\chaomofa\tools\school_world_map.py", line 76, in project_map_frame
+    source_contract();out=deepcopy(before)
+  File "F:\project\chaomofa\tools\school_world_map.py", line 35, in source_contract
+    if required not in code:raise ValueError('world map swap/hover instruction identity '+required)
+ValueError: world map swap/hover instruction identity eax, dword ptr [ecx + 0xa8]
+
+======================================================================
+ERROR: test_source_identity_ranges_and_hover_boundary_difference (tools.tests.test_school_world_map.WorldMapSourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_world_map.py", line 9, in test_source_identity_ranges_and_hover_boundary_difference
+    c=source_contract();self.assertEqual(c['hover_screen_y'],[30,605]);self.assertEqual(c['pixel_screen_y'],[30,599])
+  File "F:\project\chaomofa\tools\school_world_map.py", line 35, in source_contract
+    if required not in code:raise ValueError('world map swap/hover instruction identity '+required)
+ValueError: world map swap/hover instruction identity eax, dword ptr [ecx + 0xa8]
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.037s
+
+FAILED (errors=2)

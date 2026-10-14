@@ -761,3 +761,16 @@ The audit SHALL independently decode original mode-request effects and execute t
 - **WHEN** separately declared supported requests execute on captured school memory
 - **THEN** original UnitCtrl/map/task stores match independently source-derived complete bytes, and CPU/stack/owned memory are restored afterwards
 - **AND** invalid mode requests refuse before execution and no probe grants gameplay or settlement authority
+
+### Requirement: Original world time and map suffix
+The audit SHALL execute the actual current-school world suffix through original time and map helper bodies, independently verify complete owned bytes and stop before49B180.
+
+#### Scenario: Opening still updates map work
+- **WHEN** the actual493630 call continues with opening enabled and event time disabled
+- **THEN** the timer remains unchanged while original map pointer processing and double-buffer clear execute naturally
+- **AND** full world tick, actions, AI, events and opening completion remain unclaimed
+
+#### Scenario: Bounded input probes restore captured state
+- **WHEN** separately declared supported clock and mouse inputs run
+- **THEN** exact source-derived signed arithmetic, hover boundaries and owned buffer writes match original bodies, and complete captured inputs/context/stack are restored
+- **AND** no live input or persistent school/reward authority is granted

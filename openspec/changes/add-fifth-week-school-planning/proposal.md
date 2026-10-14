@@ -185,3 +185,7 @@ The user authorizes multiple consecutive rounds. Correct the discovered original
 ## Original world mode continuation (2026-10-14)
 
 Continue the actual admitted world prefix through4678C0 and the first naturally nested499DA0 entry-controller update, stopping before493630. Independently decode mode request consumption and its UnitCtrl/map/task flags; execute separately declared mode probes on captured school memory with full restoration, never label these as original opening completion. Compare exact source-derived stores, stack and retained bytes, preserve the current playable trial/save/evidence and commit source/native/acceptance stages locally. Full world/action/AI/events remain subsequent dependencies.
+
+## Original map/time world suffix (2026-10-14)
+
+Continue the captured493630 world stack through the original clock gate and map update, stopping at49B180 before its first instruction. Decode complete source timer, double-buffer clearing and map-pointer/input stores, verify actual-school retained memory and separately declared timer/mouse probes with exact restoration. Preserve graphical trial/save evidence and commit source/native/acceptance stages locally; full world/action/AI/events remain later dependencies.
