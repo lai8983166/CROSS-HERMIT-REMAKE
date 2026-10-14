@@ -678,4 +678,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 169. Paused suffix acceptance
 
-- [ ] 169.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact owned Git bytes, document remaining nonempty queue/action/VM work and commit locally without pushing.
+- [x] 169.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact owned Git bytes, document remaining nonempty queue/action/VM work and commit locally without pushing.

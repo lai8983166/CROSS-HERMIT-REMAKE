@@ -1,0 +1,98 @@
+{
+  "baseline": "6cab380",
+  "scope": "Stages167–169: original empty queue/no-command input/cursor and complete paused250-slot work loop before490FC0",
+  "completed_source_native_commits": [
+    "1b0130a Verify original empty queue input and complete paused unit loop",
+    "5e87592 Decode original paused command and unit update policy"
+  ],
+  "native_report": "analysis/school-world-command-native-v1-20261014.json",
+  "native_report_sha256": "7bfecbc6d729269e596b0c6b9d3d223a5e24f1f2dd62df87e2c398f642338112",
+  "source_contract": "analysis/school-world-command-source-contract-20261014.json",
+  "driver": "pinned verified CPU/all-memory restoration; upstream initialization not replayed this run",
+  "actual_counts": [
+    {
+      "name": "initial",
+      "work_tests": 250,
+      "occupied_updates": 38,
+      "display_state1_updates": 14,
+      "vision_merges": 4,
+      "occupancy_change_calls": 0
+    },
+    {
+      "name": "student9_waiting",
+      "work_tests": 250,
+      "occupied_updates": 37,
+      "display_state1_updates": 13,
+      "vision_merges": 3,
+      "occupancy_change_calls": 0
+    },
+    {
+      "name": "fifth_class",
+      "work_tests": 250,
+      "occupied_updates": 37,
+      "display_state1_updates": 13,
+      "vision_merges": 3,
+      "occupancy_change_calls": 0
+    }
+  ],
+  "declared_selection_probes": 12,
+  "private_continuation_checkpoints": [
+    {
+      "path": ".venv-audit/world-command-before-effects-initial.pkl",
+      "bytes": 134471657,
+      "sha256": "2715fa669be66640cc58d7d43e6dfe386ac0f98c4b96f4a83d607877bac7037a",
+      "pending_eip": "0x490fc0",
+      "runtime_or_original_save": false
+    },
+    {
+      "path": ".venv-audit/world-command-before-effects-student9_waiting.pkl",
+      "bytes": 133941460,
+      "sha256": "2e0fa007181f1e062e618c0c0058b2ee1704d17c2bf1f70ced1042c71fa1e725",
+      "pending_eip": "0x490fc0",
+      "runtime_or_original_save": false
+    },
+    {
+      "path": ".venv-audit/world-command-before-effects-fifth_class.pkl",
+      "bytes": 133941458,
+      "sha256": "9f47d1d768d44590f3b00410dd45a66e976f68ef0e140af6340f92d670cc5f74",
+      "pending_eip": "0x490fc0",
+      "runtime_or_original_save": false
+    }
+  ],
+  "checkpoint_validation": "Fixed report/file SHA before unpickle; source/parent/case identity, full owned memory and natural CPU/stack verified",
+  "pending": "490FC0 first instruction not executed; natural receiverUnitCtrl and return46B620",
+  "regression": {
+    "python_tests": 37,
+    "failures": 0,
+    "log": "analysis/school-world-command-final-regression-20261014.log",
+    "strict_specs": 30,
+    "spec_log": "analysis/school-world-command-spec-final-20261014.log"
+  },
+  "preservation": "analysis/school-world-command-preservation-20261014.json",
+  "retained_files": 1306,
+  "unchanged_save_rule_fingerprints": 10,
+  "prior_Godot_model_window_checks": "Preserved prior baseline; no runtime/art edits or redundant window replay claimed",
+  "progress": {
+    "total": 169,
+    "complete": 169,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-world-command-artifact-manifest-20261014.json",
+  "remaining": [
+    "Original post-unit490FC0/49CC60/49C400/466880/493A30/48CE60 suffix",
+    "Nonempty queue and enabled action/animation/AI",
+    "Original VM/opening completion and full world tick",
+    "Original waves/effect491EF0 and authoritative victory/reward/persistent school return"
+  ],
+  "authority": {
+    "world_tick_completed": false,
+    "opening_completed": false,
+    "action_animation_AI_executed": false,
+    "nonempty_queue_consumed": false,
+    "live_input_captured": false,
+    "original_movement_executed": false,
+    "persistent_write": false,
+    "formal_adventure_enabled": false
+  },
+  "local_acceptance_commit": "Recorded in local Git history; no push"
+}
