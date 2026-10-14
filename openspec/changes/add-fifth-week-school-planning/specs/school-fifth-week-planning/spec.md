@@ -839,3 +839,16 @@ The audit SHALL verify source-derived first-student initialization and actual or
 - **WHEN** the verified initializer reaches the original main animation call
 - **THEN** main and both linked frame waits plus five idle auxiliary controllers, completion and work counter match source byte projections
 - **AND** execution stops before482A30 with exact stack, retained memory and private continuation provenance
+
+### Requirement: First enabled student return and regeneration evidence
+The audit SHALL independently verify the complete first enabled unit tail and its natural return, separating actual full HP/MP from declared depleted-value recovery probes.
+
+#### Scenario: Actual first enabled student returns
+- **WHEN** three pinned482A30 student cases continue with empty effect/damage queues and full health/magic
+- **THEN** original six-controller scans, regen/death checks, source region statistics, vision and cell maintenance match full owned bytes and retained memory
+- **AND** original46B760 returns naturally and execution stops before the next slot1 update
+
+#### Scenario: Declared recovery boundaries restore
+- **WHEN** finite HP/MP gaps, state1/2 and signed-short counters are explicitly bound for isolated472370 calls
+- **THEN** original positive recovery/threshold/short-wrap/dead-HP results match independent source rules and full inputs/CPU/stack restore
+- **AND** these probes are not presented as actual damage/healing, world advancement or persistent state

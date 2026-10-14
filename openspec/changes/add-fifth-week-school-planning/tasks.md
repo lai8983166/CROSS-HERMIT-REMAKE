@@ -723,3 +723,15 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 180. Student initialization and animation acceptance
 
 - [x] 180.1 Run relevant source/native/parent/spec checks, preserve runtime/save/history and owned Git bytes, document original active-animation progress and remaining unit/VM work, and commit locally without pushing.
+
+## 181. Student tail and regen source rules
+
+- [x] 181.1 Decode empty effect/damage tails, actual regeneration/death guard, source region mask/vision/cell bookkeeping and finite regeneration boundaries; verify full source projections/refusals and commit locally.
+
+## 182. Complete original first student and recovery probes
+
+- [ ] 182.1 Restore verified482A30 cases, execute original first-unit tail and natural return to next slot1 entry, compare full bytes/stack/retained memory and restored declared regen probes, pin continuation checkpoints and commit locally.
+
+## 183. First-unit return acceptance
+
+- [ ] 183.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document complete first-unit scope and remaining units/world/VM work, then commit locally without pushing.
