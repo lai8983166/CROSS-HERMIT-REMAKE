@@ -826,3 +826,16 @@ The audit SHALL independently verify the next declared46B470 invocation through 
 - **WHEN** actual full state is verified at the student handler entry
 - **THEN** private CPU/all-memory checkpoints are pinned by immutable report/file identities and source/parent/case/owned-byte/stack checks
 - **AND** unsupported current mode, pending transition, command queue or initial controller state is rejected without claiming activity/VM/AI completion
+
+### Requirement: First enabled student initialization and animation evidence
+The audit SHALL verify source-derived first-student initialization and actual original animation updates across bounded natural call boundaries without granting unexecuted world/VM/AI authority.
+
+#### Scenario: Main pose and attached initializer
+- **WHEN** three verified second-world cases resume the first mode25 student at475D60 phase0
+- **THEN** original direction2/pose18 binding, two first-free88-byte attached pool nodes, source links/frames/layers and immediate steps match complete independent work/pool projections
+- **AND** the handler/status preamble returns naturally to primary40A100 without stepping other units
+
+#### Scenario: Original first animation update
+- **WHEN** the verified initializer reaches the original main animation call
+- **THEN** main and both linked frame waits plus five idle auxiliary controllers, completion and work counter match source byte projections
+- **AND** execution stops before482A30 with exact stack, retained memory and private continuation provenance

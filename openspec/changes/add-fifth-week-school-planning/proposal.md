@@ -205,3 +205,7 @@ Continue the verified490FC0 CPU through the source post-unit cursor/menu/hover, 
 ## Original second update and first student action admission (2026-10-14)
 
 Continue the verified first paused world return using a separately declared next46B470 invocation. Execute its original controller state4 branch in natural world order, consume request170, enable action34, set state5 and native180 delay, then original timer/map/list/empty input prefix and first occupied unit command/status dispatch to475D60 entry. Preserve task/event/AI/VM completion boundaries; do not skip the required enabled-unit updates during the180 interval. Verify whole owned bytes, source refusal rules, private next-boundary provenance and local source/native/acceptance commits.
+
+## First enabled student initialization and animation (2026-10-15)
+
+Continue the verified475D60 CPU through its source phase0 initialization: direction2, pose18, two source-backed attached animations, cell scratch and phase1. Verify main pose binding first, then original shared-pool allocations/links/immediate attached steps and handler/status return to primary40A100, then main/two-attached/five-idle animation updates to482A30. Decode program/table/sprite fields independently from source archives/EXE and compare full work/global pool plus retained memory. Pin verified continuations, preserve runtime/save/history and commit each source/binding/attachment/animation/acceptance stage locally. Further unit processing, enabled180 ticks, opening VM/AI and settlement remain unresolved.

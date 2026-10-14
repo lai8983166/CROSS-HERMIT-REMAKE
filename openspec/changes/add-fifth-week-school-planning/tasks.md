@@ -703,3 +703,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 175. Second-world prefix acceptance
 
 - [x] 175.1 Run relevant new/parent/spec regression, preserve runtime/save/history and exact Git bytes, document remaining student-action/180 enabled updates/VM work and commit locally without pushing.
+
+## 176. Student initializer and animation source policy
+
+- [x] 176.1 Derive source pose/direction/program/sprite/shared-pool rules and full initializer/animation projections, verify source identity/refusal tests and commit locally.
+
+## 177. Native student direction and main pose binding
+
+- [ ] 177.1 Restore verified475D60 cases, execute original direction/main pose and eligibility functions to first465140, compare source bindings/full work/retained bytes and commit locally.
+
+## 178. Native attached animations and handler return
+
+- [ ] 178.1 Execute original two first-free pool allocations/links/immediate child frames, student cell scratch/phase and handler/status returns to primary40A100; compare entire work/pool and exact calls, pin next state and commit locally.
+
+## 179. Original student animation updates
+
+- [ ] 179.1 Continue original main/linked and five auxiliary animation updates to482A30, compare complete source work/pool/counter/call/retained state, pin verified next-boundary checkpoints and commit locally.
+
+## 180. Student initialization and animation acceptance
+
+- [ ] 180.1 Run relevant source/native/parent/spec checks, preserve runtime/save/history and owned Git bytes, document original active-animation progress and remaining unit/VM work, and commit locally without pushing.
