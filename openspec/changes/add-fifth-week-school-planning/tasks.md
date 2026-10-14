@@ -686,7 +686,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 171. Original paused world function return
 
-- [ ] 171.1 Restore verified490FC0 private checkpoints, execute original suffix through46B662 to the existing declared driver, verify complete owned/retained bytes and exact stack/EAX plus restored counter probes and commit locally.
+- [x] 171.1 Restore verified490FC0 private checkpoints, execute original suffix through46B662 to the existing declared driver, verify complete owned/retained bytes and exact stack/EAX plus restored counter probes and commit locally.
 
 ## 172. Paused world-tail acceptance
 
