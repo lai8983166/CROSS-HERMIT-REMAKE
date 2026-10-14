@@ -742,7 +742,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 185. Original remaining friendly unit returns
 
-- [ ] 185.1 Continue verifiedslot1 cases through all remaining friendly units and original empty-slot tests to unexecutedslot215, compare complete owned/retained bytes and natural calls, pin checkpoints and commit locally.
+- [x] 185.1 Continue verifiedslot1 cases through all remaining friendly units and original empty-slot tests to unexecutedslot215, compare complete owned/retained bytes and natural calls, pin checkpoints and commit locally.
 
 ## 186. First inactive mode11 template handlers
 
