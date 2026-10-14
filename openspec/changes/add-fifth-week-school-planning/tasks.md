@@ -698,7 +698,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 174. Natural second-world and student handler entry
 
-- [ ] 174.1 Replay the pinned first tail, invoke the declared next world update through original controller/action enabling/map/list/input/first-unit status calls, verify complete bytes/stack/retained memory to475D60 entry, pin next checkpoints and commit locally.
+- [x] 174.1 Replay the pinned first tail, invoke the declared next world update through original controller/action enabling/map/list/input/first-unit status calls, verify complete bytes/stack/retained memory to475D60 entry, pin next checkpoints and commit locally.
 
 ## 175. Second-world prefix acceptance
 
