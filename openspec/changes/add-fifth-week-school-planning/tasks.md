@@ -871,3 +871,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 217. Animation lifecycle acceptance
 
 - [x] 217.1 Run relevant source/native/parent/spec checks, preserve history/runtime/save and exact Git bytes, document remaining180/VM/AI/outer-task boundaries and commit locally without pushing.
+
+## 218. Spawn and non-head release source policy
+
+- [x] 218.1 Derive bounded76–118 opcode1/first-free/reset/bank3/layer/immediate-step and predecessor-unlink projections/refusals; commit locally.
+
+## 219. Consecutive original worlds76–106
+
+- [ ] 219.1 Restore75 cases and execute every world76–106 through visible friendly frames to before first spawn, verify full source/native state/calls/retention/CPU and pin106; commit locally.
+
+## 220. Original world107 and child spawn
+
+- [ ] 220.1 Continue world107 through actual class-specific child allocation/reset/binding/immediate step/visited skip, verify full state/calls/stack/retention and pin107; commit locally.
+
+## 221. Consecutive original worlds108–118
+
+- [ ] 221.1 Continue each world108–118 through child frames and2063 terminal/non-head unlink/free, verify full state/calls/stack/retention/CPU and pin118; commit locally.
+
+## 222. Spawn continuation acceptance
+
+- [ ] 222.1 Run related source/native/parent/spec checks, preserve history/runtime/save and exact Git bytes, document remaining main/180/VM/AI/outer-task work and commit locally without pushing.

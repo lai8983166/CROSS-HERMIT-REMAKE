@@ -247,3 +247,7 @@ Continue verified sixth-return cases through every original declared world7–15
 ## Consecutive animation lifecycle16–75 (2026-10-15)
 
 Continue every declared original world16–75 from the verified fifteenth return in three batches16–42/43–65/66–75. Verify friendly and attached frame transitions, job5 terminal/next-update root clearing,383 source infinite repeat and actual2100+job child terminal/unlink/pool-free. Preserve complete original state/calls/retention and all history/runtime/save. Losslessly compress large hex buffers per world to bound report memory while retaining every owned byte. Commit source, each native batch and acceptance locally; full180/VM/AI/outer-task remain later work.
+
+## Consecutive source child spawning76–118 (2026-10-15)
+
+Continue every original declared world76–118 from verified75. Verify friendly visible frames through106, original opcode1 at107 reusing the first freed pool slot, class-specific bank3/program1 binding/immediate child step and source layer semantics, then subsequent updates through2063 terminal117 and non-head unlink/free118. Preserve all prior evidence/runtime/save, compact full-byte evidence and natural calls/CPU/retention. Commit source,76–106,107,108–118 and acceptance locally; main terminal/phase transition, full180/VM/AI/outer task remain future work.

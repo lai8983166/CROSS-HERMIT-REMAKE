@@ -956,3 +956,16 @@ The audit SHALL verify all original declared worlds16–75 and distinguish termi
 - **WHEN** calls65/73/74 execute the actual383 repeat and2100+job terminal lifecycle
 - **THEN** original repeat127 jumps backward3 instructions and decrements the new first frame in the same call; child completion later unlinks from its root and clears only pool byte0 on the following update
 - **AND** calls continue through75 with full losslessly retained owned bytes and no full180/VM/AI/outer-task completion authority
+
+### Requirement: Continuous source opcode1 spawning76–118
+The audit SHALL execute each declared original world76–118 and distinguish spawned main-archive children from persistent EFCT attachments.
+
+#### Scenario: Original spawn reuses a freed slot
+- **WHEN** world107 expires the source friendly regular frame and reaches opcode1
+- **THEN** original40ADA0 uses first-free pool allocation/full reset, binds parent bank3/program1, links and immediately updates the child once with instruction layer0/1
+- **AND** main opcode-loop countdown, visited-byte skip and the existing2063 update match full source bytes/natural calls/retention
+
+#### Scenario: Existing attachment unlinks after the new child
+- **WHEN** original worlds117/118 end then clear2063
+- **THEN** original unlink updates the preceding spawned node+20 and frees only2063 pool byte0 while preserving root head and its live spawned child
+- **AND** every intermediate world and full returned CPU are verified without granting full180/VM/AI/outer task authority
