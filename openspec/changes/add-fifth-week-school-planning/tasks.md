@@ -934,7 +934,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 233. Original world182 last enabled decrement
 
-- [ ] 233.1 Restore verified181 in all three cases and execute complete182 through delay0 with full source bytes/calls/retention/CPU, pin returned checkpoints and commit locally.
+- [x] 233.1 Restore verified181 in all three cases and execute complete182 through delay0 with full source bytes/calls/retention/CPU, pin returned checkpoints and commit locally.
 
 ## 234. Original world183 paused transition
 

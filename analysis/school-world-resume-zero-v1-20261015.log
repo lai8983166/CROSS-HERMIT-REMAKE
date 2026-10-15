@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_world_resume_emulation.py", line 202, in <module>
+    path.write_bytes(gzip.compress(report_text(report(args.phase)).encode('utf-8'),compresslevel=6,mtime=0))
+  File "F:\project\chaomofa\tools\school_world_resume_emulation.py", line 192, in report
+    actual=e.run_entry() if phase=='entry' else e.run_world(next(iter(PHASES[phase])))
+  File "F:\project\chaomofa\tools\school_world_resume_emulation.py", line 134, in run_world
+    def run_world(self,tick):return dict(tick=tick,prefix=self.run_prefix(tick),units=self.run_units(tick),suffix=self.run_suffix(tick))
+  File "F:\project\chaomofa\tools\school_world_resume_emulation.py", line 130, in run_suffix
+    if self.following_regions()!=before or self.tail_regions()!=wanted or cpu['EIP']!=RETURN or cpu['ESP']!=STACK+0xFF00+4 or cpu['EBP']!=caller_bp or cpu['EAX']!=0 or self.world_final_effect_returns!=[1]*10 or self.world_final_real_ret is None:raise RuntimeError('resume entire natural suffix/CPU')
+RuntimeError: resume entire natural suffix/CPU
