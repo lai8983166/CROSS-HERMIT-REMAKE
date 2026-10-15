@@ -991,3 +991,18 @@ The audit SHALL execute every declared original world127–181 from pinned126 in
 #### Scenario: Job9 handoff and complete bounded waiting continuation
 - **WHEN** the actual third friendly unit ends at128 and proceeds through129–133, followed by all worlds134–181
 - **THEN** original voice draw count/threshold, recursive nonpersistent child release, pending/mode/pose lifecycle and383 repeat match source, no world is skipped, all returned CPU/checkpoints are verified, and delay1 does not grant zero-delay/VM/AI/outer-task or full180 completion authority
+
+### Requirement: Original countdown zero and paused script boundary
+The audit SHALL continue verified181 through original182 and183 and the next184 state6 prefix with independent source expectations, complete owned/retained bytes, original calls and CPU provenance. It MUST distinguish enabled1→0 from the following action0/state6 transition, verify all250 paused slots and frozen character counters/animations, and stop184 before the actual preflight entry4551C0. Script archive and entry identity SHALL be source pinned. Full preflight/playback/AI/outer-task and persistent settlement MUST remain unclaimed.
+
+#### Scenario: Last delay decrement remains enabled
+- **WHEN** original state5 sees delay1 on182
+- **THEN** it stores0 and completes an enabled unit loop without changing state5
+
+#### Scenario: Following zero test pauses units
+- **WHEN** original state5 sees delay0 on183
+- **THEN** it disables action and advances6 before the paused250-slot loop and natural46B662 return
+
+#### Scenario: State6 reaches the actual script entry
+- **WHEN** the next declared184 original controller queries the captured zero busy byte
+- **THEN** it naturally calls4551C0 with0/1 and stops before its first instruction, retaining its real caller stack and source script

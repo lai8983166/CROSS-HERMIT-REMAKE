@@ -1,0 +1,18 @@
+test_last_enabled_then_paused_complete_world_projections (tools.tests.test_school_world_resume.SourceTests) ... FAIL
+test_paused_changed_record_or_moving_cell_refused (tools.tests.test_school_world_resume.SourceTests) ... ok
+test_source_zero_test_precedes_decrement_and_busy_entry (tools.tests.test_school_world_resume.SourceTests) ... ok
+test_wrong_delay_action_state_or_skipped_call_refused (tools.tests.test_school_world_resume.SourceTests) ... ok
+
+======================================================================
+FAIL: test_last_enabled_then_paused_complete_world_projections (tools.tests.test_school_world_resume.SourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_world_resume.py", line 16, in test_last_enabled_then_paused_complete_world_projections
+    for i in (1,2,5,6,10):self.assertEqual(last['units']['after'][i]['hex'],paused['units']['after'][i]['hex'])
+AssertionError: '020014000000000000000000000000000000000007[4050 chars]0000' != '000000000000000000000000000000000000000000[4050 chars]0000'
+Diff is 8473 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 4 tests in 53.191s
+
+FAILED (failures=1)

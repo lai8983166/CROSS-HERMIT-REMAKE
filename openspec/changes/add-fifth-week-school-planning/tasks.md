@@ -927,3 +927,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 231. Idle-mode continuation acceptance
 
 - [x] 231.1 Run relevant new/parent/spec regression, preserve history/runtime/save and exact Git bytes, document zero-delay/controller/180/VM/AI/outer-task boundaries and commit locally without pushing.
+
+## 232. Countdown zero and paused handoff source policy
+
+- [x] 232.1 Derive bounded182 enabled decrement,183 action0/state6 paused loop/suffix and184 captured predicate/preflight entry with source/refusal checks; commit locally.
+
+## 233. Original world182 last enabled decrement
+
+- [ ] 233.1 Restore verified181 in all three cases and execute complete182 through delay0 with full source bytes/calls/retention/CPU, pin returned checkpoints and commit locally.
+
+## 234. Original world183 paused transition
+
+- [ ] 234.1 Continue183 through action0/state6 and all250 paused slots, prove frozen character animation/counters with map/vision bookkeeping and natural return, pin checkpoints and commit locally.
+
+## 235. Original world184 actual preflight entry
+
+- [ ] 235.1 Continue next original184 prefix through captured456B20 predicate to unexecuted4551C0 with exact stack/receiver/arguments/source script and retained bytes; pin checkpoint and commit locally.
+
+## 236. Countdown boundary acceptance
+
+- [ ] 236.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document remaining preflight/playback/AI/outer-task work and commit locally without pushing.

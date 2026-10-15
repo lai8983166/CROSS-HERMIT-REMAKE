@@ -1,0 +1,11 @@
+# Original countdown zero and paused preflight boundary
+
+This continuation starts at the verified original world181 return. Each world is an explicitly declared audit call to46B470, with natural inner calls and46B662 return; it is not the original outer task/render scheduler.
+
+The independent model distinguishes182's enabled1→0 decrement from183's subsequent action0/state6 zero-test. Paused unit updates retain character animation, counters, regeneration and region statistics while still maintaining vision and stationary cells. Prefix region-statistics scratch clearing is expected, so a paused whole-world region buffer need not equal the previous world's populated buffer. Independent idle-effect counters keep advancing.
+
+State6 reads actual global7F4491 through456B20. The bounded next184 invocation stops before4551C0(0,1), preserving real caller49A0D4 and the full captured source script. Preflight execution, selected script playback, AI, outer task/render completion and persistent settlement remain future work.
+
+Source policy: five checks passed. The first test run incorrectly compared previous populated region scratch to the following prefix-cleared scratch; corrected the assertion to compare paused unit before/after and retained the failed log. No original result was replaced.
+
+All stages use new evidence/private checkpoints; original assets, runtime, saves and historical evidence are preserved. Local Git only; no push.
