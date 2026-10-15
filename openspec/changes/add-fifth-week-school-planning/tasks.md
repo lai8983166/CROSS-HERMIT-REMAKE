@@ -978,4 +978,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 244. Continuous script continuation acceptance
 
-- [ ] 244.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document real remaining OS/playback/outer-task/AI boundaries and commit locally without push.
+- [x] 244.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document real remaining OS/playback/outer-task/AI boundaries and commit locally without push.

@@ -1,0 +1,667 @@
+{
+  "baseline": "e8f95e09c96f4b2ef85c145afa5cf26f8d7b5be7",
+  "stages": "237–244",
+  "scope": "Continuous actual184 preflight/binding/controller7 and complete184/185 paused worlds; declared first454CF0 task initialization0→1",
+  "source_native_commits": [
+    "0db47cb Derive continuous preflight native cleanup binding and paused world policy",
+    "484892a Verify continuous original preflight and native guarded cleanup return",
+    "1c581ea Verify actual selected script binding and retained original controller stack",
+    "30c3332 Complete original world184 controller seven and full paused return",
+    "fe7b63e Derive original first task setup text buffer resets and inactive guards",
+    "a7286d6 Verify original world185 native script status wait and full paused return",
+    "1a82181 Verify original first script task setup and native buffer reset return"
+  ],
+  "native_reports": [
+    {
+      "phase": "preflight",
+      "path": "analysis/school-world-script-preflight-v1-20261016.json.gz",
+      "sha256": "670b12fcacef2480f4c16c95c815939ab733c9147cf592dd0490b1c23245a167"
+    },
+    {
+      "phase": "binding",
+      "path": "analysis/school-world-script-binding-v1-20261016.json.gz",
+      "sha256": "f9abaa7837f35c2245df2da3eed62773b9be223db1bd26d0cfc7cb3ed459e690"
+    },
+    {
+      "phase": "world184",
+      "path": "analysis/school-world-script-world184-v1-20261016.json.gz",
+      "sha256": "6500692194cdce3c322ab65619d1b8a74ed02c8f2df31ce24f90f477ee6b3970"
+    },
+    {
+      "phase": "world185",
+      "path": "analysis/school-world-script-world185-v1-20261016.json.gz",
+      "sha256": "bcc16bebf16996f7a71abedbf88ed367399155ac335a0be4b2979768b1cdb0c9"
+    },
+    {
+      "phase": "task",
+      "path": "analysis/school-world-script-task-v1-20261016.json.gz",
+      "sha256": "babea602e77d57541e3a65050e788d17a858c818175d2e34dda2cce2590ff20e"
+    }
+  ],
+  "case_counts": [
+    {
+      "name": "initial",
+      "preflight": {
+        "calls": 48,
+        "pending": {
+          "va": "0x49a0d4",
+          "sp": 33619512,
+          "ebp": 33619616,
+          "eax": 1,
+          "ecx": 236978176,
+          "first_instruction_executed": false
+        },
+        "adapters": [
+          {
+            "va": "0x7000000",
+            "receiver": 242490752,
+            "return_va": "0x45521c",
+            "sp": 33619388,
+            "args": [
+              242490752,
+              5875212
+            ],
+            "result": 4294967200
+          },
+          {
+            "va": "0x7000010",
+            "receiver": 8223784,
+            "return_va": "0x45528d",
+            "sp": 33619396,
+            "args": [],
+            "result": 0
+          }
+        ],
+        "retained_bytes": 119458239
+      },
+      "binding": {
+        "calls": 16,
+        "pending": {
+          "va": "0x49a0f4",
+          "sp": 33619512,
+          "ebp": 33619616,
+          "eax": 0,
+          "ecx": 234881024,
+          "first_instruction_executed": false
+        },
+        "adapters": [],
+        "retained_bytes": 119458239
+      },
+      "world184": {
+        "tick": 184,
+        "occupied_units": 38,
+        "unit_calls": 132,
+        "status_calls": [],
+        "status_result": null,
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        },
+        "retained_bytes": [
+          119127950,
+          119484352,
+          119496667
+        ]
+      },
+      "world185": {
+        "tick": 185,
+        "occupied_units": 38,
+        "unit_calls": 132,
+        "status_calls": [
+          {
+            "va": "0x454c40",
+            "receiver": 234881024,
+            "return_va": "0x49a167",
+            "sp": 33619508,
+            "args": []
+          }
+        ],
+        "status_result": 1,
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        },
+        "retained_bytes": [
+          119127950,
+          119484352,
+          119496667
+        ]
+      },
+      "task": {
+        "calls": 14,
+        "phase": 1,
+        "status": 1,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "va": "0xe320050",
+            "slot": "0x5922c4",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "original_return": {
+          "va": "0x454ec1",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "retained_bytes": 119494571
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "preflight": {
+        "calls": 48,
+        "pending": {
+          "va": "0x49a0d4",
+          "sp": 33619512,
+          "ebp": 33619616,
+          "eax": 1,
+          "ecx": 236978176,
+          "first_instruction_executed": false
+        },
+        "adapters": [
+          {
+            "va": "0x7000000",
+            "receiver": 242490752,
+            "return_va": "0x45521c",
+            "sp": 33619388,
+            "args": [
+              242490752,
+              5875212
+            ],
+            "result": 4294967200
+          },
+          {
+            "va": "0x7000010",
+            "receiver": 8223784,
+            "return_va": "0x45528d",
+            "sp": 33619396,
+            "args": [],
+            "result": 0
+          }
+        ],
+        "retained_bytes": 119458239
+      },
+      "binding": {
+        "calls": 16,
+        "pending": {
+          "va": "0x49a0f4",
+          "sp": 33619512,
+          "ebp": 33619616,
+          "eax": 0,
+          "ecx": 234881024,
+          "first_instruction_executed": false
+        },
+        "adapters": [],
+        "retained_bytes": 119458239
+      },
+      "world184": {
+        "tick": 184,
+        "occupied_units": 37,
+        "unit_calls": 126,
+        "status_calls": [],
+        "status_result": null,
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        },
+        "retained_bytes": [
+          119127950,
+          119484356,
+          119496667
+        ]
+      },
+      "world185": {
+        "tick": 185,
+        "occupied_units": 37,
+        "unit_calls": 126,
+        "status_calls": [
+          {
+            "va": "0x454c40",
+            "receiver": 234881024,
+            "return_va": "0x49a167",
+            "sp": 33619508,
+            "args": []
+          }
+        ],
+        "status_result": 1,
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        },
+        "retained_bytes": [
+          119127950,
+          119484356,
+          119496667
+        ]
+      },
+      "task": {
+        "calls": 14,
+        "phase": 1,
+        "status": 1,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "va": "0xe320050",
+            "slot": "0x5922c4",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "original_return": {
+          "va": "0x454ec1",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "retained_bytes": 119494571
+      }
+    },
+    {
+      "name": "fifth_class",
+      "preflight": {
+        "calls": 48,
+        "pending": {
+          "va": "0x49a0d4",
+          "sp": 33619512,
+          "ebp": 33619616,
+          "eax": 1,
+          "ecx": 236978176,
+          "first_instruction_executed": false
+        },
+        "adapters": [
+          {
+            "va": "0x7000000",
+            "receiver": 242490752,
+            "return_va": "0x45521c",
+            "sp": 33619388,
+            "args": [
+              242490752,
+              5875212
+            ],
+            "result": 4294967200
+          },
+          {
+            "va": "0x7000010",
+            "receiver": 8223784,
+            "return_va": "0x45528d",
+            "sp": 33619396,
+            "args": [],
+            "result": 0
+          }
+        ],
+        "retained_bytes": 119458239
+      },
+      "binding": {
+        "calls": 16,
+        "pending": {
+          "va": "0x49a0f4",
+          "sp": 33619512,
+          "ebp": 33619616,
+          "eax": 0,
+          "ecx": 234881024,
+          "first_instruction_executed": false
+        },
+        "adapters": [],
+        "retained_bytes": 119458239
+      },
+      "world184": {
+        "tick": 184,
+        "occupied_units": 37,
+        "unit_calls": 126,
+        "status_calls": [],
+        "status_result": null,
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        },
+        "retained_bytes": [
+          119127950,
+          119484356,
+          119496667
+        ]
+      },
+      "world185": {
+        "tick": 185,
+        "occupied_units": 37,
+        "unit_calls": 126,
+        "status_calls": [
+          {
+            "va": "0x454c40",
+            "receiver": 234881024,
+            "return_va": "0x49a167",
+            "sp": 33619508,
+            "args": []
+          }
+        ],
+        "status_result": 1,
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        },
+        "retained_bytes": [
+          119127950,
+          119484356,
+          119496667
+        ]
+      },
+      "task": {
+        "calls": 14,
+        "phase": 1,
+        "status": 1,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "va": "0xe320050",
+            "slot": "0x5922c4",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "original_return": {
+          "va": "0x454ec1",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "retained_bytes": 119494571
+      }
+    }
+  ],
+  "complete_world_invocations": 6,
+  "slot_tests": 1500,
+  "occupied_unit_updates": 224,
+  "paused_targeted_unit_calls": 768,
+  "preflight_calls": 144,
+  "binding_calls": 48,
+  "task_calls": 42,
+  "declared_platform_adapters": 9,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "preflight",
+      "path": ".venv-audit/world-script-preflight-initial.pkl",
+      "bytes": 136825920,
+      "sha256": "a3aff85d5c26e65fb3dd962501ab1ced389486282670b2eabb763b9913a2372a",
+      "pending_eip": "0x49a0d4",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "binding",
+      "path": ".venv-audit/world-script-binding-initial.pkl",
+      "bytes": 136819889,
+      "sha256": "43e89fc1444a8016939fe5519a31b07096d8aa9499a6a028af27bcd4d5f42c5d",
+      "pending_eip": "0x49a0f4",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "world184",
+      "path": ".venv-audit/world-script-world184-initial.pkl",
+      "bytes": 136830059,
+      "sha256": "12097afb8f98914cb855647117477015c0a55a7405a47f601713772a0b6fc40a",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "world185",
+      "path": ".venv-audit/world-script-world185-initial.pkl",
+      "bytes": 136830842,
+      "sha256": "1351c01434a8219f860dbce5c707d748d1564cac397206bf9f471afae139fd07",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "task",
+      "path": ".venv-audit/world-script-task-initial.pkl",
+      "bytes": 136834037,
+      "sha256": "cca2e2824a853b831798983530231535183150649efaa55eddbc119ca5c46a8b",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "preflight",
+      "path": ".venv-audit/world-script-preflight-student9_waiting.pkl",
+      "bytes": 136287895,
+      "sha256": "c8d683f40ffda321c164beedfedfa9317ba13a1c73ee482838e2b56492ba7d01",
+      "pending_eip": "0x49a0d4",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "binding",
+      "path": ".venv-audit/world-script-binding-student9_waiting.pkl",
+      "bytes": 136281864,
+      "sha256": "bedf1575ad294aee8517c4b380f3ab2e4408cfa757a1eaff528ef7037dde3f08",
+      "pending_eip": "0x49a0f4",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "world184",
+      "path": ".venv-audit/world-script-world184-student9_waiting.pkl",
+      "bytes": 136292022,
+      "sha256": "26aa5cbcdc60ba024d94a3c4742d9b38a50e6d9d454288cc6b23470f8576fe45",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "world185",
+      "path": ".venv-audit/world-script-world185-student9_waiting.pkl",
+      "bytes": 136292805,
+      "sha256": "4e0204cb8af8f1f251f457b583b497e1054435c468368c4b6dfa101b5e5f2840",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "task",
+      "path": ".venv-audit/world-script-task-student9_waiting.pkl",
+      "bytes": 136295991,
+      "sha256": "cfe32d5d2ed94fd8ad47bfd6b7987bacf0bf75b171b3451e6936c21837c432c2",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "preflight",
+      "path": ".venv-audit/world-script-preflight-fifth_class.pkl",
+      "bytes": 136287833,
+      "sha256": "2bfe6271d40684a13e3276f74fb67b5e819963645dadbd3f74ae27c3b9800ae5",
+      "pending_eip": "0x49a0d4",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "binding",
+      "path": ".venv-audit/world-script-binding-fifth_class.pkl",
+      "bytes": 136281802,
+      "sha256": "fe1f098ce12c829566ef2a5f2b7cc216a5daa46d6bfafc364f880731b736649d",
+      "pending_eip": "0x49a0f4",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "world184",
+      "path": ".venv-audit/world-script-world184-fifth_class.pkl",
+      "bytes": 136291960,
+      "sha256": "87965d700c2638e7b3898d84e87d250b775d695fece16f03659f8aab17003bdf",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "world185",
+      "path": ".venv-audit/world-script-world185-fifth_class.pkl",
+      "bytes": 136292743,
+      "sha256": "a1e451037756981db4b62448da892fae90821e02bcfd89d5e4ee5c14568815a8",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "task",
+      "path": ".venv-audit/world-script-task-fifth_class.pkl",
+      "bytes": 136295929,
+      "sha256": "c2e3e8a14287d5199d9e52414f33795a098d7906299e4ee1c221b61ddbd8fbcf",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15719,
+  "save_rule_fingerprints": 10,
+  "preservation": "analysis/school-world-script-preservation-20261016.json",
+  "regression": {
+    "python_tests": 45,
+    "new_tests": 28,
+    "direct_parent_tests": 17,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-world-script-final-regression-20261016.log",
+    "spec_log": "analysis/school-world-script-spec-final-20261016.log",
+    "prior_regression": {
+      "path": "analysis/school-world-resume-final-regression-20261015.log",
+      "sha256": "4d0536b142a27f48dfc2a800d0c322f5a3eddb8fdb52ade45ae3d67da120474c",
+      "historical_37_check_baseline_preserved": true
+    }
+  },
+  "progress": {
+    "total": 244,
+    "complete": 244,
+    "remaining": 0
+  },
+  "authority": {
+    "original_preflight_VM": true,
+    "original_selected_binding": true,
+    "original_controller7": true,
+    "complete_original184_185": true,
+    "native_helper_bodies": true,
+    "original_task_setup0_to1": true,
+    "only_captured_platform_adapters": true,
+    "live_input_sampling": false,
+    "normal_playback": false,
+    "full_outer_task": false,
+    "audio_backend_or_GPU": false,
+    "AI_waves_or_settlement": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Original main input period before subsequent task polling; current captured temporary input flag isFF",
+    "Normal script playback and actual outer task/world/render scheduling",
+    "AI/events/waves, nonempty commands/effects/damage and authoritative victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-world-script-artifact-manifest-20261016.json",
+  "local_only": true
+}
