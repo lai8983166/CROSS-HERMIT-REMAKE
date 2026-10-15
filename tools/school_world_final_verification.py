@@ -1,6 +1,7 @@
 """Independent final-unit calls and bounded enabled-world return provenance."""
 import hashlib,json,pickle,struct
 from copy import deepcopy
+from functools import lru_cache
 from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ECX,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X86_REG_EAX
 from tools.school_world_final import *
 from tools.school_world_final_emulation import UNITCTRL,STACK,RETURN,MAPCTRL,PARENT,PARENT_SHA,ROOTS
@@ -10,12 +11,26 @@ from tools.school_student_tail_verification import retained
 from tools.school_world_tail_verification import effect_calls
 
 REPORTS={p:ROOT/f'analysis/school-world-final-{p}-v1-20261015.json' for p in ('units','return')}
-SHAS={'units':'55db19a7b77bac377de783e61ff63e1da0a0404584ead42c4ff3786e35cd10b5','return':None}
+SHAS={'units':'55db19a7b77bac377de783e61ff63e1da0a0404584ead42c4ff3786e35cd10b5','return':'f070a74c78eaab9024bb1cfac32b7ebbec8116814226a2d806225337a5dd5329'}
 INPUTS=ROOT/'analysis/school-world-final-inputs-20261015.json'
 INPUTS_SHA='9ad9906f38f47770d8cc6bb201a6ab6e1db8c5ac83ea8d68c245472ddbdaa4f0'
 
 
 def pending():return {'va':'0x490fc0','receiver':UNITCTRL,'return_va':'0x46b620','sp':STACK+0xFF00-92,'args':[],'first_instruction_executed':False}
+
+
+@lru_cache(maxsize=3)
+def verified_parent(name):
+    parent=next(c for c in pinned(PARENT,PARENT_SHA)['cases'] if c['name']==name)
+    verify_parent(parent)
+    return parent
+
+
+@lru_cache(maxsize=3)
+def verified_units(name):
+    parent=next(c for c in pinned(REPORTS['units'],SHAS['units'])['cases'] if c['name']==name)
+    verify_case(parent,'units')
+    return parent
 
 
 def unit_calls(inputs,units):
@@ -51,7 +66,7 @@ def verify_case(case,phase):
     if phase not in REPORTS:raise ValueError('world final exact phase')
     parent=next((c for c in pinned(PARENT,PARENT_SHA)['cases'] if c['name']==case['name']),None);capture=next((c for c in pinned(INPUTS,INPUTS_SHA)['cases'] if c['name']==case['name']),None)
     if parent is None or capture is None or case['parent_checkpoint']!=parent['continuation_checkpoint'] or capture['parent_checkpoint']!=case['parent_checkpoint']:raise ValueError('world final original parent identity')
-    verify_parent(parent);a=case['actual']
+    verified_parent(case['name']);a=case['actual']
     if a['phase']!=phase or a['tail_inputs']!=capture['tail_inputs'] or a['tail_before']!=capture['tail_before']:raise ValueError('world final complete captured suffix state')
     if phase=='units':
         if a['before']!=parent['actual']['after'] or a['before']!=capture['before'] or a['inputs']!=capture['inputs']:raise ValueError('world final complete unit parent bytes')
@@ -75,7 +90,7 @@ def verify_case(case,phase):
         if actual!=wanted or not {0x46BA07,0x46B586,0x46B59C,0x46B61B}<=set(a['visited']) or any(va in a['visited'] for va in (0x490FC0,0x495220,0x46BC20,0x40AB80,0x472550,0x43C470)):raise ValueError('world final unit natural returns/loop clear/closed events')
         required={int(r['va'],16) for r in a['calls']}
     else:
-        prior=next(c for c in pinned(REPORTS['units'],SHAS['units'])['cases'] if c['name']==case['name']);verify_case(prior,'units')
+        prior=verified_units(case['name'])
         if case['units_checkpoint']!=prior['continuation_checkpoint'] or a['before']!=prior['actual']['after'] or a['after']!=a['before'] or a['inputs']!=a['tail_inputs'] or a['tail_after']!=suffix_project(a['inputs'],a['tail_before']):raise ValueError('world final entire enabled suffix projection/provenance')
         sp=STACK+0xFF00-92;calls=[{'va':hex(va),'receiver':UNITCTRL,'return_va':hex(ret),'sp':sp} for va,ret in ROOTS.items()]
         calls += [{'va':'0x456b20','receiver':a['inputs']['entry_receiver'],'return_va':'0x48ce8b','sp':sp-88},{'va':'0x48d5d0','receiver':UNITCTRL,'return_va':'0x48ce99','sp':sp-88},
@@ -102,6 +117,10 @@ def load_verified_checkpoint(name,phase='return'):
     if phase not in REPORTS or SHAS[phase] is None:raise ValueError('world final pinned phase required')
     raw=REPORTS[phase].read_bytes()
     if hashlib.sha256(raw).hexdigest()!=SHAS[phase]:raise ValueError('world final current report SHA before unpickle')
+    identities=[(PARENT,PARENT_SHA),(INPUTS,INPUTS_SHA)]
+    if phase=='return':identities.append((REPORTS['units'],SHAS['units']))
+    for path,sha in identities:
+        if hashlib.sha256(path.read_bytes()).hexdigest()!=sha:raise ValueError('world final current source/parent report SHA before unpickle')
     case=next((c for c in json.loads(raw)['cases'] if c['name']==name),None)
     if case is None:raise ValueError('world final private case')
     verify_case(case,phase);cp=case['continuation_checkpoint'];raw=(ROOT/cp['path']).read_bytes()

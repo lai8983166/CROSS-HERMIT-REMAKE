@@ -1,6 +1,8 @@
 import hashlib,json,unittest
 from copy import deepcopy
-from tools.school_world_final_verification import REPORTS,SHAS,verify_case,load_verified_checkpoint
+from pathlib import Path
+from unittest.mock import patch
+from tools.school_world_final_verification import REPORTS,SHAS,PARENT,verify_case,load_verified_checkpoint
 from tools.school_world_final import source_contract
 
 
@@ -32,9 +34,16 @@ class Checks:
         for c in self.data['cases']:
             payload,cp=load_verified_checkpoint(c['name'],self.phase);self.assertEqual(hex(payload['pending_eip']),cp['pending_eip'])
         with self.assertRaises(ValueError):load_verified_checkpoint('../initial',self.phase)
+        # A warm immutable-parent cache cannot authorize changed current files.
+        original=Path.read_bytes
+        def changed(path):return b'{}' if path==PARENT else original(path)
+        with patch.object(Path,'read_bytes',changed),patch('tools.school_world_final_verification.pickle.loads') as unpickle:
+            with self.assertRaises(ValueError):load_verified_checkpoint('initial',self.phase)
+            unpickle.assert_not_called()
 
 
 class UnitsTests(Checks,unittest.TestCase):phase='units'
+class ReturnTests(Checks,unittest.TestCase):phase='return'
 
 
 if __name__=='__main__':unittest.main()

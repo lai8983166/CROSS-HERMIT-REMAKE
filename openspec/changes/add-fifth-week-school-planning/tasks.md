@@ -782,7 +782,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 195. Original second world function return
 
-- [ ] 195.1 Continue verified490FC0 through original closed-gate suffix/ten effects/secondary skip/empty forwarding and real46B662 return to the existing declared driver, verify full regions/CPU/stack/retention and pin continuation; commit locally.
+- [x] 195.1 Continue verified490FC0 through original closed-gate suffix/ten effects/secondary skip/empty forwarding and real46B662 return to the existing declared driver, verify full regions/CPU/stack/retention and pin continuation; commit locally.
 
 ## 196. Enabled world body acceptance
 
