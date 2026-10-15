@@ -862,7 +862,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 215. Consecutive original worlds43–65
 
-- [ ] 215.1 Continue every world43–65 including383 infinite repeat and same-call decrement, verify full source/native state/calls/retention/CPU and pin65; commit locally.
+- [x] 215.1 Continue every world43–65 including383 infinite repeat and same-call decrement, verify full source/native state/calls/retention/CPU and pin65; commit locally.
 
 ## 216. Consecutive original worlds66–75
 

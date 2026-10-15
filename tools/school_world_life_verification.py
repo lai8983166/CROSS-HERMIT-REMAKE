@@ -16,7 +16,7 @@ from tools.school_world_tail_verification import effect_calls
 from tools.school_world_final_verification import pending as suffix_pending
 
 REPORTS={p:ROOT/f'analysis/school-world-life-{p}-v{2 if p=="terminal" else 1}-20261015.json.gz' for p in PHASES}
-SHAS={'terminal': '5197339b74060896388dbeced50eb876cc18c3f872d57a7e384b300790c988b5', 'repeat': None, 'release': None}
+SHAS={'terminal': '5197339b74060896388dbeced50eb876cc18c3f872d57a7e384b300790c988b5', 'repeat': '4dc5bb9c4912b823f208541f12ebe3257e17f4197fee4a52c71857d4628ae4c5', 'release': None}
 
 
 @lru_cache(maxsize=8)
