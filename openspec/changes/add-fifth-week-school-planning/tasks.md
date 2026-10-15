@@ -866,7 +866,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 216. Consecutive original worlds66–75
 
-- [ ] 216.1 Continue every world66–75 including child terminal/next-update unlink and actual pool release, verify full state/calls/restart/retention/CPU and pin75; commit locally.
+- [x] 216.1 Continue every world66–75 including child terminal/next-update unlink and actual pool release, verify full state/calls/restart/retention/CPU and pin75; commit locally.
 
 ## 217. Animation lifecycle acceptance
 
