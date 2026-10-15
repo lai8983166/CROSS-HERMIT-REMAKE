@@ -974,7 +974,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 243. Original first task initialization
 
-- [ ] 243.1 Declare one454CF0 after185, execute full native phase0→1 setup with only bounded existing-buffer lstrlenA adapter, verify full ownership/retention/calls/CPU and pin in all cases; commit locally.
+- [x] 243.1 Declare one454CF0 after185, execute full native phase0→1 setup with only bounded existing-buffer lstrlenA adapter, verify full ownership/retention/calls/CPU and pin in all cases; commit locally.
 
 ## 244. Continuous script continuation acceptance
 

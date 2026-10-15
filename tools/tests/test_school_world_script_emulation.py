@@ -17,7 +17,7 @@ class Checks:
         for k in ('original_outer_task_frame_completed','playback_vm_executed','persistent_write_authority'):self.assertIs(self.data[k],False)
 
     def test_every_owned_byte_region_corruption_refused(self):
-        a=unpack(self.data['cases'][0]['actual']);parts=[(None,'after')] if self.phase in ('preflight','binding') else [('prefix','after'),('units','after'),('suffix','tail_after')]
+        a=unpack(self.data['cases'][0]['actual']);parts=[(None,'after')] if self.phase in ('preflight','binding','task') else [('prefix','after'),('units','after'),('suffix','tail_after')]
         for part,key in parts:
             for i in range(len((a[part] if part else a)[key])):
                 c=deepcopy(self.data['cases'][0]);x=unpack(c['actual']);r=(x[part] if part else x)[key][i];r['hex']=r['hex'][:-2]+('01' if r['hex'][-2:]=='00' else '00');c['actual']=pack(x)
@@ -30,6 +30,7 @@ class Checks:
             mutations += [lambda c:c['actual']['calls'].pop(),lambda c:c['actual']['calls'][0].update(sp=0),lambda c:c['actual']['pending'].update(eax=9),lambda c:c['actual'].update(owned_bodies_stubbed=True)]
             if self.phase=='preflight':mutations += [lambda c:c['actual']['commands'][0].update(opcode=0),lambda c:c['actual']['adapters'][0].update(result=0)]
             else:mutations.append(lambda c:c['actual']['binding_observation'].update(args=[0]*7))
+        elif self.phase=='task':mutations += [lambda c:c['actual']['calls'].pop(),lambda c:c['actual']['CPU'].update(EAX=1),lambda c:c['actual']['adapters'][0].update(result=1),lambda c:c['actual'].update(input_sampled=True),lambda c:c['actual'].update(task_phase=2)]
         else:mutations += [lambda c:c['actual']['units']['calls'].pop(),lambda c:c['actual']['suffix']['driver_return'].update(sp=0)]
         for mutate in mutations:
             c=deepcopy(self.data['cases'][0]);mutate(c)
@@ -50,5 +51,6 @@ class PreflightTests(Checks,unittest.TestCase):phase='preflight'
 class BindingTests(Checks,unittest.TestCase):phase='binding'
 class World184Tests(Checks,unittest.TestCase):phase='world184'
 class World185Tests(Checks,unittest.TestCase):phase='world185'
+class TaskTests(Checks,unittest.TestCase):phase='task'
 
 if __name__=='__main__':unittest.main()
