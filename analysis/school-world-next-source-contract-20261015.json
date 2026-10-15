@@ -1,0 +1,337 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x499da0",
+      "end": "0x49a2cf",
+      "sha256": "733e56ba66aba48ba448843bc8d550bd4f284f6c0a0bce7b272dc78d39393620"
+    },
+    {
+      "va": "0x475d60",
+      "end": "0x475f46",
+      "sha256": "e8c06d06e9ce6408ae415fa28306f90368ae45de27de6e937561d662b980e3bc"
+    },
+    {
+      "va": "0x40a100",
+      "end": "0x40a1dc",
+      "sha256": "e5953a2e32289d8a9ff4167ea4a4d92096ffb323f3738d5f7c2bf6a349eeb2fa"
+    },
+    {
+      "va": "0x40a800",
+      "end": "0x40ab69",
+      "sha256": "2589eff346cdb6384946170e6c70ad73cf7fa65423eaf7ba4a91d907bb42d305"
+    },
+    {
+      "va": "0x40ab80",
+      "end": "0x40ac83",
+      "sha256": "16d296406c7952f500f9ee55ead550543b28f75f3b1ae69ebb1c3c077152c9ab"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x49a09c",
+      "hex": "668b420e",
+      "mnemonic": "mov",
+      "operands": "ax, word ptr [edx + 0xe]"
+    },
+    {
+      "va": "0x49a0a0",
+      "hex": "662d0100",
+      "mnemonic": "sub",
+      "operands": "ax, 1"
+    },
+    {
+      "va": "0x475e83",
+      "hex": "7451",
+      "mnemonic": "je",
+      "operands": "0x475ed6"
+    },
+    {
+      "va": "0x40a82d",
+      "hex": "7420",
+      "mnemonic": "je",
+      "operands": "0x40a84f"
+    },
+    {
+      "va": "0x40a832",
+      "hex": "c7400400000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [eax + 4], 0"
+    },
+    {
+      "va": "0x40a840",
+      "hex": "e83b030000",
+      "mnemonic": "call",
+      "operands": "0x40ab80"
+    },
+    {
+      "va": "0x40aba7",
+      "hex": "7554",
+      "mnemonic": "jne",
+      "operands": "0x40abfd"
+    },
+    {
+      "va": "0x40abbf",
+      "hex": "740b",
+      "mnemonic": "je",
+      "operands": "0x40abcc"
+    },
+    {
+      "va": "0x40abd9",
+      "hex": "eb20",
+      "mnemonic": "jmp",
+      "operands": "0x40abfb"
+    }
+  ],
+  "student": {
+    "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "functions": [
+      {
+        "va": "0x475d60",
+        "end": "0x475f46",
+        "sha256": "e8c06d06e9ce6408ae415fa28306f90368ae45de27de6e937561d662b980e3bc"
+      },
+      {
+        "va": "0x46c040",
+        "end": "0x46c0f4",
+        "sha256": "b1c237fd469ed664636e6543d68953b2079f0fafcf4b1c62f938fe25695e5974"
+      },
+      {
+        "va": "0x46bcc0",
+        "end": "0x46bd21",
+        "sha256": "41a46166fac23b7328b6c56a670a58e6dc74879ffcd797f2064aa2de53777e3a"
+      },
+      {
+        "va": "0x465040",
+        "end": "0x465139",
+        "sha256": "fd85e3be9e2f838b256dd01c71781a051e784576c78d81e3d36d955233b05e4a"
+      },
+      {
+        "va": "0x409ff0",
+        "end": "0x40a0fd",
+        "sha256": "c8eabc133e72c061d39674730b8e8791a4f73230358914a76797a1ce82495500"
+      },
+      {
+        "va": "0x409f70",
+        "end": "0x409fa3",
+        "sha256": "f77a9266be1ca05694f46168091a768139e350f5036590b0f8cdc730f8c834bc"
+      },
+      {
+        "va": "0x40a400",
+        "end": "0x40a515",
+        "sha256": "3d5046c1304b630e6858815d42c6710ad9c213ff5b29018b88ff239649ead47f"
+      },
+      {
+        "va": "0x4214f0",
+        "end": "0x421538",
+        "sha256": "29a13fb7d5c9cf039ecbffe7defa9a66791c796ab6b48ec0b47ad280971724b7"
+      },
+      {
+        "va": "0x40a520",
+        "end": "0x40a7e6",
+        "sha256": "e328669c23db64768945a4e6ee5e08643ac794a63934a702fd4e16d2a6435c42"
+      },
+      {
+        "va": "0x409fb0",
+        "end": "0x409fe7",
+        "sha256": "f03df821e9fb0f51f719ee5f9b59cb73682c6622c76b6db09bd212ae37cb1e9c"
+      },
+      {
+        "va": "0x468eb0",
+        "end": "0x468f3d",
+        "sha256": "34cbc969b13646cb016a3045212df93418ba7ca3c5e5519af61ab7ec41219c5a"
+      },
+      {
+        "va": "0x468d80",
+        "end": "0x468e03",
+        "sha256": "3a9e75ea549b2244004512ca11a965041bbb8e0c1363600e92bfdf92f2eb54ac"
+      },
+      {
+        "va": "0x468e10",
+        "end": "0x468ea5",
+        "sha256": "e5f40bb3226b3d2e6588d5011612f320163f7f83b5bf30c2f0448ea750dd93c6"
+      },
+      {
+        "va": "0x46be50",
+        "end": "0x46beaa",
+        "sha256": "0dd564df995c38cc3304dd704c1be2669c327a9ef79e84dd65498e5bf727623d"
+      },
+      {
+        "va": "0x465140",
+        "end": "0x46527c",
+        "sha256": "a1d8948f7f3c474f98940badaf67ad0423c41375aaf3a5b59419fb19edcb19cd"
+      },
+      {
+        "va": "0x40af40",
+        "end": "0x40b0ee",
+        "sha256": "d252bfd73e13a5412759c12f3dd34cf9721ca1dc6cd3a65f718318a5e8b86ae0"
+      },
+      {
+        "va": "0x40b5e0",
+        "end": "0x40b660",
+        "sha256": "7f48da1ec3b5138b52f415616aa46f41213621f80d8ef17334392fa466585b93"
+      },
+      {
+        "va": "0x409ef0",
+        "end": "0x409f6f",
+        "sha256": "2665acb19574086c8ac3b25165a3f0dead386a2fa556e6c7f74cae2233acfa88"
+      },
+      {
+        "va": "0x40a800",
+        "end": "0x40ab69",
+        "sha256": "2589eff346cdb6384946170e6c70ad73cf7fa65423eaf7ba4a91d907bb42d305"
+      },
+      {
+        "va": "0x47a8e0",
+        "end": "0x47a917",
+        "sha256": "3cc014f1a7dd1f92a1bea7251a5058ccb12df8e494c830eb56522670e9760152"
+      },
+      {
+        "va": "0x475700",
+        "end": "0x475c6b",
+        "sha256": "1f4859176a3edd80c217f856a83626918680438ec3ffa96c585c0b721b71d336"
+      },
+      {
+        "va": "0x480a60",
+        "end": "0x480ce5",
+        "sha256": "f8ca1125c44d833da3080f81520010f8c5b299c81c03eee83561b8977ddc8fc3"
+      },
+      {
+        "va": "0x490350",
+        "end": "0x4903b6",
+        "sha256": "5042d6fd8ed097969b8ef76b2568ecfb3cb15a9d1422acbd74bce124e2888221"
+      },
+      {
+        "va": "0x490a50",
+        "end": "0x490b23",
+        "sha256": "8b6aa0523839a11e8e73c03b8f92d3483d4fbe55cf66fdf8c7f6bc1e1b8e45a1"
+      },
+      {
+        "va": "0x4690a0",
+        "end": "0x46916f",
+        "sha256": "92a635a87108c7f9a68aee3375418401abe43b7dc0f0fe1d64889472dfafa99a"
+      },
+      {
+        "va": "0x40a100",
+        "end": "0x40a1dc",
+        "sha256": "e5953a2e32289d8a9ff4167ea4a4d92096ffb323f3738d5f7c2bf6a349eeb2fa"
+      },
+      {
+        "va": "0x468d10",
+        "end": "0x468d7d",
+        "sha256": "f24227d893a0117d0e2288674c077a7b985bfbd707cdbe12cb1886ba08ebd264"
+      }
+    ],
+    "instructions": [
+      {
+        "va": "0x475dae",
+        "hex": "6a02",
+        "mnemonic": "push",
+        "operands": "2"
+      },
+      {
+        "va": "0x475dbc",
+        "hex": "6a12",
+        "mnemonic": "push",
+        "operands": "0x12"
+      },
+      {
+        "va": "0x475dde",
+        "hex": "680f080000",
+        "mnemonic": "push",
+        "operands": "0x80f"
+      },
+      {
+        "va": "0x475e12",
+        "hex": "0534080000",
+        "mnemonic": "add",
+        "operands": "eax, 0x834"
+      },
+      {
+        "va": "0x475e73",
+        "hex": "8801",
+        "mnemonic": "mov",
+        "operands": "byte ptr [ecx], al"
+      },
+      {
+        "va": "0x40b60f",
+        "hex": "817df800080000",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [ebp - 8], 0x800"
+      },
+      {
+        "va": "0x40b630",
+        "hex": "0528577600",
+        "mnemonic": "add",
+        "operands": "eax, 0x765728"
+      },
+      {
+        "va": "0x40b639",
+        "hex": "e8b2e8ffff",
+        "mnemonic": "call",
+        "operands": "0x409ef0"
+      }
+    ],
+    "main_source": {
+      "relative_path": "data\\DxAnim\\d1a.bin",
+      "local_file": "CROSS HERMIT/CROSS HERMIT/DATA/DXANIM/D1A.BIN",
+      "bytes": 916980,
+      "sha256": "6262a9fa80b112389ee5a9d2d61aee6526f87130e7ce2e828619e7c095979a5b"
+    },
+    "effect_source": {
+      "relative_path": "data\\DxAnim\\Efct.bin",
+      "local_file": "CROSS HERMIT/CROSS HERMIT/DATA/DXANIM/EFCT.BIN",
+      "bytes": 15662260,
+      "sha256": "9c0a8896610e8168f324bc0ca91bc7e860024a8e54cf713db8ad33c2f8906106"
+    },
+    "pose": 18,
+    "direction": 2,
+    "direction_index": 1,
+    "pose_lookup_hex": "5900",
+    "pose_code": 89,
+    "main": {
+      "bank": 0,
+      "index": 89,
+      "offset": 2656,
+      "frame_hex": "0000ffffffffffff1e00",
+      "duration": 30,
+      "sprite": 4095,
+      "sprite_hex": null,
+      "metadata_bytes": 11476,
+      "metadata_sha256": "0eff7773d04a3ac31d833b4fb567cdcdf553d69ce04a3bc2de34274aaac098fa"
+    },
+    "attachments": [
+      {
+        "bank": 1,
+        "index": 63,
+        "offset": 8708,
+        "frame_hex": "0000b0fffffff7ff0600",
+        "duration": 6,
+        "sprite": 1968,
+        "sprite_hex": "0000d8ff980202ff0c00",
+        "metadata_bytes": 77212,
+        "metadata_sha256": "8a50af773d7b06b6617ea1c4879e79222b21a3c462d148d482f615f16584c5d1",
+        "animation": 2063,
+        "definition_hex": "00013f00"
+      },
+      {
+        "bank": 1,
+        "index": 103,
+        "offset": 11388,
+        "frame_hex": "0000ffffffffffff1e00",
+        "duration": 30,
+        "sprite": 4095,
+        "sprite_hex": null,
+        "metadata_bytes": 77212,
+        "metadata_sha256": "8a50af773d7b06b6617ea1c4879e79222b21a3c462d148d482f615f16584c5d1",
+        "animation": 2103,
+        "definition_hex": "00016700"
+      }
+    ],
+    "pool": 7755560,
+    "pool_slots": 2048,
+    "node_bytes": 88,
+    "scope": "First mode25/job3 student phase0 and first original frame update only; no full unit/world/VM/AI completion"
+  },
+  "scope": "Third declared world prefix and first phase1 unit only; isolated root-clearing probes restore state; no third whole world/180/VM/audio or attached-node release"
+}

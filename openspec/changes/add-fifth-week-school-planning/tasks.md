@@ -787,3 +787,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 196. Enabled world body acceptance
 
 - [x] 196.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document second function completion versus remaining outer-task/180/VM/AI work and commit locally without pushing.
+
+## 197. Next update and ended-controller source policy
+
+- [x] 197.1 Derive state5 third-prefix, phase1 student animation and delayed ended-controller clearing projections/refusals; commit locally.
+
+## 198. Third original world prefix and restored clearing probes
+
+- [ ] 198.1 Restore verified second-world return, verify isolated ended217/247/248 clearing with full restoration, execute declared third46B470 prefix to unexecuted first phase1 handler and pin checkpoint; commit locally.
+
+## 199. Third-update first student returns
+
+- [ ] 199.1 Continue original phase1 handler/main/attached/idle animation and complete empty tail/region/vision to unexecutedslot1; verify full bytes/retention/stack and pin checkpoint; commit locally.
+
+## 200. Third-update admission acceptance
+
+- [ ] 200.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document third-world/animation/sound/180/VM boundaries and commit locally without pushing.

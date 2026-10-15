@@ -896,3 +896,16 @@ The audit SHALL verify all ten remaining source mode2 units and the actual secon
 - **WHEN** verified post-unit CPU continues with its actual action1/state5 controls
 - **THEN** original cursor/menu/hover, ten idle effects, inactive secondary slots and empty forwarding match source projection and original46B662 returns to the existing declared audit sentinel
 - **AND** the bounded second world body completes while outer game-task/render/180 enabled updates and opening/VM/AI completion remain false
+
+### Requirement: Third declared world prefix and delayed animation clearing
+The audit SHALL distinguish the third natural enabled-world continuation from isolated ended-controller probes and retain complete source/state provenance.
+
+#### Scenario: Third prefix and first phase1 student
+- **WHEN** the verified second world return is followed by a declared next46B470 invocation
+- **THEN** original state5 delay180→179, map/list/input and first phase1 student animation/tail match complete source projections and natural calls
+- **AND** execution stops before slot1 with the third world body/180 interval/VM/AI still incomplete
+
+#### Scenario: Ended scene controller clearing probes
+- **WHEN** actual ended217/247/248 controllers are passed to isolated original40A100 calls
+- **THEN** current PC clears on the next40A800 call and original40AB80 depth0 empty-child path leaves the shared pool unchanged
+- **AND** full inputs, CPU and stack restore after each probe without claiming world advancement or attached-node release

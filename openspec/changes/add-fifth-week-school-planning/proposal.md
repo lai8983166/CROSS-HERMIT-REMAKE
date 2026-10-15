@@ -227,3 +227,7 @@ Extend this continuation through the remaining22 contiguous inactive mode11 slot
 ## Remaining scene units and first enabled world return (2026-10-15)
 
 Continue pinned240 through all ten remaining scene mode2 units, independently verify four source archives/poses, opening phase gate, terminal/nonterminal animation, empty tails, region totals and faction vision, then stop before post-unit490FC0. Execute original closed-gate suffix/ten idle effects/secondary skip/empty forwarding and real46B662 return to the existing declared audit sentinel. Pin unit-loop/whole-function continuations; preserve runtime/history/save and commit source/unit-loop/return/acceptance locally. This closes the second declared46B470 body, not the outer game task,180 enabled updates or opening VM.
+
+## Next enabled update and delayed animation clearing (2026-10-15)
+
+Continue the pinned second46B470 return with an explicitly declared third invocation. Verify state5 delay180→179 and the complete original map/list/input prefix to first phase1 student, then its next animation/full unit return to unexecutedslot1. Independently derive ended-controller clearing; run isolated original40A100 on actual ended scene217/247/248 state with full CPU/stack/memory restoration, without claiming those probes advance the world. Preserve runtime/save/history and commit source/prefix/unit/acceptance locally. Remaining units, attached frame sound commands,180 complete updates and VM/AI remain future work.
