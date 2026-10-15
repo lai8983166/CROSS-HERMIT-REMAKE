@@ -966,7 +966,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 241. Complete original world185 status wait
 
-- [ ] 241.1 Execute next declared185, verify natural454C40 status1/controller7 waiting and every paused unit/suffix/retained byte/return, pin and commit locally.
+- [x] 241.1 Execute next declared185, verify natural454C40 status1/controller7 waiting and every paused unit/suffix/retained byte/return, pin and commit locally.
 
 ## 242. Original first task setup source
 

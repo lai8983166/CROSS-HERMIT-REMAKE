@@ -7,10 +7,11 @@ from tools.school_world_script import *
 from tools.school_world_script_inputs import checked_parent,INPUTS,INPUTS_SHA
 from tools.school_world_script_emulation import PHASES,PREVIOUS,PARENT,PARENT_SHA,STACK,RETURN,UNITCTRL,ENTRIES,SCRIPT_NATIVE
 from tools.school_world_life_codec import unpack
+from tools.school_world_task_start import TASK_REGIONS,INPUT,MAIN,project as task_project,source_contract as task_source,call_protocol as task_protocol
 from tools.school_world_resume_verification import fresh_identities as parent_identities,read_memory,pinned,retained,paused_calls,old_prefix_calls,ROOTS,effect_calls,suffix_pending,check_calls
 
 REPORTS={p:ROOT/f'analysis/school-world-script-{p}-v1-20261016.json.gz' for p in PHASES}
-SHAS={'preflight':'670b12fcacef2480f4c16c95c815939ab733c9147cf592dd0490b1c23245a167','binding':'f9abaa7837f35c2245df2da3eed62773b9be223db1bd26d0cfc7cb3ed459e690','world184':'6500692194cdce3c322ab65619d1b8a74ed02c8f2df31ce24f90f477ee6b3970','world185':None}
+SHAS={'task':None,'preflight':'670b12fcacef2480f4c16c95c815939ab733c9147cf592dd0490b1c23245a167','binding':'f9abaa7837f35c2245df2da3eed62773b9be223db1bd26d0cfc7cb3ed459e690','world184':'6500692194cdce3c322ab65619d1b8a74ed02c8f2df31ce24f90f477ee6b3970','world185':'bcc16bebf16996f7a71abedbf88ed367399155ac335a0be4b2979768b1cdb0c9'}
 
 @lru_cache(maxsize=16)
 def phase_checked(name,phase):
@@ -29,12 +30,12 @@ def abi():
 
 
 def verify_calls(a,phase):
-    calls=a['calls'];protocol=call_protocol(phase);raw=SOURCE.read_bytes();base=STACK+0xFF00;rules=abi();active=[]
+    calls=a['calls'];protocol=task_protocol() if phase=='task' else call_protocol(phase);raw=SOURCE.read_bytes();base=STACK+0xFF00;rules=abi();active=[]
     if [int(c['return_va'],16) for c in calls]!=protocol:raise ValueError('world script exact source call protocol')
     for index,c in enumerate(calls):
         va=int(c['va'],16);ret=int(c['return_va'],16);op=raw[ret-BASE-5:ret-BASE]
-        if va not in rules or op[0]!=0xE8 or ret+struct.unpack_from('<i',op,1)[0]!=va:raise ValueError('world script direct original call bytes')
-        if not index:wanted=base-(212 if phase=='preflight' else 232)
+        if va not in rules or not (phase=='task' and index==0) and (op[0]!=0xE8 or ret+struct.unpack_from('<i',op,1)[0]!=va):raise ValueError('world script direct original call bytes')
+        if not index:wanted=base if phase=='task' else base-(212 if phase=='preflight' else 232)
         else:
             owner=next((p for p,r in rules.items() if p<=ret-5<r['end']),None)
             while active and active[-1][0]!=owner:active.pop()
@@ -44,6 +45,8 @@ def verify_calls(a,phase):
         if va in (0x4551C0,0x455060,0x4549D0) and c['receiver']!=TACT:raise ValueError('world script original task receiver')
         if va in (0x4CE460,0x4CE4B0,0x4CE090,0x4CD8D0,0x4CE560,0x4CD700,0x4CE030,0x4CE8F0,0x4D0790,0x4CE060) and c['receiver']!=VM:raise ValueError('world script original VM receiver')
         if va==0x41E500 and c['receiver']!=MUSIC or va==0x40D120 and c['receiver']!=AUDIO:raise ValueError('world script native guarded audio receiver')
+        if phase=='task' and va in (0x454CF0,0x454C40,0x457830) and c['receiver']!=TACT:raise ValueError('task start task receiver')
+        if phase=='task' and va in (0x425ED0,0x425A10,0x425A50,0x426250,0x426110,0x426190) and c['receiver']!=INPUT:raise ValueError('task start input receiver')
         active.append((va,c['sp']))
 
 
@@ -101,6 +104,30 @@ def verify_world(raw,state,tick):
     check_calls((p,u,s));return dict(world=r['next_state'],script=merge_ranges(outer['script'],p['after']+u['after']+s['tail_after']),inputs=outer['inputs'])
 
 
+@lru_cache(maxsize=3)
+def task_seed(name):
+    payload,cp=load_verified_checkpoint(name,'world185')
+    before=[dict(pointer=a,bytes=n,hex=read_memory(payload,a,n).hex()) for a,n in TASK_REGIONS]
+    inputs=dict(main_owner=int.from_bytes(read_memory(payload,0x7A4A00,4),'little'),input_pointer=INPUT,strlen_slot=0x5922C4,strlen_target=int.from_bytes(read_memory(payload,0x5922C4,4),'little'),text_pointer=INPUT+0x528,work_pointer=WORK,driver='declared_next_454CF0_after_original_world185')
+    return inputs,before
+
+
+def verify_task(raw,state,name):
+    a=unpack(raw);inputs,before=task_seed(name);expected=task_project(inputs,before);base=STACK+0xFF00
+    if a['phase']!='task' or a['inputs']!=inputs or a['before']!=before or any(a[k]!=v for k,v in expected.items()):raise ValueError('task start entire independent state/provenance')
+    verify_calls(a,'task');calls=a['calls'];entry=next(c for c in calls if c['va']=='0x425a50');api_sp=entry['sp']-abi()[0x425A50]['frame']-8
+    wanted=[dict(name='lstrlenA',va=hex(inputs['strlen_target']),slot='0x5922c4',return_va='0x425a7e',sp=api_sp,args=[INPUT+0x528],result=0,read_hex='00',reads_existing_buffer_only=True)]
+    if a['adapters']!=wanted:raise ValueError('task start one captured read-only text adapter')
+    if a['real_ret']!=dict(va='0x454ec1',return_va=hex(RETURN),sp=base,eax=0) or a['CPU']!=dict(EIP=RETURN,ESP=base+4,EBP=base-4,EAX=0,ECX=0):raise ValueError('task start actual complete original return/CPU')
+    required={int(c['va'],16) for c in calls}|{0x425F34,0x425A78,0x454D65,0x497C2D,0x498725,0x454EC1}
+    if not required<=set(a['visited']) or {0x4CE8F0,0x424F80,0x454D7D}&set(a['visited']):raise ValueError('task start native selected/no-playback branches')
+    for k in ('owned_bodies_stubbed','original_outer_task_frame_completed'):
+        if a.get(k) is not False:raise ValueError('task start exact bounded authority')
+    retained(a)
+    return dict(world=merge_script_state(state['world'],a['after']),script=merge_ranges(state['script'],a['after']),inputs=state['inputs'],task=a['after'])
+
+
+
 def verify_case(c,phase):
     parent,world,seed=checked_parent(c['name']);state=dict(world=world,script=seed['before'],inputs=seed['inputs'])
     if c['parent_checkpoint']!=parent['continuation_checkpoint']:raise ValueError('world script preceding184 checkpoint')
@@ -108,8 +135,9 @@ def verify_case(c,phase):
         previous,state=phase_checked(c['name'],PREVIOUS[phase])
         if c['prior_checkpoint']!=previous['continuation_checkpoint']:raise ValueError('world script original phase provenance')
     if phase in ('preflight','binding'):state=verify_script(c['actual'],state,phase)
+    elif phase=='task':state=verify_task(c['actual'],state,c['name'])
     else:state=verify_world(c['actual'],state,184 if phase=='world184' else 185)
-    cp=c['continuation_checkpoint'];eip={'preflight':0x49A0D4,'binding':0x49A0F4,'world184':RETURN,'world185':RETURN}[phase]
+    cp=c['continuation_checkpoint'];eip={'preflight':0x49A0D4,'binding':0x49A0F4,'world184':RETURN,'world185':RETURN,'task':RETURN}[phase]
     if cp['path']!=f'.venv-audit/world-script-{phase}-{c["name"]}.pkl' or cp['pending_eip']!=hex(eip) or cp['runtime_or_original_save'] is not False:raise ValueError('world script fixed private phase path')
     return state
 
@@ -127,15 +155,17 @@ def load_verified_checkpoint(name,phase):
     fresh_identities(phase);report=pinned(REPORTS[phase],SHAS[phase]);c=next((c for c in report['cases'] if c['name']==name),None)
     if c is None:raise ValueError('world script known checkpoint case')
     if report['source_contract']!=source_contract() or report['parent_report']!=PARENT.relative_to(ROOT).as_posix() or report['parent_sha256']!=PARENT_SHA:raise ValueError('world script source/parent envelope')
+    if phase=='task' and report.get('task_source_contract')!=task_source():raise ValueError('task start exact source contract')
     state=verify_case(c,phase);cp=c['continuation_checkpoint'];raw=(ROOT/cp['path']).read_bytes()
     if len(raw)!=cp['bytes'] or hashlib.sha256(raw).hexdigest()!=cp['sha256']:raise ValueError('world script fixed file SHA before unpickle')
     payload=pickle.loads(raw);cpu=payload['cpu'];a=unpack(c['actual']);base=STACK+0xFF00
     if payload['source_sha']!=SOURCE_SHA256 or payload['parent_report_sha']!=PARENT_SHA or payload['case_name']!=name or payload['phase']!=phase or payload['evidence_kind']!='private_original_world_script_'+phase or hex(payload['pending_eip'])!=cp['pending_eip']:raise ValueError('world script private identity')
     if phase in ('preflight','binding'):wanted=(int(a['pending']['va'],16),a['pending']['sp'],a['pending']['ebp'],a['pending']['eax'],a['pending']['ecx'])
+    elif phase=='task':wanted=(RETURN,base+4,base-4,0,0)
     else:wanted=(RETURN,base+4,base-4,0,None);a=a['suffix']
     observed=tuple(cpu.reg_read(reg) for reg in (UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X86_REG_EAX,UC_X86_REG_ECX))
     if observed[:4]!=wanted[:4] or wanted[4] is not None and observed[4]!=wanted[4]:raise ValueError('world script exact private CPU')
-    for r in state['script']+state['world']['prefix_before']+state['world']['unit_before']+state['world']['tail_before']:
+    for r in state.get('task',[])+state['script']+state['world']['prefix_before']+state['world']['unit_before']+state['world']['tail_before']:
         if read_memory(payload,r['pointer'],r['bytes']).hex()!=r['hex']:raise ValueError('world script complete private owned memory')
     for r in a['retained_ranges']:
         if hashlib.sha256(read_memory(payload,r['pointer'],r['bytes'])).hexdigest()!=r['sha256']:raise ValueError('world script entire private retained memory')

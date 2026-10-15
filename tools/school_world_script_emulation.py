@@ -8,24 +8,29 @@ from tools.school_script_preflight_emulation import NATIVE as PREFLIGHT_NATIVE
 from tools.school_world_script import *
 from tools.tactics_exit_emulation import ExitEmulator
 from tools.school_world_life_codec import pack
+from tools.school_world_task_start import TASK_NATIVE,TASK_REGIONS,INPUT,MAIN,project as task_project,source_contract as task_source
 from tools.school_world_mode_emulation import architectural_cpu
 
 PARENT=PARENT_REPORTS['entry'];PARENT_SHA=PARENT_SHAS['entry']
-PHASES=('preflight','binding','world184','world185')
-PREVIOUS={'binding':'preflight','world184':'binding','world185':'world184'}
-SCRIPT_NATIVE=PREFLIGHT_NATIVE+HELPERS
+PHASES=('preflight','binding','world184','world185','task')
+PREVIOUS={'binding':'preflight','world184':'binding','world185':'world184','task':'world185'}
+SCRIPT_NATIVE=PREFLIGHT_NATIVE+HELPERS+TASK_NATIVE
 NATIVE=WORLD_NATIVE+HELPERS
 ENTRIES={a for a,b in SCRIPT_NATIVE}-{0x49A0D4,0x49A146,0x49A2B3}
 
 
 class ScriptEmulator(ResumeEmulator):
-    def __init__(self):self.script_loading=False;super().__init__()
+    def __init__(self):self.task_loading=False;self.script_loading=False;super().__init__()
 
     def _write_hook(self,uc,access,address,size,value,context):
+        if self.task_loading:
+            if not any(a<=address and address+size<=b for a,b in self.task_allowed):raise RuntimeError('task start forbidden store '+hex(address))
+            return
         if not self.script_loading:return super()._write_hook(uc,access,address,size,value,context)
         if not any(a<=address and address+size<=b for a,b in self.script_allowed):raise RuntimeError('world script forbidden store '+hex(address)+' at '+hex(uc.reg_read(UC_X86_REG_EIP)))
 
     def _hook(self,uc,address,size,context):
+        if self.task_loading:return self.task_hook(uc,address,size,context)
         if not self.script_loading:
             if getattr(self,'script_world_prefix',False):
                 if address==0x454C40:
@@ -131,6 +136,34 @@ class ScriptEmulator(ResumeEmulator):
     def run_world(self,tick):return dict(tick=tick,prefix=self.run_prefix(tick),units=self.run_paused(tick),suffix=self.run_suffix(tick))
 
 
+    def task_hook(self,uc,address,size,context):
+        sp=uc.reg_read(UC_X86_REG_ESP);recv=uc.reg_read(UC_X86_REG_ECX);ret=self.read(sp)
+        if address==self.task_inputs['strlen_target']:
+            args=[self.read(sp+4)]
+            if (ret,args)!=(0x425A7E,[INPUT+0x528]) or self.read(args[0],'B'):raise RuntimeError('task start captured empty text import')
+            self.task_adapters.append(dict(name='lstrlenA',va=hex(address),slot='0x5922c4',return_va=hex(ret),sp=sp,args=args,result=0,read_hex='00',reads_existing_buffer_only=True));self._stub_return(0,4);return
+        if address in ENTRIES:self.task_calls.append(dict(va=hex(address),receiver=recv,return_va=hex(ret),sp=sp))
+        if address==0x454EC1:self.task_real_ret=dict(va=hex(address),return_va=hex(ret),sp=sp,eax=uc.reg_read(UC_X86_REG_EAX))
+        if address==0x56CE80:return ExitEmulator._hook(self,uc,address,size,context)
+        if any(a<=address<b for a,b in TASK_NATIVE+HELPERS):self.task_visited.add(address);return
+        raise RuntimeError('task start undeclared native instruction '+hex(address))
+
+    def run_task(self):
+        base=STACK+0xFF00
+        if self.uc.reg_read(UC_X86_REG_EIP)!=RETURN or self.uc.reg_read(UC_X86_REG_ESP)!=base+4:raise RuntimeError('task start verified185 returned CPU')
+        before=[dict(pointer=a,bytes=n,hex=bytes(self.uc.mem_read(a,n)).hex()) for a,n in TASK_REGIONS]
+        self.task_inputs=dict(main_owner=self.read(0x7A4A00),input_pointer=INPUT,strlen_slot=0x5922C4,strlen_target=self.read(0x5922C4),text_pointer=INPUT+0x528,work_pointer=WORK,driver='declared_next_454CF0_after_original_world185')
+        expected=task_project(self.task_inputs,before);self.task_allowed=[(STACK,STACK+65536)]+[(r['pointer'],r['pointer']+r['bytes']) for r in before];retained=self.capture_scene_memory(self.task_allowed)
+        if not any(a<=self.task_inputs['strlen_target']<=b for a,b,_ in self.uc.mem_regions()):raise RuntimeError('task start captured platform adapter mapping')
+        prior=self._function_ranges;self._function_ranges=prior+SCRIPT_NATIVE;self.task_loading=True;self.task_calls=[];self.task_adapters=[];self.task_visited=set();self.task_real_ret=None
+        try:
+            self.write(base,RETURN);self.uc.reg_write(UC_X86_REG_ESP,base);self.uc.reg_write(UC_X86_REG_ECX,TACT);self.uc.emu_start(0x454CF0,RETURN,timeout=10_000_000,count=100000)
+            after=[dict(pointer=a,bytes=n,hex=bytes(self.uc.mem_read(a,n)).hex()) for a,n in TASK_REGIONS];cpu=architectural_cpu(self.uc)
+            if after!=expected['after'] or cpu['EIP']!=RETURN or cpu['ESP']!=base+4 or cpu['EAX']!=0 or self.task_real_ret is None:raise RuntimeError('task start full source/native state and natural return')
+            return dict(phase='task',inputs=self.task_inputs,before=before,**expected,calls=self.task_calls,adapters=self.task_adapters,visited=sorted(self.task_visited),real_ret=self.task_real_ret,CPU={k:cpu[k] for k in ('EIP','ESP','EBP','EAX','ECX')},owned_bodies_stubbed=False,original_outer_task_frame_completed=False,**self.verify_scene_memory(retained))
+        finally:self.task_loading=False;self._function_ranges=prior
+
+
 def restored(name,phase):
     if phase=='preflight':payload,cp=load_parent(name,'entry')
     else:
@@ -148,10 +181,10 @@ def report(phase):
     for name in ('initial','student9_waiting','fifth_class'):
         e,cp=restored(name,phase)
         if phase=='preflight':e.script_parent_checkpoint=cp
-        a=e.run_script(phase) if phase in ('preflight','binding') else e.run_world(184 if phase=='world184' else 185);c=dict(name=name,parent_checkpoint=e.script_parent_checkpoint,actual=pack(a),continuation_checkpoint=e.save_script(name,phase))
+        a=e.run_task() if phase=='task' else e.run_script(phase) if phase in ('preflight','binding') else e.run_world(184 if phase=='world184' else 185);c=dict(name=name,parent_checkpoint=e.script_parent_checkpoint,actual=pack(a),continuation_checkpoint=e.save_script(name,phase))
         if phase!='preflight':c['prior_checkpoint']=cp
         cases.append(c);print(name+': original '+phase+' full bytes/CPU verified',flush=True)
-    return dict(schema_version=2,encoding='full-hex-zlib-v1',phase=phase,source_contract=source_contract(),parent_report=PARENT.relative_to(ROOT).as_posix(),parent_sha256=PARENT_SHA,cases=cases,original_outer_task_frame_completed=False,playback_vm_executed=False,persistent_write_authority=False)
+    return dict(**(dict(task_source_contract=task_source()) if phase=='task' else {}),schema_version=2,encoding='full-hex-zlib-v1',phase=phase,source_contract=source_contract(),parent_report=PARENT.relative_to(ROOT).as_posix(),parent_sha256=PARENT_SHA,cases=cases,original_outer_task_frame_completed=False,playback_vm_executed=False,persistent_write_authority=False)
 
 
 if __name__=='__main__':
