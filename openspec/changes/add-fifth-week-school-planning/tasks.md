@@ -802,4 +802,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 200. Third-update admission acceptance
 
-- [ ] 200.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document third-world/animation/sound/180/VM boundaries and commit locally without pushing.
+- [x] 200.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document third-world/animation/sound/180/VM boundaries and commit locally without pushing.
