@@ -878,7 +878,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 219. Consecutive original worlds76–106
 
-- [ ] 219.1 Restore75 cases and execute every world76–106 through visible friendly frames to before first spawn, verify full source/native state/calls/retention/CPU and pin106; commit locally.
+- [x] 219.1 Restore75 cases and execute every world76–106 through visible friendly frames to before first spawn, verify full source/native state/calls/retention/CPU and pin106; commit locally.
 
 ## 220. Original world107 and child spawn
 
