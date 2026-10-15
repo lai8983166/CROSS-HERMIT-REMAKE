@@ -842,7 +842,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 210. Consecutive seventh through ninth original worlds
 
-- [ ] 210.1 Restore sixth-return cases and execute full worlds7–9 including383 first frame expiry, verify full bytes/calls/retention/stack and pin ninth returns; commit locally.
+- [x] 210.1 Restore sixth-return cases and execute full worlds7–9 including383 first frame expiry, verify full bytes/calls/retention/stack and pin ninth returns; commit locally.
 
 ## 211. Consecutive tenth through fifteenth original worlds
 

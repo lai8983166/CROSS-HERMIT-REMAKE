@@ -37,6 +37,8 @@ class SourceTests(unittest.TestCase):
 
     def test_unexecuted_repeat_and_spawn_rejected_at_execution(self):
         s=source_contract();self.assertFalse(s['upcoming_repeat']['native_executed']);self.assertEqual(s['upcoming_repeat']['earliest_world'],65)
+        self.assertEqual(get(schedule(s['programs']['main:383'],63),14),1)
+        with self.assertRaises(ValueError):schedule(s['programs']['main:383'],64)
         for op in (1,3):
             aw=bytearray(NODE);put(aw,4,100)
             with self.assertRaises(ValueError):step_animation(aw,0,[dict(offset=100,opcode=op,frame_hex=(bytes([op])+bytes(9)).hex())])

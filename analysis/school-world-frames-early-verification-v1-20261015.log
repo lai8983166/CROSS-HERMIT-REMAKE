@@ -1,0 +1,24 @@
+ERROR
+
+======================================================================
+ERROR: setUpClass (tools.tests.test_school_world_frames_emulation.EarlyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_world_frames_emulation.py", line 11, in setUpClass
+    def setUpClass(cls):cls.data=json.loads(gzip.decompress(REPORTS[cls.phase].read_bytes()))
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\gzip.py", line 557, in decompress
+    return f.read()
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\gzip.py", line 301, in read
+    return self._buffer.read(size)
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\_compression.py", line 118, in readall
+    while data := self.read(sys.maxsize):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\gzip.py", line 488, in read
+    if not self._read_gzip_header():
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\gzip.py", line 436, in _read_gzip_header
+    raise BadGzipFile('Not a gzipped file (%r)' % magic)
+gzip.BadGzipFile: Not a gzipped file (b'{\n')
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.035s
+
+FAILED (errors=1)
