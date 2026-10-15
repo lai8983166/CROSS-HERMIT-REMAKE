@@ -14,7 +14,7 @@ from tools.school_world_tail_verification import effect_calls
 from tools.school_world_final_verification import pending as suffix_pending
 
 REPORTS={'batch':ROOT/'analysis/school-world-countdown-batch-v2-20261015.json','sound':ROOT/'analysis/school-world-countdown-sound-v1-20261015.json'}
-SHAS={'batch':'6e934c89b7c1689530063086f05eb56be40c1c51246fd59ed2725d6801a5985b','sound':None}
+SHAS={'batch':'6e934c89b7c1689530063086f05eb56be40c1c51246fd59ed2725d6801a5985b','sound':'c568a8c004d1260ce4a7114a2bbeaac89fd7bd460456bb2e48c870785c5fae8e'}
 INPUTS=ROOT/'analysis/school-world-countdown-inputs-20261015.json'
 INPUTS_SHA='eca141981a8000903bf3e9d8c34826f513ee85d2564ae08f5fb1adc37149263c'
 

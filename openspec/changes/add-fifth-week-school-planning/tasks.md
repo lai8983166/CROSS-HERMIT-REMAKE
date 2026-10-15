@@ -830,7 +830,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 207. Sixth original world and source audio opcode
 
-- [ ] 207.1 Continue verified fifth return through sixth prefix/all units including original2063 sound59 guarded dispatch and next frame, complete suffix/natural return, pin checkpoint and commit locally.
+- [x] 207.1 Continue verified fifth return through sixth prefix/all units including original2063 sound59 guarded dispatch and next frame, complete suffix/natural return, pin checkpoint and commit locally.
 
 ## 208. Consecutive countdown acceptance
 
