@@ -28,7 +28,7 @@ class SourceTests(unittest.TestCase):
         for tick in (182,183):state=world_project(state,tick)['next_state']
         before=state['prefix_before'];task=bytes.fromhex(before[0]['hex']);inputs=dict(mouse=[0,0],busy=0,entry_receiver=before[0]['pointer'],script_pointer=u32(task,0x64),script_sha256=SCRIPT_SHA,script_bytes=SCRIPT.stat().st_size)
         self.assertEqual(preflight_boundary(inputs,before)['after'],before)
-        for key,value in (('busy',1),('entry_receiver',0),('script_sha256','0'*64),('script_bytes',0)):
+        for key,value in (('busy',1),('busy',False),('script_pointer',float(inputs['script_pointer'])),('entry_receiver',0),('script_sha256','0'*64),('script_bytes',0)):
             bad=deepcopy(inputs);bad[key]=value
             with self.assertRaises(ValueError):preflight_boundary(bad,before)
 

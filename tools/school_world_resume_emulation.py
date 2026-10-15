@@ -161,7 +161,7 @@ class ResumeEmulator(WorldThirdEmulator):
         before=self.second_regions();receiver=self.read(UNITCTRL+0x117C38);pointer=self.read(receiver+0x64);script=bytes(self.uc.mem_read(pointer,SCRIPT.stat().st_size))
         if script!=SCRIPT.read_bytes():raise RuntimeError('resume actual entire script source bytes')
         inputs=dict(mouse=[self.read(TASK+0x196C,'i'),self.read(TASK+0x1970,'i')],busy=self.read(0x7F4491,'B'),entry_receiver=receiver,script_pointer=pointer,script_sha256=hashlib.sha256(script).hexdigest(),script_bytes=len(script))
-        expected=preflight_boundary(inputs,before);self.count_allowed=[(STACK,STACK+65536)];retained=self.capture_scene_memory(self.count_allowed)
+        expected=preflight_boundary(inputs,before);self.count_allowed=[(STACK,STACK+65536),(0x7A49E0,0x7A49E4)];retained=self.capture_scene_memory(self.count_allowed)
         prior=self._function_ranges;self._function_ranges=prior+NATIVE+((0x456B20,0x456B58),);self.count_loading=True;self.count_mode='entry';self.second_loading=True
         self.second_calls=[];self.second_clears=[];self.second_tested=[];self.second_visited=set();self.entry_calls=[];self.entry_pending=None;self.busy_return=None
         try:

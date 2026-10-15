@@ -1,7 +1,6 @@
 """Source-only last decrement, paused transition and next preflight boundary."""
 from tools.school_world_idle import *
 from tools.school_world_idle import source_contract as idle_contract
-from tools.school_world_command import project as paused_command
 from tools.school_world_tail import project as paused_tail
 from tools.school_script_preflight_catalog import SCRIPT,SCRIPT_SHA
 
@@ -238,9 +237,12 @@ def suffix_project(inputs,before,tick):
 
 
 def preflight_boundary(inputs,before):
+    fields={'mouse','busy','entry_receiver','script_pointer','script_sha256','script_bytes'}
+    if type(inputs) is not dict or set(inputs)!=fields or any(type(inputs[k]) is not int for k in ('busy','entry_receiver','script_pointer','script_bytes')) or inputs['mouse']!=[0,0] or any(type(n) is not int for n in inputs['mouse']):raise ValueError('resume finite exact preflight inputs')
     source_contract();d={r['name']:bytes.fromhex(r['hex']) for r in before}
     if list(d)!=NAMES or any(len(d[r['name']])!=r['bytes'] for r in before):raise ValueError('resume complete script boundary regions')
     c=d['control'];task=d['task']
+    if u32(d['current_work'],0):raise ValueError('resume original world entry clears an already empty current pointer')
     if (c[4],c[24],c[26],get(c,28),c[11])!=(0,1,6,0,255) or any(c[i] for i in (5,6,8,9,10)) or inputs['busy']!=0:raise ValueError('resume exact state6 captured busy gate')
     if inputs['mouse']!=[0,0] or inputs['entry_receiver']!=before[0]['pointer'] or u32(task,0x38)!=5 or task[0x43] or task[0x170] or task[0x171]:raise ValueError('resume original preflight receiver/task')
     if inputs['script_pointer']!=u32(task,0x64) or inputs['script_sha256']!=SCRIPT_SHA or inputs['script_bytes']!=SCRIPT.stat().st_size:raise ValueError('resume entire captured source script')

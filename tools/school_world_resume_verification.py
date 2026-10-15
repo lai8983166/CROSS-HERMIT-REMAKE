@@ -10,7 +10,7 @@ from tools.school_world_idle_verification import phase_checked as parent_phase,u
 from tools import school_world_idle_verification as prior
 
 REPORTS={p:ROOT/f'analysis/school-world-resume-{p}-v1-20261015.json.gz' for p in PHASES}
-SHAS={'zero':'fe530d8d9f49384f671e0b0a655aa6e40e98abd180396a6ce91696729ad65002','pause':'bd925383e5e94023cc028e1469701a6889fd2625dea89ef274b7c4c0dbe875fa','entry':None}
+SHAS={'zero':'fe530d8d9f49384f671e0b0a655aa6e40e98abd180396a6ce91696729ad65002','pause':'bd925383e5e94023cc028e1469701a6889fd2625dea89ef274b7c4c0dbe875fa','entry':'8ddcff0897900200f6f91e593cd65853b7ae9f4da32ac19ad38e095640edfc52'}
 
 @lru_cache(maxsize=3)
 def parent_checked(name):return parent_phase(name,'wait')
@@ -164,7 +164,7 @@ def verify_entry(raw,state):
     calls=[dict(va='0x46b470',receiver=UNITCTRL,return_va=hex(RETURN),sp=base,declared_root=True),dict(va='0x4678c0',receiver=UNITCTRL,return_va='0x46b4b2',sp=base-92),dict(va='0x499da0',receiver=UNITCTRL,return_va='0x46b4c8',sp=base-92),dict(va='0x456b20',receiver=a['inputs']['entry_receiver'],return_va='0x49a0be',sp=base-204,args=[])]
     pending=dict(va='0x4551c0',receiver=a['inputs']['entry_receiver'],return_va='0x49a0d4',sp=base-212,args=[0,1],first_instruction_executed=False)
     if a['calls']!=calls or a['pending']!=pending or a['declared_root'] is not True or a['owned_bodies_stubbed'] is not False or a['world_body_completed'] is not False:raise ValueError('resume actual preflight entry/caller/authority')
-    if not {0x499DA0,0x49A0B0,0x456B20,0x456B3F,0x456B4F,0x49A0BE,0x49A0C2}<=set(a['visited']) or {0x4551C0,0x49A114,0x493630,0x46B760}&set(a['visited']):raise ValueError('resume actual busy-zero native branch')
+    if not {0x46B48D,0x499DA0,0x49A0B0,0x456B20,0x456B3F,0x456B4F,0x49A0BE,0x49A0C2}<=set(a['visited']) or {0x4551C0,0x49A114,0x493630,0x46B760}&set(a['visited']):raise ValueError('resume actual busy-zero native branch')
     check_calls((a,));return state
 
 

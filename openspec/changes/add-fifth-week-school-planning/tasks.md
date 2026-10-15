@@ -942,7 +942,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 235. Original world184 actual preflight entry
 
-- [ ] 235.1 Continue next original184 prefix through captured456B20 predicate to unexecuted4551C0 with exact stack/receiver/arguments/source script and retained bytes; pin checkpoint and commit locally.
+- [x] 235.1 Continue next original184 prefix through captured456B20 predicate to unexecuted4551C0 with exact stack/receiver/arguments/source script and retained bytes; pin checkpoint and commit locally.
 
 ## 236. Countdown boundary acceptance
 

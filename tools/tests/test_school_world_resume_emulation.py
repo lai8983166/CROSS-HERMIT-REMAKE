@@ -50,5 +50,6 @@ class Checks:
 
 class ZeroTests(Checks,unittest.TestCase):phase='zero'
 class PauseTests(Checks,unittest.TestCase):phase='pause'
+class EntryTests(Checks,unittest.TestCase):phase='entry'
 
 if __name__=='__main__':unittest.main()
