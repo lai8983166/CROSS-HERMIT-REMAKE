@@ -1,0 +1,569 @@
+{
+  "baseline": "fbc578d",
+  "scope": "Stages205–208: complete consecutive original worlds4–6; actual2063 opcode2 sound59, original closed audio guard and next frame",
+  "completed_source_native_commits": [
+    "601ff04 Derive finite worlds4-6 countdown and original guarded sound opcode",
+    "b7229ee Verify consecutive complete fourth and fifth original world updates",
+    "fc48f22 Verify sixth original world sound opcode guarded dispatch and next frame"
+  ],
+  "source_contract": "analysis/school-world-countdown-source-contract-20261015.json",
+  "source_input_capture": {
+    "path": "analysis/school-world-countdown-inputs-20261015.json",
+    "sha256": "eca141981a8000903bf3e9d8c34826f513ee85d2564ae08f5fb1adc37149263c",
+    "new_original_instruction_executed": false
+  },
+  "native_reports": [
+    {
+      "phase": "batch",
+      "path": "analysis/school-world-countdown-batch-v2-20261015.json",
+      "sha256": "6e934c89b7c1689530063086f05eb56be40c1c51246fd59ed2725d6801a5985b"
+    },
+    {
+      "phase": "sound",
+      "path": "analysis/school-world-countdown-sound-v1-20261015.json",
+      "sha256": "c568a8c004d1260ce4a7114a2bbeaac89fd7bd460456bb2e48c870785c5fae8e"
+    }
+  ],
+  "actual_cases": 3,
+  "case_counts": [
+    {
+      "name": "initial",
+      "worlds": [
+        {
+          "tick": 4,
+          "delay": 178,
+          "prefix_calls": 14,
+          "unit_calls": 762,
+          "unit_return_observations": 212,
+          "occupied_units": 38,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [],
+          "source_sound_dispatch_count": 0,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119431976,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        },
+        {
+          "tick": 5,
+          "delay": 177,
+          "prefix_calls": 14,
+          "unit_calls": 762,
+          "unit_return_observations": 212,
+          "occupied_units": 38,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [],
+          "source_sound_dispatch_count": 0,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119431976,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        },
+        {
+          "tick": 6,
+          "delay": 176,
+          "prefix_calls": 14,
+          "unit_calls": 780,
+          "unit_return_observations": 212,
+          "occupied_units": 38,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x40ba03",
+              "sp": 33619180,
+              "args": [
+                1,
+                59,
+                4294967295,
+                0
+              ]
+            },
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x40ba03",
+              "sp": 33619180,
+              "args": [
+                1,
+                59,
+                4294967295,
+                0
+              ]
+            },
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x40ba03",
+              "sp": 33619180,
+              "args": [
+                1,
+                59,
+                4294967295,
+                0
+              ]
+            }
+          ],
+          "source_sound_dispatch_count": 3,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119431976,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "student9_waiting",
+      "worlds": [
+        {
+          "tick": 4,
+          "delay": 178,
+          "prefix_calls": 14,
+          "unit_calls": 718,
+          "unit_return_observations": 202,
+          "occupied_units": 37,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [],
+          "source_sound_dispatch_count": 0,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119433464,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        },
+        {
+          "tick": 5,
+          "delay": 177,
+          "prefix_calls": 14,
+          "unit_calls": 718,
+          "unit_return_observations": 202,
+          "occupied_units": 37,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [],
+          "source_sound_dispatch_count": 0,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119433464,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        },
+        {
+          "tick": 6,
+          "delay": 176,
+          "prefix_calls": 14,
+          "unit_calls": 730,
+          "unit_return_observations": 202,
+          "occupied_units": 37,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x40ba03",
+              "sp": 33619180,
+              "args": [
+                1,
+                59,
+                4294967295,
+                0
+              ]
+            },
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x40ba03",
+              "sp": 33619180,
+              "args": [
+                1,
+                59,
+                4294967295,
+                0
+              ]
+            }
+          ],
+          "source_sound_dispatch_count": 2,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119433464,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "fifth_class",
+      "worlds": [
+        {
+          "tick": 4,
+          "delay": 178,
+          "prefix_calls": 14,
+          "unit_calls": 718,
+          "unit_return_observations": 202,
+          "occupied_units": 37,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [],
+          "source_sound_dispatch_count": 0,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119433464,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        },
+        {
+          "tick": 5,
+          "delay": 177,
+          "prefix_calls": 14,
+          "unit_calls": 718,
+          "unit_return_observations": 202,
+          "occupied_units": 37,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [],
+          "source_sound_dispatch_count": 0,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119433464,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        },
+        {
+          "tick": 6,
+          "delay": 176,
+          "prefix_calls": 14,
+          "unit_calls": 730,
+          "unit_return_observations": 202,
+          "occupied_units": 37,
+          "all250_slot_tests": 250,
+          "source_sound_dispatch_calls": [
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x40ba03",
+              "sp": 33619180,
+              "args": [
+                1,
+                59,
+                4294967295,
+                0
+              ]
+            },
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x40ba03",
+              "sp": 33619180,
+              "args": [
+                1,
+                59,
+                4294967295,
+                0
+              ]
+            }
+          ],
+          "source_sound_dispatch_count": 2,
+          "idle_root_indices": [
+            217,
+            247,
+            248
+          ],
+          "templates_activated": 0,
+          "prefix_retained_bytes": 119127950,
+          "unit_retained_bytes": 119433464,
+          "suffix_retained_bytes": 119496667,
+          "real_ret": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          }
+        }
+      ]
+    }
+  ],
+  "complete_world_function_invocations": 9,
+  "occupied_unit_updates_across_cases": 336,
+  "all250_slot_tests_across_worlds": 2250,
+  "original_sound59_dispatches": 7,
+  "audio_manager_guard": "Captured TASK+1A98 first20 bytes zero; original40D390 +8 guard branches to natural return; no backend call or substituted audio implementation",
+  "source2063_next_frame": {
+    "offset": 8728,
+    "frame_hex": "0000b1fffffff7ff0600",
+    "duration": 6,
+    "sprite": 1969,
+    "sprite_hex": "0000d8ff990202ff0c00"
+  },
+  "next2063_timer": 5,
+  "next_friendly_main_timer": 25,
+  "next_friendly_other_attachment_timer": 24,
+  "final_opening_delay": 176,
+  "main_owned_regions": 10,
+  "prefix_owned_regions": 19,
+  "suffix_owned_regions": 10,
+  "complete_work_slots": 250,
+  "complete_records": 250,
+  "complete_pool_nodes": 2048,
+  "private_continuation_checkpoints": [
+    {
+      "phase": "batch",
+      "name": "initial",
+      "path": ".venv-audit/world-countdown-batch-initial.pkl",
+      "bytes": 136811423,
+      "sha256": "8b38358164b68ecd4b7b8ce0ff35ddd23731f3f2a7a0b9f07adc3349bc04cc11",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "batch",
+      "name": "student9_waiting",
+      "path": ".venv-audit/world-countdown-batch-student9_waiting.pkl",
+      "bytes": 136273581,
+      "sha256": "d7b94673e95d6ea8bbccd9120fc004b6f5906d6b254c03ae474b101e09233e0b",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "batch",
+      "name": "fifth_class",
+      "path": ".venv-audit/world-countdown-batch-fifth_class.pkl",
+      "bytes": 136273554,
+      "sha256": "d541cc4aeea83c42c1d07c3907f7b4d37b5c0ffe064f44722f8714149b86f264",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "sound",
+      "name": "initial",
+      "path": ".venv-audit/world-countdown-sound-initial.pkl",
+      "bytes": 136814077,
+      "sha256": "923b4ef0af1090b197d045e7ee0fece5be54b8e9fbb8f3bdda82e8a8a28ccfb4",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "sound",
+      "name": "student9_waiting",
+      "path": ".venv-audit/world-countdown-sound-student9_waiting.pkl",
+      "bytes": 136275811,
+      "sha256": "eb6b50d5c5e93ee0ca37cbbf871e8a20214b0c75bec58ace8f2c8889834b291c",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "phase": "sound",
+      "name": "fifth_class",
+      "path": ".venv-audit/world-countdown-sound-fifth_class.pkl",
+      "bytes": 136275784,
+      "sha256": "3a1ded27bbeab2dbbf3943f72d98460dd792ce7da29aea313716850997ff3995",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    }
+  ],
+  "checkpoint_validation": "Fresh current phase report, parent report, source capture and prior-phase report SHA before every unpickle; checkpoint bytes/SHA, source/parent/case/phase, full physical prefix/main/suffix owned regions, captured audio-manager20 bytes,119MB retained memory and natural returned EIP/ESP/EBP/EAX; warm-cache changed-input refusal before unpickle.",
+  "regression": {
+    "python_tests": 154,
+    "failures": 0,
+    "log": "analysis/school-world-countdown-final-regression-20261015.log",
+    "strict_specs": 30,
+    "spec_log": "analysis/school-world-countdown-spec-final-20261015.log"
+  },
+  "preservation": "analysis/school-world-countdown-preservation-20261015.json",
+  "retained_files": 1531,
+  "unchanged_save_rule_fingerprints": 10,
+  "prior_Godot_model_window_checks": "Preserved prior baseline; no runtime/art edits or new window replay claimed",
+  "progress": {
+    "total": 208,
+    "complete": 208,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-world-countdown-artifact-manifest-20261015.json",
+  "remaining": [
+    "Seventh and subsequent natural initialized updates and further source frame/opcode transitions",
+    "Attached animation completion/unlink/free and audio backend initialization/playback",
+    "Required180 enabled-update interval, opening/VM/AI/events/waves and original outer task/render frame",
+    "Nonempty effects/damage, authoritative victory/reward and persistent school return"
+  ],
+  "authority": {
+    "world4_body_completed": true,
+    "world5_body_completed": true,
+    "world6_body_completed": true,
+    "source_sound_opcode_executed": true,
+    "source_sound_manager_guard_executed": true,
+    "audio_backend_executed": false,
+    "audible_playback_verified": false,
+    "attached_node_free_executed": false,
+    "templates_activated": false,
+    "original_outer_task_frame_completed": false,
+    "original_opening_completed": false,
+    "VM_or_AI_completed": false,
+    "nonempty_effect_or_damage_executed": false,
+    "GPU_rendering_executed": false,
+    "persistent_write": false,
+    "formal_adventure_enabled": false,
+    "180_enabled_updates_completed": false
+  },
+  "local_acceptance_commit": "Recorded in local Git history; no push"
+}
