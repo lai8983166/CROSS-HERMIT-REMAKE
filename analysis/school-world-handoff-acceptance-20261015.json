@@ -1,0 +1,3955 @@
+{
+  "baseline": "7e41c34",
+  "scope": "Stages223–226, every declared original world119–126; jobs3/4 main terminal, event125 original RNG and recursive nonpersistent child cleanup; phase2 counter reset",
+  "source_native_commits": [
+    "adacc98 Derive original main completion voice RNG and recursive child cleanup",
+    "3b69616 Verify consecutive original worlds119-124 and friendly main terminal",
+    "4444d1a Verify original worlds125-126 voice RNG recursive cleanup and phase handoff"
+  ],
+  "source_contract": "analysis/school-world-handoff-source-contract-20261015.json",
+  "native_reports": [
+    {
+      "phase": "terminal",
+      "path": "analysis/school-world-handoff-terminal-v1-20261015.json.gz",
+      "sha256": "a4011f19518a79c9d64aca080ac11739e305a95b9b68402f94940be72e8a2355"
+    },
+    {
+      "phase": "handoff",
+      "path": "analysis/school-world-handoff-handoff-v1-20261015.json.gz",
+      "sha256": "50662134776a39795da200c1cdf9e94d2fc9f9c4bbf19e72f337628a9e50a9c5"
+    }
+  ],
+  "case_counts": [
+    {
+      "name": "initial",
+      "worlds": [
+        {
+          "tick": 119,
+          "delay": 63,
+          "unit_calls": 758,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 5,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 118,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 5,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 118,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 118,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432236,
+            119496667
+          ]
+        },
+        {
+          "tick": 120,
+          "delay": 62,
+          "unit_calls": 758,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 4,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 119,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 4,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 119,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 119,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432236,
+            119496667
+          ]
+        },
+        {
+          "tick": 121,
+          "delay": 61,
+          "unit_calls": 758,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 120,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 120,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 1,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 120,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432236,
+            119496667
+          ]
+        },
+        {
+          "tick": 122,
+          "delay": 60,
+          "unit_calls": 763,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 121,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 121,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 6,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 2846,
+                        "frame_hex": "800069fffffff0ff0600",
+                        "opcode": 0,
+                        "duration": 6,
+                        "sprite": 105,
+                        "sprite_hex": "0000daff080000ff0700"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 4258,
+                        "frame_hex": "000094fffffff0ff0400",
+                        "opcode": 0,
+                        "duration": 4,
+                        "sprite": 148,
+                        "sprite_hex": "0000d8ff460006ff0000"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 121,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432236,
+            119496667
+          ]
+        },
+        {
+          "tick": 123,
+          "delay": 59,
+          "unit_calls": 758,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 1,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 122,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 1,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 122,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 5,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 122,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432236,
+            119496667
+          ]
+        },
+        {
+          "tick": 124,
+          "delay": 58,
+          "unit_calls": 762,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 5228,
+                        "frame_hex": "000043fffffff1ff0600",
+                        "opcode": 0,
+                        "duration": 6,
+                        "sprite": 323,
+                        "sprite_hex": "0000d8ff960006ff0000"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 123,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 8716,
+                        "frame_hex": "0000c4fffffff1ff0600",
+                        "opcode": 0,
+                        "duration": 6,
+                        "sprite": 452,
+                        "sprite_hex": "0000d8ff960006ff0100"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 123,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 4,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 123,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432236,
+            119496667
+          ]
+        },
+        {
+          "tick": 125,
+          "delay": 57,
+          "unit_calls": 792,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": [
+                    {
+                      "kind": "clear",
+                      "depth": 0,
+                      "recursive_nodes": [
+                        7755648
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [
+                7755648
+              ],
+              "allocated_nodes": [],
+              "phase_after": 2,
+              "counter_after": 125,
+              "voice": {
+                "event": 125,
+                "job": 3,
+                "draws": [
+                  {
+                    "before": 1174792322,
+                    "after": 2036165949,
+                    "value": 31069
+                  },
+                  {
+                    "before": 2036165949,
+                    "after": 2898889484,
+                    "value": 11465
+                  }
+                ],
+                "selected": true,
+                "audio_args": [
+                  9,
+                  4,
+                  12,
+                  0
+                ]
+              },
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": [
+                    {
+                      "kind": "clear",
+                      "depth": 0,
+                      "recursive_nodes": [
+                        7755824
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [
+                7755824
+              ],
+              "allocated_nodes": [],
+              "phase_after": 2,
+              "counter_after": 125,
+              "voice": {
+                "event": 125,
+                "job": 4,
+                "draws": [
+                  {
+                    "before": 2898889484,
+                    "after": 601697695,
+                    "value": 9181
+                  },
+                  {
+                    "before": 601697695,
+                    "after": 3716829670,
+                    "value": 23946
+                  }
+                ],
+                "selected": true,
+                "audio_args": [
+                  10,
+                  4,
+                  13,
+                  0
+                ]
+              },
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 124,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [
+            {
+              "index": 0,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 31069,
+              "seed": 2036165949
+            },
+            {
+              "index": 0,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 11465,
+              "seed": 2898889484
+            },
+            {
+              "index": 1,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 9181,
+              "seed": 601697695
+            },
+            {
+              "index": 1,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 23946,
+              "seed": 3716829670
+            }
+          ],
+          "declared_thread_adapters": [
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            }
+          ],
+          "audio_calls": [
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x49b00a",
+              "sp": 33619152,
+              "args": [
+                9,
+                4,
+                12,
+                0
+              ]
+            },
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x49b00a",
+              "sp": 33619152,
+              "args": [
+                10,
+                4,
+                13,
+                0
+              ]
+            }
+          ],
+          "recursive_clear_calls": [
+            {
+              "va": "0x40ab80",
+              "receiver": 335544320,
+              "return_va": "0x40a845",
+              "sp": 33619288,
+              "args": [
+                235408580
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 335544320,
+              "return_va": "0x40abf3",
+              "sp": 33619188,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40b660",
+              "receiver": 335544320,
+              "return_va": "0x40ac6c",
+              "sp": 33619088,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40b6a0",
+              "receiver": 335544320,
+              "return_va": "0x40b689",
+              "sp": 33618996,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 369098752,
+              "return_va": "0x40a845",
+              "sp": 33619288,
+              "args": [
+                235409892
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 369098752,
+              "return_va": "0x40abf3",
+              "sp": 33619188,
+              "args": [
+                7755824
+              ]
+            },
+            {
+              "va": "0x40b660",
+              "receiver": 369098752,
+              "return_va": "0x40ac6c",
+              "sp": 33619088,
+              "args": [
+                7755824
+              ]
+            },
+            {
+              "va": "0x40b6a0",
+              "receiver": 369098752,
+              "return_va": "0x40b689",
+              "sp": 33618996,
+              "args": [
+                7755824
+              ]
+            }
+          ],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432236,
+            119496667
+          ]
+        },
+        {
+          "tick": 126,
+          "delay": 56,
+          "unit_calls": 756,
+          "occupied_units": 38,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": true,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 3,
+              "counter_after": 1,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": true,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 3,
+              "counter_after": 1,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            },
+            {
+              "index": 2,
+              "job": 9,
+              "klass": 7,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7756000
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235411204,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7756000,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 4268,
+                        "frame_hex": "8000ffffffffffff0400",
+                        "opcode": 0,
+                        "duration": 4,
+                        "sprite": 4095,
+                        "sprite_hex": null
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 125,
+              "voice": null,
+              "cell": [
+                9,
+                16
+              ],
+              "event_region": 1,
+              "vision_args": [
+                9,
+                16,
+                6
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119432412,
+            119496667
+          ]
+        }
+      ]
+    },
+    {
+      "name": "student9_waiting",
+      "worlds": [
+        {
+          "tick": 119,
+          "delay": 63,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 5,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 118,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 5,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 118,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 120,
+          "delay": 62,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 4,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 119,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 4,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 119,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 121,
+          "delay": 61,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 120,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 120,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 122,
+          "delay": 60,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 121,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 121,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 123,
+          "delay": 59,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 1,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 122,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 1,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 122,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 124,
+          "delay": 58,
+          "unit_calls": 719,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 5228,
+                        "frame_hex": "000043fffffff1ff0600",
+                        "opcode": 0,
+                        "duration": 6,
+                        "sprite": 323,
+                        "sprite_hex": "0000d8ff960006ff0000"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 123,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 8716,
+                        "frame_hex": "0000c4fffffff1ff0600",
+                        "opcode": 0,
+                        "duration": 6,
+                        "sprite": 452,
+                        "sprite_hex": "0000d8ff960006ff0100"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 123,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 125,
+          "delay": 57,
+          "unit_calls": 749,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": [
+                    {
+                      "kind": "clear",
+                      "depth": 0,
+                      "recursive_nodes": [
+                        7755648
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [
+                7755648
+              ],
+              "allocated_nodes": [],
+              "phase_after": 2,
+              "counter_after": 125,
+              "voice": {
+                "event": 125,
+                "job": 3,
+                "draws": [
+                  {
+                    "before": 1174792322,
+                    "after": 2036165949,
+                    "value": 31069
+                  },
+                  {
+                    "before": 2036165949,
+                    "after": 2898889484,
+                    "value": 11465
+                  }
+                ],
+                "selected": true,
+                "audio_args": [
+                  9,
+                  4,
+                  12,
+                  0
+                ]
+              },
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": [
+                    {
+                      "kind": "clear",
+                      "depth": 0,
+                      "recursive_nodes": [
+                        7755824
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [
+                7755824
+              ],
+              "allocated_nodes": [],
+              "phase_after": 2,
+              "counter_after": 125,
+              "voice": {
+                "event": 125,
+                "job": 4,
+                "draws": [
+                  {
+                    "before": 2898889484,
+                    "after": 601697695,
+                    "value": 9181
+                  },
+                  {
+                    "before": 601697695,
+                    "after": 3716829670,
+                    "value": 23946
+                  }
+                ],
+                "selected": true,
+                "audio_args": [
+                  10,
+                  4,
+                  13,
+                  0
+                ]
+              },
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [
+            {
+              "index": 0,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 31069,
+              "seed": 2036165949
+            },
+            {
+              "index": 0,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 11465,
+              "seed": 2898889484
+            },
+            {
+              "index": 1,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 9181,
+              "seed": 601697695
+            },
+            {
+              "index": 1,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 23946,
+              "seed": 3716829670
+            }
+          ],
+          "declared_thread_adapters": [
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            }
+          ],
+          "audio_calls": [
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x49b00a",
+              "sp": 33619152,
+              "args": [
+                9,
+                4,
+                12,
+                0
+              ]
+            },
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x49b00a",
+              "sp": 33619152,
+              "args": [
+                10,
+                4,
+                13,
+                0
+              ]
+            }
+          ],
+          "recursive_clear_calls": [
+            {
+              "va": "0x40ab80",
+              "receiver": 335544320,
+              "return_va": "0x40a845",
+              "sp": 33619288,
+              "args": [
+                235408580
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 335544320,
+              "return_va": "0x40abf3",
+              "sp": 33619188,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40b660",
+              "receiver": 335544320,
+              "return_va": "0x40ac6c",
+              "sp": 33619088,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40b6a0",
+              "receiver": 335544320,
+              "return_va": "0x40b689",
+              "sp": 33618996,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 369098752,
+              "return_va": "0x40a845",
+              "sp": 33619288,
+              "args": [
+                235409892
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 369098752,
+              "return_va": "0x40abf3",
+              "sp": 33619188,
+              "args": [
+                7755824
+              ]
+            },
+            {
+              "va": "0x40b660",
+              "receiver": 369098752,
+              "return_va": "0x40ac6c",
+              "sp": 33619088,
+              "args": [
+                7755824
+              ]
+            },
+            {
+              "va": "0x40b6a0",
+              "receiver": 369098752,
+              "return_va": "0x40b689",
+              "sp": 33618996,
+              "args": [
+                7755824
+              ]
+            }
+          ],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 126,
+          "delay": 56,
+          "unit_calls": 711,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": true,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 3,
+              "counter_after": 1,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": true,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 3,
+              "counter_after": 1,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433812,
+            119496667
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fifth_class",
+      "worlds": [
+        {
+          "tick": 119,
+          "delay": 63,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 5,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 118,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 5,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 118,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 120,
+          "delay": 62,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 4,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 119,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 4,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 119,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 121,
+          "delay": 61,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 120,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 3,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 120,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 122,
+          "delay": 60,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 121,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 2,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 121,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 123,
+          "delay": 59,
+          "unit_calls": 715,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 1,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 122,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 0,
+              "main_wait": 1,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 122,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 124,
+          "delay": 58,
+          "unit_calls": 719,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [
+                7755648
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755648,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 5228,
+                        "frame_hex": "000043fffffff1ff0600",
+                        "opcode": 0,
+                        "duration": 6,
+                        "sprite": 323,
+                        "sprite_hex": "0000d8ff960006ff0000"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 123,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [
+                7755824
+              ],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                },
+                {
+                  "node": 7755824,
+                  "kind": "spawned",
+                  "events": [
+                    {
+                      "kind": "setup",
+                      "return_va": "0x40a963",
+                      "frame": {
+                        "offset": 8716,
+                        "frame_hex": "0000c4fffffff1ff0600",
+                        "opcode": 0,
+                        "duration": 6,
+                        "sprite": 452,
+                        "sprite_hex": "0000d8ff960006ff0100"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 1,
+              "counter_after": 123,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 125,
+          "delay": 57,
+          "unit_calls": 749,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": [
+                    {
+                      "kind": "clear",
+                      "depth": 0,
+                      "recursive_nodes": [
+                        7755648
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [
+                7755648
+              ],
+              "allocated_nodes": [],
+              "phase_after": 2,
+              "counter_after": 125,
+              "voice": {
+                "event": 125,
+                "job": 3,
+                "draws": [
+                  {
+                    "before": 1174792322,
+                    "after": 2036165949,
+                    "value": 31069
+                  },
+                  {
+                    "before": 2036165949,
+                    "after": 2898889484,
+                    "value": 11465
+                  }
+                ],
+                "selected": true,
+                "audio_args": [
+                  9,
+                  4,
+                  12,
+                  0
+                ]
+              },
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": false,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": [
+                    {
+                      "kind": "clear",
+                      "depth": 0,
+                      "recursive_nodes": [
+                        7755824
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "released_nodes": [
+                7755824
+              ],
+              "allocated_nodes": [],
+              "phase_after": 2,
+              "counter_after": 125,
+              "voice": {
+                "event": 125,
+                "job": 4,
+                "draws": [
+                  {
+                    "before": 2898889484,
+                    "after": 601697695,
+                    "value": 9181
+                  },
+                  {
+                    "before": 601697695,
+                    "after": 3716829670,
+                    "value": 23946
+                  }
+                ],
+                "selected": true,
+                "audio_args": [
+                  10,
+                  4,
+                  13,
+                  0
+                ]
+              },
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [
+            {
+              "index": 0,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 31069,
+              "seed": 2036165949
+            },
+            {
+              "index": 0,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 11465,
+              "seed": 2898889484
+            },
+            {
+              "index": 1,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 9181,
+              "seed": 601697695
+            },
+            {
+              "index": 1,
+              "va": "0x467e92",
+              "sp": 33619084,
+              "eax": 23946,
+              "seed": 3716829670
+            }
+          ],
+          "declared_thread_adapters": [
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            },
+            {
+              "return_va": "0x570fe9",
+              "sp": 33619068,
+              "thread_pointer": 157286400,
+              "does_not_reseed": true
+            }
+          ],
+          "audio_calls": [
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x49b00a",
+              "sp": 33619152,
+              "args": [
+                9,
+                4,
+                12,
+                0
+              ]
+            },
+            {
+              "va": "0x40d390",
+              "receiver": 16784024,
+              "return_va": "0x49b00a",
+              "sp": 33619152,
+              "args": [
+                10,
+                4,
+                13,
+                0
+              ]
+            }
+          ],
+          "recursive_clear_calls": [
+            {
+              "va": "0x40ab80",
+              "receiver": 335544320,
+              "return_va": "0x40a845",
+              "sp": 33619288,
+              "args": [
+                235408580
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 335544320,
+              "return_va": "0x40abf3",
+              "sp": 33619188,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40b660",
+              "receiver": 335544320,
+              "return_va": "0x40ac6c",
+              "sp": 33619088,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40b6a0",
+              "receiver": 335544320,
+              "return_va": "0x40b689",
+              "sp": 33618996,
+              "args": [
+                7755648
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 369098752,
+              "return_va": "0x40a845",
+              "sp": 33619288,
+              "args": [
+                235409892
+              ]
+            },
+            {
+              "va": "0x40ab80",
+              "receiver": 369098752,
+              "return_va": "0x40abf3",
+              "sp": 33619188,
+              "args": [
+                7755824
+              ]
+            },
+            {
+              "va": "0x40b660",
+              "receiver": 369098752,
+              "return_va": "0x40ac6c",
+              "sp": 33619088,
+              "args": [
+                7755824
+              ]
+            },
+            {
+              "va": "0x40b6a0",
+              "receiver": 369098752,
+              "return_va": "0x40b689",
+              "sp": 33618996,
+              "args": [
+                7755824
+              ]
+            }
+          ],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433636,
+            119496667
+          ]
+        },
+        {
+          "tick": 126,
+          "delay": 56,
+          "unit_calls": 711,
+          "occupied_units": 37,
+          "friends": [
+            {
+              "index": 0,
+              "job": 3,
+              "klass": 10,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": true,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235408580,
+                  "kind": "main",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 3,
+              "counter_after": 1,
+              "voice": null,
+              "cell": [
+                10,
+                17
+              ],
+              "event_region": 0,
+              "vision_args": [
+                10,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 1,
+              "job": 4,
+              "klass": 6,
+              "group": 0,
+              "inactive": false,
+              "handler_return": 0,
+              "main_return": 1,
+              "main_wait": 0,
+              "root_idle": true,
+              "linked_order": [],
+              "sound_nodes": [],
+              "animation_steps": [
+                {
+                  "node": 235409892,
+                  "kind": "main",
+                  "events": []
+                }
+              ],
+              "released_nodes": [],
+              "allocated_nodes": [],
+              "phase_after": 3,
+              "counter_after": 1,
+              "voice": null,
+              "cell": [
+                11,
+                16
+              ],
+              "event_region": 0,
+              "vision_args": [
+                11,
+                16,
+                15
+              ]
+            }
+          ],
+          "native_random_returns": [],
+          "declared_thread_adapters": [],
+          "audio_calls": [],
+          "recursive_clear_calls": [],
+          "original_return": {
+            "va": "0x46b662",
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "eax": 0,
+            "original_outer_caller": false
+          },
+          "driver_return": {
+            "va": "0x3000000",
+            "sp": 33619716,
+            "ebp": 33619708,
+            "expected_caller_ebp": 33619708,
+            "eax": 0,
+            "declared_audit_sentinel": true
+          },
+          "retained_bytes": [
+            119127950,
+            119433812,
+            119496667
+          ]
+        }
+      ]
+    }
+  ],
+  "complete_world_invocations": 24,
+  "slot_tests": 6000,
+  "occupied_unit_updates": 896,
+  "original_targeted_unit_calls": 17613,
+  "original_recursive_child_frees": 6,
+  "original_voice_attempts": 6,
+  "original_CRT_rand_calls": 12,
+  "declared_existing_thread_lookup_adapters": 12,
+  "guarded_audio_manager_calls": 6,
+  "final_delay": 56,
+  "final_jobs3_4_phase": 3,
+  "final_jobs3_4_counter": 1,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "terminal",
+      "path": ".venv-audit/world-handoff-terminal-initial.pkl",
+      "bytes": 136813044,
+      "sha256": "72765a3ece5dd4338922b21330998467fb7c14993471f91e59999d9f7021c3b4",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "handoff",
+      "path": ".venv-audit/world-handoff-handoff-initial.pkl",
+      "bytes": 136812642,
+      "sha256": "ceed3c18cff1e60008b4eb71ec572c5200b66beba700f4e04c2ff3f387fd75d5",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "terminal",
+      "path": ".venv-audit/world-handoff-terminal-student9_waiting.pkl",
+      "bytes": 136275319,
+      "sha256": "5a34cae5fede9910eca7e520edc14b310f084517662e0335b788e423df76038c",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "handoff",
+      "path": ".venv-audit/world-handoff-handoff-student9_waiting.pkl",
+      "bytes": 136274002,
+      "sha256": "03913be2efe54d041588a4757dbac1be1ca0b9d6c082e045bdd84a618719125e",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "terminal",
+      "path": ".venv-audit/world-handoff-terminal-fifth_class.pkl",
+      "bytes": 136275272,
+      "sha256": "608ab7a6b347c824ecee6e13bc04f995b07c6c32476fe560bd1b45eaa4d0ac82",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "handoff",
+      "path": ".venv-audit/world-handoff-handoff-fifth_class.pkl",
+      "bytes": 136273955,
+      "sha256": "ec15240a57038dea21225c4c925d709489231492c3d9803d578824ecc0484aa3",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    }
+  ],
+  "regression": {
+    "python_tests": 218,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-world-handoff-final-regression-20261015.log",
+    "spec_log": "analysis/school-world-handoff-spec-final-20261015.log"
+  },
+  "retained_files": 15642,
+  "save_rule_fingerprints": 10,
+  "preservation": "analysis/school-world-handoff-preservation-20261015.json",
+  "progress": {
+    "total": 226,
+    "complete": 226,
+    "remaining": 0
+  },
+  "artifact_manifest": "analysis/school-world-handoff-artifact-manifest-20261015.json",
+  "development_probes": {
+    "path": "analysis/school-world-handoff-boundary-probes-v3-20261015.json.gz",
+    "sha256": "f6768f0dcea742d8329dd7ed3600afb9340f27fc7b55ea0b68729c0b162f0835",
+    "canonical_world_progress": false,
+    "CPU_and_all_memory_restored": true,
+    "failed_probe_logs_retained": [
+      "analysis/school-world-handoff-boundary-probes-v1-20261015.log",
+      "analysis/school-world-handoff-boundary-probes-v2-20261015.log"
+    ]
+  },
+  "authority": {
+    "continuous_worlds119_through126": true,
+    "native_CRT_LCG": true,
+    "CRT_thread_lookup_is_declared_adapter": true,
+    "job9_terminal": false,
+    "later_pending_mode_commit": false,
+    "original_outer_task": false,
+    "full180_interval": false,
+    "VM_or_AI": false,
+    "audio_backend": false,
+    "templates_activated": false,
+    "GPU": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "mode25 phase3 pending2 request/next update mode application/new pose",
+    "Job9 terminal128 and following phase handoff/cleanup129",
+    "Full180 enabled interval, opening VM/AI/events/waves",
+    "Original outer task/render/audio backend and authoritative victory/reward/school return"
+  ],
+  "local_only": true
+}
