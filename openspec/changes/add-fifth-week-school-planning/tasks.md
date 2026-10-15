@@ -771,3 +771,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 192. Scene and inactive template acceptance
 
 - [x] 192.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document remaining scene/world/180/VM work and commit locally without pushing.
+
+## 193. Remaining scene and enabled suffix source policy
+
+- [x] 193.1 Decode source mode2 opening initialization, four animation metadata/terminal policies, full ten-unit and enabled world suffix projections/refusals; commit locally.
+
+## 194. Original remaining ten scene units
+
+- [ ] 194.1 Restore verified240 cases and execute all ten units/natural returns/loop completion to unexecuted490FC0, compare full source bytes/calls/retained state and pin checkpoints; commit locally.
+
+## 195. Original second world function return
+
+- [ ] 195.1 Continue verified490FC0 through original closed-gate suffix/ten effects/secondary skip/empty forwarding and real46B662 return to the existing declared driver, verify full regions/CPU/stack/retention and pin continuation; commit locally.
+
+## 196. Enabled world body acceptance
+
+- [ ] 196.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document second function completion versus remaining outer-task/180/VM/AI work and commit locally without pushing.

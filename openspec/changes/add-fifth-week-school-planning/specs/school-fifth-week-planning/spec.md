@@ -883,3 +883,16 @@ The audit SHALL verify originalscene217 initialization, terminal animation and n
 - **WHEN** verified217 returns to the original218 unit entry
 - **THEN** all22 source state0 mode11 units218–239 execute the original early-return handler with complete source byte/call/return/retention equality
 - **AND** their records remain inactive and execution stops before scene240, without running their animation/regen/map or claiming world/VM completion
+
+### Requirement: Remaining scene units and second world return evidence
+The audit SHALL verify all ten remaining source mode2 units and the actual second46B470 function return without substituting disabled-action inputs or granting unexecuted outer-task/180/VM authority.
+
+#### Scenario: All remaining occupied units
+- **WHEN** verified240 cases continue with opening1/action1 and source four-class bindings
+- **THEN** original mode2 initialization, terminal/nonterminal animation and empty tails/region/faction vision match full owned/retained bytes and natural ten-unit returns
+- **AND** the original loop completes250 slots, clears current work and stops before490FC0 with the event gate closed
+
+#### Scenario: Actual enabled world suffix returns
+- **WHEN** verified post-unit CPU continues with its actual action1/state5 controls
+- **THEN** original cursor/menu/hover, ten idle effects, inactive secondary slots and empty forwarding match source projection and original46B662 returns to the existing declared audit sentinel
+- **AND** the bounded second world body completes while outer game-task/render/180 enabled updates and opening/VM/AI completion remain false
