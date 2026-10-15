@@ -762,7 +762,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 190. Original scene unit natural return
 
-- [ ] 190.1 Continue original terminal/main/five-auxiliary animation and empty effect/damage/regen/map tail through unit ret8 to unexecuted218; verify full state/calls/stack and checkpoint provenance, then commit locally.
+- [x] 190.1 Continue original terminal/main/five-auxiliary animation and empty effect/damage/regen/map tail through unit ret8 to unexecuted218; verify full state/calls/stack and checkpoint provenance, then commit locally.
 
 ## 191. First scene unit acceptance
 

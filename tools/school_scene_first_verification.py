@@ -9,7 +9,7 @@ from tools.school_following_students_verification import pinned,pending as unit_
 from tools.school_student_tail_verification import retained
 
 REPORTS={p:ROOT/f'analysis/school-scene-first-{p}-v1-20261015.json' for p in ('initializer','complete')}
-SHAS={'initializer':'728c9f9d5458b36780505191b9a4d7fe4a122586ef669ac214dbb43d45c687cc','complete':None}
+SHAS={'initializer':'728c9f9d5458b36780505191b9a4d7fe4a122586ef669ac214dbb43d45c687cc','complete':'9c7f3f2fb79209bf0f971ccf34f783ee7857f6be4dfb21d0f86f38b204ee7122'}
 INPUTS=ROOT/'analysis/school-scene-first-inputs-20261015.json'
 INPUTS_SHA='e5794df3b0f416d8bfeee64f1f6dfe6a5f9bb93477d58999cb4b8e89c0e1899c'
 
@@ -37,7 +37,7 @@ def expected_calls(phase,inputs,result):
             for n,controller in enumerate(controllers):add(child,UNITCTRL,first if n==0 else aux,312,[w,217,controller])
         for va,ret in ((0x493450,0x46B889),(0x472370,0x46B895),(0x472770,0x46B8BF),(0x430400,0x46B8CB)):add(va,UNITCTRL,ret,204,[w])
         add(0x43BB90,MAPCTRL,0x430485,324,[59,12]);add(0x4305C0,UNITCTRL,0x4304A4,324,[w,result['event_region']])
-        add(0x46A430,UNITCTRL,0x46B8EB,204,[w]);add(0x46A5E0,UNITCTRL,0x46B8FB,204,[w]);add(0x46A430,UNITCTRL,0x46A63D,300,[w]);add(0x46B2C0,UNITCTRL,0x46B967,204,[w])
+        add(0x46A430,UNITCTRL,0x46B8EB,204,[w]);add(0x46A5E0,UNITCTRL,0x46B8FB,204,[w]);add(0x46A430,UNITCTRL,0x46A63D,296,[w]);add(0x46B2C0,UNITCTRL,0x46B967,204,[w])
     return out
 
 
