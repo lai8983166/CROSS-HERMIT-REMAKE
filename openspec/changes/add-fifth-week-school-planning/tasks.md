@@ -914,7 +914,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 228. Original worlds127–128 and first mode commit
 
-- [ ] 228.1 Restore verified126 and execute consecutive127/128 in three cases through pending2/mode2/pose1 terminal and383 repeat/job9 main terminal; verify full source bytes/calls/retention/CPU and pin128, then commit locally.
+- [x] 228.1 Restore verified126 and execute consecutive127/128 in three cases through pending2/mode2/pose1 terminal and383 repeat/job9 main terminal; verify full source bytes/calls/retention/CPU and pin128, then commit locally.
 
 ## 229. Original worlds129–133 and complete friendly handoff
 
