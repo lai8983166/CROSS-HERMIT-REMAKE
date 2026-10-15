@@ -13,7 +13,7 @@ from tools.school_world_tail_verification import effect_calls
 from tools.school_world_final_verification import pending
 
 REPORTS={p:ROOT/f'analysis/school-world-third-{p}-v1-20261015.json' for p in ('units','return')}
-SHAS={'units':'f9c8f251691a7e621b10fa9975aef37f42f75dc42c6667d6e0b7facd23cc06f0','return':None}
+SHAS={'units':'f9c8f251691a7e621b10fa9975aef37f42f75dc42c6667d6e0b7facd23cc06f0','return':'4cb1a243cc4b02efc153088ac94043868bee345085ebd08173552c455f46183a'}
 INPUTS=ROOT/'analysis/school-world-third-inputs-20261015.json'
 INPUTS_SHA='71a105d32046c9a140f69656fd823683e8a012c245f1f08775ca09fa392e77d9'
 

@@ -814,7 +814,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 203. Third original world function return
 
-- [ ] 203.1 Continue verified490FC0 through actual enabled suffix/ten idle effects/empty forwarding and natural46B662 return to existing declared driver; verify full state/CPU/retention and pin checkpoints, then commit locally.
+- [x] 203.1 Continue verified490FC0 through actual enabled suffix/ten idle effects/empty forwarding and natural46B662 return to existing declared driver; verify full state/CPU/retention and pin checkpoints, then commit locally.
 
 ## 204. Third world body acceptance
 
