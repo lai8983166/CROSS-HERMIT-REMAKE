@@ -1,0 +1,126 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x454cf0",
+      "end": "0x454ec2",
+      "sha256": "683f1a291b54b60512b29dc7254059a6b76c7655eefc5f85235fe13856133819"
+    },
+    {
+      "va": "0x457830",
+      "end": "0x45788c",
+      "sha256": "a67ed8211edb247532ba6c4492cea569e5b5d82e544f5231945d48cbf2d6159d"
+    },
+    {
+      "va": "0x425ed0",
+      "end": "0x425f50",
+      "sha256": "82cba55aa9ce6a7efe239b143dfccda427ecb9f24b59f8b65c89ad59d1378072"
+    },
+    {
+      "va": "0x425a10",
+      "end": "0x425a48",
+      "sha256": "0fbed80933fd394cf89f934a6b1b40199963145fc7df6cb77036b440685e85d6"
+    },
+    {
+      "va": "0x425a50",
+      "end": "0x425abb",
+      "sha256": "b40d09a425007a40ad3f81241a0340a8f48080c42052b514362d9596b1813148"
+    },
+    {
+      "va": "0x426250",
+      "end": "0x4262a0",
+      "sha256": "a84f2e85629e8ba10e6da7bf000dd8620069c44ab08c27d6aa8f38fb0d06f1a1"
+    },
+    {
+      "va": "0x426110",
+      "end": "0x426156",
+      "sha256": "276fd4f81691c91160e322d8af72a04f9c196f62f0fa3de84df8efb14454b85e"
+    },
+    {
+      "va": "0x426190",
+      "end": "0x4261d6",
+      "sha256": "d4c1da5c8606aaba05bc4b977e378b4fb71c18c65e6605ad1d29abdb5132ddb6"
+    },
+    {
+      "va": "0x497aa0",
+      "end": "0x497c43",
+      "sha256": "e60fa7c25a31616afd9c5690988ccc0355d5774dbec15eb4810d79554ca16674"
+    },
+    {
+      "va": "0x498310",
+      "end": "0x498739",
+      "sha256": "9f4ea1c9a8586f51dab6de3f8831000ac3c0798da9f2173b3215b579e67b3dbb"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x4539ec",
+      "hex": "e8ff120000",
+      "mnemonic": "call",
+      "operands": "0x454cf0"
+    },
+    {
+      "va": "0x4539fb",
+      "hex": "e810050000",
+      "mnemonic": "call",
+      "operands": "0x453f10"
+    },
+    {
+      "va": "0x453a0c",
+      "hex": "e85f7a0100",
+      "mnemonic": "call",
+      "operands": "0x46b470"
+    },
+    {
+      "va": "0x454d19",
+      "hex": "e822ffffff",
+      "mnemonic": "call",
+      "operands": "0x454c40"
+    },
+    {
+      "va": "0x454d2f",
+      "hex": "e8fc2a0000",
+      "mnemonic": "call",
+      "operands": "0x457830"
+    },
+    {
+      "va": "0x425f34",
+      "hex": "c68130060000ff",
+      "mnemonic": "mov",
+      "operands": "byte ptr [ecx + 0x630], 0xff"
+    },
+    {
+      "va": "0x425a78",
+      "hex": "ff15c4225900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5922c4]"
+    },
+    {
+      "va": "0x454d65",
+      "hex": "8801",
+      "mnemonic": "mov",
+      "operands": "byte ptr [ecx], al"
+    },
+    {
+      "va": "0x497ac6",
+      "hex": "0f8461010000",
+      "mnemonic": "je",
+      "operands": "0x497c2d"
+    },
+    {
+      "va": "0x498339",
+      "hex": "0f84e6030000",
+      "mnemonic": "je",
+      "operands": "0x498725"
+    }
+  ],
+  "platform_adapter": {
+    "name": "lstrlenA",
+    "slot": "0x5922c4",
+    "callsite": "0x425a78",
+    "return_va": "0x425a7e",
+    "callee_pop_bytes": 4,
+    "reads_existing_buffer_only": true
+  },
+  "scope": "One declared454CF0 after world185; native phase0 setup/empty buffer reset/inactive fade and board; no OS input sampling, playback or complete outer task"
+}
