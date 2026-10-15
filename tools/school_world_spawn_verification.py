@@ -17,7 +17,7 @@ from tools.school_world_tail_verification import effect_calls
 from tools.school_world_final_verification import pending as suffix_pending
 
 REPORTS={p:ROOT/f'analysis/school-world-spawn-{p}-v1-20261015.json.gz' for p in PHASES}
-SHAS={'frames': 'd75d1d17f49ebf3c21372ac4d1e07e6b6dda8ad5e48c6009c3c533c328a1dc25', 'spawn': None, 'tail': None}
+SHAS={'frames': 'd75d1d17f49ebf3c21372ac4d1e07e6b6dda8ad5e48c6009c3c533c328a1dc25', 'spawn': '5bd8a721d0fd5649684a17ed6a74e0698ad0bfee437d4c62b269b6a22e0e3bde', 'tail': None}
 
 
 @lru_cache(maxsize=8)

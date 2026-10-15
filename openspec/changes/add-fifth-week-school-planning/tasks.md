@@ -882,7 +882,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 220. Original world107 and child spawn
 
-- [ ] 220.1 Continue world107 through actual class-specific child allocation/reset/binding/immediate step/visited skip, verify full state/calls/stack/retention and pin107; commit locally.
+- [x] 220.1 Continue world107 through actual class-specific child allocation/reset/binding/immediate step/visited skip, verify full state/calls/stack/retention and pin107; commit locally.
 
 ## 221. Consecutive original worlds108–118
 
