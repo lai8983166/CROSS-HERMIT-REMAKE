@@ -786,4 +786,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 196. Enabled world body acceptance
 
-- [ ] 196.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document second function completion versus remaining outer-task/180/VM/AI work and commit locally without pushing.
+- [x] 196.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document second function completion versus remaining outer-task/180/VM/AI work and commit locally without pushing.
