@@ -778,7 +778,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 194. Original remaining ten scene units
 
-- [ ] 194.1 Restore verified240 cases and execute all ten units/natural returns/loop completion to unexecuted490FC0, compare full source bytes/calls/retained state and pin checkpoints; commit locally.
+- [x] 194.1 Restore verified240 cases and execute all ten units/natural returns/loop completion to unexecuted490FC0, compare full source bytes/calls/retained state and pin checkpoints; commit locally.
 
 ## 195. Original second world function return
 
