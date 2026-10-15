@@ -909,3 +909,16 @@ The audit SHALL distinguish the third natural enabled-world continuation from is
 - **WHEN** actual ended217/247/248 controllers are passed to isolated original40A100 calls
 - **THEN** current PC clears on the next40A800 call and original40AB80 depth0 empty-child path leaves the shared pool unchanged
 - **AND** full inputs, CPU and stack restore after each probe without claiming world advancement or attached-node release
+
+### Requirement: Complete third declared enabled world body
+The audit SHALL verify all remaining initialized/inactive units and the original third46B470 return without synthetic input or skipped world updates.
+
+#### Scenario: Remaining units and actual ended-root clearing
+- **WHEN** verified thirdslot1 CPU resumes with action1/opening1/delay179
+- **THEN** all remaining friendly and scene animation/empty tails,24 inactive phase1 early exits, three ended-root PC clears and original250-slot loop match source-derived complete owned/retained bytes and natural calls/stack
+- **AND** original loop clears current work and stops before490FC0 without activating templates, freeing attached nodes or executing audio
+
+#### Scenario: Third body returns to existing declared driver
+- **WHEN** the verified post-unit CPU continues its actual enabled closed-gate suffix
+- **THEN** source ten idle counters2→3 and empty forwarding match full state and original46B662 returns naturally to the existing audit sentinel
+- **AND** only the third bounded world body completes; original outer task/render,180 interval, opening/VM/AI and subsequent sound/node lifecycle remain incomplete

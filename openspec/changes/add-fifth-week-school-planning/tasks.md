@@ -803,3 +803,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 200. Third-update admission acceptance
 
 - [x] 200.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document third-world/animation/sound/180/VM boundaries and commit locally without pushing.
+
+## 201. Third remaining loop and suffix source policy
+
+- [x] 201.1 Derive initialized friendly/scene countdowns, phase1 inactive exits, actual ended-root clearing and enabled suffix projections/refusals; inspect upcoming source audio dispatch and commit locally.
+
+## 202. Third original remaining units
+
+- [ ] 202.1 Restore verifiedslot1 cases and execute remaining occupied units, actual root clears and complete250-slot loop to unexecuted490FC0; verify complete source bytes/calls/stack/retention and pin checkpoints, then commit locally.
+
+## 203. Third original world function return
+
+- [ ] 203.1 Continue verified490FC0 through actual enabled suffix/ten idle effects/empty forwarding and natural46B662 return to existing declared driver; verify full state/CPU/retention and pin checkpoints, then commit locally.
+
+## 204. Third world body acceptance
+
+- [ ] 204.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document third-body versus remaining180/VM/audio/node/outer-task scope and commit locally without pushing.
