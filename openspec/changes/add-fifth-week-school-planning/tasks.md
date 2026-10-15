@@ -850,4 +850,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 212. Regular frame transition acceptance
 
-- [ ] 212.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document finite frame boundaries and commit locally without pushing.
+- [x] 212.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document finite frame boundaries and commit locally without pushing.
