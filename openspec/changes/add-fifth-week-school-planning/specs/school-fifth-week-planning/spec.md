@@ -922,3 +922,16 @@ The audit SHALL verify all remaining initialized/inactive units and the original
 - **WHEN** the verified post-unit CPU continues its actual enabled closed-gate suffix
 - **THEN** source ten idle counters2→3 and empty forwarding match full state and original46B662 returns naturally to the existing audit sentinel
 - **AND** only the third bounded world body completes; original outer task/render,180 interval, opening/VM/AI and subsequent sound/node lifecycle remain incomplete
+
+### Requirement: Consecutive initialized world updates4–6
+The audit SHALL execute each declared original world call in sequence with complete source-derived initialized-state projections and retained-memory verification.
+
+#### Scenario: Fourth and fifth worlds return
+- **WHEN** pinned third-return cases continue through declared calls4/5
+- **THEN** original controller delays179→178→177, full map/list/input,250-slot units and suffix/root returns match complete source state and natural calls/stack
+- **AND** cleared root PCs remain zero and templates stay inactive without skipping enabled units or granting180/VM/AI authority
+
+#### Scenario: Sixth attached sound opcode and next frame
+- **WHEN** sixth update expires the actual2063 wait1 frame
+- **THEN** original opcode2 sound59 dispatch reaches40B990→40D390, whose captured uninitialized+8 gate returns without backend playback, and the next source frame/state plus complete sixth return match independently derived bytes
+- **AND** the audit preserves audio-manager state and records native sound-instruction execution separately from audible playback, full opening/AI and attached-node release

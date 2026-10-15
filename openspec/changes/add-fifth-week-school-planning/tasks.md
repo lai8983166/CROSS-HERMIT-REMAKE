@@ -819,3 +819,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 204. Third world body acceptance
 
 - [x] 204.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document third-body versus remaining180/VM/audio/node/outer-task scope and commit locally without pushing.
+
+## 205. Finite initialized countdown/source audio policy
+
+- [x] 205.1 Derive complete original worlds4–6 prefix/units/suffix and2063 expiry/sound59/guarded manager/next-frame projections and refusal cases; commit locally.
+
+## 206. Consecutive fourth and fifth original worlds
+
+- [ ] 206.1 Restore verified third return and execute full calls4/5 consecutively with complete source/call/stack/retention equality, pin fifth return and commit locally.
+
+## 207. Sixth original world and source audio opcode
+
+- [ ] 207.1 Continue verified fifth return through sixth prefix/all units including original2063 sound59 guarded dispatch and next frame, complete suffix/natural return, pin checkpoint and commit locally.
+
+## 208. Consecutive countdown acceptance
+
+- [ ] 208.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document actual4–6 bodies versus backend/180/VM/AI/node/outer-task boundaries and commit locally without pushing.
