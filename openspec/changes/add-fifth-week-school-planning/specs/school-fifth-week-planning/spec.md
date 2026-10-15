@@ -1018,9 +1018,9 @@ The audit SHALL continue verified184 preflight entry through original five-comma
 - **WHEN** worlds184/185 process action0 with selected task active
 - **THEN** every250-slot loop and suffix is independently verified, character animation/counters remain frozen,185 queries native454C40 status1 and stays7, and no normal VM/task/render/AI completion is inferred
 
-### Requirement: Original task input admission boundary
-The audit SHALL derive original task-script ordering and execute one declared454CF0 prefix after verified185 through its naturally nested457830 and input-manager prefix. It MUST stop before the first actual input API import executes, verify full source stores, stack/receiver/argument and retained memory, and MUST NOT inject input, advance task state past an unfinished setup, or claim a complete outer task/playback frame.
+### Requirement: Original first selected-task initialization
+The audit SHALL derive original task-script ordering and execute one declared454CF0 after verified185 through naturally nested457830, source input-buffer resets and inactive fade/board guards. It MUST declare only a bounded lstrlenA adapter reading existing captured empty text, verify full source stores/calls/CPU/retention, and MUST NOT sample or inject live input, skip task phases or claim a complete outer task/playback frame.
 
-#### Scenario: Natural first input request
-- **WHEN** the selected task has script phase0 and status1
-- **THEN** original454CF0 queries status and enters457830, stores the source temporary input flag and reaches the native first import call with an unexecuted boundary and no VM playback
+#### Scenario: Natural first task setup
+- **WHEN** the selected task has script phase0/status1, empty captured text and inactive fade/board state
+- **THEN** original454CF0 queries status, initializes its captured input manager through native resets, advances phase0→1 and naturally returns0 without executing playback VM

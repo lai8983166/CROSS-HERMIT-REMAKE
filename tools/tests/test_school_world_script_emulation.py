@@ -47,5 +47,6 @@ class Checks:
                 self.assertEqual(unpickle.call_count,0)
 
 class PreflightTests(Checks,unittest.TestCase):phase='preflight'
+class BindingTests(Checks,unittest.TestCase):phase='binding'
 
 if __name__=='__main__':unittest.main()

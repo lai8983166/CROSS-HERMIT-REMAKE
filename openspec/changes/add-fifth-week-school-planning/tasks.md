@@ -958,7 +958,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 239. Actual selected script binding
 
-- [ ] 239.1 Continue original conditional4549D0 binding to49A0F4, verify source VM reset/bind/task flags and exact original calls/stack/retention, pin and commit locally.
+- [x] 239.1 Continue original conditional4549D0 binding to49A0F4, verify source VM reset/bind/task flags and exact original calls/stack/retention, pin and commit locally.
 
 ## 240. Controller7 and complete original world184
 
@@ -970,11 +970,11 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 242. Original task-script input source
 
-- [ ] 242.1 Derive4539B0 ordering and454CF0/457830/input-manager prefix, first import identity and source stores/refusal rules; commit locally.
+- [ ] 242.1 Derive4539B0 ordering and454CF0/457830/input-manager initialization, lstrlenA identity, three native resets and inactive fade/board rules/refusals; commit locally.
 
 ## 243. Original task input admission
 
-- [ ] 243.1 Declare one454CF0 call after185 and execute the native prefix to its first unexecuted input import, verify full ownership/retention/calls/CPU and pin in all cases; commit locally.
+- [ ] 243.1 Declare one454CF0 after185, execute full native phase0→1 setup with only bounded existing-buffer lstrlenA adapter, verify full ownership/retention/calls/CPU and pin in all cases; commit locally.
 
 ## 244. Continuous script continuation acceptance
 
