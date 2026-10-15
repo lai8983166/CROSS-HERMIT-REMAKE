@@ -898,7 +898,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 224. Consecutive original worlds119–124
 
-- [ ] 224.1 Restore verified118 and execute every119–124 in three cases through jobs3/4 main terminal, verify full bytes/calls/retention/CPU and pin124; commit locally.
+- [x] 224.1 Restore verified118 and execute every119–124 in three cases through jobs3/4 main terminal, verify full bytes/calls/retention/CPU and pin124; commit locally.
 
 ## 225. Original worlds125–126 and phase handoff
 

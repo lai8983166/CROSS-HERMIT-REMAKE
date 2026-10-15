@@ -24,7 +24,7 @@ class Checks:
                 with self.assertRaises(ValueError):verify_case(c,self.phase)
 
     def test_skipped_world_call_lifecycle_or_provenance_refused(self):
-        mutations=[lambda c:c['worlds'].pop(0),lambda c:c['worlds'][0]['units']['calls'].pop(),lambda c:c['worlds'][-1]['suffix']['driver_return'].update(sp=0),lambda c:c['parent_checkpoint'].update(sha256='0'*64),lambda c:c['worlds'][0]['units'].update(attached_node_free_executed=True)]
+        mutations=[lambda c:c['worlds'].pop(0),lambda c:c['worlds'][0]['units']['calls'].pop(),lambda c:c['worlds'][-1]['suffix']['driver_return'].update(sp=0),lambda c:c['parent_checkpoint'].update(sha256='0'*64),lambda c:c['worlds'][0]['units'].update(attached_node_free_executed=not c['worlds'][0]['units']['attached_node_free_executed'])]
         if self.phase in PREVIOUS:mutations.append(lambda c:c['prior_checkpoint'].update(sha256='0'*64))
         if self.phase=='handoff':
             mutations += [lambda c:c['worlds'][0]['units']['random_returns'][0].update(eax=0),lambda c:c['worlds'][0]['units']['thread_adapters'][0].update(thread_pointer=0),lambda c:next(a for a in c['worlds'][0]['units']['calls'] if a['va']=='0x40b6a0').update(args=[0])]

@@ -18,7 +18,7 @@ from tools.school_world_tail_verification import effect_calls
 from tools.school_world_final_verification import pending as suffix_pending
 
 REPORTS={p:ROOT/f'analysis/school-world-handoff-{p}-v1-20261015.json.gz' for p in PHASES}
-SHAS={p:None for p in PHASES}
+SHAS={'terminal':'a4011f19518a79c9d64aca080ac11739e305a95b9b68402f94940be72e8a2355','handoff':None}
 
 
 @lru_cache(maxsize=8)
