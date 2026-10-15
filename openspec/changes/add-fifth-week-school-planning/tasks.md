@@ -810,7 +810,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 202. Third original remaining units
 
-- [ ] 202.1 Restore verifiedslot1 cases and execute remaining occupied units, actual root clears and complete250-slot loop to unexecuted490FC0; verify complete source bytes/calls/stack/retention and pin checkpoints, then commit locally.
+- [x] 202.1 Restore verifiedslot1 cases and execute remaining occupied units, actual root clears and complete250-slot loop to unexecuted490FC0; verify complete source bytes/calls/stack/retention and pin checkpoints, then commit locally.
 
 ## 203. Third original world function return
 
