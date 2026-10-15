@@ -11,3 +11,5 @@ Source policy: five checks passed. The first test run incorrectly compared previ
 All stages use new evidence/private checkpoints; original assets, runtime, saves and historical evidence are preserved. Local Git only; no push.
 
 Stage233: all three original182 returns verified,250 tests each,112 occupied updates and2174 targeted unit calls in total. Full owned/retained memory, CPU checkpoints and four corruption/provenance checks pass. During development, fixed a missing suffix trace switch and a missing verifier import; failed attempt logs are retained. The180 native state5 decrement interval3–182 is now complete; action remains1/state5 until the following call.
+
+Stage234: all three original183 returns verified. The original zero-test disables action and advances6 before all250 slot tests. All three complete character work buffers remain byte-identical through the paused loop; records/pool/CRT and unit region scratch remain unchanged. Vision/cell maintenance still executes; independent suffix effect counters advance182→183.384 targeted paused-unit calls and four full-state/corruption/private-checkpoint checks pass.

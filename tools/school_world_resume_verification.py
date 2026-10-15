@@ -10,7 +10,7 @@ from tools.school_world_idle_verification import phase_checked as parent_phase,u
 from tools import school_world_idle_verification as prior
 
 REPORTS={p:ROOT/f'analysis/school-world-resume-{p}-v1-20261015.json.gz' for p in PHASES}
-SHAS={'zero':'fe530d8d9f49384f671e0b0a655aa6e40e98abd180396a6ce91696729ad65002','pause':None,'entry':None}
+SHAS={'zero':'fe530d8d9f49384f671e0b0a655aa6e40e98abd180396a6ce91696729ad65002','pause':'bd925383e5e94023cc028e1469701a6889fd2625dea89ef274b7c4c0dbe875fa','entry':None}
 
 @lru_cache(maxsize=3)
 def parent_checked(name):return parent_phase(name,'wait')

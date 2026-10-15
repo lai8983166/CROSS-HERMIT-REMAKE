@@ -49,5 +49,6 @@ class Checks:
                 self.assertEqual(unpickle.call_count,0)
 
 class ZeroTests(Checks,unittest.TestCase):phase='zero'
+class PauseTests(Checks,unittest.TestCase):phase='pause'
 
 if __name__=='__main__':unittest.main()

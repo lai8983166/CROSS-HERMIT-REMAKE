@@ -938,7 +938,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 234. Original world183 paused transition
 
-- [ ] 234.1 Continue183 through action0/state6 and all250 paused slots, prove frozen character animation/counters with map/vision bookkeeping and natural return, pin checkpoints and commit locally.
+- [x] 234.1 Continue183 through action0/state6 and all250 paused slots, prove frozen character animation/counters with map/vision bookkeeping and natural return, pin checkpoints and commit locally.
 
 ## 235. Original world184 actual preflight entry
 
