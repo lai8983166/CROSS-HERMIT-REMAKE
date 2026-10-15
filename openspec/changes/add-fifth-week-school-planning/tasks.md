@@ -846,7 +846,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 211. Consecutive tenth through fifteenth original worlds
 
-- [ ] 211.1 Continue ninth-return cases through full worlds10–15 including2063 next frame and383 second frame expiry, verify full bytes/calls/retention/stack and pin fifteenth returns; commit locally.
+- [x] 211.1 Continue ninth-return cases through full worlds10–15 including2063 next frame and383 second frame expiry, verify full bytes/calls/retention/stack and pin fifteenth returns; commit locally.
 
 ## 212. Regular frame transition acceptance
 

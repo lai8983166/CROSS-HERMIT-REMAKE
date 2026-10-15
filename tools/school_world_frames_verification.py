@@ -14,7 +14,7 @@ from tools.school_world_tail_verification import effect_calls
 from tools.school_world_final_verification import pending as suffix_pending
 
 REPORTS={'early':ROOT/'analysis/school-world-frames-early-v2-20261015.json.gz','late':ROOT/'analysis/school-world-frames-late-v1-20261015.json.gz'}
-SHAS={'early':'47549a7694bee6d2d822062d737c7a7e84c042e0c915c32b497379e54f47e183','late':None}
+SHAS={'early':'47549a7694bee6d2d822062d737c7a7e84c042e0c915c32b497379e54f47e183','late':'10694fdf1b325c8f19a11ffd98f90b92f1be82c9df12a9d217d76ea7290f721a'}
 
 
 @lru_cache(maxsize=8)

@@ -2,7 +2,7 @@ import gzip,hashlib,json,unittest
 from copy import deepcopy
 from pathlib import Path
 from unittest.mock import patch
-from tools.school_world_frames_verification import REPORTS,SHAS,PARENT_INPUTS,verify_case,load_verified_checkpoint
+from tools.school_world_frames_verification import REPORTS,SHAS,PARENT_INPUTS,PARENT,verify_case,load_verified_checkpoint
 from tools.school_world_frames import source_contract
 
 
@@ -25,6 +25,7 @@ class Checks:
         mutations=[lambda c:c['worlds'][0]['units']['calls'].pop(),lambda c:c['worlds'][0]['suffix']['driver_return'].update(sp=0),lambda c:c['parent_checkpoint'].update(sha256='0'*64),lambda c:c['worlds'][0]['units'].update(audio_backend_executed=True)]
         if self.phase=='early':mutations.append(lambda c:c['worlds'].pop(0))
         else:mutations.extend([lambda c:c['early_checkpoint'].update(sha256='0'*64),lambda c:c['worlds'].pop(0)])
+        mutations.append(lambda c:next(a for a in c['worlds'][-1]['units']['calls'] if a['va']=='0x40a520').update(return_va='0x40aa6c'))
         for mutate in mutations:
             c=deepcopy(self.data['cases'][0]);mutate(c)
             with self.assertRaises(ValueError):verify_case(c,self.phase)
@@ -34,10 +35,13 @@ class Checks:
             payload,cp=load_verified_checkpoint(c['name'],self.phase);self.assertEqual(hex(payload['pending_eip']),cp['pending_eip'])
         with self.assertRaises(ValueError):load_verified_checkpoint('../initial',self.phase)
         original=Path.read_bytes
-        def changed(path):return b'{}' if path==PARENT_INPUTS else original(path)
-        with patch.object(Path,'read_bytes',changed),patch('tools.school_world_frames_verification.pickle.loads') as unpickle:
-            with self.assertRaises(ValueError):load_verified_checkpoint('initial',self.phase)
-            self.assertEqual(unpickle.call_count,0)
+        identities=[PARENT_INPUTS,PARENT,REPORTS[self.phase]]+([REPORTS['early']] if self.phase=='late' else [])
+        for identity in identities:
+            def changed(path):return b'{}' if path==identity else original(path)
+            with patch.object(Path,'read_bytes',changed),patch('tools.school_world_frames_verification.pickle.loads') as unpickle:
+                with self.assertRaises(ValueError):load_verified_checkpoint('initial',self.phase)
+                self.assertEqual(unpickle.call_count,0)
+
 
 
 class EarlyTests(Checks,unittest.TestCase):phase='early'
