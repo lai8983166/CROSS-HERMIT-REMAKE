@@ -954,7 +954,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 238. Actual world184 native preflight
 
-- [ ] 238.1 Restore pinned4551C0 in all three cases, execute original five commands and native cleanup helpers through49A0D4 return1, verify complete bytes/calls/retention/CPU and pin; commit locally.
+- [x] 238.1 Restore pinned4551C0 in all three cases, execute original five commands and native cleanup helpers through49A0D4 return1, verify complete bytes/calls/retention/CPU and pin; commit locally.
 
 ## 239. Actual selected script binding
 
