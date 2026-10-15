@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_world_countdown_emulation.py", line 117, in <module>
+    path.write_text(report_text(report(args.phase)),encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_world_countdown_emulation.py", line 108, in report
+    worlds=[e.run_world(t) for t in ((4,5) if phase=='batch' else (6,))];c=dict(name=name,parent_checkpoint=e.count_parent_checkpoint,worlds=worlds,continuation_checkpoint=e.save_countdown(name,phase))
+  File "F:\project\chaomofa\tools\school_world_countdown_emulation.py", line 108, in <listcomp>
+    worlds=[e.run_world(t) for t in ((4,5) if phase=='batch' else (6,))];c=dict(name=name,parent_checkpoint=e.count_parent_checkpoint,worlds=worlds,continuation_checkpoint=e.save_countdown(name,phase))
+  File "F:\project\chaomofa\tools\school_world_countdown_emulation.py", line 80, in run_world
+    def run_world(self,tick):return dict(tick=tick,prefix=self.run_prefix(tick),units=self.run_units(tick),suffix=self.run_suffix(tick))
+  File "F:\project\chaomofa\tools\school_world_countdown_emulation.py", line 56, in run_units
+    before=self.following_regions();inputs=self.all_inputs();expected=units_project(inputs,before,tick);tail_before=self.tail_regions()
+TypeError: 'dict' object is not callable

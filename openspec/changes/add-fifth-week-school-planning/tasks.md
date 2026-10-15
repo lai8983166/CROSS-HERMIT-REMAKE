@@ -826,7 +826,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 206. Consecutive fourth and fifth original worlds
 
-- [ ] 206.1 Restore verified third return and execute full calls4/5 consecutively with complete source/call/stack/retention equality, pin fifth return and commit locally.
+- [x] 206.1 Restore verified third return and execute full calls4/5 consecutively with complete source/call/stack/retention equality, pin fifth return and commit locally.
 
 ## 207. Sixth original world and source audio opcode
 
