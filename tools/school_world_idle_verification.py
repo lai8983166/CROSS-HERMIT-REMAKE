@@ -19,7 +19,7 @@ from tools.school_world_tail_verification import effect_calls
 from tools.school_world_final_verification import pending as suffix_pending
 
 REPORTS={p:ROOT/f'analysis/school-world-idle-{p}-v1-20261015.json.gz' for p in PHASES}
-SHAS={'commit':'ba7bc7f6345da4a630bbbf77ee1b137226be9b687b65380397128a7aca42b878','handoff':None,'wait':None}
+SHAS={'commit':'ba7bc7f6345da4a630bbbf77ee1b137226be9b687b65380397128a7aca42b878','handoff':'18633484f4342ff236153298ce2b123c9e7b4cdb1c66997573109a0b63f6d7ea','wait':None}
 
 
 @lru_cache(maxsize=8)

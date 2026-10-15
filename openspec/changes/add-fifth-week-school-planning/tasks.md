@@ -918,7 +918,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 229. Original worlds129–133 and complete friendly handoff
 
-- [ ] 229.1 Continue every129–133 through job9 voice/recursive release/phase2/pending/mode2/idle terminal/clear and jobs3/4 clearing; verify full bytes/calls/stack/retention and pin133, then commit locally.
+- [x] 229.1 Continue every129–133 through job9 voice/recursive release/phase2/pending/mode2/idle terminal/clear and jobs3/4 clearing; verify full bytes/calls/stack/retention and pin133, then commit locally.
 
 ## 230. Consecutive original worlds134–181
 
