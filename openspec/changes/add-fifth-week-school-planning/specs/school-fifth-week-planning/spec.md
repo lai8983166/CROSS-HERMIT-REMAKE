@@ -878,3 +878,8 @@ The audit SHALL verify originalscene217 initialization, terminal animation and n
 - **WHEN** the source26E duration1 frame with terminalbit80 updates
 - **THEN** original timer/endflag/return, five idle auxiliaries and empty effect/damage/regen/map tail match full source bytes and captured faction vision rules
 - **AND** original unitret8 reaches the next218 entry before its first instruction, without claiming animation release, full world or opening/AI/VM completion
+
+#### Scenario: Remaining inactive templates in natural loop order
+- **WHEN** verified217 returns to the original218 unit entry
+- **THEN** all22 source state0 mode11 units218–239 execute the original early-return handler with complete source byte/call/return/retention equality
+- **AND** their records remain inactive and execution stops before scene240, without running their animation/regen/map or claiming world/VM completion

@@ -764,6 +764,10 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 - [x] 190.1 Continue original terminal/main/five-auxiliary animation and empty effect/damage/regen/map tail through unit ret8 to unexecuted218; verify full state/calls/stack and checkpoint provenance, then commit locally.
 
-## 191. First scene unit acceptance
+## 191. Remaining inactive template batch
 
-- [ ] 191.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document remaining scene/world/180/VM work and commit locally without pushing.
+- [x] 191.1 Derive and execute the remaining22 state0 mode11 units218–239 continuously to unexecuted240, verify full source projections/natural calls/early returns/retention and pinned continuation, then commit locally.
+
+## 192. Scene and inactive template acceptance
+
+- [ ] 192.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document remaining scene/world/180/VM work and commit locally without pushing.

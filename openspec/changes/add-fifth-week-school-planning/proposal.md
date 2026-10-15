@@ -221,3 +221,5 @@ Continue the verified next-slot1 CPU through all remaining current friendly mode
 ## First scene unit initialization and return (2026-10-15)
 
 Continue pinnedscene217 job406/group6 mode28 CPU through original status initialization, opening-gated387–406 post-handler, terminal-frame animation, empty effect/damage/regen tail and source region/vision gates, then natural return before218. Derive source26E metadata/pose/terminal bit and actual faction relation policy. Verify whole owned/retained state, pin initialization/return checkpoints and commit source/initializer/complete-unit/acceptance locally. Other units, full world/180 updates/VM remain future work.
+
+Extend this continuation through the remaining22 contiguous inactive mode11 slots218–239 using the already decoded early-return handler, verify each natural call/record gate and full state, and stop before active scene240. No template activation or full-world completion is inferred.
