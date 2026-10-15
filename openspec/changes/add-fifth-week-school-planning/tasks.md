@@ -902,7 +902,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 225. Original worlds125–126 and phase handoff
 
-- [ ] 225.1 Continue125/126 through original voice RNG/guarded audio, recursive child unlink/free and phase2 counter reset/phase3, verify full bytes/calls/stack/retention and pin126; commit locally.
+- [x] 225.1 Continue125/126 through original voice RNG/guarded audio, recursive child unlink/free and phase2 counter reset/phase3, verify full bytes/calls/stack/retention and pin126; commit locally.
 
 ## 226. Main handoff acceptance
 
