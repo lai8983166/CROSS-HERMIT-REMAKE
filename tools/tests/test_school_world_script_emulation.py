@@ -48,5 +48,6 @@ class Checks:
 
 class PreflightTests(Checks,unittest.TestCase):phase='preflight'
 class BindingTests(Checks,unittest.TestCase):phase='binding'
+class World184Tests(Checks,unittest.TestCase):phase='world184'
 
 if __name__=='__main__':unittest.main()

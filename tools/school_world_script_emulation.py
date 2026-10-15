@@ -31,7 +31,7 @@ class ScriptEmulator(ResumeEmulator):
                 if address==0x454C40:
                     sp=uc.reg_read(UC_X86_REG_ESP);self.status_calls.append(dict(va=hex(address),receiver=uc.reg_read(UC_X86_REG_ECX),return_va=hex(self.read(sp)),sp=sp,args=[]))
                 if address==0x49A167:self.status_result=uc.reg_read(UC_X86_REG_EAX)
-                if 0x454C40<=address<0x454C7A:self.second_visited.add(address);return
+                if 0x454C40<=address<0x454C7A or 0x499DA0<address<0x49A2CF:self.second_visited.add(address);return
             return super()._hook(uc,address,size,context)
         sp=uc.reg_read(UC_X86_REG_ESP);recv=uc.reg_read(UC_X86_REG_ECX);ret=self.read(sp)
         if address==self.script_stop:

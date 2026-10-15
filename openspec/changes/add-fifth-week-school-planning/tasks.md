@@ -962,7 +962,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 240. Controller7 and complete original world184
 
-- [ ] 240.1 Continue binding caller through original controller7/map/list/all250 paused slots/suffix and natural world return, verify full independent state/calls/CPU and pin184; commit locally.
+- [x] 240.1 Continue binding caller through original controller7/map/list/all250 paused slots/suffix and natural world return, verify full independent state/calls/CPU and pin184; commit locally.
 
 ## 241. Complete original world185 status wait
 

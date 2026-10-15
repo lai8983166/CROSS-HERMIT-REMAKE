@@ -37,6 +37,9 @@ class SourceTests(unittest.TestCase):
         p=preflight_project(seed['inputs'],seed['before']);b=binding_project(seed['inputs'],p['after']);state=merge_script_state(self.parents[0][1],b['after'])
         for tick in (183,186,True,184.0,185):
             with self.assertRaises(ValueError):world_project(state,tick)
+        for at in (0x44,0x59):
+            bad=deepcopy(state);r=bad['prefix_before'][0];raw=bytearray.fromhex(r['hex']);raw[at]^=1;r['hex']=raw.hex()
+            with self.assertRaises(ValueError):world_project(bad,184)
 
 if __name__=='__main__':unittest.main()
 

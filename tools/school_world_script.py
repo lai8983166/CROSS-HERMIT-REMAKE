@@ -79,7 +79,7 @@ def prefix_project(inputs,before,tick):
     d={r['name']:bytearray.fromhex(r['hex']) for r in out}
     if any(len(d[r['name']])!=r['bytes'] for r in out):raise ValueError('next complete prefix bytes')
     task,ctrl,works=d['task'],d['control'],d['works']
-    if len(task)!=400 or len(ctrl)!=50 or len(works)!=STRIDE*COUNT or task[0x170] or task[0x171] or task[0x43]!=1 or u32(task,0x38)!=5:raise ValueError('next actual task scope')
+    if len(task)!=400 or len(ctrl)!=50 or len(works)!=STRIDE*COUNT or task[0x170] or task[0x171] or task[0x43]!=1 or task[0x44] or task[0x59]!=1 or u32(task,0x38)!=5:raise ValueError('next actual task scope')
     if (ctrl[4],ctrl[24],ctrl[26])!=(0,1,6 if tick==184 else 7) or struct.unpack_from('<h',ctrl,28)[0]!=0 or struct.unpack_from('<h',ctrl,2)[0]!=1 or ctrl[11]!=255 or any(ctrl[i] for i in (5,6,8,9,10)):raise ValueError('next actual opening delay180')
     if inputs['mouse']!=[0,0] or inputs['map_state'] or inputs['task_input']!=[0,0,0] or inputs['ctrl_keys']!=[0,0]:raise ValueError('next closed input')
     if len(d['queue'])!=20 or d['queue'][8:]!=bytes(12) or len(d['selection'])!=1016 or len(d['cursor'])!=10 or len(d['scratch'])!=2048:raise ValueError('next empty queue/complete prefix bounds')

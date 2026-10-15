@@ -10,7 +10,7 @@ from tools.school_world_life_codec import unpack
 from tools.school_world_resume_verification import fresh_identities as parent_identities,read_memory,pinned,retained,paused_calls,old_prefix_calls,ROOTS,effect_calls,suffix_pending,check_calls
 
 REPORTS={p:ROOT/f'analysis/school-world-script-{p}-v1-20261016.json.gz' for p in PHASES}
-SHAS={'preflight':'670b12fcacef2480f4c16c95c815939ab733c9147cf592dd0490b1c23245a167','binding':'f9abaa7837f35c2245df2da3eed62773b9be223db1bd26d0cfc7cb3ed459e690','world184':None,'world185':None}
+SHAS={'preflight':'670b12fcacef2480f4c16c95c815939ab733c9147cf592dd0490b1c23245a167','binding':'f9abaa7837f35c2245df2da3eed62773b9be223db1bd26d0cfc7cb3ed459e690','world184':'6500692194cdce3c322ab65619d1b8a74ed02c8f2df31ce24f90f477ee6b3970','world185':None}
 
 @lru_cache(maxsize=16)
 def phase_checked(name,phase):

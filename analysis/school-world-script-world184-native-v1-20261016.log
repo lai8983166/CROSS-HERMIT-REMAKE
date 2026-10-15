@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_world_script_emulation.py", line 160, in <module>
+    path.write_bytes(gzip.compress(report_text(report(a.phase)).encode('utf-8'),compresslevel=6,mtime=0))
+  File "F:\project\chaomofa\tools\school_world_script_emulation.py", line 151, in report
+    a=e.run_script(phase) if phase in ('preflight','binding') else e.run_world(184 if phase=='world184' else 185);c=dict(name=name,parent_checkpoint=e.script_parent_checkpoint,actual=pack(a),continuation_checkpoint=e.save_script(name,phase))
+  File "F:\project\chaomofa\tools\school_world_script_emulation.py", line 131, in run_world
+    def run_world(self,tick):return dict(tick=tick,prefix=self.run_prefix(tick),units=self.run_paused(tick),suffix=self.run_suffix(tick))
+  File "F:\project\chaomofa\tools\school_world_script_emulation.py", line 101, in run_prefix
+    self.uc.emu_start(0x49A0F4 if tick==184 else 0x46B470,RETURN,timeout=10_000_000,count=500000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_world_script_emulation.py", line 35, in _hook
+    return super()._hook(uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_world_resume_emulation.py", line 59, in _hook
+    return WorldSecondEmulator._hook(self,uc,address,size,context)
+  File "F:\project\chaomofa\tools\school_world_second_emulation.py", line 66, in _hook
+    raise RuntimeError('second world undeclared instruction '+hex(address))
+RuntimeError: second world undeclared instruction 0x49a146
