@@ -870,4 +870,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 217. Animation lifecycle acceptance
 
-- [ ] 217.1 Run relevant source/native/parent/spec checks, preserve history/runtime/save and exact Git bytes, document remaining180/VM/AI/outer-task boundaries and commit locally without pushing.
+- [x] 217.1 Run relevant source/native/parent/spec checks, preserve history/runtime/save and exact Git bytes, document remaining180/VM/AI/outer-task boundaries and commit locally without pushing.
