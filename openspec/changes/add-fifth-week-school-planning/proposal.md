@@ -255,3 +255,7 @@ Continue every original declared world76–118 from verified75. Verify friendly 
 ## Main animation handoff119–126 (2026-10-15)
 
 Continue every original declared world119–126 from verified118. Verify jobs3/4 terminal124, following phase1 voice request125, original captured CRT random state/LCG and guarded audio manager, recursive root cleanup of nonpersistent spawned nodes and phase2 counter threshold126. Job9 terminal128/129, later pending-mode commit/new pose,180 interval, VM/AI and outer task remain subsequent work. Preserve old evidence/runtime/save and commit source,119–124,125–126 and acceptance locally without push.
+
+## Pending mode and idle-pose continuation127–181 (2026-10-15)
+
+Continue every original declared world127–181 from verified126. Verify phase3 pending2/flag stores, next-update mode25→2 commit and native empty path reset, source pose1 binding and duration1 terminal/next clearing,383 repeat128, and job9 terminal128/voice129/recursive release/phase2/pending/new pose132/clear133. Then verify every enabled original world134–181 to delay1 before the next controller boundary. Preserve old evidence/runtime/save and commit source,127–128,129–133,134–181 and acceptance locally without push; full180 completion, controller handoff/VM/AI/outer task remain subsequent.

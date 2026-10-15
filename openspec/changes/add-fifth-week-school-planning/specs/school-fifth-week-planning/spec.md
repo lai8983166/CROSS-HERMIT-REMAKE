@@ -980,3 +980,14 @@ The audit SHALL execute every declared world119–126 from pinned118 in three ac
 #### Scenario: Native random stream with captured thread state
 - **WHEN** original49AD90 attempts event125
 - **THEN** original570FE0 updates the parent-bound CRT state, a declared5753B0 adapter only returns that existing block, source threshold/remap and exact original audio-manager guard agree, and altered state, omitted draws/calls, wrong recursive-free arguments, stale parent/checkpoint identity or missing world is refused
+
+### Requirement: Continuous original pending mode and idle pose127–181
+The audit SHALL execute every declared original world127–181 from pinned126 in three actual-school cases, verify source pending/current/previous mode and terminal idle-pose lifecycle, retain native RNG and prior evidence/runtime/save, and commit each completed stage locally without pushing.
+
+#### Scenario: Pending mode is applied on the following update
+- **WHEN** source mode25 phase3 requests2 then4751F0 executes next update
+- **THEN** pending/previous/current mode, phase, flags, empty native path reset and source bank0/index4 pose1 bind agree with full independent bytes/natural calls/returns/retention, the one-tick terminal clears next update, and unsupported live path state or altered metadata is refused
+
+#### Scenario: Job9 handoff and complete bounded waiting continuation
+- **WHEN** the actual third friendly unit ends at128 and proceeds through129–133, followed by all worlds134–181
+- **THEN** original voice draw count/threshold, recursive nonpersistent child release, pending/mode/pose lifecycle and383 repeat match source, no world is skipped, all returned CPU/checkpoints are verified, and delay1 does not grant zero-delay/VM/AI/outer-task or full180 completion authority

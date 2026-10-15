@@ -907,3 +907,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 226. Main handoff acceptance
 
 - [x] 226.1 Run related new/parent/spec checks, preserve history/runtime/save and exact Git bytes, document future job9/pending-mode/180/VM/AI/outer-task boundaries and commit locally without pushing.
+
+## 227. Pending mode and idle pose source policy
+
+- [x] 227.1 Derive bounded127–181 exact pending/previous/current mode, phases/counters/flags, empty path reset, per-job pose1 terminal, job9 handoff and383 repeat rules/refusals; commit locally.
+
+## 228. Original worlds127–128 and first mode commit
+
+- [ ] 228.1 Restore verified126 and execute consecutive127/128 in three cases through pending2/mode2/pose1 terminal and383 repeat/job9 main terminal; verify full source bytes/calls/retention/CPU and pin128, then commit locally.
+
+## 229. Original worlds129–133 and complete friendly handoff
+
+- [ ] 229.1 Continue every129–133 through job9 voice/recursive release/phase2/pending/mode2/idle terminal/clear and jobs3/4 clearing; verify full bytes/calls/stack/retention and pin133, then commit locally.
+
+## 230. Consecutive original worlds134–181
+
+- [ ] 230.1 Continue every134–181 in all cases through source scene frames and stable mode2 opening gate to delay1, verify all intermediate full worlds/calls/retention/CPU and pin181; commit locally.
+
+## 231. Idle-mode continuation acceptance
+
+- [ ] 231.1 Run relevant new/parent/spec regression, preserve history/runtime/save and exact Git bytes, document zero-delay/controller/180/VM/AI/outer-task boundaries and commit locally without pushing.
