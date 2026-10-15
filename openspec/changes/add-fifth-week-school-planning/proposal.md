@@ -217,3 +217,7 @@ Continue the verified482A30 actual CPU through six empty effect scans, six empty
 ## Following friendly units and first deferred templates (2026-10-15)
 
 Continue the verified next-slot1 CPU through all remaining current friendly mode25 initializers, original animations, empty-queue tails and map statistics, then through first inactive mode11 slots215/216 to unexecuted scene slot217. Derive per-job source archives/pose/attachment differences, validate whole work/record/pool/region/vision/retained memory and natural unit/loop calls. Preserve runtime/history/save and commit each source/native/deferred/acceptance stage locally. Complete second-world return remains subsequent work after the scene-specific handlers.
+
+## First scene unit initialization and return (2026-10-15)
+
+Continue pinnedscene217 job406/group6 mode28 CPU through original status initialization, opening-gated387–406 post-handler, terminal-frame animation, empty effect/damage/regen tail and source region/vision gates, then natural return before218. Derive source26E metadata/pose/terminal bit and actual faction relation policy. Verify whole owned/retained state, pin initialization/return checkpoints and commit source/initializer/complete-unit/acceptance locally. Other units, full world/180 updates/VM remain future work.

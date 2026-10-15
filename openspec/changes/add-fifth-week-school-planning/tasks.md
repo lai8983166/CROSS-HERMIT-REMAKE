@@ -751,3 +751,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 187. Following-unit acceptance
 
 - [x] 187.1 Run related new/parent/spec checks, preserve runtime/history/save and exact owned Git bytes, document pending scene/world/180/VM work and commit locally without pushing.
+
+## 188. First scene unit source policy
+
+- [x] 188.1 Derive source mode28 initializer, opening post-handler gate,26E terminal-frame animation and group6 map/vision projection/refusals; commit locally.
+
+## 189. Original scene initializer
+
+- [ ] 189.1 Restore pinned217 cases and execute original status/pose/post-handler to first main40A100, verify complete source bindings/owned/retained bytes, pin initialization and commit locally.
+
+## 190. Original scene unit natural return
+
+- [ ] 190.1 Continue original terminal/main/five-auxiliary animation and empty effect/damage/regen/map tail through unit ret8 to unexecuted218; verify full state/calls/stack and checkpoint provenance, then commit locally.
+
+## 191. First scene unit acceptance
+
+- [ ] 191.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document remaining scene/world/180/VM work and commit locally without pushing.

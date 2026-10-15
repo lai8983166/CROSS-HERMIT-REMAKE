@@ -865,3 +865,16 @@ The audit SHALL verify the remaining current friendly initializers and first ina
 - **WHEN** source state0 templates in slots215/216 enter mode11 phase0
 - **THEN** original479F40 work flags6/7 clearing/phase advance and return1 skip subsequent animation/regen/map while records and map remain unchanged
 - **AND** execution stops before scene217 without implying activation, AI/events or whole-world completion
+
+### Requirement: First scene role406 unit evidence
+The audit SHALL verify originalscene217 initialization, terminal animation and natural return with source-derived faction visibility, without granting unexecuted world/VM authority.
+
+#### Scenario: Scene initializer and opening gate
+- **WHEN** verifiedscene217 role406/group6 entersmode28 phase0 with opening1
+- **THEN** original4761C0 flag/pose/phase initialization and480A60 early exit match source metadata and all owned/retained memory
+- **AND** execution stops before the original main40A100 with a verified continuation
+
+#### Scenario: Terminal animation and full unit return
+- **WHEN** the source26E duration1 frame with terminalbit80 updates
+- **THEN** original timer/endflag/return, five idle auxiliaries and empty effect/damage/regen/map tail match full source bytes and captured faction vision rules
+- **AND** original unitret8 reaches the next218 entry before its first instruction, without claiming animation release, full world or opening/AI/VM completion

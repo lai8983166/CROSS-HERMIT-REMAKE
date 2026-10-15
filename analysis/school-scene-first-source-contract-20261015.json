@@ -1,0 +1,144 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x4761c0",
+      "end": "0x47624d",
+      "sha256": "5770762213f1a5ee3b84effce4279f590f0b9e7ba0dbc9dd633ea716adcaf6aa"
+    },
+    {
+      "va": "0x480a60",
+      "end": "0x480ce5",
+      "sha256": "f8ca1125c44d833da3080f81520010f8c5b299c81c03eee83561b8977ddc8fc3"
+    },
+    {
+      "va": "0x46b0b0",
+      "end": "0x46b0ec",
+      "sha256": "643701d81719c8d2cd5d15c24d7b9daf31dbca35b437069c1a9ccaca0044486f"
+    },
+    {
+      "va": "0x46b0f0",
+      "end": "0x46b12c",
+      "sha256": "5bd8ddc8ee9818d7a49469c791199aaffb763f4c070946f41b8a0987b9a91727"
+    },
+    {
+      "va": "0x46bcc0",
+      "end": "0x46bd21",
+      "sha256": "41a46166fac23b7328b6c56a670a58e6dc74879ffcd797f2064aa2de53777e3a"
+    },
+    {
+      "va": "0x465040",
+      "end": "0x465139",
+      "sha256": "fd85e3be9e2f838b256dd01c71781a051e784576c78d81e3d36d955233b05e4a"
+    },
+    {
+      "va": "0x409ff0",
+      "end": "0x40a0fd",
+      "sha256": "c8eabc133e72c061d39674730b8e8791a4f73230358914a76797a1ce82495500"
+    },
+    {
+      "va": "0x40a100",
+      "end": "0x40a1dc",
+      "sha256": "e5953a2e32289d8a9ff4167ea4a4d92096ffb323f3738d5f7c2bf6a349eeb2fa"
+    },
+    {
+      "va": "0x40a800",
+      "end": "0x40ab69",
+      "sha256": "2589eff346cdb6384946170e6c70ad73cf7fa65423eaf7ba4a91d907bb42d305"
+    },
+    {
+      "va": "0x46a430",
+      "end": "0x46a4bd",
+      "sha256": "6fad28adf54470d1572551f41246413de3b28bf4c9138e15a208fd3ffd19edc4"
+    },
+    {
+      "va": "0x46a5e0",
+      "end": "0x46a692",
+      "sha256": "0d8b12e553132a5096c06935d155d1e4b64199fdced2b9283fcdac03cf2f8118"
+    },
+    {
+      "va": "0x4305c0",
+      "end": "0x430715",
+      "sha256": "3b40a5ed0c14e9a3d881673d8b34f4df7d1cfbc5358fd86433d9c59d97006fc4"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x475bd8",
+      "hex": "e8e3050000",
+      "mnemonic": "call",
+      "operands": "0x4761c0"
+    },
+    {
+      "va": "0x475c50",
+      "hex": "e80bae0000",
+      "mnemonic": "call",
+      "operands": "0x480a60"
+    },
+    {
+      "va": "0x480a89",
+      "hex": "7407",
+      "mnemonic": "je",
+      "operands": "0x480a92"
+    },
+    {
+      "va": "0x480a8b",
+      "hex": "33c0",
+      "mnemonic": "xor",
+      "operands": "eax, eax"
+    },
+    {
+      "va": "0x40a92d",
+      "hex": "81e280000000",
+      "mnemonic": "and",
+      "operands": "edx, 0x80"
+    },
+    {
+      "va": "0x40a93a",
+      "hex": "c6400b01",
+      "mnemonic": "mov",
+      "operands": "byte ptr [eax + 0xb], 1"
+    },
+    {
+      "va": "0x40a93e",
+      "hex": "b801000000",
+      "mnemonic": "mov",
+      "operands": "eax, 1"
+    },
+    {
+      "va": "0x46a66e",
+      "hex": "0fbe1408",
+      "mnemonic": "movsx",
+      "operands": "edx, byte ptr [eax + ecx]"
+    }
+  ],
+  "job": 406,
+  "group": 6,
+  "pose": 1,
+  "direction": 9,
+  "direction_index": 6,
+  "pose_lookup_hex": "0201",
+  "pose_code": 2,
+  "animation_table_pointer": 6345648,
+  "position_table_pointer": 6349472,
+  "main_source": {
+    "relative_path": "data\\DxAnim\\26e.bin",
+    "local_file": "CROSS HERMIT/CROSS HERMIT/data/DxAnim/26e.bin",
+    "bytes": 130256,
+    "sha256": "1afc72c2d8558d0c83d4e2a8e3271afaa385349398195f14d3c5da669e47e9c2"
+  },
+  "main": {
+    "bank": 0,
+    "index": 2,
+    "offset": 556,
+    "frame_hex": "800030fffffff0ff0100",
+    "duration": 1,
+    "sprite": 48,
+    "sprite_hex": "0000d8ff0a0000ff0700",
+    "metadata_bytes": 3212,
+    "metadata_sha256": "3374ed876ef6f3289030baac00672c0f9bccec9e461d882dcdc770a0bf13269f"
+  },
+  "category": 1,
+  "category_mask": 1,
+  "scope": "Original scene217 initializer and terminal-frame first unit return; no release/next unit/world/AI/VM completion"
+}
