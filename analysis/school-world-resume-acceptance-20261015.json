@@ -1,0 +1,525 @@
+{
+  "baseline": "e81743142faf5e678aaeca935b2172af669643c1",
+  "stages": "232–236",
+  "scope": "Complete original182/183, then184 through actual zero-busy predicate to unexecuted4551C0(0,1)",
+  "source_native_commits": [
+    "fc4f1da Derive last enabled countdown decrement and paused script entry policy",
+    "313c1f4 Verify original world182 full enabled return at delay zero",
+    "b14f436 Verify original world183 action pause and complete frozen character loop",
+    "6a87be9 Verify original state6 naturally reaches source script preflight entry"
+  ],
+  "native_reports": [
+    {
+      "phase": "zero",
+      "path": "analysis/school-world-resume-zero-v1-20261015.json.gz",
+      "sha256": "fe530d8d9f49384f671e0b0a655aa6e40e98abd180396a6ce91696729ad65002"
+    },
+    {
+      "phase": "pause",
+      "path": "analysis/school-world-resume-pause-v1-20261015.json.gz",
+      "sha256": "bd925383e5e94023cc028e1469701a6889fd2625dea89ef274b7c4c0dbe875fa"
+    },
+    {
+      "phase": "entry",
+      "path": "analysis/school-world-resume-entry-v1-20261015.json.gz",
+      "sha256": "8ddcff0897900200f6f91e593cd65853b7ae9f4da32ac19ad38e095640edfc52"
+    }
+  ],
+  "case_counts": [
+    {
+      "name": "initial",
+      "zero": {
+        "tick": 182,
+        "delay": 0,
+        "action": 1,
+        "state": 5,
+        "occupied_units": 38,
+        "unit_calls": 752,
+        "friendly_counters": [
+          55,
+          55,
+          51
+        ],
+        "retained_bytes": [
+          119127950,
+          119432500,
+          119496667
+        ],
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        }
+      },
+      "pause": {
+        "tick": 183,
+        "delay": 0,
+        "action": 0,
+        "state": 6,
+        "occupied_units": 38,
+        "unit_calls": 132,
+        "friendly_counters": [
+          55,
+          55,
+          51
+        ],
+        "retained_bytes": [
+          119127950,
+          119484352,
+          119496667
+        ],
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        }
+      },
+      "entry": {
+        "tick": 184,
+        "pending": {
+          "va": "0x4551c0",
+          "receiver": 234881024,
+          "return_va": "0x49a0d4",
+          "sp": 33619500,
+          "args": [
+            0,
+            1
+          ],
+          "first_instruction_executed": false
+        },
+        "script": {
+          "mouse": [
+            0,
+            0
+          ],
+          "busy": 0,
+          "entry_receiver": 234881024,
+          "script_pointer": 242490320,
+          "script_sha256": "44ca546b5ea90ec23a4bc7d8dffeac6547a44bfd035383c91983f7c13ae72a52",
+          "script_bytes": 13752
+        },
+        "calls": [
+          {
+            "va": "0x46b470",
+            "receiver": 234881424,
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "declared_root": true
+          },
+          {
+            "va": "0x4678c0",
+            "receiver": 234881424,
+            "return_va": "0x46b4b2",
+            "sp": 33619620
+          },
+          {
+            "va": "0x499da0",
+            "receiver": 234881424,
+            "return_va": "0x46b4c8",
+            "sp": 33619620
+          },
+          {
+            "va": "0x456b20",
+            "receiver": 234881024,
+            "return_va": "0x49a0be",
+            "sp": 33619508,
+            "args": []
+          }
+        ],
+        "retained_bytes": 119496696
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "zero": {
+        "tick": 182,
+        "delay": 0,
+        "action": 1,
+        "state": 5,
+        "occupied_units": 37,
+        "unit_calls": 711,
+        "friendly_counters": [
+          55,
+          55
+        ],
+        "retained_bytes": [
+          119127950,
+          119433812,
+          119496667
+        ],
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        }
+      },
+      "pause": {
+        "tick": 183,
+        "delay": 0,
+        "action": 0,
+        "state": 6,
+        "occupied_units": 37,
+        "unit_calls": 126,
+        "friendly_counters": [
+          55,
+          55
+        ],
+        "retained_bytes": [
+          119127950,
+          119484356,
+          119496667
+        ],
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        }
+      },
+      "entry": {
+        "tick": 184,
+        "pending": {
+          "va": "0x4551c0",
+          "receiver": 234881024,
+          "return_va": "0x49a0d4",
+          "sp": 33619500,
+          "args": [
+            0,
+            1
+          ],
+          "first_instruction_executed": false
+        },
+        "script": {
+          "mouse": [
+            0,
+            0
+          ],
+          "busy": 0,
+          "entry_receiver": 234881024,
+          "script_pointer": 242490320,
+          "script_sha256": "44ca546b5ea90ec23a4bc7d8dffeac6547a44bfd035383c91983f7c13ae72a52",
+          "script_bytes": 13752
+        },
+        "calls": [
+          {
+            "va": "0x46b470",
+            "receiver": 234881424,
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "declared_root": true
+          },
+          {
+            "va": "0x4678c0",
+            "receiver": 234881424,
+            "return_va": "0x46b4b2",
+            "sp": 33619620
+          },
+          {
+            "va": "0x499da0",
+            "receiver": 234881424,
+            "return_va": "0x46b4c8",
+            "sp": 33619620
+          },
+          {
+            "va": "0x456b20",
+            "receiver": 234881024,
+            "return_va": "0x49a0be",
+            "sp": 33619508,
+            "args": []
+          }
+        ],
+        "retained_bytes": 119496696
+      }
+    },
+    {
+      "name": "fifth_class",
+      "zero": {
+        "tick": 182,
+        "delay": 0,
+        "action": 1,
+        "state": 5,
+        "occupied_units": 37,
+        "unit_calls": 711,
+        "friendly_counters": [
+          55,
+          55
+        ],
+        "retained_bytes": [
+          119127950,
+          119433812,
+          119496667
+        ],
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        }
+      },
+      "pause": {
+        "tick": 183,
+        "delay": 0,
+        "action": 0,
+        "state": 6,
+        "occupied_units": 37,
+        "unit_calls": 126,
+        "friendly_counters": [
+          55,
+          55
+        ],
+        "retained_bytes": [
+          119127950,
+          119484356,
+          119496667
+        ],
+        "original_return": {
+          "va": "0x46b662",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0,
+          "original_outer_caller": false
+        },
+        "driver_return": {
+          "va": "0x3000000",
+          "sp": 33619716,
+          "ebp": 33619708,
+          "expected_caller_ebp": 33619708,
+          "eax": 0,
+          "declared_audit_sentinel": true
+        }
+      },
+      "entry": {
+        "tick": 184,
+        "pending": {
+          "va": "0x4551c0",
+          "receiver": 234881024,
+          "return_va": "0x49a0d4",
+          "sp": 33619500,
+          "args": [
+            0,
+            1
+          ],
+          "first_instruction_executed": false
+        },
+        "script": {
+          "mouse": [
+            0,
+            0
+          ],
+          "busy": 0,
+          "entry_receiver": 234881024,
+          "script_pointer": 242490320,
+          "script_sha256": "44ca546b5ea90ec23a4bc7d8dffeac6547a44bfd035383c91983f7c13ae72a52",
+          "script_bytes": 13752
+        },
+        "calls": [
+          {
+            "va": "0x46b470",
+            "receiver": 234881424,
+            "return_va": "0x3000000",
+            "sp": 33619712,
+            "declared_root": true
+          },
+          {
+            "va": "0x4678c0",
+            "receiver": 234881424,
+            "return_va": "0x46b4b2",
+            "sp": 33619620
+          },
+          {
+            "va": "0x499da0",
+            "receiver": 234881424,
+            "return_va": "0x46b4c8",
+            "sp": 33619620
+          },
+          {
+            "va": "0x456b20",
+            "receiver": 234881024,
+            "return_va": "0x49a0be",
+            "sp": 33619508,
+            "args": []
+          }
+        ],
+        "retained_bytes": 119496696
+      }
+    }
+  ],
+  "complete_world_invocations": 6,
+  "slot_tests": 1500,
+  "occupied_unit_updates": 224,
+  "enabled_targeted_unit_calls": 2174,
+  "paused_targeted_unit_calls": 384,
+  "preflight_entry_boundaries": 3,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "zero",
+      "path": ".venv-audit/world-resume-zero-initial.pkl",
+      "bytes": 136813441,
+      "sha256": "ead491a092a1a080a08205ef8506ea90d22a9f2c76d096f3753049b6132f447c",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "pause",
+      "path": ".venv-audit/world-resume-pause-initial.pkl",
+      "bytes": 136824861,
+      "sha256": "09c06991b9a02b1d048f413530c1654d3209ed0ea33496f5165945b8c19406ab",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "entry",
+      "path": ".venv-audit/world-resume-entry-initial.pkl",
+      "bytes": 136814353,
+      "sha256": "0ec27351069b534d7d42b2f563c17f40e296b833a290e4c3747061953ba69beb",
+      "pending_eip": "0x4551c0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "zero",
+      "path": ".venv-audit/world-resume-zero-student9_waiting.pkl",
+      "bytes": 136275840,
+      "sha256": "30e98aa58acd87356991c70ff0f914899c5b02ebc1b27ceebbebc94c9cfcb76a",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "pause",
+      "path": ".venv-audit/world-resume-pause-student9_waiting.pkl",
+      "bytes": 136286815,
+      "sha256": "6bad1f5f772fa4fee6d911675e009d6220a5232d468fe7c399adea1de9e93656",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "entry",
+      "path": ".venv-audit/world-resume-entry-student9_waiting.pkl",
+      "bytes": 136276319,
+      "sha256": "7d4d4c761e3a9e523e236761117a690a4d8f1d9dedae948b3371416ffc9f3e3b",
+      "pending_eip": "0x4551c0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "zero",
+      "path": ".venv-audit/world-resume-zero-fifth_class.pkl",
+      "bytes": 136275783,
+      "sha256": "dfb255be58873d82b1e26d22131e73c48a94b650ffa2da6de8ab906c5c53a77d",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "pause",
+      "path": ".venv-audit/world-resume-pause-fifth_class.pkl",
+      "bytes": 136286758,
+      "sha256": "056556da86fa501b725ad059c950ad23a2ec92232aeb9fdc82f77550c61501dd",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "entry",
+      "path": ".venv-audit/world-resume-entry-fifth_class.pkl",
+      "bytes": 136276262,
+      "sha256": "b846ad102c6dc85bd9bfa7101fc8d4a0fdf07788250290b7247d75377490dfdc",
+      "pending_eip": "0x4551c0",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15692,
+  "save_rule_fingerprints": 10,
+  "preservation": "analysis/school-world-resume-preservation-20261015.json",
+  "regression": {
+    "python_tests": 37,
+    "new_tests": 17,
+    "direct_parent_tests": 20,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-world-resume-final-regression-20261015.log",
+    "spec_log": "analysis/school-world-resume-spec-final-20261015.log",
+    "prior_regression": {
+      "path": "analysis/school-world-idle-final-regression-20261015.log",
+      "sha256": "0ad5919145e7b9b3ed75f48c62a572661c1e8dafa03829b362b575d894944a72",
+      "historical_52_check_baseline_preserved": true
+    }
+  },
+  "progress": {
+    "total": 236,
+    "complete": 236,
+    "remaining": 0
+  },
+  "authority": {
+    "countdown_180_decrements_completed": true,
+    "full_enabled_worlds_2_through182_proven_in_chain": true,
+    "zero_delay_action0_state6": true,
+    "paused_character_animation_and_counters_frozen": true,
+    "actual_original_preflight_entry": true,
+    "preflight_body": false,
+    "original_opening": false,
+    "VM_playback_or_AI": false,
+    "outer_task_or_GPU": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Execute naturally pending4551C0 preflight and actual selected binding on same CPU",
+    "Opening playback/world scheduling, AI/events/waves and nonempty commands/effects/damage",
+    "Original outer task/render/audio backend and authoritative victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-world-resume-artifact-manifest-20261015.json",
+  "local_only": true
+}

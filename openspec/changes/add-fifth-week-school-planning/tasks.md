@@ -946,4 +946,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 236. Countdown boundary acceptance
 
-- [ ] 236.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document remaining preflight/playback/AI/outer-task work and commit locally without pushing.
+- [x] 236.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document remaining preflight/playback/AI/outer-task work and commit locally without pushing.
