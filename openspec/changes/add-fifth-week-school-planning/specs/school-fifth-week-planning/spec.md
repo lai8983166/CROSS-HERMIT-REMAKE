@@ -1006,3 +1006,21 @@ The audit SHALL continue verified181 through original182 and183 and the next184 
 #### Scenario: State6 reaches the actual script entry
 - **WHEN** the next declared184 original controller queries the captured zero busy byte
 - **THEN** it naturally calls4551C0 with0/1 and stops before its first instruction, retaining its real caller stack and source script
+
+### Requirement: Continuous original preflight binding and paused return
+The audit SHALL continue verified184 preflight entry through original five-command execution and natural return1, selected binding, controller state7 and complete paused worlds184/185. It MUST execute the original debug/music/audio/memset helper bodies, declare only platform/debug-check adapters, verify all owned/retained bytes, original calls/returns/CPU and immutable checkpoints, and preserve runtime/save/history.
+
+#### Scenario: Actual preflight and selected binding
+- **WHEN** the pending4551C0 original body executes on the captured school CPU
+- **THEN** source opcodes167/8/166/11/19, sparse VM reset, native guarded cleanup and return1 agree,4549D0 binds0/1 and initializes task control, and the controller increments7 before its natural world return
+
+#### Scenario: Paused world and status waiting
+- **WHEN** worlds184/185 process action0 with selected task active
+- **THEN** every250-slot loop and suffix is independently verified, character animation/counters remain frozen,185 queries native454C40 status1 and stays7, and no normal VM/task/render/AI completion is inferred
+
+### Requirement: Original task input admission boundary
+The audit SHALL derive original task-script ordering and execute one declared454CF0 prefix after verified185 through its naturally nested457830 and input-manager prefix. It MUST stop before the first actual input API import executes, verify full source stores, stack/receiver/argument and retained memory, and MUST NOT inject input, advance task state past an unfinished setup, or claim a complete outer task/playback frame.
+
+#### Scenario: Natural first input request
+- **WHEN** the selected task has script phase0 and status1
+- **THEN** original454CF0 queries status and enters457830, stores the source temporary input flag and reaches the native first import call with an unexecuted boundary and no VM playback

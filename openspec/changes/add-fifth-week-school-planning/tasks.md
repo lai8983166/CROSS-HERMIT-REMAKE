@@ -947,3 +947,35 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 236. Countdown boundary acceptance
 
 - [x] 236.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document remaining preflight/playback/AI/outer-task work and commit locally without pushing.
+
+## 237. Continuous preflight and paused continuation source
+
+- [x] 237.1 Derive native preflight/helper cleanup, selected binding, controller7 and paused184/185 rules/refusals with full byte ownership; commit locally.
+
+## 238. Actual world184 native preflight
+
+- [ ] 238.1 Restore pinned4551C0 in all three cases, execute original five commands and native cleanup helpers through49A0D4 return1, verify complete bytes/calls/retention/CPU and pin; commit locally.
+
+## 239. Actual selected script binding
+
+- [ ] 239.1 Continue original conditional4549D0 binding to49A0F4, verify source VM reset/bind/task flags and exact original calls/stack/retention, pin and commit locally.
+
+## 240. Controller7 and complete original world184
+
+- [ ] 240.1 Continue binding caller through original controller7/map/list/all250 paused slots/suffix and natural world return, verify full independent state/calls/CPU and pin184; commit locally.
+
+## 241. Complete original world185 status wait
+
+- [ ] 241.1 Execute next declared185, verify natural454C40 status1/controller7 waiting and every paused unit/suffix/retained byte/return, pin and commit locally.
+
+## 242. Original task-script input source
+
+- [ ] 242.1 Derive4539B0 ordering and454CF0/457830/input-manager prefix, first import identity and source stores/refusal rules; commit locally.
+
+## 243. Original task input admission
+
+- [ ] 243.1 Declare one454CF0 call after185 and execute the native prefix to its first unexecuted input import, verify full ownership/retention/calls/CPU and pin in all cases; commit locally.
+
+## 244. Continuous script continuation acceptance
+
+- [ ] 244.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document real remaining OS/playback/outer-task/AI boundaries and commit locally without push.
