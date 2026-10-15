@@ -886,7 +886,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 221. Consecutive original worlds108–118
 
-- [ ] 221.1 Continue each world108–118 through child frames and2063 terminal/non-head unlink/free, verify full state/calls/stack/retention/CPU and pin118; commit locally.
+- [x] 221.1 Continue each world108–118 through child frames and2063 terminal/non-head unlink/free, verify full state/calls/stack/retention/CPU and pin118; commit locally.
 
 ## 222. Spawn continuation acceptance
 
