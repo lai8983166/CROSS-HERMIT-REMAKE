@@ -969,3 +969,14 @@ The audit SHALL execute each declared original world76–118 and distinguish spa
 - **WHEN** original worlds117/118 end then clear2063
 - **THEN** original unlink updates the preceding spawned node+20 and frees only2063 pool byte0 while preserving root head and its live spawned child
 - **AND** every intermediate world and full returned CPU are verified without granting full180/VM/AI/outer task authority
+
+### Requirement: Bounded original main animation handoff
+The audit SHALL execute every declared world119–126 from pinned118 in three actual-school cases, independently verify full source projections, original RNG/voice gate and nonpersistent child cleanup, preserve parent/runtime/save evidence and commit each completed stage locally.
+
+#### Scenario: Source terminal and next-update phase handoff
+- **WHEN** jobs3/4 reach source main terminal124 and execute125/126
+- **THEN** prior completion drives original event125 and phase2, root cleanup recursively unlinks/frees only persistence0 spawned children, phase2 checks the real signed counter and advances to3, all owned/retained bytes and natural calls/CPU agree and no opening/VM/outer-task completion is inferred
+
+#### Scenario: Native random stream with captured thread state
+- **WHEN** original49AD90 attempts event125
+- **THEN** original570FE0 updates the parent-bound CRT state, a declared5753B0 adapter only returns that existing block, source threshold/remap and exact original audio-manager guard agree, and altered state, omitted draws/calls, wrong recursive-free arguments, stale parent/checkpoint identity or missing world is refused

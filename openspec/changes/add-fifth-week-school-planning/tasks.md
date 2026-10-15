@@ -891,3 +891,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 222. Spawn continuation acceptance
 
 - [x] 222.1 Run related source/native/parent/spec checks, preserve history/runtime/save and exact Git bytes, document remaining main/180/VM/AI/outer-task work and commit locally without pushing.
+
+## 223. Main handoff and recursive cleanup source policy
+
+- [x] 223.1 Derive bounded119–126 terminal/prior-completion phase1/phase2 counter, event125 native RNG/guarded voice and root recursive nonpersistent child cleanup rules; verify source/refusals and commit locally.
+
+## 224. Consecutive original worlds119–124
+
+- [ ] 224.1 Restore verified118 and execute every119–124 in three cases through jobs3/4 main terminal, verify full bytes/calls/retention/CPU and pin124; commit locally.
+
+## 225. Original worlds125–126 and phase handoff
+
+- [ ] 225.1 Continue125/126 through original voice RNG/guarded audio, recursive child unlink/free and phase2 counter reset/phase3, verify full bytes/calls/stack/retention and pin126; commit locally.
+
+## 226. Main handoff acceptance
+
+- [ ] 226.1 Run related new/parent/spec checks, preserve history/runtime/save and exact Git bytes, document future job9/pending-mode/180/VM/AI/outer-task boundaries and commit locally without pushing.

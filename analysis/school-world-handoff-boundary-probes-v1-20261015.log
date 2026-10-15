@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\probe-world-handoff.py", line 14, in <module>
+    w=e.run_world(t);state=verify_world(w,state,t);worlds.append(pack(w));print('Declared source-bound probe',t,'full bytes/calls/stack/retention verified',flush=True)
+  File "F:\project\chaomofa\tools\school_world_handoff_verification.py", line 118, in verify_world
+    if calls!=unit_calls(u['inputs'],r['units']['units'],tick) or u['unit_entries']!=r['units']['unit_indices'] or u['tested_slots']!=list(range(1,250)) or u['pending']!=suffix_pending():raise ValueError('countdown original unit calls/order/loop')
+ValueError: countdown original unit calls/order/loop
