@@ -758,7 +758,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 189. Original scene initializer
 
-- [ ] 189.1 Restore pinned217 cases and execute original status/pose/post-handler to first main40A100, verify complete source bindings/owned/retained bytes, pin initialization and commit locally.
+- [x] 189.1 Restore pinned217 cases and execute original status/pose/post-handler to first main40A100, verify complete source bindings/owned/retained bytes, pin initialization and commit locally.
 
 ## 190. Original scene unit natural return
 
