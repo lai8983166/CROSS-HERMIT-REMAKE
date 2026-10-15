@@ -922,7 +922,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 230. Consecutive original worlds134–181
 
-- [ ] 230.1 Continue every134–181 in all cases through source scene frames and stable mode2 opening gate to delay1, verify all intermediate full worlds/calls/retention/CPU and pin181; commit locally.
+- [x] 230.1 Continue every134–181 in all cases through source scene frames and stable mode2 opening gate to delay1, verify all intermediate full worlds/calls/retention/CPU and pin181; commit locally.
 
 ## 231. Idle-mode continuation acceptance
 
