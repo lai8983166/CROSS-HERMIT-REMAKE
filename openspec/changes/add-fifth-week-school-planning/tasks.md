@@ -858,7 +858,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 214. Consecutive original worlds16–42
 
-- [ ] 214.1 Restore fifteenth-return cases and execute every world16–42, verify main/attached transitions and job5 terminal/clearing, full state/calls/retention/CPU and pin42; commit locally.
+- [x] 214.1 Restore fifteenth-return cases and execute every world16–42, verify main/attached transitions and job5 terminal/clearing, full state/calls/retention/CPU and pin42; commit locally.
 
 ## 215. Consecutive original worlds43–65
 
