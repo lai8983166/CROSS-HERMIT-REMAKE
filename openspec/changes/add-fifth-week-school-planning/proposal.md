@@ -239,3 +239,7 @@ Continue verified third-worldslot1 through all remaining occupied units and250-s
 ## Consecutive enabled updates4–6 and source sound opcode (2026-10-15)
 
 Generalize initialized world projections for declared natural46B470 calls4–6 from the verified third return, preserving cleared roots, phase1 inactive templates, complete prefix/250-slot loop/suffix and180 countdown. Execute4/5 consecutively, then sixth2063 expiry through original opcode2 sound59,40B990 and captured uninitialized40D390 early exit, followed by the next source frame and complete world return. No backend audio stub or fabricated playback is accepted. Verify full state/calls/stack/retention, pin fifth/sixth returns and commit source/two-world/sound-world/acceptance locally. Opening VM/AI, full180 interval and attached-node release remain future work.
+
+## Consecutive source frame changes7–15 (2026-10-15)
+
+Continue verified sixth-return cases through every original declared world7–15, verifying383 source first/second frame expiry and2063 next regular frame. Decode bounded frame0 stepping and the upcoming383 repeat instruction, retaining complete owned/retained state, native calls and private checkpoint provenance. Commit source, worlds7–9, worlds10–15 and acceptance locally. Actual repeat execution, attached-node release, full180 interval/VM/AI and outer task remain later work.

@@ -835,3 +835,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 208. Consecutive countdown acceptance
 
 - [x] 208.1 Run relevant new/parent/spec checks, preserve runtime/history/save and exact Git bytes, document actual4–6 bodies versus backend/180/VM/AI/node/outer-task boundaries and commit locally without pushing.
+
+## 209. Bounded regular frame source policy
+
+- [x] 209.1 Derive source regular-frame schedules/refusals for exact worlds7–15 and inspect later383 repeat instruction; commit locally.
+
+## 210. Consecutive seventh through ninth original worlds
+
+- [ ] 210.1 Restore sixth-return cases and execute full worlds7–9 including383 first frame expiry, verify full bytes/calls/retention/stack and pin ninth returns; commit locally.
+
+## 211. Consecutive tenth through fifteenth original worlds
+
+- [ ] 211.1 Continue ninth-return cases through full worlds10–15 including2063 next frame and383 second frame expiry, verify full bytes/calls/retention/stack and pin fifteenth returns; commit locally.
+
+## 212. Regular frame transition acceptance
+
+- [ ] 212.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document finite frame boundaries and commit locally without pushing.

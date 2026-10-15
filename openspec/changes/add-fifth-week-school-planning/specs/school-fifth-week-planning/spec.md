@@ -935,3 +935,11 @@ The audit SHALL execute each declared original world call in sequence with compl
 - **WHEN** sixth update expires the actual2063 wait1 frame
 - **THEN** original opcode2 sound59 dispatch reaches40B990→40D390, whose captured uninitialized+8 gate returns without backend playback, and the next source frame/state plus complete sixth return match independently derived bytes
 - **AND** the audit preserves audio-manager state and records native sound-instruction execution separately from audible playback, full opening/AI and attached-node release
+
+### Requirement: Consecutive regular animation frame transitions
+The audit SHALL execute complete declared worlds7–15 in sequence and verify bounded source frame changes independently.
+
+#### Scenario: Scene and attached regular frame changes
+- **WHEN** verified sixth-return cases continue through every declared world7–15
+- **THEN** original383 transitions at9/15 and2063 transition at11 match full source PC/timer/layer bytes and natural calls, with no same-call decrement of a newly selected regular frame
+- **AND** complete prefix,250-slot loop,suffix,retained memory and natural return are verified without granting repeat execution, attached release, full180 interval or VM/AI authority
