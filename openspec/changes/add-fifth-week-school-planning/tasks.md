@@ -798,7 +798,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 199. Third-update first student returns
 
-- [ ] 199.1 Continue original phase1 handler/main/attached/idle animation and complete empty tail/region/vision to unexecutedslot1; verify full bytes/retention/stack and pin checkpoint; commit locally.
+- [x] 199.1 Continue original phase1 handler/main/attached/idle animation and complete empty tail/region/vision to unexecutedslot1; verify full bytes/retention/stack and pin checkpoint; commit locally.
 
 ## 200. Third-update admission acceptance
 

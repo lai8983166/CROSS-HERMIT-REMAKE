@@ -12,7 +12,7 @@ from tools.school_student_tail_verification import retained,restored,pending as 
 from tools.school_student_tail import project as tail_project
 
 REPORTS={p:ROOT/f'analysis/school-world-next-{p}-v1-20261015.json' for p in ('prefix','unit')}
-SHAS={'prefix':'91a358f2bb1b78839454963d7e9c540e624d94fa69375c34abae73d0d511558b','unit':None}
+SHAS={'prefix':'91a358f2bb1b78839454963d7e9c540e624d94fa69375c34abae73d0d511558b','unit':'48b2b3efe3b110dc2e510fb3e19719a809ba5514bb801a2abec002bb9088b97b'}
 INPUTS=ROOT/'analysis/school-world-next-inputs-20261015.json'
 INPUTS_SHA='5d7b2a48bb260635db0f9c3e79fc93d86432c698574f3d643ea94cc1d3842722'
 
@@ -35,7 +35,9 @@ def prefix_checked(name):
 def animation_calls(inputs,result):
     w=UNITCTRL+0x80AEC;owner=inputs['main_controller'];effect=inputs['effect_controller'];out=[]
     def add(va,recv,ret,depth,args):out.append(dict(va=hex(va),receiver=recv,return_va=hex(ret),sp=STACK+0xFF00-depth,args=args))
-    add(0x475D60,UNITCTRL,0x4757A3,316,[w]);add(0x490350,UNITCTRL,0x46B7FA,208,[w,0]);add(0x40A100,owner,0x46B80C,204,[w+0x48]);add(0x40A800,owner,0x40A165,308,[w+0x48])
+    add(0x475D60,UNITCTRL,0x4757A3,316,[w]);add(0x490350,UNITCTRL,0x46B7FA,208,[w,0])
+    for n,ret in enumerate((0x49037F,0x490391,0x4903A3)):add(0x490A50,UNITCTRL,ret,308,[n,w,0])
+    add(0x40A100,owner,0x46B80C,204,[w+0x48]);add(0x40A800,owner,0x40A165,308,[w+0x48])
     for p in result['linked_order']:add(0x40A800,owner,0x40A1B0,308,[p])
     for i in range(5):add(0x40A100,effect,0x46B85B,204,[w+0xA0+i*88])
     return out
