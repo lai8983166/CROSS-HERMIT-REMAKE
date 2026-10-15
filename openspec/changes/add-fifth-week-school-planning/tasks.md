@@ -851,3 +851,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 212. Regular frame transition acceptance
 
 - [x] 212.1 Run related source/native/parent/spec checks, preserve runtime/history/save and exact Git bytes, document finite frame boundaries and commit locally without pushing.
+
+## 213. Animation lifecycle and compact full-byte source policy
+
+- [x] 213.1 Derive bounded16–75 frame/repeat/terminal/unlink/free projections and strict lossless region encoding/refusals; commit locally.
+
+## 214. Consecutive original worlds16–42
+
+- [ ] 214.1 Restore fifteenth-return cases and execute every world16–42, verify main/attached transitions and job5 terminal/clearing, full state/calls/retention/CPU and pin42; commit locally.
+
+## 215. Consecutive original worlds43–65
+
+- [ ] 215.1 Continue every world43–65 including383 infinite repeat and same-call decrement, verify full source/native state/calls/retention/CPU and pin65; commit locally.
+
+## 216. Consecutive original worlds66–75
+
+- [ ] 216.1 Continue every world66–75 including child terminal/next-update unlink and actual pool release, verify full state/calls/restart/retention/CPU and pin75; commit locally.
+
+## 217. Animation lifecycle acceptance
+
+- [ ] 217.1 Run relevant source/native/parent/spec checks, preserve history/runtime/save and exact Git bytes, document remaining180/VM/AI/outer-task boundaries and commit locally without pushing.

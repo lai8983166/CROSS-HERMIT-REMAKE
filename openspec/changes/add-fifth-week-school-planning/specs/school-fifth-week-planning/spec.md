@@ -943,3 +943,16 @@ The audit SHALL execute complete declared worlds7–15 in sequence and verify bo
 - **WHEN** verified sixth-return cases continue through every declared world7–15
 - **THEN** original383 transitions at9/15 and2063 transition at11 match full source PC/timer/layer bytes and natural calls, with no same-call decrement of a newly selected regular frame
 - **AND** complete prefix,250-slot loop,suffix,retained memory and natural return are verified without granting repeat execution, attached release, full180 interval or VM/AI authority
+
+### Requirement: Continuous source animation lifecycle16–75
+The audit SHALL verify all original declared worlds16–75 and distinguish terminal, clearing, repeat and pool release semantics.
+
+#### Scenario: Main animation finishes and clears
+- **WHEN** consecutive original calls reach source job5 duration40 terminal
+- **THEN** world41 marks its root ended and world42 clears its PC through the original empty-child release path
+- **AND** other active units,250 slots,prefix,suffix and retained memory remain independently verified
+
+#### Scenario: Infinite source repeat and attached release
+- **WHEN** calls65/73/74 execute the actual383 repeat and2100+job terminal lifecycle
+- **THEN** original repeat127 jumps backward3 instructions and decrements the new first frame in the same call; child completion later unlinks from its root and clears only pool byte0 on the following update
+- **AND** calls continue through75 with full losslessly retained owned bytes and no full180/VM/AI/outer-task completion authority

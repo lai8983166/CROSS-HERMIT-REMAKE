@@ -243,3 +243,7 @@ Generalize initialized world projections for declared natural46B470 calls4–6 f
 ## Consecutive source frame changes7–15 (2026-10-15)
 
 Continue verified sixth-return cases through every original declared world7–15, verifying383 source first/second frame expiry and2063 next regular frame. Decode bounded frame0 stepping and the upcoming383 repeat instruction, retaining complete owned/retained state, native calls and private checkpoint provenance. Commit source, worlds7–9, worlds10–15 and acceptance locally. Actual repeat execution, attached-node release, full180 interval/VM/AI and outer task remain later work.
+
+## Consecutive animation lifecycle16–75 (2026-10-15)
+
+Continue every declared original world16–75 from the verified fifteenth return in three batches16–42/43–65/66–75. Verify friendly and attached frame transitions, job5 terminal/next-update root clearing,383 source infinite repeat and actual2100+job child terminal/unlink/pool-free. Preserve complete original state/calls/retention and all history/runtime/save. Losslessly compress large hex buffers per world to bound report memory while retaining every owned byte. Commit source, each native batch and acceptance locally; full180/VM/AI/outer-task remain later work.
