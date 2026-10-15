@@ -794,7 +794,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 198. Third original world prefix and restored clearing probes
 
-- [ ] 198.1 Restore verified second-world return, verify isolated ended217/247/248 clearing with full restoration, execute declared third46B470 prefix to unexecuted first phase1 handler and pin checkpoint; commit locally.
+- [x] 198.1 Restore verified second-world return, verify isolated ended217/247/248 clearing with full restoration, execute declared third46B470 prefix to unexecuted first phase1 handler and pin checkpoint; commit locally.
 
 ## 199. Third-update first student returns
 
