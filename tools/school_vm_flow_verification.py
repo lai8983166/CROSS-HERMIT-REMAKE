@@ -8,6 +8,7 @@ from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X8
 
 PARENT=PARENT_REPORTS['task'];PARENT_SHA=PARENT_SHAS['task']
 REPORTS={p:ROOT/f'analysis/school-vm-flow-{p}-v1-20261017.json.gz' for p in PHASES};SHAS={p:None for p in PHASES}
+SHAS['fade_start']='461b5dbbf2b35a9c677cc50b7636011aa061e8dab1827ec028d58bdc55e46543'
 SHAS['poses']='465623620f57d44c7a55096d096a0fd367b12778899a7f417fa8f3de64ea7502'
 SHAS['slots']='2ba99d49c37f47db6d31fa948bc422acc3d4f5d15c2ea4e48e2d35102847bab4'
 SHAS['globals']='2128fee0a928909b300be867629a95d39a5c4dfc8a6806f6c6368ef3b789e5d6'
