@@ -1062,7 +1062,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 265. Original poses and wait-clear polls
 
-- [ ] 265.1 Execute both136 commands via native499560/4972B0 and each following wait4-clear poll to PC176/wait0, verify all source buffers/arguments/calls/CPU/retention and pin in three cases; commit locally.
+- [x] 265.1 Execute both136 commands via native499560/4972B0 and each following wait4-clear poll to PC176/wait0, verify all source buffers/arguments/calls/CPU/retention and pin in three cases; commit locally.
 
 ## 266. Original fade start
 
