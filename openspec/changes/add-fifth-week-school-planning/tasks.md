@@ -1039,3 +1039,39 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 259. Native first-return acceptance
 
 - [x] 259.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document captured inactive limits and remaining later script/outer frame/AI work, commit locally without push.
+
+## 260. Normal branch and fade source
+
+- [x] 260.1 Derive actual typed equality branch, assignment/global/slot/pose commands, extra wait-clear polls and native x87/fixed-point fade source rules; commit locally.
+
+## 261. Original opening conditional
+
+- [ ] 261.1 In all three cases declare original reset/task calls after verified return and execute opcode8 equality to PC44, verifying calls/arguments/ABI/CPU/full state/retention and pin; commit locally.
+
+## 262. Original opening variable assignment
+
+- [ ] 262.1 Continue declared reset/task calls through opcode5 variable0=0 to PC56, verify full native state and return/checkpoint in all cases; commit locally.
+
+## 263. Original global bit and word commands
+
+- [ ] 263.1 Execute actual165/163 typed operands and native4E29E0 bit0/word0 stores through PC88 in three cases, verify complete global/VM/retained state/calls/returns and pin; commit locally.
+
+## 264. Original slot display flags
+
+- [ ] 264.1 Execute both113 commands through native497210 slot1/2 flags to PC112, verifying complete records/VM/state/calls/returns and pin in three cases; commit locally.
+
+## 265. Original poses and wait-clear polls
+
+- [ ] 265.1 Execute both136 commands via native499560/4972B0 and each following wait4-clear poll to PC176/wait0, verify all source buffers/arguments/calls/CPU/retention and pin in three cases; commit locally.
+
+## 266. Original fade start
+
+- [ ] 266.1 Execute117, native x87 division/56CFCC and first497AA0 update to PC184/wait4, verify derived integer step/counter/full state/CPU/retention and pin in three cases; commit locally.
+
+## 267. Complete original fade countdown and VM release
+
+- [ ] 267.1 Execute remaining59 native fade updates and following wait-clear VM poll without advancing opcode56, verify all intermediate states/calls/returns/final flags/CPU/retention and pin in three cases; commit locally.
+
+## 268. Normal opening flow acceptance
+
+- [ ] 268.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document driver/platform/renderer limits and later commands/outer loop/AI work; commit locally without push.

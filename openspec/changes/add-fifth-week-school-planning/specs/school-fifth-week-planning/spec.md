@@ -1057,3 +1057,14 @@ The audit SHALL continue the original pending407AD0 on the retained VM/task stac
 #### Scenario: First native normal VM and selected task return
 - **WHEN** original VM resumes with ten inactive layers, five inactive secondary records, one inactive presentation object and twenty inactive resource records
 - **THEN** all51 maintenance calls execute original bodies, VM returns1 to454D90 and inactive menu/fade/board task suffix returns0 with phase2/status1/PC8 preserved; full outer frame and later playback remain unclaimed
+
+### Requirement: Native normal opening branch and complete captured fade
+The audit SHALL resume verified task returns using explicitly declared original reset/task calls with inherited bounded platform responses. It SHALL execute the actual conditional PC44 path, variable/global/slot/pose commands and the60-update fade, preserving every original helper body, owned/retained byte and natural return. It MUST distinguish helper wait4 clearing, fade completion and the subsequent VM wait-clear poll, and MUST NOT infer GPU output, live input, full outer scheduling or persistent game progress.
+
+#### Scenario: Actual opening path and original state commands
+- **WHEN** the captured variable0=1 enters opcode8 at PC8
+- **THEN** original comparison takes PC44, native variable/global/slot commands and both pose commands execute in order with source arguments, full state and additional wait-clear polls verified
+
+#### Scenario: Complete native fade without forced endpoint
+- **WHEN** original opcode117 starts duration60 using source fixed-point range38912
+- **THEN** original x87 conversion derives the integer step, all60 task suffix updates and completion execute, and only the following VM poll clears wait4 before the next script command; full state/calls/CPU and immutable checkpoints agree without manual wait or alpha changes
