@@ -1,0 +1,51 @@
+test_calls_adapter_driver_authority_CPU_and_parent_mutations_refused (tools.tests.test_school_task_cycle_emulation.Reset1Tests) ... ERROR
+test_every_owned_region_corruption_refused (tools.tests.test_school_task_cycle_emulation.Reset1Tests) ... ERROR
+test_private_CPU_memory_and_fresh_identity_before_unpickle (tools.tests.test_school_task_cycle_emulation.Reset1Tests) ... ERROR
+test_three_cases_full_source_calls_bytes_CPU_and_scope (tools.tests.test_school_task_cycle_emulation.Reset1Tests) ... ERROR
+
+======================================================================
+ERROR: test_calls_adapter_driver_authority_CPU_and_parent_mutations_refused (tools.tests.test_school_task_cycle_emulation.Reset1Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_task_cycle_emulation.py", line 30, in test_calls_adapter_driver_authority_CPU_and_parent_mutations_refused
+    with self.assertRaises(ValueError):verify_case(c,self.phase)
+  File "F:\project\chaomofa\tools\school_task_cycle_verification.py", line 67, in verify_case
+    a=unpack(c['actual']);expected=project(phase,before);base=STACK+0xFF00
+NameError: name 'unpack' is not defined
+
+======================================================================
+ERROR: test_every_owned_region_corruption_refused (tools.tests.test_school_task_cycle_emulation.Reset1Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_task_cycle_emulation.py", line 22, in test_every_owned_region_corruption_refused
+    with self.assertRaises(ValueError):verify_case(bad,self.phase)
+  File "F:\project\chaomofa\tools\school_task_cycle_verification.py", line 67, in verify_case
+    a=unpack(c['actual']);expected=project(phase,before);base=STACK+0xFF00
+NameError: name 'unpack' is not defined
+
+======================================================================
+ERROR: test_private_CPU_memory_and_fresh_identity_before_unpickle (tools.tests.test_school_task_cycle_emulation.Reset1Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_task_cycle_emulation.py", line 37, in test_private_CPU_memory_and_fresh_identity_before_unpickle
+    payload,cp=load_verified_checkpoint(c['name'],self.phase);self.assertEqual(hex(payload['pending_eip']),cp['pending_eip'])
+  File "F:\project\chaomofa\tools\school_task_cycle_verification.py", line 104, in load_verified_checkpoint
+    after=verify_case(c,phase);cp=c['continuation_checkpoint'];raw=(ROOT/cp['path']).read_bytes()
+  File "F:\project\chaomofa\tools\school_task_cycle_verification.py", line 67, in verify_case
+    a=unpack(c['actual']);expected=project(phase,before);base=STACK+0xFF00
+NameError: name 'unpack' is not defined
+
+======================================================================
+ERROR: test_three_cases_full_source_calls_bytes_CPU_and_scope (tools.tests.test_school_task_cycle_emulation.Reset1Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_task_cycle_emulation.py", line 15, in test_three_cases_full_source_calls_bytes_CPU_and_scope
+    for c in self.data['cases']:self.assertTrue(verify_case(c,self.phase))
+  File "F:\project\chaomofa\tools\school_task_cycle_verification.py", line 67, in verify_case
+    a=unpack(c['actual']);expected=project(phase,before);base=STACK+0xFF00
+NameError: name 'unpack' is not defined
+
+----------------------------------------------------------------------
+Ran 4 tests in 26.874s
+
+FAILED (errors=4)

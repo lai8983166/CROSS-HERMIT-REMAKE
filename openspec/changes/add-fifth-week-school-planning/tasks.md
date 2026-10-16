@@ -986,7 +986,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 246. Original captured input reset
 
-- [ ] 246.1 Restore first-task returns in three cases and execute425DE0 through native null-context query/negative branch/reset/return with declared closed-IME adapter; verify complete state/calls/CPU/retention and pin, commit locally.
+- [x] 246.1 Restore first-task returns in three cases and execute425DE0 through native null-context query/negative branch/reset/return with declared closed-IME adapter; verify complete state/calls/CPU/retention and pin, commit locally.
 
 ## 247. Original next task phase
 

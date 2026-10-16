@@ -1,0 +1,11 @@
+# Captured input reset and normal playback admission
+
+This continuation starts from the SHA-verified first454CF0 return after world185. All four phases use original x86 instructions in the existing audit CPU. Root reset/task calls are separately declared audit invocations; original49E540 and4539B0 outer scheduling has not executed.
+
+Original425DE0 reads input byte630 as signed. The capturedFF request naturally calls425E60(0), then425C70 and the original56CD4A import thunk. Original import descriptor at5FD6D0 identifies IMM32.dll, lookup table and IAT5920EC as ImmGetOpenStatus. The captured context at input+8 is zero. The audit explicitly declares ImmGetOpenStatus(0)=0; this is a bounded platform response, not an observed live OS result. The negative request consequently takes the inactive branch, does not call ImmSetOpenStatus, executes the original425E3F reset store and naturally returns0. No code directly clears the flag.
+
+The existing imported target is retained without IAT patching. Its previously unmapped page is added once as a zero trap page so the original import jump can reach the declared adapter. The page and all other mapped memory outside52 owned regions and stack are checked against independently derived parent coverage and SHA; the next phases retain that same mapping. Existing empty-text lstrlenA is the other explicitly bounded adapter. No original helper body is substituted; only the inherited register-preserving debug-stack check is adapted.
+
+The planned next task poll executes phase1→2 with original input setup, all three buffer resets and inactive fade/board guards. Another original reset precedes phase2, whose454CF0 prefix should naturally call4CE8F0 at original return address454D90. Stop before the first VM instruction. This gives no normal playback, world advancement, outer-frame, AI, rendering, audio backend or persistent-write authority. Godot/resources/save files remain unchanged.
+
+Stage246 native execution: all three cases complete original425DE0 with four exact source calls, declared null-context query and natural425E59 return0. Each owns52 complete regions and retains119460606 outside bytes. The first check run caught a missing verifier codec import; its failed log is retained, the import was fixed, and original evidence was not regenerated.
