@@ -999,3 +999,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 249. Input cycle acceptance
 
 - [x] 249.1 Run new/direct-parent/spec checks, preserve history/runtime/save and exact Git bytes, document declared OS response and remaining VM/outer-task/render/AI boundaries, commit locally without push.
+
+## 250. Normal VM and native display source
+
+- [x] 250.1 Derive first opcode167, overlay kind1 dispatch, native stack constructors/SEH and captured count1/index51 resource refusal rules; commit locally.
+
+## 251. First original normal VM command
+
+- [ ] 251.1 Restore vm_entry in all three cases, execute original opcode167 and natural VM continuation to unexecuted4D29E0, verify full owned/retained bytes/calls/CPU/arguments and pin; commit locally.
+
+## 252. Native overlay display object
+
+- [ ] 252.1 Continue original4D29E0/4D2CA0 and all native stack constructors/owner binding to unexecuted407870, verify full128-byte packet/SEH/calls/CPU/retention and pin in three cases; commit locally.
+
+## 253. Actual missing graphics resource boundary
+
+- [ ] 253.1 Continue original407870/41F5A0 count1/index51 guard through null return and natural unexecuted424F80 assertion, verify exact packet/arguments/CPU/retention and pin in three cases; commit locally.
+
+## 254. First normal VM presentation acceptance
+
+- [ ] 254.1 Run new/direct-parent/spec checks, preserve old/runtime/save and exact Git bytes, document missing global UI resource and remaining VM/presentation/outer-task/AI work, commit locally without push.

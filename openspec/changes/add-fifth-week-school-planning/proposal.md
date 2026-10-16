@@ -271,3 +271,7 @@ Continue the verified184 pending4551C0 CPU through native five-command preflight
 ## Native captured input reset and next task polls (2026-10-16)
 
 Continue the pinned first-task return through a declared original425DE0 input reset, native phase1→2 task poll, another original reset and the following task prefix to its unexecuted normal playback4CE8F0 entry. Derive the original49E540 caller and IMM32 import identity from preserved descriptors. Declare a closed-IME response solely for the captured null context; do not sample live input or claim this is a complete OS/main/outer task frame. Preserve historical/runtime/save bytes, verify all three cases and commit each source/native/acceptance stage locally without push.
+
+## First normal VM command and native presentation boundary (2026-10-16)
+
+Continue the pinned normal4CE8F0 entry on its original454D90 caller stack. Execute first opcode167, then native overlay dispatcher/stack object constructor and actual source resource query. The captured group20 contains one entry while the overlay requests51; derive and verify this mismatch, stopping before the unexecuted original assertion rather than fabricating resources or replacing a drawing helper. Preserve history/runtime/save and commit source, command, constructor, resource-boundary and acceptance stages separately locally without push.
