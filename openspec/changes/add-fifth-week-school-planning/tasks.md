@@ -1054,7 +1054,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 263. Original global bit and word commands
 
-- [ ] 263.1 Execute actual165/163 typed operands and native4E29E0 bit0/word0 stores through PC88 in three cases, verify complete global/VM/retained state/calls/returns and pin; commit locally.
+- [x] 263.1 Execute actual165/163 typed operands and native4E29E0 bit0/word0 stores through PC88 in three cases, verify complete global/VM/retained state/calls/returns and pin; commit locally.
 
 ## 264. Original slot display flags
 
