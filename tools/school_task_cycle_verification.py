@@ -10,6 +10,8 @@ from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X8
 PARENT=PARENT_REPORTS['task'];PARENT_SHA=PARENT_SHAS['task']
 REPORTS={p:ROOT/f'analysis/school-task-cycle-{p}-v1-20261016.json.gz' for p in PHASES}
 SHAS={p:None for p in PHASES}
+REPORTS['phase2']=ROOT/'analysis/school-task-cycle-phase2-v2-20261016.json.gz'
+SHAS['phase2']='5dba3521bf0cc2e510b798ca19b5f10958b40f7e6b183a8bd5cd2587c314b621'
 SHAS['reset1']='0db812cb28e404705f4227f6dd151b70fe5cef617ffff12e0c00ebcf26262ec2'
 
 @lru_cache(maxsize=3)
@@ -83,7 +85,7 @@ def verify_case(c,phase):
     if not required<=set(a['visited']) or forbidden&set(a['visited']):raise ValueError('task cycle source-selected native branches')
     if any(a.get(k) is not False for k in ('owned_bodies_stubbed','original_outer_task_frame_completed')):raise ValueError('task cycle bounded authority')
     retained(a);cp=c['continuation_checkpoint']
-    if cp['path']!=f'.venv-audit/task-cycle-{phase}-{c["name"]}.pkl' or cp['pending_eip']!=hex(want_cpu['EIP']) or cp['runtime_or_original_save'] is not False:raise ValueError('task cycle fixed new checkpoint path')
+    if cp['path']!=(f'.venv-audit/task-cycle-{phase}-v2-{c["name"]}.pkl' if phase=='phase2' else f'.venv-audit/task-cycle-{phase}-{c["name"]}.pkl') or cp['pending_eip']!=hex(want_cpu['EIP']) or cp['runtime_or_original_save'] is not False:raise ValueError('task cycle fixed new checkpoint path')
     return expected['after']
 
 

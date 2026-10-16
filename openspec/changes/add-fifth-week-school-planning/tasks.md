@@ -990,7 +990,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 247. Original next task phase
 
-- [ ] 247.1 Declare next454CF0 after native reset, execute phase1→2 through original setup/clears/inactive guards, verify full state/calls/CPU/retention and pin in all cases; commit locally.
+- [x] 247.1 Declare next454CF0 after native reset, execute phase1→2 through original setup/clears/inactive guards, verify full state/calls/CPU/retention and pin in all cases; commit locally.
 
 ## 248. Original reset and normal playback admission
 

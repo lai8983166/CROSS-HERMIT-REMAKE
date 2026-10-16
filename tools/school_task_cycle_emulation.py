@@ -26,7 +26,7 @@ class CycleEmulator(ScriptEmulator):
                 self.cycle_adapters.append(dict(name='ImmGetOpenStatus',slot='0x5920ec',va=hex(address),return_va=hex(ret),sp=sp,args=args,result=0,declared_response=True,live_OS_observed=False));self._stub_return(0,4);return
             if ret!=0x425A7E or args!=[INPUT+0x528] or self.read(args[0],'B'):raise RuntimeError('task cycle captured empty text only')
             self.cycle_adapters.append(dict(name='lstrlenA',slot='0x5922c4',va=hex(address),return_va=hex(ret),sp=sp,args=args,result=0,read_hex='00',reads_existing_buffer_only=True));self._stub_return(0,4);return
-        if address in {a for a,b in RESET_NATIVE+TASK_NATIVE}|{0x56CEC0}:self.cycle_calls.append(dict(va=hex(address),receiver=recv,return_va=hex(ret),sp=sp))
+        if address in {a for a,b in RESET_NATIVE+TASK_NATIVE}|{0x56CEC0,0x454C40}:self.cycle_calls.append(dict(va=hex(address),receiver=recv,return_va=hex(ret),sp=sp))
         if address in (0x425E59,0x454EC1):self.cycle_real_ret=dict(va=hex(address),return_va=hex(ret),sp=sp,eax=uc.reg_read(UC_X86_REG_EAX))
         if address==0x56CE80:return ExitEmulator._hook(self,uc,address,size,context)
         if any(a<=address<b for a,b in RESET_NATIVE+TASK_NATIVE+HELPERS):self.cycle_visited.add(address);return
@@ -59,7 +59,7 @@ class CycleEmulator(ScriptEmulator):
         finally:self.cycle_loading=False;self._function_ranges=prior
 
     def save_cycle(self,name,phase,parent_sha):
-        p=ROOT/f'.venv-audit/task-cycle-{phase}-{name}.pkl'
+        p=ROOT/(f'.venv-audit/task-cycle-{phase}-v2-{name}.pkl' if phase=='phase2' else f'.venv-audit/task-cycle-{phase}-{name}.pkl')
         if p.exists():raise ValueError('task cycle immutable new checkpoint')
         payload=dict(source_sha=SOURCE_SHA256,parent_report_sha=parent_sha,case_name=name,phase=phase,evidence_kind='private_original_task_cycle_'+phase,pending_eip=self.uc.reg_read(UC_X86_REG_EIP),state={k:v for k,v in self.__dict__.items() if k!='uc' and not k.startswith('_audit_')},memory=[(a,bytes(self.uc.mem_read(a,b-a+1))) for a,b,_ in self.uc.mem_regions()],cpu=self.uc.context_save())
         raw=pickle.dumps(payload,protocol=pickle.HIGHEST_PROTOCOL);p.write_bytes(raw);return dict(path=p.relative_to(ROOT).as_posix(),bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),pending_eip=hex(payload['pending_eip']),runtime_or_original_save=False)

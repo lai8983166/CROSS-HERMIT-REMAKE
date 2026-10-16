@@ -37,7 +37,7 @@ class Checks:
             payload,cp=load_verified_checkpoint(c['name'],self.phase);self.assertEqual(hex(payload['pending_eip']),cp['pending_eip'])
         with self.assertRaises(ValueError):load_verified_checkpoint('../initial',self.phase)
         original=Path.read_bytes
-        for identity in (SOURCE,PARENT,REPORTS[self.phase]):
+        for identity in (SOURCE,PARENT,REPORTS[self.phase],Path.cwd()/self.data['cases'][0]['continuation_checkpoint']['path']):
             def changed(path):return b'{}' if path==identity else original(path)
             with patch.object(Path,'read_bytes',changed),patch('tools.school_task_cycle_verification.pickle.loads') as unpickle:
                 with self.assertRaises(ValueError):load_verified_checkpoint('initial',self.phase)
