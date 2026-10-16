@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_vm_present_emulation.py", line 74, in <module>
+    path.write_bytes(gzip.compress(report_text(report(a.phase)).encode('utf-8'),compresslevel=6,mtime=0))
+  File "F:\project\chaomofa\tools\school_vm_present_emulation.py", line 57, in report
+    from tools.school_vm_present_verification import load_verified_checkpoint,PARENT,PARENT_SHA
+ImportError: cannot import name 'load_verified_checkpoint' from 'tools.school_vm_present_verification' (F:\project\chaomofa\tools\school_vm_present_verification.py)

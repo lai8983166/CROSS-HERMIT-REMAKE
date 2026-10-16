@@ -1006,7 +1006,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 251. First original normal VM command
 
-- [ ] 251.1 Restore vm_entry in all three cases, execute original opcode167 and natural VM continuation to unexecuted4D29E0, verify full owned/retained bytes/calls/CPU/arguments and pin; commit locally.
+- [x] 251.1 Restore vm_entry in all three cases, execute original opcode167 and natural VM continuation to unexecuted4D29E0, verify full owned/retained bytes/calls/CPU/arguments and pin; commit locally.
 
 ## 252. Native overlay display object
 

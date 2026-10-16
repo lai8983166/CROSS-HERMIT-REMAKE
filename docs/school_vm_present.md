@@ -1,0 +1,11 @@
+# First normal VM command and native overlay binding
+
+Continue the SHA-verified normal4CE8F0 entry on its original454D90 task caller stack. No new VM root/caller, skipped command or completion callback is introduced. Source first command at script offset452 is opcode167 with length8 and variable0; it reads the existing work flag1, advances PC0→8 and the original command counter, then naturally enters4D29E0.
+
+The native kind1 overlay dispatcher maps root arguments to a nine-argument4D2CA0 call. Root value51 is the layer, while resource index is0 in group20. The initial v1 source-only interpretation confused these roles; it was corrected before any native resource result was accepted. The v1 source/check artifacts remain historical, v2 source includes exact argument-transfer instruction checks, and the correction has its own local commit. Captured group20 has one84-byte record, sufficient for index0; no resource is fabricated or replaced.
+
+The planned continuation executes original4075E0/403620/41F930/420990/408C00 constructors and4077C0 owner binding, comparing every byte of the128-byte stack display object including CC padding and its original SEH chain. Original407870/41F5A0 should bind the existing texture, copy source metadata and clock, then construct crop rectangle424,24–444,54, size20×30 and layer51 before the pending407AD0 draw body.
+
+All57 fixed owned regions, complete source texture input, full packet, original calls/arguments/ABI/CPU and outside parent memory are verified. The original optimized memset and helper bodies execute; only the inherited register-preserving debug-stack check is adapted. No OS/platform response is needed in these new phases. Full first VM return, later display maintenance, outer task/render scheduling, GPU output, AI/waves and persistent settlement remain separate dependencies. Godot/runtime/assets/save files remain unchanged.
+
+Stage251: all three native first commands execute167 and naturally stop before4D29E0. Five exact source calls per case, existing source flag1/PC8/counter6, all57 owned regions and parent retention agree. Four full-state/corruption/private-memory tests pass. A preliminary driver invocation preceded completion of the verifier interface and failed at import; that diagnostic log is retained, accepted execution uses native-v2 and fresh checkpoints.
