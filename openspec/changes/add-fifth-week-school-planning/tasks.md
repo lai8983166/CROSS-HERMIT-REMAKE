@@ -1058,7 +1058,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 264. Original slot display flags
 
-- [ ] 264.1 Execute both113 commands through native497210 slot1/2 flags to PC112, verifying complete records/VM/state/calls/returns and pin in three cases; commit locally.
+- [x] 264.1 Execute both113 commands through native497210 slot1/2 flags to PC112, verifying complete records/VM/state/calls/returns and pin in three cases; commit locally.
 
 ## 265. Original poses and wait-clear polls
 
