@@ -1034,7 +1034,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 258. Existing selected task return
 
-- [ ] 258.1 Continue original454D90 caller through inactive4563D0 menu/fade/board suffix to454EC1 return, verify unchanged phase2/status1/PC8/full state and original stack in three cases, pin and commit locally.
+- [x] 258.1 Continue original454D90 caller through inactive4563D0 menu/fade/board suffix to454EC1 return, verify unchanged phase2/status1/PC8/full state and original stack in three cases, pin and commit locally.
 
 ## 259. Native first-return acceptance
 

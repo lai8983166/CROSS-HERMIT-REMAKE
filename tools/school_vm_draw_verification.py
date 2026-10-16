@@ -8,6 +8,7 @@ from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X8
 
 PARENT=PARENT_REPORTS['draw'];PARENT_SHA=PARENT_SHAS['draw']
 REPORTS={p:ROOT/f'analysis/school-vm-draw-{p}-v1-20261016.json.gz' for p in PHASES};SHAS={p:None for p in PHASES}
+SHAS['task']='7eb4e819cc562589ca7496b26c940daf3faaaf29f8d659c2a84a9757550eb8ce'
 SHAS['cleanup']='ce7544f3a3061ac0337ef79e1126e9bb8467ef4b4314519aecfc9262fee5d8f9'
 SHAS['vm']='0fadc6b2c2871f12e7cfaf09b8a83f9e1bb7a20f381296fde7c6b10078c4cfa6'
 
