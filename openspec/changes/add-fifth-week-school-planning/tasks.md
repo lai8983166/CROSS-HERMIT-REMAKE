@@ -1074,4 +1074,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 268. Normal opening flow acceptance
 
-- [ ] 268.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document driver/platform/renderer limits and later commands/outer loop/AI work; commit locally without push.
+- [x] 268.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document driver/platform/renderer limits and later commands/outer loop/AI work; commit locally without push.

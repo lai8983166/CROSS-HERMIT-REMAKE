@@ -1,0 +1,638 @@
+{
+  "baseline": "31e63a7e9c287332a97442aeac4a45bfe9126c0e",
+  "stages": "260–268",
+  "scope": "Actual original conditional opening branch, variable/global/slot/pose commands,60 native fade updates and following VM wait-clear; declared reset/task invocations with inherited bounded platform responses only",
+  "source_native_commits": [
+    "fbde1e9 Derive actual opening branch and native sixty-update fade rules",
+    "f70bd0e Verify original opening branch calls and immutable continuation",
+    "bf19d32 Verify original opening assign calls and immutable continuation",
+    "e1cfd1b Verify original opening globals calls and immutable continuation",
+    "377882b Verify original opening slots calls and immutable continuation",
+    "68f4f49 Verify original opening poses calls and immutable continuation",
+    "887b495 Verify original opening fade_start calls and immutable continuation",
+    "e471765 Verify original opening fade_finish calls and immutable continuation"
+  ],
+  "reports": [
+    {
+      "phase": "branch",
+      "path": "analysis/school-vm-flow-branch-v1-20261017.json.gz",
+      "sha256": "65931374d72147e61ab8da05168f46e06ffcea37675bd155c2792fbf1546993f"
+    },
+    {
+      "phase": "assign",
+      "path": "analysis/school-vm-flow-assign-v1-20261017.json.gz",
+      "sha256": "6ee1db97f5140946a99d640e34acfd96a9127aa0ac670cb1321df37817ea8a29"
+    },
+    {
+      "phase": "globals",
+      "path": "analysis/school-vm-flow-globals-v1-20261017.json.gz",
+      "sha256": "2128fee0a928909b300be867629a95d39a5c4dfc8a6806f6c6368ef3b789e5d6"
+    },
+    {
+      "phase": "slots",
+      "path": "analysis/school-vm-flow-slots-v1-20261017.json.gz",
+      "sha256": "2ba99d49c37f47db6d31fa948bc422acc3d4f5d15c2ea4e48e2d35102847bab4"
+    },
+    {
+      "phase": "poses",
+      "path": "analysis/school-vm-flow-poses-v1-20261017.json.gz",
+      "sha256": "465623620f57d44c7a55096d096a0fd367b12778899a7f417fa8f3de64ea7502"
+    },
+    {
+      "phase": "fade_start",
+      "path": "analysis/school-vm-flow-fade_start-v1-20261017.json.gz",
+      "sha256": "461b5dbbf2b35a9c677cc50b7636011aa061e8dab1827ec028d58bdc55e46543"
+    },
+    {
+      "phase": "fade_finish",
+      "path": "analysis/school-vm-flow-fade_finish-v1-20261017.json.gz",
+      "sha256": "9da0cafd2720ea5b8ee5c5e313d46c513641c55668c6d95a99e469ef2344b113"
+    }
+  ],
+  "cases": [
+    {
+      "name": "initial",
+      "branch": {
+        "steps": 1,
+        "original_calls": 98,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 44,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "assign": {
+        "steps": 1,
+        "original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 56,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "globals": {
+        "steps": 2,
+        "original_calls": 198,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 88,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "slots": {
+        "steps": 2,
+        "original_calls": 196,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 112,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "poses": {
+        "steps": 4,
+        "original_calls": 398,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 176,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "fade_start": {
+        "steps": 1,
+        "original_calls": 98,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 184,
+        "wait": 4,
+        "fade_remaining": 59,
+        "fade_accumulator": 648,
+        "retained_bytes": 119460384
+      },
+      "fade_finish": {
+        "steps": 60,
+        "original_calls": 5641,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 184,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 38880,
+        "retained_bytes": 119460384
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "branch": {
+        "steps": 1,
+        "original_calls": 98,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 44,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "assign": {
+        "steps": 1,
+        "original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 56,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "globals": {
+        "steps": 2,
+        "original_calls": 198,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 88,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "slots": {
+        "steps": 2,
+        "original_calls": 196,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 112,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "poses": {
+        "steps": 4,
+        "original_calls": 398,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 176,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "fade_start": {
+        "steps": 1,
+        "original_calls": 98,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 184,
+        "wait": 4,
+        "fade_remaining": 59,
+        "fade_accumulator": 648,
+        "retained_bytes": 119460384
+      },
+      "fade_finish": {
+        "steps": 60,
+        "original_calls": 5641,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 184,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 38880,
+        "retained_bytes": 119460384
+      }
+    },
+    {
+      "name": "fifth_class",
+      "branch": {
+        "steps": 1,
+        "original_calls": 98,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 44,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "assign": {
+        "steps": 1,
+        "original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 56,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "globals": {
+        "steps": 2,
+        "original_calls": 198,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 88,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "slots": {
+        "steps": 2,
+        "original_calls": 196,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 112,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "poses": {
+        "steps": 4,
+        "original_calls": 398,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 176,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 0,
+        "retained_bytes": 119460384
+      },
+      "fade_start": {
+        "steps": 1,
+        "original_calls": 98,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 184,
+        "wait": 4,
+        "fade_remaining": 59,
+        "fade_accumulator": 648,
+        "retained_bytes": 119460384
+      },
+      "fade_finish": {
+        "steps": 60,
+        "original_calls": 5641,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 184,
+        "wait": 0,
+        "fade_remaining": 0,
+        "fade_accumulator": 38880,
+        "retained_bytes": 119460384
+      }
+    }
+  ],
+  "original_calls": 20178,
+  "declared_task_invocations": 213,
+  "declared_input_resets": 213,
+  "normal_commands": 27,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "branch",
+      "path": ".venv-audit/vm-flow-branch-initial.pkl",
+      "bytes": 136847191,
+      "sha256": "13d01fdb3e24cf9ae002560f7d45f4e4495771f7d4b625d35180a39359fa85a8",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "assign",
+      "path": ".venv-audit/vm-flow-assign-initial.pkl",
+      "bytes": 136847191,
+      "sha256": "112757259b876a0fcf23e0c117f31d4dca59fc4000dd2baaf3bf4e0f739f0a72",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "globals",
+      "path": ".venv-audit/vm-flow-globals-initial.pkl",
+      "bytes": 136847193,
+      "sha256": "152919dcf3351963683257bcec5da10383337799f92d87cc810a2c9f32a696ae",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "slots",
+      "path": ".venv-audit/vm-flow-slots-initial.pkl",
+      "bytes": 136847189,
+      "sha256": "dfc04b135832c90e8e260edfc11d78930a959d4981f3257af3f00b13dbf702db",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "poses",
+      "path": ".venv-audit/vm-flow-poses-initial.pkl",
+      "bytes": 136847189,
+      "sha256": "0e1f37f9544800507db5c01f3b1b0603b4092b826a968edc37832fd0c478e43b",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "fade_start",
+      "path": ".venv-audit/vm-flow-fade_start-initial.pkl",
+      "bytes": 136847199,
+      "sha256": "de8da22f8c9c22f848a8ac32d8966cb6b91150310e3943d0bcf613ce16a9f327",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "fade_finish",
+      "path": ".venv-audit/vm-flow-fade_finish-initial.pkl",
+      "bytes": 136847201,
+      "sha256": "11253d420057d4fa066d4a64e5b5810d0bc5ab450f45ab80db970dc05d524bb4",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "branch",
+      "path": ".venv-audit/vm-flow-branch-student9_waiting.pkl",
+      "bytes": 136309154,
+      "sha256": "b33f39a14a723b0d6e56178d4f19f76ae2526041d9d6eabdb9c57e7d51ce484d",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "assign",
+      "path": ".venv-audit/vm-flow-assign-student9_waiting.pkl",
+      "bytes": 136309154,
+      "sha256": "6c891a6c8bc6f6478172ce293867c30dadce7380ac01f5c7737a56d2849e2fad",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "globals",
+      "path": ".venv-audit/vm-flow-globals-student9_waiting.pkl",
+      "bytes": 136309156,
+      "sha256": "3276e7ce7b9aea759fc7a27262f2811df0e03594cf37706fe5c88d7962a79515",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "slots",
+      "path": ".venv-audit/vm-flow-slots-student9_waiting.pkl",
+      "bytes": 136309152,
+      "sha256": "a8c14cc0d8695d8689e38bf785ba8071744ab6dc4780b961e18b2e840ecd7228",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "poses",
+      "path": ".venv-audit/vm-flow-poses-student9_waiting.pkl",
+      "bytes": 136309152,
+      "sha256": "b37b0ed74049bbe19a4a29c647125d767cd340b540f595162c10027167d42975",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "fade_start",
+      "path": ".venv-audit/vm-flow-fade_start-student9_waiting.pkl",
+      "bytes": 136309162,
+      "sha256": "4262b0fc575642a6e96c1ad349992561238110185e681391a7263b97b4d22cb7",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "fade_finish",
+      "path": ".venv-audit/vm-flow-fade_finish-student9_waiting.pkl",
+      "bytes": 136309164,
+      "sha256": "05bb6f56537c613869c4db0aae4ab1a7c08cf77807d0ff0ebb49a7d7c65efd5e",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "branch",
+      "path": ".venv-audit/vm-flow-branch-fifth_class.pkl",
+      "bytes": 136309092,
+      "sha256": "ae4a12c69c3022ce71a5ae45e1d977528c2366cab5098063faf07af65934b99a",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "assign",
+      "path": ".venv-audit/vm-flow-assign-fifth_class.pkl",
+      "bytes": 136309092,
+      "sha256": "904e8c5f7cab45e26ab2cb0dc4ff6f2f3632510f5c1c81b4341012514f02b3e0",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "globals",
+      "path": ".venv-audit/vm-flow-globals-fifth_class.pkl",
+      "bytes": 136309094,
+      "sha256": "9a81af9482c850805f0209d103691fc4bdd91c456111edb071ad125ac0e2d495",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "slots",
+      "path": ".venv-audit/vm-flow-slots-fifth_class.pkl",
+      "bytes": 136309090,
+      "sha256": "a836f611c73cd32bdfe3b4c602031d81fef79f1f8b91f73902c354020f22a3ce",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "poses",
+      "path": ".venv-audit/vm-flow-poses-fifth_class.pkl",
+      "bytes": 136309090,
+      "sha256": "980656a401a02a3ac953616304573515ae8546e137895bfcf36b158980133fba",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "fade_start",
+      "path": ".venv-audit/vm-flow-fade_start-fifth_class.pkl",
+      "bytes": 136309100,
+      "sha256": "1c74d49ac282ffadc0d5de1331dfe1d14303a8a4a6fbe788873a6ce5ea4f04ea",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "fade_finish",
+      "path": ".venv-audit/vm-flow-fade_finish-fifth_class.pkl",
+      "bytes": 136309102,
+      "sha256": "ae133a14b2e72a14bf7e8cb1239b46f4997ce701a1e659fa3e213f9cba51d994",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15834,
+  "save_rule_fingerprints": 10,
+  "fade": {
+    "duration": 60,
+    "integer_step": 648,
+    "accumulator_after60": 38880,
+    "upper_bound": 38912,
+    "endpoint_forced": false,
+    "following_wait_clear_poll": true
+  },
+  "regression": {
+    "python_tests": 42,
+    "new_tests": 26,
+    "direct_parent_tests": 16,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-vm-flow-final-regression-20261017.log",
+    "spec_log": "analysis/school-vm-flow-spec-final-20261017.log"
+  },
+  "progress": {
+    "total": 268,
+    "complete": 268,
+    "remaining": 0
+  },
+  "authority": {
+    "actual_branch": true,
+    "global_and_slot_commands": true,
+    "pose_commands": true,
+    "complete_captured_fade": true,
+    "platform_responses": "inherited null-IME closed response and reading captured empty string only",
+    "live_OS_observed": false,
+    "GPU_executed": false,
+    "full_outer_frame": false,
+    "world_beyond185": false,
+    "AI_or_settlement": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Continue PC184 opcode56 and later normal opening commands/text/waits",
+    "Close original input/outer4539B0 task/world/render scheduling and enabled renderer/backend",
+    "Complete AI/events/waves/victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-vm-flow-artifact-manifest-20261017.json",
+  "local_only": true
+}
