@@ -994,7 +994,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 248. Original reset and normal playback admission
 
-- [ ] 248.1 Execute another native425DE0 reset then next phase2 task prefix to unexecuted4CE8F0 with actual caller stack/receiver, verify full state/retention/CPU and pin in three cases; commit locally.
+- [x] 248.1 Execute another native425DE0 reset then next phase2 task prefix to unexecuted4CE8F0 with actual caller stack/receiver, verify full state/retention/CPU and pin in three cases; commit locally.
 
 ## 249. Input cycle acceptance
 

@@ -12,6 +12,8 @@ REPORTS={p:ROOT/f'analysis/school-task-cycle-{p}-v1-20261016.json.gz' for p in P
 SHAS={p:None for p in PHASES}
 REPORTS['phase2']=ROOT/'analysis/school-task-cycle-phase2-v2-20261016.json.gz'
 SHAS['phase2']='5dba3521bf0cc2e510b798ca19b5f10958b40f7e6b183a8bd5cd2587c314b621'
+SHAS['reset2']='b23ca3f62c172168ae15e727e6adc0cae528c420327ac10d3f73a17819b3b237'
+SHAS['vm_entry']='d01b157c1638b1fb14523e6d584dfadf873aafbf11b191a26bfefdb916f9701b'
 SHAS['reset1']='0db812cb28e404705f4227f6dd151b70fe5cef617ffff12e0c00ebcf26262ec2'
 
 @lru_cache(maxsize=3)
