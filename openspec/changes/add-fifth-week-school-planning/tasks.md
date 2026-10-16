@@ -998,4 +998,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 249. Input cycle acceptance
 
-- [ ] 249.1 Run new/direct-parent/spec checks, preserve history/runtime/save and exact Git bytes, document declared OS response and remaining VM/outer-task/render/AI boundaries, commit locally without push.
+- [x] 249.1 Run new/direct-parent/spec checks, preserve history/runtime/save and exact Git bytes, document declared OS response and remaining VM/outer-task/render/AI boundaries, commit locally without push.

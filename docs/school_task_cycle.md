@@ -15,3 +15,5 @@ Stage247 instrumentation correction: the first native phase2 run reached the exp
 Stage247 accepted v2: three native task polls advance phase1→2, set flagFF, execute native input clears and inactive fade/board guards, and naturally return0. Fourteen exact source calls per case, all52 regions, static ABI depths and parent retained coverage agree; four stage checks pass.
 
 Stage248: all three cases complete the second original reset and reach unexecuted4CE8F0 from original454D8B/return454D90. VM entry CPU is EIP4CE8F0, ESPbase−100, EBPbase−4, EAX2, ECX7D7C28; phase2/status1 and full VM memory are unchanged. These two phases contain51 original calls and six declared platform adapters, retain exact parent outside memory and pin six fresh private checkpoints. Eight stage checks pass. No VM instruction or full task return has executed after this admission.
+
+验收：245–249五阶段完成，三个编班案例各执行两次原输入暂存请求复位、一次完整phase1→2任务更新，并由下一次原任务自然进入未执行的正常VM入口。总计105条原调用、12次明确平台适配和12份新私有检查点，52段拥有区及119460606字节保留区逐字节/完整SHA核对。声明的输入法关闭响应不代表读取过真实系统状态。新增19项与直接父链28项共47项回归、严格规格30项通过；15757个历史文件及十项存档规则指纹保留。各阶段分别本地提交，未push，Godot/资源/原存档未改。249/249只表示已列阶段；下一步从真实454D90调用者栈执行4CE8F0正文，完整外层输入/任务/渲染和AI/通关奖励仍未闭合。

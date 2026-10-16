@@ -1,0 +1,605 @@
+{
+  "baseline": "bbec48b9ec3e303c17870ad7d7ae9fd9b07f458b",
+  "stages": "245–249",
+  "scope": "Declared native null-context input resets and next task phase1→2, then unexecuted normal VM entry from original task caller",
+  "source_native_commits": [
+    "3ff7048 Derive native input reset and next script task admission",
+    "8e5364d Execute original captured input reset with explicit null IME response",
+    "ae8fa76 Verify original next script task advances to phase two",
+    "84c2d6e Reach original normal script VM caller after native input reset"
+  ],
+  "reports": [
+    {
+      "phase": "reset1",
+      "path": "analysis/school-task-cycle-reset1-v1-20261016.json.gz",
+      "sha256": "0db812cb28e404705f4227f6dd151b70fe5cef617ffff12e0c00ebcf26262ec2"
+    },
+    {
+      "phase": "phase2",
+      "path": "analysis/school-task-cycle-phase2-v2-20261016.json.gz",
+      "sha256": "5dba3521bf0cc2e510b798ca19b5f10958b40f7e6b183a8bd5cd2587c314b621"
+    },
+    {
+      "phase": "reset2",
+      "path": "analysis/school-task-cycle-reset2-v1-20261016.json.gz",
+      "sha256": "b23ca3f62c172168ae15e727e6adc0cae528c420327ac10d3f73a17819b3b237"
+    },
+    {
+      "phase": "vm_entry",
+      "path": "analysis/school-task-cycle-vm_entry-v1-20261016.json.gz",
+      "sha256": "d01b157c1638b1fb14523e6d584dfadf873aafbf11b191a26bfefdb916f9701b"
+    }
+  ],
+  "cases": [
+    {
+      "name": "initial",
+      "reset1": {
+        "calls": 4,
+        "adapters": [
+          {
+            "name": "ImmGetOpenStatus",
+            "slot": "0x5920ec",
+            "va": "0x76182a80",
+            "return_va": "0x425c99",
+            "sp": 33619428,
+            "args": [
+              0
+            ],
+            "result": 0,
+            "declared_response": true,
+            "live_OS_observed": false
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 17301888
+        },
+        "real_ret": {
+          "va": "0x425e59",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "phase2": {
+        "calls": 14,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "slot": "0x5922c4",
+            "va": "0xe320050",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "real_ret": {
+          "va": "0x454ec1",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "reset2": {
+        "calls": 4,
+        "adapters": [
+          {
+            "name": "ImmGetOpenStatus",
+            "slot": "0x5920ec",
+            "va": "0x76182a80",
+            "return_va": "0x425c99",
+            "sp": 33619428,
+            "args": [
+              0
+            ],
+            "result": 0,
+            "declared_response": true,
+            "live_OS_observed": false
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 17301888
+        },
+        "real_ret": {
+          "va": "0x425e59",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "vm_entry": {
+        "calls": 13,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "slot": "0x5922c4",
+            "va": "0xe320050",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "CPU": {
+          "EIP": 5040368,
+          "ESP": 33619612,
+          "EBP": 33619708,
+          "EAX": 2,
+          "ECX": 8223784
+        },
+        "real_ret": null,
+        "pending": {
+          "va": "0x4ce8f0",
+          "sp": 33619612,
+          "ebp": 33619708,
+          "eax": 2,
+          "ecx": 8223784,
+          "first_instruction_executed": false
+        },
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "reset1": {
+        "calls": 4,
+        "adapters": [
+          {
+            "name": "ImmGetOpenStatus",
+            "slot": "0x5920ec",
+            "va": "0x76182a80",
+            "return_va": "0x425c99",
+            "sp": 33619428,
+            "args": [
+              0
+            ],
+            "result": 0,
+            "declared_response": true,
+            "live_OS_observed": false
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 17301888
+        },
+        "real_ret": {
+          "va": "0x425e59",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "phase2": {
+        "calls": 14,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "slot": "0x5922c4",
+            "va": "0xe320050",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "real_ret": {
+          "va": "0x454ec1",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "reset2": {
+        "calls": 4,
+        "adapters": [
+          {
+            "name": "ImmGetOpenStatus",
+            "slot": "0x5920ec",
+            "va": "0x76182a80",
+            "return_va": "0x425c99",
+            "sp": 33619428,
+            "args": [
+              0
+            ],
+            "result": 0,
+            "declared_response": true,
+            "live_OS_observed": false
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 17301888
+        },
+        "real_ret": {
+          "va": "0x425e59",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "vm_entry": {
+        "calls": 13,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "slot": "0x5922c4",
+            "va": "0xe320050",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "CPU": {
+          "EIP": 5040368,
+          "ESP": 33619612,
+          "EBP": 33619708,
+          "EAX": 2,
+          "ECX": 8223784
+        },
+        "real_ret": null,
+        "pending": {
+          "va": "0x4ce8f0",
+          "sp": 33619612,
+          "ebp": 33619708,
+          "eax": 2,
+          "ecx": 8223784,
+          "first_instruction_executed": false
+        },
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      }
+    },
+    {
+      "name": "fifth_class",
+      "reset1": {
+        "calls": 4,
+        "adapters": [
+          {
+            "name": "ImmGetOpenStatus",
+            "slot": "0x5920ec",
+            "va": "0x76182a80",
+            "return_va": "0x425c99",
+            "sp": 33619428,
+            "args": [
+              0
+            ],
+            "result": 0,
+            "declared_response": true,
+            "live_OS_observed": false
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 17301888
+        },
+        "real_ret": {
+          "va": "0x425e59",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "phase2": {
+        "calls": 14,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "slot": "0x5922c4",
+            "va": "0xe320050",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "real_ret": {
+          "va": "0x454ec1",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "reset2": {
+        "calls": 4,
+        "adapters": [
+          {
+            "name": "ImmGetOpenStatus",
+            "slot": "0x5920ec",
+            "va": "0x76182a80",
+            "return_va": "0x425c99",
+            "sp": 33619428,
+            "args": [
+              0
+            ],
+            "result": 0,
+            "declared_response": true,
+            "live_OS_observed": false
+          }
+        ],
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 17301888
+        },
+        "real_ret": {
+          "va": "0x425e59",
+          "return_va": "0x3000000",
+          "sp": 33619712,
+          "eax": 0
+        },
+        "pending": null,
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      },
+      "vm_entry": {
+        "calls": 13,
+        "adapters": [
+          {
+            "name": "lstrlenA",
+            "slot": "0x5922c4",
+            "va": "0xe320050",
+            "return_va": "0x425a7e",
+            "sp": 33619344,
+            "args": [
+              17303208
+            ],
+            "result": 0,
+            "read_hex": "00",
+            "reads_existing_buffer_only": true
+          }
+        ],
+        "CPU": {
+          "EIP": 5040368,
+          "ESP": 33619612,
+          "EBP": 33619708,
+          "EAX": 2,
+          "ECX": 8223784
+        },
+        "real_ret": null,
+        "pending": {
+          "va": "0x4ce8f0",
+          "sp": 33619612,
+          "ebp": 33619708,
+          "eax": 2,
+          "ecx": 8223784,
+          "first_instruction_executed": false
+        },
+        "owned_regions": 52,
+        "retained_bytes": 119460606
+      }
+    }
+  ],
+  "original_calls": 105,
+  "platform_adapters": 12,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "reset1",
+      "path": ".venv-audit/task-cycle-reset1-initial.pkl",
+      "bytes": 136848184,
+      "sha256": "53e3e3f3761e3794b41c630b46584d7fbe382e3ad214f3e452d099fdc37ac80a",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "phase2",
+      "path": ".venv-audit/task-cycle-phase2-v2-initial.pkl",
+      "bytes": 136841835,
+      "sha256": "7fbfa5196d2eaeca0d467e97d957f248571f05a95d5c43a075b766f415792905",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "reset2",
+      "path": ".venv-audit/task-cycle-reset2-initial.pkl",
+      "bytes": 136839951,
+      "sha256": "be3e7b10294dcf7e086639d739d7604c1986fa57247d0248d8cf71b7bca91f04",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "vm_entry",
+      "path": ".venv-audit/task-cycle-vm_entry-initial.pkl",
+      "bytes": 136841521,
+      "sha256": "013d8b81cd413104a51454f59858616d65075a1ff07b84fb3431e7a592d51049",
+      "pending_eip": "0x4ce8f0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "reset1",
+      "path": ".venv-audit/task-cycle-reset1-student9_waiting.pkl",
+      "bytes": 136310147,
+      "sha256": "282544d585b19d3f0fde45e605bf7f06aed1d9d182031e731aa76fa803924213",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "phase2",
+      "path": ".venv-audit/task-cycle-phase2-v2-student9_waiting.pkl",
+      "bytes": 136303798,
+      "sha256": "fd1f3190f76fcc7c68b5b7c72c8cf5b8559360a72aa6c5b3f700b9087de2bf1c",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "reset2",
+      "path": ".venv-audit/task-cycle-reset2-student9_waiting.pkl",
+      "bytes": 136301914,
+      "sha256": "15d22bbeb14310f4bedc95f15848dc8e31bcdc1b6c066604a5c01ef7b689d685",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "vm_entry",
+      "path": ".venv-audit/task-cycle-vm_entry-student9_waiting.pkl",
+      "bytes": 136303484,
+      "sha256": "dacd0c841f07f6de8021fca8114e1829f8619ffb301db959e9ec240c0cf27b06",
+      "pending_eip": "0x4ce8f0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "reset1",
+      "path": ".venv-audit/task-cycle-reset1-fifth_class.pkl",
+      "bytes": 136310085,
+      "sha256": "eb05aad11c192a028d484f30746097bfa65000671c652edf0c14d289cec33f6d",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "phase2",
+      "path": ".venv-audit/task-cycle-phase2-v2-fifth_class.pkl",
+      "bytes": 136303736,
+      "sha256": "35edcb3c1e04eccd0997887708f5e60281184fc1f7253c20ee402bfa83a7bcd7",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "reset2",
+      "path": ".venv-audit/task-cycle-reset2-fifth_class.pkl",
+      "bytes": 136301852,
+      "sha256": "c7b86d978a7dbe538605395f09b266fd0676d301d25c0776e80e51cc261dbcf8",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "vm_entry",
+      "path": ".venv-audit/task-cycle-vm_entry-fifth_class.pkl",
+      "bytes": 136303422,
+      "sha256": "d1ff03c35457cf3d75a4f391f8c4d52a98761fcebcf99cca4568d7e9de631c45",
+      "pending_eip": "0x4ce8f0",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15757,
+  "save_rule_fingerprints": 10,
+  "regression": {
+    "python_tests": 47,
+    "new_tests": 19,
+    "direct_parent_tests": 28,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-task-cycle-final-regression-20261016.log",
+    "spec_log": "analysis/school-task-cycle-spec-final-20261016.log"
+  },
+  "progress": {
+    "total": 249,
+    "complete": 249,
+    "remaining": 0
+  },
+  "authority": {
+    "original_native_flag_reset": true,
+    "task_phase2": true,
+    "natural_VM_call_entry": true,
+    "closed_IME_response_declared": true,
+    "live_OS_response_observed": false,
+    "normal_VM_executed": false,
+    "outer_main_or_task_frame": false,
+    "world_beyond185": false,
+    "AI_rendering_or_settlement": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Execute normal4CE8F0 from the pinned original454D90 caller and verify actual script commands/presentation dependencies",
+    "Close original49E540 input/render period and4539B0 task/world scheduling",
+    "AI/events/waves, nonempty effects/damage, authoritative victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-task-cycle-artifact-manifest-20261016.json",
+  "local_only": true
+}
