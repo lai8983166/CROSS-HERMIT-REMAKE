@@ -9,6 +9,7 @@ from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X8
 PARENT=PARENT_REPORTS['vm_entry'];PARENT_SHA=PARENT_SHAS['vm_entry']
 REPORTS={p:ROOT/f'analysis/school-vm-present-{p}-v1-20261016.json.gz' for p in PHASES};SHAS={p:None for p in PHASES}
 SHAS['packet']='a19eb46aa8213c52385512cdb9b45aaf59e66445ad4bb699c6a1d9f6416fed83'
+SHAS['draw']='cbf6f38a5ec4f1fbed4f2e474a854fe5641a9fb58092fbafecac3094529df6ac'
 SHAS['command']='11c14cf25a955cd860582b0e171fc4f8c251df730255580bc3d4108ee0da4923'
 
 @lru_cache(maxsize=3)
@@ -28,6 +29,8 @@ def checked(name,phase):
 def verify_calls(a,phase):
     calls=a['calls'];raw=SOURCE.read_bytes();rules={int(r['va'],16):r for r in source_contract()['functions']};rules[0x407AD0]=dict(frame=0,args=2,end=hex(0x407AD0));l=layout();active=[]
     if [int(c['return_va'],16) for c in calls]!=call_protocol(phase):raise ValueError('VM present exact source call protocol')
+    # The resource phase returns into the retained constructor caller frame.
+    if phase=='draw':active=[(0x4D2CA0,l['kind'])]
     roots={'command':0x4CE8F0,'packet':0x4D29E0,'draw':0x407870};sp=l[{'command':'vm','packet':'overlay','draw':'resource'}[phase]]
     if int(calls[0]['va'],16)!=roots[phase]:raise ValueError('VM present natural root identity')
     for index,c in enumerate(calls):

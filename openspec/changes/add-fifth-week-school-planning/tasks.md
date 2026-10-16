@@ -1014,7 +1014,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 253. Actual graphics binding and draw boundary
 
-- [ ] 253.1 Continue original407870/41F5A0 count1/index0 binding through copied metadata, geometry/layer51 and natural unexecuted407AD0 draw call, verify exact packet/arguments/CPU/retention and pin in three cases; commit locally.
+- [x] 253.1 Continue original407870/41F5A0 count1/index0 binding through copied metadata, geometry/layer51 and natural unexecuted407AD0 draw call, verify exact packet/arguments/CPU/retention and pin in three cases; commit locally.
 
 ## 254. First normal VM presentation acceptance
 
