@@ -275,3 +275,6 @@ Continue the pinned first-task return through a declared original425DE0 input re
 ## First normal VM command and native presentation binding (2026-10-16)
 
 Continue the pinned normal4CE8F0 entry on its original454D90 caller stack. Execute first opcode167, then native overlay dispatcher/stack object constructor and actual source resource query. Trace every argument through both dispatchers:51 is the layer and the actual resource index is0. Verify native binding of the captured group20 entry and stop before the original407AD0 draw body, without fabricated resources or replacement drawing helpers. Preserve history/runtime/save and commit source, command, constructor, resource-boundary and acceptance stages separately locally without push.
+
+## Native draw gate, cleanup and first VM/task return (2026-10-16)
+Continue the exact pending407AD0 checkpoint. The captured TASK+B28E render gate is0, so verify its original early return without claiming GPU output; execute original destructor chain and unwind SEH. Execute all51 inactive native VM maintenance calls and return through the retained454D90 caller. Then execute the existing task suffix with captured WORK+2434 inactive menu guard, fade and board to its declared return. Preserve all prior evidence/runtime/save and commit each bounded stage locally without push.

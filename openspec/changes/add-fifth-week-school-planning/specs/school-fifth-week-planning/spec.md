@@ -1046,3 +1046,14 @@ The audit SHALL continue the pinned normal VM entry through original opcode167, 
 #### Scenario: Captured texture binding uses the actual source index
 - **WHEN** original407870 requests group20/index0 while captured count is1
 - **THEN** original41F5A0 returns the existing record, source metadata and geometry/layer51 agree in the full packet, and execution stops before407AD0; no resource pointer or completed render frame is invented
+
+### Requirement: Native captured draw gate and first VM/task returns
+The audit SHALL continue the original pending407AD0 on the retained VM/task stack, verify the captured disabled render branch and all original cleanup helpers, execute remaining inactive VM maintenance and return through454D90, then complete the existing454CF0 suffix. It MUST verify all owned/retained bytes, source ABI/calls/CPU, fresh identities and immutable checkpoints without original-body substitutions or GPU claims.
+
+#### Scenario: Disabled renderer and native cleanup
+- **WHEN** the captured TASK+B28E word is0 and stack resources are inactive
+- **THEN** original407AD0 returns1, the native destructor chain restores SEH0 and reaches4D024F with full packet and retained bytes verified, without GPU work
+
+#### Scenario: First native normal VM and selected task return
+- **WHEN** original VM resumes with ten inactive layers, five inactive secondary records, one inactive presentation object and twenty inactive resource records
+- **THEN** all51 maintenance calls execute original bodies, VM returns1 to454D90 and inactive menu/fade/board task suffix returns0 with phase2/status1/PC8 preserved; full outer frame and later playback remain unclaimed

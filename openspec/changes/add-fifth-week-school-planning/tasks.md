@@ -1019,3 +1019,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 254. First normal VM presentation acceptance
 
 - [x] 254.1 Run new/direct-parent/spec checks, preserve old/runtime/save and exact Git bytes, document native texture binding and pending draw body and remaining VM/presentation/outer-task/AI work, commit locally without push.
+
+## 255. Native draw gate and return source
+
+- [x] 255.1 Derive source render gate, original cleanup/SEH, maintenance and existing VM/task return rules from the pinned executable; commit locally.
+
+## 256. Native disabled draw and cleanup
+
+- [ ] 256.1 In three cases continue original407AD0 and all native cleanup helpers to4D024F, verify full packet/SEH/calls/CPU/owned and retained state, pin and commit locally.
+
+## 257. First original normal VM return
+
+- [ ] 257.1 Execute all51 native maintenance calls and original VM return to454D90 in three cases, verify source guards/stores/full state/ABI/CPU/retention, pin and commit locally.
+
+## 258. Existing selected task return
+
+- [ ] 258.1 Continue original454D90 caller through inactive4563D0 menu/fade/board suffix to454EC1 return, verify unchanged phase2/status1/PC8/full state and original stack in three cases, pin and commit locally.
+
+## 259. Native first-return acceptance
+
+- [ ] 259.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document captured inactive limits and remaining later script/outer frame/AI work, commit locally without push.
