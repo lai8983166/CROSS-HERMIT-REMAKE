@@ -1,0 +1,501 @@
+{
+  "baseline": "993d2d24fdaadf97b107085fbb08d18ecc3cd539",
+  "stages": "250–254",
+  "scope": "Original first normal opcode167 on retained task stack, native stack display construction and source texture20/index0 binding to unexecuted407AD0 draw body",
+  "source_native_commits": [
+    "a79bb89 Derive first normal VM opcode and native overlay resource boundary",
+    "e3a27eb Correct overlay argument mapping to texture zero and layer fifty one",
+    "ef07d4f Execute original first normal script opcode on retained task caller",
+    "58240d1 Execute original overlay constructors and verify full display packet",
+    "ae2b064 Bind original overlay texture and reach native draw request"
+  ],
+  "source_correction": {
+    "historical": "analysis/school-vm-present-source-v1-20261016.json",
+    "accepted": "analysis/school-vm-present-source-v2-20261016.json",
+    "root_value51_is_layer_not_texture_index": true,
+    "no_native_missing_resource_result_accepted": true
+  },
+  "reports": [
+    {
+      "phase": "command",
+      "path": "analysis/school-vm-present-command-v1-20261016.json.gz",
+      "sha256": "11c14cf25a955cd860582b0e171fc4f8c251df730255580bc3d4108ee0da4923"
+    },
+    {
+      "phase": "packet",
+      "path": "analysis/school-vm-present-packet-v1-20261016.json.gz",
+      "sha256": "a19eb46aa8213c52385512cdb9b45aaf59e66445ad4bb699c6a1d9f6416fed83"
+    },
+    {
+      "phase": "draw",
+      "path": "analysis/school-vm-present-draw-v1-20261016.json.gz",
+      "sha256": "cbf6f38a5ec4f1fbed4f2e474a854fe5641a9fb58092fbafecac3094529df6ac"
+    }
+  ],
+  "cases": [
+    {
+      "name": "initial",
+      "command": {
+        "calls": 5,
+        "CPU": {
+          "EIP": 5056992,
+          "ESP": 33619416,
+          "EBP": 33619608,
+          "EAX": 16777216,
+          "ECX": 8261904
+        },
+        "pending": {
+          "va": "0x4d29e0",
+          "receiver": 8261904,
+          "return_va": "0x4d024f",
+          "sp": 33619416,
+          "ebp": 33619608,
+          "eax": 16777216,
+          "args": [
+            20,
+            0,
+            1,
+            51,
+            16777216,
+            8192000,
+            424,
+            24,
+            20,
+            30,
+            100,
+            100,
+            255,
+            128,
+            128,
+            128
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": null,
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      },
+      "packet": {
+        "calls": 10,
+        "CPU": {
+          "EIP": 4225136,
+          "ESP": 33619052,
+          "EBP": 33619284,
+          "EAX": 0,
+          "ECX": 33619140
+        },
+        "pending": {
+          "va": "0x407870",
+          "receiver": 33619140,
+          "return_va": "0x4d2d57",
+          "sp": 33619052,
+          "ebp": 33619284,
+          "eax": 0,
+          "args": [
+            20,
+            0
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000cccc000000000000000100000000000000004000cccc0100000000000000808080ff000000000000000064006400000033000000000000000000"
+        },
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      },
+      "draw": {
+        "calls": 6,
+        "CPU": {
+          "EIP": 4225744,
+          "ESP": 33618860,
+          "EBP": 33618952,
+          "EAX": 33619140,
+          "ECX": 33619140
+        },
+        "pending": {
+          "va": "0x407ad0",
+          "receiver": 33619140,
+          "return_va": "0x407ab0",
+          "sp": 33618860,
+          "ebp": 33618952,
+          "eax": 33619140,
+          "args": [
+            0,
+            0
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000014001e0000000000000000000000cccc741b740e000000010000000000000000c000cccc0100000000000000808080ff00000000000000006400640000003300a8011800bc013600"
+        },
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "command": {
+        "calls": 5,
+        "CPU": {
+          "EIP": 5056992,
+          "ESP": 33619416,
+          "EBP": 33619608,
+          "EAX": 16777216,
+          "ECX": 8261904
+        },
+        "pending": {
+          "va": "0x4d29e0",
+          "receiver": 8261904,
+          "return_va": "0x4d024f",
+          "sp": 33619416,
+          "ebp": 33619608,
+          "eax": 16777216,
+          "args": [
+            20,
+            0,
+            1,
+            51,
+            16777216,
+            8192000,
+            424,
+            24,
+            20,
+            30,
+            100,
+            100,
+            255,
+            128,
+            128,
+            128
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": null,
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      },
+      "packet": {
+        "calls": 10,
+        "CPU": {
+          "EIP": 4225136,
+          "ESP": 33619052,
+          "EBP": 33619284,
+          "EAX": 0,
+          "ECX": 33619140
+        },
+        "pending": {
+          "va": "0x407870",
+          "receiver": 33619140,
+          "return_va": "0x4d2d57",
+          "sp": 33619052,
+          "ebp": 33619284,
+          "eax": 0,
+          "args": [
+            20,
+            0
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000cccc000000000000000100000000000000004000cccc0100000000000000808080ff000000000000000064006400000033000000000000000000"
+        },
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      },
+      "draw": {
+        "calls": 6,
+        "CPU": {
+          "EIP": 4225744,
+          "ESP": 33618860,
+          "EBP": 33618952,
+          "EAX": 33619140,
+          "ECX": 33619140
+        },
+        "pending": {
+          "va": "0x407ad0",
+          "receiver": 33619140,
+          "return_va": "0x407ab0",
+          "sp": 33618860,
+          "ebp": 33618952,
+          "eax": 33619140,
+          "args": [
+            0,
+            0
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000014001e0000000000000000000000cccc741b740e000000010000000000000000c000cccc0100000000000000808080ff00000000000000006400640000003300a8011800bc013600"
+        },
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      }
+    },
+    {
+      "name": "fifth_class",
+      "command": {
+        "calls": 5,
+        "CPU": {
+          "EIP": 5056992,
+          "ESP": 33619416,
+          "EBP": 33619608,
+          "EAX": 16777216,
+          "ECX": 8261904
+        },
+        "pending": {
+          "va": "0x4d29e0",
+          "receiver": 8261904,
+          "return_va": "0x4d024f",
+          "sp": 33619416,
+          "ebp": 33619608,
+          "eax": 16777216,
+          "args": [
+            20,
+            0,
+            1,
+            51,
+            16777216,
+            8192000,
+            424,
+            24,
+            20,
+            30,
+            100,
+            100,
+            255,
+            128,
+            128,
+            128
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": null,
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      },
+      "packet": {
+        "calls": 10,
+        "CPU": {
+          "EIP": 4225136,
+          "ESP": 33619052,
+          "EBP": 33619284,
+          "EAX": 0,
+          "ECX": 33619140
+        },
+        "pending": {
+          "va": "0x407870",
+          "receiver": 33619140,
+          "return_va": "0x4d2d57",
+          "sp": 33619052,
+          "ebp": 33619284,
+          "eax": 0,
+          "args": [
+            20,
+            0
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000190000000000000000000000000000000000cccc000000000000000100000000000000004000cccc0100000000000000808080ff000000000000000064006400000033000000000000000000"
+        },
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      },
+      "draw": {
+        "calls": 6,
+        "CPU": {
+          "EIP": 4225744,
+          "ESP": 33618860,
+          "EBP": 33618952,
+          "EAX": 33619140,
+          "ECX": 33619140
+        },
+        "pending": {
+          "va": "0x407ad0",
+          "receiver": 33619140,
+          "return_va": "0x407ab0",
+          "sp": 33618860,
+          "ebp": 33618952,
+          "eax": 33619140,
+          "args": [
+            0,
+            0
+          ],
+          "first_instruction_executed": false
+        },
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000014001e0000000000000000000000cccc741b740e000000010000000000000000c000cccc0100000000000000808080ff00000000000000006400640000003300a8011800bc013600"
+        },
+        "source_texture": {
+          "pointer": 242490228,
+          "bytes": 84,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000000020002000000000000000000000000000000000000000000000000"
+        },
+        "retained_bytes": 119460590
+      }
+    }
+  ],
+  "original_calls": 63,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "command",
+      "path": ".venv-audit/vm-present-command-initial.pkl",
+      "bytes": 136844897,
+      "sha256": "c4c8ef4a1172a66812718cb028d5712e8babf429cc44f62f516f9ca800d0f19b",
+      "pending_eip": "0x4d29e0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "packet",
+      "path": ".venv-audit/vm-present-packet-initial.pkl",
+      "bytes": 136845651,
+      "sha256": "dea629f0d3d344ae9375a2c974f397cad7359dac969f2874d0ade858492e0c71",
+      "pending_eip": "0x407870",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "draw",
+      "path": ".venv-audit/vm-present-draw-initial.pkl",
+      "bytes": 136844724,
+      "sha256": "141000de53411d85ec56051f4f5e46e50861ce30bc44ca0a29875f1ecea6cdb0",
+      "pending_eip": "0x407ad0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "command",
+      "path": ".venv-audit/vm-present-command-student9_waiting.pkl",
+      "bytes": 136306860,
+      "sha256": "c09f66ba79a56a4a46d86d5ea32c421147fd403ac4961bcfd10b01725508db92",
+      "pending_eip": "0x4d29e0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "packet",
+      "path": ".venv-audit/vm-present-packet-student9_waiting.pkl",
+      "bytes": 136307614,
+      "sha256": "8d3f6c05eb907c24af65eb2e3281c4ba22bcae625797e066554bfaa23d599565",
+      "pending_eip": "0x407870",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "draw",
+      "path": ".venv-audit/vm-present-draw-student9_waiting.pkl",
+      "bytes": 136306687,
+      "sha256": "9dce7d262bed38c63e231b4baf528e4112ff4e997892a4d3fb61d6de45f5c301",
+      "pending_eip": "0x407ad0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "command",
+      "path": ".venv-audit/vm-present-command-fifth_class.pkl",
+      "bytes": 136306798,
+      "sha256": "0be1842dfa3e900592849a6088f2b3699f8b3cbd26a867e1327a7c678b418c11",
+      "pending_eip": "0x4d29e0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "packet",
+      "path": ".venv-audit/vm-present-packet-fifth_class.pkl",
+      "bytes": 136307552,
+      "sha256": "c3438d4b90ec9719fdeb3533cf1fe224a1b5233e25a0b8202837b982505c7743",
+      "pending_eip": "0x407870",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "draw",
+      "path": ".venv-audit/vm-present-draw-fifth_class.pkl",
+      "bytes": 136306625,
+      "sha256": "dfbd5a4f5f71d7896b494cb5fc6e9f8bfedf40f26d45a04801b91332c7a4ecdd",
+      "pending_eip": "0x407ad0",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15786,
+  "save_rule_fingerprints": 10,
+  "regression": {
+    "python_tests": 35,
+    "new_tests": 16,
+    "direct_parent_tests": 19,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-vm-present-final-regression-20261016.log",
+    "spec_log": "analysis/school-vm-present-spec-final-20261016.log"
+  },
+  "progress": {
+    "total": 254,
+    "complete": 254,
+    "remaining": 0
+  },
+  "authority": {
+    "first_normal_VM_opcode": true,
+    "native_display_constructors": true,
+    "full_source_texture_binding": true,
+    "platform_adapter_used": false,
+    "normal_VM_returned": false,
+    "draw_body_or_GPU_executed": false,
+    "full_outer_frame": false,
+    "world_beyond185": false,
+    "AI_or_settlement": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Execute407AD0 draw body and actual remaining VM display-maintenance routines without presentation stubs",
+    "Return through original4CE8F0/454D90 and continue script commands/waits/fade",
+    "Close original input/task/world/render scheduling and AI/events/waves/victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-vm-present-artifact-manifest-20261016.json",
+  "local_only": true
+}

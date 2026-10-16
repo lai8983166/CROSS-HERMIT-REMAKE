@@ -1018,4 +1018,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 254. First normal VM presentation acceptance
 
-- [ ] 254.1 Run new/direct-parent/spec checks, preserve old/runtime/save and exact Git bytes, document native texture binding and pending draw body and remaining VM/presentation/outer-task/AI work, commit locally without push.
+- [x] 254.1 Run new/direct-parent/spec checks, preserve old/runtime/save and exact Git bytes, document native texture binding and pending draw body and remaining VM/presentation/outer-task/AI work, commit locally without push.
