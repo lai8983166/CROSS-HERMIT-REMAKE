@@ -1010,7 +1010,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 252. Native overlay display object
 
-- [ ] 252.1 Continue original4D29E0/4D2CA0 and all native stack constructors/owner binding to unexecuted407870, verify full128-byte packet/SEH/calls/CPU/retention and pin in three cases; commit locally.
+- [x] 252.1 Continue original4D29E0/4D2CA0 and all native stack constructors/owner binding to unexecuted407870, verify full128-byte packet/SEH/calls/CPU/retention and pin in three cases; commit locally.
 
 ## 253. Actual graphics binding and draw boundary
 

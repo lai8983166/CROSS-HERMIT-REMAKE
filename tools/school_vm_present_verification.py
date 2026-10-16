@@ -8,6 +8,7 @@ from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X8
 
 PARENT=PARENT_REPORTS['vm_entry'];PARENT_SHA=PARENT_SHAS['vm_entry']
 REPORTS={p:ROOT/f'analysis/school-vm-present-{p}-v1-20261016.json.gz' for p in PHASES};SHAS={p:None for p in PHASES}
+SHAS['packet']='a19eb46aa8213c52385512cdb9b45aaf59e66445ad4bb699c6a1d9f6416fed83'
 SHAS['command']='11c14cf25a955cd860582b0e171fc4f8c251df730255580bc3d4108ee0da4923'
 
 @lru_cache(maxsize=3)

@@ -44,7 +44,7 @@ def call_protocol(phase):
     raise ValueError('VM present known phase')
 
 
-def packet_project(flag=0x40,texture=None,clock=0):
+def packet_project(flag=0x40,texture=None,device=0):
     if flag not in (0x40,0xC0):raise ValueError('VM present finite packet flag')
     p=bytearray([204])*128;p[:0x34]=bytes(0x34);struct.pack_into('<I',p,0x34,25)
     for o in range(0x38,0x46,2):struct.pack_into('<H',p,o,0)
@@ -55,7 +55,7 @@ def packet_project(flag=0x40,texture=None,clock=0):
     struct.pack_into('<H',p,0x76,51)
     if flag==0xC0:
         if not texture or texture['bytes']!=84 or len(bytes.fromhex(texture['hex']))!=84:raise ValueError('VM present complete captured texture input')
-        t=bytes.fromhex(texture['hex']);p[0x34:0x38]=t[0x34:0x38];p[0x3C:0x40]=t[0x3C:0x40];struct.pack_into('<I',p,0x48,texture['pointer']);struct.pack_into('<I',p,0x28,clock);struct.pack_into('<HH',p,0x38,20,30);struct.pack_into('<4H',p,0x78,424,24,444,54)
+        t=bytes.fromhex(texture['hex']);p[0x34:0x38]=t[0x34:0x38];p[0x3C:0x40]=t[0x3C:0x40];struct.pack_into('<I',p,0x48,texture['pointer']);struct.pack_into('<I',p,0x28,device);struct.pack_into('<HH',p,0x38,20,30);struct.pack_into('<4H',p,0x78,424,24,444,54)
     return p.hex()
 
 
