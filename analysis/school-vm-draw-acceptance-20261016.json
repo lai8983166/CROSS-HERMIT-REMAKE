@@ -1,0 +1,382 @@
+{
+  "baseline": "4865ad7cf77b89735c10dc406707b3082343d12e",
+  "stages": "255–259",
+  "scope": "Original disabled render gate and native cleanup,51 maintenance calls per case, first normal VM return1 through retained454D90 and existing selected-task suffix return0; phase2/status1/PC8 remain",
+  "source_native_commits": [
+    "f72489f Derive native draw cleanup and first VM task return rules",
+    "71644f0 Execute original disabled drawing and full native cleanup",
+    "60eff78 Run all original VM maintenance and first natural return",
+    "de8b551 Complete retained selected task after first normal VM return"
+  ],
+  "reports": [
+    {
+      "phase": "cleanup",
+      "path": "analysis/school-vm-draw-cleanup-v1-20261016.json.gz",
+      "sha256": "ce7544f3a3061ac0337ef79e1126e9bb8467ef4b4314519aecfc9262fee5d8f9"
+    },
+    {
+      "phase": "vm",
+      "path": "analysis/school-vm-draw-vm-v1-20261016.json.gz",
+      "sha256": "0fadc6b2c2871f12e7cfaf09b8a83f9e1bb7a20f381296fde7c6b10078c4cfa6"
+    },
+    {
+      "phase": "task",
+      "path": "analysis/school-vm-draw-task-v1-20261016.json.gz",
+      "sha256": "7eb4e819cc562589ca7496b26c940daf3faaaf29f8d659c2a84a9757550eb8ce"
+    }
+  ],
+  "cases": [
+    {
+      "name": "initial",
+      "cleanup": {
+        "calls": 9,
+        "CPU": {
+          "EIP": 5046863,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 3435973836,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x408124",
+            "sp": 33618860,
+            "return_va": "0x407ab0",
+            "eax": 1,
+            "ecx": 33619140
+          },
+          {
+            "va": "0x4d2b83",
+            "sp": 33619416,
+            "return_va": "0x4d024f",
+            "eax": 3435973836,
+            "ecx": 0
+          }
+        ],
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000014001e0000000000000000000000cccc741b740e000000010000000000000000c000cccc0100000000000000808080ff00000000000000006400640000003300a8011800bc013600"
+        },
+        "retained_bytes": 119460556
+      },
+      "vm": {
+        "calls": 51,
+        "CPU": {
+          "EIP": 4541840,
+          "ESP": 33619616,
+          "EBP": 33619708,
+          "EAX": 1,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x4d03b6",
+            "sp": 33619612,
+            "return_va": "0x454d90",
+            "eax": 1,
+            "ecx": 0
+          }
+        ],
+        "packet": null,
+        "retained_bytes": 119460556
+      },
+      "task": {
+        "calls": 3,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x454ec1",
+            "sp": 33619712,
+            "return_va": "0x3000000",
+            "eax": 0,
+            "ecx": 0
+          }
+        ],
+        "packet": null,
+        "retained_bytes": 119460556
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "cleanup": {
+        "calls": 9,
+        "CPU": {
+          "EIP": 5046863,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 3435973836,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x408124",
+            "sp": 33618860,
+            "return_va": "0x407ab0",
+            "eax": 1,
+            "ecx": 33619140
+          },
+          {
+            "va": "0x4d2b83",
+            "sp": 33619416,
+            "return_va": "0x4d024f",
+            "eax": 3435973836,
+            "ecx": 0
+          }
+        ],
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000014001e0000000000000000000000cccc741b740e000000010000000000000000c000cccc0100000000000000808080ff00000000000000006400640000003300a8011800bc013600"
+        },
+        "retained_bytes": 119460556
+      },
+      "vm": {
+        "calls": 51,
+        "CPU": {
+          "EIP": 4541840,
+          "ESP": 33619616,
+          "EBP": 33619708,
+          "EAX": 1,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x4d03b6",
+            "sp": 33619612,
+            "return_va": "0x454d90",
+            "eax": 1,
+            "ecx": 0
+          }
+        ],
+        "packet": null,
+        "retained_bytes": 119460556
+      },
+      "task": {
+        "calls": 3,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x454ec1",
+            "sp": 33619712,
+            "return_va": "0x3000000",
+            "eax": 0,
+            "ecx": 0
+          }
+        ],
+        "packet": null,
+        "retained_bytes": 119460556
+      }
+    },
+    {
+      "name": "fifth_class",
+      "cleanup": {
+        "calls": 9,
+        "CPU": {
+          "EIP": 5046863,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 3435973836,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x408124",
+            "sp": 33618860,
+            "return_va": "0x407ab0",
+            "eax": 1,
+            "ecx": 33619140
+          },
+          {
+            "va": "0x4d2b83",
+            "sp": 33619416,
+            "return_va": "0x4d024f",
+            "eax": 3435973836,
+            "ecx": 0
+          }
+        ],
+        "packet": {
+          "pointer": 33619140,
+          "bytes": 128,
+          "hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001900000014001e0000000000000000000000cccc741b740e000000010000000000000000c000cccc0100000000000000808080ff00000000000000006400640000003300a8011800bc013600"
+        },
+        "retained_bytes": 119460556
+      },
+      "vm": {
+        "calls": 51,
+        "CPU": {
+          "EIP": 4541840,
+          "ESP": 33619616,
+          "EBP": 33619708,
+          "EAX": 1,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x4d03b6",
+            "sp": 33619612,
+            "return_va": "0x454d90",
+            "eax": 1,
+            "ecx": 0
+          }
+        ],
+        "packet": null,
+        "retained_bytes": 119460556
+      },
+      "task": {
+        "calls": 3,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "returns": [
+          {
+            "va": "0x454ec1",
+            "sp": 33619712,
+            "return_va": "0x3000000",
+            "eax": 0,
+            "ecx": 0
+          }
+        ],
+        "packet": null,
+        "retained_bytes": 119460556
+      }
+    }
+  ],
+  "original_calls": 189,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "cleanup",
+      "path": ".venv-audit/vm-draw-cleanup-initial.pkl",
+      "bytes": 136848598,
+      "sha256": "0f0d40cbfe63884ba01ce13d648daf58672cc331bdf9a6a0797c0df7183acc68",
+      "pending_eip": "0x4d024f",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "vm",
+      "path": ".venv-audit/vm-draw-vm-initial.pkl",
+      "bytes": 136851214,
+      "sha256": "10fbd2df0734cbae78c729e7cdf8b8d849b37d2cb1ff4631b99269d5e7e5f457",
+      "pending_eip": "0x454d90",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "task",
+      "path": ".venv-audit/vm-draw-task-initial.pkl",
+      "bytes": 136847187,
+      "sha256": "a27e1a519152682bdb17fa237edc3f5f87d4e9a07c645a8d39479bf14153bd50",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "cleanup",
+      "path": ".venv-audit/vm-draw-cleanup-student9_waiting.pkl",
+      "bytes": 136310561,
+      "sha256": "75582a7787b978caaa5201ee7cf05e1f491ad23a875e62debde1903b2543a999",
+      "pending_eip": "0x4d024f",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "vm",
+      "path": ".venv-audit/vm-draw-vm-student9_waiting.pkl",
+      "bytes": 136313177,
+      "sha256": "4c4335e16b404c1ec123755cd8783640ae4882b9abbee46f0c6090f818fa8a9a",
+      "pending_eip": "0x454d90",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "task",
+      "path": ".venv-audit/vm-draw-task-student9_waiting.pkl",
+      "bytes": 136309150,
+      "sha256": "8fc4301c8026208652cc3e92a7c9e9faf82306cb62e3cf88589284c17ee31949",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "cleanup",
+      "path": ".venv-audit/vm-draw-cleanup-fifth_class.pkl",
+      "bytes": 136310499,
+      "sha256": "29554bab34dd06cf8bd852625f8ebc3fdb4f3d5655d74a96db4bd6dda0befff4",
+      "pending_eip": "0x4d024f",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "vm",
+      "path": ".venv-audit/vm-draw-vm-fifth_class.pkl",
+      "bytes": 136313115,
+      "sha256": "36b7c9a6040fcd3b0e365805470840f3a99f369e649a7aaa9fae18b0e529215c",
+      "pending_eip": "0x454d90",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "task",
+      "path": ".venv-audit/vm-draw-task-fifth_class.pkl",
+      "bytes": 136309088,
+      "sha256": "5bee67b226c3e1a0c22cb6e2754affbb3a26bba66bcf4db1a76220deec8c93ba",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15812,
+  "save_rule_fingerprints": 10,
+  "regression": {
+    "python_tests": 32,
+    "new_tests": 16,
+    "direct_parent_tests": 16,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-vm-draw-final-regression-20261016.log",
+    "spec_log": "analysis/school-vm-draw-spec-final-20261016.log"
+  },
+  "progress": {
+    "total": 259,
+    "complete": 259,
+    "remaining": 0
+  },
+  "authority": {
+    "disabled_draw_gate": true,
+    "native_destructors": true,
+    "remaining_inactive_VM_maintenance": true,
+    "first_normal_VM_return": true,
+    "existing_selected_task_return": true,
+    "platform_adapter_used": false,
+    "GPU_executed": false,
+    "full_outer_frame": false,
+    "later_script": false,
+    "world_beyond185": false,
+    "AI_or_settlement": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Continue later normal VM commands/waits using source script PC8",
+    "Close original input/outer4539B0 task/world/render scheduling and enabled renderer/resource backend",
+    "Complete AI/events/waves/victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-vm-draw-artifact-manifest-20261016.json",
+  "local_only": true
+}

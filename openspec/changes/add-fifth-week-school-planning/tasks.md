@@ -1038,4 +1038,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 259. Native first-return acceptance
 
-- [ ] 259.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document captured inactive limits and remaining later script/outer frame/AI work, commit locally without push.
+- [x] 259.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document captured inactive limits and remaining later script/outer frame/AI work, commit locally without push.
