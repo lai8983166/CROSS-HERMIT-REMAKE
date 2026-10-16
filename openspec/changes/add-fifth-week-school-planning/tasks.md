@@ -1070,7 +1070,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 267. Complete original fade countdown and VM release
 
-- [ ] 267.1 Execute remaining59 native fade updates and following wait-clear VM poll without advancing opcode56, verify all intermediate states/calls/returns/final flags/CPU/retention and pin in three cases; commit locally.
+- [x] 267.1 Execute remaining59 native fade updates and following wait-clear VM poll without advancing opcode56, verify all intermediate states/calls/returns/final flags/CPU/retention and pin in three cases; commit locally.
 
 ## 268. Normal opening flow acceptance
 
