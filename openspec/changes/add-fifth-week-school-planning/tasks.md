@@ -1050,7 +1050,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 262. Original opening variable assignment
 
-- [ ] 262.1 Continue declared reset/task calls through opcode5 variable0=0 to PC56, verify full native state and return/checkpoint in all cases; commit locally.
+- [x] 262.1 Continue declared reset/task calls through opcode5 variable0=0 to PC56, verify full native state and return/checkpoint in all cases; commit locally.
 
 ## 263. Original global bit and word commands
 
