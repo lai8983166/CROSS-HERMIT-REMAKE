@@ -1026,7 +1026,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 256. Native disabled draw and cleanup
 
-- [ ] 256.1 In three cases continue original407AD0 and all native cleanup helpers to4D024F, verify full packet/SEH/calls/CPU/owned and retained state, pin and commit locally.
+- [x] 256.1 In three cases continue original407AD0 and all native cleanup helpers to4D024F, verify full packet/SEH/calls/CPU/owned and retained state, pin and commit locally.
 
 ## 257. First original normal VM return
 
