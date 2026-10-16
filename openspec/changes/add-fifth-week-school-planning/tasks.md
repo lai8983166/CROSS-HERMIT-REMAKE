@@ -1002,7 +1002,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 250. Normal VM and native display source
 
-- [x] 250.1 Derive first opcode167, overlay kind1 dispatch, native stack constructors/SEH and captured count1/index51 resource refusal rules; commit locally.
+- [x] 250.1 Derive first opcode167, overlay kind1 dispatch, native stack constructors/SEH and captured count1/index0 resource binding and layer51 rules; commit locally.
 
 ## 251. First original normal VM command
 
@@ -1012,10 +1012,10 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 - [ ] 252.1 Continue original4D29E0/4D2CA0 and all native stack constructors/owner binding to unexecuted407870, verify full128-byte packet/SEH/calls/CPU/retention and pin in three cases; commit locally.
 
-## 253. Actual missing graphics resource boundary
+## 253. Actual graphics binding and draw boundary
 
-- [ ] 253.1 Continue original407870/41F5A0 count1/index51 guard through null return and natural unexecuted424F80 assertion, verify exact packet/arguments/CPU/retention and pin in three cases; commit locally.
+- [ ] 253.1 Continue original407870/41F5A0 count1/index0 binding through copied metadata, geometry/layer51 and natural unexecuted407AD0 draw call, verify exact packet/arguments/CPU/retention and pin in three cases; commit locally.
 
 ## 254. First normal VM presentation acceptance
 
-- [ ] 254.1 Run new/direct-parent/spec checks, preserve old/runtime/save and exact Git bytes, document missing global UI resource and remaining VM/presentation/outer-task/AI work, commit locally without push.
+- [ ] 254.1 Run new/direct-parent/spec checks, preserve old/runtime/save and exact Git bytes, document native texture binding and pending draw body and remaining VM/presentation/outer-task/AI work, commit locally without push.

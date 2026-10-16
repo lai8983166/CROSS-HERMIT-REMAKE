@@ -1037,12 +1037,12 @@ The audit SHALL restore the verified first-task return, execute original425DE0 w
 - **THEN** phase1 increments2 with original clears/guards, the next454CF0 naturally calls4CE8F0 with VM receiver and caller stack, and no VM instruction or full outer frame is counted as executed
 
 ### Requirement: First normal VM command and native overlay resource boundary
-The audit SHALL continue the pinned normal VM entry through original opcode167, native overlay dispatch and stack object construction, then the actual resource range guard to its unexecuted assertion call. It MUST independently verify all owned/retained memory, complete128-byte stack packet and SEH chain, original calls/ABI/CPU and immutable checkpoints. It SHALL preserve runtime/save/history and MUST NOT fabricate missing graphics resources, stub original helpers or claim a completed VM/task/render frame.
+The audit SHALL continue the pinned normal VM entry through original opcode167, native overlay dispatch and stack object construction, then the actual resource binding to its unexecuted407AD0 draw call. It MUST independently verify all owned/retained memory, complete128-byte stack packet and SEH chain, original calls/ABI/CPU and immutable checkpoints. It SHALL preserve runtime/save/history and MUST NOT fabricate missing graphics resources, stub original helpers or claim a completed VM/task/render frame.
 
 #### Scenario: First normal command and native display object
 - **WHEN** the selected VM executes opcode167 from source offset452 on the retained task caller stack
 - **THEN** source variable0/PC/counters agree, the natural4D29E0 kind1 dispatch executes original stack constructors, and the full native128-byte display object agrees before407870
 
-#### Scenario: Captured missing resource is not hidden
-- **WHEN** original407870 requests group20/index51 while captured count is1
-- **THEN** original41F5A0 returns0 without reading an out-of-range record, the full packet/source branch/caller stack agree and execution stops before424F80; no assertion response, resource pointer or completed render frame is invented
+#### Scenario: Captured texture binding uses the actual source index
+- **WHEN** original407870 requests group20/index0 while captured count is1
+- **THEN** original41F5A0 returns the existing record, source metadata and geometry/layer51 agree in the full packet, and execution stops before407AD0; no resource pointer or completed render frame is invented
