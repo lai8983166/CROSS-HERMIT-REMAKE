@@ -1030,7 +1030,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 257. First original normal VM return
 
-- [ ] 257.1 Execute all51 native maintenance calls and original VM return to454D90 in three cases, verify source guards/stores/full state/ABI/CPU/retention, pin and commit locally.
+- [x] 257.1 Execute all51 native maintenance calls and original VM return to454D90 in three cases, verify source guards/stores/full state/ABI/CPU/retention, pin and commit locally.
 
 ## 258. Existing selected task return
 
