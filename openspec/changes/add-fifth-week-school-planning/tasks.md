@@ -979,3 +979,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 244. Continuous script continuation acceptance
 
 - [x] 244.1 Run related new/parent/spec checks, preserve historical/runtime/save and exact Git bytes, document real remaining OS/playback/outer-task/AI boundaries and commit locally without push.
+
+## 245. Native input reset and next task source
+
+- [x] 245.1 Derive signed input reset, original caller/IMM32 descriptor and bounded next task phase rules/refusals; commit locally.
+
+## 246. Original captured input reset
+
+- [ ] 246.1 Restore first-task returns in three cases and execute425DE0 through native null-context query/negative branch/reset/return with declared closed-IME adapter; verify complete state/calls/CPU/retention and pin, commit locally.
+
+## 247. Original next task phase
+
+- [ ] 247.1 Declare next454CF0 after native reset, execute phase1→2 through original setup/clears/inactive guards, verify full state/calls/CPU/retention and pin in all cases; commit locally.
+
+## 248. Original reset and normal playback admission
+
+- [ ] 248.1 Execute another native425DE0 reset then next phase2 task prefix to unexecuted4CE8F0 with actual caller stack/receiver, verify full state/retention/CPU and pin in three cases; commit locally.
+
+## 249. Input cycle acceptance
+
+- [ ] 249.1 Run new/direct-parent/spec checks, preserve history/runtime/save and exact Git bytes, document declared OS response and remaining VM/outer-task/render/AI boundaries, commit locally without push.

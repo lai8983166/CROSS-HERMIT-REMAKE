@@ -1024,3 +1024,14 @@ The audit SHALL derive original task-script ordering and execute one declared454
 #### Scenario: Natural first task setup
 - **WHEN** the selected task has script phase0/status1, empty captured text and inactive fade/board state
 - **THEN** original454CF0 queries status, initializes its captured input manager through native resets, advances phase0→1 and naturally returns0 without executing playback VM
+
+### Requirement: Native captured input reset and next task admission
+The audit SHALL restore the verified first-task return, execute original425DE0 with a declared closed-IME result for its captured null context, execute the next phase1→2 task poll, reset through the same native function again and stop the following phase2 task at the unexecuted4CE8F0 entry. It MUST independently derive signed input flag handling, import identity and task phase branches; preserve complete owned/retained memory, source calls/stack/CPU and immutable checkpoints. No live OS response, full outer task, VM playback, rendering, AI or persistent completion SHALL be inferred.
+
+#### Scenario: Original negative input request is consumed
+- **WHEN** captured input flagFF and context0 enter original425DE0 with declared ImmGetOpenStatus(0)=0
+- **THEN** original425E60(0) takes the inactive branch, no ImmSetOpenStatus call occurs, original425E3F clears the flag and the function naturally returns0
+
+#### Scenario: Subsequent task phases reach normal playback entry
+- **WHEN** the original phase1 task poll completes after native reset and the next reset precedes phase2
+- **THEN** phase1 increments2 with original clears/guards, the next454CF0 naturally calls4CE8F0 with VM receiver and caller stack, and no VM instruction or full outer frame is counted as executed
