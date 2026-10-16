@@ -1046,7 +1046,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 261. Original opening conditional
 
-- [ ] 261.1 In all three cases declare original reset/task calls after verified return and execute opcode8 equality to PC44, verifying calls/arguments/ABI/CPU/full state/retention and pin; commit locally.
+- [x] 261.1 In all three cases declare original reset/task calls after verified return and execute opcode8 equality to PC44, verifying calls/arguments/ABI/CPU/full state/retention and pin; commit locally.
 
 ## 262. Original opening variable assignment
 

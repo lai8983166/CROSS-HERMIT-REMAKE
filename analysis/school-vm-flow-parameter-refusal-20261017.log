@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\check-commit-vm-flow-stages.py", line 17, in <module>
+    after=v.verify_case(c,phase);payload,cp=v.load_verified_checkpoint(c['name'],phase);a=unpack(c['actual']);last=a['steps'][-1]
+  File "F:\project\chaomofa\tools\school_vm_flow_verification.py", line 97, in verify_case
+    current=before
+  File "F:\project\chaomofa\tools\school_vm_flow_verification.py", line 66, in verify_step
+    if step['index']!=index or any(step[k]!=v for k,v in expected.items()):raise ValueError('VM flow full independent intermediate state/packet/CPU')
+  File "F:\project\chaomofa\tools\school_vm_flow_verification.py", line 29, in verify_calls
+    for c,(va,ret,receiver,args) in zip(calls,wanted):
+ValueError: VM flow complete source call/receiver/arguments

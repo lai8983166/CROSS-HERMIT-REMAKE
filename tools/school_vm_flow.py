@@ -74,7 +74,7 @@ def operands(kind,v):
 def call_protocol(kind,inputs,before,fade_completed=False):
     """(entry, source return, semantic receiver or None, complete argument words)."""
     d=data(before);l=layout();p=l['packet'];v=d[VM];pointer=inputs['script_pointer'];x=int.from_bytes(d[TASK+0x196C],'little');y=int.from_bytes(d[TASK+0x1970],'little')
-    out=[(0x425DE0,RETURN,INPUT,[]),(0x425E60,0x425E39,INPUT,[0]),(0x425C70,0x425E8C,INPUT,[]),(0x56CD4A,0x425C99,INPUT,[0]),(0x454CF0,RETURN,TACT,[]),(0x454C40,0x454D1E,TACT,[]),(0x457830,0x454D34,TACT,[]),(0x425ED0,0x457860,INPUT,[0]),(0x425A10,0x457871,INPUT,[]),(0x425A50,0x425A35,INPUT,[]),(0x426250,0x425A91,INPUT,[]),(0x56CEC0,0x42627F,None,[INPUT+0x428,0,512]),(0x426110,0x425A99,INPUT,[]),(0x56CEC0,0x426142,None,[INPUT+0x63C,0,64]),(0x426190,0x425AA1,INPUT,[]),(0x56CEC0,0x4261C2,None,[INPUT+0x634,0,4]),(0x4CE8F0,0x454D90,VM,[])]
+    out=[(0x425DE0,RETURN,INPUT,[]),(0x425E60,0x425E39,INPUT,[0]),(0x425C70,0x425E8C,INPUT,[]),(0x56CD4A,0x425C99,0,[0]),(0x454CF0,RETURN,TACT,[]),(0x454C40,0x454D1E,TACT,[]),(0x457830,0x454D34,TACT,[]),(0x425ED0,0x457860,INPUT,[0]),(0x425A10,0x457871,INPUT,[]),(0x425A50,0x425A35,INPUT,[]),(0x426250,0x425A91,INPUT,[]),(0x56CEC0,0x42627F,None,[INPUT+0x63C,0,64]),(0x426110,0x425A99,INPUT,[]),(0x56CEC0,0x426142,None,[INPUT+0x528,0,256]),(0x426190,0x425AA1,INPUT,[]),(0x56CEC0,0x4261C2,None,[INPUT+0x428,0,256]),(0x4CE8F0,0x454D90,VM,[])]
     if kind!='wait':
         pc,op,n=COMMANDS[kind];command=pointer+452+pc;va,ret=HANDLERS[kind];out.append((va,ret,VM,[0,command,4 if kind.startswith('pose') or kind=='fade' else 0]));s=SCRIPT.read_bytes()
         if kind=='branch':positions=[8,12];returns=[0x4C2439,0x4C2467]

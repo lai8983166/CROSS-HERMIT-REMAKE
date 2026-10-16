@@ -37,6 +37,11 @@ class SourceTests(unittest.TestCase):
 
     def test_original_call_bytes_all_kinds_and_cdecl_operands(self):
         x,b=self.seed();raw=SOURCE.read_bytes()
+        self.assertEqual(raw[0x42626D-BASE:0x426271-BASE].hex(),'6a406a00')
+        for at in (0x42612D,0x4261AD):self.assertEqual(raw[at-BASE:at-BASE+7].hex(),'68000100006a00')
+        for at,offset in ((0x426274,0x63C),(0x426137,0x528),(0x4261B7,0x428)):
+            self.assertEqual(raw[at-BASE],0x05);self.assertEqual(struct.unpack_from('<I',raw,at-BASE+1)[0],offset)
+        self.assertEqual(raw[0x425C90-BASE:0x425C93-BASE].hex(),'8b4808')
         for phase in PHASES:
             for kind in KINDS[phase]:
                 a=project_step(kind,x,b);calls=call_protocol(kind,x,b,a['fade_completed'])
