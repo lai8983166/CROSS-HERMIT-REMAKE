@@ -1130,4 +1130,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 282. Character presentation continuation acceptance
 
-- [ ] 282.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document pending graphics-list/queue/VM-task/text/outer world work and commit locally without push.
+- [x] 282.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document pending graphics-list/queue/VM-task/text/outer world work and commit locally without push.

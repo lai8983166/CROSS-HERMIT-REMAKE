@@ -1,0 +1,475 @@
+{
+  "baseline": "44faa69055d6932b566d78bb0f866a1722886c35",
+  "stages": "277–282",
+  "scope": "Continuous original27 character template4/layer7, kind0 text layout/show and handler return, existing overlay cleanup then inactive0..6 and original active7 interpolation to unexecuted graphics-list4CA600",
+  "source_native_commits": [
+    "c89c713 Derive original character template layout show and active presentation rules",
+    "bc0d027 Verify original character template continuous calls and checkpoint",
+    "ab32635 Verify original character handler continuous calls and checkpoint",
+    "c8ad3e1 Verify original character overlay continuous calls and checkpoint",
+    "51f229c Verify original character layer_entry continuous calls and checkpoint"
+  ],
+  "reports": [
+    {
+      "phase": "template",
+      "path": "analysis/school-vm-character-template-v1-20261017.json.gz",
+      "sha256": "047e6e1d9177f1af290cf9bf77a0a7bbb655596e539457c82aea614c6e415ef1"
+    },
+    {
+      "phase": "handler",
+      "path": "analysis/school-vm-character-handler-v1-20261017.json.gz",
+      "sha256": "4cdc6b9d12b78ef1049590647a3fd3abc5ca17fbb7fa2690f81871185bff5c0d"
+    },
+    {
+      "phase": "overlay",
+      "path": "analysis/school-vm-character-overlay-v1-20261017.json.gz",
+      "sha256": "e26da8892f05bcf5e0f6417866f1144c03c6a447ddd85c0b7d1ffe0fe732883b"
+    },
+    {
+      "phase": "layer_entry",
+      "path": "analysis/school-vm-character-layer_entry-v1-20261017.json.gz",
+      "sha256": "180e55eb7e7822b87eebceb007d3d59c20fb5b157f57caae3d17537d6fbd1f31"
+    }
+  ],
+  "cases": [
+    {
+      "name": "initial",
+      "template": {
+        "original_call_entries": 11,
+        "executed_original_calls": 10,
+        "CPU": {
+          "EIP": 5030128,
+          "ESP": 33619364,
+          "EBP": 33619464,
+          "EAX": 8223784,
+          "ECX": 8223784
+        },
+        "PC": 208,
+        "wait": 0,
+        "character_returned": false,
+        "pending": {
+          "va": "0x4cc0f0",
+          "return_va": "0x4c5f8c",
+          "sp": 33619364,
+          "receiver": 8223784,
+          "args": [
+            4,
+            268435455,
+            268435455
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      },
+      "handler": {
+        "original_call_entries": 11,
+        "executed_original_calls": 11,
+        "CPU": {
+          "EIP": 5041480,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 1,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 0,
+        "character_returned": true,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "overlay": {
+        "original_call_entries": 23,
+        "executed_original_calls": 23,
+        "CPU": {
+          "EIP": 5046863,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 3435973836,
+          "ECX": 0
+        },
+        "PC": 224,
+        "wait": 1,
+        "character_returned": true,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "layer_entry": {
+        "original_call_entries": 24,
+        "executed_original_calls": 23,
+        "CPU": {
+          "EIP": 5023232,
+          "ESP": 33619344,
+          "EBP": 33619476,
+          "EAX": 8192256,
+          "ECX": 8192568
+        },
+        "PC": 224,
+        "wait": 1,
+        "character_returned": true,
+        "pending": {
+          "va": "0x4ca600",
+          "return_va": "0x4ca37a",
+          "sp": 33619344,
+          "receiver": 8192568,
+          "args": [
+            8192256,
+            8192568,
+            1,
+            0,
+            66
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "template": {
+        "original_call_entries": 11,
+        "executed_original_calls": 10,
+        "CPU": {
+          "EIP": 5030128,
+          "ESP": 33619364,
+          "EBP": 33619464,
+          "EAX": 8223784,
+          "ECX": 8223784
+        },
+        "PC": 208,
+        "wait": 0,
+        "character_returned": false,
+        "pending": {
+          "va": "0x4cc0f0",
+          "return_va": "0x4c5f8c",
+          "sp": 33619364,
+          "receiver": 8223784,
+          "args": [
+            4,
+            268435455,
+            268435455
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      },
+      "handler": {
+        "original_call_entries": 11,
+        "executed_original_calls": 11,
+        "CPU": {
+          "EIP": 5041480,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 1,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 0,
+        "character_returned": true,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "overlay": {
+        "original_call_entries": 23,
+        "executed_original_calls": 23,
+        "CPU": {
+          "EIP": 5046863,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 3435973836,
+          "ECX": 0
+        },
+        "PC": 224,
+        "wait": 1,
+        "character_returned": true,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "layer_entry": {
+        "original_call_entries": 24,
+        "executed_original_calls": 23,
+        "CPU": {
+          "EIP": 5023232,
+          "ESP": 33619344,
+          "EBP": 33619476,
+          "EAX": 8192256,
+          "ECX": 8192568
+        },
+        "PC": 224,
+        "wait": 1,
+        "character_returned": true,
+        "pending": {
+          "va": "0x4ca600",
+          "return_va": "0x4ca37a",
+          "sp": 33619344,
+          "receiver": 8192568,
+          "args": [
+            8192256,
+            8192568,
+            1,
+            0,
+            66
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      }
+    },
+    {
+      "name": "fifth_class",
+      "template": {
+        "original_call_entries": 11,
+        "executed_original_calls": 10,
+        "CPU": {
+          "EIP": 5030128,
+          "ESP": 33619364,
+          "EBP": 33619464,
+          "EAX": 8223784,
+          "ECX": 8223784
+        },
+        "PC": 208,
+        "wait": 0,
+        "character_returned": false,
+        "pending": {
+          "va": "0x4cc0f0",
+          "return_va": "0x4c5f8c",
+          "sp": 33619364,
+          "receiver": 8223784,
+          "args": [
+            4,
+            268435455,
+            268435455
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      },
+      "handler": {
+        "original_call_entries": 11,
+        "executed_original_calls": 11,
+        "CPU": {
+          "EIP": 5041480,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 1,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 0,
+        "character_returned": true,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "overlay": {
+        "original_call_entries": 23,
+        "executed_original_calls": 23,
+        "CPU": {
+          "EIP": 5046863,
+          "ESP": 33619484,
+          "EBP": 33619608,
+          "EAX": 3435973836,
+          "ECX": 0
+        },
+        "PC": 224,
+        "wait": 1,
+        "character_returned": true,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "layer_entry": {
+        "original_call_entries": 24,
+        "executed_original_calls": 23,
+        "CPU": {
+          "EIP": 5023232,
+          "ESP": 33619344,
+          "EBP": 33619476,
+          "EAX": 8192256,
+          "ECX": 8192568
+        },
+        "PC": 224,
+        "wait": 1,
+        "character_returned": true,
+        "pending": {
+          "va": "0x4ca600",
+          "return_va": "0x4ca37a",
+          "sp": 33619344,
+          "receiver": 8192568,
+          "args": [
+            8192256,
+            8192568,
+            1,
+            0,
+            66
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      }
+    }
+  ],
+  "original_call_entry_events": 207,
+  "executed_original_calls": 201,
+  "unexecuted_boundary_events": 6,
+  "new_declared_roots": 0,
+  "completed_character_handler_returns": 3,
+  "completed_normal_VM_returns": 0,
+  "completed_task_returns": 0,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "template",
+      "path": ".venv-audit/vm-character-template-initial.pkl",
+      "bytes": 136844734,
+      "sha256": "1826bc1b3380f4d176b8d86b8fc34c132c6dac5d6e489a265242958d50f011b1",
+      "pending_eip": "0x4cc0f0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "handler",
+      "path": ".venv-audit/vm-character-handler-initial.pkl",
+      "bytes": 136844732,
+      "sha256": "5950616a21effecb3c28ac5fcdd3d8a02ee40061c595496e6ab7ae1379bb3a0b",
+      "pending_eip": "0x4ced48",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "overlay",
+      "path": ".venv-audit/vm-character-overlay-initial.pkl",
+      "bytes": 136844732,
+      "sha256": "dbcf9aa1900755fda6f2a248a49059aae9f7882a0f57390001f17cbb5068757a",
+      "pending_eip": "0x4d024f",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "layer_entry",
+      "path": ".venv-audit/vm-character-layer_entry-initial.pkl",
+      "bytes": 136844740,
+      "sha256": "ba1c38cc00f9408c3c505f0203e988b6e81e979b5b20f0e0e59ded313fdb441f",
+      "pending_eip": "0x4ca600",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "template",
+      "path": ".venv-audit/vm-character-template-student9_waiting.pkl",
+      "bytes": 136306697,
+      "sha256": "553640d2732ce70929789054857edf9a4b4437c9041cdbfc12ffcb38befa4bc6",
+      "pending_eip": "0x4cc0f0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "handler",
+      "path": ".venv-audit/vm-character-handler-student9_waiting.pkl",
+      "bytes": 136306695,
+      "sha256": "997e32706f88314544be7eff9e76bdb1812c674701173dc270803dbb9ca2699f",
+      "pending_eip": "0x4ced48",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "overlay",
+      "path": ".venv-audit/vm-character-overlay-student9_waiting.pkl",
+      "bytes": 136306695,
+      "sha256": "e8fbbd8c05ff29d08ee32d259b971f4d0e20443f8597ad08a77c94203553c3a1",
+      "pending_eip": "0x4d024f",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "layer_entry",
+      "path": ".venv-audit/vm-character-layer_entry-student9_waiting.pkl",
+      "bytes": 136306703,
+      "sha256": "44d3534de11f806b8ba0415b981c2bcecffc6d52c371dd4d482c9c6d0e19dbbb",
+      "pending_eip": "0x4ca600",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "template",
+      "path": ".venv-audit/vm-character-template-fifth_class.pkl",
+      "bytes": 136306635,
+      "sha256": "84f95b31de240b993bc03ac1c38cda707ae061f1413a591a4b59dd8ae16dea13",
+      "pending_eip": "0x4cc0f0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "handler",
+      "path": ".venv-audit/vm-character-handler-fifth_class.pkl",
+      "bytes": 136306633,
+      "sha256": "2aea5a5c60959bfdef0bd33740c7d1a37a27dfc1626aceec18d3685fdf9ca89b",
+      "pending_eip": "0x4ced48",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "overlay",
+      "path": ".venv-audit/vm-character-overlay-fifth_class.pkl",
+      "bytes": 136306633,
+      "sha256": "722edd6951010f35afdb0d08c8e760ea1e0511c1c7e0d27816a1ea64c3759240",
+      "pending_eip": "0x4d024f",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "layer_entry",
+      "path": ".venv-audit/vm-character-layer_entry-fifth_class.pkl",
+      "bytes": 136306641,
+      "sha256": "e130985dfb0b707862ad5ce2b47bf79caee54fb5a2d1c12a16bbf8d4185f616f",
+      "pending_eip": "0x4ca600",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15891,
+  "save_rule_fingerprints": 10,
+  "literal_operands": [
+    4,
+    268435455,
+    268435455
+  ],
+  "template_index": 4,
+  "layer_index": 7,
+  "show_state": 3,
+  "show_duration": 45,
+  "regression": {
+    "python_tests": 39,
+    "new_tests": 16,
+    "direct_parent_tests": 23,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-vm-character-final-regression-20261017.log",
+    "spec_log": "analysis/school-vm-character-spec-final-20261017.log"
+  },
+  "progress": {
+    "total": 282,
+    "complete": 282,
+    "remaining": 0
+  },
+  "authority": {
+    "character_handler_executed": true,
+    "character_handler_return": 1,
+    "overlay_cleanup": true,
+    "first_active_layer_interpolation": true,
+    "graphics_list_executed": false,
+    "queue_executed": false,
+    "GPU_executed": false,
+    "dialogue_executed": false,
+    "new_platform_responses": 0,
+    "full_outer_frame": false,
+    "world_beyond185": false,
+    "AI_or_settlement": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Execute original4CA600 graphics-list construction and native queue from retained layer/VM/task stack",
+    "Complete active-layer maintenance and natural VM/task return",
+    "Finish character show/wait and following speaker/text commands",
+    "Close original input/outer4539B0 task/world/render scheduling and enabled renderer/backend",
+    "Complete AI/events/waves/victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-vm-character-artifact-manifest-20261017.json",
+  "local_only": true
+}
