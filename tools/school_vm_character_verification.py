@@ -7,6 +7,7 @@ from tools.school_world_life_codec import unpack
 from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X86_REG_EAX,UC_X86_REG_ECX
 PARENT=PARENT_REPORTS['character_entry'];PARENT_SHA=PARENT_SHAS['character_entry']
 REPORTS={p:ROOT/f'analysis/school-vm-character-{p}-v1-20261017.json.gz' for p in PHASES};SHAS={p:None for p in PHASES}
+SHAS['overlay']='e26da8892f05bcf5e0f6417866f1144c03c6a447ddd85c0b7d1ffe0fe732883b'
 SHAS['handler']='4cdc6b9d12b78ef1049590647a3fd3abc5ca17fbb7fa2690f81871185bff5c0d'
 SHAS['template']='047e6e1d9177f1af290cf9bf77a0a7bbb655596e539457c82aea614c6e415ef1'
 

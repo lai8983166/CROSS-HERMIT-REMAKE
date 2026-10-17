@@ -1122,7 +1122,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 280. Character VM advance and original overlay cleanup
 
-- [ ] 280.1 Continue retained VM toPC224/wait1, execute existing overlay construction/binding/disabled draw/cleanup to4D024F, verify complete128-byte object/calls/returns/CPU/retention in three cases and pin; commit locally.
+- [x] 280.1 Continue retained VM toPC224/wait1, execute existing overlay construction/binding/disabled draw/cleanup to4D024F, verify complete128-byte object/calls/returns/CPU/retention in three cases and pin; commit locally.
 
 ## 281. First active layer presentation admission
 
