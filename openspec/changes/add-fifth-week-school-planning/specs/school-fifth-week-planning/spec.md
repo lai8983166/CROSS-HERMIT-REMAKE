@@ -1101,3 +1101,14 @@ The audit SHALL resume4CA600 on the retained layer/VM/task stack, execute four n
 #### Scenario: Original renderer initialization is a precondition
 - **WHEN** rectangle410310 calls40E2A0 using the captured manager whose owner is0
 - **THEN** its prefix reaches40E2D0 before reading effective addressB278, all caller/CPU state is retained, and the original40D970/413500 initialization path is source-bound for subsequent work without patching current state
+
+### Requirement: Isolated original renderer prerequisite execution
+The audit SHALL source-bind renderer construction, owner/device binding, queue initialization and outer reset/draw order. It SHALL execute isolated original bodies with declared scratch state and bounded debug CRT allocation, verify full manager/queue/arena bytes and guarded writes, and preserve the retained VM checkpoint. It MUST NOT claim original D3D initialization, continuous VM progress, GPU output or a full outer frame from those probes.
+
+#### Scenario: Native initialized queues and rectangle links
+- **WHEN** isolated original construction and binding precede original queue initialization using declared successful allocations
+- **THEN** the original4096-layer table and1MiB arena are initialized, native rectangle insertion and per-frame reset agree with source projections, and all unrelated bytes are retained
+
+#### Scenario: Unsupported or exhausted renderer state
+- **WHEN** a declared clip input is outside the original signed predicate or the arena has exactly24 bytes remaining
+- **THEN** original clip rejection or the strict capacity debug-call boundary is observed without fabricating a debug response or GPU work

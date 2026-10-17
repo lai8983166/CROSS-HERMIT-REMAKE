@@ -1151,3 +1151,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 287. Graphics and renderer initialization acceptance
 
 - [x] 287.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document original renderer-owner initialization prerequisite and pending clipping/queue/GPU/VM-task/text/world work; commit locally without push.
+
+## 288. Renderer prerequisite source contract
+
+- [x] 288.1 Derive constructor/binder/queue/rectangle/reset rules and original outer ordering with byte-bound source contracts, independent projections and source tests; commit locally.
+
+## 289. Isolated native renderer initialization
+
+- [ ] 289.1 Execute original construction/binding/full queue allocation with explicitly bounded CRT responses, validate full96-byte manager,32768-byte heads and1MiB arena plus original calls/ABI and memory guards; preserve pending VM and commit locally.
+
+## 290. Native rectangle queue and boundary probes
+
+- [ ] 290.1 Execute original clipping/insertion/list/reset with same/different layers, signed and strict capacity boundaries; stop before unadapted debug requests, verify full state and add adversarial evidence tests; commit locally.
+
+## 291. Renderer prerequisite acceptance
+
+- [ ] 291.1 Run new/direct-parent tests and strict specs, record preserved historical/runtime/save/checkpoint bytes and exact Git state, update current docs with isolated versus continuous boundaries and next full initialization dependency; commit locally without push.
