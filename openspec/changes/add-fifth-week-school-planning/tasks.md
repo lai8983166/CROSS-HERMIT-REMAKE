@@ -1142,7 +1142,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 285. Native rectangle clipping-function admission
 
-- [ ] 285.1 Continue native interpolation/410310 to unexecuted40E2A0, verifying full source arguments/ABI/return/CPU/original stack and retained memory; pin in three cases and commit locally.
+- [x] 285.1 Continue native interpolation/410310 to unexecuted40E2A0, verifying full source arguments/ABI/return/CPU/original stack and retained memory; pin in three cases and commit locally.
 
 ## 286. Captured null-owner read boundary
 
