@@ -1126,7 +1126,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 281. First active layer presentation admission
 
-- [ ] 281.1 Execute inactive layers0–6 and layer7 native interpolation to unexecuted4CA600 with exact cdecl arguments and retained VM/layer caller stack; verify full state/CPU/retention and pin in three cases; commit locally.
+- [x] 281.1 Execute inactive layers0–6 and layer7 native interpolation to unexecuted4CA600 with exact cdecl arguments and retained VM/layer caller stack; verify full state/CPU/retention and pin in three cases; commit locally.
 
 ## 282. Character presentation continuation acceptance
 
