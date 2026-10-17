@@ -1,0 +1,301 @@
+{
+  "baseline": "406549c",
+  "stages": [
+    296,
+    297,
+    298,
+    299,
+    300
+  ],
+  "source_native_commits": [
+    "eccefbbc0824a3e305dc3b68fba3cd05cbfdeec2",
+    "4ec38d08c26139b23cfa4f2b12977a2f157082c2",
+    "db35e59befdefab643fb1e0e1b3e0da8a542f3f9",
+    "098baa1c26c3c60853191c11cd09ae3a7e634173"
+  ],
+  "scope": "Independent full original owner constructor and natural live device/font prefix; retained VM unchanged",
+  "cases": [
+    {
+      "fill": 165,
+      "dimensions": [
+        640,
+        480
+      ],
+      "constructor_calls": 42,
+      "device_calls": 10,
+      "font_native_calls": 5,
+      "LOGFONT_bytes": 60,
+      "pending": {
+        "va": "0x52ae11",
+        "return_va": "0x52b015",
+        "sp": 553709164,
+        "args": [
+          161322816,
+          553709180,
+          553709340
+        ],
+        "first_instruction_executed": false
+      },
+      "platform_cleanup": {
+        "fonts_released": 1,
+        "dcs_released": 1,
+        "all_owned_resources_released": true
+      },
+      "device_cleanup": {
+        "device_release_count": 0,
+        "factory_release_count": 0,
+        "window_destroyed": true,
+        "all_owned_resources_released": true
+      }
+    },
+    {
+      "fill": 204,
+      "dimensions": [
+        1024,
+        768
+      ],
+      "constructor_calls": 42,
+      "device_calls": 10,
+      "font_native_calls": 5,
+      "LOGFONT_bytes": 60,
+      "pending": {
+        "va": "0x52ae11",
+        "return_va": "0x52b015",
+        "sp": 553709164,
+        "args": [
+          91467328,
+          553709180,
+          553709340
+        ],
+        "first_instruction_executed": false
+      },
+      "platform_cleanup": {
+        "fonts_released": 1,
+        "dcs_released": 1,
+        "all_owned_resources_released": true
+      },
+      "device_cleanup": {
+        "device_release_count": 0,
+        "factory_release_count": 0,
+        "window_destroyed": true,
+        "all_owned_resources_released": true
+      }
+    }
+  ],
+  "original_helpers_stubbed": false,
+  "original_IAT_changed": false,
+  "inherited_source_globals": true,
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "owner": 0,
+    "advanced": false
+  },
+  "regression": {
+    "new": 18,
+    "direct_parent": 14,
+    "total": 32,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-owner-startup-regression-20261018.log",
+      "bytes": 4113,
+      "sha256": "fc568872032bd7158f746fec056765a8daf5203a73f945b7a38442a6ff08fd96"
+    },
+    "strict_log": {
+      "path": "analysis/school-owner-startup-strict-20261018.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775"
+    }
+  },
+  "preservation": {
+    "path": "analysis/school-owner-startup-preservation-20261018.json",
+    "bytes": 9165,
+    "sha256": "0a74497e96c7fae1905988e751201b4d6aaf49f1c57b9fb00e0aac849603eb1f",
+    "retained_files": 15971,
+    "save_rule_fingerprints": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "authority": {
+    "full_owner_constructor_executed": true,
+    "live_device_prefix_executed": true,
+    "live_GDI_font_created": true,
+    "static_font_object_constructed": false,
+    "manager_owner_bound": false,
+    "queues_initialized_on_this_chain": false,
+    "drawing_or_Present": false,
+    "full_outer_frame": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_pointers_resumable": false
+  },
+  "retained_platform_versions": [
+    "analysis/school-owner-startup-platform-v1.cs",
+    "analysis/school-owner-startup-platform-v1-20261017.json",
+    "analysis/school-owner-startup-platform-v2-20261017.json"
+  ],
+  "remaining": [
+    "Execute original52AE11 and53BB9E/53B9F8 allocation/resource/texture dependencies",
+    "Complete415F50 and original40D970 owner binding/40DAB0 queue initialization on startup path",
+    "Connect complete original input/task/world/render scheduling without patching the retained VM",
+    "Continue dialogue, battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "300/300 listed tasks; not a percentage of whole-game reverse engineering",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 15846,
+      "sha256": "cbd98ccfdc8267968f0e37c77fd8c0f8f081e47e3077c50bbc49b6cb08154247",
+      "git_blob": "5362d1c406eef6731745a7e0743e210e00026add"
+    },
+    {
+      "path": "README.md",
+      "bytes": 51568,
+      "sha256": "b3584f3e4809f7bc0c3dcd406b1841c54ee286f28ec6d09da65d460c6d12f16c",
+      "git_blob": "8e29cc8d153987e7fe6e3a3ba94265123528e3d7"
+    },
+    {
+      "path": "analysis/school-owner-startup-constructor-v1-20261017.json",
+      "bytes": 109967,
+      "sha256": "310f9a86bcc90f36ca9824fce430074ac0f0388f29042c98a60eb40d8d7e6954",
+      "git_blob": "1f62f4b3fda9ee42da696d44da72e774495a1c54"
+    },
+    {
+      "path": "analysis/school-owner-startup-device-v1-20261017.json",
+      "bytes": 186665,
+      "sha256": "d122681edaae30e93385d0ac522f385bc2c699969d109f5e287ce5084c8624ae",
+      "git_blob": "20a34193b3ae2811f79f08905861a6bc0f309373"
+    },
+    {
+      "path": "analysis/school-owner-startup-font-v1-20261017.json",
+      "bytes": 217180,
+      "sha256": "6ae61ecfeabb747415725c8c3204d787e2498e451e99330360180153befb4fce",
+      "git_blob": "79df4833dedf54b49eea4d46fb7aff48f96e96eb"
+    },
+    {
+      "path": "analysis/school-owner-startup-platform-v1-20261017.json",
+      "bytes": 2292,
+      "sha256": "67c8798a2cda69012ac3be97147a5ec5262e189d040cde2fd9d6a608219f5aba",
+      "git_blob": "991196b4a9c19a199470e09bd0710eb5271b22fa"
+    },
+    {
+      "path": "analysis/school-owner-startup-platform-v1.cs",
+      "bytes": 5244,
+      "sha256": "4554cbe4546cdf1d67216c891b0a134ca030a98f385227afe64a845a84f8e70d",
+      "git_blob": "dbf183b788a9a6e971fd28c5f8796104148c462f"
+    },
+    {
+      "path": "analysis/school-owner-startup-platform-v2-20261017.json",
+      "bytes": 2438,
+      "sha256": "2c0887b5bb52fb9efae7f3be1012b35ca03c4b520cabe7bcd2574649fa073610",
+      "git_blob": "10a6c11c1b39f296b5f20c2c3dd78ecb9c738b96"
+    },
+    {
+      "path": "analysis/school-owner-startup-preservation-20261018.json",
+      "bytes": 9165,
+      "sha256": "0a74497e96c7fae1905988e751201b4d6aaf49f1c57b9fb00e0aac849603eb1f",
+      "git_blob": "d6496376592d90402a90824d2e08819426c7122c"
+    },
+    {
+      "path": "analysis/school-owner-startup-regression-20261018.log",
+      "bytes": 4113,
+      "sha256": "fc568872032bd7158f746fec056765a8daf5203a73f945b7a38442a6ff08fd96",
+      "git_blob": "db4e379ee690181edbf6ffa0408d716d69783842"
+    },
+    {
+      "path": "analysis/school-owner-startup-source-v1-20261017.json",
+      "bytes": 8739,
+      "sha256": "04cbfd437eb81b0417d2d6a4c46f12384987ceb4835d0737c273b1cec49f3d7a",
+      "git_blob": "7ebe5ef75e192547220a97602463124fb9b38e6e"
+    },
+    {
+      "path": "analysis/school-owner-startup-strict-20261018.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775",
+      "git_blob": "2ad0d64199225b64beb1dc9b8cf28969e0b2fd9c"
+    },
+    {
+      "path": "docs/school_owner_startup.md",
+      "bytes": 4906,
+      "sha256": "787de2cc80f4e58fbea1352b24d2694c923a7c416cf0ec187263940ef0e58fe4",
+      "git_blob": "efb101ddb6bf9d16589ec5ca80d82a3b05f460cf"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 80908,
+      "sha256": "c05898f58c2214b66a9d57384978fda11f8051d7cfd50c5a0a0c22c84645cdcf",
+      "git_blob": "cd4b778e96ae604bf1f0592b603434dd07c45450"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 47548,
+      "sha256": "7c279bc5cd2dd28b09a4de8771bb2a51d9c82789ddbcf35d623d1a92f28268b0",
+      "git_blob": "df52271a7610d32540f6592fc2b18e4bc4dd498e"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 104388,
+      "sha256": "cabd1e051ed9b5bf3d1cfbfbddee069f9bc85c0a89ba09482d94e15a4d54e368",
+      "git_blob": "d4a84b29a612959fcfc45a95793b44d2048e140e"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 85490,
+      "sha256": "e64c47077e1c2315825d1cd21412c7f3fe1a12fa3e82efe2dabff593ebb32108",
+      "git_blob": "a3f2c5a2e68e0bcc1179d9d3deea97c370daf4f2"
+    },
+    {
+      "path": "tools/school_owner_platform.cs",
+      "bytes": 5522,
+      "sha256": "b8d2d1070dc89f7d3a649ef8ea836c7456d880649ac0f771783a6ac1e292f65e",
+      "git_blob": "5025e2702f295fdfeaff27ac10282a82cea45827"
+    },
+    {
+      "path": "tools/school_owner_platform.py",
+      "bytes": 1992,
+      "sha256": "74782758ad4ddeeee8fec8f52fd95c129ce043936b1924580bc9a1952ddf90ea",
+      "git_blob": "add4b42743dd95fea08b3b394712c48eb124b0c5"
+    },
+    {
+      "path": "tools/school_owner_startup.py",
+      "bytes": 7116,
+      "sha256": "6b6114694f7f519a54d02e942ff355ea84c6fe02feed45ea3aec25d8978b7ed0",
+      "git_blob": "07a4255965d7e59d2d0ac62cc767e25ca54f3250"
+    },
+    {
+      "path": "tools/school_owner_startup_emulation.py",
+      "bytes": 11621,
+      "sha256": "80cc26dc60a8c35925deaaf50db3732f3ac9e0acd7fe42b0d8f43b972ab53cbc",
+      "git_blob": "ca277baac5e3aa2fd2a7b9fbdfb76f81c8238df5"
+    },
+    {
+      "path": "tools/school_owner_startup_verification.py",
+      "bytes": 22481,
+      "sha256": "d8a1136da27537f9e98a64e03cc486b086b08844103d95b716493617db24f54f",
+      "git_blob": "1a6f72df48faf0caca8d8db143a77e8696816283"
+    },
+    {
+      "path": "tools/tests/test_school_owner_platform.py",
+      "bytes": 2322,
+      "sha256": "f1f2afad53dfd1c162eb4a565673b83838a836829e2f9ec9b2e67bda5be2e305",
+      "git_blob": "c91391a967c3d0d240d7d49cc77245b48ca9f786"
+    },
+    {
+      "path": "tools/tests/test_school_owner_startup.py",
+      "bytes": 2394,
+      "sha256": "bc01b9e9e2bf844bfb7ad03ff78ffb0a4c7025ad1bfa95da013842c9aa06b02d",
+      "git_blob": "2ad6b174fd693e4fa76325a2f4264ae23fac7c0b"
+    },
+    {
+      "path": "tools/tests/test_school_owner_startup_emulation.py",
+      "bytes": 6020,
+      "sha256": "a0c5dd8b977792f174e8840e24cb3605c95a17717dfc7be38e95f93b15a29652",
+      "git_blob": "5107ee218d39acaf55a9c0ce6aa688040c22030d"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-owner-startup-acceptance-20261018.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

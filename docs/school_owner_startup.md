@@ -19,3 +19,7 @@
 两例均停在52AE11第一条指令之前：参数为本例实际设备、TOP-388处LOGFONT、TOP-228输出槽，原返回地址52B015，ESP=TOP-404，SEH=TOP-108。原所属对象仅B26C新增真实HFONT，B270仍为0；完整48KiB、原映像、接口映射、前后CPU和五条原调用/五条返回均独立核验。报告取证后各释放一个字体、一个屏幕DC及设备/工厂和隐藏窗口，记录中的句柄不能在下一进程续用。18项相关测试通过，包含新鲜双案例完整重跑及字体/缓冲/栈/对象/释放/越界声明的变异拒绝。
 
 证据：[原字体前缀](../analysis/school-owner-startup-font-v1-20261017.json)，[独立核验器](../tools/school_owner_startup_verification.py)。尚未构造D3DX字体对象或纹理，尚未执行415F50返回后的管理器绑定和队列初始化；原连续VM保持40E2D0。后续先调查52AE11及53BB9E/53B9F8的分配和纹理依赖，再处理原外层初始化与调度。
+
+300收尾：本批18项来源/平台/原生核验和直接父批14项共32项相关回归通过，OpenSpec全部30项严格检查通过。原报告保留20261017生成日期，本次回归和验收另用20261018新文件；不覆盖旧证据。验收记录完整工作文件SHA与Git规范化blob，保留链核对15,971个既有文件、十项存档规则及九份原连续VM私有检查点。已列300/300项完成只表示这批计划收尾，不代表全游戏逆向完成；Godot画面、运行代码、原存档及原连续VM未改。
+
+见[32项回归日志](../analysis/school-owner-startup-regression-20261018.log)、[严格规格日志](../analysis/school-owner-startup-strict-20261018.log)、[保留检查](../analysis/school-owner-startup-preservation-20261018.json)及[本批验收](../analysis/school-owner-startup-acceptance-20261018.json)。本批296–300分别本地提交，不推送。

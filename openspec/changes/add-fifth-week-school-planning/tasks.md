@@ -1202,4 +1202,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 300. Full owner and font prerequisite acceptance
 
-- [ ] 300.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent startup/expired handles and remaining static font/owner/queue/outer work, verify exact Git bytes and commit locally without push.
+- [x] 300.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent startup/expired handles and remaining static font/owner/queue/outer work, verify exact Git bytes and commit locally without push.
