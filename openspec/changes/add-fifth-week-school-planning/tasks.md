@@ -1075,3 +1075,35 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 268. Normal opening flow acceptance
 
 - [x] 268.1 Run new/direct-parent and strict spec checks, preserve history/runtime/save/exact Git bytes, document driver/platform/renderer limits and later commands/outer loop/AI work; commit locally without push.
+
+## 269. Normal display and timer source
+
+- [x] 269.1 Derive56 display reset/query,20 text mode,12 timer old-count semantics and natural27 handler admission from original source; commit locally.
+
+## 270. Native display reset command
+
+- [ ] 270.1 Continue original declared reset/task pair through56 to PC192/wait1 and type2/state0/counter0/limit16, verify full calls/state/CPU/retention and pin in three cases; commit locally.
+
+## 271. Native display wait release
+
+- [ ] 271.1 Execute actual4C7AB0 query and VM wait1 release in three cases, verify complete AL/full-EAX/ABI/state/CPU/retention and pin; commit locally.
+
+## 272. Native text-mode command
+
+- [ ] 272.1 Execute20 through native4C5500 and9228=0 store to PC200, verify source typed operands/full state/calls/returns/checkpoint in three cases; commit locally.
+
+## 273. Native timer setup
+
+- [ ] 273.1 Execute12 and original4C1E20 count0/limit30/1CD1 setup to PC208/wait1, verify every parameter/store/return/full state and pin in three cases; commit locally.
+
+## 274. Complete original timer polling
+
+- [ ] 274.1 Execute all31 original4CCB90 polls, verify every old-count comparison/increment/wait/1CD transition, unchanged input and full state/CPU/retention, pin in three cases; commit locally.
+
+## 275. Natural next character-handler admission
+
+- [ ] 275.1 Declare the following reset/task pair and execute actual VM fetch27/header/counters to unexecuted4C5EA0 on the real VM/task stack; verify pending args/CPU/caller locals/full state/retention and pin in three cases; commit locally.
+
+## 276. Normal display and timer acceptance
+
+- [ ] 276.1 Run new/direct-parent and strict specs, preserve history/runtime/save/exact Git bytes, document declared-driver limits and pending character/text/outer world/GPU/AI work, commit locally without push.

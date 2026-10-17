@@ -1068,3 +1068,14 @@ The audit SHALL resume verified task returns using explicitly declared original 
 #### Scenario: Complete native fade without forced endpoint
 - **WHEN** original opcode117 starts duration60 using source fixed-point range38912
 - **THEN** original x87 conversion derives the integer step, all60 task suffix updates and completion execute, and only the following VM poll clears wait4 before the next script command; full state/calls/CPU and immutable checkpoints agree without manual wait or alpha changes
+
+### Requirement: Native normal display reset and old-counter timer
+The audit SHALL continue verified fade_finish returns through original56 display initialization/query,20 text mode,12 timer setup and31 original timer polls, then reach the unexecuted27 handler on the natural retained VM/task stack. It MUST verify every intermediate owned state, original calls/ABI/return values, pending CPU/args and all retained bytes with immutable SHA-guarded checkpoints, without body stubs, manual waits, new OS responses or GPU/full-world claims.
+
+#### Scenario: Original display reset and text mode
+- **WHEN**56 evaluates literal2 and the next VM polls its presentation object
+- **THEN** original4C76B0 records type2/state0/counter0/limit16,4C7AB0 naturally returns AL1 and clears the wait, and20 changes only source text-mode9228 with source/full state verified
+
+#### Scenario: Timer30 completes on its31st poll
+- **WHEN**12 initializes count0/limit30 and uses the opcode12 branch of4CCB90
+- **THEN** polls1–30 retain wait1, poll31 stores31 and clears both1CD and wait, and a subsequent original task reaches unexecuted4C5EA0 with actual27 arguments and caller/CPU state; no character-body, text or outer-frame completion is claimed
