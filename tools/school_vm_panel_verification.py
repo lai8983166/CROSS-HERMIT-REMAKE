@@ -8,6 +8,7 @@ from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X8
 
 PARENT=PARENT_REPORTS['fade_finish'];PARENT_SHA=PARENT_SHAS['fade_finish']
 REPORTS={p:ROOT/f'analysis/school-vm-panel-{p}-v1-20261017.json.gz' for p in PHASES};SHAS={p:None for p in PHASES}
+SHAS['timer_finish']='d18783de2fffc36950140d2a3fd7c8e58c98521a58b13a28fea93f7b981ede84'
 SHAS['timer_start']='5eb583b23707a331373b8d5d5237891f516ceea10373706391bd26d75aeaf929'
 SHAS['text_mode']='5304ca8c9c6bc68e154395568328a767932f8daa1b648ca506b643c3e49f5a98'
 SHAS['release']='b4f49ab5db44b93e06d3173792254ab6d1496ba7320fd806c464030230536684'

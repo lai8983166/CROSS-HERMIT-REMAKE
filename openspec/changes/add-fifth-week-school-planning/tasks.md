@@ -1098,7 +1098,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 274. Complete original timer polling
 
-- [ ] 274.1 Execute all31 original4CCB90 polls, verify every old-count comparison/increment/wait/1CD transition, unchanged input and full state/CPU/retention, pin in three cases; commit locally.
+- [x] 274.1 Execute all31 original4CCB90 polls, verify every old-count comparison/increment/wait/1CD transition, unchanged input and full state/CPU/retention, pin in three cases; commit locally.
 
 ## 275. Natural next character-handler admission
 
