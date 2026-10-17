@@ -1090,7 +1090,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 272. Native text-mode command
 
-- [ ] 272.1 Execute20 through native4C5500 and9228=0 store to PC200, verify source typed operands/full state/calls/returns/checkpoint in three cases; commit locally.
+- [x] 272.1 Execute20 through native4C5500 and9228=0 store to PC200, verify source typed operands/full state/calls/returns/checkpoint in three cases; commit locally.
 
 ## 273. Native timer setup
 
