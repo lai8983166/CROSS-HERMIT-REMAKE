@@ -1118,7 +1118,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 279. Native character layout show and handler return
 
-- [ ] 279.1 Execute original4CC0F0 kind0 layout and4CC7D0/4CC810 show helpers, complete actual4C5EA0 EAX1 return to4CED48, verify all source state/calls/returns/CPU/checkpoint in three cases; commit locally.
+- [x] 279.1 Execute original4CC0F0 kind0 layout and4CC7D0/4CC810 show helpers, complete actual4C5EA0 EAX1 return to4CED48, verify all source state/calls/returns/CPU/checkpoint in three cases; commit locally.
 
 ## 280. Character VM advance and original overlay cleanup
 
