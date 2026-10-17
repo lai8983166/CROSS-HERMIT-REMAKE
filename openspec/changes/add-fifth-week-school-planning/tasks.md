@@ -1182,4 +1182,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 295. Live device prefix acceptance
 
-- [ ] 295.1 Run new/direct-parent tests and strict specs, preserve historical/runtime/save/private VM checkpoints, document actual device initialization versus unresolved font/owner binding/outer frame, verify exact Git bytes and commit locally without push.
+- [x] 295.1 Run new/direct-parent tests and strict specs, preserve historical/runtime/save/private VM checkpoints, document actual device initialization versus unresolved font/owner binding/outer frame, verify exact Git bytes and commit locally without push.

@@ -1,0 +1,241 @@
+{
+  "baseline": "ee580c0",
+  "stages": [
+    292,
+    293,
+    294,
+    295
+  ],
+  "source_native_commits": [
+    "735a1276abedfe39771d7e8dc7c725cbf1f8f671",
+    "a62d590e6e4afaffab08f30ca1f6334686f5717b",
+    "6994f521ad8d4fc666a7636c11d8a32a09b9c2c8"
+  ],
+  "scope": "Declared original windowed startup prefix with real owned x86 D3D8; not retained VM continuation",
+  "cases": [
+    {
+      "dimensions": [
+        640,
+        480
+      ],
+      "full_owner_bytes": 49152,
+      "live_calls": 10,
+      "selected_format": 24,
+      "font_entry": "0x415f50",
+      "cleanup": {
+        "device_release_count": 0,
+        "factory_release_count": 0,
+        "window_destroyed": true,
+        "all_owned_resources_released": true
+      }
+    },
+    {
+      "dimensions": [
+        1024,
+        768
+      ],
+      "full_owner_bytes": 49152,
+      "live_calls": 10,
+      "selected_format": 24,
+      "font_entry": "0x415f50",
+      "cleanup": {
+        "device_release_count": 0,
+        "factory_release_count": 0,
+        "window_destroyed": true,
+        "all_owned_resources_released": true
+      }
+    }
+  ],
+  "original_helpers_stubbed": false,
+  "original_IAT_changed": false,
+  "live_device_initialization_executed": true,
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "owner": 0,
+    "advanced": false
+  },
+  "regression": {
+    "new": 14,
+    "direct_parent": 17,
+    "total": 31,
+    "strict_specs": 30,
+    "source_name_correction_rerun": 4
+  },
+  "preservation": {
+    "report": "analysis/school-device-init-preservation-final-20261017.json",
+    "retained_files": 15952,
+    "save_rule_fingerprints": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "authority": {
+    "font_initialized": false,
+    "manager_owner_bound": false,
+    "queues_initialized": false,
+    "drawing_or_Present": false,
+    "full_outer_frame": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_pointers_resumable": false
+  },
+  "retained_failed_attempt": "analysis/school-device-init-native-attempt-20261017.log",
+  "remaining": [
+    "Original415F50 font/resource initialization",
+    "Original40D970 owner binding and40DAB0 queues on startup path",
+    "Complete upstream owner construction and outer input/task/world/render scheduling",
+    "Retained VM dialogue continuation and battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "295/295 listed tasks, not whole-game reverse-engineering completion",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 15665,
+      "sha256": "76ed12dfb1bc82a7d45c2ef3287874c902dfcd187d84ff6c53602e1fa4475dbe",
+      "git_blob": "02486a2e8c3b1271975ce95b0417255479c532fc"
+    },
+    {
+      "path": "README.md",
+      "bytes": 50725,
+      "sha256": "5f3435509778def4ad4e4217bbc0809378c9cdef3d18e45d123f9924304ca3d0",
+      "git_blob": "c84278263b408bc912331d945ea9fcc0adeefa88"
+    },
+    {
+      "path": "analysis/school-device-init-bridge-v1-20261017.json",
+      "bytes": 4957,
+      "sha256": "d56ecd9c654397217a9a47ded799bd90f45c7a90bfaf553c02cbafd3e126250f",
+      "git_blob": "be9c1a58f4662b9b3f39df679674369d5b799052"
+    },
+    {
+      "path": "analysis/school-device-init-native-attempt-20261017.log",
+      "bytes": 1079,
+      "sha256": "67e1a9a82f7db8973769a9bb0dd939a93bc58c7de0e4ad1bc80e83b9d651f3dd",
+      "git_blob": "20113c5ca76a08b171048cfabe5fb440971b4410"
+    },
+    {
+      "path": "analysis/school-device-init-native-v1-20261017.json",
+      "bytes": 82953,
+      "sha256": "7f585fd99355cf5b6aa803db3577edf58f5283c262db35128ad8b23b7778825f",
+      "git_blob": "14b2412f2c2928bdd9751e70c6da0be99f538884"
+    },
+    {
+      "path": "analysis/school-device-init-preservation-20261017.json",
+      "bytes": 8209,
+      "sha256": "7931455cd7f9d60eaf406b422243270bc753b874c68c406e53a18220e982158c",
+      "git_blob": "c1f897c808f9d99cc078be95af74f4b01a7d76e5"
+    },
+    {
+      "path": "analysis/school-device-init-preservation-final-20261017.json",
+      "bytes": 8312,
+      "sha256": "2573253554843c96aaf625bc38888c5b2d206343cdc85a979bfdb094b04c8485",
+      "git_blob": "518701cabeb39e84df555115b4f277ad6b67eb1d"
+    },
+    {
+      "path": "analysis/school-device-init-regression-20261017.log",
+      "bytes": 3855,
+      "sha256": "31037bd45b606f19eacbe75c95bfbc4fadb77a1064cbe4f954626564bcbaf2e4",
+      "git_blob": "7c1e62570bc8cb5faaf4b839fd138a2b66f20993"
+    },
+    {
+      "path": "analysis/school-device-init-source-final-20261017.log",
+      "bytes": 534,
+      "sha256": "7927005ead69915e54f188c6eff9f664da23a98dc30e8688681d96caa2bcbfab",
+      "git_blob": "c4dca979107c4a8a6bad5a5447c65ebf5c23bff2"
+    },
+    {
+      "path": "analysis/school-device-init-source-v1-20261017.json",
+      "bytes": 4843,
+      "sha256": "e29ad9fe5ef4899e2c2ad8db2c0d29225a546509b0f4a2b590c0d94d56518b61",
+      "git_blob": "13c2a32a5ede34f9ba9273bb6e7e98529b333524"
+    },
+    {
+      "path": "analysis/school-device-init-spec-20261017.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775",
+      "git_blob": "2ad0d64199225b64beb1dc9b8cf28969e0b2fd9c"
+    },
+    {
+      "path": "docs/school_device_init.md",
+      "bytes": 4610,
+      "sha256": "90c661d3ee97aa0f78b3524b2f4e8ad5359c42d071eb715d4ae78467269bdbe1",
+      "git_blob": "63e9222e550c03c798508bb730560c253f87d35e"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 79804,
+      "sha256": "1f8414f6e64887a5cb5d63baf6409d90e941c2c0634ab6d1fecf780a92aad14c",
+      "git_blob": "b28868fbbef3408452b1b2eff70b47741ad9710f"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 46962,
+      "sha256": "28d0381ea7330f909e057e6caf3873f18e4b447e503ceaa65ca0a51cc53d233f",
+      "git_blob": "df3fac347d607ea13cf642f4e405cac256b7a1ad"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 102927,
+      "sha256": "b13b34dca548e8c62351d8398a3c79fd0b5263ff3fc9b66af8c479b647bc1a0c",
+      "git_blob": "52b77807eb8d271a8755d583cbdfdfd79ed33538"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 84097,
+      "sha256": "c9781bb7ad0d5ba5cf37ab493a2d12f718e49d834b99f59b9c05f879e0ebf6be",
+      "git_blob": "9e63482518b53f448165d9716cafd2440e411eda"
+    },
+    {
+      "path": "tools/school_device_init.py",
+      "bytes": 6204,
+      "sha256": "b28c39c610cbb42f3da8278e7741f4e42a06331f5459916d157b5cd072e29364",
+      "git_blob": "4c664fdf4f92bcbc6dc592798a8b11d715ebcbe5"
+    },
+    {
+      "path": "tools/school_device_init_bridge.cs",
+      "bytes": 10859,
+      "sha256": "cd44b5ed0001dc4be0868e84bc91764e808867c88872af686dd95429e3b25d76",
+      "git_blob": "a361daa8147ac834f49ffb4b93f1b2ec74ba37d9"
+    },
+    {
+      "path": "tools/school_device_init_bridge.py",
+      "bytes": 2402,
+      "sha256": "8a4103d15510521c68ac54d891de79e7ff479bb248e088241c67222cb61716fe",
+      "git_blob": "237b425c1f63f7875267a6d790342bbeaa259b71"
+    },
+    {
+      "path": "tools/school_device_init_emulation.py",
+      "bytes": 14619,
+      "sha256": "5ea115867be3dcff5e9564c14f1e19ab31edc2f9a6cb0009b83931cb290c74ed",
+      "git_blob": "87a85cbec6291ecdb03d71e1ed0bf0a56d70975b"
+    },
+    {
+      "path": "tools/school_device_init_verification.py",
+      "bytes": 15379,
+      "sha256": "80a62f0ac9ad08c06b0b05c1f6e4521edf5f3be1358fbe20bed2050ca3e570b7",
+      "git_blob": "5402627c7c9d90fe3abeb18230c9c4abb7a69f16"
+    },
+    {
+      "path": "tools/tests/test_school_device_init.py",
+      "bytes": 1578,
+      "sha256": "e0313e210b3e1bd3312a4719060986c5c83c2af1e3de22d9adda98234342c241",
+      "git_blob": "59b3b986de84d37c85e188144004e3e9a372eecf"
+    },
+    {
+      "path": "tools/tests/test_school_device_init_bridge.py",
+      "bytes": 3871,
+      "sha256": "d09a1d3a74b1f3e96f0e5a62cd3edfb737e8f455d4c5dc6647681f68d419f699",
+      "git_blob": "b8030c49fb74ce7039a91fe4eb8f4e34f9b8993b"
+    },
+    {
+      "path": "tools/tests/test_school_device_init_emulation.py",
+      "bytes": 4029,
+      "sha256": "969e9f8ba8727371b9073f83b83f334e492d808a1d91bcb3585ccc5a404e27d0",
+      "git_blob": "dcf1f2fb4fdabe28b4fd6e8fd5a12bf805206e32"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-device-init-acceptance-20261017.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

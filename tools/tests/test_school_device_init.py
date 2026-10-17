@@ -29,7 +29,7 @@ class SourceTests(unittest.TestCase):
         self.assertEqual(struct.unpack('<13I', raw),
                          (1024, 768, 22, 1, 0, 1, 0x12345678, 1, 0, 0, 0, 0, 0))
 
-    def test_original_four_fallback_pairs_and_software_bit(self):
+    def test_original_four_fallback_pairs_and_required_bit(self):
         self.assertEqual(ATTEMPTS, ((1, 64), (1, 32), (2, 64), (2, 32)))
         self.assertEqual([flags | 4 for _, flags in ATTEMPTS], [68, 36, 68, 36])
 
