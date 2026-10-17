@@ -1166,4 +1166,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 291. Renderer prerequisite acceptance
 
-- [ ] 291.1 Run new/direct-parent tests and strict specs, record preserved historical/runtime/save/checkpoint bytes and exact Git state, update current docs with isolated versus continuous boundaries and next full initialization dependency; commit locally without push.
+- [x] 291.1 Run new/direct-parent tests and strict specs, record preserved historical/runtime/save/checkpoint bytes and exact Git state, update current docs with isolated versus continuous boundaries and next full initialization dependency; commit locally without push.
