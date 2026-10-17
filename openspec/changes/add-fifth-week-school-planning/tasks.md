@@ -1106,4 +1106,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 276. Normal display and timer acceptance
 
-- [ ] 276.1 Run new/direct-parent and strict specs, preserve history/runtime/save/exact Git bytes, document declared-driver limits and pending character/text/outer world/GPU/AI work, commit locally without push.
+- [x] 276.1 Run new/direct-parent and strict specs, preserve history/runtime/save/exact Git bytes, document declared-driver limits and pending character/text/outer world/GPU/AI work, commit locally without push.

@@ -1,0 +1,632 @@
+{
+  "baseline": "3c2a08365e13c000cbaef598c945c936d318869d",
+  "stages": "269–276",
+  "scope": "Actual original display56 reset/query, text-mode20, timer12 with31 native polls, then opcode27 fetch and natural character-handler admission before its first instruction; explicit reset/task driver only",
+  "source_native_commits": [
+    "fa5c4db Derive original display reset text mode and timer polling rules",
+    "c07e856 Verify original display timer display calls and continuation",
+    "57b86ff Verify original display timer release calls and continuation",
+    "6a45aa4 Verify original display timer text_mode calls and continuation",
+    "c17c6f4 Verify original display timer timer_start calls and continuation",
+    "fa6c3d9 Verify original display timer timer_finish calls and continuation",
+    "9bd080b Verify original display timer character_entry calls and continuation"
+  ],
+  "reports": [
+    {
+      "phase": "display",
+      "path": "analysis/school-vm-panel-display-v1-20261017.json.gz",
+      "sha256": "b334cf13f49b09d8507d5a98b4c7a45da6f1bcad3497dbab3460ca21ac3fcfdc"
+    },
+    {
+      "phase": "release",
+      "path": "analysis/school-vm-panel-release-v1-20261017.json.gz",
+      "sha256": "b4f49ab5db44b93e06d3173792254ab6d1496ba7320fd806c464030230536684"
+    },
+    {
+      "phase": "text_mode",
+      "path": "analysis/school-vm-panel-text_mode-v1-20261017.json.gz",
+      "sha256": "5304ca8c9c6bc68e154395568328a767932f8daa1b648ca506b643c3e49f5a98"
+    },
+    {
+      "phase": "timer_start",
+      "path": "analysis/school-vm-panel-timer_start-v1-20261017.json.gz",
+      "sha256": "5eb583b23707a331373b8d5d5237891f516ceea10373706391bd26d75aeaf929"
+    },
+    {
+      "phase": "timer_finish",
+      "path": "analysis/school-vm-panel-timer_finish-v1-20261017.json.gz",
+      "sha256": "d18783de2fffc36950140d2a3fd7c8e58c98521a58b13a28fea93f7b981ede84"
+    },
+    {
+      "phase": "character_entry",
+      "path": "analysis/school-vm-panel-character_entry-v1-20261017.json.gz",
+      "sha256": "b59c9e2cc4df82cffda16d323fee89688b25029c31129c1eda1fbcb6f9bff83c"
+    }
+  ],
+  "cases": [
+    {
+      "name": "initial",
+      "display": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 97,
+        "executed_original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 192,
+        "wait": 1,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "release": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 95,
+        "executed_original_calls": 95,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 192,
+        "wait": 0,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "text_mode": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 96,
+        "executed_original_calls": 96,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 200,
+        "wait": 0,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "timer_start": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 97,
+        "executed_original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 1,
+        "timer_count": 0,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "timer_finish": {
+        "steps": 31,
+        "completed_task_calls": 31,
+        "original_call_entries": 2945,
+        "executed_original_calls": 2945,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 0,
+        "timer_count": 31,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "character_entry": {
+        "steps": 1,
+        "completed_task_calls": 0,
+        "original_call_entries": 18,
+        "executed_original_calls": 17,
+        "CPU": {
+          "EIP": 5004960,
+          "ESP": 33619468,
+          "EBP": 33619608,
+          "EAX": 242490980,
+          "ECX": 8223784
+        },
+        "PC": 208,
+        "wait": 0,
+        "timer_count": 31,
+        "pending": {
+          "va": "0x4c5ea0",
+          "return_va": "0x4ced48",
+          "sp": 33619468,
+          "receiver": 8223784,
+          "args": [
+            0,
+            242490980,
+            1
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "display": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 97,
+        "executed_original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 192,
+        "wait": 1,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "release": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 95,
+        "executed_original_calls": 95,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 192,
+        "wait": 0,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "text_mode": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 96,
+        "executed_original_calls": 96,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 200,
+        "wait": 0,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "timer_start": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 97,
+        "executed_original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 1,
+        "timer_count": 0,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "timer_finish": {
+        "steps": 31,
+        "completed_task_calls": 31,
+        "original_call_entries": 2945,
+        "executed_original_calls": 2945,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 0,
+        "timer_count": 31,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "character_entry": {
+        "steps": 1,
+        "completed_task_calls": 0,
+        "original_call_entries": 18,
+        "executed_original_calls": 17,
+        "CPU": {
+          "EIP": 5004960,
+          "ESP": 33619468,
+          "EBP": 33619608,
+          "EAX": 242490980,
+          "ECX": 8223784
+        },
+        "PC": 208,
+        "wait": 0,
+        "timer_count": 31,
+        "pending": {
+          "va": "0x4c5ea0",
+          "return_va": "0x4ced48",
+          "sp": 33619468,
+          "receiver": 8223784,
+          "args": [
+            0,
+            242490980,
+            1
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      }
+    },
+    {
+      "name": "fifth_class",
+      "display": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 97,
+        "executed_original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 192,
+        "wait": 1,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "release": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 95,
+        "executed_original_calls": 95,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 192,
+        "wait": 0,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "text_mode": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 96,
+        "executed_original_calls": 96,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 200,
+        "wait": 0,
+        "timer_count": 61,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "timer_start": {
+        "steps": 1,
+        "completed_task_calls": 1,
+        "original_call_entries": 97,
+        "executed_original_calls": 97,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 1,
+        "timer_count": 0,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "timer_finish": {
+        "steps": 31,
+        "completed_task_calls": 31,
+        "original_call_entries": 2945,
+        "executed_original_calls": 2945,
+        "CPU": {
+          "EIP": 50331648,
+          "ESP": 33619716,
+          "EBP": 33619708,
+          "EAX": 0,
+          "ECX": 0
+        },
+        "PC": 208,
+        "wait": 0,
+        "timer_count": 31,
+        "pending": null,
+        "retained_bytes": 119460384
+      },
+      "character_entry": {
+        "steps": 1,
+        "completed_task_calls": 0,
+        "original_call_entries": 18,
+        "executed_original_calls": 17,
+        "CPU": {
+          "EIP": 5004960,
+          "ESP": 33619468,
+          "EBP": 33619608,
+          "EAX": 242490980,
+          "ECX": 8223784
+        },
+        "PC": 208,
+        "wait": 0,
+        "timer_count": 31,
+        "pending": {
+          "va": "0x4c5ea0",
+          "return_va": "0x4ced48",
+          "sp": 33619468,
+          "receiver": 8223784,
+          "args": [
+            0,
+            242490980,
+            1
+          ],
+          "first_instruction_executed": false
+        },
+        "retained_bytes": 119460384
+      }
+    }
+  ],
+  "original_call_entries": 10044,
+  "executed_original_calls": 10041,
+  "pending_character_calls": 3,
+  "declared_task_invocations": 108,
+  "completed_original_task_returns": 105,
+  "completed_original_VM_returns": 105,
+  "declared_and_completed_input_resets": 108,
+  "executed_commands": 9,
+  "fetched_unexecuted_opcode27": 3,
+  "private_checkpoints": [
+    {
+      "name": "initial",
+      "phase": "display",
+      "path": ".venv-audit/vm-panel-display-initial.pkl",
+      "bytes": 136847194,
+      "sha256": "6554b2d487e19110f463b21fc31e75ef5054775c7c3b3ef898f29ea73c66271f",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "release",
+      "path": ".venv-audit/vm-panel-release-initial.pkl",
+      "bytes": 136847194,
+      "sha256": "04002f21e5d1d1efab4f1bca69d73c88e5e04bd3b18d11e3915a384b1d52debf",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "text_mode",
+      "path": ".venv-audit/vm-panel-text_mode-initial.pkl",
+      "bytes": 136847198,
+      "sha256": "6b03667c8d1351e195f919b1bb609610984fb926526655300aa4fa0da09ac7ef",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "timer_start",
+      "path": ".venv-audit/vm-panel-timer_start-initial.pkl",
+      "bytes": 136847202,
+      "sha256": "7bcd98c308272ce5d2c5e0f3a5505c5d95928a3ea3b98d6c8f89baf4f7eff271",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "timer_finish",
+      "path": ".venv-audit/vm-panel-timer_finish-initial.pkl",
+      "bytes": 136847204,
+      "sha256": "910e3b86cd56ed7f89c4101e7be63ea775cfbda1692d05f3fd2ddf80cf6b3070",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "initial",
+      "phase": "character_entry",
+      "path": ".venv-audit/vm-panel-character_entry-initial.pkl",
+      "bytes": 136847210,
+      "sha256": "acf4a812fc4cc50aeeff3a098a34e6a12d49a33240e500df6f8176babc7d104e",
+      "pending_eip": "0x4c5ea0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "display",
+      "path": ".venv-audit/vm-panel-display-student9_waiting.pkl",
+      "bytes": 136309157,
+      "sha256": "7b9054613376822465c82fc602b60f939f42e5fdb0d70b47c131d93ac5a528af",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "release",
+      "path": ".venv-audit/vm-panel-release-student9_waiting.pkl",
+      "bytes": 136309157,
+      "sha256": "531a3ae91f4c5118f6ed3ece404254574cf32d5bb4724c549cb4f6a9968adb3a",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "text_mode",
+      "path": ".venv-audit/vm-panel-text_mode-student9_waiting.pkl",
+      "bytes": 136309161,
+      "sha256": "c649c2468430f6a5c5992a6707bfc5a5a78664608a747d29c05654637d137587",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "timer_start",
+      "path": ".venv-audit/vm-panel-timer_start-student9_waiting.pkl",
+      "bytes": 136309165,
+      "sha256": "dacf255f1cef6429be85f32cc2ebb708d65ba0d6facbd8fda85f2eb209de97bc",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "timer_finish",
+      "path": ".venv-audit/vm-panel-timer_finish-student9_waiting.pkl",
+      "bytes": 136309167,
+      "sha256": "ee279560961e7aae990101be606b87514fcd94f3ff2ec87f5c612ea4298c0107",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "student9_waiting",
+      "phase": "character_entry",
+      "path": ".venv-audit/vm-panel-character_entry-student9_waiting.pkl",
+      "bytes": 136309173,
+      "sha256": "86eda67ebcffb8d0d788c35f1adf072a1a14b7d6887c764d9ffc5e344b9a83f4",
+      "pending_eip": "0x4c5ea0",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "display",
+      "path": ".venv-audit/vm-panel-display-fifth_class.pkl",
+      "bytes": 136309095,
+      "sha256": "f86a50079ba70b99e6d60a87b31a0c9318a94c0f431320232778db8086209498",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "release",
+      "path": ".venv-audit/vm-panel-release-fifth_class.pkl",
+      "bytes": 136309095,
+      "sha256": "2275b1b83498016f7f43477f657d166dc7dd956704463430d50de29c6c198e77",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "text_mode",
+      "path": ".venv-audit/vm-panel-text_mode-fifth_class.pkl",
+      "bytes": 136309099,
+      "sha256": "3525d2e1f91a4bd93ed7457da18463274e188fa3c4c8a651c55f2c7d7d2fa3fe",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "timer_start",
+      "path": ".venv-audit/vm-panel-timer_start-fifth_class.pkl",
+      "bytes": 136309103,
+      "sha256": "2c9456a56ea6491b34c390df65ce135e71144d7d031f38358885566b3cac4e82",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "timer_finish",
+      "path": ".venv-audit/vm-panel-timer_finish-fifth_class.pkl",
+      "bytes": 136309105,
+      "sha256": "9fc9cb2a7036622cd8ec8896b8eaf365122fc5cd7dc2da3e54e9060e16be0ce8",
+      "pending_eip": "0x3000000",
+      "runtime_or_original_save": false
+    },
+    {
+      "name": "fifth_class",
+      "phase": "character_entry",
+      "path": ".venv-audit/vm-panel-character_entry-fifth_class.pkl",
+      "bytes": 136309111,
+      "sha256": "a86896c89fdb67c585a3e52e1e2fcf8bbda6e981a8bf0b5d7b019a48d715619a",
+      "pending_eip": "0x4c5ea0",
+      "runtime_or_original_save": false
+    }
+  ],
+  "retained_files": 15864,
+  "save_rule_fingerprints": 10,
+  "timer": {
+    "duration": 30,
+    "polls": 31,
+    "comparison": "old_count > duration - 1",
+    "final_count": 31,
+    "wait_and_1CD_cleared_on_poll31": true
+  },
+  "regression": {
+    "python_tests": 49,
+    "new_tests": 23,
+    "direct_parent_tests": 26,
+    "strict_specs": 30,
+    "failures": 0,
+    "log": "analysis/school-vm-panel-final-regression-20261017.log",
+    "spec_log": "analysis/school-vm-panel-spec-final-20261017.log"
+  },
+  "progress": {
+    "total": 276,
+    "complete": 276,
+    "remaining": 0
+  },
+  "authority": {
+    "display_reset": true,
+    "text_mode": true,
+    "complete_captured_timer": true,
+    "character_handler_executed": false,
+    "dialogue_text_executed": false,
+    "platform_responses": "inherited null-IME closed response and reading captured empty string only",
+    "live_OS_observed": false,
+    "GPU_executed": false,
+    "full_outer_frame": false,
+    "world_beyond185": false,
+    "AI_or_settlement": false,
+    "persistent_write": false
+  },
+  "remaining": [
+    "Execute original4C5EA0 character handler from retained real VM/task call stack",
+    "Continue subsequent original text/display/wait commands",
+    "Close original input/outer4539B0 task/world/render scheduling and enabled renderer/backend",
+    "Complete AI/events/waves/victory/reward/school return"
+  ],
+  "artifact_manifest": "analysis/school-vm-panel-artifact-manifest-20261017.json",
+  "local_only": true
+}
