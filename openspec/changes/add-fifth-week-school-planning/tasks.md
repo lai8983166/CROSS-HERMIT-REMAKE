@@ -1178,7 +1178,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 294. Original startup through live device initialization
 
-- [ ] 294.1 Execute original413450 device prefix in two declared windowed cases through unexecuted415F50 using real bridge responses; independently validate full owner/image/foreign memory, source calls/ABI and lifetime boundaries, add corruption tests and commit locally.
+- [x] 294.1 Execute original413450 device prefix in two declared windowed cases through unexecuted415F50 using real bridge responses; independently validate full owner/image/foreign memory, source calls/ABI and lifetime boundaries, add corruption tests and commit locally.
 
 ## 295. Live device prefix acceptance
 
