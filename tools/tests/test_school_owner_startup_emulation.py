@@ -29,6 +29,27 @@ class ConstructorTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 verify_report(bad)
 
+
+class DeviceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.report = json.loads((ROOT/'analysis/school-owner-startup-device-v1-20261017.json').read_text(encoding='utf-8'))
+
+    def test_real_device_prefix_on_both_original_constructed_owners(self):
+        self.assertEqual(verify_report(self.report)['cases'], 2)
+
+    def test_device_owner_state_live_requests_and_font_boundary_refused(self):
+        changes = [lambda c: c['device']['native']['platform_calls'][2]['args'].__setitem__(4, 36),
+                   lambda c: c['device']['state']['owner'].update(sha256='0'*64),
+                   lambda c: c['device']['native']['cpu'].update(ESP=0),
+                   lambda c: c['device']['pending'].update(first_instruction_executed=True),
+                   lambda c: c['device_trace'][0]['reply'].update(id=0)]
+        for change in changes:
+            bad = deepcopy(self.report)
+            change(bad['cases'][0])
+            with self.assertRaises(ValueError):
+                verify_report(bad)
+
     def test_full_owner_constructor_does_not_claim_VM_or_font_execution(self):
         bad = deepcopy(self.report)
         bad['retained_VM_advanced'] = True

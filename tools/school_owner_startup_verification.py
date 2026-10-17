@@ -1,5 +1,6 @@
 """Independent constructor stores, source call stacks and live startup boundaries."""
 import json
+import os
 import struct
 
 from tools.school_owner_startup import *
@@ -7,6 +8,8 @@ from tools.school_owner_startup_emulation import OWNER, STACK, TOP, RETURN, MANA
 from tools.school_device_init_verification import unpack
 from tools.school_renderer_init_verification import verify_buffer
 from tools.school_owner_platform import HELPER, COMPILER, sha, machine
+from tools.school_device_init import project_owner, presentation, FORMATS
+from tools.school_device_init_emulation import EXTERNAL
 
 
 @lru_cache(maxsize=1)
@@ -179,6 +182,88 @@ def verify_constructor(case):
     return owner, image
 
 
+def verify_device(case, owner, image):
+    row = case['device']
+    native = row['native']
+    h = case['hello']
+    w, height, window = h['width'], h['height'], h['window']
+    args = [window, 1, 1, w, height]
+    verify_native(native, 0x413450, TOP, RETURN, OWNER, args)
+    calls = native['live_results']
+    checks = [r for r in calls if r['op'] == 'check_format']
+    expected_ops = ['factory', 'display_mode', 'create_device', 'caps', 'backbuffer',
+                    'describe_surface', 'release_surface']+['check_format']*len(checks)+['viewport']
+    if [r['op'] for r in calls] != expected_ops or len(calls) != len(native['platform_calls']):
+        raise ValueError('owner device live operation sequence')
+    expected_entries = [0x413450, 0x4136D0, 0x526C40, 0x413730, 0x413850, 0x4138A0,
+                        0x56CEC0, 0x413FA0, 0x414010, 0x414090, 0x56CEC0, 0x414190, 0x56CEC0]
+    if [int(r['va'], 16) for r in native['entries']] != expected_entries:
+        raise ValueError('owner complete device helpers')
+    objects = {name: next(r['result'][name] for r in calls if name in r['result'])
+               for name in ('factory', 'device', 'surface')}
+    f, d, s = (objects[k]['pointer'] for k in ('factory', 'device', 'surface'))
+    mode = bytes.fromhex(calls[1]['result']['hex'])
+    caps = bytes.fromhex(calls[3]['result']['hex'])
+    desc = bytes.fromhex(calls[5]['result']['hex'])
+    if (len(mode), len(caps), len(desc), len(bytes.fromhex(calls[2]['result']['presentation_hex']))) != (16, 212, 32, 52):
+        raise ValueError('owner complete device platform buffers')
+    runtime = calls[0]['result']
+    path = ROOT.__class__(os.environ['WINDIR'])/'SysWOW64/d3d8.dll'
+    if (ROOT.__class__(runtime['runtime_path']).resolve() != path.resolve()
+            or machine(path) != 0x14C or sha(path.read_bytes()) != runtime['runtime_sha256']):
+        raise ValueError('owner actual32-bit device runtime')
+    native_args = dict(factory=[220], display_mode=[f, 0, OWNER+0xB214],
+                       create_device=[f, 0, 1, window, 68, OWNER+0xB234, OWNER+0xB210],
+                       caps=[d, OWNER+0xB314], backbuffer=[d, 0, 0, TOP-488],
+                       describe_surface=[s, OWNER+0xB3E8], release_surface=[s],
+                       viewport=[d, OWNER+0xBA08])
+    requests = dict(factory=dict(sdk=220), display_mode=dict(pointer=f),
+                    create_device=dict(pointer=f, type=1, flags=68,
+                                       presentation_hex=presentation(w, height, dword(mode, 12), window).hex()),
+                    caps=dict(pointer=d), backbuffer=dict(pointer=d), describe_surface=dict(pointer=s),
+                    release_surface=dict(pointer=s), viewport=dict(pointer=d,
+                       hex=struct.pack('<6I', 0, 0, w, height, 0, 0x3F800000).hex()))
+    relative = dict(factory=184, display_mode=396, create_device=412, caps=572,
+                    backbuffer=584, describe_surface=576, release_surface=572, check_format=596, viewport=392)
+    slots = dict(display_mode=('factory', 32), create_device=('factory', 60), caps=('device', 28),
+                 backbuffer=('device', 64), describe_surface=('surface', 32), release_surface=('surface', 8),
+                 check_format=('factory', 40), viewport=('device', 160))
+    for r, actual in zip(calls, native['platform_calls']):
+        name, result = r['op'], r['result']
+        if name == 'check_format':
+            candidate = r['request']['format']
+            request = dict(pointer=f, adapter=dword(caps, 4), type=dword(caps, 0), adapter_format=dword(desc, 0), format=candidate)
+            args = [f, request['adapter'], request['type'], request['adapter_format'], 1, 1, candidate]
+        else:
+            request, args = requests[name], native_args[name]
+        ret = next(ret for ret, (op, _) in EXTERNAL.items() if op == name)
+        if name == 'factory':
+            target, eax = dword(SOURCE.read_bytes(), 0x59246C-BASE), f
+        else:
+            kind, slot = slots[name]
+            target = objects[kind]['methods'][str(slot)]
+            eax = result['count'] if name == 'release_surface' else u32(result['hr'])
+        if r['request'] != request or actual != dict(op=name, va=hex(target), return_va=hex(ret),
+                sp=TOP-relative[name], args=args, result=eax, live_host_observed=True):
+            raise ValueError('owner original device interface ABI/live response')
+        if name not in ('factory', 'check_format', 'release_surface') and result['hr'] < 0:
+            raise ValueError('owner device actual success required')
+    expected = project_owner(owner, w, height, window, calls)
+    verify_state(row['state'], expected, image, 0, objects.values())
+    cpu = native['cpu']
+    if native['boundary'] != '0x415f50' or any(cpu[k] != value for k, value in
+            dict(EIP=0x415F50, ESP=TOP-92, EBP=TOP-4, EAX=0, ECX=OWNER,
+                 EBX=0x55667788, ESI=0x88776655, EDI=TOP-4).items()):
+        raise ValueError('owner original device font-entry CPU')
+    if row['pending'] != dict(va='0x415f50', return_va='0x4134e3', sp=TOP-92,
+                              receiver=OWNER, args=[], first_instruction_executed=False):
+        raise ValueError('owner source font admission stack')
+    for c in native['returns']:
+        if c['va'] not in ('0x56ce82', '0x56cf12') and c['eax'] != 0:
+            raise ValueError('owner native device helper return')
+    return expected, objects
+
+
 def verify_report(report):
     if report['source_contract'] != source_contract() or report['schema_version'] != 1:
         raise ValueError('owner startup source contract')
@@ -193,13 +278,30 @@ def verify_report(report):
             or build['helper_sha256'] != sha(HELPER.read_bytes()) or build['machine'] != machine(HELPER)
             or build['compiler_sha256'] != sha(COMPILER.read_bytes())):
         raise ValueError('owner live platform build identity')
-    if [c['fill'] for c in report['cases']] != [0xA5, 0xCC]:
+    device_build = report['device_build']
+    if (device_build['source_sha256'] != sha((ROOT/'tools/school_device_init_bridge.cs').read_bytes())
+            or device_build['helper_sha256'] != sha((ROOT/'.venv-audit/school-device-init-bridge.exe').read_bytes())
+            or device_build['compiler_sha256'] != sha(COMPILER.read_bytes()) or device_build['machine'] != 0x14C):
+        raise ValueError('owner immutable device helper provenance')
+    if [(c['fill'], c['hello']['width'], c['hello']['height']) for c in report['cases']] != [(0xA5, 640, 480), (0xCC, 1024, 768)]:
         raise ValueError('owner two declared dirty cases')
+    phase = report['phase']
+    if phase not in ('constructor', 'device', 'font'):
+        raise ValueError('owner known audit phase')
     for c in report['cases']:
-        verify_constructor(c)
+        if c['hello']['pointer_bytes'] != 4 or c['hello']['window_visible'] is not False or c['platform_hello']['pointer_bytes'] != 4:
+            raise ValueError('owner actual hidden window/platform ABI')
+        owner, image = verify_constructor(c)
+        device_calls = []
+        if phase != 'constructor':
+            owner, objects = verify_device(c, owner, image)
+            device_calls = c['device']['native']['live_results']
         if c['platform_cleanup'] != dict(fonts_released=0, dcs_released=1, all_owned_resources_released=True):
             raise ValueError('owner constructor platform cleanup')
-        if c['device_cleanup'] != dict(window_destroyed=True, all_owned_resources_released=True):
+        expected_cleanup = dict(window_destroyed=True, all_owned_resources_released=True)
+        if phase != 'constructor':
+            expected_cleanup.update(device_release_count=0, factory_release_count=0)
+        if c['device_cleanup'] != expected_cleanup:
             raise ValueError('owner constructor hidden window cleanup')
         calls = c['constructor']['platform_calls']
         expected_trace = [dict(request=dict(id=i, op=r['name'], **r['request']),
@@ -207,6 +309,13 @@ def verify_report(report):
         expected_trace.append(dict(request=dict(id=4, op='close'), reply=dict(ok=True, id=4, result=c['platform_cleanup'])))
         if c['platform_trace'] != expected_trace:
             raise ValueError('owner actual sequenced platform trace')
+        device_trace = [dict(request=dict(id=i, op=r['op'], **r['request']),
+                             reply=dict(ok=True, id=i, result=r['result'])) for i, r in enumerate(device_calls, 1)]
+        sequence = len(device_calls)+1
+        device_trace.append(dict(request=dict(id=sequence, op='close'),
+                                 reply=dict(ok=True, id=sequence, result=c['device_cleanup'])))
+        if c['device_trace'] != device_trace:
+            raise ValueError('owner device complete live trace')
     return dict(cases=2, full_owner_bytes=49152, source_calls_each=42, inherited_globals=True)
 
 
