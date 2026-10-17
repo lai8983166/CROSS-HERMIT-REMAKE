@@ -1222,4 +1222,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 305. Font cache prerequisite acceptance
 
-- [ ] 305.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document inherited versus declared experiments and unresolved texture/full font/outer dependencies, verify working/committed Git bytes and commit locally without push.
+- [x] 305.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document inherited versus declared experiments and unresolved texture/full font/outer dependencies, verify working/committed Git bytes and commit locally without push.
