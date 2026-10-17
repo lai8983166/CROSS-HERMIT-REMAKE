@@ -1114,7 +1114,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 278. Native character template setup
 
-- [ ] 278.1 Resume original4C5EA0 and execute three typed operands/4CC600 with complete template stores to unexecuted4CC0F0; verify full state/calls/CPU/real stack/retention and pin in three cases; commit locally.
+- [x] 278.1 Resume original4C5EA0 and execute three typed operands/4CC600 with complete template stores to unexecuted4CC0F0; verify full state/calls/CPU/real stack/retention and pin in three cases; commit locally.
 
 ## 279. Native character layout show and handler return
 

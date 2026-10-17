@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_vm_character_emulation.py", line 61, in <module>
+    p=argparse.ArgumentParser(description=__doc__);g=p.add_mutually_exclusive_group(required=True);g.add_argument('--phase',choices=PHASES);g.add_argument('--all',action='store_true');a=p.parse_args();generate(PHASES if a.all else (a.phase,))
+  File "F:\project\chaomofa\tools\school_vm_character_emulation.py", line 56, in generate
+    a=e.run_character(phase);rows.append(dict(name=name,prior_checkpoint=cps[name],actual=pack(a)));print(name+': native '+phase+' full source state/CPU verified',flush=True)
+  File "F:\project\chaomofa\tools\school_vm_character_emulation.py", line 25, in run_character
+    before=self.draw_regions();expected=project(phase,inputs,before);self.draw_allowed=[(STACK,STACK+65536)]+[(a,a+n) for a,n in REGIONS];retained=self.capture_scene_memory(self.draw_allowed);self.draw_args={int(r['va'],16):r['args'] for r in source_contract()['functions']};self.draw_entries=set(self.draw_args);self.draw_ranges=native_ranges();self.draw_stop=STOP[phase];self.draw_calls=[];self.draw_returns=[];self.draw_visited=set();self.char_phase=phase;self.char_pending=None;prior=self._function_ranges;self._function_ranges=prior+self.draw_ranges;self.draw_loading=True
+  File "F:\project\chaomofa\tools\school_vm_character.py", line 49, in project
+    contract=source_contract();d=data(before);v=d[VM];t=d[TACT];o=LAYER-VM
+  File "F:\project\chaomofa\tools\school_vm_flow.py", line 58, in data
+    if [(r['pointer'],r['bytes']) for r in before]!=list(REGIONS) or any(len(bytes.fromhex(r['hex']))!=r['bytes'] for r in before):raise ValueError('VM flow complete fixed owned regions')
+ValueError: VM flow complete fixed owned regions

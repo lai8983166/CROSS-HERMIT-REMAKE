@@ -1,0 +1,15 @@
+Preliminary independent refusal: template VM character actual critical return instructions/values returns: [{'va': '0x4c1f26', 'return_va': '0x4c5ee9', 'sp': 33619364, 'eax': 4, 'ecx': 2}, {'va': '0x4c1f26', 'return_va': '0x4c5f17', 'sp': 33619364, 'eax': 268435455, 'ecx': 2}, {'va': '0x4c1f26', 'return_va': '0x4c5f45', 'sp': 33619364, 'eax': 268435455, 'ecx': 2}, {'va': '0x4cc7a5', 'return_va': '0x4c5f66', 'sp': 33619372, 'eax': 8253697, 'ecx': 8192008}]
+Preliminary independent refusal: overlay VM character exact source calls/receivers/full argument words returns: [{'va': '0x408124', 'sp': 33618860, 'return_va': '0x407ab0', 'eax': 1, 'ecx': 33619140}, {'va': '0x4d2b83', 'sp': 33619416, 'return_va': '0x4d024f', 'eax': 3435973836, 'ecx': 0}]
+Original A0B0 writes CX only, so ECX upper bits survive and lower word is8 at CC600 return:
+0x4ca0cd 8b45fc mov eax, dword ptr [ebp - 4]
+0x4ca0d0 668b4d08 mov cx, word ptr [ebp + 8]
+0x4ca0d4 66894810 mov word ptr [eax + 0x10], cx
+0x4ca0d8 b001 mov al, 1
+0x4ca0da 5f pop edi
+0x4ca0db 5e pop esi
+0x4ca0dc 5b pop ebx
+0x4ca0dd 8be5 mov esp, ebp
+0x4ca0df 5d pop ebp
+0x4ca0e0 c20400 ret 4
+Inherited overlay protocol uses receiver=None only for semantically unused cdecl ECX; actual ECX remains recorded as integer, all source callsites/ABI/arguments checked.
+No case/checkpoint acceptance used the preliminary rejected return/receiver checks.
