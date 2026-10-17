@@ -1150,4 +1150,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 287. Graphics and renderer initialization acceptance
 
-- [ ] 287.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document original renderer-owner initialization prerequisite and pending clipping/queue/GPU/VM-task/text/world work; commit locally without push.
+- [x] 287.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document original renderer-owner initialization prerequisite and pending clipping/queue/GPU/VM-task/text/world work; commit locally without push.

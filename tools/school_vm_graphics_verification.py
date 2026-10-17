@@ -60,7 +60,7 @@ def verify_case(c,phase):
  elif phase=='rectangle':required|={0x4CA397,0x4CD8CB,0x4CA404,0x410340}
  else:required|={0x40E2CB,0x40E2CE}
  clip_end=next(int(r['end'],16) for r in source_contract()['functions'] if int(r['va'],16)==0x40E2A0)
- later_clip=any((0x40E2A0 if phase=='rectangle' else 0x40E2D0)<=at<clip_end for at in visited) if phase!='graphics' else False
+ later_clip=any((0x40E2D0 if phase=='owner_read' else 0x40E2A0)<=at<clip_end for at in visited)
  if not required<=visited or forbidden&visited or later_clip:raise ValueError('VM graphics original branches and unexecuted target read')
  if a['owned_bodies_stubbed'] is not False or a['platform_adapters']!=[] or a['debug_stack_check_adapter'] is not True or a['new_root_calls']!=0:raise ValueError('VM graphics native continuous/no extra platform or root scope')
  retained(a)
