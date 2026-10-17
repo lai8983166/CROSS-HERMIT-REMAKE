@@ -1112,3 +1112,14 @@ The audit SHALL source-bind renderer construction, owner/device binding, queue i
 #### Scenario: Unsupported or exhausted renderer state
 - **WHEN** a declared clip input is outside the original signed predicate or the arena has exactly24 bytes remaining
 - **THEN** original clip rejection or the strict capacity debug-call boundary is observed without fabricating a debug response or GPU work
+
+### Requirement: Live original windowed device startup prefix
+The audit SHALL execute original windowed device startup helpers with live owned x86 Direct3D8 factory/device/surface results, verify complete source presentation/owner state, original calls and pending font-entry stack, and release all host resources. It MUST preserve original IAT and retained VM, reject foreign objects and fullscreen requests, and MUST NOT count platform success as GPU drawing or a full startup/outer frame.
+
+#### Scenario: Original startup reaches font initialization
+- **WHEN** declared hidden-window startup enters413450 with valid bounded dimensions and automatic device selection
+- **THEN** original factory, device, capability, backbuffer, format andviewport logic execute with live results and naturally reach unexecuted415F50 before manager owner binding
+
+#### Scenario: Foreign state and expired platform objects
+- **WHEN** a request names a foreign device/surface, requestsfullscreen or follows resource cleanup
+- **THEN** the bridge refuses it without performing the requested interface call and no released pointer is exported as a resumable checkpoint

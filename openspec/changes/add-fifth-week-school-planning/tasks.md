@@ -1167,3 +1167,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 291. Renderer prerequisite acceptance
 
 - [x] 291.1 Run new/direct-parent tests and strict specs, record preserved historical/runtime/save/checkpoint bytes and exact Git state, update current docs with isolated versus continuous boundaries and next full initialization dependency; commit locally without push.
+
+## 292. Original device startup source contract
+
+- [x] 292.1 Bind original import/SDK, device fallback order,52-byte presentation, capability/backbuffer/format/viewport helpers and font boundary; add source projections/tests and commit locally.
+
+## 293. Owned live device startup bridge
+
+- [ ] 293.1 Implement and verify a bounded real x86 hidden-window bridge driven by native requests, with factory/device/surface identity, exact raw output buffers, refused foreign/fullscreen inputs and complete cleanup; commit locally.
+
+## 294. Original startup through live device initialization
+
+- [ ] 294.1 Execute original413450 device prefix in two declared windowed cases through unexecuted415F50 using real bridge responses; independently validate full owner/image/foreign memory, source calls/ABI and lifetime boundaries, add corruption tests and commit locally.
+
+## 295. Live device prefix acceptance
+
+- [ ] 295.1 Run new/direct-parent tests and strict specs, preserve historical/runtime/save/private VM checkpoints, document actual device initialization versus unresolved font/owner binding/outer frame, verify exact Git bytes and commit locally without push.

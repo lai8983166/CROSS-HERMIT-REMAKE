@@ -293,3 +293,6 @@ Continue immutable vm-character layer_entry on its real layer/VM/task stack. Exe
 
 ## Isolated renderer prerequisites (2026-10-17)
 Derive original manager construction, owner/device binding, queue allocation and per-frame reset ordering. Execute isolated native prerequisite experiments with explicit owner/device/dimensions/gate inputs and a bounded debug-CRT allocation response. Verify full manager/queue bytes, rectangle linked-list insertion, reset and source overflow/rejection branches. These experiments do not repair or advance the retained vm-graphics owner_read CPU; complete D3D initialization and real outer scheduling remain prerequisites. Preserve history/runtime/saves and commit each completed stage locally without push.
+
+## Live original device startup prefix (2026-10-17)
+Execute original413450 windowed startup from explicitly declared scratch owner state, through original factory/device setup, capabilities, backbuffer description, format selection and viewport to unexecuted415F50 font initialization. Supply only live owned x86 Direct3D8 interface responses through a separate hidden-window process, retaining original import target and original helper bodies. Validate complete owner bytes/CPU/calls and release all external resources; do not patch pending VM or claim rendering/Present/full startup completion.
