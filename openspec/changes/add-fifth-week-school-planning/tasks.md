@@ -1210,7 +1210,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 302. Owned cache device methods
 
-- [ ] 302.1 Fork immutable x86 startup bridge with bounded owned AddRef/caps/GetCreationParameters, exact identity/buffers and extra-reference cleanup; test and commit locally.
+- [x] 302.1 Fork immutable x86 startup bridge with bounded owned AddRef/caps/GetCreationParameters, exact identity/buffers and extra-reference cleanup; test and commit locally.
 
 ## 303. Natural inherited-cache font prefix
 
