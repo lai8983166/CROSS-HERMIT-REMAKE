@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "build": {
+    "source_sha256": "cd44b5ed0001dc4be0868e84bc91764e808867c88872af686dd95429e3b25d76",
+    "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+    "helper_sha256": "42218ed9c3df727ef9924c112304818dcacfe64055931b5728944936dd4a23ca",
+    "machine": 332
+  },
+  "hello": {
+    "pointer_bytes": 4,
+    "window": 19798000,
+    "window_visible": false,
+    "width": 640,
+    "height": 480
+  },
+  "trace": [
+    {
+      "request": {
+        "id": 1,
+        "op": "factory",
+        "sdk": 220
+      },
+      "reply": {
+        "ok": true,
+        "id": 1,
+        "result": {
+          "factory": {
+            "pointer": 9844096,
+            "vtable": 1526009868,
+            "methods": {
+              "32": 1526062080,
+              "40": 1526061168,
+              "60": 1526305488
+            }
+          },
+          "runtime_path": "C:\\Windows\\SysWOW64\\d3d8.dll",
+          "runtime_sha256": "924aaa10ba0169686be914878f65f12933fc0c9c675401a5f248c5224948b81b"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "op": "display_mode",
+        "pointer": 9844096
+      },
+      "reply": {
+        "ok": true,
+        "id": 2,
+        "result": {
+          "hr": 0,
+          "hex": "000f0000700800003c00000016000000"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "op": "create_device",
+        "pointer": 9844096,
+        "type": 1,
+        "flags": 68,
+        "presentation_hex": "80020000e001000016000000010000000000000001000000f0172e01010000000000000000000000000000000000000000000000"
+      },
+      "reply": {
+        "ok": true,
+        "id": 3,
+        "result": {
+          "hr": 0,
+          "presentation_hex": "80020000e001000016000000010000000000000001000000f0172e01010000000000000000000000000000000000000000000000",
+          "device": {
+            "pointer": 158424704,
+            "vtable": 158425472,
+            "methods": {
+              "28": 1526185968,
+              "64": 1526178288,
+              "160": 1526320928
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "op": "caps",
+        "pointer": 158424704
+      },
+      "reply": {
+        "ok": true,
+        "id": 4,
+        "result": {
+          "hr": 0,
+          "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "op": "backbuffer",
+        "pointer": 158424704
+      },
+      "reply": {
+        "ok": true,
+        "id": 5,
+        "result": {
+          "hr": 0,
+          "surface": {
+            "pointer": 86639516,
+            "vtable": 1526009968,
+            "methods": {
+              "8": 1526153536,
+              "32": 1526168880
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "op": "describe_surface",
+        "pointer": 86639516
+      },
+      "reply": {
+        "ok": true,
+        "id": 6,
+        "result": {
+          "hr": 0,
+          "hex": "16000000010000000100000000000000000000000000000080020000e0010000"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 7,
+        "op": "release_surface",
+        "pointer": 86639516
+      },
+      "reply": {
+        "ok": true,
+        "id": 7,
+        "result": {
+          "count": 0
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 8,
+        "op": "check_format",
+        "pointer": 9844096,
+        "adapter": 0,
+        "type": 1,
+        "adapter_format": 22,
+        "format": 25
+      },
+      "reply": {
+        "ok": true,
+        "id": 8,
+        "result": {
+          "hr": -2005530518
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 9,
+        "op": "viewport",
+        "pointer": 158424704,
+        "hex": "000000000000000080020000e0010000000000000000803f"
+      },
+      "reply": {
+        "ok": true,
+        "id": 9,
+        "result": {
+          "hr": 0
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 10,
+        "op": "close"
+      },
+      "reply": {
+        "ok": true,
+        "id": 10,
+        "result": {
+          "device_release_count": 0,
+          "factory_release_count": 0,
+          "window_destroyed": true,
+          "all_owned_resources_released": true
+        }
+      }
+    }
+  ],
+  "cleanup": {
+    "device_release_count": 0,
+    "factory_release_count": 0,
+    "window_destroyed": true,
+    "all_owned_resources_released": true
+  },
+  "live_host_calls": true,
+  "original_CPU_executed": false,
+  "drawing_or_Present": false
+}

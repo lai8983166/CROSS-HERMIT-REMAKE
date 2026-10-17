@@ -1174,7 +1174,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 293. Owned live device startup bridge
 
-- [ ] 293.1 Implement and verify a bounded real x86 hidden-window bridge driven by native requests, with factory/device/surface identity, exact raw output buffers, refused foreign/fullscreen inputs and complete cleanup; commit locally.
+- [x] 293.1 Implement and verify a bounded real x86 hidden-window bridge driven by native requests, with factory/device/surface identity, exact raw output buffers, refused foreign/fullscreen inputs and complete cleanup; commit locally.
 
 ## 294. Original startup through live device initialization
 
