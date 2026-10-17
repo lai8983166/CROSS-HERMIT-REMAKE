@@ -69,5 +69,51 @@ class DeviceTests(unittest.TestCase):
                 verify_report(bad)
 
 
+class FontTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.report = json.loads((ROOT/'analysis/school-owner-startup-font-v1-20261017.json').read_text(encoding='utf-8'))
+
+    def test_archived_natural_font_prefix_complete_state_and_lifetime(self):
+        self.assertEqual(verify_report(self.report)['cases'], 2)
+
+    def test_fresh_live_constructor_device_font_chain(self):
+        from tools.school_owner_startup_emulation import generate
+        self.assertEqual(verify_report(generate('font'))['full_owner_bytes'], 49152)
+
+    def test_font_handle_LOGFONT_ABI_pending_CPU_and_owner_corruptions_refused(self):
+        changes = [lambda c: c['font']['before_cpu'].update(ESP=0),
+                   lambda c: c['font']['platform_calls'][0]['result'].update(result=0),
+                   lambda c: c['font']['platform_calls'][1]['request'].update(before_hex='00'*60),
+                   lambda c: c['font']['platform_calls'][1]['result'].update(hex='00'*60),
+                   lambda c: c['font'].update(LOGFONT='00'*60),
+                   lambda c: c['font']['native']['entries'][2]['args'].__setitem__(0, 1),
+                   lambda c: c['font']['native']['returns'][0].update(eax=1),
+                   lambda c: c['font']['native']['cpu'].update(ESP=0),
+                   lambda c: c['font']['pending']['args'].__setitem__(1, 0),
+                   lambda c: c['font']['pending'].update(first_instruction_executed=True),
+                   lambda c: c['font']['state']['owner'].update(sha256='0'*64),
+                   lambda c: c['font']['state'].update(SEH=0),
+                   lambda c: c['font']['state']['foreign_maps'][0].update(sha256='0'*64)]
+        for change in changes:
+            with self.subTest(change=changes.index(change)):
+                bad = deepcopy(self.report)
+                change(bad['cases'][0])
+                with self.assertRaises(ValueError):
+                    verify_report(bad)
+
+    def test_unexecuted_font_body_authority_and_resource_cleanup_refused(self):
+        changes = [lambda c: c['font'].update(font_object_constructed=True),
+                   lambda c: c['font'].update(owner_bound=True),
+                   lambda c: c['font'].update(queues_initialized=True),
+                   lambda c: c['platform_cleanup'].update(fonts_released=0),
+                   lambda c: c['platform_trace'][-1]['request'].update(id=4)]
+        for change in changes:
+            bad = deepcopy(self.report)
+            change(bad['cases'][0])
+            with self.assertRaises(ValueError):
+                verify_report(bad)
+
+
 if __name__ == '__main__':
     unittest.main()

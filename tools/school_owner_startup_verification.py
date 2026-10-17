@@ -264,6 +264,68 @@ def verify_device(case, owner, image):
     return expected, objects
 
 
+def verify_font(case, owner, image, objects):
+    row = case['font']
+    native = row['native']
+    if row['before_cpu'] != case['device']['native']['cpu']:
+        raise ValueError('owner font must resume the actual pending CPU')
+    verify_native(native, 0x415F50, TOP-92, 0x4134E3, OWNER, [])
+    calls = row['platform_calls']
+    if [r['name'] for r in calls] != ['CreateFontA', 'GetObjectA']:
+        raise ValueError('owner first font actual platform sequence')
+    handle = calls[0]['result']['result']
+    if not 0 < handle <= 0xFFFFFFFF:
+        raise ValueError('owner actual32-bit owned HFONT')
+    device = objects['device']['pointer']
+    expected_entries = [
+        (0x415F50, 0x4134E3, 92, OWNER, []),
+        (0x416140, 0x415FA0, 212, OWNER, []),
+        (0x416320, 0x41616F, 320, OWNER, [0]),
+        (0x4162C0, 0x416002, 216, OWNER, [handle]),
+        (0x52AFE6, 0x4162F4, 324, handle, [device, handle, TOP-228])]
+    if native['entries'] != [dict(va=hex(va), return_va=hex(ret), sp=TOP-depth,
+                                  receiver=receiver, args=args)
+                              for va, ret, depth, receiver, args in expected_entries]:
+        raise ValueError('owner font original null cleanup and nested source stack')
+    expected_returns = [(0x56CE82, 0x416367, 328, 0), (0x41636A, 0x41616F, 320, 0),
+                        (0x56CE82, 0x416251, 220, 0), (0x416254, 0x415FA0, 212, 0),
+                        (0x56CE82, 0x415FD1, 212, handle)]
+    if native['returns'] != [dict(va=hex(va), return_va=hex(ret), sp=TOP-depth, eax=eax)
+                              for va, ret, depth, eax in expected_returns]:
+        raise ValueError('owner font exact original completed helper returns')
+    face = bytes.fromhex(source_contract()['face_hex'])+b'\0'
+    logfont = struct.pack('<5i8B', *FONT_ARGS[:-1])+face+b'\xcc'*(32-len(face))
+    expected_calls = [
+        (0x5920A0, 268, FONT_ARGS, dict(args=FONT_ARGS[:-1], face_hex=face[:-1].hex()),
+         dict(result=handle)),
+        (0x592068, 404, [handle, 60, TOP-388], dict(pointer=handle, before_hex='cc'*60),
+         dict(result=60, hex=logfont.hex()))]
+    raw = SOURCE.read_bytes()
+    for actual, (slot, depth, args, request, result) in zip(calls, expected_calls):
+        name, _, ret, _ = IMPORTS[slot]
+        if actual != dict(name=name, slot=hex(slot), va=hex(dword(raw, slot-BASE)),
+                          return_va=hex(ret), sp=TOP-depth, args=args, request=request,
+                          result=result, live_host_observed=True):
+            raise ValueError('owner original font API ABI and complete live LOGFONT')
+    if row['LOGFONT'] != logfont.hex():
+        raise ValueError('owner full60-byte LOGFONT including untouched face tail')
+    expected = bytearray(owner)
+    store(expected, 0xB26C, handle)
+    verify_state(row['state'], bytes(expected), image, TOP-108, objects.values())
+    expected_cpu = dict(EIP=FONT_STOP, ESP=TOP-404, EBP=TOP-328, EAX=TOP-388,
+                        EBX=0x55667788, ECX=handle, EDX=OWNER, ESI=TOP-208,
+                        EDI=TOP-220, EFLAGS=6)
+    if native['cpu'] != expected_cpu or native['boundary'] != hex(FONT_STOP):
+        raise ValueError('owner original static font admission CPU')
+    if row['pending'] != dict(va=hex(FONT_STOP), return_va='0x52b015', sp=TOP-404,
+                              args=[device, TOP-388, TOP-228], first_instruction_executed=False):
+        raise ValueError('owner unexecuted static font body source stack')
+    if native['platform_calls'] or native['live_results'] or FONT_STOP in native['visited']:
+        raise ValueError('owner no static font body or new D3D execution')
+    if any(row[k] is not False for k in ('font_object_constructed', 'owner_bound', 'queues_initialized')):
+        raise ValueError('owner font prefix authority')
+
+
 def verify_report(report):
     if report['source_contract'] != source_contract() or report['schema_version'] != 1:
         raise ValueError('owner startup source contract')
@@ -296,17 +358,20 @@ def verify_report(report):
         if phase != 'constructor':
             owner, objects = verify_device(c, owner, image)
             device_calls = c['device']['native']['live_results']
-        if c['platform_cleanup'] != dict(fonts_released=0, dcs_released=1, all_owned_resources_released=True):
+        if phase == 'font':
+            verify_font(c, owner, image, objects)
+        if c['platform_cleanup'] != dict(fonts_released=int(phase == 'font'), dcs_released=1, all_owned_resources_released=True):
             raise ValueError('owner constructor platform cleanup')
         expected_cleanup = dict(window_destroyed=True, all_owned_resources_released=True)
         if phase != 'constructor':
             expected_cleanup.update(device_release_count=0, factory_release_count=0)
         if c['device_cleanup'] != expected_cleanup:
             raise ValueError('owner constructor hidden window cleanup')
-        calls = c['constructor']['platform_calls']
+        calls = c['constructor']['platform_calls'] + (c['font']['platform_calls'] if phase == 'font' else [])
         expected_trace = [dict(request=dict(id=i, op=r['name'], **r['request']),
                                reply=dict(ok=True, id=i, result=r['result'])) for i, r in enumerate(calls, 1)]
-        expected_trace.append(dict(request=dict(id=4, op='close'), reply=dict(ok=True, id=4, result=c['platform_cleanup'])))
+        sequence = len(calls)+1
+        expected_trace.append(dict(request=dict(id=sequence, op='close'), reply=dict(ok=True, id=sequence, result=c['platform_cleanup'])))
         if c['platform_trace'] != expected_trace:
             raise ValueError('owner actual sequenced platform trace')
         device_trace = [dict(request=dict(id=i, op=r['op'], **r['request']),

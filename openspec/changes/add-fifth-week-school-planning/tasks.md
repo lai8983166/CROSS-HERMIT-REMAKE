@@ -1198,7 +1198,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 299. Original first font and LOGFONT admission
 
-- [ ] 299.1 Continue natural415F50 through native null cleanup and real font/GetObjectA to unexecuted52AE11, verify complete source/live state,60-byte LOGFONT/nested stack/handle lifetime and corruption refusals; commit locally.
+- [x] 299.1 Continue natural415F50 through native null cleanup and real font/GetObjectA to unexecuted52AE11, verify complete source/live state,60-byte LOGFONT/nested stack/handle lifetime and corruption refusals; commit locally.
 
 ## 300. Full owner and font prerequisite acceptance
 
