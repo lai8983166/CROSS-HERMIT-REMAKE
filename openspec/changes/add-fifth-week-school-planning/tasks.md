@@ -1158,7 +1158,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 289. Isolated native renderer initialization
 
-- [ ] 289.1 Execute original construction/binding/full queue allocation with explicitly bounded CRT responses, validate full96-byte manager,32768-byte heads and1MiB arena plus original calls/ABI and memory guards; preserve pending VM and commit locally.
+- [x] 289.1 Execute original construction/binding/full queue allocation with explicitly bounded CRT responses, validate full96-byte manager,32768-byte heads and1MiB arena plus original calls/ABI and memory guards; preserve pending VM and commit locally.
 
 ## 290. Native rectangle queue and boundary probes
 
