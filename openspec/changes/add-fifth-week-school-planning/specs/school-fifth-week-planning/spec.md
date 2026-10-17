@@ -1137,3 +1137,14 @@ The audit SHALL continue the naturally pending415F50 after real device initializ
 #### Scenario: Actual font properties reach the internal font constructor
 - **WHEN** native416140 consumes newly constructed null font slots and original52AFE6 reads the created font
 - **THEN** realGetObjectA outputs60 bytes and execution stops before52AE11 on its natural device/LOGFONT/output-slot call without fabricated font objects
+
+### Requirement: Original font factory and explicit cache-state boundaries
+The audit SHALL execute the original static font factory and constructors with bounded declared CRT allocation responses and verify complete heap/owner/image/call-stack state. Inherited cache state MUST remain unchanged and an absent captured cache node MUST NOT be read. Empty-cache experiments MUST be explicitly distinguished from captured continuation, use owned live x86 device methods and stop before unresolved texture code.
+
+#### Scenario: Inherited cache target is not captured
+- **WHEN** the original lookup encounters inherited80A398=04D61D08 without mapped node memory
+- **THEN** it stops before548D95 target read, retaining the head and all old evidence without inventing node contents
+
+#### Scenario: Independent empty-cache native initialization
+- **WHEN** an experiment declares only an empty initial cache head and bounded CRT memory
+- **THEN** original font/cache constructors and real device AddRef/caps/creation queries execute to unexecuted52755E, full bytes and lifetime are verified, and no retained VM or texture completion is claimed

@@ -299,3 +299,6 @@ Execute original413450 windowed startup from explicitly declared scratch owner s
 
 ## Full owner construction before font startup (2026-10-17)
 Resolve the font cleanup prerequisite by executing original412E30 and all native subconstructors on declared dirty owner bytes and inherited pinned source globals. Reuse live device startup only after real construction, then execute original415F50/416140/CreateFontA/4162C0/52AFE6/GetObjectA to unexecuted52AE11. Real32-bit GetDC/QPC/QPF/GDI responses remain owned in a new small helper; no manual old-font zeroing, owner/gate repair, static font-body stub or retained VM advancement. Preserve and locally commit each stage.
+
+## Static font allocation and cache prerequisite (2026-10-18)
+Continue the independent52AE11 CPU through original allocation wrapper/font constructor and captured cache lookup. Preserve inherited80A398 and stop before its absent heap node is read. Separately declare an empty-cache experiment, construct the original176-byte cache and use real owned x86 AddRef/caps/creation-parameter responses to the unexecuted52755E texture-requirements body. No imported fake old cache, silent global repair, texture success or retained VM progress is accepted. Commit source, bridge, inherited boundary, empty-cache prefix and acceptance locally.

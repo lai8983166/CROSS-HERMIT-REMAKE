@@ -1203,3 +1203,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 300. Full owner and font prerequisite acceptance
 
 - [x] 300.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent startup/expired handles and remaining static font/owner/queue/outer work, verify exact Git bytes and commit locally without push.
+
+## 301. Static font and cache source contract
+
+- [x] 301.1 Derive original52AE11 allocation/constructors/cache head and missing captured heap provenance, source-project complete objects and declared empty-cache texture boundary; test and commit locally.
+
+## 302. Owned cache device methods
+
+- [ ] 302.1 Fork immutable x86 startup bridge with bounded owned AddRef/caps/GetCreationParameters, exact identity/buffers and extra-reference cleanup; test and commit locally.
+
+## 303. Natural inherited-cache font prefix
+
+- [ ] 303.1 Replay fresh live owner/device/font then continue actual52AE11 through original80-byte font constructor and548D89 to unexecuted548D95 absent-node read, verify full memory/ABI/CRT provenance and commit locally.
+
+## 304. Independent empty-cache native prefix
+
+- [ ] 304.1 Explicitly declare empty-cache initial global separately, execute native176-byte cache construction and real device methods to unexecuted52755E, independently verify full state/CPU/stack/guards/lifetime and corruption refusals, commit locally.
+
+## 305. Font cache prerequisite acceptance
+
+- [ ] 305.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document inherited versus declared experiments and unresolved texture/full font/outer dependencies, verify working/committed Git bytes and commit locally without push.
