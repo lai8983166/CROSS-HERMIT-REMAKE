@@ -175,8 +175,8 @@ class RendererEmulator:
                     retained_owner_sha256=digest(owner), guards_unchanged=True)
 
 
-def initialize(device=0x13572468):
-    e = RendererEmulator(device=device)
+def initialize(device=0x13572468, gate=1):
+    e = RendererEmulator(device=device, gate=gate)
     manager = bytes([0xA5])*96
     heads = bytes([0xCD])*(LAYER_COUNT*8)
     arena = bytes([0xCD])*ARENA_BYTES
@@ -216,6 +216,72 @@ def initialization_report():
                 D3D_initialized=False, GPU_executed=False, full_outer_frame=False)
 
 
+def queue_report():
+    e, manager, heads, arena, _ = initialize()
+    counter = e.counter+LAYER_COUNT*8+ARENA_BYTES
+    manager, heads, arena = bytearray(manager), bytearray(heads), bytearray(arena)
+    insertions = []
+    for rect, layer, color, blend in RECTANGLE_PROBES:
+        args = (*rect, layer, color, blend)
+        call = e.call(0x410310, args)
+        offset = dword(manager, 0x30)-ARENA
+        target_layer = layer & 65535
+        old = dword(heads, target_layer*8)
+        arena[offset:offset+24] = rectangle_packet(arena[offset:offset+24], rect,
+                                                 layer, color, blend, old)
+        store(heads, target_layer*8, ARENA+offset)
+        store(manager, 0x30, ARENA+offset+24)
+        store(manager, 0x1C, offset+24)
+        if call['cpu']['EAX'] != 0:
+            raise RuntimeError('rectangle original return')
+        insertions.append(dict(call=call, packet_pointer=ARENA+offset,
+                               previous_head=old,
+                               state=e.check(manager, heads, arena, counter)))
+    # A clipped410310 returns0 before allocation/insertion and keeps all queues.
+    call = e.call(0x410310, (2000, 0, 1, 1, 67, 0x223438, 1))
+    rejection = dict(call=call, state=e.check(manager, heads, arena, counter))
+    call = e.call(0x40DB90)
+    heads[:] = bytes(len(heads))
+    reset_heads = dict(call=call, state=e.check(manager, heads, arena, counter))
+    call = e.call(0x40DC80)
+    store(manager, 0x30, ARENA)
+    store(manager, 0x2C, 0)
+    reset_arena = dict(call=call, state=e.check(manager, heads, arena, counter))
+    clips = []
+    for rect in CLIP_PROBES:
+        call = e.call(0x40E2A0, rect)
+        expected = clip(rect, e.inputs['dimensions'])
+        if call['cpu']['EAX'] != expected:
+            raise RuntimeError('original signed clip projection')
+        clips.append(dict(call=call, expected=expected,
+                          state=e.check(manager, heads, arena, counter)))
+    # Independent source capacity inputs, declared separately from the insertion run.
+    capacities = []
+    for remaining in (25, 24, 23):
+        probe, pm, ph, pa, _ = initialize()
+        pm = bytearray(pm)
+        pointer = ARENA+ARENA_BYTES-remaining
+        probe.uc.mem_write(MANAGER+0x30, struct.pack('<I', pointer))
+        store(pm, 0x30, pointer)
+        call = probe.call(0x40DCD0, (4,), expected_debug=remaining <= 24)
+        if remaining == 25 and call['cpu']['EAX'] != pointer:
+            raise RuntimeError('strict queue capacity pointer')
+        capacities.append(dict(declared_remaining_bytes=remaining,
+                               declared_cursor=pointer, call=call,
+                               state=probe.check(pm, ph, pa, counter)))
+    # Render gate0 is a separate unsupported input, stopped before debug body.
+    gate, gm, gh, ga, _ = initialize(gate=0)
+    call = gate.call(0x40DCD0, (4,), expected_debug=True)
+    closed_gate = dict(inputs=gate.inputs, call=call,
+                       state=gate.check(gm, gh, ga, counter))
+    return dict(schema_version=1, source_contract=source_contract(), inputs=e.inputs,
+                insertions=insertions, clipped_rectangle=rejection,
+                reset_heads=reset_heads, reset_arena=reset_arena,
+                clip_probes=clips, capacity_probes=capacities, closed_gate=closed_gate,
+                isolated_experiments=True, retained_VM_advanced=False,
+                D3D_initialized=False, GPU_executed=False, full_outer_frame=False)
+
+
 def write_report(path, report):
     if path.exists():
         raise ValueError('immutable report already exists: '+str(path))
@@ -226,5 +292,6 @@ def write_report(path, report):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--out', required=True)
+    p.add_argument('--queue', action='store_true')
     a = p.parse_args()
-    write_report(ROOT/a.out, initialization_report())
+    write_report(ROOT/a.out, queue_report() if a.queue else initialization_report())

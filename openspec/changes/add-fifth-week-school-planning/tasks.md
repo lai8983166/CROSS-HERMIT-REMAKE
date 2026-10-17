@@ -1162,7 +1162,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 290. Native rectangle queue and boundary probes
 
-- [ ] 290.1 Execute original clipping/insertion/list/reset with same/different layers, signed and strict capacity boundaries; stop before unadapted debug requests, verify full state and add adversarial evidence tests; commit locally.
+- [x] 290.1 Execute original clipping/insertion/list/reset with same/different layers, signed and strict capacity boundaries; stop before unadapted debug requests, verify full state and add adversarial evidence tests; commit locally.
 
 ## 291. Renderer prerequisite acceptance
 
