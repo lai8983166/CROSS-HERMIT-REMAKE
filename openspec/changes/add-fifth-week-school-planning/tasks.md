@@ -1131,3 +1131,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 282. Character presentation continuation acceptance
 
 - [x] 282.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document pending graphics-list/queue/VM-task/text/outer world work and commit locally without push.
+
+## 283. Original frame graphics and renderer-owner source
+
+- [x] 283.1 Derive four frame rows, full sprite/SEH/ABI/packet rules, rectangle and null-owner read admission; bind original owner initializer/caller from source and commit locally.
+
+## 284. Native complete graphics list
+
+- [ ] 284.1 Resume4CA600 and execute four4CBDB0 sprites through native constructors/binding/disabled draw/cleanup and natural return24; verify full objects/calls/returns/CPU/retention and pin in three cases; commit locally.
+
+## 285. Native rectangle clipping-function admission
+
+- [ ] 285.1 Continue native interpolation/410310 to unexecuted40E2A0, verifying full source arguments/ABI/return/CPU/original stack and retained memory; pin in three cases and commit locally.
+
+## 286. Captured null-owner read boundary
+
+- [ ] 286.1 Execute actual40E2A0 prefix to40E2D0 before dereferencing owner0 atB278; verify CPU/effective address/real caller stack/full state and no target read or queue/debug response, pin in three cases and commit locally.
+
+## 287. Graphics and renderer initialization acceptance
+
+- [ ] 287.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document original renderer-owner initialization prerequisite and pending clipping/queue/GPU/VM-task/text/world work; commit locally without push.

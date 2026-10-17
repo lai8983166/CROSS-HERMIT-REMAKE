@@ -1090,3 +1090,14 @@ The audit SHALL resume the pending27 handler on its retained original VM/task st
 #### Scenario: First active layer graphics call
 - **WHEN** the VM advances toPC224/wait1 and finishes the existing overlay cleanup
 - **THEN** inactive layers0–6 and native4CD850 execute before natural4CA600 admission; all five full argument words and real stack are retained before its first instruction, without claiming graphics-list/queue/GPU or full-frame completion
+
+### Requirement: Native frame graphics and renderer-owner precondition
+The audit SHALL resume4CA600 on the retained layer/VM/task stack, execute four native frame sprites through resource binding/disabled draw/cleanup, and verify each128-byte object and source call/ABI/return. It SHALL continue native rectangle admission and the actual40E2A0 prefix to the first read through captured owner0, preserving complete CPU/stack/effective address and immutable memory proof. It MUST NOT patch owner/gate, execute the invalid target read, invent a clipping result, or infer queue/debug/GPU/VM-task/dialogue/full-frame completion.
+
+#### Scenario: Original four-piece frame return
+- **WHEN** style1 graphics is entered at the verified4CA600 checkpoint
+- **THEN** all four rows generate real sprite objects and complete native bodies, full objects/SEH/calls/ABI agree, and the list naturally returns24 with owned/retained memory unchanged
+
+#### Scenario: Original renderer initialization is a precondition
+- **WHEN** rectangle410310 calls40E2A0 using the captured manager whose owner is0
+- **THEN** its prefix reaches40E2D0 before reading effective addressB278, all caller/CPU state is retained, and the original40D970/413500 initialization path is source-bound for subsequent work without patching current state
