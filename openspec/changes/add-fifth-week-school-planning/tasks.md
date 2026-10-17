@@ -1146,7 +1146,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 286. Captured null-owner read boundary
 
-- [ ] 286.1 Execute actual40E2A0 prefix to40E2D0 before dereferencing owner0 atB278; verify CPU/effective address/real caller stack/full state and no target read or queue/debug response, pin in three cases and commit locally.
+- [x] 286.1 Execute actual40E2A0 prefix to40E2D0 before dereferencing owner0 atB278; verify CPU/effective address/real caller stack/full state and no target read or queue/debug response, pin in three cases and commit locally.
 
 ## 287. Graphics and renderer initialization acceptance
 

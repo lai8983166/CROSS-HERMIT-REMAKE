@@ -7,6 +7,7 @@ from tools.school_world_life_codec import unpack
 from unicorn.x86_const import UC_X86_REG_EIP,UC_X86_REG_ESP,UC_X86_REG_EBP,UC_X86_REG_EAX,UC_X86_REG_ECX
 PARENT=PARENT_REPORTS['layer_entry'];PARENT_SHA=PARENT_SHAS['layer_entry']
 REPORTS={p:ROOT/f'analysis/school-vm-graphics-{p}-v1-20261017.json.gz' for p in PHASES};SHAS={p:None for p in PHASES}
+SHAS['owner_read']='2b18c4d10e228d254f6363f1e2783285e11c19ac8bd39d7c9ea9b4e80069b597'
 SHAS['rectangle']='315468d619b659329d49a27b51987e53f27c5a590e39642605be3a58f4b96265'
 SHAS['graphics']='3e8458505616476975ecf27b76f69580e34c8fa220d927f3f87413524a642498'
 
