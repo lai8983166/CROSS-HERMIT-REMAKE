@@ -1214,7 +1214,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 303. Natural inherited-cache font prefix
 
-- [ ] 303.1 Replay fresh live owner/device/font then continue actual52AE11 through original80-byte font constructor and548D89 to unexecuted548D95 absent-node read, verify full memory/ABI/CRT provenance and commit locally.
+- [x] 303.1 Replay fresh live owner/device/font then continue actual52AE11 through original80-byte font constructor and548D89 to unexecuted548D95 absent-node read, verify full memory/ABI/CRT provenance and commit locally.
 
 ## 304. Independent empty-cache native prefix
 
