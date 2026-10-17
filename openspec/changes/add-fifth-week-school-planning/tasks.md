@@ -1138,7 +1138,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 284. Native complete graphics list
 
-- [ ] 284.1 Resume4CA600 and execute four4CBDB0 sprites through native constructors/binding/disabled draw/cleanup and natural return24; verify full objects/calls/returns/CPU/retention and pin in three cases; commit locally.
+- [x] 284.1 Resume4CA600 and execute four4CBDB0 sprites through native constructors/binding/disabled draw/cleanup and natural return24; verify full objects/calls/returns/CPU/retention and pin in three cases; commit locally.
 
 ## 285. Native rectangle clipping-function admission
 
