@@ -1218,7 +1218,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 304. Independent empty-cache native prefix
 
-- [ ] 304.1 Explicitly declare empty-cache initial global separately, execute native176-byte cache construction and real device methods to unexecuted52755E, independently verify full state/CPU/stack/guards/lifetime and corruption refusals, commit locally.
+- [x] 304.1 Explicitly declare empty-cache initial global separately, execute native176-byte cache construction and real device methods to unexecuted52755E, independently verify full state/CPU/stack/guards/lifetime and corruption refusals, commit locally.
 
 ## 305. Font cache prerequisite acceptance
 
