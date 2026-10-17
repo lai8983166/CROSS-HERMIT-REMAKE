@@ -1094,7 +1094,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 273. Native timer setup
 
-- [ ] 273.1 Execute12 and original4C1E20 count0/limit30/1CD1 setup to PC208/wait1, verify every parameter/store/return/full state and pin in three cases; commit locally.
+- [x] 273.1 Execute12 and original4C1E20 count0/limit30/1CD1 setup to PC208/wait1, verify every parameter/store/return/full state and pin in three cases; commit locally.
 
 ## 274. Complete original timer polling
 
