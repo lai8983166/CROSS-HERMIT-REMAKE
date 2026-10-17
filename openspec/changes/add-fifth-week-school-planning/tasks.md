@@ -1190,7 +1190,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 297. Native full owner constructor
 
-- [ ] 297.1 Add owned live32-bit DC/timer/font platform helper and execute full412E30 for dirtyA5/CC, verifying complete owner/source globals/SEH/ABI/guards and live cleanup without manual font/gate writes; commit locally.
+- [x] 297.1 Add owned live32-bit DC/timer/font platform helper and execute full412E30 for dirtyA5/CC, verifying complete owner/source globals/SEH/ABI/guards and live cleanup without manual font/gate writes; commit locally.
 
 ## 298. Device startup on original constructed owner
 

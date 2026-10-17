@@ -1,0 +1,119 @@
+{
+  "build": {
+    "source_sha256": "4554cbe4546cdf1d67216c891b0a134ca030a98f385227afe64a845a84f8e70d",
+    "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+    "helper_sha256": "1ee1ff836ac2017b6a11b4b8870dd18a29d72adaeecc6edb2f4116876065b5b0",
+    "machine": 332
+  },
+  "hello": {
+    "pointer_bytes": 4,
+    "acp": 936
+  },
+  "trace": [
+    {
+      "request": {
+        "id": 1,
+        "op": "GetDC"
+      },
+      "reply": {
+        "ok": true,
+        "id": 1,
+        "result": {
+          "result": 3741399252
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "op": "QueryPerformanceCounter"
+      },
+      "reply": {
+        "ok": true,
+        "id": 2,
+        "result": {
+          "result": 1,
+          "hex": "5b7f71b7f1170000"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "op": "QueryPerformanceFrequency"
+      },
+      "reply": {
+        "ok": true,
+        "id": 3,
+        "result": {
+          "result": 1,
+          "hex": "8096980000000000"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "op": "CreateFontA",
+        "args": [
+          0,
+          0,
+          0,
+          0,
+          700,
+          0,
+          0,
+          0,
+          1,
+          5,
+          0,
+          0,
+          0
+        ],
+        "face_hex": "b2d3a9fac5e920"
+      },
+      "reply": {
+        "ok": true,
+        "id": 4,
+        "result": {
+          "result": 4127873899
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "op": "GetObjectA",
+        "pointer": 4127873899
+      },
+      "reply": {
+        "ok": true,
+        "id": 5,
+        "result": {
+          "result": 60,
+          "hex": "00000000000000000000000000000000bc0200000000000105000000b2d3a9fac5e920001300000013000000020000003d000000fdffffff02000000"
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "op": "close"
+      },
+      "reply": {
+        "ok": true,
+        "id": 6,
+        "result": {
+          "fonts_released": 1,
+          "dcs_released": 1,
+          "all_owned_resources_released": true
+        }
+      }
+    }
+  ],
+  "cleanup": {
+    "fonts_released": 1,
+    "dcs_released": 1,
+    "all_owned_resources_released": true
+  }
+}
