@@ -1123,3 +1123,17 @@ The audit SHALL execute original windowed device startup helpers with live owned
 #### Scenario: Foreign state and expired platform objects
 - **WHEN** a request names a foreign device/surface, requestsfullscreen or follows resource cleanup
 - **THEN** the bridge refuses it without performing the requested interface call and no released pointer is exported as a resumable checkpoint
+
+### Requirement: Full original owner construction before font initialization
+The audit SHALL execute original412E30 and its native array/subconstructors on declared dirty input with live32-bit DC/timer responses, verify the complete owner and finite source global mutations, and derive initial font pointers and render gate from original stores. It MUST NOT manually zero font slots or patch the retained VM.
+
+#### Scenario: Native construction permits the first font cleanup
+- **WHEN** dirtyA5 orCC owner state enters412E30 with inherited pinned timer globals
+- **THEN** original subconstructors and loops return naturally, old fonts are0 andgate is1 by original stores, and all unrelated bytes plus SEH are retained
+
+### Requirement: Original first font creation and static constructor admission
+The audit SHALL continue the naturally pending415F50 after real device initialization on the constructed owner through realCreateFontA andGetObjectA, preserving actual60-byte LOGFONT and pending52AE11 stack. All live handles MUST be released, and no static font object, owner binding, queue or VM completion may be claimed.
+
+#### Scenario: Actual font properties reach the internal font constructor
+- **WHEN** native416140 consumes newly constructed null font slots and original52AFE6 reads the created font
+- **THEN** realGetObjectA outputs60 bytes and execution stops before52AE11 on its natural device/LOGFONT/output-slot call without fabricated font objects

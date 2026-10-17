@@ -296,3 +296,6 @@ Derive original manager construction, owner/device binding, queue allocation and
 
 ## Live original device startup prefix (2026-10-17)
 Execute original413450 windowed startup from explicitly declared scratch owner state, through original factory/device setup, capabilities, backbuffer description, format selection and viewport to unexecuted415F50 font initialization. Supply only live owned x86 Direct3D8 interface responses through a separate hidden-window process, retaining original import target and original helper bodies. Validate complete owner bytes/CPU/calls and release all external resources; do not patch pending VM or claim rendering/Present/full startup completion.
+
+## Full owner construction before font startup (2026-10-17)
+Resolve the font cleanup prerequisite by executing original412E30 and all native subconstructors on declared dirty owner bytes and inherited pinned source globals. Reuse live device startup only after real construction, then execute original415F50/416140/CreateFontA/4162C0/52AFE6/GetObjectA to unexecuted52AE11. Real32-bit GetDC/QPC/QPF/GDI responses remain owned in a new small helper; no manual old-font zeroing, owner/gate repair, static font-body stub or retained VM advancement. Preserve and locally commit each stage.

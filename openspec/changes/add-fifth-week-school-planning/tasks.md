@@ -1183,3 +1183,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 295. Live device prefix acceptance
 
 - [x] 295.1 Run new/direct-parent tests and strict specs, preserve historical/runtime/save/private VM checkpoints, document actual device initialization versus unresolved font/owner binding/outer frame, verify exact Git bytes and commit locally without push.
+
+## 296. Full owner and first font source contract
+
+- [x] 296.1 Derive complete412E30/subconstructor/pool/timer stores and first-font cleanup/CreateFontA/GetObjectA/52AE11 boundary with independent full-state projections/source tests; commit locally.
+
+## 297. Native full owner constructor
+
+- [ ] 297.1 Add owned live32-bit DC/timer/font platform helper and execute full412E30 for dirtyA5/CC, verifying complete owner/source globals/SEH/ABI/guards and live cleanup without manual font/gate writes; commit locally.
+
+## 298. Device startup on original constructed owner
+
+- [ ] 298.1 Execute real-device413450 prefix on the fully constructed owner with original clock/global retention and native stack, prove the font-entry prerequisite and current owner fields, verify cases and commit locally.
+
+## 299. Original first font and LOGFONT admission
+
+- [ ] 299.1 Continue natural415F50 through native null cleanup and real font/GetObjectA to unexecuted52AE11, verify complete source/live state,60-byte LOGFONT/nested stack/handle lifetime and corruption refusals; commit locally.
+
+## 300. Full owner and font prerequisite acceptance
+
+- [ ] 300.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent startup/expired handles and remaining static font/owner/queue/outer work, verify exact Git bytes and commit locally without push.
