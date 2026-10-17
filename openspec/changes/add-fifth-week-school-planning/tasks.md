@@ -1086,7 +1086,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 271. Native display wait release
 
-- [ ] 271.1 Execute actual4C7AB0 query and VM wait1 release in three cases, verify complete AL/full-EAX/ABI/state/CPU/retention and pin; commit locally.
+- [x] 271.1 Execute actual4C7AB0 query and VM wait1 release in three cases, verify complete AL/full-EAX/ABI/state/CPU/retention and pin; commit locally.
 
 ## 272. Native text-mode command
 
