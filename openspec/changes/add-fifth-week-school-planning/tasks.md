@@ -1107,3 +1107,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 276. Normal display and timer acceptance
 
 - [x] 276.1 Run new/direct-parent and strict specs, preserve history/runtime/save/exact Git bytes, document declared-driver limits and pending character/text/outer world/GPU/AI work, commit locally without push.
+
+## 277. Original character template and presentation source
+
+- [x] 277.1 Derive literal decoding, template4/layer7 setup, font/show helpers, handler return and natural active presentation ABI/source rules; commit locally.
+
+## 278. Native character template setup
+
+- [ ] 278.1 Resume original4C5EA0 and execute three typed operands/4CC600 with complete template stores to unexecuted4CC0F0; verify full state/calls/CPU/real stack/retention and pin in three cases; commit locally.
+
+## 279. Native character layout show and handler return
+
+- [ ] 279.1 Execute original4CC0F0 kind0 layout and4CC7D0/4CC810 show helpers, complete actual4C5EA0 EAX1 return to4CED48, verify all source state/calls/returns/CPU/checkpoint in three cases; commit locally.
+
+## 280. Character VM advance and original overlay cleanup
+
+- [ ] 280.1 Continue retained VM toPC224/wait1, execute existing overlay construction/binding/disabled draw/cleanup to4D024F, verify complete128-byte object/calls/returns/CPU/retention in three cases and pin; commit locally.
+
+## 281. First active layer presentation admission
+
+- [ ] 281.1 Execute inactive layers0–6 and layer7 native interpolation to unexecuted4CA600 with exact cdecl arguments and retained VM/layer caller stack; verify full state/CPU/retention and pin in three cases; commit locally.
+
+## 282. Character presentation continuation acceptance
+
+- [ ] 282.1 Run new/direct-parent regression and strict specs, preserve history/runtime/save/exact Git bytes, document pending graphics-list/queue/VM-task/text/outer world work and commit locally without push.

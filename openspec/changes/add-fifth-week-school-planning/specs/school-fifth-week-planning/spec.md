@@ -1079,3 +1079,14 @@ The audit SHALL continue verified fade_finish returns through original56 display
 #### Scenario: Timer30 completes on its31st poll
 - **WHEN**12 initializes count0/limit30 and uses the opcode12 branch of4CCB90
 - **THEN** polls1–30 retain wait1, poll31 stores31 and clears both1CD and wait, and a subsequent original task reaches unexecuted4C5EA0 with actual27 arguments and caller/CPU state; no character-body, text or outer-frame completion is claimed
+
+### Requirement: Native character template and active presentation admission
+The audit SHALL resume the pending27 handler on its retained original VM/task stack, verify template4/layer7 setup and native text-layout/show helpers, complete the actual handler return and overlay cleanup, then reach unexecuted4CA600 through original layer7 interpolation. Every source argument/ABI, critical return, complete owned state/CPU/stack and all retained bytes MUST agree with immutable SHA-guarded checkpoints; no additional root driver or body/platform substitution is allowed.
+
+#### Scenario: Literal operands and original handler return
+- **WHEN** the pending4C5EA0 receives the captured27 command
+- **THEN** it keeps decoded0FFFFFFF operand values, applies original38-byte template4 and font/spacing/show settings on layer7, and naturally returns1 to4CED48 without completing VM/task or dialogue
+
+#### Scenario: First active layer graphics call
+- **WHEN** the VM advances toPC224/wait1 and finishes the existing overlay cleanup
+- **THEN** inactive layers0–6 and native4CD850 execute before natural4CA600 admission; all five full argument words and real stack are retained before its first instruction, without claiming graphics-list/queue/GPU or full-frame completion
