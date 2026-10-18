@@ -23,3 +23,7 @@
 两例共新增26条原函数调用记录与40次实际接口调用（每例含需求检查6条/9次、创建7条/11次）。表面额外GetDesc检查明确独立于原请求：format21/type1/usage512/pool0/4096字节/无多采样/64×16。字体对象未绑定缓存，静态字体工厂输出仍为CCCCCCCC，owner+B270仍为0；两个完整对象、全部原映像和48KiB owner、两块12KiB堆/guard、真实接口映射及自然调用栈/SEH均核对。额外表面/纹理/缓存设备引用全部释放，未绘制或Present。18项新测试通过，含双例新鲜完整重跑及重算SHA后的字段/填充/guard变异拒绝。
 
 见[原纹理与表面创建报告](../analysis/school-font-texture-native-v1-20261018.json)。下一步执行52AE80精灵构造/设备依赖，随后共享缓存的GDI位图/DC设置、字体工厂返回和415F50其余字体槽；仍需恢复真实上游/旧缓存内存，才能接回保留VM。
+
+310验收：18项新增与16项直接父链共34项相关回归通过，OpenSpec全部30项严格检查通过。保留16,013个既有文件、十项存档规则及九份私有VM检查点；旧来源/报告/运行时/Godot/存档保持。五个计划阶段与一次来源范围纠正共六次本地提交，不推送；v1来源和失败日志保留，最终原生报告使用完整ret范围的v2来源契约。验收包含工作文件SHA和Git规范化blob；310/310只代表已列阶段，不是全游戏逆向百分比。
+
+见[回归](../analysis/school-font-texture-regression-20261018.log)、[严格规格](../analysis/school-font-texture-strict-20261018.log)、[保留检查](../analysis/school-font-texture-preservation-20261018.json)与[本批验收](../analysis/school-font-texture-acceptance-20261018.json)。

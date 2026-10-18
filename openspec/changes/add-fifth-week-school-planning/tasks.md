@@ -1242,4 +1242,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 310. Cache texture acceptance
 
-- [ ] 310.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent cache state and remaining sprite/GDI/font/outer dependencies, verify exact Git bytes and commit locally without push.
+- [x] 310.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent cache state and remaining sprite/GDI/font/outer dependencies, verify exact Git bytes and commit locally without push.
