@@ -311,3 +311,6 @@ Continue the verified independent empty-cache CPU from52AE80 through original32-
 
 ## Additional font-slot construction and atlas admission (2026-10-18)
 Continue the independent empty-cache first-font CPU at416021 through original1656-byte allocation/401000/native CRT face copy and owner+1090 binding. Then execute4010D0 dimension selection and a real owned device caps query to unexecuted40120C CreateTexture. Preserve both prior font/cache objects and source/owner/stack/heap guards. This bounded batch does not complete either additional font, upload glyphs, create state blocks, return415F50 or advance the retained VM. Commit source, constructor, atlas admission and acceptance separately locally.
+
+## Additional font atlas texture and GDI preparation (2026-10-18)
+Continue the independent declared empty-cache CPU from40120C through real owned additional atlas texture creation, native bitmap-header initialization and real bounded GDI DC/DIB/map mode/MulDiv/font/selection/color/alignment preparation. Stop before the first glyph measurement import at401491; no glyph rasterization, pixel upload, state blocks, full extra font/415F50 or retained VM completion. Fork immutable helpers, verify full objects/image/stack/lifetimes and commit source/device/texture/GDI/native/acceptance separately locally.

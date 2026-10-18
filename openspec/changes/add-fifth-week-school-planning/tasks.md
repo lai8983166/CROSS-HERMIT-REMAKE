@@ -1279,3 +1279,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 319. Additional-slot admission acceptance
 
 - [x] 319.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document unresolved atlas/glyph/state-block/additional-slot/full-startup work, verify exact Git bytes and commit locally without push.
+
+## 320. Additional atlas and GDI source contract
+
+- [x] 320.1 Derive original texture ABI, native bitmap clearing/header, GDI imports/font arithmetic and first glyph admission; independent source projections/tests and local commit.
+
+## 321. Owned additional atlas texture platform
+
+- [ ] 321.1 Fork immutable x86 device helper to create/inspect/own additional atlas alongside old cache resources with bounded calls and complete cleanup/refusal/provenance tests; commit locally.
+
+## 322. Native atlas texture and bitmap header
+
+- [ ] 322.1 Freshly replay the verified original prefix and resume40120C through actual texture creation/native memset/header to unexecuted CreateCompatibleDC; verify full bytes/CPU/ABI/guards and fresh/corruption tests, commit locally.
+
+## 323. Owned additional atlas GDI platform
+
+- [ ] 323.1 Fork immutable x86 GDI helper with separate owned atlas DC/DIB/font, real MulDiv/setup/selection and exact argument sequencing, complete cleanup/refusal/provenance tests; commit locally.
+
+## 324. Native GDI preparation and glyph admission
+
+- [ ] 324.1 Continue the same original CPU through real atlas GDI setup/native arithmetic to unexecuted401491 glyph measurement; independently verify all source/live ABI/CPU/objects/locals/guards and fresh/corruption tests, commit locally.
+
+## 325. Atlas resource and GDI preparation acceptance
+
+- [ ] 325.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document remaining glyph/upload/state-block/second-font/upstream work, verify exact Git bytes and commit locally without push.

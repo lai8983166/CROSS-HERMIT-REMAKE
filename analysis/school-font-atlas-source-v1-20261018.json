@@ -1,0 +1,236 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x40120c",
+      "end": "0x401497",
+      "sha256": "045aad9f83bafd8c15bfa3838698fdbe9ea6ed6db0003d19a4d6fe2a2aee30fc"
+    },
+    {
+      "va": "0x56ce80",
+      "end": "0x56ce83",
+      "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+    },
+    {
+      "va": "0x56cec0",
+      "end": "0x56cf18",
+      "sha256": "2af9ec6db955aa74b3de79ebe2752b3fa148e02935ac40304eb9ffc13ccf0d2c"
+    },
+    {
+      "va": "0x56cfcc",
+      "end": "0x56cff3",
+      "sha256": "d0a2aca68648a0ae9d5cbfae1b276d4a64d4f797fc0c60f28b64096cdfa3148c"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x40120c",
+      "hex": "ff5250",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x50]"
+    },
+    {
+      "va": "0x401232",
+      "hex": "e889bc1600",
+      "mnemonic": "call",
+      "operands": "0x56cec0"
+    },
+    {
+      "va": "0x40123a",
+      "hex": "c785f4feffff28000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebp - 0x10c], 0x28"
+    },
+    {
+      "va": "0x401258",
+      "hex": "898dfcfeffff",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebp - 0x104], ecx"
+    },
+    {
+      "va": "0x4012f3",
+      "hex": "e8d4bc1600",
+      "mnemonic": "call",
+      "operands": "0x56cfcc"
+    },
+    {
+      "va": "0x40130d",
+      "hex": "f7d8",
+      "mnemonic": "neg",
+      "operands": "eax"
+    },
+    {
+      "va": "0x401322",
+      "hex": "81e12c010000",
+      "mnemonic": "and",
+      "operands": "ecx, 0x12c"
+    },
+    {
+      "va": "0x401328",
+      "hex": "81c190010000",
+      "mnemonic": "add",
+      "operands": "ecx, 0x190"
+    },
+    {
+      "va": "0x401378",
+      "hex": "ff15a0205900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5920a0]"
+    },
+    {
+      "va": "0x401444",
+      "hex": "c685c0feffff20",
+      "mnemonic": "mov",
+      "operands": "byte ptr [ebp - 0x140], 0x20"
+    },
+    {
+      "va": "0x401491",
+      "hex": "ff15bc205900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5920bc]"
+    }
+  ],
+  "imports": [
+    {
+      "slot": "0x592094",
+      "target": "0x76bd6d90",
+      "symbol": "CreateCompatibleDC",
+      "return_va": "0x401284",
+      "args": 1,
+      "op": "atlas_dc",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x592098",
+      "target": "0x76bd5e80",
+      "symbol": "CreateDIBSection",
+      "return_va": "0x4012b4",
+      "args": 6,
+      "op": "atlas_dib",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x59209c",
+      "target": "0x76bd3f50",
+      "symbol": "SetMapMode",
+      "return_va": "0x4012d2",
+      "args": 2,
+      "op": "atlas_map",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x59223c",
+      "target": "0x77022fa0",
+      "symbol": "MulDiv",
+      "return_va": "0x401306",
+      "args": 3,
+      "op": "atlas_muldiv",
+      "descriptor": "0x5fd5cc",
+      "dll": "KERNEL32.dll"
+    },
+    {
+      "slot": "0x5920a0",
+      "target": "0x76bd52a0",
+      "symbol": "CreateFontA",
+      "return_va": "0x40137e",
+      "args": 14,
+      "op": "atlas_font",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920a4",
+      "target": "0x76bd6ca0",
+      "symbol": "SelectObject",
+      "return_va": "0x4013b4",
+      "args": 2,
+      "op": "atlas_bitmap_select",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920a4",
+      "target": "0x76bd6ca0",
+      "symbol": "SelectObject",
+      "return_va": "0x4013d1",
+      "args": 2,
+      "op": "atlas_font_select",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920b0",
+      "target": "0x76bd6e90",
+      "symbol": "SetTextColor",
+      "return_va": "0x4013ec",
+      "args": 2,
+      "op": "atlas_text",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920b4",
+      "target": "0x76bd6f00",
+      "symbol": "SetBkColor",
+      "return_va": "0x401404",
+      "args": 2,
+      "op": "atlas_background",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920b8",
+      "target": "0x76bd3ce0",
+      "symbol": "SetTextAlign",
+      "return_va": "0x40141c",
+      "args": 2,
+      "op": "atlas_align",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920bc",
+      "target": "0x76bd5230",
+      "symbol": "GetTextExtentPoint32A",
+      "return_va": "0x401497",
+      "args": 4,
+      "op": "pending_glyph",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll"
+    }
+  ],
+  "texture_args": [
+    256,
+    256,
+    1,
+    0,
+    26,
+    1
+  ],
+  "bitmap_header_hex": "280000000001000000ffffff01002000000000000000000000000000000000000000000000000000",
+  "font_args": [
+    -16,
+    0,
+    0,
+    0,
+    700,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    4,
+    2
+  ],
+  "face_hex": "4669786564537973",
+  "texture_stop": "0x76bd6d90",
+  "GDI_stop": "0x401491",
+  "first_character": 32,
+  "first_character_source_word": "7800",
+  "glyph_measurement_executed": false,
+  "retained_VM_advanced": false
+}

@@ -1181,3 +1181,14 @@ The audit SHALL continue the independent first-font return through original addi
 #### Scenario: Atlas requirements reach an unexecuted resource call
 - **WHEN** original4010D0 uses the newly constructed object and live device caps
 - **THEN** original dimension/clamp logic prepares the exact CreateTexture call at40120C, with no texture/glyph/state-block/full-font or retained VM completion inferred
+
+### Requirement: Original additional atlas resource and GDI preparation
+The audit SHALL execute the pending original atlas texture call and subsequent native/GDI setup using fresh owned x86 helper versions, verify full original memory/ABI/CPU and all live resource lifetimes, and stop before the first glyph measurement. It MUST preserve historical/source/runtime/save/private VM bytes and distinguish this independent empty-cache experiment from retained VM advancement.
+
+#### Scenario: Actual additional atlas texture reaches bitmap setup
+- **WHEN** original40120C consumes its verified256-square/format26/pool1 arguments
+- **THEN** the owned device creates an additional real texture, native memset/header stores execute and stop before CreateCompatibleDC with old cache resources intact
+
+#### Scenario: Real GDI resources reach first glyph measurement
+- **WHEN** original40127E continues with real DC/DIB/map mode/MulDiv/font/selection/color/alignment calls
+- **THEN** native arithmetic and setup prepare the first character20 measurement at401491, all owned resources are cleaned and no glyph output/upload/additional-font/full-startup or retained VM completion is inferred
