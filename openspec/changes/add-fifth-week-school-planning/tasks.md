@@ -1274,7 +1274,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 318. Native atlas capability admission
 
-- [ ] 318.1 Continue the same CPU through4010D0 and real owned device caps to unexecuted40120C CreateTexture; verify full objects/CPU/call arguments/lifetime and fresh/corruption tests, commit locally.
+- [x] 318.1 Continue the same CPU through4010D0 and real owned device caps to unexecuted40120C CreateTexture; verify full objects/CPU/call arguments/lifetime and fresh/corruption tests, commit locally.
 
 ## 319. Additional-slot admission acceptance
 
