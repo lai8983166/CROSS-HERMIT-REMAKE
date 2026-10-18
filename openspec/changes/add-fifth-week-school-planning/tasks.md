@@ -1234,7 +1234,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 308. Native texture requirements return
 
-- [ ] 308.1 Freshly replay verified declared empty-cache prefix and resume52755E through source format/dimension logic and real interfaces to unexecuted5275D7, independently verify full memory/CPU/calls/ABI and corruption refusals; commit locally.
+- [x] 308.1 Freshly replay verified declared empty-cache prefix and resume52755E through source format/dimension logic and real interfaces to unexecuted5275D7, independently verify full memory/CPU/calls/ABI and corruption refusals; commit locally.
 
 ## 309. Native texture and surface creation
 
