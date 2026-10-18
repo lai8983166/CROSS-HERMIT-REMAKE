@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_font_texture_emulation.py", line 204, in <module>
+    path.write_text(json.dumps(generate(a.phase), indent=2)+'\n', encoding='utf-8', newline='\n')
+  File "F:\project\chaomofa\tools\school_font_texture_emulation.py", line 182, in generate
+    result = owned_run(run, width, height)
+  File "F:\project\chaomofa\tools\school_font_texture_bridge.py", line 35, in owned_run
+    value = callback(bridge)
+  File "F:\project\chaomofa\tools\school_font_texture_emulation.py", line 177, in run
+    case['requirements'] = engine.resume('requirements')
+  File "F:\project\chaomofa\tools\school_font_texture_emulation.py", line 138, in resume
+    self.uc.emu_start(start, RETURN+1, timeout=15_000_000, count=100000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_font_texture_emulation.py", line 114, in _code
+    raise RuntimeError('texture undeclared native body '+hex(at))
+RuntimeError: texture undeclared native body 0x527583

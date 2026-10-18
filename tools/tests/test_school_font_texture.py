@@ -4,6 +4,14 @@ from tools.school_font_texture import *
 
 
 class SourceTests(unittest.TestCase):
+    def test_native_ranges_include_complete_return_instructions(self):
+        raw = SOURCE.read_bytes()
+        md = Cs(CS_ARCH_X86, CS_MODE_32)
+        for start, end in RANGES.items():
+            body = list(md.disasm(raw[start-BASE:end-BASE], start))
+            self.assertEqual(body[-1].address+body[-1].size, end)
+            self.assertEqual(body[-1].mnemonic, 'ret')
+
     def test_complete_original_table_debug_target_and_calls(self):
         contract = source_contract()
         self.assertEqual(len(contract['formats']), 43)

@@ -6,7 +6,7 @@ from functools import lru_cache
 from capstone import Cs, CS_ARCH_X86, CS_MODE_32
 from tools.school_font_startup import SOURCE, SOURCE_SHA256, BASE, ROOT, CACHE, FONT, HEAD, COUNTER, dword, store
 
-RANGES = {0x52755E: 0x527584, 0x527234: 0x52755E, 0x526C46: 0x526C6A,
+RANGES = {0x52755E: 0x527586, 0x527234: 0x52755E, 0x526C46: 0x526C6A,
           0x526C6A: 0x526CDF, 0x526D4D: 0x526E2F, 0x52B019: 0x52B0A9,
           0x5275D7: 0x52763D}
 ARGS = {0x52755E: 7, 0x527234: 8, 0x526C46: 1, 0x526D4D: 5,
