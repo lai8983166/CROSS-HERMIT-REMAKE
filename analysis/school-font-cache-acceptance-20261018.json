@@ -1,0 +1,512 @@
+{
+  "baseline": "68cc2bc",
+  "stages": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "source_native_commits": [
+    "12c52a5f8dfef5fc17e82dc18532bc2279197ada",
+    "63c88fbc7a5a5810cd77cd003af9713aeea76c56",
+    "f2503c9b01f10dd4fe21eeedb79d38e9540a91f5",
+    "f06b9a3d02a27d71c5e1b0cbfaf964df313a7646"
+  ],
+  "scope": "Independent declared empty-cache original sprite/GDI and first static font factory returns through owner+B270 at416021",
+  "original_IAT_changed": false,
+  "game_helpers_stubbed": false,
+  "CRT_adapter_executed": true,
+  "experiments": {
+    "sprite": {
+      "report": {
+        "path": "analysis/school-font-cache-sprite-v1-20261018.json",
+        "bytes": 415522,
+        "sha256": "5213a1efdb3b09c730cfbc59b9bd792d838e0faaa7da784063846870a8276ed8"
+      },
+      "verified": {
+        "cases": 2,
+        "phase": "sprite",
+        "first_static_font_completed": false,
+        "full_owner_bytes": 49152,
+        "heap_guard_bytes": 36864,
+        "retained_VM_advanced": false
+      },
+      "cases": [
+        {
+          "fill": 165,
+          "dimensions": [
+            640,
+            480
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "2af9b5785b150925c6740b4cdd42d393fb06374a1e96dbd308c4c1e8f82ffa81"
+          },
+          "sprite_pending": {
+            "va": "0x76bd6d90",
+            "sp": 553708848,
+            "first_instruction_executed": false,
+            "return_va": "0x548805",
+            "args": [
+              0
+            ],
+            "platform_call_executed": false
+          },
+          "final_pending": {
+            "va": "0x76bd6d90",
+            "sp": 553708848,
+            "first_instruction_executed": false,
+            "return_va": "0x548805",
+            "args": [
+              0
+            ],
+            "platform_call_executed": false
+          },
+          "platform_cleanup": {
+            "fonts_released": 1,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 0,
+            "cache_dcs_released": 0,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        },
+        {
+          "fill": 204,
+          "dimensions": [
+            1024,
+            768
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "59f16c602cda703f3ecb185e5e1e7f5a1b920cc8999670cdc9d52a321ee929d4"
+          },
+          "sprite_pending": {
+            "va": "0x76bd6d90",
+            "sp": 553708848,
+            "first_instruction_executed": false,
+            "return_va": "0x548805",
+            "args": [
+              0
+            ],
+            "platform_call_executed": false
+          },
+          "final_pending": {
+            "va": "0x76bd6d90",
+            "sp": 553708848,
+            "first_instruction_executed": false,
+            "return_va": "0x548805",
+            "args": [
+              0
+            ],
+            "platform_call_executed": false
+          },
+          "platform_cleanup": {
+            "fonts_released": 1,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 0,
+            "cache_dcs_released": 0,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        }
+      ]
+    },
+    "font": {
+      "report": {
+        "path": "analysis/school-font-cache-return-v1-20261018.json",
+        "bytes": 457335,
+        "sha256": "23379c6fdd563177d63c0392665172dc075dac77083a2995ca94fb9c1634cd80"
+      },
+      "verified": {
+        "cases": 2,
+        "phase": "font",
+        "first_static_font_completed": true,
+        "full_owner_bytes": 49152,
+        "heap_guard_bytes": 36864,
+        "retained_VM_advanced": false
+      },
+      "cases": [
+        {
+          "fill": 165,
+          "dimensions": [
+            640,
+            480
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "11394d73266d0e60607063aec9b4d76560e459f7d25ba28ff01b362898c8b0b5"
+          },
+          "sprite_pending": {
+            "va": "0x76bd6d90",
+            "sp": 553708848,
+            "first_instruction_executed": false,
+            "return_va": "0x548805",
+            "args": [
+              0
+            ],
+            "platform_call_executed": false
+          },
+          "final_pending": {
+            "va": "0x416021",
+            "sp": 553709360,
+            "first_instruction_executed": false
+          },
+          "platform_cleanup": {
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        },
+        {
+          "fill": 204,
+          "dimensions": [
+            1024,
+            768
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "f8eb04e09939033eadb85de65eeb7b51ffabb6b82c21fcc2a523c637128985a5"
+          },
+          "sprite_pending": {
+            "va": "0x76bd6d90",
+            "sp": 553708848,
+            "first_instruction_executed": false,
+            "return_va": "0x548805",
+            "args": [
+              0
+            ],
+            "platform_call_executed": false
+          },
+          "final_pending": {
+            "va": "0x416021",
+            "sp": 553709360,
+            "first_instruction_executed": false
+          },
+          "platform_cleanup": {
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        }
+      ]
+    }
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "owner": 0,
+    "advanced": false
+  },
+  "regression": {
+    "new": 18,
+    "direct_parent": 18,
+    "total": 36,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-font-cache-regression-20261018.log",
+      "bytes": 4867,
+      "sha256": "d1dd986e04f991e1dc4d48d28a3b093687a9b69d316dc18c58c4826a9a399faa"
+    },
+    "strict_log": {
+      "path": "analysis/school-font-cache-strict-20261018.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775"
+    }
+  },
+  "preservation": {
+    "path": "analysis/school-font-cache-preservation-20261018.json",
+    "bytes": 10549,
+    "sha256": "8a67f6048268f950e051debeffedabb622f3530c69fc3112d2985cf7abb2ce37",
+    "retained_files": 16039,
+    "save_rule_fingerprints": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "authority": {
+    "empty_cache_input_is_declared": true,
+    "inherited_cache_head_repaired": false,
+    "original_sprite_factory_returned": true,
+    "real_cache_GDI_resources_initialized": true,
+    "first_static_font_factories_returned": true,
+    "owner_B270_stored_by_original_code": true,
+    "indirect_font_GetObjectA_is_inspection_only": true,
+    "full415F50_returned": false,
+    "state_blocks_created": false,
+    "DIB_pixel_memory_read": false,
+    "cleanup_by_owned_helpers": true,
+    "original_destructor_chain_executed": false,
+    "manager_owner_bound": false,
+    "queues_initialized_on_this_chain": false,
+    "drawing_or_Present": false,
+    "full_outer_frame": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_pointers_resumable": false
+  },
+  "remaining": [
+    "Original415F50 additional two font slots and complete startup return",
+    "Original40D970 owner binding/40DAB0 queues and remaining device-startup suffix",
+    "Recover old cache heap or actual upstream initialization before reconnecting retained VM",
+    "Complete input/task/world/render scheduling, dialogue, battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "315/315 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 16162,
+      "sha256": "d57c64460b1e8aafe2054c99473091d70e1c5fc00f40a6f9bd82ddaad1b9b2a0",
+      "git_blob": "d4579976c53fd46449e761b0d0a2aa2bcc01235e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 53727,
+      "sha256": "ee90a4cd387cd8d19e425a191de5739f9e77ca035bb79e5da829e8469ba5ab82",
+      "git_blob": "0f172ebb40a1376d020bdf45fb1cd9d0530cbbec"
+    },
+    {
+      "path": "analysis/school-font-cache-native-tests-20261018.log",
+      "bytes": 2526,
+      "sha256": "f5f1af03a2cc06a2949b63c76880409f478a84bde155c86ec65bf406726b22cd",
+      "git_blob": "9adf1a114e60c0d7500ad601296a191bc30fe256"
+    },
+    {
+      "path": "analysis/school-font-cache-platform-generation-20261018.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "analysis/school-font-cache-platform-tests-20261018.log",
+      "bytes": 1271,
+      "sha256": "04559c4f4c724dc6663b3e8f1393f548f078b65c019c0cb909782ee19f5bfc62",
+      "git_blob": "de237073587b5ebc06e18521f713f51f770d1ece"
+    },
+    {
+      "path": "analysis/school-font-cache-platform-v1-20261018.json",
+      "bytes": 18125,
+      "sha256": "531f2c6f8a0243c91fa460630f5d361f1cafd262f7b315dbc5d22ae70ae9a302",
+      "git_blob": "0bd00fc5e0dabca54fd0532de30dc7affabfeb4f"
+    },
+    {
+      "path": "analysis/school-font-cache-preservation-20261018.json",
+      "bytes": 10549,
+      "sha256": "8a67f6048268f950e051debeffedabb622f3530c69fc3112d2985cf7abb2ce37",
+      "git_blob": "998ee50007f762127826ca69a035a5d07cbc4975"
+    },
+    {
+      "path": "analysis/school-font-cache-regression-20261018.log",
+      "bytes": 4867,
+      "sha256": "d1dd986e04f991e1dc4d48d28a3b093687a9b69d316dc18c58c4826a9a399faa",
+      "git_blob": "4f576d16c4482726512ba58f14756c727e1c10fc"
+    },
+    {
+      "path": "analysis/school-font-cache-return-generation-20261018.log",
+      "bytes": 86,
+      "sha256": "e39cc99a375dfd48e07cda0d74b2d2c0da8a4aa77fe36e51599177b1123b47aa",
+      "git_blob": "59d75d03ba70370a67ebc154eed706fe2b3302c5"
+    },
+    {
+      "path": "analysis/school-font-cache-return-v1-20261018.json",
+      "bytes": 457335,
+      "sha256": "23379c6fdd563177d63c0392665172dc075dac77083a2995ca94fb9c1634cd80",
+      "git_blob": "61d5cb8e8aea2f351c81af0a4eb26b0d89eceff2"
+    },
+    {
+      "path": "analysis/school-font-cache-source-v1-20261018.json",
+      "bytes": 5225,
+      "sha256": "23c89a1c87da5f62719e18f294eca2de04564914a659ab1a4e47158cb556cee6",
+      "git_blob": "8774b70f34adb11524a6c335be1bed6b4fa31f1c"
+    },
+    {
+      "path": "analysis/school-font-cache-sprite-generation-20261018.log",
+      "bytes": 90,
+      "sha256": "22a93a18c4e8d6610596febc5171a50463fab12d5eba89067effa1e47e34fbed",
+      "git_blob": "695d41261224dfae191984edbf6d92f34c8d0487"
+    },
+    {
+      "path": "analysis/school-font-cache-sprite-tests-20261018.log",
+      "bytes": 1878,
+      "sha256": "f37d91246875d275d1b6918987932a054b36c7bedc937fe0c2619089831d55a9",
+      "git_blob": "107c018da6b7f3efb4f253c3202f3dea057c0f9b"
+    },
+    {
+      "path": "analysis/school-font-cache-sprite-v1-20261018.json",
+      "bytes": 415522,
+      "sha256": "5213a1efdb3b09c730cfbc59b9bd792d838e0faaa7da784063846870a8276ed8",
+      "git_blob": "cdf36bffec42e5b3c25139c5e3d195d53f7448e1"
+    },
+    {
+      "path": "analysis/school-font-cache-strict-20261018.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775",
+      "git_blob": "2ad0d64199225b64beb1dc9b8cf28969e0b2fd9c"
+    },
+    {
+      "path": "docs/school_font_cache.md",
+      "bytes": 4990,
+      "sha256": "b16d67ad19a70be1db0a9858d550511332421ae7491349263f39729daf409437",
+      "git_blob": "66153fd24c7126deec058cc39624fa55951b7345"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 84289,
+      "sha256": "1435c53c719b3c3cee9d2e9d990cb1cd5471280278e256b7055c3a2bb30769b8",
+      "git_blob": "fcc4e332e6b52294fb8413fd12d8556f08134855"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 49362,
+      "sha256": "07cf7336ce256a975f64024d79b47833d981441a1653e0675d85558d98e9f6d9",
+      "git_blob": "9b7358e98047f2e357ec704b8ad3d90dc6572b60"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 107928,
+      "sha256": "5d8d647631e207113bff7ae9eec645138bf8454a55785529ca68422e8411e1a0",
+      "git_blob": "a5423ab1a79e6cf0c8c44d4e0ea0a6426a107590"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 89574,
+      "sha256": "3e96d26a3c3fa8c6194f64c54aa91d034ee3166f9c4e7cef3ef4c52d90bcde3d",
+      "git_blob": "e96e65ab8ea5acde563da4a5c8e1f814e218c19c"
+    },
+    {
+      "path": "tools/school_font_cache.py",
+      "bytes": 5345,
+      "sha256": "474e06fbda262e6d30c2927d7cc68fccf6126eef0f7cc6a41fde12450ebbf904",
+      "git_blob": "626410e42cef88e5dd50509ae75275810e759967"
+    },
+    {
+      "path": "tools/school_font_cache_device.cs",
+      "bytes": 17755,
+      "sha256": "bbdce5f2b4dddd7ecc472646d7357d851f1dcc3b173ac72dcf4e32d3cb3b7e56",
+      "git_blob": "73a26f4f8231199dfeb3941a3b56aeb77f69a99d"
+    },
+    {
+      "path": "tools/school_font_cache_emulation.py",
+      "bytes": 13436,
+      "sha256": "0b17ee703415fb5091208749a670442c6828fd566633c695aa6e90408f09048f",
+      "git_blob": "5ec69fb5055309d5d7b39b9bbb4895b5584a39d4"
+    },
+    {
+      "path": "tools/school_font_cache_gdi.cs",
+      "bytes": 10416,
+      "sha256": "a0bbdb38255c328f21d2f205979a5c023c7fb3b5cbc10cec173ec1325661726d",
+      "git_blob": "479b245501a4610bd58be09b5fd0697f4fafcbe3"
+    },
+    {
+      "path": "tools/school_font_cache_platform.py",
+      "bytes": 5318,
+      "sha256": "f721ae0396d77fca2b7a146793170c044b5dc751ab2da9bdeaf227cb5732f05c",
+      "git_blob": "0f3e89b27185f5711d65f10517999dde4d8012ec"
+    },
+    {
+      "path": "tools/school_font_cache_verification.py",
+      "bytes": 15409,
+      "sha256": "2dd965cad76a9586f58161d54d1765c909693d6fbe9abd23d1316f2cb97df1b3",
+      "git_blob": "45faf3866d19a7a1c9964136d83d6453f4377dcb"
+    },
+    {
+      "path": "tools/tests/test_school_font_cache.py",
+      "bytes": 2272,
+      "sha256": "1dfd7a08b6c0634293bdce311831b1aa54017ce5d47ebe70ee7c85c8c7b8d957",
+      "git_blob": "3bf77b1aed138a03e4db59662a5de81173fc98b1"
+    },
+    {
+      "path": "tools/tests/test_school_font_cache_emulation.py",
+      "bytes": 6199,
+      "sha256": "19164fbd40da9408ec8332c9ba991756877dc4f99422c4b9d9b7d428bf5e8f4a",
+      "git_blob": "0f118adfb7a543653f457755a1153a240e63bf97"
+    },
+    {
+      "path": "tools/tests/test_school_font_cache_platform.py",
+      "bytes": 3747,
+      "sha256": "a41c915102c0f6eaba220677eb890d55f152b9bd94f771ad5f9440588794b3f5",
+      "git_blob": "e948b92854222aa753c12c8ba92a38a7d849b364"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-font-cache-acceptance-20261018.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

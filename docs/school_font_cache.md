@@ -19,3 +19,7 @@
 七条自然返回、两个原工厂输出、全部288字节三对象/填充、三块12KiB堆/guard、完整48KiB owner/原映像及CPU/SEH均独立核对。最终停416021：ESP=TOP-208、EBP=TOP-96，首个静态字体已完成，但415F50尚未返回，两个后续字体槽仍为0。未创建状态块、绘制、读取DIB像素或推进保留VM。18项新测试通过，含完整双例新鲜重跑及重算SHA后的字体/缓存/精灵/owner+B270变异拒绝。
 
 见[首个字体返回](../analysis/school-font-cache-return-v1-20261018.json)。取证后由拥有资源的助手恢复位图选择并清理全部GDI/COM引用，不宣称执行了原游戏析构链；已释放句柄不可跨进程续用。下一步处理415F50的两个额外字体槽，再接原管理器/队列和真实上游初始化；旧缓存堆与原连续VM40E2D0/PC224/wait1仍保持原边界。
+
+315验收：18项新增与18项直接父链共36项相关回归通过，OpenSpec全部30项严格检查通过。保留16,039个既有文件、十项存档规则和九份私有VM检查点；新证据独立命名，旧源码/报告/助手/运行时/Godot/存档保持。验收记录工作文件SHA和Git规范化blob，五阶段分别本地提交，不推送。315/315只表示已列计划阶段，不是全游戏逆向完成率。
+
+见[36项回归](../analysis/school-font-cache-regression-20261018.log)、[严格规格](../analysis/school-font-cache-strict-20261018.log)、[保留检查](../analysis/school-font-cache-preservation-20261018.json)及[本批验收](../analysis/school-font-cache-acceptance-20261018.json)。

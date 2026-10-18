@@ -1262,4 +1262,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 315. First static font return acceptance
 
-- [ ] 315.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document first-font completion versus remaining additional slots/upstream/renderer/outer work, verify exact Git bytes and commit locally without push.
+- [x] 315.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document first-font completion versus remaining additional slots/upstream/renderer/outer work, verify exact Git bytes and commit locally without push.
