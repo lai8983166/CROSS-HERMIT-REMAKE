@@ -1,0 +1,21 @@
+test_actual_build_and_immutable_parent (tools.tests.test_school_font_atlas_gdi.GDITests) ... ok
+test_real_atlas_GDI_font_inspection_setup_and_complete_cleanup (tools.tests.test_school_font_atlas_gdi.GDITests) ... FAIL
+test_unordered_foreign_wrong_header_font_and_closed_requests_refused (tools.tests.test_school_font_atlas_gdi.GDITests) ... ok
+
+======================================================================
+FAIL: test_real_atlas_GDI_font_inspection_setup_and_complete_cleanup (tools.tests.test_school_font_atlas_gdi.GDITests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_atlas_gdi.py", line 18, in test_real_atlas_GDI_font_inspection_setup_and_complete_cleanup
+    self.assertEqual(calls[4]['result']['inspection'], dict(native_requested=False, method='GetObjectA', result=60, hex=font_logfont().hex()))
+AssertionError: {'nat[128 chars]978656453797300cccccccccccccccccccccccccccccccccccccccccccccc'} != {'nat[128 chars]9786564537973000000000000000000000000000000000000000000000000'}
+- {'hex': 'f0ffffff000000000000000000000000bc0200000000000100000402466978656453797300cccccccccccccccccccccccccccccccccccccccccccccc',
++ {'hex': 'f0ffffff000000000000000000000000bc02000000000001000004024669786564537973000000000000000000000000000000000000000000000000',
+   'method': 'GetObjectA',
+   'native_requested': False,
+   'result': 60}
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.503s
+
+FAILED (failures=1)

@@ -11,3 +11,7 @@
 独立核验覆盖全部1656字节对象/填充、四块12KiB堆/guard、48KiB owner、原映像/SEH/栈边界、实际COM映射/完整能力前缀和请求序列。三项原执行测试包括新鲜双例重跑、ABI/CPU/头/返回/清理/声明变异及重算SHA后的对象、旧堆、owner和外部映射破坏拒绝。未创建额外GDI资源、测量/绘制字符、读取DIB像素、上传纹理、执行状态块或完整415F50返回。
 
 见[来源](../analysis/school-font-atlas-source-v1-20261018.json)、[实际设备平台](../analysis/school-font-atlas-device-v1-20261018.json)、[原纹理执行](../analysis/school-font-atlas-texture-v1-20261018.json)及[独立核验器](../tools/school_font_atlas_verification.py)。
+
+323平台：新GDI助手独立拥有额外DC、256×-256/32位DIB和FixedSys字体，执行真实SetMapMode/MulDiv/两次SelectObject/文本色/背景色/文本对齐。清理恢复旧字体和旧位图，删除额外字体/位图/DC，再清理原共享缓存资源。三项平台测试通过，覆盖越序、外来对象、错误头/字体/算术和关闭后请求拒绝。
+
+构建/检查修正均保留：最初源码生成误含NUL字符，编译失败且未运行；修正转义后首次有效v1构建的独立GetObjectA检查暴露字体名称后缓冲尾部未定义，不能假定API填零。保留v1源码/助手/报告，新增v2源码/助手，明确清零检查专用缓冲后再GetObjectA；实际原版CreateFontA/选择/颜色调用不变。v2完整60字节检查与来源投影相等。失败日志和有效报告分别命名，均不覆盖。

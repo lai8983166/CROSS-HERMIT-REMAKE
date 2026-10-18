@@ -1,0 +1,54 @@
+test_actual_build_and_immutable_parent (tools.tests.test_school_font_atlas_gdi.GDITests) ... ERROR
+test_real_atlas_GDI_font_inspection_setup_and_complete_cleanup (tools.tests.test_school_font_atlas_gdi.GDITests) ... ERROR
+test_unordered_foreign_wrong_header_font_and_closed_requests_refused (tools.tests.test_school_font_atlas_gdi.GDITests) ... ERROR
+
+======================================================================
+ERROR: test_actual_build_and_immutable_parent (tools.tests.test_school_font_atlas_gdi.GDITests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_atlas_gdi.py", line 9, in test_actual_build_and_immutable_parent
+    r = json.loads((ROOT/'analysis/school-font-atlas-gdi-v1-20261018.json').read_text())
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'F:\\project\\chaomofa\\analysis\\school-font-atlas-gdi-v1-20261018.json'
+
+======================================================================
+ERROR: test_real_atlas_GDI_font_inspection_setup_and_complete_cleanup (tools.tests.test_school_font_atlas_gdi.GDITests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_atlas_gdi.py", line 16, in test_real_atlas_GDI_font_inspection_setup_and_complete_cleanup
+    r = probe(); calls = r['calls']
+  File "F:\project\chaomofa\tools\school_font_atlas_gdi.py", line 59, in probe
+    with AtlasGDI() as platform:
+  File "F:\project\chaomofa\tools\school_font_atlas_gdi.py", line 15, in __init__
+    if machine(HELPER) != 0x14C: raise ValueError('atlas GDI helper must be x86')
+  File "F:\project\chaomofa\tools\school_d3d8_platform.py", line 13, in machine
+    raw=Path(path).read_bytes();at=struct.unpack_from('<I',raw,0x3C)[0]
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1126, in read_bytes
+    with self.open(mode='rb') as f:
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'F:\\project\\chaomofa\\.venv-audit\\school-font-atlas-gdi-v1.exe'
+
+======================================================================
+ERROR: test_unordered_foreign_wrong_header_font_and_closed_requests_refused (tools.tests.test_school_font_atlas_gdi.GDITests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_atlas_gdi.py", line 24, in test_unordered_foreign_wrong_header_font_and_closed_requests_refused
+    with AtlasGDI() as platform:
+  File "F:\project\chaomofa\tools\school_font_atlas_gdi.py", line 15, in __init__
+    if machine(HELPER) != 0x14C: raise ValueError('atlas GDI helper must be x86')
+  File "F:\project\chaomofa\tools\school_d3d8_platform.py", line 13, in machine
+    raw=Path(path).read_bytes();at=struct.unpack_from('<I',raw,0x3C)[0]
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1126, in read_bytes
+    with self.open(mode='rb') as f:
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'F:\\project\\chaomofa\\.venv-audit\\school-font-atlas-gdi-v1.exe'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+FAILED (errors=3)

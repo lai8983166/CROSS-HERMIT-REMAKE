@@ -1294,7 +1294,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 323. Owned additional atlas GDI platform
 
-- [ ] 323.1 Fork immutable x86 GDI helper with separate owned atlas DC/DIB/font, real MulDiv/setup/selection and exact argument sequencing, complete cleanup/refusal/provenance tests; commit locally.
+- [x] 323.1 Fork immutable x86 GDI helper with separate owned atlas DC/DIB/font, real MulDiv/setup/selection and exact argument sequencing, complete cleanup/refusal/provenance tests; commit locally.
 
 ## 324. Native GDI preparation and glyph admission
 
