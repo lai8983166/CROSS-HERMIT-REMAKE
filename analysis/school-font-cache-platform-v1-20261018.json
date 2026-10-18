@@ -1,0 +1,707 @@
+{
+  "builds": {
+    "device": {
+      "source_sha256": "bbdce5f2b4dddd7ecc472646d7357d851f1dcc3b173ac72dcf4e32d3cb3b7e56",
+      "helper_sha256": "c8a36249a51303dbc41c69eae3337ccb3483ee33727825f3357dc84bcd887f6e",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "machine": 332
+    },
+    "gdi": {
+      "source_sha256": "a0bbdb38255c328f21d2f205979a5c023c7fb3b5cbc10cec173ec1325661726d",
+      "helper_sha256": "fb766ce956b4e22b6dc405f12b6f2e5775ee05710e79a7d18f6a7b0a777e31c1",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "machine": 332
+    }
+  },
+  "gdi": {
+    "logfont": {
+      "result": 60,
+      "hex": "00000000000000000000000000000000bc0200000000000105000000b2d3a9fac5e92000cccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "indirect": {
+      "result": 1510626352,
+      "inspection": {
+        "native_requested": false,
+        "method": "GetObjectA",
+        "result": 60,
+        "hex": "00000000000000000000000000000000bc0200000000000105000000b2d3a9fac5e92000cccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    "bitmap": {
+      "result": 923100682,
+      "bits": 92536832
+    },
+    "trace": [
+      {
+        "request": {
+          "id": 1,
+          "op": "GetDC"
+        },
+        "reply": {
+          "ok": true,
+          "id": 1,
+          "result": {
+            "result": 4278272388
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 2,
+          "op": "CreateFontA",
+          "args": [
+            0,
+            0,
+            0,
+            0,
+            700,
+            0,
+            0,
+            0,
+            1,
+            5,
+            0,
+            0,
+            0
+          ],
+          "face_hex": "b2d3a9fac5e920"
+        },
+        "reply": {
+          "ok": true,
+          "id": 2,
+          "result": {
+            "result": 2718583465
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 3,
+          "op": "GetObjectA",
+          "pointer": 2718583465,
+          "before_hex": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "reply": {
+          "ok": true,
+          "id": 3,
+          "result": {
+            "result": 60,
+            "hex": "00000000000000000000000000000000bc0200000000000105000000b2d3a9fac5e92000cccccccccccccccccccccccccccccccccccccccccccccccc"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 4,
+          "op": "CreateCompatibleDC"
+        },
+        "reply": {
+          "ok": true,
+          "id": 4,
+          "result": {
+            "result": 1459700065
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 5,
+          "op": "CreateDIBSection",
+          "pointer": 1459700065,
+          "header_hex": "280000000001000000ffffff01002000000000000000000000000000000000000000000000000000"
+        },
+        "reply": {
+          "ok": true,
+          "id": 5,
+          "result": {
+            "result": 923100682,
+            "bits": 92536832
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 6,
+          "op": "SetBkMode",
+          "pointer": 1459700065,
+          "value": 2
+        },
+        "reply": {
+          "ok": true,
+          "id": 6,
+          "result": {
+            "result": 2
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 7,
+          "op": "SetBkColor",
+          "pointer": 1459700065,
+          "value": 0
+        },
+        "reply": {
+          "ok": true,
+          "id": 7,
+          "result": {
+            "result": 16777215
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 8,
+          "op": "SetTextColor",
+          "pointer": 1459700065,
+          "value": 16777215
+        },
+        "reply": {
+          "ok": true,
+          "id": 8,
+          "result": {
+            "result": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 9,
+          "op": "SelectObject",
+          "pointer": 1459700065,
+          "object": 923100682
+        },
+        "reply": {
+          "ok": true,
+          "id": 9,
+          "result": {
+            "result": 8716303
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 10,
+          "op": "CreateFontIndirectA",
+          "logfont_hex": "00000000000000000000000000000000bc0200000000000105000000b2d3a9fac5e92000cccccccccccccccccccccccccccccccccccccccccccccccc"
+        },
+        "reply": {
+          "ok": true,
+          "id": 10,
+          "result": {
+            "result": 1510626352,
+            "inspection": {
+              "native_requested": false,
+              "method": "GetObjectA",
+              "result": 60,
+              "hex": "00000000000000000000000000000000bc0200000000000105000000b2d3a9fac5e92000cccccccccccccccccccccccccccccccccccccccccccccccc"
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 11,
+          "op": "close"
+        },
+        "reply": {
+          "ok": true,
+          "id": 11,
+          "result": {
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          }
+        }
+      }
+    ],
+    "cleanup": {
+      "fonts_released": 2,
+      "dcs_released": 1,
+      "cache_bitmaps_released": 1,
+      "cache_dcs_released": 1,
+      "cache_selection_restored": true,
+      "all_owned_resources_released": true
+    }
+  },
+  "device": {
+    "hello": {
+      "pointer_bytes": 4,
+      "window": 14552234,
+      "window_visible": false,
+      "width": 640,
+      "height": 480
+    },
+    "calls": [
+      {
+        "op": "sprite_addref",
+        "result": {
+          "count": 4
+        }
+      },
+      {
+        "op": "sprite_caps",
+        "result": {
+          "hr": 0,
+          "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+        }
+      },
+      {
+        "op": "sprite_creation",
+        "result": {
+          "hr": 0,
+          "hex": "0000000001000000aa0cde0044000000"
+        }
+      },
+      {
+        "op": "font_addref",
+        "result": {
+          "count": 5
+        }
+      }
+    ],
+    "trace": [
+      {
+        "request": {
+          "id": 1,
+          "op": "factory",
+          "sdk": 220
+        },
+        "reply": {
+          "ok": true,
+          "id": 1,
+          "result": {
+            "factory": {
+              "pointer": 18021280,
+              "vtable": 1526009868,
+              "methods": {
+                "8": 1526055424,
+                "32": 1526062080,
+                "40": 1526061168,
+                "60": 1526305488
+              }
+            },
+            "runtime_path": "C:\\Windows\\SysWOW64\\d3d8.dll",
+            "runtime_sha256": "924aaa10ba0169686be914878f65f12933fc0c9c675401a5f248c5224948b81b"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 2,
+          "op": "display_mode",
+          "pointer": 18021280
+        },
+        "reply": {
+          "ok": true,
+          "id": 2,
+          "result": {
+            "hr": 0,
+            "hex": "000f0000700800003c00000016000000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 3,
+          "op": "create_device",
+          "pointer": 18021280,
+          "type": 1,
+          "flags": 68,
+          "presentation_hex": "80020000e001000016000000010000000000000001000000aa0cde00010000000000000000000000000000000000000000000000"
+        },
+        "reply": {
+          "ok": true,
+          "id": 3,
+          "result": {
+            "hr": 0,
+            "presentation_hex": "80020000e001000016000000010000000000000001000000aa0cde00010000000000000000000000000000000000000000000000",
+            "device": {
+              "pointer": 96413152,
+              "vtable": 96413920,
+              "methods": {
+                "4": 1526175632,
+                "24": 1526179200,
+                "28": 1526185968,
+                "32": 1526179408,
+                "36": 1526179312,
+                "64": 1526178288,
+                "80": 1526183088,
+                "160": 1526320928
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 4,
+          "op": "caps",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 4,
+          "result": {
+            "hr": 0,
+            "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 5,
+          "op": "backbuffer",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 5,
+          "result": {
+            "hr": 0,
+            "surface": {
+              "pointer": 95027612,
+              "vtable": 1526009968,
+              "methods": {
+                "8": 1526153536,
+                "32": 1526168880
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 6,
+          "op": "describe_surface",
+          "pointer": 95027612
+        },
+        "reply": {
+          "ok": true,
+          "id": 6,
+          "result": {
+            "hr": 0,
+            "hex": "16000000010000000100000000000000000000000000000080020000e0010000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 7,
+          "op": "release_surface",
+          "pointer": 95027612
+        },
+        "reply": {
+          "ok": true,
+          "id": 7,
+          "result": {
+            "count": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 8,
+          "op": "check_format",
+          "pointer": 18021280,
+          "adapter": 0,
+          "type": 1,
+          "adapter_format": 22,
+          "format": 25
+        },
+        "reply": {
+          "ok": true,
+          "id": 8,
+          "result": {
+            "hr": -2005530518
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 9,
+          "op": "check_format",
+          "pointer": 18021280,
+          "adapter": 0,
+          "type": 1,
+          "adapter_format": 22,
+          "format": 24
+        },
+        "reply": {
+          "ok": true,
+          "id": 9,
+          "result": {
+            "hr": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 10,
+          "op": "viewport",
+          "pointer": 96413152,
+          "hex": "000000000000000080020000e0010000000000000000803f"
+        },
+        "reply": {
+          "ok": true,
+          "id": 10,
+          "result": {
+            "hr": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 11,
+          "op": "cache_addref",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 11,
+          "result": {
+            "count": 2
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 12,
+          "op": "cache_caps",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 12,
+          "result": {
+            "hr": 0,
+            "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 13,
+          "op": "cache_creation",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 13,
+          "result": {
+            "hr": 0,
+            "hex": "0000000001000000aa0cde0044000000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 14,
+          "op": "texture_create",
+          "pointer": 96413152,
+          "width": 64,
+          "height": 16,
+          "levels": 1,
+          "usage": 512,
+          "format": 21,
+          "pool": 0
+        },
+        "reply": {
+          "ok": true,
+          "id": 14,
+          "result": {
+            "hr": 0,
+            "texture": {
+              "pointer": 165478448,
+              "vtable": 1526010824,
+              "methods": {
+                "8": 1526199328,
+                "60": 1526197552
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 15,
+          "op": "texture_surface",
+          "pointer": 165478448,
+          "level": 0
+        },
+        "reply": {
+          "ok": true,
+          "id": 15,
+          "result": {
+            "hr": 0,
+            "surface": {
+              "pointer": 165378400,
+              "vtable": 1526010648,
+              "methods": {
+                "8": 1526224608,
+                "32": 1526225184
+              }
+            },
+            "inspection": {
+              "native_requested": false,
+              "method": "GetDesc",
+              "result": {
+                "hr": 0,
+                "hex": "1500000001000000000200000000000000100000000000004000000010000000"
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 16,
+          "op": "sprite_addref",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 16,
+          "result": {
+            "count": 4
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 17,
+          "op": "sprite_caps",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 17,
+          "result": {
+            "hr": 0,
+            "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 18,
+          "op": "sprite_creation",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 18,
+          "result": {
+            "hr": 0,
+            "hex": "0000000001000000aa0cde0044000000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 19,
+          "op": "font_addref",
+          "pointer": 96413152
+        },
+        "reply": {
+          "ok": true,
+          "id": 19,
+          "result": {
+            "count": 5
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 20,
+          "op": "close"
+        },
+        "reply": {
+          "ok": true,
+          "id": 20,
+          "result": {
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          }
+        }
+      }
+    ],
+    "cleanup": {
+      "texture_surface_release_count": 1,
+      "texture_release_count": 0,
+      "extra_reference_release_counts": [
+        3,
+        2,
+        1
+      ],
+      "device_release_count": 0,
+      "factory_release_count": 0,
+      "window_destroyed": true,
+      "all_owned_resources_released": true
+    },
+    "refused_address_collisions": [
+      {
+        "error": "live interface mapping collides with audit ownership",
+        "trace": [
+          {
+            "request": {
+              "id": 1,
+              "op": "factory",
+              "sdk": 220
+            },
+            "reply": {
+              "ok": true,
+              "id": 1,
+              "result": {
+                "factory": {
+                  "pointer": 9963168,
+                  "vtable": 1526009868,
+                  "methods": {
+                    "8": 1526055424,
+                    "32": 1526062080,
+                    "40": 1526061168,
+                    "60": 1526305488
+                  }
+                },
+                "runtime_path": "C:\\Windows\\SysWOW64\\d3d8.dll",
+                "runtime_sha256": "924aaa10ba0169686be914878f65f12933fc0c9c675401a5f248c5224948b81b"
+              }
+            }
+          },
+          {
+            "request": {
+              "id": 2,
+              "op": "close"
+            },
+            "reply": {
+              "ok": true,
+              "id": 2,
+              "result": {
+                "factory_release_count": 0,
+                "window_destroyed": true,
+                "all_owned_resources_released": true
+              }
+            }
+          }
+        ],
+        "cleanup": {
+          "factory_release_count": 0,
+          "window_destroyed": true,
+          "all_owned_resources_released": true
+        }
+      }
+    ]
+  }
+}

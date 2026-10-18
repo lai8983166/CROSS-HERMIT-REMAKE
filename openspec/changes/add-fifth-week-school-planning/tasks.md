@@ -1250,7 +1250,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 312. Owned sprite and cache GDI platforms
 
-- [ ] 312.1 Fork immutable x86 device/OS helpers with bounded sprite/font references and real cache DC/DIB/setup/indirect-font methods, complete cleanup and refusal/provenance tests; commit locally.
+- [x] 312.1 Fork immutable x86 device/OS helpers with bounded sprite/font references and real cache DC/DIB/setup/indirect-font methods, complete cleanup and refusal/provenance tests; commit locally.
 
 ## 313. Native sprite factory return
 
