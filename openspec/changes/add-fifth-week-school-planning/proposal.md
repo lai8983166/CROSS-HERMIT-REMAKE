@@ -308,3 +308,6 @@ Continue the independently declared empty-cache CPU through original52755E/52723
 
 ## Sprite and complete first static font return (2026-10-18)
 Continue the verified independent empty-cache CPU from52AE80 through original32-byte sprite construction and real device capability/creation queries, then real cache GDI DC/bitmap/setup/CreateFontIndirectA and original factory returns to416021 after owner+B270 stores the font object. Preserve full objects/padding/guards/image/CPU/ABI and release every owned GDI/COM reference; no state-block/drawing/full415F50/retained VM completion is inferred. Commit source, platform, sprite, font-return and acceptance locally.
+
+## Additional font-slot construction and atlas admission (2026-10-18)
+Continue the independent empty-cache first-font CPU at416021 through original1656-byte allocation/401000/native CRT face copy and owner+1090 binding. Then execute4010D0 dimension selection and a real owned device caps query to unexecuted40120C CreateTexture. Preserve both prior font/cache objects and source/owner/stack/heap guards. This bounded batch does not complete either additional font, upload glyphs, create state blocks, return415F50 or advance the retained VM. Commit source, constructor, atlas admission and acceptance separately locally.

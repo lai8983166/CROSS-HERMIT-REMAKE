@@ -1263,3 +1263,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 315. First static font return acceptance
 
 - [x] 315.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document first-font completion versus remaining additional slots/upstream/renderer/outer work, verify exact Git bytes and commit locally without push.
+
+## 316. Additional font-slot source contract
+
+- [x] 316.1 Derive original slot tables/faces/1656-byte constructor/native CRT copy and atlas caps/texture ABI; independent full-object projections/source tests and local commit.
+
+## 317. Native additional font constructor
+
+- [ ] 317.1 Freshly replay verified first static font return, execute original allocation/401000/56CD90 and caller owner+1090 binding to4010D0; verify full memory/CPU/ABI/guards and corruption/fresh tests, commit locally.
+
+## 318. Native atlas capability admission
+
+- [ ] 318.1 Continue the same CPU through4010D0 and real owned device caps to unexecuted40120C CreateTexture; verify full objects/CPU/call arguments/lifetime and fresh/corruption tests, commit locally.
+
+## 319. Additional-slot admission acceptance
+
+- [ ] 319.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document unresolved atlas/glyph/state-block/additional-slot/full-startup work, verify exact Git bytes and commit locally without push.

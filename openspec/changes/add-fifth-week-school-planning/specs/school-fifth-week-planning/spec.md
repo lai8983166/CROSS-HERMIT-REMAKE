@@ -1170,3 +1170,14 @@ The audit SHALL continue the declared empty-cache experiment through original sp
 #### Scenario: Cache GDI setup returns the first font object
 - **WHEN** original cache DC/bitmap/color/selection calls andCreateFontIndirectA succeed on bounded owned resources
 - **THEN** original cache/font factories copy LOGFONT and return naturally through4162C0, owner+B270 receives the object and execution stops before416021 additional-slot work with no fabricated D3DX result
+
+### Requirement: Additional font construction and atlas capability admission
+The audit SHALL continue the independent first-font return through original additional-slot allocation, native face copy/construction and owner binding, then original atlas dimension selection and a real owned caps query. It SHALL verify complete memory/ABI/CPU and preserve historical/runtime/private VM bytes. It MUST distinguish allocation responses from executed original constructors and stop before unsupported texture creation.
+
+#### Scenario: First additional slot receives its original object
+- **WHEN** original416021 consumes source slot0 tables
+- **THEN** original401000 copies FixedSys with native56CD90, initializes size12/flags1 and null resource fields, returns naturally and original caller stores owner+1090 before4010D0
+
+#### Scenario: Atlas requirements reach an unexecuted resource call
+- **WHEN** original4010D0 uses the newly constructed object and live device caps
+- **THEN** original dimension/clamp logic prepares the exact CreateTexture call at40120C, with no texture/glyph/state-block/full-font or retained VM completion inferred
