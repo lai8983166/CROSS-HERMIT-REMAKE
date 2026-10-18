@@ -1254,7 +1254,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 313. Native sprite factory return
 
-- [ ] 313.1 Replay the verified texture prefix and resume52AE80 through native32-byte sprite construction/real device queries/return and original bitmap header preparation to unexecuted CreateCompatibleDC; verify full memory/ABI and corruption/fresh tests, commit locally.
+- [x] 313.1 Replay the verified texture prefix and resume52AE80 through native32-byte sprite construction/real device queries/return and original bitmap header preparation to unexecuted CreateCompatibleDC; verify full memory/ABI and corruption/fresh tests, commit locally.
 
 ## 314. Native cache GDI and first font return
 
