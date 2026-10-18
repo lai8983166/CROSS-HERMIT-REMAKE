@@ -1302,4 +1302,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 325. Atlas resource and GDI preparation acceptance
 
-- [ ] 325.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document remaining glyph/upload/state-block/second-font/upstream work, verify exact Git bytes and commit locally without push.
+- [x] 325.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document remaining glyph/upload/state-block/second-font/upstream work, verify exact Git bytes and commit locally without push.
