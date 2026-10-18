@@ -1270,7 +1270,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 317. Native additional font constructor
 
-- [ ] 317.1 Freshly replay verified first static font return, execute original allocation/401000/56CD90 and caller owner+1090 binding to4010D0; verify full memory/CPU/ABI/guards and corruption/fresh tests, commit locally.
+- [x] 317.1 Freshly replay verified first static font return, execute original allocation/401000/56CD90 and caller owner+1090 binding to4010D0; verify full memory/CPU/ABI/guards and corruption/fresh tests, commit locally.
 
 ## 318. Native atlas capability admission
 
