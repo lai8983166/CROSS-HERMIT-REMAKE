@@ -1230,7 +1230,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 307. Owned x86 cache texture platform
 
-- [ ] 307.1 Fork immutable bridge with real debug export, device/factory queries, format checks, bounded texture/surface methods and complete reference cleanup; test and commit locally.
+- [x] 307.1 Fork immutable bridge with real debug export, device/factory queries, format checks, bounded texture/surface methods and complete reference cleanup; test and commit locally.
 
 ## 308. Native texture requirements return
 

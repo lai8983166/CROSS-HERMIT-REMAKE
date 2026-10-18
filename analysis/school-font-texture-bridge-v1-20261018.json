@@ -1,0 +1,497 @@
+{
+  "build": {
+    "source_sha256": "edb9658c98514927bf5cc616c291c8412ffb9662d11726dedb443acc700683b1",
+    "helper_sha256": "c289c41f25d035a523eb12c34c244adad78a0a0fa6611146f3e51e54077ad3b7",
+    "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+    "machine": 332
+  },
+  "probe": {
+    "hello": {
+      "pointer_bytes": 4,
+      "window": 12520130,
+      "window_visible": false,
+      "width": 640,
+      "height": 480
+    },
+    "format_result": {
+      "hr": 0
+    },
+    "texture": {
+      "hr": 0,
+      "texture": {
+        "pointer": 162888656,
+        "vtable": 1526010824,
+        "methods": {
+          "8": 1526199328,
+          "60": 1526197552
+        }
+      }
+    },
+    "surface": {
+      "hr": 0,
+      "surface": {
+        "pointer": 91124192,
+        "vtable": 1526010648,
+        "methods": {
+          "8": 1526224608,
+          "32": 1526225184
+        }
+      },
+      "inspection": {
+        "native_requested": false,
+        "method": "GetDesc",
+        "result": {
+          "hr": 0,
+          "hex": "1500000001000000000200000000000000100000000000004000000010000000"
+        }
+      }
+    },
+    "trace": [
+      {
+        "request": {
+          "id": 1,
+          "op": "factory",
+          "sdk": 220
+        },
+        "reply": {
+          "ok": true,
+          "id": 1,
+          "result": {
+            "factory": {
+              "pointer": 16773344,
+              "vtable": 1526009868,
+              "methods": {
+                "8": 1526055424,
+                "32": 1526062080,
+                "40": 1526061168,
+                "60": 1526305488
+              }
+            },
+            "runtime_path": "C:\\Windows\\SysWOW64\\d3d8.dll",
+            "runtime_sha256": "924aaa10ba0169686be914878f65f12933fc0c9c675401a5f248c5224948b81b"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 2,
+          "op": "display_mode",
+          "pointer": 16773344
+        },
+        "reply": {
+          "ok": true,
+          "id": 2,
+          "result": {
+            "hr": 0,
+            "hex": "000f0000700800003c00000016000000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 3,
+          "op": "create_device",
+          "pointer": 16773344,
+          "type": 1,
+          "flags": 68,
+          "presentation_hex": "80020000e001000016000000010000000000000001000000c20abf00010000000000000000000000000000000000000000000000"
+        },
+        "reply": {
+          "ok": true,
+          "id": 3,
+          "result": {
+            "hr": 0,
+            "presentation_hex": "80020000e001000016000000010000000000000001000000c20abf00010000000000000000000000000000000000000000000000",
+            "device": {
+              "pointer": 94072800,
+              "vtable": 94073568,
+              "methods": {
+                "4": 1526175632,
+                "24": 1526179200,
+                "28": 1526185968,
+                "32": 1526179408,
+                "36": 1526179312,
+                "64": 1526178288,
+                "80": 1526183088,
+                "160": 1526320928
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 4,
+          "op": "caps",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 4,
+          "result": {
+            "hr": 0,
+            "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 5,
+          "op": "backbuffer",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 5,
+          "result": {
+            "hr": 0,
+            "surface": {
+              "pointer": 162651708,
+              "vtable": 1526009968,
+              "methods": {
+                "8": 1526153536,
+                "32": 1526168880
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 6,
+          "op": "describe_surface",
+          "pointer": 162651708
+        },
+        "reply": {
+          "ok": true,
+          "id": 6,
+          "result": {
+            "hr": 0,
+            "hex": "16000000010000000100000000000000000000000000000080020000e0010000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 7,
+          "op": "release_surface",
+          "pointer": 162651708
+        },
+        "reply": {
+          "ok": true,
+          "id": 7,
+          "result": {
+            "count": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 8,
+          "op": "check_format",
+          "pointer": 16773344,
+          "adapter": 0,
+          "type": 1,
+          "adapter_format": 22,
+          "format": 25
+        },
+        "reply": {
+          "ok": true,
+          "id": 8,
+          "result": {
+            "hr": -2005530518
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 9,
+          "op": "check_format",
+          "pointer": 16773344,
+          "adapter": 0,
+          "type": 1,
+          "adapter_format": 22,
+          "format": 24
+        },
+        "reply": {
+          "ok": true,
+          "id": 9,
+          "result": {
+            "hr": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 10,
+          "op": "viewport",
+          "pointer": 94072800,
+          "hex": "000000000000000080020000e0010000000000000000803f"
+        },
+        "reply": {
+          "ok": true,
+          "id": 10,
+          "result": {
+            "hr": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 11,
+          "op": "cache_addref",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 11,
+          "result": {
+            "count": 2
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 12,
+          "op": "cache_caps",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 12,
+          "result": {
+            "hr": 0,
+            "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 13,
+          "op": "cache_creation",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 13,
+          "result": {
+            "hr": 0,
+            "hex": "0000000001000000c20abf0044000000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 14,
+          "op": "debug_mute",
+          "value": 1
+        },
+        "reply": {
+          "ok": true,
+          "id": 14,
+          "result": {
+            "module_pointer": 1526005760,
+            "export_pointer": 1526065200,
+            "return_value_defined": false
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 15,
+          "op": "texture_factory",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 15,
+          "result": {
+            "hr": 0,
+            "factory": {
+              "pointer": 16773344,
+              "vtable": 1526009868,
+              "methods": {
+                "8": 1526055424,
+                "32": 1526062080,
+                "40": 1526061168,
+                "60": 1526305488
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 16,
+          "op": "texture_caps",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 16,
+          "result": {
+            "hr": 0,
+            "hex": "01000000000000000000020000000a20200400000f00008001000000f0be1b00f20e00009171f300ff000000ff1f0000ff1f0000ff00000008420800c5ec01000007030300030303000303033f0000003f0000001f000000004000000040000000080000002000000040000010000000f902155020bcbecc20bcbecc20bcbe4c20bcbe4c00000000ff00000008001800fffffe0308000000080000007b0000000a00000008000000040000000800000000000046ffffff00ffffff0010000000ff0000000101feff600000000401ffff00e07f47"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 17,
+          "op": "texture_mode",
+          "pointer": 94072800
+        },
+        "reply": {
+          "ok": true,
+          "id": 17,
+          "result": {
+            "hr": 0,
+            "hex": "000f0000700800003c00000016000000"
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 18,
+          "op": "texture_format",
+          "pointer": 16773344,
+          "adapter": 0,
+          "type": 1,
+          "adapter_format": 22,
+          "usage": 512,
+          "resource_type": 3,
+          "format": 21
+        },
+        "reply": {
+          "ok": true,
+          "id": 18,
+          "result": {
+            "hr": 0
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 19,
+          "op": "texture_factory_release",
+          "pointer": 16773344
+        },
+        "reply": {
+          "ok": true,
+          "id": 19,
+          "result": {
+            "count": 2
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 20,
+          "op": "debug_mute",
+          "value": 0
+        },
+        "reply": {
+          "ok": true,
+          "id": 20,
+          "result": {
+            "module_pointer": 1526005760,
+            "export_pointer": 1526065200,
+            "return_value_defined": false
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 21,
+          "op": "texture_create",
+          "pointer": 94072800,
+          "width": 64,
+          "height": 16,
+          "levels": 1,
+          "usage": 512,
+          "format": 21,
+          "pool": 0
+        },
+        "reply": {
+          "ok": true,
+          "id": 21,
+          "result": {
+            "hr": 0,
+            "texture": {
+              "pointer": 162888656,
+              "vtable": 1526010824,
+              "methods": {
+                "8": 1526199328,
+                "60": 1526197552
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 22,
+          "op": "texture_surface",
+          "pointer": 162888656,
+          "level": 0
+        },
+        "reply": {
+          "ok": true,
+          "id": 22,
+          "result": {
+            "hr": 0,
+            "surface": {
+              "pointer": 91124192,
+              "vtable": 1526010648,
+              "methods": {
+                "8": 1526224608,
+                "32": 1526225184
+              }
+            },
+            "inspection": {
+              "native_requested": false,
+              "method": "GetDesc",
+              "result": {
+                "hr": 0,
+                "hex": "1500000001000000000200000000000000100000000000004000000010000000"
+              }
+            }
+          }
+        }
+      },
+      {
+        "request": {
+          "id": 23,
+          "op": "close"
+        },
+        "reply": {
+          "ok": true,
+          "id": 23,
+          "result": {
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          }
+        }
+      }
+    ],
+    "cleanup": {
+      "texture_surface_release_count": 1,
+      "texture_release_count": 0,
+      "extra_reference_release_counts": [
+        1
+      ],
+      "device_release_count": 0,
+      "factory_release_count": 0,
+      "window_destroyed": true,
+      "all_owned_resources_released": true
+    },
+    "refused_address_collisions": []
+  }
+}
