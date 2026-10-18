@@ -1159,3 +1159,14 @@ The audit SHALL resume the explicitly declared empty-cache CPU through original 
 #### Scenario: Actual texture and level surface reach sprite admission
 - **WHEN** native5275D7 repeats requirements and the owned device accepts the resulting bounded texture parameters
 - **THEN** actual CreateTexture/GetSurfaceLevel results reach the original cache fields and54864C returns to unexecuted52AE80; texture creation is verified but drawing/full font/VM completion is not claimed
+
+### Requirement: Native sprite and first static font factory return
+The audit SHALL continue the declared empty-cache experiment through original sprite construction, owned live x86 device/GDI calls and first static font factory returns, verifying all original object/heap/image/call-stack bytes and handle/reference lifetimes. It MUST preserve historical evidence and retained VM and MUST NOT infer state-block creation, drawing, complete415F50 or restored original upstream cache state.
+
+#### Scenario: Sprite factory reaches real cache GDI admission
+- **WHEN** original52AE80 allocates32 bytes and executes53C665/53BC06 with the current owned device
+- **THEN** real device reference/caps/creation results determine full sprite flags and the original factory returns before CreateCompatibleDC executes
+
+#### Scenario: Cache GDI setup returns the first font object
+- **WHEN** original cache DC/bitmap/color/selection calls andCreateFontIndirectA succeed on bounded owned resources
+- **THEN** original cache/font factories copy LOGFONT and return naturally through4162C0, owner+B270 receives the object and execution stops before416021 additional-slot work with no fabricated D3DX result

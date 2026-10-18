@@ -305,3 +305,6 @@ Continue the independent52AE11 CPU through original allocation wrapper/font cons
 
 ## Native cache texture requirements and creation (2026-10-18)
 Continue the independently declared empty-cache CPU through original52755E/527234/format selection, real DebugSetMute and owned device/factory queries, then original5275D7/CreateTexture/GetSurfaceLevel to unexecuted52AE80 sprite factory. Verify full heap/image/owner/stack/live identities and balanced texture/surface/factory/device references. Preserve inherited-cache missing-memory boundary and retained VM without claiming full font startup, drawing or outer scheduling. Commit each source/bridge/native/acceptance stage locally.
+
+## Sprite and complete first static font return (2026-10-18)
+Continue the verified independent empty-cache CPU from52AE80 through original32-byte sprite construction and real device capability/creation queries, then real cache GDI DC/bitmap/setup/CreateFontIndirectA and original factory returns to416021 after owner+B270 stores the font object. Preserve full objects/padding/guards/image/CPU/ABI and release every owned GDI/COM reference; no state-block/drawing/full415F50/retained VM completion is inferred. Commit source, platform, sprite, font-return and acceptance locally.

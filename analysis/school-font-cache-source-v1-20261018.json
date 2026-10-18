@@ -1,0 +1,221 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x52ae80",
+      "end": "0x52aeec",
+      "sha256": "cca2e8fe34cbb2db99997a3adf49118197d841afa4a0df99f16efce7d5d6a163"
+    },
+    {
+      "va": "0x53c665",
+      "end": "0x53c683",
+      "sha256": "c2c42ece741b589e82eacce981378e7ca4b25a022ecada6b928f6a80a22c3bfa"
+    },
+    {
+      "va": "0x53bc06",
+      "end": "0x53bc7b",
+      "sha256": "a30abbf80c46fbda4bc6787cd80e8b1c769afc65d133a3b22254c9876cf9a795"
+    },
+    {
+      "va": "0x428a40",
+      "end": "0x428ac6",
+      "sha256": "c10d2633ad4038670f64160b5d8ff60ec77597fe600bf735a3a953115d529401"
+    },
+    {
+      "va": "0x56ce80",
+      "end": "0x56ce83",
+      "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+    },
+    {
+      "va": "0x548735",
+      "end": "0x548876",
+      "sha256": "1d6598dbdf62989589d86531de7e7226b52ff56532bd9ec6f7ed59289b7bae82"
+    },
+    {
+      "va": "0x548d89",
+      "end": "0x548dfe",
+      "sha256": "95c33b6509e5febd9f8c75f17f478dcc70d3a18ad19c2cce6b3340ad7605babb"
+    },
+    {
+      "va": "0x53b9f8",
+      "end": "0x53ba56",
+      "sha256": "15dc00c0d4c827a888ab7b9f3939221acf5991dcb522be70bda7ef75cd45918e"
+    },
+    {
+      "va": "0x52ae11",
+      "end": "0x52ae80",
+      "sha256": "d2f0d144d78364c07f7503d4fa12bb59551dcc45deab2eee56cfad79e554dfe2"
+    },
+    {
+      "va": "0x52afe6",
+      "end": "0x52b019",
+      "sha256": "43ff09a0592da3a3425177b13094613a0333d92f49af70ca8e213bcfa25e6633"
+    },
+    {
+      "va": "0x4162c0",
+      "end": "0x416317",
+      "sha256": "a74fbac70d08e0fcc12963c3ceea586def2f00a784033e6b5bb9479716b9c5b8"
+    },
+    {
+      "va": "0x415f50",
+      "end": "0x416133",
+      "sha256": "31ee9f384f542c9615dcf1314ad78cb97c11bbc92c6e987f947070533d16aaf9"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x52aea0",
+      "hex": "6a20",
+      "mnemonic": "push",
+      "operands": "0x20"
+    },
+    {
+      "va": "0x52aeae",
+      "hex": "e8b2170100",
+      "mnemonic": "call",
+      "operands": "0x53c665"
+    },
+    {
+      "va": "0x52aeca",
+      "hex": "e8370d0100",
+      "mnemonic": "call",
+      "operands": "0x53bc06"
+    },
+    {
+      "va": "0x53bc28",
+      "hex": "ff5104",
+      "mnemonic": "call",
+      "operands": "dword ptr [ecx + 4]"
+    },
+    {
+      "va": "0x53bc35",
+      "hex": "ff511c",
+      "mnemonic": "call",
+      "operands": "dword ptr [ecx + 0x1c]"
+    },
+    {
+      "va": "0x53bc42",
+      "hex": "ff5124",
+      "mnemonic": "call",
+      "operands": "dword ptr [ecx + 0x24]"
+    },
+    {
+      "va": "0x52aee2",
+      "hex": "8933",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebx], esi"
+    },
+    {
+      "va": "0x5487cd",
+      "hex": "f3ab",
+      "mnemonic": "rep stosd",
+      "operands": "dword ptr es:[edi], eax"
+    },
+    {
+      "va": "0x548813",
+      "hex": "f75e78",
+      "mnemonic": "neg",
+      "operands": "dword ptr [esi + 0x78]"
+    },
+    {
+      "va": "0x548832",
+      "hex": "f75e78",
+      "mnemonic": "neg",
+      "operands": "dword ptr [esi + 0x78]"
+    },
+    {
+      "va": "0x548df7",
+      "hex": "8930",
+      "mnemonic": "mov",
+      "operands": "dword ptr [eax], esi"
+    },
+    {
+      "va": "0x53ba39",
+      "hex": "ff5004",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 4]"
+    },
+    {
+      "va": "0x53ba46",
+      "hex": "f3a5",
+      "mnemonic": "rep movsd",
+      "operands": "dword ptr es:[edi], dword ptr [esi]"
+    },
+    {
+      "va": "0x52ae6e",
+      "hex": "8933",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebx], esi"
+    },
+    {
+      "va": "0x416005",
+      "hex": "898270b20000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [edx + 0xb270], eax"
+    }
+  ],
+  "imports": [
+    {
+      "slot": "0x592094",
+      "target": "0x76bd6d90",
+      "symbol": "CreateCompatibleDC",
+      "return_va": "0x548805",
+      "args": 1,
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x592098",
+      "target": "0x76bd5e80",
+      "symbol": "CreateDIBSection",
+      "return_va": "0x548828",
+      "args": 6,
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x59208c",
+      "target": "0x76bd6fc0",
+      "symbol": "SetBkMode",
+      "return_va": "0x548840",
+      "args": 2,
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920b4",
+      "target": "0x76bd6f00",
+      "symbol": "SetBkColor",
+      "return_va": "0x54884a",
+      "args": 2,
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920b0",
+      "target": "0x76bd6e90",
+      "symbol": "SetTextColor",
+      "return_va": "0x548858",
+      "args": 2,
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920a4",
+      "target": "0x76bd6ca0",
+      "symbol": "SelectObject",
+      "return_va": "0x548867",
+      "args": 2,
+      "dll": "GDI32.dll"
+    },
+    {
+      "slot": "0x5920ac",
+      "target": "0x76bd4cc0",
+      "symbol": "CreateFontIndirectA",
+      "return_va": "0x53ba25",
+      "args": 1,
+      "dll": "GDI32.dll"
+    }
+  ],
+  "CRT_size": 32,
+  "explicit_empty_cache_experiment": true,
+  "retained_VM_advanced": false,
+  "sprite_stop": "0x76bd6d90",
+  "first_font_stop": "0x416021",
+  "state_blocks_created": false
+}

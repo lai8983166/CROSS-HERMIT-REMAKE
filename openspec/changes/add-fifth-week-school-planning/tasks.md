@@ -1243,3 +1243,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 310. Cache texture acceptance
 
 - [x] 310.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent cache state and remaining sprite/GDI/font/outer dependencies, verify exact Git bytes and commit locally without push.
+
+## 311. Sprite and static font return source
+
+- [x] 311.1 Derive52AE80/53C665/53BC06 sprite stores/flags, cache GDI header/call ABI and font/cache return stores through416021; independent projections/source tests and local commit.
+
+## 312. Owned sprite and cache GDI platforms
+
+- [ ] 312.1 Fork immutable x86 device/OS helpers with bounded sprite/font references and real cache DC/DIB/setup/indirect-font methods, complete cleanup and refusal/provenance tests; commit locally.
+
+## 313. Native sprite factory return
+
+- [ ] 313.1 Replay the verified texture prefix and resume52AE80 through native32-byte sprite construction/real device queries/return and original bitmap header preparation to unexecuted CreateCompatibleDC; verify full memory/ABI and corruption/fresh tests, commit locally.
+
+## 314. Native cache GDI and first font return
+
+- [ ] 314.1 Resume actual pending GDI target through real bounded DC/DIB/setup/font calls and natural cache/font factories, verify full objects/LOGFONT/CPU/stack/owner+B270 at416021 and handle/reference cleanup with fresh/corruption tests; commit locally.
+
+## 315. First static font return acceptance
+
+- [ ] 315.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document first-font completion versus remaining additional slots/upstream/renderer/outer work, verify exact Git bytes and commit locally without push.
