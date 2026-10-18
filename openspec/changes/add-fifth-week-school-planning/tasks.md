@@ -1298,7 +1298,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 324. Native GDI preparation and glyph admission
 
-- [ ] 324.1 Continue the same original CPU through real atlas GDI setup/native arithmetic to unexecuted401491 glyph measurement; independently verify all source/live ABI/CPU/objects/locals/guards and fresh/corruption tests, commit locally.
+- [x] 324.1 Continue the same original CPU through real atlas GDI setup/native arithmetic to unexecuted401491 glyph measurement; independently verify all source/live ABI/CPU/objects/locals/guards and fresh/corruption tests, commit locally.
 
 ## 325. Atlas resource and GDI preparation acceptance
 

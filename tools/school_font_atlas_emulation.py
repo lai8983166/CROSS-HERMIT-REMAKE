@@ -54,6 +54,39 @@ class AtlasEmulator(SlotEmulator):
         self.uc.reg_write(UC_X86_REG_ESP, sp+36)
         self.uc.reg_write(UC_X86_REG_EIP, ret)
 
+    def _atlas_gdi(self, at, sp, ret):
+        slot, name, _, count, op = next(r for r in IMPORTS if r[2] == ret)
+        if at != self.read(slot): raise RuntimeError('atlas original GDI target')
+        args = [self.read(sp+4+i*4) for i in range(count)]
+        if op == 'atlas_dc':
+            expected, request = [0], {}
+        elif op == 'atlas_dib':
+            expected = [self.atlas_dc, TOP-488, 0, TOP-444, 0, 0]
+            request = dict(pointer=self.atlas_dc, header_hex=bytes(self.uc.mem_read(TOP-488, 40)).hex())
+        elif op == 'atlas_muldiv':
+            expected, request = [12, 96, 72], dict(args=[12, 96, 72])
+        elif op == 'atlas_font':
+            expected = [v & 0xFFFFFFFF for v in FONT_ARGS]+[SLOT]
+            request = dict(args=FONT_ARGS, face_hex=bytes(self.uc.mem_read(SLOT, 8)).hex())
+        elif op in ('atlas_bitmap_select', 'atlas_font_select'):
+            obj = self.atlas_bitmap if op == 'atlas_bitmap_select' else self.atlas_font
+            expected, request = [self.atlas_dc, obj], dict(pointer=self.atlas_dc, object=obj)
+        else:
+            value = dict(atlas_map=1, atlas_text=0xFFFFFF, atlas_background=0, atlas_align=0)[op]
+            expected, request = [self.atlas_dc, value], dict(pointer=self.atlas_dc, value=value)
+        if args != expected: raise RuntimeError('atlas exact original GDI arguments '+op)
+        result = self.owner_bridge.request(op, **request)
+        if op == 'atlas_dc': self.atlas_dc = result['result']
+        elif op == 'atlas_dib':
+            self.atlas_bitmap, self.atlas_bits = result['result'], result['bits']
+            self._put(TOP-444, struct.pack('<I', self.atlas_bits))
+        elif op == 'atlas_font': self.atlas_font = result['result']
+        self.atlas_calls.append(dict(op=op, name=name, slot=hex(slot), va=hex(at), return_va=hex(ret), sp=sp,
+            args=args, request=request, result=result, live_host_observed=True))
+        self.uc.reg_write(UC_X86_REG_EAX, result['result'] & 0xFFFFFFFF)
+        self.uc.reg_write(UC_X86_REG_ESP, sp+4+count*4)
+        self.uc.reg_write(UC_X86_REG_EIP, ret)
+
     def _code(self, uc, at, size, user):
         if not self.atlas_running: return super()._code(uc, at, size, user)
         sp = uc.reg_read(UC_X86_REG_ESP)
@@ -62,6 +95,8 @@ class AtlasEmulator(SlotEmulator):
         ret = self.read(sp)
         if ret == 0x40120F and at == self.objects['device']['methods']['80']:
             return self._create_atlas(at, sp, ret)
+        if ret in {r[2] for r in IMPORTS} and at == self.read(next(r[0] for r in IMPORTS if r[2] == ret)):
+            return self._atlas_gdi(at, sp, ret)
         if not any(a <= at and at+size <= b for a, b in RANGES.items()):
             raise RuntimeError('atlas preparation undeclared native body '+hex(at))
         self.visited.add(at)
@@ -72,11 +107,13 @@ class AtlasEmulator(SlotEmulator):
             self.returns.append(dict(va=hex(at), return_va=hex(ret), sp=sp, eax=uc.reg_read(UC_X86_REG_EAX)))
 
     def resume_atlas(self, phase, previous):
-        if phase != 'texture': raise ValueError('atlas texture phase required')
-        start, stop = 0x40120C, self.read(0x592094)
+        if phase not in ('texture', 'gdi'): raise ValueError('atlas texture/GDI phase required')
+        start, stop = (0x40120C, self.read(0x592094)) if phase == 'texture' else (self.read(0x592094), 0x401491)
         if self.uc.reg_read(UC_X86_REG_EIP) != start:
             raise RuntimeError('atlas same pending original CPU required')
         before_cpu = {k: self.uc.reg_read(r) for k, r in REGISTERS.items()}
+        if phase == 'gdi':
+            for slot, *_ in IMPORTS: self._foreign_write(self.read(slot), b'\xc3')
         self.entries, self.returns, self.atlas_calls, self.visited, self.boundary = [], [], [], set(), None
         md = Cs(CS_ARCH_X86, CS_MODE_32)
         self.atlas_rets = {i.address for a, b in RANGES.items() for i in md.disasm(self.image[a-BASE:b-BASE], a) if i.mnemonic == 'ret'}
@@ -95,13 +132,20 @@ class AtlasEmulator(SlotEmulator):
             if bytes(self.uc.mem_read(row['pointer'], 12288)) != unpack(row):
                 raise RuntimeError('atlas modified complete parent heap')
         cpu = {k: self.uc.reg_read(r) for k, r in REGISTERS.items()}
-        pending = dict(va=hex(stop), sp=cpu['ESP'], first_instruction_executed=False,
-                       return_va=hex(self.read(cpu['ESP'])), args=[self.read(cpu['ESP']+4)], platform_call_executed=False)
+        pending = dict(va=hex(stop), sp=cpu['ESP'], first_instruction_executed=False, platform_call_executed=False)
+        if phase == 'texture':
+            pending.update(return_va=hex(self.read(cpu['ESP'])), args=[self.read(cpu['ESP']+4)])
+        else:
+            pending.update(method_target=self.read(0x5920BC), args=[self.read(cpu['ESP']+i*4) for i in range(4)])
         return dict(phase=phase, before_cpu=before_cpu, entries=self.entries, returns=self.returns,
             api_calls=self.atlas_calls, visited=sorted(self.visited), state=state, heaps=previous['heaps'],
             slot_heap=dict(pointer=SLOT-4096, **buffer_evidence(actual)), cpu=cpu, pending=pending,
             bitmap_header=dict(pointer=TOP-488, hex=bytes(self.uc.mem_read(TOP-488, 40)).hex()),
-            atlas_texture_created=True, GDI_prepared=False, glyph_measurement_executed=False,
+            GDI_locals=None if phase == 'texture' else dict(dc=self.read(TOP-492), bitmap=self.read(TOP-496),
+                bits=self.read(TOP-444), font=self.read(TOP-516), height=self.read(TOP-504),
+                weight=self.read(TOP-508), italic=self.read(TOP-512), x=self.read(TOP-520), y=self.read(TOP-524),
+                text_hex=bytes(self.uc.mem_read(TOP-528, 2)).hex(), character=bytes(self.uc.mem_read(TOP-540, 1)).hex()),
+            atlas_texture_created=True, GDI_prepared=phase == 'gdi', glyph_measurement_executed=False,
             DIB_pixels_read=False, glyph_upload_executed=False, full415F50_returned=False,
             state_blocks_created=False, retained_VM_advanced=False)
 
@@ -110,7 +154,8 @@ def generate(phase):
     cases = []
     for fill, width, height in ((0xA5, 640, 480), (0xCC, 1024, 768)):
         def run(bridge):
-            with CachePlatform() as platform:
+            from tools.school_font_atlas_gdi import AtlasGDI
+            with (CachePlatform() if phase == 'texture' else AtlasGDI()) as platform:
                 e = AtlasEmulator(bridge, platform, fill)
                 case = dict(fill=fill, hello=bridge.hello, platform_hello=platform.hello,
                     constructor=e.construct(), device=e.device(), font=e.font(), factory=e.factory('empty'))
@@ -119,6 +164,7 @@ def generate(phase):
                 case['sprite'], case['font_return'] = e.resume_cache('sprite'), e.resume_cache('font')
                 case['slot_constructor'], case['atlas_admission'] = e.resume_slot('constructor'), e.resume_slot('atlas')
                 case['atlas_texture'] = e.resume_atlas('texture', case['atlas_admission'])
+                if phase == 'gdi': case['GDI_preparation'] = e.resume_atlas('gdi', case['atlas_texture'])
             case.update(platform_trace=platform.trace, platform_cleanup=platform.cleanup)
             return case
         result = owned_run(run, width, height)
@@ -126,7 +172,8 @@ def generate(phase):
         case.update(device_trace=result['trace'], device_cleanup=result['cleanup'], refused_address_collisions=result['refused_address_collisions'])
         cases.append(case); print(hex(fill)+': original atlas '+phase+' verified', flush=True)
     device = json.loads((ROOT/'analysis/school-font-atlas-device-v1-20261018.json').read_text())['build']
-    gdi = json.loads((ROOT/'analysis/school-font-cache-platform-v1-20261018.json').read_text())['builds']['gdi']
+    gdi = (json.loads((ROOT/'analysis/school-font-cache-platform-v1-20261018.json').read_text())['builds']['gdi']
+           if phase == 'texture' else json.loads((ROOT/'analysis/school-font-atlas-gdi-v2-20261018.json').read_text())['build'])
     return dict(schema_version=1, phase=phase, source_contract=source_contract(), cases=cases,
         device_build=device, platform_build=gdi, explicit_empty_cache_experiment=True, CRT_adapter_executed=True,
         original_IAT_changed=False, game_helpers_stubbed=False, retained_VM_advanced=False, drawing_or_Present=False,
@@ -134,7 +181,7 @@ def generate(phase):
 
 
 if __name__ == '__main__':
-    p = argparse.ArgumentParser(description=__doc__); p.add_argument('--phase', choices=('texture',), required=True); p.add_argument('--out', required=True)
+    p = argparse.ArgumentParser(description=__doc__); p.add_argument('--phase', choices=('texture', 'gdi'), required=True); p.add_argument('--out', required=True)
     a = p.parse_args(); path = ROOT/a.out
     if path.exists(): p.error('fresh immutable atlas execution report required')
     path.write_text(json.dumps(generate(a.phase), indent=2)+'\n', encoding='utf-8', newline='\n')
