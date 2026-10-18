@@ -1258,7 +1258,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 314. Native cache GDI and first font return
 
-- [ ] 314.1 Resume actual pending GDI target through real bounded DC/DIB/setup/font calls and natural cache/font factories, verify full objects/LOGFONT/CPU/stack/owner+B270 at416021 and handle/reference cleanup with fresh/corruption tests; commit locally.
+- [x] 314.1 Resume actual pending GDI target through real bounded DC/DIB/setup/font calls and natural cache/font factories, verify full objects/LOGFONT/CPU/stack/owner+B270 at416021 and handle/reference cleanup with fresh/corruption tests; commit locally.
 
 ## 315. First static font return acceptance
 
