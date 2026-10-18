@@ -1,0 +1,26 @@
+test_build_provenance_and_immutable_parent (tools.tests.test_school_font_atlas_device.DeviceTests) ... ok
+test_foreign_unordered_wrong_size_duplicate_and_closed_requests_refused (tools.tests.test_school_font_atlas_device.DeviceTests) ... ok
+test_real_additional_texture_description_and_complete_cleanup (tools.tests.test_school_font_atlas_device.DeviceTests) ... FAIL
+
+======================================================================
+FAIL: test_real_additional_texture_description_and_complete_cleanup (tools.tests.test_school_font_atlas_device.DeviceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_atlas_device.py", line 19, in test_real_additional_texture_description_and_complete_cleanup
+    self.assertEqual(atlas['inspection'], dict(native_requested=False, method='GetLevelDesc', level=0,
+AssertionError: {'nat[93 chars]000001000000000000000100000000000200000000000001000000010000'}} != {'nat[93 chars]000003000000000000000100000000000200000000000001000000010000'}}
+  {'level': 0,
+   'method': 'GetLevelDesc',
+   'native_requested': False,
+-  'result': {'hex': '1a00000001000000000000000100000000000200000000000001000000010000',
+?                              ^
+
++  'result': {'hex': '1a00000003000000000000000100000000000200000000000001000000010000',
+?                              ^
+
+              'hr': 0}}
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.599s
+
+FAILED (failures=1)

@@ -1286,7 +1286,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 321. Owned additional atlas texture platform
 
-- [ ] 321.1 Fork immutable x86 device helper to create/inspect/own additional atlas alongside old cache resources with bounded calls and complete cleanup/refusal/provenance tests; commit locally.
+- [x] 321.1 Fork immutable x86 device helper to create/inspect/own additional atlas alongside old cache resources with bounded calls and complete cleanup/refusal/provenance tests; commit locally.
 
 ## 322. Native atlas texture and bitmap header
 
