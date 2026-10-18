@@ -1238,7 +1238,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 309. Native texture and surface creation
 
-- [ ] 309.1 Resume the same CPU through original5275D7/nested requirements/CreateTexture/GetSurfaceLevel and54864C natural return to unexecuted52AE80, verify complete object/interface/buffer/lifetime state and fresh/corruption tests; commit locally.
+- [x] 309.1 Resume the same CPU through original5275D7/nested requirements/CreateTexture/GetSurfaceLevel and54864C natural return to unexecuted52AE80, verify complete object/interface/buffer/lifetime state and fresh/corruption tests; commit locally.
 
 ## 310. Cache texture acceptance
 
