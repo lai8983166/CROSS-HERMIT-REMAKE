@@ -1223,3 +1223,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 305. Font cache prerequisite acceptance
 
 - [x] 305.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document inherited versus declared experiments and unresolved texture/full font/outer dependencies, verify working/committed Git bytes and commit locally without push.
+
+## 306. Original cache texture source contract
+
+- [x] 306.1 Derive52755E/527234/format table/debug target/native texture creation and independent size/pool/mipmap projections; source tests and local commit.
+
+## 307. Owned x86 cache texture platform
+
+- [ ] 307.1 Fork immutable bridge with real debug export, device/factory queries, format checks, bounded texture/surface methods and complete reference cleanup; test and commit locally.
+
+## 308. Native texture requirements return
+
+- [ ] 308.1 Freshly replay verified declared empty-cache prefix and resume52755E through source format/dimension logic and real interfaces to unexecuted5275D7, independently verify full memory/CPU/calls/ABI and corruption refusals; commit locally.
+
+## 309. Native texture and surface creation
+
+- [ ] 309.1 Resume the same CPU through original5275D7/nested requirements/CreateTexture/GetSurfaceLevel and54864C natural return to unexecuted52AE80, verify complete object/interface/buffer/lifetime state and fresh/corruption tests; commit locally.
+
+## 310. Cache texture acceptance
+
+- [ ] 310.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document independent cache state and remaining sprite/GDI/font/outer dependencies, verify exact Git bytes and commit locally without push.

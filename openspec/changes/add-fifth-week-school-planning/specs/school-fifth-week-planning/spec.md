@@ -1148,3 +1148,14 @@ The audit SHALL execute the original static font factory and constructors with b
 #### Scenario: Independent empty-cache native initialization
 - **WHEN** an experiment declares only an empty initial cache head and bounded CRT memory
 - **THEN** original font/cache constructors and real device AddRef/caps/creation queries execute to unexecuted52755E, full bytes and lifetime are verified, and no retained VM or texture completion is claimed
+
+### Requirement: Original font-cache texture requirements and real resources
+The audit SHALL resume the explicitly declared empty-cache CPU through original texture requirements and creation bodies with real owned x86 device/factory/texture/surface methods. It MUST retain original inherited debug target and source/IAT bytes, verify complete original calls/state/guards and release every additional interface reference. It MUST distinguish this experiment from inherited-cache recovery or retained VM progress.
+
+#### Scenario: Requirements naturally return to texture creation
+- **WHEN** original52755E receives the pending cache width/height/format inputs
+- **THEN** native format selection, real platform queries and source dimension/mipmap rules return naturally to unexecuted5275D7 without a replacement D3DX result
+
+#### Scenario: Actual texture and level surface reach sprite admission
+- **WHEN** native5275D7 repeats requirements and the owned device accepts the resulting bounded texture parameters
+- **THEN** actual CreateTexture/GetSurfaceLevel results reach the original cache fields and54864C returns to unexecuted52AE80; texture creation is verified but drawing/full font/VM completion is not claimed

@@ -302,3 +302,6 @@ Resolve the font cleanup prerequisite by executing original412E30 and all native
 
 ## Static font allocation and cache prerequisite (2026-10-18)
 Continue the independent52AE11 CPU through original allocation wrapper/font constructor and captured cache lookup. Preserve inherited80A398 and stop before its absent heap node is read. Separately declare an empty-cache experiment, construct the original176-byte cache and use real owned x86 AddRef/caps/creation-parameter responses to the unexecuted52755E texture-requirements body. No imported fake old cache, silent global repair, texture success or retained VM progress is accepted. Commit source, bridge, inherited boundary, empty-cache prefix and acceptance locally.
+
+## Native cache texture requirements and creation (2026-10-18)
+Continue the independently declared empty-cache CPU through original52755E/527234/format selection, real DebugSetMute and owned device/factory queries, then original5275D7/CreateTexture/GetSurfaceLevel to unexecuted52AE80 sprite factory. Verify full heap/image/owner/stack/live identities and balanced texture/surface/factory/device references. Preserve inherited-cache missing-memory boundary and retained VM without claiming full font startup, drawing or outer scheduling. Commit each source/bridge/native/acceptance stage locally.
