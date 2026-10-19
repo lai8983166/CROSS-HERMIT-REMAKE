@@ -1280,3 +1280,14 @@ The audit SHALL continue the same independent original startup CPU at416CFA usin
 #### Scenario: Original startup returns success with balanced external state
 - **WHEN** original416CC0 returns to413546
 - **THEN** original success0 and413450 epilogue/ret20 return to the declared root with original saved registers/stack restored, device/desktop gamma and all owned resources are restored/released, and real upstream/retained VM/GPU drawing completion is not inferred
+
+### Requirement: Actual upstream renderer factory owner construction and admission
+The audit SHALL execute both original412C70 and450570 allocation/owner-constructor prefixes on their real parent stacks with explicit scratch inputs and actual owned DC/timer responses. It SHALL preserve inherited globals, full owner/guards/output/CPU/SEH and all historical evidence, and distinguish each natural next-call boundary from factory success.
+
+#### Scenario: Original factories allocate and construct their owner
+- **WHEN** declared factory arguments enter either original root
+- **THEN** original428A40 consumes one exact47648-byte declared CRT allocation, original412E30 completes all42 source calls and actual platform queries, and natural return restores the parent frame while output stays untouched
+
+#### Scenario: Distinct real startup prerequisites remain visible
+- **WHEN** each factory continues its original nonnull branch
+- **THEN**412C70 reaches unexecuted413450 with window/1/1/dimensions, while450570 reaches unexecuted4500B0 with its inherited absent game context and original data literal; cache/global pointers remain unchanged, and no fabricated context/audio/device/factory success or retained VM progress is inferred

@@ -1499,3 +1499,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 374. Complete startup return acceptance
 
 - [x] 374.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document actual upstream/cache/retained VM boundary and verify working/Git bytes; local commit without push.
+
+## 375. Actual upstream factory source and prerequisite distinction
+
+- [x] 375.1 Derive both original allocation/constructor/next-call paths, mode inputs and pinned missing cache/game heaps; full owner-input/source tests and local commit.
+
+## 376. Original upstream owner allocation
+
+- [ ] 376.1 Execute both real factory prefixes and exact47648-byte declared CRT allocation to412E30 entry with native counter/SEH/CPU/guard/output verification and corruption tests; local commit.
+
+## 377. Original owner construction on parent factory stack
+
+- [ ] 377.1 Execute complete original42-call412E30 and real DC/timer queries to each natural factory return; verify source nesting/full owner/image/guards/CPU/SEH/platform cleanup with corruption tests; local commit.
+
+## 378. Distinct original factory admissions
+
+- [ ] 378.1 Continue same CPUs to original413450(window) or4500B0(game) entry, preserving actual parameters and inherited missing-context/cache boundaries/output, with fresh four-case trajectory/corruption tests; local commit.
+
+## 379. Upstream factory acceptance
+
+- [ ] 379.1 Run new and relevant owner-constructor/platform regression plus strict specs; preserve historical/runtime/save/private VM bytes, document unexecuted context/audio/COM/device/factory-success boundaries and verify exact Git bytes; local commit without push.
