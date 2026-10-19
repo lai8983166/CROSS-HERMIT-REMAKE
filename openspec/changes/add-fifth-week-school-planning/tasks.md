@@ -1478,4 +1478,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 369. Font caller acceptance
 
-- [ ] 369.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document device-gamma/full-startup/upstream/VM boundary and verify working/Git bytes; local commit without push.
+- [x] 369.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document device-gamma/full-startup/upstream/VM boundary and verify working/Git bytes; local commit without push.

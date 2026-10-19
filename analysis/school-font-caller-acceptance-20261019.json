@@ -1,0 +1,939 @@
+{
+  "baseline": "b818e3f",
+  "stages": [
+    365,
+    366,
+    367,
+    368,
+    369
+  ],
+  "source_native_commits": [
+    "e9f5f12394940e597e458fdccd4462bb8f29813c",
+    "8cb5f18d6957b8550d9dff95edc57200a479c710",
+    "be458cfe5207b6c64002ce3171442c98c17a4deb",
+    "2d5737be85df1ad07cebb964abc9a5cafd1216a6"
+  ],
+  "scope": "Independent empty-cache original font-success caller binds same owner/device, allocates and natively zeros4096-layer/1MiB queues, generates768 gamma entries and stops before416CFA device invocation",
+  "continuous_trajectory": {
+    "report": {
+      "path": "analysis/school-font-caller-trajectory-v3-20261019.json",
+      "bytes": 19941088,
+      "sha256": "95416ce1a225d4af88ec8f584994a23f6499fa3299fe84c255e5e14abc916a5e"
+    },
+    "verified": {
+      "cases": 2,
+      "manager_bound": true,
+      "queues_initialized": true,
+      "queue_payload_bytes": 1081344,
+      "gamma_entries": 768,
+      "stop": "0x416cfa",
+      "gamma_device_call_executed": false,
+      "full413450_returned": false,
+      "retained_VM_advanced": false
+    },
+    "cases": [
+      {
+        "fill": 165,
+        "dimensions": [
+          640,
+          480
+        ],
+        "font_return_CPU": {
+          "EIP": 4273379,
+          "ESP": 553709480,
+          "EBP": 553709564,
+          "EAX": 0,
+          "EBX": 1432778632,
+          "ECX": 0,
+          "EDX": 90353536,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 70
+        },
+        "final_CPU": {
+          "EIP": 4287738,
+          "ESP": 553709376,
+          "EBP": 553709468,
+          "EAX": 90354304,
+          "EBX": 1432778632,
+          "ECX": 90353536,
+          "EDX": 90353536,
+          "ESI": 553709388,
+          "EDI": 553709468,
+          "EFLAGS": 2
+        },
+        "pending": {
+          "va": "0x416cfa",
+          "sp": 553709376,
+          "first_instruction_executed": false,
+          "device": 90353536,
+          "vtable": 90354304,
+          "method_offset": 72,
+          "args": [
+            90353536,
+            1,
+            536917000
+          ],
+          "target_read_executed": false
+        },
+        "allocations": [
+          {
+            "name": "heads",
+            "va": "0x56e810",
+            "return_va": "0x428a73",
+            "sp": 553709184,
+            "args": [
+              32768,
+              1,
+              5852712,
+              141
+            ],
+            "pointer": 603983872,
+            "bytes": 32768,
+            "initial_byte": 205,
+            "initial_sha256": "86b1523da827a20914b105154e38a7daa78ad9fc1e7fce023fb912c67034a973",
+            "adapter": "declared debug CRT allocation"
+          },
+          {
+            "name": "arena",
+            "va": "0x56e810",
+            "return_va": "0x428a73",
+            "sp": 553709184,
+            "args": [
+              1048576,
+              1,
+              5852712,
+              141
+            ],
+            "pointer": 620761088,
+            "bytes": 1048576,
+            "initial_byte": 205,
+            "initial_sha256": "7976fe636b0c7a9194c0483e2cd7d7fee229de973aac0edd90f17cd3e77378ed",
+            "adapter": "declared debug CRT allocation"
+          }
+        ],
+        "platform_cleanup": {
+          "second_atlas_fonts_released": 0,
+          "second_atlas_dcs_released": 0,
+          "second_atlas_bitmaps_released": 0,
+          "second_atlas_selection_restored": true,
+          "second_native_GDI_cleanup_executed": true,
+          "second_native_atlas_fonts_released": 1,
+          "second_native_atlas_dcs_released": 1,
+          "second_native_atlas_bitmaps_released": 1,
+          "second_native_bitmap_delete_issued": true,
+          "native_atlas_fonts_released": 1,
+          "native_atlas_dcs_released": 1,
+          "native_atlas_bitmaps_released": 1,
+          "native_bitmap_delete_issued": true,
+          "native_cleanup_completed": true,
+          "atlas_fonts_released": 0,
+          "atlas_dcs_released": 0,
+          "atlas_bitmaps_released": 0,
+          "atlas_selection_restored": true,
+          "fonts_released": 2,
+          "dcs_released": 1,
+          "cache_bitmaps_released": 1,
+          "cache_dcs_released": 1,
+          "cache_selection_restored": true,
+          "all_owned_resources_released": true
+        },
+        "device_cleanup": {
+          "second_font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "second_font_texture_unbind_hr": 0,
+          "second_font_vertex_buffer_release_count": 0,
+          "font_texture_unbind_hr": 0,
+          "font_vertex_buffer_release_count": 0,
+          "second_atlas_texture_release_count": 0,
+          "atlas_texture_release_count": 0,
+          "texture_surface_release_count": 1,
+          "texture_release_count": 0,
+          "extra_reference_release_counts": [
+            3,
+            2,
+            1
+          ],
+          "device_release_count": 0,
+          "factory_release_count": 0,
+          "window_destroyed": true,
+          "all_owned_resources_released": true
+        },
+        "refused_address_collisions": 0
+      },
+      {
+        "fill": 204,
+        "dimensions": [
+          1024,
+          768
+        ],
+        "font_return_CPU": {
+          "EIP": 4273379,
+          "ESP": 553709480,
+          "EBP": 553709564,
+          "EAX": 0,
+          "EBX": 1432778632,
+          "ECX": 0,
+          "EDX": 164594656,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 70
+        },
+        "final_CPU": {
+          "EIP": 4287738,
+          "ESP": 553709376,
+          "EBP": 553709468,
+          "EAX": 164595424,
+          "EBX": 1432778632,
+          "ECX": 164594656,
+          "EDX": 164594656,
+          "ESI": 553709388,
+          "EDI": 553709468,
+          "EFLAGS": 2
+        },
+        "pending": {
+          "va": "0x416cfa",
+          "sp": 553709376,
+          "first_instruction_executed": false,
+          "device": 164594656,
+          "vtable": 164595424,
+          "method_offset": 72,
+          "args": [
+            164594656,
+            1,
+            536917000
+          ],
+          "target_read_executed": false
+        },
+        "allocations": [
+          {
+            "name": "heads",
+            "va": "0x56e810",
+            "return_va": "0x428a73",
+            "sp": 553709184,
+            "args": [
+              32768,
+              1,
+              5852712,
+              141
+            ],
+            "pointer": 603983872,
+            "bytes": 32768,
+            "initial_byte": 205,
+            "initial_sha256": "86b1523da827a20914b105154e38a7daa78ad9fc1e7fce023fb912c67034a973",
+            "adapter": "declared debug CRT allocation"
+          },
+          {
+            "name": "arena",
+            "va": "0x56e810",
+            "return_va": "0x428a73",
+            "sp": 553709184,
+            "args": [
+              1048576,
+              1,
+              5852712,
+              141
+            ],
+            "pointer": 620761088,
+            "bytes": 1048576,
+            "initial_byte": 205,
+            "initial_sha256": "7976fe636b0c7a9194c0483e2cd7d7fee229de973aac0edd90f17cd3e77378ed",
+            "adapter": "declared debug CRT allocation"
+          }
+        ],
+        "platform_cleanup": {
+          "second_atlas_fonts_released": 0,
+          "second_atlas_dcs_released": 0,
+          "second_atlas_bitmaps_released": 0,
+          "second_atlas_selection_restored": true,
+          "second_native_GDI_cleanup_executed": true,
+          "second_native_atlas_fonts_released": 1,
+          "second_native_atlas_dcs_released": 1,
+          "second_native_atlas_bitmaps_released": 1,
+          "second_native_bitmap_delete_issued": true,
+          "native_atlas_fonts_released": 1,
+          "native_atlas_dcs_released": 1,
+          "native_atlas_bitmaps_released": 1,
+          "native_bitmap_delete_issued": true,
+          "native_cleanup_completed": true,
+          "atlas_fonts_released": 0,
+          "atlas_dcs_released": 0,
+          "atlas_bitmaps_released": 0,
+          "atlas_selection_restored": true,
+          "fonts_released": 2,
+          "dcs_released": 1,
+          "cache_bitmaps_released": 1,
+          "cache_dcs_released": 1,
+          "cache_selection_restored": true,
+          "all_owned_resources_released": true
+        },
+        "device_cleanup": {
+          "second_font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "second_font_texture_unbind_hr": 0,
+          "second_font_vertex_buffer_release_count": 0,
+          "font_texture_unbind_hr": 0,
+          "font_vertex_buffer_release_count": 0,
+          "second_atlas_texture_release_count": 0,
+          "atlas_texture_release_count": 0,
+          "texture_surface_release_count": 1,
+          "texture_release_count": 0,
+          "extra_reference_release_counts": [
+            3,
+            2,
+            1
+          ],
+          "device_release_count": 0,
+          "factory_release_count": 0,
+          "window_destroyed": true,
+          "all_owned_resources_released": true
+        },
+        "refused_address_collisions": 0
+      }
+    ]
+  },
+  "boundary_witnesses": {
+    "bind": {
+      "report": {
+        "path": "analysis/school-font-caller-bind-v1-20261019.json",
+        "bytes": 3124,
+        "sha256": "c32b18d7bc34145ef2e31a0cb13eee13948420d1327c0a24f46e6ebbd4147d9a"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "caller_bind",
+          "node_sha256": "bcad6df05abfa9adce8d586ff473113c0f2f322e3bbf6104187c56a52dbc1029",
+          "before_cpu": {
+            "EIP": 4273379,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 90353536,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4273413,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x413505",
+            "sp": 553709480,
+            "first_instruction_executed": false
+          },
+          "native_writes": {
+            "stack": {
+              "count": 51,
+              "bytes": 204
+            },
+            "manager": {
+              "count": 2,
+              "bytes": 8
+            }
+          },
+          "entries": 2,
+          "returns": 3,
+          "allocations": 0,
+          "original_instruction_observations": 96,
+          "owner_sha256": "358f7ded03873a0bf18aa05fe49b7a44d381ec7168a8d17f5bf1d4ccb93193ec",
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "caller_bind",
+          "node_sha256": "341453470ed24af215d26fd73a0f341d985ca99e5cc7c150930ab8c40372d54d",
+          "before_cpu": {
+            "EIP": 4273379,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 164594656,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4273413,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x413505",
+            "sp": 553709480,
+            "first_instruction_executed": false
+          },
+          "native_writes": {
+            "stack": {
+              "count": 51,
+              "bytes": 204
+            },
+            "manager": {
+              "count": 2,
+              "bytes": 8
+            }
+          },
+          "entries": 2,
+          "returns": 3,
+          "allocations": 0,
+          "original_instruction_observations": 96,
+          "owner_sha256": "5fe820d8cbfb78e3f3763f1446f8040fd67635585310251129e386c3beda71e9",
+          "SEH": 0
+        }
+      ]
+    },
+    "queues": {
+      "report": {
+        "path": "analysis/school-font-caller-queues-v1-20261019.json",
+        "bytes": 3639,
+        "sha256": "1518bb638c0a44cfbf31642c7db4273a71a7abb223491cd7656adae7e2d48108"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "caller_queues",
+          "node_sha256": "4c653657b366b5be38a6f35ffe90336eb276ecf9b2422d85843896bea7e58ca7",
+          "before_cpu": {
+            "EIP": 4273413,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4273427,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x413513",
+            "sp": 553709480,
+            "first_instruction_executed": false
+          },
+          "native_writes": {
+            "stack": {
+              "count": 200,
+              "bytes": 800
+            },
+            "manager": {
+              "count": 6,
+              "bytes": 24
+            },
+            "counter": {
+              "count": 2,
+              "bytes": 8
+            },
+            "heads": {
+              "count": 8192,
+              "bytes": 32768
+            },
+            "arena": {
+              "count": 262144,
+              "bytes": 1048576
+            }
+          },
+          "entries": 9,
+          "returns": 15,
+          "allocations": 2,
+          "original_instruction_observations": 270788,
+          "owner_sha256": "d0cd1f33e11744d353e0a5de63021129a821ce2120fbafaa249552cf40c7405f",
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "caller_queues",
+          "node_sha256": "558d9a2f031771b6f12c5be95b1471135de9f2930029dda03b92e22776b92b9a",
+          "before_cpu": {
+            "EIP": 4273413,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4273427,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x413513",
+            "sp": 553709480,
+            "first_instruction_executed": false
+          },
+          "native_writes": {
+            "stack": {
+              "count": 200,
+              "bytes": 800
+            },
+            "manager": {
+              "count": 6,
+              "bytes": 24
+            },
+            "counter": {
+              "count": 2,
+              "bytes": 8
+            },
+            "heads": {
+              "count": 8192,
+              "bytes": 32768
+            },
+            "arena": {
+              "count": 262144,
+              "bytes": 1048576
+            }
+          },
+          "entries": 9,
+          "returns": 15,
+          "allocations": 2,
+          "original_instruction_observations": 270788,
+          "owner_sha256": "9de7509ba6c0f32350d774e7e1147570cbc01f45a016eced8f43b82b8f3ebd01",
+          "SEH": 0
+        }
+      ]
+    },
+    "gamma": {
+      "report": {
+        "path": "analysis/school-font-caller-gamma-v1-20261019.json",
+        "bytes": 3582,
+        "sha256": "68430c40908f8da29cef8bc85d9c1989215c2a2abafc10391a87aabf30a986a6"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "caller_gamma",
+          "node_sha256": "d7c0d92a39a9fcd650f6034b939665115d10e2183c75685853273e4231bc0b62",
+          "before_cpu": {
+            "EIP": 4273427,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4287738,
+            "ESP": 553709376,
+            "EBP": 553709468,
+            "EAX": 90354304,
+            "EBX": 1432778632,
+            "ECX": 90353536,
+            "EDX": 90353536,
+            "ESI": 553709388,
+            "EDI": 553709468,
+            "EFLAGS": 2
+          },
+          "pending": {
+            "va": "0x416cfa",
+            "sp": 553709376,
+            "first_instruction_executed": false,
+            "device": 90353536,
+            "vtable": 90354304,
+            "method_offset": 72,
+            "args": [
+              90353536,
+              1,
+              536917000
+            ],
+            "target_read_executed": false
+          },
+          "native_writes": {
+            "stack": {
+              "count": 312,
+              "bytes": 1248
+            },
+            "gamma": {
+              "count": 768,
+              "bytes": 1536
+            }
+          },
+          "entries": 2,
+          "returns": 1,
+          "allocations": 2,
+          "original_instruction_observations": 5470,
+          "owner_sha256": "86a64d7fcbf04c98dc533e03fe87ad531a7b332ceaeb9dda43483ef280440dc6",
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "caller_gamma",
+          "node_sha256": "5b5912ef4244a7000fb8d4ece682edf2e3ae767ed97f0412389c4727399ca551",
+          "before_cpu": {
+            "EIP": 4273427,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536875096,
+            "EDX": 536875096,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4287738,
+            "ESP": 553709376,
+            "EBP": 553709468,
+            "EAX": 164595424,
+            "EBX": 1432778632,
+            "ECX": 164594656,
+            "EDX": 164594656,
+            "ESI": 553709388,
+            "EDI": 553709468,
+            "EFLAGS": 2
+          },
+          "pending": {
+            "va": "0x416cfa",
+            "sp": 553709376,
+            "first_instruction_executed": false,
+            "device": 164594656,
+            "vtable": 164595424,
+            "method_offset": 72,
+            "args": [
+              164594656,
+              1,
+              536917000
+            ],
+            "target_read_executed": false
+          },
+          "native_writes": {
+            "stack": {
+              "count": 312,
+              "bytes": 1248
+            },
+            "gamma": {
+              "count": 768,
+              "bytes": 1536
+            }
+          },
+          "entries": 2,
+          "returns": 1,
+          "allocations": 2,
+          "original_instruction_observations": 5470,
+          "owner_sha256": "d0dcf4323c7a1e27ace45acbb401ed503c52c3bc5a737f9551b5c51cf8145231",
+          "SEH": 0
+        }
+      ]
+    }
+  },
+  "regression": {
+    "new": 11,
+    "direct_parent": 19,
+    "total": 30,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-font-caller-regression-20261019.log",
+      "bytes": 4140,
+      "sha256": "ba49425328db56062e264bd7032efbbfa026e102f13cfd89668518c1fc0b9e2c"
+    },
+    "strict_log": {
+      "path": "analysis/school-font-caller-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920"
+    }
+  },
+  "preserved_failed_experiments": {
+    "first_report": {
+      "path": "analysis/school-font-caller-trajectory-v1-20261019.json",
+      "bytes": 21057402,
+      "sha256": "fe5894a022090cccb297d1655df9a5f7cf19773218a61d04dc2442c88b73aeb2"
+    },
+    "first_refusal": {
+      "path": "analysis/school-font-caller-v1-refusal-20261019.json",
+      "bytes": 335,
+      "sha256": "8fc43dd66828cf580eee0698062026d47601aa2547dc219ee0a149b5e6f178d0"
+    },
+    "collision_log": {
+      "path": "analysis/school-font-caller-trajectory-generation-v2-20261019.log",
+      "bytes": 1087,
+      "sha256": "3b6c5a93161b6b2597e36ddcd8de015413bbc48c9d75425472ff075a916afdc3"
+    },
+    "failed_logs_overwritten": false,
+    "ownership_boundaries_relaxed": false,
+    "retry_limit_changed": false
+  },
+  "preservation": {
+    "path": "analysis/school-font-caller-preservation-20261019.json",
+    "bytes": 11046,
+    "sha256": "bb90b22908e9d0768fd43a28b29d31cee841966ed5bdd778c37085935f548ef9",
+    "retained_files": 16320,
+    "save_rules": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "manager_owner": 0,
+    "advanced": false
+  },
+  "authority": {
+    "explicit_empty_cache_experiment": true,
+    "inherited_cache_head_repaired": false,
+    "original_IAT_changed": false,
+    "game_helpers_stubbed": false,
+    "owned_helpers_changed": false,
+    "one_continuous_original_CPU_per_case": true,
+    "original_manager_owner_binding_executed": true,
+    "original_actual_device_getter_executed": true,
+    "copied_isolated_queue_experiment": false,
+    "CRT_adapter_executed": true,
+    "CRT_responses_per_case": 2,
+    "original_queue_initialization_return": 0,
+    "original_full_native_memset_executed": true,
+    "layer_payload_bytes": 32768,
+    "arena_payload_bytes": 1048576,
+    "full_queue_guards_verified": true,
+    "original_gamma_stores_per_case": 768,
+    "original_gamma_channels": 3,
+    "original_device_gamma_call_executed": false,
+    "device_gamma_target_read_executed": false,
+    "original416CC0_returned": false,
+    "original413450_returned": false,
+    "desktop_gamma_changed": false,
+    "original_objects_pixels_retired_evidence_preserved": true,
+    "all_native_owned_resources_released": true,
+    "native_font_destructor_chain_executed": false,
+    "upstream_cache_integrated": false,
+    "retained_VM_advanced": false,
+    "GPU_drawing_or_Present": false,
+    "full_outer_frame": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_pointers_resumable": false
+  },
+  "remaining": [
+    "Own the actual device gamma response at416CFA and execute original416CC0/413450 suffix to natural return",
+    "Resolve actual upstream cache/startup/outer scheduling before reconnecting retained VM",
+    "Continue full input/task/world/render scheduling, dialogue and battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "369/369 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": "README.md",
+      "bytes": 61704,
+      "sha256": "13dcd7c635659db3433e1c9a321484f1e11384d0bce8d5d5e2100e3e9de5d355",
+      "git_blob": "6007b95fb250c3661a846090cfa22b2e3ce0cebc"
+    },
+    {
+      "path": "analysis/school-font-caller-bind-v1-20261019.json",
+      "bytes": 3124,
+      "sha256": "c32b18d7bc34145ef2e31a0cb13eee13948420d1327c0a24f46e6ebbd4147d9a",
+      "git_blob": "747ed4f29d32b89e231d0f6988e08112efbcc241"
+    },
+    {
+      "path": "analysis/school-font-caller-gamma-v1-20261019.json",
+      "bytes": 3582,
+      "sha256": "68430c40908f8da29cef8bc85d9c1989215c2a2abafc10391a87aabf30a986a6",
+      "git_blob": "9807ac17477f8192fa5ae04f2be5e4271e424587"
+    },
+    {
+      "path": "analysis/school-font-caller-preservation-20261019.json",
+      "bytes": 11046,
+      "sha256": "bb90b22908e9d0768fd43a28b29d31cee841966ed5bdd778c37085935f548ef9",
+      "git_blob": "985aa8a0e89bb0675389707b4b2952f92f34d296"
+    },
+    {
+      "path": "analysis/school-font-caller-preservation-generation-20261019.log",
+      "bytes": 197,
+      "sha256": "a5707a2410b83eb362712bed7537ac80d782facbe718870cb770fa67ee1b2abf",
+      "git_blob": "1a7b91dc51f617508140eb4e73b973bede7d54a5"
+    },
+    {
+      "path": "analysis/school-font-caller-queues-v1-20261019.json",
+      "bytes": 3639,
+      "sha256": "1518bb638c0a44cfbf31642c7db4273a71a7abb223491cd7656adae7e2d48108",
+      "git_blob": "6b25684df927b0ab19e87f89ba8864600ccebcee"
+    },
+    {
+      "path": "analysis/school-font-caller-regression-20261019.log",
+      "bytes": 4140,
+      "sha256": "ba49425328db56062e264bd7032efbbfa026e102f13cfd89668518c1fc0b9e2c",
+      "git_blob": "57445355b42047ec5701991045da6531bb808acd"
+    },
+    {
+      "path": "analysis/school-font-caller-source-tests-20261019.log",
+      "bytes": 560,
+      "sha256": "3ee643d590b4db62e4a93abc53f0f7ed30be5ee1c07b49aa7ddf75dfd32823a6",
+      "git_blob": "5e24d725e3915ff684056f1a9a42cfcf0c4cf5ed"
+    },
+    {
+      "path": "analysis/school-font-caller-source-v1-20261019.json",
+      "bytes": 4914,
+      "sha256": "e5b485a0cb71083d5d6414f33a73f1c6f087d9ad056468a07ec87651f7abbdef",
+      "git_blob": "ed1425a83149331bb6291092970ad0adc2efa060"
+    },
+    {
+      "path": "analysis/school-font-caller-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920",
+      "git_blob": "2e3dc062ee2e6ba39f685fb03105916214d13db9"
+    },
+    {
+      "path": "analysis/school-font-caller-trajectory-generation-20261019.log",
+      "bytes": 120,
+      "sha256": "0770ca0c3bedfbeb57ef21175c7c2d9bf4bb5902c02e158ca36f9895e5efb0df",
+      "git_blob": "cd886072b859f15cba126649f0db9d4ac5e57ec1"
+    },
+    {
+      "path": "analysis/school-font-caller-trajectory-generation-v2-20261019.log",
+      "bytes": 1087,
+      "sha256": "3b6c5a93161b6b2597e36ddcd8de015413bbc48c9d75425472ff075a916afdc3",
+      "git_blob": "3877063a515ce840c25fa7b26a14d9d9c310a412"
+    },
+    {
+      "path": "analysis/school-font-caller-trajectory-generation-v3-20261019.log",
+      "bytes": 120,
+      "sha256": "0770ca0c3bedfbeb57ef21175c7c2d9bf4bb5902c02e158ca36f9895e5efb0df",
+      "git_blob": "cd886072b859f15cba126649f0db9d4ac5e57ec1"
+    },
+    {
+      "path": "analysis/school-font-caller-trajectory-v1-20261019.json",
+      "bytes": 21057402,
+      "sha256": "fe5894a022090cccb297d1655df9a5f7cf19773218a61d04dc2442c88b73aeb2",
+      "git_blob": "bbae57e8b6b4e189bc637958f6a95e4051816384"
+    },
+    {
+      "path": "analysis/school-font-caller-trajectory-v3-20261019.json",
+      "bytes": 19941088,
+      "sha256": "95416ce1a225d4af88ec8f584994a23f6499fa3299fe84c255e5e14abc916a5e",
+      "git_blob": "2cefe520ef3f64e48b94e673b5a7006391cba0a2"
+    },
+    {
+      "path": "analysis/school-font-caller-v1-refusal-20261019.json",
+      "bytes": 335,
+      "sha256": "8fc43dd66828cf580eee0698062026d47601aa2547dc219ee0a149b5e6f178d0",
+      "git_blob": "84db6fb70e9bb7118cbd3ffb63f727b8e821131d"
+    },
+    {
+      "path": "docs/school_font_caller.md",
+      "bytes": 4977,
+      "sha256": "eaf8044dad2ce57e6a72f3b613c683885e43fe04dff3f1e13e9d4789a7906729",
+      "git_blob": "bdd87e6c7447b0bc8af70a7217702cfa59285b3b"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 95059,
+      "sha256": "8ae2eed2be137431f2aa864747c7db3b6482e108eb8ca28b429deb3af156121c",
+      "git_blob": "8878a73e064a9620dc9f02e2d5d6dca840f1ecff"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 55603,
+      "sha256": "397301af123365d07075e327a59c4f5cbbf5881d2fe9a8d5af0c14f1b1f2be93",
+      "git_blob": "720567be4fb50afcbf89c1efa541c09ac59db38d"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 118588,
+      "sha256": "d36d93df272476adada8b540f9353c0b2a769c7b96776f82a75aa022b257da11",
+      "git_blob": "65ef8936739b6851a69e3c2d22c3ec005a43bc2d"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 102989,
+      "sha256": "8ca5e9432fe6b7abbc1784d912bca6b1fd5cd2930903bf795cca22a0439e762c",
+      "git_blob": "3b4c798512543e57e903ce895c0858db43b35ea7"
+    },
+    {
+      "path": "tools/school_font_caller.py",
+      "bytes": 3692,
+      "sha256": "1e9eeacc1c286223b965831b25059e483cfca1e405b3e15ac1abef253faf3a37",
+      "git_blob": "77309eafabff3f02b989c8e276b39749138c0cfd"
+    },
+    {
+      "path": "tools/school_font_caller_emulation.py",
+      "bytes": 10943,
+      "sha256": "fcf3d7c33da9c6c516e8f9d59d161169e290293f816355776f38cc6b8561c257",
+      "git_blob": "ac9d65a6d6902fb83e83bba4f7c7bd722b6165f5"
+    },
+    {
+      "path": "tools/school_font_caller_verification.py",
+      "bytes": 9768,
+      "sha256": "2d202ccbda0d40eddfa90c2f2d5b23021156acf82aebbd3730e9bfb8a22cf7e2",
+      "git_blob": "04857d014a3ec721a50ddbeb0563293bc0a68f03"
+    },
+    {
+      "path": "tools/tests/test_school_font_caller.py",
+      "bytes": 1711,
+      "sha256": "4149b8ac857d382b753eb78c4aa67e547bf6c81607f9e6d25c622f01516fde06",
+      "git_blob": "3b0821552ac24111e8f3f1bdf89b813545614775"
+    },
+    {
+      "path": "tools/tests/test_school_font_caller_emulation.py",
+      "bytes": 5218,
+      "sha256": "72970fb915d6af0e97b757c3f302a397d213f2fbbc4d8346579a217b27aff8d6",
+      "git_blob": "88d530e349f1d1b80a741e8359a652bfa7fffe0e"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-font-caller-acceptance-20261019.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}
