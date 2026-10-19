@@ -1,0 +1,599 @@
+{
+  "baseline": "1c0918f",
+  "stages": [
+    326,
+    327,
+    328,
+    329,
+    330,
+    331
+  ],
+  "source_native_commits": [
+    "7f4184db1d81f7d9bbc5415b9dfff9a11bbc8586",
+    "0e2fbcf12d21641d4a59c522e6e85e61bc6f31e3",
+    "a390bb45f4a20ec6136ebb6d9d70ae975d672057",
+    "bd08a11c054fc37f51ee4a8c03fba7ac61a0915f",
+    "490ec4329570a3d726c229d9da3d230f4b176cfe"
+  ],
+  "scope": "Independent declared empty-cache original95 glyph GDI loop,380 UV stores and65536-pixel conversion with actual atlas lock/upload/unlock/readback to4017B6 before cleanup",
+  "experiments": {
+    "raster": {
+      "report": {
+        "path": "analysis/school-font-glyph-raster-v1-20261019.json",
+        "bytes": 5322248,
+        "sha256": "4045abd71096023fd9dcee73834ffcd635d2d32c5778c10d66f73d6e771a92fc"
+      },
+      "verified": {
+        "cases": 2,
+        "phase": "raster",
+        "glyphs_per_case": 95,
+        "UV_stores_per_case": 380,
+        "texture_upload_executed": false,
+        "retained_VM_advanced": false
+      },
+      "cases": [
+        {
+          "fill": 165,
+          "dimensions": [
+            640,
+            480
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "075dfeda82bc9e41c7dcd676f5f66131a4e03f9ebe2ace51cd17f38223480167"
+          },
+          "glyph_pending": {
+            "va": "0x401660",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "final_pending": {
+            "va": "0x401660",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "glyphs": 95,
+          "UV_stores": 380,
+          "pixels": 0,
+          "platform_cleanup": {
+            "atlas_fonts_released": 1,
+            "atlas_dcs_released": 1,
+            "atlas_bitmaps_released": 1,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        },
+        {
+          "fill": 204,
+          "dimensions": [
+            1024,
+            768
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "491894820f1f6f9bb55dd8245ac6355c4abbc1757619d4f7c17ea6a5a13472b7"
+          },
+          "glyph_pending": {
+            "va": "0x401660",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "final_pending": {
+            "va": "0x401660",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "glyphs": 95,
+          "UV_stores": 380,
+          "pixels": 0,
+          "platform_cleanup": {
+            "atlas_fonts_released": 1,
+            "atlas_dcs_released": 1,
+            "atlas_bitmaps_released": 1,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 4
+        }
+      ]
+    },
+    "upload": {
+      "report": {
+        "path": "analysis/school-font-glyph-upload-v1-20261019.json",
+        "bytes": 8502649,
+        "sha256": "7a310a94b2f569441a08e894a4149d96c2a7a86e98d1511455c5c40535fbc11b"
+      },
+      "verified": {
+        "cases": 2,
+        "phase": "upload",
+        "glyphs_per_case": 95,
+        "pixels_per_case": 65536,
+        "actual_texture_upload_verified": true,
+        "retained_VM_advanced": false
+      },
+      "cases": [
+        {
+          "fill": 165,
+          "dimensions": [
+            640,
+            480
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "5b30beac9811f96517259c3718c1370bb2ace1b4a6424aafa4555c2248f18a6b"
+          },
+          "glyph_pending": {
+            "va": "0x401660",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "final_pending": {
+            "va": "0x4017b6",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "glyphs": 95,
+          "UV_stores": 380,
+          "pixels": 65536,
+          "platform_cleanup": {
+            "atlas_fonts_released": 1,
+            "atlas_dcs_released": 1,
+            "atlas_bitmaps_released": 1,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 1
+        },
+        {
+          "fill": 204,
+          "dimensions": [
+            1024,
+            768
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "28810612503e7d7371771a9994cbd702c78210d6342658f20928c7125db7171b"
+          },
+          "glyph_pending": {
+            "va": "0x401660",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "final_pending": {
+            "va": "0x4017b6",
+            "sp": 553708852,
+            "first_instruction_executed": false
+          },
+          "glyphs": 95,
+          "UV_stores": 380,
+          "pixels": 65536,
+          "platform_cleanup": {
+            "atlas_fonts_released": 1,
+            "atlas_dcs_released": 1,
+            "atlas_bitmaps_released": 1,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        }
+      ]
+    }
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "owner": 0,
+    "advanced": false
+  },
+  "regression": {
+    "new": 16,
+    "direct_parent": 16,
+    "total": 32,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-font-glyph-regression-v2-20261019.log",
+      "bytes": 4383,
+      "sha256": "cab4b4c4b824b33cdf81f019f04f7fbc49158b30636c7e4f842ba32d4c97d169"
+    },
+    "strict_log": {
+      "path": "analysis/school-font-glyph-strict-20261019.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775"
+    }
+  },
+  "preservation": {
+    "path": "analysis/school-font-glyph-preservation-20261019.json",
+    "bytes": 12832,
+    "sha256": "df274d4103eccdb2aded8ff16e65e5a466f59b812befdd30bc68f261a5e8b4a1",
+    "retained_files": 16120,
+    "save_rule_fingerprints": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "preview": {
+    "path": "analysis/school-font-glyph-raster-20261019.png",
+    "bytes": 1659,
+    "sha256": "7433d10b002af7609dd95286324e0ff5d356f1e5db68f85ed645cf722dd4f0d4",
+    "source_report": "analysis/school-font-glyph-raster-v1-20261019.json",
+    "case": 0,
+    "kind": "inspection-only actual owned GDI DIB; not a game frame"
+  },
+  "authority": {
+    "empty_cache_input_is_declared": true,
+    "inherited_cache_head_repaired": false,
+    "original_IAT_changed": false,
+    "game_helpers_stubbed": false,
+    "CRT_adapter_executed": true,
+    "original95_glyph_measurement_and_draw_pairs": true,
+    "original380_x87_UV_stores": true,
+    "GdiFlush_and_DIB_snapshots_inspection_only": true,
+    "original65536_pixel_reads_and_writes": true,
+    "all_pixel_access_addresses_and_values_verified": true,
+    "actual_LockRect_and_UnlockRect_executed": true,
+    "bounded_native_shadow_writes_transferred_to_owned_real_buffer": true,
+    "actual_complete_readonly_texture_readback_verified": true,
+    "readonly_readback_inspection_only": true,
+    "all_pitch_padding_and_guards_verified": true,
+    "real_external_pointers_relocated": false,
+    "original_cleanup_executed": false,
+    "full4010D0_returned": false,
+    "full415F50_returned": false,
+    "second_additional_font_constructed": false,
+    "vertex_buffer_or_state_blocks_created": false,
+    "GPU_drawing_or_Present": false,
+    "full_outer_frame": false,
+    "cleanup_by_owned_helpers": true,
+    "historical_helpers_changed": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_pointers_resumable": false
+  },
+  "remaining": [
+    "Original4017B6 bitmap/DC/font cleanup and4010D0 return",
+    "Original401810 vertex buffer/state blocks, second additional font and complete415F50 return",
+    "Original40D970 manager binding/40DAB0 queues and actual upstream startup",
+    "Recover inherited cache heap or verify actual upstream initialization before reconnecting retained VM",
+    "Complete input/task/world/render scheduling, dialogue, battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "331/331 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 16630,
+      "sha256": "2771eafca704b58f346b1f4cc76443bdd0a8cddc244864f3a52cddd0495504d3",
+      "git_blob": "8be75b85f47b50c1531246194e9efa70f0a6867e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 56443,
+      "sha256": "d1aff4c5fd78f76cdba90346147ef477f24c8d130a9b824cea7a457cf68ee604",
+      "git_blob": "8daa39f0ce231238dd03b9716dbaa6962239f4b9"
+    },
+    {
+      "path": "analysis/school-font-glyph-device-generation-20261019.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "analysis/school-font-glyph-device-tests-20261019.log",
+      "bytes": 467,
+      "sha256": "801f7a244400e68b147dd784daef8dc61780ea8c5e8cf15869d769e3061f7c97",
+      "git_blob": "742e9238ab216797e7ba8bbf33b4cf3003dae0c8"
+    },
+    {
+      "path": "analysis/school-font-glyph-device-v1-20261019.json",
+      "bytes": 1587305,
+      "sha256": "486ce7e794817c81c9de5dba9a2606744acb907a2dfaa8607797ea20ec120f58",
+      "git_blob": "01ae078f356a920a71bbe0ece19b578354807c43"
+    },
+    {
+      "path": "analysis/school-font-glyph-gdi-generation-20261019.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "analysis/school-font-glyph-gdi-tests-20261019.log",
+      "bytes": 430,
+      "sha256": "7dfaa1783e99a3e100974ea05747ff66742e704bca6ffc007cdb6f40140d216b",
+      "git_blob": "4c4b7f58a5a4178c4d7529d3b4764c604db04aec"
+    },
+    {
+      "path": "analysis/school-font-glyph-gdi-v1-20261019.json",
+      "bytes": 2196641,
+      "sha256": "e1ac0a0193ace5d97c078f8e5bae91103a92d6283be1fbd75430e247e1ada456",
+      "git_blob": "80ac1308df0415f67065a10c1920e4c1cbee7565"
+    },
+    {
+      "path": "analysis/school-font-glyph-preservation-20261019.json",
+      "bytes": 12832,
+      "sha256": "df274d4103eccdb2aded8ff16e65e5a466f59b812befdd30bc68f261a5e8b4a1",
+      "git_blob": "9eb891964ec466910524d14928da9a32aead9e3c"
+    },
+    {
+      "path": "analysis/school-font-glyph-preservation-generation-20261019.log",
+      "bytes": 197,
+      "sha256": "bca081080f2606ca36cfd958e6f580748579d554cc1cda9aeb2e63805e6c73dc",
+      "git_blob": "60710b0200b5ab869299f7b9ed7e4567507f6ef8"
+    },
+    {
+      "path": "analysis/school-font-glyph-raster-20261019.png",
+      "bytes": 1659,
+      "sha256": "7433d10b002af7609dd95286324e0ff5d356f1e5db68f85ed645cf722dd4f0d4",
+      "git_blob": "a4f4efc4aa127b1d4ad5b88a9f41791cf7ef8f23"
+    },
+    {
+      "path": "analysis/school-font-glyph-raster-generation-20261019.log",
+      "bytes": 80,
+      "sha256": "444a5c0f585d89b12d1f710e8de46701619b8761368bdb9b5a1db937c6da390c",
+      "git_blob": "d8b53e1b01822fc314f78caf66076dff2ad384e0"
+    },
+    {
+      "path": "analysis/school-font-glyph-raster-tests-20261019.log",
+      "bytes": 599,
+      "sha256": "e24834c466d31df54e8c9ed6d57d5ed1732f2dae14f535f935734465deb6f36c",
+      "git_blob": "1a48d207f52131efa33e0e05a8bae0d319914355"
+    },
+    {
+      "path": "analysis/school-font-glyph-raster-v1-20261019.json",
+      "bytes": 5322248,
+      "sha256": "4045abd71096023fd9dcee73834ffcd635d2d32c5778c10d66f73d6e771a92fc",
+      "git_blob": "bfccd04408a186f704a938e476710c4da248039d"
+    },
+    {
+      "path": "analysis/school-font-glyph-regression-20261019.log",
+      "bytes": 5303,
+      "sha256": "d3967d74d93771fbdcf7b4715cf553dc23c34b3cf64888a7e37e78f8e1dd8563",
+      "git_blob": "0008dd78cfece0d3e30475c0992b3b0b2a0ff03b"
+    },
+    {
+      "path": "analysis/school-font-glyph-regression-v2-20261019.log",
+      "bytes": 4383,
+      "sha256": "cab4b4c4b824b33cdf81f019f04f7fbc49158b30636c7e4f842ba32d4c97d169",
+      "git_blob": "0701ff85c06b00889f46d477e5ef98db5d2be4c7"
+    },
+    {
+      "path": "analysis/school-font-glyph-source-tests-20261019.log",
+      "bytes": 543,
+      "sha256": "f34db9988ce660059d6585b05f877393b219781cae18608b2fe2bdec0cc97c6a",
+      "git_blob": "df72d389bdfb5a6cf01272bb9e5952d2176b8874"
+    },
+    {
+      "path": "analysis/school-font-glyph-source-v1-20261019.json",
+      "bytes": 4049,
+      "sha256": "e3e458cf49758142abb0f9dc3228a6e7d4db826983f915f6d31ea6b400acd83c",
+      "git_blob": "e5dcf407fae08ae1a51d5d90b1b939b299c23faf"
+    },
+    {
+      "path": "analysis/school-font-glyph-strict-20261019.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775",
+      "git_blob": "2ad0d64199225b64beb1dc9b8cf28969e0b2fd9c"
+    },
+    {
+      "path": "analysis/school-font-glyph-upload-generation-20261019.log",
+      "bytes": 126,
+      "sha256": "9e4670f260c7e1a45a57a570cac4342732c9d11351d203340a7403afdc220141",
+      "git_blob": "31a680693457b6d6169564e3ff07c5263e8e867e"
+    },
+    {
+      "path": "analysis/school-font-glyph-upload-v1-20261019.json",
+      "bytes": 8502649,
+      "sha256": "7a310a94b2f569441a08e894a4149d96c2a7a86e98d1511455c5c40535fbc11b",
+      "git_blob": "bc11f1ea1bc6cc7c0acf9b045f0ca790991e8a37"
+    },
+    {
+      "path": "docs/school_font_glyph.md",
+      "bytes": 4975,
+      "sha256": "8090b2d9a2f56431128209a92dd84dc43c998d55ad16dc95ca045dbc7c5ef2b9",
+      "git_blob": "d7e08d44a833687a96bc5711f6871d941a209dfd"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 87307,
+      "sha256": "1e538b4a5598e6fc6981c23d33f1303813e0022eaff9201d1fbbf6c5e44308dc",
+      "git_blob": "01e225aa52cf16d5a7c776b08040c46fc09c081f"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 51218,
+      "sha256": "9d745e7fa26e09c70e03e954b7e3f3b8144f3694d161a626bd1d97c8b8c11175",
+      "git_blob": "8c5493dbdebcd02df56a9a09973bdad26ddf6e72"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 111415,
+      "sha256": "fb2360929a4c257dc1101fea0f564c5fa27151b85b5e7c946b95bad01fcc54d1",
+      "git_blob": "b7736907329a2c964bcc16b82f0118765aa0045b"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 93719,
+      "sha256": "5d6dd80ee4b6524caff5465565b258bbdb897e5e993b6aeed026e3646988ea83",
+      "git_blob": "4bb702dbd15046b772bcc1b238fd488b41d03e1a"
+    },
+    {
+      "path": "tools/school_font_glyph.py",
+      "bytes": 4359,
+      "sha256": "fd7f63fac59a713c185316b1609706d9032d834f627f3212201792c6076bf238",
+      "git_blob": "5fa535b428d828018ca898dacc92b3fe8262accc"
+    },
+    {
+      "path": "tools/school_font_glyph_device.cs",
+      "bytes": 22160,
+      "sha256": "26f77ca628c36312841c198f3ffd094a7057fbdf28f15322203dc6775f986458",
+      "git_blob": "8936bc60564a924befa8e8c3fdad08fa1815598f"
+    },
+    {
+      "path": "tools/school_font_glyph_device.py",
+      "bytes": 2180,
+      "sha256": "32755c201636afa834a074eb86e795764ef4b0be333802dce0a9deefede9432d",
+      "git_blob": "0525943a16c869156b05e291a57985570ebbd833"
+    },
+    {
+      "path": "tools/school_font_glyph_emulation.py",
+      "bytes": 8155,
+      "sha256": "ca2f556202db18afb872906ed7254a9fce81a1f1f1396a8d9fc9971208424117",
+      "git_blob": "ec3b1a478f7ed3fde944d95be6c0e4d2647a3cb8"
+    },
+    {
+      "path": "tools/school_font_glyph_gdi.cs",
+      "bytes": 18934,
+      "sha256": "78c3e96371f585cd9bf8586deb451b1023eb2702ace901785f7019e4e405c662",
+      "git_blob": "de9d2cd7b7c5ed9637f4bc379135e90565f398d4"
+    },
+    {
+      "path": "tools/school_font_glyph_gdi.py",
+      "bytes": 2550,
+      "sha256": "27d5a19b8cccb8d96c75783fc937aee7623451fee361fb670e3e4d73d7d919a9",
+      "git_blob": "0b39597803794e6ae5ed915ce3ad6c68f5c40e31"
+    },
+    {
+      "path": "tools/school_font_glyph_upload.py",
+      "bytes": 10032,
+      "sha256": "6265509894a6e45460a76f307679db9158f16113b5743cbe9f9f1b5467d4d23b",
+      "git_blob": "40a6b1d15fef1eab47ee10da5a0f3a9fe354fecf"
+    },
+    {
+      "path": "tools/school_font_glyph_upload_verification.py",
+      "bytes": 9309,
+      "sha256": "261113d2126a4ee886f53c1e809f34788c0d20322850c918e557511779e61ca2",
+      "git_blob": "9315f48b1ff3653a1f71627e32ac1b389ad99641"
+    },
+    {
+      "path": "tools/school_font_glyph_verification.py",
+      "bytes": 10057,
+      "sha256": "b5c298449b9e49ca00de17a67aa5d937c7c638d433981e659363fe0808f71b39",
+      "git_blob": "bbd068a8bcdb0fc38c205b3aee4295c7c8b5d39e"
+    },
+    {
+      "path": "tools/tests/test_school_font_glyph.py",
+      "bytes": 1802,
+      "sha256": "ee81a70b4c4997d2000e083b82ecfc44aad4338f0a357b216ec7c2fc2cd83a0c",
+      "git_blob": "de79b3ff29c280f944b51f42cbcefc61d1f752a6"
+    },
+    {
+      "path": "tools/tests/test_school_font_glyph_device.py",
+      "bytes": 2311,
+      "sha256": "f49135594db460474a4729e020cc894114dba4f219ab18bafbe667ff97ba01f4",
+      "git_blob": "5be540e98873ed6ced4791b1446dd44da0cc91e3"
+    },
+    {
+      "path": "tools/tests/test_school_font_glyph_emulation.py",
+      "bytes": 2599,
+      "sha256": "f76b94a0652d28e0899379f8eb33048208f327261afe0909dbe50801d55bf3ba",
+      "git_blob": "2e27e020b700346605c7d9519ffc10d06ac35075"
+    },
+    {
+      "path": "tools/tests/test_school_font_glyph_gdi.py",
+      "bytes": 2067,
+      "sha256": "1f5d5b255dcfe06d0cad6d42b66a46c7d410b27cc2fcb28a6c388e70208a2efa",
+      "git_blob": "6432650130a36c0c5680ea89d6f0183cd970f503"
+    },
+    {
+      "path": "tools/tests/test_school_font_glyph_upload.py",
+      "bytes": 2967,
+      "sha256": "4e4953c5f7a725fd45c775cc4bced0f43a563a2ac4546069ea6b3fa253cb4bb8",
+      "git_blob": "38ad61c2e1105580933f7d2792cc74f5532ba7a0"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-font-glyph-acceptance-20261019.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

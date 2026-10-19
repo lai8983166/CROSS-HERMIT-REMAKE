@@ -1326,4 +1326,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 331. Glyph raster and upload acceptance
 
-- [ ] 331.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document original cleanup/state-block/second-font/upstream boundaries, verify exact Git bytes and commit locally without push.
+- [x] 331.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document original cleanup/state-block/second-font/upstream boundaries, verify exact Git bytes and commit locally without push.
