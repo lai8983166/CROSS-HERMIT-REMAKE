@@ -1310,7 +1310,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 327. Owned glyph measurement and drawing platform
 
-- [ ] 327.1 Fork immutable x86 GDI helper for exact95 alternating measurements/draws and inspection-only flush/full DIB snapshots, resource/refusal/provenance tests and local commit.
+- [x] 327.1 Fork immutable x86 GDI helper for exact95 alternating measurements/draws and inspection-only flush/full DIB snapshots, resource/refusal/provenance tests and local commit.
 
 ## 328. Native complete glyph loop
 
