@@ -1322,7 +1322,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 330. Native pixel conversion and real upload
 
-- [ ] 330.1 Continue the same CPU through original65536-pixel conversion and actual texture lock/upload/unlock to4017B6, verify all pixels/pitch/guards/source/live ABI/CPU and fresh/corruption tests, commit locally.
+- [x] 330.1 Continue the same CPU through original65536-pixel conversion and actual texture lock/upload/unlock to4017B6, verify all pixels/pitch/guards/source/live ABI/CPU and fresh/corruption tests, commit locally.
 
 ## 331. Glyph raster and upload acceptance
 

@@ -1,0 +1,55 @@
+test_all_blue_values_zero_alpha_and_pitch_padding (tools.tests.test_school_font_glyph.SourceTests) ... ok
+test_exact_wrap_threshold_UV_stores_and_untouched_padding (tools.tests.test_school_font_glyph.SourceTests) ... ok
+test_incomplete_dimensions_buffers_and_pitch_refused (tools.tests.test_school_font_glyph.SourceTests) ... ok
+test_original_95_calls_and_16bit_conversion_source (tools.tests.test_school_font_glyph.SourceTests) ... ok
+test_actual_immutable_build_and_parent (tools.tests.test_school_font_glyph_gdi.GDITests) ... ok
+test_real95_glyphs_complete_DIB_snapshot_and_cleanup (tools.tests.test_school_font_glyph_gdi.GDITests) ... ok
+test_unordered_foreign_duplicate_and_wrong_character_refused (tools.tests.test_school_font_glyph_gdi.GDITests) ... ok
+test_complete_original95_glyphs_and_fresh_owned_rerun (tools.tests.test_school_font_glyph_emulation.RasterTests) ... 0xa5: original95 glyph raster verified
+0xcc: original95 glyph raster verified
+ok
+test_glyph_ABI_dimensions_wrap_returns_CPU_snapshots_and_trace_corruptions_refused (tools.tests.test_school_font_glyph_emulation.RasterTests) ... ok
+test_rehashed_UV_padding_owner_foreign_maps_and_outside_glyph_pixels_refused (tools.tests.test_school_font_glyph_emulation.RasterTests) ... ok
+test_actual_immutable_build_and_parent (tools.tests.test_school_font_glyph_device.DeviceTests) ... ok
+test_real_lock_complete_buffer_transfer_readback_and_cleanup (tools.tests.test_school_font_glyph_device.DeviceTests) ... ok
+test_unordered_foreign_duplicate_bad_payload_and_abandoned_lock_cleanup (tools.tests.test_school_font_glyph_device.DeviceTests) ... ok
+test_full_native_pixels_real_upload_and_fresh_owned_rerun (tools.tests.test_school_font_glyph_upload.UploadTests) ... 0xa5: original65536 pixel conversion and real upload verified
+0xcc: original65536 pixel conversion and real upload verified
+ok
+test_lock_ABI_pixel_sequence_CPU_readback_trace_and_scope_corruptions_refused (tools.tests.test_school_font_glyph_upload.UploadTests) ... ok
+test_rehashed_full_DIB_texture_data_guards_and_ownership_refusals (tools.tests.test_school_font_glyph_upload.UploadTests) ... ERROR
+test_complete_original_fixedsys_LOGFONT (tools.tests.test_school_font_atlas.SourceTests) ... ok
+test_complete_top_down_bitmap_header (tools.tests.test_school_font_atlas.SourceTests) ... ok
+test_full_object_texture_store_preserves_padding_and_refuses_bad_input (tools.tests.test_school_font_atlas.SourceTests) ... ok
+test_original_imports_native_arithmetic_and_boundary (tools.tests.test_school_font_atlas.SourceTests) ... ok
+test_build_provenance_and_immutable_parent (tools.tests.test_school_font_atlas_device.DeviceTests) ... ok
+test_foreign_unordered_wrong_size_duplicate_and_closed_requests_refused (tools.tests.test_school_font_atlas_device.DeviceTests) ... ok
+test_real_additional_texture_description_and_complete_cleanup (tools.tests.test_school_font_atlas_device.DeviceTests) ... ok
+test_actual_build_and_immutable_parent (tools.tests.test_school_font_atlas_gdi.GDITests) ... ok
+test_real_atlas_GDI_font_inspection_setup_and_complete_cleanup (tools.tests.test_school_font_atlas_gdi.GDITests) ... ok
+test_unordered_foreign_wrong_header_font_and_closed_requests_refused (tools.tests.test_school_font_atlas_gdi.GDITests) ... ok
+test_GDI_ABI_native_arithmetic_locals_pending_CPU_trace_and_cleanup_corruptions_refused (tools.tests.test_school_font_atlas_emulation.PreparationTests) ... ok
+test_original_GDI_preparation_and_fresh_owned_rerun (tools.tests.test_school_font_atlas_emulation.PreparationTests) ... 0xa5: original atlas gdi verified
+0xcc: original atlas gdi verified
+ok
+test_rehashed_GDI_objects_maps_and_native_ownership_refusals (tools.tests.test_school_font_atlas_emulation.PreparationTests) ... ok
+test_original_texture_and_bitmap_header_with_fresh_rerun (tools.tests.test_school_font_atlas_emulation.TextureTests) ... 0xa5: original atlas texture verified
+0xcc: original atlas texture verified
+ok
+test_rehashed_complete_slot_parent_heap_owner_and_foreign_map_corruptions_refused (tools.tests.test_school_font_atlas_emulation.TextureTests) ... ok
+test_texture_ABI_original_returns_header_CPU_trace_and_scope_corruptions_refused (tools.tests.test_school_font_atlas_emulation.TextureTests) ... ok
+
+======================================================================
+ERROR: test_rehashed_full_DIB_texture_data_guards_and_ownership_refusals (tools.tests.test_school_font_glyph_upload.UploadTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_glyph_upload.py", line 33, in test_rehashed_full_DIB_texture_data_guards_and_ownership_refusals
+    bad=deepcopy(self.report);r=bad['cases'][0]['pixel_upload']['external_regions'][n];data=bytearray(unpack(r['buffer']));offset=0 if kind=='guard' else r['pointer']-r['base'];data[offset]^=1;r['buffer'].update(buffer_evidence(bytes(data)))
+  File "F:\project\chaomofa\tools\school_device_init_verification.py", line 17, in unpack
+    raise ValueError('bounded startup evidence buffer')
+ValueError: bounded startup evidence buffer
+
+----------------------------------------------------------------------
+Ran 32 tests in 93.111s
+
+FAILED (errors=1)
