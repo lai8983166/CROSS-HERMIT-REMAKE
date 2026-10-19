@@ -1494,7 +1494,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 373. Original complete startup success return
 
-- [ ] 373.1 Execute original413546 success0 and413450 epilogue/ret20 to declared root; verify complete saved-register/stack/memory/cleanup and fresh two-case continuous trajectory with corruption tests; local commit.
+- [x] 373.1 Execute original413546 success0 and413450 epilogue/ret20 to declared root; verify complete saved-register/stack/memory/cleanup and fresh two-case continuous trajectory with corruption tests; local commit.
 
 ## 374. Complete startup return acceptance
 
