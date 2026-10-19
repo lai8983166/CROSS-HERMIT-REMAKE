@@ -1247,3 +1247,14 @@ The audit SHALL preserve the deleted first DIB snapshot, explicitly retire only 
 #### Scenario: Second glyph loop and native upload complete
 - **WHEN** second95 actual GDI measurement/drawing pairs and real texture lock are admitted
 - **THEN** original UV/native65536-pixel loops match dynamic metrics and complete buffers/pitch/access order, actual unlock/readback matches every pixel, old retired evidence and first resources remain intact and CPU stops4017B6 before second cleanup
+
+### Requirement: Second original font cleanup and full initializer return
+The audit SHALL execute the pending second font cleanup, real distinct VB/two state blocks and original two-slot loop/SEH/415F50 return on the same independent CPU, using immutable owned x86 helpers. It SHALL preserve both complete font objects/resources and pixel/retired evidence, verify every source ABI/CPU/memory boundary and clean all native/fallback resources honestly.
+
+#### Scenario: Second font completes original cleanup and device state
+- **WHEN** original second4017B6 consumes current GDI locals and then calls401810
+- **THEN** actual second bitmap/DC/font deletion, distinct8400-byte VB and two exact30-call blocks store second resources and two distinct tokens while first resources remain valid
+
+#### Scenario: Original font initializer returns to its real caller
+- **WHEN** second401810 returns0 to416101 with loop index1
+- **THEN** original increment selects index2, success/SEH restore/ret execute and reach unexecuted4134E3 with exact parent stack/CPU and unchanged complete objects; no413450 suffix/manager/queue/retained VM advancement is inferred

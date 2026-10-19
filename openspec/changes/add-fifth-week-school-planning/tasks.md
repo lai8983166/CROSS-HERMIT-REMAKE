@@ -1427,3 +1427,35 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 356. Second glyph and upload acceptance
 
 - [x] 356.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document cleanup/VB/states/full-return/upstream boundary and verify exact Git bytes; local commit without push.
+
+## 357. Complete second font and initializer return source
+
+- [x] 357.1 Derive second native cleanup/VB/state calls and index2/SEH/415F50 return source; independent full-object projection/source tests and local commit.
+
+## 358. Owned second native GDI deletion platform
+
+- [ ] 358.1 Fork immutable helper for exact second native cleanup, deferred lifetime inspection and safe partial fallback with independent counters; provenance/refusal/lifetime tests and local commit.
+
+## 359. Native second GDI cleanup and4010D0 return
+
+- [ ] 359.1 Continue same second4017B6 through actual three deletions and native ret4/caller to401810; verify complete memory/CPU/ABI/lifetime/retired snapshots with corruption tests and local commit.
+
+## 360. Owned second VB and state-block platform
+
+- [ ] 360.1 Fork immutable helper with distinct second VB/two tokens, exact60 state calls and complete/partial cleanup of both fonts; provenance/refusal/retention tests and local commit.
+
+## 361. Native second vertex buffer
+
+- [ ] 361.1 Execute original second401810 prologue and actual8400-byte VB creation to40186E, verify all native ABI/CPU/complete-object/maps/guards with corruption tests and local commit.
+
+## 362. Native second two state blocks
+
+- [ ] 362.1 Execute both original30-call blocks and401810 return0 to416101, verify all calls/returns/full object/four distinct tokens/retention with corruption tests and local commit.
+
+## 363. Native complete415F50 return
+
+- [ ] 363.1 Execute original index1→2 exit, success0/SEH restore/epilogue/ret to unexecuted4134E3; verify exact original CPU/stack/trace and all preserved memory, including fresh complete two-case trajectory rerun, with corruption tests and local commit.
+
+## 364. Complete font initializer acceptance
+
+- [ ] 364.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document remaining caller/manager/upstream/VM boundary and verify exact Git bytes; local commit without push.
