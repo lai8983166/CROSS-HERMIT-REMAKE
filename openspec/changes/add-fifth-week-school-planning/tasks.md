@@ -1454,7 +1454,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 363. Native complete415F50 return
 
-- [ ] 363.1 Execute original index1→2 exit, success0/SEH restore/epilogue/ret to unexecuted4134E3; verify exact original CPU/stack/trace and all preserved memory, including fresh complete two-case trajectory rerun, with corruption tests and local commit.
+- [x] 363.1 Execute original index1→2 exit, success0/SEH restore/epilogue/ret to unexecuted4134E3; verify exact original CPU/stack/trace and all preserved memory, including fresh complete two-case trajectory rerun, with corruption tests and local commit.
 
 ## 364. Complete font initializer acceptance
 

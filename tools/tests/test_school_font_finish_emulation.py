@@ -75,3 +75,24 @@ class StateTests(Base):
         e=FinishEmulator.__new__(FinishEmulator);e.finish_running=True;e.finish_phase='states'
         for at in (SECOND+0x670,0x2300D670,0,0x79FC74):
             with self.assertRaises(RuntimeError):e._write(None,None,at,4,0,None)
+
+
+class ReturnTests(Base):
+    def test_original_index2_SEH_epilogue_and_real_parent_CPU(self):
+        self.assertTrue(verify_report(self.report)['full415F50_returned'])
+        self.refuse([lambda c:c['finish_return']['instruction_trace'].remove(0x41611B),
+            lambda c:c['finish_return']['loop_locals'].update(index=1),lambda c:c['finish_return']['cpu'].update(ESP=c['finish_return']['cpu']['ESP']-4),
+            lambda c:c['finish_return']['cpu'].update(ESI=0),lambda c:c['finish_return']['state'].update(SEH=553709460),
+            lambda c:c['finish_return']['returns'][-1].update(return_va='0x0'),lambda c:c['finish_return']['api_calls'].append({})])
+
+    def test_full_objects_owner_and_remaining_caller_authority_refused(self):
+        bad=deepcopy(self.report);r=bad['cases'][0]['finish_return']['state']['owner'];raw=bytearray(unpack(r));raw[0x1094]^=1;r.update(buffer_evidence(bytes(raw)))
+        with self.assertRaises(ValueError):verify_report(bad)
+        self.refuse([lambda c:c['finish_return'].update(full415F50_returned=False),lambda c:c['finish_return'].update(parent_caller_instruction_executed=True),
+            lambda c:c['finish_return'].update(manager_bound=True),lambda c:c['finish_return']['state'].update(image_sha256='00'*32)])
+
+
+class TrajectoryTests(Base):
+    def test_fresh_two_case_complete_continuous_trajectory(self):
+        from tools.school_font_finish_emulation import generate
+        result=verify_report(generate());self.assertEqual(result['cases'],2);self.assertEqual(result['return_va'],'0x4134e3')
