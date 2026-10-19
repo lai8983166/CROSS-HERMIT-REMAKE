@@ -1434,7 +1434,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 358. Owned second native GDI deletion platform
 
-- [ ] 358.1 Fork immutable helper for exact second native cleanup, deferred lifetime inspection and safe partial fallback with independent counters; provenance/refusal/lifetime tests and local commit.
+- [x] 358.1 Fork immutable helper for exact second native cleanup, deferred lifetime inspection and safe partial fallback with independent counters; provenance/refusal/lifetime tests and local commit.
 
 ## 359. Native second GDI cleanup and4010D0 return
 
