@@ -1,0 +1,76 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "instructions": [
+    {
+      "va": "0x49de1e",
+      "hex": "e83d38f8ff",
+      "mnemonic": "call",
+      "operands": "0x421660"
+    },
+    {
+      "va": "0x49de26",
+      "hex": "891528277a00",
+      "mnemonic": "mov",
+      "operands": "dword ptr [0x7a2728], edx"
+    },
+    {
+      "va": "0x49de38",
+      "hex": "ff1594225900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592294]"
+    },
+    {
+      "va": "0x49de4e",
+      "hex": "e88db5f8ff",
+      "mnemonic": "call",
+      "operands": "0x4293e0"
+    },
+    {
+      "va": "0x429406",
+      "hex": "ff152c235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x59232c]"
+    },
+    {
+      "va": "0x49de66",
+      "hex": "e82524fbff",
+      "mnemonic": "call",
+      "operands": "0x450290"
+    },
+    {
+      "va": "0x4502b3",
+      "hex": "898808110000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [eax + 0x1108], ecx"
+    }
+  ],
+  "task_initializer": {
+    "va": "0x421660",
+    "end": "0x4216bb",
+    "slots": 32,
+    "bytes_per_slot": 8,
+    "receiver_offset": 100,
+    "sha256": "92a8075f1fa6878cd2773b60e8bf57caa6631c9550b1ca9135d7bc7083390c4c"
+  },
+  "next_platform": {
+    "slot": "0x59232c",
+    "descriptor": "0x5fd5e0",
+    "dll": "USER32.dll",
+    "symbol": "FindWindowA",
+    "args": [
+      "class name at0x7a2628",
+      0
+    ]
+  },
+  "title_literal": {
+    "va": "0x598748",
+    "hex": "43726f7373204865726d6974"
+  },
+  "command_line_store": {
+    "va": "0x4502b3",
+    "offset": 4360
+  },
+  "executed": false,
+  "full_WinMain": false,
+  "remaining": "Replay the owned context lifetime, then original task-slot reset/HINSTANCE/title/duplicate-window query/command-line/window/COM/game factory prerequisites without changing the retained VM"
+}

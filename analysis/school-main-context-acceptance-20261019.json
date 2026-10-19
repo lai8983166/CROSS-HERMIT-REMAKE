@@ -1,0 +1,814 @@
+{
+  "baseline": "67a8429",
+  "stages": [
+    380,
+    381,
+    382,
+    383,
+    384,
+    385
+  ],
+  "source_native_commits": [
+    "dcd738a1c2c4d22dab360b4de3ec46bf4dff245b",
+    "ed7c00a55811e781d1a07b9c7526620dad36b88e",
+    "57bb38650230194e8d108943451bfbb782c746eb",
+    "0a926e064f6c9aac35f87030f1b9e0c1acae8f46",
+    "351cd220ab7c5282fa89421e3876eb7659e72d28"
+  ],
+  "scope": "Original49DDC9 WinMain tail on explicit mid-function frame executes allocation reset/4368-byte allocation/full44FBB0/native49DE01 publication to unexecuted49DE15, within one owned helper lifetime per case",
+  "continuous_trajectory": {
+    "report": {
+      "path": "analysis/school-main-context-trajectory-v2-20261019.json",
+      "bytes": 594050,
+      "sha256": "33de152c3696ac64be4e37f7a90880f809ea1d6b4856009440437252dcdbf7af"
+    },
+    "verified": {
+      "cases": 2,
+      "verified_through": "publication",
+      "allocation_bytes": 4368,
+      "constructor_calls_per_case": 26,
+      "real_system_calls_per_case": 13,
+      "original_publication_verified": true,
+      "retained_VM_advanced": false
+    },
+    "platform_build": {
+      "source_sha256": "7717ec172e8b2d6160825139cb46fed096ca1c9e333d192cee4c9ba58fd270b1",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "helper_sha256": "d7599ff8c7d2b7febd03368da17b86ba5504c1cc2c36b8e1d2c032bbc6245a53",
+      "machine": 332
+    },
+    "cases": [
+      {
+        "fill": 165,
+        "initial_CPU": {
+          "EIP": 4840905,
+          "ESP": 553709396,
+          "EBP": 553709564,
+          "EAX": 0,
+          "ECX": 0,
+          "EDX": 0,
+          "EBX": 1432778632,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "final_CPU": {
+          "EIP": 4840981,
+          "ESP": 553709396,
+          "EBP": 553709564,
+          "EAX": 536870912,
+          "EBX": 1432778632,
+          "ECX": 536870912,
+          "EDX": 536870912,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 6
+        },
+        "pending": {
+          "va": "0x49de15",
+          "sp": 553709396,
+          "first_instruction_executed": false,
+          "stack_top_dword": 1144201745
+        },
+        "allocations": [
+          {
+            "va": "0x56e810",
+            "return_va": "0x428a73",
+            "sp": 553709284,
+            "args": [
+              4368,
+              1,
+              5852712,
+              141
+            ],
+            "pointer": 536870912,
+            "bytes": 4368,
+            "initial_byte": 205,
+            "adapter": "declared debug CRT allocation"
+          }
+        ],
+        "system_modules": {
+          "kernel32_path": {
+            "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+            "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+            "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "shlwapi_path": {
+            "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+            "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          }
+        },
+        "cleanup": {
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "all_owned_resources_released": true
+        }
+      },
+      {
+        "fill": 204,
+        "initial_CPU": {
+          "EIP": 4840905,
+          "ESP": 553709396,
+          "EBP": 553709564,
+          "EAX": 0,
+          "ECX": 0,
+          "EDX": 0,
+          "EBX": 1432778632,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "final_CPU": {
+          "EIP": 4840981,
+          "ESP": 553709396,
+          "EBP": 553709564,
+          "EAX": 536870912,
+          "EBX": 1432778632,
+          "ECX": 536870912,
+          "EDX": 536870912,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 6
+        },
+        "pending": {
+          "va": "0x49de15",
+          "sp": 553709396,
+          "first_instruction_executed": false,
+          "stack_top_dword": 1144201745
+        },
+        "allocations": [
+          {
+            "va": "0x56e810",
+            "return_va": "0x428a73",
+            "sp": 553709284,
+            "args": [
+              4368,
+              1,
+              5852712,
+              141
+            ],
+            "pointer": 536870912,
+            "bytes": 4368,
+            "initial_byte": 205,
+            "adapter": "declared debug CRT allocation"
+          }
+        ],
+        "system_modules": {
+          "kernel32_path": {
+            "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+            "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+            "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "shlwapi_path": {
+            "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+            "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          }
+        },
+        "cleanup": {
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "all_owned_resources_released": true
+        }
+      }
+    ]
+  },
+  "boundary_witnesses": {
+    "allocation": {
+      "report": {
+        "path": "analysis/school-main-context-allocation-v1-20261019.json",
+        "bytes": 3090,
+        "sha256": "c8dfbe910427324ffc40546500d0773bfe462326254015ea97787e0054f744bf"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "allocation",
+          "node_sha256": "28a3e0d2f2c42d3f72a44f6850cab4ac5b8c3c86b58af5395f91d291e776b613",
+          "before_cpu": {
+            "EIP": 4840905,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 0,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "cpu": {
+            "EIP": 4520880,
+            "ESP": 553709392,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 4368,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "pending": {
+            "va": "0x44fbb0",
+            "sp": 553709392,
+            "first_instruction_executed": false,
+            "return_va": "0x49ddec",
+            "receiver": 536870912,
+            "args": []
+          },
+          "native_entries": 2,
+          "native_returns": 3,
+          "original_instruction_observations": 96,
+          "system_calls": 0,
+          "owner_sha256": "542a54b58acf5ff104b858e8011fd28c6603311130bbf57c5192ea162efd420c",
+          "global_value": 81136440,
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "allocation",
+          "node_sha256": "1f8af189eecbd0c007e03b2f64efed6b8468285bd5591c7256ef116fcabf294a",
+          "before_cpu": {
+            "EIP": 4840905,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 0,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "cpu": {
+            "EIP": 4520880,
+            "ESP": 553709392,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 4368,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "pending": {
+            "va": "0x44fbb0",
+            "sp": 553709392,
+            "first_instruction_executed": false,
+            "return_va": "0x49ddec",
+            "receiver": 536870912,
+            "args": []
+          },
+          "native_entries": 2,
+          "native_returns": 3,
+          "original_instruction_observations": 96,
+          "system_calls": 0,
+          "owner_sha256": "3c58a492e10c8b3ce733615e49b6153b32dc592bb5c1bb87472565b4162d2d13",
+          "global_value": 81136440,
+          "SEH": 0
+        }
+      ]
+    },
+    "constructor": {
+      "report": {
+        "path": "analysis/school-main-context-constructor-v1-20261019.json",
+        "bytes": 3048,
+        "sha256": "755c9ae11dd51cd10bbc39b51d9596497e79c91b87286bf1fe74e7a4a578b0b8"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "constructor",
+          "node_sha256": "7d450f64d2d294a3c5adb2f116e1561fdcea1284248d3915c8aad91a33598ee7",
+          "before_cpu": {
+            "EIP": 4520880,
+            "ESP": 553709392,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 4368,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "cpu": {
+            "EIP": 4840940,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x49ddec",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 26,
+          "native_returns": 50,
+          "original_instruction_observations": 1694,
+          "system_calls": 13,
+          "owner_sha256": "6197688e86e5e3b0fc2b1c7c2b5da098cf6fa9c51514ea06e9632b2920696f80",
+          "global_value": 81136440,
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "constructor",
+          "node_sha256": "ef71d38236433f3db22fd6196a9c4291e25ec37afaea642afff84f1c03b1d239",
+          "before_cpu": {
+            "EIP": 4520880,
+            "ESP": 553709392,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 4368,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "cpu": {
+            "EIP": 4840940,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x49ddec",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 26,
+          "native_returns": 50,
+          "original_instruction_observations": 1694,
+          "system_calls": 13,
+          "owner_sha256": "37ef2b200205ff4e14609f17806868c66875b9a3f04c5dd37cd306fcedb0b9e1",
+          "global_value": 81136440,
+          "SEH": 0
+        }
+      ]
+    },
+    "publication": {
+      "report": {
+        "path": "analysis/school-main-context-publication-v1-20261019.json",
+        "bytes": 3047,
+        "sha256": "dadcf102151f6d929b91ba941e481c69c98e710522966bcf99b31190775f28bb"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "publication",
+          "node_sha256": "dffb8ff0b56bb81ba31db38c2d8c4884326e89dcbe1eb9d18959042f80d8d017",
+          "before_cpu": {
+            "EIP": 4840940,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4840981,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "pending": {
+            "va": "0x49de15",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 0,
+          "native_returns": 0,
+          "original_instruction_observations": 8,
+          "system_calls": 0,
+          "owner_sha256": "6197688e86e5e3b0fc2b1c7c2b5da098cf6fa9c51514ea06e9632b2920696f80",
+          "global_value": 536870912,
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "publication",
+          "node_sha256": "ccc844a4e62dc9afd5c50815530ac5b919d5d7915bdb6f869407684eed5f7a54",
+          "before_cpu": {
+            "EIP": 4840940,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 0,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4840981,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "pending": {
+            "va": "0x49de15",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 0,
+          "native_returns": 0,
+          "original_instruction_observations": 8,
+          "system_calls": 0,
+          "owner_sha256": "37ef2b200205ff4e14609f17806868c66875b9a3f04c5dd37cd306fcedb0b9e1",
+          "global_value": 536870912,
+          "SEH": 0
+        }
+      ]
+    }
+  },
+  "regression": {
+    "new": 18,
+    "relevant_parent": 4,
+    "total": 22,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-main-context-regression-20261019.log",
+      "bytes": 3005,
+      "sha256": "1f13d40443a922b62e847898840f67ecb99e345a66314796b0248e6e63d759ce"
+    },
+    "strict_log": {
+      "path": "analysis/school-main-context-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920"
+    },
+    "relevant_parent_scope": "school_upstream_factory source contracts, allocator ABI and pinned inherited missing heaps"
+  },
+  "preservation": {
+    "path": "analysis/school-main-context-preservation-20261019.json",
+    "bytes": 10119,
+    "sha256": "dba08a80b98883c84fe01e289fb3fce1f9314381b0891176d647f2e1230f0e07",
+    "retained_files": 16390,
+    "save_rules": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "superseded_source": {
+    "report": {
+      "path": "analysis/school-main-context-source-v1-20261019.json",
+      "bytes": 6919,
+      "sha256": "ab9f8a1403fce11592031a5356928e868f5b2f17f90efb34a03634892d4546ad"
+    },
+    "accepted_for_native_execution": false,
+    "reason": "Finite memset range ended before complete zero-length return; v2 includes original56CF13 mov and56CF17 ret through56CF18",
+    "failure_log": {
+      "path": "analysis/school-main-context-trajectory-generation-v1-20261019.log",
+      "bytes": 1542,
+      "sha256": "bd49f7f70b3bc81f03d80fc5dd91879e09d0ae286a0738fe8066b13ad2a38c24"
+    },
+    "old_artifacts_overwritten": false
+  },
+  "corrected_verifier_boundary": {
+    "initial_failure_log": {
+      "path": "analysis/school-main-context-verification-v1-20261019.log",
+      "bytes": 1078,
+      "sha256": "3daf73b5d4aa69062a520b3bac44aba11460280a9a7c9cda017baecf54c8f55f"
+    },
+    "reason": "Unexecuted constructor call target is a pending boundary, not an executed native entry",
+    "accepted_trajectory_unchanged": true,
+    "final_verification_log": {
+      "path": "analysis/school-main-context-verification-v3-20261019.log",
+      "bytes": 237,
+      "sha256": "844754c6f9023624468c32913b9de0b5c3b8fc45a555642e0d357b1af820b579"
+    }
+  },
+  "next_prerequisite_source": {
+    "path": "analysis/school-main-context-next-source-v1-20261019.json",
+    "bytes": 1849,
+    "sha256": "26477afdeecd47d8db37de63eb148233ca3da91b976e85093d2b9cd20d44db0c"
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "manager_owner": 0,
+    "advanced": false
+  },
+  "authority": {
+    "declared_mid_WinMain_frame": true,
+    "WinMain_entry_and_prelude_executed": false,
+    "actual_allocation_reset_and_wrapper": true,
+    "declared_debug_CRT_allocation": true,
+    "actual_allocation_bytes": 4368,
+    "actual_original_constructor_calls_per_case": 26,
+    "actual_owned_x86_system_calls_per_case": 13,
+    "actual_critical_sections_per_case": 2,
+    "actual_unnamed_auto_reset_unsignaled_event_per_case": 1,
+    "host_critical_sections_not_relocated": true,
+    "VM_critical_section_bytes_are_opaque_evidence": true,
+    "void_EAX_is_only_observed_bits": true,
+    "live_buffer_guards_and_sources_verified": true,
+    "actual_native_global_publication": true,
+    "publication_repairs_retained_VM": false,
+    "inherited_cache_head_unchanged": true,
+    "directory_zero_length_memset_preserved": true,
+    "full_owner_backing_guards_source_image_stack_import_maps_and_SEH_verified": true,
+    "all_original_instruction_writes_replayed_and_counted": true,
+    "auxiliary_empty_path_module_probe_distinct_from_game_calls": true,
+    "WOW64_file_identity_explicit": true,
+    "task_slots_and_duplicate_window_query_executed": false,
+    "window_created": false,
+    "COM_audio_initialized": false,
+    "game_factory_success_executed": false,
+    "original_IAT_changed": false,
+    "game_helpers_stubbed": false,
+    "old_helpers_changed": false,
+    "retained_VM_advanced": false,
+    "full_WinMain_executed": false,
+    "GPU_drawing_or_Present": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_objects_resumable": false
+  },
+  "remaining": [
+    "Replay fresh owned main-context lifetime then original421660 task32-slot reset/HINSTANCE/title/FindWindowA/command-line/window initialization",
+    "Continue original WinMain COM/game450570/4500B0/audio/device preparation and actual differing startup modes without bypasses",
+    "Resolve inherited cache heap/lifecycle, complete factory output/outer scheduler and retained VM integration",
+    "Continue original VM/task/input/world/rendering/dialogue and battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "385/385 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 16867,
+      "sha256": "ed1fa9c7b46ef6ede96ab9646113da18c1f6463ba98bf4c30f5ad36a9816480b",
+      "git_blob": "e3d99e8cb1078d2066808e61cc022b9c7be4ac55"
+    },
+    {
+      "path": "README.md",
+      "bytes": 64035,
+      "sha256": "718a1e689e6a03844812390bcd4e8d29923ac61a95b945c092f797199c21f77a",
+      "git_blob": "a2b66dcec85c55990990c121164751e8dd86572a"
+    },
+    {
+      "path": "analysis/school-main-context-allocation-tests-v1-20261019.log",
+      "bytes": 776,
+      "sha256": "0b6c912491cbc15cec25fbf31894555c8e893fe705a7deea45b225431d0c99c7",
+      "git_blob": "65cdadc8ab6979f83d6c8cb138cd41f1a63525e6"
+    },
+    {
+      "path": "analysis/school-main-context-allocation-v1-20261019.json",
+      "bytes": 3090,
+      "sha256": "c8dfbe910427324ffc40546500d0773bfe462326254015ea97787e0054f744bf",
+      "git_blob": "b4c71d28bf86e0f318d11b0d89408508cb7bd6c7"
+    },
+    {
+      "path": "analysis/school-main-context-constructor-tests-v1-20261019.log",
+      "bytes": 799,
+      "sha256": "d48228715e5b3898c6dc0c5b15cd9b284071838a8d0745588e7491fbda11b197",
+      "git_blob": "eb4e0990dfbb478b678ecdd41ca99cd1af126d0a"
+    },
+    {
+      "path": "analysis/school-main-context-constructor-v1-20261019.json",
+      "bytes": 3048,
+      "sha256": "755c9ae11dd51cd10bbc39b51d9596497e79c91b87286bf1fe74e7a4a578b0b8",
+      "git_blob": "372727f549356bd18573b149dd5187383a5b9dcb"
+    },
+    {
+      "path": "analysis/school-main-context-next-source-v1-20261019.json",
+      "bytes": 1849,
+      "sha256": "26477afdeecd47d8db37de63eb148233ca3da91b976e85093d2b9cd20d44db0c",
+      "git_blob": "3a93c0310a05f2f9d2a13cc114472a52cb2abb0d"
+    },
+    {
+      "path": "analysis/school-main-context-platform-tests-20261019.log",
+      "bytes": 858,
+      "sha256": "2593304a972fae859a324abcae2bd307d5ab8bd958c4a4aac6c9f1553727e1bf",
+      "git_blob": "837e7079a9a2c51c6a5188d894f11f68b708a5e2"
+    },
+    {
+      "path": "analysis/school-main-context-platform-v1-20261019.json",
+      "bytes": 2144,
+      "sha256": "d13ed80e4b5775d9c0660d5378f71ad1d05fa8f6e7d14c2c80af74de7e1fc119",
+      "git_blob": "115ff9a7c578e11ed219a743e17a8429fa5b2fab"
+    },
+    {
+      "path": "analysis/school-main-context-preservation-20261019.json",
+      "bytes": 10119,
+      "sha256": "dba08a80b98883c84fe01e289fb3fce1f9314381b0891176d647f2e1230f0e07",
+      "git_blob": "2f266fdc780ef50d9c3dd0e51d8243dbfd5c30e0"
+    },
+    {
+      "path": "analysis/school-main-context-preservation-generation-20261019.log",
+      "bytes": 197,
+      "sha256": "89cf85349b489c46138e5c8917fd02d2cf72db6c1e4b7e111615c646d4c31b57",
+      "git_blob": "641d0b28f861f0a04b58aa62164e76d983d41dd1"
+    },
+    {
+      "path": "analysis/school-main-context-publication-tests-v1-20261019.log",
+      "bytes": 667,
+      "sha256": "41180a6d7ec29d9877b4721947cd03d2361e54859ed6d4a8f5fb391bcc86df72",
+      "git_blob": "bd3832260e1b034c3579d973b6fbcde224b6c18b"
+    },
+    {
+      "path": "analysis/school-main-context-publication-v1-20261019.json",
+      "bytes": 3047,
+      "sha256": "dadcf102151f6d929b91ba941e481c69c98e710522966bcf99b31190775f28bb",
+      "git_blob": "b233043d9673fc9d15a309eee600b51615e09dd2"
+    },
+    {
+      "path": "analysis/school-main-context-regression-20261019.log",
+      "bytes": 3005,
+      "sha256": "1f13d40443a922b62e847898840f67ecb99e345a66314796b0248e6e63d759ce",
+      "git_blob": "a0cfceed6e7de64526a42a6b1294e09f18726092"
+    },
+    {
+      "path": "analysis/school-main-context-source-tests-20261019.log",
+      "bytes": 408,
+      "sha256": "4a72bf0badf09652e3bc45294a0f3d79998f915d46588d4f964e2cc2ba88ba73",
+      "git_blob": "12a95371edbf613d0e3860cf63bf12494ab3f22f"
+    },
+    {
+      "path": "analysis/school-main-context-source-v1-20261019.json",
+      "bytes": 6919,
+      "sha256": "ab9f8a1403fce11592031a5356928e868f5b2f17f90efb34a03634892d4546ad",
+      "git_blob": "777ab481340b85cfe3966dc1a6269f45f5cdef6d"
+    },
+    {
+      "path": "analysis/school-main-context-source-v2-20261019.json",
+      "bytes": 6919,
+      "sha256": "6e53c4da8635f0e92cf38d9fef6519ddb82e8f680a8e3edf6b53c6937aec5361",
+      "git_blob": "55516ccf89cd8b07c79abbb421fb47caea09639a"
+    },
+    {
+      "path": "analysis/school-main-context-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920",
+      "git_blob": "2e3dc062ee2e6ba39f685fb03105916214d13db9"
+    },
+    {
+      "path": "analysis/school-main-context-trajectory-generation-v1-20261019.log",
+      "bytes": 1542,
+      "sha256": "bd49f7f70b3bc81f03d80fc5dd91879e09d0ae286a0738fe8066b13ad2a38c24",
+      "git_blob": "d86afd0d97a0be6f629fe9411f79ed8771de0fb9"
+    },
+    {
+      "path": "analysis/school-main-context-trajectory-generation-v2-20261019.log",
+      "bytes": 178,
+      "sha256": "381e4d2ba73640cb85f20f5a0afe46753f0c456f296e8a60e8f152cd65a5e84b",
+      "git_blob": "5ec8b25b08d870da61047ea5ba5d279f5090dd25"
+    },
+    {
+      "path": "analysis/school-main-context-trajectory-v2-20261019.json",
+      "bytes": 594050,
+      "sha256": "33de152c3696ac64be4e37f7a90880f809ea1d6b4856009440437252dcdbf7af",
+      "git_blob": "4b8eeb3ed1d991c006b3bf401e0eb1575aca0c22"
+    },
+    {
+      "path": "analysis/school-main-context-verification-v1-20261019.log",
+      "bytes": 1078,
+      "sha256": "3daf73b5d4aa69062a520b3bac44aba11460280a9a7c9cda017baecf54c8f55f",
+      "git_blob": "f3bd228937bc3293f9fc35b423b1b3183263188a"
+    },
+    {
+      "path": "analysis/school-main-context-verification-v2-20261019.log",
+      "bytes": 237,
+      "sha256": "844754c6f9023624468c32913b9de0b5c3b8fc45a555642e0d357b1af820b579",
+      "git_blob": "54a73262d2bf4a0876ce2a8051b0278088d460b1"
+    },
+    {
+      "path": "analysis/school-main-context-verification-v3-20261019.log",
+      "bytes": 237,
+      "sha256": "844754c6f9023624468c32913b9de0b5c3b8fc45a555642e0d357b1af820b579",
+      "git_blob": "54a73262d2bf4a0876ce2a8051b0278088d460b1"
+    },
+    {
+      "path": "docs/school_main_context.md",
+      "bytes": 5931,
+      "sha256": "3ee41aede49689ed4f0d8eb77a191b20365f66f004443ff5b6a0ad4aa1a3f4db",
+      "git_blob": "77e04d766a0ed2ed28dc45d2fed4084f3cf94b23"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 98663,
+      "sha256": "dfde894d8e1fa6266e424e8541f425d8327d2682c5be187ee6d4c96b405b04ab",
+      "git_blob": "b2bd3cac4343577ae5013df36307570e43913595"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 57894,
+      "sha256": "435a7cda3f37cbf4810ac5b9df563439ce8740c2a9175b04eedf54a4cefdd0a8",
+      "git_blob": "117d133ca2638f96bf5940343892bc092bad327a"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 122101,
+      "sha256": "96528b0ee43e175af02c071ad43172cd602da25865773cdb2f1c171e3fe27b10",
+      "git_blob": "c016f6a707cf5acda834c9d3f0517ea5a4ed6645"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 107077,
+      "sha256": "0dccebed00c1d18a4a7a90188511d026ac2849f2f51bcf80119fc15e2157b1ad",
+      "git_blob": "5864a742fb278f8d351390be089240e4e184fc08"
+    },
+    {
+      "path": "tools/school_main_context.py",
+      "bytes": 6760,
+      "sha256": "ddffd1e91846e54f276d82ecd3ede06123eebea08dd96a1fde9e1ec73d15d313",
+      "git_blob": "91cf09890384daec0c8640247adda8c53d8f7ae4"
+    },
+    {
+      "path": "tools/school_main_context_emulation.py",
+      "bytes": 11060,
+      "sha256": "5beaf3291b0aa623bd2aafb0d399c3a492c0ee97ec7516a20b6257a0f06c85d4",
+      "git_blob": "8f71d4c08d25ac0668405cb186998a977b8b8613"
+    },
+    {
+      "path": "tools/school_main_context_platform.cs",
+      "bytes": 10675,
+      "sha256": "7717ec172e8b2d6160825139cb46fed096ca1c9e333d192cee4c9ba58fd270b1",
+      "git_blob": "9268540f653df592ad9b5d241d59fd5bfe9c56c4"
+    },
+    {
+      "path": "tools/school_main_context_platform.py",
+      "bytes": 2786,
+      "sha256": "791de91117b5713193e7a2b8bf89862569a4046dc17f2a35217f935a9e29a58f",
+      "git_blob": "6f0131bb2f66d5c2dc88e9fe4533a8c38c62c595"
+    },
+    {
+      "path": "tools/school_main_context_verification.py",
+      "bytes": 20716,
+      "sha256": "11d28907ed516401705972adaf3fcc61cdb812d1f228c426b666bb275df86bf0",
+      "git_blob": "fa2764cb184252cf4f4ec22ef0dbab2deb164428"
+    },
+    {
+      "path": "tools/tests/test_school_main_context.py",
+      "bytes": 1328,
+      "sha256": "ce24e3bc40bb0130860edbdc0ef2965046fa07ca7e1d3b01426f34648e3b33ec",
+      "git_blob": "5570d35b5bf193f9df7b799891527e3d88a73e70"
+    },
+    {
+      "path": "tools/tests/test_school_main_context_emulation.py",
+      "bytes": 6061,
+      "sha256": "d5e2351846f0f85e9958b42e47adb14a2149b33a7a0efe8ce121aa9107f79bfd",
+      "git_blob": "ab716392e27b54c46bcd6654244c7aa6e5669fed"
+    },
+    {
+      "path": "tools/tests/test_school_main_context_platform.py",
+      "bytes": 3688,
+      "sha256": "badf6f8b4742e02dc7193a53caebce646ec3637c2e1bd73742ec7560c0943a30",
+      "git_blob": "55e1c89f5f2d120b6b392d4b09cad257fa43193e"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-main-context-acceptance-20261019.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}
