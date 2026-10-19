@@ -1562,7 +1562,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 390. Observed native branch and next body admission
 
-- [ ] 390.1 Follow actual observed duplicate or absence through original branch to unexecuted49E092 or450350, verifying exact arguments/full memory/CPU and fresh two-case trajectory; local commit.
+- [x] 390.1 Follow actual observed duplicate or absence through original branch to unexecuted49E092 or450350, verifying exact arguments/full memory/CPU and fresh two-case trajectory; local commit.
 
 ## 391. Task and window-gate acceptance
 

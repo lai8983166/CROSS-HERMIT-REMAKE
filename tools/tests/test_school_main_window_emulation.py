@@ -66,4 +66,35 @@ class QueryTests(unittest.TestCase):
             with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r,'query')
 
 
+class BranchTests(unittest.TestCase):
+    def test_observed_native_branch_and_source_only_alternate_are_distinct(self):
+        r=report();verify_report(r)
+        for c in r['cases']:
+            duplicate=c['query']['observed_duplicate']
+            self.assertEqual(c['branch']['pending']['va'],'0x49e092' if duplicate else '0x450350')
+            self.assertFalse(c['branch']['window_creation_body_executed'])
+        self.assertEqual(len(source_runs('branch',True)),3)
+        self.assertNotEqual(source_runs('query',True),source_runs('query',False))
+
+    def test_refuses_wrong_branch_parameters_registers_and_fake_absence(self):
+        for mutation in ('parameters','register','absence','authority','memory'):
+            r=report();b=r['cases'][0]['branch'];q=r['cases'][0]['query']
+            if mutation=='parameters':b['pending']['sp']+=4
+            elif mutation=='register':b['cpu']['EDX']+=1
+            elif mutation=='absence':q['observed_duplicate']=not q['observed_duplicate']
+            elif mutation=='authority':b['window_creation_body_executed']=True
+            else:b['state']['guarded_owner']['sha256']='0'*64
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r)
+
+    def test_fresh_continuous_execution_preserves_parent_source_cache(self):
+        before=dict(parent.functions())
+        r=generate();self.assertEqual(parent.functions(),before)
+        result=verify_report(r);self.assertEqual(result['cases'],2)
+        for c in r['cases']:
+            self.assertEqual(c['tasks']['before_cpu'],c['publication']['cpu'])
+            self.assertEqual(c['query']['before_cpu'],c['tasks']['cpu'])
+            self.assertEqual(c['branch']['before_cpu'],c['query']['cpu'])
+            self.assertTrue(c['platform_cleanup']['all_owned_resources_released'])
+
+
 if __name__=='__main__':unittest.main()
