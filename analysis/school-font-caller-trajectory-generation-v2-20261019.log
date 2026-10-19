@@ -1,0 +1,13 @@
+0xa5: original caller bind/queues/gamma admission verified
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_font_caller_emulation.py", line 147, in <module>
+    path.write_text(json.dumps(generate(),indent=2)+chr(10),encoding='utf8',newline=chr(10))
+  File "F:\project\chaomofa\tools\school_font_caller_emulation.py", line 131, in generate
+    r=owned_run(run,width,height);c=r['value'];c.update(device_trace=r['trace'],device_cleanup=r['cleanup'],refused_address_collisions=r['refused_address_collisions']);cases.append(c)
+  File "F:\project\chaomofa\tools\school_font_finish_platform.py", line 44, in owned_run
+    raise RuntimeError('six font finish processes collided with audit ownership')
+RuntimeError: six font finish processes collided with audit ownership

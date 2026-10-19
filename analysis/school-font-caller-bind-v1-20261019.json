@@ -1,0 +1,126 @@
+{
+  "stage": 366,
+  "phase": "bind",
+  "trajectory": {
+    "path": "analysis/school-font-caller-trajectory-v3-20261019.json",
+    "bytes": 19941088,
+    "sha256": "95416ce1a225d4af88ec8f584994a23f6499fa3299fe84c255e5e14abc916a5e"
+  },
+  "verified_trajectory": {
+    "cases": 2,
+    "manager_bound": true,
+    "queues_initialized": true,
+    "queue_payload_bytes": 1081344,
+    "gamma_entries": 768,
+    "stop": "0x416cfa",
+    "gamma_device_call_executed": false,
+    "full413450_returned": false,
+    "retained_VM_advanced": false
+  },
+  "same_original_CPU_and_owned_helpers": true,
+  "standalone_resumable_checkpoint": false,
+  "boundaries": [
+    {
+      "case_index": 0,
+      "fill": 165,
+      "node": "caller_bind",
+      "node_sha256": "bcad6df05abfa9adce8d586ff473113c0f2f322e3bbf6104187c56a52dbc1029",
+      "before_cpu": {
+        "EIP": 4273379,
+        "ESP": 553709480,
+        "EBP": 553709564,
+        "EAX": 0,
+        "EBX": 1432778632,
+        "ECX": 0,
+        "EDX": 90353536,
+        "ESI": 2289526357,
+        "EDI": 553709564,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4273413,
+        "ESP": 553709480,
+        "EBP": 553709564,
+        "EAX": 0,
+        "EBX": 1432778632,
+        "ECX": 536875096,
+        "EDX": 536875096,
+        "ESI": 2289526357,
+        "EDI": 553709564,
+        "EFLAGS": 70
+      },
+      "pending": {
+        "va": "0x413505",
+        "sp": 553709480,
+        "first_instruction_executed": false
+      },
+      "native_writes": {
+        "stack": {
+          "count": 51,
+          "bytes": 204
+        },
+        "manager": {
+          "count": 2,
+          "bytes": 8
+        }
+      },
+      "entries": 2,
+      "returns": 3,
+      "allocations": 0,
+      "original_instruction_observations": 96,
+      "owner_sha256": "358f7ded03873a0bf18aa05fe49b7a44d381ec7168a8d17f5bf1d4ccb93193ec",
+      "SEH": 0
+    },
+    {
+      "case_index": 1,
+      "fill": 204,
+      "node": "caller_bind",
+      "node_sha256": "341453470ed24af215d26fd73a0f341d985ca99e5cc7c150930ab8c40372d54d",
+      "before_cpu": {
+        "EIP": 4273379,
+        "ESP": 553709480,
+        "EBP": 553709564,
+        "EAX": 0,
+        "EBX": 1432778632,
+        "ECX": 0,
+        "EDX": 164594656,
+        "ESI": 2289526357,
+        "EDI": 553709564,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4273413,
+        "ESP": 553709480,
+        "EBP": 553709564,
+        "EAX": 0,
+        "EBX": 1432778632,
+        "ECX": 536875096,
+        "EDX": 536875096,
+        "ESI": 2289526357,
+        "EDI": 553709564,
+        "EFLAGS": 70
+      },
+      "pending": {
+        "va": "0x413505",
+        "sp": 553709480,
+        "first_instruction_executed": false
+      },
+      "native_writes": {
+        "stack": {
+          "count": 51,
+          "bytes": 204
+        },
+        "manager": {
+          "count": 2,
+          "bytes": 8
+        }
+      },
+      "entries": 2,
+      "returns": 3,
+      "allocations": 0,
+      "original_instruction_observations": 96,
+      "owner_sha256": "5fe820d8cbfb78e3f3763f1446f8040fd67635585310251129e386c3beda71e9",
+      "SEH": 0
+    }
+  ]
+}

@@ -1466,7 +1466,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 366. Continuous original manager binding
 
-- [ ] 366.1 Continue original4134E3 through40D970/4142B0 to413505 on same live CPU; verify exact ABI/CPU/complete owner and retained resources with corruption tests; local commit.
+- [x] 366.1 Continue original4134E3 through40D970/4142B0 to413505 on same live CPU; verify exact ABI/CPU/complete owner and retained resources with corruption tests; local commit.
 
 ## 367. Continuous original queue initialization
 
