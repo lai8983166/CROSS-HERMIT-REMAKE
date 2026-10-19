@@ -1519,3 +1519,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 379. Upstream factory acceptance
 
 - [x] 379.1 Run new and relevant owner-constructor/platform regression plus strict specs; preserve historical/runtime/save/private VM bytes, document unexecuted context/audio/COM/device/factory-success boundaries and verify exact Git bytes; local commit without push.
+
+## 380. Original main-context source and declared admission
+
+- [x] 380.1 Derive49DDC9 allocation reset/1110h/44FBB0/publication source, exact imports/constructor writes and zero-length directory memset; source tests and local commit.
+
+## 381. Owned main-context system platform
+
+- [ ] 381.1 Build immutable hidden x86 helper for two critical sections/event/directory/ANSI path APIs with complete buffers, void-EAX observation, full/partial cleanup and refusal/provenance tests; local commit.
+
+## 382. Original main-context allocation
+
+- [ ] 382.1 Execute original49DDC9/4288E0/428A40 on declared original mid-WinMain frame to44FBB0 with exact CRT admission, full memory/CPU/SEH/stack guards and corruption tests; local commit.
+
+## 383. Complete original main-context constructor
+
+- [ ] 383.1 Execute all44FBB0 nested constructor/input/path bodies and real system APIs to49DDEC on same CPU; verify complete object/image/ABI/trace/cleanup and corruption tests; local commit.
+
+## 384. Native main-context global publication
+
+- [ ] 384.1 Continue original49DDEC through49DE01 to49DE15, verify actual global publication, full preserved memory/CPU/parent frame and fresh two-case continuous trajectory; local commit.
+
+## 385. Main-context acceptance
+
+- [ ] 385.1 Run new/relevant parent regression and strict specs, preserve historical/runtime/save/private VM evidence, document remaining WinMain/factory/cache/retained VM boundaries and verify working/Git bytes; local commit without push.

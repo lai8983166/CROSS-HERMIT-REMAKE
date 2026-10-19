@@ -1291,3 +1291,11 @@ The audit SHALL execute both original412C70 and450570 allocation/owner-construct
 #### Scenario: Distinct real startup prerequisites remain visible
 - **WHEN** each factory continues its original nonnull branch
 - **THEN**412C70 reaches unexecuted413450 with window/1/1/dimensions, while450570 reaches unexecuted4500B0 with its inherited absent game context and original data literal; cache/global pointers remain unchanged, and no fabricated context/audio/device/factory success or retained VM progress is inferred
+
+### Requirement: Original main-context construction and publication evidence
+The audit SHALL execute original49DDC9 allocation tail,44FBB0 and49DE01 on an explicitly declared mid-WinMain frame using owned actual x86 system primitives, preserving complete allocation/backing guards, source image except exact native changes, parent stack and historical/private evidence. It SHALL distinguish isolated global publication from full WinMain and retained VM integration.
+
+#### Scenario: Complete main-context creation without inherited pointer fabrication
+- **WHEN** two independent dirty-backing cases execute the original allocation tail and complete constructor within fresh helper lifetimes
+- **THEN** the original instruction publishes the newly constructed pointer, real event/critical-section resources are balanced, all native calls/returns/buffers are verified and old captured heaps/cache/retained VM remain unchanged
+- **AND** zero-length directory memset preserves bytes outside actual subsequent API output; no save file is created
