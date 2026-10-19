@@ -1,0 +1,20 @@
+test_actual_immutable_build_and_parent (tools.tests.test_school_font_state_gdi.GDITests) ... ok
+test_actual_original_delete_order_deferred_bitmap_and_native_cleanup (tools.tests.test_school_font_state_gdi.GDITests) ... ok
+test_wrong_order_foreign_and_pending_bitmap_fallback_cleanup (tools.tests.test_school_font_state_gdi.GDITests) ... ERROR
+
+======================================================================
+ERROR: test_wrong_order_foreign_and_pending_bitmap_fallback_cleanup (tools.tests.test_school_font_state_gdi.GDITests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_state_gdi.py", line 22, in test_wrong_order_foreign_and_pending_bitmap_fallback_cleanup
+    with StateGDI() as p:
+  File "F:\project\chaomofa\tools\school_d3d8_bridge.py", line 74, in __exit__
+    def __exit__(self,*args):self.close()
+  File "F:\project\chaomofa\tools\school_d3d8_bridge.py", line 69, in close
+    if code or not self.cleanup['all_owned_resources_released']:raise RuntimeError('live bridge cleanup')
+RuntimeError: live bridge cleanup
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.632s
+
+FAILED (errors=1)

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_font_state_gdi.py", line 42, in <module>
+    path.write_text(json.dumps(dict(build=build,probe=probe()),indent=2)+'\n',encoding='utf-8',newline='\n')
+  File "F:\project\chaomofa\tools\school_font_state_gdi.py", line 33, in probe
+    with StateGDI() as platform:
+  File "F:\project\chaomofa\tools\school_d3d8_bridge.py", line 74, in __exit__
+    def __exit__(self,*args):self.close()
+  File "F:\project\chaomofa\tools\school_d3d8_bridge.py", line 69, in close
+    if code or not self.cleanup['all_owned_resources_released']:raise RuntimeError('live bridge cleanup')
+RuntimeError: live bridge cleanup

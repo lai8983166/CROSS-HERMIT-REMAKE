@@ -1334,7 +1334,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 333. Owned native GDI deletion platform
 
-- [ ] 333.1 Fork immutable GDI helper for original bitmap/DC/font deletion ordering, deferred lifetime inspection, safe fallback cleanup and refusal/provenance tests; commit locally.
+- [x] 333.1 Fork immutable GDI helper for original bitmap/DC/font deletion ordering, deferred lifetime inspection, safe fallback cleanup and refusal/provenance tests; commit locally.
 
 ## 334. Native atlas cleanup and caller return
 
