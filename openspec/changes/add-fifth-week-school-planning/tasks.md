@@ -1543,3 +1543,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 385. Main-context acceptance
 
 - [x] 385.1 Run new/relevant parent regression and strict specs, preserve historical/runtime/save/private VM evidence, document remaining WinMain/factory/cache/retained VM boundaries and verify working/Git bytes; local commit without push.
+
+## 386. Original task and window-gate source
+
+- [x] 386.1 Derive421660 task reset, title/instance/FindWindowA ABI and both original branch/window admission projections; source tests and local commit.
+
+## 387. Owned title and duplicate-window platform
+
+- [ ] 387.1 Fork immutable x86 helper for exact title copy and read-only actual FindWindowA after the full constructor, with full buffers/order/refusal/cleanup/provenance tests; local commit.
+
+## 388. Continuous original task-slot initialization
+
+- [ ] 388.1 Replay accepted main-context prefix within fresh lifetimes then execute421660 and original HINSTANCE store to49DE2C; full owner/CPU/stack/trace/guards/SEH and corruption tests; local commit.
+
+## 389. Actual original duplicate-window wrapper return
+
+- [ ] 389.1 Admit only the new import trap without CPU repair, execute original title copy and4293E0 actual query/boolean/natural return to49DE53; exact full memory/ABI/result/cleanup tests; local commit.
+
+## 390. Observed native branch and next body admission
+
+- [ ] 390.1 Follow actual observed duplicate or absence through original branch to unexecuted49E092 or450350, verifying exact arguments/full memory/CPU and fresh two-case trajectory; local commit.
+
+## 391. Task and window-gate acceptance
+
+- [ ] 391.1 Run new/relevant main-context regression and strict specs, preserve historical/runtime/saves/private VM bytes, document remaining real window/COM/factory/cache/retained VM boundaries and verify Git bytes; local commit without push.

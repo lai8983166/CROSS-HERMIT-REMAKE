@@ -345,3 +345,6 @@ Execute original412C70 and450570 from separately declared factory roots through 
 
 ## Original main-context allocation and publication (2026-10-19)
 Continue the actual49DDC9 WinMain tail on an explicitly declared mid-function frame through4288E0 counter reset,1110h allocation,44FBB0 construction and49DE01 publication. Execute all original nested constructor/input/path bodies; supply only owned real x86 critical-section/event/directory/ANSI string API responses. Preserve the inherited static-directory tail because429744 calls memset with zero length. No full WinMain prelude/window/audio/COM/factory success or retained VM repair is claimed. Commit each bounded source/platform/native/acceptance stage locally without push.
+
+## Original task slots and actual duplicate-window gate (2026-10-20)
+Replay the accepted main-context prefix in fresh owned system lifetimes. Continue original421660 task32-slot reset, HINSTANCE scalar publication, original class-title copy and4293E0 actual FindWindowA query/boolean return. Follow only the observed original duplicate/nonduplicate branch, stopping before49E092 exit handling or450350 window creation. No fabricated absent-window response, existing-window manipulation, real use of the declared HINSTANCE, full WinMain or retained VM repair is claimed. Commit each bounded stage locally without push.

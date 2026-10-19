@@ -1299,3 +1299,11 @@ The audit SHALL execute original49DDC9 allocation tail,44FBB0 and49DE01 on an ex
 - **WHEN** two independent dirty-backing cases execute the original allocation tail and complete constructor within fresh helper lifetimes
 - **THEN** the original instruction publishes the newly constructed pointer, real event/critical-section resources are balanced, all native calls/returns/buffers are verified and old captured heaps/cache/retained VM remain unchanged
 - **AND** zero-length directory memset preserves bytes outside actual subsequent API output; no save file is created
+
+### Requirement: Original task initialization and actual duplicate-window admission
+The audit SHALL continue the original constructed main-context CPU through32 task-slot resets, class-title initialization and actual x86 FindWindowA, verifying natural boolean conversion and source-selected branch while preserving full owned memory and history.
+
+#### Scenario: Live duplicate-window outcome determines pending original body
+- **WHEN** two independent cases replay the original constructor and query the original Cross Hermit class without changing any existing window
+- **THEN** the original branch stops at unexecuted49E092 when a duplicate is observed, or executes command-line/configuration preparation to unexecuted450350 when none is observed
+- **AND** no window body, fabricated query result, retained VM repair or reuse of expired resources is accepted
