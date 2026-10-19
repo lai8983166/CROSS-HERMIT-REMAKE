@@ -1346,7 +1346,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 336. Native first-font vertex buffer
 
-- [ ] 336.1 Continue same original401810 CPU through actual VB creation to40186E, independently verify complete object/CPU/ABI/maps/guards and fresh/corruption tests; commit locally.
+- [x] 336.1 Continue same original401810 CPU through actual VB creation to40186E, independently verify complete object/CPU/ABI/maps/guards and fresh/corruption tests; commit locally.
 
 ## 337. Native two state blocks and first-slot return
 
