@@ -1530,7 +1530,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 382. Original main-context allocation
 
-- [ ] 382.1 Execute original49DDC9/4288E0/428A40 on declared original mid-WinMain frame to44FBB0 with exact CRT admission, full memory/CPU/SEH/stack guards and corruption tests; local commit.
+- [x] 382.1 Execute original49DDC9/4288E0/428A40 on declared original mid-WinMain frame to44FBB0 with exact CRT admission, full memory/CPU/SEH/stack guards and corruption tests; local commit.
 
 ## 383. Complete original main-context constructor
 

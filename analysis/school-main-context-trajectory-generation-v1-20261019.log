@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_main_context_emulation.py", line 164, in <module>
+    path.write_text(json.dumps(generate(),indent=2)+'\n',encoding='utf8',newline='\n')
+  File "F:\project\chaomofa\tools\school_main_context_emulation.py", line 152, in generate
+    for phase in STOPS:case[phase]=e.resume(phase,previous);previous=case[phase]
+  File "F:\project\chaomofa\tools\school_main_context_emulation.py", line 120, in resume
+    self.uc.emu_start(start,RETURN+1,timeout=20_000_000,count=1000000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_main_context_emulation.py", line 107, in _code
+    if i is None or i.size!=n:raise ValueError('main undeclared native instruction '+hex(at))
+ValueError: main undeclared native instruction 0x56cf13

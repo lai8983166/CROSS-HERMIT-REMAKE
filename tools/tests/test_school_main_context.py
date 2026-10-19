@@ -14,7 +14,7 @@ class SourceTests(unittest.TestCase):
         s=source_contract()
         self.assertEqual(s['directory_memset_args'],[DIRECTORY,525,0])
         self.assertEqual(s['directory_memset_clears_bytes'],0)
-        self.assertGreater(functions()[0x56CEC0],0x56CF13)
+        self.assertEqual(functions()[0x56CEC0],0x56CF18)
 
     def test_explicit_mid_frame_and_retained_boundary(self):
         s=source_contract()

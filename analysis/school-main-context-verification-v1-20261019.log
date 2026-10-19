@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_main_context_verification.py", line 241, in <module>
+    print(json.dumps(verify_report(json.loads((ROOT/a.report).read_text(encoding='utf8')),a.through),indent=2))
+  File "F:\project\chaomofa\tools\school_main_context_verification.py", line 226, in verify_report
+    verify_case(c,through)
+  File "F:\project\chaomofa\tools\school_main_context_verification.py", line 157, in verify_case
+    row=case[phase];state=row['state'];verify_trace(row)
+  File "F:\project\chaomofa\tools\school_main_context_verification.py", line 84, in verify_trace
+    if e is None or e['va']!=hex(target) or e['return_va']!=hex(fall):raise ValueError('main original call/entry order')
+ValueError: main original call/entry order

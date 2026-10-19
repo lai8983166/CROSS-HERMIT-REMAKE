@@ -42,7 +42,7 @@ CONSTRUCTOR_SEQUENCE=[CTOR,0x439D10,0x56CEC0,0x424670,0x429310,0x423480,
 @lru_cache(maxsize=1)
 def functions():
     raw=SOURCE.read_bytes();md=Cs(CS_ARCH_X86,CS_MODE_32)
-    result={ENTRY:0x49DE15,0x56CEC0:0x56CF16}
+    result={ENTRY:0x49DE15,0x56CEC0:0x56CF18}
     for start in STARTS:
         for ins in md.disasm(raw[start-BASE:start-BASE+4096],start):
             if ins.mnemonic=='ret':result[start]=ins.address+ins.size;break
