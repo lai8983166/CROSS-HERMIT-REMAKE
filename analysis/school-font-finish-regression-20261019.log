@@ -1,0 +1,61 @@
+test_full_second_object_projection_preserves_UVs_and_padding (tools.tests.test_school_font_finish.SourceTests) ... ok
+test_invalid_full_object_or_resources_refused (tools.tests.test_school_font_finish.SourceTests) ... ok
+test_original_second_state_and_full_loop_SEH_caller_source (tools.tests.test_school_font_finish.SourceTests) ... ok
+test_second_two_exact30_call_blocks (tools.tests.test_school_font_finish.SourceTests) ... ok
+test_distinct_two_VBs_four_tokens_exact_second_states_and_complete_cleanup (tools.tests.test_school_font_finish_platform.DeviceTests) ... ok
+test_foreign_early_duplicate_wrong_texture_and_partial_second_recording_refused (tools.tests.test_school_font_finish_platform.DeviceTests) ... ok
+test_immutable_x86_device_and_preserved_parent (tools.tests.test_school_font_finish_platform.DeviceTests) ... ok
+test_actual_second_native_delete_order_lifetime_and_independent_counters (tools.tests.test_school_font_finish_platform.GDITests) ... ok
+test_early_foreign_wrong_order_and_partial_pending_bitmap_cleanup_refused (tools.tests.test_school_font_finish_platform.GDITests) ... ok
+test_immutable_x86_GDI_and_preserved_parent (tools.tests.test_school_font_finish_platform.GDITests) ... ok
+test_complete_objects_pixels_retired_evidence_and_native_lifetime_refused (tools.tests.test_school_font_finish_emulation.CleanupTests) ... ok
+test_native_second_GDI_ret4_and_index1_caller_ABI (tools.tests.test_school_font_finish_emulation.CleanupTests) ... ok
+test_full_objects_owner_and_remaining_caller_authority_refused (tools.tests.test_school_font_finish_emulation.ReturnTests) ... ok
+test_original_index2_SEH_epilogue_and_real_parent_CPU (tools.tests.test_school_font_finish_emulation.ReturnTests) ... ok
+test_token_fields_first_font_bytes_cleanup_and_native_write_ownership_refused (tools.tests.test_school_font_finish_emulation.StateTests) ... ok
+test_two_second30_call_blocks_and_four_globally_distinct_tokens (tools.tests.test_school_font_finish_emulation.StateTests) ... ok
+test_fresh_two_case_complete_continuous_trajectory (tools.tests.test_school_font_finish_emulation.TrajectoryTests) ... 0xa5: original second cleanup/VB/states/full415F50 return verified
+0xcc: original second cleanup/VB/states/full415F50 return verified
+ok
+test_complete_second_VB_field_padding_guard_and_owned_maps_refused (tools.tests.test_school_font_finish_emulation.VertexTests) ... ok
+test_native_second_VB_distinct_identity_description_and_output_ABI (tools.tests.test_school_font_finish_emulation.VertexTests) ... ok
+test_dynamic_second_full_UV_object_preserves_padding (tools.tests.test_school_font_second_glyph.SourceTests) ... ok
+test_exact_retired_DIB_region_preserves_live_texture_and_refuses_overlap (tools.tests.test_school_font_second_glyph.SourceTests) ... ok
+test_pixel_conversion_all_alpha_values_and_pitch_padding (tools.tests.test_school_font_second_glyph.SourceTests) ... ok
+test_source_exact_characters_accesses_and_mapping_authority (tools.tests.test_school_font_second_glyph.SourceTests) ... ok
+test_actual_second_upload_full_readback_first_resources_and_cleanup (tools.tests.test_school_font_second_glyph_platform.DeviceTests) ... ok
+test_foreign_early_duplicate_bad_buffer_and_partial_lock_cleanup_refused (tools.tests.test_school_font_second_glyph_platform.DeviceTests) ... ok
+test_immutable_x86_device_and_parent (tools.tests.test_school_font_second_glyph_platform.DeviceTests) ... ok
+test_actual95_second_glyphs_dynamic_metrics_and_separate_cleanup (tools.tests.test_school_font_second_glyph_platform.GDITests) ... ok
+test_early_foreign_wrong_character_draw_and_partial_cleanup_refused (tools.tests.test_school_font_second_glyph_platform.GDITests) ... ok
+test_immutable_x86_GDI_and_parent (tools.tests.test_school_font_second_glyph_platform.GDITests) ... ok
+test_GDI_ABI_dynamic_layout_ABC_inspection_return_CPU_and_scope_refused (tools.tests.test_school_font_second_glyph_emulation.RasterTests) ... ok
+test_full_UV_padding_guard_and_outside_ink_pixel_refused (tools.tests.test_school_font_second_glyph_emulation.RasterTests) ... ok
+test_original95_dynamic_glyphs_UV_ink_and_fresh_rerun (tools.tests.test_school_font_second_glyph_emulation.RasterTests) ... 0xa5: second glyph raster verified
+0xcc: second glyph raster verified
+ok
+test_exact_mapping_retirement_and_fresh_CPU_preserving_rerun (tools.tests.test_school_font_second_glyph_emulation.RetirementTests) ... 0xa5: second glyph retirement verified
+0xcc: second glyph retirement verified
+ok
+test_rehashed_deleted_DIB_and_retained_first_texture_guard_refused (tools.tests.test_school_font_second_glyph_emulation.RetirementTests) ... ok
+test_wrong_mapping_CPU_release_authority_or_native_call_refused (tools.tests.test_school_font_second_glyph_emulation.RetirementTests) ... ok
+test_lock_output_full_pixel_order_both_readbacks_CPU_and_cleanup_refused (tools.tests.test_school_font_second_glyph_emulation.UploadTests) ... ok
+test_original65536_pixels_second_readback_and_actual_first_retention_fresh_rerun (tools.tests.test_school_font_second_glyph_emulation.UploadTests) ... ERROR
+test_retired_evidence_new_pixels_guards_overlap_and_native_ownership_refused (tools.tests.test_school_font_second_glyph_emulation.UploadTests) ... ok
+
+======================================================================
+ERROR: test_original65536_pixels_second_readback_and_actual_first_retention_fresh_rerun (tools.tests.test_school_font_second_glyph_emulation.UploadTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_second_glyph_emulation.py", line 71, in test_original65536_pixels_second_readback_and_actual_first_retention_fresh_rerun
+    self.assertTrue(verify_report(generate('upload'))['actual_first_texture_readback_unchanged'])
+  File "F:\project\chaomofa\tools\school_font_second_glyph_emulation.py", line 185, in generate
+    r=owned_run(run,width,height);c=r['value'];c.update(device_trace=r['trace'],device_cleanup=r['cleanup'],refused_address_collisions=r['refused_address_collisions']);cases.append(c)
+  File "F:\project\chaomofa\tools\school_font_second_glyph_platform.py", line 45, in owned_run
+    raise RuntimeError('six second glyph processes collided with audit ownership')
+RuntimeError: six second glyph processes collided with audit ownership
+
+----------------------------------------------------------------------
+Ran 38 tests in 417.193s
+
+FAILED (errors=1)

@@ -1458,4 +1458,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 364. Complete font initializer acceptance
 
-- [ ] 364.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document remaining caller/manager/upstream/VM boundary and verify exact Git bytes; local commit without push.
+- [x] 364.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document remaining caller/manager/upstream/VM boundary and verify exact Git bytes; local commit without push.
