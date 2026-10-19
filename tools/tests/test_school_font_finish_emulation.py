@@ -54,3 +54,24 @@ class VertexTests(Base):
             with self.assertRaises(ValueError):verify_report(bad)
         self.refuse([lambda c:c['finish_vertex']['state']['foreign_maps'].pop(),
             lambda c:c['device_cleanup'].update(second_font_vertex_buffer_release_count=1)])
+
+
+class StateTests(Base):
+    def test_two_second30_call_blocks_and_four_globally_distinct_tokens(self):
+        self.assertEqual(verify_report(self.report)['distinct_state_tokens'],4)
+        self.refuse([lambda c:c['finish_states']['api_calls'][1]['request']['args'].__setitem__(1,c['atlas_texture']['api_calls'][0]['result']['texture']['pointer']),
+            lambda c:c['finish_states']['api_calls'][2]['args'].__setitem__(2,0),
+            lambda c:c['finish_states']['api_calls'][29]['result'].update(token=c['font_states']['api_calls'][29]['result']['token']),
+            lambda c:c['finish_states']['api_calls'][59]['result'].update(token=0),
+            lambda c:c['finish_states']['returns'].pop(),lambda c:c['finish_states']['cpu'].update(ECX=1)])
+
+    def test_token_fields_first_font_bytes_cleanup_and_native_write_ownership_refused(self):
+        for offset in (5744,5748,5728):
+            bad=deepcopy(self.report);r=bad['cases'][0]['finish_states']['second_heap'];raw=bytearray(unpack(r));raw[offset]^=1;r.update(buffer_evidence(bytes(raw)))
+            with self.assertRaises(ValueError):verify_report(bad)
+        self.refuse([lambda c:c['device_cleanup'].update(second_font_state_block_delete_results=[0]),
+            lambda c:c['finish_states'].update(full415F50_returned=True)])
+        from tools.school_font_finish_emulation import FinishEmulator
+        e=FinishEmulator.__new__(FinishEmulator);e.finish_running=True;e.finish_phase='states'
+        for at in (SECOND+0x670,0x2300D670,0,0x79FC74):
+            with self.assertRaises(RuntimeError):e._write(None,None,at,4,0,None)

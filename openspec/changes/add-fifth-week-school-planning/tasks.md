@@ -1450,7 +1450,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 362. Native second two state blocks
 
-- [ ] 362.1 Execute both original30-call blocks and401810 return0 to416101, verify all calls/returns/full object/four distinct tokens/retention with corruption tests and local commit.
+- [x] 362.1 Execute both original30-call blocks and401810 return0 to416101, verify all calls/returns/full object/four distinct tokens/retention with corruption tests and local commit.
 
 ## 363. Native complete415F50 return
 
