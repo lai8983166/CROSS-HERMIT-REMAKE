@@ -1236,3 +1236,14 @@ The audit SHALL continue original second40120C through actual distinct owned tex
 #### Scenario: Second GDI setup prepares its first glyph
 - **WHEN** original code consumes actual second DC/DIB/MulDiv/font/selection/color responses
 - **THEN** size8/flags0/rawANSI name produce height-11/weight400 font arguments and native locals reach first401491 measurement, full prior snapshots remain intact and no second glyph/upload/state/full-return/retained VM completion is inferred
+
+### Requirement: Second native glyphs and uploaded atlas with explicit shadow retirement
+The audit SHALL preserve the deleted first DIB snapshot, explicitly retire only its verified shadow mapping, and continue the same second-font CPU through all95 original glyph pairs/UV stores and65536 pixel conversions using actual owned x86 GDI and texture responses. It SHALL retain first persistent resources and complete memory/ABI/CPU/access evidence, distinguish inspections from native calls and stop before second cleanup/full font return.
+
+#### Scenario: Deleted first DIB shadow becomes immutable retired evidence
+- **WHEN** first native cleanup has released its temporary GDI objects and second setup reaches401491
+- **THEN** exact old DIB shadow bytes/guards are preserved in a retirement ledger, only its declared mapping is unmapped, all other ranges and CPU remain unchanged, and no native game call is inferred
+
+#### Scenario: Second glyph loop and native upload complete
+- **WHEN** second95 actual GDI measurement/drawing pairs and real texture lock are admitted
+- **THEN** original UV/native65536-pixel loops match dynamic metrics and complete buffers/pitch/access order, actual unlock/readback matches every pixel, old retired evidence and first resources remain intact and CPU stops4017B6 before second cleanup

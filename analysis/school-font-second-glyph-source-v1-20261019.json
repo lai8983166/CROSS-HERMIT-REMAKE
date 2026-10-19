@@ -1,0 +1,1039 @@
+{
+  "shared_glyph_source": {
+    "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "functions": [
+      {
+        "va": "0x40144d",
+        "end": "0x4017b6",
+        "sha256": "f7663f6dbab2a6f694173b47f81c5792b4578f3cdf93a7e0f2f294d9ddf6a83c"
+      },
+      {
+        "va": "0x56ce80",
+        "end": "0x56ce83",
+        "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+      }
+    ],
+    "instructions": [
+      {
+        "va": "0x401463",
+        "hex": "83fa7f",
+        "mnemonic": "cmp",
+        "operands": "edx, 0x7f"
+      },
+      {
+        "va": "0x401491",
+        "hex": "ff15bc205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x5920bc]"
+      },
+      {
+        "va": "0x4014b4",
+        "hex": "7620",
+        "mnemonic": "jbe",
+        "operands": "0x4014d6"
+      },
+      {
+        "va": "0x4014cc",
+        "hex": "8d4c1001",
+        "mnemonic": "lea",
+        "operands": "ecx, [eax + edx + 1]"
+      },
+      {
+        "va": "0x4014fc",
+        "hex": "ff15c0205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x5920c0]"
+      },
+      {
+        "va": "0x401551",
+        "hex": "d95c0170",
+        "mnemonic": "fstp",
+        "operands": "dword ptr [ecx + eax + 0x70]"
+      },
+      {
+        "va": "0x401597",
+        "hex": "c1e204",
+        "mnemonic": "shl",
+        "operands": "edx, 4"
+      },
+      {
+        "va": "0x401641",
+        "hex": "d95c017c",
+        "mnemonic": "fstp",
+        "operands": "dword ptr [ecx + eax + 0x7c]"
+      },
+      {
+        "va": "0x40167e",
+        "hex": "ff5240",
+        "mnemonic": "call",
+        "operands": "dword ptr [edx + 0x40]"
+      },
+      {
+        "va": "0x401713",
+        "hex": "8b1481",
+        "mnemonic": "mov",
+        "operands": "edx, dword ptr [ecx + eax*4]"
+      },
+      {
+        "va": "0x40171c",
+        "hex": "c1ea04",
+        "mnemonic": "shr",
+        "operands": "edx, 4"
+      },
+      {
+        "va": "0x401743",
+        "hex": "81c9ff0f0000",
+        "mnemonic": "or",
+        "operands": "ecx, 0xfff"
+      },
+      {
+        "va": "0x40174f",
+        "hex": "66890a",
+        "mnemonic": "mov",
+        "operands": "word ptr [edx], cx"
+      },
+      {
+        "va": "0x401769",
+        "hex": "66c7010000",
+        "mnemonic": "mov",
+        "operands": "word ptr [ecx], 0"
+      },
+      {
+        "va": "0x401788",
+        "hex": "0385b8feffff",
+        "mnemonic": "add",
+        "operands": "eax, dword ptr [ebp - 0x148]"
+      },
+      {
+        "va": "0x4017ac",
+        "hex": "ff5044",
+        "mnemonic": "call",
+        "operands": "dword ptr [eax + 0x44]"
+      }
+    ],
+    "imports": [
+      {
+        "slot": "0x5920bc",
+        "target": "0x76bd5230",
+        "symbol": "GetTextExtentPoint32A",
+        "return_va": "0x401497",
+        "args": 4,
+        "op": "glyph_measure"
+      },
+      {
+        "slot": "0x5920c0",
+        "target": "0x76bd3fd0",
+        "symbol": "ExtTextOutA",
+        "return_va": "0x401502",
+        "args": 8,
+        "op": "glyph_draw"
+      }
+    ],
+    "characters": [
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126
+    ],
+    "atlas": [
+      256,
+      256
+    ],
+    "UV_offset": 112,
+    "UV_bytes": 1520,
+    "raster_stop": "0x401660",
+    "upload_stop": "0x4017b6",
+    "lock_method": 64,
+    "lock_return": "0x401681",
+    "unlock_method": 68,
+    "unlock_return": "0x4017af",
+    "pixel_count": 65536,
+    "pixel_rule": "alpha=blue>>4; word=0 if alpha==0 else (alpha<<12)|0xfff",
+    "original_cleanup_executed": false,
+    "retained_VM_advanced": false
+  },
+  "second_resource_source": {
+    "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "shared_atlas_source": {
+      "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+      "functions": [
+        {
+          "va": "0x40120c",
+          "end": "0x401497",
+          "sha256": "045aad9f83bafd8c15bfa3838698fdbe9ea6ed6db0003d19a4d6fe2a2aee30fc"
+        },
+        {
+          "va": "0x56ce80",
+          "end": "0x56ce83",
+          "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+        },
+        {
+          "va": "0x56cec0",
+          "end": "0x56cf18",
+          "sha256": "2af9ec6db955aa74b3de79ebe2752b3fa148e02935ac40304eb9ffc13ccf0d2c"
+        },
+        {
+          "va": "0x56cfcc",
+          "end": "0x56cff3",
+          "sha256": "d0a2aca68648a0ae9d5cbfae1b276d4a64d4f797fc0c60f28b64096cdfa3148c"
+        }
+      ],
+      "instructions": [
+        {
+          "va": "0x40120c",
+          "hex": "ff5250",
+          "mnemonic": "call",
+          "operands": "dword ptr [edx + 0x50]"
+        },
+        {
+          "va": "0x401232",
+          "hex": "e889bc1600",
+          "mnemonic": "call",
+          "operands": "0x56cec0"
+        },
+        {
+          "va": "0x40123a",
+          "hex": "c785f4feffff28000000",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x10c], 0x28"
+        },
+        {
+          "va": "0x401258",
+          "hex": "898dfcfeffff",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x104], ecx"
+        },
+        {
+          "va": "0x4012f3",
+          "hex": "e8d4bc1600",
+          "mnemonic": "call",
+          "operands": "0x56cfcc"
+        },
+        {
+          "va": "0x40130d",
+          "hex": "f7d8",
+          "mnemonic": "neg",
+          "operands": "eax"
+        },
+        {
+          "va": "0x401322",
+          "hex": "81e12c010000",
+          "mnemonic": "and",
+          "operands": "ecx, 0x12c"
+        },
+        {
+          "va": "0x401328",
+          "hex": "81c190010000",
+          "mnemonic": "add",
+          "operands": "ecx, 0x190"
+        },
+        {
+          "va": "0x401378",
+          "hex": "ff15a0205900",
+          "mnemonic": "call",
+          "operands": "dword ptr [0x5920a0]"
+        },
+        {
+          "va": "0x401444",
+          "hex": "c685c0feffff20",
+          "mnemonic": "mov",
+          "operands": "byte ptr [ebp - 0x140], 0x20"
+        },
+        {
+          "va": "0x401491",
+          "hex": "ff15bc205900",
+          "mnemonic": "call",
+          "operands": "dword ptr [0x5920bc]"
+        }
+      ],
+      "imports": [
+        {
+          "slot": "0x592094",
+          "target": "0x76bd6d90",
+          "symbol": "CreateCompatibleDC",
+          "return_va": "0x401284",
+          "args": 1,
+          "op": "atlas_dc",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x592098",
+          "target": "0x76bd5e80",
+          "symbol": "CreateDIBSection",
+          "return_va": "0x4012b4",
+          "args": 6,
+          "op": "atlas_dib",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x59209c",
+          "target": "0x76bd3f50",
+          "symbol": "SetMapMode",
+          "return_va": "0x4012d2",
+          "args": 2,
+          "op": "atlas_map",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x59223c",
+          "target": "0x77022fa0",
+          "symbol": "MulDiv",
+          "return_va": "0x401306",
+          "args": 3,
+          "op": "atlas_muldiv",
+          "descriptor": "0x5fd5cc",
+          "dll": "KERNEL32.dll"
+        },
+        {
+          "slot": "0x5920a0",
+          "target": "0x76bd52a0",
+          "symbol": "CreateFontA",
+          "return_va": "0x40137e",
+          "args": 14,
+          "op": "atlas_font",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x5920a4",
+          "target": "0x76bd6ca0",
+          "symbol": "SelectObject",
+          "return_va": "0x4013b4",
+          "args": 2,
+          "op": "atlas_bitmap_select",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x5920a4",
+          "target": "0x76bd6ca0",
+          "symbol": "SelectObject",
+          "return_va": "0x4013d1",
+          "args": 2,
+          "op": "atlas_font_select",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x5920b0",
+          "target": "0x76bd6e90",
+          "symbol": "SetTextColor",
+          "return_va": "0x4013ec",
+          "args": 2,
+          "op": "atlas_text",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x5920b4",
+          "target": "0x76bd6f00",
+          "symbol": "SetBkColor",
+          "return_va": "0x401404",
+          "args": 2,
+          "op": "atlas_background",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x5920b8",
+          "target": "0x76bd3ce0",
+          "symbol": "SetTextAlign",
+          "return_va": "0x40141c",
+          "args": 2,
+          "op": "atlas_align",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        },
+        {
+          "slot": "0x5920bc",
+          "target": "0x76bd5230",
+          "symbol": "GetTextExtentPoint32A",
+          "return_va": "0x401497",
+          "args": 4,
+          "op": "pending_glyph",
+          "descriptor": "0x5fd5f4",
+          "dll": "GDI32.dll"
+        }
+      ],
+      "texture_args": [
+        256,
+        256,
+        1,
+        0,
+        26,
+        1
+      ],
+      "bitmap_header_hex": "280000000001000000ffffff01002000000000000000000000000000000000000000000000000000",
+      "font_args": [
+        -16,
+        0,
+        0,
+        0,
+        700,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        4,
+        2
+      ],
+      "face_hex": "4669786564537973",
+      "texture_stop": "0x76bd6d90",
+      "GDI_stop": "0x401491",
+      "first_character": 32,
+      "first_character_source_word": "7800",
+      "glyph_measurement_executed": false,
+      "retained_VM_advanced": false
+    },
+    "second_slot_source": {
+      "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+      "slot_source": {
+        "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+        "slots": [
+          {
+            "index": 0,
+            "face_pointer": 5844132,
+            "face_hex": "4669786564537973",
+            "size": 12,
+            "flags": 1
+          },
+          {
+            "index": 1,
+            "face_pointer": 5844124,
+            "face_hex": "b2d3a9fac5e920",
+            "size": 8,
+            "flags": 0
+          }
+        ],
+        "allocation_bytes": 1656,
+        "functions": [
+          {
+            "va": "0x416021",
+            "end": "0x4160df",
+            "sha256": "fddc5e3c932805e96bbca3739e81e9b6712f308ede8ec02a852ceaead0fdbad0"
+          },
+          {
+            "va": "0x428a40",
+            "end": "0x428ac6",
+            "sha256": "c10d2633ad4038670f64160b5d8ff60ec77597fe600bf735a3a953115d529401"
+          },
+          {
+            "va": "0x401000",
+            "end": "0x40108d",
+            "sha256": "d3883b2d9a4735d877aa2716fce3c1cdd3289b9c81a38b0dbb97eeaa0ed21498"
+          },
+          {
+            "va": "0x56cd90",
+            "end": "0x56cd97",
+            "sha256": "31c7c51054b39a8a3d95b0c921efa1e98353c95313759c7b45fdea6d1dd12d3a"
+          },
+          {
+            "va": "0x56ce01",
+            "end": "0x56ce80",
+            "sha256": "f0483582a40cf8246c001eecd83d79bcf4c4f47baceb30bd7942d7c5fa79962e"
+          },
+          {
+            "va": "0x56ce80",
+            "end": "0x56ce83",
+            "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+          },
+          {
+            "va": "0x4010d0",
+            "end": "0x40120f",
+            "sha256": "0e6fbacc0d3557280d8927be822ae9358e7473a1ebbe5a69f26f310b32a228fd"
+          }
+        ],
+        "instructions": [
+          {
+            "va": "0x41603d",
+            "hex": "6878060000",
+            "mnemonic": "push",
+            "operands": "0x678"
+          },
+          {
+            "va": "0x416042",
+            "hex": "e8f9290100",
+            "mnemonic": "call",
+            "operands": "0x428a40"
+          },
+          {
+            "va": "0x41605d",
+            "hex": "8b049520f55f00",
+            "mnemonic": "mov",
+            "operands": "eax, dword ptr [edx*4 + 0x5ff520]"
+          },
+          {
+            "va": "0x416068",
+            "hex": "8b148d08f55f00",
+            "mnemonic": "mov",
+            "operands": "edx, dword ptr [ecx*4 + 0x5ff508]"
+          },
+          {
+            "va": "0x416073",
+            "hex": "8b0c8528f55f00",
+            "mnemonic": "mov",
+            "operands": "ecx, dword ptr [eax*4 + 0x5ff528]"
+          },
+          {
+            "va": "0x41607e",
+            "hex": "e87daffeff",
+            "mnemonic": "call",
+            "operands": "0x401000"
+          },
+          {
+            "va": "0x4160a5",
+            "hex": "89948190100000",
+            "mnemonic": "mov",
+            "operands": "dword ptr [ecx + eax*4 + 0x1090], edx"
+          },
+          {
+            "va": "0x4160da",
+            "hex": "e8f1affeff",
+            "mnemonic": "call",
+            "operands": "0x4010d0"
+          },
+          {
+            "va": "0x401025",
+            "hex": "e866bd1600",
+            "mnemonic": "call",
+            "operands": "0x56cd90"
+          },
+          {
+            "va": "0x401033",
+            "hex": "894250",
+            "mnemonic": "mov",
+            "operands": "dword ptr [edx + 0x50], eax"
+          },
+          {
+            "va": "0x40103c",
+            "hex": "895154",
+            "mnemonic": "mov",
+            "operands": "dword ptr [ecx + 0x54], edx"
+          },
+          {
+            "va": "0x40108a",
+            "hex": "c20c00",
+            "mnemonic": "ret",
+            "operands": "0xc"
+          },
+          {
+            "va": "0x401170",
+            "hex": "ff521c",
+            "mnemonic": "call",
+            "operands": "dword ptr [edx + 0x1c]"
+          },
+          {
+            "va": "0x401180",
+            "hex": "3b8d7cffffff",
+            "mnemonic": "cmp",
+            "operands": "ecx, dword ptr [ebp - 0x84]"
+          },
+          {
+            "va": "0x4011e9",
+            "hex": "6a1a",
+            "mnemonic": "push",
+            "operands": "0x1a"
+          },
+          {
+            "va": "0x40120c",
+            "hex": "ff5250",
+            "mnemonic": "call",
+            "operands": "dword ptr [edx + 0x50]"
+          }
+        ],
+        "constructor_stop": "0x4010d0",
+        "atlas_stop": "0x40120c",
+        "caps_method_offset": 28,
+        "texture_method_offset": 80,
+        "texture_parameters": {
+          "levels": 1,
+          "usage": 0,
+          "format": 26,
+          "pool": 1,
+          "output_offset": 92
+        },
+        "retained_VM_advanced": false,
+        "additional_fonts_completed": false
+      },
+      "instructions": [
+        {
+          "va": "0x416101",
+          "hex": "8945ec",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x14], eax"
+        },
+        {
+          "va": "0x416104",
+          "hex": "837dec00",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0x14], 0"
+        },
+        {
+          "va": "0x416108",
+          "hex": "7d07",
+          "mnemonic": "jge",
+          "operands": "0x416111"
+        },
+        {
+          "va": "0x416111",
+          "hex": "e914ffffff",
+          "mnemonic": "jmp",
+          "operands": "0x41602a"
+        },
+        {
+          "va": "0x41602a",
+          "hex": "8b4de8",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 0x18]"
+        },
+        {
+          "va": "0x41602d",
+          "hex": "83c101",
+          "mnemonic": "add",
+          "operands": "ecx, 1"
+        },
+        {
+          "va": "0x416030",
+          "hex": "894de8",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x18], ecx"
+        },
+        {
+          "va": "0x416033",
+          "hex": "837de802",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0x18], 2"
+        },
+        {
+          "va": "0x416037",
+          "hex": "0f84d9000000",
+          "mnemonic": "je",
+          "operands": "0x416116"
+        },
+        {
+          "va": "0x41603d",
+          "hex": "6878060000",
+          "mnemonic": "push",
+          "operands": "0x678"
+        },
+        {
+          "va": "0x4160a5",
+          "hex": "89948190100000",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ecx + eax*4 + 0x1090], edx"
+        },
+        {
+          "va": "0x416116",
+          "hex": "33c0",
+          "mnemonic": "xor",
+          "operands": "eax, eax"
+        },
+        {
+          "va": "0x416118",
+          "hex": "8b4df4",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 0xc]"
+        },
+        {
+          "va": "0x41611b",
+          "hex": "64890d00000000",
+          "mnemonic": "mov",
+          "operands": "dword ptr fs:[0], ecx"
+        },
+        {
+          "va": "0x41612a",
+          "hex": "e8516d1500",
+          "mnemonic": "call",
+          "operands": "0x56ce80"
+        },
+        {
+          "va": "0x416132",
+          "hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ],
+      "functions": [
+        {
+          "va": "0x416021",
+          "end": "0x416133",
+          "sha256": "015fbcfda4f7876e2ffb2f7fe364fdc68b7175ba20e6df272dea390dedf3b77f"
+        },
+        {
+          "va": "0x428a40",
+          "end": "0x428ac6",
+          "sha256": "c10d2633ad4038670f64160b5d8ff60ec77597fe600bf735a3a953115d529401"
+        },
+        {
+          "va": "0x401000",
+          "end": "0x40108d",
+          "sha256": "d3883b2d9a4735d877aa2716fce3c1cdd3289b9c81a38b0dbb97eeaa0ed21498"
+        },
+        {
+          "va": "0x56cd90",
+          "end": "0x56cd97",
+          "sha256": "31c7c51054b39a8a3d95b0c921efa1e98353c95313759c7b45fdea6d1dd12d3a"
+        },
+        {
+          "va": "0x56ce01",
+          "end": "0x56ce80",
+          "sha256": "f0483582a40cf8246c001eecd83d79bcf4c4f47baceb30bd7942d7c5fa79962e"
+        },
+        {
+          "va": "0x56ce80",
+          "end": "0x56ce83",
+          "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+        },
+        {
+          "va": "0x4010d0",
+          "end": "0x40120f",
+          "sha256": "0e6fbacc0d3557280d8927be822ae9358e7473a1ebbe5a69f26f310b32a228fd"
+        }
+      ],
+      "loop_trace": [
+        "0x416101",
+        "0x416104",
+        "0x416108",
+        "0x416111",
+        "0x41602a",
+        "0x41602d",
+        "0x416030",
+        "0x416033",
+        "0x416037"
+      ],
+      "index": 1,
+      "declared_second_heap": 587272192,
+      "owner_offset": 4244,
+      "allocation_bytes": 1656,
+      "total_declared_allocation_counter_delta": 3600,
+      "phases": {
+        "loop": {
+          "start": "0x416101",
+          "stop": "0x41603d"
+        },
+        "constructor": {
+          "start": "0x41603d",
+          "stop": "0x4010d0"
+        },
+        "atlas": {
+          "start": "0x4010d0",
+          "stop": "0x40120c"
+        }
+      },
+      "return_source": {
+        "success_index": 2,
+        "success_result": 0,
+        "SEH_restore": "0x41611b",
+        "ret": "0x416132",
+        "executed": false
+      },
+      "second_texture_created": false,
+      "full415F50_returned": false,
+      "retained_VM_advanced": false
+    },
+    "instructions": [
+      {
+        "va": "0x4012d9",
+        "hex": "c785e8feffff60000000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ebp - 0x118], 0x60"
+      },
+      {
+        "va": "0x4012f0",
+        "hex": "d8486c",
+        "mnemonic": "fmul",
+        "operands": "dword ptr [eax + 0x6c]"
+      },
+      {
+        "va": "0x4012fc",
+        "hex": "8b5150",
+        "mnemonic": "mov",
+        "operands": "edx, dword ptr [ecx + 0x50]"
+      },
+      {
+        "va": "0x40131b",
+        "hex": "83e101",
+        "mnemonic": "and",
+        "operands": "ecx, 1"
+      },
+      {
+        "va": "0x401322",
+        "hex": "81e12c010000",
+        "mnemonic": "and",
+        "operands": "ecx, 0x12c"
+      },
+      {
+        "va": "0x401328",
+        "hex": "81c190010000",
+        "mnemonic": "add",
+        "operands": "ecx, 0x190"
+      },
+      {
+        "va": "0x40133a",
+        "hex": "83e002",
+        "mnemonic": "and",
+        "operands": "eax, 2"
+      },
+      {
+        "va": "0x40134e",
+        "hex": "51",
+        "mnemonic": "push",
+        "operands": "ecx"
+      },
+      {
+        "va": "0x401378",
+        "hex": "ff15a0205900",
+        "mnemonic": "call",
+        "operands": "dword ptr [0x5920a0]"
+      }
+    ],
+    "second_object": 587272192,
+    "texture_args": [
+      256,
+      256,
+      1,
+      0,
+      26,
+      1
+    ],
+    "texture_output": 587272284,
+    "bitmap_header_hex": "280000000001000000ffffff01002000000000000000000000000000000000000000000000000000",
+    "muldiv_args": [
+      8,
+      96,
+      72
+    ],
+    "expected_bounded_actual_muldiv_result": 11,
+    "font_args": [
+      -11,
+      0,
+      0,
+      0,
+      400,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      4,
+      2
+    ],
+    "face_hex": "b2d3a9fac5e920",
+    "LOGFONT_hex": "f5ffffff000000000000000000000000900100000000000100000402b2d3a9fac5e92000000000000000000000000000000000000000000000000000",
+    "GDI_stop": "0x401491",
+    "first_character": 32,
+    "first_font_resources_must_remain_owned": true,
+    "new_DIB_pixels_mapped": false,
+    "second_glyph_measurement_executed": false,
+    "full415F50_returned": false,
+    "retained_VM_advanced": false
+  },
+  "second_object": 587272192,
+  "characters": [
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126
+  ],
+  "UV_offset": 112,
+  "UV_bytes": 1520,
+  "retired_region_name": "DIB",
+  "retirement_requires_original_first_GDI_deletion": true,
+  "retirement_preserves_CPU": true,
+  "retirement_is_audit_mapping_only": true,
+  "first_texture_shadow_must_remain": true,
+  "first_texture_actual_readback_after_second_upload": true,
+  "raster_stop": "0x401660",
+  "upload_stop": "0x4017b6",
+  "original_cleanup_executed": false,
+  "full415F50_returned": false,
+  "retained_VM_advanced": false
+}

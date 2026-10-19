@@ -1399,3 +1399,31 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 349. Second atlas/GDI preparation acceptance
 
 - [x] 349.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document pending glyph/upload/states/full-return/upstream work and verify exact Git bytes; local commit without push.
+
+## 350. Second glyph/upload and retirement source contract
+
+- [x] 350.1 Derive exact second glyph/pixel source ABI and bounded mapping retirement/complete-object projections; source tests and local commit.
+
+## 351. Owned second glyph GDI platform
+
+- [ ] 351.1 Fork immutable helper with independent second95 measurement/draw/inspection state, dynamic metrics and full/partial/refusal/provenance tests; local commit.
+
+## 352. Explicit first deleted DIB shadow retirement
+
+- [ ] 352.1 Replay complete prefix, verify actual first native GDI deletion and full shadow bytes, unmap only its guarded audit mapping preserving retired ledger/CPU/other ranges; fresh/corruption tests and local commit.
+
+## 353. Native complete second glyph loop
+
+- [ ] 353.1 Continue same second401491 CPU through95 live GDI pairs/380 native UV stores to401660, verify dynamic layout/full pixels/objects/CPU/ABI/retention with fresh/corruption tests; local commit.
+
+## 354. Owned second texture pixel platform
+
+- [ ] 354.1 Fork immutable helper with separate second lock/pitch/buffer/upload ownership, full readback and first-resource retention, complete/partial/refusal/provenance tests; local commit.
+
+## 355. Native second pixel conversion and upload
+
+- [ ] 355.1 Execute original65536 reads/conversions/writes with guarded new second shadows and real upload/unlock/readback to4017B6; verify full pixels/pitch/order/CPU/retired evidence/first resources with fresh/corruption tests; local commit.
+
+## 356. Second glyph and upload acceptance
+
+- [ ] 356.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document cleanup/VB/states/full-return/upstream boundary and verify exact Git bytes; local commit without push.
