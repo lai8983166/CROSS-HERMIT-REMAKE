@@ -1474,7 +1474,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 368. Original gamma generation and device admission
 
-- [ ] 368.1 Execute all original768 gamma stores and416CC0 call preparation to unexecuted416CFA; verify full owner/data/ABI/CPU/retention and fresh two-case trajectory with corruption tests; local commit.
+- [x] 368.1 Execute all original768 gamma stores and416CC0 call preparation to unexecuted416CFA; verify full owner/data/ABI/CPU/retention and fresh two-case trajectory with corruption tests; local commit.
 
 ## 369. Font caller acceptance
 
