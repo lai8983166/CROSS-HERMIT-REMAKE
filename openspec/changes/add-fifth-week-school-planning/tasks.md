@@ -1327,3 +1327,31 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 331. Glyph raster and upload acceptance
 
 - [x] 331.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document original cleanup/state-block/second-font/upstream boundaries, verify exact Git bytes and commit locally without push.
+
+## 332. Native font cleanup and device-state source
+
+- [x] 332.1 Derive original cleanup/ret4/caller and8400-byte VB/two full state-block call sequences, source projections/tests and local commit.
+
+## 333. Owned native GDI deletion platform
+
+- [ ] 333.1 Fork immutable GDI helper for original bitmap/DC/font deletion ordering, deferred lifetime inspection, safe fallback cleanup and refusal/provenance tests; commit locally.
+
+## 334. Native atlas cleanup and caller return
+
+- [ ] 334.1 Replay verified glyph/upload prefix and execute original4017B6 cleanup/4010D0 return/caller to401810, verify complete source/live ABI/CPU/memory/lifetimes with fresh/corruption tests; commit locally.
+
+## 335. Owned vertex buffer and state-block platform
+
+- [ ] 335.1 Fork immutable device helper with real bounded VB creation/inspection and exact60 state calls/token ownership, complete/partial cleanup/refusal/provenance tests; commit locally.
+
+## 336. Native first-font vertex buffer
+
+- [ ] 336.1 Continue same original401810 CPU through actual VB creation to40186E, independently verify complete object/CPU/ABI/maps/guards and fresh/corruption tests; commit locally.
+
+## 337. Native two state blocks and first-slot return
+
+- [ ] 337.1 Execute both original30-call state-block loops and401810 return to416101, verify all actual calls/tokens/full object/source/CPU/lifetimes and fresh/corruption tests; commit locally.
+
+## 338. First additional font state acceptance
+
+- [ ] 338.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document second-font/full-startup/upstream boundaries, verify exact Git bytes and commit locally without push.

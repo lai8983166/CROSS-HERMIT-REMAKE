@@ -1203,3 +1203,14 @@ The audit SHALL execute all95 original measurement/drawing pairs and native UV s
 #### Scenario: Original pixel conversion reaches actual texture memory
 - **WHEN** real LockRect provides its owned pitch/bits and original401660 continues
 - **THEN** every one of65536 native-converted16-bit pixels and pitch padding matches source projection, real UnlockRect/readback verifies the complete buffer and execution stops4017B6 before original cleanup
+
+### Requirement: Original first additional font cleanup and device-state return
+The audit SHALL continue the existing original CPU through its three GDI cleanup calls and4010D0 return, then401810 vertex-buffer creation and both state-block recordings with actual owned x86 interfaces. It SHALL verify full native memory/ABI/CPU/resource lifetimes and preserve prior evidence. It MUST distinguish native/deferred/fallback cleanup, inspection-only queries and the independent empty-cache experiment from retained VM advancement.
+
+#### Scenario: Native atlas initializer releases temporary resources and returns
+- **WHEN** original4017B6 consumes its still-owned bitmap/DC/font locals
+- **THEN** actual GDI deletion results and deferred lifetime are recorded, original4010D0 returns and its original caller reaches401810 without resource stubs
+
+#### Scenario: First additional font completes device-state initialization
+- **WHEN** original401810 executes on the same first additional font and owned device
+- **THEN** actual8400-byte vertex buffer and two source-ordered state blocks reach original fields, full function returns to416101 and all external resources are released, with second font/full415F50/retained VM/drawing still pending
