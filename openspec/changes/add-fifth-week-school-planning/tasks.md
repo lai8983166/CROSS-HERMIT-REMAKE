@@ -1534,7 +1534,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 383. Complete original main-context constructor
 
-- [ ] 383.1 Execute all44FBB0 nested constructor/input/path bodies and real system APIs to49DDEC on same CPU; verify complete object/image/ABI/trace/cleanup and corruption tests; local commit.
+- [x] 383.1 Execute all44FBB0 nested constructor/input/path bodies and real system APIs to49DDEC on same CPU; verify complete object/image/ABI/trace/cleanup and corruption tests; local commit.
 
 ## 384. Native main-context global publication
 
