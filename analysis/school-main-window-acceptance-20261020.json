@@ -1,0 +1,1048 @@
+{
+  "baseline": "b2782ff",
+  "stages": [
+    386,
+    387,
+    388,
+    389,
+    390,
+    391
+  ],
+  "source_native_commits": [
+    "23630911450db49f3d90ad28acc7ade0d7bff837",
+    "fe3ebd1f0ba3f73b671fa5ddc18acb98962713ec",
+    "3f11b20dbd71d1645d0bc690a7d4691244e85515",
+    "1c0c0b09ce8852a479b80a713c74d879b3afb27e",
+    "b6a2f9e902e404985923256e68150f52ba1ca317"
+  ],
+  "scope": "Same original main-context CPU and fresh owned helper lifetime through32 task records, class copy, actual FindWindowA/boolean return and source-selected branch to unexecuted450350; no duplicate observed in either recorded case",
+  "continuous_trajectory": {
+    "report": {
+      "path": "analysis/school-main-window-trajectory-v1-20261020.json",
+      "bytes": 778925,
+      "sha256": "7deba4bf70696b66ae22414d98bb70ad636e1b84029e9c55e53a66af9b787e98"
+    },
+    "verified": {
+      "cases": 2,
+      "verified_through": "branch",
+      "original_task_slots": 32,
+      "actual_new_system_calls_per_case": 2,
+      "observed_duplicate": [
+        false,
+        false
+      ],
+      "pending": [
+        "0x450350",
+        "0x450350"
+      ],
+      "retained_VM_advanced": false
+    },
+    "platform_build": {
+      "source_sha256": "8ea5a77e575c327286ac7a89107ebc7bdbacc62244f09ef692dce3149fc4af60",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "helper_sha256": "484ae2b5459265f62b776556ca8afecbc489d127e724c86704bf3c1739ae0125",
+      "machine": 332
+    },
+    "cases": [
+      {
+        "fill": 165,
+        "declared_initial_CPU": {
+          "EIP": 4840905,
+          "ESP": 553709396,
+          "EBP": 553709564,
+          "EAX": 0,
+          "ECX": 0,
+          "EDX": 0,
+          "EBX": 1432778632,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "final_CPU": {
+          "EIP": 4522832,
+          "ESP": 553709368,
+          "EBP": 553709564,
+          "EAX": 1024,
+          "EBX": 1432778632,
+          "ECX": 536870912,
+          "EDX": 0,
+          "ESI": 553709396,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "pending": {
+          "va": "0x450350",
+          "sp": 553709368,
+          "first_instruction_executed": false,
+          "return_va": "0x49decb",
+          "receiver": 536870912,
+          "args": [
+            0,
+            0,
+            1024,
+            768,
+            2415919104,
+            1
+          ]
+        },
+        "actual_query": {
+          "name": "FindWindowA",
+          "op": "find_window",
+          "slot": "0x59232c",
+          "va": "0x760089e0",
+          "return_va": "0x42940c",
+          "sp": 553709292,
+          "args": [
+            8005160,
+            0
+          ],
+          "request": {
+            "class_hex": "43726f7373204865726d697400",
+            "window_name": 0
+          },
+          "result": {
+            "result": 0,
+            "guards_unchanged": true,
+            "class_unchanged": true,
+            "window_owned": false,
+            "window_manipulated": false
+          },
+          "observed_EAX": 0,
+          "mapped_output_pointer": null,
+          "mapped_output_bytes": 0,
+          "live_host_observed": true
+        },
+        "import_admission": {
+          "slot": "0x59232c",
+          "target": 1979746784,
+          "before_cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "after_cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "retained_owner_sha256": "0f01ae80f864f653bdcb60bffda1dac5936497d79ec4c640150df7c1f7963e25",
+          "retained_stack_sha256": "ddfcc890fb2a7b33035f7fc809f6095ebd58f10d7b8f2cb3aeef9e92eae831bc",
+          "retained_image_sha256": "e8295097c2f4ea6795af7da24beb2f92c17c41a8d416a72eb213f5dbbde69f7f",
+          "retained_null_page_sha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+          "foreign_before": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "foreign_after": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1979744256,
+              "bytes": 4096,
+              "sha256": "16c81e5e0e74f4baf7c86400ecfec408e193d180e336776fb72d3bf5c24c3259",
+              "zlib_base64": "eNrt0AENAAAMAiD717KYBZ7ggwgkAAB8UgUAHAa6nADE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "native_game_call": false
+        },
+        "system_modules": {
+          "kernel32_path": {
+            "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+            "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+            "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "shlwapi_path": {
+            "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+            "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "user32_path": {
+            "reported_path": "C:\\Windows\\System32\\USER32.dll",
+            "path": "C:\\Windows\\SysWOW64\\USER32.dll",
+            "sha256": "2bd19b9d79a354d7c2ccd4593f104839e98ab3ffc68d64e1f21b97f8c7a78dc9",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          }
+        },
+        "cleanup": {
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "user32_module_refs_released": 1,
+          "all_owned_resources_released": true
+        }
+      },
+      {
+        "fill": 204,
+        "declared_initial_CPU": {
+          "EIP": 4840905,
+          "ESP": 553709396,
+          "EBP": 553709564,
+          "EAX": 0,
+          "ECX": 0,
+          "EDX": 0,
+          "EBX": 1432778632,
+          "ESI": 2289526357,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "final_CPU": {
+          "EIP": 4522832,
+          "ESP": 553709368,
+          "EBP": 553709564,
+          "EAX": 1024,
+          "EBX": 1432778632,
+          "ECX": 536870912,
+          "EDX": 0,
+          "ESI": 553709396,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "pending": {
+          "va": "0x450350",
+          "sp": 553709368,
+          "first_instruction_executed": false,
+          "return_va": "0x49decb",
+          "receiver": 536870912,
+          "args": [
+            0,
+            0,
+            1024,
+            768,
+            2415919104,
+            1
+          ]
+        },
+        "actual_query": {
+          "name": "FindWindowA",
+          "op": "find_window",
+          "slot": "0x59232c",
+          "va": "0x760089e0",
+          "return_va": "0x42940c",
+          "sp": 553709292,
+          "args": [
+            8005160,
+            0
+          ],
+          "request": {
+            "class_hex": "43726f7373204865726d697400",
+            "window_name": 0
+          },
+          "result": {
+            "result": 0,
+            "guards_unchanged": true,
+            "class_unchanged": true,
+            "window_owned": false,
+            "window_manipulated": false
+          },
+          "observed_EAX": 0,
+          "mapped_output_pointer": null,
+          "mapped_output_bytes": 0,
+          "live_host_observed": true
+        },
+        "import_admission": {
+          "slot": "0x59232c",
+          "target": 1979746784,
+          "before_cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "after_cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "retained_owner_sha256": "a5eeb392c14094ebd8a4efcb29ffbe4f022622295d1fe8b5ae2c3dea5ef89b3b",
+          "retained_stack_sha256": "2e78ae23de0bfac2f0bfb3793cbbd9f642be2519dfdf77bd02b3989b9fade142",
+          "retained_image_sha256": "e8295097c2f4ea6795af7da24beb2f92c17c41a8d416a72eb213f5dbbde69f7f",
+          "retained_null_page_sha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+          "foreign_before": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "foreign_after": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1979744256,
+              "bytes": 4096,
+              "sha256": "16c81e5e0e74f4baf7c86400ecfec408e193d180e336776fb72d3bf5c24c3259",
+              "zlib_base64": "eNrt0AENAAAMAiD717KYBZ7ggwgkAAB8UgUAHAa6nADE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "native_game_call": false
+        },
+        "system_modules": {
+          "kernel32_path": {
+            "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+            "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+            "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "shlwapi_path": {
+            "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+            "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "user32_path": {
+            "reported_path": "C:\\Windows\\System32\\USER32.dll",
+            "path": "C:\\Windows\\SysWOW64\\USER32.dll",
+            "sha256": "2bd19b9d79a354d7c2ccd4593f104839e98ab3ffc68d64e1f21b97f8c7a78dc9",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          }
+        },
+        "cleanup": {
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "user32_module_refs_released": 1,
+          "all_owned_resources_released": true
+        }
+      }
+    ]
+  },
+  "boundary_witnesses": {
+    "tasks": {
+      "report": {
+        "path": "analysis/school-main-window-tasks-v1-20261020.json",
+        "bytes": 3094,
+        "sha256": "bc0ad4ca39d33bd0f6e5a827e69eb70cec57d719ac84e7f5c58029a926765547"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "tasks",
+          "node_sha256": "71e7d21b7396c87d956687034782ce6fc89e58954e966c60b19816ab7d218573",
+          "before_cpu": {
+            "EIP": 4840981,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x49de2c",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 1,
+          "native_returns": 1,
+          "original_instruction_observations": 431,
+          "system_calls": 0,
+          "owner_sha256": "efb7d42366b29f998857692a3a35a5a627c01d2e6d5b2e07164f79f171594482",
+          "observed_duplicate": null,
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "tasks",
+          "node_sha256": "b26cfd279afc550a3a64b05885c0eae593fb8c1b477bb513ac9c2d1b4569cff7",
+          "before_cpu": {
+            "EIP": 4840981,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 536870912,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 536870912,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 6
+          },
+          "cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x49de2c",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 1,
+          "native_returns": 1,
+          "original_instruction_observations": 431,
+          "system_calls": 0,
+          "owner_sha256": "0c3aff4ba7e6feae2de89ee9240629eef91bdaf1ebc1289137c251cd3f191bb4",
+          "observed_duplicate": null,
+          "SEH": 0
+        }
+      ]
+    },
+    "query": {
+      "report": {
+        "path": "analysis/school-main-window-query-v1-20261020.json",
+        "bytes": 3078,
+        "sha256": "bdfa14e2bed4021a0fe752df7653fd732fcdbf6a79448cac8ae94fc3c7a56761"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "query",
+          "node_sha256": "c2b512280eab9f39b114ccc8229ea0c17f8dc90162369dbed6f626d421215285",
+          "before_cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4841043,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536870964,
+            "EDX": 305397760,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x49de53",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 1,
+          "native_returns": 4,
+          "original_instruction_observations": 65,
+          "system_calls": 2,
+          "owner_sha256": "efb7d42366b29f998857692a3a35a5a627c01d2e6d5b2e07164f79f171594482",
+          "observed_duplicate": false,
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "query",
+          "node_sha256": "7b31e751c445492b384f7f030d44904a23c7467b2ec0869d6ad8f0e0709df426",
+          "before_cpu": {
+            "EIP": 4841004,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536871012,
+            "EDX": 305397760,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4841043,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536870964,
+            "EDX": 305397760,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x49de53",
+            "sp": 553709396,
+            "first_instruction_executed": false,
+            "stack_top_dword": 1144201745
+          },
+          "native_entries": 1,
+          "native_returns": 4,
+          "original_instruction_observations": 65,
+          "system_calls": 2,
+          "owner_sha256": "0c3aff4ba7e6feae2de89ee9240629eef91bdaf1ebc1289137c251cd3f191bb4",
+          "observed_duplicate": false,
+          "SEH": 0
+        }
+      ]
+    },
+    "branch": {
+      "report": {
+        "path": "analysis/school-main-window-branch-v1-20261020.json",
+        "bytes": 3358,
+        "sha256": "a4b3b347c60dfb9311d7fbddde2c0729d3a186ef3831569465bcae3a84c9676b"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "branch",
+          "node_sha256": "687730990784474028d7c156993b9819cd56c07f9c7f9ababee43dc0ab867b50",
+          "before_cpu": {
+            "EIP": 4841043,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536870964,
+            "EDX": 305397760,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "pending": {
+            "va": "0x450350",
+            "sp": 553709368,
+            "first_instruction_executed": false,
+            "return_va": "0x49decb",
+            "receiver": 536870912,
+            "args": [
+              0,
+              0,
+              1024,
+              768,
+              2415919104,
+              1
+            ]
+          },
+          "native_entries": 1,
+          "native_returns": 1,
+          "original_instruction_observations": 68,
+          "system_calls": 0,
+          "owner_sha256": "5d70ff13083840b109c7d46f63f8c81f8dfff1301b066c4eecee4d8744d69505",
+          "observed_duplicate": false,
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "branch",
+          "node_sha256": "5bf4590b468ddc34190648e5cd198d1b14e7ce26941c747ad4e64032d7ddcc52",
+          "before_cpu": {
+            "EIP": 4841043,
+            "ESP": 553709396,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 536870964,
+            "EDX": 305397760,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "pending": {
+            "va": "0x450350",
+            "sp": 553709368,
+            "first_instruction_executed": false,
+            "return_va": "0x49decb",
+            "receiver": 536870912,
+            "args": [
+              0,
+              0,
+              1024,
+              768,
+              2415919104,
+              1
+            ]
+          },
+          "native_entries": 1,
+          "native_returns": 1,
+          "original_instruction_observations": 68,
+          "system_calls": 0,
+          "owner_sha256": "f760bf30f4e561995feb2f55fb5600dc6b9812b1e0934481e358537819da1447",
+          "observed_duplicate": false,
+          "SEH": 0
+        }
+      ]
+    }
+  },
+  "regression": {
+    "new": 17,
+    "relevant_parent": 18,
+    "total": 35,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-main-window-regression-20261020.log",
+      "bytes": 4806,
+      "sha256": "a74efb8081c79dea81545bef1b4985ceb4b4f824bd0aa229a3237633bf29d190"
+    },
+    "strict_log": {
+      "path": "analysis/school-main-window-strict-20261020.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920"
+    },
+    "relevant_parent_scope": "Full main-context source, platform and native test modules including fresh prior-prefix replay"
+  },
+  "preservation": {
+    "path": "analysis/school-main-window-preservation-20261020.json",
+    "bytes": 11715,
+    "sha256": "00541ec14b3f8b243b29b5274db64f3b68f05bf527d0d47925d2ee006698a216",
+    "retained_files": 16422,
+    "save_rules": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "next_prerequisite_source": {
+    "path": "analysis/school-main-window-next-source-v1-20261020.json",
+    "bytes": 2899,
+    "sha256": "19931dfe72a7e9a4c904be1f138bc798b08ef330e9408d6b3bc9afe12772e301"
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "manager_owner": 0,
+    "advanced": false
+  },
+  "authority": {
+    "declared_mid_WinMain_frame": true,
+    "WinMain_entry_and_prelude_executed": false,
+    "actual_parent_allocation_constructor_publication_replayed": true,
+    "actual_prefix_in_same_helper_lifetime": true,
+    "new_helper_build_not_relabelled_as_old": true,
+    "original_32_task_slots_and64_zero_stores": true,
+    "adjacent_critical_section_preserved": true,
+    "original_instance_store_executed": true,
+    "instance_is_inherited_declared_scalar": true,
+    "instance_is_live_module": false,
+    "command_line_scalar_dereferenced": false,
+    "actual_original_class_title_copy": true,
+    "actual_read_only_FindWindowA": true,
+    "live_query_result_fabricated": false,
+    "borrowed_window_closed_activated_or_manipulated": false,
+    "native_wrapper_boolean_and_return_verified": true,
+    "actual_absence_branch_executed": true,
+    "actual_duplicate_branch_executed": false,
+    "alternate_duplicate_branch_source_verified_only": true,
+    "actual_command_line_store_and_window_parameter_stack": true,
+    "new_import_admission_changed_CPU_owner_image_stack_or_null_page": false,
+    "original_IAT_changed": false,
+    "full_owned_memory_guards_native_trace_call_ABI_and_all_writes_verified": true,
+    "owned_critical_sections_event_and_USER32_reference_released": true,
+    "expired_system_resources_resumable": false,
+    "window_creation_body_executed": false,
+    "exit_body_executed": false,
+    "window_created": false,
+    "desktop_resolution_changed": false,
+    "original_window_callback_executed": false,
+    "COM_audio_initialized": false,
+    "game_factory_success_executed": false,
+    "inherited_cache_head_unchanged": true,
+    "game_helpers_stubbed": false,
+    "old_helpers_changed": false,
+    "retained_VM_advanced": false,
+    "full_WinMain_executed": false,
+    "GPU_drawing_or_Present": false,
+    "Godot_changed": false,
+    "original_saves_changed": false
+  },
+  "remaining": [
+    "Replay fresh context lifetime and execute original450350 rectangle/AdjustWindowRect/WNDCLASSEXA setup with exact buffers",
+    "Resolve actual owned module/icon resources and original424980 callback bridge before registering/creating a real window; inherited12340000 is only a scalar",
+    "Continue actual WinMain COM/game factory450570/4500B0/audio/device prerequisites and differing startup modes without bypasses",
+    "Resolve inherited font-cache heap/lifecycle, complete factory output/outer scheduler and retained VM integration",
+    "Continue original VM/task/input/world/rendering/dialogue and battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "391/391 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17015,
+      "sha256": "97cffa635271f478712b93add0c599e83ad4171e98db1c9c9fd18ab4337ecbbb",
+      "git_blob": "60e38ff6686b069e0baf15d8260c652be26b9093"
+    },
+    {
+      "path": "README.md",
+      "bytes": 64820,
+      "sha256": "7e6f28f6db782c92e788cbf51536ea910650d3cef6cc8654dd054a427c7d0d03",
+      "git_blob": "4ae1b2e33b5ed8f7e576753a3f919817f3b135e4"
+    },
+    {
+      "path": "analysis/school-main-window-branch-tests-20261020.log",
+      "bytes": 648,
+      "sha256": "8281c39da2877d0af569b5f28ee42944e8689a1006ceb4cdbce568faf55740dc",
+      "git_blob": "155c93223954a2a293b854183ebc8df3be36e7fb"
+    },
+    {
+      "path": "analysis/school-main-window-branch-v1-20261020.json",
+      "bytes": 3358,
+      "sha256": "a4b3b347c60dfb9311d7fbddde2c0729d3a186ef3831569465bcae3a84c9676b",
+      "git_blob": "5556bad6653130d003ecfaece72f76cc1095d90e"
+    },
+    {
+      "path": "analysis/school-main-window-next-source-v1-20261020.json",
+      "bytes": 2899,
+      "sha256": "19931dfe72a7e9a4c904be1f138bc798b08ef330e9408d6b3bc9afe12772e301",
+      "git_blob": "58f8c2c696a2f14daff9147c92b785527efdba1f"
+    },
+    {
+      "path": "analysis/school-main-window-platform-tests-20261020.log",
+      "bytes": 627,
+      "sha256": "82ce25aa31a86186e39b9e50111e3e7d5cecabfcd228766545a5127ff98751c2",
+      "git_blob": "c8fe5f364094b0635e8328d8bd73af1d0ecd46f6"
+    },
+    {
+      "path": "analysis/school-main-window-platform-v1-20261020.json",
+      "bytes": 2407,
+      "sha256": "79bbca050db38cd6504d7076ebdf159144445b86262eb339b81dfae20aa445c6",
+      "git_blob": "66fed363d135811071e6a6bb5f024ec3e991cd74"
+    },
+    {
+      "path": "analysis/school-main-window-preservation-20261020.json",
+      "bytes": 11715,
+      "sha256": "00541ec14b3f8b243b29b5274db64f3b68f05bf527d0d47925d2ee006698a216",
+      "git_blob": "6a014fb4a0d9f0fb964b12e837fff508d09d312f"
+    },
+    {
+      "path": "analysis/school-main-window-preservation-generation-20261020.log",
+      "bytes": 197,
+      "sha256": "f10d77bc102b75f54e4e977acb757a41a31d9c8ee57813591b5ea0e839516f64",
+      "git_blob": "efac13f018e145e07b06c3f128945c2916cd2d4f"
+    },
+    {
+      "path": "analysis/school-main-window-query-tests-20261020.log",
+      "bytes": 623,
+      "sha256": "f42a048138a55002a4c148e8ab1741c186caa76da34b509482ed64c50643af20",
+      "git_blob": "cb108bfba5053d0e17b22d67aaa0473ea5fcf9a2"
+    },
+    {
+      "path": "analysis/school-main-window-query-v1-20261020.json",
+      "bytes": 3078,
+      "sha256": "bdfa14e2bed4021a0fe752df7653fd732fcdbf6a79448cac8ae94fc3c7a56761",
+      "git_blob": "c3ac3a7edb34b714abf3d0cfe9bd40b7a5dfa901"
+    },
+    {
+      "path": "analysis/school-main-window-regression-20261020.log",
+      "bytes": 4806,
+      "sha256": "a74efb8081c79dea81545bef1b4985ceb4b4f824bd0aa229a3237633bf29d190",
+      "git_blob": "591c9d540de5d4b7d9865789dfee9a14038916fd"
+    },
+    {
+      "path": "analysis/school-main-window-source-tests-20261020.log",
+      "bytes": 469,
+      "sha256": "54b1f68a01c58811f5acf92a99be580fa90f1bed8344ff2ab3a9cf1614209a82",
+      "git_blob": "8b9bbfa139a936a083c81295b73b16f8776bccac"
+    },
+    {
+      "path": "analysis/school-main-window-source-v1-20261020.json",
+      "bytes": 10623,
+      "sha256": "b15af686a435fc344d88ebf490e40091b284971b61ca20e8c5037e138f7d6e03",
+      "git_blob": "74058487e1c2d95ea3037c53a4d2532116d5e6f8"
+    },
+    {
+      "path": "analysis/school-main-window-strict-20261020.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920",
+      "git_blob": "2e3dc062ee2e6ba39f685fb03105916214d13db9"
+    },
+    {
+      "path": "analysis/school-main-window-tasks-tests-20261020.log",
+      "bytes": 466,
+      "sha256": "7695d041919068970e2e76d92f79696c005095c8f49baa8c0f2e7c1aa3da8b29",
+      "git_blob": "c6c50c24500d95c1a4bb2101466e27d83eee9079"
+    },
+    {
+      "path": "analysis/school-main-window-tasks-v1-20261020.json",
+      "bytes": 3094,
+      "sha256": "bc0ad4ca39d33bd0f6e5a827e69eb70cec57d719ac84e7f5c58029a926765547",
+      "git_blob": "17bef47a4baa0aeedb0646629469342b635b560f"
+    },
+    {
+      "path": "analysis/school-main-window-trajectory-generation-v1-20261020.log",
+      "bytes": 148,
+      "sha256": "f557b6e0c1c6a4c80e950989eae45f09f9d54d010d88a0f726f0eb8cf6847baf",
+      "git_blob": "a4fc6f133e608c17eed78a32c2c1fda448496afe"
+    },
+    {
+      "path": "analysis/school-main-window-trajectory-v1-20261020.json",
+      "bytes": 778925,
+      "sha256": "7deba4bf70696b66ae22414d98bb70ad636e1b84029e9c55e53a66af9b787e98",
+      "git_blob": "cd2aa7a5c53258cd9554557252fb1ed75ccd1b8c"
+    },
+    {
+      "path": "analysis/school-main-window-verification-v1-20261020.log",
+      "bytes": 270,
+      "sha256": "656cc3e149e0815d066ea60e7f00b42b0187128bd6bfedffb810f68a20454285",
+      "git_blob": "945d622a14d25df03565868eaaebc63e9947d1d6"
+    },
+    {
+      "path": "docs/school_main_window.md",
+      "bytes": 5993,
+      "sha256": "a7428100376b97181e0be3cc0dfef32344f8019cfffefa6a2d8a2cd8b451b02c",
+      "git_blob": "314003d3b643064066db412195dea054e09d92cc"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 99960,
+      "sha256": "63c2424d42fc564bb7b4de97326b26035dfd04aaf0f0e6948bbff2be1ec7dbb2",
+      "git_blob": "9e5fbadb1e157783fc24de38a5b4b38c12fbdb14"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 58513,
+      "sha256": "0215f359b6c9c3e2c94d19b4b8ce9ced1f6a83f81783fdbb038783379d038cd1",
+      "git_blob": "af54db9a3684be1ac434a97ed2870c7860306175"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 122963,
+      "sha256": "fdf980d0a012ccba2917f8f5234e861124276bae321aabdb34e876967a8c94ac",
+      "git_blob": "5432b1c5109a80ddc4ba3b36f2968b766913b458"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 108583,
+      "sha256": "8b60d9261689d6b0995118b328cdca157bafdef7e9b5e0341380cddb7714b611",
+      "git_blob": "963132f3bebf049c29c5735a50e6ec936e6a5478"
+    },
+    {
+      "path": "tools/school_main_window.py",
+      "bytes": 3832,
+      "sha256": "aed8817da90ce12938e3f518cfe2e94612d5a0c368d8fe70cf7e1a0fc96a7085",
+      "git_blob": "c90f824ca56bd74d68fc54feb29c2058efb7b889"
+    },
+    {
+      "path": "tools/school_main_window_emulation.py",
+      "bytes": 10087,
+      "sha256": "1e3d1dd6ba550622c5a86ad7fd9bdf25ca076fcfea757efea6dfbaeb0b858b9e",
+      "git_blob": "8425ce846810189df2c77907b3899c424bf322b0"
+    },
+    {
+      "path": "tools/school_main_window_platform.cs",
+      "bytes": 12958,
+      "sha256": "8ea5a77e575c327286ac7a89107ebc7bdbacc62244f09ef692dce3149fc4af60",
+      "git_blob": "23993630e96648bef2cfa82da2d04643f59be291"
+    },
+    {
+      "path": "tools/school_main_window_platform.py",
+      "bytes": 2804,
+      "sha256": "bbb69e73913dc1aaa64f8d30fefb67dd96bacce0531c94881ac96ea9c8bca18c",
+      "git_blob": "0dacbdc352c0298ad9b948144fb7775639bfc127"
+    },
+    {
+      "path": "tools/school_main_window_verification.py",
+      "bytes": 13831,
+      "sha256": "e8fb4aef06891ad8af6d6e822f09d6f6165e48ff019fd67ef69760860d4833ee",
+      "git_blob": "2a237d4582f81529f174e94d0223ac36bfd978ed"
+    },
+    {
+      "path": "tools/tests/test_school_main_window.py",
+      "bytes": 1478,
+      "sha256": "2f0c093e5821966f6cb801262eb0e58eeaefc6f7a53626c879a3cb49edeb647d",
+      "git_blob": "eab5357258f654e9bfde17b4422bb1245483d0de"
+    },
+    {
+      "path": "tools/tests/test_school_main_window_emulation.py",
+      "bytes": 5683,
+      "sha256": "32d64b3c7e402c2d6f16df1d67aa116c460e1205a9bcf407f55fd3a21bd08208",
+      "git_blob": "2d9ef27a4849110de11d9f7e8ad0802075398539"
+    },
+    {
+      "path": "tools/tests/test_school_main_window_platform.py",
+      "bytes": 3941,
+      "sha256": "bde275ff602d75f72123ed0341ed032cf39160d76ce1cb5d2916dda1fe92d9cd",
+      "git_blob": "de282702a05dfd92ef2245be75e2701231cba0dd"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-main-window-acceptance-20261020.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

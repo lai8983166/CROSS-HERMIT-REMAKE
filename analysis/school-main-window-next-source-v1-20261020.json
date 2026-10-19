@@ -1,0 +1,119 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "entry": "0x450350",
+  "end": "0x45056c",
+  "function_sha256": "8d0e803db41156b5517e7280ccdc3a6add99d600aa7d5f368eba62b3facb30cf",
+  "instructions": [
+    {
+      "va": "0x45038f",
+      "hex": "ff15f8235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923f8]"
+    },
+    {
+      "va": "0x4503c8",
+      "hex": "ff15fc235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923fc]"
+    },
+    {
+      "va": "0x4503ea",
+      "hex": "c745c480494200",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebp - 0x3c], 0x424980"
+    },
+    {
+      "va": "0x4503f1",
+      "hex": "8b0d28277a00",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [0x7a2728]"
+    },
+    {
+      "va": "0x450416",
+      "hex": "ff15cc235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923cc]"
+    },
+    {
+      "va": "0x45047d",
+      "hex": "ff1508245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592408]"
+    },
+    {
+      "va": "0x4504cf",
+      "hex": "ff150c245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x59240c]"
+    },
+    {
+      "va": "0x450569",
+      "hex": "c21800",
+      "mnemonic": "ret",
+      "operands": "0x18"
+    }
+  ],
+  "imports": [
+    {
+      "slot": "0x5923f8",
+      "descriptor": "0x5fd5e0",
+      "dll": "USER32.dll",
+      "symbol": "SetRect"
+    },
+    {
+      "slot": "0x5923fc",
+      "descriptor": "0x5fd5e0",
+      "dll": "USER32.dll",
+      "symbol": "AdjustWindowRect"
+    },
+    {
+      "slot": "0x5923cc",
+      "descriptor": "0x5fd5e0",
+      "dll": "USER32.dll",
+      "symbol": "LoadIconA"
+    },
+    {
+      "slot": "0x5923c8",
+      "descriptor": "0x5fd5e0",
+      "dll": "USER32.dll",
+      "symbol": "LoadCursorA"
+    },
+    {
+      "slot": "0x592084",
+      "descriptor": "0x5fd5f4",
+      "dll": "GDI32.dll",
+      "symbol": "GetStockObject"
+    },
+    {
+      "slot": "0x592408",
+      "descriptor": "0x5fd5e0",
+      "dll": "USER32.dll",
+      "symbol": "RegisterClassExA"
+    },
+    {
+      "slot": "0x59240c",
+      "descriptor": "0x5fd5e0",
+      "dll": "USER32.dll",
+      "symbol": "CreateWindowExA"
+    }
+  ],
+  "first_rectangle": {
+    "owner_offset": 2236,
+    "arguments": [
+      0,
+      0,
+      1024,
+      768
+    ]
+  },
+  "adjust_style": 2415919104,
+  "WNDCLASSEXA_bytes": 48,
+  "original_callback": "0x424980",
+  "icon_resource_id": 157,
+  "inherited_instance_scalar": 305397760,
+  "inherited_instance_is_live_module": false,
+  "executed": false,
+  "window_created": false,
+  "retained_VM_advanced": false,
+  "next_dependency": "Execute original geometry/WNDCLASSEX setup with exact API buffers; resolve owned real module/icon resources and original callback bridge before actual registration/creation; do not pass inherited scalar12340000 to a real module API"
+}
