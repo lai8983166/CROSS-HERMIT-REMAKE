@@ -1518,4 +1518,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 379. Upstream factory acceptance
 
-- [ ] 379.1 Run new and relevant owner-constructor/platform regression plus strict specs; preserve historical/runtime/save/private VM bytes, document unexecuted context/audio/COM/device/factory-success boundaries and verify exact Git bytes; local commit without push.
+- [x] 379.1 Run new and relevant owner-constructor/platform regression plus strict specs; preserve historical/runtime/save/private VM bytes, document unexecuted context/audio/COM/device/factory-success boundaries and verify exact Git bytes; local commit without push.
