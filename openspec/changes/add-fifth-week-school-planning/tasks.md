@@ -1318,7 +1318,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 329. Owned atlas pixel lock and upload platform
 
-- [ ] 329.1 Fork immutable device helper for bounded owned LockRect/buffer transfer/UnlockRect and inspection-only readonly readback, complete cleanup/refusal/provenance tests and local commit.
+- [x] 329.1 Fork immutable device helper for bounded owned LockRect/buffer transfer/UnlockRect and inspection-only readonly readback, complete cleanup/refusal/provenance tests and local commit.
 
 ## 330. Native pixel conversion and real upload
 
