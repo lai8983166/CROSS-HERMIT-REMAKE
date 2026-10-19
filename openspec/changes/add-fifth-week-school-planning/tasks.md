@@ -1366,7 +1366,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 341. Native distinct second-font construction
 
-- [ ] 341.1 Continue original allocation wrapper/401000/ANSI CRT copy and owner+1094 binding in separate guarded heap; verify full objects/counter/ABI/CPU/retention with fresh/corruption tests, commit locally.
+- [x] 341.1 Continue original allocation wrapper/401000/ANSI CRT copy and owner+1094 binding in separate guarded heap; verify full objects/counter/ABI/CPU/retention with fresh/corruption tests, commit locally.
 
 ## 342. Native second-font atlas admission
 

@@ -52,3 +52,41 @@ class LoopTests(unittest.TestCase):
         for pointer in (SECOND-4096,SECOND,SECOND+8192):
             with self.assertRaisesRegex(RuntimeError,'collides with audit ownership'):
                 e._shadow('DIB',pointer,bytes(32))
+
+
+class ConstructorTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.report = json.loads((ROOT/'analysis/school-font-second-constructor-v1-20261019.json').read_text())
+
+    def test_original_separate_allocation_ANSI_copy_and_fresh_rerun(self):
+        self.assertTrue(verify_report(self.report)['distinct_second_font_constructed'])
+        from tools.school_font_second_emulation import generate
+        self.assertFalse(verify_report(generate('constructor'))['second_caps_queried'])
+
+    def test_allocator_face_size_flags_counter_image_returns_and_binding_refused(self):
+        changes = [lambda c:c['second_constructor']['allocations'][0].update(pointer=0x2300D000),
+            lambda c:c['second_constructor']['allocations'][0]['args'].__setitem__(0,1655),
+            lambda c:c['second_constructor']['entries'][1]['args'].__setitem__(0,0x592CA4),
+            lambda c:c['second_constructor']['entries'][1]['args'].__setitem__(1,12),
+            lambda c:c['second_constructor']['entries'][1]['args'].__setitem__(2,1),
+            lambda c:c['second_constructor']['state'].update(image_sha256=c['second_loop']['state']['image_sha256']),
+            lambda c:c['second_constructor']['returns'][-1].update(sp=0),
+            lambda c:c['second_constructor']['pending'].update(receiver=0x2300D000),
+            lambda c:c['second_constructor'].update(full415F50_returned=True)]
+        for n,f in enumerate(changes):
+            with self.subTest(change=n):
+                bad = deepcopy(self.report)
+                f(bad['cases'][0])
+                with self.assertRaises(ValueError): verify_report(bad)
+
+    def test_rehashed_full_second_heap_face_padding_fields_guards_owner_refused(self):
+        for field,offset in (('heap',4096),('heap',4104),('heap',4176),('heap',4180),
+                             ('heap',5744),('heap',5752),('heap',0),('heap',12287),('owner',0x1094)):
+            bad = deepcopy(self.report)
+            s = bad['cases'][0]['second_constructor']
+            r = s['second_heap'] if field=='heap' else s['state']['owner']
+            raw = bytearray(unpack(r))
+            raw[offset] ^= 1
+            r.update(buffer_evidence(bytes(raw)))
+            with self.assertRaises(ValueError): verify_report(bad)
