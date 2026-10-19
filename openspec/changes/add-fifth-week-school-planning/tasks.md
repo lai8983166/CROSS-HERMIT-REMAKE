@@ -1414,7 +1414,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 353. Native complete second glyph loop
 
-- [ ] 353.1 Continue same second401491 CPU through95 live GDI pairs/380 native UV stores to401660, verify dynamic layout/full pixels/objects/CPU/ABI/retention with fresh/corruption tests; local commit.
+- [x] 353.1 Continue same second401491 CPU through95 live GDI pairs/380 native UV stores to401660, verify dynamic layout/full pixels/objects/CPU/ABI/retention with fresh/corruption tests; local commit.
 
 ## 354. Owned second texture pixel platform
 
