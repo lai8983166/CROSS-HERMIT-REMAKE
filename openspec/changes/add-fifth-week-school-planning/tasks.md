@@ -1442,7 +1442,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 360. Owned second VB and state-block platform
 
-- [ ] 360.1 Fork immutable helper with distinct second VB/two tokens, exact60 state calls and complete/partial cleanup of both fonts; provenance/refusal/retention tests and local commit.
+- [x] 360.1 Fork immutable helper with distinct second VB/two tokens, exact60 state calls and complete/partial cleanup of both fonts; provenance/refusal/retention tests and local commit.
 
 ## 361. Native second vertex buffer
 
