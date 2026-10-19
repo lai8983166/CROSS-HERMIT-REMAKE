@@ -1342,7 +1342,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 335. Owned vertex buffer and state-block platform
 
-- [ ] 335.1 Fork immutable device helper with real bounded VB creation/inspection and exact60 state calls/token ownership, complete/partial cleanup/refusal/provenance tests; commit locally.
+- [x] 335.1 Fork immutable device helper with real bounded VB creation/inspection and exact60 state calls/token ownership, complete/partial cleanup/refusal/provenance tests; commit locally.
 
 ## 336. Native first-font vertex buffer
 
