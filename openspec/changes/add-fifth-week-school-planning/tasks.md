@@ -1459,3 +1459,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 364. Complete font initializer acceptance
 
 - [x] 364.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document remaining caller/manager/upstream/VM boundary and verify exact Git bytes; local commit without push.
+
+## 365. Original font caller source
+
+- [x] 365.1 Derive original success/owner binding, queue allocator/clear and gamma data/call boundary; full-owner projection and source tests; local commit.
+
+## 366. Continuous original manager binding
+
+- [ ] 366.1 Continue original4134E3 through40D970/4142B0 to413505 on same live CPU; verify exact ABI/CPU/complete owner and retained resources with corruption tests; local commit.
+
+## 367. Continuous original queue initialization
+
+- [ ] 367.1 Execute original40DAB0 and two exact declared CRT allocations with complete native zeroing to413513; verify full buffers/guards/counter/CPU/retention with corruption tests; local commit.
+
+## 368. Original gamma generation and device admission
+
+- [ ] 368.1 Execute all original768 gamma stores and416CC0 call preparation to unexecuted416CFA; verify full owner/data/ABI/CPU/retention and fresh two-case trajectory with corruption tests; local commit.
+
+## 369. Font caller acceptance
+
+- [ ] 369.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document device-gamma/full-startup/upstream/VM boundary and verify working/Git bytes; local commit without push.

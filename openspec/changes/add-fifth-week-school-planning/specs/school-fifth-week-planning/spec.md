@@ -1258,3 +1258,14 @@ The audit SHALL execute the pending second font cleanup, real distinct VB/two st
 #### Scenario: Original font initializer returns to its real caller
 - **WHEN** second401810 returns0 to416101 with loop index1
 - **THEN** original increment selects index2, success/SEH restore/ret execute and reach unexecuted4134E3 with exact parent stack/CPU and unchanged complete objects; no413450 suffix/manager/queue/retained VM advancement is inferred
+
+### Requirement: Continuous original startup caller manager and queue admission
+The audit SHALL continue the verified independent font-return CPU through original413450 success handling,40D970 binding and40DAB0 allocation/zeroing, then original gamma generation to the unexecuted416CFA device call. It SHALL preserve the complete native prefix, all resources/snapshots and historical evidence and use only exact explicitly declared CRT allocation responses.
+
+#### Scenario: Original owner and live device bind before queues
+- **WHEN** original415F50 returns0 to4134E3
+- **THEN** the original caller passes its constructed owner to40D970, copies its actual device through4142B0, then allocates and natively clears the4096-layer table and1MiB command arena with full CPU/ABI/buffer/guard verification
+
+#### Scenario: Complete original gamma data stops before device invocation
+- **WHEN** original queues return0 to413513
+- **THEN** original416C40 writes three complete256-entry16-bit channels with value index shifted8, and416CC0 prepares device/flags1/ramp arguments before stopping at unexecuted416CFA; no device gamma change, full413450 return or retained VM advancement is inferred
