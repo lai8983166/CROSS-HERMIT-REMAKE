@@ -1418,7 +1418,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 354. Owned second texture pixel platform
 
-- [ ] 354.1 Fork immutable helper with separate second lock/pitch/buffer/upload ownership, full readback and first-resource retention, complete/partial/refusal/provenance tests; local commit.
+- [x] 354.1 Fork immutable helper with separate second lock/pitch/buffer/upload ownership, full readback and first-resource retention, complete/partial/refusal/provenance tests; local commit.
 
 ## 355. Native second pixel conversion and upload
 
