@@ -9,8 +9,8 @@ from tools.school_font_cache_platform import build_one,COMPILER,sha,machine
 from tools.school_font_second_resource_platform import first_device,create_second,prepare_second,setup,raster,deletion
 from tools.school_font_second_glyph import ROOT,layout
 
-GDI_SOURCE=ROOT/'tools/school_font_second_glyph_gdi.cs'
-GDI_HELPER=ROOT/'.venv-audit/school-font-second-glyph-gdi-v1.exe'
+GDI_SOURCE=ROOT/'tools/school_font_second_glyph_gdi_v2.cs'
+GDI_HELPER=ROOT/'.venv-audit/school-font-second-glyph-gdi-v2.exe'
 DEVICE_SOURCE=ROOT/'tools/school_font_second_glyph_device.cs'
 DEVICE_HELPER=ROOT/'.venv-audit/school-font-second-glyph-device-v1.exe'
 
@@ -88,7 +88,7 @@ def device_probe():
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--kind',choices=('gdi','device'),required=True);a=p.parse_args()
-    path=ROOT/('analysis/school-font-second-glyph-'+a.kind+'-v1-20261019.json')
+    path=ROOT/('analysis/school-font-second-glyph-'+a.kind+('-v2' if a.kind=='gdi' else '-v1')+'-20261019.json')
     if path.exists():p.error('fresh immutable second glyph platform report required')
     source,helper=(GDI_SOURCE,GDI_HELPER) if a.kind=='gdi' else (DEVICE_SOURCE,DEVICE_HELPER)
     build=build_one(source,helper);probe=gdi_probe() if a.kind=='gdi' else device_probe()

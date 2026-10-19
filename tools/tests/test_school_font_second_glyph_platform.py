@@ -5,7 +5,7 @@ from tools.school_font_second_glyph_platform import *
 
 class GDITests(unittest.TestCase):
     def test_immutable_x86_GDI_and_parent(self):
-        r=json.loads((ROOT/'analysis/school-font-second-glyph-gdi-v1-20261019.json').read_text())
+        r=json.loads((ROOT/'analysis/school-font-second-glyph-gdi-v2-20261019.json').read_text())
         self.assertEqual(r['build'],dict(source_sha256=sha(GDI_SOURCE.read_bytes()),helper_sha256=sha(GDI_HELPER.read_bytes()),compiler_sha256=sha(COMPILER.read_bytes()),machine=0x14C))
         with self.assertRaises(ValueError):build_one(GDI_SOURCE,GDI_HELPER)
         old=json.loads((ROOT/'analysis/school-font-second-resource-gdi-v1-20261019.json').read_text())
@@ -15,6 +15,12 @@ class GDITests(unittest.TestCase):
         r=gdi_probe();s=r['second'];self.assertEqual(len(s['calls']),190)
         self.assertEqual(s['after']['completed_glyphs'],95);self.assertNotEqual(s['before']['hex'],s['after']['hex'])
         self.assertEqual(len(bytes.fromhex(s['after']['hex'])),262144)
+        from tools.school_font_second_ink import ink_rectangles
+        import struct
+        measures=[struct.unpack('<2I',bytes.fromhex(r['result']['hex'])) for r in s['calls'] if r['op']=='second_glyph_measure']
+        rows,end=layout(measures);bounds=ink_rectangles(rows,s['after']['ink_inspection'])
+        self.assertEqual(bounds,ink_rectangles(rows,s['before']['ink_inspection']))
+        self.assertEqual((bounds[87]['A'],bounds[87]['B'],bounds[87]['C']),(0,7,-1))
         self.assertTrue(r['cleanup']['all_owned_resources_released']);self.assertEqual(r['cleanup']['native_atlas_bitmaps_released'],1)
         self.assertEqual(r['cleanup']['second_atlas_bitmaps_released'],1)
 
