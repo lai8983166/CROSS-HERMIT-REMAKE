@@ -1426,4 +1426,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 356. Second glyph and upload acceptance
 
-- [ ] 356.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document cleanup/VB/states/full-return/upstream boundary and verify exact Git bytes; local commit without push.
+- [x] 356.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document cleanup/VB/states/full-return/upstream boundary and verify exact Git bytes; local commit without push.
