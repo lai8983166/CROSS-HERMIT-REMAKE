@@ -1479,3 +1479,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 369. Font caller acceptance
 
 - [x] 369.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document device-gamma/full-startup/upstream/VM boundary and verify working/Git bytes; local commit without push.
+
+## 370. Void gamma and complete startup return source
+
+- [x] 370.1 Derive original gamma call/ret4 and413450 success/ret20, explicit void/EAX observation contract and owned x86 capture bytes; source tests and local commit.
+
+## 371. Owned actual gamma platform
+
+- [ ] 371.1 Fork immutable device helper with late method inspection, exact one gamma call/EAX capture, full device/desktop gamma restoration and provenance/refusal/partial cleanup tests; local commit.
+
+## 372. Original gamma call and helper return
+
+- [ ] 372.1 Replay complete original prefix and admit late actual method without CPU repair; execute416CFA and416CC0 natural ret4 to413546 with exact calls/trace/CPU/full memory and corruption tests; local commit.
+
+## 373. Original complete startup success return
+
+- [ ] 373.1 Execute original413546 success0 and413450 epilogue/ret20 to declared root; verify complete saved-register/stack/memory/cleanup and fresh two-case continuous trajectory with corruption tests; local commit.
+
+## 374. Complete startup return acceptance
+
+- [ ] 374.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document actual upstream/cache/retained VM boundary and verify working/Git bytes; local commit without push.

@@ -1,0 +1,130 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "instructions": [
+    {
+      "va": "0x416cfa",
+      "hex": "ff5048",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x48]"
+    },
+    {
+      "va": "0x416cfd",
+      "hex": "3bf4",
+      "mnemonic": "cmp",
+      "operands": "esi, esp"
+    },
+    {
+      "va": "0x416d14",
+      "hex": "c20400",
+      "mnemonic": "ret",
+      "operands": "4"
+    },
+    {
+      "va": "0x413546",
+      "hex": "33c0",
+      "mnemonic": "xor",
+      "operands": "eax, eax"
+    },
+    {
+      "va": "0x41354b",
+      "hex": "83c448",
+      "mnemonic": "add",
+      "operands": "esp, 0x48"
+    },
+    {
+      "va": "0x413550",
+      "hex": "e82b991500",
+      "mnemonic": "call",
+      "operands": "0x56ce80"
+    },
+    {
+      "va": "0x413558",
+      "hex": "c21400",
+      "mnemonic": "ret",
+      "operands": "0x14"
+    }
+  ],
+  "functions": [
+    {
+      "va": "0x416cfa",
+      "end": "0x416d17",
+      "sha256": "c3a4dc582a7695e10ba15d2477c537bca614749dc03cc733c82045147bbb6e11"
+    },
+    {
+      "va": "0x413546",
+      "end": "0x41355b",
+      "sha256": "7ea500799ffb95aabfb873189077e70a5018ac032a047b46ea4fa803b4de148b"
+    },
+    {
+      "va": "0x56ce80",
+      "end": "0x56ce83",
+      "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+    }
+  ],
+  "phases": {
+    "gamma": {
+      "start": "0x416cfa",
+      "stop": "0x413546"
+    },
+    "return": {
+      "start": "0x413546",
+      "stop": "0x22000000"
+    }
+  },
+  "gamma_trace": [
+    "0x416cfa",
+    "0x416cfd",
+    "0x416cff",
+    "0x56ce80",
+    "0x56ce82",
+    "0x416d04",
+    "0x416d05",
+    "0x416d06",
+    "0x416d07",
+    "0x416d0a",
+    "0x416d0c",
+    "0x56ce80",
+    "0x56ce82",
+    "0x416d11",
+    "0x416d13",
+    "0x416d14"
+  ],
+  "return_trace": [
+    "0x413546",
+    "0x413548",
+    "0x413549",
+    "0x41354a",
+    "0x41354b",
+    "0x41354e",
+    "0x413550",
+    "0x56ce80",
+    "0x56ce82",
+    "0x413555",
+    "0x413557",
+    "0x413558"
+  ],
+  "gamma": {
+    "method_offset": 72,
+    "flags": 1,
+    "bytes": 1536,
+    "return_type": "void",
+    "HRESULT_available": false,
+    "EAX": "observed register bits only; no success/failure meaning",
+    "reference": "https://learn.microsoft.com/en-sg/previous-versions/windows/embedded/ms889716(v=msdn.10)"
+  },
+  "capture": {
+    "prefix_hex": "558becff7510ff750cff7508b8",
+    "target_bytes": 4,
+    "suffix_hex": "ffd08be55dc20c00",
+    "bytes": 25,
+    "owned_process_only": true,
+    "original_game_code_patched": false
+  },
+  "gamma_callee_ret_bytes": 4,
+  "startup_ret_bytes": 20,
+  "startup_success": 0,
+  "external_cleanup_restores_device_and_desktop_gamma": true,
+  "real_upstream_caller_executed": false,
+  "inherited_cache_repaired": false,
+  "retained_VM_advanced": false
+}

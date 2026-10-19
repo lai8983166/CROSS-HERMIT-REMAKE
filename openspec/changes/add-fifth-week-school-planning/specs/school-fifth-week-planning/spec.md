@@ -1269,3 +1269,14 @@ The audit SHALL continue the verified independent font-return CPU through origin
 #### Scenario: Complete original gamma data stops before device invocation
 - **WHEN** original queues return0 to413513
 - **THEN** original416C40 writes three complete256-entry16-bit channels with value index shifted8, and416CC0 prepares device/flags1/ramp arguments before stopping at unexecuted416CFA; no device gamma change, full413450 return or retained VM advancement is inferred
+
+### Requirement: Actual void gamma invocation and original startup return
+The audit SHALL continue the same independent original startup CPU at416CFA using an immutable owned x86 device helper, execute the actual gamma method and both original returns, and preserve all prior native state/resources/evidence. It SHALL distinguish undefined EAX register bits from a void API status and restore externally owned gamma state during cleanup.
+
+#### Scenario: Original gamma helper returns naturally
+- **WHEN** both original fonts, manager queues and gamma table are complete at416CFA
+- **THEN** a late actual method inspection preserves CPU and old maps except its declared method mapping, original flags1/ramp call executes on the owned device,416CC0 checks/unwind/ret4 reach413546 with exact ABI/CPU and full retained buffers, and no HRESULT is invented
+
+#### Scenario: Original startup returns success with balanced external state
+- **WHEN** original416CC0 returns to413546
+- **THEN** original success0 and413450 epilogue/ret20 return to the declared root with original saved registers/stack restored, device/desktop gamma and all owned resources are restored/released, and real upstream/retained VM/GPU drawing completion is not inferred
