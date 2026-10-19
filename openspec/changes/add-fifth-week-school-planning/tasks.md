@@ -1314,7 +1314,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 328. Native complete glyph loop
 
-- [ ] 328.1 Freshly replay verified prefix and execute original401491 through all95 measurement/drawing/UV iterations to401660; verify complete source/live memory/CPU/ABI and fresh/corruption tests, commit locally.
+- [x] 328.1 Freshly replay verified prefix and execute original401491 through all95 measurement/drawing/UV iterations to401660; verify complete source/live memory/CPU/ABI and fresh/corruption tests, commit locally.
 
 ## 329. Owned atlas pixel lock and upload platform
 
