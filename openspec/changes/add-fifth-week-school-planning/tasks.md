@@ -1370,7 +1370,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 342. Native second-font atlas admission
 
-- [ ] 342.1 Continue original4010D0 using second size8/flags0 and actual caps to unexecuted40120C; verify full objects/image/owner/maps/guards and pending resource ABI with fresh/corruption tests, commit locally.
+- [x] 342.1 Continue original4010D0 using second size8/flags0 and actual caps to unexecuted40120C; verify full objects/image/owner/maps/guards and pending resource ABI with fresh/corruption tests, commit locally.
 
 ## 343. Second-slot prerequisite acceptance
 
