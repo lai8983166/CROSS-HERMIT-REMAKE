@@ -1350,7 +1350,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 337. Native two state blocks and first-slot return
 
-- [ ] 337.1 Execute both original30-call state-block loops and401810 return to416101, verify all actual calls/tokens/full object/source/CPU/lifetimes and fresh/corruption tests; commit locally.
+- [x] 337.1 Execute both original30-call state-block loops and401810 return to416101, verify all actual calls/tokens/full object/source/CPU/lifetimes and fresh/corruption tests; commit locally.
 
 ## 338. First additional font state acceptance
 

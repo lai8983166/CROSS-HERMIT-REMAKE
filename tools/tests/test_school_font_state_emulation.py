@@ -57,3 +57,34 @@ class VertexTests(unittest.TestCase):
             bad=deepcopy(self.report);s=bad['cases'][0]['font_vertex'];r=s['slot_heap'] if field=='slot' else s['state']['foreign_maps'][0]
             raw=bytearray(unpack(r));raw[offset]^=1;r.update(buffer_evidence(bytes(raw)))
             with self.assertRaises(ValueError):verify_report(bad)
+
+
+class StateBlockTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):cls.report=json.loads((ROOT/'analysis/school-font-state-blocks-v1-20261019.json').read_text())
+
+    def test_two_original_blocks_first_slot_return_and_fresh_rerun(self):
+        self.assertTrue(verify_report(self.report)['first_additional_font_completed'])
+        from tools.school_font_state_emulation import generate
+        self.assertEqual(verify_report(generate('states'))['state_blocks'],2)
+
+    def test_complete_state_order_values_tokens_returns_CPU_and_scope_refused(self):
+        changes=[lambda c:c['font_states']['api_calls'][0]['request'].update(method='end'),
+            lambda c:c['font_states']['api_calls'][1]['request']['args'].__setitem__(0,1),lambda c:c['font_states']['api_calls'][2]['args'].__setitem__(2,0),
+            lambda c:c['font_states']['api_calls'][29]['result'].update(token=0),lambda c:c['font_states']['api_calls'][59]['result'].update(token=c['font_states']['api_calls'][29]['result']['token']),
+            lambda c:c['font_states']['returns'][-1].update(return_va='0x0'),lambda c:c['font_states']['cpu'].update(ECX=1),
+            lambda c:c['font_states'].update(full415F50_returned=True),lambda c:c['device_cleanup'].update(font_state_block_delete_results=[0]),
+            lambda c:c['device_trace'][-2]['reply'].update(id=0)]
+        for n,f in enumerate(changes):
+            with self.subTest(change=n):
+                bad=deepcopy(self.report);f(bad['cases'][0])
+                with self.assertRaises(ValueError):verify_report(bad)
+
+    def test_rehashed_state_tokens_glyph_padding_and_native_write_ownership_refused(self):
+        for offset in (4208,5728,5744,5748,5752):
+            bad=deepcopy(self.report);r=bad['cases'][0]['font_states']['slot_heap'];raw=bytearray(unpack(r));raw[offset]^=1;r.update(buffer_evidence(bytes(raw)))
+            with self.assertRaises(ValueError):verify_report(bad)
+        from tools.school_font_state_emulation import StateEmulator
+        e=StateEmulator.__new__(StateEmulator);e.state_running=True;e.state_phase='states'
+        for at in (0x2300D070,0x80A398,0x20001094):
+            with self.assertRaises(RuntimeError):e._write(None,None,at,4,0,None)
