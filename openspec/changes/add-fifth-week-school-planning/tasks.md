@@ -1410,7 +1410,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 352. Explicit first deleted DIB shadow retirement
 
-- [ ] 352.1 Replay complete prefix, verify actual first native GDI deletion and full shadow bytes, unmap only its guarded audit mapping preserving retired ledger/CPU/other ranges; fresh/corruption tests and local commit.
+- [x] 352.1 Replay complete prefix, verify actual first native GDI deletion and full shadow bytes, unmap only its guarded audit mapping preserving retired ledger/CPU/other ranges; fresh/corruption tests and local commit.
 
 ## 353. Native complete second glyph loop
 
