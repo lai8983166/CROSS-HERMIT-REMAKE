@@ -1,0 +1,220 @@
+{
+  "stage": 378,
+  "phase": "admission",
+  "trajectory": {
+    "path": "analysis/school-upstream-factory-trajectory-v2-20261019.json",
+    "bytes": 2298027,
+    "sha256": "579f594d5930b377a4d482d56a3551d8ad7a1573c205055c7f77457c1dbee4b5"
+  },
+  "verified_trajectory": {
+    "cases": 4,
+    "actual_factory_owner_allocations": 4,
+    "original_constructor_calls_per_case": 42,
+    "window_stop": "0x413450",
+    "game_stop": "0x4500b0",
+    "inherited_cache_and_game_heaps_missing": true,
+    "factory_output_published": false,
+    "device_startup_executed": false,
+    "retained_VM_advanced": false
+  },
+  "same_original_CPU_per_case": true,
+  "standalone_resumable_checkpoint": false,
+  "boundaries": [
+    {
+      "case_index": 0,
+      "factory": "window",
+      "fill": 165,
+      "node": "admission",
+      "node_sha256": "9b37a11c781e12e9f006f76c6aacf2536781fbd3c39ad2013d31afe9df7d6b52",
+      "before_cpu": {
+        "EIP": 4271298,
+        "ESP": 553709456,
+        "EBP": 553709564,
+        "EAX": 536870912,
+        "EBX": 1432778632,
+        "ECX": 553709552,
+        "EDX": 536870912,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4273232,
+        "ESP": 553709432,
+        "EBP": 553709564,
+        "EAX": 640,
+        "EBX": 1432778632,
+        "ECX": 536870912,
+        "EDX": 480,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 6
+      },
+      "pending": {
+        "va": "0x413450",
+        "sp": 553709432,
+        "return_va": "0x412d06",
+        "receiver": 536870912,
+        "args": [
+          324478056,
+          1,
+          1,
+          640,
+          480
+        ],
+        "first_instruction_executed": false
+      },
+      "native_entries": 0,
+      "native_returns": 0,
+      "platform_calls": 0,
+      "original_instruction_observations": 19,
+      "owner_sha256": "06e8991b46cb3242a7c1d0c519d6f3967e2504fda7ca6daaa8e6aaae47e21bd5",
+      "SEH": 553709552
+    },
+    {
+      "case_index": 1,
+      "factory": "window",
+      "fill": 204,
+      "node": "admission",
+      "node_sha256": "7b5c6ba2a7b54b478ee9f90964d399d0d1f239374b91300ff78284af0484a330",
+      "before_cpu": {
+        "EIP": 4271298,
+        "ESP": 553709456,
+        "EBP": 553709564,
+        "EAX": 536870912,
+        "EBX": 1432778632,
+        "ECX": 553709552,
+        "EDX": 536870912,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4273232,
+        "ESP": 553709432,
+        "EBP": 553709564,
+        "EAX": 1024,
+        "EBX": 1432778632,
+        "ECX": 536870912,
+        "EDX": 768,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 6
+      },
+      "pending": {
+        "va": "0x413450",
+        "sp": 553709432,
+        "return_va": "0x412d06",
+        "receiver": 536870912,
+        "args": [
+          324478056,
+          1,
+          1,
+          1024,
+          768
+        ],
+        "first_instruction_executed": false
+      },
+      "native_entries": 0,
+      "native_returns": 0,
+      "platform_calls": 0,
+      "original_instruction_observations": 19,
+      "owner_sha256": "0ec9f8eeb79b1de7e712d48a12f5fbbfb723557d1cd867be47e9d75c70bba3f8",
+      "SEH": 553709552
+    },
+    {
+      "case_index": 2,
+      "factory": "game",
+      "fill": 165,
+      "node": "admission",
+      "node_sha256": "40cfc69bb96722faa101168037d07d01639c7b0a24b0d7184c0c8d9854031da1",
+      "before_cpu": {
+        "EIP": 4523463,
+        "ESP": 553709452,
+        "EBP": 553709564,
+        "EAX": 536870912,
+        "EBX": 1432778632,
+        "ECX": 553709552,
+        "EDX": 536870912,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4522160,
+        "ESP": 553709444,
+        "EBP": 553709564,
+        "EAX": 536870912,
+        "EBX": 1432778632,
+        "ECX": 81136440,
+        "EDX": 536870912,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 6
+      },
+      "pending": {
+        "va": "0x4500b0",
+        "sp": 553709444,
+        "return_va": "0x450606",
+        "receiver": 81136440,
+        "args": [
+          5867352
+        ],
+        "first_instruction_executed": false
+      },
+      "native_entries": 0,
+      "native_returns": 0,
+      "platform_calls": 0,
+      "original_instruction_observations": 12,
+      "owner_sha256": "1f17de86adaa2555486003f1dabc415ff7a5efbeefab44e8e5fc641ad9d2495b",
+      "SEH": 553709552
+    },
+    {
+      "case_index": 3,
+      "factory": "game",
+      "fill": 204,
+      "node": "admission",
+      "node_sha256": "e16828be3d0330ee810a65c486259e658a4304d43856ad130839c787d431a2cd",
+      "before_cpu": {
+        "EIP": 4523463,
+        "ESP": 553709452,
+        "EBP": 553709564,
+        "EAX": 536870912,
+        "EBX": 1432778632,
+        "ECX": 553709552,
+        "EDX": 536870912,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4522160,
+        "ESP": 553709444,
+        "EBP": 553709564,
+        "EAX": 536870912,
+        "EBX": 1432778632,
+        "ECX": 81136440,
+        "EDX": 536870912,
+        "ESI": 2289526357,
+        "EDI": 553709552,
+        "EFLAGS": 6
+      },
+      "pending": {
+        "va": "0x4500b0",
+        "sp": 553709444,
+        "return_va": "0x450606",
+        "receiver": 81136440,
+        "args": [
+          5867352
+        ],
+        "first_instruction_executed": false
+      },
+      "native_entries": 0,
+      "native_returns": 0,
+      "platform_calls": 0,
+      "original_instruction_observations": 12,
+      "owner_sha256": "0ec9f8eeb79b1de7e712d48a12f5fbbfb723557d1cd867be47e9d75c70bba3f8",
+      "SEH": 553709552
+    }
+  ]
+}

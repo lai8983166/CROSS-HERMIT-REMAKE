@@ -1514,7 +1514,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 378. Distinct original factory admissions
 
-- [ ] 378.1 Continue same CPUs to original413450(window) or4500B0(game) entry, preserving actual parameters and inherited missing-context/cache boundaries/output, with fresh four-case trajectory/corruption tests; local commit.
+- [x] 378.1 Continue same CPUs to original413450(window) or4500B0(game) entry, preserving actual parameters and inherited missing-context/cache boundaries/output, with fresh four-case trajectory/corruption tests; local commit.
 
 ## 379. Upstream factory acceptance
 
