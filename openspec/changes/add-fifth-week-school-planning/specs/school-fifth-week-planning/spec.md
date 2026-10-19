@@ -1225,3 +1225,14 @@ The audit SHALL continue the same independent empty-cache CPU after the first ad
 #### Scenario: Separate second object binds and prepares its atlas
 - **WHEN** original428A40 and401000 consume the index1 source tables
 - **THEN** original ANSI copy and owner+1094 assignment create a distinct1656-byte object with size8/flags0, and native4010D0 plus actual caps reaches unexecuted40120C with the correct second output address; first-slot bytes/resources persist and no second atlas/full415F50/retained VM completion is inferred
+
+### Requirement: Original second atlas creation and GDI preparation
+The audit SHALL continue original second40120C through actual distinct owned texture creation and native/GDI setup to unexecuted401491 while preserving first-slot resources, complete native memory/ABI/CPU and historical evidence. Helpers SHALL be immutable new versions with honest resource ownership, auxiliary inspections and complete cleanup.
+
+#### Scenario: Second real texture preserves first resources
+- **WHEN** original second40120C consumes the second-slot output address
+- **THEN** a distinct256-square/format26/pool1 texture is created, first texture/VB/tokens persist, original bitmap header executes and CPU stops before second DC creation
+
+#### Scenario: Second GDI setup prepares its first glyph
+- **WHEN** original code consumes actual second DC/DIB/MulDiv/font/selection/color responses
+- **THEN** size8/flags0/rawANSI name produce height-11/weight400 font arguments and native locals reach first401491 measurement, full prior snapshots remain intact and no second glyph/upload/state/full-return/retained VM completion is inferred

@@ -1375,3 +1375,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 343. Second-slot prerequisite acceptance
 
 - [x] 343.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document second-resource/full-return/upstream boundaries and verify exact Git bytes; commit locally without push.
+
+## 344. Second atlas and font setup source
+
+- [x] 344.1 Derive second texture/header/GDI arithmetic/ANSI LOGFONT ABI and complete-object projections; source tests and local commit.
+
+## 345. Owned second atlas device platform
+
+- [ ] 345.1 Fork immutable x86 helper for distinct second texture after first two state blocks, inspect retained first resources, complete cleanup/refusal/provenance tests and local commit.
+
+## 346. Native second texture and bitmap header
+
+- [ ] 346.1 Replay verified prefix and execute original second40120C/header to pending DC creation; verify complete memory/CPU/ABI/lifetimes with fresh/corruption tests and local commit.
+
+## 347. Owned second GDI preparation platform
+
+- [ ] 347.1 Fork immutable helper with separate second DC/DIB/font, actual8/96/72 and source font arguments, full/partial restoration/cleanup/refusal/provenance tests and local commit.
+
+## 348. Native second GDI preparation
+
+- [ ] 348.1 Continue same CPU through original second GDI/native arithmetic to unexecuted401491; full object/locals/CPU/ABI/maps/snapshot verification with fresh/corruption tests and local commit.
+
+## 349. Second atlas/GDI preparation acceptance
+
+- [ ] 349.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document pending glyph/upload/states/full-return/upstream work and verify exact Git bytes; local commit without push.
