@@ -1498,4 +1498,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 374. Complete startup return acceptance
 
-- [ ] 374.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document actual upstream/cache/retained VM boundary and verify working/Git bytes; local commit without push.
+- [x] 374.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document actual upstream/cache/retained VM boundary and verify working/Git bytes; local commit without push.

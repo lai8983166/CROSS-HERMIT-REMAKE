@@ -1,0 +1,699 @@
+{
+  "baseline": "71fd8ca",
+  "stages": [
+    370,
+    371,
+    372,
+    373,
+    374
+  ],
+  "source_native_commits": [
+    "663b9773a7c9f70affd59a0b1902e918076db6fc",
+    "38600f76eb30b6aa47d5534c96d0b593ad6e42df",
+    "1a10f5a7624bab741a7dd282d7549adf2c20b59f",
+    "e850d5c029f95883bc84eddb310dccbcdb117f16"
+  ],
+  "scope": "Independent empty-cache original413450 startup executes actual owned x86 void gamma method, original416CC0 ret4 and413450 success0/ret20 to the declared root; external gamma/resources restored",
+  "continuous_trajectory": {
+    "report": {
+      "path": "analysis/school-startup-return-trajectory-v1-20261019.json",
+      "bytes": 21001112,
+      "sha256": "b8cb5579176f352b233371cc366ba804c51c22c2fc3ab98a37dafa1aa308f190"
+    },
+    "verified": {
+      "cases": 2,
+      "actual_void_gamma_invoked": true,
+      "original416CC0_returned": true,
+      "original413450_returned": true,
+      "startup_result": 0,
+      "startup_stack_cleanup": 20,
+      "device_and_desktop_gamma_restored": true,
+      "retained_VM_advanced": false,
+      "GPU_drawing_or_Present": false
+    },
+    "device_build": {
+      "source_sha256": "da1816976ae0606561fa61714f159a9bd241c83e07f424d75c98878c1fa0b5e9",
+      "helper_sha256": "907c9baca18258bdeda7ed7412b685fed7ba845d6574eacb80e905809374f72b",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "machine": 332
+    },
+    "platform_build": {
+      "source_sha256": "0cfcdf316a795b098757c86e0c5417310106dca1dcee142e36c9689fa70157d9",
+      "helper_sha256": "6c77d804a6bfb24149cc34f4a698574e6bfdcbaf319b4f9160622807667eb3bc",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "machine": 332
+    },
+    "cases": [
+      {
+        "fill": 165,
+        "dimensions": [
+          640,
+          480
+        ],
+        "original_gamma_pending_CPU": {
+          "EIP": 4287738,
+          "ESP": 553709376,
+          "EBP": 553709468,
+          "EAX": 98498208,
+          "EBX": 1432778632,
+          "ECX": 98497440,
+          "EDX": 98497440,
+          "ESI": 553709388,
+          "EDI": 553709468,
+          "EFLAGS": 2
+        },
+        "late_method": {
+          "pointer": 98497440,
+          "vtable": 98498208,
+          "methods": {
+            "72": 1526178096
+          }
+        },
+        "observed_void_EAX_bits": 0,
+        "final_CPU": {
+          "EIP": 570425344,
+          "ESP": 553709592,
+          "EBP": 287454020,
+          "EAX": 0,
+          "EBX": 1432778632,
+          "ECX": 98497440,
+          "EDX": 98497440,
+          "ESI": 2289526357,
+          "EDI": 1144201745,
+          "EFLAGS": 70
+        },
+        "pending": {
+          "va": "0x22000000",
+          "sp": 553709592,
+          "first_instruction_executed": false
+        },
+        "platform_cleanup": {
+          "second_atlas_fonts_released": 0,
+          "second_atlas_dcs_released": 0,
+          "second_atlas_bitmaps_released": 0,
+          "second_atlas_selection_restored": true,
+          "second_native_GDI_cleanup_executed": true,
+          "second_native_atlas_fonts_released": 1,
+          "second_native_atlas_dcs_released": 1,
+          "second_native_atlas_bitmaps_released": 1,
+          "second_native_bitmap_delete_issued": true,
+          "native_atlas_fonts_released": 1,
+          "native_atlas_dcs_released": 1,
+          "native_atlas_bitmaps_released": 1,
+          "native_bitmap_delete_issued": true,
+          "native_cleanup_completed": true,
+          "atlas_fonts_released": 0,
+          "atlas_dcs_released": 0,
+          "atlas_bitmaps_released": 0,
+          "atlas_selection_restored": true,
+          "fonts_released": 2,
+          "dcs_released": 1,
+          "cache_bitmaps_released": 1,
+          "cache_dcs_released": 1,
+          "cache_selection_restored": true,
+          "all_owned_resources_released": true
+        },
+        "device_cleanup": {
+          "gamma_desktop_restore_write_required": false,
+          "gamma_native_calls": 1,
+          "gamma_device_restored": true,
+          "gamma_desktop_restored": true,
+          "gamma_DCs_acquired": 4,
+          "gamma_DCs_released": 4,
+          "gamma_DCs_balanced": true,
+          "second_font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "second_font_texture_unbind_hr": 0,
+          "second_font_vertex_buffer_release_count": 0,
+          "font_texture_unbind_hr": 0,
+          "font_vertex_buffer_release_count": 0,
+          "second_atlas_texture_release_count": 0,
+          "atlas_texture_release_count": 0,
+          "texture_surface_release_count": 1,
+          "texture_release_count": 0,
+          "extra_reference_release_counts": [
+            3,
+            2,
+            1
+          ],
+          "device_release_count": 0,
+          "factory_release_count": 0,
+          "window_destroyed": true,
+          "all_owned_resources_released": true
+        },
+        "refused_address_collisions": 1
+      },
+      {
+        "fill": 204,
+        "dimensions": [
+          1024,
+          768
+        ],
+        "original_gamma_pending_CPU": {
+          "EIP": 4287738,
+          "ESP": 553709376,
+          "EBP": 553709468,
+          "EAX": 99287520,
+          "EBX": 1432778632,
+          "ECX": 99286752,
+          "EDX": 99286752,
+          "ESI": 553709388,
+          "EDI": 553709468,
+          "EFLAGS": 2
+        },
+        "late_method": {
+          "pointer": 99286752,
+          "vtable": 99287520,
+          "methods": {
+            "72": 1526178096
+          }
+        },
+        "observed_void_EAX_bits": 0,
+        "final_CPU": {
+          "EIP": 570425344,
+          "ESP": 553709592,
+          "EBP": 287454020,
+          "EAX": 0,
+          "EBX": 1432778632,
+          "ECX": 99286752,
+          "EDX": 99286752,
+          "ESI": 2289526357,
+          "EDI": 1144201745,
+          "EFLAGS": 70
+        },
+        "pending": {
+          "va": "0x22000000",
+          "sp": 553709592,
+          "first_instruction_executed": false
+        },
+        "platform_cleanup": {
+          "second_atlas_fonts_released": 0,
+          "second_atlas_dcs_released": 0,
+          "second_atlas_bitmaps_released": 0,
+          "second_atlas_selection_restored": true,
+          "second_native_GDI_cleanup_executed": true,
+          "second_native_atlas_fonts_released": 1,
+          "second_native_atlas_dcs_released": 1,
+          "second_native_atlas_bitmaps_released": 1,
+          "second_native_bitmap_delete_issued": true,
+          "native_atlas_fonts_released": 1,
+          "native_atlas_dcs_released": 1,
+          "native_atlas_bitmaps_released": 1,
+          "native_bitmap_delete_issued": true,
+          "native_cleanup_completed": true,
+          "atlas_fonts_released": 0,
+          "atlas_dcs_released": 0,
+          "atlas_bitmaps_released": 0,
+          "atlas_selection_restored": true,
+          "fonts_released": 2,
+          "dcs_released": 1,
+          "cache_bitmaps_released": 1,
+          "cache_dcs_released": 1,
+          "cache_selection_restored": true,
+          "all_owned_resources_released": true
+        },
+        "device_cleanup": {
+          "gamma_desktop_restore_write_required": false,
+          "gamma_native_calls": 1,
+          "gamma_device_restored": true,
+          "gamma_desktop_restored": true,
+          "gamma_DCs_acquired": 4,
+          "gamma_DCs_released": 4,
+          "gamma_DCs_balanced": true,
+          "second_font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "font_state_block_delete_results": [
+            0,
+            0
+          ],
+          "second_font_texture_unbind_hr": 0,
+          "second_font_vertex_buffer_release_count": 0,
+          "font_texture_unbind_hr": 0,
+          "font_vertex_buffer_release_count": 0,
+          "second_atlas_texture_release_count": 0,
+          "atlas_texture_release_count": 0,
+          "texture_surface_release_count": 1,
+          "texture_release_count": 0,
+          "extra_reference_release_counts": [
+            3,
+            2,
+            1
+          ],
+          "device_release_count": 0,
+          "factory_release_count": 0,
+          "window_destroyed": true,
+          "all_owned_resources_released": true
+        },
+        "refused_address_collisions": 1
+      }
+    ]
+  },
+  "boundary_witnesses": {
+    "gamma": {
+      "report": {
+        "path": "analysis/school-startup-return-gamma-v1-20261019.json",
+        "bytes": 2952,
+        "sha256": "d9cc95a63e6b38685f34cd611c4e703a6ff89bf95b1ed3b785a7766730e0749e"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "startup_gamma",
+          "node_sha256": "da4e6ed43707d1e92ed0992e90bc36d4f88624aaf987e02fb6074270b1d690bd",
+          "before_cpu": {
+            "EIP": 4287738,
+            "ESP": 553709376,
+            "EBP": 553709468,
+            "EAX": 98498208,
+            "EBX": 1432778632,
+            "ECX": 98497440,
+            "EDX": 98497440,
+            "ESI": 553709388,
+            "EDI": 553709468,
+            "EFLAGS": 2
+          },
+          "cpu": {
+            "EIP": 4273478,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 98497440,
+            "EDX": 98497440,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x413546",
+            "sp": 553709480,
+            "first_instruction_executed": false
+          },
+          "api_calls": 1,
+          "returns": 3,
+          "original_instructions": 16,
+          "owner_sha256": "d7a6888e34173add2df5f8f1d33cd34c5253787496c24e8aedf6857b68456f74",
+          "SEH": 0,
+          "method_admission_sha256": "5830264db4e504453c65de8fd70e297157c4158d106d07425cbe86be2101abac"
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "startup_gamma",
+          "node_sha256": "48687034047eaa99be7176584239bd0c3fe3243968af926ed1c4a35f5ec66b1b",
+          "before_cpu": {
+            "EIP": 4287738,
+            "ESP": 553709376,
+            "EBP": 553709468,
+            "EAX": 99287520,
+            "EBX": 1432778632,
+            "ECX": 99286752,
+            "EDX": 99286752,
+            "ESI": 553709388,
+            "EDI": 553709468,
+            "EFLAGS": 2
+          },
+          "cpu": {
+            "EIP": 4273478,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 99286752,
+            "EDX": 99286752,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x413546",
+            "sp": 553709480,
+            "first_instruction_executed": false
+          },
+          "api_calls": 1,
+          "returns": 3,
+          "original_instructions": 16,
+          "owner_sha256": "f7f74e332469f8027b4023517d88362c9ae4df1b6db2dec8b1cacca312444855",
+          "SEH": 0,
+          "method_admission_sha256": "3e6ee7482e51466b2411a7d34965a123c110eae6f4b79274c001eaf4c6e4a104"
+        }
+      ]
+    },
+    "return": {
+      "report": {
+        "path": "analysis/school-startup-return-return-v1-20261019.json",
+        "bytes": 2753,
+        "sha256": "1dfcf443380694c770ce21ccab3702adc5d1760d3e03064c908c6d95c50ba240"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "startup_return",
+          "node_sha256": "14348b7349476af8926274a7b547fb2126e9e004c9e7562d965b9dda3063dba2",
+          "before_cpu": {
+            "EIP": 4273478,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 98497440,
+            "EDX": 98497440,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 570425344,
+            "ESP": 553709592,
+            "EBP": 287454020,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 98497440,
+            "EDX": 98497440,
+            "ESI": 2289526357,
+            "EDI": 1144201745,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x22000000",
+            "sp": 553709592,
+            "first_instruction_executed": false
+          },
+          "api_calls": 0,
+          "returns": 2,
+          "original_instructions": 12,
+          "owner_sha256": "d7a6888e34173add2df5f8f1d33cd34c5253787496c24e8aedf6857b68456f74",
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "startup_return",
+          "node_sha256": "0e98a1ab68a38498283bd8e1808e2d2387b9335ac0618c836cc63c9177e1f4d2",
+          "before_cpu": {
+            "EIP": 4273478,
+            "ESP": 553709480,
+            "EBP": 553709564,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 99286752,
+            "EDX": 99286752,
+            "ESI": 2289526357,
+            "EDI": 553709564,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 570425344,
+            "ESP": 553709592,
+            "EBP": 287454020,
+            "EAX": 0,
+            "EBX": 1432778632,
+            "ECX": 99286752,
+            "EDX": 99286752,
+            "ESI": 2289526357,
+            "EDI": 1144201745,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x22000000",
+            "sp": 553709592,
+            "first_instruction_executed": false
+          },
+          "api_calls": 0,
+          "returns": 2,
+          "original_instructions": 12,
+          "owner_sha256": "f7f74e332469f8027b4023517d88362c9ae4df1b6db2dec8b1cacca312444855",
+          "SEH": 0
+        }
+      ]
+    }
+  },
+  "regression": {
+    "new": 13,
+    "direct_parent": 11,
+    "total": 24,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-startup-return-regression-20261019.log",
+      "bytes": 3507,
+      "sha256": "62503b4028d49fabe95e4193258485968c4b2d21187885b08ba76ed9b3984a49"
+    },
+    "strict_log": {
+      "path": "analysis/school-startup-return-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920"
+    }
+  },
+  "preservation": {
+    "path": "analysis/school-startup-return-preservation-20261019.json",
+    "bytes": 9808,
+    "sha256": "e576aad60aca6fc9ab7dd9d957d836a0593f1613e111bbc011f7e6b25f5200a4",
+    "retained_files": 16342,
+    "save_rules": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "manager_owner": 0,
+    "advanced": false
+  },
+  "authority": {
+    "explicit_empty_cache_experiment": true,
+    "inherited_cache_head_repaired": false,
+    "original_IAT_changed": false,
+    "game_helpers_stubbed": false,
+    "one_continuous_original_CPU_per_case": true,
+    "immutable_new_device_helper_honestly_identified": true,
+    "old_helpers_changed": false,
+    "full_old_prefix_leaf_verifiers_executed": true,
+    "old_reports_or_trace_rewritten": false,
+    "late_actual_method_inspection_is_native_game_call": false,
+    "late_inspection_CPU_and_stack_preserved": true,
+    "original_device_gamma_call_executed": true,
+    "gamma_method_offset": 72,
+    "gamma_flags": 1,
+    "gamma_payload_bytes": 1536,
+    "native_gamma_return_type": "void",
+    "HRESULT_invented": false,
+    "EAX_is_only_observed_register_bits": true,
+    "owned_forwarder_bytes": 25,
+    "forwarder_in_original_game_image": false,
+    "owned_forwarder_released": true,
+    "original416CC0_ret4_executed": true,
+    "original413450_ret20_executed": true,
+    "original413450_result": 0,
+    "full_parent_saved_registers_and_stack_restored": true,
+    "original_objects_pixels_queues_retired_evidence_preserved": true,
+    "device_and_desktop_gamma_restored": true,
+    "all_native_owned_resources_released": true,
+    "gamma_visual_effect_or_hardware_support_proven": false,
+    "native_font_destructor_chain_executed": false,
+    "upstream_caller_executed": false,
+    "upstream_cache_integrated": false,
+    "retained_VM_advanced": false,
+    "GPU_drawing_or_Present": false,
+    "full_outer_frame": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_pointers_resumable": false
+  },
+  "remaining": [
+    "Trace actual startup calls412D01(in412C70)/45067A(in450570), their different inputs/resource preparation, inherited cache lifecycle and outer scheduler before reconnecting retained VM",
+    "Continue normal original VM/task return and complete outer input/world/render scheduling",
+    "Continue dialogue, battle AI/events/effects/victory/rewards and playable integration"
+  ],
+  "progress": "374/374 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": "README.md",
+      "bytes": 62464,
+      "sha256": "956d3047a52c6e6ff1bdb16f80d8a5f5626318cf2074b6af95c0b4281b0e9194",
+      "git_blob": "e52b6da5cbd881ab29c648f53dcb9fed6d9b06b6"
+    },
+    {
+      "path": "analysis/school-startup-return-device-generation-20261019.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "analysis/school-startup-return-device-v1-20261019.json",
+      "bytes": 1962514,
+      "sha256": "cfd273d8e4f4abb91d2c009a4752257dae1cc9a90a63ea30a55f5ac8c0818c82",
+      "git_blob": "7e230b64674485bb13debfc7fbb323d06eb2979e"
+    },
+    {
+      "path": "analysis/school-startup-return-gamma-v1-20261019.json",
+      "bytes": 2952,
+      "sha256": "d9cc95a63e6b38685f34cd611c4e703a6ff89bf95b1ed3b785a7766730e0749e",
+      "git_blob": "e48db8207caa2804f85a0e71e12c4981463bf695"
+    },
+    {
+      "path": "analysis/school-startup-return-platform-tests-20261019.log",
+      "bytes": 660,
+      "sha256": "10a8599dd0d059061626ac658cc0ec40aa1c8397dd94332a119bc1073505a232",
+      "git_blob": "5689bc944932afbdf6495b15401aa72faa05a6f9"
+    },
+    {
+      "path": "analysis/school-startup-return-preservation-20261019.json",
+      "bytes": 9808,
+      "sha256": "e576aad60aca6fc9ab7dd9d957d836a0593f1613e111bbc011f7e6b25f5200a4",
+      "git_blob": "d884c92508bac92424591ca071793a6bd8709b17"
+    },
+    {
+      "path": "analysis/school-startup-return-preservation-generation-20261019.log",
+      "bytes": 197,
+      "sha256": "a08df0c08e5cd2f8daefcbb362984898b03e70977a68447348e305e631621c0b",
+      "git_blob": "2df85ef250a88e8b72930b340ec0d600dfe20da3"
+    },
+    {
+      "path": "analysis/school-startup-return-regression-20261019.log",
+      "bytes": 3507,
+      "sha256": "62503b4028d49fabe95e4193258485968c4b2d21187885b08ba76ed9b3984a49",
+      "git_blob": "2f4930c516e1f7881ed8d31b641d113290de7349"
+    },
+    {
+      "path": "analysis/school-startup-return-return-v1-20261019.json",
+      "bytes": 2753,
+      "sha256": "1dfcf443380694c770ce21ccab3702adc5d1760d3e03064c908c6d95c50ba240",
+      "git_blob": "0b7253cba2e4383565be2359ec78f9c80dabb3e5"
+    },
+    {
+      "path": "analysis/school-startup-return-source-tests-20261019.log",
+      "bytes": 588,
+      "sha256": "3abf32700d43bb44fcf2c8648e22407addf643fe6616461ea89b4a56eed68219",
+      "git_blob": "ecec465546a026233b4ba2efc678a48cbd9af50b"
+    },
+    {
+      "path": "analysis/school-startup-return-source-v1-20261019.json",
+      "bytes": 2833,
+      "sha256": "418412ae68045d55a05d1426fc14ba894b7b5006afff311f699f996d5265ca4f",
+      "git_blob": "7cb428577030d1fd373c62744005b2aab740e607"
+    },
+    {
+      "path": "analysis/school-startup-return-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920",
+      "git_blob": "2e3dc062ee2e6ba39f685fb03105916214d13db9"
+    },
+    {
+      "path": "analysis/school-startup-return-trajectory-generation-20261019.log",
+      "bytes": 136,
+      "sha256": "a51f4467d4f68aa33e3a91cd6416a8e858bf22f25796929618fb4158f7801ceb",
+      "git_blob": "d66e4185751a27e41bd970cb308c005676237672"
+    },
+    {
+      "path": "analysis/school-startup-return-trajectory-v1-20261019.json",
+      "bytes": 21001112,
+      "sha256": "b8cb5579176f352b233371cc366ba804c51c22c2fc3ab98a37dafa1aa308f190",
+      "git_blob": "376c07f0e1aa03410e9f5180493be2e265cd48dc"
+    },
+    {
+      "path": "analysis/school-startup-return-verification-20261019.log",
+      "bytes": 272,
+      "sha256": "25945dcdadbab55c7814c74a885711b71b4673f04d52313e16572d635cd396d7",
+      "git_blob": "d31ca07a946abc002e8afb54e05a330753db8bc1"
+    },
+    {
+      "path": "docs/school_startup_return.md",
+      "bytes": 5329,
+      "sha256": "b49757cff189e3f31aa9fcc80f099331dde4da9f3d382c01e2d5ba9e9d1b271d",
+      "git_blob": "f8419e4e8db2fa282a65d8ef4508baea6bcd5626"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 96233,
+      "sha256": "1135edf097b3099f5a45d98a3cd3f4df35f18dc3b2cea008021da056ac7926cc",
+      "git_blob": "9ef31af03b0a1b2a3cfc13e1c50afe5f58387f2c"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 56352,
+      "sha256": "e36fdca3e83f840cf03fed4342fd000af26b6c0d3ccf2f42f17392ce1c015301",
+      "git_blob": "7b3337d87c36cef93a58473160fb50ed5af70cee"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 119826,
+      "sha256": "54d15583807f7b6f234d9bf6a7cdd5515005e32ba14bfb0d2de28dbe72331485",
+      "git_blob": "70c2d95e4fadb29040d8811421da929e9b2c936f"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 104251,
+      "sha256": "437ab73d20792e6639294dfc6df5e6dca5f7d2e9d94c67c53124aa730fec6c5d",
+      "git_blob": "eecb1c8a749be2c888f48d187e70b847ce9bf7ca"
+    },
+    {
+      "path": "tools/school_startup_return.py",
+      "bytes": 3201,
+      "sha256": "ec14939f85ebd53a87445eaa36a0177d01645308b1a54cd74ab7b1ebca2be7e5",
+      "git_blob": "614ffe6710ff41dac53758f366843a4c48fa5f91"
+    },
+    {
+      "path": "tools/school_startup_return_device.cs",
+      "bytes": 43551,
+      "sha256": "da1816976ae0606561fa61714f159a9bd241c83e07f424d75c98878c1fa0b5e9",
+      "git_blob": "38b38edc5a8e580adc9f767ad26c0b9fc231b035"
+    },
+    {
+      "path": "tools/school_startup_return_emulation.py",
+      "bytes": 10381,
+      "sha256": "65f6fab7f2817f980d93e87e6a3d460f3daefab3fef27d2d849b6931a845d8c6",
+      "git_blob": "6b4f7ae8f4adc6ee24ecbe98f0d6863af353d84a"
+    },
+    {
+      "path": "tools/school_startup_return_platform.py",
+      "bytes": 2506,
+      "sha256": "6ac014544cd5026be0a89c9ce6816d603a3d717cac63b296599344b51df11ff8",
+      "git_blob": "7491684554090b4cf6f91b36efd11ad65bc08a66"
+    },
+    {
+      "path": "tools/school_startup_return_prefix.py",
+      "bytes": 3108,
+      "sha256": "d0f564c44d84cb29ff82c22ac26b5ac3a600ee69a003fa6d10f68c6d8a7755ca",
+      "git_blob": "05f6c63ae651b863de86b170d08b18b940e7e89a"
+    },
+    {
+      "path": "tools/school_startup_return_verification.py",
+      "bytes": 10052,
+      "sha256": "e39831a933c3766411904cd2450669d26683a87512885f9e63e16a37829efb34",
+      "git_blob": "792290f0595a57747235ee9ba3b00439117a7a4f"
+    },
+    {
+      "path": "tools/tests/test_school_startup_return.py",
+      "bytes": 1424,
+      "sha256": "8db6fe94f64fe320c80940d389640c407d675e86f5b3cfe55f3e0d5c046e54e6",
+      "git_blob": "eecbaab586f712de0856d93bf1f45d67a6a88dcb"
+    },
+    {
+      "path": "tools/tests/test_school_startup_return_emulation.py",
+      "bytes": 4961,
+      "sha256": "47d979443496f9f71ee736e1a9103c6ce917d4ab1f2a53d488016a3813c4ee13",
+      "git_blob": "e9dccc0ec800832fee69a8b8520e35d75b71aecf"
+    },
+    {
+      "path": "tools/tests/test_school_startup_return_platform.py",
+      "bytes": 3688,
+      "sha256": "82fdb14bc7c7aca33b9a20eebe7a41fe5c3e27bf6d0e6166f0f55369d9f042c4",
+      "git_blob": "5bc97f0017e5b8be0e22acc9a2669bd96515b706"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-startup-return-acceptance-20261019.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}
