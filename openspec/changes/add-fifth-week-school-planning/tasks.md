@@ -1422,7 +1422,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 355. Native second pixel conversion and upload
 
-- [ ] 355.1 Execute original65536 reads/conversions/writes with guarded new second shadows and real upload/unlock/readback to4017B6; verify full pixels/pitch/order/CPU/retired evidence/first resources with fresh/corruption tests; local commit.
+- [x] 355.1 Execute original65536 reads/conversions/writes with guarded new second shadows and real upload/unlock/readback to4017B6; verify full pixels/pitch/order/CPU/retired evidence/first resources with fresh/corruption tests; local commit.
 
 ## 356. Second glyph and upload acceptance
 

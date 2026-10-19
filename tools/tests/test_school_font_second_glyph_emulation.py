@@ -59,3 +59,38 @@ class RasterTests(unittest.TestCase):
             with self.assertRaises(ValueError):verify_report(bad)
         bad=deepcopy(self.report);r=bad['cases'][0]['second_raster']['inspections'][1]['result'];raw=bytearray.fromhex(r['hex']);raw[-4]^=255;r['hex']=raw.hex()
         with self.assertRaises(ValueError):verify_report(bad)
+
+
+class UploadTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):cls.report=json.loads((ROOT/'analysis/school-font-second-glyph-upload-v2-20261019.json').read_text())
+
+    def test_original65536_pixels_second_readback_and_actual_first_retention_fresh_rerun(self):
+        self.assertTrue(verify_report(self.report)['actual_second_upload_verified'])
+        from tools.school_font_second_glyph_emulation import generate
+        self.assertTrue(verify_report(generate('upload'))['actual_first_texture_readback_unchanged'])
+
+    def test_lock_output_full_pixel_order_both_readbacks_CPU_and_cleanup_refused(self):
+        changes=[lambda c:c['second_upload']['api_calls'][0]['args'].__setitem__(2,0),
+            lambda c:c['second_upload']['api_calls'][1]['result']['retained_first_texture_inspection'].update(hex='00'*131072),
+            lambda c:c['second_upload']['api_calls'][1]['result']['inspection'].update(native_requested=True),
+            lambda c:c['second_upload'].update(native_pixel_reads=65535),lambda c:c['second_upload'].update(write_sequence_sha256='00'*32),
+            lambda c:c['second_upload']['cpu'].update(ESP=0),lambda c:c['second_upload']['locals'].update(y=255),
+            lambda c:c['second_upload'].update(full4010D0_returned=True),lambda c:c['device_cleanup'].update(second_atlas_texture_release_count=1)]
+        for f in changes:
+            bad=deepcopy(self.report);f(bad['cases'][0])
+            with self.assertRaises(ValueError):verify_report(bad)
+
+    def test_retired_evidence_new_pixels_guards_overlap_and_native_ownership_refused(self):
+        for index in range(3):
+            bad=deepcopy(self.report);b=bad['cases'][0]['second_upload']['external_regions'][index]['buffer'];raw=bytearray(unpack_large(b));raw[-1]^=1;b.update(buffer_evidence(bytes(raw)))
+            with self.assertRaises(ValueError):verify_report(bad)
+        bad=deepcopy(self.report);bad['cases'][0]['second_upload']['external_regions'][1]['base']=bad['cases'][0]['second_upload']['external_regions'][0]['base']
+        with self.assertRaises(ValueError):verify_report(bad)
+        from tools.school_font_second_glyph_emulation import SecondGlyphEmulator
+        e=SecondGlyphEmulator.__new__(SecondGlyphEmulator);e.second_glyph_running=False;e.second_pixel_running=True;e.second_bits=0x30001000;e.second_pixel_reads=0
+        for at in (SECOND+112,0x2300D070,0x30001001):
+            if at==0x30001001:
+                with self.assertRaises(RuntimeError):e._slot_read(None,None,at,4,0,None)
+            else:
+                with self.assertRaises(RuntimeError):e._write(None,None,at,4,0,None)
