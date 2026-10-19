@@ -1394,7 +1394,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 348. Native second GDI preparation
 
-- [ ] 348.1 Continue same CPU through original second GDI/native arithmetic to unexecuted401491; full object/locals/CPU/ABI/maps/snapshot verification with fresh/corruption tests and local commit.
+- [x] 348.1 Continue same CPU through original second GDI/native arithmetic to unexecuted401491; full object/locals/CPU/ABI/maps/snapshot verification with fresh/corruption tests and local commit.
 
 ## 349. Second atlas/GDI preparation acceptance
 
