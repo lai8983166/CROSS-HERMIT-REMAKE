@@ -1510,7 +1510,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 377. Original owner construction on parent factory stack
 
-- [ ] 377.1 Execute complete original42-call412E30 and real DC/timer queries to each natural factory return; verify source nesting/full owner/image/guards/CPU/SEH/platform cleanup with corruption tests; local commit.
+- [x] 377.1 Execute complete original42-call412E30 and real DC/timer queries to each natural factory return; verify source nesting/full owner/image/guards/CPU/SEH/platform cleanup with corruption tests; local commit.
 
 ## 378. Distinct original factory admissions
 
