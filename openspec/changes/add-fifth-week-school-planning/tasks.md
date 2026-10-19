@@ -1438,7 +1438,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 359. Native second GDI cleanup and4010D0 return
 
-- [ ] 359.1 Continue same second4017B6 through actual three deletions and native ret4/caller to401810; verify complete memory/CPU/ABI/lifetime/retired snapshots with corruption tests and local commit.
+- [x] 359.1 Continue same second4017B6 through actual three deletions and native ret4/caller to401810; verify complete memory/CPU/ABI/lifetime/retired snapshots with corruption tests and local commit.
 
 ## 360. Owned second VB and state-block platform
 
