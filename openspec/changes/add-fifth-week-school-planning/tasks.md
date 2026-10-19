@@ -1406,7 +1406,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 351. Owned second glyph GDI platform
 
-- [ ] 351.1 Fork immutable helper with independent second95 measurement/draw/inspection state, dynamic metrics and full/partial/refusal/provenance tests; local commit.
+- [x] 351.1 Fork immutable helper with independent second95 measurement/draw/inspection state, dynamic metrics and full/partial/refusal/provenance tests; local commit.
 
 ## 352. Explicit first deleted DIB shadow retirement
 
