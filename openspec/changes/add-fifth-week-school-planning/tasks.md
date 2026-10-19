@@ -1390,7 +1390,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 347. Owned second GDI preparation platform
 
-- [ ] 347.1 Fork immutable helper with separate second DC/DIB/font, actual8/96/72 and source font arguments, full/partial restoration/cleanup/refusal/provenance tests and local commit.
+- [x] 347.1 Fork immutable helper with separate second DC/DIB/font, actual8/96/72 and source font arguments, full/partial restoration/cleanup/refusal/provenance tests and local commit.
 
 ## 348. Native second GDI preparation
 
