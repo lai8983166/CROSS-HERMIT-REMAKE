@@ -1386,7 +1386,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 346. Native second texture and bitmap header
 
-- [ ] 346.1 Replay verified prefix and execute original second40120C/header to pending DC creation; verify complete memory/CPU/ABI/lifetimes with fresh/corruption tests and local commit.
+- [x] 346.1 Replay verified prefix and execute original second40120C/header to pending DC creation; verify complete memory/CPU/ABI/lifetimes with fresh/corruption tests and local commit.
 
 ## 347. Owned second GDI preparation platform
 
