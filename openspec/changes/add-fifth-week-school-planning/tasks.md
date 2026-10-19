@@ -1382,7 +1382,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 345. Owned second atlas device platform
 
-- [ ] 345.1 Fork immutable x86 helper for distinct second texture after first two state blocks, inspect retained first resources, complete cleanup/refusal/provenance tests and local commit.
+- [x] 345.1 Fork immutable x86 helper for distinct second texture after first two state blocks, inspect retained first resources, complete cleanup/refusal/provenance tests and local commit.
 
 ## 346. Native second texture and bitmap header
 

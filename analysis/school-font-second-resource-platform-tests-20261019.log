@@ -1,0 +1,28 @@
+test_distinct_live_atlases_retained_VB_tokens_and_balanced_cleanup (tools.tests.test_school_font_second_resource_platform.DeviceTests) ... FAIL
+test_foreign_early_duplicate_wrong_format_and_partial_cleanup_refused (tools.tests.test_school_font_second_resource_platform.DeviceTests) ... ok
+test_immutable_x86_build_and_preserved_parent (tools.tests.test_school_font_second_resource_platform.DeviceTests) ... ok
+test_actual_second_MulDiv_ANSI_LOGFONT_and_separate_fallback_cleanup (tools.tests.test_school_font_second_resource_platform.GDITests) ... ok
+test_early_duplicate_foreign_wrong_font_and_partial_selection_cleanup_refused (tools.tests.test_school_font_second_resource_platform.GDITests) ... ok
+test_immutable_x86_build_and_preserved_parent (tools.tests.test_school_font_second_resource_platform.GDITests) ... ok
+
+======================================================================
+FAIL: test_distinct_live_atlases_retained_VB_tokens_and_balanced_cleanup (tools.tests.test_school_font_second_resource_platform.DeviceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_font_second_resource_platform.py", line 21, in test_distinct_live_atlases_retained_VB_tokens_and_balanced_cleanup
+    self.assertEqual(second['retention_inspection'],dict(native_requested=False,method='GetLevelDesc(first texture)/GetDesc(first vertex buffer)',first_texture=dict(pointer=first['texture'],hr=0,hex=desc),first_vertex=dict(pointer=first['vertex']['buffer']['pointer'],result=dict(hr=0,hex=struct.pack('<6I',100,6,520,0,8400,0).hex()))))
+AssertionError: {'nat[273 chars]0, 'hex': '000000000000000000000000000000000000000000000000'}}} != {'nat[273 chars]0, 'hex': '64000000060000000802000000000000d020000000000000'}}}
+  {'first_texture': {'hex': '1a00000001000000000000000100000000000200000000000001000000010000',
+                     'hr': 0,
+                     'pointer': 169722000},
+   'first_vertex': {'pointer': 20782464,
+-                   'result': {'hex': '000000000000000000000000000000000000000000000000',
++                   'result': {'hex': '64000000060000000802000000000000d020000000000000',
+                               'hr': 0}},
+   'method': 'GetLevelDesc(first texture)/GetDesc(first vertex buffer)',
+   'native_requested': False}
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.080s
+
+FAILED (failures=1)
