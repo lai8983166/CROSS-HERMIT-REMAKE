@@ -37,3 +37,20 @@ class CleanupTests(Base):
         with self.assertRaises(ValueError):verify_report(bad)
         self.refuse([lambda c:c['platform_cleanup'].update(second_native_atlas_bitmaps_released=0),
             lambda c:c['finish_cleanup']['retired_regions'][0].update(host_release_performed_by_retirement=True)])
+
+
+class VertexTests(Base):
+    def test_native_second_VB_distinct_identity_description_and_output_ABI(self):
+        self.assertEqual(verify_report(self.report)['vertex_buffers'],2)
+        self.refuse([lambda c:c['finish_vertex']['api_calls'][0]['result']['buffer'].update(pointer=c['font_vertex']['api_calls'][0]['result']['buffer']['pointer']),
+            lambda c:c['finish_vertex']['api_calls'][0]['args'].__setitem__(1,8399),
+            lambda c:c['finish_vertex']['api_calls'][0]['args'].__setitem__(5,0x2300D060),
+            lambda c:c['finish_vertex']['api_calls'][0]['result']['inspection']['result'].update(hex='00'*24),
+            lambda c:c['finish_vertex']['entries'][0].update(receiver=0),lambda c:c['finish_vertex']['returns'][0].update(eax=1)])
+
+    def test_complete_second_VB_field_padding_guard_and_owned_maps_refused(self):
+        for offset in (4192,4208,5744,0,12287):
+            bad=deepcopy(self.report);r=bad['cases'][0]['finish_vertex']['second_heap'];raw=bytearray(unpack(r));raw[offset]^=1;r.update(buffer_evidence(bytes(raw)))
+            with self.assertRaises(ValueError):verify_report(bad)
+        self.refuse([lambda c:c['finish_vertex']['state']['foreign_maps'].pop(),
+            lambda c:c['device_cleanup'].update(second_font_vertex_buffer_release_count=1)])

@@ -1446,7 +1446,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 361. Native second vertex buffer
 
-- [ ] 361.1 Execute original second401810 prologue and actual8400-byte VB creation to40186E, verify all native ABI/CPU/complete-object/maps/guards with corruption tests and local commit.
+- [x] 361.1 Execute original second401810 prologue and actual8400-byte VB creation to40186E, verify all native ABI/CPU/complete-object/maps/guards with corruption tests and local commit.
 
 ## 362. Native second two state blocks
 
