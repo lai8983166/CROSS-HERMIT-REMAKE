@@ -1550,7 +1550,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 387. Owned title and duplicate-window platform
 
-- [ ] 387.1 Fork immutable x86 helper for exact title copy and read-only actual FindWindowA after the full constructor, with full buffers/order/refusal/cleanup/provenance tests; local commit.
+- [x] 387.1 Fork immutable x86 helper for exact title copy and read-only actual FindWindowA after the full constructor, with full buffers/order/refusal/cleanup/provenance tests; local commit.
 
 ## 388. Continuous original task-slot initialization
 
