@@ -1470,7 +1470,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 367. Continuous original queue initialization
 
-- [ ] 367.1 Execute original40DAB0 and two exact declared CRT allocations with complete native zeroing to413513; verify full buffers/guards/counter/CPU/retention with corruption tests; local commit.
+- [x] 367.1 Execute original40DAB0 and two exact declared CRT allocations with complete native zeroing to413513; verify full buffers/guards/counter/CPU/retention with corruption tests; local commit.
 
 ## 368. Original gamma generation and device admission
 
