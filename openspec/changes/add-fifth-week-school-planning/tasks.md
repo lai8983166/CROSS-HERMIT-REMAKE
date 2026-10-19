@@ -1338,7 +1338,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 334. Native atlas cleanup and caller return
 
-- [ ] 334.1 Replay verified glyph/upload prefix and execute original4017B6 cleanup/4010D0 return/caller to401810, verify complete source/live ABI/CPU/memory/lifetimes with fresh/corruption tests; commit locally.
+- [x] 334.1 Replay verified glyph/upload prefix and execute original4017B6 cleanup/4010D0 return/caller to401810, verify complete source/live ABI/CPU/memory/lifetimes with fresh/corruption tests; commit locally.
 
 ## 335. Owned vertex buffer and state-block platform
 
