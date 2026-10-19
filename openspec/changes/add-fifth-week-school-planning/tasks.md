@@ -1526,7 +1526,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 381. Owned main-context system platform
 
-- [ ] 381.1 Build immutable hidden x86 helper for two critical sections/event/directory/ANSI path APIs with complete buffers, void-EAX observation, full/partial cleanup and refusal/provenance tests; local commit.
+- [x] 381.1 Build immutable hidden x86 helper for two critical sections/event/directory/ANSI path APIs with complete buffers, void-EAX observation, full/partial cleanup and refusal/provenance tests; local commit.
 
 ## 382. Original main-context allocation
 

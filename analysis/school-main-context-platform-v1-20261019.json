@@ -1,0 +1,64 @@
+{
+  "build": {
+    "source_sha256": "7717ec172e8b2d6160825139cb46fed096ca1c9e333d192cee4c9ba58fd270b1",
+    "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+    "helper_sha256": "d7599ff8c7d2b7febd03368da17b86ba5504c1cc2c36b8e1d2c032bbc6245a53",
+    "machine": 332
+  },
+  "hello": {
+    "pointer_bytes": 4,
+    "acp": 936,
+    "working_directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT",
+    "kernel32_path": "C:\\Windows\\System32\\KERNEL32.dll",
+    "shlwapi_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+    "auxiliary_empty_path_module_probe": true,
+    "window_created": false
+  },
+  "system_modules": {
+    "kernel32_path": {
+      "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+      "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+      "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+      "machine": 332,
+      "WOW64_file_redirection_explicit": true
+    },
+    "shlwapi_path": {
+      "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+      "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+      "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+      "machine": 332,
+      "WOW64_file_redirection_explicit": true
+    }
+  },
+  "CS_host_storage_is_not_moved": true,
+  "VM_bytes_are_opaque_observations": true,
+  "native_return_type": "void",
+  "eax_is_status": false,
+  "auxiliary_path_probe_is_not_native_game_call": true,
+  "documentation": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-initializecriticalsection",
+    "https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-pathaddbackslasha"
+  ],
+  "empty_protocol_trace": [
+    {
+      "request": {
+        "id": 1,
+        "op": "close"
+      },
+      "reply": {
+        "ok": true,
+        "id": 1,
+        "result": {
+          "critical_sections_deleted": 0,
+          "event_handles_closed": 0,
+          "all_owned_resources_released": true
+        }
+      }
+    }
+  ],
+  "empty_cleanup": {
+    "critical_sections_deleted": 0,
+    "event_handles_closed": 0,
+    "all_owned_resources_released": true
+  }
+}

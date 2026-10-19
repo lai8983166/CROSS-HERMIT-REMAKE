@@ -109,10 +109,8 @@ def project_constructor(before,calls):
     for at,n in ((0x6A8,256),(0x5A8,256),(0x7BC,64),(0x8D4,12),
             (0x9EC,260),(0xBF4,260),(0xCF8,260),(0xF00,260),(0x1004,260)):zero(at,n)
     directory=next(r['result'] for r in calls if r['name']=='GetCurrentDirectoryA')
-    text=bytes.fromhex(directory['hex']).split(b'\0',1)[0]+b'\\'
-    if not text.endswith(b'\\\\'):
-        pass
-    else:text=text[:-1]
+    text=bytes.fromhex(directory['hex']).split(b'\0',1)[0]
+    if not text.endswith(b'\\'):text+=b'\\'
     if len(text)+10>260:raise ValueError('main bounded original path')
     for offset in PATHS:
         value=text+(b'SaveData\\' if offset==0x1004 else b'')+b'\0'
