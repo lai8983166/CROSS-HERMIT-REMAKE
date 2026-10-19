@@ -1490,7 +1490,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 372. Original gamma call and helper return
 
-- [ ] 372.1 Replay complete original prefix and admit late actual method without CPU repair; execute416CFA and416CC0 natural ret4 to413546 with exact calls/trace/CPU/full memory and corruption tests; local commit.
+- [x] 372.1 Replay complete original prefix and admit late actual method without CPU repair; execute416CFA and416CC0 natural ret4 to413546 with exact calls/trace/CPU/full memory and corruption tests; local commit.
 
 ## 373. Original complete startup success return
 
