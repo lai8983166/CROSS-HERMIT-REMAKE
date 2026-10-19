@@ -1506,7 +1506,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 376. Original upstream owner allocation
 
-- [ ] 376.1 Execute both real factory prefixes and exact47648-byte declared CRT allocation to412E30 entry with native counter/SEH/CPU/guard/output verification and corruption tests; local commit.
+- [x] 376.1 Execute both real factory prefixes and exact47648-byte declared CRT allocation to412E30 entry with native counter/SEH/CPU/guard/output verification and corruption tests; local commit.
 
 ## 377. Original owner construction on parent factory stack
 

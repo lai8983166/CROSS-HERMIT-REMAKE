@@ -1,0 +1,9 @@
+{
+  "report": {
+    "path": "analysis/school-upstream-factory-trajectory-v1-20261019.json",
+    "bytes": 2298265,
+    "sha256": "1031dc0509f0a4df94c47e97af3a4688555c0e0615e9136d97354b287b3662fd"
+  },
+  "accepted": false,
+  "reason": "Constructor stops in its parent caller, whose stack top is saved EDI, not a return address. Preserve v1 CPU/memory evidence but reject this mislabeled pending.return_va; v2 records stack_top_dword."
+}
