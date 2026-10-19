@@ -77,4 +77,33 @@ class ConstructorTests(unittest.TestCase):
             with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r,'constructor')
 
 
+class PublicationTests(unittest.TestCase):
+    def test_native_publication_keeps_inherited_cache_and_full_object(self):
+        r=verify_report(report())
+        self.assertTrue(r['original_publication_verified'])
+        self.assertFalse(r['retained_VM_advanced'])
+        for c in report()['cases']:
+            self.assertEqual(c['publication']['state']['global_value'],0x20000000)
+            self.assertEqual(c['publication']['state']['owner'],c['constructor']['state']['owner'])
+            self.assertEqual(c['publication']['platform_calls'],[])
+
+    def test_refuses_handwritten_global_and_false_full_WinMain_claim(self):
+        for mutation in ('instruction','global','continuity','scope','saved_register'):
+            r=report();p=r['cases'][0]['publication']
+            if mutation=='instruction':next(w for w in p['native_writes'] if w['pointer']==0x7A4A00)['pc']=0x49DDFE
+            elif mutation=='global':p['state']['global_value']=0x04D60B38
+            elif mutation=='continuity':p['before_cpu']['EIP']+=1
+            elif mutation=='scope':r['WinMain_prelude_executed']=True
+            else:p['cpu']['EBX']=0
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r)
+
+    def test_fresh_two_case_continuous_execution(self):
+        r=generate()
+        self.assertEqual(verify_report(r),verify_report(report()))
+        for c in r['cases']:
+            self.assertEqual(c['constructor']['before_cpu'],c['allocation']['cpu'])
+            self.assertEqual(c['publication']['before_cpu'],c['constructor']['cpu'])
+            self.assertTrue(c['platform_cleanup']['all_owned_resources_released'])
+
+
 if __name__=='__main__':unittest.main()

@@ -1538,7 +1538,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 384. Native main-context global publication
 
-- [ ] 384.1 Continue original49DDEC through49DE01 to49DE15, verify actual global publication, full preserved memory/CPU/parent frame and fresh two-case continuous trajectory; local commit.
+- [x] 384.1 Continue original49DDEC through49DE01 to49DE15, verify actual global publication, full preserved memory/CPU/parent frame and fresh two-case continuous trajectory; local commit.
 
 ## 385. Main-context acceptance
 
