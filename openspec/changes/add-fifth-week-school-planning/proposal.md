@@ -314,3 +314,6 @@ Continue the independent empty-cache first-font CPU at416021 through original165
 
 ## Additional font atlas texture and GDI preparation (2026-10-18)
 Continue the independent declared empty-cache CPU from40120C through real owned additional atlas texture creation, native bitmap-header initialization and real bounded GDI DC/DIB/map mode/MulDiv/font/selection/color/alignment preparation. Stop before the first glyph measurement import at401491; no glyph rasterization, pixel upload, state blocks, full extra font/415F50 or retained VM completion. Fork immutable helpers, verify full objects/image/stack/lifetimes and commit source/device/texture/GDI/native/acceptance separately locally.
+
+## Original glyph rasterization and atlas upload (2026-10-19)
+Continue the independent empty-cache CPU from401491 through all95 original character measurements/draws and native UV stores, then real atlas LockRect, original65536-pixel conversion and real UnlockRect with exact external-memory transfer/readback. Fork immutable owned GDI/device helpers, explicitly distinguish inspection-only GdiFlush/DIB snapshots/readback from native calls, and stop4017B6 before original cleanup. No state blocks, full4010D0/415F50, second font or retained VM completion. Commit source/GDI/raster/device/upload/acceptance separately locally.

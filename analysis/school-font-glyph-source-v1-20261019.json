@@ -1,0 +1,244 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x40144d",
+      "end": "0x4017b6",
+      "sha256": "f7663f6dbab2a6f694173b47f81c5792b4578f3cdf93a7e0f2f294d9ddf6a83c"
+    },
+    {
+      "va": "0x56ce80",
+      "end": "0x56ce83",
+      "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x401463",
+      "hex": "83fa7f",
+      "mnemonic": "cmp",
+      "operands": "edx, 0x7f"
+    },
+    {
+      "va": "0x401491",
+      "hex": "ff15bc205900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5920bc]"
+    },
+    {
+      "va": "0x4014b4",
+      "hex": "7620",
+      "mnemonic": "jbe",
+      "operands": "0x4014d6"
+    },
+    {
+      "va": "0x4014cc",
+      "hex": "8d4c1001",
+      "mnemonic": "lea",
+      "operands": "ecx, [eax + edx + 1]"
+    },
+    {
+      "va": "0x4014fc",
+      "hex": "ff15c0205900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5920c0]"
+    },
+    {
+      "va": "0x401551",
+      "hex": "d95c0170",
+      "mnemonic": "fstp",
+      "operands": "dword ptr [ecx + eax + 0x70]"
+    },
+    {
+      "va": "0x401597",
+      "hex": "c1e204",
+      "mnemonic": "shl",
+      "operands": "edx, 4"
+    },
+    {
+      "va": "0x401641",
+      "hex": "d95c017c",
+      "mnemonic": "fstp",
+      "operands": "dword ptr [ecx + eax + 0x7c]"
+    },
+    {
+      "va": "0x40167e",
+      "hex": "ff5240",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx + 0x40]"
+    },
+    {
+      "va": "0x401713",
+      "hex": "8b1481",
+      "mnemonic": "mov",
+      "operands": "edx, dword ptr [ecx + eax*4]"
+    },
+    {
+      "va": "0x40171c",
+      "hex": "c1ea04",
+      "mnemonic": "shr",
+      "operands": "edx, 4"
+    },
+    {
+      "va": "0x401743",
+      "hex": "81c9ff0f0000",
+      "mnemonic": "or",
+      "operands": "ecx, 0xfff"
+    },
+    {
+      "va": "0x40174f",
+      "hex": "66890a",
+      "mnemonic": "mov",
+      "operands": "word ptr [edx], cx"
+    },
+    {
+      "va": "0x401769",
+      "hex": "66c7010000",
+      "mnemonic": "mov",
+      "operands": "word ptr [ecx], 0"
+    },
+    {
+      "va": "0x401788",
+      "hex": "0385b8feffff",
+      "mnemonic": "add",
+      "operands": "eax, dword ptr [ebp - 0x148]"
+    },
+    {
+      "va": "0x4017ac",
+      "hex": "ff5044",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x44]"
+    }
+  ],
+  "imports": [
+    {
+      "slot": "0x5920bc",
+      "target": "0x76bd5230",
+      "symbol": "GetTextExtentPoint32A",
+      "return_va": "0x401497",
+      "args": 4,
+      "op": "glyph_measure"
+    },
+    {
+      "slot": "0x5920c0",
+      "target": "0x76bd3fd0",
+      "symbol": "ExtTextOutA",
+      "return_va": "0x401502",
+      "args": 8,
+      "op": "glyph_draw"
+    }
+  ],
+  "characters": [
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126
+  ],
+  "atlas": [
+    256,
+    256
+  ],
+  "UV_offset": 112,
+  "UV_bytes": 1520,
+  "raster_stop": "0x401660",
+  "upload_stop": "0x4017b6",
+  "lock_method": 64,
+  "lock_return": "0x401681",
+  "unlock_method": 68,
+  "unlock_return": "0x4017af",
+  "pixel_count": 65536,
+  "pixel_rule": "alpha=blue>>4; word=0 if alpha==0 else (alpha<<12)|0xfff",
+  "original_cleanup_executed": false,
+  "retained_VM_advanced": false
+}

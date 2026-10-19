@@ -1192,3 +1192,14 @@ The audit SHALL execute the pending original atlas texture call and subsequent n
 #### Scenario: Real GDI resources reach first glyph measurement
 - **WHEN** original40127E continues with real DC/DIB/map mode/MulDiv/font/selection/color/alignment calls
 - **THEN** native arithmetic and setup prepare the first character20 measurement at401491, all owned resources are cleaned and no glyph output/upload/additional-font/full-startup or retained VM completion is inferred
+
+### Requirement: Original glyph generation and actual atlas upload
+The audit SHALL execute all95 original measurement/drawing pairs and native UV stores, then original pixel conversion with owned real texture lock/unlock, full external-buffer transfer/readback and exact memory/ABI/CPU verification. It MUST declare GDI flush/snapshots and readonly texture readback as inspection-only, preserve prior evidence and retained VM, and stop before original cleanup/full-font completion.
+
+#### Scenario: Original character loop fills the atlas
+- **WHEN** the pending401491 CPU receives owned actual GDI measurements/drawing responses for characters32..126
+- **THEN** original wrapping and x87 UV stores match all190 platform calls and the full object, actual DIB pixels are captured and401660 remains unexecuted
+
+#### Scenario: Original pixel conversion reaches actual texture memory
+- **WHEN** real LockRect provides its owned pitch/bits and original401660 continues
+- **THEN** every one of65536 native-converted16-bit pixels and pitch padding matches source projection, real UnlockRect/readback verifies the complete buffer and execution stops4017B6 before original cleanup

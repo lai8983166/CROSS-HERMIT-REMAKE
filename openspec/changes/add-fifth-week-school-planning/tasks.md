@@ -1303,3 +1303,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 325. Atlas resource and GDI preparation acceptance
 
 - [x] 325.1 Run new/direct-parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document remaining glyph/upload/state-block/second-font/upstream work, verify exact Git bytes and commit locally without push.
+
+## 326. Glyph and pixel conversion source contract
+
+- [x] 326.1 Derive original95-character GDI/UV/wrap ABI and pixel conversion/texture lock ABI; independent complete-object/pitch projections/source tests and local commit.
+
+## 327. Owned glyph measurement and drawing platform
+
+- [ ] 327.1 Fork immutable x86 GDI helper for exact95 alternating measurements/draws and inspection-only flush/full DIB snapshots, resource/refusal/provenance tests and local commit.
+
+## 328. Native complete glyph loop
+
+- [ ] 328.1 Freshly replay verified prefix and execute original401491 through all95 measurement/drawing/UV iterations to401660; verify complete source/live memory/CPU/ABI and fresh/corruption tests, commit locally.
+
+## 329. Owned atlas pixel lock and upload platform
+
+- [ ] 329.1 Fork immutable device helper for bounded owned LockRect/buffer transfer/UnlockRect and inspection-only readonly readback, complete cleanup/refusal/provenance tests and local commit.
+
+## 330. Native pixel conversion and real upload
+
+- [ ] 330.1 Continue the same CPU through original65536-pixel conversion and actual texture lock/upload/unlock to4017B6, verify all pixels/pitch/guards/source/live ABI/CPU and fresh/corruption tests, commit locally.
+
+## 331. Glyph raster and upload acceptance
+
+- [ ] 331.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document original cleanup/state-block/second-font/upstream boundaries, verify exact Git bytes and commit locally without push.
