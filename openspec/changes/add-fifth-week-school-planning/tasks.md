@@ -1355,3 +1355,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 338. First additional font state acceptance
 
 - [x] 338.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document second-font/full-startup/upstream boundaries, verify exact Git bytes and commit locally without push.
+
+## 339. Second-slot loop and construction source
+
+- [x] 339.1 Derive original success/loop/table/allocation/constructor/caps and eventual exit source; verify separate full-object projections and source tests, commit locally.
+
+## 340. Native successful loop increment
+
+- [ ] 340.1 Replay complete first font and continue actual416101 CPU through success test/index1 to41603D; verify exact trace/CPU/locals and full unchanged memory/resources with fresh/corruption tests, commit locally.
+
+## 341. Native distinct second-font construction
+
+- [ ] 341.1 Continue original allocation wrapper/401000/ANSI CRT copy and owner+1094 binding in separate guarded heap; verify full objects/counter/ABI/CPU/retention with fresh/corruption tests, commit locally.
+
+## 342. Native second-font atlas admission
+
+- [ ] 342.1 Continue original4010D0 using second size8/flags0 and actual caps to unexecuted40120C; verify full objects/image/owner/maps/guards and pending resource ABI with fresh/corruption tests, commit locally.
+
+## 343. Second-slot prerequisite acceptance
+
+- [ ] 343.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document second-resource/full-return/upstream boundaries and verify exact Git bytes; commit locally without push.

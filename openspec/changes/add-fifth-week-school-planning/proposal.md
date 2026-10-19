@@ -320,3 +320,7 @@ Continue the independent empty-cache CPU from401491 through all95 original chara
 
 ## Original atlas cleanup and first additional font device state (2026-10-19)
 Continue the independent empty-cache CPU from4017B6 through original bitmap/DC/font deletion and4010D0 return, then actual401810 vertex-buffer creation and both complete state-block loops to416101. Use fresh immutable owned GDI/device helper versions, distinguish deferred bitmap deletion/inspection/fallback cleanup, validate full native objects/ABI/CPU/lifetimes and preserve all historical/runtime/save/private VM bytes. No second extra font, complete415F50, retained VM or drawing/Present completion. Commit source/GDI/native-cleanup/device/native-VB/native-states/acceptance separately locally.
+
+## Second additional font loop, construction and atlas admission (2026-10-19)
+
+Continue the independent empty-cache CPU at416101 through the original success test and loop increment, then a separate guarded1656-byte allocation,401000 native ANSI face copy and owner+1094 binding. Execute second4010D0 size/scale/caps preparation to unexecuted40120C. Keep the completed first additional font, static font/cache/sprite, full image/owner/stack and pixel snapshots intact. Derive both-loop exit/415F50 return statically without claiming it executes. Reuse unchanged owned x86 helpers for the existing caps operation; no second texture/GDI/upload/state blocks/full startup or retained VM advancement. Commit source, loop, construction, admission and acceptance separately locally without push.

@@ -1,0 +1,346 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "slot_source": {
+    "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "slots": [
+      {
+        "index": 0,
+        "face_pointer": 5844132,
+        "face_hex": "4669786564537973",
+        "size": 12,
+        "flags": 1
+      },
+      {
+        "index": 1,
+        "face_pointer": 5844124,
+        "face_hex": "b2d3a9fac5e920",
+        "size": 8,
+        "flags": 0
+      }
+    ],
+    "allocation_bytes": 1656,
+    "functions": [
+      {
+        "va": "0x416021",
+        "end": "0x4160df",
+        "sha256": "fddc5e3c932805e96bbca3739e81e9b6712f308ede8ec02a852ceaead0fdbad0"
+      },
+      {
+        "va": "0x428a40",
+        "end": "0x428ac6",
+        "sha256": "c10d2633ad4038670f64160b5d8ff60ec77597fe600bf735a3a953115d529401"
+      },
+      {
+        "va": "0x401000",
+        "end": "0x40108d",
+        "sha256": "d3883b2d9a4735d877aa2716fce3c1cdd3289b9c81a38b0dbb97eeaa0ed21498"
+      },
+      {
+        "va": "0x56cd90",
+        "end": "0x56cd97",
+        "sha256": "31c7c51054b39a8a3d95b0c921efa1e98353c95313759c7b45fdea6d1dd12d3a"
+      },
+      {
+        "va": "0x56ce01",
+        "end": "0x56ce80",
+        "sha256": "f0483582a40cf8246c001eecd83d79bcf4c4f47baceb30bd7942d7c5fa79962e"
+      },
+      {
+        "va": "0x56ce80",
+        "end": "0x56ce83",
+        "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+      },
+      {
+        "va": "0x4010d0",
+        "end": "0x40120f",
+        "sha256": "0e6fbacc0d3557280d8927be822ae9358e7473a1ebbe5a69f26f310b32a228fd"
+      }
+    ],
+    "instructions": [
+      {
+        "va": "0x41603d",
+        "hex": "6878060000",
+        "mnemonic": "push",
+        "operands": "0x678"
+      },
+      {
+        "va": "0x416042",
+        "hex": "e8f9290100",
+        "mnemonic": "call",
+        "operands": "0x428a40"
+      },
+      {
+        "va": "0x41605d",
+        "hex": "8b049520f55f00",
+        "mnemonic": "mov",
+        "operands": "eax, dword ptr [edx*4 + 0x5ff520]"
+      },
+      {
+        "va": "0x416068",
+        "hex": "8b148d08f55f00",
+        "mnemonic": "mov",
+        "operands": "edx, dword ptr [ecx*4 + 0x5ff508]"
+      },
+      {
+        "va": "0x416073",
+        "hex": "8b0c8528f55f00",
+        "mnemonic": "mov",
+        "operands": "ecx, dword ptr [eax*4 + 0x5ff528]"
+      },
+      {
+        "va": "0x41607e",
+        "hex": "e87daffeff",
+        "mnemonic": "call",
+        "operands": "0x401000"
+      },
+      {
+        "va": "0x4160a5",
+        "hex": "89948190100000",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + eax*4 + 0x1090], edx"
+      },
+      {
+        "va": "0x4160da",
+        "hex": "e8f1affeff",
+        "mnemonic": "call",
+        "operands": "0x4010d0"
+      },
+      {
+        "va": "0x401025",
+        "hex": "e866bd1600",
+        "mnemonic": "call",
+        "operands": "0x56cd90"
+      },
+      {
+        "va": "0x401033",
+        "hex": "894250",
+        "mnemonic": "mov",
+        "operands": "dword ptr [edx + 0x50], eax"
+      },
+      {
+        "va": "0x40103c",
+        "hex": "895154",
+        "mnemonic": "mov",
+        "operands": "dword ptr [ecx + 0x54], edx"
+      },
+      {
+        "va": "0x40108a",
+        "hex": "c20c00",
+        "mnemonic": "ret",
+        "operands": "0xc"
+      },
+      {
+        "va": "0x401170",
+        "hex": "ff521c",
+        "mnemonic": "call",
+        "operands": "dword ptr [edx + 0x1c]"
+      },
+      {
+        "va": "0x401180",
+        "hex": "3b8d7cffffff",
+        "mnemonic": "cmp",
+        "operands": "ecx, dword ptr [ebp - 0x84]"
+      },
+      {
+        "va": "0x4011e9",
+        "hex": "6a1a",
+        "mnemonic": "push",
+        "operands": "0x1a"
+      },
+      {
+        "va": "0x40120c",
+        "hex": "ff5250",
+        "mnemonic": "call",
+        "operands": "dword ptr [edx + 0x50]"
+      }
+    ],
+    "constructor_stop": "0x4010d0",
+    "atlas_stop": "0x40120c",
+    "caps_method_offset": 28,
+    "texture_method_offset": 80,
+    "texture_parameters": {
+      "levels": 1,
+      "usage": 0,
+      "format": 26,
+      "pool": 1,
+      "output_offset": 92
+    },
+    "retained_VM_advanced": false,
+    "additional_fonts_completed": false
+  },
+  "instructions": [
+    {
+      "va": "0x416101",
+      "hex": "8945ec",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebp - 0x14], eax"
+    },
+    {
+      "va": "0x416104",
+      "hex": "837dec00",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp - 0x14], 0"
+    },
+    {
+      "va": "0x416108",
+      "hex": "7d07",
+      "mnemonic": "jge",
+      "operands": "0x416111"
+    },
+    {
+      "va": "0x416111",
+      "hex": "e914ffffff",
+      "mnemonic": "jmp",
+      "operands": "0x41602a"
+    },
+    {
+      "va": "0x41602a",
+      "hex": "8b4de8",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [ebp - 0x18]"
+    },
+    {
+      "va": "0x41602d",
+      "hex": "83c101",
+      "mnemonic": "add",
+      "operands": "ecx, 1"
+    },
+    {
+      "va": "0x416030",
+      "hex": "894de8",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebp - 0x18], ecx"
+    },
+    {
+      "va": "0x416033",
+      "hex": "837de802",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp - 0x18], 2"
+    },
+    {
+      "va": "0x416037",
+      "hex": "0f84d9000000",
+      "mnemonic": "je",
+      "operands": "0x416116"
+    },
+    {
+      "va": "0x41603d",
+      "hex": "6878060000",
+      "mnemonic": "push",
+      "operands": "0x678"
+    },
+    {
+      "va": "0x4160a5",
+      "hex": "89948190100000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ecx + eax*4 + 0x1090], edx"
+    },
+    {
+      "va": "0x416116",
+      "hex": "33c0",
+      "mnemonic": "xor",
+      "operands": "eax, eax"
+    },
+    {
+      "va": "0x416118",
+      "hex": "8b4df4",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [ebp - 0xc]"
+    },
+    {
+      "va": "0x41611b",
+      "hex": "64890d00000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr fs:[0], ecx"
+    },
+    {
+      "va": "0x41612a",
+      "hex": "e8516d1500",
+      "mnemonic": "call",
+      "operands": "0x56ce80"
+    },
+    {
+      "va": "0x416132",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    }
+  ],
+  "functions": [
+    {
+      "va": "0x416021",
+      "end": "0x416133",
+      "sha256": "015fbcfda4f7876e2ffb2f7fe364fdc68b7175ba20e6df272dea390dedf3b77f"
+    },
+    {
+      "va": "0x428a40",
+      "end": "0x428ac6",
+      "sha256": "c10d2633ad4038670f64160b5d8ff60ec77597fe600bf735a3a953115d529401"
+    },
+    {
+      "va": "0x401000",
+      "end": "0x40108d",
+      "sha256": "d3883b2d9a4735d877aa2716fce3c1cdd3289b9c81a38b0dbb97eeaa0ed21498"
+    },
+    {
+      "va": "0x56cd90",
+      "end": "0x56cd97",
+      "sha256": "31c7c51054b39a8a3d95b0c921efa1e98353c95313759c7b45fdea6d1dd12d3a"
+    },
+    {
+      "va": "0x56ce01",
+      "end": "0x56ce80",
+      "sha256": "f0483582a40cf8246c001eecd83d79bcf4c4f47baceb30bd7942d7c5fa79962e"
+    },
+    {
+      "va": "0x56ce80",
+      "end": "0x56ce83",
+      "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c"
+    },
+    {
+      "va": "0x4010d0",
+      "end": "0x40120f",
+      "sha256": "0e6fbacc0d3557280d8927be822ae9358e7473a1ebbe5a69f26f310b32a228fd"
+    }
+  ],
+  "loop_trace": [
+    "0x416101",
+    "0x416104",
+    "0x416108",
+    "0x416111",
+    "0x41602a",
+    "0x41602d",
+    "0x416030",
+    "0x416033",
+    "0x416037"
+  ],
+  "index": 1,
+  "declared_second_heap": 587272192,
+  "owner_offset": 4244,
+  "allocation_bytes": 1656,
+  "total_declared_allocation_counter_delta": 3600,
+  "phases": {
+    "loop": {
+      "start": "0x416101",
+      "stop": "0x41603d"
+    },
+    "constructor": {
+      "start": "0x41603d",
+      "stop": "0x4010d0"
+    },
+    "atlas": {
+      "start": "0x4010d0",
+      "stop": "0x40120c"
+    }
+  },
+  "return_source": {
+    "success_index": 2,
+    "success_result": 0,
+    "SEH_restore": "0x41611b",
+    "ret": "0x416132",
+    "executed": false
+  },
+  "second_texture_created": false,
+  "full415F50_returned": false,
+  "retained_VM_advanced": false
+}

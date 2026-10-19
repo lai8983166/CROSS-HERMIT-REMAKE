@@ -1214,3 +1214,14 @@ The audit SHALL continue the existing original CPU through its three GDI cleanup
 #### Scenario: First additional font completes device-state initialization
 - **WHEN** original401810 executes on the same first additional font and owned device
 - **THEN** actual8400-byte vertex buffer and two source-ordered state blocks reach original fields, full function returns to416101 and all external resources are released, with second font/full415F50/retained VM/drawing still pending
+
+### Requirement: Original second additional font construction and admission
+The audit SHALL continue the same independent empty-cache CPU after the first additional font return through native loop increment, separate second-slot construction and live caps preparation. It SHALL preserve all first-slot resources and full memory/ABI/CPU evidence, original helpers/history/runtime/save/private VM bytes, and stop before second atlas creation.
+
+#### Scenario: Successful first font advances the original loop
+- **WHEN** the retained independent CPU reaches416101 with first401810 result0
+- **THEN** the original signed success test and loop increment select index1 at41603D without allocation or owner/image/heap mutation
+
+#### Scenario: Separate second object binds and prepares its atlas
+- **WHEN** original428A40 and401000 consume the index1 source tables
+- **THEN** original ANSI copy and owner+1094 assignment create a distinct1656-byte object with size8/flags0, and native4010D0 plus actual caps reaches unexecuted40120C with the correct second output address; first-slot bytes/resources persist and no second atlas/full415F50/retained VM completion is inferred
