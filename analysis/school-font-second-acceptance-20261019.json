@@ -1,0 +1,734 @@
+{
+  "baseline": "1062ccc",
+  "stages": [
+    339,
+    340,
+    341,
+    342,
+    343
+  ],
+  "source_native_commits": [
+    "40394120cb82ab54d7ca2d5e57193c853a2d3a0c",
+    "5a0a1254ea9fb9f3dd51af99ea87a1c2af0bc96a",
+    "472ba76a585248151d6b64a0a324b5ddf1bea4bd",
+    "95f6c75c7656d49da71b71bd871e4bd356ba3afb"
+  ],
+  "scope": "Independent empty-cache original success loop/index1, separate second font ANSI constructor/binding and actual caps to unexecuted40120C",
+  "experiments": {
+    "loop": {
+      "report": {
+        "path": "analysis/school-font-second-loop-v1-20261019.json",
+        "bytes": 8858236,
+        "sha256": "decf95704ae6425f161428671f5ab24ea3f83556fd498b0364684bda52ecdd62"
+      },
+      "verified": {
+        "cases": 2,
+        "phase": "loop",
+        "original_success_loop_executed": true,
+        "distinct_second_font_constructed": false,
+        "second_caps_queried": false,
+        "retained_guarded_heap_bytes": 49152,
+        "second_guarded_heap_bytes": 0,
+        "second_atlas_texture_created": false,
+        "full415F50_returned": false,
+        "retained_VM_advanced": false
+      },
+      "cases": [
+        {
+          "fill": 165,
+          "dimensions": [
+            640,
+            480
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "a373f2732bf115b78674af4a7500293c15cbc895f05d155acd4b7dd00db5a16d"
+          },
+          "final_pending": {
+            "va": "0x41603d",
+            "sp": 553709360,
+            "first_instruction_executed": false
+          },
+          "loop_locals": {
+            "index": 1,
+            "status": 0,
+            "owner": 536870912
+          },
+          "second_heap_pointer": null,
+          "platform_cleanup": {
+            "native_atlas_fonts_released": 1,
+            "native_atlas_dcs_released": 1,
+            "native_atlas_bitmaps_released": 1,
+            "native_bitmap_delete_issued": true,
+            "native_cleanup_completed": true,
+            "atlas_fonts_released": 0,
+            "atlas_dcs_released": 0,
+            "atlas_bitmaps_released": 0,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "font_state_block_delete_results": [
+              0,
+              0
+            ],
+            "font_texture_unbind_hr": 0,
+            "font_vertex_buffer_release_count": 0,
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        },
+        {
+          "fill": 204,
+          "dimensions": [
+            1024,
+            768
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "0207258d025d5a93ab2ae81a7d8ef674ba2dc55c387a715d4f9785813a676b86"
+          },
+          "final_pending": {
+            "va": "0x41603d",
+            "sp": 553709360,
+            "first_instruction_executed": false
+          },
+          "loop_locals": {
+            "index": 1,
+            "status": 0,
+            "owner": 536870912
+          },
+          "second_heap_pointer": null,
+          "platform_cleanup": {
+            "native_atlas_fonts_released": 1,
+            "native_atlas_dcs_released": 1,
+            "native_atlas_bitmaps_released": 1,
+            "native_bitmap_delete_issued": true,
+            "native_cleanup_completed": true,
+            "atlas_fonts_released": 0,
+            "atlas_dcs_released": 0,
+            "atlas_bitmaps_released": 0,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "font_state_block_delete_results": [
+              0,
+              0
+            ],
+            "font_texture_unbind_hr": 0,
+            "font_vertex_buffer_release_count": 0,
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        }
+      ]
+    },
+    "constructor": {
+      "report": {
+        "path": "analysis/school-font-second-constructor-v1-20261019.json",
+        "bytes": 8919385,
+        "sha256": "7336a84b353b785dc645cc981eee3ed86bda73583716585a6f7b0b751dc5ea6d"
+      },
+      "verified": {
+        "cases": 2,
+        "phase": "constructor",
+        "original_success_loop_executed": true,
+        "distinct_second_font_constructed": true,
+        "second_caps_queried": false,
+        "retained_guarded_heap_bytes": 49152,
+        "second_guarded_heap_bytes": 12288,
+        "second_atlas_texture_created": false,
+        "full415F50_returned": false,
+        "retained_VM_advanced": false
+      },
+      "cases": [
+        {
+          "fill": 165,
+          "dimensions": [
+            640,
+            480
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "d2efb5e9b7be88eaf59319a4a4ca202d5c6971cce3138684d3c067b23967a435"
+          },
+          "final_pending": {
+            "va": "0x4010d0",
+            "sp": 553709352,
+            "first_instruction_executed": false,
+            "return_va": "0x4160df",
+            "receiver": 587272192,
+            "args": [
+              171340736
+            ]
+          },
+          "loop_locals": {
+            "index": 1,
+            "status": 0,
+            "owner": 536870912
+          },
+          "second_heap_pointer": 587268096,
+          "platform_cleanup": {
+            "native_atlas_fonts_released": 1,
+            "native_atlas_dcs_released": 1,
+            "native_atlas_bitmaps_released": 1,
+            "native_bitmap_delete_issued": true,
+            "native_cleanup_completed": true,
+            "atlas_fonts_released": 0,
+            "atlas_dcs_released": 0,
+            "atlas_bitmaps_released": 0,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "font_state_block_delete_results": [
+              0,
+              0
+            ],
+            "font_texture_unbind_hr": 0,
+            "font_vertex_buffer_release_count": 0,
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        },
+        {
+          "fill": 204,
+          "dimensions": [
+            1024,
+            768
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "1056335656285a4a30a381db1c95ae4129500d982bd3d453168e3ae906ab9db8"
+          },
+          "final_pending": {
+            "va": "0x4010d0",
+            "sp": 553709352,
+            "first_instruction_executed": false,
+            "return_va": "0x4160df",
+            "receiver": 587272192,
+            "args": [
+              92152672
+            ]
+          },
+          "loop_locals": {
+            "index": 1,
+            "status": 0,
+            "owner": 536870912
+          },
+          "second_heap_pointer": 587268096,
+          "platform_cleanup": {
+            "native_atlas_fonts_released": 1,
+            "native_atlas_dcs_released": 1,
+            "native_atlas_bitmaps_released": 1,
+            "native_bitmap_delete_issued": true,
+            "native_cleanup_completed": true,
+            "atlas_fonts_released": 0,
+            "atlas_dcs_released": 0,
+            "atlas_bitmaps_released": 0,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "font_state_block_delete_results": [
+              0,
+              0
+            ],
+            "font_texture_unbind_hr": 0,
+            "font_vertex_buffer_release_count": 0,
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        }
+      ]
+    },
+    "atlas": {
+      "report": {
+        "path": "analysis/school-font-second-atlas-v1-20261019.json",
+        "bytes": 8972919,
+        "sha256": "37fe886197b9683c6594e19bd3263383719cf3bf7f38739bb905c2dd3302ba6e"
+      },
+      "verified": {
+        "cases": 2,
+        "phase": "atlas",
+        "original_success_loop_executed": true,
+        "distinct_second_font_constructed": true,
+        "second_caps_queried": true,
+        "retained_guarded_heap_bytes": 49152,
+        "second_guarded_heap_bytes": 12288,
+        "second_atlas_texture_created": false,
+        "full415F50_returned": false,
+        "retained_VM_advanced": false
+      },
+      "cases": [
+        {
+          "fill": 165,
+          "dimensions": [
+            640,
+            480
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "ad20f363b9891d02583e1d04375fde13495f86339912e6a389c07a4ecfc867d4"
+          },
+          "final_pending": {
+            "va": "0x40120c",
+            "sp": 553708820,
+            "first_instruction_executed": false,
+            "method_target": 1526183088,
+            "args": [
+              167146400,
+              256,
+              256,
+              1,
+              0,
+              26,
+              1,
+              587272284
+            ],
+            "platform_call_executed": false
+          },
+          "loop_locals": {
+            "index": 1,
+            "status": 0,
+            "owner": 536870912
+          },
+          "second_heap_pointer": 587268096,
+          "platform_cleanup": {
+            "native_atlas_fonts_released": 1,
+            "native_atlas_dcs_released": 1,
+            "native_atlas_bitmaps_released": 1,
+            "native_bitmap_delete_issued": true,
+            "native_cleanup_completed": true,
+            "atlas_fonts_released": 0,
+            "atlas_dcs_released": 0,
+            "atlas_bitmaps_released": 0,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "font_state_block_delete_results": [
+              0,
+              0
+            ],
+            "font_texture_unbind_hr": 0,
+            "font_vertex_buffer_release_count": 0,
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        },
+        {
+          "fill": 204,
+          "dimensions": [
+            1024,
+            768
+          ],
+          "explicit_cache_input": {
+            "mode": "empty",
+            "inherited_head": 81141000,
+            "initial_head": 0,
+            "empty_cache_explicitly_declared": true,
+            "retained_VM_or_source_file_changed": false,
+            "initial_image_sha256": "9a32fda73565758a03942b59684049add4e8fdce93a761269684881c85015cc5"
+          },
+          "final_pending": {
+            "va": "0x40120c",
+            "sp": 553708820,
+            "first_instruction_executed": false,
+            "method_target": 1526183088,
+            "args": [
+              165970752,
+              256,
+              256,
+              1,
+              0,
+              26,
+              1,
+              587272284
+            ],
+            "platform_call_executed": false
+          },
+          "loop_locals": {
+            "index": 1,
+            "status": 0,
+            "owner": 536870912
+          },
+          "second_heap_pointer": 587268096,
+          "platform_cleanup": {
+            "native_atlas_fonts_released": 1,
+            "native_atlas_dcs_released": 1,
+            "native_atlas_bitmaps_released": 1,
+            "native_bitmap_delete_issued": true,
+            "native_cleanup_completed": true,
+            "atlas_fonts_released": 0,
+            "atlas_dcs_released": 0,
+            "atlas_bitmaps_released": 0,
+            "atlas_selection_restored": true,
+            "fonts_released": 2,
+            "dcs_released": 1,
+            "cache_bitmaps_released": 1,
+            "cache_dcs_released": 1,
+            "cache_selection_restored": true,
+            "all_owned_resources_released": true
+          },
+          "device_cleanup": {
+            "font_state_block_delete_results": [
+              0,
+              0
+            ],
+            "font_texture_unbind_hr": 0,
+            "font_vertex_buffer_release_count": 0,
+            "atlas_texture_release_count": 0,
+            "texture_surface_release_count": 1,
+            "texture_release_count": 0,
+            "extra_reference_release_counts": [
+              3,
+              2,
+              1
+            ],
+            "device_release_count": 0,
+            "factory_release_count": 0,
+            "window_destroyed": true,
+            "all_owned_resources_released": true
+          },
+          "address_collisions_refused": 0
+        }
+      ]
+    }
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "owner": 0,
+    "advanced": false
+  },
+  "regression": {
+    "new": 13,
+    "direct_parent": 19,
+    "unique_total": 32,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-font-second-regression-20261019.log",
+      "bytes": 4562,
+      "sha256": "389ef152bc099f7e55d134458a4004184abb8445d225f49a9f7fec129eb2873d"
+    },
+    "reserved_heap_final_code_rerun": {
+      "tests": 9,
+      "log": {
+        "path": "analysis/school-font-second-reserved-heap-tests-20261019.log",
+        "bytes": 1570,
+        "sha256": "cdcdf18bbb6107e41bf8837e6d8db511ffd76b99b53140881f1cfd8a08da1815"
+      }
+    },
+    "strict_log": {
+      "path": "analysis/school-font-second-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920"
+    }
+  },
+  "preservation": {
+    "path": "analysis/school-font-second-preservation-20261019.json",
+    "bytes": 14113,
+    "sha256": "a57bd75b1f9741fe5a41b9e62cfae20493696e304e39f9e7b0a5ada73dc0789c",
+    "retained_files": 16201,
+    "save_rule_fingerprints": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "authority": {
+    "empty_cache_input_is_declared": true,
+    "inherited_cache_head_repaired": false,
+    "original_IAT_changed": false,
+    "game_helpers_stubbed": false,
+    "CRT_adapter_executed": true,
+    "original_success_test_and_increment_executed": true,
+    "index1_from_original_loop": true,
+    "separate1656_byte_CRT_output_declared": true,
+    "original_allocation_counter_delta": 3600,
+    "original_second_ANSI_copy_executed": true,
+    "second_copy_ret": "0x56ce61",
+    "source_face_hex": "b2d3a9fac5e920",
+    "source_size": 8,
+    "source_flags": 0,
+    "original_owner1094_store_executed": true,
+    "first_font_bytes_and_owned_resources_retained": true,
+    "full_prior_heaps_and_guards_unchanged": true,
+    "full_pixel_shadow_snapshots_retained": true,
+    "deleted_DIB_snapshot_not_a_live_handle": true,
+    "second_heap_reserved_against_foreign_and_pixel_maps": true,
+    "actual_second_caps_queried": true,
+    "second_original_CreateTexture_call_prepared": true,
+    "second_texture_created": false,
+    "second_glyphs_uploaded": false,
+    "second_VB_state_blocks_created": false,
+    "full415F50_returned": false,
+    "source_exit_and_SEH_return_are_static_only": true,
+    "retained_VM_advanced": false,
+    "GPU_drawing_or_Present": false,
+    "manager_owner_bound": false,
+    "full_outer_frame": false,
+    "historical_helpers_changed": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_live_pointers_resumable": false
+  },
+  "remaining": [
+    "Second real atlas texture/GDI95 glyphs/65536-pixel upload/cleanup/VB/two state blocks",
+    "Retire first deleted DIB shadow mapping explicitly if a second live DIB reuses its address; retain old snapshot evidence",
+    "Complete original415F50 return, manager owner binding/queues and actual upstream initialization",
+    "Resolve inherited cache missing heap before reconnecting retained VM; later full scheduling/render/AI/dialogue/battle"
+  ],
+  "progress": "343/343 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": "README.md",
+      "bytes": 58171,
+      "sha256": "7495a029e4fb263eafecd2dab19a46df7f1dffcde03575eb2ad471cc13531396",
+      "git_blob": "9b4897aad1ea28e7828d3f3ca8bb4aacb6924b29"
+    },
+    {
+      "path": "analysis/school-font-second-atlas-generation-20261019.log",
+      "bytes": 86,
+      "sha256": "436b67cbd7425844a0b4cbf91dc3bcb7519ce0d188922bb484a93b6bcb57b822",
+      "git_blob": "838f50ddb97a5690af3eef2f44958cd63c10b963"
+    },
+    {
+      "path": "analysis/school-font-second-atlas-v1-20261019.json",
+      "bytes": 8972919,
+      "sha256": "37fe886197b9683c6594e19bd3263383719cf3bf7f38739bb905c2dd3302ba6e",
+      "git_blob": "20aa6a2603ae37f213532bcaa471cb6f2667bf01"
+    },
+    {
+      "path": "analysis/school-font-second-constructor-generation-20261019.log",
+      "bytes": 98,
+      "sha256": "b7f7bc7cad8b26551514bd4037bade86e1cbd4b1e54f3b53d4e3d6f21d4ab739",
+      "git_blob": "fd5fef4b5b5747e5a87621e1867f0a1eb16aac17"
+    },
+    {
+      "path": "analysis/school-font-second-constructor-v1-20261019.json",
+      "bytes": 8919385,
+      "sha256": "7336a84b353b785dc645cc981eee3ed86bda73583716585a6f7b0b751dc5ea6d",
+      "git_blob": "0619c3899bd8e2c457b27d18700f9d3b4f4b34f7"
+    },
+    {
+      "path": "analysis/school-font-second-loop-generation-20261019.log",
+      "bytes": 84,
+      "sha256": "df5f8a02a8d34c91683291ef9be57087c95ebb0bd16f8cc4a80af5c4635bc73e",
+      "git_blob": "ae4c14af751d4b3d296e637a13903113080cc735"
+    },
+    {
+      "path": "analysis/school-font-second-loop-v1-20261019.json",
+      "bytes": 8858236,
+      "sha256": "decf95704ae6425f161428671f5ab24ea3f83556fd498b0364684bda52ecdd62",
+      "git_blob": "0a0f9e61709226830e54b3bbd5a5555ec8cbc9c2"
+    },
+    {
+      "path": "analysis/school-font-second-preservation-20261019.json",
+      "bytes": 14113,
+      "sha256": "a57bd75b1f9741fe5a41b9e62cfae20493696e304e39f9e7b0a5ada73dc0789c",
+      "git_blob": "ae4ea72aeb182bad3779ff862da9a5221e34e5b0"
+    },
+    {
+      "path": "analysis/school-font-second-preservation-generation-20261019.log",
+      "bytes": 197,
+      "sha256": "373ca9aff72cb6de2e956406202066d2715b6decce212770fceb39815b56b617",
+      "git_blob": "9ecf35fb592e9ecb5e7856620ea37d25365a604f"
+    },
+    {
+      "path": "analysis/school-font-second-regression-20261019.log",
+      "bytes": 4562,
+      "sha256": "389ef152bc099f7e55d134458a4004184abb8445d225f49a9f7fec129eb2873d",
+      "git_blob": "9145a85b2d01835299df674602345f44e2776672"
+    },
+    {
+      "path": "analysis/school-font-second-reserved-heap-tests-20261019.log",
+      "bytes": 1570,
+      "sha256": "cdcdf18bbb6107e41bf8837e6d8db511ffd76b99b53140881f1cfd8a08da1815",
+      "git_blob": "c65bac26d49c8babfc3f9d5a99c3b94d4919d4b8"
+    },
+    {
+      "path": "analysis/school-font-second-source-tests-20261019.log",
+      "bytes": 523,
+      "sha256": "f9dc0ecf966876a12c16a56d0f656536a6f5aebb463eb0de36c9529253041424",
+      "git_blob": "0d255855b7b9c03a88199077ffbff67d6b63a0a8"
+    },
+    {
+      "path": "analysis/school-font-second-source-v1-20261019.json",
+      "bytes": 8164,
+      "sha256": "3e610e004dab4a1efee1bf09ae3c7380d8886e58f358ca74ebd0d11957a1a3d4",
+      "git_blob": "82a5172dbd567f79c66bff0d3dc4fa0d791134c0"
+    },
+    {
+      "path": "analysis/school-font-second-strict-20261019.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920",
+      "git_blob": "2e3dc062ee2e6ba39f685fb03105916214d13db9"
+    },
+    {
+      "path": "docs/school_font_second.md",
+      "bytes": 4463,
+      "sha256": "975dc012361303b9dab30563ba4e6a8f13a0a5cadcfb4a4583899fee9bbff080",
+      "git_blob": "e83446f5339225e7ac8b3524665e493c9e756393"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 89551,
+      "sha256": "18d508f0c594e877e5014e72afc41c22059c8c175212211e895a78264cf0a720",
+      "git_blob": "3dd6d2a44fb2d4357148d673e3186973c2f286f7"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 52687,
+      "sha256": "7051120d67313503a1888ddfe2baa14f6e6937d253a75eeaeb92e009ec576778",
+      "git_blob": "ba2804332f34a9c93ad109d8c19ff28355980381"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 113819,
+      "sha256": "cb32bfc72e3652790614e2ce0bf3b44a303ac18230f15fd07b1979de9eecc391",
+      "git_blob": "5b5036d4c70a943da9c46b5c1600179818c9b878"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 96672,
+      "sha256": "a19cbf7727e53c8a6cad996bdae8da80e54b1ef7e4be84d1609162b891244021",
+      "git_blob": "12c9197ffbdfe4199870b3c7a62583d5bf9e38be"
+    },
+    {
+      "path": "tools/school_font_second.py",
+      "bytes": 3433,
+      "sha256": "d6c8683d98a09c086dd0ac4dd8717167656881cac54e2ba66ea42c76a199da13",
+      "git_blob": "8ca5bd4b56594087b28d163a6feced9683c7af5f"
+    },
+    {
+      "path": "tools/school_font_second_emulation.py",
+      "bytes": 11284,
+      "sha256": "0cdd8215b96cf613ddd753a4e4538498c9221ce53ec35a2de50a0af45b84290f",
+      "git_blob": "ca9b2d4741d7ebe7ca30987bc6e44647b6dfb544"
+    },
+    {
+      "path": "tools/school_font_second_verification.py",
+      "bytes": 13175,
+      "sha256": "8b883d7eea790c80f68006f5aa6a2b3926504ea714f4cf2d644d87f1a8868a1c",
+      "git_blob": "39ca32b7ea3cad8eff222c2afa2a2ef6b969e137"
+    },
+    {
+      "path": "tools/tests/test_school_font_second.py",
+      "bytes": 1790,
+      "sha256": "9bf408163cd5645a8e55003afc0b94a811b0878273b316769c6b41c2e304f3c4",
+      "git_blob": "8bc5ee1a5ff232f30d8181ed58edc7f13d2c7608"
+    },
+    {
+      "path": "tools/tests/test_school_font_second_emulation.py",
+      "bytes": 7799,
+      "sha256": "942b438ee50d33e195a278c2b61a667609bfc94fed70a8acf3009bdc7a349ea9",
+      "git_blob": "24c251819cbd7dc4b9c1c16d676650274e807865"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-font-second-acceptance-20261019.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

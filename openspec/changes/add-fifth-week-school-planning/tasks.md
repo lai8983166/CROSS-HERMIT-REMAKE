@@ -1374,4 +1374,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 343. Second-slot prerequisite acceptance
 
-- [ ] 343.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document second-resource/full-return/upstream boundaries and verify exact Git bytes; commit locally without push.
+- [x] 343.1 Run new/direct-parent regression/strict specs, preserve historical/runtime/save/private VM bytes, document second-resource/full-return/upstream boundaries and verify exact Git bytes; commit locally without push.
