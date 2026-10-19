@@ -1486,7 +1486,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 371. Owned actual gamma platform
 
-- [ ] 371.1 Fork immutable device helper with late method inspection, exact one gamma call/EAX capture, full device/desktop gamma restoration and provenance/refusal/partial cleanup tests; local commit.
+- [x] 371.1 Fork immutable device helper with late method inspection, exact one gamma call/EAX capture, full device/desktop gamma restoration and provenance/refusal/partial cleanup tests; local commit.
 
 ## 372. Original gamma call and helper return
 
