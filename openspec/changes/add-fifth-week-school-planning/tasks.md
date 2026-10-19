@@ -1362,7 +1362,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 340. Native successful loop increment
 
-- [ ] 340.1 Replay complete first font and continue actual416101 CPU through success test/index1 to41603D; verify exact trace/CPU/locals and full unchanged memory/resources with fresh/corruption tests, commit locally.
+- [x] 340.1 Replay complete first font and continue actual416101 CPU through success test/index1 to41603D; verify exact trace/CPU/locals and full unchanged memory/resources with fresh/corruption tests, commit locally.
 
 ## 341. Native distinct second-font construction
 
