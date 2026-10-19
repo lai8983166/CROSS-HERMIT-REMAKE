@@ -1558,7 +1558,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 389. Actual original duplicate-window wrapper return
 
-- [ ] 389.1 Admit only the new import trap without CPU repair, execute original title copy and4293E0 actual query/boolean/natural return to49DE53; exact full memory/ABI/result/cleanup tests; local commit.
+- [x] 389.1 Admit only the new import trap without CPU repair, execute original title copy and4293E0 actual query/boolean/natural return to49DE53; exact full memory/ABI/result/cleanup tests; local commit.
 
 ## 390. Observed native branch and next body admission
 
