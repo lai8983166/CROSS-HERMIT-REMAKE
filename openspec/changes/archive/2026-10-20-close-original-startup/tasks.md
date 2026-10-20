@@ -10,4 +10,4 @@
 
 ## 3. Startup lifetime and R1 acceptance
 
-- [ ] 3.1 Verify source-driven required shutdown/error paths and a reproducible complete startup handoff, run relevant regression/strict specs/historical-save-checkpoint preservation, and update R1 to complete only when all its functional criteria pass; commit acceptance locally without push.
+- [x] 3.1 Verify source-driven required shutdown/error paths and a reproducible complete startup handoff, run relevant regression/strict specs/historical-save-checkpoint preservation, and update R1 to complete only when all its functional criteria pass; commit acceptance locally without push.

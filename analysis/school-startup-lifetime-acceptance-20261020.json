@@ -1,0 +1,174 @@
+{
+  "baseline": "476d93a807c23641cfec1ec3af32aef59b2ca4ed",
+  "initialization_commit": "ee99b729d5528c1513613d9c86e0bf3ed2a5dd12",
+  "change": "close-original-startup",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "R1_complete": true,
+  "archive": "openspec/changes/archive/2026-10-20-close-original-startup",
+  "master": "openspec/specs/reverse-engineering/completion/spec.md",
+  "native_evidence": {
+    "path": "analysis/school-startup-lifetime-native-v3-20261020.json",
+    "sha256": "3a87cdcc7667070a2b6f4208538e1f9f5f1eb13eb07d44b4f4f1084950627445",
+    "independent_cases": 2,
+    "source_proof": "analysis/school-startup-lifetime-verification-v1-20261020.json",
+    "additional_save_protection_lifecycle": "analysis/school-startup-lifetime-save-recheck-20261020.json"
+  },
+  "scope": {
+    "native_startup_factory_loop_and_game_cleanup": true,
+    "complete_guest_WinMain_replay": false,
+    "retained_VM_advanced": false,
+    "R2_complete": false,
+    "Godot_changed": false,
+    "required_old_heap_or_expired_handles_reused": false,
+    "retained_VM": "40E2D0 / PC224 / wait1 / manager owner0",
+    "protector_child_status": "0xC0000354 recorded separately from normal game cleanup and source WinMain return",
+    "source_errors": "real owned duplicate startup plus six explicitly isolated source branch probes; no invented native error results"
+  },
+  "regression": {
+    "path": "analysis/school-startup-lifetime-regression-v1-20261020.log",
+    "tests": 42,
+    "passed": true
+  },
+  "strict_specs": {
+    "before_archive": 32,
+    "after_archive": 31,
+    "failed": 0,
+    "note": "The completed change left active validation; main specs retained"
+  },
+  "preservation": {
+    "path": "analysis/school-startup-lifetime-preservation-20261020.json",
+    "historical_raw_files": 16589,
+    "previous_unit_frozen_artifacts_unchanged": 20,
+    "previous_unit_intentional_docs_planning_updates": 5,
+    "previous_unit_update_snapshot_commit": "ee99b72",
+    "save_rules": 10,
+    "private_checkpoints": 9,
+    "actual_installed_save_inventory_unchanged": true,
+    "downloaded_original_unchanged": true,
+    "original_save_note": "Installed save differs from download and has2026-10-02 mtime; extra before/after complete lifecycle leaves it unchanged. Neither installed bytes nor download were replaced.",
+    "final_workflow_updates": "Task completion, master status, completed-change relocation and acceptance docs are the only tracked edits after ee99b72; archive report preserves exact4 artifact bytes"
+  },
+  "next": "R2: recreate/retain the proven owner/cache/platform graph in one valid lifetime, connect original renderer to retained VM, inspect actual rectangle/text output",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 18118,
+      "sha256": "eb75ff5bc55e5dc8a7df1b4fda5c7c6bad3729dc9eea560fb8657d1e59995574",
+      "git_blob": "462465344043373e1b030a8e766604f77f53b73e"
+    },
+    {
+      "path": "tools/school_startup_lifetime.py",
+      "bytes": 12988,
+      "sha256": "9199bbd3a645b9a3886ca8309cd46be466582812beb396b1446d85c826deef9b",
+      "git_blob": "256421252cb00cfb879dc2cd0a89d5055bef95b4"
+    },
+    {
+      "path": "tools/school_startup_lifetime_verification.py",
+      "bytes": 17551,
+      "sha256": "851ad35268196a6f5f520d355c548dd988f0dbef9a828316e440220213e21394",
+      "git_blob": "7baeb677ac8132902cfd9171504e2b7c50d83a07"
+    },
+    {
+      "path": "tools/tests/test_school_startup_lifetime.py",
+      "bytes": 3936,
+      "sha256": "1c27135718951d43db00ea3395ff63c08d0bbc13d58756f4b1d6bd3431a480fe",
+      "git_blob": "bcdc2c8e2c6a79a60365bbad9952ff8602ae5419"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-native-v3-20261020.json",
+      "bytes": 656173,
+      "sha256": "3a87cdcc7667070a2b6f4208538e1f9f5f1eb13eb07d44b4f4f1084950627445",
+      "git_blob": "443272e563ed7b8aa8003ad2fe8004ace9b71a24"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-verification-v1-20261020.json",
+      "bytes": 28607,
+      "sha256": "a1a1848ad6b1ba1dfff07db3f382db62ba1808ec962bfc4156bd38366f3e9e65",
+      "git_blob": "92943ec33d2b8a5853b809b2ffc562914814e6fa"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-regression-v1-20261020.log",
+      "bytes": 6130,
+      "sha256": "27ed1bce8b1d3c65fb69b140ce4c830f6c8c2637e778f3f0e2682a9d766a04f0",
+      "git_blob": "83f6e03e0dc9898ecb35a104ef5430641ca7a84d"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-save-recheck-20261020.json",
+      "bytes": 319252,
+      "sha256": "a93951ff2f33e6da888cf4eef52ac640bc6ebde4d87e3e048535496032762395",
+      "git_blob": "b226b15c98f71726e5625b4c74780872c3ac593d"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-preservation-20261020.json",
+      "bytes": 14175,
+      "sha256": "dfd18eb27926b1f25f5144a7bb78bd5d09cf1bbc61fa9573ed954f53e91f2556",
+      "git_blob": "8fb35ced27997e41e62a21657f9b3b1669482b79"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-archive-20261020.json",
+      "bytes": 1423,
+      "sha256": "65df460997005d242a247b83e3fdfa0c62e0554328ac84c22a33e275748ca297",
+      "git_blob": "0e3fe9ea68dc21a8758373c743965ea413776e92"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-strict-v1-20261020.log",
+      "bytes": 3320,
+      "sha256": "7017852077369265b0124b275560fd91c48919abce22ac656140bbc5e838854a",
+      "git_blob": "3690c02b627600e38724216f150a219afca9f0a6"
+    },
+    {
+      "path": "analysis/school-startup-lifetime-strict-final-20261020.log",
+      "bytes": 3161,
+      "sha256": "074efb329e42a2f05d363c9d0517b551bcacb02cd01bf82a9c07944b9acb8ce5",
+      "git_blob": "8f4963d58f130f5e62a525fdbe321997e9894db3"
+    },
+    {
+      "path": "docs/school_startup_window.md",
+      "bytes": 4453,
+      "sha256": "70f13e493e014dc65507da6a15476485bc5a0427fb4105b6c6148601a8516ed8",
+      "git_blob": "936647d16baba1287bf6f502b7d1c98cdccd605d"
+    },
+    {
+      "path": "docs/school_startup_lifetime.md",
+      "bytes": 8631,
+      "sha256": "1a77abc7a012f1f87f1e195633ca765cc6d560a46a05fe137ba9a62e2b24f348",
+      "git_blob": "ca2bea8d52b8774ae189528220d2621e132b361a"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 7886,
+      "sha256": "2f316fc5bfe9700c08005e760476d3431588137e1873f20dfacc6a5673b0fd8f",
+      "git_blob": "da588ef3c24e2797796706e769bf404891324135"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-20-close-original-startup/.openspec.yaml",
+      "bytes": 58,
+      "sha256": "f12ab9c51f3081073092dbac4a59cc7d4bc3beba90f63cd6bbc7246c3a4c3d64",
+      "git_blob": "7fb93d05059762e40dc47641cae45f3f6721d2b5"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-20-close-original-startup/design.md",
+      "bytes": 3010,
+      "sha256": "aff8a1fbab7e425b56c6aceea444fdbb1b690285370bc8c9fdeb89402c4c7a2d",
+      "git_blob": "39045877d937678375b1ec7bdcc6ea0035862956"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-20-close-original-startup/proposal.md",
+      "bytes": 1259,
+      "sha256": "93b0f0dddf8841b453dbbc426e57feae26f7c67a3423992aee37062141885432",
+      "git_blob": "6768266d2918bf4b2f8578601a271734ddaa871a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-20-close-original-startup/tasks.md",
+      "bytes": 1020,
+      "sha256": "7027e923b9337c25dc86af6a08e505818da1ac3d06b5c78f49ed0b5239ff7756",
+      "git_blob": "667fc39794bca23576b91ce0cd431cfb8310baca"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-startup-lifetime-acceptance-20261020.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}
