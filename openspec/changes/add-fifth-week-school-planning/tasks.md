@@ -1670,4 +1670,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 417. Client calculation and create acceptance
 
-- [ ] 417.1 Run new/relevant callback parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document pending creation/terminated lifetime/next actual-message boundaries and verify staged/committed Git bytes; local commit without push.
+- [x] 417.1 Run new/relevant callback parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document pending creation/terminated lifetime/next actual-message boundaries and verify staged/committed Git bytes; local commit without push.
