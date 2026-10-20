@@ -1,0 +1,963 @@
+{
+  "baseline": "130f411",
+  "stages": [
+    404,
+    405,
+    406,
+    407,
+    408
+  ],
+  "source_native_commits": [
+    "6bf609059980ce339ba788e51bbaee932bc024a9",
+    "94ffc124c83ea9929d0f9b98c81af0a16f0f6959",
+    "eea03f00680c904d5c2f380d948b45cfc68c87c5",
+    "680c616ca5727bc158f03e50387243fd719a8235"
+  ],
+  "scope": "Original45047D real registration, genuine ATOM return, original caller stack check/success branch and12 creation arguments to unexecuted4504CF on same fresh genuine-module scratch CPU/helper lifetime",
+  "continuous_trajectory": {
+    "report": {
+      "path": "analysis/school-window-class-trajectory-v1-20261020.json",
+      "bytes": 1011787,
+      "sha256": "4b7899ba408e07b9fb17251cde9525ef273b82336ea4eeac91fb4b42b54262c0"
+    },
+    "verified": {
+      "cases": 2,
+      "verified_through": "create_ready",
+      "pending": "0x4504cf",
+      "actual_atoms": [
+        49686,
+        50304
+      ],
+      "prefix_validation_substitutions": [
+        31,
+        31
+      ],
+      "native_registration_calls_per_case": 1,
+      "inspections_per_case": 4,
+      "unregistrations_per_case": 1,
+      "raw_evidence_modified": false,
+      "callback_executed": false,
+      "window_created": false,
+      "retained_VM_advanced": false
+    },
+    "platform_build": {
+      "source_sha256": "fe2957f4d8a2d4124d2311b4a30c5bcba4242cf143a30defc27530ec88f574ad",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "helper_sha256": "10005575471eea7c38f04a089d117beb43ba6663caaa49ae2c40986dff1526b8",
+      "machine": 332
+    },
+    "raw_digest_before_and_after_validation": "c1e74164d9dca5b7f2efd065e1704ca114376053bfd22c6015d0d6d0fa404029",
+    "cases": [
+      {
+        "fill": 165,
+        "genuine_module": 91750400,
+        "original_class_preserved": true,
+        "registered_cpu": {
+          "EIP": 4523139,
+          "ESP": 553709220,
+          "EBP": 553709364,
+          "EAX": 49686,
+          "EBX": 1432778632,
+          "ECX": 553709296,
+          "EDX": 91750400,
+          "ESI": 553709220,
+          "EDI": 553709364,
+          "EFLAGS": 70
+        },
+        "registration": {
+          "name": "RegisterClassExA",
+          "op": "register_class",
+          "slot": "0x592408",
+          "va": "0x76002ab0",
+          "return_va": "0x450483",
+          "sp": 553709212,
+          "args": [
+            553709296
+          ],
+          "request": {
+            "class_hex": "3000000000000000804942000000000000000000000078056b05640003000100110090000000000028267a006b056400",
+            "class_name_hex": "43726f7373204865726d697400"
+          },
+          "result": {
+            "result": 49686,
+            "atom": 49686,
+            "last_error": 0,
+            "native_return_type": "ATOM",
+            "eax_bits_observed": 49686,
+            "guest_hex": "3000000000000000804942000000000000000000000078056b05640003000100110090000000000028267a006b056400",
+            "host_hex": "30000000000000008607cc050000000000000000000078056b056400030001001100900000000000404016016b056400",
+            "class_name_hex": "43726f7373204865726d697400",
+            "pointer_translations": [
+              {
+                "offset": 8,
+                "guest": 4344192,
+                "host": 97257350
+              },
+              {
+                "offset": 40,
+                "guest": 8005160,
+                "host": 18235456
+              }
+            ],
+            "preflight": {
+              "result": 0,
+              "last_error": 1411,
+              "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "class_name": null,
+              "guards_unchanged": true
+            },
+            "by_atom": {
+              "result": 49686,
+              "last_error": 0,
+              "hex": "30000000000000008607cc050000000000000000000078056b05640003000100110090000000000016c200006b056400",
+              "class_name": null,
+              "guards_unchanged": true
+            },
+            "by_name": {
+              "result": 49686,
+              "last_error": 0,
+              "hex": "30000000000000008607cc050000000000000000000078056b056400030001001100900000000000404016016b056400",
+              "class_name": "Cross Hermit",
+              "guards_unchanged": true
+            },
+            "forwarder_hex": "558becff7508b8b02aa175ffd08be55dc20400",
+            "forwarder_freed": true,
+            "guards_unchanged": true,
+            "guest_class_unchanged": true,
+            "callback_transport": "stdcall IPC requires original guest result; no fallback",
+            "callback_calls": 0,
+            "window_created": false
+          },
+          "observed_EAX": 49686,
+          "live_host_observed": true
+        },
+        "final_cpu": {
+          "EIP": 4523215,
+          "ESP": 553709172,
+          "EBP": 553709364,
+          "EAX": 2415919104,
+          "EBX": 1432778632,
+          "ECX": 768,
+          "EDX": 1024,
+          "ESI": 553709220,
+          "EDI": 553709364,
+          "EFLAGS": 6
+        },
+        "pending": {
+          "va": "0x4504cf",
+          "sp": 553709172,
+          "first_instruction_executed": false,
+          "import_slot": "0x59240c",
+          "import_target": 1979748256,
+          "stack_args": [
+            0,
+            8005160,
+            8005160,
+            2415919104,
+            16,
+            16,
+            1024,
+            768,
+            0,
+            0,
+            91750400,
+            536870912
+          ],
+          "call_instruction_executed": false
+        },
+        "expected_creation_args": [
+          0,
+          8005160,
+          8005160,
+          2415919104,
+          16,
+          16,
+          1024,
+          768,
+          0,
+          0,
+          91750400,
+          536870912
+        ],
+        "cleanup": {
+          "registration_calls": 1,
+          "inspection_calls": 4,
+          "unregistration_calls": 1,
+          "callback_calls": 0,
+          "unregistration": {
+            "atom": 49686,
+            "result": 1,
+            "last_error": 0,
+            "query_after": {
+              "result": 0,
+              "last_error": 6,
+              "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "class_name": null,
+              "guards_unchanged": true
+            },
+            "callback_retained_until_unregister": true,
+            "class_storage_freed": true
+          },
+          "window_created": false,
+          "resource_module_refs_released": 1,
+          "gdi32_module_refs_released": 1,
+          "icon_load_calls": 2,
+          "cursor_load_calls": 1,
+          "stock_brush_calls": 1,
+          "shared_icons_destroyed": 0,
+          "shared_cursor_destroyed": false,
+          "stock_brush_deleted": false,
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "user32_module_refs_released": 1,
+          "set_rect_calls": 1,
+          "adjust_window_rect_calls": 1,
+          "all_owned_resources_released": true
+        }
+      },
+      {
+        "fill": 204,
+        "genuine_module": 92143616,
+        "original_class_preserved": true,
+        "registered_cpu": {
+          "EIP": 4523139,
+          "ESP": 553709220,
+          "EBP": 553709364,
+          "EAX": 50304,
+          "EBX": 1432778632,
+          "ECX": 553709296,
+          "EDX": 92143616,
+          "ESI": 553709220,
+          "EDI": 553709364,
+          "EFLAGS": 70
+        },
+        "registration": {
+          "name": "RegisterClassExA",
+          "op": "register_class",
+          "slot": "0x592408",
+          "va": "0x76002ab0",
+          "return_va": "0x450483",
+          "sp": 553709212,
+          "args": [
+            553709296
+          ],
+          "request": {
+            "class_hex": "300000000000000080494200000000000000000000007e05830e5d0c03000100110090000000000028267a00830e5d0c",
+            "class_name_hex": "43726f7373204865726d697400"
+          },
+          "result": {
+            "result": 50304,
+            "atom": 50304,
+            "last_error": 0,
+            "native_return_type": "ATOM",
+            "eax_bits_observed": 50304,
+            "guest_hex": "300000000000000080494200000000000000000000007e05830e5d0c03000100110090000000000028267a00830e5d0c",
+            "host_hex": "30000000000000008607d405000000000000000000007e05830e5d0c030001001100900000000000383e3101830e5d0c",
+            "class_name_hex": "43726f7373204865726d697400",
+            "pointer_translations": [
+              {
+                "offset": 8,
+                "guest": 4344192,
+                "host": 97781638
+              },
+              {
+                "offset": 40,
+                "guest": 8005160,
+                "host": 20004408
+              }
+            ],
+            "preflight": {
+              "result": 0,
+              "last_error": 1411,
+              "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "class_name": null,
+              "guards_unchanged": true
+            },
+            "by_atom": {
+              "result": 50304,
+              "last_error": 0,
+              "hex": "30000000000000008607d405000000000000000000007e05830e5d0c03000100110090000000000080c40000830e5d0c",
+              "class_name": null,
+              "guards_unchanged": true
+            },
+            "by_name": {
+              "result": 50304,
+              "last_error": 0,
+              "hex": "30000000000000008607d405000000000000000000007e05830e5d0c030001001100900000000000383e3101830e5d0c",
+              "class_name": "Cross Hermit",
+              "guards_unchanged": true
+            },
+            "forwarder_hex": "558becff7508b8b02aa175ffd08be55dc20400",
+            "forwarder_freed": true,
+            "guards_unchanged": true,
+            "guest_class_unchanged": true,
+            "callback_transport": "stdcall IPC requires original guest result; no fallback",
+            "callback_calls": 0,
+            "window_created": false
+          },
+          "observed_EAX": 50304,
+          "live_host_observed": true
+        },
+        "final_cpu": {
+          "EIP": 4523215,
+          "ESP": 553709172,
+          "EBP": 553709364,
+          "EAX": 2415919104,
+          "EBX": 1432778632,
+          "ECX": 768,
+          "EDX": 1024,
+          "ESI": 553709220,
+          "EDI": 553709364,
+          "EFLAGS": 6
+        },
+        "pending": {
+          "va": "0x4504cf",
+          "sp": 553709172,
+          "first_instruction_executed": false,
+          "import_slot": "0x59240c",
+          "import_target": 1979748256,
+          "stack_args": [
+            0,
+            8005160,
+            8005160,
+            2415919104,
+            16,
+            16,
+            1024,
+            768,
+            0,
+            0,
+            92143616,
+            536870912
+          ],
+          "call_instruction_executed": false
+        },
+        "expected_creation_args": [
+          0,
+          8005160,
+          8005160,
+          2415919104,
+          16,
+          16,
+          1024,
+          768,
+          0,
+          0,
+          92143616,
+          536870912
+        ],
+        "cleanup": {
+          "registration_calls": 1,
+          "inspection_calls": 4,
+          "unregistration_calls": 1,
+          "callback_calls": 0,
+          "unregistration": {
+            "atom": 50304,
+            "result": 1,
+            "last_error": 0,
+            "query_after": {
+              "result": 0,
+              "last_error": 6,
+              "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "class_name": null,
+              "guards_unchanged": true
+            },
+            "callback_retained_until_unregister": true,
+            "class_storage_freed": true
+          },
+          "window_created": false,
+          "resource_module_refs_released": 1,
+          "gdi32_module_refs_released": 1,
+          "icon_load_calls": 2,
+          "cursor_load_calls": 1,
+          "stock_brush_calls": 1,
+          "shared_icons_destroyed": 0,
+          "shared_cursor_destroyed": false,
+          "stock_brush_deleted": false,
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "user32_module_refs_released": 1,
+          "set_rect_calls": 1,
+          "adjust_window_rect_calls": 1,
+          "all_owned_resources_released": true
+        }
+      }
+    ]
+  },
+  "boundary_witnesses": {
+    "registered": {
+      "report": {
+        "path": "analysis/school-window-class-registered-v1-20261020.json",
+        "bytes": 3387,
+        "sha256": "c79a63fb7b11644baf3b0317924beede218ccdadf67b75d40773945ae4492d7f"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "registered",
+          "node_sha256": "fdc432666114250240b8253dc0cc466d13127bf69f105cdbfa0da43fa98ddcc2",
+          "before_cpu": {
+            "EIP": 4523133,
+            "ESP": 553709216,
+            "EBP": 553709364,
+            "EAX": 9437201,
+            "EBX": 1432778632,
+            "ECX": 553709296,
+            "EDX": 91750400,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4523139,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 49686,
+            "EBX": 1432778632,
+            "ECX": 553709296,
+            "EDX": 91750400,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x450483",
+            "sp": 553709220,
+            "first_instruction_executed": false,
+            "stack_top_dword": 553709564
+          },
+          "native_returns": 0,
+          "native_writes": 1,
+          "system_calls": 1,
+          "owner_sha256": "575ab4d76cd2b0e497c41d200901264d40111ff19712acde562e301a871221c7",
+          "stack_sha256": "1c65d4ec90146e3d7d533cd80284f8ad6eb955846b1a37996d143ca1977eb351",
+          "class_sha256": "d539cfc2103d18b4e60893445089eec5ff48164995a2aaba251e13b7051a427d"
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "registered",
+          "node_sha256": "4b5f18f05a53b06adc3af60b0504fe9bfac0f1aaa437b14ec67710c8f46fa5b0",
+          "before_cpu": {
+            "EIP": 4523133,
+            "ESP": 553709216,
+            "EBP": 553709364,
+            "EAX": 9437201,
+            "EBX": 1432778632,
+            "ECX": 553709296,
+            "EDX": 92143616,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4523139,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 50304,
+            "EBX": 1432778632,
+            "ECX": 553709296,
+            "EDX": 92143616,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x450483",
+            "sp": 553709220,
+            "first_instruction_executed": false,
+            "stack_top_dword": 553709564
+          },
+          "native_returns": 0,
+          "native_writes": 1,
+          "system_calls": 1,
+          "owner_sha256": "c68ae4164fa3f0dd736611ddb52bf5a645fa153111c4e820110d742610d86cb7",
+          "stack_sha256": "2b3696cd3fa526b0d2c55afea5cb255e6f9f9a935ccd9dd88aae108506c5b0b6",
+          "class_sha256": "b7d2c3f3903da39c0d6ad746fd01b4c9395570187aa085cc79011a9b040b0096"
+        }
+      ]
+    },
+    "create_ready": {
+      "report": {
+        "path": "analysis/school-window-class-create_ready-v1-20261020.json",
+        "bytes": 4003,
+        "sha256": "c7547c80db4821154b9030dc6c5a988e396f0c81a899fdee4653f1be144387e1"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "create_ready",
+          "node_sha256": "e7e2bd1978357a028916c5eaa753a54ca44579c212d879ca609c0969dcd80cb1",
+          "before_cpu": {
+            "EIP": 4523139,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 49686,
+            "EBX": 1432778632,
+            "ECX": 553709296,
+            "EDX": 91750400,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4523215,
+            "ESP": 553709172,
+            "EBP": 553709364,
+            "EAX": 2415919104,
+            "EBX": 1432778632,
+            "ECX": 768,
+            "EDX": 1024,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 6
+          },
+          "pending": {
+            "va": "0x4504cf",
+            "sp": 553709172,
+            "first_instruction_executed": false,
+            "import_slot": "0x59240c",
+            "import_target": 1979748256,
+            "stack_args": [
+              0,
+              8005160,
+              8005160,
+              2415919104,
+              16,
+              16,
+              1024,
+              768,
+              0,
+              0,
+              91750400,
+              536870912
+            ],
+            "call_instruction_executed": false
+          },
+          "native_returns": 1,
+          "native_writes": 13,
+          "system_calls": 0,
+          "owner_sha256": "575ab4d76cd2b0e497c41d200901264d40111ff19712acde562e301a871221c7",
+          "stack_sha256": "0fc751c0e83f5a30ec14cc7ab46e4a68055364d5daf4173f2431ebf35fdb36d1",
+          "class_sha256": "d539cfc2103d18b4e60893445089eec5ff48164995a2aaba251e13b7051a427d"
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "create_ready",
+          "node_sha256": "4012dc3d486124d80e321a8af1e26cbc3f2d0711ffb7fa29fa1697d73d0a2d32",
+          "before_cpu": {
+            "EIP": 4523139,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 50304,
+            "EBX": 1432778632,
+            "ECX": 553709296,
+            "EDX": 92143616,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4523215,
+            "ESP": 553709172,
+            "EBP": 553709364,
+            "EAX": 2415919104,
+            "EBX": 1432778632,
+            "ECX": 768,
+            "EDX": 1024,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 6
+          },
+          "pending": {
+            "va": "0x4504cf",
+            "sp": 553709172,
+            "first_instruction_executed": false,
+            "import_slot": "0x59240c",
+            "import_target": 1979748256,
+            "stack_args": [
+              0,
+              8005160,
+              8005160,
+              2415919104,
+              16,
+              16,
+              1024,
+              768,
+              0,
+              0,
+              92143616,
+              536870912
+            ],
+            "call_instruction_executed": false
+          },
+          "native_returns": 1,
+          "native_writes": 13,
+          "system_calls": 0,
+          "owner_sha256": "c68ae4164fa3f0dd736611ddb52bf5a645fa153111c4e820110d742610d86cb7",
+          "stack_sha256": "59ed546e72501f1255fc9f4ed57276798da10fef0b309db63c51a5a171e92a63",
+          "class_sha256": "b7d2c3f3903da39c0d6ad746fd01b4c9395570187aa085cc79011a9b040b0096"
+        }
+      ]
+    }
+  },
+  "owned_static_artifacts": {
+    "helper_file": {
+      "path": ".venv-audit/school-window-class-platform-v1.exe",
+      "bytes": 66048,
+      "sha256": "10005575471eea7c38f04a089d117beb43ba6663caaa49ae2c40986dff1526b8"
+    },
+    "resource_module_file": {
+      "path": ".venv-audit/school-window-icons-v1.dll",
+      "bytes": 3072,
+      "sha256": "1c2efa226cb52e97696477964d85bb6f0b94f727c8c3c550ef57da41beb009d7"
+    },
+    "resource_PE": {
+      "machine": 332,
+      "entry_point": 0,
+      "executable_sections": 0,
+      "sections": 1,
+      "resource_entries": [
+        {
+          "type": 3,
+          "id": 5,
+          "language": 1041,
+          "bytes": 2216,
+          "sha256": "b048b9bcbddaa020bc7cd2ef2170348cabbea661307a0b257585e32df623ac47"
+        },
+        {
+          "type": 14,
+          "id": 157,
+          "language": 1041,
+          "bytes": 20,
+          "sha256": "d3f19e69796c48eac50b0b7669644b97eeb3b6c55e01d3d34e76b51b1460569b"
+        }
+      ],
+      "bytes": 3072,
+      "sha256": "1c2efa226cb52e97696477964d85bb6f0b94f727c8c3c550ef57da41beb009d7",
+      "builder": "deterministic resource-only PE32; original code and imports omitted"
+    },
+    "binaries_ignored_by_Git": true,
+    "sources_and_provenance_tracked": true
+  },
+  "regression": {
+    "new": 13,
+    "relevant_parent": 17,
+    "total": 30,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-window-class-regression-20261020.log",
+      "bytes": 4506,
+      "sha256": "d9871c12a971ee4b49d000c892ba99a40f390f41ceaecb45e4fc7197de773a3c"
+    },
+    "strict_log": {
+      "path": "analysis/school-window-class-strict-20261020.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920"
+    },
+    "relevant_parent_scope": "Unchanged genuine-module source/platform/native/raw-instance tests including fresh prior full startup trajectory"
+  },
+  "preservation": {
+    "path": "analysis/school-window-class-preservation-20261020.json",
+    "bytes": 11720,
+    "sha256": "1c2bf2f5cbdef1b2dfb853ed497294dc81cffa5c855e1157087817d71ab0b052",
+    "retained_files": 16510,
+    "save_rules": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "failed_initial_checks": [
+    {
+      "path": "analysis/school-window-class-platform-generation-v1-20261020.log",
+      "bytes": 487,
+      "sha256": "4f5d123af638cf2402651f631998fb97f8f8c5014d9b6462f52f840dfd5b3d88"
+    },
+    {
+      "path": "analysis/school-window-class-create-ready-tests-20261020.log",
+      "bytes": 3290,
+      "sha256": "c2d3def096d87208390b308dd0ecf2bd1144bd15321614a0e26acef8037c6305"
+    }
+  ],
+  "diagnostic_actual_query": {
+    "path": "analysis/school-window-class-platform-query-diagnostic-v1-20261020.json",
+    "bytes": 28590,
+    "sha256": "354dbe6c641cd2af8646e54dba072181e6e584e1c69faeb8acaf4708e4eafb23"
+  },
+  "failure_reasons": [
+    "First platform verifier expected a string from by-atom class query; actual OS returned the atom field. Both atom/name forms now independently verified.",
+    "First creation verifier omitted the original stack-check helper conditional branch. Added proved fallthrough; same immutable raw successful trajectory retained."
+  ],
+  "next_prerequisite_source": {
+    "path": "analysis/school-window-class-next-source-v1-20261020.json",
+    "bytes": 5591,
+    "sha256": "f60cab8c8ea3c8845d00bce555466405fe2fdea02d25950fe19b753f1d709a72"
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "manager_owner": 0,
+    "advanced": false
+  },
+  "authority": {
+    "actual_module_declared_before_first_original_instruction": true,
+    "declared_mid_WinMain_frame": true,
+    "full_WinMain_entry_executed": false,
+    "original_class_and_IAT_modified": false,
+    "exact_host_pointer_translations": 2,
+    "actual_original_RegisterClassExA": true,
+    "raw_native_EAX_observed": true,
+    "actual_class_inspected_by_atom_and_name": true,
+    "actual_owned_class_unregistered": true,
+    "callback_kept_alive_until_unregister": true,
+    "callback_transport_dormant": true,
+    "nested_original_callback_import_service_implemented": false,
+    "original_callback_executed": false,
+    "original_native_stack_check_and_success_branch": true,
+    "all12_original_creation_arguments": true,
+    "CreateWindowExA_executed": false,
+    "HWND_published": false,
+    "game_helpers_stubbed": false,
+    "retained_VM_advanced": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "shared_icons_destroyed": false,
+    "shared_cursor_destroyed": false,
+    "stock_brush_deleted": false,
+    "expired_resources_resumable": false
+  },
+  "remaining": [
+    "Route genuine creation messages through actual original424980/binding450D30/input/default handlers on protected callback stacks with nested native import service",
+    "Marshal actual CREATESTRUCT/message pointer inputs and outputs, opaque guest owner property, and reverse host WNDPROC identity without changing original comparisons",
+    "Resolve captured7A49FC game-context initialization/heap dependency before actual creation-message reads",
+    "Execute original CreateWindowExA/HWND publication and remaining window startup calls",
+    "Complete main message loop/COM/game factory/audio/device startup and inherited font-cache/retained VM/outer scheduler integration",
+    "Continue original VM/input/world/rendering/dialogue and battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "408/408 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17466,
+      "sha256": "eea1fa3a03e929f2daa37b88ac55526354cf355b11e2af703f90bfdd2e9cc4c9",
+      "git_blob": "4fa78559496e8ef46c659251a7ff68d4decb6983"
+    },
+    {
+      "path": "README.md",
+      "bytes": 67341,
+      "sha256": "2201ddbaa010e0e6aa98d979f73c29e718a6706fac6bfe6b06698a5c34aba20e",
+      "git_blob": "105d02b3f2f06069b84dd2485d52296353590f06"
+    },
+    {
+      "path": "analysis/school-window-class-create-ready-tests-20261020.log",
+      "bytes": 3290,
+      "sha256": "c2d3def096d87208390b308dd0ecf2bd1144bd15321614a0e26acef8037c6305",
+      "git_blob": "3025864c2d0762221c3d66b3ffff4a102a711517"
+    },
+    {
+      "path": "analysis/school-window-class-create-ready-tests-v2-20261020.log",
+      "bytes": 702,
+      "sha256": "e210e62313bc3b9b6cdc8b9e3e5818b1622513721caca177b28225cd64c953ec",
+      "git_blob": "138893a7241e9faf4ea979c28a1cf5f495d19e25"
+    },
+    {
+      "path": "analysis/school-window-class-create-ready-verification-v1-20261020.log",
+      "bytes": 434,
+      "sha256": "f3bbcd44d3022d8e6f238fa8986e17d5f43861f3f0daa3011da896bc8cf4a1df",
+      "git_blob": "69c39d8ad22928c2e4e7bed5e9f4cfc6318c959f"
+    },
+    {
+      "path": "analysis/school-window-class-create_ready-v1-20261020.json",
+      "bytes": 4003,
+      "sha256": "c7547c80db4821154b9030dc6c5a988e396f0c81a899fdee4653f1be144387e1",
+      "git_blob": "3650cffb9b9fec7743e89d211281291c33dca3e3"
+    },
+    {
+      "path": "analysis/school-window-class-next-source-v1-20261020.json",
+      "bytes": 5591,
+      "sha256": "f60cab8c8ea3c8845d00bce555466405fe2fdea02d25950fe19b753f1d709a72",
+      "git_blob": "0d23c4e62d69e2205a8ecda60de0a0c6f6e6b7a7"
+    },
+    {
+      "path": "analysis/school-window-class-platform-generation-v1-20261020.log",
+      "bytes": 487,
+      "sha256": "4f5d123af638cf2402651f631998fb97f8f8c5014d9b6462f52f840dfd5b3d88",
+      "git_blob": "36c9aedfec0d0684117ac709d1dff4b44af0ec57"
+    },
+    {
+      "path": "analysis/school-window-class-platform-generation-v2-20261020.log",
+      "bytes": 1295,
+      "sha256": "689a184bfbbb7654aa5016ea8e3c6e8e56d277553680e8996b9381bd185f56e5",
+      "git_blob": "edfe125991301b3f640be526be3d00cd71f68a6f"
+    },
+    {
+      "path": "analysis/school-window-class-platform-query-diagnostic-v1-20261020.json",
+      "bytes": 28590,
+      "sha256": "354dbe6c641cd2af8646e54dba072181e6e584e1c69faeb8acaf4708e4eafb23",
+      "git_blob": "daa868973a36751996c084587d61d1eaca772d65"
+    },
+    {
+      "path": "analysis/school-window-class-platform-tests-20261020.log",
+      "bytes": 677,
+      "sha256": "f96b4149246dcd9d976bcd831da255cf887978dc2b2b7b9130f8e89c3e8e3b18",
+      "git_blob": "f4dc41b32fb142e16a2b5647e92fcbd12ae9af2c"
+    },
+    {
+      "path": "analysis/school-window-class-platform-v1-20261020.json",
+      "bytes": 34476,
+      "sha256": "cdc7c2254a08733eef4044fdc7dfa10c220425ff38ef895368cf8ecf7a8d4d9f",
+      "git_blob": "af29a4a75235bc7a2bf5b276be030347809e3c69"
+    },
+    {
+      "path": "analysis/school-window-class-preservation-20261020.json",
+      "bytes": 11720,
+      "sha256": "1c2bf2f5cbdef1b2dfb853ed497294dc81cffa5c855e1157087817d71ab0b052",
+      "git_blob": "1ac5eab34254dd2a7b2eb04463fa849c658bd975"
+    },
+    {
+      "path": "analysis/school-window-class-preservation-generation-20261020.log",
+      "bytes": 200,
+      "sha256": "e52edfa8bc29be81dd85a1ab6f14b6b7f7e6e5a270d34be6048ff093af0f9ef8",
+      "git_blob": "f119229ed4226103140e6a06e225f35ed383a085"
+    },
+    {
+      "path": "analysis/school-window-class-registered-v1-20261020.json",
+      "bytes": 3387,
+      "sha256": "c79a63fb7b11644baf3b0317924beede218ccdadf67b75d40773945ae4492d7f",
+      "git_blob": "dbc8314cdde50d201bbee24c429a6247edbd2398"
+    },
+    {
+      "path": "analysis/school-window-class-registration-tests-20261020.log",
+      "bytes": 547,
+      "sha256": "735f11b8d083b3253ff566122f456a2b00145ee0ead5496dea1969c75ba8b37c",
+      "git_blob": "3ce2f4cb243440cb64a20f8fd0494ee653bfbcb2"
+    },
+    {
+      "path": "analysis/school-window-class-registration-verification-v1-20261020.log",
+      "bytes": 432,
+      "sha256": "6d14dac4796142ecd99a72320d11493c84369cbe58779b788765f44b1fdcd49f",
+      "git_blob": "fca85a79ed83d2b0d3bb8e5a0a401186d3c67346"
+    },
+    {
+      "path": "analysis/school-window-class-regression-20261020.log",
+      "bytes": 4506,
+      "sha256": "d9871c12a971ee4b49d000c892ba99a40f390f41ceaecb45e4fc7197de773a3c",
+      "git_blob": "6085a217e7d1a9bf7e81b1bc2b930517e4b6517d"
+    },
+    {
+      "path": "analysis/school-window-class-source-tests-20261020.log",
+      "bytes": 494,
+      "sha256": "deffb4211873ef626d1add130793c003cda80d971623c27779818a590fa1d36f",
+      "git_blob": "7be04a875532cd415644971f2076be4bc4449e88"
+    },
+    {
+      "path": "analysis/school-window-class-source-v1-20261020.json",
+      "bytes": 28244,
+      "sha256": "4c28c6b40a03e2fca687578ca3b12748edb13db693538fb28d54f42a223cb255",
+      "git_blob": "3e5710854f3c57ab3a7f5c2d31ccabc861d32d37"
+    },
+    {
+      "path": "analysis/school-window-class-strict-20261020.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920",
+      "git_blob": "2e3dc062ee2e6ba39f685fb03105916214d13db9"
+    },
+    {
+      "path": "analysis/school-window-class-trajectory-generation-v1-20261020.log",
+      "bytes": 152,
+      "sha256": "ec7515be713acf4fea8cc52c4e80ee75b761ea81fa7b145f3e125f8c126d84c7",
+      "git_blob": "ee25193f990278f1ba50d699d70cffc38fdcce5d"
+    },
+    {
+      "path": "analysis/school-window-class-trajectory-v1-20261020.json",
+      "bytes": 1011787,
+      "sha256": "4b7899ba408e07b9fb17251cde9525ef273b82336ea4eeac91fb4b42b54262c0",
+      "git_blob": "12abcabca8b44af0704381ab7c0d65fb23784d70"
+    },
+    {
+      "path": "docs/school_window_class.md",
+      "bytes": 6194,
+      "sha256": "400b4d5fa4a31ae0155be27747b9430269ad73f163390a272731adc09f761c23",
+      "git_blob": "ef1476d1c4babf64aeca471ba54f7bf9ac3c5fe2"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 103924,
+      "sha256": "1206d87330e53297343b4da04014b64bc7d2852bd2618b49574a5dec10e4671d",
+      "git_blob": "26e8b0c21b8bbb91f6700fd560242289671c489c"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 60840,
+      "sha256": "e7bd04f868180aa2173d9248fe546c3b0b0b71fde5f27002bb8339b664875be2",
+      "git_blob": "f713fdf95a9fbf364bcecc9cf69949c4b0cdbbac"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 125804,
+      "sha256": "6d404cfd448f7f2ed07634f01ed506cb4f61e944d9479aa5429a49a00894c701",
+      "git_blob": "0730a68d373d8a25ae9171e8df550abf26f371fe"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 113137,
+      "sha256": "9489e7d6e25aabfe22f50e07c1a94d86ee78999f37399725d0816e34c6ddc4af",
+      "git_blob": "9f1294a19d090a98a3e9a68a4a9348c8424e22ba"
+    },
+    {
+      "path": "tools/school_window_class.py",
+      "bytes": 4709,
+      "sha256": "4e739ed7e851af87152b1edcb8b5d9c30c061d7d62eab020fb64479819b576ff",
+      "git_blob": "815afd6a3d695f5a1f93744375bcbcaf46e31cd4"
+    },
+    {
+      "path": "tools/school_window_class_emulation.py",
+      "bytes": 8946,
+      "sha256": "4c142498ca1dcd3c8fe58de5668aecc9a987602ac5ed5f881ef4058b815769cc",
+      "git_blob": "ecc116048f3fbb9e8b540570c302f5477954b7aa"
+    },
+    {
+      "path": "tools/school_window_class_platform.cs",
+      "bytes": 27553,
+      "sha256": "fe2957f4d8a2d4124d2311b4a30c5bcba4242cf143a30defc27530ec88f574ad",
+      "git_blob": "e880699d83ad0b4ce93f00ac446bbb6f1d82ac5c"
+    },
+    {
+      "path": "tools/school_window_class_platform.py",
+      "bytes": 7838,
+      "sha256": "5227c2fb8aaa5c1c70d63e85f9f1f6c7a5873231a43daf96d641541943be767c",
+      "git_blob": "5f31d3aafd0bd0c7a20b3c5850dc21a1d27a766b"
+    },
+    {
+      "path": "tools/school_window_class_verification.py",
+      "bytes": 10748,
+      "sha256": "d6fca486863aebba96a85f21ded76e1deafb7fe56e716ff76a911dae82df16dc",
+      "git_blob": "d500eb42e5cbb680723f95308d89acc079733a17"
+    },
+    {
+      "path": "tools/tests/test_school_window_class.py",
+      "bytes": 1267,
+      "sha256": "20518e516275bf86444dd805262312191e041c9c7684017a658aecf92f553a61",
+      "git_blob": "e05f81320d53cb0de693d40ced6f9bc1f2131543"
+    },
+    {
+      "path": "tools/tests/test_school_window_class_emulation.py",
+      "bytes": 4583,
+      "sha256": "2316a28eee9ad61b6b3ca06c35e88660d5cc45ad080fabe54f9eadb1818baaa6",
+      "git_blob": "93d5b19060a3ad346ffb75e025ebe76f24b9e444"
+    },
+    {
+      "path": "tools/tests/test_school_window_class_platform.py",
+      "bytes": 4642,
+      "sha256": "d1b2a9cf36269aaf6182d98dd1ce112dbe962cab93be4807e12ed80dcb1c26a7",
+      "git_blob": "8ccd951326170ecc8c0de31d989555b21a9ed05d"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-window-class-acceptance-20261020.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

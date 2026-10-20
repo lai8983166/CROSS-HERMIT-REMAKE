@@ -11,6 +11,7 @@ from tools.school_device_init_verification import unpack
 from tools.school_renderer_init_verification import verify_buffer
 from tools.school_window_class_platform import (SOURCE as PLATFORM_SOURCE,HELPER,COMPILER,sha,machine,
     verify_registration,verify_unregistration)
+from tools.school_window_module import RESOURCE_DLL,inspect_module
 
 
 @lru_cache(maxsize=1)
@@ -100,6 +101,8 @@ def verify_report(report,through='create_ready'):
     pin=json.loads((ROOT/'analysis/school-window-class-platform-v1-20261020.json').read_text(encoding='utf8'))
     build=dict(source_sha256=sha(PLATFORM_SOURCE.read_bytes()),compiler_sha256=sha(COMPILER.read_bytes()),helper_sha256=sha(HELPER.read_bytes()),machine=machine(HELPER))
     if build!=pin['build'] or report['platform_build']!=build:raise ValueError('class actual immutable fresh helper identity')
+    resource=inspect_module(RESOURCE_DLL.read_bytes())
+    if resource['sha256']!=pin['hello']['resource_module']['sha256']:raise ValueError('class actual code-free resource module bytes')
     proofs=[]
     for c in report['cases']:
         h=copy.deepcopy(c['hello']);h['resource_module']['pointer']=pin['hello']['resource_module']['pointer']

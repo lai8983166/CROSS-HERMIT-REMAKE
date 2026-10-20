@@ -1634,4 +1634,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 408. Class registration acceptance
 
-- [ ] 408.1 Run new/relevant genuine-module parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact callback/window/retained VM boundaries and verify staged/committed Git bytes; local commit without push.
+- [x] 408.1 Run new/relevant genuine-module parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact callback/window/retained VM boundaries and verify staged/committed Git bytes; local commit without push.
