@@ -1,0 +1,629 @@
+{
+  "baseline": "f2bc9c3",
+  "stages": [
+    418,
+    419,
+    420,
+    421,
+    422
+  ],
+  "source_native_commits": [
+    "f04a480f174eefe2c12252b5157d50f2e330dfeb",
+    "68e42207b2e5b9cbc5a33096dcfe7b2eeca329e7",
+    "554950e5726e8cd5ac9a06940d683488c1108f5a",
+    "bbe3963c6ba5915dd369da182ebd356b4412829f"
+  ],
+  "scope": "Same original startup CPU and actual native CreateWindowExA lifetime completes129/131/1/5/3/24/70, captures real WINDOWPOS28 default input/output, retains unanswered second70 flags03, then terminates owned helper",
+  "continuous_trajectory": {
+    "report": {
+      "path": "analysis/school-window-events-trajectory-v1-20261020.json",
+      "bytes": 1991586,
+      "sha256": "ab1ed1c655c75062bd2529d1db4a35a074e3e95aadf71f989ceaa0d4977e578d"
+    },
+    "verified": {
+      "cases": 2,
+      "completed_messages": [
+        129,
+        131,
+        1,
+        5,
+        3,
+        24,
+        70
+      ],
+      "pending_message": 70,
+      "pending_WINDOWPOS_flags": 3,
+      "pending_guest_EIP": "0x424980",
+      "creation_return_pending": true,
+      "case_proofs": [
+        {
+          "callbacks": [
+            {
+              "message": 129,
+              "instructions": 416,
+              "reads": 110,
+              "writes": 208,
+              "native_APIs": 5,
+              "result": 1,
+              "actual_HWND": 16581980,
+              "bound_property_reused": false,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 131,
+              "instructions": 299,
+              "reads": 73,
+              "writes": 160,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16581980,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 1,
+              "instructions": 230,
+              "reads": 52,
+              "writes": 126,
+              "native_APIs": 1,
+              "result": 0,
+              "actual_HWND": 16581980,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 5,
+              "instructions": 230,
+              "reads": 52,
+              "writes": 126,
+              "native_APIs": 1,
+              "result": 0,
+              "actual_HWND": 16581980,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 3,
+              "instructions": 299,
+              "reads": 74,
+              "writes": 161,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16581980,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 24,
+              "instructions": 295,
+              "reads": 71,
+              "writes": 161,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16581980,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 70,
+              "instructions": 299,
+              "reads": 73,
+              "writes": 160,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16581980,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            }
+          ],
+          "prefix_substitutions": 31,
+          "pending_message": 70,
+          "pending_WINDOWPOS_flags": 3,
+          "raw_evidence_modified": false
+        },
+        {
+          "callbacks": [
+            {
+              "message": 129,
+              "instructions": 416,
+              "reads": 110,
+              "writes": 208,
+              "native_APIs": 5,
+              "result": 1,
+              "actual_HWND": 16647516,
+              "bound_property_reused": false,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 131,
+              "instructions": 299,
+              "reads": 73,
+              "writes": 160,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16647516,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 1,
+              "instructions": 230,
+              "reads": 52,
+              "writes": 126,
+              "native_APIs": 1,
+              "result": 0,
+              "actual_HWND": 16647516,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 5,
+              "instructions": 230,
+              "reads": 52,
+              "writes": 126,
+              "native_APIs": 1,
+              "result": 0,
+              "actual_HWND": 16647516,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 3,
+              "instructions": 299,
+              "reads": 74,
+              "writes": 161,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16647516,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 24,
+              "instructions": 295,
+              "reads": 71,
+              "writes": 161,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16647516,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            },
+            {
+              "message": 70,
+              "instructions": 299,
+              "reads": 73,
+              "writes": 160,
+              "native_APIs": 2,
+              "result": 0,
+              "actual_HWND": 16647516,
+              "bound_property_reused": true,
+              "source_binding_repeated": false,
+              "captured_game_global_read": false
+            }
+          ],
+          "prefix_substitutions": 31,
+          "pending_message": 70,
+          "pending_WINDOWPOS_flags": 3,
+          "raw_evidence_modified": false
+        }
+      ],
+      "explicit_normal_cleanup": false,
+      "owned_processes_exited": true,
+      "retained_VM_advanced": false
+    },
+    "platform_build": {
+      "source_sha256": "3153389f58e4e1a60c86a56b8d4ab400ae71c6e0ca96063818333db807b8e06c",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "helper_sha256": "bf7cc84d445da2fa4905fc56b8044815fdff72928f9bc32901d021363731f8be",
+      "machine": 332
+    },
+    "raw_digest_before_and_after_validation": "d8914ecc24d17e8bedd43f471717ecf9982d83c3a8093fa3abd759151765a051"
+  },
+  "phase_witnesses": {
+    "scalars": {
+      "path": "analysis/school-window-events-scalars-v1-20261020.json",
+      "bytes": 10587,
+      "sha256": "74e407650ad74161a9e2d0a54f3be4c01920b260a0cc49ae8d027cad46c563b5"
+    },
+    "position": {
+      "path": "analysis/school-window-events-position-v1-20261020.json",
+      "bytes": 7416,
+      "sha256": "eee8bcd7e613e2ddb97df2d04ac303d797daadc049cc2b100b81ab9ad9f4de91"
+    }
+  },
+  "independent_verification": {
+    "generator_class_or_hooks_reused": false,
+    "original_code_executed_in_separate_VM": true,
+    "raw_reports_normalized_for_callback_verification": false,
+    "completed_messages": [
+      129,
+      131,
+      1,
+      5,
+      3,
+      24,
+      70
+    ],
+    "instructions_reads_writes_APIs_per_callback": [
+      [
+        416,
+        110,
+        208,
+        5
+      ],
+      [
+        299,
+        73,
+        160,
+        2
+      ],
+      [
+        230,
+        52,
+        126,
+        1
+      ],
+      [
+        230,
+        52,
+        126,
+        1
+      ],
+      [
+        299,
+        74,
+        161,
+        2
+      ],
+      [
+        295,
+        71,
+        161,
+        2
+      ],
+      [
+        299,
+        73,
+        160,
+        2
+      ]
+    ],
+    "total_instructions": 2068,
+    "total_reads": 505,
+    "total_writes": 1102,
+    "total_native_APIs": 15,
+    "existing_instance_prefix_substitutions": 31,
+    "full_native_caller_and_callback_source_ABI_CPU_access_and_buffers_checked": true,
+    "WM_SIZE_unsigned16": true,
+    "WM_MOVE_signed16": true,
+    "WM_SHOWWINDOW_boolean_WPARAM_forwarded": true,
+    "WINDOWPOS_exact_bytes": 28,
+    "completed_position_flags": 67,
+    "pending_position_flags": 3,
+    "insert_after_handle_is_actual_borrowed_data": true
+  },
+  "owned_static_artifacts": {
+    "helper_file": {
+      "path": ".venv-audit/school-window-events-platform-v1.exe",
+      "bytes": 77824,
+      "sha256": "bf7cc84d445da2fa4905fc56b8044815fdff72928f9bc32901d021363731f8be"
+    },
+    "resource_module_file": {
+      "path": ".venv-audit/school-window-icons-v1.dll",
+      "bytes": 3072,
+      "sha256": "1c2efa226cb52e97696477964d85bb6f0b94f727c8c3c550ef57da41beb009d7"
+    },
+    "resource_PE": {
+      "machine": 332,
+      "entry_point": 0,
+      "executable_sections": 0,
+      "sections": 1,
+      "resource_entries": [
+        {
+          "type": 3,
+          "id": 5,
+          "language": 1041,
+          "bytes": 2216,
+          "sha256": "b048b9bcbddaa020bc7cd2ef2170348cabbea661307a0b257585e32df623ac47"
+        },
+        {
+          "type": 14,
+          "id": 157,
+          "language": 1041,
+          "bytes": 20,
+          "sha256": "d3f19e69796c48eac50b0b7669644b97eeb3b6c55e01d3d34e76b51b1460569b"
+        }
+      ],
+      "bytes": 3072,
+      "sha256": "1c2efa226cb52e97696477964d85bb6f0b94f727c8c3c550ef57da41beb009d7",
+      "builder": "deterministic resource-only PE32; original code and imports omitted"
+    },
+    "binaries_ignored_by_Git": true,
+    "sources_and_provenance_tracked": true
+  },
+  "terminated_lifetime": {
+    "normal_cleanup_claimed": false,
+    "explicit_class_unregistration_performed": false,
+    "pending_callback_answered": false,
+    "owned_process_exit_waited_and_verified": true,
+    "owned_resources_end_with_process_lifetime": true,
+    "source_driven_destruction_and_property_removal_pending": true,
+    "report_not_resumable": true
+  },
+  "regression": {
+    "new": 12,
+    "relevant_parent": 11,
+    "total": 23,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-window-events-regression-20261020.log",
+      "bytes": 3684,
+      "sha256": "a123327e53b9f85b623fdd8cd32a9149ddc25993be462501e661ff6897028102"
+    },
+    "strict_log": {
+      "path": "analysis/school-window-events-strict-20261020.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775"
+    },
+    "relevant_parent_scope": "Unchanged create source/platform/native tests including original129/131/1 and fresh parent trajectory"
+  },
+  "preservation": {
+    "path": "analysis/school-window-events-preservation-20261020.json",
+    "bytes": 10561,
+    "sha256": "540514d46929abcc7823a62df1e73fd868e69042b0567ff7440454f6719f2d8a",
+    "retained_files": 16592,
+    "save_rules": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "next_prerequisite_source": {
+    "path": "analysis/school-window-events-next-source-v1-20261020.json",
+    "bytes": 4075,
+    "sha256": "0c468b0990a8dbcc940634705b0e9ee259cd306b5315cecd06965d079cdf1e21"
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "manager_owner": 0,
+    "advanced": false
+  },
+  "authority": {
+    "actual_module_declared_before_first_original_instruction": true,
+    "declared_mid_WinMain_frame": true,
+    "full_WinMain_entry_executed": false,
+    "actual_original_CreateWindowExA_entered": true,
+    "genuine_129_131_1_5_3_24_70_callbacks_executed": true,
+    "source_callback_binding_virtual_input_and_default_functions_executed": true,
+    "declared_guest_callback_ABI_not_host_register_capture": true,
+    "actual_WINDOWPOS28_native_input_output_retained": true,
+    "original_bound_property_reused": true,
+    "source_this_rebinding_repeated": false,
+    "scalar_LPARAM_treated_as_pointer": false,
+    "pointer_LPARAM_preserved": true,
+    "native_caller_context_and_complete_stack_preserved": true,
+    "pending_first_instruction_executed": false,
+    "CreateWindowExA_return_received": false,
+    "source_HWND_global_publication_executed": false,
+    "normal_cleanup_performed": false,
+    "captured_game_global_modified": false,
+    "captured_game_heap_resolved": false,
+    "callback_read_captured_game_global": false,
+    "original_class_code_IAT_or_virtual_function_modified": false,
+    "game_helpers_stubbed": false,
+    "retained_VM_advanced": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "expired_resources_resumable": false
+  },
+  "remaining": [
+    "Admit the second genuine WM_WINDOWPOSCHANGING70 with observed flags3 and exact native WINDOWPOS28 input/output in a new helper lifetime; do not equate its flags to previous43",
+    "Follow real subsequent callback order rather than assuming activation or creation return",
+    "Retain source28 WM_ACTIVATEAPP gate before reads of captured7A49FC; derive the real fresh-start initial state/heap source without resetting old global",
+    "Extend actual paint input/output and source-driven property removal/window destruction/class unregistration when corresponding real messages become admissible",
+    "Claim successful creation/HWND global publication only after original4504CF call naturally returns and4504DC stores actual HWND",
+    "Complete full WinMain/COM/game factory/audio/device/cache/retained VM/outer scheduler integration",
+    "Continue original input/world/rendering/dialogue and battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "422/422 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17933,
+      "sha256": "64c24a26dd92a6d4d260dbbd17a90d63c3e46a70368d00118cb81797cd8c8976",
+      "git_blob": "31845eb0b87a9bdf6a407953292e57451a796792"
+    },
+    {
+      "path": "README.md",
+      "bytes": 70029,
+      "sha256": "c570fab3a1a7088460e0de159c47bd1b926400fd42e59c8198090ecefdaf4287",
+      "git_blob": "b8b3d7a10229327d51cb955a663ab9cbfd7b0fea"
+    },
+    {
+      "path": "analysis/school-window-events-next-source-v1-20261020.json",
+      "bytes": 4075,
+      "sha256": "0c468b0990a8dbcc940634705b0e9ee259cd306b5315cecd06965d079cdf1e21",
+      "git_blob": "733cea065b708b2b3e8d6d098f5a039f4d1836e3"
+    },
+    {
+      "path": "analysis/school-window-events-platform-tests-20261020.log",
+      "bytes": 611,
+      "sha256": "78ddae2e59007bb3131857fbbdbf94df49481af766dbe33b9379b1a04c4b92c4",
+      "git_blob": "5d03bcd89806bc70fbd69be43f6753effac26b71"
+    },
+    {
+      "path": "analysis/school-window-events-platform-v1-20261020.json",
+      "bytes": 7902,
+      "sha256": "1781cc39f4d0fb13bc1c67d1b28c8be1dfd0d71f5fdd1fb0ac9dc71912b0ab67",
+      "git_blob": "780c0550af17aa336fbbbfbb191563cd19df7afc"
+    },
+    {
+      "path": "analysis/school-window-events-position-tests-20261020.log",
+      "bytes": 665,
+      "sha256": "740fcd8b606cdbb1019b81524d5f6056f41712a3c50a37476e74f2ed41b37534",
+      "git_blob": "2e30ac970bf7c7db6901439708117f3dad64dafa"
+    },
+    {
+      "path": "analysis/school-window-events-position-v1-20261020.json",
+      "bytes": 7416,
+      "sha256": "eee8bcd7e613e2ddb97df2d04ac303d797daadc049cc2b100b81ab9ad9f4de91",
+      "git_blob": "a1eafd59e0383cb9e75422e1bad0cdbcacbc5cae"
+    },
+    {
+      "path": "analysis/school-window-events-preservation-20261020.json",
+      "bytes": 10561,
+      "sha256": "540514d46929abcc7823a62df1e73fd868e69042b0567ff7440454f6719f2d8a",
+      "git_blob": "40e08a5670328a321d75bcfb16fb55ff03dace82"
+    },
+    {
+      "path": "analysis/school-window-events-regression-20261020.log",
+      "bytes": 3684,
+      "sha256": "a123327e53b9f85b623fdd8cd32a9149ddc25993be462501e661ff6897028102",
+      "git_blob": "ab90ee2328b4ba7f7b93e35b899b64b92f728b5b"
+    },
+    {
+      "path": "analysis/school-window-events-scalar-tests-20261020.log",
+      "bytes": 474,
+      "sha256": "f409e750b2ecdda06ee2a19b0bf3fe2031132e389f8cd449f9bfd86130048856",
+      "git_blob": "d58f168c303aea0f31260af98ce451eaa68d913c"
+    },
+    {
+      "path": "analysis/school-window-events-scalars-v1-20261020.json",
+      "bytes": 10587,
+      "sha256": "74e407650ad74161a9e2d0a54f3be4c01920b260a0cc49ae8d027cad46c563b5",
+      "git_blob": "51807f9d13f35bc6a7ae7ec7ad69fa4374f44645"
+    },
+    {
+      "path": "analysis/school-window-events-source-tests-20261020.log",
+      "bytes": 445,
+      "sha256": "6850a69736d4748e3219b1e811beec234c9833ad118ad1e965cc58500b533d86",
+      "git_blob": "93197f6341f1acb432feb9af18659709b0014e07"
+    },
+    {
+      "path": "analysis/school-window-events-source-v1-20261020.json",
+      "bytes": 44090,
+      "sha256": "ded29e158a17a02c1cb80b7a547e9d6c8150d8905f1a1cb7e58ed6c9eb208a10",
+      "git_blob": "1d08990f59c58314508bece572f6f2829b0594f1"
+    },
+    {
+      "path": "analysis/school-window-events-strict-20261020.log",
+      "bytes": 1182,
+      "sha256": "033ae7e89181ad5655e233e1407d5a61c49834b62881a4ed3f77dc8699cb2775",
+      "git_blob": "2ad0d64199225b64beb1dc9b8cf28969e0b2fd9c"
+    },
+    {
+      "path": "analysis/school-window-events-trajectory-generation-v1-20261020.log",
+      "bytes": 136,
+      "sha256": "95a41a2611e6d589b1cb3b50fd9e07f3b13c09f8c59cc30ecda004d728499c20",
+      "git_blob": "51bb0ce72d2f71e1fea484c60869730c3182b168"
+    },
+    {
+      "path": "analysis/school-window-events-trajectory-v1-20261020.json",
+      "bytes": 1991586,
+      "sha256": "ab1ed1c655c75062bd2529d1db4a35a074e3e95aadf71f989ceaa0d4977e578d",
+      "git_blob": "f7ed244da5415793644a2ce20ae6169e4dcf8fe0"
+    },
+    {
+      "path": "docs/school_window_events.md",
+      "bytes": 5595,
+      "sha256": "ba2eb45659eead2a6cf96514898fb9c8bf370f176f398cb470612dd86b2329be",
+      "git_blob": "12364b00e1f35a89a7c09bda1423f8be20900db0"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 107621,
+      "sha256": "f00b758a1861ce9acb58f271f88a9dbf80242e6523df7aeaeee9882962299fde",
+      "git_blob": "81f047c5db379ff3c711da1b64a398a71e010781"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 63295,
+      "sha256": "1026c456eb8a6be2a3be5f5cd7889628a0240f3ba3fa71cdf12d66f5819c209b",
+      "git_blob": "7514acf7d39bfc230a1d36082bf642f4a4bd9c55"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 128818,
+      "sha256": "5de5ee9a7057cb21c0f230e1164b4284ea027865b89c831356e10c86348d3ae5",
+      "git_blob": "1de14de3c4fb27c56f8698bebf263d8497a958c6"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 117297,
+      "sha256": "e9f19cd592559ae1758da7168d178b3b2fa2fc2eec1c3d1015d46a2cf3ab78ac",
+      "git_blob": "6388fabf0109b61d544f54138fbe5553e6b26b99"
+    },
+    {
+      "path": "tools/school_window_events.py",
+      "bytes": 3353,
+      "sha256": "2a9c887ef23a10fd2a0f6933737775b8ff5d7b43809b001c153b5ac4630363b1",
+      "git_blob": "6eb7f53739961bacef75ebe78b39142f8fd96f32"
+    },
+    {
+      "path": "tools/school_window_events_emulation.py",
+      "bytes": 3948,
+      "sha256": "88d7fe1946fc1bc9cf551fbad40ab8a8b70979e1e68a7c0842fb1f7986b4332a",
+      "git_blob": "5777d29b5ab97122351dc93685c93c0338742680"
+    },
+    {
+      "path": "tools/school_window_events_platform.cs",
+      "bytes": 33361,
+      "sha256": "3153389f58e4e1a60c86a56b8d4ab400ae71c6e0ca96063818333db807b8e06c",
+      "git_blob": "5560b1066aeccbe9d9a4719a3be8806d63afeebd"
+    },
+    {
+      "path": "tools/school_window_events_platform.py",
+      "bytes": 5713,
+      "sha256": "ff6a508616ec25c7bbc9ee57cf8faf8c7bb9704dde18d071eb757c28e9d5313c",
+      "git_blob": "f3ee19768228feb18f0b9b62c3f79498b35c382b"
+    },
+    {
+      "path": "tools/school_window_events_verification.py",
+      "bytes": 17644,
+      "sha256": "12dffb1b6495493151abd28303631072c792f9c0aa118a51266eadc3ec923b58",
+      "git_blob": "8f099929849cba4c3461dc15080a607c861c26a5"
+    },
+    {
+      "path": "tools/school_window_events_witness.py",
+      "bytes": 1711,
+      "sha256": "bcaba67a253c7a0209eee11951ba44a263d76acd76aee8c09be699685b0ec5c9",
+      "git_blob": "21e27963b3352ac7b0300e6a240712947f5288ab"
+    },
+    {
+      "path": "tools/tests/test_school_window_events.py",
+      "bytes": 1115,
+      "sha256": "df1e568efbe0d2faa42077c2683ee2fbf1f13fd1f36e26c70a3881435d1b35a5",
+      "git_blob": "4eac6b597101cdd9510d4887129b862090582081"
+    },
+    {
+      "path": "tools/tests/test_school_window_events_emulation.py",
+      "bytes": 4591,
+      "sha256": "0bbfa64314ac3f404aed0d89c07a5f2e061d9e5d5915e1319e68dce03b4334c9",
+      "git_blob": "413f056420f9ad4dd976cf9a0c16100bf1bf02a0"
+    },
+    {
+      "path": "tools/tests/test_school_window_events_platform.py",
+      "bytes": 2807,
+      "sha256": "b675d7928407495cc9c41d0226e0177d66d8e398e8e72bfa35d5585129b392be",
+      "git_blob": "486701c831931038addb7ab816df29c564b87559"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-window-events-acceptance-20261020.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}

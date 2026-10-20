@@ -1690,4 +1690,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 422. Size move show and WINDOWPOS acceptance
 
-- [ ] 422.1 Run new/relevant create parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact next message and pending creation/terminated-lifetime/global dependencies, verify Git bytes and commit locally without push.
+- [x] 422.1 Run new/relevant create parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact next message and pending creation/terminated-lifetime/global dependencies, verify Git bytes and commit locally without push.
