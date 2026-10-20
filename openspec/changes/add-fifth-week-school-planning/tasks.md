@@ -1662,7 +1662,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 415. Original WM_NCCALCSIZE completion
 
-- [ ] 415.1 Execute genuine131 property/virtual/default path after original129 on same CPU/helper, verify actual RECT16 input/output, native result and full independent source/ABI/memory/read-write replay with corruption tests; local commit.
+- [x] 415.1 Execute genuine131 property/virtual/default path after original129 on same CPU/helper, verify actual RECT16 input/output, native result and full independent source/ABI/memory/read-write replay with corruption tests; local commit.
 
 ## 416. Original WM_CREATE completion
 
