@@ -1315,3 +1315,11 @@ The audit SHALL execute original450350 geometry and partial class preparation us
 - **WHEN** a fresh original prefix naturally takes the no-duplicate branch into450350
 - **THEN** native geometry calls and seven class dword stores execute on the same CPU/helper lifetime, all five uninitialized class dwords and retained memory remain intact, and450416 stops before its import call
 - **AND** icon157/resource5 identity is source-verified without interpreting the inherited instance scalar as a real module or claiming class registration/window creation
+
+### Requirement: Genuine module input and complete original window-class resources
+The audit SHALL use an actual owned code-free resource module with byte-identical original icon data as a newly declared upstream WinMain input and execute original resource calls/field stores to the unexecuted registration instruction, preserving all raw evidence and historical/runtime bytes.
+
+#### Scenario: Fresh genuine instance reaches complete WNDCLASSEXA
+- **WHEN** a new owned module handle is declared before the first original startup instruction and native startup naturally passes its real duplicate-window gate
+- **THEN** native instance publication/class stores/two icon calls/system cursor/stock brush carry actual results to the complete class structure at45047D without repairing a pending VM
+- **AND** borrowed/shared resource ownership, disclosed exact scalar-validation substitutions and full raw memory/CPU/protocol evidence are verified without claiming registration/callback/window execution

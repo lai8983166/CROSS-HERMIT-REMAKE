@@ -1591,3 +1591,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 397. Geometry acceptance
 
 - [x] 397.1 Run new/relevant parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document actual module/icon/callback/window/retained VM boundaries and verify exact Git bytes; local commit without push.
+
+## 398. Code-free original icon module and source
+
+- [x] 398.1 Build immutable deterministic x86 resource-only DLL preserving original icon5/group157 bytes and derive four original resource calls/class-ready boundary; source/refusal tests and local commit.
+
+## 399. Actual resource-module platform
+
+- [ ] 399.1 Fork immutable x86 helper owning actual module load/resource-byte inspection/two shared icon calls/system cursor/stock brush with full/partial cleanup/order/refusal/provenance tests; local commit.
+
+## 400. Fresh genuine-instance original prefix
+
+- [ ] 400.1 Declare actual module before first49DDC9 instruction, replay original full prefix to450416 on same CPU/helper, verify raw dynamic-instance propagation and exact disclosed legacy-validation view/full buffers/admission with corruption tests; local commit.
+
+## 401. Original two icon loads
+
+- [ ] 401.1 Execute both original LoadIconA(module,157), stack checks and hIcon/hIconSm stores to450443, preserving full raw state and shared ownership with corruption tests; local commit.
+
+## 402. Original cursor/brush and complete class
+
+- [ ] 402.1 Execute original system cursor/stock brush/menu-zero stores and class pointer push to unexecuted45047D, verify complete class/raw CPU/full memory and fresh two-case trajectory; local commit.
+
+## 403. Resource module and class acceptance
+
+- [ ] 403.1 Run new/relevant geometry parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document registration/original callback/window/retained VM boundaries and verify Git bytes; local commit without push.
