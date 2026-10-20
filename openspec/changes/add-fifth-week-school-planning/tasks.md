@@ -1671,3 +1671,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 417. Client calculation and create acceptance
 
 - [x] 417.1 Run new/relevant callback parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document pending creation/terminated lifetime/next actual-message boundaries and verify staged/committed Git bytes; local commit without push.
+
+## 418. Original scalar and WINDOWPOS source contract
+
+- [x] 418.1 Pin original5/3/24/70 switch/default paths, unsigned size/signed move/boolean show scalars and WINDOWPOS28 layout, preserving the next-callback/old-global boundary; source tests and local commit.
+
+## 419. Actual WINDOWPOS platform
+
+- [ ] 419.1 Fork immutable x86 helper for real changing-position payload and actual default before/after bytes with full source/helper/system provenance and refusal/typed-protocol tests; local commit.
+
+## 420. Original size move and show callbacks
+
+- [ ] 420.1 Execute genuine5/3/24 on the same original CPU/helper after129/131/1, verify actual scalar semantics/property/virtual/switch/default paths, full independent CPU/access/buffer replay and corruption tests; local commit.
+
+## 421. Original changing-position callback
+
+- [ ] 421.1 Execute genuine70 with full actual WINDOWPOS native input/output, preserve source owner/global/caller and retain the next actual callback entry unanswered; independent source/native proof, fresh two-case and corruption tests; local commit.
+
+## 422. Size move show and WINDOWPOS acceptance
+
+- [ ] 422.1 Run new/relevant create parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact next message and pending creation/terminated-lifetime/global dependencies, verify Git bytes and commit locally without push.

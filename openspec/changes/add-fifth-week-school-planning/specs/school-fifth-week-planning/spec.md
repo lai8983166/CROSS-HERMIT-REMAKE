@@ -1347,3 +1347,11 @@ The audit SHALL continue actual original creation through real WM_NCCALCSIZE wit
 - **WHEN** real creation callbacks continue after completed WM_NCCREATE in the same fresh startup CPU/helper lifetime
 - **THEN** the original131 callback obtains the real owner property and returns actual default processing with complete RECT16 bytes, and the original1 callback follows its source-selected return0 branch without substituting a game handler
 - **AND** the next callback is retained unanswered at its original entry, the owned process is explicitly terminated, and full source/ABI/memory/protocol checks distinguish this boundary from successful creation return, normal cleanup or retained VM progress
+
+### Requirement: Original size move show and WINDOWPOS creation messages
+The audit SHALL continue actual original creation through real messages5/3/24/70 using typed scalar semantics and actual WINDOWPOS28 native input/output, preserving owner, source dispatch, caller context and historical bytes.
+
+#### Scenario: Original creation reaches the next live callback after WINDOWPOS
+- **WHEN** the same genuine-module startup CPU receives actual size, move, show and changing-position callbacks after129/131/1
+- **THEN** original bound-property/virtual/switch/default handlers consume genuine parameters and native responses, with complete WINDOWPOS bytes and independent original-code replay evidence
+- **AND** the next callback remains unanswered before its first original instruction, the owned helper process exits by explicit termination, and no captured game heap repair, successful creation return, HWND publication, normal cleanup or retained VM progress is claimed
