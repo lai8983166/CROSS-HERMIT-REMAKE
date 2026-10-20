@@ -1615,3 +1615,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 403. Resource module and class acceptance
 
 - [x] 403.1 Run new/relevant geometry parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document registration/original callback/window/retained VM boundaries and verify Git bytes; local commit without push.
+
+## 404. Original registration and callback source contract
+
+- [x] 404.1 Pin original registration/caller/creation instructions, class layout and callback/property/virtual-dispatch dependencies; source corruption tests and local commit.
+
+## 405. Owned real class platform
+
+- [ ] 405.1 Fork immutable x86 helper with exact two-pointer class adaptation, owned dormant callback transport, actual registration/atom-and-name inspection/unregistration and full/partial cleanup/provenance/refusal tests; local commit.
+
+## 406. Original class registration return
+
+- [ ] 406.1 Replay genuine-module prefix on same CPU/helper, admit original RegisterClassExA import without changing pending state, execute actual original call to450483 and independently verify ABI/result/full memory/raw class/native writes with corruption tests; local commit.
+
+## 407. Original creation argument preparation
+
+- [ ] 407.1 Execute original ATOM masking/stack check/success branch and all12 CreateWindowExA arguments to unexecuted4504CF, verify exact source path/full CPU/memory/write replay and fresh two-case trajectory; local commit.
+
+## 408. Class registration acceptance
+
+- [ ] 408.1 Run new/relevant genuine-module parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact callback/window/retained VM boundaries and verify staged/committed Git bytes; local commit without push.

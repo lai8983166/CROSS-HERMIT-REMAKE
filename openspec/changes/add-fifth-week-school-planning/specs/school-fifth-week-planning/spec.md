@@ -1323,3 +1323,11 @@ The audit SHALL use an actual owned code-free resource module with byte-identica
 - **WHEN** a new owned module handle is declared before the first original startup instruction and native startup naturally passes its real duplicate-window gate
 - **THEN** native instance publication/class stores/two icon calls/system cursor/stock brush carry actual results to the complete class structure at45047D without repairing a pending VM
 - **AND** borrowed/shared resource ownership, disclosed exact scalar-validation substitutions and full raw memory/CPU/protocol evidence are verified without claiming registration/callback/window execution
+
+### Requirement: Real original window-class registration and creation preparation
+The audit SHALL execute original45047D against a fresh owned real class adapter, preserve the source callback/class record and verify actual class ownership, native caller continuation and complete CreateWindowExA preparation without claiming creation.
+
+#### Scenario: Real class atom reaches original creation instruction
+- **WHEN** genuine-module startup naturally reaches45047D and the owned adapter registers the exact source class with explicitly translated host pointers
+- **THEN** real class inspection and eventual unregistration verify fields, atom, module and lifetime while the original caller consumes the actual ATOM and prepares all12 source creation arguments to4504CF
+- **AND** full CPU/memory/ABI/write/protocol evidence and historical/save/private VM bytes remain verified; callback transport is dormant and no real game window or retained VM advancement is claimed
