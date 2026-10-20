@@ -1691,3 +1691,31 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 422. Size move show and WINDOWPOS acceptance
 
 - [x] 422.1 Run new/relevant create parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact next message and pending creation/terminated-lifetime/global dependencies, verify Git bytes and commit locally without push.
+
+## One-month delivery plan (agreed2026-10-20; target2026-11-20)
+
+Tasks1–422 are historical completed stages. Future work uses integrated milestones rather than source/platform/native/acceptance tasks per API or message. The target covers the agreed reverse-engineering scope; Godot implementation is separate. Dates are planned acceptance checkpoints, not completion guarantees. Use affected-path checks during work and full relevant regression/strict specs/preservation at stable milestone boundaries. Commit each coherent completed unit locally without push; keep incomplete milestones unchecked and report deadline risk when a checkpoint slips. See the proposal/design/spec amendments for evidence, ownership and coverage requirements.
+
+## 423. Startup and window closure — target2026-10-25
+
+- [ ] 423.1 Continue actual creation from the second70 through genuine callback order to natural CreateWindowExA return and original HWND publication; resolve required game/cache initialization and ownership/lifetime dependencies from source, preserve original globals/evidence, and verify the complete startup chain with relevant regression before a local commit.
+
+## 424. Renderer and retained VM integration — target2026-10-29
+
+- [ ] 424.1 Integrate genuine startup/device/font/manager/queues with the retained40E2D0 continuation using valid live ownership, resume original rectangle/text execution and verify actual render output plus complete relevant state; accept and commit the functional integration without claiming scratch-only success as VM progress.
+
+## 425. Continuous input task and script flow — target2026-11-03
+
+- [ ] 425.1 Close original outer scheduling/input/task/VM/world calls across dialogue/waits and meaningful opening transitions; maintain source opcode/mainline script/branch coverage inventory, verify representative continuous flows and failures, and commit the completed functional chain.
+
+## 426. Battle AI actions and effects — target2026-11-10
+
+- [ ] 426.1 Cover original movement/pathfinding/selection/action/AI/skills/effects/damage/death families and associated scenario/role/skill data with source coverage and representative native comparisons; close the original battle lifecycle, retain any unsupported family as a blocker, and commit verified coherent units.
+
+## 427. Scenario events results and progression — target2026-11-16
+
+- [ ] 427.1 Close source scenario triggers, victory/defeat, rewards, school return, subsequent mainline progression and save continuity; verify representative transitions and failure paths, preserve saves/historical evidence, and commit the functional closure.
+
+## 428. Integrated reverse-engineering completion — target2026-11-20
+
+- [ ] 428.1 Review all mainline scenario/script/rule-family coverage, complete integrated representative startup-to-battle-to-result/progression checks and relevant regression/strict specs/preservation, deliver reproducible source/rule coverage and explicit residual limits, and commit final acceptance only when required gameplay paths are closed; report any deadline/scope gap instead of declaring incomplete work complete.

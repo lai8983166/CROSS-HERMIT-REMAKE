@@ -1355,3 +1355,18 @@ The audit SHALL continue actual original creation through real messages5/3/24/70
 - **WHEN** the same genuine-module startup CPU receives actual size, move, show and changing-position callbacks after129/131/1
 - **THEN** original bound-property/virtual/switch/default handlers consume genuine parameters and native responses, with complete WINDOWPOS bytes and independent original-code replay evidence
 - **AND** the next callback remains unanswered before its first original instruction, the owned helper process exits by explicit termination, and no captured game heap repair, successful creation return, HWND publication, normal cleanup or retained VM progress is claimed
+
+### Requirement: Integrated one-month reverse-engineering milestones
+The remaining audit SHALL target2026-11-20 using six functional milestones covering startup, renderer/retained VM, continuous input/task/script flow, battle/AI/effects, events/results/progression and integrated acceptance. It SHALL preserve the agreed mainline reverse-engineering scope, original-code/interface evidence and immutable historical/save/private-checkpoint integrity while consolidating repeated tooling and validation. Historical completed tasks SHALL NOT be interpreted as a whole-game completion percentage.
+
+#### Scenario: Supported original calls continue to a functional boundary
+- **WHEN** an original live continuation encounters subsequent messages or APIs already supported by its typed transport and source admission policy
+- **THEN** compatible calls continue within the same owned lifetime with shared execution and verification components until the functional milestone boundary or a genuinely unresolved dependency
+- **AND** affected-path checks run during development, relevant full regression/specification/preservation checks run at stable milestones, and completed coherent units receive local commits without push
+- **AND** immutable helper changes receive honest new identities; expired handles, fabricated game-function results or global clearing never stand in for original initialization
+
+#### Scenario: Deadline progress and completion remain reviewable
+- **WHEN** a dated milestone is reviewed or the final target date is reached
+- **THEN** the report lists functional flow completed, open critical dependencies, source/rule/scenario coverage, evidence and the effect of any missed checkpoint on the target date
+- **AND** completion requires closed required gameplay paths plus representative original-code comparisons and integrated flow checks; a single-scenario demo, successful isolated initializer or task count alone is insufficient
+- **AND** any scope reduction or deadline change is explicit, remaining unsupported mainline families block completion, and Godot implementation is reported separately
