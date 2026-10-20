@@ -1642,7 +1642,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 410. Nested actual creation callback platform
 
-- [ ] 410.1 Fork immutable x86 helper for exact original CreateWindowExA, genuine callback packets and nested real property/window-long/default interfaces, explicit host/guest procedure identity and bounded unanswered-callback process termination; provenance/refusal/protocol tests and local commit.
+- [x] 410.1 Fork immutable x86 helper for exact original CreateWindowExA, genuine callback packets and nested real property/window-long/default interfaces, explicit host/guest procedure identity and bounded unanswered-callback process termination; provenance/refusal/protocol tests and local commit.
 
 ## 411. Original genuine WM_NCCREATE execution
 
