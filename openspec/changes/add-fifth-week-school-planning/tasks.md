@@ -1610,7 +1610,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 402. Original cursor/brush and complete class
 
-- [ ] 402.1 Execute original system cursor/stock brush/menu-zero stores and class pointer push to unexecuted45047D, verify complete class/raw CPU/full memory and fresh two-case trajectory; local commit.
+- [x] 402.1 Execute original system cursor/stock brush/menu-zero stores and class pointer push to unexecuted45047D, verify complete class/raw CPU/full memory and fresh two-case trajectory; local commit.
 
 ## 403. Resource module and class acceptance
 

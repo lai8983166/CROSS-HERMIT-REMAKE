@@ -16,6 +16,7 @@ IMPORTS={0x5923CC:('LoadIconA',2,[0x45041C,0x450439]),
     0x5923C8:('LoadCursorA',2,[0x450452]),0x592084:('GetStockObject',1,[0x450466])}
 
 
+@lru_cache(maxsize=1)
 def resource_bytes():
     geometry.resource_contract()
     pe=pefile.PE(data=SOURCE.read_bytes());result={}

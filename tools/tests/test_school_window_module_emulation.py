@@ -69,4 +69,36 @@ class IconTests(unittest.TestCase):
             with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r,'icons')
 
 
+class ClassReadyTests(unittest.TestCase):
+    def test_complete_class_uses_actual_cursor_brush_and_genuine_instance(self):
+        r=report();verify_report(r)
+        for c in r['cases']:
+            cls=unpack(c['class_ready']['state']['class_structure']);resources=c['icons']['platform_calls']+c['class_ready']['platform_calls']
+            expected=[48,0,0x424980,0,0,c['hello']['resource_module']['pointer'],resources[0]['result']['result'],resources[2]['result']['result'],resources[3]['result']['result'],0,geometry.window.TITLE,resources[1]['result']['result']]
+            self.assertEqual([geometry.dword(cls,i*4) for i in range(12)],expected)
+            self.assertEqual(c['class_ready']['pending']['stack_args'],[geometry.CLASS_AT])
+            self.assertFalse(c['class_ready']['class_registration_executed'])
+
+    def test_refuses_wrong_system_resource_menu_store_or_registration_claim(self):
+        for mutation in ('cursor','brush','menu','pending','claim'):
+            r=report();n=r['cases'][0]['class_ready']
+            if mutation=='cursor':n['platform_calls'][0]['args'][0]=r['cases'][0]['hello']['resource_module']['pointer']
+            elif mutation=='brush':n['platform_calls'][1]['request']['id_value']=0
+            elif mutation=='menu':next(w for w in n['native_writes'] if w['pc']==0x450470)['value']=1
+            elif mutation=='pending':n['pending']['return_va']='0x450483'
+            else:n['class_registration_executed']=True
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r)
+
+    def test_fresh_real_module_runs_preserve_old_metadata_and_use_new_declared_inputs(self):
+        instance=geometry.window.HINSTANCE;functions=dict(geometry.parent.functions());legacy=geometry.partial_class()
+        r=generate();self.assertEqual(geometry.window.HINSTANCE,instance)
+        self.assertEqual(geometry.parent.functions(),functions);self.assertEqual(geometry.partial_class(),legacy)
+        self.assertEqual(verify_report(r)['cases'],2)
+        for c in r['cases']:
+            self.assertEqual(c['icons']['before_cpu'],c['class']['cpu'])
+            self.assertEqual(c['class_ready']['before_cpu'],c['icons']['cpu'])
+            self.assertTrue(c['module_input']['before_first_original_instruction'])
+            self.assertTrue(c['platform_cleanup']['all_owned_resources_released'])
+
+
 if __name__=='__main__':unittest.main()
