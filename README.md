@@ -5,6 +5,8 @@
 
 逆向工作的总范围、完成标准及 **2026-11-20** 目标见[逆向总规格与六个里程碑](openspec/specs/reverse-engineering/completion/spec.md)。旧的 `add-fifth-week-school-planning` 已[归档](openspec/changes/archive/2026-10-20-add-fifth-week-school-planning/tasks.md)，其中六项未完成计划迁入总路线图，未计作已完成；[既有规格](openspec/specs/school-fifth-week-planning/spec.md)已同步。后续按有限功能里程碑创建或接续change，不再向旧change追加任务。下方各批次记录为历史进展。
 
+当前R1已完成[原窗口创建返回与HWND发布](docs/school_startup_window.md)：真正新启动的自有原进程验证游戏/字体缓存初值0，新客体在第一条原指令前声明；同一创建调用连续执行17条真实消息，含3层输入法嵌套，随后原4504DC发布实际HWND，停4504E1。28项相关回归、32项严格规格通过。完整R1的窗口后处理、游戏工厂/缓存和正常寿命仍待继续；原连续VM与Godot保持。接续[close-original-startup](openspec/changes/close-original-startup/tasks.md)，不再按消息拆change。
+
 本批原窗口消息逆向：同一原启动CPU已继续完成真实WM_SIZE/WM_MOVE/WM_SHOWWINDOW及首条WM_WINDOWPOSCHANGING，标量尺寸1024×768、坐标16,16、显示wParam1与真实WINDOWPOS28前后字节均独立验证。累计7条回调、2068条原指令、505次读取、1102次写入、15次真实接口；下一条仍为位置变更，flags从43h变为03h，停在未执行的原回调入口。创建尚未返回，助手进程寿命已结束；旧游戏全局和原连续VM保持。见[原版尺寸位置显示与WINDOWPOS](docs/school_window_events.md)。12项本批及11项直接父链共23项测试、30项严格规格通过，16,592个既有文件及九份私有VM保持；五阶段分别本地提交、未push，Godot与原存档未改。见[本批验收](analysis/school-window-events-acceptance-20261020.json)。
 
 本批原客户区/创建消息逆向：同一原启动CPU已执行真实WM_NCCALCSIZE和WM_CREATE；实际RECT16在默认处理前后均为[16,16,1040,784]，原131返回实际默认结果0，原1经消息表/清零指令自然返回0，两条消息均复用真实owner属性并跳过重复绑定。包含原129共945条原指令、235次读取、494次写入、8次真实接口通过独立重放，下一条实际WM_SIZE停在回调入口；创建调用尚未返回，助手寿命明确结束。见[原客户区计算与WM_CREATE](docs/school_window_create.md)。11项新增与9项直接父链共20项相关测试、30项严格规格通过，16,566个既有文件及九份私有VM保持；五阶段本地提交、未push。下一步接打包尺寸消息5及后续真实消息/旧游戏对象来源；原连续VM仍停40E2D0，Godot与原存档保持。见[本批验收](analysis/school-window-create-acceptance-20261020.json)。

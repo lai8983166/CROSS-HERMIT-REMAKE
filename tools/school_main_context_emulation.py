@@ -28,7 +28,10 @@ def initial_stack(fill):
 class MainEmulator:
     def __init__(self,platform,fill):
         source_contract();self.platform,self.fill=platform,fill
-        self.image=SOURCE.read_bytes();self.ranges=functions();self.uc=Uc(UC_ARCH_X86,UC_MODE_32)
+        self.initial_globals=dict(getattr(platform,'initial_globals',{}))
+        if any(at not in (0x7A49FC,0x80A398) or type(v) is not int or not 0<=v<=0xFFFFFFFF for at,v in self.initial_globals.items()):
+            raise ValueError('only explicitly declared startup game/cache scalar inputs')
+        self.image=self.expected_image(SOURCE.read_bytes());self.ranges=functions();self.uc=Uc(UC_ARCH_X86,UC_MODE_32)
         for at,n,b in ((BASE,(len(self.image)+4095)&~4095,self.image),(0,4096,bytes(4096)),
                 (OWNER-4096,BACKING+8192,bytes([fill])*(BACKING+8192)),
                 (STACK,65536,initial_stack(fill)),(RETURN,4096,bytes([fill])*4096)):
@@ -49,6 +52,13 @@ class MainEmulator:
     def read(self,p):return struct.unpack('<I',bytes(self.uc.mem_read(p,4)))[0]
     def bytes(self,p,n):return bytes(self.uc.mem_read(p,n))
     def cpu(self):return {k:self.uc.reg_read(r) for k,r in REGISTERS.items()}
+
+    def expected_image(self,image):
+        """Apply declared root inputs to projections; never change a pending CPU."""
+        if not self.initial_globals:return bytes(image)
+        result=bytearray(image)
+        for at,value in self.initial_globals.items():store(result,at-BASE,value)
+        return bytes(result)
 
     def _write(self,uc,access,at,n,value,user):
         allowed=[(STACK,STACK+65536),(0,4)]
@@ -120,7 +130,7 @@ class MainEmulator:
         self.uc.emu_start(start,RETURN+1,timeout=20_000_000,count=1000000)
         if self.boundary!=STOPS[phase]:raise ValueError('main original boundary not reached')
         expected=initial_owner(self.fill) if phase=='allocation' else project_constructor(initial_owner(self.fill),self.all_calls)
-        image=project_image(phase,self.all_calls)
+        image=self.expected_image(project_image(phase,self.all_calls))
         guarded=self.bytes(OWNER-4096,BACKING+8192)
         if guarded!=bytes([self.fill])*4096+expected+bytes([self.fill])*4096:raise ValueError('main complete constructed backing mismatch')
         if self.bytes(BASE,len(image))!=image:raise ValueError('main complete original image mismatch')

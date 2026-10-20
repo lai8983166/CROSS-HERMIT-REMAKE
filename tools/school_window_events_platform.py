@@ -25,10 +25,10 @@ def build():
 
 
 class EventsPlatform(LiveD3D8):
-    def __init__(self):
-        if machine(HELPER)!=0x14C:raise ValueError('real x86 main-context helper required')
+    def __init__(self,helper=HELPER):
+        if machine(helper)!=0x14C:raise ValueError('real x86 main-context helper required')
         inspect_module(RESOURCE_DLL.read_bytes())
-        self.process=subprocess.Popen([str(HELPER),str(RESOURCE_DLL)],stdin=subprocess.PIPE,stdout=subprocess.PIPE,
+        self.process=subprocess.Popen([str(helper),str(RESOURCE_DLL)],stdin=subprocess.PIPE,stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,text=True,encoding='utf8',cwd=WORKDIR,creationflags=subprocess.CREATE_NO_WINDOW)
         self.reader=ThreadPoolExecutor(max_workers=1)
         self.sequence,self.closed,self.trace,self.cleanup=0,False,[],None

@@ -26,7 +26,7 @@ class ModuleEmulator(GeometryEmulator):
         self.code.update({i.address:i for a,b in RANGES.items() for i in Cs(CS_ARCH_X86,CS_MODE_32).disasm(self.image[a-BASE:b-BASE],a)})
 
     def instance_image(self,before,phase):
-        result=bytearray(window.project_image(before,phase));store(result,window.INSTANCE-BASE,self.module);return bytes(result)
+        result=bytearray(window.project_image(before,phase));store(result,window.INSTANCE-BASE,self.module);return self.expected_image(result)
 
     def instance_class(self):
         result=bytearray(geometry.partial_class());store(result,20,self.module);return bytes(result)
