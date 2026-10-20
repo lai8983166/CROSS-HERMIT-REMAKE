@@ -6,7 +6,7 @@
 
 ## 2. Required game and cache startup
 
-- [ ] 2.1 Continue original startup to resolve required game factory/cache and platform initialization with valid resource ownership, source-backed inputs and actual interface results; verify the integrated caller/state and document the remaining R2 handoff before local commits.
+- [x] 2.1 Continue original startup to resolve required game factory/cache and platform initialization with valid resource ownership, source-backed inputs and actual interface results; verify the integrated caller/state and document the remaining R2 handoff before local commits.
 
 ## 3. Startup lifetime and R1 acceptance
 
