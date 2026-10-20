@@ -58,4 +58,34 @@ class AdjustmentTests(unittest.TestCase):
             with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r,'adjust')
 
 
+class ClassTests(unittest.TestCase):
+    def test_exact_seven_class_fields_and_unexecuted_import_instruction(self):
+        r=report();result=verify_report(r)
+        self.assertEqual((result['partial_class_initialized_dwords'],result['partial_class_uninitialized_dwords']),(7,5))
+        for c in r['cases']:
+            p=c['class']['pending'];self.assertEqual(p['stack_args'],[window.HINSTANCE,157])
+            self.assertNotIn('return_va',p);self.assertFalse(p['call_instruction_executed'])
+            self.assertEqual(c['class']['state']['owner'],c['adjust']['state']['owner'])
+
+    def test_refuses_fabricated_class_callback_instance_or_icon_success(self):
+        for mutation in ('class','callback','instance','pending','icon'):
+            r=report();n=r['cases'][0]['class']
+            if mutation=='class':n['state']['class_structure']['sha256']='0'*64
+            elif mutation=='callback':next(w for w in n['native_writes'] if w['pc']==0x4503EA)['value']=0
+            elif mutation=='instance':next(w for w in n['native_writes'] if w['pc']==0x4503F7)['value']=0x400000
+            elif mutation=='pending':n['pending']['return_va']='0x45041c'
+            else:n['LoadIconA_executed']=True
+            with self.subTest(mutation=mutation),self.assertRaises(ValueError):verify_report(r)
+
+    def test_fresh_full_two_case_run_preserves_old_source_metadata(self):
+        before=dict(parent.functions());ranges=dict(window.RANGES)
+        r=generate();self.assertEqual(parent.functions(),before);self.assertEqual(window.RANGES,ranges)
+        self.assertEqual(verify_report(r)['cases'],2)
+        for c in r['cases']:
+            self.assertEqual(c['rect']['before_cpu'],c['branch']['cpu'])
+            self.assertEqual(c['adjust']['before_cpu'],c['rect']['cpu'])
+            self.assertEqual(c['class']['before_cpu'],c['adjust']['cpu'])
+            self.assertTrue(c['platform_cleanup']['all_owned_resources_released'])
+
+
 if __name__=='__main__':unittest.main()

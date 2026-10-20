@@ -1586,7 +1586,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 396. Original partial window class and icon admission
 
-- [ ] 396.1 Execute original seven class stores and icon argument pushes to unexecuted450416, preserve fiveCC fields/entire frame/owner/image and verify fresh two-case trajectory; local commit.
+- [x] 396.1 Execute original seven class stores and icon argument pushes to unexecuted450416, preserve fiveCC fields/entire frame/owner/image and verify fresh two-case trajectory; local commit.
 
 ## 397. Geometry acceptance
 
