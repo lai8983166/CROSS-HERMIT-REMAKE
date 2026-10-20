@@ -1666,7 +1666,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 416. Original WM_CREATE completion
 
-- [ ] 416.1 Execute real1 message through original bound-property/virtual/input/switch return0, preserve complete native caller and old heap/global, retain next unanswered callback and verify fresh two-case trajectory plus corruption tests; local commit.
+- [x] 416.1 Execute real1 message through original bound-property/virtual/input/switch return0, preserve complete native caller and old heap/global, retain next unanswered callback and verify fresh two-case trajectory plus corruption tests; local commit.
 
 ## 417. Client calculation and create acceptance
 

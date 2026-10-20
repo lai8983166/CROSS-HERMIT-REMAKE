@@ -1,0 +1,268 @@
+{
+  "stage": 416,
+  "phase": "create",
+  "trajectory": {
+    "path": "analysis/school-window-create-trajectory-v1-20261020.json",
+    "bytes": 1509531,
+    "sha256": "3c194ec1ee61d71148aa65e7c62fe1fc82d805a1c16bbfebfb3f2e5c230d1978"
+  },
+  "verified": {
+    "cases": 2,
+    "completed_messages": [
+      129,
+      131,
+      1
+    ],
+    "pending_message": 5,
+    "pending_guest_EIP": "0x424980",
+    "creation_return_pending": true,
+    "case_proofs": [
+      {
+        "callbacks": [
+          {
+            "message": 129,
+            "instructions": 416,
+            "reads": 110,
+            "writes": 208,
+            "native_APIs": 5,
+            "result": 1,
+            "actual_HWND": 16909018,
+            "bound_property_reused": false,
+            "source_binding_repeated": false,
+            "captured_game_global_read": false
+          },
+          {
+            "message": 131,
+            "instructions": 299,
+            "reads": 73,
+            "writes": 160,
+            "native_APIs": 2,
+            "result": 0,
+            "actual_HWND": 16909018,
+            "bound_property_reused": true,
+            "source_binding_repeated": false,
+            "captured_game_global_read": false
+          },
+          {
+            "message": 1,
+            "instructions": 230,
+            "reads": 52,
+            "writes": 126,
+            "native_APIs": 1,
+            "result": 0,
+            "actual_HWND": 16909018,
+            "bound_property_reused": true,
+            "source_binding_repeated": false,
+            "captured_game_global_read": false
+          }
+        ],
+        "prefix_substitutions": 31,
+        "pending_message": 5,
+        "raw_evidence_modified": false
+      },
+      {
+        "callbacks": [
+          {
+            "message": 129,
+            "instructions": 416,
+            "reads": 110,
+            "writes": 208,
+            "native_APIs": 5,
+            "result": 1,
+            "actual_HWND": 16974554,
+            "bound_property_reused": false,
+            "source_binding_repeated": false,
+            "captured_game_global_read": false
+          },
+          {
+            "message": 131,
+            "instructions": 299,
+            "reads": 73,
+            "writes": 160,
+            "native_APIs": 2,
+            "result": 0,
+            "actual_HWND": 16974554,
+            "bound_property_reused": true,
+            "source_binding_repeated": false,
+            "captured_game_global_read": false
+          },
+          {
+            "message": 1,
+            "instructions": 230,
+            "reads": 52,
+            "writes": 126,
+            "native_APIs": 1,
+            "result": 0,
+            "actual_HWND": 16974554,
+            "bound_property_reused": true,
+            "source_binding_repeated": false,
+            "captured_game_global_read": false
+          }
+        ],
+        "prefix_substitutions": 31,
+        "pending_message": 5,
+        "raw_evidence_modified": false
+      }
+    ],
+    "explicit_normal_cleanup": false,
+    "owned_processes_exited": true,
+    "retained_VM_advanced": false
+  },
+  "cases": [
+    {
+      "fill": 165,
+      "node_index": 2,
+      "node_sha256": "496784c227dd16063d83c799db7aa2d449157485821b04add4132294ceeb0632",
+      "message": {
+        "event_kind": "wndproc",
+        "callback_id": 3,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 16909018,
+        "message": 1,
+        "wParam": 0,
+        "lParam": 11789984,
+        "data_kind": "CREATESTRUCTA",
+        "data_hex": "0000002000001e0500000000000000000003000000040000100000001000000000000090d0e3a300e0e3a30000000000"
+      },
+      "callback_return_cpu": {
+        "EIP": 603979776,
+        "ESP": 587264020,
+        "EBP": 287454020,
+        "EAX": 0,
+        "EBX": 1432778632,
+        "ECX": 0,
+        "EDX": 0,
+        "ESI": 2289526357,
+        "EDI": 1144201745,
+        "EFLAGS": 582
+      },
+      "restored_caller_cpu": {
+        "EIP": 1979748256,
+        "ESP": 553709168,
+        "EBP": 553709364,
+        "EAX": 2415919104,
+        "EBX": 1432778632,
+        "ECX": 768,
+        "EDX": 1024,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 6
+      },
+      "final_guarded_owner_sha256": "7ee484dec5953580633c53936bc617521145d3c93b784d045bbf0985302ed670",
+      "final_image_sha256": "02318a98c8387053fe194f52ddd9e35446fe91cb76441aa147f8175f9f82e7c5",
+      "pending_callback": {
+        "event_kind": "wndproc",
+        "callback_id": 4,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 16909018,
+        "message": 5,
+        "wParam": 0,
+        "lParam": 50332672,
+        "data_kind": "opaque",
+        "data_hex": ""
+      },
+      "process_abort": {
+        "owned_process_exited": true,
+        "exit_code": 1,
+        "reason": "after original WM_CREATE; next callback first instruction unexecuted",
+        "pending_callback": {
+          "event_kind": "wndproc",
+          "callback_id": 4,
+          "depth": 1,
+          "guest_entry": 4344192,
+          "hwnd": 16909018,
+          "message": 5,
+          "wParam": 0,
+          "lParam": 50332672,
+          "data_kind": "opaque",
+          "data_hex": ""
+        },
+        "unanswered": true,
+        "explicit_cleanup_performed": false,
+        "CreateWindowExA_return_received": false,
+        "normal_class_unregistration_performed": false
+      }
+    },
+    {
+      "fill": 204,
+      "node_index": 2,
+      "node_sha256": "d5174cd9bb76eae9e6097aa706c77c939c546e6b682d2b9207baa468af5dccbc",
+      "message": {
+        "event_kind": "wndproc",
+        "callback_id": 3,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 16974554,
+        "message": 1,
+        "wParam": 0,
+        "lParam": 14673248,
+        "data_kind": "CREATESTRUCTA",
+        "data_hex": "000000200000180300000000000000000003000000040000100000001000000000000090b0decf00c0decf0000000000"
+      },
+      "callback_return_cpu": {
+        "EIP": 603979776,
+        "ESP": 587264020,
+        "EBP": 287454020,
+        "EAX": 0,
+        "EBX": 1432778632,
+        "ECX": 0,
+        "EDX": 0,
+        "ESI": 2289526357,
+        "EDI": 1144201745,
+        "EFLAGS": 582
+      },
+      "restored_caller_cpu": {
+        "EIP": 1979748256,
+        "ESP": 553709168,
+        "EBP": 553709364,
+        "EAX": 2415919104,
+        "EBX": 1432778632,
+        "ECX": 768,
+        "EDX": 1024,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 6
+      },
+      "final_guarded_owner_sha256": "916e287f53ee6dcd74325846c9e42ffeff75ba94198fb9d0e2dc6804e3a2d786",
+      "final_image_sha256": "89228988e534be18a9ae85f70ade49c8ddd8bfde56faa9c93b9da1ebb0058684",
+      "pending_callback": {
+        "event_kind": "wndproc",
+        "callback_id": 4,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 16974554,
+        "message": 5,
+        "wParam": 0,
+        "lParam": 50332672,
+        "data_kind": "opaque",
+        "data_hex": ""
+      },
+      "process_abort": {
+        "owned_process_exited": true,
+        "exit_code": 1,
+        "reason": "after original WM_CREATE; next callback first instruction unexecuted",
+        "pending_callback": {
+          "event_kind": "wndproc",
+          "callback_id": 4,
+          "depth": 1,
+          "guest_entry": 4344192,
+          "hwnd": 16974554,
+          "message": 5,
+          "wParam": 0,
+          "lParam": 50332672,
+          "data_kind": "opaque",
+          "data_hex": ""
+        },
+        "unanswered": true,
+        "explicit_cleanup_performed": false,
+        "CreateWindowExA_return_received": false,
+        "normal_class_unregistration_performed": false
+      }
+    }
+  ],
+  "successful_creation_return": false,
+  "retained_VM_advanced": false,
+  "standalone_resumable_checkpoint": false
+}

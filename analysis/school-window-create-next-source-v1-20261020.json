@@ -1,0 +1,123 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "instructions": [
+    {
+      "va": "0x4249b7",
+      "hex": "7542",
+      "mnemonic": "jne",
+      "operands": "0x4249fb"
+    },
+    {
+      "va": "0x450dcf",
+      "hex": "ff24854c104500",
+      "mnemonic": "jmp",
+      "operands": "dword ptr [eax*4 + 0x45104c]"
+    },
+    {
+      "va": "0x450edd",
+      "hex": "e94e010000",
+      "mnemonic": "jmp",
+      "operands": "0x451030"
+    },
+    {
+      "va": "0x450f63",
+      "hex": "e9c8000000",
+      "mnemonic": "jmp",
+      "operands": "0x451030"
+    },
+    {
+      "va": "0x451016",
+      "hex": "8b4514",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [ebp + 0x14]"
+    },
+    {
+      "va": "0x451029",
+      "hex": "e8623afdff",
+      "mnemonic": "call",
+      "operands": "0x424a90"
+    },
+    {
+      "va": "0x451030",
+      "hex": "33c0",
+      "mnemonic": "xor",
+      "operands": "eax, eax"
+    },
+    {
+      "va": "0x450e3a",
+      "hex": "8982d0080000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [edx + 0x8d0], eax"
+    },
+    {
+      "va": "0x450e40",
+      "hex": "833dfc497a0000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [0x7a49fc], 0"
+    },
+    {
+      "va": "0x450e47",
+      "hex": "0f8481000000",
+      "mnemonic": "je",
+      "operands": "0x450ece"
+    },
+    {
+      "va": "0x450e5d",
+      "hex": "e8ee2ffcff",
+      "mnemonic": "call",
+      "operands": "0x413e50"
+    }
+  ],
+  "future_source_switch": [
+    {
+      "message": 3,
+      "selector": 6,
+      "target": "0x451016",
+      "executed": false
+    },
+    {
+      "message": 5,
+      "selector": 2,
+      "target": "0x450edd",
+      "executed": false
+    },
+    {
+      "message": 15,
+      "selector": 3,
+      "target": "0x450f16",
+      "executed": false
+    },
+    {
+      "message": 18,
+      "selector": 5,
+      "target": "0x450f63",
+      "executed": false
+    }
+  ],
+  "completed_messages": [
+    129,
+    131,
+    1
+  ],
+  "next_actual_message": {
+    "message": 5,
+    "wParam": 0,
+    "lParam": 50332672,
+    "semantic": "WM_SIZE/SIZE_RESTORED; LOWORD1024 HIWORD768, not a memory pointer",
+    "callback_entry": "0x424980",
+    "first_instruction_executed": false,
+    "source_switch_target": "0x450edd",
+    "source_result": 0
+  },
+  "next_requirements": [
+    "Resume actual WM_SIZE5 with packed1024x768 and original bound-property/virtual/switch return0, preserving owner and native creation stack",
+    "Follow subsequent genuine messages, capture actual native payloads for pointer-valued messages rather than treating packed scalar LPARAM as pointer",
+    "Retain source28 WM_ACTIVATEAPP gate before reads of captured7A49FC; derive the real fresh-start initial state/heap source without resetting old global",
+    "Extend actual paint input/output and source-driven property removal/window destruction/class unregistration when corresponding real messages become admissible",
+    "Claim successful creation/HWND global publication only after original4504CF call naturally returns and4504DC stores actual HWND"
+  ],
+  "captured_game_global_modified": false,
+  "game_heap_resolved": false,
+  "CreateWindowExA_return_received": false,
+  "retained_VM_advanced": false
+}
