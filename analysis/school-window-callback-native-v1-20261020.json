@@ -1,0 +1,203 @@
+{
+  "stage": 411,
+  "trajectory": {
+    "path": "analysis/school-window-callback-trajectory-v1-20261020.json",
+    "bytes": 1281389,
+    "sha256": "dbbdb1f97fac56a0015184535d9086c7b6e8b34b659d0af227e719f291e9ad59"
+  },
+  "verified": {
+    "cases": 2,
+    "completed_messages": [
+      129
+    ],
+    "pending_message": 131,
+    "pending_guest_EIP": "0x424980",
+    "creation_return_pending": true,
+    "callbacks": [
+      {
+        "native_instructions": 416,
+        "reads": 110,
+        "writes": 208,
+        "native_APIs": 5,
+        "result": 1,
+        "bound_HWND": 32708030,
+        "original_virtual_dispatch": true,
+        "captured_game_global_read": false,
+        "prefix_substitutions": 31
+      },
+      {
+        "native_instructions": 416,
+        "reads": 110,
+        "writes": 208,
+        "native_APIs": 5,
+        "result": 1,
+        "bound_HWND": 32773566,
+        "original_virtual_dispatch": true,
+        "captured_game_global_read": false,
+        "prefix_substitutions": 31
+      }
+    ],
+    "explicit_normal_cleanup": false,
+    "owned_processes_exited": true,
+    "retained_VM_advanced": false
+  },
+  "cases": [
+    {
+      "fill": 165,
+      "creation_sha256": "55b6a799990333784e083e8014ece1d4a6d8fac107fa734b2a2294181debcd20",
+      "callbacks_sha256": "19ad29ddcb20d465f99ab97a25146728d686b4c2ab94ba437a18782245bede59",
+      "pending_sha256": "763f0dc7a8e8f7589bae1a2a7e58cca8aa9c729d4cc8458befa5ce56a7dd6bef",
+      "native_creation_cpu": {
+        "EIP": 1979748256,
+        "ESP": 553709168,
+        "EBP": 553709364,
+        "EAX": 2415919104,
+        "EBX": 1432778632,
+        "ECX": 768,
+        "EDX": 1024,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 6
+      },
+      "callback_return_cpu": {
+        "EIP": 603979776,
+        "ESP": 587264020,
+        "EBP": 287454020,
+        "EAX": 1,
+        "EBX": 1432778632,
+        "ECX": 129,
+        "EDX": 32708030,
+        "ESI": 2289526357,
+        "EDI": 1144201745,
+        "EFLAGS": 582
+      },
+      "pending_callback": {
+        "event_kind": "wndproc",
+        "callback_id": 2,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 32708030,
+        "message": 131,
+        "wParam": 0,
+        "lParam": 15722924,
+        "data_kind": "opaque",
+        "data_hex": ""
+      },
+      "pending_guest_cpu": {
+        "EIP": 4344192,
+        "ESP": 587264000,
+        "EBP": 287454020,
+        "EAX": 16909060,
+        "EBX": 1432778632,
+        "ECX": 84281096,
+        "EDX": 151653132,
+        "ESI": 2289526357,
+        "EDI": 1144201745,
+        "EFLAGS": 514
+      },
+      "final_guarded_owner_sha256": "e87082c4584a17603b0932f505f00c92b52af2e09be165f25e71fd1e90452187",
+      "final_image_sha256": "d34a5d3b3e8e83031b39e1a390547b573fc8be5c70db9402740b03420a00dfa6",
+      "process_abort": {
+        "owned_process_exited": true,
+        "exit_code": 1,
+        "reason": "after original WM_NCCREATE; next callback first instruction unexecuted",
+        "pending_callback": {
+          "event_kind": "wndproc",
+          "callback_id": 2,
+          "depth": 1,
+          "guest_entry": 4344192,
+          "hwnd": 32708030,
+          "message": 131,
+          "wParam": 0,
+          "lParam": 15722924,
+          "data_kind": "opaque",
+          "data_hex": ""
+        },
+        "unanswered": true,
+        "explicit_cleanup_performed": false,
+        "CreateWindowExA_return_received": false,
+        "normal_class_unregistration_performed": false
+      }
+    },
+    {
+      "fill": 204,
+      "creation_sha256": "96b2dfa6de59eb7ca5a957718365b112fcfe1dc4d19a43bcbe79a658adc2c176",
+      "callbacks_sha256": "d2b4b266f895af2b966e714621a552440b1a873c29ca16f602518ec229799d4e",
+      "pending_sha256": "270cb16e88da8780c6a3b5d6f562b249e363f1cc15b86713a210550115b4967c",
+      "native_creation_cpu": {
+        "EIP": 1979748256,
+        "ESP": 553709168,
+        "EBP": 553709364,
+        "EAX": 2415919104,
+        "EBX": 1432778632,
+        "ECX": 768,
+        "EDX": 1024,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 6
+      },
+      "callback_return_cpu": {
+        "EIP": 603979776,
+        "ESP": 587264020,
+        "EBP": 287454020,
+        "EAX": 1,
+        "EBX": 1432778632,
+        "ECX": 129,
+        "EDX": 32773566,
+        "ESI": 2289526357,
+        "EDI": 1144201745,
+        "EFLAGS": 582
+      },
+      "pending_callback": {
+        "event_kind": "wndproc",
+        "callback_id": 2,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 32773566,
+        "message": 131,
+        "wParam": 0,
+        "lParam": 10217388,
+        "data_kind": "opaque",
+        "data_hex": ""
+      },
+      "pending_guest_cpu": {
+        "EIP": 4344192,
+        "ESP": 587264000,
+        "EBP": 287454020,
+        "EAX": 16909060,
+        "EBX": 1432778632,
+        "ECX": 84281096,
+        "EDX": 151653132,
+        "ESI": 2289526357,
+        "EDI": 1144201745,
+        "EFLAGS": 514
+      },
+      "final_guarded_owner_sha256": "3a8bab7ae8bff9a526007329d0d5d2f11c934a597c9151e1cb4a432aafe7a6b9",
+      "final_image_sha256": "5813598f595e1f61c8e77435f1bc8357a05db4090a906d5edaa073985e22f3f8",
+      "process_abort": {
+        "owned_process_exited": true,
+        "exit_code": 1,
+        "reason": "after original WM_NCCREATE; next callback first instruction unexecuted",
+        "pending_callback": {
+          "event_kind": "wndproc",
+          "callback_id": 2,
+          "depth": 1,
+          "guest_entry": 4344192,
+          "hwnd": 32773566,
+          "message": 131,
+          "wParam": 0,
+          "lParam": 10217388,
+          "data_kind": "opaque",
+          "data_hex": ""
+        },
+        "unanswered": true,
+        "explicit_cleanup_performed": false,
+        "CreateWindowExA_return_received": false,
+        "normal_class_unregistration_performed": false
+      }
+    }
+  ],
+  "successful_creation_return": false,
+  "retained_VM_advanced": false,
+  "standalone_resumable_checkpoint": false
+}

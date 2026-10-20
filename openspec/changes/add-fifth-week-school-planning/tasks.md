@@ -1646,7 +1646,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 411. Original genuine WM_NCCREATE execution
 
-- [ ] 411.1 Replay full original startup and creation call on one CPU/helper lifetime, execute original early callbacks through actual WM_NCCREATE binding/virtual/default dispatch, preserve caller context and captured globals, retain next callback entry, independently verify raw source/ABI/full memory/read-write traces and corruption/fresh-run tests; local commit.
+- [x] 411.1 Replay full original startup and creation call on one CPU/helper lifetime, execute original early callbacks through actual WM_NCCREATE binding/virtual/default dispatch, preserve caller context and captured globals, retain next callback entry, independently verify raw source/ABI/full memory/read-write traces and corruption/fresh-run tests; local commit.
 
 ## 412. Genuine early callback acceptance
 

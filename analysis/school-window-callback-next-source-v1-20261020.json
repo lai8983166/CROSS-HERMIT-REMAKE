@@ -1,0 +1,165 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "instructions": [
+    {
+      "va": "0x4249b7",
+      "hex": "7542",
+      "mnemonic": "jne",
+      "operands": "0x4249fb"
+    },
+    {
+      "va": "0x450d9b",
+      "hex": "8b4d0c",
+      "mnemonic": "mov",
+      "operands": "ecx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x450ddf",
+      "hex": "817da000020000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp - 0x60], 0x200"
+    },
+    {
+      "va": "0x450e40",
+      "hex": "833dfc497a0000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [0x7a49fc], 0"
+    },
+    {
+      "va": "0x450ee7",
+      "hex": "833dfc497a0000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [0x7a49fc], 0"
+    },
+    {
+      "va": "0x450fc7",
+      "hex": "833dfc497a0000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [0x7a49fc], 0"
+    },
+    {
+      "va": "0x451029",
+      "hex": "e8623afdff",
+      "mnemonic": "call",
+      "operands": "0x424a90"
+    },
+    {
+      "va": "0x424afd",
+      "hex": "ff15e0235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923e0]"
+    },
+    {
+      "va": "0x450ed3",
+      "hex": "e958010000",
+      "mnemonic": "jmp",
+      "operands": "0x451030"
+    },
+    {
+      "va": "0x450edd",
+      "hex": "e94e010000",
+      "mnemonic": "jmp",
+      "operands": "0x451030"
+    },
+    {
+      "va": "0x450f20",
+      "hex": "ff1590235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592390]"
+    },
+    {
+      "va": "0x450f3a",
+      "hex": "ff1524245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592424]"
+    },
+    {
+      "va": "0x450f51",
+      "hex": "ff1594235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592394]"
+    }
+  ],
+  "source_switch": [
+    {
+      "message": 1,
+      "selector": 0,
+      "target": "0x450ed3",
+      "executed": false
+    },
+    {
+      "message": 2,
+      "selector": 1,
+      "target": "0x450f80",
+      "executed": false
+    },
+    {
+      "message": 3,
+      "selector": 6,
+      "target": "0x451016",
+      "executed": false
+    },
+    {
+      "message": 5,
+      "selector": 2,
+      "target": "0x450edd",
+      "executed": false
+    },
+    {
+      "message": 15,
+      "selector": 3,
+      "target": "0x450f16",
+      "executed": false
+    },
+    {
+      "message": 16,
+      "selector": 4,
+      "target": "0x450f68",
+      "executed": false
+    },
+    {
+      "message": 18,
+      "selector": 5,
+      "target": "0x450f63",
+      "executed": false
+    }
+  ],
+  "future_paint_imports": [
+    {
+      "slot": "0x592390",
+      "symbol": "BeginPaint",
+      "executed": false
+    },
+    {
+      "slot": "0x592394",
+      "symbol": "EndPaint",
+      "executed": false
+    },
+    {
+      "slot": "0x592424",
+      "symbol": "GetClientRect",
+      "executed": false
+    }
+  ],
+  "completed_message": 129,
+  "pending_message": 131,
+  "pending_callback_entry": "0x424980",
+  "pending_instruction_executed": false,
+  "next_requirements": [
+    "Resume real WM_NCCALCSIZE callback using actual property owner and original virtual/default dispatch; capture and verify real RECT16 for wParam0 or NCCALCSIZE_PARAMS52 for wParam1 and native output side effects",
+    "Continue actual WM_CREATE only through its source-selected branch; source switch message1 returns0, without supplying an invented successful callback result",
+    "Extend actual paint interfaces BeginPaint/GetClientRect/EndPaint with real PAINTSTRUCT/RECT transfers when genuine message15 occurs",
+    "Derive initialization of captured7A49FC before processing genuine WM_ACTIVATEAPP28, mouse512 or notification1124 paths; current captured heap remains unresolved",
+    "Complete original creation return/HWND publication only after all real callbacks finish; preserve exact visible style and original arguments",
+    "Support real source-driven destruction/property removal/class unregistration before claiming ordinary balanced cleanup"
+  ],
+  "game_global_gate_messages": [
+    28,
+    512,
+    1124
+  ],
+  "captured_global_unchanged": true,
+  "heap_resolved": false,
+  "CreateWindowExA_return_received": false,
+  "retained_VM_advanced": false
+}
