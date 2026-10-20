@@ -1,0 +1,143 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "instructions": [
+    {
+      "va": "0x450416",
+      "hex": "ff15cc235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923cc]"
+    },
+    {
+      "va": "0x450433",
+      "hex": "ff15cc235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923cc]"
+    },
+    {
+      "va": "0x45047d",
+      "hex": "ff1508245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592408]"
+    },
+    {
+      "va": "0x4504cf",
+      "hex": "ff150c245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x59240c]"
+    },
+    {
+      "va": "0x4249a3",
+      "hex": "ff15dc235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923dc]"
+    },
+    {
+      "va": "0x4249bf",
+      "hex": "817d0c81000000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp + 0xc], 0x81"
+    },
+    {
+      "va": "0x4249d1",
+      "hex": "8b02",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [edx]"
+    },
+    {
+      "va": "0x4249f6",
+      "hex": "e835fdffff",
+      "mnemonic": "call",
+      "operands": "0x424730"
+    },
+    {
+      "va": "0x424a1b",
+      "hex": "ff12",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx]"
+    }
+  ],
+  "resource_contract": {
+    "modules": [
+      {
+        "path": "analysis/hermit_game.exe",
+        "bytes": 5980160,
+        "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+        "machine": 332,
+        "icons": [
+          {
+            "type": 3,
+            "id": 5,
+            "language": 1041,
+            "rva": "0x5aff78",
+            "bytes": 2216,
+            "sha256": "b048b9bcbddaa020bc7cd2ef2170348cabbea661307a0b257585e32df623ac47"
+          },
+          {
+            "type": 14,
+            "id": 157,
+            "language": 1041,
+            "rva": "0x5b349c",
+            "bytes": 20,
+            "sha256": "d3f19e69796c48eac50b0b7669644b97eeb3b6c55e01d3d34e76b51b1460569b"
+          }
+        ]
+      },
+      {
+        "path": "CROSS HERMIT/CROSS HERMIT/CROSS HERMIT.EXE",
+        "bytes": 1515520,
+        "sha256": "030dca584a3a0b20751a72609f7acc823e8d79d820cebf1fcde8be6a791a9df7",
+        "machine": 332,
+        "icons": [
+          {
+            "type": 3,
+            "id": 5,
+            "language": 1041,
+            "rva": "0x5aff78",
+            "bytes": 2216,
+            "sha256": "b048b9bcbddaa020bc7cd2ef2170348cabbea661307a0b257585e32df623ac47"
+          },
+          {
+            "type": 14,
+            "id": 157,
+            "language": 1041,
+            "rva": "0x5b349c",
+            "bytes": 20,
+            "sha256": "d3f19e69796c48eac50b0b7669644b97eeb3b6c55e01d3d34e76b51b1460569b"
+          }
+        ]
+      }
+    ],
+    "group_id": 157,
+    "language": 1041,
+    "image_id": 5,
+    "width": 32,
+    "height": 32,
+    "bits_per_pixel": 8,
+    "image_bytes": 2216,
+    "group_hex": "0000010001002020000001000800a80800000500",
+    "module_loaded": false,
+    "icon_loaded": false,
+    "inherited_instance_scalar_is_not_a_module": true
+  },
+  "callback": {
+    "va": "0x424980",
+    "end": "0x424a89",
+    "sha256": "7dbed5975f5d432fa84e34d24d9a8b2d26f2e2bbb0d74566b3f8cdb910b0cc01",
+    "property_string_va": "0x594ab4",
+    "property_string_hex": "4350505f434c415353",
+    "first_import": "USER32.dll!GetPropA",
+    "create_message_ids": [
+      1,
+      129
+    ],
+    "creation_lparam_first_dword_is_receiver": true,
+    "binding_helper": "0x424730",
+    "virtual_dispatch": "0x424a1b",
+    "executed": false
+  },
+  "LoadIconA_executed": false,
+  "module_loaded": false,
+  "window_created": false,
+  "retained_VM_advanced": false,
+  "next_dependency": "Bind an owned real module containing byte-identical group157/image5 before real LoadIconA; replay from a freshly declared real module input instead of repairing captured scalar12340000. Route original424980/GetPropA/CREATESTRUCT/binding/virtual dispatch on a real callback stack before class registration/window creation can be claimed."
+}

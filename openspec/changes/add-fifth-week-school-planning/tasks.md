@@ -1590,4 +1590,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 397. Geometry acceptance
 
-- [ ] 397.1 Run new/relevant parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document actual module/icon/callback/window/retained VM boundaries and verify exact Git bytes; local commit without push.
+- [x] 397.1 Run new/relevant parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document actual module/icon/callback/window/retained VM boundaries and verify exact Git bytes; local commit without push.

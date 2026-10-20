@@ -1,0 +1,1217 @@
+{
+  "baseline": "18ff3ee",
+  "stages": [
+    392,
+    393,
+    394,
+    395,
+    396,
+    397
+  ],
+  "source_native_commits": [
+    "97a8eaef9adc9f6d647a7e1ccdda3403062ab240",
+    "61b438c45f32460d770d785b03cfaa3bc82defb7",
+    "1449e333493f9950f16afbbb7b390b3bb7040786",
+    "1472c79b2e6b640579628e82a7cce2b408d9a97f",
+    "79b38d8a152e9827deb0669532bd136204df097a"
+  ],
+  "scope": "Same original450350 caller CPU and owned helper lifetime through actual SetRect/AdjustWindowRect, original client-to-local copy and seven partial WNDCLASSEXA stores, to unexecuted450416 LoadIconA instruction; fiveCC fields preserved",
+  "continuous_trajectory": {
+    "report": {
+      "path": "analysis/school-window-geometry-trajectory-v1-20261020.json",
+      "bytes": 863404,
+      "sha256": "4b717ceb14435486858ce978f3abb6a4fad5e38c671419885ebec883b8de7366"
+    },
+    "verified": {
+      "cases": 2,
+      "verified_through": "class",
+      "original_geometry_calls_per_case": 2,
+      "partial_class_initialized_dwords": 7,
+      "partial_class_uninitialized_dwords": 5,
+      "icon_group": 157,
+      "icon_image": 5,
+      "pending": "0x450416",
+      "LoadIconA_executed": false,
+      "retained_VM_advanced": false
+    },
+    "platform_build": {
+      "source_sha256": "75c9c69f65dd56366bb9331bb97cea42479e5a273d196d7dffc8c856c89921a9",
+      "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+      "helper_sha256": "0df507b810bd268ed54a875aec9f81cd73f210b97fc328053cb5fbd47e629f63",
+      "machine": 332
+    },
+    "cases": [
+      {
+        "fill": 165,
+        "entry_CPU": {
+          "EIP": 4522832,
+          "ESP": 553709368,
+          "EBP": 553709564,
+          "EAX": 1024,
+          "EBX": 1432778632,
+          "ECX": 536870912,
+          "EDX": 0,
+          "ESI": 553709396,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "final_CPU": {
+          "EIP": 4523030,
+          "ESP": 553709212,
+          "EBP": 553709364,
+          "EAX": 1,
+          "EBX": 1432778632,
+          "ECX": 305397760,
+          "EDX": 305397760,
+          "ESI": 553709220,
+          "EDI": 553709364,
+          "EFLAGS": 70
+        },
+        "pending": {
+          "va": "0x450416",
+          "sp": 553709212,
+          "first_instruction_executed": false,
+          "import_slot": "0x5923cc",
+          "import_target": 1979754192,
+          "stack_args": [
+            305397760,
+            157
+          ],
+          "call_instruction_executed": false
+        },
+        "actual_SetRect": {
+          "name": "SetRect",
+          "op": "set_rect",
+          "slot": "0x5923f8",
+          "va": "0x7601f770",
+          "return_va": "0x450395",
+          "sp": 553709196,
+          "args": [
+            536873148,
+            0,
+            0,
+            1024,
+            768
+          ],
+          "request": {
+            "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+            "args": [
+              0,
+              0,
+              1024,
+              768
+            ]
+          },
+          "result": {
+            "result": 1,
+            "hex": "00000000000000000004000000030000",
+            "guards_unchanged": true
+          },
+          "observed_EAX": 1,
+          "mapped_output_pointer": 536873148,
+          "mapped_output_bytes": 16,
+          "live_host_observed": true
+        },
+        "actual_AdjustWindowRect": {
+          "name": "AdjustWindowRect",
+          "op": "adjust_window_rect",
+          "slot": "0x5923fc",
+          "va": "0x7600c590",
+          "return_va": "0x4503ce",
+          "sp": 553709204,
+          "args": [
+            553709344,
+            2415919104,
+            0
+          ],
+          "request": {
+            "before_hex": "00000000000000000004000000030000",
+            "style": 2415919104,
+            "menu": 0
+          },
+          "result": {
+            "result": 1,
+            "hex": "00000000000000000004000000030000",
+            "guards_unchanged": true
+          },
+          "observed_EAX": 1,
+          "mapped_output_pointer": 553709344,
+          "mapped_output_bytes": 16,
+          "live_host_observed": true
+        },
+        "import_admission": {
+          "slots": [
+            "0x5923f8",
+            "0x5923fc"
+          ],
+          "before_cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "after_cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "retained_owner_sha256": "f059905830199d26752256b8f3a624f3106aa0de9ce44b9d5cfaddfdc7d15346",
+          "retained_stack_sha256": "1f3da356f7d48a75495abb6ff618d0c77cb472c17884765bc3ace58f54298ab2",
+          "retained_image_sha256": "e8295097c2f4ea6795af7da24beb2f92c17c41a8d416a72eb213f5dbbde69f7f",
+          "retained_null_page_sha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+          "foreign_before": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1979744256,
+              "bytes": 4096,
+              "sha256": "16c81e5e0e74f4baf7c86400ecfec408e193d180e336776fb72d3bf5c24c3259",
+              "zlib_base64": "eNrt0AENAAAMAiD717KYBZ7ggwgkAAB8UgUAHAa6nADE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "foreign_after": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1979744256,
+              "bytes": 4096,
+              "sha256": "16c81e5e0e74f4baf7c86400ecfec408e193d180e336776fb72d3bf5c24c3259",
+              "zlib_base64": "eNrt0AENAAAMAiD717KYBZ7ggwgkAAB8UgUAHAa6nADE"
+            },
+            {
+              "pointer": 1979760640,
+              "bytes": 4096,
+              "sha256": "9906073047126f9fa0047e099fb62ffd8d33c5eb95d511154025853007614256",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjVbFkB0ggAeCDKgAA4NAAA8gAxA=="
+            },
+            {
+              "pointer": 1979838464,
+              "bytes": 4096,
+              "sha256": "81c1a8d413463067528a08edf433ea7b9d756ccad58465696d0441b7be5fee44",
+              "zlib_base64": "eNrt0EERAAAMAiD717KYKXb7QAQSAOBaFQAAzwaWCgDE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "native_game_call": false
+        },
+        "system_modules": {
+          "kernel32_path": {
+            "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+            "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+            "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "shlwapi_path": {
+            "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+            "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "user32_path": {
+            "reported_path": "C:\\Windows\\System32\\USER32.dll",
+            "path": "C:\\Windows\\SysWOW64\\USER32.dll",
+            "sha256": "2bd19b9d79a354d7c2ccd4593f104839e98ab3ffc68d64e1f21b97f8c7a78dc9",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          }
+        },
+        "cleanup": {
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "user32_module_refs_released": 1,
+          "set_rect_calls": 1,
+          "adjust_window_rect_calls": 1,
+          "all_owned_resources_released": true
+        }
+      },
+      {
+        "fill": 204,
+        "entry_CPU": {
+          "EIP": 4522832,
+          "ESP": 553709368,
+          "EBP": 553709564,
+          "EAX": 1024,
+          "EBX": 1432778632,
+          "ECX": 536870912,
+          "EDX": 0,
+          "ESI": 553709396,
+          "EDI": 553709564,
+          "EFLAGS": 2
+        },
+        "final_CPU": {
+          "EIP": 4523030,
+          "ESP": 553709212,
+          "EBP": 553709364,
+          "EAX": 1,
+          "EBX": 1432778632,
+          "ECX": 305397760,
+          "EDX": 305397760,
+          "ESI": 553709220,
+          "EDI": 553709364,
+          "EFLAGS": 70
+        },
+        "pending": {
+          "va": "0x450416",
+          "sp": 553709212,
+          "first_instruction_executed": false,
+          "import_slot": "0x5923cc",
+          "import_target": 1979754192,
+          "stack_args": [
+            305397760,
+            157
+          ],
+          "call_instruction_executed": false
+        },
+        "actual_SetRect": {
+          "name": "SetRect",
+          "op": "set_rect",
+          "slot": "0x5923f8",
+          "va": "0x7601f770",
+          "return_va": "0x450395",
+          "sp": 553709196,
+          "args": [
+            536873148,
+            0,
+            0,
+            1024,
+            768
+          ],
+          "request": {
+            "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+            "args": [
+              0,
+              0,
+              1024,
+              768
+            ]
+          },
+          "result": {
+            "result": 1,
+            "hex": "00000000000000000004000000030000",
+            "guards_unchanged": true
+          },
+          "observed_EAX": 1,
+          "mapped_output_pointer": 536873148,
+          "mapped_output_bytes": 16,
+          "live_host_observed": true
+        },
+        "actual_AdjustWindowRect": {
+          "name": "AdjustWindowRect",
+          "op": "adjust_window_rect",
+          "slot": "0x5923fc",
+          "va": "0x7600c590",
+          "return_va": "0x4503ce",
+          "sp": 553709204,
+          "args": [
+            553709344,
+            2415919104,
+            0
+          ],
+          "request": {
+            "before_hex": "00000000000000000004000000030000",
+            "style": 2415919104,
+            "menu": 0
+          },
+          "result": {
+            "result": 1,
+            "hex": "00000000000000000004000000030000",
+            "guards_unchanged": true
+          },
+          "observed_EAX": 1,
+          "mapped_output_pointer": 553709344,
+          "mapped_output_bytes": 16,
+          "live_host_observed": true
+        },
+        "import_admission": {
+          "slots": [
+            "0x5923f8",
+            "0x5923fc"
+          ],
+          "before_cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "after_cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "retained_owner_sha256": "0f27588400b430a9698a52b91b067b86d925d2d2b7befd07a42d33385b7f4c3b",
+          "retained_stack_sha256": "f21bf116816ad69421407a87771002429871e20ce414d1404e264305587e0893",
+          "retained_image_sha256": "e8295097c2f4ea6795af7da24beb2f92c17c41a8d416a72eb213f5dbbde69f7f",
+          "retained_null_page_sha256": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7",
+          "foreign_before": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1979744256,
+              "bytes": 4096,
+              "sha256": "16c81e5e0e74f4baf7c86400ecfec408e193d180e336776fb72d3bf5c24c3259",
+              "zlib_base64": "eNrt0AENAAAMAiD717KYBZ7ggwgkAAB8UgUAHAa6nADE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "foreign_after": [
+            {
+              "pointer": 1971412992,
+              "bytes": 4096,
+              "sha256": "4b7d3e28cb21a60748279b6e8b6b2561a1216add67cf5bb6c1d364917dde3727",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjtbB3CUgg4bMqAAAA4GDrVgDE"
+            },
+            {
+              "pointer": 1979744256,
+              "bytes": 4096,
+              "sha256": "16c81e5e0e74f4baf7c86400ecfec408e193d180e336776fb72d3bf5c24c3259",
+              "zlib_base64": "eNrt0AENAAAMAiD717KYBZ7ggwgkAAB8UgUAHAa6nADE"
+            },
+            {
+              "pointer": 1979760640,
+              "bytes": 4096,
+              "sha256": "9906073047126f9fa0047e099fb62ffd8d33c5eb95d511154025853007614256",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1VjVbFkB0ggAeCDKgAA4NAAA8gAxA=="
+            },
+            {
+              "pointer": 1979838464,
+              "bytes": 4096,
+              "sha256": "81c1a8d413463067528a08edf433ea7b9d756ccad58465696d0441b7be5fee44",
+              "zlib_base64": "eNrt0EERAAAMAiD717KYKXb7QAQSAOBaFQAAzwaWCgDE"
+            },
+            {
+              "pointer": 1996587008,
+              "bytes": 4096,
+              "sha256": "3490874a5318028b6b51ac65bf9e0c23765aa0e49e5e00cc130623e01570210c",
+              "zlib_base64": "eNrt1TENAAAMw7Dyp1VipbB3kg0hTxLgq0oAgD8BcDSuYwGH"
+            },
+            {
+              "pointer": 1996632064,
+              "bytes": 4096,
+              "sha256": "e71794083e8063aa641e2782767a62fc67b33338cf7e2ad9faa1496a5bed14a1",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkfFYFAAAAHBgDxQDE"
+            },
+            {
+              "pointer": 1996705792,
+              "bytes": 4096,
+              "sha256": "c7f7ae7b09c42eaf0e2e22905c0d4305dfd0b8af1729068adb32c8c4eebb6d0b",
+              "zlib_base64": "eNrt0DENAAAMA6D6t1Vj1bBzCUggAQC4qQIAeGf3iwDE"
+            },
+            {
+              "pointer": 2006827008,
+              "bytes": 4096,
+              "sha256": "a030842b861ae0a8469c8446f9995e8d201aba35673530e83864d516a3128341",
+              "zlib_base64": "eNrt0DEBAAAMAiD717KYJXbsgAgkAAC3qgAA3hnfKwDE"
+            }
+          ],
+          "native_game_call": false
+        },
+        "system_modules": {
+          "kernel32_path": {
+            "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+            "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+            "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "shlwapi_path": {
+            "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+            "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          },
+          "user32_path": {
+            "reported_path": "C:\\Windows\\System32\\USER32.dll",
+            "path": "C:\\Windows\\SysWOW64\\USER32.dll",
+            "sha256": "2bd19b9d79a354d7c2ccd4593f104839e98ab3ffc68d64e1f21b97f8c7a78dc9",
+            "machine": 332,
+            "WOW64_file_redirection_explicit": true
+          }
+        },
+        "cleanup": {
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "user32_module_refs_released": 1,
+          "set_rect_calls": 1,
+          "adjust_window_rect_calls": 1,
+          "all_owned_resources_released": true
+        }
+      }
+    ]
+  },
+  "boundary_witnesses": {
+    "rect": {
+      "report": {
+        "path": "analysis/school-window-geometry-rect-v1-20261020.json",
+        "bytes": 3344,
+        "sha256": "b326c4ad1bfd95e89dfab5630dc7bbc7b4030447aad4852b2bd6328a30c04d2d"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "rect",
+          "node_sha256": "5b03e8f78287fe9792c177531b4eec879a52ebedd68f210c028738127c013f46",
+          "before_cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "cpu": {
+            "EIP": 4522908,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 536873148,
+            "EDX": 0,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x45039c",
+            "sp": 553709220,
+            "first_instruction_executed": false,
+            "stack_top_dword": 553709564
+          },
+          "native_entries": 1,
+          "native_returns": 1,
+          "original_instruction_observations": 63,
+          "system_calls": 1,
+          "owner_sha256": "ac9fd22e496278a1939205bcb70dfa9796807215cc2eda1dae8012c326da2876",
+          "stack_sha256": "3bc90fc9f76a5067086078264b637ea9bb8d40036347c99b8ef6af5435026145",
+          "class_sha256": "396bc3913e0bc61382fbb1b892701a55ad515a35d0a0230be87121408cb97354",
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "rect",
+          "node_sha256": "97fc2296c6f82beb3c5089ca7d5c4b4ef9a5474216026af69f7ef4128b428f0e",
+          "before_cpu": {
+            "EIP": 4522832,
+            "ESP": 553709368,
+            "EBP": 553709564,
+            "EAX": 1024,
+            "EBX": 1432778632,
+            "ECX": 536870912,
+            "EDX": 0,
+            "ESI": 553709396,
+            "EDI": 553709564,
+            "EFLAGS": 2
+          },
+          "cpu": {
+            "EIP": 4522908,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 536873148,
+            "EDX": 0,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x45039c",
+            "sp": 553709220,
+            "first_instruction_executed": false,
+            "stack_top_dword": 553709564
+          },
+          "native_entries": 1,
+          "native_returns": 1,
+          "original_instruction_observations": 63,
+          "system_calls": 1,
+          "owner_sha256": "c68ae4164fa3f0dd736611ddb52bf5a645fa153111c4e820110d742610d86cb7",
+          "stack_sha256": "c9c7973fd6b9a24fa4913e26a4c5f22c6b9e91eaf31c1c7bd207db7ac1200e4b",
+          "class_sha256": "396bc3913e0bc61382fbb1b892701a55ad515a35d0a0230be87121408cb97354",
+          "SEH": 0
+        }
+      ]
+    },
+    "adjust": {
+      "report": {
+        "path": "analysis/school-window-geometry-adjust-v1-20261020.json",
+        "bytes": 3354,
+        "sha256": "0d0a432b75d1fce50141a87bedab057d033c07460fb88540667a5b3f9464a3d0"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "adjust",
+          "node_sha256": "257a43cb35381af4bce213057fd531b0f6db505baad5dde22d96ebfc1128da25",
+          "before_cpu": {
+            "EIP": 4522908,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 536873148,
+            "EDX": 0,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4522965,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 768,
+            "EDX": 2415919104,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x4503d5",
+            "sp": 553709220,
+            "first_instruction_executed": false,
+            "stack_top_dword": 553709564
+          },
+          "native_entries": 0,
+          "native_returns": 1,
+          "original_instruction_observations": 21,
+          "system_calls": 1,
+          "owner_sha256": "ac9fd22e496278a1939205bcb70dfa9796807215cc2eda1dae8012c326da2876",
+          "stack_sha256": "5a6501d9c769098878003726c7073e4cf48f390fca16a345d4e188c040735226",
+          "class_sha256": "396bc3913e0bc61382fbb1b892701a55ad515a35d0a0230be87121408cb97354",
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "adjust",
+          "node_sha256": "5c1fb91a3a201d46d2d22bbb9c001d2ebaca8da1f6c45803c92385240ae1f477",
+          "before_cpu": {
+            "EIP": 4522908,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 536873148,
+            "EDX": 0,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4522965,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 768,
+            "EDX": 2415919104,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x4503d5",
+            "sp": 553709220,
+            "first_instruction_executed": false,
+            "stack_top_dword": 553709564
+          },
+          "native_entries": 0,
+          "native_returns": 1,
+          "original_instruction_observations": 21,
+          "system_calls": 1,
+          "owner_sha256": "c68ae4164fa3f0dd736611ddb52bf5a645fa153111c4e820110d742610d86cb7",
+          "stack_sha256": "4e219515a3e9d3d3644498c4ea026dc184f32411361bc6b0bb0be8de35d7f242",
+          "class_sha256": "396bc3913e0bc61382fbb1b892701a55ad515a35d0a0230be87121408cb97354",
+          "SEH": 0
+        }
+      ]
+    },
+    "class": {
+      "report": {
+        "path": "analysis/school-window-geometry-class-v1-20261020.json",
+        "bytes": 3662,
+        "sha256": "e5acfdec33bb55d97b4bcb89eb0661d353e2d7b5c4c51c48f8526a2cec7449f0"
+      },
+      "boundaries": [
+        {
+          "case_index": 0,
+          "fill": 165,
+          "node": "class",
+          "node_sha256": "e18b7e78817aa54ca3a97a7b14be2252beaea3e221219283b189653b7f305749",
+          "before_cpu": {
+            "EIP": 4522965,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 768,
+            "EDX": 2415919104,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4523030,
+            "ESP": 553709212,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 305397760,
+            "EDX": 305397760,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x450416",
+            "sp": 553709212,
+            "first_instruction_executed": false,
+            "import_slot": "0x5923cc",
+            "import_target": 1979754192,
+            "stack_args": [
+              305397760,
+              157
+            ],
+            "call_instruction_executed": false
+          },
+          "native_entries": 0,
+          "native_returns": 0,
+          "original_instruction_observations": 12,
+          "system_calls": 0,
+          "owner_sha256": "ac9fd22e496278a1939205bcb70dfa9796807215cc2eda1dae8012c326da2876",
+          "stack_sha256": "b29d80eeff09ab123227ba5ffede24fbb50881fc32faf150f365d8654629a227",
+          "class_sha256": "5e40f0e4df751935e19ee99209c5d5ca66ff93ca4c74aec6c0792f7055231d98",
+          "SEH": 0
+        },
+        {
+          "case_index": 1,
+          "fill": 204,
+          "node": "class",
+          "node_sha256": "4e7b95cd042fd7092b5b41664ba6625c9384774d11d4504b481d8886976028a0",
+          "before_cpu": {
+            "EIP": 4522965,
+            "ESP": 553709220,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 768,
+            "EDX": 2415919104,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "cpu": {
+            "EIP": 4523030,
+            "ESP": 553709212,
+            "EBP": 553709364,
+            "EAX": 1,
+            "EBX": 1432778632,
+            "ECX": 305397760,
+            "EDX": 305397760,
+            "ESI": 553709220,
+            "EDI": 553709364,
+            "EFLAGS": 70
+          },
+          "pending": {
+            "va": "0x450416",
+            "sp": 553709212,
+            "first_instruction_executed": false,
+            "import_slot": "0x5923cc",
+            "import_target": 1979754192,
+            "stack_args": [
+              305397760,
+              157
+            ],
+            "call_instruction_executed": false
+          },
+          "native_entries": 0,
+          "native_returns": 0,
+          "original_instruction_observations": 12,
+          "system_calls": 0,
+          "owner_sha256": "c68ae4164fa3f0dd736611ddb52bf5a645fa153111c4e820110d742610d86cb7",
+          "stack_sha256": "6fa059c17252141f925f58b04e9eb6bbc55226a0c75e3655e44b8fd414777e36",
+          "class_sha256": "5e40f0e4df751935e19ee99209c5d5ca66ff93ca4c74aec6c0792f7055231d98",
+          "SEH": 0
+        }
+      ]
+    }
+  },
+  "resource_provenance": {
+    "modules": [
+      {
+        "path": "analysis/hermit_game.exe",
+        "bytes": 5980160,
+        "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+        "machine": 332,
+        "icons": [
+          {
+            "type": 3,
+            "id": 5,
+            "language": 1041,
+            "rva": "0x5aff78",
+            "bytes": 2216,
+            "sha256": "b048b9bcbddaa020bc7cd2ef2170348cabbea661307a0b257585e32df623ac47"
+          },
+          {
+            "type": 14,
+            "id": 157,
+            "language": 1041,
+            "rva": "0x5b349c",
+            "bytes": 20,
+            "sha256": "d3f19e69796c48eac50b0b7669644b97eeb3b6c55e01d3d34e76b51b1460569b"
+          }
+        ]
+      },
+      {
+        "path": "CROSS HERMIT/CROSS HERMIT/CROSS HERMIT.EXE",
+        "bytes": 1515520,
+        "sha256": "030dca584a3a0b20751a72609f7acc823e8d79d820cebf1fcde8be6a791a9df7",
+        "machine": 332,
+        "icons": [
+          {
+            "type": 3,
+            "id": 5,
+            "language": 1041,
+            "rva": "0x5aff78",
+            "bytes": 2216,
+            "sha256": "b048b9bcbddaa020bc7cd2ef2170348cabbea661307a0b257585e32df623ac47"
+          },
+          {
+            "type": 14,
+            "id": 157,
+            "language": 1041,
+            "rva": "0x5b349c",
+            "bytes": 20,
+            "sha256": "d3f19e69796c48eac50b0b7669644b97eeb3b6c55e01d3d34e76b51b1460569b"
+          }
+        ]
+      }
+    ],
+    "group_id": 157,
+    "language": 1041,
+    "image_id": 5,
+    "width": 32,
+    "height": 32,
+    "bits_per_pixel": 8,
+    "image_bytes": 2216,
+    "group_hex": "0000010001002020000001000800a80800000500",
+    "module_loaded": false,
+    "icon_loaded": false,
+    "inherited_instance_scalar_is_not_a_module": true
+  },
+  "regression": {
+    "new": 17,
+    "relevant_parent": 17,
+    "total": 34,
+    "strict_specs": 30,
+    "log": {
+      "path": "analysis/school-window-geometry-regression-20261020.log",
+      "bytes": 4753,
+      "sha256": "d2785fc543e5e913b2e32df0526c568d38e523acf57f31d3a1fef5a5b9b7bcb6"
+    },
+    "strict_log": {
+      "path": "analysis/school-window-geometry-strict-20261020.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920"
+    },
+    "relevant_parent_scope": "Full main-window source/platform/native modules with original main-context prefix verification and fresh prior-chain replay"
+  },
+  "preservation": {
+    "path": "analysis/school-window-geometry-preservation-20261020.json",
+    "bytes": 10875,
+    "sha256": "91d0a279c7e8aac01d92029fb93dc72af60d8cba5eb1dc4ec9b77dbf5bd7f504",
+    "retained_files": 16450,
+    "save_rules": 10,
+    "unchanged_private_checkpoints": 9
+  },
+  "next_prerequisite_source": {
+    "path": "analysis/school-window-geometry-next-source-v1-20261020.json",
+    "bytes": 4067,
+    "sha256": "ffd939fbcefd945cb429f94e98f36704d2a90e0d1c79803055338630eef831d7"
+  },
+  "retained_VM_boundary": {
+    "EIP": "0x40e2d0",
+    "PC": 224,
+    "wait": 1,
+    "manager_owner": 0,
+    "advanced": false
+  },
+  "authority": {
+    "declared_mid_WinMain_frame": true,
+    "WinMain_entry_and_prelude_executed": false,
+    "actual_parent_allocation_constructor_publication_task_query_replayed": true,
+    "actual_prefix_in_same_helper_lifetime": true,
+    "new_helper_build_not_relabelled_as_old": true,
+    "original_IAT_changed": false,
+    "actual_original450350_prologue_and_parent_stack": true,
+    "actual_owned_x86_SetRect": true,
+    "actual_owned_x86_AdjustWindowRect": true,
+    "original_four_dword_client_to_local_copy": true,
+    "client_and_local_rectangles_separately_verified": true,
+    "complete16_byte_API_buffers_guards_and_results_verified": true,
+    "source_window_style_unchanged": true,
+    "original_seven_class_dword_stores": true,
+    "original_five_CC_fields_preserved": true,
+    "full_original_WNDCLASSEXA_preparation_completed": false,
+    "actual_icon_arguments_pushed": true,
+    "pending_is_unexecuted_import_instruction_not_callee_entry": true,
+    "LoadIconA_executed": false,
+    "icon_group157_image5_source_original_bytes_equal": true,
+    "original_icon_loaded": false,
+    "resource_module_loaded": false,
+    "instance_is_inherited_declared_scalar": true,
+    "instance_is_live_module": false,
+    "instance_scalar_repaired": false,
+    "original_callback424980_source_verified_only": true,
+    "original_callback_executed": false,
+    "class_registered": false,
+    "window_created": false,
+    "desktop_resolution_changed": false,
+    "new_import_admission_changed_CPU_owner_image_stack_or_null_page": false,
+    "full_owned_memory_guards_native_trace_call_ABI_and_all_writes_verified": true,
+    "owned_critical_sections_event_and_USER32_reference_released": true,
+    "expired_system_resources_resumable": false,
+    "COM_audio_initialized": false,
+    "game_factory_success_executed": false,
+    "inherited_cache_head_unchanged": true,
+    "game_helpers_stubbed": false,
+    "old_helpers_changed": false,
+    "retained_VM_advanced": false,
+    "full_WinMain_executed": false,
+    "GPU_drawing_or_Present": false,
+    "Godot_changed": false,
+    "original_saves_changed": false
+  },
+  "remaining": [
+    "Establish a real owned module containing byte-identical group157/image5 and declare its genuine handle as a fresh upstream input; do not repair scalar12340000 at the pending call",
+    "Continue two original icon loads/cursor/brush and remaining WNDCLASSEXA fields, with actual ownership/lifetimes and no resource stubs",
+    "Bridge original424980 GetPropA/CREATESTRUCT/424730 binding/virtual dispatch on real message callbacks before class registration/window creation",
+    "Continue actual WinMain message/COM/game factory450570/4500B0/audio/device prerequisites and actual differing startup modes",
+    "Resolve inherited font-cache heap/lifecycle, complete factory output/outer scheduler and retained VM integration",
+    "Continue original VM/task/input/world/rendering/dialogue and battle AI/events/effects/victory/rewards"
+  ],
+  "progress": "397/397 listed tasks; not a whole-game reverse-engineering percentage",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 17164,
+      "sha256": "a3d3f69353e582c2124fb1a10b32ba18793a1a06a0b095d455ef4805194484bd",
+      "git_blob": "5278c3d86ab7f8d5cd10aa1cdf26536c1f3389c7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 65624,
+      "sha256": "f2d76e0bd407aeeb0b246ccaf9fd713ae17c8c46bf26cae2c9752c95f29987ea",
+      "git_blob": "56a1150e21ccd2d4de03850d92fb2beafcb0f652"
+    },
+    {
+      "path": "analysis/school-window-geometry-adjust-tests-20261020.log",
+      "bytes": 500,
+      "sha256": "cca894ada64157adca556d93f86960ca1756f3cede6ca5fa59132ebf54faf79b",
+      "git_blob": "0509e7d5774ff797b0f16198938b13411c74fe3c"
+    },
+    {
+      "path": "analysis/school-window-geometry-adjust-v1-20261020.json",
+      "bytes": 3354,
+      "sha256": "0d0a432b75d1fce50141a87bedab057d033c07460fb88540667a5b3f9464a3d0",
+      "git_blob": "45bd591a10cde93463e99567ff7709c97bba2658"
+    },
+    {
+      "path": "analysis/school-window-geometry-class-tests-20261020.log",
+      "bytes": 671,
+      "sha256": "c7d867457c87ec314da5fa0b49c9c796f22d3c2a35654dbf92150f4eab79f741",
+      "git_blob": "5bbd54211bc63a75afe2e21bf833951cfb0dad5f"
+    },
+    {
+      "path": "analysis/school-window-geometry-class-v1-20261020.json",
+      "bytes": 3662,
+      "sha256": "e5acfdec33bb55d97b4bcb89eb0661d353e2d7b5c4c51c48f8526a2cec7449f0",
+      "git_blob": "347d0ca0bcc985fa39cc86f52a578d12566d29f2"
+    },
+    {
+      "path": "analysis/school-window-geometry-next-source-v1-20261020.json",
+      "bytes": 4067,
+      "sha256": "ffd939fbcefd945cb429f94e98f36704d2a90e0d1c79803055338630eef831d7",
+      "git_blob": "fda6effeae0ac570e0b217d36dbd5ba6ce808103"
+    },
+    {
+      "path": "analysis/school-window-geometry-platform-tests-20261020.log",
+      "bytes": 615,
+      "sha256": "1f38bcb8c1cc188c08073daecb9637db23d9688267c8fbcabdc0ced23c806ede",
+      "git_blob": "7d7f361d7f49f9223444601083e8a1cb6c8800c8"
+    },
+    {
+      "path": "analysis/school-window-geometry-platform-v1-20261020.json",
+      "bytes": 2573,
+      "sha256": "47ac71eb2b6eddedde0392b2b0bb8f48c671d3e102ac20910d84e5d27f9650ea",
+      "git_blob": "9ee10210b0a33169a2f37ac286a3e7dff412461a"
+    },
+    {
+      "path": "analysis/school-window-geometry-preservation-20261020.json",
+      "bytes": 10875,
+      "sha256": "91d0a279c7e8aac01d92029fb93dc72af60d8cba5eb1dc4ec9b77dbf5bd7f504",
+      "git_blob": "3365e3bf2c0442adf076d0e0054aedc3f92d884c"
+    },
+    {
+      "path": "analysis/school-window-geometry-preservation-generation-20261020.log",
+      "bytes": 197,
+      "sha256": "3712378e68da20c7cea10add2cada788bf8160912063233b7b8305ecbeabe5ca",
+      "git_blob": "a9c6936922d4a63cc027565637c1608fca4150ef"
+    },
+    {
+      "path": "analysis/school-window-geometry-rect-tests-20261020.log",
+      "bytes": 510,
+      "sha256": "358e3c9612dfc24306d53dd08fc8f30cb38ce5d63c40345a415e0658b6fce0be",
+      "git_blob": "05152464da7a76d42509bd4d3983a16eec16ad3e"
+    },
+    {
+      "path": "analysis/school-window-geometry-rect-v1-20261020.json",
+      "bytes": 3344,
+      "sha256": "b326c4ad1bfd95e89dfab5630dc7bbc7b4030447aad4852b2bd6328a30c04d2d",
+      "git_blob": "fa6315978e8bba757d7ea0b6e420c83cca64adb3"
+    },
+    {
+      "path": "analysis/school-window-geometry-regression-20261020.log",
+      "bytes": 4753,
+      "sha256": "d2785fc543e5e913b2e32df0526c568d38e523acf57f31d3a1fef5a5b9b7bcb6",
+      "git_blob": "d71d295d1c77a361ee83bcdde352a0a486693e3b"
+    },
+    {
+      "path": "analysis/school-window-geometry-source-tests-20261020.log",
+      "bytes": 549,
+      "sha256": "59b6f8adddb3edd2d6742cd032bf7d754277f74dab124a4e66292e1042c3ce0b",
+      "git_blob": "8e809e0ad881d268a94809aa2d7687dde080f062"
+    },
+    {
+      "path": "analysis/school-window-geometry-source-v1-20261020.json",
+      "bytes": 15684,
+      "sha256": "ffb82353f70e40966aafcf34c949ab8a8308befde46a19f0f1b6c37b7e524f36",
+      "git_blob": "1fe27d7725b546f251598568fa75de5119ffc9b8"
+    },
+    {
+      "path": "analysis/school-window-geometry-strict-20261020.log",
+      "bytes": 1166,
+      "sha256": "06c6fcdf74730db6c5fbc81d079433ba083a38101c262645e6cd12415260f920",
+      "git_blob": "2e3dc062ee2e6ba39f685fb03105916214d13db9"
+    },
+    {
+      "path": "analysis/school-window-geometry-trajectory-generation-v1-20261020.log",
+      "bytes": 168,
+      "sha256": "2cb3a9c37d651107e5a05f4f82fe8dd03202ee601c484b74c608a10fd5b83a7b",
+      "git_blob": "7974744810ccdb95f117d9f9b36f8476234e46d5"
+    },
+    {
+      "path": "analysis/school-window-geometry-trajectory-v1-20261020.json",
+      "bytes": 863404,
+      "sha256": "4b717ceb14435486858ce978f3abb6a4fad5e38c671419885ebec883b8de7366",
+      "git_blob": "a25af0d181fe72a7670b4a99e50215e2dfc3eff2"
+    },
+    {
+      "path": "analysis/school-window-geometry-verification-v1-20261020.log",
+      "bytes": 314,
+      "sha256": "9e52f424d3baed50db62013a9147807055067c53be8eddbffa710d717315c964",
+      "git_blob": "89ad1849fd1139ab193aedb0c9535413b670e7ff"
+    },
+    {
+      "path": "docs/school_window_geometry.md",
+      "bytes": 6181,
+      "sha256": "27e4aac712204afc4e6660ff4344628f558191442838b892f52c0b9043aebd97",
+      "git_blob": "f346459ffc46da2d19d6a4eb01be70f1ae5bc88f"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/design.md",
+      "bytes": 101155,
+      "sha256": "8d796bf6023d61c14ec20d438c08b75fe22cca22a4473727d74f3dfa3787510b",
+      "git_blob": "9719efcf62dc76cc6362c5c40fa36ba0060f38ec"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/proposal.md",
+      "bytes": 59191,
+      "sha256": "d3ee5ec415deb1f7bf0dc3fb5edc121e4b9c2eb777d834e0bfb641be2654e496",
+      "git_blob": "dd71ff47c784a0cc09cc0a0b7528f07aea2247c1"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/specs/school-fifth-week-planning/spec.md",
+      "bytes": 123837,
+      "sha256": "c8f61ab9a4b9a7d5e1a3497145aeccc43b75289ad53c7511f030f65fd4bcf59a",
+      "git_blob": "3dd1fd7e51c28e534c62bc3587d9ab1a80633bd1"
+    },
+    {
+      "path": "openspec/changes/add-fifth-week-school-planning/tasks.md",
+      "bytes": 110144,
+      "sha256": "57a27739a12fce71e3117308c600ad1cd5851c9fd24541bd5acf22257a32387c",
+      "git_blob": "7f66c220b2012afbd0336d31367b8fb879eecc2b"
+    },
+    {
+      "path": "tools/school_window_geometry.py",
+      "bytes": 5299,
+      "sha256": "2e6daf4cc39d4c89fc2a1876abe25ad238a4f4f4a66fd46efbfe5cf29cf10dd2",
+      "git_blob": "522a5af9361f1407eba8d5c5e92eb308454ea5c5"
+    },
+    {
+      "path": "tools/school_window_geometry_emulation.py",
+      "bytes": 9923,
+      "sha256": "15e8cf0a5e8e46a27071efaabf7ea06d643c438cec669e4e7336b00c8f1acb33",
+      "git_blob": "35f9960e8314420793cc7b0f340209500abc6476"
+    },
+    {
+      "path": "tools/school_window_geometry_platform.cs",
+      "bytes": 15057,
+      "sha256": "75c9c69f65dd56366bb9331bb97cea42479e5a273d196d7dffc8c856c89921a9",
+      "git_blob": "cea9497456d42e9d873f71b0566c0310191cf4d4"
+    },
+    {
+      "path": "tools/school_window_geometry_platform.py",
+      "bytes": 2810,
+      "sha256": "93aba3d85517b79991e758797b259e58c03061c4794e9846d883cf6a746a4001",
+      "git_blob": "4e7adc8b4e75c0728e3117aeea17b61cf39da8ae"
+    },
+    {
+      "path": "tools/school_window_geometry_verification.py",
+      "bytes": 12292,
+      "sha256": "6de8f6529cfd400cbe5f0b5952a66ddbaf12cd12c2bcd8207cb058ed79cd15cb",
+      "git_blob": "0411a50a3733a5271eb6287393b3aef5e96b8d07"
+    },
+    {
+      "path": "tools/tests/test_school_window_geometry.py",
+      "bytes": 1524,
+      "sha256": "47049aecdeb662523213674b53b7dd06b915812dc1c3a26dfb46ec7649725948",
+      "git_blob": "2afe01dd2e079fe6ccf9a9e386ee818b8a89ffd4"
+    },
+    {
+      "path": "tools/tests/test_school_window_geometry_emulation.py",
+      "bytes": 5190,
+      "sha256": "f8606a8637c3a96471047cb29be3afcaf5b4c5e7d388916a92f74b9e3303063c",
+      "git_blob": "a08ec61d9b757fc726a879fc6a0800ce99048a82"
+    },
+    {
+      "path": "tools/tests/test_school_window_geometry_platform.py",
+      "bytes": 4185,
+      "sha256": "18292013bf22de5a2db6c549acc5b3cc3d5a468640bce04ad636b597b1c5325c",
+      "git_blob": "405712a2d6407fa9c099c7c48814e8cc7abaf24b"
+    }
+  ],
+  "manifest_excludes": [
+    "analysis/school-window-geometry-acceptance-20261020.json"
+  ],
+  "local_only": true,
+  "pushed": false
+}
