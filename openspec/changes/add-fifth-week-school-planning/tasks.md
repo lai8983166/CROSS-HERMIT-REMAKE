@@ -1606,7 +1606,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 401. Original two icon loads
 
-- [ ] 401.1 Execute both original LoadIconA(module,157), stack checks and hIcon/hIconSm stores to450443, preserving full raw state and shared ownership with corruption tests; local commit.
+- [x] 401.1 Execute both original LoadIconA(module,157), stack checks and hIcon/hIconSm stores to450443, preserving full raw state and shared ownership with corruption tests; local commit.
 
 ## 402. Original cursor/brush and complete class
 
