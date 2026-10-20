@@ -1331,3 +1331,11 @@ The audit SHALL execute original45047D against a fresh owned real class adapter,
 - **WHEN** genuine-module startup naturally reaches45047D and the owned adapter registers the exact source class with explicitly translated host pointers
 - **THEN** real class inspection and eventual unregistration verify fields, atom, module and lifetime while the original caller consumes the actual ATOM and prepares all12 source creation arguments to4504CF
 - **AND** full CPU/memory/ABI/write/protocol evidence and historical/save/private VM bytes remain verified; callback transport is dormant and no real game window or retained VM advancement is claimed
+
+### Requirement: Genuine original early creation callback execution
+The audit SHALL enter original4504CF with its exact native arguments and execute actual creation callbacks through completed WM_NCCREATE using original game code, explicit callback ABI/shadow mappings and real nested system interfaces.
+
+#### Scenario: Original callback binds actual creation window before bounded suspension
+- **WHEN** the same fresh startup CPU reaches actual CreateWindowExA and Windows sends genuine early messages
+- **THEN** original424980 binds its actual HWND and opaque owner property through424730, naturally dispatches450D30/4272E0/424A90 and returns the actual native default result for WM_NCCREATE
+- **AND** the next callback is retained unanswered before its first instruction, the owned helper lifetime ends by explicit process termination, full source/CPU/memory/protocol evidence remains verified and neither successful window creation return nor normal resource cleanup or retained VM progress is claimed

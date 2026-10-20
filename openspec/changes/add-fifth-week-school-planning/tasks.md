@@ -1635,3 +1635,19 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 408. Class registration acceptance
 
 - [x] 408.1 Run new/relevant genuine-module parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document exact callback/window/retained VM boundaries and verify staged/committed Git bytes; local commit without push.
+
+## 409. Creation callback source and missing global dependency
+
+- [x] 409.1 Resolve original callback imports/complete functions/CREATESTRUCT ABI and later7A49FC factory-output order; define bounded WM_NCCREATE completion and unanswered next-callback scope with source tests; local commit.
+
+## 410. Nested actual creation callback platform
+
+- [ ] 410.1 Fork immutable x86 helper for exact original CreateWindowExA, genuine callback packets and nested real property/window-long/default interfaces, explicit host/guest procedure identity and bounded unanswered-callback process termination; provenance/refusal/protocol tests and local commit.
+
+## 411. Original genuine WM_NCCREATE execution
+
+- [ ] 411.1 Replay full original startup and creation call on one CPU/helper lifetime, execute original early callbacks through actual WM_NCCREATE binding/virtual/default dispatch, preserve caller context and captured globals, retain next callback entry, independently verify raw source/ABI/full memory/read-write traces and corruption/fresh-run tests; local commit.
+
+## 412. Genuine early callback acceptance
+
+- [ ] 412.1 Run new/relevant class parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document explicit terminated-lifetime/pending-creation/remaining-heap boundaries and verify staged/committed Git bytes; local commit without push.
