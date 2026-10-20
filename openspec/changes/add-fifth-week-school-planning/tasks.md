@@ -1686,7 +1686,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 421. Original changing-position callback
 
-- [ ] 421.1 Execute genuine70 with full actual WINDOWPOS native input/output, preserve source owner/global/caller and retain the next actual callback entry unanswered; independent source/native proof, fresh two-case and corruption tests; local commit.
+- [x] 421.1 Execute genuine70 with full actual WINDOWPOS native input/output, preserve source owner/global/caller and retain the next actual callback entry unanswered; independent source/native proof, fresh two-case and corruption tests; local commit.
 
 ## 422. Size move show and WINDOWPOS acceptance
 

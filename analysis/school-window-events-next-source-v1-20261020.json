@@ -1,0 +1,152 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "instructions": [
+    {
+      "va": "0x4249b7",
+      "hex": "7542",
+      "mnemonic": "jne",
+      "operands": "0x4249fb"
+    },
+    {
+      "va": "0x450dcf",
+      "hex": "ff24854c104500",
+      "mnemonic": "jmp",
+      "operands": "dword ptr [eax*4 + 0x45104c]"
+    },
+    {
+      "va": "0x450edd",
+      "hex": "e94e010000",
+      "mnemonic": "jmp",
+      "operands": "0x451030"
+    },
+    {
+      "va": "0x450f63",
+      "hex": "e9c8000000",
+      "mnemonic": "jmp",
+      "operands": "0x451030"
+    },
+    {
+      "va": "0x451016",
+      "hex": "8b4514",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [ebp + 0x14]"
+    },
+    {
+      "va": "0x451029",
+      "hex": "e8623afdff",
+      "mnemonic": "call",
+      "operands": "0x424a90"
+    },
+    {
+      "va": "0x451030",
+      "hex": "33c0",
+      "mnemonic": "xor",
+      "operands": "eax, eax"
+    },
+    {
+      "va": "0x450e3a",
+      "hex": "8982d0080000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [edx + 0x8d0], eax"
+    },
+    {
+      "va": "0x450e40",
+      "hex": "833dfc497a0000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [0x7a49fc], 0"
+    },
+    {
+      "va": "0x450e47",
+      "hex": "0f8481000000",
+      "mnemonic": "je",
+      "operands": "0x450ece"
+    },
+    {
+      "va": "0x450e5d",
+      "hex": "e8ee2ffcff",
+      "mnemonic": "call",
+      "operands": "0x413e50"
+    }
+  ],
+  "completed_messages": [
+    129,
+    131,
+    1,
+    5,
+    3,
+    24,
+    70
+  ],
+  "next_actual_messages": [
+    {
+      "fill": 165,
+      "packet": {
+        "event_kind": "wndproc",
+        "callback_id": 8,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 16581980,
+        "message": 70,
+        "wParam": 0,
+        "lParam": 9431988,
+        "data_kind": "WINDOWPOS",
+        "data_hex": "5c05fd00ea0945000000000000000000000000000000000003000000"
+      },
+      "WINDOWPOS": {
+        "hwnd": 16581980,
+        "hwnd_insert_after": 4524522,
+        "x": 0,
+        "y": 0,
+        "cx": 0,
+        "cy": 0,
+        "flags": 3
+      },
+      "first_instruction_executed": false
+    },
+    {
+      "fill": 204,
+      "packet": {
+        "event_kind": "wndproc",
+        "callback_id": 8,
+        "depth": 1,
+        "guest_entry": 4344192,
+        "hwnd": 16647516,
+        "message": 70,
+        "wParam": 0,
+        "lParam": 15721860,
+        "data_kind": "WINDOWPOS",
+        "data_hex": "5c05fe00ea0946000000000000000000000000000000000003000000"
+      },
+      "WINDOWPOS": {
+        "hwnd": 16647516,
+        "hwnd_insert_after": 4590058,
+        "x": 0,
+        "y": 0,
+        "cx": 0,
+        "cy": 0,
+        "flags": 3
+      },
+      "first_instruction_executed": false
+    }
+  ],
+  "next_source_route": "bound GetPropA -> original450D30/4272E0 ->424A90 -> actual DefWindowProcA; no new this binding",
+  "WINDOWPOS_distinction": {
+    "completed_flags": 67,
+    "pending_flags": 3,
+    "no_move_bit": 2,
+    "no_size_bit": 1,
+    "show_window_bit": 64,
+    "insert_after_is_borrowed_actual_handle_not_an_owned_resource": true
+  },
+  "next_requirements": [
+    "Admit the second genuine WM_WINDOWPOSCHANGING70 with observed flags3 and exact native WINDOWPOS28 input/output in a new helper lifetime; do not equate its flags to previous43",
+    "Follow real subsequent callback order rather than assuming activation or creation return",
+    "Retain source28 WM_ACTIVATEAPP gate before reads of captured7A49FC; derive the real fresh-start initial state/heap source without resetting old global",
+    "Extend actual paint input/output and source-driven property removal/window destruction/class unregistration when corresponding real messages become admissible",
+    "Claim successful creation/HWND global publication only after original4504CF call naturally returns and4504DC stores actual HWND"
+  ],
+  "captured_game_global_modified": false,
+  "game_heap_resolved": false,
+  "CreateWindowExA_return_received": false,
+  "retained_VM_advanced": false
+}
