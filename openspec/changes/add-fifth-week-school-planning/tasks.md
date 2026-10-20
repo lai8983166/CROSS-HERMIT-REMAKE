@@ -1678,7 +1678,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 419. Actual WINDOWPOS platform
 
-- [ ] 419.1 Fork immutable x86 helper for real changing-position payload and actual default before/after bytes with full source/helper/system provenance and refusal/typed-protocol tests; local commit.
+- [x] 419.1 Fork immutable x86 helper for real changing-position payload and actual default before/after bytes with full source/helper/system provenance and refusal/typed-protocol tests; local commit.
 
 ## 420. Original size move and show callbacks
 
