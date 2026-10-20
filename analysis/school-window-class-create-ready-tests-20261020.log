@@ -1,0 +1,38 @@
+test_fresh_continuous_native_trajectory_preserves_parent_source_and_metadata (tools.tests.test_school_window_class_emulation.CreateReadyTests) ... 0xa5: original class registered atom 0xc388; native creation pending4504CF
+0xcc: original class registered atom 0xc217; native creation pending4504CF
+ERROR
+test_original_success_branch_and_all12_arguments_with_full_state_replay (tools.tests.test_school_window_class_emulation.CreateReadyTests) ... ERROR
+test_refuses_skipped_branch_wrong_args_return_flags_stack_or_creation_claim (tools.tests.test_school_window_class_emulation.CreateReadyTests) ... ok
+
+======================================================================
+ERROR: test_fresh_continuous_native_trajectory_preserves_parent_source_and_metadata (tools.tests.test_school_window_class_emulation.CreateReadyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_window_class_emulation.py", line 64, in test_fresh_continuous_native_trajectory_preserves_parent_source_and_metadata
+    r=generate();self.assertEqual(verify_report(r)['cases'],2)
+  File "F:\project\chaomofa\tools\school_window_class_verification.py", line 108, in verify_report
+    proofs.append(verify_case(c,through));cleanup=c['platform_cleanup'];reg=c['registered']['platform_calls'][0]['result']
+  File "F:\project\chaomofa\tools\school_window_class_verification.py", line 67, in verify_case
+    if n['phase']!=phase or n['before_cpu']!=previous['cpu'] or n['cpu']!=cpu or n['instruction_runs']!=source_runs(phase):raise ValueError('class exact original path/CPU continuity')
+  File "F:\project\chaomofa\tools\school_window_class_verification.py", line 30, in source_runs
+    if at!=0x450491:raise ValueError('class unknown original branch')
+ValueError: class unknown original branch
+
+======================================================================
+ERROR: test_original_success_branch_and_all12_arguments_with_full_state_replay (tools.tests.test_school_window_class_emulation.CreateReadyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_window_class_emulation.py", line 45, in test_original_success_branch_and_all12_arguments_with_full_state_replay
+    r=report();self.assertEqual(verify_report(r)['pending'],'0x4504cf')
+  File "F:\project\chaomofa\tools\school_window_class_verification.py", line 108, in verify_report
+    proofs.append(verify_case(c,through));cleanup=c['platform_cleanup'];reg=c['registered']['platform_calls'][0]['result']
+  File "F:\project\chaomofa\tools\school_window_class_verification.py", line 67, in verify_case
+    if n['phase']!=phase or n['before_cpu']!=previous['cpu'] or n['cpu']!=cpu or n['instruction_runs']!=source_runs(phase):raise ValueError('class exact original path/CPU continuity')
+  File "F:\project\chaomofa\tools\school_window_class_verification.py", line 30, in source_runs
+    if at!=0x450491:raise ValueError('class unknown original branch')
+ValueError: class unknown original branch
+
+----------------------------------------------------------------------
+Ran 3 tests in 8.712s
+
+FAILED (errors=2)

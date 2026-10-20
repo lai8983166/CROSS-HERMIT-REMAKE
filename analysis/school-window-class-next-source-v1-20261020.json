@@ -1,0 +1,186 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "functions": [
+    {
+      "va": "0x424730",
+      "end": "0x4248d9",
+      "sha256": "13f1f551432d3ced79fc5fcdd18142b906e270d68cddf4b0b9e9215b332b796d",
+      "return_va": "0x4248d6",
+      "return_operands": "8",
+      "executed": false
+    },
+    {
+      "va": "0x4248e0",
+      "end": "0x424978",
+      "sha256": "ac0532db0eba77bd93febb8d1c56515ce534b8ad5afd80292641c14fed88a8ef",
+      "return_va": "0x424977",
+      "return_operands": "",
+      "executed": false
+    },
+    {
+      "va": "0x424980",
+      "end": "0x424a89",
+      "sha256": "7dbed5975f5d432fa84e34d24d9a8b2d26f2e2bbb0d74566b3f8cdb910b0cc01",
+      "return_va": "0x424a86",
+      "return_operands": "0x10",
+      "executed": false
+    },
+    {
+      "va": "0x424a90",
+      "end": "0x424b1d",
+      "sha256": "c035d2dbd82bda754ea51f8bad267c17fef70f26bf1ddeda0f0128cef7408774",
+      "return_va": "0x424b1a",
+      "return_operands": "0x10",
+      "executed": false
+    },
+    {
+      "va": "0x450d30",
+      "end": "0x45104c",
+      "sha256": "fc3dc5d7e3066ef1bc985f2c8d3b0bd997f595d2e758a6d344a4e599fda26929",
+      "return_va": "0x451049",
+      "return_operands": "0x10",
+      "executed": false
+    },
+    {
+      "va": "0x4272e0",
+      "end": "0x427527",
+      "sha256": "65ba0323ced9c6cdb0ffa600d975ff7fd2ce87ca9f64f9d0d1ef81ebd5246498",
+      "return_va": "0x427524",
+      "return_operands": "0x10",
+      "executed": false
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x424771",
+      "hex": "ff15ec235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923ec]"
+    },
+    {
+      "va": "0x4247aa",
+      "hex": "ff15e8235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923e8]"
+    },
+    {
+      "va": "0x4247f8",
+      "hex": "ff15ec235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923ec]"
+    },
+    {
+      "va": "0x424805",
+      "hex": "3d80494200",
+      "mnemonic": "cmp",
+      "operands": "eax, 0x424980"
+    },
+    {
+      "va": "0x42481e",
+      "hex": "ff15f0235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923f0]"
+    },
+    {
+      "va": "0x424958",
+      "hex": "ff15e4235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923e4]"
+    },
+    {
+      "va": "0x4249a3",
+      "hex": "ff15dc235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923dc]"
+    },
+    {
+      "va": "0x4249d1",
+      "hex": "8b02",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [edx]"
+    },
+    {
+      "va": "0x4249f6",
+      "hex": "e835fdffff",
+      "mnemonic": "call",
+      "operands": "0x424730"
+    },
+    {
+      "va": "0x424a1b",
+      "hex": "ff12",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx]"
+    },
+    {
+      "va": "0x450d85",
+      "hex": "e85665fdff",
+      "mnemonic": "call",
+      "operands": "0x4272e0"
+    },
+    {
+      "va": "0x427304",
+      "hex": "0f85b2000000",
+      "mnemonic": "jne",
+      "operands": "0x4273bc"
+    },
+    {
+      "va": "0x4273bc",
+      "hex": "83c8ff",
+      "mnemonic": "or",
+      "operands": "eax, 0xffffffff"
+    },
+    {
+      "va": "0x451029",
+      "hex": "e8623afdff",
+      "mnemonic": "call",
+      "operands": "0x424a90"
+    },
+    {
+      "va": "0x424acf",
+      "hex": "ff1534235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592334]"
+    },
+    {
+      "va": "0x424afd",
+      "hex": "ff15e0235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923e0]"
+    }
+  ],
+  "full_dependency_bounds": "Complete dependency returns pinned here; initial source contract retained bounded excerpts, including a main-handler slice ending inside its ret instruction and detach padding",
+  "original_callback": "0x424980",
+  "guest_property_name": "CPP_CLASS",
+  "guest_this_source": "CREATESTRUCTA first dword for messages1/129",
+  "dispatch_chain": [
+    "424980",
+    "424730 binding",
+    "vtable5986A0 first slot450D30",
+    "4272E0 input dispatcher",
+    "424A90 default dispatch"
+  ],
+  "next_requirements": [
+    "Extend nested bidirectional callback IPC to service real imports while User32 blocks inside CreateWindowExA; current registration-only callback transport only accepts a returned original result and is dormant",
+    "Use guarded callback stacks and save/restore suspended original caller CPU; execute actual424980 plus binding and actual main virtual handler",
+    "Marshal real CREATESTRUCTA and all message-specific pointer inputs/outputs honestly; retain actual host ownership and original lpCreateParams guest owner",
+    "Reverse-translate actual owned host WNDPROC back to guest424980 when native binding compares prior procedure; never replace source comparison or allow host thunk as guest function",
+    "Keep guest owner value as opaque property data; original native SetProp/GetProp/RemoveProp ownership and cleanup must balance",
+    "Derive every genuine creation-message branch and captured game-context dependency before allowing source reads of uncaptured heaps",
+    "Only claim a created window after CreateWindowExA naturally returns a genuine HWND and original HWND publication executes; do not substitute helper game handlers"
+  ],
+  "captured_global_dependencies": [
+    {
+      "va": "0x7a49fc",
+      "source_value": 81199208,
+      "not_repaired": true
+    },
+    {
+      "va": "0x7a4a00",
+      "source_value": 81136440,
+      "not_repaired": true
+    }
+  ],
+  "callback_executed": false,
+  "CreateWindowExA_executed": false,
+  "retained_VM_advanced": false
+}

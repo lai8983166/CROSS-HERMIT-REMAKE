@@ -1,0 +1,151 @@
+{
+  "stage": 407,
+  "phase": "create_ready",
+  "trajectory": {
+    "path": "analysis/school-window-class-trajectory-v1-20261020.json",
+    "bytes": 1011787,
+    "sha256": "4b7899ba408e07b9fb17251cde9525ef273b82336ea4eeac91fb4b42b54262c0"
+  },
+  "verified_trajectory": {
+    "cases": 2,
+    "verified_through": "create_ready",
+    "pending": "0x4504cf",
+    "actual_atoms": [
+      49686,
+      50304
+    ],
+    "prefix_validation_substitutions": [
+      31,
+      31
+    ],
+    "native_registration_calls_per_case": 1,
+    "inspections_per_case": 4,
+    "unregistrations_per_case": 1,
+    "raw_evidence_modified": false,
+    "callback_executed": false,
+    "window_created": false,
+    "retained_VM_advanced": false
+  },
+  "boundaries": [
+    {
+      "case_index": 0,
+      "fill": 165,
+      "node": "create_ready",
+      "node_sha256": "e7e2bd1978357a028916c5eaa753a54ca44579c212d879ca609c0969dcd80cb1",
+      "before_cpu": {
+        "EIP": 4523139,
+        "ESP": 553709220,
+        "EBP": 553709364,
+        "EAX": 49686,
+        "EBX": 1432778632,
+        "ECX": 553709296,
+        "EDX": 91750400,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4523215,
+        "ESP": 553709172,
+        "EBP": 553709364,
+        "EAX": 2415919104,
+        "EBX": 1432778632,
+        "ECX": 768,
+        "EDX": 1024,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 6
+      },
+      "pending": {
+        "va": "0x4504cf",
+        "sp": 553709172,
+        "first_instruction_executed": false,
+        "import_slot": "0x59240c",
+        "import_target": 1979748256,
+        "stack_args": [
+          0,
+          8005160,
+          8005160,
+          2415919104,
+          16,
+          16,
+          1024,
+          768,
+          0,
+          0,
+          91750400,
+          536870912
+        ],
+        "call_instruction_executed": false
+      },
+      "native_returns": 1,
+      "native_writes": 13,
+      "system_calls": 0,
+      "owner_sha256": "575ab4d76cd2b0e497c41d200901264d40111ff19712acde562e301a871221c7",
+      "stack_sha256": "0fc751c0e83f5a30ec14cc7ab46e4a68055364d5daf4173f2431ebf35fdb36d1",
+      "class_sha256": "d539cfc2103d18b4e60893445089eec5ff48164995a2aaba251e13b7051a427d"
+    },
+    {
+      "case_index": 1,
+      "fill": 204,
+      "node": "create_ready",
+      "node_sha256": "4012dc3d486124d80e321a8af1e26cbc3f2d0711ffb7fa29fa1697d73d0a2d32",
+      "before_cpu": {
+        "EIP": 4523139,
+        "ESP": 553709220,
+        "EBP": 553709364,
+        "EAX": 50304,
+        "EBX": 1432778632,
+        "ECX": 553709296,
+        "EDX": 92143616,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 70
+      },
+      "cpu": {
+        "EIP": 4523215,
+        "ESP": 553709172,
+        "EBP": 553709364,
+        "EAX": 2415919104,
+        "EBX": 1432778632,
+        "ECX": 768,
+        "EDX": 1024,
+        "ESI": 553709220,
+        "EDI": 553709364,
+        "EFLAGS": 6
+      },
+      "pending": {
+        "va": "0x4504cf",
+        "sp": 553709172,
+        "first_instruction_executed": false,
+        "import_slot": "0x59240c",
+        "import_target": 1979748256,
+        "stack_args": [
+          0,
+          8005160,
+          8005160,
+          2415919104,
+          16,
+          16,
+          1024,
+          768,
+          0,
+          0,
+          92143616,
+          536870912
+        ],
+        "call_instruction_executed": false
+      },
+      "native_returns": 1,
+      "native_writes": 13,
+      "system_calls": 0,
+      "owner_sha256": "c68ae4164fa3f0dd736611ddb52bf5a645fa153111c4e820110d742610d86cb7",
+      "stack_sha256": "59ed546e72501f1255fc9f4ed57276798da10fef0b309db63c51a5a171e92a63",
+      "class_sha256": "b7d2c3f3903da39c0d6ad746fd01b4c9395570187aa085cc79011a9b040b0096"
+    }
+  ],
+  "same_original_CPU_and_helper_lifetime_per_case": true,
+  "raw_actual_snapshots_modified": false,
+  "retained_VM_advanced": false,
+  "standalone_resumable_checkpoint": false
+}

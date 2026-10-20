@@ -1630,7 +1630,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 407. Original creation argument preparation
 
-- [ ] 407.1 Execute original ATOM masking/stack check/success branch and all12 CreateWindowExA arguments to unexecuted4504CF, verify exact source path/full CPU/memory/write replay and fresh two-case trajectory; local commit.
+- [x] 407.1 Execute original ATOM masking/stack check/success branch and all12 CreateWindowExA arguments to unexecuted4504CF, verify exact source path/full CPU/memory/write replay and fresh two-case trajectory; local commit.
 
 ## 408. Class registration acceptance
 

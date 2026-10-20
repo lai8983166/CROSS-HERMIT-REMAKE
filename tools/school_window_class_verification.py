@@ -27,8 +27,9 @@ def source_runs(phase):
         if i.mnemonic=='call' and i.op_str.startswith('0x'):returns.append(nxt);nxt=int(i.op_str,16)
         elif i.mnemonic=='ret':nxt=returns.pop()
         elif i.mnemonic=='jne':
-            if at!=0x450491:raise ValueError('class unknown original branch')
-            nxt=int(i.op_str,16) # Proved nonzero actual ATOM, not an assumed API success.
+            if at==0x56CE80:pass # Original cmp ESI,ESP proved equal before the stack checker.
+            elif at==0x450491:nxt=int(i.op_str,16) # Proved nonzero actual ATOM.
+            else:raise ValueError('class unknown original branch')
         at=nxt
     if returns:raise ValueError('class original stack-check return')
     return rows
