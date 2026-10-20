@@ -1658,7 +1658,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 414. Actual rectangle and create message platform
 
-- [ ] 414.1 Fork immutable x86 helper capturing actual message131 RECT16 and message1 CREATESTRUCT48 with nested real default input/output and exact native context; provenance/refusal/protocol tests and local commit.
+- [x] 414.1 Fork immutable x86 helper capturing actual message131 RECT16 and message1 CREATESTRUCT48 with nested real default input/output and exact native context; provenance/refusal/protocol tests and local commit.
 
 ## 415. Original WM_NCCALCSIZE completion
 
