@@ -10,4 +10,4 @@
 
 ## 3. Integrated R2 acceptance
 
-- [ ] 3.1 Reproduce integrated rendering across representative retained cases, run affected regressions/strict specs/historical-save-checkpoint preservation, record R3 handoff, and only after all R2 criteria pass update the master spec, commit acceptance and archive this completed change locally.
+- [x] 3.1 Reproduce integrated rendering across representative retained cases, run affected regressions/strict specs/historical-save-checkpoint preservation, record R3 handoff, and only after all R2 criteria pass update the master spec, commit acceptance and archive this completed change locally.

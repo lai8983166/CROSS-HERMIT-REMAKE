@@ -1,0 +1,810 @@
+{
+  "schema_version": 1,
+  "baseline": "e89c819ffd4a76c1ba403ea14bfcf90da0456d75",
+  "initialization_commit": "66a88aa",
+  "rendering_commit": "f634635",
+  "change": "connect-retained-vm-rendering",
+  "archive": "openspec/changes/archive/2026-10-21-connect-retained-vm-rendering",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "R2_complete": true,
+  "master": "openspec/specs/reverse-engineering/completion/spec.md",
+  "scope": {
+    "original_initialization_and_retained_logical_reconstruction": true,
+    "unchanged_checkpoint_in_place_resume": false,
+    "old_checkpoint_files_modified": false,
+    "original_retained_VM_and_task_natural_returns": true,
+    "original_rectangle_and_two_text_lines_actual_D3D8_and_Present": true,
+    "full_input_or_outer_world_frame": false,
+    "static_scene_sprite_GPU_textures_restored": false,
+    "Godot_changed": false
+  },
+  "native_cases": [
+    {
+      "path": "analysis/school-retained-render-initial-proof-v2-20261021.json",
+      "sha256": "d25f33a8b1988966892152ec39ea6334942a52740fddb248ec353680cb3efbef",
+      "result": {
+        "case": "initial",
+        "original_instructions_replayed": 1936299,
+        "declared_roots": 204,
+        "steps": 207,
+        "output": {
+          "indexed_text_draws": 2,
+          "white_glyph_pixels": 30,
+          "transparent_glyph_pixels": 11929,
+          "blend_tolerance": 2,
+          "glyph_samples": [
+            {
+              "x": 407,
+              "y": 630,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 487,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 414,
+              "y": 636,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 392,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 393,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 456,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            }
+          ],
+          "actual_framebuffer_sha256": "8bc242da1c4b3b2bd1db8d22cdc2f91cf11691a40f952e42353f3f197eb54613"
+        },
+        "full_outer_world_frame": false
+      }
+    },
+    {
+      "path": "analysis/school-retained-render-student9-waiting-proof-v1-20261021.json",
+      "sha256": "6fc3104e205ce7d041beec04b3b59f5dae6bf6449cc1379086e21cec62ccbca2",
+      "result": {
+        "case": "student9_waiting",
+        "original_instructions_replayed": 1936299,
+        "declared_roots": 204,
+        "steps": 207,
+        "output": {
+          "indexed_text_draws": 2,
+          "white_glyph_pixels": 30,
+          "transparent_glyph_pixels": 11929,
+          "blend_tolerance": 2,
+          "glyph_samples": [
+            {
+              "x": 407,
+              "y": 630,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 487,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 414,
+              "y": 636,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 392,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 393,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 456,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            }
+          ],
+          "actual_framebuffer_sha256": "8bc242da1c4b3b2bd1db8d22cdc2f91cf11691a40f952e42353f3f197eb54613"
+        },
+        "full_outer_world_frame": false
+      }
+    },
+    {
+      "path": "analysis/school-retained-render-fifth-class-proof-v1-20261021.json",
+      "sha256": "c54c48cc2b9c41aaf61992325af684a52efa4da031acc2a7ed6e6ecdefa36aa3",
+      "result": {
+        "case": "fifth_class",
+        "original_instructions_replayed": 1936299,
+        "declared_roots": 204,
+        "steps": 207,
+        "output": {
+          "indexed_text_draws": 2,
+          "white_glyph_pixels": 30,
+          "transparent_glyph_pixels": 11929,
+          "blend_tolerance": 2,
+          "glyph_samples": [
+            {
+              "x": 407,
+              "y": 630,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 487,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 414,
+              "y": 636,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 392,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 393,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 456,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            }
+          ],
+          "actual_framebuffer_sha256": "8bc242da1c4b3b2bd1db8d22cdc2f91cf11691a40f952e42353f3f197eb54613"
+        },
+        "full_outer_world_frame": false
+      }
+    }
+  ],
+  "resource_lifetime": {
+    "native_helper_exit_codes": [
+      0,
+      0
+    ],
+    "text_texture_release_counts": [
+      0,
+      0
+    ],
+    "screen_ReleaseDC": 1,
+    "gamma_device_and_desktop_restored": true,
+    "initial_case_actual_sign_extension_cleanup_retry_recorded": true,
+    "other_two_cases_unattended_clean_exit": true
+  },
+  "regression": {
+    "path": "analysis/school-retained-render-regression-v1-20261021.log",
+    "tests": 55,
+    "passed": true,
+    "sha256": "7017490f3e44ee345886060e03a1f54f8e1767bec9b1e60c6be82db7290789d9"
+  },
+  "strict_specs": [
+    {
+      "path": "analysis/school-retained-render-strict-before-v2-20261021.log",
+      "passed": 32,
+      "failed": 0,
+      "sha256": "40b20c0ca843ee30f80d781a7215814e6085c61ccc17f899c593c5d396864ba3"
+    },
+    {
+      "path": "analysis/school-retained-render-strict-after-v1-20261021.log",
+      "passed": 31,
+      "failed": 0,
+      "sha256": "074efb329e42a2f05d363c9d0517b551bcacb02cd01bf82a9c07944b9acb8ce5"
+    }
+  ],
+  "preservation": {
+    "path": "analysis/school-retained-render-preservation-v1-20261021.json",
+    "sha256": "09a27194e70a89eb6e1450f29ae6c5891c6b991add0eea2ffa5df86f64211748",
+    "historical_raw_files": 16589,
+    "private_original_VM_checkpoints": 9,
+    "prototype_rules": 10,
+    "original_installed_save_bytes_and_times_unchanged": true,
+    "original_download_unchanged": true,
+    "snapshot_phase": "Before authorized final R2 master completion/archive update; final artifacts separately included in this manifest"
+  },
+  "next": {
+    "milestone": "R3",
+    "target": "2026-11-03",
+    "handoff": "docs/school_retained_rendering.md",
+    "blocker": "Original full task 454CF0 reaches 425F17 -> 424F80 with input index -1; initialize actual input/outer scheduling before full task/world continuation",
+    "compatibility": "Captured original Big5 bytes rendered through actual ANSI ACP936 with Song font fallback; glyph bytes not transcoded; complete language and static sprite compatibility remain open"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 18448,
+      "sha256": "0036c525f3a899fdf7124c01bb57a60ca5d4b5735c87f61ba9701e85aa6df6ac",
+      "git_blob": "a33499322d0d2d538c724360a65f601b1406aea9"
+    },
+    {
+      "path": "analysis/school-retained-render-archive-v1-20261021.json",
+      "bytes": 592,
+      "sha256": "f1f638a1b938061db42ee0d152a740c65de95cc6f900bdc44c07ed26900736ce",
+      "git_blob": "094b62cd0f5cabc6656d43c4cc1dc6fa0a322cf9"
+    },
+    {
+      "path": "analysis/school-retained-render-device-v1-20261021.json",
+      "bytes": 284,
+      "sha256": "516474e9f6c8f9579c9de368c9c15b285fb9982adf7df58b7a35bf0745a41f50",
+      "git_blob": "a8bdafded4e3557d7592a77cbb3abe49993f22d5"
+    },
+    {
+      "path": "analysis/school-retained-render-device-v2-20261021.json",
+      "bytes": 284,
+      "sha256": "5f7ca1f1a985d45b93cef6fa67e0b18b94d921344140f66ef5ba398284ee8457",
+      "git_blob": "7ad3885825041f6748b6306f057d8a97f83393a7"
+    },
+    {
+      "path": "analysis/school-retained-render-device-v3-20261021.json",
+      "bytes": 452,
+      "sha256": "4d09475e235c86a824c87d3c99ece876b753821eaad5c22f3cd899f8d9df3ee1",
+      "git_blob": "0d55d725d52f8a441914ff1bcfb589646631bd0d"
+    },
+    {
+      "path": "analysis/school-retained-render-device-v4-20261021.json",
+      "bytes": 284,
+      "sha256": "9156316b71e49136b690bc81a951cfda2d8b551ed8aa859d337a1c846123eefd",
+      "git_blob": "6b2c67af1e1be4a8f3bfccaa52c9ce8fb21af1a8"
+    },
+    {
+      "path": "analysis/school-retained-render-fifth-class-proof-v1-20261021.json",
+      "bytes": 2441,
+      "sha256": "c54c48cc2b9c41aaf61992325af684a52efa4da031acc2a7ed6e6ecdefa36aa3",
+      "git_blob": "c2cfdd16bd75326b8feec01ba1a4e7a177957539"
+    },
+    {
+      "path": "analysis/school-retained-render-fifth-class-v1-20261021.json.gz",
+      "bytes": 833646,
+      "sha256": "8a52b25d4090fbfffe90aec7b0ae4d7d0563b5907f99ebabe2c6817d386b1552",
+      "git_blob": "fc682278fc056565db94dfa0c9f356a5869ce5f3"
+    },
+    {
+      "path": "analysis/school-retained-render-fifth-class-v1-20261021.png",
+      "bytes": 9131,
+      "sha256": "42c155604f9930e6a9cd9ee8215b54d4a365f20be57bb380d97a6adfc4cea553",
+      "git_blob": "3eb3c74cbd472223837e36360d0120236165c968"
+    },
+    {
+      "path": "analysis/school-retained-render-initial-proof-v1-20261021.json",
+      "bytes": 2437,
+      "sha256": "d25f33a8b1988966892152ec39ea6334942a52740fddb248ec353680cb3efbef",
+      "git_blob": "5a786fd11714db53ebba3a825a32689b2ab6a33d"
+    },
+    {
+      "path": "analysis/school-retained-render-initial-proof-v2-20261021.json",
+      "bytes": 2437,
+      "sha256": "d25f33a8b1988966892152ec39ea6334942a52740fddb248ec353680cb3efbef",
+      "git_blob": "5a786fd11714db53ebba3a825a32689b2ab6a33d"
+    },
+    {
+      "path": "analysis/school-retained-render-initial-v1-20261021.json.gz",
+      "bytes": 833612,
+      "sha256": "3a9e309b6190c0f624dd8f094c37c6f43ed2b29b99a1c52de1ce1e5d6854ede5",
+      "git_blob": "c965c1e9167c432ba7b294a09e0f8612fdf25809"
+    },
+    {
+      "path": "analysis/school-retained-render-initial-v1-20261021.png",
+      "bytes": 9131,
+      "sha256": "42c155604f9930e6a9cd9ee8215b54d4a365f20be57bb380d97a6adfc4cea553",
+      "git_blob": "3eb3c74cbd472223837e36360d0120236165c968"
+    },
+    {
+      "path": "analysis/school-retained-render-preservation-v1-20261021.json",
+      "bytes": 2143,
+      "sha256": "09a27194e70a89eb6e1450f29ae6c5891c6b991add0eea2ffa5df86f64211748",
+      "git_blob": "bf0a8e3da2cf3f5331f65c5da197e721a1874c32"
+    },
+    {
+      "path": "analysis/school-retained-render-reconstruction-proof-v1-20261021.json",
+      "bytes": 670,
+      "sha256": "597053df865b1ff8c883b217e8b7cf40318b2478db484332185469b4a0fb1364",
+      "git_blob": "f7107dd22dc146b4cef4bd83ee99ea47163cf653"
+    },
+    {
+      "path": "analysis/school-retained-render-reconstruction-v1-20261021.json.gz",
+      "bytes": 223173,
+      "sha256": "278170918cc4a138e7afc8479f2a2a40bd2ebd5c455a7e849ea3d5112a3cadfb",
+      "git_blob": "187c7cfb8df1a9fc979a96ca11aa93713c43427c"
+    },
+    {
+      "path": "analysis/school-retained-render-regression-v1-20261021.log",
+      "bytes": 375,
+      "sha256": "7017490f3e44ee345886060e03a1f54f8e1767bec9b1e60c6be82db7290789d9",
+      "git_blob": "a8bf94f4dad44501159c73cde98998c012895a94"
+    },
+    {
+      "path": "analysis/school-retained-render-strict-after-v1-20261021.log",
+      "bytes": 3161,
+      "sha256": "074efb329e42a2f05d363c9d0517b551bcacb02cd01bf82a9c07944b9acb8ce5",
+      "git_blob": "8f4963d58f130f5e62a525fdbe321997e9894db3"
+    },
+    {
+      "path": "analysis/school-retained-render-strict-before-v1-20261021.log",
+      "bytes": 3327,
+      "sha256": "40b20c0ca843ee30f80d781a7215814e6085c61ccc17f899c593c5d396864ba3",
+      "git_blob": "156e5e1a15c23b54d6ead9428236cd5f2d2e89db"
+    },
+    {
+      "path": "analysis/school-retained-render-strict-before-v2-20261021.log",
+      "bytes": 3327,
+      "sha256": "40b20c0ca843ee30f80d781a7215814e6085c61ccc17f899c593c5d396864ba3",
+      "git_blob": "156e5e1a15c23b54d6ead9428236cd5f2d2e89db"
+    },
+    {
+      "path": "analysis/school-retained-render-student9-waiting-proof-v1-20261021.json",
+      "bytes": 2446,
+      "sha256": "6fc3104e205ce7d041beec04b3b59f5dae6bf6449cc1379086e21cec62ccbca2",
+      "git_blob": "204493029116c88332de59bde58aa962004e2220"
+    },
+    {
+      "path": "analysis/school-retained-render-student9-waiting-v1-20261021.json.gz",
+      "bytes": 833774,
+      "sha256": "ac4bf9b170eadaa0c4c471901f57463d1b95fb63afdbb7319a064118a7c5d361",
+      "git_blob": "04e17fd3d658ac245fc024a8e2f25a486589739b"
+    },
+    {
+      "path": "analysis/school-retained-render-student9-waiting-v1-20261021.png",
+      "bytes": 9131,
+      "sha256": "42c155604f9930e6a9cd9ee8215b54d4a365f20be57bb380d97a6adfc4cea553",
+      "git_blob": "3eb3c74cbd472223837e36360d0120236165c968"
+    },
+    {
+      "path": "docs/school_retained_rendering.md",
+      "bytes": 7778,
+      "sha256": "3f47283b68d0ee7c8a586c6e4e7503b2946d8cd2629d10fc975106a5ab55b24f",
+      "git_blob": "196ff8f652da1121aba77b129b663a3f5e730149"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-retained-vm-rendering/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9dce7645e8d23214043e04d1f4443f95ea5ca40f4320e09322b23b0ed2bc02ec",
+      "git_blob": "8f4fe2c9a8863edf4cc709b1bbab531d8b25c281"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-retained-vm-rendering/design.md",
+      "bytes": 2363,
+      "sha256": "594ace7b2612606e1f63a4f658c8de52507a94ddaf81f8a635e1eeac1eb670ae",
+      "git_blob": "48092b7fce2a5090056eb4667c5c28ed83fa449b"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-retained-vm-rendering/proposal.md",
+      "bytes": 1246,
+      "sha256": "b89c3c4e37791c0296dbd3356b192eba8ed3ad9c8e6871a2d72b04cb50457c05",
+      "git_blob": "192b1a53a0a9efb1867f8de41d22c0a0aa81e16d"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-retained-vm-rendering/tasks.md",
+      "bytes": 1035,
+      "sha256": "3a93cb8b1a45aad349a64807d3abf5feebc5d8d6ba29ada1bfd98b26d4583e25",
+      "git_blob": "3a22f1f0c6769dbcdd71c7d58c013a57d3c1c496"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 9083,
+      "sha256": "8293a998fdbc2f986ee5a92e6377c2127762ddb47fd92fe0bd7ff2bf0b15269c",
+      "git_blob": "79b291766215329a19af189d0cf55463a4b031fe"
+    },
+    {
+      "path": "tools/school_retained_render_device.cs",
+      "bytes": 51830,
+      "sha256": "f6860a634c3005c7eadbf391844a60df1903d14bab475b495b8f74f424af4294",
+      "git_blob": "7dfa2ef51cc9668ab2f8eddd1bbaf446de54cb80"
+    },
+    {
+      "path": "tools/school_retained_render_device_v2.cs",
+      "bytes": 55610,
+      "sha256": "b43abcf8093a17a1fcb92e5c6ef367b0780b57760b448f13d949d4d74b86794c",
+      "git_blob": "4347be7d3783d6209a8304ea047383d5045feb2f"
+    },
+    {
+      "path": "tools/school_retained_render_device_v3.cs",
+      "bytes": 55831,
+      "sha256": "befb355afca0d6530ca5e25cd0614741901c714ca2f4b56c86951ee426778cf7",
+      "git_blob": "6beb57a4370096dfaaeb6fc7ada6d740d4f5debc"
+    },
+    {
+      "path": "tools/school_retained_render_device_v4.cs",
+      "bytes": 55955,
+      "sha256": "f7d171aa9f6a4804b8e21f76b396059b222c8cda512a6d2c14bacdd7e35ad8f4",
+      "git_blob": "e978d8988b0d0ad267728ae4922e04b4146525ff"
+    },
+    {
+      "path": "tools/school_retained_render_pipeline.py",
+      "bytes": 6293,
+      "sha256": "c988e68f9127e8616cc9927271eff34c7885c40903a0347364cf58577d66e428",
+      "git_blob": "8ef23f2e8ba97ef1c3b459e98ee95053cd74efc9"
+    },
+    {
+      "path": "tools/school_retained_render_pipeline_verification.py",
+      "bytes": 14614,
+      "sha256": "1f28cabb87ab5846cf17172eada88c6ceb28497cadbd01cb9975480ab62be5d0",
+      "git_blob": "8a7dbf04d5cc21df21acba41a399498ed46d19c1"
+    },
+    {
+      "path": "tools/school_retained_render_preservation.py",
+      "bytes": 4109,
+      "sha256": "24de4416d97295ceb1887cd37c219afd6d083398fdabd47360fc7265673da532",
+      "git_blob": "71b72c6e6d42f17742181fc4c9510e84e0340ee0"
+    },
+    {
+      "path": "tools/school_retained_rendering.py",
+      "bytes": 20035,
+      "sha256": "339812f280b8b2fad6b2635666317e05f252778f0b948584a133272e98f2cc59",
+      "git_blob": "4b3a06da844e5aa0b80acd94e9f3da3259cde5fc"
+    },
+    {
+      "path": "tools/school_retained_rendering_verification.py",
+      "bytes": 8989,
+      "sha256": "2a6a99b336a854e7c7575ecf8adb50b06756581c83a2d5e177c5e68579278c41",
+      "git_blob": "37502f230135b696c77711ea73d664827e28f955"
+    },
+    {
+      "path": "tools/school_retained_text_platform.py",
+      "bytes": 4746,
+      "sha256": "632498e87c9b2b1be5b749ddeab44a1613ee4440917135a6cfe3c59adbf501dd",
+      "git_blob": "f4d1cb6a5d696d21357dd3e58b2f740b49b4c4b4"
+    },
+    {
+      "path": "tools/tests/test_school_retained_render_pipeline.py",
+      "bytes": 2370,
+      "sha256": "094157a685e9e8a7c65356289c501889a5bc6db6215ce61610b9d29ed87bc60f",
+      "git_blob": "bc810d2b630683cfc8427c31b474f6e45f38b714"
+    },
+    {
+      "path": "tools/tests/test_school_retained_rendering.py",
+      "bytes": 3913,
+      "sha256": "25852022f0e04e16d7ff10dcb9242445ff8e8e395fa3eacaeb741cbf1b45bbe1",
+      "git_blob": "cbcddcc9280833477e176eae02ccadac23b4158e"
+    }
+  ],
+  "manifest_excludes": [
+    "This acceptance file to avoid self-reference",
+    "Final Git commit id because it contains this report",
+    "Private checkpoints and native executables are pinned by evidence/build reports, not committed"
+  ],
+  "local_only": true,
+  "pushed": false
+}
