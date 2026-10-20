@@ -1651,3 +1651,23 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 412. Genuine early callback acceptance
 
 - [x] 412.1 Run new/relevant class parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document explicit terminated-lifetime/pending-creation/remaining-heap boundaries and verify staged/committed Git bytes; local commit without push.
+
+## 413. Client calculation and create callback source contract
+
+- [x] 413.1 Pin original already-bound owner path, WM_NCCALCSIZE wParam0 RECT16 contract and WM_CREATE switch/return0; source/input-scope tests and local commit.
+
+## 414. Actual rectangle and create message platform
+
+- [ ] 414.1 Fork immutable x86 helper capturing actual message131 RECT16 and message1 CREATESTRUCT48 with nested real default input/output and exact native context; provenance/refusal/protocol tests and local commit.
+
+## 415. Original WM_NCCALCSIZE completion
+
+- [ ] 415.1 Execute genuine131 property/virtual/default path after original129 on same CPU/helper, verify actual RECT16 input/output, native result and full independent source/ABI/memory/read-write replay with corruption tests; local commit.
+
+## 416. Original WM_CREATE completion
+
+- [ ] 416.1 Execute real1 message through original bound-property/virtual/input/switch return0, preserve complete native caller and old heap/global, retain next unanswered callback and verify fresh two-case trajectory plus corruption tests; local commit.
+
+## 417. Client calculation and create acceptance
+
+- [ ] 417.1 Run new/relevant callback parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document pending creation/terminated lifetime/next actual-message boundaries and verify staged/committed Git bytes; local commit without push.

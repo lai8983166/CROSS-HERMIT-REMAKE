@@ -1339,3 +1339,11 @@ The audit SHALL enter original4504CF with its exact native arguments and execute
 - **WHEN** the same fresh startup CPU reaches actual CreateWindowExA and Windows sends genuine early messages
 - **THEN** original424980 binds its actual HWND and opaque owner property through424730, naturally dispatches450D30/4272E0/424A90 and returns the actual native default result for WM_NCCREATE
 - **AND** the next callback is retained unanswered before its first instruction, the owned helper lifetime ends by explicit process termination, full source/CPU/memory/protocol evidence remains verified and neither successful window creation return nor normal resource cleanup or retained VM progress is claimed
+
+### Requirement: Original client calculation and create callback completion
+The audit SHALL continue actual original creation through real WM_NCCALCSIZE with its observed wParam0 RECT16 input/output and actual WM_CREATE, preserving original messages, property ownership, virtual dispatch, native caller state and historical evidence.
+
+#### Scenario: Bound original object handles real client calculation and creation
+- **WHEN** real creation callbacks continue after completed WM_NCCREATE in the same fresh startup CPU/helper lifetime
+- **THEN** the original131 callback obtains the real owner property and returns actual default processing with complete RECT16 bytes, and the original1 callback follows its source-selected return0 branch without substituting a game handler
+- **AND** the next callback is retained unanswered at its original entry, the owned process is explicitly terminated, and full source/ABI/memory/protocol checks distinguish this boundary from successful creation return, normal cleanup or retained VM progress
