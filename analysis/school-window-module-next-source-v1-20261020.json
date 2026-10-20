@@ -1,0 +1,74 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "instructions": [
+    {
+      "va": "0x45047d",
+      "hex": "ff1508245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592408]"
+    },
+    {
+      "va": "0x45048a",
+      "hex": "25ffff0000",
+      "mnemonic": "and",
+      "operands": "eax, 0xffff"
+    },
+    {
+      "va": "0x450491",
+      "hex": "750a",
+      "mnemonic": "jne",
+      "operands": "0x45049d"
+    },
+    {
+      "va": "0x4504a2",
+      "hex": "52",
+      "mnemonic": "push",
+      "operands": "edx"
+    },
+    {
+      "va": "0x4504a3",
+      "hex": "a128277a00",
+      "mnemonic": "mov",
+      "operands": "eax, dword ptr [0x7a2728]"
+    },
+    {
+      "va": "0x4504cf",
+      "hex": "ff150c245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x59240c]"
+    },
+    {
+      "va": "0x4249a3",
+      "hex": "ff15dc235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923dc]"
+    },
+    {
+      "va": "0x4249f6",
+      "hex": "e835fdffff",
+      "mnemonic": "call",
+      "operands": "0x424730"
+    },
+    {
+      "va": "0x424a1b",
+      "hex": "ff12",
+      "mnemonic": "call",
+      "operands": "dword ptr [edx]"
+    }
+  ],
+  "original_callback": "0x424980",
+  "source_class_vtable": "0x5986a0",
+  "first_virtual_handler": "0x450d30",
+  "callback_first_stage": "GetPropA; WM_CREATE/WM_NCCREATE creation lparam first dword this;424730 binding; actual main virtual450D30 dispatch",
+  "native_registration_import": "0x592408",
+  "registration_call_va": "0x45047d",
+  "native_creation_import": "0x59240c",
+  "creation_call_va": "0x4504cf",
+  "created_window_lparam_is_original_owner": true,
+  "resource_module_identity_resolved": true,
+  "register_class_executed": false,
+  "callback_executed": false,
+  "create_window_executed": false,
+  "retained_VM_advanced": false,
+  "next_dependency": "Expose an owned native callback bridge for original guest424980 while preserving the source class record; prove class registration/inspection/unregistration and then route genuine creation messages/CREATESTRUCT/GetPropA/property binding/virtual dispatch on original CPU stacks before claiming a real created window."
+}

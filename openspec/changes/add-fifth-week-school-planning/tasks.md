@@ -1614,4 +1614,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 403. Resource module and class acceptance
 
-- [ ] 403.1 Run new/relevant geometry parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document registration/original callback/window/retained VM boundaries and verify Git bytes; local commit without push.
+- [x] 403.1 Run new/relevant geometry parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document registration/original callback/window/retained VM boundaries and verify Git bytes; local commit without push.
