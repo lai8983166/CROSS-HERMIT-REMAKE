@@ -1582,7 +1582,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 395. Original window rectangle adjustment
 
-- [ ] 395.1 Execute native client-to-local rectangle copy and actual AdjustWindowRect/stack check to4503D5 on the same CPU, preserving client/other full buffers and verifying exact source ABI/trace/CPU with corruption tests; local commit.
+- [x] 395.1 Execute native client-to-local rectangle copy and actual AdjustWindowRect/stack check to4503D5 on the same CPU, preserving client/other full buffers and verifying exact source ABI/trace/CPU with corruption tests; local commit.
 
 ## 396. Original partial window class and icon admission
 
