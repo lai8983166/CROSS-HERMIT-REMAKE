@@ -6,7 +6,7 @@
 
 ## 2. Original VM drawing and real output
 
-- [ ] 2.1 Continue original retained rectangle and text paths through queues and real device drawing, inspect source-derived commands/vertices and nonblank output, verify required error/resource lifetime paths, and land evidence/tests/documentation with the functional local commit.
+- [x] 2.1 Continue original retained rectangle and text paths through queues and real device drawing, inspect source-derived commands/vertices and nonblank output, verify required error/resource lifetime paths, and land evidence/tests/documentation with the functional local commit.
 
 ## 3. Integrated R2 acceptance
 

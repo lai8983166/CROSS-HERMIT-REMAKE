@@ -18,7 +18,7 @@ OLD_OWNER=0x20000000
 FRESH_GLOBALS={0x7a49fc:0,0x80a398:0}
 
 class RenderingDevice(DeviceBridge):
- def __init__(self,width=1024,height=768,version=2):
+ def __init__(self,width=1024,height=768,version=4):
   super().__init__(ROOT/f'.venv-audit/school-retained-render-device-v{version}.exe',width,height)
  def _read(self):
   line=self.reader.submit(self.process.stdout.readline).result(timeout=30)
@@ -218,12 +218,12 @@ class RetainedStartup(ReturnEmulator):
   elif slot==14 and result['hr']>=0:self.uc.mem_write(args[2],bytes.fromhex(result['hex']))
   elif slot==16 and result['hr']>=0:
    if not hasattr(self,'text_locks'):self.text_locks={}
-   data=bytes.fromhex(result['before_hex']);result['bytes']=len(data);self.text_locks[pointer]=result
+   data=bytes.fromhex(result['before_hex']);self.text_locks[pointer]=dict(result,bytes=len(data))
    self.map_missing(result['bits'],len(data));self.uc.mem_write(result['bits'],data);self.uc.mem_write(args[2],bytes.fromhex(result['locked_hex']))
   self.vm_apis.append(dict(va=at,key=key,slot=slot,sp=sp,return_va=self.read(sp),args=args,op=op,request=request,result=result))
   self.platform_return(sp,result['hr'] if 'hr' in result else result['count'],len(args)*4)
  def render_api(self,at,sp,key,slot,pointer):
-  counts={3:0,15:4,34:0,35:0,36:6,37:2,40:1,50:2,54:1,55:1,61:2,63:3,70:3,72:4,76:1,83:3,88:1}
+  counts={3:0,15:4,34:0,35:0,36:6,37:2,40:1,50:2,54:1,55:1,61:2,63:3,70:3,72:4,73:8,76:1,83:3,88:1}
   count=counts[slot] if key=='device' else 4 if slot==11 else 0
   args=[self.read(sp+4+i*4) for i in range(count+1)]
   if args[0]!=pointer:raise ValueError('source native interface receiver mismatch')
@@ -232,6 +232,9 @@ class RetainedStartup(ReturnEmulator):
    if slot==72:
     vertices={1:args[2],2:args[2]*2,3:args[2]+1,4:args[2]*3,5:args[2]+2,6:args[2]+2}[args[1]]
     buffers=[dict(index=2,hex=bytes(self.uc.mem_read(args[3],vertices*args[4])).hex())]
+   if slot==73:
+    if args[1]!=4 or args[6]!=101 or not 0<args[3]<=256 or not 0<args[4]<=128 or args[8]!=32:raise ValueError('bounded original indexed text triangles')
+    buffers=[dict(index=4,hex=bytes(self.uc.mem_read(args[5],args[4]*3*2)).hex()),dict(index=6,hex=bytes(self.uc.mem_read(args[7],args[3]*args[8])).hex())]
    if slot==36 and args[1]:buffers=[dict(index=1,hex=bytes(self.uc.mem_read(args[2],args[1]*16)).hex())]
    if slot==37:buffers=[dict(index=1,hex=bytes(self.uc.mem_read(args[2],64)).hex())]
    if slot==40:buffers=[dict(index=0,hex=bytes(self.uc.mem_read(args[1],24)).hex())]
@@ -251,6 +254,7 @@ class RetainedStartup(ReturnEmulator):
   self.continuing=True
   try:self.uc.emu_start(before['EIP'],0,count=2000000,timeout=120_000_000)
   finally:self.continuing=False
+  if self.vm_boundary is None and self.vm_pending is None:raise RuntimeError('original continuation ended without its declared boundary')
   return dict(before_cpu=before,cpu={k:self.uc.reg_read(r) for k,r in REGISTERS.items()},boundary=self.vm_boundary,pending=self.vm_pending,
    instruction_counts=[dict(va=a,count=n) for a,n in sorted(self.vm_instructions.items())],instruction_sha256=self.vm_instruction_hash.hexdigest(),
    writes=self.vm_write_count,write_sha256=self.vm_write_hash.hexdigest(),api_calls=self.vm_apis)
