@@ -1578,7 +1578,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 394. Original client rectangle construction
 
-- [ ] 394.1 Replay full accepted prefix in fresh helper lifetimes, admit two exact import traps without retained-state change, execute450350 through SetRect/stack check to45039C; full memory/CPU/ABI/write/guard tests and local commit.
+- [x] 394.1 Replay full accepted prefix in fresh helper lifetimes, admit two exact import traps without retained-state change, execute450350 through SetRect/stack check to45039C; full memory/CPU/ABI/write/guard tests and local commit.
 
 ## 395. Original window rectangle adjustment
 
