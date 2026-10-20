@@ -1650,4 +1650,4 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 412. Genuine early callback acceptance
 
-- [ ] 412.1 Run new/relevant class parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document explicit terminated-lifetime/pending-creation/remaining-heap boundaries and verify staged/committed Git bytes; local commit without push.
+- [x] 412.1 Run new/relevant class parent regression and strict specs, preserve historical/runtime/save/private VM bytes, document explicit terminated-lifetime/pending-creation/remaining-heap boundaries and verify staged/committed Git bytes; local commit without push.
