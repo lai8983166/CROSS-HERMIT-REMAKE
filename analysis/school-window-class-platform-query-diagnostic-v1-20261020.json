@@ -1,0 +1,581 @@
+{
+  "registration": {
+    "result": 49890,
+    "atom": 49890,
+    "last_error": 0,
+    "native_return_type": "ATOM",
+    "eax_bits_observed": 49890,
+    "guest_hex": "300000000000000080494200000000000000000000002f036f078d0003000100110090000000000028267a006f078d00",
+    "host_hex": "300000000000000086079c05000000000000000000002f036f078d00030001001100900000000000b03d56016f078d00",
+    "class_name_hex": "43726f7373204865726d697400",
+    "pointer_translations": [
+      {
+        "offset": 8,
+        "guest": 4344192,
+        "host": 94111622
+      },
+      {
+        "offset": 40,
+        "guest": 8005160,
+        "host": 22429104
+      }
+    ],
+    "preflight": {
+      "result": 0,
+      "last_error": 1411,
+      "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "class_name": null,
+      "guards_unchanged": true
+    },
+    "by_atom": {
+      "result": 49890,
+      "last_error": 0,
+      "hex": "300000000000000086079c05000000000000000000002f036f078d00030001001100900000000000e2c200006f078d00",
+      "class_name": null,
+      "guards_unchanged": true
+    },
+    "by_name": {
+      "result": 49890,
+      "last_error": 0,
+      "hex": "300000000000000086079c05000000000000000000002f036f078d00030001001100900000000000b03d56016f078d00",
+      "class_name": "Cross Hermit",
+      "guards_unchanged": true
+    },
+    "forwarder_hex": "558becff7508b8b02aa175ffd08be55dc20400",
+    "forwarder_freed": true,
+    "guards_unchanged": true,
+    "guest_class_unchanged": true,
+    "callback_transport": "stdcall IPC requires original guest result; no fallback",
+    "callback_calls": 0,
+    "window_created": false
+  },
+  "cleanup": {
+    "registration_calls": 1,
+    "inspection_calls": 4,
+    "unregistration_calls": 1,
+    "callback_calls": 0,
+    "unregistration": {
+      "atom": 49890,
+      "result": 1,
+      "last_error": 0,
+      "query_after": {
+        "result": 0,
+        "last_error": 6,
+        "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "class_name": null,
+        "guards_unchanged": true
+      },
+      "callback_retained_until_unregister": true,
+      "class_storage_freed": true
+    },
+    "window_created": false,
+    "resource_module_refs_released": 1,
+    "gdi32_module_refs_released": 1,
+    "icon_load_calls": 2,
+    "cursor_load_calls": 1,
+    "stock_brush_calls": 1,
+    "shared_icons_destroyed": 0,
+    "shared_cursor_destroyed": false,
+    "stock_brush_deleted": false,
+    "critical_sections_deleted": 2,
+    "event_handles_closed": 1,
+    "user32_module_refs_released": 1,
+    "set_rect_calls": 1,
+    "adjust_window_rect_calls": 1,
+    "all_owned_resources_released": true
+  },
+  "trace": [
+    {
+      "request": {
+        "id": 1,
+        "op": "InitializeCriticalSection",
+        "index": 0,
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+      },
+      "reply": {
+        "ok": true,
+        "id": 1,
+        "result": {
+          "hex": "ffffffffffffffff000000000000000000000000d0070002",
+          "native_return_type": "void",
+          "eax_bits_observed": 0,
+          "eax_is_status": false,
+          "forwarder_hex": "558becff7508b860c82e77ffd08be55dc20400",
+          "forwarder_freed": true,
+          "guards_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 2,
+        "op": "InitializeCriticalSection",
+        "index": 1,
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+      },
+      "reply": {
+        "ok": true,
+        "id": 2,
+        "result": {
+          "hex": "ffffffffffffffff000000000000000000000000d0070002",
+          "native_return_type": "void",
+          "eax_bits_observed": 0,
+          "eax_is_status": false,
+          "forwarder_hex": "558becff7508b860c82e77ffd08be55dc20400",
+          "forwarder_freed": true,
+          "guards_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 3,
+        "op": "CreateEventA",
+        "args": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "reply": {
+        "ok": true,
+        "id": 3,
+        "result": {
+          "result": 1016
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 4,
+        "op": "GetCurrentDirectoryA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+      },
+      "reply": {
+        "ok": true,
+        "id": 4,
+        "result": {
+          "result": 45,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d495400cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 5,
+        "op": "PathAddBackslashA",
+        "before_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d495400cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+      },
+      "reply": {
+        "ok": true,
+        "id": 5,
+        "result": {
+          "return_offset": 46,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 6,
+        "op": "lstrcpyA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 6,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 7,
+        "op": "lstrcpyA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 7,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 8,
+        "op": "lstrcpyA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 8,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 9,
+        "op": "lstrcpyA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 9,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 10,
+        "op": "lstrcpyA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 10,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 11,
+        "op": "lstrcpyA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 11,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 12,
+        "op": "lstrcpyA",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 12,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 13,
+        "op": "lstrcatA",
+        "before_hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "53617665446174615c00"
+      },
+      "reply": {
+        "ok": true,
+        "id": 13,
+        "result": {
+          "return_offset": 0,
+          "hex": "463a5c70726f6a6563745c6368616f6d6f66615c43524f5353204845524d49545c43524f5353204845524d49545c53617665446174615c00cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 14,
+        "op": "copy_title",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "source_hex": "43726f7373204865726d697400"
+      },
+      "reply": {
+        "ok": true,
+        "id": 14,
+        "result": {
+          "return_offset": 0,
+          "hex": "43726f7373204865726d697400cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "guards_unchanged": true,
+          "source_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 15,
+        "op": "find_window",
+        "class_hex": "43726f7373204865726d697400",
+        "window_name": 0
+      },
+      "reply": {
+        "ok": true,
+        "id": 15,
+        "result": {
+          "result": 0,
+          "guards_unchanged": true,
+          "class_unchanged": true,
+          "window_owned": false,
+          "window_manipulated": false
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 16,
+        "op": "set_rect",
+        "before_hex": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "args": [
+          0,
+          0,
+          1024,
+          768
+        ]
+      },
+      "reply": {
+        "ok": true,
+        "id": 16,
+        "result": {
+          "result": 1,
+          "hex": "00000000000000000004000000030000",
+          "guards_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 17,
+        "op": "adjust_window_rect",
+        "before_hex": "00000000000000000004000000030000",
+        "style": 2415919104,
+        "menu": 0
+      },
+      "reply": {
+        "ok": true,
+        "id": 17,
+        "result": {
+          "result": 1,
+          "hex": "00000000000000000004000000030000",
+          "guards_unchanged": true
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 18,
+        "op": "load_icon",
+        "module": 53411840,
+        "id_value": 157
+      },
+      "reply": {
+        "ok": true,
+        "id": 18,
+        "result": {
+          "result": 9242479,
+          "module": 53411840,
+          "resource_id": 157,
+          "shared": true,
+          "destroy_permitted": false
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 19,
+        "op": "load_icon",
+        "module": 53411840,
+        "id_value": 157
+      },
+      "reply": {
+        "ok": true,
+        "id": 19,
+        "result": {
+          "result": 9242479,
+          "module": 53411840,
+          "resource_id": 157,
+          "shared": true,
+          "destroy_permitted": false
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 20,
+        "op": "load_cursor",
+        "module": 0,
+        "id_value": 32512
+      },
+      "reply": {
+        "ok": true,
+        "id": 20,
+        "result": {
+          "result": 65539,
+          "shared": true,
+          "destroy_permitted": false
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 21,
+        "op": "stock_brush",
+        "id_value": 4
+      },
+      "reply": {
+        "ok": true,
+        "id": 21,
+        "result": {
+          "result": 9437201,
+          "stock": true,
+          "delete_permitted": false
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 22,
+        "op": "register_class",
+        "class_hex": "300000000000000080494200000000000000000000002f036f078d0003000100110090000000000028267a006f078d00",
+        "class_name_hex": "43726f7373204865726d697400"
+      },
+      "reply": {
+        "ok": true,
+        "id": 22,
+        "result": {
+          "result": 49890,
+          "atom": 49890,
+          "last_error": 0,
+          "native_return_type": "ATOM",
+          "eax_bits_observed": 49890,
+          "guest_hex": "300000000000000080494200000000000000000000002f036f078d0003000100110090000000000028267a006f078d00",
+          "host_hex": "300000000000000086079c05000000000000000000002f036f078d00030001001100900000000000b03d56016f078d00",
+          "class_name_hex": "43726f7373204865726d697400",
+          "pointer_translations": [
+            {
+              "offset": 8,
+              "guest": 4344192,
+              "host": 94111622
+            },
+            {
+              "offset": 40,
+              "guest": 8005160,
+              "host": 22429104
+            }
+          ],
+          "preflight": {
+            "result": 0,
+            "last_error": 1411,
+            "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "class_name": null,
+            "guards_unchanged": true
+          },
+          "by_atom": {
+            "result": 49890,
+            "last_error": 0,
+            "hex": "300000000000000086079c05000000000000000000002f036f078d00030001001100900000000000e2c200006f078d00",
+            "class_name": null,
+            "guards_unchanged": true
+          },
+          "by_name": {
+            "result": 49890,
+            "last_error": 0,
+            "hex": "300000000000000086079c05000000000000000000002f036f078d00030001001100900000000000b03d56016f078d00",
+            "class_name": "Cross Hermit",
+            "guards_unchanged": true
+          },
+          "forwarder_hex": "558becff7508b8b02aa175ffd08be55dc20400",
+          "forwarder_freed": true,
+          "guards_unchanged": true,
+          "guest_class_unchanged": true,
+          "callback_transport": "stdcall IPC requires original guest result; no fallback",
+          "callback_calls": 0,
+          "window_created": false
+        }
+      }
+    },
+    {
+      "request": {
+        "id": 23,
+        "op": "close"
+      },
+      "reply": {
+        "ok": true,
+        "id": 23,
+        "result": {
+          "registration_calls": 1,
+          "inspection_calls": 4,
+          "unregistration_calls": 1,
+          "callback_calls": 0,
+          "unregistration": {
+            "atom": 49890,
+            "result": 1,
+            "last_error": 0,
+            "query_after": {
+              "result": 0,
+              "last_error": 6,
+              "hex": "300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+              "class_name": null,
+              "guards_unchanged": true
+            },
+            "callback_retained_until_unregister": true,
+            "class_storage_freed": true
+          },
+          "window_created": false,
+          "resource_module_refs_released": 1,
+          "gdi32_module_refs_released": 1,
+          "icon_load_calls": 2,
+          "cursor_load_calls": 1,
+          "stock_brush_calls": 1,
+          "shared_icons_destroyed": 0,
+          "shared_cursor_destroyed": false,
+          "stock_brush_deleted": false,
+          "critical_sections_deleted": 2,
+          "event_handles_closed": 1,
+          "user32_module_refs_released": 1,
+          "set_rect_calls": 1,
+          "adjust_window_rect_calls": 1,
+          "all_owned_resources_released": true
+        }
+      }
+    }
+  ]
+}

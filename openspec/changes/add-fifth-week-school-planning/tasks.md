@@ -1622,7 +1622,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 405. Owned real class platform
 
-- [ ] 405.1 Fork immutable x86 helper with exact two-pointer class adaptation, owned dormant callback transport, actual registration/atom-and-name inspection/unregistration and full/partial cleanup/provenance/refusal tests; local commit.
+- [x] 405.1 Fork immutable x86 helper with exact two-pointer class adaptation, owned dormant callback transport, actual registration/atom-and-name inspection/unregistration and full/partial cleanup/provenance/refusal tests; local commit.
 
 ## 406. Original class registration return
 
