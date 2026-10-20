@@ -1682,7 +1682,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 420. Original size move and show callbacks
 
-- [ ] 420.1 Execute genuine5/3/24 on the same original CPU/helper after129/131/1, verify actual scalar semantics/property/virtual/switch/default paths, full independent CPU/access/buffer replay and corruption tests; local commit.
+- [x] 420.1 Execute genuine5/3/24 on the same original CPU/helper after129/131/1, verify actual scalar semantics/property/virtual/switch/default paths, full independent CPU/access/buffer replay and corruption tests; local commit.
 
 ## 421. Original changing-position callback
 
