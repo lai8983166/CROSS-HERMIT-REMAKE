@@ -1574,7 +1574,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 393. Owned original geometry platform
 
-- [ ] 393.1 Fork immutable x86 helper for exact SetRect and AdjustWindowRect after actual no-duplicate gate, with complete guarded buffers/sequence/refusal/partial-cleanup/provenance tests; local commit.
+- [x] 393.1 Fork immutable x86 helper for exact SetRect and AdjustWindowRect after actual no-duplicate gate, with complete guarded buffers/sequence/refusal/partial-cleanup/provenance tests; local commit.
 
 ## 394. Original client rectangle construction
 

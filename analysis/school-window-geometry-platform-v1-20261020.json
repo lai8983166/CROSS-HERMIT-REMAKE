@@ -1,0 +1,75 @@
+{
+  "build": {
+    "source_sha256": "75c9c69f65dd56366bb9331bb97cea42479e5a273d196d7dffc8c856c89921a9",
+    "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+    "helper_sha256": "0df507b810bd268ed54a875aec9f81cd73f210b97fc328053cb5fbd47e629f63",
+    "machine": 332
+  },
+  "hello": {
+    "pointer_bytes": 4,
+    "acp": 936,
+    "working_directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT",
+    "kernel32_path": "C:\\Windows\\System32\\KERNEL32.dll",
+    "shlwapi_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+    "user32_path": "C:\\Windows\\System32\\USER32.dll",
+    "owned_user32_module_reference": true,
+    "auxiliary_empty_path_module_probe": true,
+    "window_created": false
+  },
+  "system_modules": {
+    "kernel32_path": {
+      "reported_path": "C:\\Windows\\System32\\KERNEL32.dll",
+      "path": "C:\\Windows\\SysWOW64\\KERNEL32.dll",
+      "sha256": "d62d3ca4f677eb06ba81b1eba82f375c0c345f0e8f8097c92fc5e36e4d72294e",
+      "machine": 332,
+      "WOW64_file_redirection_explicit": true
+    },
+    "shlwapi_path": {
+      "reported_path": "C:\\Windows\\System32\\SHLWAPI.dll",
+      "path": "C:\\Windows\\SysWOW64\\SHLWAPI.dll",
+      "sha256": "e05c87a64d028e4cec600a0848c5eb86afa09011487fc512c49cb7edce3e5222",
+      "machine": 332,
+      "WOW64_file_redirection_explicit": true
+    },
+    "user32_path": {
+      "reported_path": "C:\\Windows\\System32\\USER32.dll",
+      "path": "C:\\Windows\\SysWOW64\\USER32.dll",
+      "sha256": "2bd19b9d79a354d7c2ccd4593f104839e98ab3ffc68d64e1f21b97f8c7a78dc9",
+      "machine": 332,
+      "WOW64_file_redirection_explicit": true
+    }
+  },
+  "geometry_only_no_window_creation": true,
+  "documentation": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setrect",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-adjustwindowrect"
+  ],
+  "empty_protocol_trace": [
+    {
+      "request": {
+        "id": 1,
+        "op": "close"
+      },
+      "reply": {
+        "ok": true,
+        "id": 1,
+        "result": {
+          "critical_sections_deleted": 0,
+          "event_handles_closed": 0,
+          "user32_module_refs_released": 1,
+          "set_rect_calls": 0,
+          "adjust_window_rect_calls": 0,
+          "all_owned_resources_released": true
+        }
+      }
+    }
+  ],
+  "empty_cleanup": {
+    "critical_sections_deleted": 0,
+    "event_handles_closed": 0,
+    "user32_module_refs_released": 1,
+    "set_rect_calls": 0,
+    "adjust_window_rect_calls": 0,
+    "all_owned_resources_released": true
+  }
+}
