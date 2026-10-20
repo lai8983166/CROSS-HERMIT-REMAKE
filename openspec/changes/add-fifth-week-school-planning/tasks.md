@@ -1626,7 +1626,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 406. Original class registration return
 
-- [ ] 406.1 Replay genuine-module prefix on same CPU/helper, admit original RegisterClassExA import without changing pending state, execute actual original call to450483 and independently verify ABI/result/full memory/raw class/native writes with corruption tests; local commit.
+- [x] 406.1 Replay genuine-module prefix on same CPU/helper, admit original RegisterClassExA import without changing pending state, execute actual original call to450483 and independently verify ABI/result/full memory/raw class/native writes with corruption tests; local commit.
 
 ## 407. Original creation argument preparation
 
