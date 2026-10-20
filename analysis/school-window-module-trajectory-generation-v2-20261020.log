@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_window_module_emulation.py", line 192, in <module>
+    path.write_text(json.dumps(generate(),indent=2)+chr(10),encoding='utf8',newline=chr(10))
+  File "F:\project\chaomofa\tools\school_window_module_emulation.py", line 178, in generate
+    for phase in geometry.STOPS:c[phase]=e.resume_geometry(phase,previous);previous=c[phase]
+  File "F:\project\chaomofa\tools\school_window_module_emulation.py", line 164, in resume_geometry
+    client_rectangle=buffer_evidence(self.bytes(parent.OWNER+CLIENT_OFFSET,16)),local_rectangle=buffer_evidence(rectangle),class_structure=buffer_evidence(cls),
+NameError: name 'CLIENT_OFFSET' is not defined

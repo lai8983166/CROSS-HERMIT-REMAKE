@@ -1602,7 +1602,7 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 
 ## 400. Fresh genuine-instance original prefix
 
-- [ ] 400.1 Declare actual module before first49DDC9 instruction, replay original full prefix to450416 on same CPU/helper, verify raw dynamic-instance propagation and exact disclosed legacy-validation view/full buffers/admission with corruption tests; local commit.
+- [x] 400.1 Declare actual module before first49DDC9 instruction, replay original full prefix to450416 on same CPU/helper, verify raw dynamic-instance propagation and exact disclosed legacy-validation view/full buffers/admission with corruption tests; local commit.
 
 ## 401. Original two icon loads
 
