@@ -1567,3 +1567,27 @@ Prior commits: source 95be8fa, assets 77c6231, model d380278, UI 195b7c2, accept
 ## 391. Task and window-gate acceptance
 
 - [x] 391.1 Run new/relevant main-context regression and strict specs, preserve historical/runtime/saves/private VM bytes, document remaining real window/COM/factory/cache/retained VM boundaries and verify Git bytes; local commit without push.
+
+## 392. Original window geometry, class and resource source
+
+- [x] 392.1 Derive450350 geometry ABI/frame/class stores and original icon157/image5 resource provenance; independent source/projection tests and local commit.
+
+## 393. Owned original geometry platform
+
+- [ ] 393.1 Fork immutable x86 helper for exact SetRect and AdjustWindowRect after actual no-duplicate gate, with complete guarded buffers/sequence/refusal/partial-cleanup/provenance tests; local commit.
+
+## 394. Original client rectangle construction
+
+- [ ] 394.1 Replay full accepted prefix in fresh helper lifetimes, admit two exact import traps without retained-state change, execute450350 through SetRect/stack check to45039C; full memory/CPU/ABI/write/guard tests and local commit.
+
+## 395. Original window rectangle adjustment
+
+- [ ] 395.1 Execute native client-to-local rectangle copy and actual AdjustWindowRect/stack check to4503D5 on the same CPU, preserving client/other full buffers and verifying exact source ABI/trace/CPU with corruption tests; local commit.
+
+## 396. Original partial window class and icon admission
+
+- [ ] 396.1 Execute original seven class stores and icon argument pushes to unexecuted450416, preserve fiveCC fields/entire frame/owner/image and verify fresh two-case trajectory; local commit.
+
+## 397. Geometry acceptance
+
+- [ ] 397.1 Run new/relevant parent regression and strict specs, preserve historical/runtime/saves/private VM bytes, document actual module/icon/callback/window/retained VM boundaries and verify exact Git bytes; local commit without push.

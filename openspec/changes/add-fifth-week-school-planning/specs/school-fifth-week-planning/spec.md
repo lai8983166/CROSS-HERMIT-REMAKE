@@ -1307,3 +1307,11 @@ The audit SHALL continue the original constructed main-context CPU through32 tas
 - **WHEN** two independent cases replay the original constructor and query the original Cross Hermit class without changing any existing window
 - **THEN** the original branch stops at unexecuted49E092 when a duplicate is observed, or executes command-line/configuration preparation to unexecuted450350 when none is observed
 - **AND** no window body, fabricated query result, retained VM repair or reuse of expired resources is accepted
+
+### Requirement: Original window geometry and partial class admission
+The audit SHALL execute original450350 geometry and partial class preparation using actual owned x86 SetRect/AdjustWindowRect responses, exact source calls/stacks/full buffers, and preserve the unexecuted LoadIconA boundary and historical/runtime bytes.
+
+#### Scenario: Actual no-duplicate startup reaches original icon prerequisite
+- **WHEN** a fresh original prefix naturally takes the no-duplicate branch into450350
+- **THEN** native geometry calls and seven class dword stores execute on the same CPU/helper lifetime, all five uninitialized class dwords and retained memory remain intact, and450416 stops before its import call
+- **AND** icon157/resource5 identity is source-verified without interpreting the inherited instance scalar as a real module or claiming class registration/window creation
