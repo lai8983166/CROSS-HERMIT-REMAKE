@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 227, in run_module
+    return _run_code(code, {}, init_globals, run_name, mod_spec)
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_retained_keyboard_verification.py", line 98, in <module>
+    result=verify(json.loads(gzip.decompress((ROOT/a.report).read_bytes())));out.write_text(json.dumps(result,indent=2)+chr(10),encoding='utf8',newline=chr(10));print('independent retained keyboard replay verified',len(result['cases']),'cases',flush=True)
+  File "F:\project\chaomofa\tools\school_retained_keyboard_verification.py", line 91, in verify
+    return dict(schema_version=1,cases=[verify_case(c,contract) for c in report['cases']],six_retained_keyboard_connections_verified=True,new_native_input_or_GPU=False,R3_complete=False)
+  File "F:\project\chaomofa\tools\school_retained_keyboard_verification.py", line 91, in <listcomp>
+    return dict(schema_version=1,cases=[verify_case(c,contract) for c in report['cases']],six_retained_keyboard_connections_verified=True,new_native_input_or_GPU=False,R3_complete=False)
+  File "F:\project\chaomofa\tools\school_retained_keyboard_verification.py", line 68, in verify_case
+    try:instructions+=r.step(dict(label=s['label'],root=s.get('root'),result=result))
+  File "F:\project\chaomofa\tools\school_task_frame_verification.py", line 14, in step
+    return super().step(step)
+  File "F:\project\chaomofa\tools\school_retained_render_pipeline_verification.py", line 139, in step
+    self.put(root['sp'],struct.pack('<'+'I'*(1+len(root['args'])),root['return_va'],*root['args']))
+KeyError: 'args'
