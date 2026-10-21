@@ -1,5 +1,5 @@
 """System-input dialogue observation; original game objects remain read-only to host."""
-import ctypes as C,ctypes.wintypes as W,json,struct,time,types,hashlib
+import ctypes as C,ctypes.wintypes as W,json,struct,time,types,hashlib,threading
 from pathlib import Path
 from capstone import Cs,CS_ARCH_X86,CS_MODE_32
 from tools.school_native_scene import (ROOT,SOURCE,SOURCE_SHA,APP,INSTALLED,SIZE,VM,word,sha,need,
@@ -15,6 +15,51 @@ class VisibleOwnedRuntime(OwnedRuntime):
   need(original.resume(self.pi.thread)!=0xffffffff,'visible owned original resume')
 
 INPUT_RANGES=((0x411290,0x411cf0),(0x4128f0,0x412a70),(0x4cce20,0x4cd060))
+
+def window_diagnostics(hwnd,pid):
+ owner=W.DWORD();tid=original.ownerpid(hwnd,C.byref(owner));need(owner.value==pid,'diagnose only actual owned window')
+ visible=original.ubind('IsWindowVisible',W.BOOL,[W.HWND]);enabled=original.ubind('IsWindowEnabled',W.BOOL,[W.HWND]);iconic=original.ubind('IsIconic',W.BOOL,[W.HWND]);hung=original.ubind('IsHungAppWindow',W.BOOL,[W.HWND]);style=original.ubind('GetWindowLongW',C.c_int32,[W.HWND,C.c_int]);foreground=original.ubind('GetForegroundWindow',W.HWND,[])
+ getdesktop=original.ubind('GetThreadDesktop',W.HANDLE,[W.DWORD]);namefn=original.ubind('GetUserObjectInformationW',W.BOOL,[W.HANDLE,C.c_int,W.LPVOID,W.DWORD,C.POINTER(W.DWORD)])
+ def desktop_name(handle):
+  b=C.create_unicode_buffer(512);needed=W.DWORD();ok=namefn(handle,2,b,C.sizeof(b),C.byref(needed));return b.value if ok else None
+ cloaked=W.DWORD();dwm=C.WinDLL('dwmapi').DwmGetWindowAttribute;dwm.argtypes=[W.HWND,W.DWORD,W.LPVOID,W.DWORD];dwm.restype=C.c_int32;hr=dwm(hwnd,14,C.byref(cloaked),4)
+ current_tid=original.bind('GetCurrentThreadId',W.DWORD,[])()
+ return dict(hwnd=hwnd,pid=pid,tid=tid,visible=bool(visible(hwnd)),enabled=bool(enabled(hwnd)),iconic=bool(iconic(hwnd)),hung=bool(hung(hwnd)),style=style(hwnd,-16)&0xffffffff,extended_style=style(hwnd,-20)&0xffffffff,foreground_hwnd=foreground() or 0,window_desktop=desktop_name(getdesktop(tid)),observer_desktop=desktop_name(getdesktop(current_tid)),cloaked_status=hr,cloaked=cloaked.value if hr==0 else None,window_state_written=False)
+
+def input_handoff(c,game,hwnd,notice,owned,held_input=False):
+ # Leave BOTH original threads running while the UI tool activates and inputs.
+ # These are asynchronous read-only observations, not frozen CPU/stack states.
+ start=time.monotonic();receipt=Path(str(notice)+'.action.json');r=dict(thread_suspension_used=False,existing_process_memory_written=False,started_wall_time_ns=time.time_ns(),window_before=window_diagnostics(hwnd,c.pid),samples=[])
+ async_key=original.ubind('GetAsyncKeyState',C.c_int16,[C.c_int]);foreground=original.ubind('GetForegroundWindow',W.HWND,[]);last_notice=0
+ outcome={};worker=None;r['backend']='held scan-code fallback' if held_input else 'computer-use JS API'
+ deadline=start+60;press=None;released=None;advanced=None;wait_pc=word(c.get(VM,128),28)
+ if held_input:
+  # This opt-in path requires explicit user authorization to override the
+  # computer-use skill restriction. Never enabled by default or by timeout.
+  def submit():
+   from tools.school_native_dialogue_input import owned_held_space
+   try:outcome['receipt']=owned_held_space(c,hwnd)
+   except Exception as e:outcome['receipt']=dict(input_returned=False,error=repr(e))
+  worker=threading.Thread(target=submit);worker.start()
+ try:
+  while time.monotonic()<deadline and len(r['samples'])<30000:
+   vm=c.get(VM,128);body=c.get(game+0x10b8,0xa00);mouse=c.get(game+0x198c,8);fg=foreground() or 0;row=dict(index=len(r['samples']),elapsed=owned.elapsed(),wall_time_ns=time.time_ns(),VM_hex=vm.hex(),foreground_hwnd=fg,os_space_state=async_key(0x20)&65535 if fg==hwnd else None,input=dict(game=game,pointer=game+0x10b8,hex=body.hex(),mouse_hex=mouse.hex()));r['samples'].append(row)
+   key=bool(body[0x4b9]&128 or word(mouse,4)&7)
+   if key and press is None:press=row['index']
+   if press is not None:
+    if not key and released is None:released=row['index']
+    if word(vm,28)!=wait_pc and advanced is None:advanced=row['index']
+   if 'receipt' in outcome or receipt.exists():
+    action=outcome.get('receipt') or json.loads(receipt.read_text(encoding='utf8'));r['action_receipt']=action
+    if action.get('input_returned') is not True:break
+    if released is not None and advanced is not None:break
+   if time.monotonic()-last_notice>=.5:
+    Path(str(notice)+'.progress.json').write_text(json.dumps(dict(samples=len(r['samples']),press_index=press,release_index=released,advanced_index=advanced,PC=word(vm,28),last_os_space_state=row['os_space_state'])),encoding='utf8');last_notice=time.monotonic()
+   time.sleep(.001)
+  r.update(ended_wall_time_ns=time.time_ns(),window_after=window_diagnostics(hwnd,c.pid),press_index=press,release_index=released,advanced_index=advanced,wait_PC=wait_pc)
+ finally:
+  if worker:worker.join()
+ return r
 
 def identity(c):
  r=native_identity(c);raw=SOURCE.read_bytes();r['input_code']=[]
@@ -32,7 +77,7 @@ def input_source_contract():
 
 class DialogueBoundary:
  def __init__(self,notice,observe_only=False):
-  self.observe_only=observe_only;self.notice=Path(notice);self.started=None;self.PCs=set();self.wait_pc=None;self.wait_started=None;self.wait_index=None;self.ready_index=None;self.press_index=None;self.release_index=None;self.advanced_index=None;self.finish_started=None
+  self.observe_only=observe_only;self.notice=Path(notice);self.started=None;self.PCs=set();self.wait_pc=None;self.wait_started=None;self.wait_index=None;self.ready_index=None;self.press_index=None;self.release_index=None;self.advanced_index=None;self.finish_started=None;self.handoff_finished=False
  def observe(self,head,vm,row,now):
   active=bool(head[0x43] and head[0x44]==2 and head[0x59] and vm[4] and word(vm,28)>0)
   if not active:return False,False
@@ -50,10 +95,11 @@ class DialogueBoundary:
    if not key and self.release_index is None:self.release_index=row['index']
    if pc!=self.wait_pc and self.advanced_index is None:self.advanced_index=row['index'];self.finish_started=now
   if self.observe_only and self.ready_index is not None:return True,True
+  if self.handoff_finished:return True,True
   return True,bool(self.advanced_index is not None and self.release_index is not None and now-self.finish_started>=.5)
  def summary(self):return dict(wait_PC=self.wait_pc,no_input_start=self.wait_index,ready_index=self.ready_index,press_index=self.press_index,release_index=self.release_index,advanced_index=self.advanced_index)
 
-def run_case(scene, notice, observe_only=False):
+def run_case(scene, notice, observe_only=False,held_input=False):
  owners=[];results=[];worker_handles=[]
  def own():x=VisibleOwnedRuntime();owners.append(x);return x
  def probe(pid,owned):
@@ -112,6 +158,8 @@ def run_case(scene, notice, observe_only=False):
        if base and pc<0x400000:row['VM_current_bytes']=dict(pointer=base+pc,hex=c.get(base+pc,32).hex())
      r['samples'].append(row)
     if done:break
+    if not observe_only and boundary.ready_index is not None and 'input_handoff' not in r:
+     r['input_handoff']=input_handoff(c,game,window,notice,owned,held_input);boundary.handoff_finished=True
     time.sleep(.008)
    if len(r['full_objects'])==1 and boundary.started is not None:
     r['full_objects'].append(dict(label='active_script_ordinary_scene_loop',pointer=node,hex=c.get(node,SIZE).hex()))
@@ -133,9 +181,11 @@ def run_case(scene, notice, observe_only=False):
 
 if __name__=='__main__':
  import argparse
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--scene',required=True,type=int,choices=[76,77]);p.add_argument('--out',required=True);p.add_argument('--notice',required=True);p.add_argument('--observe-only',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--scene',required=True,type=int,choices=[76,77]);p.add_argument('--out',required=True);p.add_argument('--notice',required=True);p.add_argument('--observe-only',action='store_true');p.add_argument('--held-input',action='store_true',help='requires explicit user override of the computer-use JS-only restriction');a=p.parse_args()
  out=ROOT/a.out;notice=ROOT/a.notice
  if out.exists() or notice.exists():p.error('fresh report and notice paths required before native launch')
- case=run_case(a.scene,notice,a.observe_only);save(a.out,dict(schema_version=1,source_contract=source_contract(),input_source_contract=input_source_contract(),case=case,R3_complete=False,input_method='no input observation' if a.observe_only else 'computer-use sky.press_key space via OS; no host object writes',human_physical_input_claimed=False))
+ if a.observe_only and a.held_input:p.error('observation-only cannot submit input')
+ case=run_case(a.scene,notice,a.observe_only,a.held_input);save(a.out,dict(schema_version=1,source_contract=source_contract(),input_source_contract=input_source_contract(),case=case,R3_complete=False,input_method='no input observation' if a.observe_only else 'guarded Win32 held scan code; no host object writes' if a.held_input else 'computer-use sky.press_key space via OS; no host object writes',human_physical_input_claimed=False))
  print('dialogue scene',a.scene,'error',case['lifecycle']['error'],'boundary',case['probe'].get('dialogue_boundary') if case['probe'] else None,flush=True)
- if case['lifecycle']['error'] or not case['probe'] or case['probe'].get('dialogue_boundary',{}).get('ready_index') is None or (not a.observe_only and not case['probe'].get('dialogue_boundary',{}).get('advanced_index')):raise SystemExit(1)
+ hand=case['probe'].get('input_handoff',{}) if case['probe'] else {}
+ if case['lifecycle']['error'] or not case['probe'] or case['probe'].get('dialogue_boundary',{}).get('ready_index') is None or (not a.observe_only and (hand.get('advanced_index') is None or hand.get('release_index') is None)):raise SystemExit(1)
