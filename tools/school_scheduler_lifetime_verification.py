@@ -26,6 +26,15 @@ def verify_source(r):
  need(r['source_callbacks_replaced'] is False and r['retained_scene_or_world_execution'] is False,'honest independent scheduler scope')
  return raw
 
+def verify_retained_contract(report):
+ from tools.school_vm_graphics_verification import load_verified_checkpoint,read_memory
+ verify_source(report['source_contract']);payload,cp=load_verified_checkpoint('initial','rectangle')
+ main=word(read_memory(payload,0x7a4a00,4));manager=main+0x64;contents=read_memory(payload,manager,0x11c)
+ need(main==0x1080000 and contents==bytes(0x11c),'actual pinned empty scheduler graph')
+ expected=dict(checkpoint=cp,main_global=main,manager=manager,manager_hex=contents.hex(),nodes=[],retained_VM_advanced=False)
+ need(report['retained_scheduler']==expected,'retained scheduler contract matches full pinned object')
+ return dict(checkpoint=cp,main_global=main,manager=manager,verified_empty_bytes=len(contents),registered_nodes=0,retained_VM_advanced=False)
+
 def verify_lifecycle(c):
  need(c['error'] is None and c['native_execution'] is True and c['duplicate'] is None,'owned initialized native lifecycle')
  need(all(c[k] is False for k in ('original_code_written','original_registers_written','original_IAT_written','retained_VM_advanced','resumable_checkpoint')),'frozen observer scope')

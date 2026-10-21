@@ -45,3 +45,11 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_schedul
 PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_scheduler_lifetime_verification --report analysis/school-scheduler-lifetime-native-v2-20261021.json --out analysis/new-scheduler-proof.json
 PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_school_scheduler_lifetime tools.tests.test_school_scheduler_verification
 ```
+
+## 集成验收和下一单元
+
+同样输入另起三个独立自有原版进程复现为`native-v3`，`proof-v3`完整核对通过。两轮共14个原CRT工作线程、20次原事件关闭后失效观察，六个原版运行时均经原游戏清理自然退出；保护层子进程C0000354另列，不当作WinMain返回码。保留VM、旧报告、存档与Godot没有因此被推进。
+
+下一有限R3单元应复用本桥和现有完整任务帧工具，先核实场景任务4539B0的派生对象构造/虚表/注册及422360让出/恢复协议，再把原49E540/4217C0与保留场景454CF0→453F10→46B470连起来。必须保留真实输入/场景资源及有意义的交互或世界转换验收，不能用本单元空回调或独立根任务次数代替R3完成。
+
+验收报告`analysis/school-scheduler-lifetime-acceptance-v1-20261021.json`记录受影响回归、严格规格、旧证据/检查点/存档保全、完整原始文件及Git blob清单。总spec目标仍为2026-11-20；本单元仅关闭调度寿命前提，不宣称R3、整条主线逆向或Godot重制完成。

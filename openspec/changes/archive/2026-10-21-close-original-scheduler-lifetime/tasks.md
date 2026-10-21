@@ -10,4 +10,4 @@
 
 ## 3. Integration and roadmap handoff
 
-- [ ] 3.1 Reproduce native cases and normal original-process teardown, pass affected regressions/strict specs and frozen R1/R2/task-frame/save/checkpoint preservation, update the master spec with the completed scheduler-lifetime prerequisite and remaining retained scene/input/world integration, then locally commit acceptance and archive this completed change without marking R3 complete.
+- [x] 3.1 Reproduce native cases and normal original-process teardown, pass affected regressions/strict specs and frozen R1/R2/task-frame/save/checkpoint preservation, update the master spec with the completed scheduler-lifetime prerequisite and remaining retained scene/input/world integration, then locally commit acceptance and archive this completed change without marking R3 complete.

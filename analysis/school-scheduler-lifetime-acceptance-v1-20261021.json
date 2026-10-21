@@ -1,0 +1,745 @@
+{
+  "schema_version": 1,
+  "baseline": "a201450",
+  "source_contract_commit": "c3d0f50",
+  "native_lifetime_commit": "00d1e17",
+  "change": "close-original-scheduler-lifetime",
+  "archive": "openspec/changes/archive/2026-10-21-close-original-scheduler-lifetime",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "scheduler_lifetime_prerequisite_accepted": true,
+  "R3_complete": false,
+  "scope": {
+    "independent_private_native_objects": true,
+    "original_code_IAT_or_existing_registers_replaced": false,
+    "original_base_callback_is_empty": true,
+    "retained_scene_or_VM_or_world_advanced": false,
+    "complete_native_instruction_or_API_trace": false,
+    "actual_CRITICAL_SECTION_output_is_opaque": true,
+    "exited_worker_handle_close_is_supplemental_owner_cleanup": true
+  },
+  "retained_empty_graph": {
+    "path": "analysis/school-scheduler-lifetime-retained-proof-v1-20261021.json",
+    "sha256": "38c8304143f45b77650326a1321332313d1774f08b0342b2aed29b83be359253"
+  },
+  "native_repetitions": [
+    {
+      "native": {
+        "path": "analysis/school-scheduler-lifetime-native-v2-20261021.json",
+        "sha256": "163fb78e4d9175e23a727df4e5262994140d0da50919fb44882b82f287df5d50"
+      },
+      "independent_verification": {
+        "path": "analysis/school-scheduler-lifetime-proof-v2-20261021.json",
+        "sha256": "5c52d5b786574ac5033d54d075c08fdb6a5d9a6f1b4e216675444caf54f13dae"
+      },
+      "workers": 7,
+      "closed_source_events": 10,
+      "compared_full_buffer_bytes": 21120,
+      "cases": [
+        {
+          "fill": 0,
+          "buckets": [
+            0
+          ],
+          "disabled": null,
+          "scheduler": {
+            "full_buffer_checks": [
+              {
+                "stage": "declared_fresh_buffers",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_manager_initialized",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 24
+              },
+              {
+                "stage": "registered_0",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "first_original_dispatch",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_destructors_returned",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 24
+              }
+            ],
+            "source_callbacks_replaced": false,
+            "actual_CRT_workers": 1,
+            "source_closed_events_observed": 2,
+            "supplemental_exited_worker_handles_closed": 1,
+            "independent_full_buffer_bytes": 3200,
+            "native_per_instruction_or_API_trace": false,
+            "retained_scene_execution": false
+          },
+          "lifecycle": {
+            "pid": 57576,
+            "normal_original_game_cleanup": true,
+            "forced_termination": false,
+            "protector_process_statuses": {
+              "60652": {
+                "signaled": true,
+                "code": 0
+              },
+              "57576": {
+                "signaled": true,
+                "code": 3221226324
+              }
+            },
+            "protector_status_is_not_WinMain_return": true
+          }
+        },
+        {
+          "fill": 165,
+          "buckets": [
+            0,
+            0,
+            31
+          ],
+          "disabled": 1,
+          "scheduler": {
+            "full_buffer_checks": [
+              {
+                "stage": "declared_fresh_buffers",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_manager_initialized",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              },
+              {
+                "stage": "registered_0",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_1",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_2",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_disabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "first_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_reenabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "second_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_destructors_returned",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              }
+            ],
+            "source_callbacks_replaced": false,
+            "actual_CRT_workers": 3,
+            "source_closed_events_observed": 4,
+            "supplemental_exited_worker_handles_closed": 3,
+            "independent_full_buffer_bytes": 8960,
+            "native_per_instruction_or_API_trace": false,
+            "retained_scene_execution": false
+          },
+          "lifecycle": {
+            "pid": 54000,
+            "normal_original_game_cleanup": true,
+            "forced_termination": false,
+            "protector_process_statuses": {
+              "25728": {
+                "signaled": true,
+                "code": 0
+              },
+              "54000": {
+                "signaled": true,
+                "code": 3221226324
+              }
+            },
+            "protector_status_is_not_WinMain_return": true
+          }
+        },
+        {
+          "fill": 204,
+          "buckets": [
+            31,
+            5,
+            5
+          ],
+          "disabled": 0,
+          "scheduler": {
+            "full_buffer_checks": [
+              {
+                "stage": "declared_fresh_buffers",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_manager_initialized",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              },
+              {
+                "stage": "registered_0",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_1",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_2",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_disabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "first_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_reenabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "second_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_destructors_returned",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              }
+            ],
+            "source_callbacks_replaced": false,
+            "actual_CRT_workers": 3,
+            "source_closed_events_observed": 4,
+            "supplemental_exited_worker_handles_closed": 3,
+            "independent_full_buffer_bytes": 8960,
+            "native_per_instruction_or_API_trace": false,
+            "retained_scene_execution": false
+          },
+          "lifecycle": {
+            "pid": 32416,
+            "normal_original_game_cleanup": true,
+            "forced_termination": false,
+            "protector_process_statuses": {
+              "57112": {
+                "signaled": true,
+                "code": 0
+              },
+              "32416": {
+                "signaled": true,
+                "code": 3221226324
+              }
+            },
+            "protector_status_is_not_WinMain_return": true
+          }
+        }
+      ]
+    },
+    {
+      "native": {
+        "path": "analysis/school-scheduler-lifetime-native-v3-20261021.json",
+        "sha256": "19ca74a699396ff0ff9f21db778bb1318b1045522978811e3eca4e523222de0f"
+      },
+      "independent_verification": {
+        "path": "analysis/school-scheduler-lifetime-proof-v3-20261021.json",
+        "sha256": "5291110ee1f760aec50e0c6718b97203daa6ea1d45e9bb753bb076ff0792d3ce"
+      },
+      "workers": 7,
+      "closed_source_events": 10,
+      "compared_full_buffer_bytes": 21120,
+      "cases": [
+        {
+          "fill": 0,
+          "buckets": [
+            0
+          ],
+          "disabled": null,
+          "scheduler": {
+            "full_buffer_checks": [
+              {
+                "stage": "declared_fresh_buffers",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_manager_initialized",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 24
+              },
+              {
+                "stage": "registered_0",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "first_original_dispatch",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_destructors_returned",
+                "compared_bytes": 640,
+                "opaque_actual_OS_CS_bytes": 24
+              }
+            ],
+            "source_callbacks_replaced": false,
+            "actual_CRT_workers": 1,
+            "source_closed_events_observed": 2,
+            "supplemental_exited_worker_handles_closed": 1,
+            "independent_full_buffer_bytes": 3200,
+            "native_per_instruction_or_API_trace": false,
+            "retained_scene_execution": false
+          },
+          "lifecycle": {
+            "pid": 51348,
+            "normal_original_game_cleanup": true,
+            "forced_termination": false,
+            "protector_process_statuses": {
+              "38504": {
+                "signaled": true,
+                "code": 0
+              },
+              "51348": {
+                "signaled": true,
+                "code": 3221226324
+              }
+            },
+            "protector_status_is_not_WinMain_return": true
+          }
+        },
+        {
+          "fill": 165,
+          "buckets": [
+            0,
+            0,
+            31
+          ],
+          "disabled": 1,
+          "scheduler": {
+            "full_buffer_checks": [
+              {
+                "stage": "declared_fresh_buffers",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_manager_initialized",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              },
+              {
+                "stage": "registered_0",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_1",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_2",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_disabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "first_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_reenabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "second_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_destructors_returned",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              }
+            ],
+            "source_callbacks_replaced": false,
+            "actual_CRT_workers": 3,
+            "source_closed_events_observed": 4,
+            "supplemental_exited_worker_handles_closed": 3,
+            "independent_full_buffer_bytes": 8960,
+            "native_per_instruction_or_API_trace": false,
+            "retained_scene_execution": false
+          },
+          "lifecycle": {
+            "pid": 53352,
+            "normal_original_game_cleanup": true,
+            "forced_termination": false,
+            "protector_process_statuses": {
+              "34628": {
+                "signaled": true,
+                "code": 0
+              },
+              "53352": {
+                "signaled": true,
+                "code": 3221226324
+              }
+            },
+            "protector_status_is_not_WinMain_return": true
+          }
+        },
+        {
+          "fill": 204,
+          "buckets": [
+            31,
+            5,
+            5
+          ],
+          "disabled": 0,
+          "scheduler": {
+            "full_buffer_checks": [
+              {
+                "stage": "declared_fresh_buffers",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_manager_initialized",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              },
+              {
+                "stage": "registered_0",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_1",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "registered_2",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_disabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "first_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_reenabled_flag",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "second_original_dispatch",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 0
+              },
+              {
+                "stage": "original_destructors_returned",
+                "compared_bytes": 896,
+                "opaque_actual_OS_CS_bytes": 24
+              }
+            ],
+            "source_callbacks_replaced": false,
+            "actual_CRT_workers": 3,
+            "source_closed_events_observed": 4,
+            "supplemental_exited_worker_handles_closed": 3,
+            "independent_full_buffer_bytes": 8960,
+            "native_per_instruction_or_API_trace": false,
+            "retained_scene_execution": false
+          },
+          "lifecycle": {
+            "pid": 5688,
+            "normal_original_game_cleanup": true,
+            "forced_termination": false,
+            "protector_process_statuses": {
+              "50800": {
+                "signaled": true,
+                "code": 0
+              },
+              "5688": {
+                "signaled": true,
+                "code": 3221226324
+              }
+            },
+            "protector_status_is_not_WinMain_return": true
+          }
+        }
+      ]
+    }
+  ],
+  "regression": {
+    "path": "analysis/school-scheduler-lifetime-regression-v1-20261021.log",
+    "sha256": "ee63cd3558bbdeef4cab70610e0032525877e0ea3fa87991fb11e3171636df0e",
+    "tests": 47,
+    "passed": true
+  },
+  "strict_specs": [
+    {
+      "path": "analysis/school-scheduler-lifetime-specs-before-20261021.json",
+      "sha256": "b0bf4983049d48e1213acc9ac6ee07ba3dfc0608c58a7c5414992aebc661b273",
+      "items": 32,
+      "passed": 32,
+      "failed": 0
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-specs-before-v2-20261021.json",
+      "sha256": "a49726f42258fe1c855af016416331752b9982d039e7932f960a748f65a3f296",
+      "items": 32,
+      "passed": 32,
+      "failed": 0
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-specs-after-20261021.json",
+      "sha256": "03d05ef7038adf5e908ac86cd97fb0265fa1ac6f5cbfab7b8d2f608f8d9eb8b3",
+      "items": 31,
+      "passed": 31,
+      "failed": 0
+    }
+  ],
+  "preservation": {
+    "path": "analysis/school-scheduler-lifetime-preservation-v1-20261021.json",
+    "sha256": "13fe0b11debeebf8385358bc8e19bc6f4c26b161bae1696e44be376241cec4ba",
+    "historical_raw_files": 16589,
+    "frozen_task_frame_artifacts": 26,
+    "frozen_R2_artifacts": 39,
+    "private_checkpoints": 9,
+    "original_saves_bytes_and_times_unchanged": true
+  },
+  "next": {
+    "milestone": "R3",
+    "remaining": "Original derived scene task construction/registration, 49E540/4217C0 with retained 4539B0/454CF0/453F10/46B470, real input and meaningful scene/world transition",
+    "R3_target": "2026-11-03",
+    "overall_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19026,
+      "sha256": "fc7542c974525daaf961f71d5d7010e8d15cff8025d59cfd4cf8e3a968a4ee28",
+      "git_blob_sha1": "9256e2bf8b27a5584d13401484b5037f7008a391"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-apply-complete-20261021.json",
+      "bytes": 3391,
+      "sha256": "f4c52cafe00097e854d3697c348665c478a3b8133283f587c68cd0f15a98b6cc",
+      "git_blob_sha1": "2c5c04b2563aaa5241cfb6805f016c8fc5804b76"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-archive-inputs-20261021.json",
+      "bytes": 1006,
+      "sha256": "4319e6cd4e3471936d7816a5fe636b25a1e2033426a44579851bcbb8edf8e4b0",
+      "git_blob_sha1": "38aa36bb131cd838b97d7a88bf6e20f91c1290ab"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-archive-v1-20261021.json",
+      "bytes": 620,
+      "sha256": "a8fad1d15d978ac10ef40723c6f07ef60ecf4c82c6453ccedf84ff7641319516",
+      "git_blob_sha1": "10b7407055f5873bb90c1ccc8b0adc807889d86e"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-contract-v1-20261021.json",
+      "bytes": 4386,
+      "sha256": "ac9622d1d070939ac9a373fc20efeb3128f3e202caaa5a64d04d2a9c1cb2c692",
+      "git_blob_sha1": "528b604d6ada4c2056287fe7c9cd5961d8d5483b"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-native-v1-20261021.json",
+      "bytes": 1028487,
+      "sha256": "fd79b28c9317031acbb03a562ee19b7b96211858e5f4fe19aba8d94d9e7d29a7",
+      "git_blob_sha1": "886e94d4d9ffa259cf6bf89512bc5bb346e31c39"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-native-v2-20261021.json",
+      "bytes": 1247141,
+      "sha256": "163fb78e4d9175e23a727df4e5262994140d0da50919fb44882b82f287df5d50",
+      "git_blob_sha1": "9a164e96087aa1c491679b633ed8148036e6a08a"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-native-v3-20261021.json",
+      "bytes": 1144387,
+      "sha256": "19ca74a699396ff0ff9f21db778bb1318b1045522978811e3eca4e523222de0f",
+      "git_blob_sha1": "c84da66099405ef45ff033a2da3558119f3b67c2"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-preservation-v1-20261021.json",
+      "bytes": 8863,
+      "sha256": "13fe0b11debeebf8385358bc8e19bc6f4c26b161bae1696e44be376241cec4ba",
+      "git_blob_sha1": "513756f30f82a14714e22f898782956df4966b3e"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-proof-v2-20261021.json",
+      "bytes": 6819,
+      "sha256": "5c52d5b786574ac5033d54d075c08fdb6a5d9a6f1b4e216675444caf54f13dae",
+      "git_blob_sha1": "e2bb5429e1277829a38c0c7eea81c2d68aa7f089"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-proof-v3-20261021.json",
+      "bytes": 6817,
+      "sha256": "5291110ee1f760aec50e0c6718b97203daa6ea1d45e9bb753bb076ff0792d3ce",
+      "git_blob_sha1": "7410d1fbac9e332025bab2dfb52cbc5b83a212fa"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-regression-v1-20261021.log",
+      "bytes": 147,
+      "sha256": "ee63cd3558bbdeef4cab70610e0032525877e0ea3fa87991fb11e3171636df0e",
+      "git_blob_sha1": "3d9b4afb989c80ebee7e434a1ed3716c5717b90d"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-retained-proof-v1-20261021.json",
+      "bytes": 401,
+      "sha256": "38c8304143f45b77650326a1321332313d1774f08b0342b2aed29b83be359253",
+      "git_blob_sha1": "adf9974c455602cefe3b9854a03ce4a89bbe70f2"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-specs-after-20261021.json",
+      "bytes": 7550,
+      "sha256": "03d05ef7038adf5e908ac86cd97fb0265fa1ac6f5cbfab7b8d2f608f8d9eb8b3",
+      "git_blob_sha1": "6632aa6282dd589d8701a376b696b3dc034a1f4c"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-specs-before-20261021.json",
+      "bytes": 7910,
+      "sha256": "b0bf4983049d48e1213acc9ac6ee07ba3dfc0608c58a7c5414992aebc661b273",
+      "git_blob_sha1": "b5000b63772d17d0aa824a885097b33859f7d322"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-specs-before-v2-20261021.json",
+      "bytes": 7915,
+      "sha256": "a49726f42258fe1c855af016416331752b9982d039e7932f960a748f65a3f296",
+      "git_blob_sha1": "da415c6b4f3d26b44929b278c930704d953db3e6"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-status-complete-20261021.json",
+      "bytes": 2890,
+      "sha256": "694c44a1a884bbb845610451456a41b7e61f8fc42034502b93dc41010120415b",
+      "git_blob_sha1": "bd16b985f0f09888ae370b5e1fb80dfa00bb9c57"
+    },
+    {
+      "path": "analysis/school-scheduler-lifetime-tests-v1-20261021.log",
+      "bytes": 119,
+      "sha256": "2006f34e7d1463a811cfbbf6571888b735203799c25b68f5e91e79b21bd77bcb",
+      "git_blob_sha1": "9afc9d2f7ad6c0c6da63045a03b39b89e6628000"
+    },
+    {
+      "path": "docs/school_scheduler_lifetime.md",
+      "bytes": 6203,
+      "sha256": "0b2355715d343772aba3bebf41d79882e7a2c511edb7d0559272582cc3031f34",
+      "git_blob_sha1": "285e7330ad1d6e8315e94451bc8e5485ab7e18b5"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-close-original-scheduler-lifetime/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9dce7645e8d23214043e04d1f4443f95ea5ca40f4320e09322b23b0ed2bc02ec",
+      "git_blob_sha1": "8f4fe2c9a8863edf4cc709b1bbab531d8b25c281"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-close-original-scheduler-lifetime/design.md",
+      "bytes": 2460,
+      "sha256": "4d5528ebdc71a64b29cccbd7ad05655abb629b0e3cbebc0e309b8ede3356285f",
+      "git_blob_sha1": "160665aecd046ebe253c62dbf9d07465cc47e9ef"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-close-original-scheduler-lifetime/proposal.md",
+      "bytes": 1516,
+      "sha256": "7d3e605744ffd06d4348997ac06147d1c87bbd08b0613dbb3cead4992cf79be4",
+      "git_blob_sha1": "13cf050f1dc947a669973e651fb5e7fc0c975286"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-close-original-scheduler-lifetime/tasks.md",
+      "bytes": 1144,
+      "sha256": "0953ee00328baf8836ecc8723c013a0cb4dc7db5a01a06f7dc0d81faa51deb6d",
+      "git_blob_sha1": "5c5b4328808a97de128f0c5a1cc5782cfaae2315"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 11317,
+      "sha256": "58e6336b633791f3d96fdd89f01bba8378ac57db87ab3a9b31b8ea3028cd6f66",
+      "git_blob_sha1": "458b42519b55ea6136ef937c657de3aa5e1936f0"
+    },
+    {
+      "path": "tools/school_scheduler_lifetime.py",
+      "bytes": 13646,
+      "sha256": "4159af0d980064daac431da540c0b83641a1276a2b388bf5f01477fc114e94d9",
+      "git_blob_sha1": "818197ee5b3d8d52fce25858ba60ade27a385284"
+    },
+    {
+      "path": "tools/school_scheduler_lifetime_verification.py",
+      "bytes": 13036,
+      "sha256": "18663e9dda88856210ceec97f824d9776e56fe94b479096e61f29fc1b5b6d75c",
+      "git_blob_sha1": "c62d585a19414f871def992182f54d61edf28dcb"
+    },
+    {
+      "path": "tools/school_scheduler_preservation.py",
+      "bytes": 1814,
+      "sha256": "af3b92f1f7e683fe92e47112b4725d890c3ec9cc4aee47804707af00a872db8b",
+      "git_blob_sha1": "374e9c15f6aa8f523278bc69e3fe018354c935f6"
+    },
+    {
+      "path": "tools/tests/test_school_scheduler_lifetime.py",
+      "bytes": 3695,
+      "sha256": "f0f9cb2113683ea7ebbd82271125cf6e036c29adc3099be051a13d04a050d0cb",
+      "git_blob_sha1": "af8f92c18c1d5690685ed89110d0706e12abf193"
+    },
+    {
+      "path": "tools/tests/test_school_scheduler_verification.py",
+      "bytes": 3827,
+      "sha256": "af4a6a09ecb47c797b835a1c200e3c5e7472d29eac7deb4b3f1a7bf1c71fd0c6",
+      "git_blob_sha1": "73c5b1238686a91afe6d7b75057a90fa29d52869"
+    }
+  ],
+  "manifest_excludes": [
+    "this acceptance report to avoid recursive hash",
+    "final local acceptance commit ID"
+  ],
+  "local_only": true,
+  "pushed": false
+}
