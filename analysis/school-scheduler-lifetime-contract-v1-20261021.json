@@ -1,0 +1,151 @@
+{
+  "source_contract": {
+    "source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "ranges": [
+      {
+        "va": 4330816,
+        "bytes": 1699,
+        "sha256": "af19b69f3d979f87516e71bdadc2bf4a8f407892379865696c0c2fb1b528ae0c"
+      },
+      {
+        "va": 4332528,
+        "bytes": 1689,
+        "sha256": "be54d49f2990eb38327cfd35446ecc235bfb4b54d360a749001c77fa84c071a8"
+      },
+      {
+        "va": 4334224,
+        "bytes": 196,
+        "sha256": "719595703fa30021942268fac1deb0518e045d5ff484b83e34548fc0fb916884"
+      },
+      {
+        "va": 4334944,
+        "bytes": 170,
+        "sha256": "bab1c96c2e6afbdf1df45fb9367cc2630e1748f2c4556a7666c613dc98368868"
+      },
+      {
+        "va": 4371152,
+        "bytes": 31,
+        "sha256": "f7112aea722fe40aba670479d886a09190192249ca77da91d2ad3baca3025576"
+      },
+      {
+        "va": 5693520,
+        "bytes": 400,
+        "sha256": "cba7e90bbef1d3b2d6ae4abde327c059a5a0ffdc208078e6cb3dc5c6826769a6"
+      },
+      {
+        "va": 5693920,
+        "bytes": 80,
+        "sha256": "b3fe13e799bff91096a449c9a3a3f1bea705b5a8a7272d5db1d8e6bf1c18ff92"
+      },
+      {
+        "va": 4536752,
+        "bytes": 844,
+        "sha256": "3242a1b864629b1b0b1f25efea500026689d9f98a787981a14e162d968fa34cf"
+      },
+      {
+        "va": 5851732,
+        "bytes": 8,
+        "sha256": "b83161091d66c287da9ff4e4041c9e7d6a928d6ed8405f8aaf04e6b30cf80507"
+      }
+    ],
+    "instructions": [
+      {
+        "va": 4331503,
+        "hex": "837df820",
+        "mnemonic": "cmp",
+        "operands": "dword ptr [ebp - 8], 0x20"
+      },
+      {
+        "va": 4331562,
+        "hex": "e821000000",
+        "mnemonic": "call",
+        "operands": "0x421850"
+      },
+      {
+        "va": 4333267,
+        "hex": "e878c11400",
+        "mnemonic": "call",
+        "operands": "0x56e050"
+      },
+      {
+        "va": 4333258,
+        "hex": "68501f4200",
+        "mnemonic": "push",
+        "operands": "0x421f50"
+      },
+      {
+        "va": 4333448,
+        "hex": "ff10",
+        "mnemonic": "call",
+        "operands": "dword ptr [eax]"
+      },
+      {
+        "va": 4333601,
+        "hex": "e8bac11400",
+        "mnemonic": "call",
+        "operands": "0x56e1e0"
+      },
+      {
+        "va": 4331446,
+        "hex": "c20c00",
+        "mnemonic": "ret",
+        "operands": "0xc"
+      },
+      {
+        "va": 4332512,
+        "hex": "c20400",
+        "mnemonic": "ret",
+        "operands": "4"
+      },
+      {
+        "va": 4334256,
+        "hex": "c700544a5900",
+        "mnemonic": "mov",
+        "operands": "dword ptr [eax], 0x594a54"
+      },
+      {
+        "va": 4332579,
+        "hex": "742c",
+        "mnemonic": "je",
+        "operands": "0x421c51"
+      }
+    ],
+    "base_task_vtable": 5851732,
+    "base_callback": 4334384,
+    "worker": 4333392,
+    "runtime_beginthreadex": 5693520,
+    "runtime_endthreadex": 5693920,
+    "original_IAT_slots": [
+      5841448,
+      5841452,
+      5841456,
+      5841460,
+      5841464,
+      5841504,
+      5841508,
+      5841512,
+      5841516,
+      5841520,
+      5841524,
+      5841532,
+      5841536
+    ],
+    "call_thunk_hex": "558bec5356578b75088966208b5e0885db74094bff749e0c85db75f78b4e04ff1689461c896624c7462843414c4c31c05f5e5b5dc20400",
+    "source_callbacks_replaced": false,
+    "retained_scene_or_world_execution": false
+  },
+  "retained_scheduler": {
+    "checkpoint": {
+      "path": ".venv-audit/vm-graphics-rectangle-initial.pkl",
+      "bytes": 136844155,
+      "sha256": "1440cd376554e8c0d606ed4a90410af3741c9d198c024e6502aaddad5c4b2a80",
+      "pending_eip": "0x40e2a0",
+      "runtime_or_original_save": false
+    },
+    "main_global": 17301504,
+    "manager": 17301604,
+    "manager_hex": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "nodes": [],
+    "retained_VM_advanced": false
+  }
+}
