@@ -1,0 +1,683 @@
+{
+  "schema_version": 1,
+  "baseline": "6f10e22",
+  "source_bridge_commit": "07dfb8f",
+  "native_verification_commit": "244f430",
+  "change": "connect-native-scene-loop",
+  "archive": "openspec/changes/archive/2026-10-21-connect-native-scene-loop",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "native_original_scene_loop_unit_accepted": true,
+  "R3_complete": false,
+  "scope": {
+    "only_declared_original_initializer_scenario_and_MAIN_event_roots": true,
+    "source_root_calls_per_case": 3,
+    "direct_factory_task_VM_world_roots": 0,
+    "actual_native_MAIN_factory_CRT_callback_loading_world_and_VM": true,
+    "full_loaded_script_bytes_verified": true,
+    "full_native_instruction_or_API_trace": false,
+    "full_scene_semantics_independently_replayed": false,
+    "physical_input_injected": false,
+    "physical_input_or_interaction_transition_accepted": false,
+    "old_retained_checkpoint_rehydrated": false,
+    "worker_natural_callback_return_claimed": false,
+    "source_shutdown_may_cancel_waiting_worker": true,
+    "pixel_or_Godot_validation": false
+  },
+  "source": {
+    "path": "analysis/school-native-scene-source-v1-20261021.json",
+    "sha256": "8ae7e0ccd2baf96b66b37d20d62591b2d9ddaca0f482b2da4d7ef6d31d44058a"
+  },
+  "runtime_inventory": {
+    "path": "analysis/school-native-scene-runtime-v1-20261021.json.gz",
+    "sha256": "a30eefaf45cdbf8a3485e324899777c1356d05e50fe91ea45a2d078ae15e2d5a"
+  },
+  "native_cases": [
+    {
+      "native": {
+        "path": "analysis/school-native-scene-76-v7-20261021.json.gz",
+        "sha256": "8d8150baab5e2b7477d5a0ee310f0cb7f324b88a5f08eb191bf30c11c40135f3"
+      },
+      "verification": {
+        "path": "analysis/school-native-scene-76-proof-v7-20261021.json",
+        "sha256": "93e5771d0c2043f0666c0cda8787a5b9aa033c354cf615cc7596544bd22aa609"
+      },
+      "result": {
+        "scene": 76,
+        "lifecycle": {
+          "pid": 55388,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "6920": {
+              "signaled": true,
+              "code": 0
+            },
+            "55388": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "source_scenario_replay_instructions": 712,
+        "source_event_roots": 3,
+        "actual_factory_ancestry_observed": true,
+        "actual_original_outer_scheduler": true,
+        "actual_CRT_scene_loading_and_world_loop": true,
+        "world_gate_enabled": true,
+        "script": {
+          "path": "CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/SCRIPT/T0007.BIN",
+          "bytes": 11296,
+          "sha256": "77f9726afcfb936286d7f07bb36feb4f720acd1c189c1493f1bf84adcab2243f",
+          "observed_positive_PCs": [
+            8,
+            44,
+            56,
+            72,
+            84,
+            96,
+            108,
+            120,
+            132,
+            164,
+            196,
+            228,
+            260,
+            292,
+            324,
+            356,
+            388,
+            420,
+            452,
+            484,
+            516
+          ]
+        },
+        "ordinary_loop_observations": 445,
+        "active_script_observations": 32,
+        "full_native_scene_states": 2,
+        "full_scene_semantics_independently_replayed": false,
+        "native_per_instruction_or_API_trace": false,
+        "worker_natural_return_claimed": false,
+        "R3_complete": false,
+        "report": {
+          "path": "analysis/school-native-scene-76-v7-20261021.json.gz",
+          "sha256": "8d8150baab5e2b7477d5a0ee310f0cb7f324b88a5f08eb191bf30c11c40135f3"
+        }
+      }
+    },
+    {
+      "native": {
+        "path": "analysis/school-native-scene-77-v3-20261021.json.gz",
+        "sha256": "31f0ae0fa76b8c424e88832a8f5105956e068ecdfb5e99c98a589dec353be992"
+      },
+      "verification": {
+        "path": "analysis/school-native-scene-77-proof-v3-20261021.json",
+        "sha256": "1bed707e9dd47c260523174ce5e0c66769ab2f06b4da640d9a698c16ebe24b34"
+      },
+      "result": {
+        "scene": 77,
+        "lifecycle": {
+          "pid": 32844,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "62160": {
+              "signaled": true,
+              "code": 0
+            },
+            "32844": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "source_scenario_replay_instructions": 716,
+        "source_event_roots": 3,
+        "actual_factory_ancestry_observed": true,
+        "actual_original_outer_scheduler": true,
+        "actual_CRT_scene_loading_and_world_loop": true,
+        "world_gate_enabled": true,
+        "script": {
+          "path": "CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/SCRIPT/T0009.BIN",
+          "bytes": 18024,
+          "sha256": "5bbe234ea02cf9643241b762338d8b252f2b682576e1c00a7cc6931f57013f99",
+          "observed_positive_PCs": [
+            8,
+            44,
+            56,
+            72,
+            80
+          ]
+        },
+        "ordinary_loop_observations": 442,
+        "active_script_observations": 32,
+        "full_native_scene_states": 2,
+        "full_scene_semantics_independently_replayed": false,
+        "native_per_instruction_or_API_trace": false,
+        "worker_natural_return_claimed": false,
+        "R3_complete": false,
+        "report": {
+          "path": "analysis/school-native-scene-77-v3-20261021.json.gz",
+          "sha256": "31f0ae0fa76b8c424e88832a8f5105956e068ecdfb5e99c98a589dec353be992"
+        }
+      }
+    },
+    {
+      "native": {
+        "path": "analysis/school-native-scene-76-v8-20261021.json.gz",
+        "sha256": "e948190470692e90f24b7008703106e403c97c39d7ca553c909227321036da72"
+      },
+      "verification": {
+        "path": "analysis/school-native-scene-76-proof-v8-20261021.json",
+        "sha256": "e9941c7ac7d4241f8e619c7662f206e22c70bffa2a668067ef2029b779f99eab"
+      },
+      "result": {
+        "scene": 76,
+        "lifecycle": {
+          "pid": 55252,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "42164": {
+              "signaled": true,
+              "code": 0
+            },
+            "55252": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "source_scenario_replay_instructions": 712,
+        "source_event_roots": 3,
+        "actual_factory_ancestry_observed": true,
+        "actual_original_outer_scheduler": true,
+        "actual_CRT_scene_loading_and_world_loop": true,
+        "world_gate_enabled": true,
+        "script": {
+          "path": "CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/SCRIPT/T0007.BIN",
+          "bytes": 11296,
+          "sha256": "77f9726afcfb936286d7f07bb36feb4f720acd1c189c1493f1bf84adcab2243f",
+          "observed_positive_PCs": [
+            8,
+            44,
+            56,
+            72,
+            84,
+            96,
+            108,
+            120,
+            132,
+            164,
+            196,
+            228,
+            260,
+            292,
+            324,
+            356,
+            388,
+            420,
+            452,
+            484,
+            516
+          ]
+        },
+        "ordinary_loop_observations": 431,
+        "active_script_observations": 31,
+        "full_native_scene_states": 2,
+        "full_scene_semantics_independently_replayed": false,
+        "native_per_instruction_or_API_trace": false,
+        "worker_natural_return_claimed": false,
+        "R3_complete": false,
+        "report": {
+          "path": "analysis/school-native-scene-76-v8-20261021.json.gz",
+          "sha256": "e948190470692e90f24b7008703106e403c97c39d7ca553c909227321036da72"
+        }
+      }
+    },
+    {
+      "native": {
+        "path": "analysis/school-native-scene-77-v4-20261021.json.gz",
+        "sha256": "e5bd6dcf7f0a1f2125d47e8a35e29ff6a8aef23556ddea1766b7ccbb90d45db1"
+      },
+      "verification": {
+        "path": "analysis/school-native-scene-77-proof-v4-20261021.json",
+        "sha256": "5a1b75093e72726eb2294d5552cd4a4365b714a9f17dc3a7b918b5b7bf3c3f9c"
+      },
+      "result": {
+        "scene": 77,
+        "lifecycle": {
+          "pid": 49256,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "29892": {
+              "signaled": true,
+              "code": 0
+            },
+            "49256": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "source_scenario_replay_instructions": 716,
+        "source_event_roots": 3,
+        "actual_factory_ancestry_observed": true,
+        "actual_original_outer_scheduler": true,
+        "actual_CRT_scene_loading_and_world_loop": true,
+        "world_gate_enabled": true,
+        "script": {
+          "path": "CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/SCRIPT/T0009.BIN",
+          "bytes": 18024,
+          "sha256": "5bbe234ea02cf9643241b762338d8b252f2b682576e1c00a7cc6931f57013f99",
+          "observed_positive_PCs": [
+            8,
+            44,
+            56,
+            72,
+            80
+          ]
+        },
+        "ordinary_loop_observations": 442,
+        "active_script_observations": 32,
+        "full_native_scene_states": 2,
+        "full_scene_semantics_independently_replayed": false,
+        "native_per_instruction_or_API_trace": false,
+        "worker_natural_return_claimed": false,
+        "R3_complete": false,
+        "report": {
+          "path": "analysis/school-native-scene-77-v4-20261021.json.gz",
+          "sha256": "e5bd6dcf7f0a1f2125d47e8a35e29ff6a8aef23556ddea1766b7ccbb90d45db1"
+        }
+      }
+    }
+  ],
+  "excluded_preliminary_experiments": [
+    {
+      "path": "analysis/school-native-scene-76-v1-20261021.json.gz",
+      "sha256": "b06c32e843ec517a4a55c6457d01647fa86f9dd852c9df9934b50f4eb4fb7cee",
+      "accepted": false,
+      "original_observer_error": "OSError(6, 'actual original scene worker duplicate')",
+      "probe_error": null,
+      "forced_Job_cleanup": true,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v2-20261021.json.gz",
+      "sha256": "c30c1509968750b279f7c7898a4bf8070e29646dae09370e09931557533d3e65",
+      "accepted": false,
+      "original_observer_error": null,
+      "probe_error": null,
+      "forced_Job_cleanup": false,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v3-20261021.json.gz",
+      "sha256": "400c2340c15074ab2804c408ff839f18fe64a330186f30a1861baee0a4ee6132",
+      "accepted": false,
+      "original_observer_error": null,
+      "probe_error": null,
+      "forced_Job_cleanup": false,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v4-20261021.json.gz",
+      "sha256": "eda18245171d27155a1fb0477bcae07f8d1ca9504efd19bdeabd1f6e7b611fae",
+      "accepted": false,
+      "original_observer_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "probe_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "forced_Job_cleanup": true,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v5-20261021.json.gz",
+      "sha256": "80eeee6ec2e648382aa10db74371a653edcac0e81aa8d840116af0f6aadd82e6",
+      "accepted": false,
+      "original_observer_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "probe_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "forced_Job_cleanup": true,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v6-20261021.json.gz",
+      "sha256": "72fb4bfca8c07e61f013a2e8f76689ad56ddbb1cedf93ac5a8442932b54996e6",
+      "accepted": false,
+      "original_observer_error": null,
+      "probe_error": null,
+      "forced_Job_cleanup": false,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    },
+    {
+      "path": "analysis/school-native-scene-77-v1-20261021.json.gz",
+      "sha256": "7341173d929251aa60cd44876386a2afae6c9a479c384005d25c5ac89b78f10d",
+      "accepted": false,
+      "original_observer_error": null,
+      "probe_error": null,
+      "forced_Job_cleanup": false,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    },
+    {
+      "path": "analysis/school-native-scene-77-v2-20261021.json.gz",
+      "sha256": "df5f1a73e92e2411b3f11c08a7323997e0217ef1afcf245f53c5051abbf31855",
+      "accepted": false,
+      "original_observer_error": null,
+      "probe_error": null,
+      "forced_Job_cleanup": false,
+      "reason": "preliminary or failed capture; not part of the four full script/scene-loop acceptance samples"
+    }
+  ],
+  "regression": {
+    "path": "analysis/school-native-scene-regression-v1-20261021.log",
+    "sha256": "6bf42b78952f78c2da6bb6960eb3e79e0697436a790cbe37dbd6fe9b418e3b85",
+    "tests": 92,
+    "passed": true
+  },
+  "strict_specs": [
+    {
+      "path": "analysis/school-native-scene-specs-before-20261021.json",
+      "sha256": "d2f8fd5bad9f58cc7c7b1fd104a9f52403aa72b5bf600f88a2f28b1d55fc04dc",
+      "items": 32,
+      "passed": 32,
+      "failed": 0
+    },
+    {
+      "path": "analysis/school-native-scene-specs-before-v2-20261021.json",
+      "sha256": "02bbad5673589f94b175a50240f2d66e48e98d1eb640993015033b3f9e8516e8",
+      "items": 32,
+      "passed": 32,
+      "failed": 0
+    },
+    {
+      "path": "analysis/school-native-scene-specs-after-20261021.json",
+      "sha256": "abddf79dadec9c0bc334f2a596bd406edd05af34602bfed11628d5eec7606c60",
+      "items": 31,
+      "passed": 31,
+      "failed": 0
+    }
+  ],
+  "preservation": {
+    "path": "analysis/school-native-scene-preservation-v1-20261021.json",
+    "sha256": "10538a0f565014123083a5f756628770d37442f51cf2b51c5fc6ff6f99484a84",
+    "frozen_bootstrap_artifacts": 36,
+    "frozen_scheduler_artifacts": 27,
+    "frozen_task_frame_artifacts": 26,
+    "frozen_R2_artifacts": 39,
+    "historical_raw_files": 16589,
+    "private_checkpoints": 9,
+    "immutable_original_and_private_runtime_files": 8105,
+    "immutable_runtime_bytes": 1541607697,
+    "original_save_bytes_and_timestamps_unchanged": true
+  },
+  "next": {
+    "milestone": "R3",
+    "remaining": "Actual input and meaningful interaction/scene transition; connect established native resources/thread provenance with retained logical execution; battle rules remain R4",
+    "R3_target": "2026-11-03",
+    "overall_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19714,
+      "sha256": "a42373dddaaccd269183d12eb9f31e81f441f382ea38a1f962a48dd12e0c21b4",
+      "git_blob_sha1": "2f308db26c7d01fa6c9a1d0eb413f28e64c291fb"
+    },
+    {
+      "path": "analysis/school-native-scene-76-proof-v7-20261021.json",
+      "bytes": 1510,
+      "sha256": "93e5771d0c2043f0666c0cda8787a5b9aa033c354cf615cc7596544bd22aa609",
+      "git_blob_sha1": "65a7e6f0f84c7be8a663ee30dd7a0261e4e1b75a"
+    },
+    {
+      "path": "analysis/school-native-scene-76-proof-v8-20261021.json",
+      "bytes": 1511,
+      "sha256": "e9941c7ac7d4241f8e619c7662f206e22c70bffa2a668067ef2029b779f99eab",
+      "git_blob_sha1": "c24a9d130a2b6dabefb28c1f09f7535c4702b826"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v1-20261021.json.gz",
+      "bytes": 12838,
+      "sha256": "b06c32e843ec517a4a55c6457d01647fa86f9dd852c9df9934b50f4eb4fb7cee",
+      "git_blob_sha1": "a5e83480a7cdfa2556eb295733162633b25dfaff"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v2-20261021.json.gz",
+      "bytes": 116230,
+      "sha256": "c30c1509968750b279f7c7898a4bf8070e29646dae09370e09931557533d3e65",
+      "git_blob_sha1": "ec4c6de9e533c0012a47b3148ac292a0f7ea91a0"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v3-20261021.json.gz",
+      "bytes": 197085,
+      "sha256": "400c2340c15074ab2804c408ff839f18fe64a330186f30a1861baee0a4ee6132",
+      "git_blob_sha1": "c84017db70f130f12ae90b51a25e1adb2f2737fc"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v4-20261021.json.gz",
+      "bytes": 193160,
+      "sha256": "eda18245171d27155a1fb0477bcae07f8d1ca9504efd19bdeabd1f6e7b611fae",
+      "git_blob_sha1": "13779e88d33cd7373a3d46e9e4376c7229a29760"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v5-20261021.json.gz",
+      "bytes": 345047,
+      "sha256": "80eeee6ec2e648382aa10db74371a653edcac0e81aa8d840116af0f6aadd82e6",
+      "git_blob_sha1": "e283469c25c6eb772e8c5f4ef2f7b82f0dd66391"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v6-20261021.json.gz",
+      "bytes": 113653,
+      "sha256": "72fb4bfca8c07e61f013a2e8f76689ad56ddbb1cedf93ac5a8442932b54996e6",
+      "git_blob_sha1": "06c232ee31d0bb4d3eb5e03a04d8d165eb3182ba"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v7-20261021.json.gz",
+      "bytes": 191642,
+      "sha256": "8d8150baab5e2b7477d5a0ee310f0cb7f324b88a5f08eb191bf30c11c40135f3",
+      "git_blob_sha1": "74114ee88ca22c7646b9e2b53a17a428e793ade1"
+    },
+    {
+      "path": "analysis/school-native-scene-76-v8-20261021.json.gz",
+      "bytes": 193469,
+      "sha256": "e948190470692e90f24b7008703106e403c97c39d7ca553c909227321036da72",
+      "git_blob_sha1": "d62be86427f4ec7a1fbb94e02bbbb77a50a0a233"
+    },
+    {
+      "path": "analysis/school-native-scene-77-proof-v3-20261021.json",
+      "bytes": 1336,
+      "sha256": "1bed707e9dd47c260523174ce5e0c66769ab2f06b4da640d9a698c16ebe24b34",
+      "git_blob_sha1": "753fe6906b7a2d958d72dd2555cd5f9aca865b39"
+    },
+    {
+      "path": "analysis/school-native-scene-77-proof-v4-20261021.json",
+      "bytes": 1336,
+      "sha256": "5a1b75093e72726eb2294d5552cd4a4365b714a9f17dc3a7b918b5b7bf3c3f9c",
+      "git_blob_sha1": "2b1160a1821939814d55779e30d03b8940ad1d02"
+    },
+    {
+      "path": "analysis/school-native-scene-77-v1-20261021.json.gz",
+      "bytes": 120062,
+      "sha256": "7341173d929251aa60cd44876386a2afae6c9a479c384005d25c5ac89b78f10d",
+      "git_blob_sha1": "c7dfb450de695ddfff8b7bf1c3364f6e43d6fc78"
+    },
+    {
+      "path": "analysis/school-native-scene-77-v2-20261021.json.gz",
+      "bytes": 192141,
+      "sha256": "df5f1a73e92e2411b3f11c08a7323997e0217ef1afcf245f53c5051abbf31855",
+      "git_blob_sha1": "481528a1b9dd253f8fe77fba5d4c293b4b86ad74"
+    },
+    {
+      "path": "analysis/school-native-scene-77-v3-20261021.json.gz",
+      "bytes": 206689,
+      "sha256": "31f0ae0fa76b8c424e88832a8f5105956e068ecdfb5e99c98a589dec353be992",
+      "git_blob_sha1": "6364b9bc6faf117082b94b519a5ef0f422e629f2"
+    },
+    {
+      "path": "analysis/school-native-scene-77-v4-20261021.json.gz",
+      "bytes": 200940,
+      "sha256": "e5bd6dcf7f0a1f2125d47e8a35e29ff6a8aef23556ddea1766b7ccbb90d45db1",
+      "git_blob_sha1": "99c1397b9531507efb62f2f91fd471b699b3cf1d"
+    },
+    {
+      "path": "analysis/school-native-scene-apply-complete-20261021.json",
+      "bytes": 3282,
+      "sha256": "46c79c112ec8ad82391f92d5602a3a9d6c63e198582c80de17ab655a0f03224a",
+      "git_blob_sha1": "a51971d9a7a4101f8ffbbd5a3013651cc9a7b6e9"
+    },
+    {
+      "path": "analysis/school-native-scene-archive-inputs-20261021.json",
+      "bytes": 998,
+      "sha256": "4bc34443fe407d533b67c28134be53707db66104f06c7ffc8dc0d799f7f7da9b",
+      "git_blob_sha1": "ecf6627626b0462d105df8795513681427d06321"
+    },
+    {
+      "path": "analysis/school-native-scene-archive-v1-20261021.json",
+      "bytes": 604,
+      "sha256": "5ccaf6b77f0d35242d2f44d4b85067ffc6bdf3afbac8a2988a7ffe28a1858cb4",
+      "git_blob_sha1": "5ae68d2fefb88cc77350c48117fa340aac8d858f"
+    },
+    {
+      "path": "analysis/school-native-scene-calls-tests-v1-20261021.log",
+      "bytes": 104,
+      "sha256": "99c0da505c93ece9d768e9c59ac20dffb1dd211308116203a59c4e68b4e729eb",
+      "git_blob_sha1": "57973996b1835ae21d174ebbae089d2d1679922c"
+    },
+    {
+      "path": "analysis/school-native-scene-calls-tests-v2-20261021.log",
+      "bytes": 106,
+      "sha256": "ff49bee0f14566fcb29635a0669f5c71cf79a297336cbef90b38460842c82ba1",
+      "git_blob_sha1": "45ab976187db2507d9dba63fac3006653a8254db"
+    },
+    {
+      "path": "analysis/school-native-scene-preservation-v1-20261021.json",
+      "bytes": 17586,
+      "sha256": "10538a0f565014123083a5f756628770d37442f51cf2b51c5fc6ff6f99484a84",
+      "git_blob_sha1": "42f933f4503809b3e37fe318e731b93bf4dabf62"
+    },
+    {
+      "path": "analysis/school-native-scene-regression-v1-20261021.log",
+      "bytes": 192,
+      "sha256": "6bf42b78952f78c2da6bb6960eb3e79e0697436a790cbe37dbd6fe9b418e3b85",
+      "git_blob_sha1": "1dea2f7cc8ef68fc428bb94a71761df3935fa661"
+    },
+    {
+      "path": "analysis/school-native-scene-runtime-v1-20261021.json.gz",
+      "bytes": 365483,
+      "sha256": "a30eefaf45cdbf8a3485e324899777c1356d05e50fe91ea45a2d078ae15e2d5a",
+      "git_blob_sha1": "d8e3f61e35368cf9306354a9ddafdd27cc07c5ab"
+    },
+    {
+      "path": "analysis/school-native-scene-source-v1-20261021.json",
+      "bytes": 6779,
+      "sha256": "8ae7e0ccd2baf96b66b37d20d62591b2d9ddaca0f482b2da4d7ef6d31d44058a",
+      "git_blob_sha1": "7c11864fd9a1fb37128126ce6002c3cb7210aa8a"
+    },
+    {
+      "path": "analysis/school-native-scene-specs-after-20261021.json",
+      "bytes": 7551,
+      "sha256": "abddf79dadec9c0bc334f2a596bd406edd05af34602bfed11628d5eec7606c60",
+      "git_blob_sha1": "53f9ddb49e62a0e2dc36f10afa42e49aadcf246a"
+    },
+    {
+      "path": "analysis/school-native-scene-specs-before-20261021.json",
+      "bytes": 7907,
+      "sha256": "d2f8fd5bad9f58cc7c7b1fd104a9f52403aa72b5bf600f88a2f28b1d55fc04dc",
+      "git_blob_sha1": "a57957f11c626433dd56fb462da5ec58dbf31ccd"
+    },
+    {
+      "path": "analysis/school-native-scene-specs-before-v2-20261021.json",
+      "bytes": 7901,
+      "sha256": "02bbad5673589f94b175a50240f2d66e48e98d1eb640993015033b3f9e8516e8",
+      "git_blob_sha1": "839d004dc61a9af24951a7e445ad72e94df05ddd"
+    },
+    {
+      "path": "analysis/school-native-scene-status-complete-20261021.json",
+      "bytes": 2810,
+      "sha256": "ec88ac491e67f5eb4a52d6d33dcb02bfb88f6e75e854af63fe0984fa60f5c561",
+      "git_blob_sha1": "207808218ca7fa0d9cd4b2c1cb80a95b968f3d39"
+    },
+    {
+      "path": "analysis/school-native-scene-tests-v1-20261021.log",
+      "bytes": 126,
+      "sha256": "af665f6d6960f9ecb5e4700ed1e1dee9a318c74f9bf03a1ad07727ac2b616d23",
+      "git_blob_sha1": "6011617f18dbb5b546a29e140057568bfbf9f379"
+    },
+    {
+      "path": "docs/school_native_scene.md",
+      "bytes": 6080,
+      "sha256": "53b2fcfce919f2abd23db10c4353b531c2ae0c0e42507bf7a96036389c72eb3b",
+      "git_blob_sha1": "08e4e0d2902e5ee417f5a5c58fd288d4f05ba193"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-native-scene-loop/.openspec.yaml",
+      "bytes": 58,
+      "sha256": "f56fc2fc8d7ec294222e07f2f43f62ff5849a170fd6a0f750596c778c08d3229",
+      "git_blob_sha1": "1126a3d67217988e2e41bc816ffc619ebbdd8ac7"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-native-scene-loop/design.md",
+      "bytes": 2197,
+      "sha256": "4fed03c3401f3afe2c50981094a1a5758bb8d5b66ba92b1de763c7b3ba992f78",
+      "git_blob_sha1": "37e7bac3f048146dd830b0b47c7bf92551196f03"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-native-scene-loop/proposal.md",
+      "bytes": 1482,
+      "sha256": "92373bb5a28e1f64ae095f58378bd6cd094a4cc94fc3784ff588c569b9592cd2",
+      "git_blob_sha1": "a6d4ba88bac72d9f0a114693f5e3a0276a73daeb"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-native-scene-loop/tasks.md",
+      "bytes": 1097,
+      "sha256": "51601793daf132a1e160a4e6c192d82cd753e03637caba22d97bffcea4ca90ab",
+      "git_blob_sha1": "cc75e836bb74b81722c8f1455334ac8b90eee14f"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 13601,
+      "sha256": "b7bd4ab32e3350b1cab2a6cc5d32122f06ea09e7fc505aae044b51dd59443624",
+      "git_blob_sha1": "c6328bfc4cad88a77243d79aa065989fa9898fb0"
+    },
+    {
+      "path": "tools/school_native_scene.py",
+      "bytes": 14108,
+      "sha256": "1e6dba56d40cd43b95e842cd4445c50ae562b3bc5b8538e9d9a6ea060f4b938c",
+      "git_blob_sha1": "fc20a1eaec039ef1913a324c8b4e77e6c1f5eea2"
+    },
+    {
+      "path": "tools/school_native_scene_preservation.py",
+      "bytes": 2869,
+      "sha256": "f1a36b3c0b623df43024ba84c9e15f2095c3264c211e7e8563245d434d4ec56c",
+      "git_blob_sha1": "b53cebb36e5b3d8f8b045ff2ec17fd2cfc9a2716"
+    },
+    {
+      "path": "tools/school_native_scene_verification.py",
+      "bytes": 13250,
+      "sha256": "e8474c460b514bb5680276cdd80a551a6cd0d8ac971e5d0a22c3cc1a0d8154a0",
+      "git_blob_sha1": "250271389e8b262277d17f8e1c24bc17dc7c0d1f"
+    },
+    {
+      "path": "tools/tests/test_school_native_scene_calls.py",
+      "bytes": 4317,
+      "sha256": "ee0ca273f262ee0b5e6c83c44bdb0e49a8496681b0a3947c8adfea5e1273acff",
+      "git_blob_sha1": "a572171abc249a081bbda9fa48c395d35d1d4177"
+    },
+    {
+      "path": "tools/tests/test_school_native_scene_verification.py",
+      "bytes": 5023,
+      "sha256": "bf164a5b4a00f65987ff8ba4528852cbeacaf0327df769b7d9a010f21d71f814",
+      "git_blob_sha1": "7afa61578e3f3c635c782f775fa7d3706dfc48b5"
+    }
+  ],
+  "manifest_excludes": [
+    "this acceptance report to avoid recursive hash",
+    "final local acceptance commit ID"
+  ],
+  "local_only": true,
+  "pushed": false
+}

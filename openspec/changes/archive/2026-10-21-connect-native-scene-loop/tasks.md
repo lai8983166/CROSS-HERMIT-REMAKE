@@ -10,4 +10,4 @@
 
 ## 3. Reproduction and roadmap acceptance
 
-- [ ] 3.1 Reproduce both scenes, pass affected regressions/strict specs and frozen bootstrap/scheduler/task-frame/R1/R2/historical/asset/save/checkpoint preservation, update the master with actual native scene-loop progress and remaining input/retained integration, then locally commit acceptance and archive all3/3 tasks without marking R3 complete.
+- [x] 3.1 Reproduce both scenes, pass affected regressions/strict specs and frozen bootstrap/scheduler/task-frame/R1/R2/historical/asset/save/checkpoint preservation, update the master with actual native scene-loop progress and remaining input/retained integration, then locally commit acceptance and archive all3/3 tasks without marking R3 complete.
