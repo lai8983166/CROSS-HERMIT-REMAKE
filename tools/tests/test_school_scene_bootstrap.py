@@ -34,6 +34,11 @@ class SceneBootstrapTests(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'only delay tick'):c.start(0x451170,c.data+0x2000,slot=256)
  def test_out_of_guard_write_is_rejected(self):
   r=self.report();s=r['case']['probe']['stages'][-1];b=bytearray.fromhex(s['node_hex']);b[-1]^=1;s['node_hex']=b.hex();self.reject(r,'tail guard')
+ def test_source_range_or_instruction_omissions_are_rejected(self):
+  r=self.report();r['source_contract']['ranges'].pop();self.reject(r,'complete fixed source ranges')
+  r=self.report();r['source_contract']['instructions'].pop();self.reject(r,'all source graph instructions')
+ def test_live_IAT_change_is_rejected(self):
+  r=self.report();r['case']['probe']['source_after']['IAT'][0]['hex']='01000000';self.reject(r,'source/vtable/IAT identity')
  def test_disabled_scan_cannot_change_any_object_byte(self):
   r=self.report();s=r['case']['probe']['stages'][4];b=bytearray.fromhex(s['node_hex']);b[0x80000]^=1;s['node_hex']=b.hex();self.reject(r,'disabled scan')
  def test_destructor_cannot_change_unrelated_dirty_fields(self):

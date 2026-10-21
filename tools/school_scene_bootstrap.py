@@ -124,5 +124,7 @@ def save(path,r):
 
 if __name__=='__main__':
  import argparse
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);p.add_argument('--fill',type=lambda x:int(x,0),choices=[0,165,204],default=0);p.add_argument('--yield-probe',action='store_true');a=p.parse_args();contract=source_contract();case=observe(yield_probe if a.yield_probe else lambda pid,owned:object_probe(pid,owned,a.fill));save(a.out,dict(schema_version=1,source_contract=contract,case=case,R3_complete=False));print('scene bootstrap',a.fill,'yield',a.yield_probe,'error',case['lifecycle']['error'],'probe',case['probe'] is not None)
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);p.add_argument('--fill',type=lambda x:int(x,0),choices=[0,165,204],default=0);p.add_argument('--yield-probe',action='store_true');a=p.parse_args()
+ if (ROOT/a.out).exists():p.error('fresh immutable report path required before native launch')
+ contract=source_contract();case=observe(yield_probe if a.yield_probe else lambda pid,owned:object_probe(pid,owned,a.fill));save(a.out,dict(schema_version=1,source_contract=contract,case=case,R3_complete=False));print('scene bootstrap',a.fill,'yield',a.yield_probe,'error',case['lifecycle']['error'],'probe',case['probe'] is not None)
  if case['lifecycle']['error']:raise SystemExit(1)

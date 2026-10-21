@@ -1,0 +1,520 @@
+{
+  "schema_version": 1,
+  "baseline": "f5a28bc",
+  "implementation_commit": "1b36e0d",
+  "change": "verify-scene-task-bootstrap",
+  "archive": "openspec/changes/archive/2026-10-21-verify-scene-task-bootstrap",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "scene_bootstrap_unit_accepted": true,
+  "R3_complete": false,
+  "source": {
+    "path": "analysis/school-scene-bootstrap-source-v1-20261021.json",
+    "sha256": "1dd92612978d042bd7a7b0bb8f81660ce97e959bdf9fb6b8a122dbddc03afb0e"
+  },
+  "scope": {
+    "native_derived_constructor_registration_disabled_scan_unlink_destructor": true,
+    "derived_object_bytes": 1152240,
+    "whole_constructor_independently_replayed": false,
+    "actual_original_fonts_created_and_deleted": 4,
+    "native_isolated_yield_wait_ancestry_and_two_delay_ticks": true,
+    "yield_root_thread_is_not_original_CRT_scene_callback": true,
+    "event_seed_and_final_release_are_experimental": true,
+    "original_scene_factory_or_full_callback_invoked": false,
+    "retained_scene_VM_world_or_physical_input_advanced": false,
+    "complete_native_instruction_or_API_trace": false
+  },
+  "accepted_native_cases": [
+    {
+      "path": "analysis/school-scene-bootstrap-zero-v1-20261021.json.gz",
+      "sha256": "fd051448ed498f5365ef41a794dfe1be9d7f3cea7d314dceb048453af06d228f",
+      "verified": {
+        "kind": "derived_object",
+        "fill": 0,
+        "lifecycle": {
+          "pid": 24664,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "42120": {
+              "signaled": true,
+              "code": 0
+            },
+            "24664": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "object_bytes": 1152240,
+        "captured_stage_object_bytes": 9222272,
+        "fully_modelled_stages_excluding_constructor": 7,
+        "constructor_outputs_are_native_observations": true,
+        "whole_constructor_independently_replayed": false,
+        "registry_disabled_unlink_and_destructor_full_byte_models": true,
+        "actual_font_created_and_original_deleted": true,
+        "original_scene_callback_executed": false
+      }
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-zero-v2-20261021.json.gz",
+      "sha256": "a33d60e8b0f75726fcd3e9f2035b705312cca9f6846d07f88a3a5d230876ce64",
+      "verified": {
+        "kind": "derived_object",
+        "fill": 0,
+        "lifecycle": {
+          "pid": 53020,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "13432": {
+              "signaled": true,
+              "code": 0
+            },
+            "53020": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "object_bytes": 1152240,
+        "captured_stage_object_bytes": 9222272,
+        "fully_modelled_stages_excluding_constructor": 7,
+        "constructor_outputs_are_native_observations": true,
+        "whole_constructor_independently_replayed": false,
+        "registry_disabled_unlink_and_destructor_full_byte_models": true,
+        "actual_font_created_and_original_deleted": true,
+        "original_scene_callback_executed": false
+      }
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-dirty-v1-20261021.json.gz",
+      "sha256": "2773a108ff61bcca96527f47687f82d65f2015c7993316003f19a99a91a91ffe",
+      "verified": {
+        "kind": "derived_object",
+        "fill": 165,
+        "lifecycle": {
+          "pid": 15512,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "35208": {
+              "signaled": true,
+              "code": 0
+            },
+            "15512": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "object_bytes": 1152240,
+        "captured_stage_object_bytes": 9222272,
+        "fully_modelled_stages_excluding_constructor": 7,
+        "constructor_outputs_are_native_observations": true,
+        "whole_constructor_independently_replayed": false,
+        "registry_disabled_unlink_and_destructor_full_byte_models": true,
+        "actual_font_created_and_original_deleted": true,
+        "original_scene_callback_executed": false
+      }
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-dirty-v2-20261021.json.gz",
+      "sha256": "d37f4bb74b149ff404eebba92256f763e55fa749d2439183cedd617de10e6c91",
+      "verified": {
+        "kind": "derived_object",
+        "fill": 165,
+        "lifecycle": {
+          "pid": 57264,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "10744": {
+              "signaled": true,
+              "code": 0
+            },
+            "57264": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "object_bytes": 1152240,
+        "captured_stage_object_bytes": 9222272,
+        "fully_modelled_stages_excluding_constructor": 7,
+        "constructor_outputs_are_native_observations": true,
+        "whole_constructor_independently_replayed": false,
+        "registry_disabled_unlink_and_destructor_full_byte_models": true,
+        "actual_font_created_and_original_deleted": true,
+        "original_scene_callback_executed": false
+      }
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-v3-20261021.json.gz",
+      "sha256": "3f61681cba99ab6b33210788b53013863fc865e532e8af38dfc97ca57015f808",
+      "verified": {
+        "kind": "isolated_yield",
+        "lifecycle": {
+          "pid": 52412,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "54532": {
+              "signaled": true,
+              "code": 0
+            },
+            "52412": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "actual_source_wait_ancestry": true,
+        "original_delay_ticks": 2,
+        "delay_sequence": [
+          2,
+          1,
+          0
+        ],
+        "actual_native_root_thread_returned": true,
+        "original_CRT_scene_callback": false,
+        "experimental_event_seed_and_release": true,
+        "retained_scene_advanced": false
+      }
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-v4-20261021.json.gz",
+      "sha256": "25ddd7945f3cebc39e67b6bef0ee49f7565dac9a27947a85d2768778eb644ca7",
+      "verified": {
+        "kind": "isolated_yield",
+        "lifecycle": {
+          "pid": 21572,
+          "normal_original_game_cleanup": true,
+          "forced_termination": false,
+          "protector_process_statuses": {
+            "63356": {
+              "signaled": true,
+              "code": 0
+            },
+            "21572": {
+              "signaled": true,
+              "code": 3221226324
+            }
+          },
+          "protector_status_is_not_WinMain_return": true
+        },
+        "actual_source_wait_ancestry": true,
+        "original_delay_ticks": 2,
+        "delay_sequence": [
+          2,
+          1,
+          0
+        ],
+        "actual_native_root_thread_returned": true,
+        "original_CRT_scene_callback": false,
+        "experimental_event_seed_and_release": true,
+        "retained_scene_advanced": false
+      }
+    }
+  ],
+  "final_verification": {
+    "path": "analysis/school-scene-bootstrap-final-verification-v1-20261021.json",
+    "sha256": "0c05b6efc54e049d3ba9a4c0921e808235ad572b4889736d1d8becd4423c22d1"
+  },
+  "failed_experiments": [
+    {
+      "path": "analysis/school-scene-bootstrap-yield-v2-20261021.json.gz",
+      "sha256": "53f144b74eaca6c957cdb1fda0e5f03b2b55f0bc72753d13655d003567677aa6",
+      "error": "ValueError('unreadable actual object 0x10bafe70')",
+      "forced_owned_Job_cleanup": true,
+      "accepted": false,
+      "correction": "Read128 actual stack bytes instead of crossing the bounded stack with512; preserve unmodified failed observation"
+    }
+  ],
+  "regression": {
+    "path": "analysis/school-scene-bootstrap-regression-v2-20261021.log",
+    "sha256": "3b4bd51ca8968b987d4d2cecd15649def8c455f85fe47a77262bb287101623cc",
+    "tests": 66,
+    "passed": true
+  },
+  "strict_specs": [
+    {
+      "path": "analysis/school-scene-bootstrap-specs-before-20261021.json",
+      "sha256": "b077510a4ebaef6592d983a7b86b0283af602f9df0390ee591b72e85387aa0cf",
+      "items": 32,
+      "passed": 32,
+      "failed": 0
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-specs-before-v2-20261021.json",
+      "sha256": "6923a5bfd7851198bced064df6f661664c4a760cd04671c1d29f9ed4bcdc29bb",
+      "items": 32,
+      "passed": 32,
+      "failed": 0
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-specs-after-20261021.json",
+      "sha256": "0107d7a829e4b290ad2267515d89c3d89214c28502486b2232d4641628c3001a",
+      "items": 31,
+      "passed": 31,
+      "failed": 0
+    }
+  ],
+  "preservation": {
+    "path": "analysis/school-scene-bootstrap-preservation-v1-20261021.json",
+    "sha256": "51846ef9867be22d094e5775ef6006f6158af044c70df57cfc57d2e96a51f1f8",
+    "frozen_scheduler_artifacts": 27,
+    "frozen_task_frame_artifacts": 26,
+    "frozen_R2_artifacts": 39,
+    "historical_raw_files": 16589,
+    "private_checkpoints": 9,
+    "original_save_bytes_and_timestamps_unchanged": true
+  },
+  "next": {
+    "milestone": "R3",
+    "remaining": "Connect actual451670 callback initialization/yield stack and resources with retained logical scene and49E540/4217C0/454CF0/453F10/46B470; actual input and meaningful scene/world transition",
+    "R3_target": "2026-11-03",
+    "overall_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 19374,
+      "sha256": "53b60e6e27e1eeacd7f1088b0f1d2e7888bcf4fe989eb931beccad6e6f99ee25",
+      "git_blob_sha1": "235bbcf7c0d2d7a55007f1c2448b212aaa30c40e"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-apply-complete-20261021.json",
+      "bytes": 3359,
+      "sha256": "643c4c939d143300ef9745318ae04fa3d5f18ec1276f7cdcd92e3eec9d9f1386",
+      "git_blob_sha1": "fb48255aa0f1d14ef73eb283df1ca392bd92f07b"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-archive-inputs-20261021.json",
+      "bytes": 1000,
+      "sha256": "a7bcda2ea514d7f8a78d0842a06c29ad7d1e6bd4cfe5437597fca8e2347d4887",
+      "git_blob_sha1": "49330c8850ab515a5d2fb31c15b727afc100785d"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-archive-v1-20261021.json",
+      "bytes": 608,
+      "sha256": "f26cf60afd632a34c48345b7ea7b73a83e9920c1566e653c7e893e07c4308880",
+      "git_blob_sha1": "7093ed1fb095f6166a3a0975984a809fcb079b55"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-dirty-proof-v2-20261021.json",
+      "bytes": 970,
+      "sha256": "55a47bfc475fbcf451182ab610a1578c655791eeb3c02e90f68a8ec2f8c81020",
+      "git_blob_sha1": "69077b33fd4b00df35d3a4a56c917fbd1552fe20"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-dirty-proof-v3-20261021.json",
+      "bytes": 970,
+      "sha256": "7c52af059b40318b5f2244652846af66c89674b20d0b0a01f015c90237d20f39",
+      "git_blob_sha1": "62e3a56cdf12d255279fec65e0ee09ea6df520ce"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-dirty-v1-20261021.json.gz",
+      "bytes": 54253,
+      "sha256": "2773a108ff61bcca96527f47687f82d65f2015c7993316003f19a99a91a91ffe",
+      "git_blob_sha1": "c32fe7d29990813950cc747950fc03b1bc9bd649"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-dirty-v2-20261021.json.gz",
+      "bytes": 53978,
+      "sha256": "d37f4bb74b149ff404eebba92256f763e55fa749d2439183cedd617de10e6c91",
+      "git_blob_sha1": "cd6293573a966a8a827d894fc78f9ea0a844dee0"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-final-verification-v1-20261021.json",
+      "bytes": 7099,
+      "sha256": "0c05b6efc54e049d3ba9a4c0921e808235ad572b4889736d1d8becd4423c22d1",
+      "git_blob_sha1": "20266e5772c81823e46325b5967c65921d3bf783"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-preservation-v1-20261021.json",
+      "bytes": 12179,
+      "sha256": "51846ef9867be22d094e5775ef6006f6158af044c70df57cfc57d2e96a51f1f8",
+      "git_blob_sha1": "0fcd0d8dab9d0b8fb8b33a5a798824405803f26d"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-regression-v1-20261021.log",
+      "bytes": 164,
+      "sha256": "2fbc5bfdf6f8354ec88c401c6aeebfdee637c804860b1be723e679ea283a1661",
+      "git_blob_sha1": "d4c9cacf1d6da42344b6e7fa5ef3d76dac4a47a7"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-regression-v2-20261021.log",
+      "bytes": 166,
+      "sha256": "3b4bd51ca8968b987d4d2cecd15649def8c455f85fe47a77262bb287101623cc",
+      "git_blob_sha1": "b210f77c7771147ddb8556222e2c1db92709cea4"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-source-v1-20261021.json",
+      "bytes": 4741,
+      "sha256": "1dd92612978d042bd7a7b0bb8f81660ce97e959bdf9fb6b8a122dbddc03afb0e",
+      "git_blob_sha1": "51a74b298b12027714cf19289c7dc95b7177c0c8"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-specs-after-20261021.json",
+      "bytes": 7551,
+      "sha256": "0107d7a829e4b290ad2267515d89c3d89214c28502486b2232d4641628c3001a",
+      "git_blob_sha1": "8e03fe62d29e264a86d4ddc3dea7feee72b38e73"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-specs-before-20261021.json",
+      "bytes": 7906,
+      "sha256": "b077510a4ebaef6592d983a7b86b0283af602f9df0390ee591b72e85387aa0cf",
+      "git_blob_sha1": "3409709271810e242844567432dd65831de5d7dd"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-specs-before-v2-20261021.json",
+      "bytes": 7903,
+      "sha256": "6923a5bfd7851198bced064df6f661664c4a760cd04671c1d29f9ed4bcdc29bb",
+      "git_blob_sha1": "02830f2f12daa661d5ca00dce56d9f84d2e72a28"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-status-complete-20261021.json",
+      "bytes": 2830,
+      "sha256": "2b40be1e461c50caf4adf31585d7841554cde5a0271bb35fd5fd7aa18bf5d2d0",
+      "git_blob_sha1": "1f93e8787eacfda6873762352ddf8e3a810d450a"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-tests-v1-20261021.log",
+      "bytes": 116,
+      "sha256": "693159060b93ae3863f723fb201f3a31b1689290c3669f258fe22487b1a93095",
+      "git_blob_sha1": "fce9afc3eb2cf2d15cdbb485134be2ef995ad9d9"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-proof-v3-20261021.json",
+      "bytes": 845,
+      "sha256": "1515d20c62e92101a6104d6b2f04bf7922f2a74d3a0ed795cf94ce2d2a259290",
+      "git_blob_sha1": "07add64c3f7d3a6b8aeaa91b58ed0a26fc7e84fd"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-proof-v4-20261021.json",
+      "bytes": 845,
+      "sha256": "5f606a6c008eb8d6bd5bb6520faaf8b9e0f00bb1a0dabf1657b52c34ca55071a",
+      "git_blob_sha1": "e41f576f36bc694d17ba3744382d6b83f7a4feac"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-v1-20261021.json.gz",
+      "bytes": 18091,
+      "sha256": "1712bb3dd5b2666efa6efbe018cce6fa445e8f61f03149391feabeb44fcdaf0f",
+      "git_blob_sha1": "ccd9248e4dbf870e98766297f060beb4199b1b6b"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-v2-20261021.json.gz",
+      "bytes": 12288,
+      "sha256": "53f144b74eaca6c957cdb1fda0e5f03b2b55f0bc72753d13655d003567677aa6",
+      "git_blob_sha1": "0d3539e29ca3b20ad84d3233e23b5ed11641dd99"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-v3-20261021.json.gz",
+      "bytes": 18509,
+      "sha256": "3f61681cba99ab6b33210788b53013863fc865e532e8af38dfc97ca57015f808",
+      "git_blob_sha1": "57c975fe2dcf1fa94b55fc5c314048f2067b5fe3"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-yield-v4-20261021.json.gz",
+      "bytes": 18276,
+      "sha256": "25ddd7945f3cebc39e67b6bef0ee49f7565dac9a27947a85d2768778eb644ca7",
+      "git_blob_sha1": "e61306814b06fb1ff27444c847a5809bb07ec7cc"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-zero-proof-v2-20261021.json",
+      "bytes": 967,
+      "sha256": "57747cb57e4c32ba29c4fe249a67acbde52cf339ca15eefefa2e6c4b33d930f0",
+      "git_blob_sha1": "833ef5b63a4fd09daf94c0599484745b08f4f4dc"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-zero-proof-v3-20261021.json",
+      "bytes": 967,
+      "sha256": "6544727bc254a1e37c6f0f4b9237fa014a084bda02482df89279b5fa7e65426d",
+      "git_blob_sha1": "48f987a79c762d54344b799d0f3d669ba0953d19"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-zero-v1-20261021.json.gz",
+      "bytes": 48875,
+      "sha256": "fd051448ed498f5365ef41a794dfe1be9d7f3cea7d314dceb048453af06d228f",
+      "git_blob_sha1": "503eb8fe2f103dfd540405d6af74a843ce40aa49"
+    },
+    {
+      "path": "analysis/school-scene-bootstrap-zero-v2-20261021.json.gz",
+      "bytes": 49779,
+      "sha256": "a33d60e8b0f75726fcd3e9f2035b705312cca9f6846d07f88a3a5d230876ce64",
+      "git_blob_sha1": "5daa7685b947290fd563aadb361e93c62387c453"
+    },
+    {
+      "path": "docs/school_scene_bootstrap.md",
+      "bytes": 5292,
+      "sha256": "9b0a2cbd59e0cb31f4eee25bb5a8a40a53adf69085c00e155bb9849d244acc95",
+      "git_blob_sha1": "896c46adfd91db25200ad5f93f6d068c7af35589"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-verify-scene-task-bootstrap/.openspec.yaml",
+      "bytes": 58,
+      "sha256": "f56fc2fc8d7ec294222e07f2f43f62ff5849a170fd6a0f750596c778c08d3229",
+      "git_blob_sha1": "1126a3d67217988e2e41bc816ffc619ebbdd8ac7"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-verify-scene-task-bootstrap/design.md",
+      "bytes": 2249,
+      "sha256": "96ac3e16ad319bca8664f691e8d38150ce1a2b74d750433f52e059fa1d97b3a6",
+      "git_blob_sha1": "e832554cb106b2d89ec927698e0eb3b9ce08e2b3"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-verify-scene-task-bootstrap/proposal.md",
+      "bytes": 1243,
+      "sha256": "24a56c36ad2daacf43b6e960e69b83d0decfc324dc5bf3ced435d0deaf4e318f",
+      "git_blob_sha1": "57dcbedd335736e47c11e6fc73ddc863b04d71cb"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-verify-scene-task-bootstrap/tasks.md",
+      "bytes": 1165,
+      "sha256": "c87e502f18e01aa58de068a4c8c596cae6125f5362508469306608fd9da618ad",
+      "git_blob_sha1": "3569c11ff88bdbf1bbff079c1f6291336e8b2c59"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 12495,
+      "sha256": "66fb32ab30420ad48ea13c0e277b45ee76dd1f45aa22a33fb303c358e9cad92a",
+      "git_blob_sha1": "9275a4d471233731a748d98b1ce13648bde0002a"
+    },
+    {
+      "path": "tools/school_scene_bootstrap.py",
+      "bytes": 12466,
+      "sha256": "975cb80e92662eabc86627eb74f52cb8385f19e29ebc8dde596c918d399b809a",
+      "git_blob_sha1": "33281b742936f494366a4cab55deaec83861274f"
+    },
+    {
+      "path": "tools/school_scene_bootstrap_preservation.py",
+      "bytes": 1949,
+      "sha256": "2ae376183672d1c3dd68f83d782a06f382fe91148097060d559718c0a79090ca",
+      "git_blob_sha1": "51387432032555683849cd2a040979a9ef4d4354"
+    },
+    {
+      "path": "tools/school_scene_bootstrap_verification.py",
+      "bytes": 13602,
+      "sha256": "32c7479a72de9d5287e4fc984c0baa5e8356080fefc0b067e32e22263cf0f4e7",
+      "git_blob_sha1": "3b9c9ae4f6522a036ddd5b7c5f541e99231a6bd4"
+    },
+    {
+      "path": "tools/tests/test_school_scene_bootstrap.py",
+      "bytes": 5369,
+      "sha256": "567c6af3f88a08911df25ef007ff41e275f490ca4a6486f4868eef7c58d463de",
+      "git_blob_sha1": "8a40e99bd5726bf5eb6375f9e94be0488077a7ba"
+    }
+  ],
+  "manifest_excludes": [
+    "this acceptance report to avoid recursive hash",
+    "final local acceptance commit ID"
+  ],
+  "local_only": true,
+  "pushed": false
+}

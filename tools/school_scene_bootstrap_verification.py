@@ -3,8 +3,10 @@ import gzip,json,struct,hashlib
 from pathlib import Path
 from capstone import Cs,CS_ARCH_X86,CS_MODE_32
 from tools.school_startup_lifetime_verification import ROOT,SOURCE,SOURCE_SHA256
-from tools.school_scheduler_lifetime_verification import verify_lifecycle,THUNK
+from tools.school_scheduler_lifetime_verification import verify_lifecycle,THUNK,RANGES as BASE_RANGES,IAT as BASE_IAT
 SIZE=0x1194f0
+RANGES=BASE_RANGES+((0x451080,0x45199b),(0x4519c0,0x451b10),(0x439ef0,0x43a060),(0x422090,0x422289),(0x422360,0x422560),(0x59a430,0x59a438))
+INSTRUCTIONS={0x4510ad,0x4510cd,0x4510ee,0x4510fa,0x451148,0x4511a5,0x45121c,0x4516d0,0x451711,0x451ab7,0x4539ec,0x453a0c,0x42238c,0x422407,0x42241c,0x4218a9}
 def need(v,msg):
  if not v:raise ValueError(msg)
 def word(b,p=0):return struct.unpack_from('<I',b,p)[0]
@@ -14,6 +16,8 @@ def sha(b):return hashlib.sha256(b).hexdigest()
 def source(report):
  raw=SOURCE.read_bytes();s=report['source_contract'];need(sha(raw)==SOURCE_SHA256==s['source_sha256'],'source identity');need((s['object_bytes'],s['vtable'],s['thread_callback'],s['state_dispatch'],s['world_loop'])==(SIZE,0x59a430,0x451670,0x451a60,0x4539b0),'original scene source graph')
  need(struct.unpack_from('<2I',raw,0x59a430-0x400000)==(0x451670,0x451630),'actual derived vtable')
+ need(s['ranges']==[dict(pointer=a,bytes=b-a,sha256=sha(raw[a-0x400000:b-0x400000])) for a,b in RANGES] and s['IAT_slots']==list(BASE_IAT+(0x5920a0,0x592068,0x5920c4)),'complete fixed source ranges/import slots')
+ need(len(s['instructions'])==len(INSTRUCTIONS) and {r['va'] for r in s['instructions']}==INSTRUCTIONS,'all source graph instructions')
  md=Cs(CS_ARCH_X86,CS_MODE_32)
  for row in s['instructions']:
   at=row['va'];i=next(md.disasm(raw[at-0x400000:at-0x400000+16],at));need((row['hex'],row['mnemonic'],row['operands'])==(i.bytes.hex(),i.mnemonic,i.op_str),'source instruction operands')

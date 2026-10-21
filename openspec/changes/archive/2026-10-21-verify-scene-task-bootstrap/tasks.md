@@ -10,4 +10,4 @@
 
 ## 3. Acceptance and next scene bridge
 
-- [ ] 3.1 Reproduce native cases, pass affected regression/strict specs and frozen scheduler/task-frame/R1/R2/history/save/checkpoint integrity, update master with remaining original callback/retained frame/world/input connection, and locally commit acceptance/archive this completed finite change with R3 still incomplete.
+- [x] 3.1 Reproduce native cases, pass affected regression/strict specs and frozen scheduler/task-frame/R1/R2/history/save/checkpoint integrity, update master with remaining original callback/retained frame/world/input connection, and locally commit acceptance/archive this completed finite change with R3 still incomplete.
