@@ -1,0 +1,764 @@
+{
+  "schema_version": 1,
+  "baseline": "1ef959e",
+  "source_contract_commit": "6cf644b",
+  "complete_task_commit": "6b23b20",
+  "change": "connect-original-task-frame",
+  "archive": "openspec/changes/archive/2026-10-21-connect-original-task-frame",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "complete_task_unit_accepted": true,
+  "R3_complete": false,
+  "scope": {
+    "real_IMM32_null_context_observed": true,
+    "source_pending_request_consumption_and_complete_task_body": true,
+    "cases": 3,
+    "complete_tasks_each": 67,
+    "total_complete_tasks": 201,
+    "total_actual_IME_queries": 201,
+    "independent_VM_roots": 0,
+    "original_code_or_IAT_modified": false,
+    "retained_logical_reconstruction": true,
+    "unchanged_checkpoint_in_place_resume": false,
+    "physical_input_capture": false,
+    "original_outer_thread_scheduler": false,
+    "complete_world_loop": false,
+    "static_sprite_GPU_textures_restored": false,
+    "Big5_ANSI_compatibility_fixed": false,
+    "Godot_changed": false
+  },
+  "corrected_interpretation": {
+    "old_R2_explanation": "input index -1 / uninitialized input",
+    "source_fact": "425ED0 sees signed byte FF at INPUT+630h: a prior pending IME request. Original 425DE0 must consume it before the next complete task request.",
+    "historical_R2_reports_not_rewritten": true
+  },
+  "cases": [
+    {
+      "path": "analysis/school-task-frame-initial-proof-v1-20261021.json",
+      "sha256": "628b586eddbdc3ae5eac62177f19abb8d9b3173e24a615eef2df9fc480d4b316",
+      "report": "analysis/school-task-frame-initial-v1-20261021.json.gz",
+      "report_sha256": "a7e36304bb99078d9122158a9ec36aa3941a347971c0b703dc995e089b1d1417",
+      "result": {
+        "case": "initial",
+        "original_instructions_replayed": 2004237,
+        "declared_roots": 271,
+        "steps": 274,
+        "output": {
+          "indexed_text_draws": 2,
+          "white_glyph_pixels": 30,
+          "transparent_glyph_pixels": 11929,
+          "blend_tolerance": 2,
+          "glyph_samples": [
+            {
+              "x": 407,
+              "y": 630,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 487,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 414,
+              "y": 636,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 392,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 393,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 456,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            }
+          ],
+          "actual_framebuffer_sha256": "8bc242da1c4b3b2bd1db8d22cdc2f91cf11691a40f952e42353f3f197eb54613"
+        },
+        "full_outer_world_frame": false,
+        "full_original_tasks": 67,
+        "actual_IME_queries": 67,
+        "pending_IME_request_consumed_by_original": true,
+        "independent_VM_roots": 0,
+        "original_outer_thread_scheduler": false,
+        "physical_keyboard_mouse_capture": false,
+        "R3_complete": false
+      }
+    },
+    {
+      "path": "analysis/school-task-frame-student9-waiting-proof-v1-20261021.json",
+      "sha256": "39f5af7219b4d2656acb201fae761a80b7bea0a5b8529ce91797af7aeb6694b3",
+      "report": "analysis/school-task-frame-student9-waiting-v1-20261021.json.gz",
+      "report_sha256": "dc0b9684d16fc9e0a84e6f00ccb39ba879b9321cdb589868f9da00b3af44ed56",
+      "result": {
+        "case": "student9_waiting",
+        "original_instructions_replayed": 2004237,
+        "declared_roots": 271,
+        "steps": 274,
+        "output": {
+          "indexed_text_draws": 2,
+          "white_glyph_pixels": 30,
+          "transparent_glyph_pixels": 11929,
+          "blend_tolerance": 2,
+          "glyph_samples": [
+            {
+              "x": 407,
+              "y": 630,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 487,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 414,
+              "y": 636,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 392,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 393,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 456,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            }
+          ],
+          "actual_framebuffer_sha256": "8bc242da1c4b3b2bd1db8d22cdc2f91cf11691a40f952e42353f3f197eb54613"
+        },
+        "full_outer_world_frame": false,
+        "full_original_tasks": 67,
+        "actual_IME_queries": 67,
+        "pending_IME_request_consumed_by_original": true,
+        "independent_VM_roots": 0,
+        "original_outer_thread_scheduler": false,
+        "physical_keyboard_mouse_capture": false,
+        "R3_complete": false
+      }
+    },
+    {
+      "path": "analysis/school-task-frame-fifth-class-proof-v1-20261021.json",
+      "sha256": "c5504a4c45061f3caa1706725fa0440b56315baa73ac59fa8b26d8ab8f994497",
+      "report": "analysis/school-task-frame-fifth-class-v1-20261021.json.gz",
+      "report_sha256": "abd881a8282ca053e6b03f7a7084cb5d566977c980919ee3ff8439673574237a",
+      "result": {
+        "case": "fifth_class",
+        "original_instructions_replayed": 2004237,
+        "declared_roots": 271,
+        "steps": 274,
+        "output": {
+          "indexed_text_draws": 2,
+          "white_glyph_pixels": 30,
+          "transparent_glyph_pixels": 11929,
+          "blend_tolerance": 2,
+          "glyph_samples": [
+            {
+              "x": 407,
+              "y": 630,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 487,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 633,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 464,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 504,
+              "y": 634,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 414,
+              "y": 636,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 392,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 393,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            },
+            {
+              "x": 456,
+              "y": 637,
+              "expected": [
+                93,
+                104,
+                106
+              ],
+              "actual": [
+                93,
+                104,
+                106
+              ]
+            }
+          ],
+          "actual_framebuffer_sha256": "8bc242da1c4b3b2bd1db8d22cdc2f91cf11691a40f952e42353f3f197eb54613"
+        },
+        "full_outer_world_frame": false,
+        "full_original_tasks": 67,
+        "actual_IME_queries": 67,
+        "pending_IME_request_consumed_by_original": true,
+        "independent_VM_roots": 0,
+        "original_outer_thread_scheduler": false,
+        "physical_keyboard_mouse_capture": false,
+        "R3_complete": false
+      }
+    }
+  ],
+  "regression": {
+    "path": "analysis/school-task-frame-regression-v1-20261021.log",
+    "tests": 41,
+    "passed": true,
+    "sha256": "b6631285592ce796675799235fe99107319ac75617adf5eb098cb98a911722c2"
+  },
+  "strict_specs": [
+    {
+      "path": "analysis/school-task-frame-strict-before-v2-20261021.log",
+      "passed": 32,
+      "failed": 0,
+      "sha256": "b3d0d9342b3b5ae97d1b7bee6876d24e1e24377928c075c92fa4cdcc760f4f92"
+    },
+    {
+      "path": "analysis/school-task-frame-strict-after-v1-20261021.log",
+      "passed": 31,
+      "failed": 0,
+      "sha256": "074efb329e42a2f05d363c9d0517b551bcacb02cd01bf82a9c07944b9acb8ce5"
+    }
+  ],
+  "preservation": {
+    "path": "analysis/school-task-frame-preservation-v1-20261021.json",
+    "sha256": "f037b04ab09cce9e5211fcf032543e50d50aebcdfef9010c135049441b9cd4f7",
+    "historical_raw_files": 16589,
+    "unchanged_R2_frozen_artifacts": 39,
+    "private_original_checkpoints": 9,
+    "prototype_rules": 10,
+    "installed_save_bytes_and_times_unchanged": true,
+    "downloaded_save_unchanged": true,
+    "excluded_authorized_controls": [
+      ".gitattributes",
+      "openspec/specs/reverse-engineering/completion/spec.md"
+    ],
+    "snapshot_phase": "Before authorized final task-frame master completion/archive update"
+  },
+  "next": {
+    "milestone": "R3",
+    "target": "2026-11-03",
+    "handoff": "docs/school_task_frame.md",
+    "source_scheduler": "49E540 -> 4217C0 -> 421850",
+    "required": "Own real event/critical-section/thread task lifetimes, input capture and world admission, then verify a substantive original interaction/world transition. Do not replace waits or callbacks with success constants.",
+    "world_entry_not_executed": "46B470"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 18711,
+      "sha256": "0fc396e50969bf8aa0ca7c751d50545b696c1c3a496b288ecf4be159bfbb45c8",
+      "git_blob": "f395debe09af210e4ecfd2953795de25bd582975"
+    },
+    {
+      "path": "analysis/school-task-frame-archive-v1-20261021.json",
+      "bytes": 596,
+      "sha256": "fdc02b27066399033f01642433dcfe7a0d19d3e186b37a462242acd4ecc1f40b",
+      "git_blob": "94e93f14f90189727f1a1a7e6feb63c025e98fa8"
+    },
+    {
+      "path": "analysis/school-task-frame-fifth-class-proof-v1-20261021.json",
+      "bytes": 2691,
+      "sha256": "c5504a4c45061f3caa1706725fa0440b56315baa73ac59fa8b26d8ab8f994497",
+      "git_blob": "7f79c2d96fc5d711664820b9dbe5b6c88950e766"
+    },
+    {
+      "path": "analysis/school-task-frame-fifth-class-v1-20261021.json.gz",
+      "bytes": 941186,
+      "sha256": "abd881a8282ca053e6b03f7a7084cb5d566977c980919ee3ff8439673574237a",
+      "git_blob": "694ae6eea857d8857380e38843af22df13d64dca"
+    },
+    {
+      "path": "analysis/school-task-frame-fifth-class-v1-20261021.png",
+      "bytes": 9131,
+      "sha256": "42c155604f9930e6a9cd9ee8215b54d4a365f20be57bb380d97a6adfc4cea553",
+      "git_blob": "3eb3c74cbd472223837e36360d0120236165c968"
+    },
+    {
+      "path": "analysis/school-task-frame-initial-proof-v1-20261021.json",
+      "bytes": 2687,
+      "sha256": "628b586eddbdc3ae5eac62177f19abb8d9b3173e24a615eef2df9fc480d4b316",
+      "git_blob": "399dfca5976b7218884be59cdfe18360fcb25ffd"
+    },
+    {
+      "path": "analysis/school-task-frame-initial-v1-20261021.json.gz",
+      "bytes": 941192,
+      "sha256": "a7e36304bb99078d9122158a9ec36aa3941a347971c0b703dc995e089b1d1417",
+      "git_blob": "f9b84277ae382e7cf880e642ceb3e05839a3053c"
+    },
+    {
+      "path": "analysis/school-task-frame-initial-v1-20261021.png",
+      "bytes": 9131,
+      "sha256": "42c155604f9930e6a9cd9ee8215b54d4a365f20be57bb380d97a6adfc4cea553",
+      "git_blob": "3eb3c74cbd472223837e36360d0120236165c968"
+    },
+    {
+      "path": "analysis/school-task-frame-input-v1-20261021.json",
+      "bytes": 2937,
+      "sha256": "2a0210ca71f45ce5b70a2832b804fd9de58fbde03f778d889f73e733566ccd00",
+      "git_blob": "6af286e758a9fb87ccfe6fc5f2128e9dd1b59ad5"
+    },
+    {
+      "path": "analysis/school-task-frame-native-identities-v1-20261021.json",
+      "bytes": 1771,
+      "sha256": "4eb528bc589a8868add2646bf92bd9c48e819b80a8edadce68ceb0fa374dac4f",
+      "git_blob": "6cc8d94b3946e7d7534c77d8ad8f6597ff1fc246"
+    },
+    {
+      "path": "analysis/school-task-frame-preservation-v1-20261021.json",
+      "bytes": 5858,
+      "sha256": "f037b04ab09cce9e5211fcf032543e50d50aebcdfef9010c135049441b9cd4f7",
+      "git_blob": "039af78354269e2c9e5f940076be7d3a3cd62cda"
+    },
+    {
+      "path": "analysis/school-task-frame-regression-v1-20261021.log",
+      "bytes": 147,
+      "sha256": "b6631285592ce796675799235fe99107319ac75617adf5eb098cb98a911722c2",
+      "git_blob": "61e1424a83b944fa9208852e40258061e217096a"
+    },
+    {
+      "path": "analysis/school-task-frame-strict-after-v1-20261021.log",
+      "bytes": 3161,
+      "sha256": "074efb329e42a2f05d363c9d0517b551bcacb02cd01bf82a9c07944b9acb8ce5",
+      "git_blob": "8f4963d58f130f5e62a525fdbe321997e9894db3"
+    },
+    {
+      "path": "analysis/school-task-frame-strict-before-v1-20261021.log",
+      "bytes": 3325,
+      "sha256": "b3d0d9342b3b5ae97d1b7bee6876d24e1e24377928c075c92fa4cdcc760f4f92",
+      "git_blob": "61b35a2692bc133213ae33f0c5d733e6044efe53"
+    },
+    {
+      "path": "analysis/school-task-frame-strict-before-v2-20261021.log",
+      "bytes": 3325,
+      "sha256": "b3d0d9342b3b5ae97d1b7bee6876d24e1e24377928c075c92fa4cdcc760f4f92",
+      "git_blob": "61b35a2692bc133213ae33f0c5d733e6044efe53"
+    },
+    {
+      "path": "analysis/school-task-frame-student9-waiting-proof-v1-20261021.json",
+      "bytes": 2696,
+      "sha256": "39f5af7219b4d2656acb201fae761a80b7bea0a5b8529ce91797af7aeb6694b3",
+      "git_blob": "b402d59f9927782a46251d4a689fff610ad82179"
+    },
+    {
+      "path": "analysis/school-task-frame-student9-waiting-v1-20261021.json.gz",
+      "bytes": 941204,
+      "sha256": "dc0b9684d16fc9e0a84e6f00ccb39ba879b9321cdb589868f9da00b3af44ed56",
+      "git_blob": "919d6a9e2ae5c67c0733d0b57a401275351d1148"
+    },
+    {
+      "path": "analysis/school-task-frame-student9-waiting-v1-20261021.png",
+      "bytes": 9131,
+      "sha256": "42c155604f9930e6a9cd9ee8215b54d4a365f20be57bb380d97a6adfc4cea553",
+      "git_blob": "3eb3c74cbd472223837e36360d0120236165c968"
+    },
+    {
+      "path": "docs/school_task_frame.md",
+      "bytes": 5343,
+      "sha256": "9bca9dc3d01a6e38f449aa63a7bf88e6225e4bc9802d88091a9721a43e9bc077",
+      "git_blob": "20b175107ba732d842d6123db438b67eac382fd1"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-original-task-frame/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9dce7645e8d23214043e04d1f4443f95ea5ca40f4320e09322b23b0ed2bc02ec",
+      "git_blob": "8f4fe2c9a8863edf4cc709b1bbab531d8b25c281"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-original-task-frame/design.md",
+      "bytes": 1917,
+      "sha256": "75a9c59c43e97d7dc4099aaa499d9be990c28ca74ebacfed54e3283fa6e3f797",
+      "git_blob": "004c7d31a3b39aaad8bd6d875cee65a169ed4c3c"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-original-task-frame/proposal.md",
+      "bytes": 1340,
+      "sha256": "1c2a8b9092e392c5faa6f08c59ef377f417391a76c3239b6e710909a3468c208",
+      "git_blob": "213d278231eccecbee13f479333a5f06218595ef"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-21-connect-original-task-frame/tasks.md",
+      "bytes": 1034,
+      "sha256": "8f1307f97cfa9ab94b1923d69931db1586b3e7019d1ce9b316d586ad0ff95da1",
+      "git_blob": "aacadf253d97212b74333cf3b7c9c2d8fa655960"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 10222,
+      "sha256": "119cd7678922e31fbacd4ab7beb04accf8b99cb0b39fd921871adf2c5930d4fe",
+      "git_blob": "c9afafe1e13e738db22b1b6291ab79507ad19387"
+    },
+    {
+      "path": "tools/school_task_frame.py",
+      "bytes": 6470,
+      "sha256": "5b3c900d85b6a454e0bc79effc350aa007bceaa79b7611625a5cab19371d0187",
+      "git_blob": "91458702024322d82cca9522a8f4e2378aa6888f"
+    },
+    {
+      "path": "tools/school_task_frame_preservation.py",
+      "bytes": 1747,
+      "sha256": "e9ab8c69509696fa9bbfb210eb7868b136f6035d8c06131c360bf1b0b60685f6",
+      "git_blob": "b5e3cf16c8ae9e6fce4168eeef41ac1e24f2b254"
+    },
+    {
+      "path": "tools/school_task_frame_verification.py",
+      "bytes": 4203,
+      "sha256": "aa3fec81d57f6ef22fd17e0218d3b281f3e87a1aec1718b671cb40203a5f6d16",
+      "git_blob": "82143e65c1f1d83dc3efde1e092368040cf51a8b"
+    },
+    {
+      "path": "tools/tests/test_school_task_frame.py",
+      "bytes": 2457,
+      "sha256": "c392705305729a6db1a9e78554dfea645d12deb03a4995592322aa3287bef7d4",
+      "git_blob": "ac249f379938ea2acee10931cf685576ac5c611e"
+    }
+  ],
+  "manifest_excludes": [
+    "This acceptance report avoids self-reference",
+    "Final commit id contains this report",
+    "Private original checkpoints/native helpers pinned by parent preservation and native identity reports"
+  ],
+  "local_only": true,
+  "pushed": false
+}

@@ -10,4 +10,4 @@
 
 ## 3. Integrated acceptance and R3 handoff
 
-- [ ] 3.1 Reproduce all three retained cases, pass affected regressions/strict specs and R2/historical/save/checkpoint preservation, update the master roadmap with actual task-cycle progress and remaining outer/input/world boundaries, then commit acceptance and archive this completed finite change without marking all R3 complete.
+- [x] 3.1 Reproduce all three retained cases, pass affected regressions/strict specs and R2/historical/save/checkpoint preservation, update the master roadmap with actual task-cycle progress and remaining outer/input/world boundaries, then commit acceptance and archive this completed finite change without marking all R3 complete.
