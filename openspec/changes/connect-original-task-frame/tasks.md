@@ -6,7 +6,7 @@
 
 ## 2. Complete original task and rendering continuation
 
-- [ ] 2.1 In valid source-initialized retained scenes execute original reset/complete454CF0 updates across panel/text/wait transitions with actual rendering, independently verify full original streams/writes/CPU/arguments and real output/lifetime; include tests/docs and commit the functional result locally.
+- [x] 2.1 In valid source-initialized retained scenes execute original reset/complete454CF0 updates across panel/text/wait transitions with actual rendering, independently verify full original streams/writes/CPU/arguments and real output/lifetime; include tests/docs and commit the functional result locally.
 
 ## 3. Integrated acceptance and R3 handoff
 

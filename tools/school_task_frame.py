@@ -40,6 +40,8 @@ class ActualIME:
   self.trace.append(row);return row
 
 class TaskFrameEmulator(RetainedStartup):
+ def bind_text(self,gdi):
+  super().bind_text(gdi);self.bind_ime(ActualIME())
  def bind_ime(self,ime):
   self.ime=ime;self.ime_target=self.read(IME_SLOT);self.map_missing(self.ime_target,1);self.uc.mem_write(self.ime_target,b'\xc3')
  def continuation_code(self,uc,at,size):
@@ -59,3 +61,25 @@ class TaskFramePipeline(Pipeline):
   self.reset();task=self.root('complete_original_task_'+str(index),0x454cf0,TACT)
   if task['cpu']['EAX']!=0 or task['pending'] or not any(x['va']==0x4ce8f0 for x in task['instruction_counts']):raise ValueError('original complete task/VM execution and natural return')
   return dict(index=index,PC=e.read(VM+28),wait=struct.unpack('<H',e.uc.mem_read(VM+32,2))[0],flag_before=flag_before,flag_after_original_reset=flag_reset,flag_after_task=bytes(e.uc.mem_read(INPUT+0x630,1))[0],task_phase=bytes(e.uc.mem_read(TACT+0x44,1))[0],original_instructions=sum(x['count'] for x in task['instruction_counts']),reset_APIs=len(reset['api_calls']))
+
+def run_case(name,image,frames=67):
+ import types
+ from tools import school_retained_render_pipeline as rendering
+ instances=[]
+ def construct(*args):
+  e=TaskFrameEmulator(*args);instances.append(e);return e
+ # Reuse unchanged R2 initialization/ownership/reporting; only substitute the
+ # Python driver classes in a private globals copy, never original game bodies.
+ run=types.FunctionType(rendering.run_case.__code__,dict(rendering.run_case.__globals__,RetainedStartup=construct,Pipeline=TaskFramePipeline),'run_complete_task_case',rendering.run_case.__defaults__)
+ c=run(name,image,frames)
+ e=instances[0];c.update(task_frame_source=source_contract(),actual_IME_identity=e.ime.identity,actual_IME_trace=e.ime.trace)
+ c['scope'].update(new_bounded_original_VM_roots=0,new_bounded_complete_task_roots=frames,source_input_request_reset=True,actual_IME_query=True,full_original_task_body=True,physical_keyboard_mouse_capture=False,original_outer_thread_scheduler=False)
+ return c
+
+if __name__=='__main__':
+ import argparse,gzip
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--case',choices=['initial','student9_waiting','fifth_class'],required=True);p.add_argument('--out',required=True);p.add_argument('--image',required=True);a=p.parse_args()
+ out=ROOT/a.out
+ if out.exists() or (ROOT/a.image).exists():p.error('fresh immutable evidence paths required')
+ c=run_case(a.case,ROOT/a.image);out.write_bytes(gzip.compress(json.dumps(dict(schema_version=1,case=c),separators=(',',':')).encode(),mtime=0))
+ print(a.case,'67 complete original tasks, actual input request reset, rendering and normal cleanup;',out.stat().st_size,'report bytes',flush=True)
