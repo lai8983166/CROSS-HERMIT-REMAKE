@@ -1,0 +1,39 @@
+# 原版MAIN事件到场景、世界和脚本循环
+
+本单元为`connect-native-scene-loop`。全部运行使用独立完整原版目录副本，旧保留VM/检查点与Godot不改；场景选择是明确的原函数输入，不冒充物理键鼠操作。R3整体仍未完成。
+
+## 原始前提和来源
+
+4E1B60调用4E1BE0重建角色模板及49E930新局资料，再由一参数cdecl的4DA860选择源菜单可用场景76/77。439E30(实际MAIN+10h,16)写原事件；原WinMain的49E2B0消费事件并在49E39E调用451080。原工厂分配/构造/发布7A4174、设置autoDelete并注册到真实MAIN+64h的bucket0。实验不直接调用工厂、4217C0、451670、454CF0或4CE8F0。
+
+原49E540→4217C0创建原_beginthreadex工作线程，421F50通过59A430虚表进入451670。实际线程经过加载/协作等待、451A60状态分派，进入普通4539B0循环。后者原样调用454CF0、453F10和46B470；脚本门还要等待原淡入/场景状态流程完成，进入循环本身并不代表VM已运行。
+
+早期标题/空资料、私有派生对象直接恢复等试验在到达完整前提之前退出，不能据保护层状态推断具体异常原因。正式路径使用原完整资料初始化与源场景选择，不手写全局字段来绕过依赖。
+
+## 运行目录与调用边界
+
+将原运行目录完整复制到`.venv-audit/scene-callback-runtime/`，包括独立SAVEDATA和OPTION.BIN。逐文件核对8105个不可变文件、1541607697字节，原文件与副本的文件身份不同；游戏只在副本目录运行。SAVEDATA/OPTION.BIN允许原程序在副本中正常改变，原存档另做内容/时间戳保全。
+
+复用冻结观察器/调用桥的私有Python globals副本，实际QueryFullProcessImageNameW必须指向私有原exe且SHA与原exe相同。调用白名单严格按初始化→场景选择→MAIN事件顺序；实验仅写新分配的私有桥和参数缓冲，不改原代码、IAT、已有对象或线程寄存器。源函数对游戏状态的正常写入是实际原版执行。
+
+为4DA860单独生成一参数cdecl桥，在原函数返回后add esp4；其它两次调用沿用冻结桥。真实返回参数块、线程等待/退出和ESP平衡均核验。Unicorn另外执行原4DA860及其原辅助函数，核验两个场景下cdecl完整栈/非易失寄存器与场景数据；未以游戏函数桩或伪造OS返回代替。
+
+## 验证边界
+
+保留原工厂/外层调度/工作线程的实际WOW64上下文和原调用链；重建32个桶的完整可见链表，确认同一个原场景对象、真实manager/事件/线程ID和源autoDelete。完整场景对象在首次普通循环及脚本已运行两个停点采样，但不宣称独立逐指令重放完整场景语义。
+
+将加载后的完整脚本内存与私有/原资源文件逐字节比较，所有采样PC对应的指令窗口均与原文件核对。场景76对应T0007.BIN、77对应T0009.BIN，是按实际加载字节唯一匹配确认的文件身份，不按场景号猜文件名。仅脚本已激活且PC实际推进的样本纳入正式验收。两个开场场景的战斗计数器仍为0，不能据此宣称战斗行动已经推进；世界初始化门和普通世界调用链单独核对。
+
+退出仍由原自有窗口WM_CLOSE触发，核验原游戏/MAIN/缓存清理、窗口属性结束及整个Job退出。原工作线程从等待到退出实际核验；原管理器的取消路径包含TerminateThread，不能把清理后的exit0称为回调自然返回。保护层C0000354与WinMain/游戏清理分开报告。
+
+独立复核拒绝了两类中间结果：已进场景循环但脚本门未开，以及采集终止条件缩进错误导致的提前结束/达到上限。原始记录保留，正式复现使用修正后的状态边界，不改原游戏状态使测试通过。
+
+## 命令与下一步
+
+```bash
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_native_scene --scene 76 --out analysis/new-native-scene.json.gz
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_native_scene_verification --report analysis/new-native-scene.json.gz --out analysis/new-native-scene-proof.json
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_school_native_scene_calls
+```
+
+下一步是原生场景中的真实输入/交互转换，以及把这一原生资源/线程来源接回既有保留逻辑场景。没有把两条新局原生路径称作旧检查点原地恢复，也没有改变R3/R4–R6的完成标准或2026-11-20总目标。
