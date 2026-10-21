@@ -35,6 +35,7 @@ def verify(report,action=None,require_transition=False):
  verified=False
  if require_transition:
   action=action or h.get('action_receipt');need(action is not None,'successful authorized input receipt required')
+  need(not mouse and word(bytes.fromhex(rows[0]['VM_hex']),28)==pc and not bytes.fromhex(rows[0]['input']['hex'])[0x4b9]&128,'initial unchanged confirmation and keyboard-only transition')
   need(press is not None and release is not None and advance is not None and press<release and press<=advance,'real input/release/PC transition required')
   need(s['foreground_hwnd']==window['hwnd'],'owned foreground at handoff end')
   need(h.get('backend')=='held scan-code fallback' and report['input_method']=='guarded Win32 held scan code; no host object writes','explicit held input backend identity')
@@ -45,6 +46,7 @@ def verify(report,action=None,require_transition=False):
   need(h['started_wall_time_ns']<=action['start_wall_time_ns']<=action['down_wall_time_ns']<action['up_wall_time_ns']<=action['end_wall_time_ns']<=h['ended_wall_time_ns'],'input receipt inside actual observation interval')
   need(action['down_wall_time_ns']-10000000<=rows[press]['wall_time_ns']<=action['up_wall_time_ns']+100000000 and rows[release]['wall_time_ns']>=action['up_wall_time_ns']-10000000,'actual observed press/release temporally matches held input')
   need(keyboard and all(x['foreground_hwnd']==window['hwnd'] for x in rows[press:release+1]),'original keyboard captured under owned foreground')
+  activation=p['owned_window_activation'];need(activation['hwnd']==activation['after']==window['hwnd'] and all(x['name']=='SetForegroundWindow' for x in activation['operations']),'only the actual owned window was activated')
   need(word(bytes.fromhex(p['samples'][-1]['VM_hex']),28)!=pc,'post-input original ordinary loop crossed confirmation PC')
   verified=True
  return dict(schema_version=1,core_scene_and_no_input_phase=core,samples=len(rows),keyboard_pressed_samples=keyboard,mouse_confirmation_samples=mouse,OS_space_events=os_events,derived_boundary=dict(press_index=press,release_index=release,advanced_index=advance),read_mode='unsuspended separate memory reads; not an atomic full-state or instruction trace',system_input_transition_verified=verified,R3_complete=False)

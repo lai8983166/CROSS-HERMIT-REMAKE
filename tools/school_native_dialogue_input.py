@@ -55,20 +55,43 @@ def held_space(api,guard,hold_ms=120,clock=time.monotonic_ns,sleep=time.sleep):
  return receipt
 
 
-def owned_held_space(c,hwnd,hold_ms=120):
- """Production entry; intentionally not connected to any runner/CLI yet."""
+def owned_target_guard(c,hwnd,require_foreground=True):
+ from tools.school_native_dialogue_desktop import require_unlocked
+ require_unlocked()
  from pathlib import Path
- from tools.school_native_scene import APP,original,parent,word,image_name
- def guard():
-  if c.pid not in c.owned.members():raise ValueError('input process no longer belongs to the owned Job')
-  pid=W.DWORD();original.ownerpid(hwnd,C.byref(pid))
-  if pid.value!=c.pid or original.findwindow(b'Cross Hermit',None)!=hwnd:raise ValueError('input HWND ownership changed')
-  main=word(c.get(0x7a4a00,4))
-  if not main or original.getprop(hwnd,b'CPP_CLASS')!=main:raise ValueError('original window property/MAIN mismatch')
-  foreground=original.ubind('GetForegroundWindow',W.HWND,[])()
-  if foreground!=hwnd:raise ValueError('owned original must already have foreground focus')
-  name=C.create_unicode_buffer(32768);size=W.DWORD(len(name))
-  if not image_name(c.h,0,name,C.byref(size)) or Path(name.value).resolve()!=APP.resolve():raise ValueError('only the exact private source image may receive input')
+ from tools.school_native_scene import APP,original,word,image_name
+ if c.pid not in c.owned.members():raise ValueError('input process no longer belongs to the owned Job')
+ pid=W.DWORD();original.ownerpid(hwnd,C.byref(pid))
+ if pid.value!=c.pid or original.findwindow(b'Cross Hermit',None)!=hwnd:raise ValueError('input HWND ownership changed')
+ main=word(c.get(0x7a4a00,4))
+ if not main or original.getprop(hwnd,b'CPP_CLASS')!=main:raise ValueError('original window property/MAIN mismatch')
+ name=C.create_unicode_buffer(32768);size=W.DWORD(len(name))
+ if not image_name(c.h,0,name,C.byref(size)) or Path(name.value).resolve()!=APP.resolve():raise ValueError('only the exact private source image may receive input')
+ if require_foreground and original.ubind('GetForegroundWindow',W.HWND,[])()!=hwnd:raise ValueError('owned original must already have foreground focus')
+
+
+def focus_target(api,guard,hwnd):
+ """Activate only the guarded target; never attach a foreign input queue."""
+ guard();r=dict(hwnd=hwnd,before=api.foreground(),operations=[])
+ if r['before']!=hwnd:
+  guard();r['operations'].append(dict(name='SetForegroundWindow',result=bool(api.foreground_window(hwnd))))
+ r['after']=api.foreground();guard()
+ if r['after']!=hwnd:raise ValueError('owned window activation did not reach actual foreground')
+ return r
+
+
+def focus_owned_window(c,hwnd):
+ from tools.school_native_scene import original
+ class Api:
+  foreground=staticmethod(original.ubind('GetForegroundWindow',W.HWND,[]))
+  foreground_window=staticmethod(original.ubind('SetForegroundWindow',W.BOOL,[W.HWND]))
+ return focus_target(Api(),lambda:owned_target_guard(c,hwnd,False),hwnd)
+
+
+def owned_held_space(c,hwnd,hold_ms=120):
+ """Production entry for explicitly authorized --held-input runs."""
+ from tools.school_native_scene import APP,original
+ def guard():owned_target_guard(c,hwnd)
  class Api:
   def __init__(self):self.send=original.ubind('SendInput',W.UINT,[W.UINT,C.POINTER(INPUT),C.c_int])
   def submit(self,packet):return self.send(1,C.byref(packet),C.sizeof(INPUT))

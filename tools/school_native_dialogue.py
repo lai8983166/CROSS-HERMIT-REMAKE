@@ -7,6 +7,8 @@ from tools.school_native_scene import (ROOT,SOURCE,SOURCE_SHA,APP,INSTALLED,SIZE
 
 class VisibleOwnedRuntime(OwnedRuntime):
  def start(self):
+  from tools.school_native_dialogue_desktop import require_unlocked
+  self.desktop_preflight=require_unlocked()
   # Same frozen owned launch, explicit normal initial show for targetable OS input.
   app=APP.resolve();need(sha(app.read_bytes())==original.ORIGINAL_SHA,'private executable identity')
   si=original.SI();si.cb=C.sizeof(si);si.flags=1;si.show=1
@@ -99,9 +101,14 @@ class DialogueBoundary:
   return True,bool(self.advanced_index is not None and self.release_index is not None and now-self.finish_started>=.5)
  def summary(self):return dict(wait_PC=self.wait_pc,no_input_start=self.wait_index,ready_index=self.ready_index,press_index=self.press_index,release_index=self.release_index,advanced_index=self.advanced_index)
 
-def run_case(scene, notice, observe_only=False,held_input=False):
+def run_case(scene, notice, observe_only=False,held_input=False,tool_launch=False):
  owners=[];results=[];worker_handles=[]
- def own():x=VisibleOwnedRuntime();owners.append(x);return x
+ def own():
+  if tool_launch:
+   from tools.school_native_dialogue_launch import ToolLaunchedRuntime
+   x=ToolLaunchedRuntime(str(notice)+'.launch.json')
+  else:x=VisibleOwnedRuntime()
+  owners.append(x);return x
  def probe(pid,owned):
   c=NativeSceneCalls(pid,owned,scene);r=dict(scene=scene,main=c.main,process_image=c.process_image,allocations=[dict(pointer=a,bytes=n) for a,n in c.blocks],source_before=identity(c),samples=[],full_objects=[],error=None);results.append(r)
   try:
@@ -117,6 +124,9 @@ def run_case(scene, notice, observe_only=False,held_input=False):
    need(word(c.get(0x7a4174,4))==0,'fresh original scene publication');r['scenario_before_hex']=c.get(0x7f4488,80).hex();c.call(0x4e1b60,0);r['scenario_before_selection_hex']=c.get(0x7f4488,80).hex();c.call(0x4da860,0,(scene,));r['scenario_selected_hex']=c.get(0x7f4488,80).hex()
    event_before=c.get(c.main+0x2c,8);r['event_before_hex']=event_before.hex();need(word(event_before)==0,'no pending original MAIN event');r['event_before_hex']=event_before.hex();c.call(0x439e30,c.main+0x10,(16,))
    window=original.findwindow(b'Cross Hermit',None);owner=W.DWORD();main_tid=original.ownerpid(window,C.byref(owner));need(owner.value==pid,'owned native window thread')
+   if held_input:
+    from tools.school_native_dialogue_input import focus_owned_window
+    r['owned_window_activation']=focus_owned_window(c,window)
    deadline=time.monotonic()+180;loop_started=None;boundary=DialogueBoundary(notice,observe_only);worker=None;node_seen=None
    while time.monotonic()<deadline and len(r['samples'])<12000:
     node=word(c.get(0x7a4174,4));initial=c.get(node,48) if node else bytes(48);tid=word(initial,0x24) if word(initial,4)&1 else 0
@@ -181,11 +191,11 @@ def run_case(scene, notice, observe_only=False,held_input=False):
 
 if __name__=='__main__':
  import argparse
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--scene',required=True,type=int,choices=[76,77]);p.add_argument('--out',required=True);p.add_argument('--notice',required=True);p.add_argument('--observe-only',action='store_true');p.add_argument('--held-input',action='store_true',help='requires explicit user override of the computer-use JS-only restriction');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--scene',required=True,type=int,choices=[76,77]);p.add_argument('--out',required=True);p.add_argument('--notice',required=True);p.add_argument('--observe-only',action='store_true');p.add_argument('--held-input',action='store_true',help='requires explicit user override of the computer-use JS-only restriction');p.add_argument('--tool-launch',action='store_true');a=p.parse_args()
  out=ROOT/a.out;notice=ROOT/a.notice
  if out.exists() or notice.exists():p.error('fresh report and notice paths required before native launch')
  if a.observe_only and a.held_input:p.error('observation-only cannot submit input')
- case=run_case(a.scene,notice,a.observe_only,a.held_input);save(a.out,dict(schema_version=1,source_contract=source_contract(),input_source_contract=input_source_contract(),case=case,R3_complete=False,input_method='no input observation' if a.observe_only else 'guarded Win32 held scan code; no host object writes' if a.held_input else 'computer-use sky.press_key space via OS; no host object writes',human_physical_input_claimed=False))
+ case=run_case(a.scene,notice,a.observe_only,a.held_input,a.tool_launch);save(a.out,dict(schema_version=1,source_contract=source_contract(),input_source_contract=input_source_contract(),case=case,R3_complete=False,input_method='no input observation' if a.observe_only else 'guarded Win32 held scan code; no host object writes' if a.held_input else 'computer-use sky.press_key space via OS; no host object writes',human_physical_input_claimed=False))
  print('dialogue scene',a.scene,'error',case['lifecycle']['error'],'boundary',case['probe'].get('dialogue_boundary') if case['probe'] else None,flush=True)
  hand=case['probe'].get('input_handoff',{}) if case['probe'] else {}
  if case['lifecycle']['error'] or not case['probe'] or case['probe'].get('dialogue_boundary',{}).get('ready_index') is None or (not a.observe_only and (hand.get('advanced_index') is None or hand.get('release_index') is None)):raise SystemExit(1)
