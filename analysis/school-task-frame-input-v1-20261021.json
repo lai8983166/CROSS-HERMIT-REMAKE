@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "source": {
+    "source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "original_instructions": [
+      {
+        "va": 4349447,
+        "hex": "0fbe8830060000",
+        "mnemonic": "movsx",
+        "operands": "ecx, byte ptr [eax + 0x630]"
+      },
+      {
+        "va": 4349492,
+        "hex": "e827000000",
+        "mnemonic": "call",
+        "operands": "0x425e60"
+      },
+      {
+        "va": 4349503,
+        "hex": "c6813006000000",
+        "mnemonic": "mov",
+        "operands": "byte ptr [ecx + 0x630], 0"
+      },
+      {
+        "va": 4349575,
+        "hex": "e8e4fdffff",
+        "mnemonic": "call",
+        "operands": "0x425c70"
+      },
+      {
+        "va": 4349076,
+        "hex": "e8b1701400",
+        "mnemonic": "call",
+        "operands": "0x56cd4a"
+      },
+      {
+        "va": 5688650,
+        "hex": "ff25ec205900",
+        "mnemonic": "jmp",
+        "operands": "dword ptr [0x5920ec]"
+      },
+      {
+        "va": 4349680,
+        "hex": "0fbe8830060000",
+        "mnemonic": "movsx",
+        "operands": "ecx, byte ptr [eax + 0x630]"
+      },
+      {
+        "va": 4349689,
+        "hex": "7424",
+        "mnemonic": "je",
+        "operands": "0x425f1f"
+      },
+      {
+        "va": 4349714,
+        "hex": "e869f0ffff",
+        "mnemonic": "call",
+        "operands": "0x424f80"
+      },
+      {
+        "va": 4349748,
+        "hex": "c68130060000ff",
+        "mnemonic": "mov",
+        "operands": "byte ptr [ecx + 0x630], 0xff"
+      },
+      {
+        "va": 4842916,
+        "hex": "e83778f8ff",
+        "mnemonic": "call",
+        "operands": "0x425de0"
+      },
+      {
+        "va": 4842957,
+        "hex": "e8bef5f6ff",
+        "mnemonic": "call",
+        "operands": "0x40db90"
+      },
+      {
+        "va": 4842974,
+        "hex": "e89df6f6ff",
+        "mnemonic": "call",
+        "operands": "0x40dc80"
+      },
+      {
+        "va": 4843023,
+        "hex": "e8ac31f8ff",
+        "mnemonic": "call",
+        "operands": "0x4217c0"
+      },
+      {
+        "va": 4541835,
+        "hex": "e8609b0700",
+        "mnemonic": "call",
+        "operands": "0x4ce8f0"
+      }
+    ],
+    "import_slot": 5841132,
+    "dll": "IMM32.dll",
+    "symbol": "ImmGetOpenStatus",
+    "input_object": 17301888,
+    "request_flag_offset": 1584,
+    "assertion": "A prior IME request is pending; this is not an input index",
+    "full_outer_thread_scheduler_executed": false
+  },
+  "actual_platform": {
+    "path": "C:\\Windows\\System32\\IMM32.DLL",
+    "sha256": "2a882bc0df58f4f6dd906889b1fb6d7b7bc70da7109e016e0f1e67b264d073b6",
+    "host_pointer_bytes": 8,
+    "guest_pointer_bytes": 4
+  },
+  "observations": [
+    {
+      "name": "ImmGetOpenStatus",
+      "args": [
+        0
+      ],
+      "result": 0,
+      "last_error": 0,
+      "actual_OS_observed": true
+    }
+  ],
+  "direct_game_state_writes": false,
+  "nonzero_context_authority": false
+}
