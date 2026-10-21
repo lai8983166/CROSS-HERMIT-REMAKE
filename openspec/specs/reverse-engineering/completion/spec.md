@@ -82,7 +82,7 @@ R6 SHALL 仅在全部必需主线路径已闭合、覆盖清单完成并通过�
 
 ## Historical references
 
-- [保留键盘回放连接单元](../../../changes/connect-retained-keyboard-replay/tasks.md)、[来源/完整任务与离线边界](../../../../docs/school_retained_keyboard.md)：六组合独立复核已通过，集成验收进行中；R3整体仍未完成。
+- [已完成的保留键盘回放连接单元](../../../changes/archive/2026-10-22-connect-retained-keyboard-replay/tasks.md)、[来源/完整任务与离线边界](../../../../docs/school_retained_keyboard.md)：3/3完成并归档，六组合独立复核与192项回归通过；[本单元验收](../../../../analysis/school-retained-keyboard-acceptance-v1-20261022.json)。R3整体仍未完成。
 
 - [已完成的原生输入单元](../../../changes/archive/2026-10-22-verify-native-dialogue-input/tasks.md)、[键盘来源/原生无输入对照及实际输入转换](../../../../docs/school_native_dialogue.md)：3/3任务已完成并归档；两个独立原版的对白确认已通过，169项回归通过；[输入验收](../../../../analysis/school-native-dialogue-acceptance-v1-20261022.json)。R3保留执行与更实质交互待验。
 
