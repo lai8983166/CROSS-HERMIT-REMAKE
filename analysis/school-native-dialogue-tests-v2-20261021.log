@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\__main__.py", line 18, in <module>
+    main(module=None)
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\main.py", line 100, in __init__
+    self.parseArgs(argv)
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\main.py", line 147, in parseArgs
+    self.createTests()
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\main.py", line 158, in createTests
+    self.test = self.testLoader.loadTestsFromNames(self.testNames,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 220, in loadTestsFromNames
+    suites = [self.loadTestsFromName(name, module) for name in names]
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 220, in <listcomp>
+    suites = [self.loadTestsFromName(name, module) for name in names]
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "F:\project\chaomofa\tools\tests\test_school_native_dialogue.py", line 5, in <module>
+    from tools import school_native_dialogue_verification as proof
+  File "F:\project\chaomofa\tools\school_native_dialogue_verification.py", line 98
+    out.write_text(json.dumps(r,indent=2)+'
+                                          ^
+SyntaxError: unterminated string literal (detected at line 98)

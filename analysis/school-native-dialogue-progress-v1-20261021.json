@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "kind": "unfinished_change_progress_checkpoint",
+  "change": "verify-native-dialogue-input",
+  "baseline_commit": "5b7df94",
+  "progress": {
+    "total": 3,
+    "complete": 1,
+    "remaining": 2
+  },
+  "archived": false,
+  "R3_complete": false,
+  "system_input_transition_verified": false,
+  "source_post_device_cases": 9,
+  "formal_no_input_observations": [
+    "76-v6",
+    "77-v1"
+  ],
+  "independent_final_proofs": [
+    "analysis/school-native-dialogue-76-proof-v6b-20261021.json",
+    "analysis/school-native-dialogue-77-proof-v1b-20261021.json"
+  ],
+  "observations": [
+    {
+      "path": "analysis/school-native-dialogue-76-v1-20261021.json.gz",
+      "sha256": "17457d6c3f0c8e89ca5eda36477ab62c691b6cec8114e2eb0caa4fb5dcd31e7a",
+      "scene": 76,
+      "samples": 29,
+      "lifecycle_error": "ValueError('all private buffers freed')",
+      "probe_error": "ValueError('unreadable actual object 0x7a4174')",
+      "forced_job_cleanup": false,
+      "boundary": null,
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v2-20261021.json.gz",
+      "sha256": "71abd2f0b1b6d4839f8ae3e5b8806eb9fb29039d5ad4bdffcc73569728f07919",
+      "scene": 76,
+      "samples": 655,
+      "lifecycle_error": "NameError(\"name 'INSTALLED' is not defined\")",
+      "probe_error": "NameError(\"name 'INSTALLED' is not defined\")",
+      "forced_job_cleanup": true,
+      "boundary": null,
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v3-20261021.json.gz",
+      "sha256": "dd00a0f371be908dc4a56f56b24ce1173f5018aa05519e3c4739a13b853de573",
+      "scene": 76,
+      "samples": 11511,
+      "lifecycle_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "probe_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "forced_job_cleanup": true,
+      "boundary": null,
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v4-20261021.json.gz",
+      "sha256": "e322eb9f1e67d8539f4818a31b991d23d2b9674c0df1e49fd88298999539b3e3",
+      "scene": 76,
+      "samples": 0,
+      "lifecycle_error": "ValueError('no pending original MAIN event')",
+      "probe_error": "ValueError('no pending original MAIN event')",
+      "forced_job_cleanup": true,
+      "boundary": null,
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v5-20261021.json.gz",
+      "sha256": "fe5ccaf19ce3507568fe51d0f2d40c55837549adacc6c63b5f7571be3ce29ae4",
+      "scene": 76,
+      "samples": 11507,
+      "lifecycle_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "probe_error": "ValueError('actual scene loading must reach ordinary loop and active original script')",
+      "forced_job_cleanup": true,
+      "boundary": null,
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v6-20261021.json.gz",
+      "sha256": "41a3e7dff09446c4467ea9addabc63ed9140a3312a60f3f68f480f90a67363bc",
+      "scene": 76,
+      "samples": 1011,
+      "lifecycle_error": null,
+      "probe_error": null,
+      "forced_job_cleanup": false,
+      "boundary": {
+        "wait_PC": 1164,
+        "no_input_start": 945,
+        "ready_index": 1010,
+        "press_index": null,
+        "release_index": null,
+        "advanced_index": null
+      },
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v7-20261021.json.gz",
+      "sha256": "777abca25517fdfd4b97ba143ab6afe819453f108d0bcc97d193a2e937af6b46",
+      "scene": 76,
+      "samples": 0,
+      "lifecycle_error": "ValueError('no pending original MAIN event')",
+      "probe_error": "ValueError('no pending original MAIN event')",
+      "forced_job_cleanup": true,
+      "boundary": null,
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v8-20261021.json.gz",
+      "sha256": "523313b2dc9b217475b5763ac2c6ed728c9bfb090812711188469159f151d338",
+      "scene": 76,
+      "samples": 11516,
+      "lifecycle_error": null,
+      "probe_error": null,
+      "forced_job_cleanup": false,
+      "boundary": {
+        "wait_PC": 1164,
+        "no_input_start": 932,
+        "ready_index": 996,
+        "press_index": null,
+        "release_index": null,
+        "advanced_index": null
+      },
+      "accepted_system_input_transition": false
+    },
+    {
+      "path": "analysis/school-native-dialogue-77-v1-20261021.json.gz",
+      "sha256": "aab45477bb926a759067f0bbb581d9429716ba2fdd2d2a1ebdf134676edb3780",
+      "scene": 77,
+      "samples": 934,
+      "lifecycle_error": null,
+      "probe_error": null,
+      "forced_job_cleanup": false,
+      "boundary": {
+        "wait_PC": 152,
+        "no_input_start": 869,
+        "ready_index": 933,
+        "press_index": null,
+        "release_index": null,
+        "advanced_index": null
+      },
+      "accepted_system_input_transition": false
+    }
+  ],
+  "validation": {
+    "affected_regression_tests": 115,
+    "final_input_suite_tests": 24,
+    "strict_items": 32,
+    "preservation_before": "analysis/school-native-dialogue-preservation-before-v1-20261021.json",
+    "preservation_after": "analysis/school-native-dialogue-preservation-after-v1-20261021.json",
+    "frozen_native_artifacts": 40,
+    "immutable_runtime_files": 8105
+  },
+  "blocker": {
+    "action": "computer-use OS space confirmation on unique owned original Direct3D window",
+    "screenshot_error": "FrameArrived timed out: timed out waiting on channel",
+    "input_activation_error": "failed to activate captured window",
+    "recovery": "fresh returned binding/activation and new-instance root Raise failed",
+    "successful_input_reported": false,
+    "receipt": "analysis/school-native-dialogue-ui-failure-v1-20261021.json"
+  },
+  "remaining": [
+    "successful system input and original PC transition in two independent native processes",
+    "integrated acceptance and archive after all change tasks complete",
+    "remaining R3 retained-execution connection and substantive interaction acceptance"
+  ],
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 20058,
+      "sha256": "3af03a506f3ec3fbcbb38209b8ad2a45ac8577760f009001efdb0b23ff628c1c",
+      "git_blob": "1e848be107692b3c1b4b7181042fe7b867f565b4"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-proof-v6-20261021.json",
+      "bytes": 40732,
+      "sha256": "ec11d51ba8ec0ffd952882e7dcfe49c009a222210d5d3aa667b4e000f2b638b1",
+      "git_blob": "4d1e892ba38ba4d2c471e330d3bb0b8b4a43ee3d"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-proof-v6b-20261021.json",
+      "bytes": 40732,
+      "sha256": "ec11d51ba8ec0ffd952882e7dcfe49c009a222210d5d3aa667b4e000f2b638b1",
+      "git_blob": "4d1e892ba38ba4d2c471e330d3bb0b8b4a43ee3d"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v1-20261021.json.gz",
+      "bytes": 16578,
+      "sha256": "17457d6c3f0c8e89ca5eda36477ab62c691b6cec8114e2eb0caa4fb5dcd31e7a",
+      "git_blob": "0e8867e849440e6c0f5c91bec96099f8c24b3d03"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v2-20261021.json.gz",
+      "bytes": 187000,
+      "sha256": "71abd2f0b1b6d4839f8ae3e5b8806eb9fb29039d5ad4bdffcc73569728f07919",
+      "git_blob": "f2f4c6dc85197a445d3ac0828282be782fb68e3a"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v3-20261021.json.gz",
+      "bytes": 2617188,
+      "sha256": "dd00a0f371be908dc4a56f56b24ce1173f5018aa05519e3c4739a13b853de573",
+      "git_blob": "6a38de3ff9199b44365c724239a30fe6d35e92a0"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v4-20261021.json.gz",
+      "bytes": 14061,
+      "sha256": "e322eb9f1e67d8539f4818a31b991d23d2b9674c0df1e49fd88298999539b3e3",
+      "git_blob": "146da3cbbb4dbadd5d17bcd3a7311632b2a8fb16"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v5-20261021.json.gz",
+      "bytes": 2790000,
+      "sha256": "fe5ccaf19ce3507568fe51d0f2d40c55837549adacc6c63b5f7571be3ce29ae4",
+      "git_blob": "ddb20487d777ad38fff9142ca21bb67a9b797a94"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v6-20261021.json.gz",
+      "bytes": 315005,
+      "sha256": "41a3e7dff09446c4467ea9addabc63ed9140a3312a60f3f68f480f90a67363bc",
+      "git_blob": "b5be33b2b6e57c377173de96dd241c30367bb1dd"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v7-20261021.json.gz",
+      "bytes": 14505,
+      "sha256": "777abca25517fdfd4b97ba143ab6afe819453f108d0bcc97d193a2e937af6b46",
+      "git_blob": "d4026c6470ea4116857fb456419efdd1eb7cdd8d"
+    },
+    {
+      "path": "analysis/school-native-dialogue-76-v8-20261021.json.gz",
+      "bytes": 2828859,
+      "sha256": "523313b2dc9b217475b5763ac2c6ed728c9bfb090812711188469159f151d338",
+      "git_blob": "8e73a27125b108d0a8f084be036519272312ef21"
+    },
+    {
+      "path": "analysis/school-native-dialogue-77-proof-v1-20261021.json",
+      "bytes": 37084,
+      "sha256": "464fe664e6eafa6f388f82167c9946807b8301fad702eec0d6d6cb92fbdcb292",
+      "git_blob": "34419f11a14b5c3a12b2c91c7b3a5c92415b180b"
+    },
+    {
+      "path": "analysis/school-native-dialogue-77-proof-v1b-20261021.json",
+      "bytes": 37084,
+      "sha256": "464fe664e6eafa6f388f82167c9946807b8301fad702eec0d6d6cb92fbdcb292",
+      "git_blob": "34419f11a14b5c3a12b2c91c7b3a5c92415b180b"
+    },
+    {
+      "path": "analysis/school-native-dialogue-77-v1-20261021.json.gz",
+      "bytes": 303257,
+      "sha256": "aab45477bb926a759067f0bbb581d9429716ba2fdd2d2a1ebdf134676edb3780",
+      "git_blob": "6583ba9eb906967ba59a8af0b75b43bf52f567a5"
+    },
+    {
+      "path": "analysis/school-native-dialogue-apply-v1-20261021.json",
+      "bytes": 2865,
+      "sha256": "f9f4861650e58b3f5ba8efd73f4e66e6fcf7cf7e40cd31800e6ad58604650013",
+      "git_blob": "ffc49ee5cd7640d505066cf77dc75445dafacee4"
+    },
+    {
+      "path": "analysis/school-native-dialogue-keyboard-source-v1-20261021.json",
+      "bytes": 93740,
+      "sha256": "15bd73ee5e92ac304f97a2ed3de068672c5f8c75368771e1152ea56a8194efc3",
+      "git_blob": "6047333134dfd7b39532ff5f3c1e07615b9a6d44"
+    },
+    {
+      "path": "analysis/school-native-dialogue-openspec-v1-20261021.json",
+      "bytes": 7904,
+      "sha256": "316b9ef38f7987e16791397ec22f28523cdade83801c5ba87e593a1017f0734c",
+      "git_blob": "9fbe86606ec6275cca8ff9a09780faa0a14974b0"
+    },
+    {
+      "path": "analysis/school-native-dialogue-openspec-v2-20261021.json",
+      "bytes": 7904,
+      "sha256": "21df1d3597c239856719c6d348c724e69599311f2d62f725822ed17cf118b008",
+      "git_blob": "2b26083a14483a5ce0f097219817ef22a53580c6"
+    },
+    {
+      "path": "analysis/school-native-dialogue-preservation-after-v1-20261021.json",
+      "bytes": 21772,
+      "sha256": "04c2ffa984505086ae51f16d5ec34ca15ede5672c9040109c998290c3ffd5df5",
+      "git_blob": "15247a36027d36b13d2e5c780aa359128c5b83d3"
+    },
+    {
+      "path": "analysis/school-native-dialogue-preservation-before-v1-20261021.json",
+      "bytes": 21772,
+      "sha256": "773f7145cc4b35b79ff50cbb1428430d7d9e9dd8616942978df9b91de9e7140a",
+      "git_blob": "4580484dfb47f33942a2cc5c92b621619f1ea012"
+    },
+    {
+      "path": "analysis/school-native-dialogue-regression-v1-20261021.log",
+      "bytes": 317,
+      "sha256": "40bf882f1bc592eda8a99c74849f31594cb066da1c8d5444263b75f11a79a79d",
+      "git_blob": "b2205701a1b92563f93e830fbd892c3e955ff46a"
+    },
+    {
+      "path": "analysis/school-native-dialogue-tests-v1-20261021.log",
+      "bytes": 221,
+      "sha256": "09113fa73a6ff06a123414d2af3ec5c3c54f0199d9255c90ff42a9ce20833056",
+      "git_blob": "93ed7cb3ab9d2b32e158e46d2e8501beffe2ca79"
+    },
+    {
+      "path": "analysis/school-native-dialogue-tests-v2-20261021.log",
+      "bytes": 1826,
+      "sha256": "7997c88cdb735606d8ca93d97c0ca54f38a97032ad808804a57005b47254b2dc",
+      "git_blob": "cd8add3e37f7753dc6396d48237142bad376bdb0"
+    },
+    {
+      "path": "analysis/school-native-dialogue-tests-v3-20261021.log",
+      "bytes": 225,
+      "sha256": "da115aafd623110185f7ae7c490753bb77bf12d318bce012ddc8694486e22f0d",
+      "git_blob": "de96bea0c54e3aad6fdf5bd6aa4de5727ec02033"
+    },
+    {
+      "path": "analysis/school-native-dialogue-ui-failure-v1-20261021.json",
+      "bytes": 1537,
+      "sha256": "85bcc0a6bc84c51fdd434f202b3776b9202c6e4300e69ac5e4ccc41c0a78784a",
+      "git_blob": "fbb2323b7e6d9640f18600d2fbf57524d4dd477d"
+    },
+    {
+      "path": "docs/school_native_dialogue.md",
+      "bytes": 5259,
+      "sha256": "12786c021ba18391af3c0f6f0a88480168d7fc2b04cc9d474ab70ff0721b4d77",
+      "git_blob": "b5bb894a9a95e3810cb28d31b356c6f7f8fa0e41"
+    },
+    {
+      "path": "openspec/changes/verify-native-dialogue-input/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9dce7645e8d23214043e04d1f4443f95ea5ca40f4320e09322b23b0ed2bc02ec",
+      "git_blob": "8f4fe2c9a8863edf4cc709b1bbab531d8b25c281"
+    },
+    {
+      "path": "openspec/changes/verify-native-dialogue-input/design.md",
+      "bytes": 1816,
+      "sha256": "af9873fe35da9730205a0e2e75c2c9dab0d8185e9f31549634ad7c9ca8d64bbe",
+      "git_blob": "fdc81e4cfd778867770d48be6eb8d80a91deeb05"
+    },
+    {
+      "path": "openspec/changes/verify-native-dialogue-input/proposal.md",
+      "bytes": 1042,
+      "sha256": "24a8ceacec2fffd2759f7a9c89c4c773aaeb77172d5c0cc4979e9e133dd5865d",
+      "git_blob": "646f9e0080a619836acb137a8002d8da40dc4201"
+    },
+    {
+      "path": "openspec/changes/verify-native-dialogue-input/tasks.md",
+      "bytes": 945,
+      "sha256": "5972d7d862a8100c7b8da0b0f4f8408fe7b9cff1f22add2009071fcf8b0142fc",
+      "git_blob": "2e97a9995735e3c57abc0d828e0bdaa4303b97f1"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 14522,
+      "sha256": "5492370598aaf206514b8f4cd8117e316fe276b5414019eb8fdcf92f58e366fb",
+      "git_blob": "2fcabf2c0a39f1e305a20f2866157bf02d0914c2"
+    },
+    {
+      "path": "tools/school_native_dialogue.py",
+      "bytes": 13281,
+      "sha256": "9caed9978b4a76a998f922c7a34dadce4b7cb59baa7b0a25e2ec744692bd6849",
+      "git_blob": "91d90cb00764ca6eca7ad50175f190db15dc953a"
+    },
+    {
+      "path": "tools/school_native_dialogue_preservation.py",
+      "bytes": 1848,
+      "sha256": "be1c1c204c61194e869718ea2e0597b43596c525691f9fb3daa69b167bded02b",
+      "git_blob": "b2c3b5772d25027a1f1b235a45708e83b8aaa084"
+    },
+    {
+      "path": "tools/school_native_dialogue_verification.py",
+      "bytes": 11466,
+      "sha256": "a7c912ec34dafffd3239737c86761caf87af8e53d9e5c8b8d08079e5b4ff5d33",
+      "git_blob": "54a24378d05bd8cd9fc9607f3d74b778eec2631e"
+    },
+    {
+      "path": "tools/tests/test_school_native_dialogue.py",
+      "bytes": 5746,
+      "sha256": "3d9ba96cbcebc96a2bdd40ec32c7675677753344d8d07fec0b5fa706c07317fb",
+      "git_blob": "b90dffbc3f3263362650eeef584ff0fe36050abe"
+    }
+  ],
+  "logs_preserved_verbatim_CRLF": true,
+  "pushed": false
+}
