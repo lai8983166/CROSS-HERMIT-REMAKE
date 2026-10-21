@@ -6,7 +6,7 @@
 
 ## 2. Real native scheduler lifetime
 
-- [ ] 2.1 Execute original construct/register/dispatch/worker completion/unlink/destruct paths in an owned initialized original runtime, cover dirty/zero, same/different buckets and disabled-then-enabled nodes, independently verify full buffer/source/IAT/stack and actual thread/event cleanup observations; include tests/docs and commit the functional result.
+- [x] 2.1 Execute original construct/register/dispatch/worker completion/unlink/destruct paths in an owned initialized original runtime, cover dirty/zero, same/different buckets and disabled-then-enabled nodes, independently verify full buffer/source/IAT/stack and actual thread/event cleanup observations; include tests/docs and commit the functional result.
 
 ## 3. Integration and roadmap handoff
 

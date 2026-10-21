@@ -24,3 +24,24 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_schedul
 ```
 
 纯调用约束测试拒绝外部进程、非白名单入口、错误ABI/桶、非私有写入和未观察的句柄；Unicorn独立执行原构造器与三参数注册验证桥的完整压栈、callee-saved寄存器、ESP平衡及完整节点字节。真实Windows线程/事件来源由原生实验单独验证，不能用模拟器ABI测试代替。
+
+## 原生结果与独立复核
+
+`analysis/school-scheduler-lifetime-contract-v1-20261021.json`固定了来源代码和旧检查点空调度图。`native-v1`是早期原生样本，尚未加入实际事件失效查询和虚表前后采样，不作为最终验收；`native-v2`及其`proof-v2`覆盖全部最终观察项。
+
+| 填充值 | 注册桶 | 首次禁用 | 实际原CRT工作线程 | 事件关闭后失效观察 |
+| --- | --- | --- | --- | --- |
+| 00 | 0 | 无 | 1 | 2 |
+| A5 | 0、0、31 | 节点1 | 3 | 4 |
+| CC | 31、5、5 | 节点0 | 3 | 4 |
+
+三个独立原版进程均正常执行初始化、WM_CLOSE、原游戏析构和窗口/全局清理，无强制终止。线程实际等待为signaled、实际退出码0。节点事件在调度结束后、管理器事件在析构后经DuplicateHandle返回ERROR_INVALID_HANDLE(6)；该只读查询不伪造关闭结果。原代码和594A54虚表、实际IAT前后保持相同，未将保护层转发地址误认成系统DLL函数地址。
+
+独立验证器不导入执行器的对象变换逻辑：按来源注册/桶扫描/禁用/移除规则重建每阶段的512字节管理器和每个128字节节点，连未写的脏字段、保护尾部、被移除节点仍保留的next指针也完整比较；外部API生成的句柄/线程ID及不透明24字节CRITICAL_SECTION输出明确取实际观察值，分别与实际线程/失效查询对应，不伪造其来源。它不是逐条原生指令/API追踪，也不能据快照证明所有可能的线程交错顺序。
+
+20项测试包含真实x86桥ABI测试和错误证据变异：脏尾部改写、清除原本保留的next、禁用节点改变、线程未退出/句柄错配、事件仍有效、漏关线程、ESP不平、代码/IAT变化、未记录写入/未释放缓冲、额外调用和强制退出均被拒绝。
+
+```bash
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_scheduler_lifetime_verification --report analysis/school-scheduler-lifetime-native-v2-20261021.json --out analysis/new-scheduler-proof.json
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_school_scheduler_lifetime tools.tests.test_school_scheduler_verification
+```
