@@ -6,7 +6,7 @@
 
 ## 2. Native original scene loop
 
-- [ ] 2.1 Run source-selected76/77 through original MAIN event consumption/factory publication and native CRT callback, capture original loading/wait/VM/world counter and normal lifetime evidence, independently verify source inputs/full call blocks/actual graph/contexts/resources/cleanup with mutation tests and docs, then commit locally.
+- [x] 2.1 Run source-selected76/77 through original MAIN event consumption/factory publication and native CRT callback, capture original loading/wait/VM/world counter and normal lifetime evidence, independently verify source inputs/full call blocks/actual graph/contexts/resources/cleanup with mutation tests and docs, then commit locally.
 
 ## 3. Reproduction and roadmap acceptance
 
