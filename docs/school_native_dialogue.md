@@ -1,6 +1,6 @@
 # 原版键盘状态与对白确认门
 
-本单元为 `verify-native-dialogue-input`。2026-10-22已在两个独立原版进程验证系统输入解除真实对白等待；下方早期失败记录保留为历史，不代表当前仍受阻。旧原生场景研究和原存档/检查点不修改；Godot不变。
+本单元为 `verify-native-dialogue-input`，3/3任务完成并归档至 `openspec/changes/archive/2026-10-22-verify-native-dialogue-input`。2026-10-22已在两个独立原版进程验证系统输入解除真实对白等待；下方早期失败记录保留为历史，不代表当前仍受阻。旧原生场景研究和原存档/检查点不修改；Godot不变。
 
 
 ## 2026-10-22实际输入转换验收
@@ -22,7 +22,7 @@
 
 本轮发现前台实际为Windows LockApp.exe；当时停止输入并请求用户解锁。用户回复“已解锁”后，读接口确认输入桌面/观察器同为Default且前台恢复为普通应用，随后两个正式实验通过。锁屏能解释该轮前台激活失败，不能倒推所有旧短按失败都是同一原因。
 
-新增只读桌面预检，启动前及输入归属检查时拒绝LockApp/LogonUI/CredentialUIBroker、不可访问输入桌面或不同桌面；不会操作锁屏窗口。`analysis/school-native-dialogue-desktop-lock-v1-20261022.json`虽名字含lock，实际捕获在用户解锁后，内容为ready=true，不能当作锁屏时原始轨迹。锁屏时的前台进程发现仅有操作记录，见 `analysis/school-native-dialogue-desktop-diagnosis-v1-20261022.json`。
+新增只读桌面预检，启动前及输入归属检查时拒绝LockApp/LogonUI/CredentialUIBroker、不可访问输入桌面或不同桌面；不会操作锁屏窗口。`analysis/school-native-dialogue-desktop-lock-v1-20261022.json`虽名字含lock，实际捕获在用户解锁后，内容为ready=true，不能当作锁屏时原始轨迹。操作记录中的未提交锁屏输入声明限定在本轮识别锁屏后停止操作这一段，不能排除更早工具尝试曾向Windows提交短按。锁屏时的前台进程发现仅有操作记录，见 `analysis/school-native-dialogue-desktop-diagnosis-v1-20261022.json`。
 
 held-76-v1/v2/v3均未提交按键，分别未到达原脚本等待或激活失败，原错误及实际清理保留。v3尝试由工具启动新私有树后纳入自有Job；这条实验启动路径未进入正式输入验收。正式76-v4/77-v2沿用正常自有进程创建路径。
 
@@ -82,3 +82,10 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests
 已准备受限Win32扫描码后端和独立验证入口；只在自有Job、精确私有原exe、原MAIN窗口属性及当前前台窗口全部相符时发送扫描码39h，保持120毫秒，异常也尝试释放。它不写游戏对象、代码、IAT或寄存器。该阶段默认不启用、尚未执行真实SendInput。9项惰性API测试覆盖包结构、归属/时长限制及异常释放。拟用命令、边界和待确认规则见[后备输入审查](school_native_dialogue_held_input_review.md)。
 
 该阶段曾发出用户确认请求：computer-use技能操作规则要求仅用其JS API自动操作Windows应用，需要用户明确同意Win32后备路径例外后才可执行。这个确认不是原游戏权限、系统安全设置或数据访问问题；未收到答复不当作同意。该阶段输入任务和最终归档保持未完成；随后收到明确授权，结果见文首。
+
+
+## 最终集成检查
+
+2026-10-22受影响来源/等待门/后备API/异步交接/实际转换/桌面守卫及相邻原生场景、bootstrap、调度、启动、保留渲染和任务帧共169项测试通过。归档前严格规格32项通过；归档后检查和全链保全见最终验收清单。原始失败、旧进展及其44份证据保持原样，40份上一原生场景产物与更早历史/存档/检查点/8105个资源保全通过。日志保留实际CRLF字节。
+
+最终验收：`analysis/school-native-dialogue-acceptance-v1-20261022.json`。该清单记录两例真实转换、排除的诊断尝试、检查结果、归档映射及Git原始字节清单；与Godot完成率无关。

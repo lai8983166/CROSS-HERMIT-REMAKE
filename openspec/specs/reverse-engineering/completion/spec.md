@@ -81,7 +81,7 @@ R6 SHALL 仅在全部必需主线路径已闭合、覆盖清单完成并通过�
 
 ## Historical references
 
-- [原生输入单元](../../../changes/verify-native-dialogue-input/tasks.md)、[键盘来源/原生无输入对照及实际输入转换](../../../../docs/school_native_dialogue.md)：两个独立原版的对白确认已通过，R3保留执行与更实质交互待验。
+- [已完成的原生输入单元](../../../changes/archive/2026-10-22-verify-native-dialogue-input/tasks.md)、[键盘来源/原生无输入对照及实际输入转换](../../../../docs/school_native_dialogue.md)：3/3任务已完成并归档；两个独立原版的对白确认已通过，169项回归通过；[输入验收](../../../../analysis/school-native-dialogue-acceptance-v1-20261022.json)。R3保留执行与更实质交互待验。
 
 - [已完成的原生场景循环单元](../../../changes/archive/2026-10-21-connect-native-scene-loop/tasks.md)、[私有运行目录/实际MAIN事件与脚本世界循环](../../../../docs/school_native_scene.md)、[原生场景验收](../../../../analysis/school-native-scene-acceptance-v1-20261021.json)：两轮76/77的原生连续执行，R3实际输入与保留路径仍待完成。
 
