@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_crt_init_child.py", line 32, in <module>
+    out.write_bytes(gzip.compress(json.dumps(dict(schema_version=3,sampler_source_sha256=base.sha(Path(__file__).read_bytes()),base_source_sha256=base.sha(Path(base.__file__).read_bytes()),cases=cases),separators=(',',':')).encode(),mtime=0));base.need(len(cases)==2 and all(c['error']is None for c in cases),'two direct child original initialization captures; see diagnostics')
+  File "F:\project\chaomofa\tools\school_crt_init_capture.py", line 36, in need
+    if not b:raise ValueError(s)
+ValueError: two direct child original initialization captures; see diagnostics

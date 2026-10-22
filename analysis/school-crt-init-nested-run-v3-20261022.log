@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_crt_init_nested.py", line 108, in <module>
+    out.write_bytes(gzip.compress(json.dumps(dict(schema_version=2,sampler_source_sha256=sha(Path(__file__).read_bytes()),base_source_sha256=sha(Path(b.__file__).read_bytes()),cases=cases),separators=(',',':')).encode(),mtime=0));need(len(cases)==2 and all(c['error']is None for c in cases),'two original initialization captures; see preserved diagnostics')
+  File "F:\project\chaomofa\tools\school_crt_init_capture.py", line 36, in need
+    if not b:raise ValueError(s)
+ValueError: two original initialization captures; see preserved diagnostics
