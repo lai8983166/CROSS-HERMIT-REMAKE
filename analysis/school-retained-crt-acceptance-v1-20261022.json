@@ -1,0 +1,512 @@
+{
+  "schema_version": 1,
+  "kind": "retained original CRT dependency proof and separate declared-input original allocation/file/free lifecycle",
+  "baseline_commit": "e44e97b",
+  "retained_dependency_commit": "a9c6ffe",
+  "function_lifecycle_commit": "efde692",
+  "change": "verify-crt-allocation-file-lifecycle",
+  "archive": "openspec/changes/archive/2026-10-22-verify-crt-allocation-file-lifecycle",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "source_parent_acceptance": {
+    "path": "analysis/school-retained-portrait-file-acceptance-v1-20261022.json",
+    "sha256": "f41fa01612d729fa174f10b319f918013251eb3522ced9f77ecee4f50bee8379"
+  },
+  "retained_report": "analysis/school-retained-crt-boundary-v1-20261022.json.gz",
+  "retained_independent_proof": {
+    "schema_version": 1,
+    "cases": [
+      {
+        "name": "initial",
+        "scene_capture": 76,
+        "original_instructions_replayed": 73,
+        "original_writes": 49,
+        "missing_debug_chain_nodes": [
+          {
+            "role": "debug_first",
+            "pointer": 81135032,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          },
+          {
+            "role": "debug_last",
+            "pointer": 81170336,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          }
+        ],
+        "actual_native_lock_entered": false,
+        "retained_heap_restored": false,
+        "R3_complete": false
+      },
+      {
+        "name": "initial",
+        "scene_capture": 77,
+        "original_instructions_replayed": 73,
+        "original_writes": 49,
+        "missing_debug_chain_nodes": [
+          {
+            "role": "debug_first",
+            "pointer": 81135032,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          },
+          {
+            "role": "debug_last",
+            "pointer": 81170336,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          }
+        ],
+        "actual_native_lock_entered": false,
+        "retained_heap_restored": false,
+        "R3_complete": false
+      },
+      {
+        "name": "student9_waiting",
+        "scene_capture": 76,
+        "original_instructions_replayed": 73,
+        "original_writes": 49,
+        "missing_debug_chain_nodes": [
+          {
+            "role": "debug_first",
+            "pointer": 81135032,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          },
+          {
+            "role": "debug_last",
+            "pointer": 81170336,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          }
+        ],
+        "actual_native_lock_entered": false,
+        "retained_heap_restored": false,
+        "R3_complete": false
+      },
+      {
+        "name": "student9_waiting",
+        "scene_capture": 77,
+        "original_instructions_replayed": 73,
+        "original_writes": 49,
+        "missing_debug_chain_nodes": [
+          {
+            "role": "debug_first",
+            "pointer": 81135032,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          },
+          {
+            "role": "debug_last",
+            "pointer": 81170336,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          }
+        ],
+        "actual_native_lock_entered": false,
+        "retained_heap_restored": false,
+        "R3_complete": false
+      },
+      {
+        "name": "fifth_class",
+        "scene_capture": 76,
+        "original_instructions_replayed": 73,
+        "original_writes": 49,
+        "missing_debug_chain_nodes": [
+          {
+            "role": "debug_first",
+            "pointer": 81135032,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          },
+          {
+            "role": "debug_last",
+            "pointer": 81170336,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          }
+        ],
+        "actual_native_lock_entered": false,
+        "retained_heap_restored": false,
+        "R3_complete": false
+      },
+      {
+        "name": "fifth_class",
+        "scene_capture": 77,
+        "original_instructions_replayed": 73,
+        "original_writes": 49,
+        "missing_debug_chain_nodes": [
+          {
+            "role": "debug_first",
+            "pointer": 81135032,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          },
+          {
+            "role": "debug_last",
+            "pointer": 81170336,
+            "bytes": 32,
+            "mapped": false,
+            "hex": null
+          }
+        ],
+        "actual_native_lock_entered": false,
+        "retained_heap_restored": false,
+        "R3_complete": false
+      }
+    ],
+    "unchanged_retained_dependency_gap_verified": true,
+    "retained_heap_restored": false,
+    "R3_complete": false
+  },
+  "fixture_report": "analysis/school-retained-crt-fixture-v1-20261022.json.gz",
+  "fixture_independent_proof": {
+    "schema_version": 1,
+    "original_instructions_replayed": 267698,
+    "original_writes": 263780,
+    "source_roots": 7,
+    "actual_OS_calls": 47,
+    "actual_allocations": 3,
+    "actual_frees": 3,
+    "actual_source_file_reads": 1,
+    "complete_file_bytes": 262168,
+    "all_debug_headers_guards_and_CD_DD_fills_verified": true,
+    "concurrent_debug_unlink_verified": true,
+    "full_CPU_memory_after_each_root": true,
+    "normal_native_cleanup_verified": true,
+    "retained_heap_restored": false,
+    "retained_integration": false,
+    "R3_complete": false
+  },
+  "fixture_inputs_are_not_retained_restoration": true,
+  "retained_heap_restored": false,
+  "retained_integration": false,
+  "image_loader_completed": false,
+  "same_native_lifetime": false,
+  "new_OS_input": false,
+  "new_window": false,
+  "new_GPU": false,
+  "interactive_desktop_required": false,
+  "R3_complete": false,
+  "R6_complete": false,
+  "Godot_changed": false,
+  "regression": {
+    "new_tests": 53,
+    "historical_tests": 295,
+    "tests": 348,
+    "failed": 0,
+    "logs": [
+      {
+        "path": "analysis/school-retained-crt-boundary-tests-v1-20261022.log",
+        "tests": 13,
+        "sha256": "cae7c4cb6d9e30d9e64d0c080cb679bb10a7e92747be7108797e11b3d688650d",
+        "bytes": 1253
+      },
+      {
+        "path": "analysis/school-retained-crt-fixture-tests-v1-20261022.log",
+        "tests": 40,
+        "sha256": "44fce7616e193718187d4f2c537e72c8c5d2a9ca92d1388172abd68f8087a0bd",
+        "bytes": 4156
+      },
+      {
+        "path": "analysis/school-retained-crt-regression-v1-20261022.log",
+        "tests": 295,
+        "sha256": "9761a6c0d38c1ea4f290afc0838094c034ea666e8dd19c3b9a97fa07db110b84",
+        "bytes": 32733
+      }
+    ]
+  },
+  "strict_specs": {
+    "before_archive_items": 32,
+    "after_archive_items": 31,
+    "failed": 0,
+    "item_difference": "completed active change archived"
+  },
+  "preservation": "analysis/school-retained-crt-preservation-v1-20261022.json",
+  "unchanged_previous_artifacts": 30,
+  "archive_mapping": "analysis/school-retained-crt-archive-mapping-v1-20261022.json",
+  "preserved_development_failure": {
+    "log": "analysis/school-retained-crt-fixture-verify-v1-20261022.log",
+    "reason": "generic source replay adapter missing key field; no original source or experimental report changed",
+    "accepted": false
+  },
+  "remaining": [
+    "Restore missing historical debug heap nodes from proven original initialization and valid ownership",
+    "Continue retained portrait file read, image construction/upload, complete handler and animation",
+    "Original outer scheduler/world and retained state in the same valid native lifetime",
+    "ACP936/Big5 ANSI glyphs and six short script encodings",
+    "All remaining master R3/R4/R5/R6 requirements"
+  ],
+  "target_date": "2026-11-20",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 21959,
+      "sha256": "3e230821e3aef7e7b2c831bbaf9451abb5ca53782a8494d512b44534e7196d28",
+      "git_blob_sha1": "cd5398565cbd84cc2ff8a96561a70af9bac7f22c"
+    },
+    {
+      "path": "analysis/school-retained-crt-affected-regression-snapshot-v1-20261022.json",
+      "bytes": 25883,
+      "sha256": "b592e964b2ae8d9383c28eccd83250b01c755d7e5fc75c7a274807d3b7e54bca",
+      "git_blob_sha1": "b1d5e3370315d191c59b8d5da78f823b786d487b"
+    },
+    {
+      "path": "analysis/school-retained-crt-apply-final-v1-20261022.json",
+      "bytes": 3389,
+      "sha256": "250bd4d944d6455f77f8b483edb1446f4532221c655c9ddbb1e13a814e7ced51",
+      "git_blob_sha1": "de7f9b9877afa4f1814d906763ac8e2d6c7c684c"
+    },
+    {
+      "path": "analysis/school-retained-crt-archive-instructions-v1-20261022.json",
+      "bytes": 1009,
+      "sha256": "5d8c37ef49085a2bfe6a2125c1fcfe78a97f7d5608f8ceb00d58ac8a0f2f3263",
+      "git_blob_sha1": "8bf31ea7bd347cf3514082b19a5143b7ccdd836d"
+    },
+    {
+      "path": "analysis/school-retained-crt-archive-mapping-v1-20261022.json",
+      "bytes": 1477,
+      "sha256": "da714a2ec970edcd87056fa26d7e5fec7e10c961193525ddb61a788cae1fa293",
+      "git_blob_sha1": "b1f0364d5d422c5707fbf48441c3c5e7c6c7aad0"
+    },
+    {
+      "path": "analysis/school-retained-crt-boundary-proof-v1-20261022.json",
+      "bytes": 3812,
+      "sha256": "301b3437a5bbfd4db218a12f1342030902b34f11289e712c166cbca56860b7c1",
+      "git_blob_sha1": "3403b8235f599a045e39709011ba632960c19e97"
+    },
+    {
+      "path": "analysis/school-retained-crt-boundary-run-v1-20261022.log",
+      "bytes": 482,
+      "sha256": "bd6ae7466fc715d9a4150eb38a82fd43ca44e4d45ccc82875887f2e4d135c08c",
+      "git_blob_sha1": "ed2d961a080ed89e7e15f5f7fbce00f1762f3e2e"
+    },
+    {
+      "path": "analysis/school-retained-crt-boundary-tests-v1-20261022.log",
+      "bytes": 1253,
+      "sha256": "cae7c4cb6d9e30d9e64d0c080cb679bb10a7e92747be7108797e11b3d688650d",
+      "git_blob_sha1": "786b4c58752bcf851f32b8fb07e0edf5ec8e96fe"
+    },
+    {
+      "path": "analysis/school-retained-crt-boundary-v1-20261022.json.gz",
+      "bytes": 15341,
+      "sha256": "ef41d6041d95d8c120edda75ac46c314d7130743bf04003966f4aaabf1aad05d",
+      "git_blob_sha1": "840b2fdfe42f418ad8fbc12c6024e36b7f414b62"
+    },
+    {
+      "path": "analysis/school-retained-crt-boundary-verify-v1-20261022.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "analysis/school-retained-crt-fixture-proof-v2-20261022.json",
+      "bytes": 541,
+      "sha256": "140d7b857e6d5290d7fc34b7300eedf839b4ae21bad452796ec1b8fbd3447d98",
+      "git_blob_sha1": "fcfaf6cda1fb3f84625a43569e37211d7c3841ca"
+    },
+    {
+      "path": "analysis/school-retained-crt-fixture-run-v1-20261022.log",
+      "bytes": 606,
+      "sha256": "2d920fbe15142d57ae3f860aed3e4c0537652df20af194d339e08cf4be8087fc",
+      "git_blob_sha1": "ef005bddb71a936c588c1bacda7b3e3bbebbb30d"
+    },
+    {
+      "path": "analysis/school-retained-crt-fixture-tests-v1-20261022.log",
+      "bytes": 4156,
+      "sha256": "44fce7616e193718187d4f2c537e72c8c5d2a9ca92d1388172abd68f8087a0bd",
+      "git_blob_sha1": "566f16970820bb0edfefb8d00ae15b00ddff8d0e"
+    },
+    {
+      "path": "analysis/school-retained-crt-fixture-v1-20261022.json.gz",
+      "bytes": 1157839,
+      "sha256": "021ed5c5a753da11ce67222c5642128fd65f802c001db98ea45ddb2422891bf0",
+      "git_blob_sha1": "66f6c93f819569f9481429338c6a0dcad558fe3b"
+    },
+    {
+      "path": "analysis/school-retained-crt-fixture-verify-v1-20261022.log",
+      "bytes": 1533,
+      "sha256": "20c60acb436d3b3913337df82ede97bcc72cff9959d3ec0f5c2579481ed21458",
+      "git_blob_sha1": "9b8bdbcf69b3414b78b8347ea7f3f08d3f663810"
+    },
+    {
+      "path": "analysis/school-retained-crt-fixture-verify-v2-20261022.log",
+      "bytes": 508,
+      "sha256": "7dca1d8c8f8238fcb827894664681004d69a15bfc67430253156ebdc4708925d",
+      "git_blob_sha1": "22eb4e8eac9b5cb3cb13f4c2cd7fe30fa9beb034"
+    },
+    {
+      "path": "analysis/school-retained-crt-inspection-v1-20261022.json",
+      "bytes": 8763,
+      "sha256": "d96f326c35eacff13e371cb9494e3ebb276b6cf158b95959c69f6b589fc258ea",
+      "git_blob_sha1": "e3017b0353943098fc2a39e480179435248537b6"
+    },
+    {
+      "path": "analysis/school-retained-crt-inspection-v1-20261022.log",
+      "bytes": 2553,
+      "sha256": "2c2da44483b887aad4fd23c39e67e16a38a0333b3911afda0b37428a68f4197c",
+      "git_blob_sha1": "a49d1ec62446cbe27e99cc10c3fd0ebcf28a66bc"
+    },
+    {
+      "path": "analysis/school-retained-crt-preservation-v1-20261022.json",
+      "bytes": 54045,
+      "sha256": "dac096656a82f6a3236afc526ff9cf16a1d7719b8778975652574689deefd71e",
+      "git_blob_sha1": "c2a24f1a4b9a1ba48c5686e89a70dd85359967e6"
+    },
+    {
+      "path": "analysis/school-retained-crt-preservation-v1-20261022.log",
+      "bytes": 86,
+      "sha256": "725f4c7d62ff5f3aa9b245fd107553f7bb50077ea1e65d210930f34a24b876a5",
+      "git_blob_sha1": "7d2e2121eaf2b93f14b9ffb99445a5c02eae32c2"
+    },
+    {
+      "path": "analysis/school-retained-crt-regression-v1-20261022.log",
+      "bytes": 32733,
+      "sha256": "9761a6c0d38c1ea4f290afc0838094c034ea666e8dd19c3b9a97fa07db110b84",
+      "git_blob_sha1": "06198c1e20e7058da5ae24ab5aec502ece3245cd"
+    },
+    {
+      "path": "analysis/school-retained-crt-status-final-v1-20261022.json",
+      "bytes": 2920,
+      "sha256": "4de1c0c412902a299d845e0f040b434cb43e2efd394e673c01a0b1e503007294",
+      "git_blob_sha1": "60ce5803ef0a1fadd237bb20c689bbb945768a65"
+    },
+    {
+      "path": "analysis/school-retained-crt-status-pre-archive-v1-20261022.json",
+      "bytes": 2920,
+      "sha256": "4de1c0c412902a299d845e0f040b434cb43e2efd394e673c01a0b1e503007294",
+      "git_blob_sha1": "60ce5803ef0a1fadd237bb20c689bbb945768a65"
+    },
+    {
+      "path": "analysis/school-retained-crt-strict-after-v1-20261022.json",
+      "bytes": 7550,
+      "sha256": "a49f63025718bab0e07ba5af8a7741d0005fbb14b5ffb2c091023b9459d800c0",
+      "git_blob_sha1": "60330ab10a2f2001f0f7d876219d5f23f9710cbc"
+    },
+    {
+      "path": "analysis/school-retained-crt-strict-before-v1-20261022.json",
+      "bytes": 7913,
+      "sha256": "4e347a3d789622b32ae31dfdbf19e53d46d95ae0dd8bebc7b1007cbf9e76d9cd",
+      "git_blob_sha1": "c01987fcd609bc3a055757e9dab98b893b3a8f70"
+    },
+    {
+      "path": "analysis/school-retained-crt-task1-preservation-v1-20261022.json",
+      "bytes": 8250,
+      "sha256": "afb87a71eaf1481563a31d74ec447883cf4494cfaddb3e0a0e926a1773394f63",
+      "git_blob_sha1": "3e7e88899b047503461ce34e663c5296ed778d61"
+    },
+    {
+      "path": "analysis/school-retained-crt-task1-spec-v1-20261022.json",
+      "bytes": 687,
+      "sha256": "9f86f4761aeea97a534fd4c5bebdf0db911f62289ff1eb8302a1ceebca61bf19",
+      "git_blob_sha1": "1f18069046e1be1918c295aba003cf6c8021e2fa"
+    },
+    {
+      "path": "analysis/school-retained-crt-validation-summary-v1-20261022.json",
+      "bytes": 848,
+      "sha256": "1a8053bd1e2e6e299d64073b57385e08768d95588e884548e5eb86fe8d86eb37",
+      "git_blob_sha1": "bde4322e798b145d7df24bbadce1fa837b76af80"
+    },
+    {
+      "path": "docs/school_retained_crt.md",
+      "bytes": 5575,
+      "sha256": "45fe954e316885ed088a293339700fa74e89b272965e04bb63191de63211a0c0",
+      "git_blob_sha1": "edb1e3514468d431cbe05f7e73039e07627979c6"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-verify-crt-allocation-file-lifecycle/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "406fb8199314e5fb81d7e56b100c8340aeee0d2dbb3fbd4c22453a97001ea58e",
+      "git_blob_sha1": "c40d25044a3ff7da1d0413177a838db37de4cc32"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-verify-crt-allocation-file-lifecycle/design.md",
+      "bytes": 2707,
+      "sha256": "e8af1bc246a04a02a3a91e5dbda4a506cd0461f2efccf7a29b7f4bd7c1820071",
+      "git_blob_sha1": "8fdfccbf2554e99322c014f1a7c16e50931e15a5"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-verify-crt-allocation-file-lifecycle/proposal.md",
+      "bytes": 1914,
+      "sha256": "1abd5687759d15fe492f06aff654b0275594217c7cd38ec2bb87ba32e1daffd3",
+      "git_blob_sha1": "0d8ccb12f5d0fcb6f493e661dd22fc05d655b683"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-verify-crt-allocation-file-lifecycle/tasks.md",
+      "bytes": 1124,
+      "sha256": "6aa3855695841b8406a9e9a987f94ca6dc0475e9e5c7b1f95e302e528bc5cdc9",
+      "git_blob_sha1": "c8fffe427fe03439917060865596391c4ed3f589"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 23456,
+      "sha256": "5f131fae4b32a9246f77ecf018c53580e1d21ca5bb4e06ae2c4cb52fa7be429f",
+      "git_blob_sha1": "334153fa09b332aadb14dad4a610cdc7db865407"
+    },
+    {
+      "path": "tools/school_retained_crt.py",
+      "bytes": 7515,
+      "sha256": "256bf2d0266a71441e1b7c3bc0f1b5df492e6e586314bd263ec3c0d005f64aab",
+      "git_blob_sha1": "d43d384e68914caef334f7b203f36616d9f1da8e"
+    },
+    {
+      "path": "tools/school_retained_crt_fixture.py",
+      "bytes": 11285,
+      "sha256": "4fc8c3b350c19371d169c163ef6c9f2cbd7a871ef9180087fd30efae24e9d535",
+      "git_blob_sha1": "e07d402d05c468e822ded74e92ec1ab0ba00fbff"
+    },
+    {
+      "path": "tools/school_retained_crt_fixture_verification.py",
+      "bytes": 14642,
+      "sha256": "ae7a305df95a61a5ea488bee364bfabfbf584e1d8df5bf2fa59443804c1b3689",
+      "git_blob_sha1": "89d29c4795e2daeb103b4f3ab4df45ed921829fd"
+    },
+    {
+      "path": "tools/school_retained_crt_platform.cs",
+      "bytes": 7994,
+      "sha256": "fc40d0fc13e90ab88a505101b2a2d2fe8c3a08f813abe22a3b2cbc321320519a",
+      "git_blob_sha1": "1cfb60e72514c270a8771c0efee2eb2cc50440a0"
+    },
+    {
+      "path": "tools/school_retained_crt_platform.py",
+      "bytes": 3021,
+      "sha256": "01e99065dc6555274eeed69f86774e407ce5e34243b4d1554d2a859025192510",
+      "git_blob_sha1": "a2582d10d654b90490d59e4af950dbb9117e5816"
+    },
+    {
+      "path": "tools/school_retained_crt_preservation.py",
+      "bytes": 1732,
+      "sha256": "d91a0fdc5bc15c8d49f512e3d54e2dccd170c4656292add8b545720c4607d957",
+      "git_blob_sha1": "0331251d83ad4261a4007fb6dca4db7ff79f78ec"
+    },
+    {
+      "path": "tools/tests/test_school_retained_crt.py",
+      "bytes": 2158,
+      "sha256": "0b4e5e425e932577b9acfc4234ce773b3e3eeb11a6eb14ffc0722066082ef78e",
+      "git_blob_sha1": "dc03f7b1af89c7281fd8d6e42bbeb66de5e778b6"
+    },
+    {
+      "path": "tools/tests/test_school_retained_crt_fixture.py",
+      "bytes": 6748,
+      "sha256": "3dffb178ae17ce8cb806d203a383805fc4aea460b0f34094293a4f822a521a5a",
+      "git_blob_sha1": "a2772bf5b0a5d7089e482d776c43cd7ea6911fd8"
+    }
+  ],
+  "manifest_excludes": [
+    "this acceptance file to avoid circular digest"
+  ],
+  "local_only": true,
+  "pushed": false
+}

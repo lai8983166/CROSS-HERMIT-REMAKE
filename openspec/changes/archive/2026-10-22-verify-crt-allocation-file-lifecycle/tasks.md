@@ -10,4 +10,4 @@
 
 ## 3. Acceptance and archive
 
-- [ ] 3.1 Run strict specs and full previous evidence/save/checkpoint/resource preservation; update master progress with the unresolved retained CRT gap, commit locally, and archive this completed finite change with exact raw/index/HEAD and archive hashes.
+- [x] 3.1 Run strict specs and full previous evidence/save/checkpoint/resource preservation; update master progress with the unresolved retained CRT gap, commit locally, and archive this completed finite change with exact raw/index/HEAD and archive hashes.

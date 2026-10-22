@@ -30,7 +30,7 @@
 
 - 六分支原前缀：`analysis/school-retained-crt-boundary-v1-20261022.json.gz`；独立复核：`school-retained-crt-boundary-proof-v1-20261022.json`。
 - 完整独立函数夹具：`analysis/school-retained-crt-fixture-v1-20261022.json.gz`；独立复核：`school-retained-crt-fixture-proof-v2-20261022.json`。首版验证器的通用重放适配缺少key字段，失败日志原样保留为 `school-retained-crt-fixture-verify-v1-20261022.log`，修正适配后通过；未改原实验报告或原机器码。
-- 新增13项保留来源/状态拒绝检查与40项夹具/原生所有权检查通过；完整历史回归结果见本单元最终验收。
+- 新增13项保留来源/状态拒绝检查与40项夹具/原生所有权检查通过；另295项历史回归通过，共348项；32项严格规格通过，归档后31项通过。历史存档、私有检查点、资源和前序证据链保全通过；验收见 `analysis/school-retained-crt-acceptance-v1-20261022.json`。
 - 运行环境：项目 `.venv-audit/Scripts/python.exe`，`PYTHONPATH=.`、`PYTHONUTF8=1`。先运行 `python -m tools.school_retained_crt --verify <boundary-report> --out <fresh-proof>`，再运行 `python -m tools.school_retained_crt_fixture_verification <fixture-report> --out <fresh-proof>`。输出路径必须不存在，保留原始失败证据。
 
 研究 R3/R6 与 Godot 完成状态不因独立夹具成功而变更。下一步仍需从可证明的原初始化/有效寿命恢复CRT依赖，再接回原肖像加载/构造/上传及handler；不得将本夹具的清零输入移植到保留分支。六条短编码、ACP936/Big5乱码和原外层世界的同寿命连接仍是其他已知缺口。
