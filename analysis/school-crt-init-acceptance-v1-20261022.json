@@ -1,0 +1,1041 @@
+{
+  "schema_version": 1,
+  "kind": "actual original post-unpack cold CRT provenance and source-owned initialization/lifecycle/teardown",
+  "baseline_commit": "2814783",
+  "native_source_commit": "575b7d0",
+  "source_lifecycle_commit": "0e7a779",
+  "change": "capture-original-crt-initialization",
+  "archive": "openspec/changes/archive/2026-10-22-capture-original-crt-initialization",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "previous_acceptance": {
+    "path": "analysis/school-retained-crt-acceptance-v1-20261022.json",
+    "sha256": "4433b1e2299794fa9e11a45003f12838d5cddb97694050f073beb478e688efed"
+  },
+  "native_report": "analysis/school-crt-init-probe-v2-20261022.json.gz",
+  "native_report_sha256": "850b684f76c67e674bc1ba4a79b398bcb18f8b6abb01cda1e4d8908830c07a82",
+  "native_independent_proof": {
+    "schema_version": 1,
+    "cases": [
+      {
+        "round": 0,
+        "target": 5706688,
+        "label": "before_original_CRT",
+        "pid": 57712,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 0,
+        "native_current_bytes": 0,
+        "native_request_sequence": [],
+        "cold_ledger_observed": true,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      },
+      {
+        "round": 0,
+        "target": 4840816,
+        "label": "before_original_WinMain",
+        "pid": 38428,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 142,
+        "native_current_bytes": 18376,
+        "native_request_sequence": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143
+        ],
+        "cold_ledger_observed": false,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      },
+      {
+        "round": 0,
+        "target": 5749226,
+        "label": "original_HeapCreate_return",
+        "pid": 32916,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 0,
+        "native_current_bytes": 0,
+        "native_request_sequence": [],
+        "cold_ledger_observed": true,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      },
+      {
+        "round": 0,
+        "target": 5730144,
+        "label": "before_original_lock_init",
+        "pid": 43708,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 0,
+        "native_current_bytes": 0,
+        "native_request_sequence": [],
+        "cold_ledger_observed": true,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      },
+      {
+        "round": 1,
+        "target": 5706688,
+        "label": "before_original_CRT",
+        "pid": 46836,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 0,
+        "native_current_bytes": 0,
+        "native_request_sequence": [],
+        "cold_ledger_observed": true,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      },
+      {
+        "round": 1,
+        "target": 4840816,
+        "label": "before_original_WinMain",
+        "pid": 46936,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 142,
+        "native_current_bytes": 18376,
+        "native_request_sequence": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143
+        ],
+        "cold_ledger_observed": false,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      },
+      {
+        "round": 1,
+        "target": 5749226,
+        "label": "original_HeapCreate_return",
+        "pid": 61740,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 0,
+        "native_current_bytes": 0,
+        "native_request_sequence": [],
+        "cold_ledger_observed": true,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      },
+      {
+        "round": 1,
+        "target": 5730144,
+        "label": "before_original_lock_init",
+        "pid": 57792,
+        "source_text_bytes": 1642496,
+        "source_data_bytes": 2150400,
+        "native_debug_blocks": 0,
+        "native_current_bytes": 0,
+        "native_request_sequence": [],
+        "cold_ledger_observed": true,
+        "original_first_instruction_executed": false,
+        "parent_debug_reply_changed": false,
+        "probe_termination_is_game_shutdown": false
+      }
+    ],
+    "native_probes": 8,
+    "native_pre_WinMain_blocks": 284,
+    "original_cold_ledger_and_static_lock_bytes_observed": true,
+    "full_original_text_and_data_verified": true,
+    "full_native_CRT_startup_instruction_trace": false,
+    "retained_heap_restored": false,
+    "retained_integration": false,
+    "R3_complete": false
+  },
+  "native_probe_trees": 8,
+  "targets_each_round": [
+    5706688,
+    4840816,
+    5749226,
+    5730144
+  ],
+  "native_full_CRT_instruction_trace": false,
+  "native_same_process_boundary_sequence": false,
+  "native_probe_termination_is_game_shutdown": false,
+  "source_memory_or_general_register_writes": false,
+  "protection_parent_debug_reply_substitution": false,
+  "fixture_report": "analysis/school-crt-init-fixture-v2-20261022.json.gz",
+  "fixture_independent_proof": {
+    "schema_version": 1,
+    "cases": [
+      {
+        "round": 0,
+        "original_instructions_replayed": 268259,
+        "original_writes": 263867,
+        "source_roots": 11,
+        "actual_source_OS_calls": 58,
+        "source_heap_creates": 1,
+        "source_critical_initializations": 4,
+        "source_allocations": 3,
+        "source_frees": 3,
+        "source_file_read_bytes": 262168,
+        "source_file_closes": 1,
+        "source_critical_deletes": 4,
+        "source_heap_destroys": 1,
+        "host_debug_ledger_or_lock_initialization": false,
+        "observed_original_cold_data": true,
+        "whole_mirror_memory_and_CPU_verified": true,
+        "normal_helper_shutdown_verified": true,
+        "full_CRT_startup_replayed": false,
+        "retained_heap_restored": false,
+        "retained_integration": false,
+        "R3_complete": false
+      },
+      {
+        "round": 1,
+        "original_instructions_replayed": 268259,
+        "original_writes": 263867,
+        "source_roots": 11,
+        "actual_source_OS_calls": 58,
+        "source_heap_creates": 1,
+        "source_critical_initializations": 4,
+        "source_allocations": 3,
+        "source_frees": 3,
+        "source_file_read_bytes": 262168,
+        "source_file_closes": 1,
+        "source_critical_deletes": 4,
+        "source_heap_destroys": 1,
+        "host_debug_ledger_or_lock_initialization": false,
+        "observed_original_cold_data": true,
+        "whole_mirror_memory_and_CPU_verified": true,
+        "normal_helper_shutdown_verified": true,
+        "full_CRT_startup_replayed": false,
+        "retained_heap_restored": false,
+        "retained_integration": false,
+        "R3_complete": false
+      }
+    ],
+    "observed_cold_source_initialization_lifecycle_verified": true,
+    "retained_heap_restored": false,
+    "retained_integration": false,
+    "R3_complete": false
+  },
+  "observed_cold_data_provenance_verified": true,
+  "host_debug_ledger_or_lock_initialization": false,
+  "source_initialization_and_teardown_verified": true,
+  "fixture_source_roots": 22,
+  "fixture_original_instructions_each": 268259,
+  "fixture_original_instructions_total": 536518,
+  "fixture_original_writes_each": 263867,
+  "fixture_actual_source_OS_calls_each": 58,
+  "full_CRT_startup_or_CXX_initializer_replay": false,
+  "retained_heap_restored": false,
+  "retained_integration": false,
+  "portrait_image_loader_completed": false,
+  "same_native_lifetime_connected": false,
+  "new_OS_input": false,
+  "active_desktop_switched": false,
+  "interactive_desktop_required": false,
+  "new_GPU": false,
+  "R3_complete": false,
+  "R6_complete": false,
+  "Godot_changed": false,
+  "regression": {
+    "new_tests": 59,
+    "historical_tests": 348,
+    "tests": 407,
+    "failed": 0,
+    "logs": [
+      {
+        "path": "analysis/school-crt-init-validation-v2-20261022.log",
+        "tests": 59,
+        "bytes": 6039,
+        "sha256": "bacc4cf4cfc8646499a5eee85c10568bd31f4f559ecb6a046aee4d440d821242"
+      },
+      {
+        "path": "analysis/school-crt-init-regression-v1-20261022.log",
+        "tests": 348,
+        "bytes": 37932,
+        "sha256": "7b0e8fcb0304252fe2ccdb8d7de317999005a1fab565a0acce628614c64edf71"
+      }
+    ]
+  },
+  "strict_specs": {
+    "before_archive_items": 32,
+    "after_archive_items": 31,
+    "failed": 0,
+    "count_difference": "one completed active change archived"
+  },
+  "preservation": "analysis/school-crt-init-preservation-v1-20261022.json",
+  "unchanged_previous_artifacts": 40,
+  "archive_mapping": "analysis/school-crt-init-archive-mapping-v1-20261022.json",
+  "development_attempts_are_not_acceptance": [
+    "native-v1 through v6: early/protection debug routing and context diagnostics",
+    "child-v1 through v2: early/late direct attach prevented unpack or returned87",
+    "nested-v1 through v3: protocol observation development, no accepted source-boundary capture",
+    "fixture-run-v1: Python cloned root default argument omitted after source heap init"
+  ],
+  "remaining": [
+    "Reconstruct valid source-owned CRT domain for retained VM/game state, without grafting new native blocks as missing historical nodes",
+    "Continue retained original portrait file read, image construction/upload and complete handler/animation",
+    "Original outer scheduler/world and retained state in the same valid native lifetime",
+    "ACP936/Big5 glyph decoding, six short script encodings and all remaining R3/R4/R5/R6 requirements"
+  ],
+  "target_date": "2026-11-20",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 22286,
+      "sha256": "668761a9d51845522ccd557d17afd87a3ceeea69b08b4f4806df57396da7df9d",
+      "git_blob_sha1": "6a4968d21783a24ae66c870de851564a0e337431"
+    },
+    {
+      "path": "analysis/school-crt-init-apply-final-v1-20261022.json",
+      "bytes": 3471,
+      "sha256": "a85c512c00a77fc31454926c62e15f76b715fb270b5c544508852a0be62c3146",
+      "git_blob_sha1": "8630685c6a66d5a0fffb5259c1c2a917dd7d3464"
+    },
+    {
+      "path": "analysis/school-crt-init-archive-instructions-v1-20261022.json",
+      "bytes": 1008,
+      "sha256": "2f3e8d80d8036cbbac6a791087dbb8890e8f4bf69e05ff490e64767a9af05268",
+      "git_blob_sha1": "f1bd787c2fa8b5a1b4509d6167d56cb9d2be8094"
+    },
+    {
+      "path": "analysis/school-crt-init-archive-mapping-v1-20261022.json",
+      "bytes": 1460,
+      "sha256": "a9a13f9bed95509c2117ffe94f9d1619b720e82d1b34431ae77e0728e45d8321",
+      "git_blob_sha1": "c569adbfb5d2a21b3195f01958761adddc3602d3"
+    },
+    {
+      "path": "analysis/school-crt-init-capture-producer-v1-20261022.py",
+      "bytes": 10526,
+      "sha256": "8b761cf120bd00fcf1f636b16ba1f436275404c6122c2be9d1e947f2f0a31057",
+      "git_blob_sha1": "5a1b5bf308a349e88bbd053d1ca914d253af0740"
+    },
+    {
+      "path": "analysis/school-crt-init-capture-producer-v2-20261022.py",
+      "bytes": 10811,
+      "sha256": "2ee63166f3d7fa13db7295794ac4d1de49f3c9b3b0d4088b5b9828d8bbf29b6d",
+      "git_blob_sha1": "c9e74524fc30d150f827ee8c8ce05157f4661069"
+    },
+    {
+      "path": "analysis/school-crt-init-capture-producer-v3-20261022.py",
+      "bytes": 10841,
+      "sha256": "d39e2b9789dfb3ce00981491ae8ab7e809c1216ee523a6bfd5562f6772544180",
+      "git_blob_sha1": "c0b06abdbb78c5719c8cf4601045ccdde807d1de"
+    },
+    {
+      "path": "analysis/school-crt-init-capture-producer-v4-20261022.py",
+      "bytes": 10965,
+      "sha256": "14710dcd7ba15ad096162d9205c9c15866207b79f76f8575b1a49398d2eb85ca",
+      "git_blob_sha1": "03da472f447f4b82c854d79c26dcb671d5fa7aba"
+    },
+    {
+      "path": "analysis/school-crt-init-capture-producer-v5-20261022.py",
+      "bytes": 11044,
+      "sha256": "8bf305ab45b03482a71578a39d17abdde5a921716d3d8ca8853d43e77865dff9",
+      "git_blob_sha1": "7bbf25fe013bcd84d9675a1a55c1ca425dcb9323"
+    },
+    {
+      "path": "analysis/school-crt-init-capture-tests-v1-20261022.log",
+      "bytes": 2392,
+      "sha256": "c37c243fccf173fec47cb94fb9911b0dad8c718ada91941aaba2b1a23140bbbb",
+      "git_blob_sha1": "6b6b3df1bc74fb552a55d403fb9fe0cffa68dcda"
+    },
+    {
+      "path": "analysis/school-crt-init-child-producer-v1-20261022.py",
+      "bytes": 1988,
+      "sha256": "1fdec78cfa99e40ab257c799d491f812b6a231f1fbf90604f9a56e9017a83cc4",
+      "git_blob_sha1": "470e0fdf9c2bd10270fa4d1ca1a1d90b562c1995"
+    },
+    {
+      "path": "analysis/school-crt-init-child-run-v1-20261022.log",
+      "bytes": 980,
+      "sha256": "79c26140358ddfeee9940ac55cd21fbcd92390ad9265173b2a6f8d4da447a00f",
+      "git_blob_sha1": "cd260e6babc5ff39e6ca41afbdc2afb1e78a9352"
+    },
+    {
+      "path": "analysis/school-crt-init-child-run-v2-20261022.log",
+      "bytes": 980,
+      "sha256": "622ceb15ac7a8ebee3a26fc321abf32a972cc47f07494f628f69346a9b7c8011",
+      "git_blob_sha1": "514604b8ff364af8c1cd3ed20c881e65a7ffa816"
+    },
+    {
+      "path": "analysis/school-crt-init-child-v1-20261022.json.gz",
+      "bytes": 1542,
+      "sha256": "d0097e5638e831f4fd7333f4b65e40c0ba49fa21aeedbb57969e2caed9204752",
+      "git_blob_sha1": "3601f1c97fa29b8bef06b18cc94a1f6b10e8140d"
+    },
+    {
+      "path": "analysis/school-crt-init-child-v2-20261022.json.gz",
+      "bytes": 735,
+      "sha256": "78946e4b5787d8b3b0b6033f3589e7812b822493b94a65ffbb9e69a27a6e92ee",
+      "git_blob_sha1": "2efc06d4fbafb908fd54bc5a488df15ed0c72a1c"
+    },
+    {
+      "path": "analysis/school-crt-init-fixture-producer-v1-20261022.py",
+      "bytes": 7753,
+      "sha256": "c7c2cca4c987f1be714389447a44074f0634959a11ae2ad0bd7a116fe2454f79",
+      "git_blob_sha1": "d69e22c2400f8933ef977a60407794050f1a7451"
+    },
+    {
+      "path": "analysis/school-crt-init-fixture-proof-v1-20261022.json",
+      "bytes": 1781,
+      "sha256": "cfa007eb89fc9354b05cde6a55965924781c1be789e2b7cf2c161b73ab1e1987",
+      "git_blob_sha1": "c6745b1491e72772bc570460f51ebc3e9cfd0c12"
+    },
+    {
+      "path": "analysis/school-crt-init-fixture-run-v1-20261022.log",
+      "bytes": 1707,
+      "sha256": "9ff4246588ac19842b009bbaf4e8a11b148e4fc83e72e2d60c54c2bb032494c2",
+      "git_blob_sha1": "85de2f7fa7286caf33b799ec02ee89c1ea010eb1"
+    },
+    {
+      "path": "analysis/school-crt-init-fixture-run-v2-20261022.log",
+      "bytes": 1759,
+      "sha256": "00ad27d0ff1dad78b65b6385cfe6fff9c39be4deee603436a1b7bbe987074e63",
+      "git_blob_sha1": "64c76befec29694dc927d573afb29ef84808b2d2"
+    },
+    {
+      "path": "analysis/school-crt-init-fixture-tests-v1-20261022.log",
+      "bytes": 3437,
+      "sha256": "9c48b9c7f5ddaf97ef726f84d1bb4d5ac9a18bca7ac63c77cebc43f110a42162",
+      "git_blob_sha1": "411bf07903fa6124aec2bcfd6f66bead9c9167bc"
+    },
+    {
+      "path": "analysis/school-crt-init-fixture-v2-20261022.json.gz",
+      "bytes": 2322035,
+      "sha256": "4296435909bf43e6413a82b8fcb986a7074940f30ac18949f2434bccc078f5ac",
+      "git_blob_sha1": "0c069165ec81517d517b8c62e4b3ebc7b46d29d5"
+    },
+    {
+      "path": "analysis/school-crt-init-fixture-verify-v1-20261022.log",
+      "bytes": 92,
+      "sha256": "030efa0e50b7f8a1007aa449e6391ae94887835f139482a45644c967ada98bd8",
+      "git_blob_sha1": "ff1592ec8ee198d0cb3f4429ae9be685d20cf271"
+    },
+    {
+      "path": "analysis/school-crt-init-native-run-v1-20261022.log",
+      "bytes": 929,
+      "sha256": "9eccfd91af1b2c2c85165916120771bbb72ec73453ff8144de24b6ab504cee56",
+      "git_blob_sha1": "084c91f8e9ee89bc5baea44c5553447513bcde48"
+    },
+    {
+      "path": "analysis/school-crt-init-native-run-v2-20261022.log",
+      "bytes": 929,
+      "sha256": "736ffef7bd12980719120889664ddd976186d0159fd3c64241199b906cfecadd",
+      "git_blob_sha1": "f62a451bdb586a0ccc1e5139132ca68be98a0c3a"
+    },
+    {
+      "path": "analysis/school-crt-init-native-run-v3-20261022.log",
+      "bytes": 929,
+      "sha256": "736ffef7bd12980719120889664ddd976186d0159fd3c64241199b906cfecadd",
+      "git_blob_sha1": "f62a451bdb586a0ccc1e5139132ca68be98a0c3a"
+    },
+    {
+      "path": "analysis/school-crt-init-native-run-v4-20261022.log",
+      "bytes": 929,
+      "sha256": "736ffef7bd12980719120889664ddd976186d0159fd3c64241199b906cfecadd",
+      "git_blob_sha1": "f62a451bdb586a0ccc1e5139132ca68be98a0c3a"
+    },
+    {
+      "path": "analysis/school-crt-init-native-run-v5-20261022.log",
+      "bytes": 929,
+      "sha256": "736ffef7bd12980719120889664ddd976186d0159fd3c64241199b906cfecadd",
+      "git_blob_sha1": "f62a451bdb586a0ccc1e5139132ca68be98a0c3a"
+    },
+    {
+      "path": "analysis/school-crt-init-native-run-v6-20261022.log",
+      "bytes": 929,
+      "sha256": "5e789ff3fc00786ad82f54820b2c120e82d96e5f89d49bc33bdf4c546a8d8e44",
+      "git_blob_sha1": "750218cacf5dab407afd3f542bcfa82ec6c1fdfb"
+    },
+    {
+      "path": "analysis/school-crt-init-native-v1-20261022.json.gz",
+      "bytes": 2489,
+      "sha256": "e37c79461f16b3ba830b90d81e1bb571339c19988dada2b84ae0bb41bb4019c5",
+      "git_blob_sha1": "b56a55602a8961fcac157e7fbd6c34222c8b39a4"
+    },
+    {
+      "path": "analysis/school-crt-init-native-v2-20261022.json.gz",
+      "bytes": 2593,
+      "sha256": "7fb4a334587ad5747fa5c4eade12dcf4933de2b83d36311cf7965dc43fcc7833",
+      "git_blob_sha1": "d80982d93c4ce4136fea19d882b5cfbce0f0a2ea"
+    },
+    {
+      "path": "analysis/school-crt-init-native-v3-20261022.json.gz",
+      "bytes": 1069,
+      "sha256": "fd0ae879565489ee88bd9dee4c26f44f3e1ec4a1a73cabb9542a6ec723be3d68",
+      "git_blob_sha1": "69857ca615775ac46d0d44a4eaa4beb8519698b1"
+    },
+    {
+      "path": "analysis/school-crt-init-native-v4-20261022.json.gz",
+      "bytes": 1101,
+      "sha256": "790abf0e55fef1eba9d1d78668bb84ccca18ea5870cfebccb7e3a98cb152711a",
+      "git_blob_sha1": "afb5a677bb0f16a9d72c336345cb55d6ef2bdc8b"
+    },
+    {
+      "path": "analysis/school-crt-init-native-v5-20261022.json.gz",
+      "bytes": 2752,
+      "sha256": "c85133e3da5504fb30b9baee84a7252bedcd15f2666dbca7879c266e915962d6",
+      "git_blob_sha1": "4c9ca53db606d8b9a9986c9179ca8291e92dff0f"
+    },
+    {
+      "path": "analysis/school-crt-init-native-v6-20261022.json.gz",
+      "bytes": 2893,
+      "sha256": "ebebf20890d48ad0b383416a282681362d2b3f0fff2b70a9f52f6c97dd6babe3",
+      "git_blob_sha1": "d00056d584d63413bb78c646dcdb8630529a5f10"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-producer-v1-20261022.py",
+      "bytes": 9170,
+      "sha256": "66d33bb1e3e0a1dcd5986cf5d939256140ddc8cf98d4f4c6f06fa2179f0e0436",
+      "git_blob_sha1": "99b0cb28e6a200d23d39ab396f2c33fc60e86ab1"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-producer-v2-20261022.py",
+      "bytes": 9300,
+      "sha256": "61f52175185b130007ca7a8e6aa7910ec4dd4b1eacc1aeabf51fc9b3550d7815",
+      "git_blob_sha1": "0707c1ba09fd6bdc882231d303894889475843df"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-run-v1-20261022.log",
+      "bytes": 958,
+      "sha256": "9f06a598995da841f6a6fb096a8308531ebf85e96320c25a2849690257f984d6",
+      "git_blob_sha1": "7c9f366d5e90739c6584568431b997172e9881d9"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-run-v2-20261022.log",
+      "bytes": 632,
+      "sha256": "fabadebea0c7a506781b17884078ed8104351accfecfc142c4a1e98b4b43b700",
+      "git_blob_sha1": "a86bd4f5b10ce10f2f5fd4c4569028a5ff972b15"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-run-v3-20261022.log",
+      "bytes": 958,
+      "sha256": "fdd588656bdecc625af41ad62c3676a934f218b08866f7d341b977cef5fb2b43",
+      "git_blob_sha1": "9b8d87ac590634df1129930967de49903dcd6ed4"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-v1-20261022.json.gz",
+      "bytes": 1428,
+      "sha256": "df8c04bceb799f15165d090f8dd24d7e08c2f6ad34063110217f67c7c7e6f8da",
+      "git_blob_sha1": "850e82f6fa64a0813f4d260ce23bb29fc2fbebb7"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-v2-20261022.json.gz",
+      "bytes": 1398,
+      "sha256": "044603326de1d06cb96a971236de103dca8842d773282aff4489428fa4533282",
+      "git_blob_sha1": "c34b23897d07f55ffcbf30a10aef21e4d60c7b81"
+    },
+    {
+      "path": "analysis/school-crt-init-nested-v3-20261022.json.gz",
+      "bytes": 51112,
+      "sha256": "8fca9e2bfe4dbe1c2d6be61743f42a08b5c2f56aac0acae7f0815d2807e288fa",
+      "git_blob_sha1": "17ce0015d8b7b279d74ba5b8d001efc3d4556a7a"
+    },
+    {
+      "path": "analysis/school-crt-init-preservation-v1-20261022.json",
+      "bytes": 59310,
+      "sha256": "ef18f71ef37059082ac46cbce3d05c394078d6b301dff66685cd54465aa5ec55",
+      "git_blob_sha1": "f478346092792f6e4aaa3fc5e153b0dec2dca9dc"
+    },
+    {
+      "path": "analysis/school-crt-init-preservation-v1-20261022.log",
+      "bytes": 92,
+      "sha256": "0c3b72544a9b397b8e4109840dc58a4e812f82a3693b761519b8bd1ee9652aef",
+      "git_blob_sha1": "02b67df81bb6192dd63b1e6bd3c888cc802ebd9d"
+    },
+    {
+      "path": "analysis/school-crt-init-probe-producer-v1-20261022.py",
+      "bytes": 8070,
+      "sha256": "a8135162d83d4a0d2f903cda36aaac95a49336b7ed66e6d90cfff0fe0b88bfaa",
+      "git_blob_sha1": "b6116ce8328ebefa3dd2fb4edc96acd2e13278a6"
+    },
+    {
+      "path": "analysis/school-crt-init-probe-proof-v1-20261022.json",
+      "bytes": 7650,
+      "sha256": "5ecc8e2275bb263d6a5f9ff61cf6f93fdd09821a3b4f3e22c9cc03a4233a1840",
+      "git_blob_sha1": "631c2a5f5c99617eb87ede8bec1243237105c822"
+    },
+    {
+      "path": "analysis/school-crt-init-probe-run-v1-20261022.log",
+      "bytes": 422,
+      "sha256": "9b192f10d91b4a14275a7a9eda88b91c8c29d0be2dcdb6be953abc37b724849f",
+      "git_blob_sha1": "c001f846d85f15843afcd2aa48f5b0496d7d16f9"
+    },
+    {
+      "path": "analysis/school-crt-init-probe-run-v2-20261022.log",
+      "bytes": 422,
+      "sha256": "9b192f10d91b4a14275a7a9eda88b91c8c29d0be2dcdb6be953abc37b724849f",
+      "git_blob_sha1": "c001f846d85f15843afcd2aa48f5b0496d7d16f9"
+    },
+    {
+      "path": "analysis/school-crt-init-probe-v1-20261022.json.gz",
+      "bytes": 7114338,
+      "sha256": "9d65906e394dafac84d8e8644cebe7d177b1b88d38174546bc86fd37520a2146",
+      "git_blob_sha1": "8757b6ce0b9d6038423d387dcbb3662de0b56d13"
+    },
+    {
+      "path": "analysis/school-crt-init-probe-v2-20261022.json.gz",
+      "bytes": 7115235,
+      "sha256": "850b684f76c67e674bc1ba4a79b398bcb18f8b6abb01cda1e4d8908830c07a82",
+      "git_blob_sha1": "0558aa5e746a523545ab23f92fc255f6ccc986eb"
+    },
+    {
+      "path": "analysis/school-crt-init-probe-verify-v1-20261022.log",
+      "bytes": 61,
+      "sha256": "ec8c3c97fbb81798806575ed46123effc1e8e00d4c5a7315ec188e7733dc7e75",
+      "git_blob_sha1": "e3e39c443c921a8d46a28ac3e5cdd02c99006b24"
+    },
+    {
+      "path": "analysis/school-crt-init-regression-v1-20261022.log",
+      "bytes": 37932,
+      "sha256": "7b0e8fcb0304252fe2ccdb8d7de317999005a1fab565a0acce628614c64edf71",
+      "git_blob_sha1": "101666a45930b830b57c7db2534ee5527511b996"
+    },
+    {
+      "path": "analysis/school-crt-init-status-final-v1-20261022.json",
+      "bytes": 2910,
+      "sha256": "84862109c0532dfb0a6b69e20746c1687deda6d26f51eeaf07cfdcbe126f3883",
+      "git_blob_sha1": "2165ac405fef7841df83aaef3caede42a0be6622"
+    },
+    {
+      "path": "analysis/school-crt-init-status-pre-archive-v1-20261022.json",
+      "bytes": 2910,
+      "sha256": "84862109c0532dfb0a6b69e20746c1687deda6d26f51eeaf07cfdcbe126f3883",
+      "git_blob_sha1": "2165ac405fef7841df83aaef3caede42a0be6622"
+    },
+    {
+      "path": "analysis/school-crt-init-strict-after-v1-20261022.json",
+      "bytes": 7551,
+      "sha256": "3df007d2b04b0328dd005e041a1058ad2dfdf6e3c9f2cedb03915123294f505a",
+      "git_blob_sha1": "4a741c65dbf30f90a0492b53d205197c304fe468"
+    },
+    {
+      "path": "analysis/school-crt-init-strict-before-v1-20261022.json",
+      "bytes": 7917,
+      "sha256": "e3cf85222dcd7a55852ab519f31b2a91bfff6c2f38eb88ef67787495fdd82aa3",
+      "git_blob_sha1": "caca7e80f432b47d80a386de43f902f4458f539b"
+    },
+    {
+      "path": "analysis/school-crt-init-task1-preservation-v1-20261022.json",
+      "bytes": 10572,
+      "sha256": "87601089bc3f92246d24a82ee0ab169b4d233dc1f3ab5e267cdd455ffd5a3bd5",
+      "git_blob_sha1": "841bb8ebe854efee665a104c62d03073c8c71708"
+    },
+    {
+      "path": "analysis/school-crt-init-task1-strict-v1-20261022.json",
+      "bytes": 686,
+      "sha256": "6a013cc064f1cfc9c79e5b9a116a133f1d503c21288da20a454fca963b683cbc",
+      "git_blob_sha1": "971e883337b829abd33aa3ffff224fe9ed2766e5"
+    },
+    {
+      "path": "analysis/school-crt-init-validation-summary-v1-20261022.json",
+      "bytes": 620,
+      "sha256": "c346afa83253196bcbb796bc16d4df441c0e04346d54a99cd9289ebe5c1ceb90",
+      "git_blob_sha1": "cf3bf6950436e287e9c54633d4ac4e952765e274"
+    },
+    {
+      "path": "analysis/school-crt-init-validation-v2-20261022.log",
+      "bytes": 6039,
+      "sha256": "bacc4cf4cfc8646499a5eee85c10568bd31f4f559ecb6a046aee4d440d821242",
+      "git_blob_sha1": "6dc0b60f8002d1c4e90bc4c4376eec64ae6907ac"
+    },
+    {
+      "path": "docs/school_crt_init.md",
+      "bytes": 6174,
+      "sha256": "7789310f23ea2e710025eb16925bf2a710138a679a285722dc4c48706b1a4610",
+      "git_blob_sha1": "39c86f4b3ec49100bbb5ab0276fe188a03e208d7"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-capture-original-crt-initialization/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "406fb8199314e5fb81d7e56b100c8340aeee0d2dbb3fbd4c22453a97001ea58e",
+      "git_blob_sha1": "c40d25044a3ff7da1d0413177a838db37de4cc32"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-capture-original-crt-initialization/design.md",
+      "bytes": 3241,
+      "sha256": "62ca1990bd3834da8ba0e0574ebc752634cfac75490ae2de0e4e7e454584b0a1",
+      "git_blob_sha1": "04b4eb929931641d39374060230686a8815e7498"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-capture-original-crt-initialization/proposal.md",
+      "bytes": 1849,
+      "sha256": "52fe7475dd4b74c6f65801cd2570f39a2adcc53ce2eac8afd3654d6c54d8f6ea",
+      "git_blob_sha1": "f8c8a756d3aa8439633f6d463b86d4ddcd5ea173"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-22-capture-original-crt-initialization/tasks.md",
+      "bytes": 1219,
+      "sha256": "a7a2d4ca044f999db7962ba03852993ad222bd8aef2620f516a8b22226255396",
+      "git_blob_sha1": "25d8f094ac49e6fe77675126279caed5268788cb"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 25240,
+      "sha256": "8c90adbd1a7a46b3179c890f2f40973d9fafd6505c4ebf8bb2baf85d33a1cedd",
+      "git_blob_sha1": "ccbb9d48613b2431631d58a4020b1bc2d811cf5c"
+    },
+    {
+      "path": "tools/school_crt_init_capture.py",
+      "bytes": 11695,
+      "sha256": "4cb6dee65b51fbfdd80ca11e1cf5c6a4f4e32a4f4efc73a69f3aa4cf10b93e26",
+      "git_blob_sha1": "abaccba049fb49d9efdfc8648a04259a1aa2d30b"
+    },
+    {
+      "path": "tools/school_crt_init_child.py",
+      "bytes": 2569,
+      "sha256": "4a07c935ac1390abddcb7bde18166fb0a5b4231c982e08dd7310a2a483655889",
+      "git_blob_sha1": "bd282602a03b8f606ca4a342590de132e5256fa2"
+    },
+    {
+      "path": "tools/school_crt_init_fixture.py",
+      "bytes": 7781,
+      "sha256": "a95257754550ffa303678337180df32d9a62eded81999289ed29a8fc4ef44bb9",
+      "git_blob_sha1": "cc24c652dc06bdd3f9a08592b201627affcb0591"
+    },
+    {
+      "path": "tools/school_crt_init_fixture_verification.py",
+      "bytes": 10453,
+      "sha256": "e0b66c5c5e6d5bebf79cc77d1a2ee97a5c67e3c1303bfe56f50ce4569da16210",
+      "git_blob_sha1": "e76c5f163e68fe2312e0bb91541607351856641e"
+    },
+    {
+      "path": "tools/school_crt_init_nested.py",
+      "bytes": 9511,
+      "sha256": "fa9d0781faffa7e152531aaa19c549d553ebfb96359b123a13520b742d75476e",
+      "git_blob_sha1": "4fb9e43d351e0b27a1027188ae80f5b519452c7d"
+    },
+    {
+      "path": "tools/school_crt_init_platform.cs",
+      "bytes": 9433,
+      "sha256": "cb25ac0088513f488baaf240d9b67bcd5966a700a94795e37d9525e193e5647b",
+      "git_blob_sha1": "a5ab1c8d2db9ed02241d00bcec1866a7c32e9265"
+    },
+    {
+      "path": "tools/school_crt_init_platform.py",
+      "bytes": 905,
+      "sha256": "0222dd5537702a55c023474f7c9aae1b34d846f44addd4df179f8a4061fa5745",
+      "git_blob_sha1": "b1bc31a6533646c31adc34e92916d7b4a06d9a71"
+    },
+    {
+      "path": "tools/school_crt_init_preservation.py",
+      "bytes": 1688,
+      "sha256": "8d8866c7ed0610db0a2b6111b3c01150a052e5c6d94475bd8d0dfbbe28dc119d",
+      "git_blob_sha1": "ecc3bbf54489a3f1bd0cc5a267d1df8efcea5306"
+    },
+    {
+      "path": "tools/school_crt_init_probe.py",
+      "bytes": 8297,
+      "sha256": "8a1710f782b96bebb5aae806f243214c4d1bc7c5b96c33e8ee04706552134322",
+      "git_blob_sha1": "d0f31b2a312c0f28bbf9767a455d5d25753fe50a"
+    },
+    {
+      "path": "tools/school_crt_init_verification.py",
+      "bytes": 11777,
+      "sha256": "814e7758cc271ed041246d17eafb73d8a884941b50bc5a5f4165ed6d87bd887e",
+      "git_blob_sha1": "d2ea6ec2cfab47253b75c78611597956c15f5f92"
+    },
+    {
+      "path": "tools/tests/test_school_crt_init.py",
+      "bytes": 4180,
+      "sha256": "76a0727b3c8fea00925bbf0df9f8debb83d9f1cad403cfcdd935feb9f69f78e1",
+      "git_blob_sha1": "0c76fd84c576c271664ccf2c8ccb1144721e037e"
+    },
+    {
+      "path": "tools/tests/test_school_crt_init_fixture.py",
+      "bytes": 5752,
+      "sha256": "d38fc90743d5c4af418525cfa4771ecb2a944f5df946ae229dc312ecd734e545",
+      "git_blob_sha1": "ecf757a69de1ecf00a45cacb843d2f5d3de330ee"
+    }
+  ],
+  "manifest_excludes": [
+    "this acceptance file to avoid circular digest"
+  ],
+  "local_only": true,
+  "pushed": false
+}

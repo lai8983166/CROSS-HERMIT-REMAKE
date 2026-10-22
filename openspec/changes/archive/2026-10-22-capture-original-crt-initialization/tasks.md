@@ -10,4 +10,4 @@
 
 ## 3. Acceptance and archive
 
-- [ ] 3.1 Run full related regressions, strict specs and prior evidence/save/checkpoint/resource preservation; update the master roadmap with exact provenance and remaining retained integration gap, commit coherent units locally and archive this completed change with exact raw/index/HEAD and archive hashes.
+- [x] 3.1 Run full related regressions, strict specs and prior evidence/save/checkpoint/resource preservation; update the master roadmap with exact provenance and remaining retained integration gap, commit coherent units locally and archive this completed change with exact raw/index/HEAD and archive hashes.

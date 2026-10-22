@@ -35,3 +35,5 @@ WinMain入口每份有142个存活的type2 CRT块，request为1–143（缺失�
 正式夹具：`analysis/school-crt-init-fixture-v2-20261022.json.gz`；独立复核：`school-crt-init-fixture-proof-v1-20261022.json`。首版driver克隆通用函数时遗漏Python默认参数，原堆初始化后报TypeError；其日志/源码原样保留，该失败不计正式资源清理。修正后两套正式样本均由原代码创建与销毁全部CRT资源。
 
 不会将新进程的142个CRT块冒充旧快照丢失的节点；旧快照的request=105与这些新进程不同。新增59项（26项原生来源、33项初始化/所有权）及历史348项回归全部通过，共407项；完整旧证据链、存档、私有检查点与资源保全通过。下一步仍需为保留任务建立有来源的有效CRT环境，并接回原肖像读取、构造/上传及handler。R3/R6和Godot完成状态不因本独立夹具成功而变更。
+
+严格规格归档前32项、归档后31项通过；本单元验收见 `analysis/school-crt-init-acceptance-v1-20261022.json`。原始证据、暂存区与Git提交内容按字节核对。
