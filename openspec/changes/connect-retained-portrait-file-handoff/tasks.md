@@ -6,7 +6,7 @@
 
 ## 2. Continuous texture conversion and original image-file handoff
 
-- [ ] 2.1 Continue all six retained branches through original texture conversion, cleanup and path/loader code to its first unexecuted allocation request using declared platform replay and actual read-only file open/size; independently verify full source/write traces, pixels/accounting/stack/all maps/CPU and owned cleanup; add boundary/identity corruption tests and documentation, then run affected regressions.
+- [x] 2.1 Continue all six retained branches through original texture conversion, cleanup and path/loader code to its first unexecuted allocation request using declared platform replay and actual read-only file open/size; independently verify full source/write traces, pixels/accounting/stack/all maps/CPU and owned cleanup; add boundary/identity corruption tests and documentation, then run affected regressions.
 
 ## 3. Integration acceptance and archive
 

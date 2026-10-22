@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_retained_portrait_file.py", line 144, in <module>
+    r=run();out.write_bytes(gzip.compress(json.dumps(r,separators=(',',':')).encode(),mtime=0));print('portrait file handoff report bytes',out.stat().st_size,flush=True)
+  File "F:\project\chaomofa\tools\school_retained_portrait_file.py", line 136, in run
+    c=run_case(branch,scene);cases.append(c);print(branch,scene,'source name texture/path -> actual file open/size -> original allocation boundary',flush=True)
+  File "F:\project\chaomofa\tools\school_retained_portrait_file.py", line 124, in run_case
+    need(model==pixels,'independent every-pixel original name conversion');pending=image_pending(g);need((pending['receiver'],pending['args'],pending['return_va'])==(base.VM,[PATH,32],0x4cc0d2),'natural original image-loader call');g.files=Files();result=None
+  File "F:\project\chaomofa\tools\school_retained_portrait_file.py", line 117, in image_pending
+    sp=g.cpu()['ESP'];outer=g.parent['parent_font_frames'][1:];chain=frames(g,[('resource',0x4cc26d),*[(r['label'],r['return_va']) for r in outer]])
+  File "F:\project\chaomofa\tools\school_retained_portrait_file.py", line 112, in frames
+    need(word(g.read(p+4))==ret,'original '+label+' frame');rows.append(dict(label=label,bp=p,return_va=ret));p=word(g.read(p))
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: original resource frame
