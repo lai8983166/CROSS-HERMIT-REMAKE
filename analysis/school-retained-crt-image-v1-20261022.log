@@ -1,0 +1,20 @@
+original_heap_initialization 58 original instructions; 2 actual OS leaves
+original_static_lock_initialization 16 original instructions; 4 actual OS leaves
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_retained_crt_image.py", line 93, in <module>
+    helper,build=init.platform.build(ROOT/a.helper);r=run(helper,build);out.write_bytes(gzip.compress(json.dumps(r,separators=(',',':')).encode(),mtime=0));print('six retained source IMAGE prefixes with fresh CRT resources and normal teardown',flush=True)
+  File "F:\project\chaomofa\tools\school_retained_crt_image.py", line 87, in run
+    return dict(schema_version=1,cases=[run_case(helper,build,n,s) for n in ('initial','student9_waiting','fifth_class') for s in (76,77)],fresh_CRT_domain_reconstructed=True,historical_heap_restored=False,new_game_roots=0,supplemental_cleanup_roots_per_case=4,game_function_substitutions=0,IAT_rebindings=0,new_window=False,new_GPU=False,new_OS_input=False,full_CRT_startup_replayed=False,image_loader_completed=False,same_native_lifetime=False,R3_complete=False,R6_complete=False)
+  File "F:\project\chaomofa\tools\school_retained_crt_image.py", line 87, in <listcomp>
+    return dict(schema_version=1,cases=[run_case(helper,build,n,s) for n in ('initial','student9_waiting','fifth_class') for s in (76,77)],fresh_CRT_domain_reconstructed=True,historical_heap_restored=False,new_game_roots=0,supplemental_cleanup_roots_per_case=4,game_function_substitutions=0,IAT_rebindings=0,new_window=False,new_GPU=False,new_OS_input=False,full_CRT_startup_replayed=False,image_loader_completed=False,same_native_lifetime=False,R3_complete=False,R6_complete=False)
+  File "F:\project\chaomofa\tools\school_retained_crt_image.py", line 71, in run_case
+    g=Guest(live,0 if scene==76 else 1);g.root('original_heap_initialization',0x57b9d0,[1]);g.root('original_static_lock_initialization',0x576f60);projection=project(g,memory,cpu);baseline=word(g.read(0x79fc74));step=g.continuous();state=snapshot(g);need(init.old.ledger(g)['game_bytes']==baseline+262256,'original retained game accounting increment');readbacks=[]
+  File "F:\project\chaomofa\tools\school_retained_crt_image.py", line 64, in snapshot
+    need(len(g.history)==2 and len(g.allocations)==2,'exact two live original allocations');f,a=[r['guest']+32 for r in g.history];raw,meta=image.resource();need(g.read(f,len(raw))==raw,'entire original SC004 file user bytes');need(word(g.read(a))==1 and g.read(a+4,84)==image.record_prefix(),'original vector count and every DX record byte');sp=g.cpu()['ESP'];receiver=g.cpu()['ECX'];renderer=word(g.read(0x7a49fc));device=word(g.read(renderer+0xb210));table=renderer+0x844+32*8
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: original vector count and every DX record byte
