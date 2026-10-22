@@ -35,4 +35,8 @@
 
 下一步是原资源handler及动画/就绪状态返回、外层世界同寿命连接。完整CRT历史、Big5 ANSI乱码、六条短编码、其他R3/R4/R5/R6工作仍未完成。2026-11-20目标不变。
 
+后继可复用 `tools/school_character_animation_catalog.py` 的78步来源模型（延迟30、渐变45、背景60），但旧动画emulator代用了展示函数并重新设置独立VM根，不能当作连续原任务证据。应从当前4CC0D2沿原资源/层/handler栈继续，核对静态资源和绘制队列，再用完整454CF0任务验证PC272等待、动画就绪及第三句入口；不直接复用旧展示代用结果。
+
 六个分支均独立复核通过：每例在已验69440指令前缀后，追加163326条原IMAGE指令/136688次原写入；512次原memcpy逐行执行，原free自然释放文件缓冲并ret8返回。最终143个客体映射及完整CPU一致。补充原容器清理1434条指令、原初始化/堆锁销毁561条；每例44次真实OS叶调用及6次明确历史COM响应回放，正常助手退出。新增38项来源/像素/所有权/自然返回破坏测试通过。正式证据 `analysis/school-retained-image-return-v1-20261022.json.gz`，独立证明 `analysis/school-retained-image-return-proof-v1-20261022.json`。
+
+历史441项与新增38项共479项测试全部通过。严格规格归档前32项、归档后31项通过，前一单元29份已验文件及累计存档/私有检查点/资源证据链保持。3/3任务完成，四份规划文件字节不变地归档到 `openspec/changes/archive/2026-10-22-complete-retained-image-loader/`。验收见 `analysis/school-retained-image-return-acceptance-v1-20261022.json`；原始日志CRLF保留，原文件、Git暂存区及最终提交按字节核对。本地提交，不push。
