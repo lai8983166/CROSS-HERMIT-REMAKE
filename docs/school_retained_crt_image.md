@@ -39,3 +39,5 @@
 肖像GPU创建/上传、原IMAGE/handler动画返回、原外层线程/世界与保留状态同一有效寿命连接、Big5 ANSI乱码、六条短编码及R3/R4/R5/R6剩余工作继续保留。目标日期2026-11-20不变。
 
 六个分支均独立复核通过：每例连续69440条原指令/66886次原写入，另初始化与补充清理67546条原指令，共44次真实OS叶调用；最终136个客体映射和完整CPU一致。335字节限域投影之外的保留内存、原CPU和游戏记账保持。新增34项完整来源/投影/内容/所有权破坏测试通过。正式来源 `analysis/school-retained-crt-image-v3-20261022.json.gz`，独立证明 `analysis/school-retained-crt-image-proof-v1-20261022.json`。
+
+历史407项回归及新增34项合计441项全部通过。严格规格归档前32项、归档后31项通过；上轮76份已验文件和原存档/检查点/资源保护链保持。3/3任务完成，四份规划文件字节不变地归档到 `openspec/changes/archive/2026-10-22-connect-retained-crt-image/`。本单元验收见 `analysis/school-retained-crt-image-acceptance-v1-20261022.json`；原始CRLF日志保留，文件/暂存区/最终提交按字节核对。本地提交，不push。
