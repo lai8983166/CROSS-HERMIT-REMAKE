@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_retained_crt_fixture_verification.py", line 89, in <module>
+    result=verify(json.loads(gzip.decompress((ROOT/a.report).read_bytes())));out.write_text(json.dumps(result,indent=2)+chr(10),encoding='utf8',newline=chr(10));print(result,flush=True)
+  File "F:\project\chaomofa\tools\school_retained_crt_fixture_verification.py", line 72, in verify
+    va,args=roots[i];need(s['root']==dict(va=va,args=args,sp=work.STACK+0xf000,return_va=work.RETURN,receiver=0),'independent declared original function root');a=s['result'];adapt=dict(s,result=dict(a,api_calls=[dict(c,va=c['target']) for c in a['api_calls']]));counts.append(r.step(adapt));expected=dict(zip(('first','total','last','current','high','next_request','game_bytes'),ledgers[i]));need(work.ledger(r)==s['ledger']==expected,'independent source list/counter transition');need(base.memory_rows(r.u)==s['full_memory'] and base.canonical(base.architectural_cpu(r.u))==base.canonical(s['architectural_cpu']),'whole original memory and full CPU after every root')
+  File "F:\project\chaomofa\tools\school_retained_render_pipeline_verification.py", line 135, in step
+    if call['key']=='textGDI':
+KeyError: 'key'

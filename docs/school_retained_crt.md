@@ -1,6 +1,6 @@
 # 原 CRT 分配、肖像文件读取与保留状态缺口
 
-当前有限 change：`verify-crt-allocation-file-lifecycle`。本轮不需要解锁桌面，不启动游戏窗口，不发送输入，也不创建 GPU 对象。
+有限 change：`verify-crt-allocation-file-lifecycle`。本轮不需要解锁桌面，不启动游戏窗口，不发送输入，也不创建 GPU 对象。
 
 ## 保留分支：已定位，尚未接通
 
@@ -16,4 +16,21 @@
 
 独立夹具使用无窗口 x86 helper，仅封送实际 Win32 堆、锁、只读文件 API。所有 CRT、原 hook、memset、原文件包装器和释放函数执行原机器码。旧 token 仅作为 guest 逻辑标识，不传给 Windows；每次原生指针消费者前同步完整源程序缓冲区，并检查自有对象、边界和调用顺序。锁 API 的 void 返回在 guest 中归一为0，不作为功能结果。
 
-证据、独立重放、回归与最终验收结果在本 change 完成时补齐。研究 R3/R6 与 Godot 完成状态不因独立夹具成功而变更。
+## 已验函数生命周期
+
+七次明确的独立原根依次为4288E0重置游戏分配计数、428A40(262168)、428A40(88)、428AD0(首块)、428AD0(次块)、42AE20(SC004路径)、428AD0(文件缓冲区)。这不是保留任务的连续调用栈。
+
+每步原指令数分别为33、65954、436、66251、734、68036、66254，总计267698；原写入263780次。47次原调用的实际 OS 叶接口全部核对，另有明确标记的完整缓冲同步/读回与实验资源建立/销毁。两个块同时存活时验证双向链，先释放首块再验证剩余块 prev=0。完整262168字节 SC004 文件由原 ReadFile 调用读入，原 CloseHandle 关闭，不再依赖探针代关；所有用户字节与安装文件逐字节相同，SHA256 为 `a4443ca63b9889503e35170da0c8b976a799c25ec3f0bd1b0f80dc97c38a6164`。
+
+原头部保存源文件594E28、行号141、类型1、请求序号1/2/3。三个底层对齐分配分别为262208、128、262208字节；每次用户区CD、前后FD和释放前整个请求块DD均检查。最终 first/last/current/game_bytes 均为0，累计 total=524424、high=262256、next_request=4，由原代码自然得到。原生堆3次分配/3次释放、文件1次读/关闭，源锁均衡，助手正常退出并销毁自有堆/临界区，无强制清理。
+
+独立验证器重新执行原机器码，逐项检查自然返回栈、IAT/原指令字节、完整指令与写入摘要、全部 native 请求/回执、原生所有权及七个返回点的全内存/CPU。模型另核对全部debug header、链变更、统计与文件字节。初始化声明与保留基线严格分开；验收中 `retained_heap_restored=false`、`retained_integration=false`、`R3_complete=false`。
+
+## 可复核证据与检查
+
+- 六分支原前缀：`analysis/school-retained-crt-boundary-v1-20261022.json.gz`；独立复核：`school-retained-crt-boundary-proof-v1-20261022.json`。
+- 完整独立函数夹具：`analysis/school-retained-crt-fixture-v1-20261022.json.gz`；独立复核：`school-retained-crt-fixture-proof-v2-20261022.json`。首版验证器的通用重放适配缺少key字段，失败日志原样保留为 `school-retained-crt-fixture-verify-v1-20261022.log`，修正适配后通过；未改原实验报告或原机器码。
+- 新增13项保留来源/状态拒绝检查与40项夹具/原生所有权检查通过；完整历史回归结果见本单元最终验收。
+- 运行环境：项目 `.venv-audit/Scripts/python.exe`，`PYTHONPATH=.`、`PYTHONUTF8=1`。先运行 `python -m tools.school_retained_crt --verify <boundary-report> --out <fresh-proof>`，再运行 `python -m tools.school_retained_crt_fixture_verification <fixture-report> --out <fresh-proof>`。输出路径必须不存在，保留原始失败证据。
+
+研究 R3/R6 与 Godot 完成状态不因独立夹具成功而变更。下一步仍需从可证明的原初始化/有效寿命恢复CRT依赖，再接回原肖像加载/构造/上传及handler；不得将本夹具的清零输入移植到保留分支。六条短编码、ACP936/Big5乱码和原外层世界的同寿命连接仍是其他已知缺口。

@@ -6,7 +6,7 @@
 
 ## 2. Original allocation, file read and free lifecycle
 
-- [ ] 2.1 Implement a bounded owned headless Win32 heap/file helper and explicitly separate fresh-input fixtures; run original x86 allocation/debug headers/list/accounting, concurrent unlink/free and complete source file-loader/read/free, independently replay full instructions/writes/memory/CPU and actual API ownership/cleanup; add corruption/ownership tests and docs, and run affected regressions.
+- [x] 2.1 Implement a bounded owned headless Win32 heap/file helper and explicitly separate fresh-input fixtures; run original x86 allocation/debug headers/list/accounting, concurrent unlink/free and complete source file-loader/read/free, independently replay full instructions/writes/memory/CPU and actual API ownership/cleanup; add corruption/ownership tests and docs, and run affected regressions.
 
 ## 3. Acceptance and archive
 
