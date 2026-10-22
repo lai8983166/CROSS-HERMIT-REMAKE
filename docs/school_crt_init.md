@@ -21,7 +21,17 @@ WinMain入口每份有142个存活的type2 CRT块，request为1–143（缺失�
 ## 证据与验证
 
 - 正式来源：`analysis/school-crt-init-probe-v2-20261022.json.gz`；独立验证：`school-crt-init-probe-proof-v1-20261022.json`。v1成功试跑另存，v2补齐全部采样依赖来源摘要。
-- 23项原生截面/来源破坏校验通过，覆盖父事件、完整代码/数据、所有节点/保护字节、普通寄存器写入、残留进程/桌面、伪造正常退出和保留恢复声明。
+- 26项原生截面/来源破坏校验通过，覆盖父事件、完整代码/数据、所有节点/保护字节、普通寄存器写入、残留进程/桌面、伪造正常退出和保留恢复声明。
 - 参考接口：[Microsoft DEBUG_EVENT](https://learn.microsoft.com/en-us/windows/win32/api/minwinbase/ns-minwinbase-debug_event)、[Microsoft WOW64 CONTEXT](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-context-r2)、[Microsoft CreateDesktopW](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createdesktopw)；原生调试状态结构参照[System Informer PHNT ntdbg.h](https://github.com/winsiderss/phnt/blob/master/ntdbg.h)，ABI与实际内存事件交叉核对。
 
-下一步使用已验原.data作为新的独立函数夹具输入，执行原堆/锁初始化、分配/文件/释放和原CRT资源销毁。不会将新进程的142个CRT块冒充旧快照丢失的节点；旧快照的request=105与这些新进程不同，仍需保留执行本身的初始化/有效寿命连接。
+## 已验的原初始化与函数生命周期
+
+两个新建的无窗口x86 API助手在hello时均没有堆或锁。客体以原镜像代码及上述实测CRT入口的整个.data开始，声明独立的平坦CPU/栈/FS/路径输入，不移植原生寄存器、不单独清零调试链、计数或锁字节。原57B9D0执行实际HeapCreate(0,4096,0)，再经原57B7A0实际GetVersionExA选择heap_mode=1；原576F60依次初始化四份静态锁。平台边界只翻译新建堆的逻辑token，不把旧进程token传入Windows。
+
+随后七个已验原函数根完成262168/88字节的并存分配、原头部/FD/CD/DD和链摘除、SC004完整原ReadFile/CloseHandle及原释放。最后原576FA0删除四份锁，原57BA60实际HeapDestroy。助手要求原代码先释放全部对象才能正常关闭，driver不补做正式样本的CRT销毁。
+
+每例11个独立原根、268259条原指令、263867次原写入和58次实际OS叶调用；两例全部机器码/写入摘要、每根后的完整客体镜像内存/CPU、真实接口全缓冲、所有权和正常助手退出独立重放一致。释放后的镜像块保留末次源程序字节供审计，不冒充已释放原生堆的物理空闲链；删除后的锁也不再作为有效对象访问。这是独立函数初始化验证，未逐指令执行整个143次原生CRT请求，也未重放所有C++初始化器。
+
+正式夹具：`analysis/school-crt-init-fixture-v2-20261022.json.gz`；独立复核：`school-crt-init-fixture-proof-v1-20261022.json`。首版driver克隆通用函数时遗漏Python默认参数，原堆初始化后报TypeError；其日志/源码原样保留，该失败不计正式资源清理。修正后两套正式样本均由原代码创建与销毁全部CRT资源。
+
+不会将新进程的142个CRT块冒充旧快照丢失的节点；旧快照的request=105与这些新进程不同。新增59项（26项原生来源、33项初始化/所有权）及历史348项回归全部通过，共407项；完整旧证据链、存档、私有检查点与资源保全通过。下一步仍需为保留任务建立有来源的有效CRT环境，并接回原肖像读取、构造/上传及handler。R3/R6和Godot完成状态不因本独立夹具成功而变更。

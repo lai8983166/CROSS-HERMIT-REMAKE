@@ -1,11 +1,17 @@
 """Independent full native CRT snapshots, instrumentation and debug-graph audit."""
-import gzip,json,struct
+import gzip,json,struct,os
+from functools import lru_cache
 from pathlib import Path
+import pefile
 from tools import school_crt_init_capture as source
 
 ROOT=source.ROOT;need=source.need;sha=source.sha;word=source.word
 ACCEPTANCE='analysis/school-retained-crt-acceptance-v1-20261022.json'
 ACCEPTANCE_SHA='4433b1e2299794fa9e11a45003f12838d5cddb97694050f073beb478e688efed'
+
+@lru_cache(maxsize=32)
+def exported_entry(path,name,target):
+ p=pefile.PE(str(path));need(p.FILE_HEADER.Machine==0x14c,'real x86 OS module');e=next(e for e in p.DIRECTORY_ENTRY_EXPORT.symbols if e.name==name.encode());need(e.forwarder is None,'actual direct native export');base=target-e.address;need(base>0 and base%65536==0,'actual module base and export RVA');return bytes(p.get_memory_mapped_image(ImageBase=base)[e.address:e.address+16]),e.address,base
 
 def instrument(a):
  before,request,after=[bytes.fromhex(a[k]) for k in ('before_context_hex','requested_debug_context_hex','after_context_hex')];need(len(before)==len(request)==len(after)==716,'complete WOW64 contexts');need(word(request)==0x10010,'only debug context requested');need(request[28:]==before[28:],'no requested GPR/FPU/segment/EFLAGS write');need(before[28:192]==after[28:192] and before[196:]==after[196:],'all architectural non-debug registers unchanged');d=word(before,192)^word(after,192);need(d in (0,2) and a['returned_EFLAGS_reserved_bit1_xor']==d,'only returned reserved bit1 normalization');need([word(request,o) for o in (4,8,12,16)]==a['targets'] and word(request,20)==0 and word(request,24)==a['mask'],'exact bounded hardware-register request');need(a['general_state_unchanged']is True,'honest register instrumentation')
@@ -22,6 +28,13 @@ def verify_case(c):
  protocol(c);s=c['captures'][0];target=c['target'];need(s['label']==source.LABELS[target] and s['EIP']==target and s['pid']==c['child_pid'] and s['first_instruction_executed']is False,'original child pending boundary');ctx=bytes.fromhex(s['full_context_hex']);need(len(ctx)==716 and word(ctx,184)==target and word(ctx,4)==target and word(ctx,20)&1 and word(ctx,24)&1,'actual child hardware exception before first instruction');w=c['parent_waits'][s['parent_wait_index']];raw=bytes.fromhex(w['state_hex']);need(w['child_context_hex']==s['full_context_hex'] and len(raw)==96 and w['state']==word(raw)==8 and word(raw,4)==s['pid'] and word(raw,8)==s['tid'] and word(raw,12) in (0x80000004,0x4000001e) and word(raw,24)==target,'original parent NtWait return contains exact owned child single-step event');need(word(bytes.fromhex(w['parent_return_context_hex']),176)==0,'actual successful native wait return')
  text=bytes.fromhex(s['source_text']['hex']);data=bytes.fromhex(s['original_data']['hex']);need(s['source_text']==dict(pointer=0x401000,bytes=0x191000,sha256=sha(text),hex=text.hex()) and text==source.SOURCE.read_bytes()[0x1000:0x192000],'entire original text identity');need(s['original_data']==dict(pointer=0x5ff000,bytes=0x20d000,sha256=sha(data),hex=data.hex()) and len(data)==0x20d000,'entire original data identity/extent');g={n:word(data,p-0x5ff000) for n,p in source.FIELDS.items()};need(g==s['globals'],'all captured globals derived from complete data section');need(g['debug_flag']==1 and g['break_request']==0xffffffff and g['lock9']==0x80a4b0 and g['allocation_hook']==0x578120,'source default flags/hook/lock')
  stack=bytes.fromhex(s['stack_hex']);need(s['stack_pointer']==word(ctx,196) and len(stack)==256,'complete original stack input window');table=data[0x761df0-0x5ff000:0x761eb0-0x5ff000];need(table.hex()==s['lock_table_hex'] and [word(table,i*4) for i in (1,9,13,17)]==[0x80a480,0x80a4b0,0x80a4c8,0x80a498],'source static lock table')
+ need(s['static_locks']==[dict(pointer=p,hex=data[p-0x5ff000:p-0x5ff000+24].hex()) for p in (0x80a480,0x80a498,0x80a4b0,0x80a4c8)],'all recorded static lock bytes')
+ slots=[0x59212c,0x59227c,0x592144,0x59218c,0x592258];names=['HeapCreate','RtlInitializeCriticalSection','RtlAllocateHeap','HeapValidate','HeapFree'];need([i['slot'] for i in s['actual_import_targets']]==slots,'all recorded actual IAT roles')
+ for i,name in zip(s['actual_import_targets'],names):
+  filename=i['mapped_path'].split(chr(92))[-1].lower();need(filename==('ntdll.dll' if name.startswith('Rtl') else 'kernel32.dll') and (chr(92)+'windows'+chr(92)+'syswow64'+chr(92)) in i['mapped_path'].lower(),'actual owned original x86 OS module');p=Path(os.environ['WINDIR'])/'SysWOW64'/filename;entry,_,_=exported_entry(str(p),name,i['target']);need(entry.hex()==i['entry_hex'],'actual complete native import entry equals relocated OS export')
+ for name,e in c['parent_exports'].items():
+  need(name in ('NtDebugContinue','NtWaitForDebugEvent') and e['symbol']==name and e['module'].lower()=='ntdll.dll' and sha(Path(e['module_path']).read_bytes())==e['module_sha256'],'original parent API module provenance');_,rva,module=exported_entry(e['module_path'],name,e['target']);need((e['RVA'],e['base'])==(rva,module),'original parent actual export identity')
+ entry=w['entry'];ec=bytes.fromhex(entry['parent_context_hex']);es=bytes.fromhex(entry['parent_stack_hex']);rc=bytes.fromhex(w['parent_return_context_hex']);need(word(ec,184)==c['parent_exports']['NtWaitForDebugEvent']['target'] and len(es)==20 and word(es,16)==entry['output'] and word(rc,184)==word(es),'natural parent native wait entry/return and original output pointer')
  nodes=s['debug_graph'];prev=0;count=0;last=0;requests=[];occupied=[]
  for n in nodes:
   raw=bytes.fromhex(n['raw_hex']);header=struct.unpack('<7I',raw[:28]);need(header==(n['prev'],n['next'],n['file'],n['line'],n['size'],n['kind'],n['request']) and len(raw)==n['size']+36 and raw[28:32]==raw[-4:]==bytes([0xfd])*4,'every complete native header/payload/guard');need(n['prev']==prev and n['pointer']>0 and n['size']<=0x200000,'native linked debug allocation');need(all(not (lo<n['pointer']+len(raw) and n['pointer']<hi) for lo,hi in occupied),'nonoverlapping original blocks');occupied.append((n['pointer'],n['pointer']+len(raw)));prev=n['pointer'];last=n['next'];count+=n['size'];requests.append(n['request']);p=n['file'];name=bytes.fromhex(n['source_name_hex']);need(data[p-0x5ff000:p-0x5ff000+len(name)+1]==name+bytes(1) if 0x5ff000<=p<0x80c000 else source.SOURCE.read_bytes()[p-0x400000:p-0x400000+len(name)+1]==name+bytes(1),'original allocation source file name')

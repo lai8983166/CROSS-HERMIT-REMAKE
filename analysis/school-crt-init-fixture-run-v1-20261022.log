@@ -1,0 +1,13 @@
+original_heap_initialization 58 original instructions; 2 actual OS leaves
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_crt_init_fixture.py", line 68, in <module>
+    helper,build=platform.build(ROOT/a.helper);r=dict(schema_version=1,cases=[run(helper,build,i) for i in range(2)]);out.write_bytes(gzip.compress(json.dumps(r,separators=(',',':')).encode(),mtime=0));print('two observed-cold source initialization/file/free/teardown fixtures completed',flush=True)
+  File "F:\project\chaomofa\tools\school_crt_init_fixture.py", line 68, in <listcomp>
+    helper,build=platform.build(ROOT/a.helper);r=dict(schema_version=1,cases=[run(helper,build,i) for i in range(2)]);out.write_bytes(gzip.compress(json.dumps(r,separators=(',',':')).encode(),mtime=0));print('two observed-cold source initialization/file/free/teardown fixtures completed',flush=True)
+  File "F:\project\chaomofa\tools\school_crt_init_fixture.py", line 55, in run
+    need(hello['heap']==hello['critical']==0,'native service has no pre-created CRT objects');g=Guest(live,round);g.root('original_heap_initialization',0x57b9d0,[1]);need(word(g.read(0x80ab28))==HEAP_TOKEN and word(g.read(0x80ab2c))==1,'source writes its heap token and selects mode1');g.root('original_static_lock_initialization',0x576f60);g.root('reset_source_game_accounting',0x4288e0)
+TypeError: root() missing 1 required positional argument: 'args'

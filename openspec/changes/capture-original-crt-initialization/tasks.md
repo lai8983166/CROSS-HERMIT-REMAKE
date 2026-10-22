@@ -6,7 +6,7 @@
 
 ## 2. Source-derived CRT initialization and function lifecycle
 
-- [ ] 2.1 Use verified observed cold fields in a separate fixture and execute original heap/lock initialization, original allocation/file/free lifecycle and source CRT teardown through owned headless OS interfaces; independently replay all instructions/writes/full CPU/memory/native replies, reject provenance/ownership corruption, document scope and run affected regressions.
+- [x] 2.1 Use verified observed cold fields in a separate fixture and execute original heap/lock initialization, original allocation/file/free lifecycle and source CRT teardown through owned headless OS interfaces; independently replay all instructions/writes/full CPU/memory/native replies, reject provenance/ownership corruption, document scope and run affected regressions.
 
 ## 3. Acceptance and archive
 

@@ -47,5 +47,8 @@ class InitializationCaptureTests(unittest.TestCase):
   def edit(c):
    s=c['captures'][0];w=c['parent_waits'][s['parent_wait_index']];b=bytearray.fromhex(w['state_hex']);b[24]^=1;w['state_hex']=b.hex()
   self.reject(edit,True)
+ def test_static_lock_snapshot_corruption(self):self.reject(lambda c:c['captures'][0]['static_locks'][0].update(hex='00'),True)
+ def test_native_import_entry_corruption(self):self.reject(lambda c:c['captures'][0]['actual_import_targets'][0].update(entry_hex='00'*16),True)
+ def test_parent_OS_export_identity(self):self.reject(lambda c:c['parent_exports']['NtWaitForDebugEvent'].update(RVA=0),True)
 
 if __name__=='__main__':unittest.main()
