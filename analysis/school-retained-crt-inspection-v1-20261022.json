@@ -1,0 +1,490 @@
+{
+  "schema_version": 1,
+  "parent_acceptance": "analysis/school-retained-portrait-file-acceptance-v1-20261022.json",
+  "parent_acceptance_sha256": "f41fa01612d729fa174f10b319f918013251eb3522ced9f77ecee4f50bee8379",
+  "independent_parent_proof": {
+    "name": "initial",
+    "scene_capture": 76,
+    "new_original_instructions_replayed": 62724,
+    "original_writes": 9987,
+    "recorded_GPU_calls": 4,
+    "recorded_GDI_cleanup_calls": 4,
+    "actual_read_only_file_APIs": 3,
+    "converted_texture_bytes": 8192,
+    "full_final_memory_regions": 126,
+    "natural_allocation_frames": 8,
+    "allocation_bytes": 262168,
+    "allocator_executed": false,
+    "image_loader_completed": false,
+    "R3_complete": false
+  },
+  "globals": {
+    "0x7619c0": 1,
+    "0x7619c4": 105,
+    "0x7619c8": 4294967295,
+    "0x761e14": 8430768,
+    "0x762130": 5734688,
+    "0x80a430": 81135032,
+    "0x80a434": 102808394,
+    "0x80a438": 81170336,
+    "0x80a43c": 1147116,
+    "0x80a440": 97622388,
+    "0x80ab28": 81133568,
+    "0x80ab2c": 1,
+    "0x80ab4c": 0
+  },
+  "pointer_references": [
+    {
+      "global_va": 7739840,
+      "pointer": 1,
+      "mapped_32_bytes": true,
+      "hex": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "global_va": 7739844,
+      "pointer": 105,
+      "mapped_32_bytes": true,
+      "hex": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "global_va": 7739848,
+      "pointer": 4294967295,
+      "mapped_32_bytes": false,
+      "hex": null
+    },
+    {
+      "global_va": 7740948,
+      "pointer": 8430768,
+      "mapped_32_bytes": true,
+      "hex": "ffffffffffffffff000000000000000000000000d0070002ffffffffffffffff"
+    },
+    {
+      "global_va": 7741744,
+      "pointer": 5734688,
+      "mapped_32_bytes": true,
+      "hex": "558becb8010000005dc3cccccccccccc558bec6aff6868a25f00689c6b570064"
+    },
+    {
+      "global_va": 8430640,
+      "pointer": 81135032,
+      "mapped_32_bytes": false,
+      "hex": null
+    },
+    {
+      "global_va": 8430644,
+      "pointer": 102808394,
+      "mapped_32_bytes": false,
+      "hex": null
+    },
+    {
+      "global_va": 8430648,
+      "pointer": 81170336,
+      "mapped_32_bytes": false,
+      "hex": null
+    },
+    {
+      "global_va": 8430652,
+      "pointer": 1147116,
+      "mapped_32_bytes": false,
+      "hex": null
+    },
+    {
+      "global_va": 8430656,
+      "pointer": 97622388,
+      "mapped_32_bytes": false,
+      "hex": null
+    },
+    {
+      "global_va": 8432424,
+      "pointer": 81133568,
+      "mapped_32_bytes": false,
+      "hex": null
+    },
+    {
+      "global_va": 8432428,
+      "pointer": 1,
+      "mapped_32_bytes": true,
+      "hex": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "global_va": 8432460,
+      "pointer": 0,
+      "mapped_32_bytes": true,
+      "hex": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "step": {
+    "label": "continuous_original_allocator_to_unexecuted_EnterCriticalSection",
+    "kind": "task",
+    "before_cpu": {
+      "EIP": 4360768,
+      "ESP": 553708672,
+      "EBP": 553708772,
+      "EAX": 262168,
+      "EBX": 0,
+      "ECX": 1404,
+      "EDX": 262168,
+      "ESI": 553708680,
+      "EDI": 553708772,
+      "EFLAGS": 582
+    },
+    "cpu": {
+      "EIP": 51380224,
+      "ESP": 553708468,
+      "EBP": 553708480,
+      "EAX": 9,
+      "EBX": 0,
+      "ECX": 8430768,
+      "EDX": 1,
+      "ESI": 553708680,
+      "EDI": 553708668,
+      "EFLAGS": 514
+    },
+    "boundary": 51380224,
+    "instruction_counts": [
+      {
+        "va": 4360768,
+        "count": 1
+      },
+      {
+        "va": 4360769,
+        "count": 1
+      },
+      {
+        "va": 4360771,
+        "count": 1
+      },
+      {
+        "va": 4360774,
+        "count": 1
+      },
+      {
+        "va": 4360775,
+        "count": 1
+      },
+      {
+        "va": 4360776,
+        "count": 1
+      },
+      {
+        "va": 4360777,
+        "count": 1
+      },
+      {
+        "va": 4360780,
+        "count": 1
+      },
+      {
+        "va": 4360785,
+        "count": 1
+      },
+      {
+        "va": 4360790,
+        "count": 18
+      },
+      {
+        "va": 4360792,
+        "count": 1
+      },
+      {
+        "va": 4360799,
+        "count": 1
+      },
+      {
+        "va": 4360802,
+        "count": 1
+      },
+      {
+        "va": 4360803,
+        "count": 1
+      },
+      {
+        "va": 4360808,
+        "count": 1
+      },
+      {
+        "va": 4360810,
+        "count": 1
+      },
+      {
+        "va": 4360813,
+        "count": 1
+      },
+      {
+        "va": 4360814,
+        "count": 1
+      },
+      {
+        "va": 5695504,
+        "count": 1
+      },
+      {
+        "va": 5695505,
+        "count": 1
+      },
+      {
+        "va": 5695507,
+        "count": 1
+      },
+      {
+        "va": 5695508,
+        "count": 1
+      },
+      {
+        "va": 5695511,
+        "count": 1
+      },
+      {
+        "va": 5695512,
+        "count": 1
+      },
+      {
+        "va": 5695515,
+        "count": 1
+      },
+      {
+        "va": 5695516,
+        "count": 1
+      },
+      {
+        "va": 5695519,
+        "count": 1
+      },
+      {
+        "va": 5695520,
+        "count": 1
+      },
+      {
+        "va": 5695525,
+        "count": 1
+      },
+      {
+        "va": 5695526,
+        "count": 1
+      },
+      {
+        "va": 5695529,
+        "count": 1
+      },
+      {
+        "va": 5695530,
+        "count": 1
+      },
+      {
+        "va": 5695584,
+        "count": 1
+      },
+      {
+        "va": 5695585,
+        "count": 1
+      },
+      {
+        "va": 5695587,
+        "count": 1
+      },
+      {
+        "va": 5695589,
+        "count": 1
+      },
+      {
+        "va": 5695594,
+        "count": 1
+      },
+      {
+        "va": 5695599,
+        "count": 1
+      },
+      {
+        "va": 5695605,
+        "count": 1
+      },
+      {
+        "va": 5695606,
+        "count": 1
+      },
+      {
+        "va": 5695613,
+        "count": 1
+      },
+      {
+        "va": 5695616,
+        "count": 1
+      },
+      {
+        "va": 5695617,
+        "count": 1
+      },
+      {
+        "va": 5695618,
+        "count": 1
+      },
+      {
+        "va": 5695619,
+        "count": 1
+      },
+      {
+        "va": 5695621,
+        "count": 1
+      },
+      {
+        "va": 5730368,
+        "count": 1
+      },
+      {
+        "va": 5730369,
+        "count": 1
+      },
+      {
+        "va": 5730371,
+        "count": 1
+      },
+      {
+        "va": 5730372,
+        "count": 1
+      },
+      {
+        "va": 5730375,
+        "count": 1
+      },
+      {
+        "va": 5730383,
+        "count": 1
+      },
+      {
+        "va": 5730498,
+        "count": 1
+      },
+      {
+        "va": 5730501,
+        "count": 1
+      },
+      {
+        "va": 5730508,
+        "count": 1
+      },
+      {
+        "va": 5730509,
+        "count": 1
+      }
+    ],
+    "instruction_sha256": "d73e05a9aaede03503b6abd54cda39fc5a2411ccaa880f58f366027c7a973aef",
+    "writes": 49,
+    "write_sha256": "c9ebea34089f6e85c7215d24e3d6035b06cb5994454cb9923c94d3a57c850604",
+    "platform_replays": [],
+    "state": {
+      "PC": 252,
+      "wait": 0,
+      "opcode": 30,
+      "space_current": 0,
+      "IME_request": 255
+    }
+  },
+  "platform_entry_maps": [],
+  "pending_critical_section": {
+    "target": 51380224,
+    "return_va": 5730515,
+    "args": [
+      8430768
+    ],
+    "logical_object_hex": "ffffffffffffffff000000000000000000000000d0070002",
+    "first_instruction_executed": false
+  },
+  "final_cpu": {
+    "EAX": 9,
+    "EBX": 0,
+    "ECX": 8430768,
+    "EDX": 1,
+    "EBP": 553708480,
+    "ESP": 553708468,
+    "ESI": 553708680,
+    "EDI": 553708668,
+    "EIP": 51380224,
+    "EFLAGS": 514,
+    "CS": 0,
+    "DS": 0,
+    "ES": 0,
+    "FS": 0,
+    "GS": 0,
+    "SS": 0,
+    "CR0": 17,
+    "CR2": 0,
+    "CR3": 0,
+    "CR4": 328192,
+    "DR0": 0,
+    "DR1": 0,
+    "DR2": 0,
+    "DR3": 0,
+    "DR6": 4294905840,
+    "DR7": 1024,
+    "FPCW": 0,
+    "FPSW": 32900,
+    "FPTAG": 62805,
+    "MXCSR": 0,
+    "GDTR": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "IDTR": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "LDTR": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "TR": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "FP0": [
+      0,
+      0
+    ],
+    "FP1": [
+      0,
+      0
+    ],
+    "FP2": [
+      0,
+      0
+    ],
+    "FP3": [
+      0,
+      0
+    ],
+    "FP4": [
+      0,
+      0
+    ],
+    "FP5": [
+      0,
+      0
+    ],
+    "FP6": [
+      0,
+      0
+    ],
+    "FP7": [
+      13393705291799855104,
+      16392
+    ],
+    "XMM0": 0,
+    "XMM1": 0,
+    "XMM2": 0,
+    "XMM3": 0,
+    "XMM4": 0,
+    "XMM5": 0,
+    "XMM6": 0,
+    "XMM7": 0
+  },
+  "new_native_calls": false,
+  "new_game_roots": 0
+}
