@@ -22,6 +22,20 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_retaine
 
 输出路径不可覆盖；重跑必须选择全新路径。v1 初次实验保留，与补齐防护/三阶段记录后的 v2 正式报告分开。
 
+## 正式资源结果
+
+六个分支均新增执行 1461 条原指令、536 次原代码写入和 23 次真实 GDI/字符串接口调用。测量结果为 84×20，原几何规则加边距后生成 88×24 的 top-down BGRA DIB，共 8448 字节、2258 个非零字节。到达原 403BD0 首指令前时，七层原调用栈完整，119 个最终映射及完整 CPU 纳入独立比较。
+
+正式来源报告为 `analysis/school-retained-name-raster-v2-20261022.json.gz`；全姓名实验为 `analysis/school-retained-name-corpus-v2-20261022.json.gz`。独立验证命令如下，输出文件必须换成尚不存在的路径：
+
+```bash
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_retained_name_verification analysis/school-retained-name-raster-v2-20261022.json.gz --corpus analysis/school-retained-name-corpus-v2-20261022.json.gz --out analysis/school-retained-name-proof-v1-20261022.json
+```
+
+来源重放仅消费已记录平台输出；全姓名复现另创建新离屏 GDI 资源。两种验证模式在证明中分开标识。v1 姓名实验是补录三阶段像素前的初次实验；v1 来源报告是补齐 DC 别名防护、接口参数字段命名及内层返回地址检查前的初次实验。旧输出均保留。独立全姓名证明 v1 是原始 stdout JSON（CRLF），其 Git 属性明确保留原字节。
+
 ## 编码与剩余工作
 
 本机 ACP936，实际选中字形为“宋体”。保留 Big5 原字节经过 ANSI API 的行为，未转换为 Unicode，未修复乱码。本单元完成也不表示字体纹理已上传、肖像 sc004.bin 已载入，或外层线程/世界更新接入同一有效原生寿命。六条肖像短编码和 R3/R6 总体仍未完成，Godot 未改。
+
+六分支独立证明为 `analysis/school-retained-name-proof-v1-20261022.json`。新增 34 项检查和相邻 13 项目录检查通过的阶段快照为 `analysis/school-retained-name-targeted-proof-v1-20261022.json`；该快照明确记录当时整套回归尚未结束，最终结果以完整原始日志及最终验收为准。

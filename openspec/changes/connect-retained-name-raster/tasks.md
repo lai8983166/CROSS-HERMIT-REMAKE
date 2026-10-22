@@ -6,7 +6,7 @@
 
 ## 2. Independent replay and complete source-name corpus
 
-- [ ] 2.1 Independently replay all six source/write traces and full memory/CPU, check pixels/geometry, and exercise all 21 catalogued names through actual offscreen GDI; add corruption/ownership tests and document encoding limits; verify targeted and adjacent regressions.
+- [x] 2.1 Independently replay all six source/write traces and full memory/CPU, check pixels/geometry, and exercise all 21 catalogued names through actual offscreen GDI; add corruption/ownership tests and document encoding limits; verify targeted and adjacent regressions.
 
 ## 3. Integration acceptance and archive
 
