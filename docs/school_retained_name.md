@@ -39,3 +39,7 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_retaine
 本机 ACP936，实际选中字形为“宋体”。保留 Big5 原字节经过 ANSI API 的行为，未转换为 Unicode，未修复乱码。本单元完成也不表示字体纹理已上传、肖像 sc004.bin 已载入，或外层线程/世界更新接入同一有效原生寿命。六条肖像短编码和 R3/R6 总体仍未完成，Godot 未改。
 
 六分支独立证明为 `analysis/school-retained-name-proof-v1-20261022.json`。新增 34 项检查和相邻 13 项目录检查通过的阶段快照为 `analysis/school-retained-name-targeted-proof-v1-20261022.json`；该快照明确记录当时整套回归尚未结束，最终结果以完整原始日志及最终验收为准。
+
+## 最终验收
+
+完整独立证明和 **256 项检查全部通过**，包括34项新增检查及222项相关历史回归；原始日志为 `analysis/school-retained-name-validation-v1-20261022.log`。`school_retained_name_preservation.py` 复核上轮31个冻结工件及全部更早存档/检查点/资源链不变；总spec仅补充实测进展，目标仍为2026-11-20，R3/R6均保持进行中。归档位置为 `openspec/changes/archive/2026-10-22-connect-retained-name-raster/`；最终验收与哈希清单为 `analysis/school-retained-name-acceptance-v1-20261022.json`。

@@ -10,4 +10,4 @@
 
 ## 3. Integration acceptance and archive
 
-- [ ] 3.1 Run strict OpenSpec and full preservation checks, update the master R3 evidence without claiming completion, commit locally and archive this completed change with exact hashes; verify all tasks, archive mapping and Git bytes match acceptance evidence.
+- [x] 3.1 Run strict OpenSpec and full preservation checks, update the master R3 evidence without claiming completion, commit locally and archive this completed change with exact hashes; verify all tasks, archive mapping and Git bytes match acceptance evidence.

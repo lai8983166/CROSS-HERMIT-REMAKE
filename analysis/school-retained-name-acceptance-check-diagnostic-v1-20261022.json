@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "kind": "acceptance log-parser diagnostic; no test failure",
+  "initial_strict_single_line_ok_count": 255,
+  "test_lines": 256,
+  "final_unittest_summary": "Ran 256 tests in 253.743s; OK",
+  "reason": "Existing test_stable_wait_gate_and_press_release prints READY on its unittest progress line before the final ok on the next line. Exact single-line matching is not the test outcome.",
+  "corrected_check": "256 test starts, successful final unittest summary and harness exit 0; raw log unchanged",
+  "affected_lines": [
+    "test_stable_wait_gate_and_press_release (tools.tests.test_school_native_dialogue.SourceTests) ... READY C:\\Users\\lai\\AppData\\Local\\Temp\\tmpdqvpfh4h\\ready.json PC 1164"
+  ]
+}
