@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_retained_portrait_catalog.py", line 81, in <module>
+    result=build();out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+chr(10),encoding='utf8',newline=chr(10));print(result['summary'])
+  File "F:\project\chaomofa\tools\school_retained_portrait_catalog.py", line 67, in build
+    data=path.read_bytes();need(data==(PRIVATE/path.relative_to(INSTALLED)).read_bytes(),'installed/private script identity');decoded=commands(data)
+  File "F:\project\chaomofa\tools\school_retained_portrait_catalog.py", line 19, in commands
+    need(raw[start:end]==bytes(4),'empty VM segment sentinel');empty+=1;continue
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: empty VM segment sentinel

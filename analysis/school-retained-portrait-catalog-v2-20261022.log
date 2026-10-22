@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\school_retained_portrait_catalog.py", line 81, in <module>
+    result=build();out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+chr(10),encoding='utf8',newline=chr(10));print(result['summary'])
+  File "F:\project\chaomofa\tools\school_retained_portrait_catalog.py", line 71, in build
+    d=dependency(raw,data[c['offset']:c['offset']+c['bytes']]);portraits.append(dict(script=path.name,segment=c['segment'],offset=c['offset'],PC=c['PC'],**d))
+  File "F:\project\chaomofa\tools\school_retained_portrait_catalog.py", line 47, in dependency
+    need(len(command)==20 and struct.unpack_from('<HH',command)==(30,20),'exact opcode30 encoding');encoded=list(struct.unpack_from('<4I',command,4));expressions=[dict(raw=x,type=x>>28,payload=x&0xfffffff,literal=(x&0xfffffff) if x>>28==2 else None) for x in encoded]
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: exact opcode30 encoding
