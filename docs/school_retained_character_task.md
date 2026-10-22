@@ -38,3 +38,5 @@
 所有输出使用新路径；既有存档、资源、私有检查点和已验工具/证据不改。下一步为第三句字体/栅格与实际显示，以及完整外层世界连接。Big5 ANSI乱码、六条短编码、其余R3/R4/R5/R6工作和2026-11-20目标保持。
 
 六分支正式记录 `analysis/school-retained-character-task-v3-20261022.json.gz` 经最新验证器全部独立重放，证明为 `analysis/school-retained-character-task-proof-v4-20261022.json`。每例79次完整任务及1次第三句前缀，共2962747条新原指令、1706706次原写入，2945次原展示调用；317个原区间的完整CPU、143个映射及原队列记录一致，末端全字节重读通过。37项针对性测试通过。早期长驻验证模块尚未加载最后三项字体ABI拒绝检查，首次测试34过/3失败；保留原日志及运行时字节码，重载后重新验证全部六分支并通过全部37项，不修改来源报告。
+
+最终37项新增及479项历史回归共516项通过；存档/检查点/资源及25份上一IMAGE单元冻结文件保全通过。三项任务全部完成，归档 `openspec/changes/archive/2026-10-22-connect-retained-character-task/`，验收清单 `analysis/school-retained-character-task-acceptance-v1-20261022.json`。核心本地提交9cc7a3d6；最终验收核对原始字节、Git索引及HEAD一致，不push。
