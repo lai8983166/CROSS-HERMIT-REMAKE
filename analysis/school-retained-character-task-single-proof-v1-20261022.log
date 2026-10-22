@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "character-task-proof-single-v1.py", line 5, in <module>
+    try:exec(command,globals())
+  File "F:\project\chaomofa\tools\school_retained_character_task_verification.py", line 84, in verify_case
+    need(work.regions(r)==expected['after'] and f['animation_state']==work.state(r) and r.cpu()['EIP']==work.ROOT_RETURN and r.cpu()['ESP']==work.STACK+4 and r.cpu()['EAX']==0,'all original animation state, full task and natural return');visited={i['va'] for s in f['steps'] for i in s['result']['instruction_counts']};need({0x4ca1b0,0x4c99e0,0x4cbdb0,0x4079c0,0x454ec1,0x425f34,0x4563d0}<=visited and 0x424f80 not in visited,'original presentation, enqueue and complete task epilogue execute')
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: original presentation, enqueue and complete task epilogue execute

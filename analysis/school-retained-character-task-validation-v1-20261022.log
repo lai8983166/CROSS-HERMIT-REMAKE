@@ -1,0 +1,72 @@
+test_00_complete_source_case_and_all_six_bound_proofs (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_background_early_release (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_changed_IME_caller (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_delay_early_release (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_driver_precreated_heap (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_fade_early_release (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_fake_IME_result (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_false_third_font_created (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... FAIL
+test_first_continuation_new_root (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_forced_native_cleanup (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_full_CPU_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_full_original_instruction_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_host_game_accounting_reset (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_missing_animation_update (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_missing_queue_reset (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_omitted_original_draw_queue_evidence (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_original_display_call_omitted (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_original_write_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_platform_write_into_game_memory (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_queue_head_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_queue_record_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_readonly_mapping_digest_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_scope_overclaims (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_source_code_corruption_is_rejected (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_source_overlaid_outside_CRT (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_third_font_arguments_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... FAIL
+test_third_font_frame_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... FAIL
+test_unordered_native_trace (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_unowned_IME_context (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_vm_root_substitution (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_wait_count_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_wait_early_release (tools.tests.test_school_retained_character_task.CharacterTaskTests) ... ok
+test_cross_page_write_preserves_all_bytes (tools.tests.test_school_retained_character_task.MemoryEvidenceTests) ... ok
+test_fresh_mapping_gets_digest (tools.tests.test_school_retained_character_task.MemoryEvidenceTests) ... ok
+test_old_snapshot_is_immutable (tools.tests.test_school_retained_character_task.MemoryEvidenceTests) ... ok
+test_source_write_invalidates_mapping (tools.tests.test_school_retained_character_task.MemoryEvidenceTests) ... ok
+test_untracked_write_cannot_pass_final_full_recheck (tools.tests.test_school_retained_character_task.MemoryEvidenceTests) ... ok
+
+======================================================================
+FAIL: test_false_third_font_created (tools.tests.test_school_retained_character_task.CharacterTaskTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_retained_character_task.py", line 42, in test_false_third_font_created
+    def test_false_third_font_created(self):self.reject(lambda c:c['pending_font'].update(first_instruction_executed=True))
+  File "F:\project\chaomofa\tools\tests\test_school_retained_character_task.py", line 19, in reject
+    with self.assertRaises((ValueError,KeyError,IndexError,RuntimeError)):v.protocol(c)
+AssertionError: (<class 'ValueError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_third_font_arguments_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_retained_character_task.py", line 40, in test_third_font_arguments_corruption
+    def test_third_font_arguments_corruption(self):self.reject(lambda c:c['pending_font']['args'].__setitem__(4,700))
+  File "F:\project\chaomofa\tools\tests\test_school_retained_character_task.py", line 19, in reject
+    with self.assertRaises((ValueError,KeyError,IndexError,RuntimeError)):v.protocol(c)
+AssertionError: (<class 'ValueError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_third_font_frame_corruption (tools.tests.test_school_retained_character_task.CharacterTaskTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_retained_character_task.py", line 41, in test_third_font_frame_corruption
+    def test_third_font_frame_corruption(self):self.reject(lambda c:c['pending_font']['frames'][0].update(bp=1))
+  File "F:\project\chaomofa\tools\tests\test_school_retained_character_task.py", line 19, in reject
+    with self.assertRaises((ValueError,KeyError,IndexError,RuntimeError)):v.protocol(c)
+AssertionError: (<class 'ValueError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'RuntimeError'>) not raised
+
+----------------------------------------------------------------------
+Ran 37 tests in 48.170s
+
+FAILED (failures=3)
