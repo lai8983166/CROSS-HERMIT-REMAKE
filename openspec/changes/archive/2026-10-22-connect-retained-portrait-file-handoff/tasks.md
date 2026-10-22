@@ -10,4 +10,4 @@
 
 ## 3. Integration acceptance and archive
 
-- [ ] 3.1 Run strict specs and the complete earlier-evidence/save/checkpoint preservation chain, record honest master progress and remaining allocator/image boundary, commit locally and archive the completed change; verify exact archive hashes and raw/index/HEAD bytes.
+- [x] 3.1 Run strict specs and the complete earlier-evidence/save/checkpoint preservation chain, record honest master progress and remaining allocator/image boundary, commit locally and archive the completed change; verify exact archive hashes and raw/index/HEAD bytes.

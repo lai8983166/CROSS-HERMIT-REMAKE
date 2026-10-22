@@ -33,3 +33,7 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_retaine
 下一边界是原428A40/CRT堆分配的有效对象与锁状态；本单元没有返回代用内存，也未代用构造器。原ReadFile、图像容器构造/上传、完整肖像handler/动画、同一有效寿命的原外层世界连接、ANSI乱码和六条短编码仍属后续工作，R3/R6继续进行中，目标日期保持2026-11-20。
 
 六分支的完整独立证明为 `analysis/school-retained-portrait-file-proof-v1-20261022.json`；新增39项检查和相邻34项姓名检查已通过。阶段转录快照为 `analysis/school-retained-portrait-file-targeted-proof-v1-20261022.json`，其中明确记录当时完整回归尚未结束；最终以整份原始日志和验收清单为准。
+
+## 最终验收
+
+完整 **295 项检查全部通过**（新增39项、相关历史回归256项），日志为 `analysis/school-retained-portrait-file-validation-v1-20261022.log`。`school_retained_portrait_file_preservation.py` 复核上轮38个冻结工件及更早的原存档/私有检查点/源资源/证据链不变。最终验收与字节清单为 `analysis/school-retained-portrait-file-acceptance-v1-20261022.json`；change归档至 `openspec/changes/archive/2026-10-22-connect-retained-portrait-file-handoff/`。目标日期保持2026-11-20，R3/R6仍进行中。
