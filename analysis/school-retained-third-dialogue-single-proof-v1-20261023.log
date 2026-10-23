@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue_verification.py", line 137, in verify_case
+    proxy=types.SimpleNamespace(**dict(vars(previous.previous),step=step));call=types.FunctionType(previous.verify_case.__code__,dict(previous.verify_case.__globals__,Replay=Replay,previous=proxy),'verify_parent_and_third_before_original_cleanup');parent_proof=call(c);need(len(observed)==1,'one new source continuation before original cleanup');return dict(name=c['name'],scene_capture=c['scene_capture'],parent=parent_proof,third=observed[0])
+TypeError: verify_case() missing 1 required positional argument: 'reference'
