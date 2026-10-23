@@ -36,3 +36,5 @@
 原外层调度/世界同一原生寿命、后续确认和更实质交互、剩余静态纹理及实际D3D绘制/Present仍待完成；历史堆未恢复，ACP936/Big5乱码、六条短编码及其余R3/R4/R5/R6缺口和2026-11-20目标不变。
 
 六分支正式报告 `analysis/school-retained-third-dialogue-v1-20261023.json.gz` 通过全部原指令/API/写入/状态的独立重放，证明 `analysis/school-retained-third-dialogue-proof-v1-20261023.json`。每例27次完整原任务、106个前向区间，第三句26次原等待更新后到PC290/wait0，全部151个最终映射/完整CPU和原队列一致；49项针对性来源、参数、像素、输入状态、原函数及清理破坏测试通过。
+
+最终49项新增与516项历史回归共565项通过；存档/检查点/资源和上一完整角色任务单元39份冻结文件保全通过。三项任务全部完成，归档 `openspec/changes/archive/2026-10-23-complete-retained-third-dialogue/`，验收 `analysis/school-retained-third-dialogue-acceptance-v1-20261023.json`；原始字节、Git索引及HEAD核对一致，本地提交，不push。
