@@ -1,0 +1,2163 @@
+{
+  "schema_version": 1,
+  "kind": "original retained registration/current events and exact first CRT thread request",
+  "baseline_commit": "00de5221",
+  "source_integration_commit": "ab9ca2626b68ad925f08d9807149816483813860",
+  "change": "connect-retained-scheduler-ownership",
+  "archive": "openspec/changes/archive/2026-10-24-connect-retained-scheduler-ownership",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "previous_acceptance": {
+    "path": "analysis/school-retained-fog-acceptance-v1-20261023.json",
+    "sha256": "2b485ec36aec7e33a73f369abf67613ca8e65ccd4437fc50823da8cf5a708897"
+  },
+  "source_matrix": {
+    "path": "analysis/school-retained-scheduler-matrix-v1-20261024.json",
+    "sha256": "7bb28f1ecd28c7b734e1fee6ea7c1c5da9382a5f021ec1f32f54d41fddd3e619"
+  },
+  "independent_proof": {
+    "path": "analysis/school-retained-scheduler-proof-v1-20261024.json",
+    "sha256": "9a7d2fc2e5c1f939d308596362dd864021f4909675c5e4f97ed22fcffc168533",
+    "six_cases": true
+  },
+  "source_dependency_analysis": "analysis/school-retained-scheduler-source-analysis-v1-20261024.json",
+  "per_case": [
+    {
+      "name": "initial",
+      "scene_capture": 76,
+      "scheduler": {
+        "original_instructions": 3304,
+        "original_writes": 956,
+        "declared_original_roots": 4,
+        "original_registration_verified": true,
+        "first_scan_started": true,
+        "first_scan_returned": false,
+        "thread_creation": {
+          "CreateThread_arguments": [
+            0,
+            0,
+            5693712,
+            1350570016,
+            4,
+            234881060
+          ],
+          "CRT_wrapper": 5693712,
+          "worker": 4333392,
+          "scene_callback": 4527728,
+          "data_pointer": 1350570016,
+          "data_hex": "00000000ffffffff00000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000501f42000000000e681d76000000000000000000000000000000000000000000000000000000000000000000",
+          "thread_created": false
+        },
+        "source_node_event_created": true,
+        "full_CPU_memory_queue_and_stack": true,
+        "ordinary_loop_context_preserved": true,
+        "exact_dependency": {
+          "kind": "original_scheduler_thread_platform_dependency",
+          "va": 43156117,
+          "cpu": {
+            "EIP": 43156117,
+            "ESP": 1697705604,
+            "EBP": 1697705644,
+            "EAX": 0,
+            "EBX": 0,
+            "ECX": 0,
+            "EDX": 1350570016,
+            "ESI": 1697705768,
+            "EDI": 1697705756,
+            "EFLAGS": 534
+          },
+          "receiver": 0,
+          "sp": 1697705604,
+          "stack_hex": "c4e05600000000000000000010e1560020108050040000002400000e0000000020108050000000001cef3065d81e42000000000000000000501f42000000000e",
+          "return_va": 5693636,
+          "frames": [
+            {
+              "bp": 1697705644,
+              "previous_bp": 1697705756,
+              "return_va": 4333272
+            },
+            {
+              "bp": 1697705756,
+              "previous_bp": 1697705872,
+              "return_va": 4331955
+            },
+            {
+              "bp": 1697705872,
+              "previous_bp": 1697705980,
+              "return_va": 4331567
+            },
+            {
+              "bp": 1697705980,
+              "previous_bp": 553709564,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553709564,
+              "previous_bp": 553711616,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553711616,
+              "previous_bp": 0,
+              "return_va": 0
+            },
+            {
+              "bp": 0,
+              "previous_bp": 0,
+              "return_va": 0
+            }
+          ],
+          "first_instruction_executed": false,
+          "import_slot": 5841436,
+          "name": "CreateThread"
+        },
+        "new_CRT_allocations": 1,
+        "current_native_event_count": 2,
+        "independent_fresh_platform": {
+          "build": {
+            "source_sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+            "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+            "helper_sha256": "25a3236b2a6b24d2b801611c2f4eb56e9c7470246db300198cee587d8e135d7c",
+            "helper_path": "F:\\project\\chaomofa\\.venv-audit\\scheduler-independent-48720.exe",
+            "machine": 332
+          },
+          "hello": {
+            "pointer_bytes": 4,
+            "window_created": false,
+            "GPU_created": false,
+            "thread_created": false,
+            "directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT"
+          },
+          "trace": [
+            {
+              "request": {
+                "id": 1,
+                "op": "initialize",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 1,
+                "ok": true,
+                "result": {
+                  "pointer": 9684336,
+                  "hex": "ffffffffffffffff000000000000000000000000d0070002"
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 2,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 2,
+                "ok": true,
+                "result": {
+                  "handle": 1040
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 3,
+                "op": "wait",
+                "handle": 1040,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 3,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 4,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 4,
+                "ok": true,
+                "result": {
+                  "handle": 1052
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 5,
+                "op": "wait",
+                "handle": 1052,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 5,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 6,
+                "op": "close_event",
+                "handle": 1052
+              },
+              "reply": {
+                "id": 6,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 7,
+                "op": "delete",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 7,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 8,
+                "op": "close_event",
+                "handle": 1040
+              },
+              "reply": {
+                "id": 8,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 9,
+                "op": "close"
+              },
+              "reply": {
+                "id": 9,
+                "ok": true,
+                "result": {
+                  "all_owned_resources_released": true,
+                  "events": 0,
+                  "criticals": 0,
+                  "forced_cleanup": false,
+                  "window_created": false,
+                  "thread_created": false
+                }
+              }
+            }
+          ],
+          "actual_initial_event_observations": [
+            {
+              "value": 258
+            },
+            {
+              "value": 258
+            }
+          ],
+          "cleanup": {
+            "all_owned_resources_released": true,
+            "events": 0,
+            "criticals": 0,
+            "forced_cleanup": false,
+            "window_created": false,
+            "thread_created": false
+          },
+          "exit_code": 0
+        },
+        "normal_source_cleanup": true,
+        "cooperative_yield_executed": false,
+        "original_CRT_worker_created": false,
+        "original_MAIN_scheduler_connected": false,
+        "R3_complete": false,
+        "R6_complete": false
+      },
+      "independent_case_proof": {
+        "path": "analysis/school-retained-scheduler-single-proof-v1-20261024.json",
+        "sha256": "565faf72b1611d5d9480fb2b352856d228f3de40afea2a49c992e8ea9970ddb7",
+        "bytes": 993715
+      }
+    },
+    {
+      "name": "initial",
+      "scene_capture": 77,
+      "scheduler": {
+        "original_instructions": 3304,
+        "original_writes": 956,
+        "declared_original_roots": 4,
+        "original_registration_verified": true,
+        "first_scan_started": true,
+        "first_scan_returned": false,
+        "thread_creation": {
+          "CreateThread_arguments": [
+            0,
+            0,
+            5693712,
+            1350570016,
+            4,
+            234881060
+          ],
+          "CRT_wrapper": 5693712,
+          "worker": 4333392,
+          "scene_callback": 4527728,
+          "data_pointer": 1350570016,
+          "data_hex": "00000000ffffffff00000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000501f42000000000e681d76000000000000000000000000000000000000000000000000000000000000000000",
+          "thread_created": false
+        },
+        "source_node_event_created": true,
+        "full_CPU_memory_queue_and_stack": true,
+        "ordinary_loop_context_preserved": true,
+        "exact_dependency": {
+          "kind": "original_scheduler_thread_platform_dependency",
+          "va": 43156117,
+          "cpu": {
+            "EIP": 43156117,
+            "ESP": 1697705604,
+            "EBP": 1697705644,
+            "EAX": 0,
+            "EBX": 0,
+            "ECX": 0,
+            "EDX": 1350570016,
+            "ESI": 1697705768,
+            "EDI": 1697705756,
+            "EFLAGS": 534
+          },
+          "receiver": 0,
+          "sp": 1697705604,
+          "stack_hex": "c4e05600000000000000000010e1560020108050040000002400000e0000000020108050000000001cef3065d81e42000000000000000000501f42000000000e",
+          "return_va": 5693636,
+          "frames": [
+            {
+              "bp": 1697705644,
+              "previous_bp": 1697705756,
+              "return_va": 4333272
+            },
+            {
+              "bp": 1697705756,
+              "previous_bp": 1697705872,
+              "return_va": 4331955
+            },
+            {
+              "bp": 1697705872,
+              "previous_bp": 1697705980,
+              "return_va": 4331567
+            },
+            {
+              "bp": 1697705980,
+              "previous_bp": 553709564,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553709564,
+              "previous_bp": 553711616,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553711616,
+              "previous_bp": 0,
+              "return_va": 0
+            },
+            {
+              "bp": 0,
+              "previous_bp": 0,
+              "return_va": 0
+            }
+          ],
+          "first_instruction_executed": false,
+          "import_slot": 5841436,
+          "name": "CreateThread"
+        },
+        "new_CRT_allocations": 1,
+        "current_native_event_count": 2,
+        "independent_fresh_platform": {
+          "build": {
+            "source_sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+            "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+            "helper_sha256": "99a396d0265157256c3208b2fbff6ed0a1ea1cf2ab5945d403348af8e66e9a55",
+            "helper_path": "F:\\project\\chaomofa\\.venv-audit\\scheduler-independent-47276.exe",
+            "machine": 332
+          },
+          "hello": {
+            "pointer_bytes": 4,
+            "window_created": false,
+            "GPU_created": false,
+            "thread_created": false,
+            "directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT"
+          },
+          "trace": [
+            {
+              "request": {
+                "id": 1,
+                "op": "initialize",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 1,
+                "ok": true,
+                "result": {
+                  "pointer": 11584544,
+                  "hex": "ffffffffffffffff000000000000000000000000d0070002"
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 2,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 2,
+                "ok": true,
+                "result": {
+                  "handle": 1048
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 3,
+                "op": "wait",
+                "handle": 1048,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 3,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 4,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 4,
+                "ok": true,
+                "result": {
+                  "handle": 1052
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 5,
+                "op": "wait",
+                "handle": 1052,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 5,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 6,
+                "op": "close_event",
+                "handle": 1052
+              },
+              "reply": {
+                "id": 6,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 7,
+                "op": "delete",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 7,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 8,
+                "op": "close_event",
+                "handle": 1048
+              },
+              "reply": {
+                "id": 8,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 9,
+                "op": "close"
+              },
+              "reply": {
+                "id": 9,
+                "ok": true,
+                "result": {
+                  "all_owned_resources_released": true,
+                  "events": 0,
+                  "criticals": 0,
+                  "forced_cleanup": false,
+                  "window_created": false,
+                  "thread_created": false
+                }
+              }
+            }
+          ],
+          "actual_initial_event_observations": [
+            {
+              "value": 258
+            },
+            {
+              "value": 258
+            }
+          ],
+          "cleanup": {
+            "all_owned_resources_released": true,
+            "events": 0,
+            "criticals": 0,
+            "forced_cleanup": false,
+            "window_created": false,
+            "thread_created": false
+          },
+          "exit_code": 0
+        },
+        "normal_source_cleanup": true,
+        "cooperative_yield_executed": false,
+        "original_CRT_worker_created": false,
+        "original_MAIN_scheduler_connected": false,
+        "R3_complete": false,
+        "R6_complete": false
+      },
+      "independent_case_proof": {
+        "path": "analysis/school-retained-scheduler-independent-v1-20261024-initial-77.json",
+        "sha256": "e94f9f1eab6bdd7f8ce30b5278e1df659066be4c5841fc1f6650e27dc1d65f1d",
+        "bytes": 993763
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "scene_capture": 76,
+      "scheduler": {
+        "original_instructions": 3304,
+        "original_writes": 956,
+        "declared_original_roots": 4,
+        "original_registration_verified": true,
+        "first_scan_started": true,
+        "first_scan_returned": false,
+        "thread_creation": {
+          "CreateThread_arguments": [
+            0,
+            0,
+            5693712,
+            1350570016,
+            4,
+            234881060
+          ],
+          "CRT_wrapper": 5693712,
+          "worker": 4333392,
+          "scene_callback": 4527728,
+          "data_pointer": 1350570016,
+          "data_hex": "00000000ffffffff00000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000501f42000000000e681d76000000000000000000000000000000000000000000000000000000000000000000",
+          "thread_created": false
+        },
+        "source_node_event_created": true,
+        "full_CPU_memory_queue_and_stack": true,
+        "ordinary_loop_context_preserved": true,
+        "exact_dependency": {
+          "kind": "original_scheduler_thread_platform_dependency",
+          "va": 43156117,
+          "cpu": {
+            "EIP": 43156117,
+            "ESP": 1697705604,
+            "EBP": 1697705644,
+            "EAX": 0,
+            "EBX": 0,
+            "ECX": 0,
+            "EDX": 1350570016,
+            "ESI": 1697705768,
+            "EDI": 1697705756,
+            "EFLAGS": 534
+          },
+          "receiver": 0,
+          "sp": 1697705604,
+          "stack_hex": "c4e05600000000000000000010e1560020108050040000002400000e0000000020108050000000001cef3065d81e42000000000000000000501f42000000000e",
+          "return_va": 5693636,
+          "frames": [
+            {
+              "bp": 1697705644,
+              "previous_bp": 1697705756,
+              "return_va": 4333272
+            },
+            {
+              "bp": 1697705756,
+              "previous_bp": 1697705872,
+              "return_va": 4331955
+            },
+            {
+              "bp": 1697705872,
+              "previous_bp": 1697705980,
+              "return_va": 4331567
+            },
+            {
+              "bp": 1697705980,
+              "previous_bp": 553709564,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553709564,
+              "previous_bp": 553711616,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553711616,
+              "previous_bp": 0,
+              "return_va": 0
+            },
+            {
+              "bp": 0,
+              "previous_bp": 0,
+              "return_va": 0
+            }
+          ],
+          "first_instruction_executed": false,
+          "import_slot": 5841436,
+          "name": "CreateThread"
+        },
+        "new_CRT_allocations": 1,
+        "current_native_event_count": 2,
+        "independent_fresh_platform": {
+          "build": {
+            "source_sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+            "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+            "helper_sha256": "181f961b0f9cc89f4b7418931f5186a2639ca11fe9aef2a2bc1e1c9d09e33758",
+            "helper_path": "F:\\project\\chaomofa\\.venv-audit\\scheduler-independent-65188.exe",
+            "machine": 332
+          },
+          "hello": {
+            "pointer_bytes": 4,
+            "window_created": false,
+            "GPU_created": false,
+            "thread_created": false,
+            "directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT"
+          },
+          "trace": [
+            {
+              "request": {
+                "id": 1,
+                "op": "initialize",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 1,
+                "ok": true,
+                "result": {
+                  "pointer": 19031104,
+                  "hex": "ffffffffffffffff000000000000000000000000d0070002"
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 2,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 2,
+                "ok": true,
+                "result": {
+                  "handle": 856
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 3,
+                "op": "wait",
+                "handle": 856,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 3,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 4,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 4,
+                "ok": true,
+                "result": {
+                  "handle": 1048
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 5,
+                "op": "wait",
+                "handle": 1048,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 5,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 6,
+                "op": "close_event",
+                "handle": 1048
+              },
+              "reply": {
+                "id": 6,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 7,
+                "op": "delete",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 7,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 8,
+                "op": "close_event",
+                "handle": 856
+              },
+              "reply": {
+                "id": 8,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 9,
+                "op": "close"
+              },
+              "reply": {
+                "id": 9,
+                "ok": true,
+                "result": {
+                  "all_owned_resources_released": true,
+                  "events": 0,
+                  "criticals": 0,
+                  "forced_cleanup": false,
+                  "window_created": false,
+                  "thread_created": false
+                }
+              }
+            }
+          ],
+          "actual_initial_event_observations": [
+            {
+              "value": 258
+            },
+            {
+              "value": 258
+            }
+          ],
+          "cleanup": {
+            "all_owned_resources_released": true,
+            "events": 0,
+            "criticals": 0,
+            "forced_cleanup": false,
+            "window_created": false,
+            "thread_created": false
+          },
+          "exit_code": 0
+        },
+        "normal_source_cleanup": true,
+        "cooperative_yield_executed": false,
+        "original_CRT_worker_created": false,
+        "original_MAIN_scheduler_connected": false,
+        "R3_complete": false,
+        "R6_complete": false
+      },
+      "independent_case_proof": {
+        "path": "analysis/school-retained-scheduler-independent-v1-20261024-student9_waiting-76.json",
+        "sha256": "718441268a2e3237af313a4ee1ba1d57f5be1017467ad3ecb2ae1a8cbf501279",
+        "bytes": 993774
+      }
+    },
+    {
+      "name": "student9_waiting",
+      "scene_capture": 77,
+      "scheduler": {
+        "original_instructions": 3304,
+        "original_writes": 956,
+        "declared_original_roots": 4,
+        "original_registration_verified": true,
+        "first_scan_started": true,
+        "first_scan_returned": false,
+        "thread_creation": {
+          "CreateThread_arguments": [
+            0,
+            0,
+            5693712,
+            1350570016,
+            4,
+            234881060
+          ],
+          "CRT_wrapper": 5693712,
+          "worker": 4333392,
+          "scene_callback": 4527728,
+          "data_pointer": 1350570016,
+          "data_hex": "00000000ffffffff00000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000501f42000000000e681d76000000000000000000000000000000000000000000000000000000000000000000",
+          "thread_created": false
+        },
+        "source_node_event_created": true,
+        "full_CPU_memory_queue_and_stack": true,
+        "ordinary_loop_context_preserved": true,
+        "exact_dependency": {
+          "kind": "original_scheduler_thread_platform_dependency",
+          "va": 43156117,
+          "cpu": {
+            "EIP": 43156117,
+            "ESP": 1697705604,
+            "EBP": 1697705644,
+            "EAX": 0,
+            "EBX": 0,
+            "ECX": 0,
+            "EDX": 1350570016,
+            "ESI": 1697705768,
+            "EDI": 1697705756,
+            "EFLAGS": 534
+          },
+          "receiver": 0,
+          "sp": 1697705604,
+          "stack_hex": "c4e05600000000000000000010e1560020108050040000002400000e0000000020108050000000001cef3065d81e42000000000000000000501f42000000000e",
+          "return_va": 5693636,
+          "frames": [
+            {
+              "bp": 1697705644,
+              "previous_bp": 1697705756,
+              "return_va": 4333272
+            },
+            {
+              "bp": 1697705756,
+              "previous_bp": 1697705872,
+              "return_va": 4331955
+            },
+            {
+              "bp": 1697705872,
+              "previous_bp": 1697705980,
+              "return_va": 4331567
+            },
+            {
+              "bp": 1697705980,
+              "previous_bp": 553709564,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553709564,
+              "previous_bp": 553711616,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553711616,
+              "previous_bp": 0,
+              "return_va": 0
+            },
+            {
+              "bp": 0,
+              "previous_bp": 0,
+              "return_va": 0
+            }
+          ],
+          "first_instruction_executed": false,
+          "import_slot": 5841436,
+          "name": "CreateThread"
+        },
+        "new_CRT_allocations": 1,
+        "current_native_event_count": 2,
+        "independent_fresh_platform": {
+          "build": {
+            "source_sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+            "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+            "helper_sha256": "181f961b0f9cc89f4b7418931f5186a2639ca11fe9aef2a2bc1e1c9d09e33758",
+            "helper_path": "F:\\project\\chaomofa\\.venv-audit\\scheduler-independent-65188.exe",
+            "machine": 332
+          },
+          "hello": {
+            "pointer_bytes": 4,
+            "window_created": false,
+            "GPU_created": false,
+            "thread_created": false,
+            "directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT"
+          },
+          "trace": [
+            {
+              "request": {
+                "id": 1,
+                "op": "initialize",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 1,
+                "ok": true,
+                "result": {
+                  "pointer": 18450528,
+                  "hex": "ffffffffffffffff000000000000000000000000d0070002"
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 2,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 2,
+                "ok": true,
+                "result": {
+                  "handle": 1032
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 3,
+                "op": "wait",
+                "handle": 1032,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 3,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 4,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 4,
+                "ok": true,
+                "result": {
+                  "handle": 728
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 5,
+                "op": "wait",
+                "handle": 728,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 5,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 6,
+                "op": "close_event",
+                "handle": 728
+              },
+              "reply": {
+                "id": 6,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 7,
+                "op": "delete",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 7,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 8,
+                "op": "close_event",
+                "handle": 1032
+              },
+              "reply": {
+                "id": 8,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 9,
+                "op": "close"
+              },
+              "reply": {
+                "id": 9,
+                "ok": true,
+                "result": {
+                  "all_owned_resources_released": true,
+                  "events": 0,
+                  "criticals": 0,
+                  "forced_cleanup": false,
+                  "window_created": false,
+                  "thread_created": false
+                }
+              }
+            }
+          ],
+          "actual_initial_event_observations": [
+            {
+              "value": 258
+            },
+            {
+              "value": 258
+            }
+          ],
+          "cleanup": {
+            "all_owned_resources_released": true,
+            "events": 0,
+            "criticals": 0,
+            "forced_cleanup": false,
+            "window_created": false,
+            "thread_created": false
+          },
+          "exit_code": 0
+        },
+        "normal_source_cleanup": true,
+        "cooperative_yield_executed": false,
+        "original_CRT_worker_created": false,
+        "original_MAIN_scheduler_connected": false,
+        "R3_complete": false,
+        "R6_complete": false
+      },
+      "independent_case_proof": {
+        "path": "analysis/school-retained-scheduler-independent-v1-20261024-student9_waiting-77.json",
+        "sha256": "10105ed0f766358153c4055acf21e2302f116190e2cb11573e5a47bca1ee1b05",
+        "bytes": 993771
+      }
+    },
+    {
+      "name": "fifth_class",
+      "scene_capture": 76,
+      "scheduler": {
+        "original_instructions": 3304,
+        "original_writes": 956,
+        "declared_original_roots": 4,
+        "original_registration_verified": true,
+        "first_scan_started": true,
+        "first_scan_returned": false,
+        "thread_creation": {
+          "CreateThread_arguments": [
+            0,
+            0,
+            5693712,
+            1350570016,
+            4,
+            234881060
+          ],
+          "CRT_wrapper": 5693712,
+          "worker": 4333392,
+          "scene_callback": 4527728,
+          "data_pointer": 1350570016,
+          "data_hex": "00000000ffffffff00000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000501f42000000000e681d76000000000000000000000000000000000000000000000000000000000000000000",
+          "thread_created": false
+        },
+        "source_node_event_created": true,
+        "full_CPU_memory_queue_and_stack": true,
+        "ordinary_loop_context_preserved": true,
+        "exact_dependency": {
+          "kind": "original_scheduler_thread_platform_dependency",
+          "va": 43156117,
+          "cpu": {
+            "EIP": 43156117,
+            "ESP": 1697705604,
+            "EBP": 1697705644,
+            "EAX": 0,
+            "EBX": 0,
+            "ECX": 0,
+            "EDX": 1350570016,
+            "ESI": 1697705768,
+            "EDI": 1697705756,
+            "EFLAGS": 534
+          },
+          "receiver": 0,
+          "sp": 1697705604,
+          "stack_hex": "c4e05600000000000000000010e1560020108050040000002400000e0000000020108050000000001cef3065d81e42000000000000000000501f42000000000e",
+          "return_va": 5693636,
+          "frames": [
+            {
+              "bp": 1697705644,
+              "previous_bp": 1697705756,
+              "return_va": 4333272
+            },
+            {
+              "bp": 1697705756,
+              "previous_bp": 1697705872,
+              "return_va": 4331955
+            },
+            {
+              "bp": 1697705872,
+              "previous_bp": 1697705980,
+              "return_va": 4331567
+            },
+            {
+              "bp": 1697705980,
+              "previous_bp": 553709564,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553709564,
+              "previous_bp": 553711616,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553711616,
+              "previous_bp": 0,
+              "return_va": 0
+            },
+            {
+              "bp": 0,
+              "previous_bp": 0,
+              "return_va": 0
+            }
+          ],
+          "first_instruction_executed": false,
+          "import_slot": 5841436,
+          "name": "CreateThread"
+        },
+        "new_CRT_allocations": 1,
+        "current_native_event_count": 2,
+        "independent_fresh_platform": {
+          "build": {
+            "source_sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+            "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+            "helper_sha256": "cacc4bf9cc86dc94479f972533a097cc8159e25ec931d2608e1d940635e85063",
+            "helper_path": "F:\\project\\chaomofa\\.venv-audit\\scheduler-independent-62020.exe",
+            "machine": 332
+          },
+          "hello": {
+            "pointer_bytes": 4,
+            "window_created": false,
+            "GPU_created": false,
+            "thread_created": false,
+            "directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT"
+          },
+          "trace": [
+            {
+              "request": {
+                "id": 1,
+                "op": "initialize",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 1,
+                "ok": true,
+                "result": {
+                  "pointer": 21927464,
+                  "hex": "ffffffffffffffff000000000000000000000000d0070002"
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 2,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 2,
+                "ok": true,
+                "result": {
+                  "handle": 1056
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 3,
+                "op": "wait",
+                "handle": 1056,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 3,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 4,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 4,
+                "ok": true,
+                "result": {
+                  "handle": 1060
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 5,
+                "op": "wait",
+                "handle": 1060,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 5,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 6,
+                "op": "close_event",
+                "handle": 1060
+              },
+              "reply": {
+                "id": 6,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 7,
+                "op": "delete",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 7,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 8,
+                "op": "close_event",
+                "handle": 1056
+              },
+              "reply": {
+                "id": 8,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 9,
+                "op": "close"
+              },
+              "reply": {
+                "id": 9,
+                "ok": true,
+                "result": {
+                  "all_owned_resources_released": true,
+                  "events": 0,
+                  "criticals": 0,
+                  "forced_cleanup": false,
+                  "window_created": false,
+                  "thread_created": false
+                }
+              }
+            }
+          ],
+          "actual_initial_event_observations": [
+            {
+              "value": 258
+            },
+            {
+              "value": 258
+            }
+          ],
+          "cleanup": {
+            "all_owned_resources_released": true,
+            "events": 0,
+            "criticals": 0,
+            "forced_cleanup": false,
+            "window_created": false,
+            "thread_created": false
+          },
+          "exit_code": 0
+        },
+        "normal_source_cleanup": true,
+        "cooperative_yield_executed": false,
+        "original_CRT_worker_created": false,
+        "original_MAIN_scheduler_connected": false,
+        "R3_complete": false,
+        "R6_complete": false
+      },
+      "independent_case_proof": {
+        "path": "analysis/school-retained-scheduler-independent-v1-20261024-fifth_class-76.json",
+        "sha256": "0fe3fcfa08edf69e33c48fd9664323c2b7681b5df53e5acca9bde6772556eede",
+        "bytes": 993785
+      }
+    },
+    {
+      "name": "fifth_class",
+      "scene_capture": 77,
+      "scheduler": {
+        "original_instructions": 3304,
+        "original_writes": 956,
+        "declared_original_roots": 4,
+        "original_registration_verified": true,
+        "first_scan_started": true,
+        "first_scan_returned": false,
+        "thread_creation": {
+          "CreateThread_arguments": [
+            0,
+            0,
+            5693712,
+            1350570016,
+            4,
+            234881060
+          ],
+          "CRT_wrapper": 5693712,
+          "worker": 4333392,
+          "scene_callback": 4527728,
+          "data_pointer": 1350570016,
+          "data_hex": "00000000ffffffff00000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000501f42000000000e681d76000000000000000000000000000000000000000000000000000000000000000000",
+          "thread_created": false
+        },
+        "source_node_event_created": true,
+        "full_CPU_memory_queue_and_stack": true,
+        "ordinary_loop_context_preserved": true,
+        "exact_dependency": {
+          "kind": "original_scheduler_thread_platform_dependency",
+          "va": 43156117,
+          "cpu": {
+            "EIP": 43156117,
+            "ESP": 1697705604,
+            "EBP": 1697705644,
+            "EAX": 0,
+            "EBX": 0,
+            "ECX": 0,
+            "EDX": 1350570016,
+            "ESI": 1697705768,
+            "EDI": 1697705756,
+            "EFLAGS": 534
+          },
+          "receiver": 0,
+          "sp": 1697705604,
+          "stack_hex": "c4e05600000000000000000010e1560020108050040000002400000e0000000020108050000000001cef3065d81e42000000000000000000501f42000000000e",
+          "return_va": 5693636,
+          "frames": [
+            {
+              "bp": 1697705644,
+              "previous_bp": 1697705756,
+              "return_va": 4333272
+            },
+            {
+              "bp": 1697705756,
+              "previous_bp": 1697705872,
+              "return_va": 4331955
+            },
+            {
+              "bp": 1697705872,
+              "previous_bp": 1697705980,
+              "return_va": 4331567
+            },
+            {
+              "bp": 1697705980,
+              "previous_bp": 553709564,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553709564,
+              "previous_bp": 553711616,
+              "return_va": 838860800
+            },
+            {
+              "bp": 553711616,
+              "previous_bp": 0,
+              "return_va": 0
+            },
+            {
+              "bp": 0,
+              "previous_bp": 0,
+              "return_va": 0
+            }
+          ],
+          "first_instruction_executed": false,
+          "import_slot": 5841436,
+          "name": "CreateThread"
+        },
+        "new_CRT_allocations": 1,
+        "current_native_event_count": 2,
+        "independent_fresh_platform": {
+          "build": {
+            "source_sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+            "compiler_sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b",
+            "helper_sha256": "cacc4bf9cc86dc94479f972533a097cc8159e25ec931d2608e1d940635e85063",
+            "helper_path": "F:\\project\\chaomofa\\.venv-audit\\scheduler-independent-62020.exe",
+            "machine": 332
+          },
+          "hello": {
+            "pointer_bytes": 4,
+            "window_created": false,
+            "GPU_created": false,
+            "thread_created": false,
+            "directory": "F:\\project\\chaomofa\\CROSS HERMIT\\CROSS HERMIT"
+          },
+          "trace": [
+            {
+              "request": {
+                "id": 1,
+                "op": "initialize",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 1,
+                "ok": true,
+                "result": {
+                  "pointer": 14867144,
+                  "hex": "ffffffffffffffff000000000000000000000000d0070002"
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 2,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 2,
+                "ok": true,
+                "result": {
+                  "handle": 1036
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 3,
+                "op": "wait",
+                "handle": 1036,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 3,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 4,
+                "op": "create_event"
+              },
+              "reply": {
+                "id": 4,
+                "ok": true,
+                "result": {
+                  "handle": 1044
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 5,
+                "op": "wait",
+                "handle": 1044,
+                "milliseconds": 0
+              },
+              "reply": {
+                "id": 5,
+                "ok": true,
+                "result": {
+                  "value": 258
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 6,
+                "op": "close_event",
+                "handle": 1044
+              },
+              "reply": {
+                "id": 6,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 7,
+                "op": "delete",
+                "guest": 1694503168
+              },
+              "reply": {
+                "id": 7,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 8,
+                "op": "close_event",
+                "handle": 1036
+              },
+              "reply": {
+                "id": 8,
+                "ok": true,
+                "result": {
+                  "value": 1
+                }
+              }
+            },
+            {
+              "request": {
+                "id": 9,
+                "op": "close"
+              },
+              "reply": {
+                "id": 9,
+                "ok": true,
+                "result": {
+                  "all_owned_resources_released": true,
+                  "events": 0,
+                  "criticals": 0,
+                  "forced_cleanup": false,
+                  "window_created": false,
+                  "thread_created": false
+                }
+              }
+            }
+          ],
+          "actual_initial_event_observations": [
+            {
+              "value": 258
+            },
+            {
+              "value": 258
+            }
+          ],
+          "cleanup": {
+            "all_owned_resources_released": true,
+            "events": 0,
+            "criticals": 0,
+            "forced_cleanup": false,
+            "window_created": false,
+            "thread_created": false
+          },
+          "exit_code": 0
+        },
+        "normal_source_cleanup": true,
+        "cooperative_yield_executed": false,
+        "original_CRT_worker_created": false,
+        "original_MAIN_scheduler_connected": false,
+        "R3_complete": false,
+        "R6_complete": false
+      },
+      "independent_case_proof": {
+        "path": "analysis/school-retained-scheduler-independent-v1-20261024-fifth_class-77.json",
+        "sha256": "96450990d68563c1b53398da8d7d4bfaf20b83b5bf918cbd47638780816fae6f",
+        "bytes": 993748
+      }
+    }
+  ],
+  "original_roots_each": [
+    4330816,
+    4331104,
+    4331200,
+    4331456
+  ],
+  "new_declared_manager": {
+    "pointer": 1694502912,
+    "bytes": 4096,
+    "fill": 165,
+    "original_MAIN_owner": false
+  },
+  "new_declared_root_stack": {
+    "pointer": 1697644544,
+    "bytes": 65536,
+    "sp": 1697705984
+  },
+  "retained_original_context": {
+    "EIP": 4334432,
+    "receiver": "TACT",
+    "all_architectural_CPU_restored": true,
+    "original_stack_bytes_unchanged": 8192,
+    "wait_return_executed": false
+  },
+  "original_registration_and_dispatch_instructions_each": 3304,
+  "original_registration_and_dispatch_writes_each": 956,
+  "original_forward_instructions_total": 19824,
+  "original_forward_writes_total": 5736,
+  "original_root_instruction_counts_each": [
+    66,
+    426,
+    1103,
+    1709
+  ],
+  "actual_native_events_each": 2,
+  "source_node_event_created_by": 4331600,
+  "original_new_thread_raw_CRT_bytes_each": 160,
+  "original_new_thread_data_bytes_each": 116,
+  "original_thread_data_SHA256_each": "15ae2dcca1080a9f839cfd3be1fca0a2ba05beae4e03373cbbeff7283c25c866",
+  "exact_next_CreateThread": {
+    "original_call": 5693630,
+    "IAT_slot": 5841436,
+    "return_va": 5693636,
+    "arguments": [
+      0,
+      0,
+      5693712,
+      "source current calloc thread data",
+      4,
+      "TACT+0x24"
+    ],
+    "call_not_executed": true
+  },
+  "original_CRT_wrapper": 5693712,
+  "original_worker": 4333392,
+  "original_scene_callback": 4527728,
+  "original_scene_callback_replaced": false,
+  "original_CRT_worker_created": false,
+  "first_scheduler_scan_started": true,
+  "first_scheduler_scan_returned": false,
+  "cooperative_yield_executed": false,
+  "original_MAIN_scheduler_connected": false,
+  "source_manager_and_event_fields_written_by_original_instructions": true,
+  "host_node_event_or_thread_fields_assigned": false,
+  "host_game_control_writes": 0,
+  "original_code_or_IAT_written": false,
+  "game_function_substitutions": 0,
+  "IAT_rebindings": 0,
+  "original_supplemental_cleanup_each": {
+    "thread_data_free": 5698480,
+    "task_unlink": 4332880,
+    "manager_destructor": 4330992,
+    "instructions": [
+      538,
+      127,
+      526
+    ],
+    "not_forward_progress": true
+  },
+  "supplemental_native_node_event_close_only_observed_own_handle": true,
+  "source_original_debug_poison_before_native_HeapFree": true,
+  "all_current_native_resources_released": true,
+  "all_native_owners_exited_normally": true,
+  "independent_fresh_native_events_and_cleanup_each": true,
+  "reused_complete_initial_independent_proof": "analysis/school-retained-scheduler-single-proof-v1-20261024.json",
+  "all_six_whole_parent_sources_independently_replayed": true,
+  "final_business_mapping_count_each": 206,
+  "prior_fog_business_mapping_count_each": 203,
+  "final_PC": 492,
+  "final_wait": 0,
+  "final_opcode": 19,
+  "final_task_phase": 3,
+  "new_OS_input": false,
+  "interactive_desktop_required": false,
+  "actual_D3D_draw_or_Present": false,
+  "historical_heap_restored": false,
+  "full_native_game_lifetime_connected": false,
+  "Godot_changed": false,
+  "R3_complete": false,
+  "R6_complete": false,
+  "regression": {
+    "new_tests": 40,
+    "affected_historical_tests": 50,
+    "tests": 90,
+    "failed": 0,
+    "logs": [
+      {
+        "path": "analysis/school-retained-scheduler-validation-v4-20261024.log",
+        "tests": 40,
+        "bytes": 4651,
+        "sha256": "3b25929327a33de6b885a3901dc257331b937d9a08278fbb1f51e45bae02f319"
+      },
+      {
+        "path": "analysis/school-retained-scheduler-regression-v1-20261024.log",
+        "tests": 50,
+        "bytes": 6340,
+        "sha256": "65709b93b920f15402ed6b200c52de9a2dfe7c453f1dffe98d4485ceb440c672"
+      }
+    ],
+    "raw_CRLF_preserved": true,
+    "entire_prior_suite_rerun": false,
+    "whole_parent_checks_in_new_six_case_proofs": true
+  },
+  "strict_specs": {
+    "before_archive_items": 32,
+    "after_archive_items": 31,
+    "failed": 0
+  },
+  "preservation": "analysis/school-retained-scheduler-preservation-v1-20261024.json",
+  "unchanged_previous_artifacts": 53,
+  "failed_validation_versions": [
+    1,
+    2,
+    3
+  ],
+  "failed_validation_reason": "independent fog/loop verifier used frozen prior import set and omitted the newly required source platform pages; fixed by private merged-import view; v2 additionally compared integer allocation keys against JSON string keys, fixed by canonical state comparison; v3 reached original fifth allocation and exposed the inherited four-allocation/old-free-order limit, fixed by private strict 160-byte thread allocation and 116-byte third-free extension; source/old tools unchanged",
+  "failed_validation_accepted": false,
+  "archive_mapping": "analysis/school-retained-scheduler-archive-mapping-v1-20261024.json",
+  "remaining": [
+    "Provide the original CRT/worker/scene callback executable context, TLS and valid thread/event ownership before actual CreateThread and resume",
+    "Connect preserved ordinary-loop wait to original MAIN scheduler lifetime",
+    "Remaining actual rendering, meaningful interaction and R4/R5/R6 coverage"
+  ],
+  "target_date": "2026-11-20",
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 26476,
+      "sha256": "a61135d0783854d4408688af0be1c842cf7a3d9517788065d61d80efb9c1abc8",
+      "git_blob_sha1": "8163f07dcb234072876368d4bc6ff5b8d6221aad"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-apply-final-v1-20261024.json",
+      "bytes": 3172,
+      "sha256": "717e7f9a907d15fb7cb107f4d410bf4b737f8dbeab75ec0b6d6d635c97c25b52",
+      "git_blob_sha1": "754253adf7fb07646429515ce83ee6153ee0b1ce"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-archive-mapping-v1-20261024.json",
+      "bytes": 1469,
+      "sha256": "02b4941bf7b8966553eb824c5260d494c054e3f26861e51a7a02e7f29eac49fe",
+      "git_blob_sha1": "9681fa0f7ae1bd43bb105e941167a439e154c57f"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-fifth_class-76.json",
+      "bytes": 993785,
+      "sha256": "0fe3fcfa08edf69e33c48fd9664323c2b7681b5df53e5acca9bde6772556eede",
+      "git_blob_sha1": "48f152979c028634927b69cf2e7053f5efeeac4a"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-fifth_class-77.json",
+      "bytes": 993748,
+      "sha256": "96450990d68563c1b53398da8d7d4bfaf20b83b5bf918cbd47638780816fae6f",
+      "git_blob_sha1": "4199f27d5028366c5787d9a58fdd40750b0e3af8"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-fifth_class.log",
+      "bytes": 836,
+      "sha256": "7ccd91d9b295538bf37212d70cb836b945250d78106638499c6daab000c984d5",
+      "git_blob_sha1": "9572459536da95ae18729d4268b2d94393f325bf"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-initial-77.json",
+      "bytes": 993763,
+      "sha256": "e94f9f1eab6bdd7f8ce30b5278e1df659066be4c5841fc1f6650e27dc1d65f1d",
+      "git_blob_sha1": "35257b63008eb08d7b0191ac9aac456b07a50a63"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-initial.log",
+      "bytes": 386,
+      "sha256": "77a82bad2f5d1d5c8c21fc678a09b91b5ed8401c80674f3ecf697414619cc124",
+      "git_blob_sha1": "95b4a8678db6214418097108d73947359bd8ac0b"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-student9_waiting-76.json",
+      "bytes": 993774,
+      "sha256": "718441268a2e3237af313a4ee1ba1d57f5be1017467ad3ecb2ae1a8cbf501279",
+      "git_blob_sha1": "1e7e4587e90064a506816fef3b3e5e819ddf470f"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-student9_waiting-77.json",
+      "bytes": 993771,
+      "sha256": "10105ed0f766358153c4055acf21e2302f116190e2cb11573e5a47bca1ee1b05",
+      "git_blob_sha1": "d7b3babb0bc5661458e1e9be7b9cc6df13c0177a"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-independent-v1-20261024-student9_waiting.log",
+      "bytes": 916,
+      "sha256": "9ba529e13ca04ba79412257a0d6e6b512027e46580c1a882b9794bab5936f201",
+      "git_blob_sha1": "ef1dc231246f0fb08f43e8feba93c7d457a5d5f1"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-fifth_class-76.json.gz",
+      "bytes": 19875345,
+      "sha256": "dd725f3be6877b07a2399afa52c128b1f6367016e91c55bc89cbc67712e830f4",
+      "git_blob_sha1": "e565d99ae80f4d125c9900c7d9337e6c25de1e20"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-fifth_class-77.json.gz",
+      "bytes": 19874974,
+      "sha256": "3a156203f5561364ffef5dd0e080ade09aa14eeff06396e8f954228d3b92095d",
+      "git_blob_sha1": "6bb1641cce01bf3eabf70c24ee87ef4c556df03c"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-fifth_class.log",
+      "bytes": 21312,
+      "sha256": "c06c47d9080c39920cf0cfd8a23f34024429dbf986c4eb85d69101ddc31b7b60",
+      "git_blob_sha1": "9f680744e2564f3d2280cec0a35507281b73dd27"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-initial-77.json.gz",
+      "bytes": 19885122,
+      "sha256": "7d146d41e5ecb1c11223d02790fdd23ff81bd34e9eeda47ac61728b3f26b748b",
+      "git_blob_sha1": "d8634635617abbf26076ece17dd49cde7e4d5f66"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-initial.log",
+      "bytes": 10679,
+      "sha256": "2cb2fed386ce7fa73ea387fbd3baa1ba4b258fae2066236ae8d40ba6b7f205fe",
+      "git_blob_sha1": "d6a98823dc97251861e0163cb5e1cd729ece049d"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-student9_waiting-76.json.gz",
+      "bytes": 19873778,
+      "sha256": "68fd601b702fc6c32a5d307cfdcfa68b4325b5e0d442ebe037dec2857af72a55",
+      "git_blob_sha1": "e4b26eb855a289f2ad04fb87a6accd6d9d34e934"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-student9_waiting-77.json.gz",
+      "bytes": 19875700,
+      "sha256": "aff411f639250801e76fd4f516e0ff4363634b041b86278aaa46c884a4747d9a",
+      "git_blob_sha1": "c2da165ea02a37e413e27a9bc4cfbb8d8a7e25b0"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024-student9_waiting.log",
+      "bytes": 21362,
+      "sha256": "b2585993cb5222f120f41ad72d40e99c75626a108c1d77ffc82d0bc0d00f89a4",
+      "git_blob_sha1": "462b8fa8894dcb3a6675d291741b947cbb9f7d50"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-matrix-v1-20261024.json",
+      "bytes": 66029,
+      "sha256": "7bb28f1ecd28c7b734e1fee6ea7c1c5da9382a5f021ec1f32f54d41fddd3e619",
+      "git_blob_sha1": "4853caadb721797a9ac41834dacada764c575237"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-preservation-v1-20261024.json",
+      "bytes": 129193,
+      "sha256": "21779ed4a33e459550f8175768d0d1f93215e42abd1119c9264d2e4fab56b9da",
+      "git_blob_sha1": "ddbfa9894525daf3568c1500859828821a0f1136"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-probe-runner-v1-20261024.py",
+      "bytes": 629,
+      "sha256": "69df430bfad22923b69e1b78a8c241a35cacce0c4f9e169edd3ab84e863fd462",
+      "git_blob_sha1": "b33c2b50ebb96e16da9660adfa33f2f184f9733c"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-probe-v1-20261024.log",
+      "bytes": 11591,
+      "sha256": "e35ef4142a1105d54feeea482f2c5d5f65967b1d45a6e6c4aa04c97fc811376e",
+      "git_blob_sha1": "537f74a764b18c55de12a001e66d63ce87a34109"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-proof-runner-v1-20261024.py",
+      "bytes": 1658,
+      "sha256": "52067c1755a454f9c8d4f181358a5fe2bd4c2a8530da9b320cd53b79cee5d4ef",
+      "git_blob_sha1": "6f5ace406a818e071b57efe75ee3146ca64c83ac"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-proof-runner-v2-20261024.py",
+      "bytes": 1658,
+      "sha256": "83f603aabdbf9e52f348485a740c9c75bf5d4724f6b7778018ff7c18c26be91d",
+      "git_blob_sha1": "2bbb76dc5aa8f88a138a53c9d95dc4bd98f8508c"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-proof-runner-v3-20261024.py",
+      "bytes": 1658,
+      "sha256": "9dfecacdc8fee5d07dd2dc7b62458646c45bcd440fbd576da4ed6562accd49da",
+      "git_blob_sha1": "1cce580ceac971b37e408f94773512885428eb1f"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-proof-runner-v4-20261024.py",
+      "bytes": 1658,
+      "sha256": "eb949246f01477e04eaaa267b42163ca15ea6010c2948a700f33bdcd10ce0f80",
+      "git_blob_sha1": "6c3fed59791adf041125c57b9e0c3d0c9f252ae6"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-proof-v1-20261024.json",
+      "bytes": 5979791,
+      "sha256": "9a7d2fc2e5c1f939d308596362dd864021f4909675c5e4f97ed22fcffc168533",
+      "git_blob_sha1": "08e63fa9fc0d8c8db8cab89eb113845c3629020c"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-proof-v1-20261024.log",
+      "bytes": 65,
+      "sha256": "f2868d0f9b38b5763f10d1c5e3826068b3c62474920ff216a7c631c9887e1a9d",
+      "git_blob_sha1": "ee4b527bbcec1a08ba1075c25bdbbbaa01b772ff"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-regression-runner-v1-20261024.py",
+      "bytes": 884,
+      "sha256": "398bdf3df913ae1525391d1ee508d28c291c01082938ad24446fc42a87187c54",
+      "git_blob_sha1": "ddfacf65914964cfbd571a04caabe3a8d4b748f1"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-regression-v1-20261024.log",
+      "bytes": 6340,
+      "sha256": "65709b93b920f15402ed6b200c52de9a2dfe7c453f1dffe98d4485ceb440c672",
+      "git_blob_sha1": "d8cf8abeab29ae1fe559133c9bd151b6740fee24"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-single-proof-v1-20261024.json",
+      "bytes": 993715,
+      "sha256": "565faf72b1611d5d9480fb2b352856d228f3de40afea2a49c992e8ea9970ddb7",
+      "git_blob_sha1": "ddbda802764f2edccb07139f7a83509ebc5802a2"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-single-v1-20261024.json.gz",
+      "bytes": 19884917,
+      "sha256": "01c368ab3a5d7fba09fa174f97626120beee793d6e0357e8a5f4b9e21ab6dc35",
+      "git_blob_sha1": "7e5e111548605d325ff23308e5b7d61561a389d4"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-source-analysis-v1-20261024.json",
+      "bytes": 171285,
+      "sha256": "f6d1e4246ccc0f371f092af85caa5694e8bdce2e55b9051e927121472135070e",
+      "git_blob_sha1": "32bc2ea49459fcbdeb9dfda68576ca6bd49e3880"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-status-final-v1-20261024.json",
+      "bytes": 2920,
+      "sha256": "7d47649cd8eeea8f48e053138ce72ab6396ee892b8d7f923c87e85dcb797dee3",
+      "git_blob_sha1": "a58c1814d11a060551ec4725c7d9e3e9971eb058"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-strict-active-v1-20261024.json",
+      "bytes": 7913,
+      "sha256": "ea3143c9597dbe93fc518c430d9b55bbc06ecab0d01b66145469b0c8e01506ea",
+      "git_blob_sha1": "3726cd214f217dea3b7eddb79a507bed23aaaa64"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-strict-after-v1-20261024.json",
+      "bytes": 7551,
+      "sha256": "fc5e8cfa8e88e6d22821e4e8fcc21d98ec6bfaae1b62f3fc8815bee7147cece7",
+      "git_blob_sha1": "527830b1a99d4bcacd345c1f485317c518003625"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-runner-v1-20261024.py",
+      "bytes": 725,
+      "sha256": "536abb6389607cde30fff7730d5469837c0784d383a456342ea213c80633c1d2",
+      "git_blob_sha1": "d9b71f38ec2d1453c487442bd73e337b60f8cdcf"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-runner-v2-20261024.py",
+      "bytes": 725,
+      "sha256": "5e9fcc1d8907468bb9ffd2d404a08e4ce6d9deb644b0cca998ded75975616432",
+      "git_blob_sha1": "f36af0927f43bf5cc78d1afee11b5d7a1b090a78"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-runner-v3-20261024.py",
+      "bytes": 725,
+      "sha256": "d02260a2bfc9a806b6f6d930a6c75c903d266ce53299a8972e318e11652b8c5a",
+      "git_blob_sha1": "decfe04a9c98efdae1b2438801f6c2ec818ed5bc"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-runner-v4-20261024.py",
+      "bytes": 725,
+      "sha256": "d04578f470cec5e5b6033256f6d54be8546eb42ceacf3573a60bea8d020c4437",
+      "git_blob_sha1": "9ba1d83f69dc4f4b7af8075bb9ce1cc34ec06828"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-summary-v1-20261024.json",
+      "bytes": 625,
+      "sha256": "f1b9be3449093a247a75fbc6ad9fe8fbd9f5360823468006d5471cb8a373eeca",
+      "git_blob_sha1": "5a39c15c814a77c526f633ec3b6c96a0a509f358"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-v1-20261024.log",
+      "bytes": 4085,
+      "sha256": "a3de870eba73db1fe1bdb1a9f8208ae165c060051752adc360f4a9553e651c9a",
+      "git_blob_sha1": "e59a5ee829b52dc7be6ca254f6069ca8ef5742a7"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-v2-20261024.log",
+      "bytes": 5889,
+      "sha256": "993c7b0f717ea5b749d3c95c1a2483e970e56efc0c82b6db75895832ecad758a",
+      "git_blob_sha1": "41d86568f042ab795d1bb9b62165985cfc7ad89e"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-v3-20261024.log",
+      "bytes": 8021,
+      "sha256": "b4bc3c860f13dfb01ae5608ff45e440efc5bcc4ff0f241aacd4cc5e4e53009d3",
+      "git_blob_sha1": "6d9cfa74bc9539e31540a43cf443a703dc5ec5e0"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-validation-v4-20261024.log",
+      "bytes": 4651,
+      "sha256": "3b25929327a33de6b885a3901dc257331b937d9a08278fbb1f51e45bae02f319",
+      "git_blob_sha1": "606566f63ef7ec834bcc50004277ce428a22f260"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-verifier-before-state-canonical-v3-20261024.py",
+      "bytes": 18635,
+      "sha256": "b8f684074f0ccea1eeb760b9c953fc827ac3524e1e2207fcc9b4886174ca2ad3",
+      "git_blob_sha1": "b614eba143511e16a093db03398301c02447d744"
+    },
+    {
+      "path": "analysis/school-retained-scheduler-verifier-before-thread-CRT-order-v4-20261024.py",
+      "bytes": 18723,
+      "sha256": "9e0351b18f6a5c4867a5b36026ca2e558d3a0bee4c8a08f4ef0b7ddd2ce960c9",
+      "git_blob_sha1": "79ecd1a8c6d5286d7a8f6150ee9b7829ea9b6e11"
+    },
+    {
+      "path": "docs/school_retained_scheduler.md",
+      "bytes": 7291,
+      "sha256": "d2d4f300b11c46d895615e654f9b8b29f6e48b3d2162fc0aa5a2c6cdf34a8ba9",
+      "git_blob_sha1": "4985d83adc46eb76baa017e238ea2ffea088c522"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-retained-scheduler-ownership/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a",
+      "git_blob_sha1": "02e9a7bcc564b8b1ef3e976054fa46dc260475d7"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-retained-scheduler-ownership/design.md",
+      "bytes": 3078,
+      "sha256": "b5001f09a989bf23679aa0aab81949e1346c34c004148e9ee9e204388ef76d45",
+      "git_blob_sha1": "97928a8f88e4bcea16c660c49d62eb7781edb6ef"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-retained-scheduler-ownership/proposal.md",
+      "bytes": 1512,
+      "sha256": "515284d7061327a227e394cafe82907e27699fd9396831da1c872857d51e39c8",
+      "git_blob_sha1": "b07566e4bbc4cdeb404a78957f3b39976876a5cf"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-retained-scheduler-ownership/tasks.md",
+      "bytes": 833,
+      "sha256": "764abcb2292bf9a604411521e022beefe626b27d9b82274d4108f562f01cbb90",
+      "git_blob_sha1": "1e2dc4b9e7cbd81ae9c0f370705175a7b1b2e114"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 49264,
+      "sha256": "dc2b2270c257ecb0f7ff8f0aebe3dfd4b04f081220baf5b642c32fa4d0094eef",
+      "git_blob_sha1": "2e477ce8a48ee761795ed9595ea22ff971172928"
+    },
+    {
+      "path": "tools/school_retained_scheduler.py",
+      "bytes": 12261,
+      "sha256": "9185bda2755d01183da5a6c874152774d876b2dce1b4d354cdb55fb5c834a5b0",
+      "git_blob_sha1": "8d9682f7eb7b71d7794037b0576af6e988c58263"
+    },
+    {
+      "path": "tools/school_retained_scheduler_analysis.py",
+      "bytes": 6317,
+      "sha256": "cbc1760999be63f4869de8794c8a0e374d6e55cad1936c6390094b0e0a2b5253",
+      "git_blob_sha1": "d86a173ebf82d8bd9045d572a50d75a43a6e9457"
+    },
+    {
+      "path": "tools/school_retained_scheduler_platform.cs",
+      "bytes": 4568,
+      "sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+      "git_blob_sha1": "8f4da268adc8923eda1ae5330e241fc3d6fe52bf"
+    },
+    {
+      "path": "tools/school_retained_scheduler_platform.py",
+      "bytes": 385,
+      "sha256": "1cfeda5b8f833afa08d8d84b780c23bc5fb32039ecf3410603b1a78645557545",
+      "git_blob_sha1": "3805a7e9b6391ed6cf2a9a8852a1841b2461cba3"
+    },
+    {
+      "path": "tools/school_retained_scheduler_preservation.py",
+      "bytes": 1695,
+      "sha256": "07bd6fc7d0acf2f5b54d8b9a722a9ae8764ec3dc7deab118345f9cd93932a352",
+      "git_blob_sha1": "80c589bb6b57de441a1073c70d143b9ee7f2920f"
+    },
+    {
+      "path": "tools/school_retained_scheduler_verification.py",
+      "bytes": 19055,
+      "sha256": "58e8b0998ad73e8127ca9548d3a82254c6e29396e53be71254ec090a9333b3ef",
+      "git_blob_sha1": "408f62540628ea16cb80d1d00e297e34bfbc5252"
+    },
+    {
+      "path": "tools/tests/test_school_retained_scheduler.py",
+      "bytes": 11685,
+      "sha256": "8f0eb0971f7173d4ab1cacd693b2d7909f43dbe7f873db3329cfcfeca29d4141",
+      "git_blob_sha1": "3461401a8d14e7ec0cd641877f9264da012594b0"
+    }
+  ],
+  "manifest_excludes": [
+    "this acceptance file to avoid circular digest"
+  ],
+  "local_only": true,
+  "pushed": false
+}

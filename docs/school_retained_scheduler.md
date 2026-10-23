@@ -66,3 +66,5 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests
 独立验证v1因新增系统接口页仍使用旧导入清单而拒绝，v2因运行时整型分配键与JSON字符串键直接比较而拒绝。两次失败日志保留，v2验证器源码在修正前另存；后续仅修正私有导入视图及状态键格式，不改变任何分配值、原执行结果或父工具。
 
 v3到原第五次分配时发现父验证器只覆盖四次分配和旧释放顺序。新验证器私有扩展为原raw尺寸262208/128/262208/128/160及用户释放尺寸262168/262168/116/88/88；新增三项API级预检验证精确160字节请求、116字节第三释放和原生DD回执，完整原链仍另行验证。失败v3及修正前源码保留。
+
+最终40项新增与50项历史回归共90项通过，六分支正式独立证明及53份父验收冻结文件保全通过。三项任务完成，归档 `openspec/changes/archive/2026-10-24-connect-retained-scheduler-ownership/`；验收 `analysis/school-retained-scheduler-acceptance-v1-20261024.json`。原始字节、Git索引和HEAD逐项核对，本地提交，不push。
