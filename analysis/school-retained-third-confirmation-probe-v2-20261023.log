@@ -1,0 +1,56 @@
+original_heap_initialization 58 original instructions; 2 actual OS leaves
+original_static_lock_initialization 16 original instructions; 4 actual OS leaves
+initial 76 original complete character task 20
+initial 76 original complete character task 40
+initial 76 original complete character task 60
+third wait 0 PC 290 wait 1
+third wait 1 PC 290 wait 1
+third wait 2 PC 290 wait 1
+third wait 3 PC 290 wait 1
+third wait 4 PC 290 wait 1
+third wait 5 PC 290 wait 1
+third wait 6 PC 290 wait 1
+third wait 7 PC 290 wait 1
+third wait 8 PC 290 wait 1
+third wait 9 PC 290 wait 1
+third wait 10 PC 290 wait 1
+third wait 11 PC 290 wait 1
+third wait 12 PC 290 wait 1
+third wait 13 PC 290 wait 1
+third wait 14 PC 290 wait 1
+third wait 15 PC 290 wait 1
+third wait 16 PC 290 wait 1
+third wait 17 PC 290 wait 1
+third wait 18 PC 290 wait 1
+third wait 19 PC 290 wait 1
+third wait 20 PC 290 wait 1
+third wait 21 PC 290 wait 1
+third wait 22 PC 290 wait 1
+third wait 23 PC 290 wait 1
+third wait 24 PC 290 wait 1
+third wait 25 PC 290 wait 0
+third_enter_confirmation {'PC': 294, 'wait': 1, 'opcode': 51, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+third_no_input_0 {'PC': 294, 'wait': 1, 'opcode': 51, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+third_no_input_1 {'PC': 294, 'wait': 1, 'opcode': 51, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+third_captured_press {'PC': 294, 'wait': 0, 'opcode': 51, 'opcode_size': 4, 'space_current': 128, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+fourth_activate_layer {'PC': 302, 'wait': 0, 'opcode': 43, 'opcode_size': 8, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+fourth_clear_layer {'PC': 306, 'wait': 0, 'opcode': 44, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+  File "F:\project\chaomofa\tools\school_retained_third_confirmation.py", line 55, in run_case
+    call=types.FunctionType(previous.run_case.__code__,dict(previous.run_case.__globals__,Guest=Attached),'original_third_with_confirmation_before_cleanup');c=call(helper,build,name,scene);need(len(captured)==1,'one source confirmation in original resource lifetime');c['third_confirmation']=captured[0];return c
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue.py", line 126, in run_case
+    call=types.FunctionType(parent.run_case.__code__,dict(parent.run_case.__globals__,Guest=Attached),'original_parent_with_continuation_before_cleanup');c=call(helper,build,name,scene);need(len(captured)==1,'single third continuation in original CRT lifetime');c['third_dialogue']=captured[0];return c
+  File "F:\project\chaomofa\tools\school_retained_character_task.py", line 104, in run_case
+    need(state(g)['pc']==272 and state(g)['wait']==0 and state(g)['mode']==state(g)['background_mode']==2,'original animation naturally ready');third_expected=model.third_prefix(regions(g),word(g.read(TACT+0x64)));activation=g.frame(78);need(regions(g)==third_expected['activation']['after'],'original third-text activation complete task');font_target=word(g.read(FONT_SLOT));third=g.frame(79,font_target);need(regions(g)==third_expected['after'],'original third-text prefix source state');sp=g.cpu()['ESP'];font=dict(target=font_target,import_slot=FONT_SLOT,args=[word(g.read(sp+4+i*4)) for i in range(14)],return_va=word(g.read(sp)),frames=parent.old.parent.chain(g,[('font',0x4c4d04),('text',0x4cec2b),('vm',0x454d90),('task',ROOT_RETURN)]),first_instruction_executed=False);need(font['return_va']==0x4cad09 and font['args']==third_expected['pending_font']['args'],'natural third CreateFontA ABI');final_memory=base.memory_rows(g.u);need(final_memory==third[-1]['full_memory'],'independent full-byte rehash agrees with every source-write invalidation');final_cpu=base.architectural_cpu(g.u);root=dict(va=0x41f4e0,args=[32],sp=STACK,return_va=ROOT_RETURN,receiver=g.renderer+0x844);cleanup=g.execute('supplemental_original_character_container_cleanup',ROOT_RETURN,root);need(g.gpu_count==6 and not g.allocations and word(g.read(0x765720))==accounting and parent.old.init.old.ledger(g)['game_bytes']==baseline,'source original container and both counters balanced');g.root('original_static_lock_teardown',0x576fa0);g.root('original_heap_teardown',0x57ba60);live.close()
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue.py", line 124, in execute
+    if label=='supplemental_original_character_container_cleanup':captured.append(self.continue_third())
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue.py", line 116, in continue_third
+    final_memory=base.memory_rows(self.u);need(final_memory==frames[-1]['steps'][-1]['full_memory'],'fresh full rehash of every source mapping');final_cpu=base.architectural_cpu(self.u);final=text_state(self);pixels=self.read(self.third_lock['bits'],self.third_lock['pitch']*64);cleanup=self.new_root('supplemental_original_third_texture_destructor',0x403730,TEXTURE);need(self.third_gpu_count==6 and word(self.read(0x765720))==account,'original third texture descriptor/release and byte accounting balanced');out=dict(contract=contract,typed_texture_projection=translation,entry=entry,before=before,raster_step=first,raster=raster_record,completion=second,completed=completed,frames=frames,final=final,final_memory=final_memory,final_architectural_cpu=final_cpu,converted_hex=pixels.hex(),converted_sha256=sha(pixels),accounting_before=account,cleanup=cleanup,source_GPU_calls=self.third_gpu_count,retained_input_host_writes=0,new_VM_roots=0)
+  File "F:\project\chaomofa\tools\school_retained_third_confirmation.py", line 53, in new_root
+    if label=='supplemental_original_third_texture_destructor':captured.append(self.continue_confirmation(scene))
+  File "F:\project\chaomofa\tools\school_retained_third_confirmation.py", line 42, in continue_confirmation
+    contract=contracts();stream=contract['streams'][scene];before=state(self);need((before['PC'],before['wait'],before['opcode'])==(290,0,50),'natural third readiness before confirmation');bindings=[self.captured(stream['captures'][0])];enter=self.confirmation_frame('third_enter_confirmation');controls=[self.confirmation_frame('third_no_input_'+str(i)) for i in range(2)];need(all((f['state']['PC'],f['state']['wait'],f['state']['opcode'],f['state']['space_current'])==(294,1,51,0) for f in [enter,*controls]),'held complete original confirmation without input');bindings.append(self.captured(stream['captures'][1]));confirmed=self.confirmation_frame('third_captured_press');need((confirmed['state']['PC'],confirmed['state']['wait'],confirmed['state']['opcode'],confirmed['state']['space_current'])==(294,0,51,128),'original task consumes captured space press bit while retaining down bit');bindings.append(self.captured(stream['captures'][2]));need(state(self)['space_current']==0,'captured release through source keyboard');activation=self.confirmation_frame('fourth_activate_layer');clearing=self.confirmation_frame('fourth_clear_layer');need((activation['state']['PC'],activation['state']['selected_layer'],clearing['state']['PC'])==(302,4,306),'original next activation/clear sequence');font_target=word(self.read(previous.parent.FONT_SLOT));prefix=self.confirmation_frame('fourth_text_prefix',font_target);sp=self.cpu()['ESP'];font=dict(target=font_target,import_slot=previous.parent.FONT_SLOT,args=[word(self.read(sp+4+i*4)) for i in range(14)],return_va=word(self.read(sp)),frames=chain(self,[('font',0x4c4d04),('text',0x4cec2b),('vm',0x454d90),('task',RETURN)]),cpu=self.cpu(),first_instruction_executed=False);need(font['return_va']==0x4cad09 and (prefix['state']['PC'],prefix['state']['opcode'])==(306,17),'natural fourth font ABI and partial task');old_service=self.offscreen;service=Offscreen(word(self.read(self.renderer+0xb208)));out=None
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: original next activation/clear sequence
