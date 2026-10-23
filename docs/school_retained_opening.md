@@ -64,3 +64,5 @@ v6原执行及资源收束完成，流文件重命名遇到Windows占用。完�
 开发重放首次通过新增开场后，在接回SC004补充清理时发现旧报告没有新报告的display/state/queue字段；此段改用已有专用原清理验证器，仍核对原指令/API/全部内存/CPU/记账及原生收束。开发异常日志不计作正式证明。
 
 本单元没有实际draw/Present，没有把原外层线程、完整世界调度和渲染器接成同一真实进程生命周期，也没有修复Big5乱码或交付Godot画面。下一阶段应依据原脚本终止后的调用与对象状态，处理世界流程连接及渲染/完整生命周期证据；不能继续把本开场拆成逐句change。
+
+最终61项新增与756项历史回归共817项通过，六分支正式独立证明及36份父验收冻结文件保全通过。三项任务完成，归档 `openspec/changes/archive/2026-10-23-complete-retained-opening-script/`；验收 `analysis/school-retained-opening-acceptance-v1-20261023.json`。原始字节、Git索引和HEAD逐项核对，本地提交，不push。
