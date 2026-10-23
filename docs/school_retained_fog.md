@@ -58,3 +58,5 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_retaine
 ```
 
 `--existing-initial76` 或 `--existing-initial-proof` 只复用完整且身份一致的已保存来源/独立证明；它们不会恢复已清理的原生资源。并行工作进程、各源案例和新GPU复核均有独立拥有者，不能拼为原生同寿命。
+
+最终32项新增与61项历史回归共93项通过，六分支正式独立证明及52份父验收冻结文件保全通过。三项任务完成，归档 `openspec/changes/archive/2026-10-24-connect-retained-fog-texture/`；验收 `analysis/school-retained-fog-acceptance-v1-20261023.json`。原始字节、Git索引和HEAD逐项核对，本地提交，不push。
