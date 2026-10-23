@@ -63,3 +63,5 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.school_retaine
 ```
 
 原资源路径、本地字体/ACP及x86 D3D8运行时沿用已验父条件。并行是独立进程执行不同来源分支，不能拼为一个原生游戏进程寿命。正式矩阵的 `source_processes=3` 表示分组生产器的工作进程配置；初始76案例明确复用此前独立 v4 进程的完整报告，其余五例由三个分组工作进程生产，各例仍新建原生所有者。
+
+最终45项新增与108项历史回归共153项通过，六分支正式独立证明及52份父验收冻结文件保全通过。三项任务完成，归档 `openspec/changes/archive/2026-10-23-connect-retained-opening-world-loop/`；验收 `analysis/school-retained-world-loop-acceptance-v1-20261023.json`。原始字节、Git索引和HEAD逐项核对，本地提交，不push。
