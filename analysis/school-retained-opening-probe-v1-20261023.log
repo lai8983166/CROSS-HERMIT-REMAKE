@@ -1,0 +1,102 @@
+original_heap_initialization 58 original instructions; 2 actual OS leaves
+original_static_lock_initialization 16 original instructions; 4 actual OS leaves
+initial 76 original complete character task 20
+initial 76 original complete character task 40
+initial 76 original complete character task 60
+third wait 0 PC 290 wait 1
+third wait 1 PC 290 wait 1
+third wait 2 PC 290 wait 1
+third wait 3 PC 290 wait 1
+third wait 4 PC 290 wait 1
+third wait 5 PC 290 wait 1
+third wait 6 PC 290 wait 1
+third wait 7 PC 290 wait 1
+third wait 8 PC 290 wait 1
+third wait 9 PC 290 wait 1
+third wait 10 PC 290 wait 1
+third wait 11 PC 290 wait 1
+third wait 12 PC 290 wait 1
+third wait 13 PC 290 wait 1
+third wait 14 PC 290 wait 1
+third wait 15 PC 290 wait 1
+third wait 16 PC 290 wait 1
+third wait 17 PC 290 wait 1
+third wait 18 PC 290 wait 1
+third wait 19 PC 290 wait 1
+third wait 20 PC 290 wait 1
+third wait 21 PC 290 wait 1
+third wait 22 PC 290 wait 1
+third wait 23 PC 290 wait 1
+third wait 24 PC 290 wait 1
+third wait 25 PC 290 wait 0
+third_enter_confirmation {'PC': 294, 'wait': 1, 'opcode': 51, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 2}
+third_no_input_0 {'PC': 294, 'wait': 1, 'opcode': 51, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 2}
+third_no_input_1 {'PC': 294, 'wait': 1, 'opcode': 51, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 2}
+third_captured_press {'PC': 294, 'wait': 0, 'opcode': 51, 'opcode_size': 4, 'space_current': 128, 'selected_layer': 5, 'input_words': [0, 0, 0], 'fourth_text_count': 2}
+fourth_activate_layer {'PC': 302, 'wait': 0, 'opcode': 43, 'opcode_size': 8, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 2}
+fourth_clear_layer {'PC': 306, 'wait': 0, 'opcode': 44, 'opcode_size': 4, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+fourth_text_prefix {'PC': 306, 'wait': 0, 'opcode': 17, 'opcode_size': 6, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 0}
+role9_source_prefix {'PC': 312, 'wait': 0, 'opcode': 30, 'opcode_size': 20, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 1}
+role9 natural wait 0 {'PC': 332, 'wait': 1, 'opcode': 30, 'opcode_size': 20, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 1}
+role9 natural wait 20 {'PC': 332, 'wait': 1, 'opcode': 30, 'opcode_size': 20, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 1}
+role9 natural wait 40 {'PC': 332, 'wait': 1, 'opcode': 30, 'opcode_size': 20, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 1}
+role9 natural wait 60 {'PC': 332, 'wait': 1, 'opcode': 30, 'opcode_size': 20, 'space_current': 0, 'selected_layer': 7, 'input_words': [0, 0, 0], 'fourth_text_count': 1}
+opening frame_0 340 0 43
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue.py", line 101, in advance_new
+    try:self.u.ctl_remove_cache(before['EIP'],before['EIP']+1);self.u.emu_start(before['EIP'],0,count=2000000,timeout=120000000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue.py", line 90, in code
+    if at==self.device_method or at in self.third_methods:self.new_gpu(at);return
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 54, in new_gpu
+    if at==self.device_method or any(r['texture']['pointer']==receiver for r in self.opening_textures):return self.opening_gpu_api(at)
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 87, in opening_gpu_api
+    for o in out:self.u.mem_write(o['pointer'],bytes.fromhex(o['hex']));self.memory_evidence.mark(o['pointer'],len(bytes.fromhex(o['hex'])))
+  File "F:\project\chaomofa\tools\school_retained_character_task.py", line 39, in mark
+    a,b=self.regions[i];need(a<=p<b,'mapped original write range');self.dirty.add(a)
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: mapped original write range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 134, in run_case
+    try:c=call(helper,build,name,scene)
+  File "F:\project\chaomofa\tools\school_retained_character_task.py[additional_original_free]", line 9, in run_case
+    from tools.school_font_raster_emulation import IMPORTS as GDI_IMPORTS
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 30, in execute
+    if label=='supplemental_original_character_container_cleanup':self.third_record=self.continue_third()
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue.py[additional_original_free]", line 10, in continue_third
+    from tools.school_retained_rendering import AddressSpace
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 33, in new_root
+    if label=='supplemental_original_third_texture_destructor':self.confirm_record=self.continue_confirmation(self.opening_scene)
+  File "F:\project\chaomofa\tools\school_retained_fourth_texture.py", line 33, in continue_confirmation
+    call=types.FunctionType(previous.Guest.continue_confirmation.__code__,dict(previous.Guest.continue_confirmation.__globals__,Offscreen=AttachedOffscreen),'original_fourth_before_actual_GDI_close');return call(self,scene)
+  File "F:\project\chaomofa\tools\school_retained_third_confirmation.py", line 67, in continue_confirmation
+    self.fourth_running=False;self.offscreen=old_service;cleanup=service.close()
+  File "F:\project\chaomofa\tools\school_retained_fourth_texture.py", line 29, in close
+    try:owner.fourth_record=owner.continue_fourth(service)
+  File "F:\project\chaomofa\tools\school_retained_fourth_texture.py[additional_original_free]", line 5, in continue_fourth
+    from tools.school_d3d8_image_bridge import ImageD3D8,build as build_gpu
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 34, in new_root
+    elif label=='supplemental_original_fourth_texture_destructor':self.role9_record=self.continue_role9()
+  File "F:\project\chaomofa\tools\school_retained_role9.py[additional_original_free]", line 16, in continue_role9
+    ACCEPTANCE_SHA='b54ab995b052bc737f8be34dbe428fb75169e8c85628644c07c34631cb1a4162'
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 37, in role_step
+    if label=='supplemental_original_role9_image_container_cleanup':self.opening_record=self.continue_opening()
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 120, in continue_opening
+    f=self.opening_frame('frame_'+str(i));frames.append(f)
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 102, in opening_frame
+    steps.append(self.opening_step(label+'_'+hex(va),root=dict(va=va,receiver=recv,args=[],sp=STACK,return_va=RETURN)))
+  File "F:\project\chaomofa\tools\school_retained_opening.py", line 96, in opening_step
+    try:s=self.advance_new(label,stop,root)
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue.py", line 102, in advance_new
+    except BaseException as exc:raise RuntimeError(label+' at '+hex(self.cpu()['EIP'])) from exc
+RuntimeError: frame_1_0x454cf0 at 0x40e01000

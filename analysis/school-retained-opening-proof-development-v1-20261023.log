@@ -1,0 +1,25 @@
+COMMAND with gzip.open(v.ROOT/'analysis/school-retained-opening-single-v6-20261023.json.gz','rt',encoding='utf8') as f: c=json.load(f)
+COMMAND seed=[]; proof=v.verify_case(c,lambda r:seed.append(r))
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\opening-proof-console.py", line 9, in <module>
+    try:exec(line,scope)
+  File "<string>", line 1, in <module>
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py", line 165, in verify_case
+    is_press=pending is not None and pending['capture']['label']==work.keyboard.contracts()['streams'][str(c['scene_capture'])]['captures'][1]['label']
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py", line 79, in source_step
+    pending=next(calls,None);return
+KeyError: 'display_calls'
+COMMAND import importlib; v=importlib.reload(v); print('RELOADED',flush=True)
+RELOADED
+COMMAND v=importlib.reload(v); from tools.tests.test_school_retained_opening import isolated; seed=[]; proof=v.verify_case(c,lambda r:seed.append(isolated(r)))
+independent prefix ready initial 76
+independent opening frame initial 76 0 340 0
+independent opening frame initial 76 50 362 1
+independent opening frame initial 76 100 416 1
+independent opening frame initial 76 150 480 1
+independent opening frame initial 76 200 488 1
+independent opening frame initial 76 221 492 0
+COMMAND out=v.ROOT/'analysis/school-retained-opening-single-proof-development-v1-20261023.json'; assert not out.exists(); out.write_text(json.dumps(dict(accepted=False,reason='single-case development replay complete; six-case formal proof still required',case=proof),indent=2)+'\n',encoding='utf8',newline='\n'); print('SINGLE_CASE_ALL_ORIGINAL_AND_NATIVE_CLEANUP_PASS',proof['new_original_forward_instructions'],proof['parent_supplemental_cleanup_instructions'],flush=True)
+SINGLE_CASE_ALL_ORIGINAL_AND_NATIVE_CLEANUP_PASS 11627289 [1431, 149, 55, 55, 1434]
+COMMAND import os; print('DEVELOPMENT_CONSOLE_COMPLETE',flush=True); os._exit(0)
+DEVELOPMENT_CONSOLE_COMPLETE
