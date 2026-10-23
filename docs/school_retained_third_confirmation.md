@@ -37,3 +37,5 @@
 正式报告 `analysis/school-retained-third-confirmation-v1-20261023.json.gz` 与独立证明 `school-retained-third-confirmation-proof-v1-20261023.json` 绑定SHA256。针对性测试覆盖采集来源/顺序/绑定范围、无输入等待、原控制、实际字体/栅格、旧资源释放、全部CPU映射/队列/摘要及越界完成声明；565项历史回归另行执行，原日志保留CRLF。
 
 原存档、私有检查点、资产、旧工具/证明不变，上一验收32份冻结文件逐字节保全。总spec更新真实边界，目标仍为2026-11-20，R3/R6尚未完成；Godot未改变。后续重点是第四句有效原生纹理/上传、PC312角色9和实质世界交互，以及实际D3D绘制/Present与原外层线程同寿命连接。
+
+最终56项新增与565项历史回归共621项通过，六分支正式独立证明及32份父验收冻结文件保全通过。三项任务全部完成，归档 `openspec/changes/archive/2026-10-23-connect-retained-third-confirmation/`，验收 `analysis/school-retained-third-confirmation-acceptance-v1-20261023.json`；原始字节、Git索引及HEAD核对一致，本地提交，不push。
