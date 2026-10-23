@@ -36,3 +36,5 @@ GDI只翻译历史测量DC至当前自有测量DC；字体、DIB、绘字DC来�
 R3/R6整体仍未完成。下一步需要继续脚本/实质交互和世界转换，并处理其余历史资源、实际draw/Present及原外层与保留状态在同一有效寿命内的连接。总目标日期维持2026-11-20。
 
 下一有限单元宜整体覆盖本开场剩余段，避免按每句文字继续拆分。只读静态预览 `analysis/school-retained-role9-following-script-v1-20261023.json` 固定了同一T0005代码段：PC332至末端PC496共26条指令，包含文字索引4–9、两组50/51等待/确认、层控制及后继控制。该预览不证明指令动态可达、正常退出或世界转换；实际终点需由下一单元原执行确定。
+
+最终76项新增与680项历史回归共756项通过，六分支正式独立证明及34份父验收冻结文件保全通过。三项任务全部完成，归档 `openspec/changes/archive/2026-10-23-complete-retained-role9-resources/`，验收 `analysis/school-retained-role9-acceptance-v1-20261023.json`；原始字节、Git索引及HEAD核对一致，本地提交，不push。
