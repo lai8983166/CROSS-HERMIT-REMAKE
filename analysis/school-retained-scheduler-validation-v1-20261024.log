@@ -1,0 +1,49 @@
+EXPECTED_TESTS 37
+test_actual_auto_reset_event (tools.tests.test_school_retained_scheduler.PlatformTests) ... ok
+test_actual_recursive_critical (tools.tests.test_school_retained_scheduler.PlatformTests) ... ok
+test_closed_event_refuses (tools.tests.test_school_retained_scheduler.PlatformTests) ... ok
+test_foreign_critical_refuses (tools.tests.test_school_retained_scheduler.PlatformTests) ... ok
+test_foreign_event_refuses (tools.tests.test_school_retained_scheduler.PlatformTests) ... ok
+test_game_thread_substitute_refuses (tools.tests.test_school_retained_scheduler.PlatformTests) ... ok
+test_uninitialized_critical_refuses (tools.tests.test_school_retained_scheduler.PlatformTests) ... ok
+independent prefix ready initial 76
+independent opening frame initial 76 0 340 0
+independent opening frame initial 76 50 362 1
+independent opening frame initial 76 100 416 1
+independent opening frame initial 76 150 480 1
+independent opening frame initial 76 200 488 1
+independent opening frame initial 76 221 492 0
+ERROR
+
+======================================================================
+ERROR: setUpClass (tools.tests.test_school_retained_scheduler.SchedulerTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_retained_scheduler.py", line 23, in setUpClass
+    with patch.object(v.Replay,'loop_step',step),patch.object(v.Replay,'api',api):cls.proof=v.verify_case(cls.c)
+  File "F:\project\chaomofa\tools\school_retained_scheduler_verification.py", line 82, in verify_case
+    call=types.FunctionType(previous.verify_case.__code__,dict(previous.verify_case.__globals__,prepare=prepare),'whole_parent_fog_into_original_scheduler');result=call(c,observe);need(len(instances)==1 and hasattr(instances[0],'scheduler_proof'),'one independently completed scheduler scope');return dict(result,scheduler=instances[0].scheduler_proof)
+  File "F:\project\chaomofa\tools\school_retained_fog_verification.py", line 71, in verify_case
+    call=work.previous.previous.adapt(previous.parent.verify_case,[("glyph_cleanup=[]","verify_fog_resource_and_loop(r);glyph_cleanup=[]")],prepare=prepare,verify_fog_resource_and_loop=observe);opening=call(c);need(len(proof)==1,'one complete independently verified fog scope');return dict(name=c['name'],scene_capture=c['scene_capture'],opening=opening,world_loop=proof[0][0],fog_texture=proof[0][1])
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py[additional_original_free]", line 18, in verify_case
+    fourth_proxy=types.SimpleNamespace(**dict(vars(previous.previous),protocol=fourth_protocol))
+  File "F:\project\chaomofa\tools\school_retained_fog_verification.py", line 70, in observe
+    verify_fog(r);proof.append((r.loop_proof,r.fog_proof))
+  File "F:\project\chaomofa\tools\school_retained_fog_verification.py", line 60, in verify_fog
+    creation+=r.loop_step(s);need(r.cpu()['ESP']==work.STACK+(4 if i==0 else 12),'original query bare ret preserves the pre-pushed creation usage; original creator ret8')
+  File "F:\project\chaomofa\tools\tests\test_school_retained_scheduler.py", line 19, in step
+    return old(r,s)
+  File "F:\project\chaomofa\tools\school_retained_scheduler_verification.py", line 15, in loop_step
+    return _step(self,s)
+  File "F:\project\chaomofa\tools\school_retained_world_loop_verification.py[additional_original_free]", line 11, in loop_step
+    # Private validation graph: same frozen checks, actual extension helper source identity.
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py[additional_original_free]", line 6, in source_step
+    from tools import school_retained_role9_verification as previous
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: only independently derived missing platform pages
+
+----------------------------------------------------------------------
+Ran 7 tests in 471.696s
+
+FAILED (errors=1)
