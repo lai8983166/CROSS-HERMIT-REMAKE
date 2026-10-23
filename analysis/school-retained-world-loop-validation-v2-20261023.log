@@ -1,0 +1,42 @@
+NEW_MODULES ['tools.tests.test_school_retained_world_loop', 'tools.tests.test_school_retained_world_loop_platform'] EXPECTED 45
+ERROR
+test_actual_initialized_lock13_nested_and_normal_source_teardown (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_foreign_pointer_rejected (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_held_lock_cannot_be_deleted (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_held_lock_cannot_close (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_lock9_cannot_be_used_as_lock13 (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_unbalanced_leave_rejected (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_uninitialized_lock_rejected (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+
+======================================================================
+ERROR: setUpClass (tools.tests.test_school_retained_world_loop.WorldLoopTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_retained_world_loop.py", line 19, in setUpClass
+    with patch.object(v.Replay,'loop_step',observe),patch.object(v.Replay,'api',observe_api):cls.proof=v.verify_case(cls.c)
+  File "F:\project\chaomofa\tools\school_retained_world_loop_verification.py", line 98, in verify_case
+    call=work.previous.adapt(parent.verify_case,[("glyph_cleanup=[]","verify_original_loop(r);glyph_cleanup=[]")],prepare=prepare,verify_original_loop=observe);opening_proof=call(c);need(len(proof)==1,'one complete independently verified ordinary-loop scope');return dict(name=c['name'],scene_capture=c['scene_capture'],opening=opening_proof,world_loop=proof[0])
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py[additional_original_free]", line 2, in verify_case
+    import copy,gzip,json,struct,types,hashlib
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py", line 135, in prepare
+    try:call(c,None)
+  File "F:\project\chaomofa\tools\school_retained_role9_verification.py", line 123, in verify_case
+    call=types.FunctionType(previous.verify_case.__code__,dict(previous.verify_case.__globals__,Replay=Observed),'verify_all_original_stages_and_role9_resources');parent=call(c,None);need(len(observed)==1,'one full independent original role9 scope');return dict(name=c['name'],scene_capture=c['scene_capture'],parent=parent,role9=observed[0])
+  File "F:\project\chaomofa\tools\school_retained_fourth_texture_verification.py", line 64, in verify_case
+    call=types.FunctionType(previous.verify_case.__code__,dict(previous.verify_case.__globals__,Replay=Observed,protocol=parent_protocol),'verify_parent_and_fresh_fourth_native_texture');parent=call(c,None);need(len(observed)==1,'one independently verified original fourth continuation');return dict(name=c['name'],scene_capture=c['scene_capture'],parent=parent,fourth=observed[0])
+  File "F:\project\chaomofa\tools\school_retained_third_confirmation_verification.py", line 114, in verify_case
+    call=types.FunctionType(previous.verify_case.__code__,dict(previous.verify_case.__globals__,Replay=Observed,previous=char_proxy),'verify_all_original_stages_with_source_texture_retirement');parent=call(c);need(len(observed)==1,'single independently verified confirmation continuation');return dict(name=c['name'],scene_capture=c['scene_capture'],parent=parent,confirmation=observed[0])
+  File "F:\project\chaomofa\tools\school_retained_third_dialogue_verification.py", line 147, in verify_case
+    proxy=types.SimpleNamespace(**dict(vars(previous.previous),step=step));prepare=types.FunctionType(previous.prepare.__code__,dict(previous.prepare.__globals__,Replay=Replay),'prepare_independent_third_source');call=types.FunctionType(previous.verify_case.__code__,dict(previous.verify_case.__globals__,Replay=Replay,previous=proxy,prepare=prepare),'verify_parent_and_third_before_original_cleanup');parent_proof=call(c,False);need(len(observed)==1,'one new source continuation before original cleanup');return dict(name=c['name'],scene_capture=c['scene_capture'],parent=parent_proof,third=observed[0])
+  File "F:\project\chaomofa\tools\school_retained_character_task_verification.py[additional_original_free]", line 2, in verify_case
+    import bisect,copy,gzip,hashlib,json,struct
+  File "F:\project\chaomofa\tools\school_retained_character_task_verification.py", line 12, in protocol
+    h=c['initial_native_hello'];need(h['heap']==h['critical']==0 and h['pointer_bytes']==4 and h['window_created'] is h['GPU_created'] is False,'new headless native owner without precreated CRT state');b=c['helper_build'];p=__import__('pathlib').Path(b['helper_path']);need(b['source_sha256']==sha(work.parent.old.init.platform.SOURCE.read_bytes()) and b['compiler_sha256']==sha(work.parent.old.init.platform.old.COMPILER.read_bytes()) and b['helper_sha256']==sha(p.read_bytes()) and b['machine']==work.parent.old.init.platform.old.machine(p)==0x14c,'helper source/compiler/x86 binary identity');need([f['index'] for f in c['frames']]==list(range(78)) and [len(f['steps']) for f in c['frames']]==[1]+[4]*77 and len(c['activation'])==len(c['third'])==4,'78 animation updates, activation and partial third full task')
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: helper source/compiler/x86 binary identity
+
+----------------------------------------------------------------------
+Ran 7 tests in 13.713s
+
+FAILED (errors=1)

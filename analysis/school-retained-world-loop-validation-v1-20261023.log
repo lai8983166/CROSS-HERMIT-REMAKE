@@ -1,0 +1,24 @@
+NEW_MODULES ['tools.tests.test_school_retained_world_loop', 'tools.tests.test_school_retained_world_loop_platform'] EXPECTED 45
+ERROR
+test_actual_initialized_lock13_nested_and_normal_source_teardown (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_foreign_pointer_rejected (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_held_lock_cannot_be_deleted (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_held_lock_cannot_close (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_lock9_cannot_be_used_as_lock13 (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_unbalanced_leave_rejected (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+test_uninitialized_lock_rejected (tools.tests.test_school_retained_world_loop_platform.WorldStaticLockTests) ... ok
+
+======================================================================
+ERROR: setUpClass (tools.tests.test_school_retained_world_loop.WorldLoopTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_retained_world_loop.py", line 19, in setUpClass
+    with patch.object(v.Replay,'loop_step',observe),patch.object(v.Replay,'api',observe_api):cls.proof=v.verify_case(cls.c)
+  File "F:\project\chaomofa\tools\school_retained_world_loop_verification.py", line 97, in verify_case
+    call=work.previous.adapt(parent.verify_case,[("glyph_cleanup=[]","verify_original_loop(r);glyph_cleanup=[]")],prepare=prepare,verify_original_loop=observe);parent=call(c);need(len(proof)==1,'one complete independently verified ordinary-loop scope');return dict(name=c['name'],scene_capture=c['scene_capture'],opening=parent,world_loop=proof[0])
+UnboundLocalError: local variable 'parent' referenced before assignment
+
+----------------------------------------------------------------------
+Ran 7 tests in 13.757s
+
+FAILED (errors=1)
