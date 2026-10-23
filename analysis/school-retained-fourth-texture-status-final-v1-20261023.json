@@ -1,0 +1,102 @@
+{
+  "changeName": "complete-retained-fourth-texture",
+  "schemaName": "spec-driven",
+  "planningHome": {
+    "kind": "repo",
+    "root": "F:\\project\\chaomofa",
+    "changesDir": "F:\\project\\chaomofa\\openspec\\changes",
+    "defaultSchema": "spec-driven"
+  },
+  "changeRoot": "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture",
+  "artifactPaths": {
+    "proposal": {
+      "outputPath": "proposal.md",
+      "resolvedOutputPath": "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture\\proposal.md",
+      "existingOutputPaths": [
+        "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture\\proposal.md"
+      ]
+    },
+    "specs": {
+      "outputPath": "specs/**/*.md",
+      "resolvedOutputPath": "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture\\specs\\**\\*.md",
+      "existingOutputPaths": []
+    },
+    "design": {
+      "outputPath": "design.md",
+      "resolvedOutputPath": "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture\\design.md",
+      "existingOutputPaths": [
+        "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture\\design.md"
+      ]
+    },
+    "tasks": {
+      "outputPath": "tasks.md",
+      "resolvedOutputPath": "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture\\tasks.md",
+      "existingOutputPaths": [
+        "F:\\project\\chaomofa\\openspec\\changes\\complete-retained-fourth-texture\\tasks.md"
+      ]
+    }
+  },
+  "isPlanningComplete": true,
+  "isComplete": true,
+  "applyRequires": [
+    "tasks"
+  ],
+  "nextSteps": [
+    "All planning artifacts are complete. Run openspec instructions apply --change \"complete-retained-fourth-texture\" --json to inspect implementation progress."
+  ],
+  "actionContext": {
+    "mode": "repo-local",
+    "sourceOfTruth": "repo",
+    "planningArtifacts": [
+      "proposal",
+      "specs",
+      "design",
+      "tasks"
+    ],
+    "linkedContext": [],
+    "allowedEditRoots": [
+      "F:\\project\\chaomofa"
+    ],
+    "requiresAffectedAreaSelection": false,
+    "constraints": [
+      "Repo-local change artifacts and implementation edits are scoped to this project."
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "proposal",
+      "outputPath": "proposal.md",
+      "status": "done",
+      "requires": []
+    },
+    {
+      "id": "specs",
+      "outputPath": "specs/**/*.md",
+      "status": "skipped",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "design",
+      "outputPath": "design.md",
+      "status": "done",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "tasks",
+      "outputPath": "tasks.md",
+      "status": "done",
+      "requires": [
+        "specs",
+        "design"
+      ]
+    }
+  ],
+  "root": {
+    "path": "F:\\project\\chaomofa",
+    "source": "nearest"
+  }
+}

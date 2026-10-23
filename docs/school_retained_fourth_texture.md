@@ -29,3 +29,5 @@
 首版试跑误用了对白栈检查，实际已到角色9字体但未完成原补充清理；失败日志、生产器快照、原CRT退出1及GPU助手清理/退出0另存，不计正常验收。该失败的测量DC释放未单独观测，不宣称完全正常；新关闭钩子改为finally确保错误时也释放自有离屏资源。独立证明的首两次失败分别为私有函数默认参数遗漏和名义尺寸未做进位，日志及验证器快照保留；不修改原代码或反改记录凑合通过。
 
 正式报告/证明为 `analysis/school-retained-fourth-texture-v1-20261023.json.gz` 与 `school-retained-fourth-texture-proof-v1-20261023.json`。三种保留状态各76/77采集流共六分支，相关历史回归与新来源/资源/像素/栈/状态破坏测试另记，原日志保留CRLF。总spec更新真实边界，原存档、私有检查点及父验收32份冻结文件保全；Godot、R3/R6整体和2026-11-20目标不变。后续为角色9姓名/肖像有效资源寿命、原handler演出及实质世界交接、剩余实际显示和原外层线程同寿命连接。
+
+最终59项新增与621项历史回归共680项通过，六分支正式独立证明及32份父验收冻结文件保全通过。三项任务全部完成，归档 `openspec/changes/archive/2026-10-23-complete-retained-fourth-texture/`，验收 `analysis/school-retained-fourth-texture-acceptance-v1-20261023.json`；原始字节、Git索引及HEAD核对一致，本地提交，不push。
