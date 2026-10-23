@@ -1,0 +1,51 @@
+NEW_TESTS_EXPECTED 32
+independent prefix ready initial 76
+independent opening frame initial 76 0 340 0
+independent opening frame initial 76 50 362 1
+independent opening frame initial 76 100 416 1
+independent opening frame initial 76 150 480 1
+independent opening frame initial 76 200 488 1
+independent opening frame initial 76 221 492 0
+ERROR
+
+======================================================================
+ERROR: setUpClass (tools.tests.test_school_retained_fog.FogTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_school_retained_fog.py", line 25, in setUpClass
+    with patch.object(v.Replay,'loop_step',observe),patch.object(v.Replay,'api',observe_api):cls.proof=v.verify_case(cls.c)
+  File "F:\project\chaomofa\tools\school_retained_fog_verification.py", line 71, in verify_case
+    call=work.previous.previous.adapt(previous.parent.verify_case,[("glyph_cleanup=[]","verify_fog_resource_and_loop(r);glyph_cleanup=[]")],prepare=prepare,verify_fog_resource_and_loop=observe);opening=call(c);need(len(proof)==1,'one complete independently verified fog scope');return dict(name=c['name'],scene_capture=c['scene_capture'],opening=opening,world_loop=proof[0][0],fog_texture=proof[0][1])
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py[additional_original_free]", line 18, in verify_case
+    fourth_proxy=types.SimpleNamespace(**dict(vars(previous.previous),protocol=fourth_protocol))
+  File "F:\project\chaomofa\tools\school_retained_fog_verification.py", line 70, in observe
+    verify_fog(r);proof.append((r.loop_proof,r.fog_proof))
+  File "F:\project\chaomofa\tools\school_retained_fog_verification.py", line 61, in verify_fog
+    need(work.fog_state(r)==e['created'] and e['created']['accounting']==e['entry']['accounting']+65536 and e['created']['texture']==r.fog_texture['pointer'] and r.fog_calls==2,'original fog creation and byte accounting without host assignment');verify_loop(r);need(work.fog_state(r)==e['business_final'] and base.memory_rows(r.u)==e['business_memory'] and canonical(base.architectural_cpu(r.u))==canonical(e['business_architectural_cpu']),'whole original loop business boundary with current fog owner');need(r.fog_calls==4 and r.fog_space.ledger()==e['typed_projection'],'original fog source upload and entire native pointer projection');need(getattr(r,'world_lock_depth',0)==0 and c['world_loop']['supplemental_lock_cleanup']==[],'no CRT exit/unwind workaround after current fog restoration');n=r.loop_step(e['cleanup']);need(n==149 and work.fog_state(r)==e['after_cleanup'] and e['after_cleanup']['texture']==0 and e['after_cleanup']['accounting']==e['entry']['accounting'] and r.fog_calls==6,'complete original supplemental fog release/clear and counter balance');last=e['GPU_trace'][r.fog_wire];need(last['request']==dict(id=r.fog_wire+1,op='close') and last['reply']['result']==e['GPU'] and last['reply']['ok']is True and last['reply']['id']==r.fog_wire+1 and r.fog_wire+1==len(e['GPU_trace']),'entire normal native fog wire consumed');fresh=fresh_GPU(e,r.fog_pixels);r.fog_proof=dict(new_resource_instructions=creation,new_resource_writes=sum(s['result']['writes'] for s in e['creation']),source_size=[172,128],native_size=[256,128],source_bytes=44032,native_bytes=len(r.fog_pixels),upload_sha256=sha(r.fog_pixels),source_sha256=sha(r.fog_source_pixels),all_rows_and_unchanged_padding_verified=True,original_memcpy_body_executed=True,source_COM_calls=6,source_original_destructor_instructions=n,whole_CPU_memory_queue_and_ownership=True,independent_fresh_GPU=fresh,normal_source_cleanup=True,old_exit_callback_workaround=False,new_OS_input=False,interactive_desktop_required=False,actual_D3D_draw_or_Present=False,R3_complete=False,R6_complete=False)
+  File "F:\project\chaomofa\tools\school_retained_world_loop_verification.py[additional_original_free]", line 6, in verify_loop
+    from tools import school_retained_opening_verification as previous
+  File "F:\project\chaomofa\tools\tests\test_school_retained_fog.py", line 21, in observe
+    return old(r,s)
+  File "F:\project\chaomofa\tools\school_retained_world_loop_verification.py", line 56, in loop_step
+    try:n=self.loop_code(s)
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py[additional_original_free]", line 39, in source_step
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\school_retained_opening_verification.py[additional_original_free]", line 24, in code
+    return rows
+  File "F:\project\chaomofa\tools\tests\test_school_retained_fog.py", line 24, in observe_api
+    return old_api(r,a)
+  File "F:\project\chaomofa\tools\school_retained_fog_verification.py", line 29, in api
+    need(args==[t['pointer'],0,word(self.read(bp+8)),0,2048] and a['native_op']=='lock' and a['native_request']==dict(pointer=p),'original whole unlocked fog LockRect');result=self.fog_space.result('fog',native);need(result==e['lock'] and result['pitch']>=512 and result['pitch']<=4096 and result['pitch']%2==0 and len(bytes.fromhex(result['hex']))==128*result['pitch'],'entire actual fog lock and row pitch');self.fog_lock=result;raw=bytes.fromhex(result['hex']);lo=result['bits']&~4095;maps=[(lo,(result['bits']-lo+len(raw)+4095)&~4095)];put(result['bits'],raw);put(args[2],struct.pack('<2I',result['pitch'],result['bits']))
+  File "F:\project\chaomofa\tools\school_retained_rendering_verification.py", line 16, in need
+    if not v:raise ValueError(msg)
+ValueError: original whole unlocked fog LockRect
+
+----------------------------------------------------------------------
+Ran 0 tests in 433.423s
+
+FAILED (errors=1)
