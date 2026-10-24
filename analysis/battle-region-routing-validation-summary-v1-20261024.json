@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "kind": "new_actual_map_graph_and_AI",
+      "tests": 38,
+      "passed": true,
+      "path": "analysis/battle-region-routing-tests-v1-20261024.log",
+      "sha256": "65abe1b8fb1b87e9ac89d2b87c382ba3d139d836351e526d49de1a8ddadcde9c"
+    },
+    {
+      "kind": "related_nearest_route_movement_search",
+      "tests": 128,
+      "passed": true,
+      "path": "analysis/battle-region-routing-regression-v1-20261024.log",
+      "sha256": "cae7ae0bbed3db097ae0fe8e522916e0d1192098868de26cdd1aefa60c3f8529"
+    }
+  ],
+  "total_tests": 166,
+  "strict_before": {
+    "path": "analysis/battle-region-routing-strict-active-v1-20261024.json",
+    "valid": 32,
+    "total": 32
+  },
+  "strict_after": {
+    "path": "analysis/battle-region-routing-strict-after-v1-20261024.json",
+    "valid": 31,
+    "total": 31
+  },
+  "proof": {
+    "path": "analysis/battle-region-routing-proof-v1-20261024.json",
+    "sha256": "dc9ad76bbec2f2bf30c7a5afec7d28422dacb52eb52d2f2e713a0a07b4c36c04",
+    "query_cases": 17,
+    "full_AI_routes": 5,
+    "whole_unit_dual_queue_global_scratch_and_memory_trace": true
+  },
+  "preservation": {
+    "path": "analysis/battle-region-routing-preservation-v2-20261024.json",
+    "sha256": "5db425ab41b4db7e1095ffd46e28130f8502c38634944c5b788007661a387bd8",
+    "frozen_parent_count": 29,
+    "final_frozen_parent_files_rechecked": true,
+    "authorized_updates_match_final_bytes": true
+  },
+  "implementation_commit": "8d75c330042fb9629fc81d336d24b3a91b8ad562",
+  "preliminary_512_budget_log_retained": "analysis/battle-region-routing-probe-v1-20261024.log",
+  "short_budget_probe_not_counted_as_completion": true,
+  "original_file_API_or_allocator_executed": false,
+  "raw_logs_preserved": true,
+  "interactive_desktop_required": false,
+  "OS_input_submitted": false,
+  "Godot_changed": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
