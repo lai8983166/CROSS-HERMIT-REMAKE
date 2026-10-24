@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "F:\project\chaomofa\tools\battle_attack_animation_emulation.py", line 87, in run
+    bind_before=self.state();bind=self.call(0x467020,(UNIT,c['job']));bind_after=self.state()
+  File "F:\project\chaomofa\tools\battle_unit_movement_emulation.py", line 98, in call
+    before = self.cpu(); row = self.base_call(entry, args, receiver); after = self.cpu()
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 90, in call
+    self.uc.emu_start(entry, RETURN, timeout=60_000_000, count=10_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\battle_attack_animation_emulation.py", line 65, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_attack_launch_emulation.py", line 46, in code
+    self.source_code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_region_routing_emulation.py", line 83, in code
+    need(any(a<=at<b for a,b in RANGES),'undeclared original instruction '+hex(at))
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: undeclared original instruction 0x42b2d0
