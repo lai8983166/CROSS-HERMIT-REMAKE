@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "kind": "original basic melee hit, actual EFCT damage events and HP application",
+  "change": "connect-original-hit-damage",
+  "archive": "openspec/changes/archive/2026-10-24-connect-original-hit-damage",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "3d952eaadda2a5ee78e1a55572e7c9e6cd17922f",
+  "implementation_commit": "af0a2bb14fdb4c9c41217e43862feae1f36df68f",
+  "archive_and_validation_commit": "b4c40b1875f0cc68b39bcbdf8997b3afbd62d2cb",
+  "previous_acceptance": {
+    "path": "analysis/battle-attack-animation-acceptance-v1-20261024.json",
+    "sha256": "ef590f769b2c20225d79f56c8468c2acdd8e4171f4e1582f7b2fd9f1ca369d26"
+  },
+  "source_report": {
+    "path": "analysis/battle-hit-damage-source-v1-20261024.json.gz",
+    "bytes": 18476711,
+    "sha256": "64f02e3ba446c86f27ea20c7fb7bbcdba1b3c870b3fd2b320a8d23b26a7f4a81"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-hit-damage-proof-v1-20261024.json",
+    "bytes": 19339,
+    "sha256": "05e0b47785d0ed6bda1c1c402a96fd6a1ce017bd699f6ca83717f4e493efeaa9",
+    "full_units_records_pools_independent": true,
+    "all_recorded_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 34,
+    "actual_HP_store_cases": 30,
+    "raw_hit_categories": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "original_instructions": 1000650,
+    "original_writes": 446447,
+    "owned_regions": 29,
+    "recorded_CPU_registers": 57,
+    "actual_source_chain_Win32_API_leaves": 204,
+    "actual_native_TLS_creation_and_cleanup_separately_checked": true
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "hit_damage",
+        "checks": 70,
+        "passed": true,
+        "path": "analysis/battle-hit-damage-tests-v1-20261024.log",
+        "sha256": "a242447fc754edf0601c4fc76e664ad2cac220f1a3642dc094000ed6036871ea"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 319,
+        "passed": true,
+        "path": "analysis/battle-hit-damage-regression-v1-20261024.log",
+        "sha256": "3681f77995abbb5aff9964075e8083d1ef384ed6a6734ab23e33659434ee9030"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-hit-damage-validation-before-v1-20261024.log",
+        "sha256": "b421878c22ac5f220ed5e78e9e11f2bab0a674b4f62a502bb106ec9719838093"
+      }
+    ],
+    "tests": 389,
+    "all_passed": true,
+    "preservation": {
+      "path": "analysis/battle-hit-damage-preservation-v1-20261024.json",
+      "sha256": "b0d7103094d15d47f304567db1cd41612c7053eec6d5aa6bc04be37326d3bd9c",
+      "frozen_parent_artifacts": 38
+    },
+    "source_report": {
+      "path": "analysis/battle-hit-damage-source-v1-20261024.json.gz",
+      "bytes": 18476711,
+      "sha256": "64f02e3ba446c86f27ea20c7fb7bbcdba1b3c870b3fd2b320a8d23b26a7f4a81"
+    },
+    "proof": "analysis/battle-hit-damage-proof-v1-20261024.json",
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "strict_after_archive": {
+    "passed": 31,
+    "failed": 0,
+    "path": "analysis/battle-hit-damage-validation-after-v1-20261024.log",
+    "bytes": 3145,
+    "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+  },
+  "preserved_parent_artifacts": 38,
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 32623,
+      "sha256": "a735ed78252a80a9efa872118b90177ff701862f4e4dce38d04826234392179c"
+    },
+    {
+      "path": "analysis/battle-hit-damage-archive-apply-v1-20261024.json",
+      "bytes": 2934,
+      "sha256": "988fcdda33f3e63495b803d0b2bc3bc464e8af1efb7868cabcc10aac43f66746"
+    },
+    {
+      "path": "analysis/battle-hit-damage-archive-instructions-v1-20261024.json",
+      "bytes": 1000,
+      "sha256": "d7b79113de4d0953900727c89803c32ab6d7a464140838fa080e7b07612da98e"
+    },
+    {
+      "path": "analysis/battle-hit-damage-archive-migration-v1-20261024.json",
+      "bytes": 1010,
+      "sha256": "98cd51ccc209366df450d4dfc5b6dbd2c8c52f4ad15d9f4f84a2db0ffd9f38b4"
+    },
+    {
+      "path": "analysis/battle-hit-damage-archive-status-v1-20261024.json",
+      "bytes": 2830,
+      "sha256": "f7bd3df12c7cdce9483fd333498501456c3c33429c4c6b64a48ef4a8b9c136b8"
+    },
+    {
+      "path": "analysis/battle-hit-damage-archive-validation-v1-20261024.json",
+      "bytes": 583,
+      "sha256": "2e1d0dea4f4633063db37c98f65e0214648f306b9f009a4889560190e268c032"
+    },
+    {
+      "path": "analysis/battle-hit-damage-model-probe-v1-20261024.log",
+      "bytes": 392,
+      "sha256": "0c6fb112e128049dd2220b6282e2d5524a717e269f793570d3201160d31f9dc7"
+    },
+    {
+      "path": "analysis/battle-hit-damage-model-probe-v2-20261024.log",
+      "bytes": 461,
+      "sha256": "7da4cd90852f29cd4a27ccbcf378ba08572f40d977fcd66c79abdede647f1cee"
+    },
+    {
+      "path": "analysis/battle-hit-damage-model-probe-v3-20261024.log",
+      "bytes": 915,
+      "sha256": "9b99be5bd8d6b8dba29f42bec071b82e52dd7a716b3556b71dcc94d3dd06b14b"
+    },
+    {
+      "path": "analysis/battle-hit-damage-preservation-v1-20261024.json",
+      "bytes": 192026,
+      "sha256": "b0d7103094d15d47f304567db1cd41612c7053eec6d5aa6bc04be37326d3bd9c"
+    },
+    {
+      "path": "analysis/battle-hit-damage-preservation-v1-20261024.log",
+      "bytes": 72,
+      "sha256": "05849796b11a644700999bb5dbbb9af4696cf417321c52c65e9d0675c233af2b"
+    },
+    {
+      "path": "analysis/battle-hit-damage-probe-v1-20261024.log",
+      "bytes": 1849,
+      "sha256": "1e6e6d4f6ba7ff8ead47cf7c90f290176ffe833dfedc1bc29b78181fdc432dfd"
+    },
+    {
+      "path": "analysis/battle-hit-damage-probe-v2-20261024.log",
+      "bytes": 1849,
+      "sha256": "35ad009a87021d1568d6b7ae6006e406c741619a38453f15cfe37410457294a1"
+    },
+    {
+      "path": "analysis/battle-hit-damage-probe-v3-20261024.log",
+      "bytes": 2127,
+      "sha256": "ce99080aad18110a00b81d677a5bddfcc07c8a30e83f517086a934c8d0613020"
+    },
+    {
+      "path": "analysis/battle-hit-damage-probe-v4-20261024.log",
+      "bytes": 1764,
+      "sha256": "aaaff63ebfbd219381e29a7e7b27ce823239f95ddd553ac643d283c65791f58e"
+    },
+    {
+      "path": "analysis/battle-hit-damage-probe-v5-20261024.log",
+      "bytes": 1885,
+      "sha256": "4739e982176c3b7265ce97d8033c1064c50f1fbd8fddf2007e69146d4cd3a47b"
+    },
+    {
+      "path": "analysis/battle-hit-damage-probe-v6-20261024.log",
+      "bytes": 594,
+      "sha256": "6cbcf1320869642e4e6d557bb84b17aa7ae3d36fa908183a12884b5ab714b19a"
+    },
+    {
+      "path": "analysis/battle-hit-damage-proof-v1-20261024.json",
+      "bytes": 19339,
+      "sha256": "05e0b47785d0ed6bda1c1c402a96fd6a1ce017bd699f6ca83717f4e493efeaa9"
+    },
+    {
+      "path": "analysis/battle-hit-damage-proof-v1-20261024.log",
+      "bytes": 915,
+      "sha256": "2d8c704e50d771657242fc01156edd7efe3ce3e9f0b70013b822f6d9dfcddb0a"
+    },
+    {
+      "path": "analysis/battle-hit-damage-regression-v1-20261024.log",
+      "bytes": 31426,
+      "sha256": "3681f77995abbb5aff9964075e8083d1ef384ed6a6734ab23e33659434ee9030"
+    },
+    {
+      "path": "analysis/battle-hit-damage-source-v1-20261024.json.gz",
+      "bytes": 18476711,
+      "sha256": "64f02e3ba446c86f27ea20c7fb7bbcdba1b3c870b3fd2b320a8d23b26a7f4a81"
+    },
+    {
+      "path": "analysis/battle-hit-damage-source-v1-20261024.log",
+      "bytes": 779,
+      "sha256": "568263cc2b54a0b8b0727de2cd3835cf1e1fab2f32b69ef63bc196e91a108a15"
+    },
+    {
+      "path": "analysis/battle-hit-damage-tests-v1-20261024.log",
+      "bytes": 6408,
+      "sha256": "a242447fc754edf0601c4fc76e664ad2cac220f1a3642dc094000ed6036871ea"
+    },
+    {
+      "path": "analysis/battle-hit-damage-validation-after-v1-20261024.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-hit-damage-validation-before-v1-20261024.log",
+      "bytes": 3309,
+      "sha256": "b421878c22ac5f220ed5e78e9e11f2bab0a674b4f62a502bb106ec9719838093"
+    },
+    {
+      "path": "analysis/battle-hit-damage-validation-v1-20261024.json",
+      "bytes": 1367,
+      "sha256": "a0dffeb4f3e498ccfdaa35b7203b7df7cf71cfa64088f732b822ff55116ae092"
+    },
+    {
+      "path": "docs/battle_hit_damage.md",
+      "bytes": 7260,
+      "sha256": "7a913f57cab3286cdefd62895d6a3a37b0c93e17dd5df70facfc73bdeaf93dd9"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-hit-damage/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-hit-damage/design.md",
+      "bytes": 2057,
+      "sha256": "3a1d9bf4f8531f1e66adb99fea9c47a140f6f5e8b53a3b9777e1e7d4afa40912"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-hit-damage/proposal.md",
+      "bytes": 1467,
+      "sha256": "4b9ceb69d556580dba373cbfe4959dd7bab73871e6ad32fcd84094dee630c4c1"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-hit-damage/tasks.md",
+      "bytes": 672,
+      "sha256": "437cd1a793d4ed9465ec18b481ff34465799ccb0765aac7230a1337b444c3992"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 64885,
+      "sha256": "72c922fc86452b403c0cdc0b8be8f2ad5b9cdec2c9a2f589d52f7d95f1b3b96f"
+    },
+    {
+      "path": "tools/battle_hit_damage.py",
+      "bytes": 4396,
+      "sha256": "be9c46e98803047b3edfd517b8d5b8bace5299d2f85af735cc9c081be6d59152"
+    },
+    {
+      "path": "tools/battle_hit_damage_emulation.py",
+      "bytes": 9365,
+      "sha256": "4ee20af65435101b45a0aec534c2c61aac22c1a1cb08bb0ce8e0eb34859709f9"
+    },
+    {
+      "path": "tools/battle_hit_damage_model.py",
+      "bytes": 9585,
+      "sha256": "3795477242baf42ae7ec9a8278bf5ed53e49e6f352b834de1999aac2dbfba9dc"
+    },
+    {
+      "path": "tools/battle_hit_damage_platform.py",
+      "bytes": 3725,
+      "sha256": "c9ba001a6946bcc380afba85adc3196aaf0bb303a853af016f4764e583ec0d7c"
+    },
+    {
+      "path": "tools/battle_hit_damage_preservation.py",
+      "bytes": 1782,
+      "sha256": "6edec27e0cb03cc0902089023be71d6dbe4c60f917e62533d05fb72fbb79211b"
+    },
+    {
+      "path": "tools/battle_hit_damage_verification.py",
+      "bytes": 12410,
+      "sha256": "bae8029079033ef3e5ec37dc74eb970615337b735c5412696e7ed1fe8287a65b"
+    },
+    {
+      "path": "tools/tests/test_battle_hit_damage.py",
+      "bytes": 7775,
+      "sha256": "9496d9de2db1661d1fe0e5fbbcb7e4b9039ae520f11a6eab4bdb96a948137ed4"
+    }
+  ],
+  "index_worktree_HEAD_bytes_identical": true,
+  "scope": {
+    "original_basic_melee_hit_damage_HP_verified": true,
+    "original_effect_body_executed": true,
+    "original_game_and_CRT_random_bodies_executed": true,
+    "current_Win32_TLS_API_executed": true,
+    "native_TLS_indices_and_thread_receipts_checked_per_replay": true,
+    "native_TLS_startup_not_original_CRT_startup": true,
+    "game_function_results_stubbed": false,
+    "CRT_function_results_stubbed": false,
+    "original_code_or_IAT_changed": false,
+    "host_derived_unit_fields_written_after_initialization": false,
+    "declared_loaded_animation_and_effect_cache": true,
+    "original_file_GPU_or_sound_device_loading_executed": false,
+    "screen_unlock_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "HP_zero_not_death": true,
+    "reaction_requests_executed_as_subsequent_commands": false,
+    "full_world_frame": false,
+    "death_removal_rewards_verified": false
+  },
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
