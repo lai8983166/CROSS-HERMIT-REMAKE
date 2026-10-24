@@ -1,0 +1,42 @@
+ordinary 9 release_then_three_waits
+consume_attack_request 9 release_then_three_waits
+zero_windup 6 release_then_three_waits
+one_windup 7 release_then_three_waits
+negative_windup 7 release_then_three_waits
+slow_status7 10 release_then_three_waits
+slow_zero 6 release_then_three_waits
+windup_short_wrap 7 release_then_three_waits
+recovery_short_wrap 10 release_then_three_waits
+chase_east 31 release_then_three_waits
+chase_south 40 release_then_three_waits
+same_cell 9 release_then_three_waits
+range_zero 16 release_then_three_waits
+wide_range 9 release_then_three_waits
+dead_target 1 pending_command
+unselectable_target 1 pending_command
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\battle_attack_launch_emulation.py", line 68, in <module>
+    r=AttackMachine(c).run();rows.append(r);print(c['name'],len(r['steps']),r['stop'],flush=True)
+  File "F:\project\chaomofa\tools\battle_attack_launch_emulation.py", line 53, in run
+    before=self.unit();rec=self.record();call=self.call(0x475700,(UNIT,))
+  File "F:\project\chaomofa\tools\battle_unit_movement_emulation.py", line 98, in call
+    before = self.cpu(); row = self.base_call(entry, args, receiver); after = self.cpu()
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 90, in call
+    self.uc.emu_start(entry, RETURN, timeout=60_000_000, count=10_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\battle_attack_launch_emulation.py", line 43, in code
+    self.source_code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_region_routing_emulation.py", line 83, in code
+    need(any(a<=at<b for a,b in RANGES),'undeclared original instruction '+hex(at))
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: undeclared original instruction 0x424f80

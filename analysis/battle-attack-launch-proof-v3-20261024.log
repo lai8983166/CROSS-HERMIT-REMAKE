@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\battle_attack_launch_verification.py", line 120, in <module>
+    need(not out.exists(),'fresh attack proof');out.write_text(json.dumps(verify(ROOT/a.report),indent=2)+'\n',encoding='utf8',newline='\n')
+  File "F:\project\chaomofa\tools\battle_attack_launch_verification.py", line 85, in verify
+    rows.append(verify_case(r));print('verified',r['input']['name'],flush=True)
+  File "F:\project\chaomofa\tools\battle_attack_launch_verification.py", line 66, in verify_case
+    need(row['action_events']==m.events,'actual facing/action/MP argument sequence independently predicted')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: actual facing/action/MP argument sequence independently predicted
