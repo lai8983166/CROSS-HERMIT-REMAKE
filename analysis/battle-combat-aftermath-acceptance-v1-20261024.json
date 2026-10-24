@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "kind": "complete original basic combat unit updates, reaction recovery and death combat removal",
+  "change": "connect-original-combat-aftermath",
+  "archive": "openspec/changes/archive/2026-10-24-connect-original-combat-aftermath",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "33659cd9be762bd7a23648a6e96f31dce4423758",
+  "implementation_commit": "11fcc0eccfa8b7fa39af319e9f1ed09edbdd0052",
+  "archive_and_validation_commit": "a815c149c429bcf061a6409f88ae42a20f1545d4",
+  "previous_acceptance": {
+    "path": "analysis/battle-hit-damage-acceptance-v1-20261024.json",
+    "sha256": "636e768e23fe121de8f96765ae925a86f9754f6aafa12cd5717d8c4fef33e5ce"
+  },
+  "source_report": {
+    "path": "analysis/battle-combat-aftermath-source-v1-20261024.json.gz",
+    "bytes": 20397597,
+    "sha256": "727a2c3c0c77f831f9de86e59863256449a044a39cd1bad9b0823ea07f07be33"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-combat-aftermath-proof-v1-20261024.json",
+    "bytes": 13367,
+    "sha256": "c992e0d38528fd73aa59344615cf1a6d3530185997862740a2f0fb3e4ff0d496",
+    "full_units_records_pools_stats_occupancy_visibility_independent": true,
+    "all_recorded_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 23,
+    "complete_original_unit_update_roots": 2428,
+    "death_combat_removed_cases": 12,
+    "original_instructions": 15529125,
+    "original_writes": 5879329,
+    "owned_regions": 35,
+    "recorded_CPU_registers": 57,
+    "actual_source_chain_Win32_API_leaves": 207,
+    "actual_native_TLS_creation_and_cleanup_separately_checked": true,
+    "heavy_reaction_displacement_pixels": 82,
+    "legacy_coordinate_counter_actor_only": true
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "combat_aftermath",
+        "checks": 49,
+        "passed": true,
+        "path": "analysis/battle-combat-aftermath-tests-v2-20261024.log",
+        "bytes": 5089,
+        "sha256": "09bb16ad750d34009f31984c0904f2746520c34c38b0a6fe4e94f32a9cc2abb0"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 389,
+        "passed": true,
+        "path": "analysis/battle-combat-aftermath-regression-v1-20261024.log",
+        "bytes": 37729,
+        "sha256": "b45e9a5da175d17f3ed866d80004b38b836d7095006ec669951b2ed2555d4ea0"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-combat-aftermath-validation-before-v1-20261024.log",
+        "bytes": 3315,
+        "sha256": "fcf0a4fd3e5f8df5d22c3fa1f79400bc8087551b2642456673fba1e23579f773"
+      }
+    ],
+    "tests": 438,
+    "all_passed": true,
+    "preservation": {
+      "path": "analysis/battle-combat-aftermath-preservation-v1-20261024.json",
+      "bytes": 199499,
+      "sha256": "66d7139d3658ea53a53530dcd6064e2b9c0634976bab646f3b0eead420244cf1",
+      "frozen_parent_artifacts": 37
+    },
+    "source_report": {
+      "path": "analysis/battle-combat-aftermath-source-v1-20261024.json.gz",
+      "bytes": 20397597,
+      "sha256": "727a2c3c0c77f831f9de86e59863256449a044a39cd1bad9b0823ea07f07be33"
+    },
+    "proof": {
+      "path": "analysis/battle-combat-aftermath-proof-v1-20261024.json",
+      "bytes": 13367,
+      "sha256": "c992e0d38528fd73aa59344615cf1a6d3530185997862740a2f0fb3e4ff0d496"
+    },
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "strict_after_archive": {
+    "passed": 31,
+    "failed": 0,
+    "path": "analysis/battle-combat-aftermath-validation-after-v1-20261024.log",
+    "bytes": 3145,
+    "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+  },
+  "preserved_parent_artifacts": 37,
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 33320,
+      "sha256": "5b7bc6ebc7e6041962961cee13572e3123d97b80bf75749c7d9f8069a0f3b617"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-CRT-caller-v1-20261024.log",
+      "bytes": 45,
+      "sha256": "a4a0fec353f4cf25c626b26e1fd8c84326822b88dca141820b3ed68d3d25e003"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-archive-apply-v1-20261024.json",
+      "bytes": 2999,
+      "sha256": "a950c4afe12a67199d03d9ff095393ad8661e2aaacb910c3db61a7591d15fa3a"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-archive-instructions-v1-20261024.json",
+      "bytes": 1006,
+      "sha256": "0d4c2968b508fc281f741835ab3e0dfde85db9d410d2200798d3594d24b92681"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-archive-migration-v1-20261024.json",
+      "bytes": 1022,
+      "sha256": "01bf048aef6257540cb92408678f6486fe18f7d9852470e18f3b57ccaa113cc0"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-archive-status-v1-20261024.json",
+      "bytes": 2890,
+      "sha256": "1a84faf42a17b932a3e924d411e784bc102c38d978904c3c1605f1d38d411431"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-archive-validation-v1-20261024.json",
+      "bytes": 595,
+      "sha256": "33d8d214300f7cd97abb26630efaca907801b4918487bbeb280ba6f25122a654"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-model-diff-v1-20261024.log",
+      "bytes": 576,
+      "sha256": "606c45526a6e89c9c5645b283163d4eb73555272faa838f65a085e67fe401513"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-model-diff-v2-20261024.log",
+      "bytes": 1836,
+      "sha256": "d6787808e3f88b353361ae2a4bca019d7de63709682ebc80b631d538470edb1b"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-model-probe-v1-20261024.log",
+      "bytes": 953,
+      "sha256": "a3b2fd7ecec08d385f3392af7833decc6f800d4499391456581f62423e11bb3b"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-model-probe-v2-20261024.log",
+      "bytes": 636,
+      "sha256": "bf7e1f0bc025c83fbb9e86e97ef2f4fac927ae37e3720dc9d1e335182323bdf1"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-model-probe-v3-20261024.log",
+      "bytes": 884,
+      "sha256": "c2efda1bf2ff801634522f0af00d7e8d2cf7c89eb3d21798d2910b0fbf069058"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-model-probe-v4-20261024.log",
+      "bytes": 4525,
+      "sha256": "ce61fcacf4425a77a6eeb167768ad172bfea6f75dba9920ab05092ada1b3a7a1"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-model-probe-v5-20261024.log",
+      "bytes": 9537,
+      "sha256": "a80e17b948a23523f2b1526218bb7937b769dc2eed893aa452418c77113c6de4"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-preservation-v1-20261024.json",
+      "bytes": 199499,
+      "sha256": "66d7139d3658ea53a53530dcd6064e2b9c0634976bab646f3b0eead420244cf1"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-preservation-v1-20261024.log",
+      "bytes": 69,
+      "sha256": "780f83698ba540534d586851f2aad864096e9018885c3e7281fdf0d824a99680"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v1-20261024.log",
+      "bytes": 416,
+      "sha256": "c438305f67791ad72c119ded0aef9fa2888fb77c117e92d212c34cf924f660e7"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v10-20261024.log",
+      "bytes": 14,
+      "sha256": "dd1ad352286c33846cedc001bc8ed49ffd3e1ee79a1d7af46edf65cddeb4b992"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v2-20261024.log",
+      "bytes": 2445,
+      "sha256": "a56d73855757ad9da6fb35aedbec86fc120ec36b5ad17451f99c9929e96fb499"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v3-20261024.log",
+      "bytes": 2445,
+      "sha256": "fcdc4c0f6ce72f4d057fa7ab6e674fd65678da378f335e227c06fb54ca64c51e"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v4-20261024.log",
+      "bytes": 2445,
+      "sha256": "ac6aaaf9d5a124cdc69bdeb605636df97879c634266b5b207e7aa0ee4c711682"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v5-20261024.log",
+      "bytes": 2445,
+      "sha256": "a7771dc103f2dbc7924c4e0bd0487a97433b086498a6af4b011bc534decc0033"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v6-20261024.log",
+      "bytes": 2445,
+      "sha256": "7dec4137e0342d05ea691d9d09eefd41652d45a92dbea2076b527f964aea1599"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v7-20261024.log",
+      "bytes": 2506,
+      "sha256": "ccf565c2a1464ae6f4098d666dce99f2305462210d2018688bc2aca0f0ee6678"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v8-20261024.log",
+      "bytes": 2445,
+      "sha256": "7634d21d085d9d6b5e4bc48d5e1a331003f2a4985a9c7476232a2d69a9c23d07"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-probe-v9-20261024.log",
+      "bytes": 2482,
+      "sha256": "66a274493426296d5d78222417107078632267a77a5e00bcb5229ee558147bb6"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-proof-v1-20261024.json",
+      "bytes": 13367,
+      "sha256": "c992e0d38528fd73aa59344615cf1a6d3530185997862740a2f0fb3e4ff0d496"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-proof-v1-20261024.log",
+      "bytes": 625,
+      "sha256": "7495a122ba2d1c0922d152481c52d6143a36988ff1a16626918e262280e44a35"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-regression-v1-20261024.log",
+      "bytes": 37729,
+      "sha256": "b45e9a5da175d17f3ed866d80004b38b836d7095006ec669951b2ed2555d4ea0"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-source-v1-20261024.json.gz",
+      "bytes": 20397597,
+      "sha256": "727a2c3c0c77f831f9de86e59863256449a044a39cd1bad9b0823ea07f07be33"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-source-v1-20261024.log",
+      "bytes": 709,
+      "sha256": "4cce852311a6f91ee38a3d2cf72a9915ab325208765dd1735bf1788c857c4c5d"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-stage-probe-v1-20261024.log",
+      "bytes": 5175,
+      "sha256": "fc1c685e5108beb1258e207487485cd24a6887e2fa227d00122064f03a5cec74"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-tests-v1-20261024.log",
+      "bytes": 5687,
+      "sha256": "950f96264f627ebdbb8760738051ea4fe45caa7db15c21225b684b1126e4219e"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-tests-v2-20261024.log",
+      "bytes": 5089,
+      "sha256": "09bb16ad750d34009f31984c0904f2746520c34c38b0a6fe4e94f32a9cc2abb0"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-validation-after-v1-20261024.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-validation-before-v1-20261024.log",
+      "bytes": 3315,
+      "sha256": "fcf0a4fd3e5f8df5d22c3fa1f79400bc8087551b2642456673fba1e23579f773"
+    },
+    {
+      "path": "analysis/battle-combat-aftermath-validation-v1-20261024.json",
+      "bytes": 1614,
+      "sha256": "4a5c3de7a7f3e62784e16b691e3edae19d6b03c41d5dd0d813cb3d7c95e7bbf9"
+    },
+    {
+      "path": "docs/battle_combat_aftermath.md",
+      "bytes": 7054,
+      "sha256": "8366e0a5672d3c04b12c0fa6687a90801087d46cffcfec3e0cc47399bac13e46"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-combat-aftermath/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "d216fd9d98badcaf762e25d6014f5dea5dd12b24fdbc36c7bb3230aa7016f19a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-combat-aftermath/design.md",
+      "bytes": 1941,
+      "sha256": "5871f19ec9409dc8617e03e7dc92d4160efb940c32f3f3279ab41f25a0303da1"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-combat-aftermath/proposal.md",
+      "bytes": 1350,
+      "sha256": "1f7fe2fcb4e84034aa7c387b0ed039cd42a74ba8bb1b9e1b61b4811c2b38f0b3"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-combat-aftermath/tasks.md",
+      "bytes": 693,
+      "sha256": "730502b7c328eb05b6a377b1bacf11ae8668c24b52303142b288ab56f44e514b"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 67083,
+      "sha256": "673b191df0e7a4ee990360832e9eba784c1c998e14d93bac2694c1702c4cc415"
+    },
+    {
+      "path": "tools/battle_combat_aftermath.py",
+      "bytes": 1917,
+      "sha256": "44566070f022400a8b3b94955b202deee003ccf8514d3acba89724d9480fed79"
+    },
+    {
+      "path": "tools/battle_combat_aftermath_emulation.py",
+      "bytes": 7061,
+      "sha256": "e3e457118412ebb1805dba4cd503a48ccdae97eaa2a0542ce085019d05c1cd77"
+    },
+    {
+      "path": "tools/battle_combat_aftermath_model.py",
+      "bytes": 11681,
+      "sha256": "913f6ad7ace68530b38d9d9470ccad165e475d2d66a56594325db9bc9896569b"
+    },
+    {
+      "path": "tools/battle_combat_aftermath_preservation.py",
+      "bytes": 1783,
+      "sha256": "b659e9e498c9431e57c082c70b68dcd447074f30811f4757915f158e1ae7b62f"
+    },
+    {
+      "path": "tools/battle_combat_aftermath_verification.py",
+      "bytes": 15420,
+      "sha256": "c46e9a8cee5d3c74ea8272d79141560d1446b4e6f02a791c2db8c93dfa0a6475"
+    },
+    {
+      "path": "tools/tests/test_battle_combat_aftermath.py",
+      "bytes": 8194,
+      "sha256": "c27a70c3ffc47bb6f3ff6a141e18551e3297d9c1586f713e5368db53095be26f"
+    }
+  ],
+  "index_worktree_HEAD_bytes_identical": true,
+  "scope": {
+    "original_basic_hit_to_unit_updates_verified": true,
+    "original_attack_phase22_to24_recovery_verified": true,
+    "original_reaction8_and9_recovery_verified": true,
+    "recovered_target_command2_pending_not_consumed": true,
+    "original_HP_zero_death_request_then_command13_verified": true,
+    "original_death_animation_delayed_combat_removal_and_statistics_verified": true,
+    "dead_unit_used_slot_still_one": true,
+    "declared_task_map_and_consistent_initial_occupancy": true,
+    "declared_empty_AI_status_and_event_environment": true,
+    "original_game_CRT_math_function_results_stubbed": false,
+    "original_code_or_IAT_changed": false,
+    "host_derived_unit_fields_written_after_initialization": false,
+    "current_Win32_TLS_API_executed": true,
+    "original_CRT_startup_executed": false,
+    "original_file_GPU_or_sound_device_loading_executed": false,
+    "screen_unlock_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "full_world_outer_frame": false,
+    "R3_retained_native_scheduler_lifetime_connected": false,
+    "all_faction_or_special_death_variants_verified": false,
+    "battle_victory_rewards_verified": false
+  },
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
