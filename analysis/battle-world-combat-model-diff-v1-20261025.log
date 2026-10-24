@@ -1,0 +1,9 @@
+frame 124 pre world_fields 0x110dc30c [('0x110dccd8', 1, 0), ('0x110dccdc', 12, 0), ('0x110dccdd', 16, 0), ('0x110dccde', 8, 0), ('0x110dccdf', 17, 0)]
+Traceback (most recent call last):
+  File "<stdin>", line 15, in <module>
+  File "F:\project\chaomofa\tools\battle_world_combat_verification.py", line 59, in verify_case
+    m.pre();state(f['stages'][0]['state'],m,'frame '+str(i)+' pre')
+  File "<stdin>", line 14, in detailed
+  File "F:\project\chaomofa\tools\battle_world_combat_verification.py", line 18, in state
+    raise ValueError('independent world combat '+m.cycle['name']+' '+label+' '+str(keys))
+ValueError: independent world combat lethal frame 124 pre ['world_fields']

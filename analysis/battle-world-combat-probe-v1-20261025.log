@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\battle_world_combat_emulation.py", line 86, in <module>
+    r=CombatMachine(c).run();rows.append(r);print(c['name'],len(r['world_frames']),r['instructions'],len(r['blobs']),flush=True)
+  File "F:\project\chaomofa\tools\battle_world_combat_emulation.py", line 53, in run
+    try:f['call']=self.call(0x46B470)
+  File "F:\project\chaomofa\tools\battle_unit_movement_emulation.py", line 98, in call
+    before = self.cpu(); row = self.base_call(entry, args, receiver); after = self.cpu()
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 90, in call
+    self.uc.emu_start(entry, RETURN, timeout=60_000_000, count=10_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\battle_world_update_emulation.py", line 61, in code
+    super().code(uc,at,size,context);f=self.frame_observation
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_emulation.py", line 58, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_hit_damage_emulation.py", line 69, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_attack_animation_emulation.py", line 66, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_attack_launch_emulation.py", line 46, in code
+    self.source_code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_world_combat_emulation.py", line 33, in source_code
+    need(at in ALLOWED,'undeclared original instruction '+hex(at));need(CODE[at-0x400000]!=0xCC,'original assertion/padding '+hex(at))
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: undeclared original instruction 0x479f40
