@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "kind": "original nearest-free selection, reservations and complete occupied-target rerouting",
+  "change": "verify-original-nearest-free",
+  "archive": "openspec/changes/archive/2026-10-24-verify-original-nearest-free",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "6e0880c0cb9e7b4c0e0206b6cb3e97924755cd4d",
+  "implementation_commit": "f9b03ab496ed2a16ae3e3195a6ef572a9578439b",
+  "archive_and_validation_commit": "ff0fe5b3f7087cf3868fac1e96a6a7dc50c49761",
+  "previous_acceptance": {
+    "path": "analysis/battle-route-admission-acceptance-v1-20261024.json",
+    "sha256": "9bafbbaa0d7e6357e2bbfceae03e6d26c6afef96049a664ad8268d47d6e3b638"
+  },
+  "source_report": {
+    "path": "analysis/battle-nearest-free-source-v1-20261024.json.gz",
+    "bytes": 1389940,
+    "sha256": "420887b69bbf2eea29429aac41b82721a68201e283253eb2936e01ad91fe9e1d"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-nearest-free-proof-v1-20261024.json",
+    "sha256": "8e30fcf60f4b0037f5aa90bba490f443273c4b99df4052d3baae9af151f0b4d7",
+    "selection_cases": 21,
+    "route_cases": 5,
+    "original_flood_cells": 4225,
+    "whole_unit_queue_reservation_and_memory_trace": true,
+    "all_memory_CPU_and_original_traces_replayed": true
+  },
+  "observed": {
+    "original_instructions": 24822074,
+    "original_writes": 8801015,
+    "selection_calls": 62,
+    "selection_successes": 59,
+    "selection_failures": 3,
+    "explicit_reservation_resets": 1,
+    "AI_root_calls": 154,
+    "position_changing_calls": 89,
+    "original_coordinate_writes": 178,
+    "flood_original_instructions": 21011769,
+    "flood_original_writes": 8295899,
+    "flood_budget_chunks": 22,
+    "maximum_reroute_cooldown": 30,
+    "table_sha256": "902e81f8eff318965e9f61f592a5a7c0541be0529ab5871e4dc6b6c4cbfbe4fd"
+  },
+  "validation": {
+    "schema_version": 1,
+    "tests": [
+      {
+        "kind": "new_selection_and_rerouting",
+        "tests": 34,
+        "passed": true,
+        "path": "analysis/battle-nearest-free-tests-v1-20261024.log",
+        "sha256": "892c418a69d4b3d15a36c492199d5314214b1050b8d99514145ea0804ea43979"
+      },
+      {
+        "kind": "related_route_movement_search",
+        "tests": 94,
+        "passed": true,
+        "path": "analysis/battle-nearest-free-regression-v1-20261024.log",
+        "sha256": "10c0ba0d0941ded8c3f395f021a1e177c4cde2a2182bda3bbca247f74cd54e41"
+      }
+    ],
+    "total_tests": 128,
+    "strict_before": {
+      "path": "analysis/battle-nearest-free-strict-final-active-v1-20261024.json",
+      "valid": 32,
+      "total": 32
+    },
+    "strict_after": {
+      "path": "analysis/battle-nearest-free-strict-after-v1-20261024.json",
+      "valid": 31,
+      "total": 31
+    },
+    "proof": {
+      "path": "analysis/battle-nearest-free-proof-v1-20261024.json",
+      "sha256": "8e30fcf60f4b0037f5aa90bba490f443273c4b99df4052d3baae9af151f0b4d7",
+      "selection_cases": 21,
+      "route_cases": 5,
+      "original_flood_cells": 4225,
+      "full_source_replay": true
+    },
+    "preservation": {
+      "path": "analysis/battle-nearest-free-preservation-v1-20261024.json",
+      "sha256": "b3094c3fd376c2472ec1052e0b12a599d7b3471d0514d9e6797f9658c8d2ce5d",
+      "frozen_parent_count": 26,
+      "final_frozen_parent_files_rechecked": true
+    },
+    "implementation_commit": "f9b03ab496ed2a16ae3e3195a6ef572a9578439b",
+    "failed_probes_retained": [
+      "analysis/battle-nearest-free-probe-v1-20261024.log",
+      "analysis/battle-nearest-free-probe-v2-20261024.log"
+    ],
+    "failure_causes": [
+      "Initial caller declaration omitted required direction field; corrected before formal report.",
+      "The original recursive flood exceeded the old single-root budget; deterministic source CPU continuation completed it without restarting or faking return."
+    ],
+    "raw_logs_preserved": true,
+    "full_original_constructor_executed": false,
+    "interactive_desktop_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "source_scope": {
+    "declared_table_input": true,
+    "full_original_constructor_executed": false,
+    "original_flood_and_selection_executed": true,
+    "original_AI_roots_only": true,
+    "full_original_world_or_native_scene": false,
+    "game_function_results_stubbed": false,
+    "OS_input_submitted": false,
+    "interactive_desktop_required": false,
+    "Godot_changed": false
+  },
+  "remaining": [
+    "complete original candidate-table allocation/constructor lifetime",
+    "44EA80 abstract region graph and actual map loading",
+    "full target/enemy/attack behavior",
+    "dynamic occupancy and active animation",
+    "other battle categories and R3 native thread/TLS/MAIN lifetime"
+  ],
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false,
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 29214,
+      "sha256": "c7e53ec5e41c03dfd50847db93f036133327212d1c214384f4eb8613942e3efd"
+    },
+    {
+      "path": "analysis/battle-nearest-free-apply-final-v1-20261024.json",
+      "bytes": 2947,
+      "sha256": "64dd922fda26cec0b09739952bf9f281758bf1710b7941e870ad1f3a2a803fc9"
+    },
+    {
+      "path": "analysis/battle-nearest-free-archive-mapping-v1-20261024.json",
+      "bytes": 1308,
+      "sha256": "49f20d441e98d73c973f570b812c6ecef786e52ea46881de91bd80375cd2f2cb"
+    },
+    {
+      "path": "analysis/battle-nearest-free-flood-probe-v1-20261024.log",
+      "bytes": 242,
+      "sha256": "cc396ea5d6f8da4dceaa731e170cbeb9e3bd6f467ed623d257adff26f9e36823"
+    },
+    {
+      "path": "analysis/battle-nearest-free-model-probe-v1-20261024.log",
+      "bytes": 2163,
+      "sha256": "66b3faf9bbc377856231499726a931c30ed04c200799f36d2c3442526637e247"
+    },
+    {
+      "path": "analysis/battle-nearest-free-preservation-v1-20261024.json",
+      "bytes": 156297,
+      "sha256": "b3094c3fd376c2472ec1052e0b12a599d7b3471d0514d9e6797f9658c8d2ce5d"
+    },
+    {
+      "path": "analysis/battle-nearest-free-preservation-v1-20261024.log",
+      "bytes": 61,
+      "sha256": "a273a1a69a92b213195955220b59d53b76db1e9d72061947930deba9248d5edd"
+    },
+    {
+      "path": "analysis/battle-nearest-free-probe-v1-20261024.log",
+      "bytes": 581,
+      "sha256": "875b38995d9fc96c2f861f774c3f99e53ee82b7f848b31ca4c462ab75194cd34"
+    },
+    {
+      "path": "analysis/battle-nearest-free-probe-v2-20261024.log",
+      "bytes": 1390,
+      "sha256": "286e8a0a2737a831cdc28a81539a37ebbfec16598e5492ce203ca9e70d98f61b"
+    },
+    {
+      "path": "analysis/battle-nearest-free-proof-v1-20261024.json",
+      "bytes": 10805,
+      "sha256": "8e30fcf60f4b0037f5aa90bba490f443273c4b99df4052d3baae9af151f0b4d7"
+    },
+    {
+      "path": "analysis/battle-nearest-free-proof-v1-20261024.log",
+      "bytes": 765,
+      "sha256": "55a4df0e590564afbd38fd632d4f6e00bbac40ca60c4f957a08e4ccfae393bf2"
+    },
+    {
+      "path": "analysis/battle-nearest-free-regression-v1-20261024.log",
+      "bytes": 9579,
+      "sha256": "10c0ba0d0941ded8c3f395f021a1e177c4cde2a2182bda3bbca247f74cd54e41"
+    },
+    {
+      "path": "analysis/battle-nearest-free-source-v1-20261024.json.gz",
+      "bytes": 1389940,
+      "sha256": "420887b69bbf2eea29429aac41b82721a68201e283253eb2936e01ad91fe9e1d"
+    },
+    {
+      "path": "analysis/battle-nearest-free-source-v1-20261024.log",
+      "bytes": 886,
+      "sha256": "8d26778dcf2573acdaf960173031c470191db82d721e7502250aba3973b8ef04"
+    },
+    {
+      "path": "analysis/battle-nearest-free-status-final-v1-20261024.json",
+      "bytes": 2840,
+      "sha256": "a0d1a69b86780fc881d12fd5a88631880cec76096c55cdb841a2c5dd5e07e1f1"
+    },
+    {
+      "path": "analysis/battle-nearest-free-strict-active-v1-20261024.json",
+      "bytes": 7920,
+      "sha256": "89f562be118e2a23c88dd0f8a0ab3093a2402369afcf9b0ebf98cab99eb2459c"
+    },
+    {
+      "path": "analysis/battle-nearest-free-strict-after-v1-20261024.json",
+      "bytes": 7551,
+      "sha256": "7c7863f09559b4da2003fcec57ad58cdda11a910088d9e601fae89b1c126cee0"
+    },
+    {
+      "path": "analysis/battle-nearest-free-strict-final-active-v1-20261024.json",
+      "bytes": 7905,
+      "sha256": "8abff29f21f4b6614e9cf3e59df154c9b6fbda1966e77ac77fff7dc7d8069798"
+    },
+    {
+      "path": "analysis/battle-nearest-free-tests-v1-20261024.log",
+      "bytes": 3436,
+      "sha256": "892c418a69d4b3d15a36c492199d5314214b1050b8d99514145ea0804ea43979"
+    },
+    {
+      "path": "analysis/battle-nearest-free-validation-summary-v1-20261024.json",
+      "bytes": 2140,
+      "sha256": "9185374985723654083265592dc1efbd18003eba4ca3605a426b4fb7c8ad08af"
+    },
+    {
+      "path": "docs/battle_nearest_free.md",
+      "bytes": 5547,
+      "sha256": "b71f7c3d322bac7596651df097550efc89c4ba791b493e7c2624cabbba42e37a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-nearest-free/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-nearest-free/design.md",
+      "bytes": 2107,
+      "sha256": "0836ec545314c73b35c8ca17da74f2d8a5f1a8c1f8c3be1004f76f8a5cc7ed2a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-nearest-free/proposal.md",
+      "bytes": 1239,
+      "sha256": "82b94b760d63eb9464efe10637f24dedc1535ab5dcedc112a7f317431374b950"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-nearest-free/tasks.md",
+      "bytes": 693,
+      "sha256": "deb3255e182ff95d714455bd2b868a9ffa19c7490fe8dfffce46379e790d30a6"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 55711,
+      "sha256": "8e9cf563287c77200c28d4d70c39de5db0935265aa13b1f1c29768bde597bbbe"
+    },
+    {
+      "path": "tools/battle_nearest_free.py",
+      "bytes": 4921,
+      "sha256": "90732769f076d16d04e5e084d591fec1b0ec4bba4494f317cf3650ec14720904"
+    },
+    {
+      "path": "tools/battle_nearest_free_emulation.py",
+      "bytes": 9932,
+      "sha256": "934371748e1b887a8d7d4530c2939b04b5704b99e075b0ec04961bc1f7d02137"
+    },
+    {
+      "path": "tools/battle_nearest_free_preservation.py",
+      "bytes": 1755,
+      "sha256": "755dc92018e60dd67d732664988419212e92c3f4629682defb29272f51b2850b"
+    },
+    {
+      "path": "tools/battle_nearest_free_verification.py",
+      "bytes": 9842,
+      "sha256": "4c25155031053d2245a81f87f1251783c3fc210de8af3a4f4569b55393d994db"
+    },
+    {
+      "path": "tools/tests/test_battle_nearest_free.py",
+      "bytes": 7971,
+      "sha256": "2aee6adc0707d366399219d8f54d44a90485449513e04598661a6800493a4a4a"
+    }
+  ],
+  "manifest_policy": "Raw worktree/index/HEAD bytes verified before acceptance. This acceptance file is excluded from its own manifest; its separate SHA256 and Git commit bind it. Future changes freeze the 29 artifacts other than .gitattributes and master completion spec, and bind this acceptance SHA."
+}
