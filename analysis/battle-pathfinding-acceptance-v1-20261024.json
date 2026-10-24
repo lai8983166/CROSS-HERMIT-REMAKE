@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "kind": "isolated original search/smoothing/path packet consumption/workspace recycling",
+  "change": "verify-original-pathfinding-lifecycle",
+  "archive": "openspec/changes/archive/2026-10-24-verify-original-pathfinding-lifecycle",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "c177e78cdc2d3e0f94878bb045bf0511fa269705",
+  "implementation_commit": "54022f48cc31493529724814d3842314d10ea5ad",
+  "archive_and_validation_commit": "262d6e22463b19f0dfae06d7630a68b48c08401f",
+  "previous_acceptance": {
+    "path": "analysis/school-retained-scheduler-acceptance-v1-20261024.json",
+    "sha256": "8f08b27b921584b6a73f03e585754a575a51c46cd57a2c76916117df7b631a3e"
+  },
+  "source_report": {
+    "path": "analysis/battle-pathfinding-source-v2-20261024.json.gz",
+    "bytes": 592721,
+    "sha256": "d9bc9a9071e2b1482c25bfdf7e1a1d3b49006f6cb8b23461decc6f4680a96d45"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-pathfinding-proof-v2-20261024.json",
+    "sha256": "41e68741b62035f8f641685a7d59de1750dd5bc3e19b6476b515879149e8933b",
+    "cases": 77,
+    "full_memory_and_instruction_write_trace_replayed": true,
+    "independent_coordinate_model": true
+  },
+  "observed": {
+    "original_instructions": 4943296,
+    "original_writes": 1704980,
+    "declared_roots": 500,
+    "successful_cases": 73,
+    "rejected_direct_or_ray_cases": 3,
+    "expansion_limit_cases": 1,
+    "closed_nodes_reopened": 638,
+    "open_nodes_improved": 581
+  },
+  "validation": {
+    "schema_version": 1,
+    "tests": [
+      {
+        "kind": "new_pathfinding",
+        "tests": 31,
+        "passed": true,
+        "path": "analysis/battle-pathfinding-tests-v1-20261024.log",
+        "sha256": "13e5a11cc0582b2b02bf3d840febc11f8290f063f70ff463dbf39f57449e0d64"
+      },
+      {
+        "kind": "historical_regression",
+        "tests": 54,
+        "passed": true,
+        "path": "analysis/battle-pathfinding-regression-v1-20261024.log",
+        "sha256": "370b7a8b146b3e7de3876eb8cd5e0af2531c8025115d302790da84be2bdfac98"
+      }
+    ],
+    "total_tests": 85,
+    "strict_before": {
+      "path": "analysis/battle-pathfinding-strict-active-v1-20261024.json",
+      "valid": 32,
+      "total": 32
+    },
+    "strict_after": {
+      "path": "analysis/battle-pathfinding-strict-after-v1-20261024.json",
+      "valid": 31,
+      "total": 31
+    },
+    "final_proof": {
+      "path": "analysis/battle-pathfinding-proof-v2-20261024.json",
+      "sha256": "41e68741b62035f8f641685a7d59de1750dd5bc3e19b6476b515879149e8933b",
+      "cases": 77,
+      "original_instructions": 4943296,
+      "original_writes": 1704980
+    },
+    "preservation": {
+      "path": "analysis/battle-pathfinding-preservation-v1-20261024.json",
+      "sha256": "b932d6b7b5723953ad1e43a11e6bb7281c1a0e31f8fdfbf1a2622ccefe1d40bd",
+      "frozen_parent_count": 59,
+      "final_parent_files_rechecked": true
+    },
+    "implementation_commit": "54022f48cc31493529724814d3842314d10ea5ad",
+    "failure_notes": "Source-v1 is a partial raw failure log after the original root did not return. Agent interruption cut the exception rendering; no complete ray-0 trajectory or specific timeout/count-limit conclusion is claimed. V2 rejects zero-displacement directions before execution.",
+    "raw_logs_preserved": true,
+    "OS_input_or_game_window_used": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "scope": {
+    "declared_map_terrain_occupancy_and_preallocated_pool": true,
+    "original_map_query_functions_executed": true,
+    "original_constructor_or_heap_allocation_claimed": false,
+    "game_function_results_stubbed": false,
+    "original_scene_AI_or_actual_unit_movement_verified": false,
+    "original_CRT_MAIN_retained_thread_connection_verified": false,
+    "interactive_desktop_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "original_assets_saves_checkpoints_unchanged": true,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "remaining": [
+    "actual level terrain/passability and unit command/AI/collision/movement integration",
+    "pool exhaustion, no-open-list and 100-point truncation dynamic branches",
+    "R3 actual CRT/MAIN retained lifetime and native opening interaction",
+    "remaining R4 combat classes, R5 continuation and R6 coverage"
+  ],
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 27246,
+      "sha256": "adb3718c362f7edaa518d7d42da0c62f751d504654104da594452c6bca86974a"
+    },
+    {
+      "path": "analysis/battle-pathfinding-apply-final-v1-20261024.json",
+      "bytes": 2995,
+      "sha256": "ed768cdbe5de0f06fb6c92e1a1bf1b2bd984dd656090511f388d1aa05102decf"
+    },
+    {
+      "path": "analysis/battle-pathfinding-archive-mapping-v1-20261024.json",
+      "bytes": 906,
+      "sha256": "d8a5c99d550d47b4cd67a09796f6699156c9952c120354b018022dad99e634b1"
+    },
+    {
+      "path": "analysis/battle-pathfinding-attempt-notes-v1-20261024.json",
+      "bytes": 1318,
+      "sha256": "c573a7c81f388605e772f9398ab1791d07937db35ecadccf902cdd50c6c37d06"
+    },
+    {
+      "path": "analysis/battle-pathfinding-preservation-v1-20261024.json",
+      "bytes": 137700,
+      "sha256": "b932d6b7b5723953ad1e43a11e6bb7281c1a0e31f8fdfbf1a2622ccefe1d40bd"
+    },
+    {
+      "path": "analysis/battle-pathfinding-proof-v1-20261024.json",
+      "bytes": 36748,
+      "sha256": "7d1662afe882bb22e44cc379c996628e81ec4531f6c049c4dafcbca084b4ac6d"
+    },
+    {
+      "path": "analysis/battle-pathfinding-proof-v1-20261024.log",
+      "bytes": 1810,
+      "sha256": "b2f3a5ecc36c30fbac103f4ea8e941fa3056f7a261428cc83589ddb01d713824"
+    },
+    {
+      "path": "analysis/battle-pathfinding-proof-v2-20261024.json",
+      "bytes": 37113,
+      "sha256": "41e68741b62035f8f641685a7d59de1750dd5bc3e19b6476b515879149e8933b"
+    },
+    {
+      "path": "analysis/battle-pathfinding-proof-v2-20261024.log",
+      "bytes": 1810,
+      "sha256": "b2f3a5ecc36c30fbac103f4ea8e941fa3056f7a261428cc83589ddb01d713824"
+    },
+    {
+      "path": "analysis/battle-pathfinding-regression-v1-20261024.log",
+      "bytes": 6819,
+      "sha256": "370b7a8b146b3e7de3876eb8cd5e0af2531c8025115d302790da84be2bdfac98"
+    },
+    {
+      "path": "analysis/battle-pathfinding-source-v1-20261024.log",
+      "bytes": 1937,
+      "sha256": "cfbb9741ec4abf3ce10acd2b2e4268e8acf7823a263d01a24603ed770c8bc246"
+    },
+    {
+      "path": "analysis/battle-pathfinding-source-v2-20261024.json.gz",
+      "bytes": 592721,
+      "sha256": "d9bc9a9071e2b1482c25bfdf7e1a1d3b49006f6cb8b23461decc6f4680a96d45"
+    },
+    {
+      "path": "analysis/battle-pathfinding-source-v2-20261024.log",
+      "bytes": 2515,
+      "sha256": "8bece0bb0dca12d4b52340767fd3fc0803fb8f303cfdd90dadc1804f46befe97"
+    },
+    {
+      "path": "analysis/battle-pathfinding-status-final-v1-20261024.json",
+      "bytes": 2930,
+      "sha256": "cfcf0c6a37278c424071142eed3568dfdc5c61f3d0641d969f5fbbbfb138932b"
+    },
+    {
+      "path": "analysis/battle-pathfinding-strict-active-v1-20261024.json",
+      "bytes": 7914,
+      "sha256": "43b4b4cf59b29aa68ef122d43f848407fe8c5d1941dbfa58a35d0dfe398f1595"
+    },
+    {
+      "path": "analysis/battle-pathfinding-strict-after-v1-20261024.json",
+      "bytes": 7550,
+      "sha256": "39784af41078cfaec80e390ee364dfb956c21b756687f722ddf2a2db4bbe6d2e"
+    },
+    {
+      "path": "analysis/battle-pathfinding-tests-v1-20261024.log",
+      "bytes": 3129,
+      "sha256": "13e5a11cc0582b2b02bf3d840febc11f8290f063f70ff463dbf39f57449e0d64"
+    },
+    {
+      "path": "analysis/battle-pathfinding-validation-summary-v1-20261024.json",
+      "bytes": 1854,
+      "sha256": "2e0b3d13818a28a39dda3b353d1a6535467f30549483c17bc858018e1496e698"
+    },
+    {
+      "path": "docs/battle_pathfinding.md",
+      "bytes": 6634,
+      "sha256": "095d1648c326ab72d13d921479cc4b634876001f977e26a74e3bf5102190bf3e"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-pathfinding-lifecycle/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-pathfinding-lifecycle/design.md",
+      "bytes": 1906,
+      "sha256": "26bc900b1b975fdb07ab3ad9e7d11995fe696d734c7f06d5022233b96987a46d"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-pathfinding-lifecycle/proposal.md",
+      "bytes": 1156,
+      "sha256": "ebb9af982366bab9c95f837139a10597dd5bd1c1ee0cec1b09f15f243b1ca979"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-pathfinding-lifecycle/tasks.md",
+      "bytes": 681,
+      "sha256": "d21635aab7fefca8d6b957782fa8115d9fb854791e47213a126a1e11c968b298"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 51021,
+      "sha256": "b7c75e837105c6916a34e482e96620461a612872885bdf0332a6d60fbeb36912"
+    },
+    {
+      "path": "tools/battle_pathfinding.py",
+      "bytes": 9361,
+      "sha256": "8423f0ed3b02296eb92a137471d1e0808f3f0e37567f23b00035ede08743d21c"
+    },
+    {
+      "path": "tools/battle_pathfinding_emulation.py",
+      "bytes": 9930,
+      "sha256": "b1b3608c4653f585820cc54a9240e01d72e67d3f66f6b419b483b4949096cc6f"
+    },
+    {
+      "path": "tools/battle_pathfinding_preservation.py",
+      "bytes": 1903,
+      "sha256": "f6eeaf5c4eee78677cd6b1432b184ba19372357791ca14e571deaa2d34ee9d07"
+    },
+    {
+      "path": "tools/battle_pathfinding_verification.py",
+      "bytes": 6760,
+      "sha256": "4f73b1b899355cdfdc58e93760d45e1a4e492f137803dfb92764afc46d1a86e5"
+    },
+    {
+      "path": "tools/tests/test_battle_pathfinding.py",
+      "bytes": 6539,
+      "sha256": "a2a37e8b40fc4aaf2a030b55ccb21e0db02c4c693ae170e3bf819dcdbb8cc9e0"
+    }
+  ],
+  "artifact_count": 29,
+  "raw_worktree_index_and_HEAD_bytes_verified": true,
+  "manifest_HEAD": "262d6e22463b19f0dfae06d7630a68b48c08401f",
+  "acceptance_self_excluded_from_manifest": true,
+  "git_push_performed": false
+}
