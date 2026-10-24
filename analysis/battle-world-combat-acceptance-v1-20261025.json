@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "kind": "one basic melee cycle from original attack request entirely through complete original world updates",
+  "change": "complete-original-world-combat-cycle",
+  "archive": "openspec/changes/archive/2026-10-25-complete-original-world-combat-cycle",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "1681c9058be7646ccc5aaf1ab9661fea4e08a842",
+  "implementation_commit": "da34892a4ad7281f2f6b3686aaca7a609ad415ec",
+  "archive_and_validation_commit": "133bb5afabb6d43e5991b5ef015e3c5de2d7f5ab",
+  "previous_acceptance": {
+    "path": "analysis/battle-world-update-acceptance-v1-20261024.json",
+    "sha256": "99cd1fa421254158149d085d36fb6f27f69ac38007576307f904bdfa72377d7e"
+  },
+  "source_report": {
+    "path": "analysis/battle-world-combat-source-v1-20261025.json",
+    "bytes": 151689,
+    "sha256": "81b2d2c1d8811a760fa3d76d38dec297a0e07bf0dc9c75fa139c2ec2dada39e6"
+  },
+  "source_cases": [
+    {
+      "name": "ordinary",
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary.json.gz",
+      "bytes": 651527,
+      "sha256": "31bfa37430f4a51edfe972bead43d54554d61d528bf56bbc88c56fe5d8026913"
+    },
+    {
+      "name": "ordinary_job2",
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary_job2.json.gz",
+      "bytes": 650363,
+      "sha256": "c328be8f335b0977dadfc9aecc4d42cd6a205f2fb98c24fdf2469d50a171aa42"
+    },
+    {
+      "name": "ordinary_job3",
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary_job3.json.gz",
+      "bytes": 594660,
+      "sha256": "3980f0efb1ef7d2ca323b7e6d04b584f6e13a48d741969e68062224a4c6f3b5a"
+    },
+    {
+      "name": "ordinary_job4",
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary_job4.json.gz",
+      "bytes": 593375,
+      "sha256": "fccaeaba2c6c5a21e3d64b8ec4372518f4227cdf068527aca2cdc3081affe06f"
+    },
+    {
+      "name": "stagger",
+      "path": "analysis/battle-world-combat-source-v1-20261025-stagger.json.gz",
+      "bytes": 778429,
+      "sha256": "9f2cfbc4253babe38211c8ef55a2878fe7e084c7155648e9394d40d7fad63b10"
+    },
+    {
+      "name": "heavy_stagger",
+      "path": "analysis/battle-world-combat-source-v1-20261025-heavy_stagger.json.gz",
+      "bytes": 923911,
+      "sha256": "ede5ff9f618452f971bdd05fd4f617be83b9a7209743c04e6f1e62154589d710"
+    },
+    {
+      "name": "lethal",
+      "path": "analysis/battle-world-combat-source-v1-20261025-lethal.json.gz",
+      "bytes": 989898,
+      "sha256": "8d317b866454e5c8cffcd8d9d331657043892b74ef8598d21873602511bce95f"
+    },
+    {
+      "name": "threshold_survival",
+      "path": "analysis/battle-world-combat-source-v1-20261025-threshold_survival.json.gz",
+      "bytes": 651826,
+      "sha256": "1c3800099632032d6c826fcc7737a9a8dd5fc0b8eb353e37e941dd8651f83138"
+    },
+    {
+      "name": "miss_roll95",
+      "path": "analysis/battle-world-combat-source-v1-20261025-miss_roll95.json.gz",
+      "bytes": 646947,
+      "sha256": "d0edf3fc7c92f5e3687fde9103c7b26cc8dbfd9f63e3f25fe551fe1ab5ecffae"
+    },
+    {
+      "name": "block_armor",
+      "path": "analysis/battle-world-combat-source-v1-20261025-block_armor.json.gz",
+      "bytes": 652786,
+      "sha256": "acf9af0330f11f406446ef1c3cb34ce194d0fd74c710bf4759ebba9335248aab"
+    }
+  ],
+  "independent_proof": {
+    "path": "analysis/battle-world-combat-proof-v1-20261025.json",
+    "bytes": 5800,
+    "sha256": "4e3d043eca049e3ee8b7dc1dd941303caa81188bfac9d64ecf52702eb7127162",
+    "full_250_slots_units_records_pools_world_fields_independent": true,
+    "all_recorded_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 10,
+    "complete_original_world_roots": 721,
+    "ordered_slot_predicates": 180250,
+    "naturally_called_unit_updates": 1442,
+    "original_instructions": 72348489,
+    "original_writes": 31044198,
+    "owned_regions": 37,
+    "recorded_CPU_registers": 57,
+    "actual_source_chain_Win32_API_leaves": 90,
+    "actual_native_TLS_creation_and_cleanup_separately_checked": true,
+    "fixed_living_target_command_declared": 5,
+    "explicit_original_actor_stop_requests": 10,
+    "post_death_record_state_three_to_four_observed": true,
+    "extra_complete_settled_frame_per_case": true
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "world_combat",
+        "checks": 44,
+        "passed": true,
+        "path": "analysis/battle-world-combat-tests-v1-20261025.log",
+        "bytes": 4548,
+        "sha256": "0abe54c9ca48411b8f9c00545865b9bbc4cb3e73b59623c1a6c19e6f035808fe"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 476,
+        "passed": true,
+        "path": "analysis/battle-world-combat-regression-v1-20261025.log",
+        "bytes": 46221,
+        "sha256": "298b318f5445cd0bd33bba8f482aa9d142c9d1b8d6859b498ff50d7f93a409b1"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-world-combat-validation-before-v1-20261025.log",
+        "bytes": 3318,
+        "sha256": "80e994faf49d916c8836f1f85495dd02c68460e8af8669449220a8e879f5d8a7"
+      }
+    ],
+    "tests": 520,
+    "all_passed": true,
+    "preservation": {
+      "path": "analysis/battle-world-combat-preservation-v1-20261025.json",
+      "bytes": 216311,
+      "sha256": "3cbbef4a28ea0bee02dd135eb9ef9b582d100a7fb17bbbaf64cecc0c71930788",
+      "frozen_parent_artifacts": 46
+    },
+    "source_report": {
+      "path": "analysis/battle-world-combat-source-v1-20261025.json",
+      "bytes": 151689,
+      "sha256": "81b2d2c1d8811a760fa3d76d38dec297a0e07bf0dc9c75fa139c2ec2dada39e6"
+    },
+    "proof": {
+      "path": "analysis/battle-world-combat-proof-v1-20261025.json",
+      "bytes": 5800,
+      "sha256": "4e3d043eca049e3ee8b7dc1dd941303caa81188bfac9d64ecf52702eb7127162"
+    },
+    "guard_equivalence": {
+      "path": "analysis/battle-world-combat-guard-proof-v1-20261025.json",
+      "bytes": 793,
+      "sha256": "bd1cea16fb04ced21d88b6c66bea78170e2142b900792dd69c391ad01715a9df"
+    },
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "strict_after_archive": {
+    "passed": 31,
+    "failed": 0,
+    "path": "analysis/battle-world-combat-validation-after-v1-20261025.log",
+    "bytes": 3145,
+    "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+  },
+  "preserved_parent_artifacts": 46,
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 34674,
+      "sha256": "1966df96943a2221af36522b79cb2ffa8e3116bcade8a6fe8336abde2d9a3845"
+    },
+    {
+      "path": "analysis/battle-world-combat-archive-apply-v1-20261025.json",
+      "bytes": 3025,
+      "sha256": "3a8bea777f7c9a37610f9d9ae4d95e1dd44831087c528119e9685271ec8cc914"
+    },
+    {
+      "path": "analysis/battle-world-combat-archive-instructions-v1-20261025.json",
+      "bytes": 1009,
+      "sha256": "b755a6cf8f33a269be6bcd8a3051d3f5c73a7c62c85c80068f7f1556d7e51720"
+    },
+    {
+      "path": "analysis/battle-world-combat-archive-migration-v1-20261025.json",
+      "bytes": 886,
+      "sha256": "d24ca38d814b4c452def2bd2652247c1a1eb5a9d7976383d90cd0db98aa937f9"
+    },
+    {
+      "path": "analysis/battle-world-combat-archive-status-v1-20261025.json",
+      "bytes": 2920,
+      "sha256": "493576684ec23603571e208bd9058826549dfaa9b432580de6e3fa14035e9147"
+    },
+    {
+      "path": "analysis/battle-world-combat-archive-validation-v1-20261025.json",
+      "bytes": 505,
+      "sha256": "494b1b563601c5cde233075b2fbc6081ae7cceb2363a690553f0699a426feb9e"
+    },
+    {
+      "path": "analysis/battle-world-combat-guard-proof-v1-20261025.json",
+      "bytes": 793,
+      "sha256": "bd1cea16fb04ced21d88b6c66bea78170e2142b900792dd69c391ad01715a9df"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-diff-v1-20261025.log",
+      "bytes": 693,
+      "sha256": "6c3812c808de363895bb238563c57ae244114afc080614d709d49ddd65a2e775"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-probe-v1-20261025.log",
+      "bytes": 643,
+      "sha256": "8963e6a86e8d06ad15ae3684c7be86d7106c5bf08c2c07a5ed1f221e161f0390"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-probe-v2-20261025.log",
+      "bytes": 351,
+      "sha256": "cc0619ff2f4778158ee99cc74340b129cef99ad7b012083999685f07da1e8390"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-probe-v3-20261025.log",
+      "bytes": 1061,
+      "sha256": "ec58aefc3fba6b52b2717b3c5f9f27e5a2978908549a2b7b1da39623febf1d1e"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-probe-v4-20261025.log",
+      "bytes": 704,
+      "sha256": "bcfba3068dd1c5f6796680c5be7a0c8685dfda11d194b0b2e23e5e960e9f1d6b"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-probe-v5-20261025.log",
+      "bytes": 510,
+      "sha256": "e5777d06677b25fe761e9cd3320af115d2fbc6c89e084617931e77fa81a1a8d8"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-probe-v6-20261025.log",
+      "bytes": 499,
+      "sha256": "e63825570f980ddbefbe7b307c241cad30216d06a5d0cc925bd5a05fb8a5777e"
+    },
+    {
+      "path": "analysis/battle-world-combat-model-probe-v7-20261025.log",
+      "bytes": 1419,
+      "sha256": "85a9458c30ab99a0ead384106f545bc761e66c54e6f2a87ae51e95d9ec47027c"
+    },
+    {
+      "path": "analysis/battle-world-combat-preservation-v1-20261025.json",
+      "bytes": 216311,
+      "sha256": "3cbbef4a28ea0bee02dd135eb9ef9b582d100a7fb17bbbaf64cecc0c71930788"
+    },
+    {
+      "path": "analysis/battle-world-combat-preservation-v1-20261025.log",
+      "bytes": 72,
+      "sha256": "7b1b476b8967a460cb7ab428d83f6986059ed96db445723579440da704ee6d11"
+    },
+    {
+      "path": "analysis/battle-world-combat-probe-v1-20261025.log",
+      "bytes": 2544,
+      "sha256": "e1bc47896061d90ba50f9c0da298965d74f5a201119dedb5b63136a4333dcaa5"
+    },
+    {
+      "path": "analysis/battle-world-combat-probe-v2-20261025.log",
+      "bytes": 742,
+      "sha256": "fbd82168ee9340d046a74deeb090a08cb191f89d2f27a7c85fdaa4453eca0b31"
+    },
+    {
+      "path": "analysis/battle-world-combat-probe-v3-20261025.json.gz",
+      "bytes": 635510,
+      "sha256": "dbbe0c30b8e8f4a8fb4067d21ebebaf9c6e5c563bddad57df838c06d121db26a"
+    },
+    {
+      "path": "analysis/battle-world-combat-probe-v3-20261025.log",
+      "bytes": 25,
+      "sha256": "3a69f658dce18ab70f2e6bee05b23ce5dc6b04158ac202ff7b89bb03aca3a7cb"
+    },
+    {
+      "path": "analysis/battle-world-combat-proof-v1-20261025.json",
+      "bytes": 5800,
+      "sha256": "4e3d043eca049e3ee8b7dc1dd941303caa81188bfac9d64ecf52702eb7127162"
+    },
+    {
+      "path": "analysis/battle-world-combat-proof-v1-20261025.log",
+      "bytes": 255,
+      "sha256": "3c379dd889b3ddcb6d67ba56335960272a9de3db5312b4787b7181bb5fd3caf0"
+    },
+    {
+      "path": "analysis/battle-world-combat-reference-v1-20261025.json.gz",
+      "bytes": 651527,
+      "sha256": "5ceca0bb903433b349be6ee5cd0ac6b688d6621f023037b383b4572f7bec6aca"
+    },
+    {
+      "path": "analysis/battle-world-combat-reference-v1-20261025.log",
+      "bytes": 28,
+      "sha256": "3dfa1055b55017feb3965e5e71b73235f693c62b9fdb8c640ba7b61bb766f3e8"
+    },
+    {
+      "path": "analysis/battle-world-combat-regression-v1-20261025.log",
+      "bytes": 46221,
+      "sha256": "298b318f5445cd0bd33bba8f482aa9d142c9d1b8d6859b498ff50d7f93a409b1"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-block_armor.json.gz",
+      "bytes": 652786,
+      "sha256": "acf9af0330f11f406446ef1c3cb34ce194d0fd74c710bf4759ebba9335248aab"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-heavy_stagger.json.gz",
+      "bytes": 923911,
+      "sha256": "ede5ff9f618452f971bdd05fd4f617be83b9a7209743c04e6f1e62154589d710"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-lethal.json.gz",
+      "bytes": 989898,
+      "sha256": "8d317b866454e5c8cffcd8d9d331657043892b74ef8598d21873602511bce95f"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-miss_roll95.json.gz",
+      "bytes": 646947,
+      "sha256": "d0edf3fc7c92f5e3687fde9103c7b26cc8dbfd9f63e3f25fe551fe1ab5ecffae"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary.json.gz",
+      "bytes": 651527,
+      "sha256": "31bfa37430f4a51edfe972bead43d54554d61d528bf56bbc88c56fe5d8026913"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary_job2.json.gz",
+      "bytes": 650363,
+      "sha256": "c328be8f335b0977dadfc9aecc4d42cd6a205f2fb98c24fdf2469d50a171aa42"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary_job3.json.gz",
+      "bytes": 594660,
+      "sha256": "3980f0efb1ef7d2ca323b7e6d04b584f6e13a48d741969e68062224a4c6f3b5a"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-ordinary_job4.json.gz",
+      "bytes": 593375,
+      "sha256": "fccaeaba2c6c5a21e3d64b8ec4372518f4227cdf068527aca2cdc3081affe06f"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-stagger.json.gz",
+      "bytes": 778429,
+      "sha256": "9f2cfbc4253babe38211c8ef55a2878fe7e084c7155648e9394d40d7fad63b10"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025-threshold_survival.json.gz",
+      "bytes": 651826,
+      "sha256": "1c3800099632032d6c826fcc7737a9a8dd5fc0b8eb353e37e941dd8651f83138"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025.json",
+      "bytes": 151689,
+      "sha256": "81b2d2c1d8811a760fa3d76d38dec297a0e07bf0dc9c75fa139c2ec2dada39e6"
+    },
+    {
+      "path": "analysis/battle-world-combat-source-v1-20261025.log",
+      "bytes": 287,
+      "sha256": "a7483674ebbbb42025aa4de340e51f442d947ad1e9548dfac6b2aefe644ec596"
+    },
+    {
+      "path": "analysis/battle-world-combat-tests-v1-20261025.log",
+      "bytes": 4548,
+      "sha256": "0abe54c9ca48411b8f9c00545865b9bbc4cb3e73b59623c1a6c19e6f035808fe"
+    },
+    {
+      "path": "analysis/battle-world-combat-validation-after-v1-20261025.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-world-combat-validation-before-v1-20261025.log",
+      "bytes": 3318,
+      "sha256": "80e994faf49d916c8836f1f85495dd02c68460e8af8669449220a8e879f5d8a7"
+    },
+    {
+      "path": "analysis/battle-world-combat-validation-v1-20261025.json",
+      "bytes": 1782,
+      "sha256": "94824adca4dba6e95583160daf7e63dd7d3dc586ff0d1a6b23074eea06aff858"
+    },
+    {
+      "path": "docs/battle_world_combat.md",
+      "bytes": 6673,
+      "sha256": "7f9b6a934fb0d87133e72f6b897029e1ec13bddceb16e978c53fe938ad57e920"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-complete-original-world-combat-cycle/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "049e2683e8f1e88703285d6a8ac1fbd6fd013c15373c6b6af8fdf44ec25da4e4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-complete-original-world-combat-cycle/design.md",
+      "bytes": 2192,
+      "sha256": "8890b7ff4cb0d07d58b975e07cde590546171cc7658fb7586cd68569e1a1f091"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-complete-original-world-combat-cycle/proposal.md",
+      "bytes": 1443,
+      "sha256": "14034dada5d44fa5c0b0cd82bd7415799ffcbab04ad1b1d34cf75f474b71de51"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-complete-original-world-combat-cycle/tasks.md",
+      "bytes": 686,
+      "sha256": "03062044e91df1ffbc62738c2b87d66aa5d092ad67c821e4ddcbe0d189ee507a"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 70930,
+      "sha256": "f058d65635b57e9f5b6f33f7d5fc8cb58d621d01c307fd7329467b0228ab8ba6"
+    },
+    {
+      "path": "tools/battle_world_combat.py",
+      "bytes": 3054,
+      "sha256": "91e14ead70d7f611134a12a8c48889e064a4bdd04a6733ef0e347e0ed690abd0"
+    },
+    {
+      "path": "tools/battle_world_combat_emulation.py",
+      "bytes": 7712,
+      "sha256": "0ebefddd7b7bd4a0444b96746f30763dbcdfc8a3bc7a3226b9e38b597ab88d8d"
+    },
+    {
+      "path": "tools/battle_world_combat_model.py",
+      "bytes": 3587,
+      "sha256": "ece99bf6b63ef7c76aa325541d40ce88e4876c74fd8fa90fe80071a641248e6c"
+    },
+    {
+      "path": "tools/battle_world_combat_preservation.py",
+      "bytes": 1802,
+      "sha256": "773761d7feb8399017fce968dad79348a00172c25e75926a32a5e64dcfa810b6"
+    },
+    {
+      "path": "tools/battle_world_combat_verification.py",
+      "bytes": 11346,
+      "sha256": "c78db807dcde241228126006246b4b9c57cac493483431e31214b6c0f250be88"
+    },
+    {
+      "path": "tools/tests/test_battle_world_combat.py",
+      "bytes": 9149,
+      "sha256": "8b2489d0634be89357d5c26dcf2f4108205d856e7a592440ce942e8f498bb7ec"
+    }
+  ],
+  "all_manifest_raw_bytes_match_worktree_index_and_archive_commit": true,
+  "original_native_outer_scheduler_rendering_victory_or_general_AI_complete": false,
+  "OS_input_or_unlock_required": false,
+  "Godot_modified": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
