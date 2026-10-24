@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "kind": "original AI phases 7/8/9: path segment, next tile, fixed-point movement and arrival/blocking",
+  "change": "verify-original-unit-movement",
+  "archive": "openspec/changes/archive/2026-10-24-verify-original-unit-movement",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "f60d5dce739c7560956879493167f94f87162d0b",
+  "implementation_commit": "42cc175b71e1b77d643649cc8c08b7617756081d",
+  "archive_and_validation_commit": "f55ff1fbf2f9f57ca09cbcda479e317dd1cdcb4d",
+  "previous_acceptance": {
+    "path": "analysis/battle-pathfinding-acceptance-v1-20261024.json",
+    "sha256": "bec5a62c5f0b599b1c1ec93af3ab39832d3223332f064ea0a220fca5b7360ade"
+  },
+  "source_report": {
+    "path": "analysis/battle-unit-movement-source-v1-20261024.json.gz",
+    "bytes": 245494,
+    "sha256": "32a42d9b89bb4a2ef1143d9c1cfaa63b578c8c38e8612d445b430a04474b97de"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-unit-movement-proof-v1-20261024.json",
+    "sha256": "7b069a63a0d2f009f06a0fb49cbbc253bc8289c36ce8dbf7a760511b288ff1f0",
+    "cases": 21,
+    "whole_unit_model": true,
+    "all_memory_and_instruction_write_trace_replayed": true
+  },
+  "observed": {
+    "original_instructions": 1766409,
+    "original_writes": 672369,
+    "AI_root_calls": 794,
+    "original_movement_calls": 717,
+    "position_changing_calls": 710,
+    "original_coordinate_writes": 1420,
+    "path_segment_calls": 22,
+    "next_tile_calls": 60,
+    "arrival_checks": 773
+  },
+  "validation": {
+    "schema_version": 1,
+    "tests": [
+      {
+        "kind": "new_movement",
+        "tests": 31,
+        "passed": true,
+        "path": "analysis/battle-unit-movement-tests-v1-20261024.log",
+        "sha256": "030e3ab92fc1284aa8560d38a652888664be23337b43e56c59b856fd3d7104e1"
+      },
+      {
+        "kind": "related_history",
+        "tests": 42,
+        "passed": true,
+        "path": "analysis/battle-unit-movement-regression-v1-20261024.log",
+        "sha256": "41b2eec88bc4854da350a429003d36aa076825de9fd7b067d9f4464dd7470037"
+      }
+    ],
+    "total_tests": 73,
+    "strict_before": {
+      "path": "analysis/battle-unit-movement-strict-active-v1-20261024.json",
+      "valid": 32,
+      "total": 32
+    },
+    "strict_after": {
+      "path": "analysis/battle-unit-movement-strict-after-v1-20261024.json",
+      "valid": 31,
+      "total": 31
+    },
+    "proof": {
+      "path": "analysis/battle-unit-movement-proof-v1-20261024.json",
+      "sha256": "7b069a63a0d2f009f06a0fb49cbbc253bc8289c36ce8dbf7a760511b288ff1f0",
+      "cases": 21,
+      "whole_unit_model_and_all_memory_trace": true
+    },
+    "preservation": {
+      "path": "analysis/battle-unit-movement-preservation-v1-20261024.json",
+      "sha256": "9b6f7774b7e3d00c95ee1793644ae38c0f7f934014c81470f2b0f9cf66bb8d3e",
+      "frozen_parent_count": 27,
+      "final_frozen_files_rechecked": true
+    },
+    "implementation_commit": "42cc175b71e1b77d643649cc8c08b7617756081d",
+    "failed_probes_retained": [
+      "analysis/battle-unit-movement-probe-v1-20261024.log",
+      "analysis/battle-unit-movement-probe-v2-20261024.log"
+    ],
+    "raw_logs_preserved": true,
+    "interactive_desktop_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "scope": {
+    "declared_map_record_controller_occupancy_and_initial_AI_phase7": true,
+    "animation_resource_gate": -1,
+    "game_or_math_function_results_stubbed": false,
+    "original_AI_helpers_scheduled_by_host": false,
+    "host_coordinates_changed_after_initialization": false,
+    "full_native_game_world_frame": false,
+    "full_AI_decisions": false,
+    "retained_CRT_MAIN_thread_connection": false,
+    "OS_input_submitted": false,
+    "interactive_desktop_required": false,
+    "Godot_changed": false,
+    "original_assets_saves_checkpoints_unchanged": true,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "remaining": [
+    "AI initial movement evaluation phases0-6 and attack positioning",
+    "nearest-free destination and enemy/return/chase branches",
+    "nonzero cooldown, active animation and real dynamic occupancy update",
+    "R3 original scene/CRT/MAIN lifetime, remaining R4 combat, R5 continuation and R6 coverage"
+  ],
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 27893,
+      "sha256": "7c59c2d470e5f7de9e97e6448a9b177f0a368e3dca4e3d934f61ce0b61f5a231"
+    },
+    {
+      "path": "analysis/battle-unit-movement-apply-final-v1-20261024.json",
+      "bytes": 2931,
+      "sha256": "f12512d98366b66dfd0f654d5e06b18a1d70d3d6e566155748c95fedce13c18f"
+    },
+    {
+      "path": "analysis/battle-unit-movement-archive-mapping-v1-20261024.json",
+      "bytes": 882,
+      "sha256": "84f807e47ac4ddebf893d16f5fb85b010d4b14c113e90bb61420e86fac9a1d3d"
+    },
+    {
+      "path": "analysis/battle-unit-movement-model-probe-v1-20261024.log",
+      "bytes": 42,
+      "sha256": "5c15432c380a7937a44cb1bfe27031d6c576e243a3b5506f768a12349a846c02"
+    },
+    {
+      "path": "analysis/battle-unit-movement-model-probe-v2-20261024.log",
+      "bytes": 656,
+      "sha256": "876e4051a6483949674f21ca5aaa4e851c8ec12185bc2d60721b228f283c8523"
+    },
+    {
+      "path": "analysis/battle-unit-movement-preservation-v1-20261024.json",
+      "bytes": 143742,
+      "sha256": "9b6f7774b7e3d00c95ee1793644ae38c0f7f934014c81470f2b0f9cf66bb8d3e"
+    },
+    {
+      "path": "analysis/battle-unit-movement-probe-v1-20261024.log",
+      "bytes": 4297,
+      "sha256": "5e778b8a2ad2ef1738d9eb10e4e44e3acdff3e9dd75865ab39dbd4d649752ead"
+    },
+    {
+      "path": "analysis/battle-unit-movement-probe-v2-20261024.log",
+      "bytes": 1659,
+      "sha256": "f2e2fd6c6ebcf168e94fb4e54d2f5f2c7223f4456d3d4c58ee89ff8c9f3eadd7"
+    },
+    {
+      "path": "analysis/battle-unit-movement-probe-v3-20261024.log",
+      "bytes": 33,
+      "sha256": "7e82620f24068581a57d76a38ae7dd63b9aeb0a41e34b48dc6f8949d0e986336"
+    },
+    {
+      "path": "analysis/battle-unit-movement-probe-v4-20261024.log",
+      "bytes": 305,
+      "sha256": "a97412509d218b910ac53472f2d039b2043242c8ef5e014df5ad85b09aaee956"
+    },
+    {
+      "path": "analysis/battle-unit-movement-proof-v1-20261024.json",
+      "bytes": 13038,
+      "sha256": "7b069a63a0d2f009f06a0fb49cbbc253bc8289c36ce8dbf7a760511b288ff1f0"
+    },
+    {
+      "path": "analysis/battle-unit-movement-proof-v1-20261024.log",
+      "bytes": 479,
+      "sha256": "94acc4eeb60ebb00cdfa623b4599052dbb79b8bc7caa11720a1becbbcfb8cc16"
+    },
+    {
+      "path": "analysis/battle-unit-movement-regression-v1-20261024.log",
+      "bytes": 4562,
+      "sha256": "41b2eec88bc4854da350a429003d36aa076825de9fd7b067d9f4464dd7470037"
+    },
+    {
+      "path": "analysis/battle-unit-movement-source-v1-20261024.json.gz",
+      "bytes": 245494,
+      "sha256": "32a42d9b89bb4a2ef1143d9c1cfaa63b578c8c38e8612d445b430a04474b97de"
+    },
+    {
+      "path": "analysis/battle-unit-movement-source-v1-20261024.log",
+      "bytes": 551,
+      "sha256": "ac9fdea23fe29eed9a8ea354c7278316a60df5bcdedd374c425ec76d6a479570"
+    },
+    {
+      "path": "analysis/battle-unit-movement-status-final-v1-20261024.json",
+      "bytes": 2850,
+      "sha256": "696882ed82063fae2d27ce49dc04dc9ff7df945efbede7528c38747ed408893d"
+    },
+    {
+      "path": "analysis/battle-unit-movement-strict-active-v1-20261024.json",
+      "bytes": 7907,
+      "sha256": "e13270707d5b3260275360b685b963cdc438385200d135a35de88ac7e471b27a"
+    },
+    {
+      "path": "analysis/battle-unit-movement-strict-after-v1-20261024.json",
+      "bytes": 7551,
+      "sha256": "de71eedb91654e23babc30b5d784dfd0cb1d4f2e7cdcb611c49f31402a8c5830"
+    },
+    {
+      "path": "analysis/battle-unit-movement-tests-v1-20261024.log",
+      "bytes": 3231,
+      "sha256": "030e3ab92fc1284aa8560d38a652888664be23337b43e56c59b856fd3d7104e1"
+    },
+    {
+      "path": "analysis/battle-unit-movement-validation-summary-v1-20261024.json",
+      "bytes": 1724,
+      "sha256": "cdad5da6496ce3dadc29b59a4395210c751654f6180b8d065801da7135612e4d"
+    },
+    {
+      "path": "docs/battle_unit_movement.md",
+      "bytes": 6940,
+      "sha256": "73ce97510d41922ee1c54209a841be23431e087d79f2f059fe2a56ecbbedc6a9"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-unit-movement/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-unit-movement/design.md",
+      "bytes": 2062,
+      "sha256": "6c15b63c546cf208f2873c350dabf209fd68533926bd7a266f6bb417d9d4f868"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-unit-movement/proposal.md",
+      "bytes": 1043,
+      "sha256": "3ccc609cdb16d5d464b947c0ae68522e5d0e83f3732ae77880e12c0a6295e1f4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-unit-movement/tasks.md",
+      "bytes": 675,
+      "sha256": "8aa332fba7767a64b04f56f4fe45acf4218012508e2a89572128895f32720eca"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 52655,
+      "sha256": "a98c0dacfebf7bad032689058ab0abd8de5941b616d74810af1f8313c606f49e"
+    },
+    {
+      "path": "tools/battle_unit_movement.py",
+      "bytes": 8330,
+      "sha256": "1d138f1244da803e8cc2ade2ea34afd9c567c0b26a39c91f875222bd325e6e1a"
+    },
+    {
+      "path": "tools/battle_unit_movement_emulation.py",
+      "bytes": 8755,
+      "sha256": "7d3d5045b08134813484db52a5b8a8e6a4166c6bbfe726c577b3052732bf4783"
+    },
+    {
+      "path": "tools/battle_unit_movement_preservation.py",
+      "bytes": 1837,
+      "sha256": "83ee745d5065a46a205bc2bb2433041502a89b6175e2f55ed725b48e57cd43ac"
+    },
+    {
+      "path": "tools/battle_unit_movement_verification.py",
+      "bytes": 5847,
+      "sha256": "d270a453f7b55b5c658c9029d7f623d9ab7daf561505e98f0dc416cb14db1452"
+    },
+    {
+      "path": "tools/tests/test_battle_unit_movement.py",
+      "bytes": 6156,
+      "sha256": "18b83c67904035d4f0769b9c2e5b6ccf408bed5e0e3ffc54d959eec5ee1c7dd3"
+    }
+  ],
+  "artifact_count": 31,
+  "raw_worktree_index_and_HEAD_bytes_verified": true,
+  "manifest_HEAD": "f55ff1fbf2f9f57ca09cbcda479e317dd1cdcb4d",
+  "acceptance_self_excluded_from_manifest": true,
+  "git_push_performed": false
+}
