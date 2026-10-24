@@ -1,0 +1,33 @@
+inputs {'vpt': {'filename': 'map05.vpt', 'local_file': 'CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/MAP/MAP05.VPT', 'bytes': 100888, 'sha256': '99004441c0bf2780623d7f9e7da82c77e255fb78261eb22eb90c6cabbda0b53f'}, 'logical': {'filename': 'map05.bin', 'local_file': 'CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/MAP/MAP05.BIN', 'bytes': 36880, 'sha256': 'bb8ef4d51cc3228cf38cda21435030a5dd6d9955a303ef445d46508c5fa11c45'}, 'terrain': {'path': 'CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/MAPCOM.BIN', 'relative_path': 'data\\Tactics\\mapcom.bin', 'bytes': 69368, 'sha256': 'ab98972c8a2d10cf70dd0bb795f2a0f17daaf874f168e7eb97b1c8cf4fe364ed'}, 'terrain_offset': 48168, 'terrain_bytes': 7600, 'terrain_sha256': '28bbb0956f9259093173187205bd552ffd9c5b9e101a0954c4edd81847afec03'}
+expected mode0_long 1 [[38, 13], [28, 13], [18, 26], [16, 42], [9, 48], [13, 66], [34, 94]]
+actual 1 [[38, 13], [28, 13], [18, 26], [16, 42], [9, 48], [13, 66], [34, 94]] pops 43
+expected mode0_middle 1 [[34, 38], [24, 37], [16, 37], [13, 44], [9, 48], [13, 66], [34, 89], [53, 77]]
+actual 1 [[34, 38], [24, 37], [16, 37], [13, 44], [9, 48], [13, 66], [34, 89], [53, 77], [51, 68]] pops 132
+expected mode0_same 2 []
+actual 2 [] pops 0
+expected mode1_long 1 [[34, 94]]
+actual 1 [[34, 94]] pops 43
+expected mode1_middle 1 [[51, 68]]
+actual 1 [[51, 68]] pops 132
+expected mode1_same 2 []
+actual 2 [] pops 0
+expected mode2_long 1 [[36, 27], [41, 42], [40, 43], [46, 61], [43, 73], [60, 94]]
+actual 1 [[36, 27], [41, 42], [40, 43], [46, 61], [43, 73], [60, 94]] pops 10
+expected mode2_middle 1 [[32, 74]]
+actual 1 [[32, 74]] pops 5
+expected mode2_same 2 []
+actual 2 [] pops 0
+expected mode3_long 1 [[34, 94]]
+actual 1 [[34, 94]] pops 43
+expected mode3_middle 1 [[51, 68]]
+actual 1 [[51, 68]] pops 132
+expected mode3_same 2 []
+actual 2 [] pops 0
+start route {'name': 'north_south', 'start': [29, 0], 'goal': [34, 94], 'frames': 512} True True
+route frame_budget 512 {'0x437c90': 9, '0x438860': 7, '0x438ad0': 8, '0x439c60': 4, '0x44e5d0': 4, '0x44e650': 334, '0x44e6e0': 2, '0x44ea80': 1, '0x44ed40': 1, '0x44f1e0': 1, '0x44f680': 58, '0x470250': 419, '0x476680': 512, '0x47d190': 7, '0x47d210': 8, '0x47d830': 7, '0x47d930': 7, '0x47da30': 80, '0x47dbd0': 498, '0x47dec0': 419}
+start route {'name': 'south_north', 'start': [34, 94], 'goal': [29, 0], 'frames': 512} True True
+route frame_budget 512 {'0x437c90': 6, '0x438860': 4, '0x438ad0': 5, '0x439c60': 4, '0x44e5d0': 4, '0x44e650': 117, '0x44e6e0': 2, '0x44ea80': 1, '0x44ed40': 1, '0x44f1e0': 1, '0x44f680': 33, '0x470250': 435, '0x476680': 512, '0x47d190': 4, '0x47d210': 5, '0x47d830': 4, '0x47d930': 4, '0x47da30': 70, '0x47dbd0': 504, '0x47dec0': 435}
+start route {'name': 'cross_middle', 'start': [19, 15], 'goal': [51, 68], 'frames': 512} True True
+route frame_budget 512 {'0x437c90': 7, '0x437e40': 2, '0x4380b0': 2, '0x438860': 9, '0x438ad0': 8, '0x439c60': 8, '0x44e5d0': 4, '0x44e650': 996, '0x44e6e0': 2, '0x44ea80': 1, '0x44ed40': 1, '0x44f1e0': 1, '0x44f680': 97, '0x470250': 423, '0x476680': 512, '0x47d190': 7, '0x47d210': 8, '0x47d830': 7, '0x47d930': 9, '0x47da30': 76, '0x47dbd0': 498, '0x47dec0': 423}
+start route {'name': 'reverse_middle', 'start': [51, 68], 'goal': [19, 15], 'frames': 512} True True
+route frame_budget 512 {'0x437c90': 7, '0x437e40': 2, '0x4380b0': 2, '0x438860': 10, '0x438ad0': 8, '0x439c60': 8, '0x44e5d0': 4, '0x44e650': 313, '0x44e6e0': 2, '0x44ea80': 1, '0x44ed40': 1, '0x44f1e0': 1, '0x44f680': 64, '0x470250': 428, '0x476680': 512, '0x47d190': 7, '0x47d210': 8, '0x47d830': 7, '0x47d930': 10, '0x47da30': 71, '0x47dbd0': 498, '0x47dec0': 428}
