@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "kind": "ordinary target acquisition and complete movement command request/handoff",
+  "change": "verify-original-target-acquisition",
+  "archive": "openspec/changes/archive/2026-10-24-verify-original-target-acquisition",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "aaafa36c0aaf582700cf799131aa08f5fa30737c",
+  "implementation_commit": "47e8812683c894006fe2d1a457dc9ecec26b3adc",
+  "archive_and_validation_commit": "8a0e989b8456e9e01177ca17186a94ae95fa006b",
+  "previous_acceptance": {
+    "path": "analysis/battle-region-routing-acceptance-v1-20261024.json",
+    "sha256": "fe78229f499bd7b6c0c0e9bf4f2110f1b4c73d5749c1a4f7b62c777e405ba59a"
+  },
+  "source_report": {
+    "path": "analysis/battle-target-acquisition-source-v2-20261024.json.gz",
+    "bytes": 9759536,
+    "sha256": "4fa2dec7956d51668e49e4cab790d44a43293c4b6c7cf43bc9e9bd5f791f7d3b"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-target-acquisition-proof-v3-20261024.json",
+    "sha256": "bf4f42fb23ad15eb88b8b22e44f19c9c7b2e0c6171f7e1c1b7d7bcdc94344c35",
+    "cases": 39,
+    "whole_unit_filters_cadence_memory_CPU_and_trace": true
+  },
+  "observed": {
+    "cases": 39,
+    "direct_scan_cases": 32,
+    "command_cases": 7,
+    "original_instructions": 262737,
+    "original_writes": 121285,
+    "direct_scan_roots": 39,
+    "complete_dispatch_roots": 34,
+    "actual_scan_entries": 66,
+    "scans_ready": 50,
+    "supplemental_consumers": 4,
+    "position_changing_calls": 12,
+    "original_coordinate_writes": 24
+  },
+  "validation": {
+    "schema_version": 1,
+    "tests": [
+      {
+        "kind": "ordinary_target_and_handoff",
+        "tests": 36,
+        "passed": true,
+        "path": "analysis/battle-target-acquisition-tests-v2-20261024.log",
+        "sha256": "7228cf7e2ce1dd3911edc66691d24aaa35c9db19af0bb38983a224b232ed32d4"
+      },
+      {
+        "kind": "related_region_nearest_route_movement_search",
+        "tests": 166,
+        "passed": true,
+        "path": "analysis/battle-target-acquisition-regression-v1-20261024.log",
+        "sha256": "447f1e3afb788982d813da0c33ad8e56eb308c40b84b337f27a6fb597fc0c3e0"
+      }
+    ],
+    "total_tests": 202,
+    "strict_before": {
+      "path": "analysis/battle-target-acquisition-strict-active-v1-20261024.json",
+      "valid": 32,
+      "total": 32
+    },
+    "strict_after": {
+      "path": "analysis/battle-target-acquisition-strict-after-v1-20261024.json",
+      "valid": 31,
+      "total": 31
+    },
+    "proof": {
+      "path": "analysis/battle-target-acquisition-proof-v3-20261024.json",
+      "sha256": "bf4f42fb23ad15eb88b8b22e44f19c9c7b2e0c6171f7e1c1b7d7bcdc94344c35",
+      "cases": 39,
+      "whole_unit_filters_cadence_memory_CPU_and_trace": true
+    },
+    "preservation": {
+      "full_recursive_audit": {
+        "path": "analysis/battle-target-acquisition-preservation-v1-20261024.json",
+        "sha256": "f8f527722f3992ee8b7253faedb724ce34b2024d863debc8cac54cdc0231fe23"
+      },
+      "final_parent_recheck": {
+        "path": "analysis/battle-target-acquisition-preservation-final-v1-20261024.json",
+        "sha256": "be3275d019d04bd6b8f977a6de1d37de78f60c4a79f827d9aad1f9ab4163d342"
+      },
+      "frozen_parent_count": 29,
+      "final_frozen_parent_files_rechecked": true
+    },
+    "implementation_commit": "47e8812683c894006fe2d1a457dc9ecec26b3adc",
+    "accepted_source_version": 2,
+    "accepted_proof_version": 3,
+    "superseded_evidence_retained": [
+      "source-v1",
+      "proof-v1",
+      "proof-v2",
+      "tests-v1",
+      "probe-v1",
+      "probe-v2",
+      "probe-v3",
+      "probe-v4",
+      "probe-v5"
+    ],
+    "superseded_reasons": [
+      "The original mask contains nonbinary nonzero values.",
+      "Standalone scans have zero packets, unlike initialized movement cases.",
+      "Source helper admission and method2 fallthrough were corrected before formal v1.",
+      "Source v1 tied-case declaration was not actually tied; final v2 corrects it and adds a pixel-distance tie.",
+      "Final proof3 counts ready scans using signed increment/threshold, not merely a zero counter; a fresh negative-to-zero test was added."
+    ],
+    "raw_logs_preserved": true,
+    "original_file_API_or_allocator_executed": false,
+    "interactive_desktop_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "scope": {
+    "original_MAPCOM_views_and_job_skill_data": true,
+    "declared_candidate_records_and_faction_matrix": true,
+    "full_475700_dispatcher_executed": true,
+    "request_consumer_is_explicit_supplemental_root": true,
+    "healing_random_skill_and_full_attack_supported": false,
+    "native_world_or_damage_complete": false,
+    "OS_input_submitted": false,
+    "interactive_desktop_required": false,
+    "Godot_changed": false
+  },
+  "remaining": [
+    "healing priority and support targeting",
+    "counterattack/special AI and threat marking",
+    "random skill substitution and view/status scaling",
+    "full attack execution/animation/hit/damage/death",
+    "dynamic occupancy and original object/allocator/thread/world lifetime",
+    "other battle rule categories and maps/boundaries"
+  ],
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false,
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 30593,
+      "sha256": "da9868ef4ca2e834963f5a809b24f26303e035c7aec8715c4992184333142afe"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-apply-final-v1-20261024.json",
+      "bytes": 3052,
+      "sha256": "e6fe2463d531b26ee6bb221dca7f8cf01340414e7d4a7589e3f8fbd2908215e5"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-archive-mapping-v1-20261024.json",
+      "bytes": 1362,
+      "sha256": "b62e0513bfe1e8f43b9709c36bd3abfd09bb8401adc74edaf20a9ba3800af3e2"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-model-check-v1-20261024.log",
+      "bytes": 16891,
+      "sha256": "cf08c70f0ddcd68e748328357ad475e5fd2a0c5fad4774a4c9e2ceac8eb787b2"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-preservation-final-v1-20261024.json",
+      "bytes": 6585,
+      "sha256": "be3275d019d04bd6b8f977a6de1d37de78f60c4a79f827d9aad1f9ab4163d342"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-preservation-v1-20261024.json",
+      "bytes": 169439,
+      "sha256": "f8f527722f3992ee8b7253faedb724ce34b2024d863debc8cac54cdc0231fe23"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-preservation-v1-20261024.log",
+      "bytes": 69,
+      "sha256": "aff26496e52f5b92397d7488dccd8e4561641e78e9529828603c61616eec26fc"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-probe-v1-20261024.log",
+      "bytes": 468,
+      "sha256": "26553ae505727d96bc6a02777becbe6abe8d30cede5bf5c55b3c2ab52f40e160"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-probe-v2-20261024.log",
+      "bytes": 551,
+      "sha256": "7190599354015d91e4208c7855c0ab1329236b2827429397910fd069a610e07e"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-probe-v3-20261024.log",
+      "bytes": 1736,
+      "sha256": "7334b479904848aee47f1b2745ab9cc3d03dda2b4f4e5eb46f2b108b67afd0cc"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-probe-v4-20261024.log",
+      "bytes": 1248,
+      "sha256": "fdb34aab95c55036b81357b20c18d58033fb733f812e18f1815e94bb41599967"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-probe-v5-20261024.log",
+      "bytes": 3161,
+      "sha256": "1740924e376a6c7b8b4a4760ecac5a5e49717acfcc24d62bb90d659e87a8efc8"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-proof-v1-20261024.json",
+      "bytes": 23138,
+      "sha256": "68d5a6404dc0278f870f806cc825edd71696a5b19b2ef2d11cb1cc17792d273f"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-proof-v1-20261024.log",
+      "bytes": 868,
+      "sha256": "a1d683d80fa8caaf3225e009b3ed0d080ef3f06239d94d63ac6933fb397c5adf"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-proof-v2-20261024.json",
+      "bytes": 23713,
+      "sha256": "870f1645cecab5f3ac4d2e92196e6643fe29f5562626b32798011364e8042e42"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-proof-v2-20261024.log",
+      "bytes": 897,
+      "sha256": "bb42def500fafc32b7e3019cd069c79901bf5e6633e167cc8fec482fcfdd3cf9"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-proof-v3-20261024.json",
+      "bytes": 23713,
+      "sha256": "bf4f42fb23ad15eb88b8b22e44f19c9c7b2e0c6171f7e1c1b7d7bcdc94344c35"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-proof-v3-20261024.log",
+      "bytes": 897,
+      "sha256": "bb42def500fafc32b7e3019cd069c79901bf5e6633e167cc8fec482fcfdd3cf9"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-regression-v1-20261024.log",
+      "bytes": 16754,
+      "sha256": "447f1e3afb788982d813da0c33ad8e56eb308c40b84b337f27a6fb597fc0c3e0"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-source-v1-20261024.json.gz",
+      "bytes": 9510413,
+      "sha256": "2cf29d2ed9eb4eef7ca594717bcc343516f947ff631b4fa85988b84448b5dc7f"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-source-v1-20261024.log",
+      "bytes": 1130,
+      "sha256": "de70df84b93142635b4756f88c52a607334c24c368f06f7ea9f8e4c80d9766df"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-source-v2-20261024.json.gz",
+      "bytes": 9759536,
+      "sha256": "4fa2dec7956d51668e49e4cab790d44a43293c4b6c7cf43bc9e9bd5f791f7d3b"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-source-v2-20261024.log",
+      "bytes": 1166,
+      "sha256": "213874b488a81676ee429f511cc06d99ba7d6099d2af742a3ef26306661e5909"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-status-final-v1-20261024.json",
+      "bytes": 2900,
+      "sha256": "207be3a993cfc6dfbe3effb2e776a2d0c4035e81bfbf9eca6e646396534cbae0"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-strict-active-v1-20261024.json",
+      "bytes": 7913,
+      "sha256": "87bf1d70702b720f1a3b71b7ccb0eebc00f7385c3baea6c015268b8946452d37"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-strict-after-v1-20261024.json",
+      "bytes": 7551,
+      "sha256": "77eb137f43411b96e4628180197228650f6dc5c7f528fe32f5b3b45fc7e76f51"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-tests-v1-20261024.log",
+      "bytes": 3923,
+      "sha256": "0bfd5e8902b8a05af16643de6961c92bcc1bee9f6f015f11de8d4acdb87f7969"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-tests-v2-20261024.log",
+      "bytes": 4051,
+      "sha256": "7228cf7e2ce1dd3911edc66691d24aaa35c9db19af0bb38983a224b232ed32d4"
+    },
+    {
+      "path": "analysis/battle-target-acquisition-validation-summary-v1-20261024.json",
+      "bytes": 2724,
+      "sha256": "2cf50467f2753b0f82251459aa7174844818a2acdc1717836cd7b1d5d3a2081d"
+    },
+    {
+      "path": "docs/battle_target_acquisition.md",
+      "bytes": 5883,
+      "sha256": "e62f80bf1b6b3f54c36b138a05eaef5d61137d940c9652968e20ade397ee6ef9"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-target-acquisition/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-target-acquisition/design.md",
+      "bytes": 2327,
+      "sha256": "645fc27041eaa7a51d626278e638f716c37614f82c3a3c8e7198b791d4921533"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-target-acquisition/proposal.md",
+      "bytes": 1415,
+      "sha256": "1fc19c9951e963d125f5b7bfaa6e12aede82de313e20c1c173d660d4cba181f8"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-target-acquisition/tasks.md",
+      "bytes": 747,
+      "sha256": "d581fb8e919ac56e9ef9ddf5b3ec8ace0dcd8d521c5c673a9f097cf97aa1e812"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 58866,
+      "sha256": "71b2e4ec8ff68a3c23d262e3c7de50d524b09c9942ebf2c2f467d8a78d12e9c9"
+    },
+    {
+      "path": "tools/battle_target_acquisition.py",
+      "bytes": 7139,
+      "sha256": "84fdd1527613d5ce5d29ce8c2a4483109e8249b2dd5a8d966352129e62d1493c"
+    },
+    {
+      "path": "tools/battle_target_acquisition_emulation.py",
+      "bytes": 7566,
+      "sha256": "91b29e19cc7ce3bd2cf7d97f0ab2fd80694e08aa30bb3c7cb0d269041b79487b"
+    },
+    {
+      "path": "tools/battle_target_acquisition_preservation.py",
+      "bytes": 1790,
+      "sha256": "79e2734cef7691cbf8cff039a1ed0d97cffe998842f9a34a6845ce7587daf083"
+    },
+    {
+      "path": "tools/battle_target_acquisition_verification.py",
+      "bytes": 7689,
+      "sha256": "6ff2502995391e190fb195bff994dfb549ca479e9fe2c8182bb21e82cdbbaeae"
+    },
+    {
+      "path": "tools/tests/test_battle_target_acquisition.py",
+      "bytes": 9067,
+      "sha256": "2407276cfbe665a02fcfe233c8be71fc66558fb0a22ec674cfb0b40ffa7c0b76"
+    }
+  ],
+  "manifest_policy": "Raw worktree/index/HEAD bytes verified. This file excludes itself; separate SHA256 and Git commit bind it. Future work freezes the 38 artifacts other than .gitattributes and master completion spec and pins this acceptance SHA."
+}
