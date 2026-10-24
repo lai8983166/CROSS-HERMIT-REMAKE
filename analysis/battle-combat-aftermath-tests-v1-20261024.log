@@ -1,0 +1,62 @@
+test_actual_unit_update_writes_attack_completion (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_accuracy_critical (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_block_armor (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_death_byte_last_increment (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_death_byte_saturated (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_exact_hp_zero (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_forced_critical_roll4 (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_heavy_stagger (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_kill_short_last_increment (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_kill_short_saturated (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_lethal (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_miss_roll95 (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_ordinary (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_ordinary_job2 (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_ordinary_job3 (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_ordinary_job4 (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_points_short_last_increment (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_points_short_saturated (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_region_short_wrap (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_score_short_saturated (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_short_wrap_heals (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_stagger (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_threshold_survival (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_case_threshold_unmet (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_death_is_requested_after_first_unit_update (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_death_removes_combat_occupancy_but_keeps_used_slot (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_foreign_cleanup_thread_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_forged_HP_store_PC_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_forged_completion_flag_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_forged_death_statistic_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_forged_occupancy_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_forged_unit_root_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_forged_visibility_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_heavy_reaction_moves_and_updates_occupancy (tools.tests.test_battle_combat_aftermath.AftermathTests) ... FAIL
+test_host_result_input_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_missing_actual_TLS_leaf_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_missing_actual_lifecycle_store_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_missing_full_unit_update_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_missing_owner_region_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_original_contract_and_all_declared_cases (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_region_short_counter_wraps_instead_of_saturating (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_signed_statistics_skip_overflow_and_accept_last_increment (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_survival_threshold_does_not_enter_death_command (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_two_reactions_restore_original_saved_command (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_visibility_uses_real_nonbinary_mask_maxima (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_voice_random_draw_executes_before_empty_sound_device_gate (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_wrong_update_order_rejected (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_x87_tamper_rejected_by_fresh_source (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+test_zero_regeneration_interval_is_observable (tools.tests.test_battle_combat_aftermath.AftermathTests) ... ok
+
+======================================================================
+FAIL: test_heavy_reaction_moves_and_updates_occupancy (tools.tests.test_battle_combat_aftermath.AftermathTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_battle_combat_aftermath.py", line 48, in test_heavy_reaction_moves_and_updates_occupancy
+    self.assertEqual(struct.unpack_from('<i',after,0x2EC)[0]-struct.unpack_from('<i',before,0x2EC)[0],94*65536)
+AssertionError: 5373952 != 6160384
+
+----------------------------------------------------------------------
+Ran 49 tests in 23.053s
+
+FAILED (failures=1)

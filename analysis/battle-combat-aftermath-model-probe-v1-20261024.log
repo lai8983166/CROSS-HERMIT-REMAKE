@@ -1,0 +1,12 @@
+ordinary
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_verification.py", line 101, in verify_case
+    need(s['index']==i,'continuous source command index');state(s['before'],m,'command before');m.command();state(s['after'],m,'command after');root(s['call'],0x475700,CTRL,[UNIT]);need(s['call']['result']==0,'source command result')
+  File "F:\project\chaomofa\tools\battle_attack_animation.py", line 201, in command
+    phase=self.get(0x293,'B');super().command()
+  File "F:\project\chaomofa\tools\battle_attack_launch.py", line 87, in command
+    if 9<phase<20 and self.range_ok():
+  File "F:\project\chaomofa\tools\battle_attack_launch.py", line 66, in range_ok
+    mask=target.inputs()['masks'][self.attack['range']];x,y=self.cell();tx,ty=self.attack['cell'];dx,dy=abs(tx-x),abs(ty-y)
+TypeError: Model.cell() missing 1 required positional argument: 'u'

@@ -1,0 +1,12 @@
+ordinary
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_verification.py", line 122, in verify_case
+    verify_updates(row,m)
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_verification.py", line 47, in verify_updates
+    result=m.unit_update(u);need(step['call']['result']==result,'whole unit update natural result');state(step['after'],m,'unit update after')
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_verification.py", line 17, in state
+    def state(actual,m,label):need(actual==m.state(),'independent complete hit/FX/HP state '+m.combat['name']+' '+label)
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: independent complete hit/FX/HP state ordinary unit update after

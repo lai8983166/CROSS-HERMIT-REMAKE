@@ -1,0 +1,30 @@
+ordinary
+{'name': 'ordinary', 'updates': 38, 'actor_phase': 24, 'target_command': 2, 'target_pending': 0, 'target_alive': 1, 'target_HP': 62, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [63963136, 5767168], 'instructions': 351590, 'writes': 105238, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+ordinary_job2
+{'name': 'ordinary_job2', 'updates': 38, 'actor_phase': 24, 'target_command': 2, 'target_pending': 0, 'target_alive': 1, 'target_HP': 62, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [63963136, 5767168], 'instructions': 351480, 'writes': 105186, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+ordinary_job3
+{'name': 'ordinary_job3', 'updates': 30, 'actor_phase': 24, 'target_command': 2, 'target_pending': 0, 'target_alive': 1, 'target_HP': 62, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [63963136, 5767168], 'instructions': 284512, 'writes': 86420, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+ordinary_job4
+{'name': 'ordinary_job4', 'updates': 30, 'actor_phase': 24, 'target_command': 2, 'target_pending': 0, 'target_alive': 1, 'target_HP': 62, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [63963136, 5767168], 'instructions': 284402, 'writes': 86368, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+stagger
+{'name': 'stagger', 'updates': 99, 'actor_phase': 24, 'target_command': 2, 'target_pending': 2, 'target_alive': 1, 'target_HP': 100, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [63963136, 5767168], 'instructions': 615194, 'writes': 227695, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+heavy_stagger
+{'name': 'heavy_stagger', 'updates': 129, 'actor_phase': 24, 'target_command': 2, 'target_pending': 2, 'target_alive': 1, 'target_HP': 100, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [69337088, 5767168], 'instructions': 755801, 'writes': 290784, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+forced_critical_roll4
+{'name': 'forced_critical_roll4', 'updates': 129, 'actor_phase': 24, 'target_command': 2, 'target_pending': 2, 'target_alive': 1, 'target_HP': 100, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [69337088, 5767168], 'instructions': 761018, 'writes': 293035, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+miss_roll95
+{'name': 'miss_roll95', 'updates': 38, 'actor_phase': 24, 'target_command': 2, 'target_pending': 0, 'target_alive': 1, 'target_HP': 100, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [63963136, 5767168], 'instructions': 343343, 'writes': 101810, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+block_armor
+{'name': 'block_armor', 'updates': 38, 'actor_phase': 24, 'target_command': 2, 'target_pending': 0, 'target_alive': 1, 'target_HP': 100, 'death_removed': False, 'kills': 0, 'points': 0, 'deaths': 0, 'score': 0, 'target_position': [63963136, 5767168], 'instructions': 354731, 'writes': 106342, 'actual_API_leaves': 9, 'full_state_independent': True, 'all_memory_CPU_trace_replayed': False}
+lethal
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_verification.py", line 122, in verify_case
+    verify_updates(row,m)
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_verification.py", line 47, in verify_updates
+    result=m.unit_update(u);need(step['call']['result']==result,'whole unit update natural result');state(step['after'],m,'unit update after')
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_verification.py", line 17, in state
+    def state(actual,m,label):need(actual==m.state(),'independent complete hit/FX/HP state '+m.combat['name']+' '+label)
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: independent complete hit/FX/HP state lethal unit update after
