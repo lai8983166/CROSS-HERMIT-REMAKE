@@ -1,0 +1,14 @@
+source policy_1 1 {'0x439c60': 1, '0x47a920': 1, '0x47a9d0': 1, '0x47ac80': 1, '0x47aed0': 3, '0x47b2c0': 1}
+step 0 EAX 285742380 selected 2
+source attack_request 2 {'0x437c90': 2, '0x439c60': 1, '0x4751f0': 3, '0x475270': 1, '0x4756a0': 1, '0x475700': 2, '0x476dd0': 2, '0x47a920': 1, '0x47a9d0': 1, '0x47ac80': 1, '0x47aed0': 3, '0x47b2c0': 1, '0x47c580': 1, '0x47c690': 1}
+step 0 EAX 0 selected None
+step 1 EAX 0 selected 1
+consume diff []
+source alternate_target_action 2 {'0x437c90': 3, '0x438ad0': 1, '0x439c60': 1, '0x4751f0': 3, '0x475270': 1, '0x4756a0': 1, '0x475700': 2, '0x476680': 1, '0x476dd0': 2, '0x47a920': 1, '0x47a9d0': 1, '0x47ac80': 1, '0x47aed0': 3, '0x47b2c0': 1, '0x47d190': 1, '0x47d210': 1, '0x47d830': 1}
+step 0 EAX 0 selected None
+diff 1 [('0x294', 0, 4), ('0x30c', 255, 34), ('0x30d', 255, 0), ('0x30e', 255, 0), ('0x30f', 255, 0), ('0x310', 255, 29), ('0x311', 255, 0), ('0x312', 0, 1), ('0x314', 0, 1), ('0x316', 0, 34), ('0x4cc', 0, 80), ('0x4cd', 0, 4), ('0x4ce', 0, 8)]
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: whole unit after 1
