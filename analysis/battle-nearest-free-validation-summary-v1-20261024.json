@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "kind": "new_selection_and_rerouting",
+      "tests": 34,
+      "passed": true,
+      "path": "analysis/battle-nearest-free-tests-v1-20261024.log",
+      "sha256": "892c418a69d4b3d15a36c492199d5314214b1050b8d99514145ea0804ea43979"
+    },
+    {
+      "kind": "related_route_movement_search",
+      "tests": 94,
+      "passed": true,
+      "path": "analysis/battle-nearest-free-regression-v1-20261024.log",
+      "sha256": "10c0ba0d0941ded8c3f395f021a1e177c4cde2a2182bda3bbca247f74cd54e41"
+    }
+  ],
+  "total_tests": 128,
+  "strict_before": {
+    "path": "analysis/battle-nearest-free-strict-final-active-v1-20261024.json",
+    "valid": 32,
+    "total": 32
+  },
+  "strict_after": {
+    "path": "analysis/battle-nearest-free-strict-after-v1-20261024.json",
+    "valid": 31,
+    "total": 31
+  },
+  "proof": {
+    "path": "analysis/battle-nearest-free-proof-v1-20261024.json",
+    "sha256": "8e30fcf60f4b0037f5aa90bba490f443273c4b99df4052d3baae9af151f0b4d7",
+    "selection_cases": 21,
+    "route_cases": 5,
+    "original_flood_cells": 4225,
+    "full_source_replay": true
+  },
+  "preservation": {
+    "path": "analysis/battle-nearest-free-preservation-v1-20261024.json",
+    "sha256": "b3094c3fd376c2472ec1052e0b12a599d7b3471d0514d9e6797f9658c8d2ce5d",
+    "frozen_parent_count": 26,
+    "final_frozen_parent_files_rechecked": true
+  },
+  "implementation_commit": "f9b03ab496ed2a16ae3e3195a6ef572a9578439b",
+  "failed_probes_retained": [
+    "analysis/battle-nearest-free-probe-v1-20261024.log",
+    "analysis/battle-nearest-free-probe-v2-20261024.log"
+  ],
+  "failure_causes": [
+    "Initial caller declaration omitted required direction field; corrected before formal report.",
+    "The original recursive flood exceeded the old single-root budget; deterministic source CPU continuation completed it without restarting or faking return."
+  ],
+  "raw_logs_preserved": true,
+  "full_original_constructor_executed": false,
+  "interactive_desktop_required": false,
+  "OS_input_submitted": false,
+  "Godot_changed": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
