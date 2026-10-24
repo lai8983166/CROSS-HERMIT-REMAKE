@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "kind": "new_admission",
+      "tests": 32,
+      "passed": true,
+      "path": "analysis/battle-route-admission-tests-v1-20261024.log",
+      "sha256": "8a336454bbf17e0a2d86068d4d8e4c2914e5a78b0b00b7fc09228ce1521b3eff"
+    },
+    {
+      "kind": "related_movement_and_search",
+      "tests": 62,
+      "passed": true,
+      "path": "analysis/battle-route-admission-regression-v1-20261024.log",
+      "sha256": "c3314e861cecdce7d6d21d1cc90b42412004a953be80d3cc28bf06844ff0b9e0"
+    }
+  ],
+  "total_tests": 94,
+  "strict_before": {
+    "path": "analysis/battle-route-admission-strict-active-v1-20261024.json",
+    "valid": 32,
+    "total": 32
+  },
+  "strict_after": {
+    "path": "analysis/battle-route-admission-strict-after-v1-20261024.json",
+    "valid": 31,
+    "total": 31
+  },
+  "proof": {
+    "path": "analysis/battle-route-admission-proof-v1-20261024.json",
+    "sha256": "b6cac3388b7c1d05ce60ce44b972f07eb6019c67914c62ffa38eb21a04c85849",
+    "cases": 22,
+    "whole_unit_queue_and_memory_trace": true
+  },
+  "preservation": {
+    "path": "analysis/battle-route-admission-preservation-v1-20261024.json",
+    "sha256": "7fc772255344291e2730651c6e6cf7bc5a3a51823272c31e3a4422cc36cec197",
+    "frozen_parent_count": 29,
+    "final_frozen_parent_files_rechecked": true
+  },
+  "implementation_commit": "d2b734756828117bc9f1c27dbb446352c2abc456",
+  "failed_model_probe_retained": "analysis/battle-route-admission-model-probe-v1-20261024.log",
+  "failure_cause": "Old local-movement oracle omitted the original primary-route-pending proximity shortcut; source instructions were unchanged.",
+  "raw_logs_preserved": true,
+  "interactive_desktop_required": false,
+  "OS_input_submitted": false,
+  "Godot_changed": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}

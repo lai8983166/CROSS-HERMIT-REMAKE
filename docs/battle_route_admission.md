@@ -40,3 +40,7 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests
 ```
 
 R3/R4/R6整体仍未完成，2026-11-20目标保持。后续应接原抽象区域图和最近空格，再推进敌我/选敌/攻击的实际决策；这次主路径连接不替代这些规则或R3实质场景交互。
+
+## 验收与归档
+
+本change的3/3任务完成，归档于`openspec/changes/archive/2026-10-24-verify-original-route-admission`。22例完整独立单位/队列模型及新实例全状态重放通过，最终证明为`analysis/battle-route-admission-proof-v1-20261024.json`。32项专项及62项相关回归共94项通过，严格规格归档前32/32、归档后31/31通过；父29份冻结文件和递归原资产/存档/检查点保全通过。最终验收与Git原始字节清单为`analysis/battle-route-admission-acceptance-v1-20261024.json`；已本地提交，不push。
