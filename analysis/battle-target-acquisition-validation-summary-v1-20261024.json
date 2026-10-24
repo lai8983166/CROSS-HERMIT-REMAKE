@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "kind": "ordinary_target_and_handoff",
+      "tests": 36,
+      "passed": true,
+      "path": "analysis/battle-target-acquisition-tests-v2-20261024.log",
+      "sha256": "7228cf7e2ce1dd3911edc66691d24aaa35c9db19af0bb38983a224b232ed32d4"
+    },
+    {
+      "kind": "related_region_nearest_route_movement_search",
+      "tests": 166,
+      "passed": true,
+      "path": "analysis/battle-target-acquisition-regression-v1-20261024.log",
+      "sha256": "447f1e3afb788982d813da0c33ad8e56eb308c40b84b337f27a6fb597fc0c3e0"
+    }
+  ],
+  "total_tests": 202,
+  "strict_before": {
+    "path": "analysis/battle-target-acquisition-strict-active-v1-20261024.json",
+    "valid": 32,
+    "total": 32
+  },
+  "strict_after": {
+    "path": "analysis/battle-target-acquisition-strict-after-v1-20261024.json",
+    "valid": 31,
+    "total": 31
+  },
+  "proof": {
+    "path": "analysis/battle-target-acquisition-proof-v3-20261024.json",
+    "sha256": "bf4f42fb23ad15eb88b8b22e44f19c9c7b2e0c6171f7e1c1b7d7bcdc94344c35",
+    "cases": 39,
+    "whole_unit_filters_cadence_memory_CPU_and_trace": true
+  },
+  "preservation": {
+    "full_recursive_audit": {
+      "path": "analysis/battle-target-acquisition-preservation-v1-20261024.json",
+      "sha256": "f8f527722f3992ee8b7253faedb724ce34b2024d863debc8cac54cdc0231fe23"
+    },
+    "final_parent_recheck": {
+      "path": "analysis/battle-target-acquisition-preservation-final-v1-20261024.json",
+      "sha256": "be3275d019d04bd6b8f977a6de1d37de78f60c4a79f827d9aad1f9ab4163d342"
+    },
+    "frozen_parent_count": 29,
+    "final_frozen_parent_files_rechecked": true
+  },
+  "implementation_commit": "47e8812683c894006fe2d1a457dc9ecec26b3adc",
+  "accepted_source_version": 2,
+  "accepted_proof_version": 3,
+  "superseded_evidence_retained": [
+    "source-v1",
+    "proof-v1",
+    "proof-v2",
+    "tests-v1",
+    "probe-v1",
+    "probe-v2",
+    "probe-v3",
+    "probe-v4",
+    "probe-v5"
+  ],
+  "superseded_reasons": [
+    "The original mask contains nonbinary nonzero values.",
+    "Standalone scans have zero packets, unlike initialized movement cases.",
+    "Source helper admission and method2 fallthrough were corrected before formal v1.",
+    "Source v1 tied-case declaration was not actually tied; final v2 corrects it and adds a pixel-distance tie.",
+    "Final proof3 counts ready scans using signed increment/threshold, not merely a zero counter; a fresh negative-to-zero test was added."
+  ],
+  "raw_logs_preserved": true,
+  "original_file_API_or_allocator_executed": false,
+  "interactive_desktop_required": false,
+  "OS_input_submitted": false,
+  "Godot_changed": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
