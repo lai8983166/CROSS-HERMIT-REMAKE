@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "kind": "original MAP05 region relocation/search/compression and complete AI main-route arrival",
+  "change": "verify-original-region-routing",
+  "archive": "openspec/changes/archive/2026-10-24-verify-original-region-routing",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "d4836eba399a79c7d3bbef59dced9ba814f48e08",
+  "implementation_commit": "8d75c330042fb9629fc81d336d24b3a91b8ad562",
+  "archive_and_validation_commit": "cb937980a4005231c3fd00446662207b45c03c3c",
+  "previous_acceptance": {
+    "path": "analysis/battle-nearest-free-acceptance-v1-20261024.json",
+    "sha256": "7145f01e6046ab85dc7a95dc3db5c741cd180836d9cae02ed8d0cc7b00d0956a"
+  },
+  "source_report": {
+    "path": "analysis/battle-region-routing-source-v1-20261024.json.gz",
+    "bytes": 5429145,
+    "sha256": "4424256c7289f13010051fac61bdf01b1bc57b9f3bc83c32b9038dfd6239a7d5"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-region-routing-proof-v1-20261024.json",
+    "sha256": "dc9ad76bbec2f2bf30c7a5afec7d28422dacb52eb52d2f2e713a0a07b4c36c04",
+    "query_cases": 17,
+    "full_AI_routes": 5,
+    "whole_unit_dual_queues_global_scratch_and_memory_trace": true,
+    "full_memory_CPU_and_original_trace_replayed": true
+  },
+  "observed": {
+    "original_instructions": 9265521,
+    "original_writes": 3525961,
+    "original_map_cells": 6144,
+    "original_region_records": 456,
+    "original_edges": 3996,
+    "region_indices": 24576,
+    "query_expansions": 679,
+    "query_open_improvements": 476,
+    "query_closed_reopens": 363,
+    "AI_root_calls": 2844,
+    "position_changing_calls": 2359,
+    "original_coordinate_writes": 4718,
+    "AI_region_expansions": 220,
+    "AI_fine_expansions": 125,
+    "routes": [
+      {
+        "name": "north_south",
+        "AI_calls": 657,
+        "region_results": [
+          1
+        ],
+        "stop": "stationary_phase_3",
+        "final_cell": [
+          34,
+          94
+        ]
+      },
+      {
+        "name": "south_north",
+        "AI_calls": 646,
+        "region_results": [
+          1
+        ],
+        "stop": "stationary_phase_3",
+        "final_cell": [
+          29,
+          0
+        ]
+      },
+      {
+        "name": "cross_middle",
+        "AI_calls": 798,
+        "region_results": [
+          1
+        ],
+        "stop": "stationary_phase_3",
+        "final_cell": [
+          51,
+          68
+        ]
+      },
+      {
+        "name": "reverse_middle",
+        "AI_calls": 687,
+        "region_results": [
+          1
+        ],
+        "stop": "stationary_phase_3",
+        "final_cell": [
+          19,
+          15
+        ]
+      },
+      {
+        "name": "same_region_fallback",
+        "AI_calls": 56,
+        "region_results": [
+          2
+        ],
+        "stop": "stationary_phase_3",
+        "final_cell": [
+          15,
+          73
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "schema_version": 1,
+    "tests": [
+      {
+        "kind": "new_actual_map_graph_and_AI",
+        "tests": 38,
+        "passed": true,
+        "path": "analysis/battle-region-routing-tests-v1-20261024.log",
+        "sha256": "65abe1b8fb1b87e9ac89d2b87c382ba3d139d836351e526d49de1a8ddadcde9c"
+      },
+      {
+        "kind": "related_nearest_route_movement_search",
+        "tests": 128,
+        "passed": true,
+        "path": "analysis/battle-region-routing-regression-v1-20261024.log",
+        "sha256": "cae7ae0bbed3db097ae0fe8e522916e0d1192098868de26cdd1aefa60c3f8529"
+      }
+    ],
+    "total_tests": 166,
+    "strict_before": {
+      "path": "analysis/battle-region-routing-strict-active-v1-20261024.json",
+      "valid": 32,
+      "total": 32
+    },
+    "strict_after": {
+      "path": "analysis/battle-region-routing-strict-after-v1-20261024.json",
+      "valid": 31,
+      "total": 31
+    },
+    "proof": {
+      "path": "analysis/battle-region-routing-proof-v1-20261024.json",
+      "sha256": "dc9ad76bbec2f2bf30c7a5afec7d28422dacb52eb52d2f2e713a0a07b4c36c04",
+      "query_cases": 17,
+      "full_AI_routes": 5,
+      "whole_unit_dual_queue_global_scratch_and_memory_trace": true
+    },
+    "preservation": {
+      "path": "analysis/battle-region-routing-preservation-v2-20261024.json",
+      "sha256": "5db425ab41b4db7e1095ffd46e28130f8502c38634944c5b788007661a387bd8",
+      "frozen_parent_count": 29,
+      "final_frozen_parent_files_rechecked": true,
+      "authorized_updates_match_final_bytes": true
+    },
+    "implementation_commit": "8d75c330042fb9629fc81d336d24b3a91b8ad562",
+    "preliminary_512_budget_log_retained": "analysis/battle-region-routing-probe-v1-20261024.log",
+    "short_budget_probe_not_counted_as_completion": true,
+    "original_file_API_or_allocator_executed": false,
+    "raw_logs_preserved": true,
+    "interactive_desktop_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "source_scope": {
+    "actual_MAP05_input_bytes": true,
+    "original_relocation_roots": true,
+    "declared_controller_unit_occupancy_and_dual_pools": true,
+    "original_file_API_or_allocator_executed": false,
+    "full_native_scene_or_world_frame": false,
+    "game_function_results_stubbed": false,
+    "OS_input_submitted": false,
+    "interactive_desktop_required": false,
+    "Godot_changed": false
+  },
+  "remaining": [
+    "original file-loading/allocator/controller and native world lifetime integration",
+    "other maps and unreachable/impassable primary destinations",
+    "pool exhaustion and 100-point truncation",
+    "full enemy/target/attack rules",
+    "dynamic occupancy and active animation",
+    "other battle categories and R3 thread/TLS/MAIN lifetime"
+  ],
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false,
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 29880,
+      "sha256": "96696c0d30d54ce2cf23717534181fe46e6774ed9e39d61cecdacc4d3de65b71"
+    },
+    {
+      "path": "analysis/battle-region-routing-apply-final-v1-20261024.json",
+      "bytes": 3008,
+      "sha256": "ebf896b8d4f1dd972b286d6d78aafdfc990d9a79e2f3b652bcb5fcd8eac84986"
+    },
+    {
+      "path": "analysis/battle-region-routing-archive-mapping-v1-20261024.json",
+      "bytes": 1326,
+      "sha256": "488f8e269f22abc20eab96be89ed7c016e9b94a6a57c2d1fd0ad0807c6f4a6b7"
+    },
+    {
+      "path": "analysis/battle-region-routing-model-check-v1-20261024.log",
+      "bytes": 5707,
+      "sha256": "d6083ad83fb258b640a0eeec222599e22ee62753efb4db217f7cf49453f60cf3"
+    },
+    {
+      "path": "analysis/battle-region-routing-model-probe-v1-20261024.log",
+      "bytes": 52,
+      "sha256": "e72903b14971de171fe76790b72a7f0bd6630ac55af322fa87d6d561a20dd10a"
+    },
+    {
+      "path": "analysis/battle-region-routing-preservation-v1-20261024.json",
+      "bytes": 162786,
+      "sha256": "9fc9a7de15762e3ce868c2f5e3021857c24d33ee636881dd0afcf098e7233d66"
+    },
+    {
+      "path": "analysis/battle-region-routing-preservation-v1-20261024.log",
+      "bytes": 62,
+      "sha256": "6e6df02c612197220674bc283966b9aae13450ffb9df4a883f434371b1f430ae"
+    },
+    {
+      "path": "analysis/battle-region-routing-preservation-v2-20261024.json",
+      "bytes": 162786,
+      "sha256": "5db425ab41b4db7e1095ffd46e28130f8502c38634944c5b788007661a387bd8"
+    },
+    {
+      "path": "analysis/battle-region-routing-preservation-v2-20261024.log",
+      "bytes": 62,
+      "sha256": "6e6df02c612197220674bc283966b9aae13450ffb9df4a883f434371b1f430ae"
+    },
+    {
+      "path": "analysis/battle-region-routing-probe-v1-20261024.log",
+      "bytes": 3630,
+      "sha256": "b5a2b2ac48d6c9b28cdb107328c1b97e526f2b8909a2c525106168bb09d7e256"
+    },
+    {
+      "path": "analysis/battle-region-routing-proof-v1-20261024.json",
+      "bytes": 10196,
+      "sha256": "dc9ad76bbec2f2bf30c7a5afec7d28422dacb52eb52d2f2e713a0a07b4c36c04"
+    },
+    {
+      "path": "analysis/battle-region-routing-proof-v1-20261024.log",
+      "bytes": 674,
+      "sha256": "b0d3cd8a0e0903561e1f2d02d55e8d811c5b1ae47622d9ae752964002fed0d6e"
+    },
+    {
+      "path": "analysis/battle-region-routing-regression-v1-20261024.log",
+      "bytes": 12912,
+      "sha256": "cae7ae0bbed3db097ae0fe8e522916e0d1192098868de26cdd1aefa60c3f8529"
+    },
+    {
+      "path": "analysis/battle-region-routing-source-v1-20261024.json.gz",
+      "bytes": 5429145,
+      "sha256": "4424256c7289f13010051fac61bdf01b1bc57b9f3bc83c32b9038dfd6239a7d5"
+    },
+    {
+      "path": "analysis/battle-region-routing-source-v1-20261024.log",
+      "bytes": 672,
+      "sha256": "e9c62d0ff7324dea752cabb119239bfee2e2b7fcb804874ed54b2024c1c69688"
+    },
+    {
+      "path": "analysis/battle-region-routing-status-final-v1-20261024.json",
+      "bytes": 2860,
+      "sha256": "88c62fbdb35c1ac052a762a4e1b80aa94b1328bc7819f1ecc87b7cf93c1d15d0"
+    },
+    {
+      "path": "analysis/battle-region-routing-strict-active-v1-20261024.json",
+      "bytes": 7913,
+      "sha256": "7f96e843c835b5ff0820042a10900a49ba8b3ddd154bf8287e33e7a95fe62237"
+    },
+    {
+      "path": "analysis/battle-region-routing-strict-after-v1-20261024.json",
+      "bytes": 7550,
+      "sha256": "43aeaf39495978d97ce8245d2e06ada8424c1c21aeaf41892bbea171e1d64a17"
+    },
+    {
+      "path": "analysis/battle-region-routing-tests-v1-20261024.log",
+      "bytes": 3946,
+      "sha256": "65abe1b8fb1b87e9ac89d2b87c382ba3d139d836351e526d49de1a8ddadcde9c"
+    },
+    {
+      "path": "analysis/battle-region-routing-validation-summary-v1-20261024.json",
+      "bytes": 1926,
+      "sha256": "8d99168861b3003baa2a433c7f580f37067b01e4624ef7e7f004992f349f1832"
+    },
+    {
+      "path": "docs/battle_region_routing.md",
+      "bytes": 5253,
+      "sha256": "fce4101b75de583cca2f144ba77324b98a1d152324b3c1d7c9add63f9af5370f"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-region-routing/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-region-routing/design.md",
+      "bytes": 2344,
+      "sha256": "c6ae9a61bdbf72cc4a69db23a225939d1b9073a341470b37570294f1deb35171"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-region-routing/proposal.md",
+      "bytes": 1287,
+      "sha256": "2e154c6db371cd7048b24497fd6754d8a6ffb4288bf4a17efff9730c2e9fd309"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-region-routing/tasks.md",
+      "bytes": 743,
+      "sha256": "d0efb189de465ad0d3c6194952bab67b002822373d158242292ddad482c9c2f1"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 57180,
+      "sha256": "dab754ca6125d8690faec2c327bed28c28949ada13224fafbd28f321505b52e3"
+    },
+    {
+      "path": "tools/battle_region_routing.py",
+      "bytes": 9685,
+      "sha256": "e940f7f9a5f44fbc3d2d8a9cb27050819100036aca6fb26dc59e2d9f35d6647e"
+    },
+    {
+      "path": "tools/battle_region_routing_emulation.py",
+      "bytes": 10697,
+      "sha256": "294b1eb360a8ddc77fa634ecb64e800d06c69364596ae8bed52d00c5ca063574"
+    },
+    {
+      "path": "tools/battle_region_routing_preservation.py",
+      "bytes": 1784,
+      "sha256": "76c4ab2306b3f4314a04e12ff48eebb48fa5fe6e4fc698868b37791e478f4521"
+    },
+    {
+      "path": "tools/battle_region_routing_verification.py",
+      "bytes": 9863,
+      "sha256": "3a8b68828f4f58d6c84d46e644c41d74e6c6881795cd7e2b559a2e6335e7766d"
+    },
+    {
+      "path": "tools/tests/test_battle_region_routing.py",
+      "bytes": 8837,
+      "sha256": "be78c88d3a5b211a59da38c9f211fad49239ce0058bb7d79522d3a36d0ad13e4"
+    }
+  ],
+  "manifest_policy": "Raw worktree/index/HEAD bytes verified before acceptance. This acceptance file excludes itself; its separate SHA256 and Git commit bind it. Future work freezes the 29 artifacts other than .gitattributes and master completion spec, and pins this acceptance SHA."
+}
