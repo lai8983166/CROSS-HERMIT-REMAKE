@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "kind": "original primary/local route admission, positioning handoff and persistent search continuation",
+  "change": "verify-original-route-admission",
+  "archive": "openspec/changes/archive/2026-10-24-verify-original-route-admission",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "adf1080b5978746a2584068a1578ddc5e6cf945a",
+  "implementation_commit": "d2b734756828117bc9f1c27dbb446352c2abc456",
+  "archive_and_validation_commit": "c9790ae61aadba416fa8aecbd33fe6b31e2eda63",
+  "previous_acceptance": {
+    "path": "analysis/battle-unit-movement-acceptance-v1-20261024.json",
+    "sha256": "444f1a66ca0242b13b8b503d91097095ed76671a64011480b59ac4837af45345"
+  },
+  "source_report": {
+    "path": "analysis/battle-route-admission-source-v1-20261024.json.gz",
+    "bytes": 343007,
+    "sha256": "00a369224e6b7979b8e7bbe3fb1aa6e73a1cdf8b85888d2c7ffecaa392cadc6b"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-route-admission-proof-v1-20261024.json",
+    "sha256": "b6cac3388b7c1d05ce60ce44b972f07eb6019c67914c62ffa38eb21a04c85849",
+    "cases": 22,
+    "whole_unit_and_persistent_queue_model": true,
+    "all_memory_and_original_trace_replayed": true
+  },
+  "observed": {
+    "original_instructions": 13674174,
+    "original_writes": 4411929,
+    "AI_root_calls": 493,
+    "position_changing_calls": 388,
+    "search_popped": 3258,
+    "partial_returns": 2,
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      9
+    ]
+  },
+  "validation": {
+    "schema_version": 1,
+    "tests": [
+      {
+        "kind": "new_admission",
+        "tests": 32,
+        "passed": true,
+        "path": "analysis/battle-route-admission-tests-v1-20261024.log",
+        "sha256": "8a336454bbf17e0a2d86068d4d8e4c2914e5a78b0b00b7fc09228ce1521b3eff"
+      },
+      {
+        "kind": "related_movement_and_search",
+        "tests": 62,
+        "passed": true,
+        "path": "analysis/battle-route-admission-regression-v1-20261024.log",
+        "sha256": "c3314e861cecdce7d6d21d1cc90b42412004a953be80d3cc28bf06844ff0b9e0"
+      }
+    ],
+    "total_tests": 94,
+    "strict_before": {
+      "path": "analysis/battle-route-admission-strict-active-v1-20261024.json",
+      "valid": 32,
+      "total": 32
+    },
+    "strict_after": {
+      "path": "analysis/battle-route-admission-strict-after-v1-20261024.json",
+      "valid": 31,
+      "total": 31
+    },
+    "proof": {
+      "path": "analysis/battle-route-admission-proof-v1-20261024.json",
+      "sha256": "b6cac3388b7c1d05ce60ce44b972f07eb6019c67914c62ffa38eb21a04c85849",
+      "cases": 22,
+      "whole_unit_queue_and_memory_trace": true
+    },
+    "preservation": {
+      "path": "analysis/battle-route-admission-preservation-v1-20261024.json",
+      "sha256": "7fc772255344291e2730651c6e6cf7bc5a3a51823272c31e3a4422cc36cec197",
+      "frozen_parent_count": 29,
+      "final_frozen_parent_files_rechecked": true
+    },
+    "implementation_commit": "d2b734756828117bc9f1c27dbb446352c2abc456",
+    "failed_model_probe_retained": "analysis/battle-route-admission-model-probe-v1-20261024.log",
+    "failure_cause": "Old local-movement oracle omitted the original primary-route-pending proximity shortcut; source instructions were unchanged.",
+    "raw_logs_preserved": true,
+    "interactive_desktop_required": false,
+    "OS_input_submitted": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "scope": {
+    "declared_near_map_record_controller_pool": true,
+    "initial_phase0_main_cases": true,
+    "phases1_and5_are_declared_entry_probes": true,
+    "phases2_and6_reached_naturally_after_1001_expansions": true,
+    "host_search_results_supplied": false,
+    "host_helper_scheduling": false,
+    "game_or_math_results_stubbed": false,
+    "full_attack_AI_or_native_world_frame": false,
+    "retained_CRT_MAIN_thread_connection": false,
+    "OS_input_submitted": false,
+    "interactive_desktop_required": false,
+    "Godot_changed": false,
+    "original_assets_saves_checkpoints_unchanged": true,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "remaining": [
+    "44EA80 abstract region graph for obstructed far or impassable primary destinations",
+    "nearest-free destination, busy/failed search and full enemy/target/attack rules",
+    "active animation and actual level dynamic occupancy/world integration",
+    "R3 original scene/CRT/MAIN connection, remaining R4 combat, R5 and R6 coverage"
+  ],
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 28564,
+      "sha256": "2e6dd2468d6273eaca46c0d048b4ad2e060b6e00548f07e3c35b872259c77b96"
+    },
+    {
+      "path": "analysis/battle-route-admission-apply-final-v1-20261024.json",
+      "bytes": 2904,
+      "sha256": "2930622f162634e5b445410fe94b112baf1de843e497c5a62988a797da0b0829"
+    },
+    {
+      "path": "analysis/battle-route-admission-archive-mapping-v1-20261024.json",
+      "bytes": 888,
+      "sha256": "728b1c2b0d357a652a82cec496dfb8a15e706299ac400e38b3967c83702134f2"
+    },
+    {
+      "path": "analysis/battle-route-admission-model-probe-v1-20261024.log",
+      "bytes": 577,
+      "sha256": "74f093033458609c9b0a89a61e550219df58a35d08c5fbc05aa0bccbdbd5426c"
+    },
+    {
+      "path": "analysis/battle-route-admission-model-probe-v2-20261024.log",
+      "bytes": 783,
+      "sha256": "adca207c29f2cdfbb99c97e7bbb20749cade4cd38d1adab4227f0b5b9c53c956"
+    },
+    {
+      "path": "analysis/battle-route-admission-preservation-v1-20261024.json",
+      "bytes": 150045,
+      "sha256": "7fc772255344291e2730651c6e6cf7bc5a3a51823272c31e3a4422cc36cec197"
+    },
+    {
+      "path": "analysis/battle-route-admission-probe-v1-20261024.log",
+      "bytes": 431,
+      "sha256": "7f9551a5d88bade24beb5f3b5e76d24ec0f1a367190be456d4239eca43f79f85"
+    },
+    {
+      "path": "analysis/battle-route-admission-proof-v1-20261024.json",
+      "bytes": 16301,
+      "sha256": "b6cac3388b7c1d05ce60ce44b972f07eb6019c67914c62ffa38eb21a04c85849"
+    },
+    {
+      "path": "analysis/battle-route-admission-proof-v1-20261024.log",
+      "bytes": 523,
+      "sha256": "d9322f4bc8fa639ff5c09b640b6d68d0c12e8b875a3aed5be488c21d01d1f525"
+    },
+    {
+      "path": "analysis/battle-route-admission-regression-v1-20261024.log",
+      "bytes": 6257,
+      "sha256": "c3314e861cecdce7d6d21d1cc90b42412004a953be80d3cc28bf06844ff0b9e0"
+    },
+    {
+      "path": "analysis/battle-route-admission-source-v1-20261024.json.gz",
+      "bytes": 343007,
+      "sha256": "00a369224e6b7979b8e7bbe3fb1aa6e73a1cdf8b85888d2c7ffecaa392cadc6b"
+    },
+    {
+      "path": "analysis/battle-route-admission-source-v1-20261024.log",
+      "bytes": 802,
+      "sha256": "b598d11074c818d19f01998ddb651494028c7daf011e52929101529d001ab3fe"
+    },
+    {
+      "path": "analysis/battle-route-admission-status-final-v1-20261024.json",
+      "bytes": 2870,
+      "sha256": "46cb7bf54bcee85ec343a69e28818dceb71fa1c4f10b82b46760cbc5afcab1b7"
+    },
+    {
+      "path": "analysis/battle-route-admission-strict-active-v1-20261024.json",
+      "bytes": 7909,
+      "sha256": "9cda5fbc63b5efc6e5018ba1d3605f06ec954102284a71970060a9d3616c8dbc"
+    },
+    {
+      "path": "analysis/battle-route-admission-strict-after-v1-20261024.json",
+      "bytes": 7550,
+      "sha256": "f1ce44ab8873316b88a77e0bfd5020624e05e7b068fd3e6abfa89e1ff71bb487"
+    },
+    {
+      "path": "analysis/battle-route-admission-tests-v1-20261024.log",
+      "bytes": 3426,
+      "sha256": "8a336454bbf17e0a2d86068d4d8e4c2914e5a78b0b00b7fc09228ce1521b3eff"
+    },
+    {
+      "path": "analysis/battle-route-admission-validation-summary-v1-20261024.json",
+      "bytes": 1843,
+      "sha256": "082f5bbaed767f8445440aa4ddc32c56668236355d2705a5979556cebe15526d"
+    },
+    {
+      "path": "docs/battle_route_admission.md",
+      "bytes": 6450,
+      "sha256": "12ef14062d818698c692754bf81c995b3ad6790c27a194d3f992e01aecc219be"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-route-admission/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-route-admission/design.md",
+      "bytes": 1983,
+      "sha256": "593ac840fb784897729960f292f729f5318b2c4e257bae88d56e1e6a03424a5e"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-route-admission/proposal.md",
+      "bytes": 1098,
+      "sha256": "a301fa01a67d6647515cce158b1e39398ba3a542d1ebd59e47000d111672d60e"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-verify-original-route-admission/tasks.md",
+      "bytes": 627,
+      "sha256": "f65a5c08bcd02c0b974ac95f4a09a2782cff58c20b7a5a7a33eedd8050216ed5"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 54284,
+      "sha256": "977e632667be9ab65ad661e6dce564a8c759ab02aae0beb6f25a6230b31f03e0"
+    },
+    {
+      "path": "tools/battle_route_admission.py",
+      "bytes": 10110,
+      "sha256": "420613c55a694d5dfe36e0733a4e8b38e7450c389e7b28b68390c026642595ce"
+    },
+    {
+      "path": "tools/battle_route_admission_emulation.py",
+      "bytes": 5277,
+      "sha256": "f151ee0b8786bfdacec90a5a537aa137062569522c8aa0043d9bd2c8f7ed7041"
+    },
+    {
+      "path": "tools/battle_route_admission_preservation.py",
+      "bytes": 1815,
+      "sha256": "c65438d978fe36800d4f6b554ccfcfc4915113537262bf861c8cb67fa5166bd6"
+    },
+    {
+      "path": "tools/battle_route_admission_verification.py",
+      "bytes": 6101,
+      "sha256": "a86f3d88fa33d5c5a7ea3a3199e0f4e1c3bc7bd2812c15f6aed5135782692f8f"
+    },
+    {
+      "path": "tools/tests/test_battle_route_admission.py",
+      "bytes": 7096,
+      "sha256": "66f3dce76c4c3412178a43e69c4fe9cb686b54036eef57dfa17083af123f7b18"
+    }
+  ],
+  "artifact_count": 28,
+  "raw_worktree_index_and_HEAD_bytes_verified": true,
+  "manifest_HEAD": "c9790ae61aadba416fa8aecbd33fe6b31e2eda63",
+  "acceptance_self_excluded_from_manifest": true,
+  "git_push_performed": false
+}
