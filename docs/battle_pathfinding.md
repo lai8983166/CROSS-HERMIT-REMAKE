@@ -42,3 +42,7 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests
 本单元验证声明输入下的寻路函数完整生命周期，未验证实际关卡地形表、单位每帧位移、AI选目标/决策、移动命令准入和碰撞后的重试，也未把保留任务接入原CRT/MAIN线程。不从此证据推导真实战斗、实际显示或Godot完成。
 
 有效输入的高代价格仍可展开，正常小图没有自然开放队列耗尽；池耗尽/分配失败、100点压缩截断、非法坐标/类型的原断言没有动态覆盖，保留缺口。R3、R4、R6整体未完成，2026-11-20目标不变。下一步将这些已验规则与原单位命令/AI状态机的实际调用及坐标变化衔接；连续原生交互实验需要提前安排解锁。
+
+## 最终验收
+
+本change的3/3任务完成，归档于`openspec/changes/archive/2026-10-24-verify-original-pathfinding-lifecycle`。31项专项及54项相关历史回归共85项通过；归档前严格规格32/32通过。父59份冻结产物及递归原资源/存档/检查点保全通过。最终证明为`analysis/battle-pathfinding-proof-v2-20261024.json`，验收及Git原始字节清单为`analysis/battle-pathfinding-acceptance-v1-20261024.json`；本地提交、不push，Godot未改。

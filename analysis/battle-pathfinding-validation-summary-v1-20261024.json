@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "tests": [
+    {
+      "kind": "new_pathfinding",
+      "tests": 31,
+      "passed": true,
+      "path": "analysis/battle-pathfinding-tests-v1-20261024.log",
+      "sha256": "13e5a11cc0582b2b02bf3d840febc11f8290f063f70ff463dbf39f57449e0d64"
+    },
+    {
+      "kind": "historical_regression",
+      "tests": 54,
+      "passed": true,
+      "path": "analysis/battle-pathfinding-regression-v1-20261024.log",
+      "sha256": "370b7a8b146b3e7de3876eb8cd5e0af2531c8025115d302790da84be2bdfac98"
+    }
+  ],
+  "total_tests": 85,
+  "strict_before": {
+    "path": "analysis/battle-pathfinding-strict-active-v1-20261024.json",
+    "valid": 32,
+    "total": 32
+  },
+  "strict_after": {
+    "path": "analysis/battle-pathfinding-strict-after-v1-20261024.json",
+    "valid": 31,
+    "total": 31
+  },
+  "final_proof": {
+    "path": "analysis/battle-pathfinding-proof-v2-20261024.json",
+    "sha256": "41e68741b62035f8f641685a7d59de1750dd5bc3e19b6476b515879149e8933b",
+    "cases": 77,
+    "original_instructions": 4943296,
+    "original_writes": 1704980
+  },
+  "preservation": {
+    "path": "analysis/battle-pathfinding-preservation-v1-20261024.json",
+    "sha256": "b932d6b7b5723953ad1e43a11e6bb7281c1a0e31f8fdfbf1a2622ccefe1d40bd",
+    "frozen_parent_count": 59,
+    "final_parent_files_rechecked": true
+  },
+  "implementation_commit": "54022f48cc31493529724814d3842314d10ea5ad",
+  "failure_notes": "Source-v1 is a partial raw failure log after the original root did not return. Agent interruption cut the exception rendering; no complete ray-0 trajectory or specific timeout/count-limit conclusion is claimed. V2 rejects zero-displacement directions before execution.",
+  "raw_logs_preserved": true,
+  "OS_input_or_game_window_used": false,
+  "Godot_changed": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
