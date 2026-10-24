@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "kind": "research operation notes, not native per-instruction evidence",
+  "desktop_preflight": {
+    "ready": false,
+    "reason": "locked_foreground",
+    "input_desktop": "Default",
+    "observer_desktop": "Default",
+    "foreground_hwnd": 4329692,
+    "foreground_pid": 19232,
+    "foreground_image": "C:/Windows/SystemApps/Microsoft.LockApp_cw5n1h2txyewy/LockApp.exe",
+    "input_submitted": false,
+    "state_written": false
+  },
+  "failed_source_attempt": {
+    "log": "analysis/battle-pathfinding-source-v1-20261024.log",
+    "sha256": "cfbb9741ec4abf3ce10acd2b2e4268e8acf7823a263d01a24603ed770c8bc246",
+    "complete_report_produced": false,
+    "last_completed_group": "direct path",
+    "next_case": "ray_0",
+    "original_direction_vector": [
+      0,
+      0
+    ],
+    "termination": "agent interrupted own isolated audit after lack of return; tool session exit 1",
+    "native_game_started": false,
+    "OS_input_submitted": false,
+    "not_claimed": [
+      "original function naturally returned",
+      "timeout boundary reached",
+      "complete instruction trace saved"
+    ]
+  },
+  "correction": "reject ray directions 0/5 before guest execution; eight directions are keypad 1/2/3/4/6/7/8/9",
+  "formal_source": "analysis/battle-pathfinding-source-v2-20261024.json.gz"
+}

@@ -1,0 +1,1738 @@
+{
+  "schema_version": 1,
+  "source_report": {
+    "path": "analysis/battle-pathfinding-source-v2-20261024.json.gz",
+    "bytes": 592721,
+    "sha256": "d9bc9a9071e2b1482c25bfdf7e1a1d3b49006f6cb8b23461decc6f4680a96d45"
+  },
+  "verifier_sha256": "4d79055c7153ac6c9514b02ca88466922191bdbfa00f45c4a838d66135d7a5bb",
+  "case_count": 77,
+  "cases": [
+    {
+      "name": "same_cell",
+      "result": 1,
+      "waypoints": [],
+      "popped_nodes": 1,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1660,
+      "writes": 809,
+      "expansion_limit_hit": false,
+      "cost": 0,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "open_diagonal",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          5
+        ]
+      ],
+      "popped_nodes": 7,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 30725,
+      "writes": 12023,
+      "expansion_limit_hit": false,
+      "cost": 10,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "open_reverse",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          0
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 29068,
+      "writes": 11521,
+      "expansion_limit_hit": false,
+      "cost": 10,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "blocked_destination",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          1
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "wall_gap",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          2
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "popped_nodes": 7,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 28568,
+      "writes": 10976,
+      "expansion_limit_hit": false,
+      "cost": 7,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "full_wall_penalty",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "popped_nodes": 13,
+      "reopened": 0,
+      "improved_open": 2,
+      "instructions": 39377,
+      "writes": 14543,
+      "expansion_limit_hit": false,
+      "cost": 3603,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "blocked_start",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          2
+        ]
+      ],
+      "popped_nodes": 4,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 14381,
+      "writes": 5728,
+      "expansion_limit_hit": false,
+      "cost": 5,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "terrain_mode_0",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 23871,
+      "writes": 9229,
+      "expansion_limit_hit": false,
+      "cost": 6,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "terrain_mode_1",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 23865,
+      "writes": 9227,
+      "expansion_limit_hit": false,
+      "cost": 6,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "terrain_mode_2",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          1
+        ]
+      ],
+      "popped_nodes": 5,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 20799,
+      "writes": 8104,
+      "expansion_limit_hit": false,
+      "cost": 4,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "terrain_mode_3",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 23865,
+      "writes": 9227,
+      "expansion_limit_hit": false,
+      "cost": 6,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "terrain_mode_4",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 23908,
+      "writes": 9266,
+      "expansion_limit_hit": false,
+      "cost": 6,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "occupancy_False",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          2
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 25628,
+      "writes": 9901,
+      "expansion_limit_hit": false,
+      "cost": 5,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "occupancy_overrides_barrier_False",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "popped_nodes": 13,
+      "reopened": 0,
+      "improved_open": 2,
+      "instructions": 39377,
+      "writes": 14543,
+      "expansion_limit_hit": false,
+      "cost": 3603,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "occupancy_True",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "popped_nodes": 7,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 32380,
+      "writes": 12465,
+      "expansion_limit_hit": false,
+      "cost": 7,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "occupancy_overrides_barrier_True",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "popped_nodes": 13,
+      "reopened": 0,
+      "improved_open": 2,
+      "instructions": 43997,
+      "writes": 16341,
+      "expansion_limit_hit": false,
+      "cost": 103,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_0",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          2
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 903,
+      "writes": 442,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_1",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          4
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 915,
+      "writes": 446,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_2",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          4
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 902,
+      "writes": 442,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_3",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          4
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 919,
+      "writes": 447,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_4",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          2
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 907,
+      "writes": 443,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_5",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 923,
+      "writes": 448,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_6",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 906,
+      "writes": 443,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_7",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 919,
+      "writes": 447,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_octant_8",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          2
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 663,
+      "writes": 368,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_blocked",
+      "result": 0,
+      "waypoints": [],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 575,
+      "writes": 265,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "direct_occupied",
+      "result": 0,
+      "waypoints": [],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 912,
+      "writes": 386,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_1",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          6
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1596,
+      "writes": 628,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_2",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          6
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1556,
+      "writes": 613,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_3",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          6
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1588,
+      "writes": 625,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_4",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          3
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1560,
+      "writes": 616,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_6",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          3
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1552,
+      "writes": 613,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_7",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1608,
+      "writes": 631,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_8",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1564,
+      "writes": 616,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_9",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 1600,
+      "writes": 628,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "ray_immediate_block",
+      "result": 0,
+      "waypoints": [],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 494,
+      "writes": 238,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_0",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          8,
+          7
+        ]
+      ],
+      "popped_nodes": 10,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 50646,
+      "writes": 19427,
+      "expansion_limit_hit": false,
+      "cost": 15,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_1",
+      "result": 1,
+      "waypoints": [
+        [
+          7,
+          6
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_2",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          5
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 30314,
+      "writes": 11959,
+      "expansion_limit_hit": false,
+      "cost": 7,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_3",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "popped_nodes": 19,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 87965,
+      "writes": 32440,
+      "expansion_limit_hit": false,
+      "cost": 15,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_4",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          3
+        ]
+      ],
+      "popped_nodes": 2,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 9299,
+      "writes": 3958,
+      "expansion_limit_hit": false,
+      "cost": 1,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_5",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          2
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_6",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          1
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_7",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "popped_nodes": 12,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 60658,
+      "writes": 23062,
+      "expansion_limit_hit": false,
+      "cost": 15,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_8",
+      "result": 1,
+      "waypoints": [
+        [
+          0,
+          7
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_9",
+      "result": 1,
+      "waypoints": [
+        [
+          8,
+          6
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 529,
+      "writes": 265,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_10",
+      "result": 1,
+      "waypoints": [
+        [
+          7,
+          5
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_11",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          4
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_12",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          3
+        ]
+      ],
+      "popped_nodes": 4,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 18365,
+      "writes": 7308,
+      "expansion_limit_hit": false,
+      "cost": 3,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_13",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          2
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_14",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          1
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 529,
+      "writes": 265,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_15",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_16",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          7
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_17",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          7
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "popped_nodes": 11,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 61495,
+      "writes": 23463,
+      "expansion_limit_hit": false,
+      "cost": 15,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_18",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          5
+        ]
+      ],
+      "popped_nodes": 14,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 64420,
+      "writes": 24409,
+      "expansion_limit_hit": false,
+      "cost": 19,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_19",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "popped_nodes": 19,
+      "reopened": 0,
+      "improved_open": 5,
+      "instructions": 78396,
+      "writes": 28969,
+      "expansion_limit_hit": false,
+      "cost": 105,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_20",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          3
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_21",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          2
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_22",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "popped_nodes": 6,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 30167,
+      "writes": 11750,
+      "expansion_limit_hit": false,
+      "cost": 7,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_23",
+      "result": 1,
+      "waypoints": [
+        [
+          7,
+          3
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "popped_nodes": 12,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 59696,
+      "writes": 22591,
+      "expansion_limit_hit": false,
+      "cost": 13,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_24",
+      "result": 1,
+      "waypoints": [
+        [
+          7,
+          1
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "popped_nodes": 10,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 49869,
+      "writes": 19218,
+      "expansion_limit_hit": false,
+      "cost": 15,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_25",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          6
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_26",
+      "result": 1,
+      "waypoints": [
+        [
+          7,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "popped_nodes": 10,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 44411,
+      "writes": 16971,
+      "expansion_limit_hit": false,
+      "cost": 11,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_27",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "popped_nodes": 16,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 81482,
+      "writes": 30782,
+      "expansion_limit_hit": false,
+      "cost": 17,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_28",
+      "result": 1,
+      "waypoints": [
+        [
+          7,
+          3
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_29",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          2
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 529,
+      "writes": 265,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_30",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          1
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_31",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "popped_nodes": 8,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 44087,
+      "writes": 16968,
+      "expansion_limit_hit": false,
+      "cost": 11,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_32",
+      "result": 1,
+      "waypoints": [
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "popped_nodes": 8,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 38007,
+      "writes": 14681,
+      "expansion_limit_hit": false,
+      "cost": 9,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_33",
+      "result": 1,
+      "waypoints": [
+        [
+          2,
+          6
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_34",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          4
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "popped_nodes": 7,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 36012,
+      "writes": 14063,
+      "expansion_limit_hit": false,
+      "cost": 9,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_35",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "popped_nodes": 20,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 99405,
+      "writes": 37036,
+      "expansion_limit_hit": false,
+      "cost": 15,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_36",
+      "result": 1,
+      "waypoints": [
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          3
+        ]
+      ],
+      "popped_nodes": 10,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 47044,
+      "writes": 18003,
+      "expansion_limit_hit": false,
+      "cost": 13,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_37",
+      "result": 1,
+      "waypoints": [
+        [
+          4,
+          0
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "popped_nodes": 9,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 52503,
+      "writes": 20267,
+      "expansion_limit_hit": false,
+      "cost": 13,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_38",
+      "result": 1,
+      "waypoints": [
+        [
+          6,
+          1
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 528,
+      "writes": 264,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "generated_39",
+      "result": 1,
+      "waypoints": [
+        [
+          5,
+          0
+        ]
+      ],
+      "popped_nodes": 0,
+      "reopened": 0,
+      "improved_open": 0,
+      "instructions": 529,
+      "writes": 265,
+      "expansion_limit_hit": false,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    },
+    {
+      "name": "expansion_limit",
+      "result": -1,
+      "waypoints": [],
+      "popped_nodes": 1001,
+      "reopened": 638,
+      "improved_open": 570,
+      "instructions": 3463932,
+      "writes": 1138419,
+      "expansion_limit_hit": true,
+      "cost": null,
+      "full_memory_and_trace_reproduced": true,
+      "independent_coordinate_model": true,
+      "actual_unit_movement": false
+    }
+  ],
+  "original_instructions": 4943296,
+  "original_writes": 1704980,
+  "independently_modeled": true,
+  "complete_memory_instruction_write_trace_replayed": true,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
