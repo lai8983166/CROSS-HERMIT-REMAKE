@@ -1,0 +1,29 @@
+ordinary 1 61 15
+ordinary_job2 1 61 15
+ordinary_job3 1 61 15
+ordinary_job4 1 61 15
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "F:\project\chaomofa\tools\battle_hit_damage_emulation.py", line 106, in run
+    r=super().run();r['input']=self.combat_input;r['initial']=initial
+  File "F:\project\chaomofa\tools\battle_attack_animation_emulation.py", line 114, in run
+    if c['consume'] in ('boundary','early_boundary'):consume=self.prefix()
+  File "F:\project\chaomofa\tools\battle_hit_damage_emulation.py", line 87, in prefix
+    self.uc.emu_start(parent.BOUNDARY,parent.parent.parent.previous.RETURN,timeout=60_000_000,count=1_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\battle_hit_damage_emulation.py", line 69, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_attack_animation_emulation.py", line 66, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_attack_launch_emulation.py", line 46, in code
+    self.source_code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_region_routing_emulation.py", line 83, in code
+    need(any(a<=at<b for a,b in RANGES),'undeclared original instruction '+hex(at))
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: undeclared original instruction 0x495120
