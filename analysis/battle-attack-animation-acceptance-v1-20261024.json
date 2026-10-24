@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "kind": "original active melee animation events and natural effect dispatch frontier",
+  "change": "connect-original-attack-animation",
+  "archive": "openspec/changes/archive/2026-10-24-connect-original-attack-animation",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "8705da431dd46cebdcb7d43ffccaa3b7f1edd021",
+  "implementation_commit": "34dfe251cb0dadcf6bb1cc1553a855bd0da9c8ae",
+  "archive_and_validation_commit": "ddf699737e6dfb853b832a12a163b250bf637caa",
+  "previous_acceptance": {
+    "path": "analysis/battle-attack-launch-acceptance-v1-20261024.json",
+    "sha256": "df33f03bdb1df1af7094495f13337bc3e7d315e04994a0c5226de5aad18ba5e2"
+  },
+  "source_report": {
+    "path": "analysis/battle-attack-animation-source-v2-20261024.json.gz",
+    "bytes": 16422692,
+    "sha256": "b9f81791619557a37a7f5058ed133d63f5d9a559179c7e115451f49c3dcd1d54"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-attack-animation-proof-v3-20261024.json",
+    "sha256": "d17fb83f50eee52acdeaf4f3d68cbf244a8a6e1cd5dc4eac30bc17083d2c6482",
+    "full_units_records_event_child_pools_independent": true,
+    "all_recorded_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 41,
+    "source_binding_roots": 41,
+    "command_roots": 243,
+    "animation_roots": 1608,
+    "natural_effect_frontiers": 37,
+    "inactive_consumer_roots_returned": 2,
+    "animation_ended_cases": 36,
+    "immediate_first_event_frontiers": 4,
+    "original_instructions": 935864,
+    "original_writes": 404055,
+    "recorded_CPU_registers": 57,
+    "owned_regions": 23
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "attack_animation",
+        "checks": 66,
+        "passed": true,
+        "path": "analysis/battle-attack-animation-tests-v2-20261024.log",
+        "sha256": "f977f283aeca70e6494ecd41ceeb31373b87f6a14204958c2ed013c22ef3b1cf"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 253,
+        "passed": true,
+        "path": "analysis/battle-attack-animation-regression-v1-20261024.log",
+        "sha256": "4c83e973ef542bb300187ca086bd50bca76c63efe4ff058cfa2e5239b10fc3d6"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-attack-animation-validation-before-v2-20261024.log",
+        "sha256": "98cc99ff4404e513f28ad342cb48e205b2590aae4fb8aca1de06323aaafc5bde"
+      }
+    ],
+    "tests": 319,
+    "all_passed": true,
+    "preservation": {
+      "path": "analysis/battle-attack-animation-preservation-v2-20261024.json",
+      "sha256": "fcc948dc18827a756ae605e519ffa49301cb9494c8ce9445e0deec35b11e61c8",
+      "frozen_parent_artifacts": 40
+    },
+    "source_report": {
+      "path": "analysis/battle-attack-animation-source-v2-20261024.json.gz",
+      "bytes": 16422692,
+      "sha256": "b9f81791619557a37a7f5058ed133d63f5d9a559179c7e115451f49c3dcd1d54"
+    },
+    "proof": "analysis/battle-attack-animation-proof-v3-20261024.json",
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "strict_after_archive": {
+    "passed": 31,
+    "failed": 0,
+    "path": "analysis/battle-attack-animation-validation-after-v1-20261024.log"
+  },
+  "preserved_parent_artifacts": 40,
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 31973,
+      "sha256": "2a068b3a465797e37ae8686c9479dfb893cfef2926bcb39112aee439c1f81fab"
+    },
+    {
+      "path": "analysis/battle-attack-animation-archive-apply-v1-20261024.json",
+      "bytes": 2989,
+      "sha256": "4a18c82e8adb6899017f72d7046f3d187989858119b678875073e57e302c8bb7"
+    },
+    {
+      "path": "analysis/battle-attack-animation-archive-migration-v1-20261024.json",
+      "bytes": 594,
+      "sha256": "69aa40309605c40951c04c52bb117b2dc6a7352fee8e2fed2f807987a14dbd16"
+    },
+    {
+      "path": "analysis/battle-attack-animation-archive-status-v1-20261024.json",
+      "bytes": 2890,
+      "sha256": "fdf72f0fe99d075fa94dbac2bd0986d95dbff2ff7741805c94c12e5aed5f745d"
+    },
+    {
+      "path": "analysis/battle-attack-animation-archive-validation-v1-20261024.json",
+      "bytes": 589,
+      "sha256": "66006a0193ef441e5c7d675f4a6340a9ac36aef799fb6e5710fdb74a35e0a0af"
+    },
+    {
+      "path": "analysis/battle-attack-animation-model-probe-v1-20261024.log",
+      "bytes": 720,
+      "sha256": "59a31838a46e9f76448619943a18b03ac43d422ef611a04d81c47a23708c5554"
+    },
+    {
+      "path": "analysis/battle-attack-animation-preservation-v1-20261024.json",
+      "bytes": 184372,
+      "sha256": "c79f41cea40e769d43b9c0a541d4ea2aacd1f0141410dfbb36ab254535e00baa"
+    },
+    {
+      "path": "analysis/battle-attack-animation-preservation-v1-20261024.log",
+      "bytes": 69,
+      "sha256": "73e1fa94a77f54bbe85d81a86adba58337e499667aefd58900051c404cd935c6"
+    },
+    {
+      "path": "analysis/battle-attack-animation-preservation-v2-20261024.json",
+      "bytes": 184372,
+      "sha256": "fcc948dc18827a756ae605e519ffa49301cb9494c8ce9445e0deec35b11e61c8"
+    },
+    {
+      "path": "analysis/battle-attack-animation-preservation-v2-20261024.log",
+      "bytes": 69,
+      "sha256": "73e1fa94a77f54bbe85d81a86adba58337e499667aefd58900051c404cd935c6"
+    },
+    {
+      "path": "analysis/battle-attack-animation-probe-v1-20261024.log",
+      "bytes": 1678,
+      "sha256": "6a759a0fe64f97a21259ef49b531365e3aa144e6bbbc64fd141913ddca05e494"
+    },
+    {
+      "path": "analysis/battle-attack-animation-probe-v2-20261024.log",
+      "bytes": 9,
+      "sha256": "2cfe9a48c0a1cbd418abca3be809b35f3e3578a639b4e6a9f74e43bc5778eab8"
+    },
+    {
+      "path": "analysis/battle-attack-animation-probe-v3-20261024.log",
+      "bytes": 646,
+      "sha256": "d8915b78a2a46c4e0dae6a03ddefff5b6368d7042e2a52f0cca308cfc5638a84"
+    },
+    {
+      "path": "analysis/battle-attack-animation-proof-v1-20261024.json",
+      "bytes": 18131,
+      "sha256": "f7d1d9818b2b319bf22ec2b0f32cfe456abce4f56e145130868f2250103e59f1"
+    },
+    {
+      "path": "analysis/battle-attack-animation-proof-v1-20261024.log",
+      "bytes": 828,
+      "sha256": "fde12fe29fb18db2cd30f7602446a23e26f9783afcfe98da2f42c1ca6c8b17d7"
+    },
+    {
+      "path": "analysis/battle-attack-animation-proof-v2-20261024.log",
+      "bytes": 1272,
+      "sha256": "62ca2b1ac08dcc8e3f7b450f91443d6907f52317556f94e7eb8357be6738d1d0"
+    },
+    {
+      "path": "analysis/battle-attack-animation-proof-v3-20261024.json",
+      "bytes": 18131,
+      "sha256": "d17fb83f50eee52acdeaf4f3d68cbf244a8a6e1cd5dc4eac30bc17083d2c6482"
+    },
+    {
+      "path": "analysis/battle-attack-animation-proof-v3-20261024.log",
+      "bytes": 828,
+      "sha256": "fde12fe29fb18db2cd30f7602446a23e26f9783afcfe98da2f42c1ca6c8b17d7"
+    },
+    {
+      "path": "analysis/battle-attack-animation-regression-v1-20261024.log",
+      "bytes": 25231,
+      "sha256": "4c83e973ef542bb300187ca086bd50bca76c63efe4ff058cfa2e5239b10fc3d6"
+    },
+    {
+      "path": "analysis/battle-attack-animation-source-v1-20261024.json.gz",
+      "bytes": 16001616,
+      "sha256": "4daa66fd586d01b5bb712e9518fe7fa0a0ffe22b31ea28bb813f8e6db20d626e"
+    },
+    {
+      "path": "analysis/battle-attack-animation-source-v1-20261024.log",
+      "bytes": 664,
+      "sha256": "0b5fb63df4294533963e5d262f58642da036cf00eef2e3ac62d036176ccfca02"
+    },
+    {
+      "path": "analysis/battle-attack-animation-source-v2-20261024.json.gz",
+      "bytes": 16422692,
+      "sha256": "b9f81791619557a37a7f5058ed133d63f5d9a559179c7e115451f49c3dcd1d54"
+    },
+    {
+      "path": "analysis/battle-attack-animation-source-v2-20261024.log",
+      "bytes": 664,
+      "sha256": "0b5fb63df4294533963e5d262f58642da036cf00eef2e3ac62d036176ccfca02"
+    },
+    {
+      "path": "analysis/battle-attack-animation-tests-v1-20261024.log",
+      "bytes": 6179,
+      "sha256": "319e0d67e1ce8a094bfacd4e7656d22c5aea52ed79c27ff8bf35c7826770299c"
+    },
+    {
+      "path": "analysis/battle-attack-animation-tests-v2-20261024.log",
+      "bytes": 6300,
+      "sha256": "f977f283aeca70e6494ecd41ceeb31373b87f6a14204958c2ed013c22ef3b1cf"
+    },
+    {
+      "path": "analysis/battle-attack-animation-validation-after-v1-20261024.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-attack-animation-validation-before-v1-20261024.log",
+      "bytes": 3315,
+      "sha256": "98cc99ff4404e513f28ad342cb48e205b2590aae4fb8aca1de06323aaafc5bde"
+    },
+    {
+      "path": "analysis/battle-attack-animation-validation-before-v2-20261024.log",
+      "bytes": 3315,
+      "sha256": "98cc99ff4404e513f28ad342cb48e205b2590aae4fb8aca1de06323aaafc5bde"
+    },
+    {
+      "path": "analysis/battle-attack-animation-validation-v1-20261024.json",
+      "bytes": 1409,
+      "sha256": "5a44e8d74ed8f3e2dcdba03773c98dff7b3ac5767872332ed562e160fc1e5f1c"
+    },
+    {
+      "path": "docs/battle_attack_animation.md",
+      "bytes": 5582,
+      "sha256": "ee1d0c7de2042b1622d8f044910cb21aa07ab1f134c516e3f2d3b6f08f13d48a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-attack-animation/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "9c089d3d7d46286b66080e205d2f08e49145c0ef4b19fdfba1574060f7e0a03a"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-attack-animation/design.md",
+      "bytes": 1732,
+      "sha256": "9cc9a2c49f070bfac5e227b1418db3f722923ef192087d139535a92b6ac511f5"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-attack-animation/proposal.md",
+      "bytes": 1285,
+      "sha256": "77f62567d911cf12992a797be4f7f8bd979cb07d7c8f1d51e517a90ed11730c7"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-24-connect-original-attack-animation/tasks.md",
+      "bytes": 695,
+      "sha256": "deb268a1b57d2e6ebb5b53cd16d1b30471fa411526dc66c9bfaf48e796709486"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 62884,
+      "sha256": "56de7011d811bc47883dea2bfe7d2ed25221491b1b7aad7180ac03dba93a3698"
+    },
+    {
+      "path": "tools/battle_attack_animation.py",
+      "bytes": 11162,
+      "sha256": "028cca0ae26718f6f3e45eb45c57684fb450ef7ca62867300fb3f371a3d6ee3e"
+    },
+    {
+      "path": "tools/battle_attack_animation_emulation.py",
+      "bytes": 9123,
+      "sha256": "a8af832d71b6e11cabffb12086bb0a36c0d0e83718528e3efd7cc9d77c9635fe"
+    },
+    {
+      "path": "tools/battle_attack_animation_preservation.py",
+      "bytes": 1791,
+      "sha256": "4c7e6cd877d4613c822cc38f03bf0d8075002af28a3eaec9c02cb2ee088bbf8b"
+    },
+    {
+      "path": "tools/battle_attack_animation_verification.py",
+      "bytes": 10845,
+      "sha256": "4477c60ba86921003816774e4efd4a315cd7b4c3baf6462e2eccd6f5e60416e8"
+    },
+    {
+      "path": "tools/tests/test_battle_attack_animation.py",
+      "bytes": 5878,
+      "sha256": "924a6b352361cc44dfdb53c9bf68054771c159812f2ba2ef7605b6e072447271"
+    }
+  ],
+  "index_worktree_HEAD_bytes_identical": true,
+  "scope": {
+    "OS_input_submitted": false,
+    "screen_unlock_required": false,
+    "Godot_changed": false,
+    "original_saves_changed": false,
+    "game_function_results_stubbed": false,
+    "host_derived_unit_fields_written": false,
+    "declared_loaded_animation_cache": true,
+    "original_binding_and_active_animation_executed": true,
+    "original_file_GPU_sound_device_loading_executed": false,
+    "standalone_animation_result_not_written_to_world_field": true,
+    "full_world_frame": false,
+    "hit_damage_death_verified": false,
+    "original_effect_body_executed": false
+  },
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
