@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "validation": [
+    {
+      "kind": "live_world_terminal",
+      "checks": 32,
+      "passed": true,
+      "path": "analysis/battle-live-terminal-tests-v1-20261025.log",
+      "bytes": 3183,
+      "sha256": "84861b080e1eaf16d70cd4f2bd73203a04f956434805642153daa8ec939a6c26"
+    },
+    {
+      "kind": "related_regression",
+      "checks": 105,
+      "passed": true,
+      "path": "analysis/battle-live-terminal-regression-v1-20261025.log",
+      "bytes": 11572,
+      "sha256": "a6d816da6295bbe75b3c6c9343ab3b21cc8da6f14d04edee8913264b7e1c867d"
+    },
+    {
+      "kind": "strict_before_archive",
+      "checks": 32,
+      "passed": true,
+      "path": "analysis/battle-live-terminal-validation-before-v1-20261025.log",
+      "bytes": 3316,
+      "sha256": "05a24b9ae4c3bf18c476df7f0035597a97880002c43dcfc480e63f13ba76e861"
+    }
+  ],
+  "tests": 137,
+  "all_passed": true,
+  "source_implementation_commit": "37f65730430177f4b644af73de151aea49bbb036",
+  "baseline_commit": "3db2c021f13d0badba6772874b2d6798ab606fe0",
+  "preservation": {
+    "path": "analysis/battle-live-terminal-preservation-v2-20261025.json",
+    "bytes": 268990,
+    "sha256": "e0eaa410ec4f97f755b5d1753184df8d683dd775f0bb4dacb367f39c7d1ad2be",
+    "frozen_parent_artifacts": 34
+  },
+  "source_report": {
+    "path": "analysis/battle-live-terminal-source-v2-20261025.json",
+    "bytes": 7257,
+    "sha256": "83a0ef8627836c1aa839f2f1b73e4ab073bdb0646bdb99283e9bf672e6bb244e"
+  },
+  "proof": {
+    "path": "analysis/battle-live-terminal-proof-v1-20261025.json",
+    "bytes": 4739,
+    "sha256": "678a9df99682aa33c1e254d01a22309cfcf60cc09ade9ffe8323a09dd16537ba"
+  },
+  "driver": {
+    "path": "analysis/battle-live-terminal-driver-v1-20261025.json",
+    "bytes": 2482,
+    "sha256": "fbd801dee0b6a53d4c7abb7a9979f264ceec64abc4a76d8f13b5f430783e5634"
+  },
+  "replay_dispatch": {
+    "path": "analysis/battle-live-terminal-replay-dispatch-v1-20261025.py",
+    "bytes": 2698,
+    "sha256": "e45bceb63210dbae935b33aacd2555218c231c13821d081f253bd273da4139b4"
+  },
+  "independent_whole_VM_world_byte_model": false,
+  "independent_frame_clock_combat_event_and_result_contracts": true,
+  "all_owned_memory_CPU_and_original_digests_replayed": true,
+  "combat_snapshot_loaded": false,
+  "combat_world_events_same_logical_instance": true,
+  "original_outer_scheduler_connected": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R5_complete": false,
+  "R6_complete": false
+}

@@ -41,4 +41,4 @@ v1完整采集在首次飘字的4958B0未知PC处保留失败；已完成的中�
 
 四例致死在首次选择时记录状态均到4、被移除单位命令11；本次按每帧原事件检查得到此结果，不人为增加等待到移除。原攻击、受伤、死亡计数和玩家结果记录连续接入；中性首帧选择1、到时第3帧选择4、保命192帧保持0。
 
-正式[source-v2](../analysis/battle-live-terminal-source-v2-20261025.json)，完整新实例重放仍在执行，尚未据此封存验收。
+正式[source-v2](../analysis/battle-live-terminal-source-v2-20261025.json)，七例45拥有区、57项CPU、全部逐帧状态和原指令/写入累计摘要的新实例重放全部一致；摘要不等于保留逐项PC/写入列表。见[独立规则与完整重放](../analysis/battle-live-terminal-proof-v1-20261025.json)及[最终验收](../analysis/battle-live-terminal-acceptance-v1-20261025.json)。
