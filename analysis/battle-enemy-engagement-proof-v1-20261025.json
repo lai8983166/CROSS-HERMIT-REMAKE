@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "source_report": {
+    "path": "analysis/battle-enemy-engagement-source-v1-20261025.json",
+    "bytes": 154714,
+    "sha256": "2c0c0f317d8318128a9511f3d99dbfbba41950abe81376ab9ea71f1c79f90520"
+  },
+  "cases": [
+    {
+      "name": "enemy_job1",
+      "frames": 162,
+      "slot_predicates": 40500,
+      "unit_updates": 324,
+      "terminal_index": 160,
+      "completed_rounds": 2,
+      "hit_kinds": [
+        1,
+        1
+      ],
+      "battle_draws": 43,
+      "HP": 1000,
+      "target_alive": 1,
+      "target_command": 5,
+      "target_position": [
+        63963136,
+        5767168
+      ],
+      "instructions": 15456441,
+      "writes": 6879461,
+      "actual_API_leaves": 18,
+      "full_state_independent": true,
+      "all_memory_CPU_trace_replayed": true
+    },
+    {
+      "name": "enemy_job2",
+      "frames": 162,
+      "slot_predicates": 40500,
+      "unit_updates": 324,
+      "terminal_index": 160,
+      "completed_rounds": 2,
+      "hit_kinds": [
+        1,
+        1
+      ],
+      "battle_draws": 43,
+      "HP": 1000,
+      "target_alive": 1,
+      "target_command": 5,
+      "target_position": [
+        63963136,
+        5767168
+      ],
+      "instructions": 15456331,
+      "writes": 6879409,
+      "actual_API_leaves": 18,
+      "full_state_independent": true,
+      "all_memory_CPU_trace_replayed": true
+    },
+    {
+      "name": "enemy_job3",
+      "frames": 138,
+      "slot_predicates": 34500,
+      "unit_updates": 276,
+      "terminal_index": 136,
+      "completed_rounds": 2,
+      "hit_kinds": [
+        1,
+        1
+      ],
+      "battle_draws": 43,
+      "HP": 992,
+      "target_alive": 1,
+      "target_command": 5,
+      "target_position": [
+        63963136,
+        5767168
+      ],
+      "instructions": 13176197,
+      "writes": 5864655,
+      "actual_API_leaves": 18,
+      "full_state_independent": true,
+      "all_memory_CPU_trace_replayed": true
+    },
+    {
+      "name": "enemy_job4",
+      "frames": 138,
+      "slot_predicates": 34500,
+      "unit_updates": 276,
+      "terminal_index": 136,
+      "completed_rounds": 2,
+      "hit_kinds": [
+        1,
+        1
+      ],
+      "battle_draws": 43,
+      "HP": 992,
+      "target_alive": 1,
+      "target_command": 5,
+      "target_position": [
+        63963136,
+        5767168
+      ],
+      "instructions": 13176087,
+      "writes": 5864603,
+      "actual_API_leaves": 18,
+      "full_state_independent": true,
+      "all_memory_CPU_trace_replayed": true
+    },
+    {
+      "name": "neutral_relation",
+      "frames": 96,
+      "slot_predicates": 24000,
+      "unit_updates": 192,
+      "terminal_index": 94,
+      "completed_rounds": 0,
+      "hit_kinds": [],
+      "battle_draws": 39,
+      "HP": 1000,
+      "target_alive": 1,
+      "target_command": 5,
+      "target_position": [
+        63963136,
+        5767168
+      ],
+      "instructions": 9194305,
+      "writes": 4096610,
+      "actual_API_leaves": 0,
+      "full_state_independent": true,
+      "all_memory_CPU_trace_replayed": true
+    },
+    {
+      "name": "search_disabled",
+      "frames": 96,
+      "slot_predicates": 24000,
+      "unit_updates": 192,
+      "terminal_index": 94,
+      "completed_rounds": 0,
+      "hit_kinds": [],
+      "battle_draws": 39,
+      "HP": 1000,
+      "target_alive": 1,
+      "target_command": 5,
+      "target_position": [
+        63963136,
+        5767168
+      ],
+      "instructions": 9157620,
+      "writes": 4080165,
+      "actual_API_leaves": 0,
+      "full_state_independent": true,
+      "all_memory_CPU_trace_replayed": true
+    }
+  ],
+  "case_count": 6,
+  "world_frames": 792,
+  "slot_predicates": 198000,
+  "unit_updates": 1584,
+  "original_instructions": 75616981,
+  "original_writes": 33664903,
+  "implementation_sha256": {
+    "tools/battle_enemy_engagement.py": "6734ed0c57927da65aea63b5ebbde65c64f1d8a21464990d419c50050f130823",
+    "tools/battle_enemy_engagement_model.py": "0c202b4a9eb473a63c690158c4248c606cb9f7980f83df8a9753bae5faf9f8fc",
+    "tools/battle_enemy_engagement_emulation.py": "3067afd0a70bb27d5c835d92ee35c28c9d8a2240970c409149d2b7b7b9a37606",
+    "tools/battle_enemy_engagement_verification.py": "1f87cbed9400cc32bc68207da47c2603d4b08502c1b2a6532d7d90dcc3f274fb"
+  },
+  "original_native_outer_scheduler_rendering_or_victory_complete": false,
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}

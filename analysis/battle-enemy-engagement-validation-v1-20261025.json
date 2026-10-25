@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "validation": [
+    {
+      "kind": "enemy_engagement",
+      "checks": 42,
+      "passed": true,
+      "path": "analysis/battle-enemy-engagement-tests-v2-20261025.log",
+      "bytes": 4689,
+      "sha256": "53b3a59a9048c9bbdbe1487fa55c94308c0345bdc9f3fa3aa5a51079d8c5dbf4"
+    },
+    {
+      "kind": "related_regression",
+      "checks": 520,
+      "passed": true,
+      "path": "analysis/battle-enemy-engagement-regression-v1-20261025.log",
+      "bytes": 50664,
+      "sha256": "2493dcc402a52263fcbafaf8c95d1a233a2fc188aa1bab25153457f95e93a141"
+    },
+    {
+      "kind": "strict_before_archive",
+      "checks": 32,
+      "passed": true,
+      "path": "analysis/battle-enemy-engagement-validation-before-v1-20261025.log",
+      "bytes": 3315,
+      "sha256": "0d119e999614332cfad1ef0fd70886c4219579e123a408a9b97bdb1600b39103"
+    }
+  ],
+  "tests": 562,
+  "all_passed": true,
+  "preservation": {
+    "path": "analysis/battle-enemy-engagement-preservation-v2-20261025.json",
+    "bytes": 225395,
+    "sha256": "a83d882da9b7aba4bc3f3f05e70b6f62e111757bfbeb1259ed6170198be1f559",
+    "frozen_parent_artifacts": 52
+  },
+  "source_report": {
+    "path": "analysis/battle-enemy-engagement-source-v1-20261025.json",
+    "bytes": 154714,
+    "sha256": "2c0c0f317d8318128a9511f3d99dbfbba41950abe81376ab9ea71f1c79f90520"
+  },
+  "proof": {
+    "path": "analysis/battle-enemy-engagement-proof-v1-20261025.json",
+    "bytes": 4387,
+    "sha256": "438d218f321f95061cc6c099fbf5cfc664277021d76504eae1e2363d85eae1b4"
+  },
+  "guard_equivalence": {
+    "path": "analysis/battle-enemy-engagement-guard-proof-v1-20261025.json",
+    "bytes": 1070,
+    "sha256": "e86bd91be6ee889797ccf0adb1a39b3649e1be86ab5921a3d09ceef00ea4e0b2"
+  },
+  "resolved_diagnostic": {
+    "log": {
+      "path": "analysis/battle-enemy-engagement-tests-v1-20261025.log",
+      "bytes": 5364,
+      "sha256": "f7b44d3864e4840c5061b3fed9fc62ea5ee7e49d860bc51ebb451a165dc3aa35"
+    },
+    "reason": "test assertion conflated physical-hit snapshot draws40/42 with subsequent effect-variant draws41/43; independent model and original source already agreed",
+    "targeted_fix": {
+      "path": "analysis/battle-enemy-engagement-timing-test-v1-20261025.log",
+      "bytes": 230,
+      "sha256": "4ffd4a799dee23337fe7ae45f086246c669697edf324b05899600f379237583a"
+    },
+    "full_corrected_suite_passed": true
+  },
+  "R3_complete": false,
+  "R4_complete": false,
+  "R6_complete": false
+}
