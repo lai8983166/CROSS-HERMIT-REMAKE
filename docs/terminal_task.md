@@ -22,6 +22,7 @@
 - 证明：`analysis/terminal-task-proof-v1-20261026.json`，独立规则核对任务阶段、输入请求、VM单条推进、资源包、原返回地址及SEH；两例全部50个拥有区、57项CPU和累计原指令/写入摘要均由新实例重放一致。
 - 开发诊断v1/v2/v3原样保留：分别发现主对象启用后的真实音频代码入口、其清零写范围、观察器栈参数数量。425E60实际ret4，4C1F40实际ret10h；均据原指令修正，未改游戏执行结果。
 - `tools/tests/test_terminal_task.py`覆盖完整合同、运行期主机写入限制，以及阶段、PC、资源包、栈、SEH、平台查询和观察记录篡改拒绝。
+- 33项专项及136项相关历史回归通过，共169项；冻结前驱29项及其固定验收，递归复核原资源、存档、检查点和历史证据。严格规格在归档前后分别复核。
 
 ```bash
 PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.terminal_task_emulation --out analysis/terminal-task-source-NEW.json.gz
