@@ -1,0 +1,463 @@
+{
+  "schema_version": 1,
+  "kind": "full original scene-4 event, condition VM, task selector and result finalization from explicitly loaded accepted combat memory",
+  "change": "connect-original-terminal-selection",
+  "archive": "openspec/changes/archive/2026-10-25-connect-original-terminal-selection",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "dcd4c0ffff1a26b9021e1015e636432bd5d67153",
+  "source_implementation_commit": "ffac2fd7817f8e08de66c78dca8194c67c756ff6",
+  "implementation_commit": "43d17b3c83c2ebf1c08b18094a09f2808dc7fa42",
+  "archive_and_validation_commit": "950df99bf0a1fb3fa2d15c6b48c596f539105abd",
+  "previous_acceptance": {
+    "path": "analysis/battle-lethal-combat-acceptance-v1-20261025.json",
+    "bytes": 28454,
+    "sha256": "35034fa4c5f704769cb7eab14190f9c52a89906572cc191b6e41ddb31ab9d997"
+  },
+  "source_report": {
+    "path": "analysis/battle-terminal-selection-source-v3-20261025.json.gz",
+    "bytes": 2962902,
+    "sha256": "8818a465255f3b1ae96e4bc80a725f07ceec5653e459ba0154da59cbb7a0f01f"
+  },
+  "independent_proof": {
+    "path": "analysis/battle-terminal-selection-proof-v1-20261025.json",
+    "bytes": 3421,
+    "sha256": "867022b35a54a264ba5fb365083f16cf87287ce854c42530645010e968c218cc",
+    "scope": "scene predicates, sourced five-instruction condition path, nested script directory, full task prefix and entire result-data pages",
+    "whole_VM_or_world_state_independently_predicted": false,
+    "all_owned_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 8,
+    "original_instructions": 327779,
+    "original_writes": 126367,
+    "owned_regions": 45,
+    "recorded_CPU_registers": 57,
+    "condition_VM_instructions": 35,
+    "actual_source_API_leaves": 14,
+    "complete_event_roots": 8,
+    "explicit_result_input_roots": 8,
+    "case_results": [
+      {
+        "name": "enemy_dies_job1_running",
+        "sub": 2,
+        "selector": 1,
+        "no_hostile": true,
+        "own_dead": false,
+        "score": 20,
+        "player_kills": 1,
+        "player_contribution": 20,
+        "player_deaths": 0,
+        "original_instructions": 34918,
+        "original_writes": 12936,
+        "condition_commands": 5,
+        "actual_source_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "enemy_dies_job1_expired",
+        "sub": 2,
+        "selector": 1,
+        "no_hostile": true,
+        "own_dead": false,
+        "score": 20,
+        "player_kills": 1,
+        "player_contribution": 20,
+        "player_deaths": 0,
+        "original_instructions": 34918,
+        "original_writes": 12936,
+        "condition_commands": 5,
+        "actual_source_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "player_dies_job1_running",
+        "sub": 14,
+        "selector": 5,
+        "no_hostile": false,
+        "own_dead": true,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 1,
+        "original_instructions": 66988,
+        "original_writes": 26719,
+        "condition_commands": 5,
+        "actual_source_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "player_dies_job1_expired",
+        "sub": 11,
+        "selector": 4,
+        "no_hostile": false,
+        "own_dead": true,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 1,
+        "original_instructions": 34196,
+        "original_writes": 12613,
+        "condition_commands": 5,
+        "actual_source_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "player_threshold_survives_running",
+        "sub": null,
+        "selector": 0,
+        "no_hostile": false,
+        "own_dead": false,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 0,
+        "original_instructions": 54191,
+        "original_writes": 23334,
+        "condition_commands": 0,
+        "actual_source_API_leaves": 0,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "player_threshold_survives_expired",
+        "sub": 11,
+        "selector": 4,
+        "no_hostile": false,
+        "own_dead": false,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 0,
+        "original_instructions": 34196,
+        "original_writes": 12613,
+        "condition_commands": 5,
+        "actual_source_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "neutral_living_control_running",
+        "sub": 2,
+        "selector": 1,
+        "no_hostile": true,
+        "own_dead": false,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 0,
+        "original_instructions": 34186,
+        "original_writes": 12608,
+        "condition_commands": 5,
+        "actual_source_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "neutral_living_control_expired",
+        "sub": 2,
+        "selector": 1,
+        "no_hostile": true,
+        "own_dead": false,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 0,
+        "original_instructions": 34186,
+        "original_writes": 12608,
+        "condition_commands": 5,
+        "actual_source_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      }
+    ]
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "terminal_selection",
+        "checks": 34,
+        "passed": true,
+        "path": "analysis/battle-terminal-selection-tests-v1-20261025.log",
+        "bytes": 3578,
+        "sha256": "e16a50d5f08390a62a1dd3bf4efeda3b0a0d2cf31c9457c6ccc7c5f22a944969"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 71,
+        "passed": true,
+        "path": "analysis/battle-terminal-selection-regression-v1-20261025.log",
+        "bytes": 8097,
+        "sha256": "64b75ad9c710887f93432c680f3b7398067b4461e1d18ec146fd12320f89e3eb"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-terminal-selection-validation-before-v1-20261025.log",
+        "bytes": 3317,
+        "sha256": "992441c17528e8c43966db0a54a7ae3a375061cce8997f4465878e0ba0c62370"
+      },
+      {
+        "kind": "strict_after_archive",
+        "checks": 31,
+        "passed": true,
+        "path": "analysis/battle-terminal-selection-validation-after-v1-20261025.log",
+        "bytes": 3145,
+        "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+      }
+    ],
+    "tests": 105,
+    "all_passed": true,
+    "source_implementation_commit": "ffac2fd7817f8e08de66c78dca8194c67c756ff6",
+    "baseline_commit": "dcd4c0ffff1a26b9021e1015e636432bd5d67153",
+    "preservation": {
+      "path": "analysis/battle-terminal-selection-preservation-v2-20261025.json",
+      "bytes": 260213,
+      "sha256": "a9c62401fbdc60a59987a39ada31b66febbdc80e1dbaf6e292ded9ee1dd1c4b5",
+      "frozen_parent_artifacts": 32
+    },
+    "source_report": {
+      "path": "analysis/battle-terminal-selection-source-v3-20261025.json.gz",
+      "bytes": 2962902,
+      "sha256": "8818a465255f3b1ae96e4bc80a725f07ceec5653e459ba0154da59cbb7a0f01f"
+    },
+    "proof": {
+      "path": "analysis/battle-terminal-selection-proof-v1-20261025.json",
+      "bytes": 3421,
+      "sha256": "867022b35a54a264ba5fb365083f16cf87287ce854c42530645010e968c218cc"
+    },
+    "driver": {
+      "path": "analysis/battle-terminal-selection-driver-v1-20261025.json",
+      "bytes": 797,
+      "sha256": "e85fef55cb03b7100d3496523396c509a10d627a3db072704aca7837cadf3428"
+    },
+    "independent_whole_VM_or_world_byte_model": false,
+    "independent_scene_condition_and_result_contracts": true,
+    "all_owned_memory_CPU_and_original_trace_replayed": true,
+    "parent_702_test_suite_is_frozen_baseline_not_rerun": true,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R5_complete": false,
+    "R6_complete": false
+  },
+  "driver": {
+    "path": "analysis/battle-terminal-selection-driver-v1-20261025.json",
+    "bytes": 797,
+    "sha256": "e85fef55cb03b7100d3496523396c509a10d627a3db072704aca7837cadf3428"
+  },
+  "boundaries": {
+    "complete_38_combat_memory_regions_explicitly_loaded": true,
+    "old_CPU_resume": false,
+    "scene4_and_script_loader_state_declared": true,
+    "task_prefix_declared_at_controller_minus_190": true,
+    "remaining_time_inputs": [
+      36000,
+      0
+    ],
+    "elapsed_time_input": 0,
+    "derived_task_selector_host_injected": false,
+    "actual_condition_VM_executed": true,
+    "terminal_display_script_bound_but_not_advanced": true,
+    "original_combat_scene_scheduler_same_lifetime": false,
+    "automatic_original_terminal_selection_under_declared_inputs": true,
+    "rewards_or_terminal_task_exit_complete": false,
+    "other_scene_rules_complete": false,
+    "source_APIs_actual": true,
+    "fresh_replay_clock_is_explicit_captured_platform_input": true,
+    "independent_whole_VM_world_byte_model": false,
+    "OS_input_or_unlock_requested": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R5_complete": false,
+    "R6_complete": false,
+    "delivery_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 38157,
+      "sha256": "aabc45f6982a3cf3eb944b4a11f2bed01ef0906e3f12ae4f46660f35a98da371"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-apply-v1-20261025.json",
+      "bytes": 3093,
+      "sha256": "8ff0558d7ec91d82b6745efc72a5cc7496d141bf9bc3391ed759f08677050166"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-archive-inputs-v1-20261025.json",
+      "bytes": 1008,
+      "sha256": "0e57a393d5872c01323383510715bb89e50e9e86d9169fa18bde3ef924ea3b9f"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-archive-receipt-v1-20261025.json",
+      "bytes": 1082,
+      "sha256": "a8f1e5c0caa26ba16565ac1652a51a9a7179b955d870c93eb07eb53237769ff3"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-diagnostics-v1-20261025.json",
+      "bytes": 3319,
+      "sha256": "797fb55e124e9c1fe1b02d101f0bfba3bbf5f158482914a3cd95e6033ea6c4e8"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-driver-v1-20261025.json",
+      "bytes": 797,
+      "sha256": "e85fef55cb03b7100d3496523396c509a10d627a3db072704aca7837cadf3428"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v1-20261025.json.gz.failure.json.gz",
+      "bytes": 12645,
+      "sha256": "8514874df8717a5aba34a89edbe833f2aa35c9715557d06831cace57332c021f"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v2-20261025.json.gz.failure.json.gz",
+      "bytes": 13207,
+      "sha256": "a6bb1789b613af10757cc124f5ae0151b03b4665420e5709be88a86ba6e04162"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v3-20261025.json.gz.failure.json.gz",
+      "bytes": 14771,
+      "sha256": "6fbda3da77d5254b0a96485a0a5fb37a235b9af8fa40b7c019623985014f8ab9"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v4-20261025.json.gz.failure.json.gz",
+      "bytes": 17280,
+      "sha256": "3e45c9e0cc8165c4e59dd7ab49da174ed06316252f30933e58593a6cace1d42c"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v5-20261025.json.gz.failure.json.gz",
+      "bytes": 19183,
+      "sha256": "b69c4177b886176c3d54c19dd9d73ed0ec2d66f620dca7e2693b3bcfa10f43e5"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v6-20261025.json.gz.failure.json.gz",
+      "bytes": 20704,
+      "sha256": "bc60de4cf34a9187ed0c8b8a1dbce2217ec2b8b7965e68a403b3766e9fae40db"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v7-20261025.json.gz",
+      "bytes": 374735,
+      "sha256": "1a9823b676b9421e45782e4f343477d2ead853802e1f1e1f35df3d0bf25d4f4b"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-preservation-v1-20261025.json",
+      "bytes": 259815,
+      "sha256": "bb0e0143493d69088b3753304e9088fcab2ca76bc35e4a2c62fec74e2e62a48b"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-preservation-v2-20261025.json",
+      "bytes": 260213,
+      "sha256": "a9c62401fbdc60a59987a39ada31b66febbdc80e1dbaf6e292ded9ee1dd1c4b5"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-proof-v1-20261025.json",
+      "bytes": 3421,
+      "sha256": "867022b35a54a264ba5fb365083f16cf87287ce854c42530645010e968c218cc"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-regression-v1-20261025.log",
+      "bytes": 8097,
+      "sha256": "64b75ad9c710887f93432c680f3b7398067b4461e1d18ec146fd12320f89e3eb"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-source-v1-20261025.json.gz",
+      "bytes": 2957732,
+      "sha256": "24b7788221a6719fed97a66d0acfacc780e99c7bff63f6ab73004d2066328838"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-source-v2-20261025.json.gz",
+      "bytes": 2958951,
+      "sha256": "60252100e77dc22ac471d5b22bd39a39c4e355185e0c1fd8c42937e10b9dd9e0"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-source-v3-20261025.json.gz",
+      "bytes": 2962902,
+      "sha256": "8818a465255f3b1ae96e4bc80a725f07ceec5653e459ba0154da59cbb7a0f01f"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-status-v1-20261025.json",
+      "bytes": 2910,
+      "sha256": "809bb1bb42c5ff900ab92d44ebe6bc720ef4a6a2eb2813b657635bca92acae18"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-tests-v1-20261025.log",
+      "bytes": 3578,
+      "sha256": "e16a50d5f08390a62a1dd3bf4efeda3b0a0d2cf31c9457c6ccc7c5f22a944969"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-validation-after-v1-20261025.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-validation-before-v1-20261025.log",
+      "bytes": 3317,
+      "sha256": "992441c17528e8c43966db0a54a7ae3a375061cce8997f4465878e0ba0c62370"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-validation-v1-20261025.json",
+      "bytes": 2218,
+      "sha256": "6bc92a6df8ae75ebb3aebb9ef4c5029203693389f806f78f881c1a6413355969"
+    },
+    {
+      "path": "docs/battle_terminal_selection.md",
+      "bytes": 4387,
+      "sha256": "093a7ca14127abfdf94e7a0cc3e58d3d6713bcb4b90ed1aed1380c685a1578d5"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-terminal-selection/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "049e2683e8f1e88703285d6a8ac1fbd6fd013c15373c6b6af8fdf44ec25da4e4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-terminal-selection/design.md",
+      "bytes": 2147,
+      "sha256": "49ea99615c2a09b7dd30ff4bfcb34faa18194715d7bd5b48e7914a6ccea31219"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-terminal-selection/proposal.md",
+      "bytes": 1249,
+      "sha256": "f14e612641b9379d98ba799d3c9e1ba4a46fb83f6e57399833425c2f82e2d247"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-terminal-selection/tasks.md",
+      "bytes": 780,
+      "sha256": "1fdcabc4b9c1bce19f382e3d8d772132ce06bc05f2976cc2931d0275667f6a47"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 80974,
+      "sha256": "7d120244067715348e645ac0bc66f6547d1ffa5e7cffaec9bb0c0f45172af6e6"
+    },
+    {
+      "path": "tools/battle_terminal_selection_emulation.py",
+      "bytes": 11911,
+      "sha256": "a226a13d75aa944dbf0cf8f8dab68cdaed41f40b64b48f5e700ca0f153ba25ce"
+    },
+    {
+      "path": "tools/battle_terminal_selection_model.py",
+      "bytes": 6569,
+      "sha256": "a759b9a36a9e00ee22f4bf5316524f2b8d43df2dc870dcb43d12e17face518d7"
+    },
+    {
+      "path": "tools/battle_terminal_selection_preservation.py",
+      "bytes": 1547,
+      "sha256": "0ed65c9db3a8ba91c87cf512da4be6d6aae632b15c850715f10bce1fe1a71245"
+    },
+    {
+      "path": "tools/battle_terminal_selection_verification.py",
+      "bytes": 7140,
+      "sha256": "a3a69976a2c3a451755cafdaa9fec6d6b61da25aeccb7fca3047177830e77aac"
+    },
+    {
+      "path": "tools/tests/test_battle_terminal_selection.py",
+      "bytes": 6351,
+      "sha256": "e962b0bc84e4471fc6a34f7f1adecbb7f97b9ef159100f0e7c9402401259959c"
+    }
+  ],
+  "raw_bytes": {
+    "worktree_index_HEAD_identical_before_acceptance": true,
+    "artifact_count": 36,
+    "LF_for_code_markdown_json_yaml": true,
+    "logs_preserved_as_binary_text": true,
+    "unrelated_preexisting_six_untracked_skill_directories_preserved": true
+  }
+}
