@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 175, in <module>
+    r=run_case(c,ch,gh);rows.append(r);print(c['name'],r['instructions'],r['writes'],'PC',r['overlay_continuation']['after']['VM'][56:64],flush=True)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 161, in run_case
+    m=OverlayMachine(c,live,gpu,ticks);row=m.run();row.update(CRT_cleanup=live.close(),GPU_cleanup=gpu.close(),CRT_trace=live.trace,GPU_trace=gpu.trace,CRT_exit=live.exit_code,GPU_exit=gpu.process.returncode);return row
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 147, in run
+    row=super().run();row.update(resource_initialization=self.resource_steps,resource_loaded=self.loaded,overlay_continuation=self.continuation,resource_domain=self.domain,CRT_APIs=self.crt_apis,GPU_APIs=self.gpu_calls,extra_original_instruction_counts=dict(self.extra_counts),current_GPU_hello=self.gpu.hello,current_CRT_hello=self.live.hello,typed_GPU_projection=self.space.ledger())
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 119, in run
+    admission=self.admission();row=dict(input=self.live_input,combat_input=self.cycle_input,initial=initial,initialization=initialization,image_before=image_before,image_after=self.image_identity(),
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 141, in admission
+    self.initialize_resources();a=super().admission();self.active_overlay=True;before=self.mark();cpu=self.cpu();self.task_active=True
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 132, in initialize_resources
+    self.resource_root('original_heap_initialization',0x57B9D0,[1],cdecl=True);self.resource_root('original_lock_initialization',0x576F60)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 128, in resource_root
+    self.uc.reg_write(UC_X86_REG_ESP,sp);self.uc.reg_write(UC_X86_REG_ECX,receiver);self.uc.emu_start(entry,RETURN,timeout=60_000_000,count=4_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 112, in code
+    if at in getattr(self,'api_targets',{}) and at not in parent.APIS:self.api_crt(self.api_targets[at]);return
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 87, in api_crt
+    self.uc.mem_write(out['pointer'],b);out['hex']=b.hex();out['native_hex']=original.hex()
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 995, in mem_write
+    status = uclib.uc_mem_write(self._uch, address, data, size)
+ctypes.ArgumentError: argument 3: TypeError: wrong type

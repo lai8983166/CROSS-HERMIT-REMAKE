@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 186, in <module>
+    r=run_case(c,ch,gh);rows.append(r);print(c['name'],r['instructions'],r['writes'],'PC',r['overlay_continuation']['after']['VM'][56:64],flush=True)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 172, in run_case
+    m=OverlayMachine(c,live,gpu,ticks);row=m.run();row.update(CRT_cleanup=live.close(),GPU_cleanup=gpu.close(),CRT_trace=live.trace,GPU_trace=gpu.trace,CRT_exit=live.exit_code,GPU_exit=gpu.process.returncode);return row
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 158, in run
+    row=super().run();row.update(resource_initialization=self.resource_steps,resource_loaded=self.loaded,overlay_continuation=self.continuation,resource_domain=self.domain,CRT_APIs=self.crt_apis,GPU_APIs=self.gpu_calls,extra_original_instruction_counts=dict(self.extra_counts),current_GPU_hello=self.gpu.hello,current_CRT_hello=self.live.hello,typed_GPU_projection=self.space.ledger())
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 123, in run
+    final_state=self.state(),pending_CPU=self.cpu(),**self.common())
+  File "F:\project\chaomofa\tools\battle_live_terminal_emulation.py", line 80, in state
+    s=super().state();s['terminal_state']=self.selected_state();return s
+  File "F:\project\chaomofa\tools\battle_lethal_combat_emulation.py", line 44, in state
+    s=super().state();s['result_data']=bytes(self.uc.mem_read(0x7F4000,0x2000)).hex();return pages(s,self.blobs)
+  File "F:\project\chaomofa\tools\battle_world_combat_emulation.py", line 34, in state
+    def state(self):return pages(super().state(),self.blobs)
+  File "F:\project\chaomofa\tools\battle_world_update_emulation.py", line 55, in state
+    s=super().state();s.update(all_unit_slots=bytes(self.uc.mem_read(UNIT,250*0x520)).hex(),
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_emulation.py", line 69, in state
+    s=super().state();s.update(occupancy=bytes(self.uc.mem_read(region.OCC,0x3000)).hex(),
+  File "F:\project\chaomofa\tools\battle_hit_damage_emulation.py", line 77, in state
+    s=super().state()
+  File "F:\project\chaomofa\tools\battle_attack_animation_emulation.py", line 79, in state
+    record=self.record(),target=bytes(self.uc.mem_read(UNIT+0x520,0x520)).hex())
+TypeError: 'int' object is not callable

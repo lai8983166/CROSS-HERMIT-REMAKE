@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 175, in <module>
+    r=run_case(c,ch,gh);rows.append(r);print(c['name'],r['instructions'],r['writes'],'PC',r['overlay_continuation']['after']['VM'][56:64],flush=True)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 161, in run_case
+    m=OverlayMachine(c,live,gpu,ticks);row=m.run();row.update(CRT_cleanup=live.close(),GPU_cleanup=gpu.close(),CRT_trace=live.trace,GPU_trace=gpu.trace,CRT_exit=live.exit_code,GPU_exit=gpu.process.returncode);return row
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 147, in run
+    row=super().run();row.update(resource_initialization=self.resource_steps,resource_loaded=self.loaded,overlay_continuation=self.continuation,resource_domain=self.domain,CRT_APIs=self.crt_apis,GPU_APIs=self.gpu_calls,extra_original_instruction_counts=dict(self.extra_counts),current_GPU_hello=self.gpu.hello,current_CRT_hello=self.live.hello,typed_GPU_projection=self.space.ledger())
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 119, in run
+    admission=self.admission();row=dict(input=self.live_input,combat_input=self.cycle_input,initial=initial,initialization=initialization,image_before=image_before,image_after=self.image_identity(),
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 141, in admission
+    self.initialize_resources();a=super().admission();self.active_overlay=True;before=self.mark();cpu=self.cpu();self.task_active=True
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 132, in initialize_resources
+    self.resource_root('original_heap_initialization',0x57B9D0,[1],cdecl=True);self.resource_root('original_lock_initialization',0x576F60)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 128, in resource_root
+    self.uc.reg_write(UC_X86_REG_ESP,sp);self.uc.reg_write(UC_X86_REG_ECX,receiver);self.uc.emu_start(entry,RETURN,timeout=60_000_000,count=4_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 114, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 73, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\terminal_work_emulation.py", line 62, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_live_terminal_emulation.py", line 83, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_terminal_selection_emulation.py", line 123, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_bilateral_combat_emulation.py", line 53, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_enemy_engagement_emulation.py", line 39, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_world_combat_emulation.py", line 37, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_world_update_emulation.py", line 61, in code
+    super().code(uc,at,size,context);f=self.frame_observation
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_emulation.py", line 58, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_hit_damage_emulation.py", line 69, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_attack_animation_emulation.py", line 66, in code
+    super().code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_attack_launch_emulation.py", line 46, in code
+    self.source_code(uc,at,size,context)
+  File "F:\project\chaomofa\tools\battle_enemy_engagement_emulation.py", line 48, in source_code
+    need(at in ALLOWED,'undeclared original instruction '+hex(at));need(CODE[at-0x400000]!=0xCC,'original assertion/padding '+hex(at))
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: undeclared original instruction 0x57b7a0
