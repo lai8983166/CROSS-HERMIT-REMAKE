@@ -29,7 +29,7 @@ class TerminalOverlayTests(unittest.TestCase):
   expected={0x4548FD:('push','0x59a4c4'),0x45490E:('call','0x42ae20'),0x454943:('push','0x14'),0x45494F:('call','0x416790'),0x45495E:('call','0x428ad0')}
   for p,want in expected.items():
    i=next(md.disasm(e.CODE[p-0x400000:p-0x400000+16],p));self.assertEqual((i.mnemonic,i.op_str),want)
-  self.assertEqual(e.CODE[0x19A4C4:0x19A4DC],e.RESOURCE_NAME.encode()+bytes(1))
+  self.assertEqual(e.CODE[0x19A4C4:0x19A4DD],e.RESOURCE_NAME.encode()+bytes(1))
  def test_five_tasks_three_queries_and_taken_branch(self):
   for r in self.rows:
    x=m.verify(r);self.assertEqual((x['complete_task_returns'],x['overlay_queries'],x['VM_commands'],x['WORK_remaining']),(5,3,3,59))

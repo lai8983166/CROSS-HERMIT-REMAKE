@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_overlay_verification.py", line 78, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--out',required=True);a=p.parse_args();e.need(not(e.ROOT/a.out).exists(),'fresh immutable overlay proof');e.terminal.save(a.out,verify(e.ROOT/a.report))
+  File "F:\project\chaomofa\tools\terminal_overlay_verification.py", line 74, in verify
+    for r in d['cases']:rows.append(verify_case(r,True,h));print('verified current native',r['input']['name'],flush=True)
+  File "F:\project\chaomofa\tools\terminal_overlay_verification.py", line 60, in verify_case
+    for name,p,n in [('VM',e.VM,0x9400),('task',e.TASK,0x190),('work',e.WORK,0x24C0),('owner',e.MAIN,65536)]:e.need(model.read(row['final'],p,n).hex()==c['after'][name],'final observed '+name+' matches complete actual memory')
+  File "F:\project\chaomofa\tools\terminal_overlay_model.py", line 12, in read
+    r=next((r for r in rows if r['pointer']<=p and p+n<=r['pointer']+r['bytes']),None);need(r is not None,'complete owned memory for '+hex(p));b=bytes.fromhex(r['hex']);need(len(b)==r['bytes'],'complete mapped bytes');return b[p-r['pointer']:p-r['pointer']+n]
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: complete owned memory for 0x12800000

@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_original_GYBC_loader_group20 (tools.tests.test_terminal_overlay.TerminalOverlayTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_overlay.py", line 32, in test_original_GYBC_loader_group20
+    self.assertEqual(e.CODE[0x19A4C4:0x19A4DC],e.RESOURCE_NAME.encode()+bytes(1))
+AssertionError: b'data\\adv\\bin\\Gybc_00.bin' != b'data\\adv\\bin\\Gybc_00.bin\x00'
+
+----------------------------------------------------------------------
+Ran 1 test in 1.522s
+
+FAILED (failures=1)
