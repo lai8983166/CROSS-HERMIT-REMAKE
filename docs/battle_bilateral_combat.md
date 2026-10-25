@@ -34,4 +34,16 @@ PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.battle_bilater
 
 ## 实测结果
 
-待完整案例、独立契约和新实例重放全部通过后填写。
+七例共873次完整世界根、218250槽检查、1746次自然单位更新，84382590条原指令、37412511次原写入和150次真实TLS/LastError叶调用。双方伤害均为39；首四例各有4次命中，敌方受击会在下一世界帧消费，而玩家受击通常同帧消费。每方第二次命中后保留完整世界帧，不称第二轮恢复阶段已全部完成。
+
+| 案例 | 完整世界帧 | 敌/玩家命中 | 最终HP（敌/玩家） |
+| --- | ---: | --- | --- |
+| bilateral_job1 | 147 | [2, 2] | [962, 985] |
+| bilateral_job2 | 147 | [2, 2] | [962, 985] |
+| bilateral_job3 | 131 | [2, 2] | [962, 985] |
+| bilateral_job4 | 131 | [2, 2] | [962, 985] |
+| mutual_neutral | 96 | [0, 0] | [1000, 1000] |
+| both_search_disabled | 96 | [0, 0] | [1000, 1000] |
+| passive_player | 125 | [2, 0] | [1000, 963] |
+
+45项专项及616项相关回归全部通过（661项），七例新实例的37拥有区域、所有逐帧/单位状态、57项所记录CPU及原指令/写入轨迹精确一致。独立验证范围仍为上述明确入口契约；完整世界字节预测模型未新增。正式来源为[source-v3](../analysis/battle-bilateral-combat-source-v3-20261025.json)，独立/实际重放为[proof-v1](../analysis/battle-bilateral-combat-proof-v1-20261025.json)，最终验收见[acceptance](../analysis/battle-bilateral-combat-acceptance-v1-20261025.json)。
