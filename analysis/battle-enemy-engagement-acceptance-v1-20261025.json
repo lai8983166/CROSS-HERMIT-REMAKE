@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "kind": "ordinary autonomous enemy idle decision target search and two complete combat rounds through original world roots",
+  "change": "connect-original-enemy-engagement",
+  "archive": "openspec/changes/archive/2026-10-25-connect-original-enemy-engagement",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "0316da8ba307ab06ce9704b66e9c27b4b37e5a7b",
+  "implementation_commit": "6a62ece55b205b0a5e56949abf17c0c6d434f53f",
+  "archive_and_validation_commit": "b3c85dec225a104a122c7b6b1ce88b3ec09c4b56",
+  "previous_acceptance": {
+    "path": "analysis/battle-world-combat-acceptance-v1-20261025.json",
+    "bytes": 17096,
+    "sha256": "1a701bb99ec94fdc0612e1e151c9e6d17e7c1153a948725b8ec8ae7a45c42b77"
+  },
+  "source_report": {
+    "path": "analysis/battle-enemy-engagement-source-v1-20261025.json",
+    "bytes": 154714,
+    "sha256": "2c0c0f317d8318128a9511f3d99dbfbba41950abe81376ab9ea71f1c79f90520"
+  },
+  "source_cases": [
+    {
+      "name": "enemy_job1",
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job1.json.gz",
+      "bytes": 1156290,
+      "sha256": "b2ae9fbb3905e5c296e79205d8e0bcc1f5e78049736ff42e623f2b77033d56a5"
+    },
+    {
+      "name": "enemy_job2",
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job2.json.gz",
+      "bytes": 1158765,
+      "sha256": "626dfb056be55ab1583ac263437a02031ed98af670793b6d5a0fa7c077ffb357"
+    },
+    {
+      "name": "enemy_job3",
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job3.json.gz",
+      "bytes": 1040449,
+      "sha256": "d6cc490e5ade5f96b5c0e828ac64e6759d5865d398933061b84169699c72a4b6"
+    },
+    {
+      "name": "enemy_job4",
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job4.json.gz",
+      "bytes": 1041701,
+      "sha256": "5f08d7ebf1da9c4e90331627946e3411672937eadbb8bdf7a43f7c7259c390a8"
+    },
+    {
+      "name": "neutral_relation",
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-neutral_relation.json.gz",
+      "bytes": 805793,
+      "sha256": "4475672a1d4de9172fd9fe796654af19cd0a9c7d14d905ae77032f7a81f69ef6"
+    },
+    {
+      "name": "search_disabled",
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-search_disabled.json.gz",
+      "bytes": 806016,
+      "sha256": "c188d9bb2ea6dd38506ee78344e1dc93ba150ba1bad9b3cd078a62a2c44f71d6"
+    }
+  ],
+  "independent_proof": {
+    "path": "analysis/battle-enemy-engagement-proof-v1-20261025.json",
+    "bytes": 4387,
+    "sha256": "438d218f321f95061cc6c099fbf5cfc664277021d76504eae1e2363d85eae1b4",
+    "full_250_slots_world_units_and_records_independent": true,
+    "all_recorded_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 6,
+    "complete_original_world_roots": 792,
+    "ordered_slot_predicates": 198000,
+    "naturally_called_unit_updates": 1584,
+    "original_instructions": 75616981,
+    "original_writes": 33664903,
+    "actual_TLS_LastError_leaves": 72,
+    "owned_regions": 37,
+    "recorded_CPU_registers": 57,
+    "autonomous_complete_attacks": 8,
+    "explicit_external_attack_or_stop_requests": 0,
+    "case_results": [
+      {
+        "name": "enemy_job1",
+        "frames": 162,
+        "slot_predicates": 40500,
+        "unit_updates": 324,
+        "terminal_index": 160,
+        "completed_rounds": 2,
+        "hit_kinds": [
+          1,
+          1
+        ],
+        "battle_draws": 43,
+        "HP": 1000,
+        "target_alive": 1,
+        "target_command": 5,
+        "target_position": [
+          63963136,
+          5767168
+        ],
+        "instructions": 15456441,
+        "writes": 6879461,
+        "actual_API_leaves": 18,
+        "full_state_independent": true,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "enemy_job2",
+        "frames": 162,
+        "slot_predicates": 40500,
+        "unit_updates": 324,
+        "terminal_index": 160,
+        "completed_rounds": 2,
+        "hit_kinds": [
+          1,
+          1
+        ],
+        "battle_draws": 43,
+        "HP": 1000,
+        "target_alive": 1,
+        "target_command": 5,
+        "target_position": [
+          63963136,
+          5767168
+        ],
+        "instructions": 15456331,
+        "writes": 6879409,
+        "actual_API_leaves": 18,
+        "full_state_independent": true,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "enemy_job3",
+        "frames": 138,
+        "slot_predicates": 34500,
+        "unit_updates": 276,
+        "terminal_index": 136,
+        "completed_rounds": 2,
+        "hit_kinds": [
+          1,
+          1
+        ],
+        "battle_draws": 43,
+        "HP": 992,
+        "target_alive": 1,
+        "target_command": 5,
+        "target_position": [
+          63963136,
+          5767168
+        ],
+        "instructions": 13176197,
+        "writes": 5864655,
+        "actual_API_leaves": 18,
+        "full_state_independent": true,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "enemy_job4",
+        "frames": 138,
+        "slot_predicates": 34500,
+        "unit_updates": 276,
+        "terminal_index": 136,
+        "completed_rounds": 2,
+        "hit_kinds": [
+          1,
+          1
+        ],
+        "battle_draws": 43,
+        "HP": 992,
+        "target_alive": 1,
+        "target_command": 5,
+        "target_position": [
+          63963136,
+          5767168
+        ],
+        "instructions": 13176087,
+        "writes": 5864603,
+        "actual_API_leaves": 18,
+        "full_state_independent": true,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "neutral_relation",
+        "frames": 96,
+        "slot_predicates": 24000,
+        "unit_updates": 192,
+        "terminal_index": 94,
+        "completed_rounds": 0,
+        "hit_kinds": [],
+        "battle_draws": 39,
+        "HP": 1000,
+        "target_alive": 1,
+        "target_command": 5,
+        "target_position": [
+          63963136,
+          5767168
+        ],
+        "instructions": 9194305,
+        "writes": 4096610,
+        "actual_API_leaves": 0,
+        "full_state_independent": true,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "search_disabled",
+        "frames": 96,
+        "slot_predicates": 24000,
+        "unit_updates": 192,
+        "terminal_index": 94,
+        "completed_rounds": 0,
+        "hit_kinds": [],
+        "battle_draws": 39,
+        "HP": 1000,
+        "target_alive": 1,
+        "target_command": 5,
+        "target_position": [
+          63963136,
+          5767168
+        ],
+        "instructions": 9157620,
+        "writes": 4080165,
+        "actual_API_leaves": 0,
+        "full_state_independent": true,
+        "all_memory_CPU_trace_replayed": true
+      }
+    ]
+  },
+  "guard_equivalence": {
+    "path": "analysis/battle-enemy-engagement-guard-proof-v1-20261025.json",
+    "bytes": 1070,
+    "sha256": "e86bd91be6ee889797ccf0adb1a39b3649e1be86ab5921a3d09ceef00ea4e0b2"
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "enemy_engagement",
+        "checks": 42,
+        "passed": true,
+        "path": "analysis/battle-enemy-engagement-tests-v2-20261025.log",
+        "bytes": 4689,
+        "sha256": "53b3a59a9048c9bbdbe1487fa55c94308c0345bdc9f3fa3aa5a51079d8c5dbf4"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 520,
+        "passed": true,
+        "path": "analysis/battle-enemy-engagement-regression-v1-20261025.log",
+        "bytes": 50664,
+        "sha256": "2493dcc402a52263fcbafaf8c95d1a233a2fc188aa1bab25153457f95e93a141"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-enemy-engagement-validation-before-v1-20261025.log",
+        "bytes": 3315,
+        "sha256": "0d119e999614332cfad1ef0fd70886c4219579e123a408a9b97bdb1600b39103"
+      },
+      {
+        "kind": "strict_after_archive",
+        "checks": 31,
+        "passed": true,
+        "path": "analysis/battle-enemy-engagement-validation-after-v1-20261025.log",
+        "bytes": 3145,
+        "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+      }
+    ],
+    "tests": 562,
+    "all_passed": true,
+    "preservation": {
+      "path": "analysis/battle-enemy-engagement-preservation-v2-20261025.json",
+      "bytes": 225395,
+      "sha256": "a83d882da9b7aba4bc3f3f05e70b6f62e111757bfbeb1259ed6170198be1f559",
+      "frozen_parent_artifacts": 52
+    },
+    "source_report": {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025.json",
+      "bytes": 154714,
+      "sha256": "2c0c0f317d8318128a9511f3d99dbfbba41950abe81376ab9ea71f1c79f90520"
+    },
+    "proof": {
+      "path": "analysis/battle-enemy-engagement-proof-v1-20261025.json",
+      "bytes": 4387,
+      "sha256": "438d218f321f95061cc6c099fbf5cfc664277021d76504eae1e2363d85eae1b4"
+    },
+    "guard_equivalence": {
+      "path": "analysis/battle-enemy-engagement-guard-proof-v1-20261025.json",
+      "bytes": 1070,
+      "sha256": "e86bd91be6ee889797ccf0adb1a39b3649e1be86ab5921a3d09ceef00ea4e0b2"
+    },
+    "resolved_diagnostic": {
+      "log": {
+        "path": "analysis/battle-enemy-engagement-tests-v1-20261025.log",
+        "bytes": 5364,
+        "sha256": "f7b44d3864e4840c5061b3fed9fc62ea5ee7e49d860bc51ebb451a165dc3aa35"
+      },
+      "reason": "test assertion conflated physical-hit snapshot draws40/42 with subsequent effect-variant draws41/43; independent model and original source already agreed",
+      "targeted_fix": {
+        "path": "analysis/battle-enemy-engagement-timing-test-v1-20261025.log",
+        "bytes": 230,
+        "sha256": "4ffd4a799dee23337fe7ae45f086246c669697edf324b05899600f379237583a"
+      },
+      "full_corrected_suite_passed": true
+    },
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "boundaries": {
+    "declared_loaded_cache_and_task_map": true,
+    "enemy_faction": 4,
+    "passive_player_faction": 0,
+    "player_command": 5,
+    "original_scene_loader_or_native_retained_scheduler_connected": false,
+    "both_sides_autonomous": false,
+    "distant_chase_integrated": false,
+    "advanced_magic_healing_counter_status_or_other_deaths_complete": false,
+    "actual_render_or_victory_rewards_complete": false,
+    "OS_input_or_unlock_requested": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false,
+    "delivery_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 35385,
+      "sha256": "f27b27beec905101065cb4d535633c240cb459b5685ecbbc50ede5342c1e2359"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-apply-v1-20261025.json",
+      "bytes": 2968,
+      "sha256": "4e574f61b7279138a6613d2d6b560c742d7ac30bfc13c10014549b58cd0c10a5"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-archive-inputs-v1-20261025.json",
+      "bytes": 1006,
+      "sha256": "b6b31a2561dd9b62c9deb9ede15ceef3f6cb93288420336209ef741ed1b0bc7d"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-archive-receipt-v1-20261025.json",
+      "bytes": 978,
+      "sha256": "db78bce2cedc42d458d62d6c25524ab71b6757a6e85387ecb4c2defdd0e62b67"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-explore-v1-20261025.json.gz",
+      "bytes": 1156290,
+      "sha256": "50f1b31574aabbf0ddd7329ba949037a0e61a26ad4f8bdff601f624e37c94cea"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-guard-proof-v1-20261025.json",
+      "bytes": 1070,
+      "sha256": "e86bd91be6ee889797ccf0adb1a39b3649e1be86ab5921a3d09ceef00ea4e0b2"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-preservation-v1-20261025.json",
+      "bytes": 225395,
+      "sha256": "b511f04de5a2439346e3e5a076705c1253d8f6034b3ec7f4183440a51f044126"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-preservation-v2-20261025.json",
+      "bytes": 225395,
+      "sha256": "a83d882da9b7aba4bc3f3f05e70b6f62e111757bfbeb1259ed6170198be1f559"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-proof-v1-20261025.json",
+      "bytes": 4387,
+      "sha256": "438d218f321f95061cc6c099fbf5cfc664277021d76504eae1e2363d85eae1b4"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-reference-v1-20261025.json.gz",
+      "bytes": 1040467,
+      "sha256": "1c83188ed87e52ed90326a4483da19fb275c4a799fca551bb527dcafff1c655c"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-regression-v1-20261025.log",
+      "bytes": 50664,
+      "sha256": "2493dcc402a52263fcbafaf8c95d1a233a2fc188aa1bab25153457f95e93a141"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job1.json.gz",
+      "bytes": 1156290,
+      "sha256": "b2ae9fbb3905e5c296e79205d8e0bcc1f5e78049736ff42e623f2b77033d56a5"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job2.json.gz",
+      "bytes": 1158765,
+      "sha256": "626dfb056be55ab1583ac263437a02031ed98af670793b6d5a0fa7c077ffb357"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job3.json.gz",
+      "bytes": 1040449,
+      "sha256": "d6cc490e5ade5f96b5c0e828ac64e6759d5865d398933061b84169699c72a4b6"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-enemy_job4.json.gz",
+      "bytes": 1041701,
+      "sha256": "5f08d7ebf1da9c4e90331627946e3411672937eadbb8bdf7a43f7c7259c390a8"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-neutral_relation.json.gz",
+      "bytes": 805793,
+      "sha256": "4475672a1d4de9172fd9fe796654af19cd0a9c7d14d905ae77032f7a81f69ef6"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025-search_disabled.json.gz",
+      "bytes": 806016,
+      "sha256": "c188d9bb2ea6dd38506ee78344e1dc93ba150ba1bad9b3cd078a62a2c44f71d6"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-source-v1-20261025.json",
+      "bytes": 154714,
+      "sha256": "2c0c0f317d8318128a9511f3d99dbfbba41950abe81376ab9ea71f1c79f90520"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-status-v1-20261025.json",
+      "bytes": 2890,
+      "sha256": "4fc55a9eb5a3597c9c5cd6de260d096b62d8988ee2d65784572d49a985d8a16a"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-tests-v1-20261025.log",
+      "bytes": 5364,
+      "sha256": "f7b44d3864e4840c5061b3fed9fc62ea5ee7e49d860bc51ebb451a165dc3aa35"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-tests-v2-20261025.log",
+      "bytes": 4689,
+      "sha256": "53b3a59a9048c9bbdbe1487fa55c94308c0345bdc9f3fa3aa5a51079d8c5dbf4"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-timing-test-v1-20261025.log",
+      "bytes": 230,
+      "sha256": "4ffd4a799dee23337fe7ae45f086246c669697edf324b05899600f379237583a"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-validation-after-v1-20261025.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-validation-before-v1-20261025.log",
+      "bytes": 3315,
+      "sha256": "0d119e999614332cfad1ef0fd70886c4219579e123a408a9b97bdb1600b39103"
+    },
+    {
+      "path": "analysis/battle-enemy-engagement-validation-v1-20261025.json",
+      "bytes": 2464,
+      "sha256": "94e35a6d117983ad8771d33bd949defcff6e508870b75223240943020e37ffbe"
+    },
+    {
+      "path": "docs/battle_enemy_engagement.md",
+      "bytes": 6495,
+      "sha256": "6de35ab50d8315685f2ab94627b8f62a230c5ecb90d27b2e927f4d3c76d19c81"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-enemy-engagement/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "049e2683e8f1e88703285d6a8ac1fbd6fd013c15373c6b6af8fdf44ec25da4e4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-enemy-engagement/design.md",
+      "bytes": 2144,
+      "sha256": "3cbd9a38857d72c6cd1b1d591a7434902a8f7f4f686c63839cb2a0ee2f7b28a0"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-enemy-engagement/proposal.md",
+      "bytes": 1372,
+      "sha256": "d4ee55521f01079f652ef6fb914c7f51e39bb1003912cdbc42d503bb35d39033"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-enemy-engagement/tasks.md",
+      "bytes": 650,
+      "sha256": "81716e4341802c24f1415801cdafadcaac116342594da31d60b68a46274cc3da"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 72737,
+      "sha256": "42812fc5d8cb9fb79363e26e2115b5dfb32ddf4813357fb9484713bbd4aa41d9"
+    },
+    {
+      "path": "tools/battle_enemy_engagement.py",
+      "bytes": 2053,
+      "sha256": "6734ed0c57927da65aea63b5ebbde65c64f1d8a21464990d419c50050f130823"
+    },
+    {
+      "path": "tools/battle_enemy_engagement_emulation.py",
+      "bytes": 7461,
+      "sha256": "3067afd0a70bb27d5c835d92ee35c28c9d8a2240970c409149d2b7b7b9a37606"
+    },
+    {
+      "path": "tools/battle_enemy_engagement_model.py",
+      "bytes": 5305,
+      "sha256": "0c202b4a9eb473a63c690158c4248c606cb9f7980f83df8a9753bae5faf9f8fc"
+    },
+    {
+      "path": "tools/battle_enemy_engagement_preservation.py",
+      "bytes": 1802,
+      "sha256": "96861e0cd42586dd4b161046cfadd8eeb17ed575506586d657b51e372337df4f"
+    },
+    {
+      "path": "tools/battle_enemy_engagement_verification.py",
+      "bytes": 11820,
+      "sha256": "1f87cbed9400cc32bc68207da47c2603d4b08502c1b2a6532d7d90dcc3f274fb"
+    },
+    {
+      "path": "tools/tests/test_battle_enemy_engagement.py",
+      "bytes": 9263,
+      "sha256": "be21ebcc4698d1a30dca4fb57f76cf600761dc83a552ebef58766babeacdb6fc"
+    }
+  ],
+  "raw_bytes": {
+    "worktree_index_HEAD_identical_before_acceptance": true,
+    "artifact_count": 37,
+    "LF_for_code_markdown_json_yaml": true,
+    "logs_preserved_as_binary_text": true,
+    "unrelated_preexisting_six_untracked_skill_directories_preserved": true
+  }
+}
