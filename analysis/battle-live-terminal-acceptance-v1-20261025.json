@@ -1,0 +1,717 @@
+{
+  "schema_version": 1,
+  "kind": "fresh original autonomous combat, full world clock/gated work and scene-4 terminal events in the same logical instance",
+  "change": "connect-live-world-terminal-events",
+  "archive": "openspec/changes/archive/2026-10-25-connect-live-world-terminal-events",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "3db2c021f13d0badba6772874b2d6798ab606fe0",
+  "source_implementation_commit": "37f65730430177f4b644af73de151aea49bbb036",
+  "implementation_commit": "45e1e2e5ba793832d94925cdf42e58bfbd7255bf",
+  "archive_and_validation_commit": "ea064f7ce10d33c59c11c8d8f3ff5ba898e9f64e",
+  "previous_acceptance": {
+    "path": "analysis/battle-terminal-selection-acceptance-v1-20261025.json",
+    "bytes": 16922,
+    "sha256": "765d93d74769ae229b85d739c09e2653647f3ac0abe4fbc5db4c26c3afec4670"
+  },
+  "source_report": {
+    "path": "analysis/battle-live-terminal-source-v2-20261025.json",
+    "bytes": 7257,
+    "sha256": "83a0ef8627836c1aa839f2f1b73e4ab073bdb0646bdb99283e9bf672e6bb244e"
+  },
+  "source_cases": [
+    {
+      "name": "enemy_dies_job1",
+      "path": "analysis/battle-live-terminal-source-v2-20261025-enemy_dies_job1.json.gz",
+      "bytes": 2717293,
+      "sha256": "40f520f203a5e02003f42b26d0bb85d6aeba28381f31d431694aaa93c4fd8d8b"
+    },
+    {
+      "name": "player_dies_job1",
+      "path": "analysis/battle-live-terminal-source-v2-20261025-player_dies_job1.json.gz",
+      "bytes": 2478451,
+      "sha256": "97f37f18c4d5b93e55394f3ec6104566927bbc1828f7299ad5097897d30240bc"
+    },
+    {
+      "name": "enemy_dies_job3",
+      "path": "analysis/battle-live-terminal-source-v2-20261025-enemy_dies_job3.json.gz",
+      "bytes": 2571392,
+      "sha256": "93d88baef049733d507dfc21b6ab6c40cec1007c038e4911a0e9e3213ee63a9d"
+    },
+    {
+      "name": "player_dies_job3",
+      "path": "analysis/battle-live-terminal-source-v2-20261025-player_dies_job3.json.gz",
+      "bytes": 2341850,
+      "sha256": "18ce12e73e4cd7a8733540e841ab7822e0b9762bcdd64258fee1dd286834a07e"
+    },
+    {
+      "name": "threshold_running",
+      "path": "analysis/battle-live-terminal-source-v2-20261025-threshold_running.json.gz",
+      "bytes": 2159445,
+      "sha256": "936f92c6fe3c423e0c811731ac055821a69e5fc8c40be0fa238bc44fa1ee38ac"
+    },
+    {
+      "name": "neutral_running",
+      "path": "analysis/battle-live-terminal-source-v2-20261025-neutral_running.json.gz",
+      "bytes": 359287,
+      "sha256": "9474fb199f42db73b196558fa568ac5425cf1a6d68e30065b0002c87698da950"
+    },
+    {
+      "name": "timeout_before_combat",
+      "path": "analysis/battle-live-terminal-source-v2-20261025-timeout_before_combat.json.gz",
+      "bytes": 377482,
+      "sha256": "8ab09c0c86c0c67ffe9227dff9f6084a3ce962f517449a5d550a3d8561bc8e33"
+    }
+  ],
+  "independent_proof": {
+    "path": "analysis/battle-live-terminal-proof-v1-20261025.json",
+    "bytes": 4739,
+    "sha256": "678a9df99682aa33c1e254d01a22309cfcf60cc09ade9ffe8323a09dd16537ba",
+    "scope": "continuous HP/RNG/death/score ledger, per-world clock and pre-unit lists, scene conditions/VM/task request and whole result pages",
+    "whole_VM_world_state_independently_predicted": false,
+    "all_owned_memory_CPU_and_original_digests_replayed": true
+  },
+  "observed": {
+    "cases": 7,
+    "complete_world_roots": 1120,
+    "complete_event_roots": 1120,
+    "ordered_slot_predicates": 280000,
+    "natural_unit_updates": 2240,
+    "original_instructions": 174861245,
+    "original_writes": 74120110,
+    "owned_regions": 45,
+    "recorded_CPU_registers": 57,
+    "actual_TLS_API_leaves": 183,
+    "actual_condition_API_leaves": 12,
+    "explicit_result_input_roots": 7,
+    "case_results": [
+      {
+        "name": "enemy_dies_job1",
+        "frames": 251,
+        "slot_predicates": 62750,
+        "natural_unit_updates": 502,
+        "HP": [
+          0,
+          922
+        ],
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "CRT_draws": 12,
+        "battle_draws": 47,
+        "sub": 2,
+        "selector": 1,
+        "no_hostile": true,
+        "own_dead": false,
+        "remaining": 35749,
+        "elapsed": 251,
+        "time_key": 1,
+        "score": 20,
+        "player_kills": 1,
+        "player_contribution": 20,
+        "player_deaths": 0,
+        "record_liveness": [
+          4,
+          1
+        ],
+        "commands": [
+          11,
+          19
+        ],
+        "instructions": 39176206,
+        "writes": 16606908,
+        "actual_TLS_API_leaves": 36,
+        "actual_condition_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "player_dies_job1",
+        "frames": 227,
+        "slot_predicates": 56750,
+        "natural_unit_updates": 454,
+        "HP": [
+          961,
+          0
+        ],
+        "hits_by_side": [
+          2,
+          1
+        ],
+        "CRT_draws": 11,
+        "battle_draws": 45,
+        "sub": 14,
+        "selector": 5,
+        "no_hostile": false,
+        "own_dead": true,
+        "remaining": 35773,
+        "elapsed": 227,
+        "time_key": 1,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 1,
+        "record_liveness": [
+          1,
+          4
+        ],
+        "commands": [
+          19,
+          11
+        ],
+        "instructions": 35460528,
+        "writes": 15033061,
+        "actual_TLS_API_leaves": 33,
+        "actual_condition_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "enemy_dies_job3",
+        "frames": 235,
+        "slot_predicates": 58750,
+        "natural_unit_updates": 470,
+        "HP": [
+          0,
+          922
+        ],
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "CRT_draws": 12,
+        "battle_draws": 47,
+        "sub": 2,
+        "selector": 1,
+        "no_hostile": true,
+        "own_dead": false,
+        "remaining": 35765,
+        "elapsed": 235,
+        "time_key": 1,
+        "score": 20,
+        "player_kills": 1,
+        "player_contribution": 20,
+        "player_deaths": 0,
+        "record_liveness": [
+          4,
+          1
+        ],
+        "commands": [
+          11,
+          19
+        ],
+        "instructions": 36707785,
+        "writes": 15562043,
+        "actual_TLS_API_leaves": 36,
+        "actual_condition_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "player_dies_job3",
+        "frames": 211,
+        "slot_predicates": 52750,
+        "natural_unit_updates": 422,
+        "HP": [
+          961,
+          0
+        ],
+        "hits_by_side": [
+          2,
+          1
+        ],
+        "CRT_draws": 11,
+        "battle_draws": 45,
+        "sub": 14,
+        "selector": 5,
+        "no_hostile": false,
+        "own_dead": true,
+        "remaining": 35789,
+        "elapsed": 211,
+        "time_key": 1,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 1,
+        "record_liveness": [
+          1,
+          4
+        ],
+        "commands": [
+          19,
+          11
+        ],
+        "instructions": 32989656,
+        "writes": 13987020,
+        "actual_TLS_API_leaves": 33,
+        "actual_condition_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "threshold_running",
+        "frames": 192,
+        "slot_predicates": 48000,
+        "natural_unit_updates": 384,
+        "HP": [
+          922,
+          1
+        ],
+        "hits_by_side": [
+          3,
+          2
+        ],
+        "CRT_draws": 15,
+        "battle_draws": 49,
+        "sub": null,
+        "selector": 0,
+        "no_hostile": false,
+        "own_dead": false,
+        "remaining": 35808,
+        "elapsed": 192,
+        "time_key": 1,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 0,
+        "record_liveness": [
+          1,
+          1
+        ],
+        "commands": [
+          6,
+          6
+        ],
+        "instructions": 29923343,
+        "writes": 12680611,
+        "actual_TLS_API_leaves": 45,
+        "actual_condition_API_leaves": 0,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "neutral_running",
+        "frames": 1,
+        "slot_predicates": 250,
+        "natural_unit_updates": 2,
+        "HP": [
+          1000,
+          70
+        ],
+        "hits_by_side": [
+          0,
+          0
+        ],
+        "CRT_draws": 0,
+        "battle_draws": 0,
+        "sub": 2,
+        "selector": 1,
+        "no_hostile": true,
+        "own_dead": false,
+        "remaining": 35999,
+        "elapsed": 1,
+        "time_key": 1,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 0,
+        "record_liveness": [
+          1,
+          1
+        ],
+        "commands": [
+          2,
+          2
+        ],
+        "instructions": 149907,
+        "writes": 60039,
+        "actual_TLS_API_leaves": 0,
+        "actual_condition_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "timeout_before_combat",
+        "frames": 3,
+        "slot_predicates": 750,
+        "natural_unit_updates": 6,
+        "HP": [
+          1000,
+          70
+        ],
+        "hits_by_side": [
+          0,
+          0
+        ],
+        "CRT_draws": 0,
+        "battle_draws": 2,
+        "sub": 11,
+        "selector": 4,
+        "no_hostile": false,
+        "own_dead": false,
+        "remaining": 0,
+        "elapsed": 3,
+        "time_key": 1,
+        "score": 0,
+        "player_kills": 0,
+        "player_contribution": 0,
+        "player_deaths": 0,
+        "record_liveness": [
+          1,
+          1
+        ],
+        "commands": [
+          2,
+          2
+        ],
+        "instructions": 453820,
+        "writes": 190428,
+        "actual_TLS_API_leaves": 0,
+        "actual_condition_API_leaves": 2,
+        "all_owned_memory_CPU_trace_replayed": true
+      }
+    ]
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "live_world_terminal",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-live-terminal-tests-v1-20261025.log",
+        "bytes": 3183,
+        "sha256": "84861b080e1eaf16d70cd4f2bd73203a04f956434805642153daa8ec939a6c26"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 105,
+        "passed": true,
+        "path": "analysis/battle-live-terminal-regression-v1-20261025.log",
+        "bytes": 11572,
+        "sha256": "a6d816da6295bbe75b3c6c9343ab3b21cc8da6f14d04edee8913264b7e1c867d"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-live-terminal-validation-before-v1-20261025.log",
+        "bytes": 3316,
+        "sha256": "05a24b9ae4c3bf18c476df7f0035597a97880002c43dcfc480e63f13ba76e861"
+      },
+      {
+        "kind": "strict_after_archive",
+        "checks": 31,
+        "passed": true,
+        "path": "analysis/battle-live-terminal-validation-after-v1-20261025.log",
+        "bytes": 3145,
+        "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+      }
+    ],
+    "tests": 137,
+    "all_passed": true,
+    "source_implementation_commit": "37f65730430177f4b644af73de151aea49bbb036",
+    "baseline_commit": "3db2c021f13d0badba6772874b2d6798ab606fe0",
+    "preservation": {
+      "path": "analysis/battle-live-terminal-preservation-v2-20261025.json",
+      "bytes": 268990,
+      "sha256": "e0eaa410ec4f97f755b5d1753184df8d683dd775f0bb4dacb367f39c7d1ad2be",
+      "frozen_parent_artifacts": 34
+    },
+    "source_report": {
+      "path": "analysis/battle-live-terminal-source-v2-20261025.json",
+      "bytes": 7257,
+      "sha256": "83a0ef8627836c1aa839f2f1b73e4ab073bdb0646bdb99283e9bf672e6bb244e"
+    },
+    "proof": {
+      "path": "analysis/battle-live-terminal-proof-v1-20261025.json",
+      "bytes": 4739,
+      "sha256": "678a9df99682aa33c1e254d01a22309cfcf60cc09ade9ffe8323a09dd16537ba"
+    },
+    "driver": {
+      "path": "analysis/battle-live-terminal-driver-v1-20261025.json",
+      "bytes": 2482,
+      "sha256": "fbd801dee0b6a53d4c7abb7a9979f264ceec64abc4a76d8f13b5f430783e5634"
+    },
+    "replay_dispatch": {
+      "path": "analysis/battle-live-terminal-replay-dispatch-v1-20261025.py",
+      "bytes": 2698,
+      "sha256": "e45bceb63210dbae935b33aacd2555218c231c13821d081f253bd273da4139b4"
+    },
+    "independent_whole_VM_world_byte_model": false,
+    "independent_frame_clock_combat_event_and_result_contracts": true,
+    "all_owned_memory_CPU_and_original_digests_replayed": true,
+    "combat_snapshot_loaded": false,
+    "combat_world_events_same_logical_instance": true,
+    "original_outer_scheduler_connected": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R5_complete": false,
+    "R6_complete": false
+  },
+  "driver": {
+    "path": "analysis/battle-live-terminal-driver-v1-20261025.json",
+    "bytes": 2482,
+    "sha256": "fbd801dee0b6a53d4c7abb7a9979f264ceec64abc4a76d8f13b5f430783e5634"
+  },
+  "replay_dispatch": {
+    "path": "analysis/battle-live-terminal-replay-dispatch-v1-20261025.py",
+    "bytes": 2698,
+    "sha256": "e45bceb63210dbae935b33aacd2555218c231c13821d081f253bd273da4139b4"
+  },
+  "boundaries": {
+    "fresh_combat_initialization": true,
+    "combat_snapshot_loaded": false,
+    "combat_world_events_same_logical_instance": true,
+    "world_gate_108B3A": 1,
+    "actual_original_frame_clock": true,
+    "original_PC_and_writes_cumulative_digests_not_full_per_item_arrays": true,
+    "script_and_map_animation_loading_state_declared": true,
+    "task_prefix_declared_at_controller_minus_190": true,
+    "host_explicit_world_then_event_roots": true,
+    "old_retained_CPU_resume": false,
+    "original_outer_scheduler_or_native_thread_same_lifetime": false,
+    "terminal_display_script_bound_but_not_advanced": true,
+    "terminal_task_exit_or_rewards_complete": false,
+    "other_scene_rules_complete": false,
+    "source_APIs_actual": true,
+    "fresh_replay_clock_is_explicit_captured_platform_input": true,
+    "independent_whole_VM_world_byte_model": false,
+    "OS_input_or_unlock_requested": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R5_complete": false,
+    "R6_complete": false,
+    "delivery_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 38891,
+      "sha256": "6e88a8039bbd8232abb31f18f16d6c997049240419cbf8bcb1550915e4d4941e"
+    },
+    {
+      "path": "analysis/battle-live-terminal-apply-v1-20261025.json",
+      "bytes": 3108,
+      "sha256": "3066e43f37d9406ef4c527e73180cdfa91aa576740c0d3270986f8914ca8ae1d"
+    },
+    {
+      "path": "analysis/battle-live-terminal-archive-inputs-v1-20261025.json",
+      "bytes": 1007,
+      "sha256": "43b7c2de45a0fd6245de072bc866114848d849f99ae3cae78fb3e50d8fdbfa34"
+    },
+    {
+      "path": "analysis/battle-live-terminal-archive-receipt-v1-20261025.json",
+      "bytes": 1079,
+      "sha256": "860cf315961d455d2325ad6b41dd763be2dcd761fc37a29dddd59a7fd08aa70a"
+    },
+    {
+      "path": "analysis/battle-live-terminal-diagnostics-v1-20261025.json",
+      "bytes": 5322,
+      "sha256": "7bc3850528649af9798144b1cf51d595f58f61537c7c8da2096ac69efe6da80a"
+    },
+    {
+      "path": "analysis/battle-live-terminal-driver-v1-20261025.json",
+      "bytes": 2482,
+      "sha256": "fbd801dee0b6a53d4c7abb7a9979f264ceec64abc4a76d8f13b5f430783e5634"
+    },
+    {
+      "path": "analysis/battle-live-terminal-explore-v1-20261025.json.gz.failure.json.gz",
+      "bytes": 8162,
+      "sha256": "242668ee15dc95314fa6a46d1702f311a56940cc16809f71435fc0c01fdb923c"
+    },
+    {
+      "path": "analysis/battle-live-terminal-explore-v2-20261025.json.gz.failure.json.gz",
+      "bytes": 8174,
+      "sha256": "95f11fd54a74eb74b47a3c8d82fcb2012871e95b6c8b2bec3d76ca6da6c5e3fc"
+    },
+    {
+      "path": "analysis/battle-live-terminal-explore-v3-20261025.json.gz",
+      "bytes": 377295,
+      "sha256": "5ea3ed603bcf8b81442e830170daa1065f80b05864132876105dfbd0ecd4928c"
+    },
+    {
+      "path": "analysis/battle-live-terminal-preservation-v1-20261025.json",
+      "bytes": 268602,
+      "sha256": "735bff513d24bb1ea6fac0cedd7af5090370bb038fef909ee61d27d54e121086"
+    },
+    {
+      "path": "analysis/battle-live-terminal-preservation-v2-20261025.json",
+      "bytes": 268990,
+      "sha256": "e0eaa410ec4f97f755b5d1753184df8d683dd775f0bb4dacb367f39c7d1ad2be"
+    },
+    {
+      "path": "analysis/battle-live-terminal-proof-v1-20261025.json",
+      "bytes": 4739,
+      "sha256": "678a9df99682aa33c1e254d01a22309cfcf60cc09ade9ffe8323a09dd16537ba"
+    },
+    {
+      "path": "analysis/battle-live-terminal-regression-v1-20261025.log",
+      "bytes": 11572,
+      "sha256": "a6d816da6295bbe75b3c6c9343ab3b21cc8da6f14d04edee8913264b7e1c867d"
+    },
+    {
+      "path": "analysis/battle-live-terminal-replay-dispatch-v1-20261025.py",
+      "bytes": 2698,
+      "sha256": "e45bceb63210dbae935b33aacd2555218c231c13821d081f253bd273da4139b4"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v1-20261025-enemy_dies_job1.json.gz.failure.json.gz",
+      "bytes": 47042,
+      "sha256": "e10c142b25e141662c93f88658a89f30e33e4e96fd38a2f8eaaa67066c0cc888"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v1-20261025-enemy_dies_job3.json.gz.failure.json.gz",
+      "bytes": 44661,
+      "sha256": "49a056b7bc7944b19f82f6760b8fa603991f59b51d9ccfd342c041f5ac23bc69"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v1-20261025-neutral_running.json.gz",
+      "bytes": 359171,
+      "sha256": "5f4b9adba6ba440a1086f765cba4c8036bfc57f3ece08b07fdc67640a39314bf"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v1-20261025-player_dies_job1.json.gz.failure.json.gz",
+      "bytes": 47038,
+      "sha256": "4446c2cf8f23ec0f1cafc82c4db3e67298d95a1af61f8525d855e8f5c659262c"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v1-20261025-player_dies_job3.json.gz.failure.json.gz",
+      "bytes": 44659,
+      "sha256": "e3baab41b6e54789b1aec4049c0e23f1b45c0d6989da2ef342e12151b28918a3"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v1-20261025-threshold_running.json.gz.failure.json.gz",
+      "bytes": 47054,
+      "sha256": "dbe1b8bf3bd9e55481c68150397b6b60a994e6c6544fab0c7d4ade2ce90ff558"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v1-20261025-timeout_before_combat.json.gz",
+      "bytes": 377287,
+      "sha256": "063d6eef270235d33ab90a74cf4ec867e5853b61be1fa65240ece335ed099010"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025-enemy_dies_job1.json.gz",
+      "bytes": 2717293,
+      "sha256": "40f520f203a5e02003f42b26d0bb85d6aeba28381f31d431694aaa93c4fd8d8b"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025-enemy_dies_job3.json.gz",
+      "bytes": 2571392,
+      "sha256": "93d88baef049733d507dfc21b6ab6c40cec1007c038e4911a0e9e3213ee63a9d"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025-neutral_running.json.gz",
+      "bytes": 359287,
+      "sha256": "9474fb199f42db73b196558fa568ac5425cf1a6d68e30065b0002c87698da950"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025-player_dies_job1.json.gz",
+      "bytes": 2478451,
+      "sha256": "97f37f18c4d5b93e55394f3ec6104566927bbc1828f7299ad5097897d30240bc"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025-player_dies_job3.json.gz",
+      "bytes": 2341850,
+      "sha256": "18ce12e73e4cd7a8733540e841ab7822e0b9762bcdd64258fee1dd286834a07e"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025-threshold_running.json.gz",
+      "bytes": 2159445,
+      "sha256": "936f92c6fe3c423e0c811731ac055821a69e5fc8c40be0fa238bc44fa1ee38ac"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025-timeout_before_combat.json.gz",
+      "bytes": 377482,
+      "sha256": "8ab09c0c86c0c67ffe9227dff9f6084a3ce962f517449a5d550a3d8561bc8e33"
+    },
+    {
+      "path": "analysis/battle-live-terminal-source-v2-20261025.json",
+      "bytes": 7257,
+      "sha256": "83a0ef8627836c1aa839f2f1b73e4ab073bdb0646bdb99283e9bf672e6bb244e"
+    },
+    {
+      "path": "analysis/battle-live-terminal-status-v1-20261025.json",
+      "bytes": 2900,
+      "sha256": "167c509732b9d3254aacd61d6adaeff641b8e5be18be654e332b3c0361841fe2"
+    },
+    {
+      "path": "analysis/battle-live-terminal-tests-v1-20261025.log",
+      "bytes": 3183,
+      "sha256": "84861b080e1eaf16d70cd4f2bd73203a04f956434805642153daa8ec939a6c26"
+    },
+    {
+      "path": "analysis/battle-live-terminal-validation-after-v1-20261025.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-live-terminal-validation-before-v1-20261025.log",
+      "bytes": 3316,
+      "sha256": "05a24b9ae4c3bf18c476df7f0035597a97880002c43dcfc480e63f13ba76e861"
+    },
+    {
+      "path": "analysis/battle-live-terminal-validation-v1-20261025.json",
+      "bytes": 2466,
+      "sha256": "441244b6f002d92f34b40fa06a82c75f168312a00d479d36f9be7803538e16be"
+    },
+    {
+      "path": "docs/battle_live_terminal.md",
+      "bytes": 5355,
+      "sha256": "4cf511498cb86b16a96d409e38100979fc6552d06c84cca1a4c8ad3fcbe5c1c1"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-live-world-terminal-events/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "049e2683e8f1e88703285d6a8ac1fbd6fd013c15373c6b6af8fdf44ec25da4e4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-live-world-terminal-events/design.md",
+      "bytes": 2359,
+      "sha256": "c50be2dc82fd7bbeb2aaae839834ce71bebfa319302301535a1221178f6c3fe1"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-live-world-terminal-events/proposal.md",
+      "bytes": 1345,
+      "sha256": "f981a554471688ff753b36924b24510681b07f8d2b80456b7754b2fa765f3347"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-live-world-terminal-events/tasks.md",
+      "bytes": 824,
+      "sha256": "6f47d36fcb3a17de6baf5d94663dbf39c2311b081fb3a5e0d3972b1a09fa1c9f"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 83142,
+      "sha256": "deadeb7d51ad5b6c28d0a29de7c60c1f1c9a60a3c7575d07d38d15ee787eb865"
+    },
+    {
+      "path": "tools/battle_live_terminal_emulation.py",
+      "bytes": 10619,
+      "sha256": "e0ccd231577fc62cf774e90242de5afbcfd081eefadde411272aac40c22a54f1"
+    },
+    {
+      "path": "tools/battle_live_terminal_model.py",
+      "bytes": 9536,
+      "sha256": "0c5483a8407c928a3e393fad16ce32800a4552b6dae51620130e705eed325023"
+    },
+    {
+      "path": "tools/battle_live_terminal_preservation.py",
+      "bytes": 1712,
+      "sha256": "8d9316e16d975bda3228e8d7366456d8e7cf1c5890b3509ad632b6db3251f8be"
+    },
+    {
+      "path": "tools/battle_live_terminal_verification.py",
+      "bytes": 9888,
+      "sha256": "54a89ed3b7293425a4dcc6438950e66b462c4fd151930c77ae6b8d09a4962547"
+    },
+    {
+      "path": "tools/tests/test_battle_live_terminal.py",
+      "bytes": 6989,
+      "sha256": "d36b2cd2fe64569f9abf405b397392913f132889f76bb7a14d60fd7ccfc3ba9b"
+    }
+  ],
+  "raw_bytes": {
+    "worktree_index_HEAD_identical_before_acceptance": true,
+    "artifact_count": 45,
+    "LF_for_code_markdown_json_yaml": true,
+    "logs_preserved_as_binary_text": true,
+    "unrelated_preexisting_six_untracked_skill_directories_preserved": true
+  }
+}
