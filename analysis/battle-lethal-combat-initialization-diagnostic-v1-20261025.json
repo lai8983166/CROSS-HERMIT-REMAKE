@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "accepted": false,
+  "evidence_kind": "tool traceback, not retained guest CPU",
+  "failure": "attempt to mem_map already mapped original 7F5000 page; UcError was not serializable through ProcessPool",
+  "before_any_world_or_native_TLS": true,
+  "correction": "retain original image bytes; declare page ownership and mem_protect RW instead of remapping",
+  "formal_source": "analysis/battle-lethal-combat-source-v2-20261025.json"
+}
