@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 146, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);a=p.parse_args();need(not (ROOT/a.out).exists(),'fresh task source output');terminal.save(a.out,report(a.out))
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 137, in report
+    try:r=m.run()
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 119, in run
+    admission=self.admission();row=dict(input=self.live_input,combat_input=self.cycle_input,initial=initial,initialization=initialization,image_before=image_before,image_after=self.image_identity(),
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 93, in admission
+    frame=[self.task_step(0x425DE0,INPUT),self.task_step(0x454CF0,TASK),self.task_step(0x453F10,TASK),self.task_step(0x46B470,CTRL)]
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 87, in task_step
+    call=self.call(entry,receiver=receiver);self.close_task_returns(self.cpu()['EIP'],self.cpu()['ESP']);need(not self.task_stack,'all complete task observations returned')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: all complete task observations returned

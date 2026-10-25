@@ -1,0 +1,34 @@
+# 原终局任务进入VM的资源边界
+
+2026-10-26，`connect-terminal-task-vm-entry`。本次把实际终局请求接到原任务更新；两例第三次任务都自然进入VM，在执行首条167后停于第一次覆盖层资源查询407870的入口。没有执行资源查询，也没有把此停点当作任务完成。
+
+## 实际执行
+
+从新建的战斗对象、原497800初始化和真实T0004脚本开始，分别重现中立单位首帧胜利及第三帧战斗前超时。仍由原完整250槽世界更新46B470与事件432100产生终局选择，无存档或快照恢复。随后两次完整执行：425DE0输入复位 → 454CF0任务 → 453F10阶段 → 46B470世界 → 432100事件。任务阶段由0变1再变2，忙碌事件不再发起新请求，原暂停冻结世界时钟。
+
+第三次425DE0复位后，从454CF0进入原4CE8F0。首条167把变量0设为1、PC从0推进到8，随后每次VM更新固有的覆盖层调用4D29E0 → 4D2CA0 → 407870自然发生。没有单独调用VM或117/118，没有主机写入PC、等待标志或阶段，也没有关闭绘制门绕过覆盖层。
+
+原调用栈仍有454CF0、4CE8F0、4D29E0、4D2CA0四帧未返回。完整128 KiB原栈、57项CPU、SEH链和128字节覆盖层包均保留。407870尚未执行第一条指令，输入是资源组20、索引0；包的图层是51。包的全部字节依据原构造器独立核对，包含原默认值及未写的CC字节。
+
+## 平台与输入边界
+
+额外声明空的主对象/输入缓冲、null IME上下文、覆盖层原点和未活动音频为方法输入，未宣称完成原加载器、资源缓存或设备初始化。原音频41E500/41D790执行未活动分支，其清零写入也被守卫。原输入请求字节INPUT+630是待查询标志，FF经原复位清零；每例实际查询两次Windows ImmGetOpenStatus(null)，并三次实际调用lstrlenA(empty)。这些都是查询，没有键鼠输入，无需解锁屏幕。64位宿主、32位guest和实际IMM32模块身份分别记录。
+
+只在根调用栈设置入口参数；源代码/IAT和只读拥有区保持原值。所有游戏函数由原指令执行，没有游戏结果替身。继承的代码守卫和根ABI算法保留原函数代码对象，只扩展有来源的允许范围与观察点。宿主NativeTLS独立关闭；guest任务、异常链和对象保持悬挂，未执行473860或原对象清理。
+
+## 证据与复现
+
+- 来源：`analysis/terminal-task-source-v4-20261026.json.gz`，两例累计966,966条原指令、409,430次原写入，68个任务调用观察、910次关键写入；包含4次终局前世界及4次终局后世界。
+- 证明：`analysis/terminal-task-proof-v1-20261026.json`，独立规则核对任务阶段、输入请求、VM单条推进、资源包、原返回地址及SEH；两例全部50个拥有区、57项CPU和累计原指令/写入摘要均由新实例重放一致。
+- 开发诊断v1/v2/v3原样保留：分别发现主对象启用后的真实音频代码入口、其清零写范围、观察器栈参数数量。425E60实际ret4，4C1F40实际ret10h；均据原指令修正，未改游戏执行结果。
+- `tools/tests/test_terminal_task.py`覆盖完整合同、运行期主机写入限制，以及阶段、PC、资源包、栈、SEH、平台查询和观察记录篡改拒绝。
+
+```bash
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.terminal_task_emulation --out analysis/terminal-task-source-NEW.json.gz
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m tools.terminal_task_verification --report analysis/terminal-task-source-NEW.json.gz --out analysis/terminal-task-proof-NEW.json
+PYTHONPATH=. PYTHONUTF8=1 .venv-audit/Scripts/python.exe -m unittest tools.tests.test_terminal_task
+```
+
+## 后续依赖
+
+下一步需要真实初始化并接入资源组20/索引0及其绘制所有者，让407870返回，再运行更多原VM帧；不能用空资源、伪造返回值或关闭绘制门继续。此次仅证明终局任务到VM入口，不涵盖完整终局播放、滚动/文字/精灵/声音等待、原外层调度器、任务退出、结算或奖励。R3/R4/R5/R6保持未完成，目标日期仍为2026-11-20。

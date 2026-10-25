@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 146, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',required=True);a=p.parse_args();need(not (ROOT/a.out).exists(),'fresh task source output');terminal.save(a.out,report(a.out))
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 137, in report
+    try:r=m.run()
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 116, in run
+    need(not self.pending_contracts,'all live battle contracts returned');f['after']=self.state();f['trace_after']=self.mark();frames.append(f);events.append(self.event())
+  File "F:\project\chaomofa\tools\battle_live_terminal_emulation.py", line 91, in event
+    try:call=self.call(0x432100)
+  File "F:\project\chaomofa\tools\battle_unit_movement_emulation.py", line 98, in call
+    before = self.cpu(); row = self.base_call(entry, args, receiver); after = self.cpu()
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 90, in call
+    self.uc.emu_start(entry, RETURN, timeout=60_000_000, count=10_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1077, in __hook_mem_access_cb
+    callback(uc, access, address, size, value, user_data)
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 81, in write_hook
+    super().write_hook(uc,access,at,size,value,context)
+  File "F:\project\chaomofa\tools\terminal_work_emulation.py", line 71, in write_hook
+    super().write_hook(uc,access,at,size,value,context)
+  File "F:\project\chaomofa\tools\battle_terminal_selection_emulation.py", line 137, in write_hook
+    super().write_hook(uc,access,at,size,value,context)
+  File "F:\project\chaomofa\tools\battle_bilateral_combat_emulation.py", line 70, in write_hook
+    super().write_hook(uc,access,at,size,value,context)
+  File "F:\project\chaomofa\tools\battle_combat_aftermath_emulation.py", line 64, in write_hook
+    super().write_hook(uc,access,at,size,value,context)
+  File "F:\project\chaomofa\tools\battle_hit_damage_emulation.py", line 84, in write_hook
+    super().write_hook(uc,access,at,size,value,context)
+  File "F:\project\chaomofa\tools\battle_region_routing_emulation.py", line 94, in write_hook
+    need(any(a<=at and at+size<=b for a,b in self.mutable),'forbidden original write '+hex(at))
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: forbidden original write 0x12a08f22
