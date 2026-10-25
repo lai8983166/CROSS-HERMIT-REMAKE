@@ -1,0 +1,1029 @@
+{
+  "schema_version": 1,
+  "kind": "two autonomous ordinary melee units with bidirectional hits and received HP through original whole worlds",
+  "change": "connect-original-bilateral-combat",
+  "archive": "openspec/changes/archive/2026-10-25-connect-original-bilateral-combat",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "2945af74ec7c327bfe96844c9e7d1b2b74b61a61",
+  "implementation_commit": "7bc838120f4ec5a948170e576820e06b9473faa0",
+  "archive_and_validation_commit": "149101123ed2ebc06c6e9e551ce0b1567f287d13",
+  "source_implementation_commit": "4ecc61be87d28e282237caa8e486089b56fedb28",
+  "previous_acceptance": {
+    "path": "analysis/battle-enemy-pursuit-acceptance-v1-20261025.json",
+    "bytes": 17668,
+    "sha256": "1c4429e8062a1659a41e7be22477292289c0c289afd8e1af38505f3c5141f4a8"
+  },
+  "source_report": {
+    "path": "analysis/battle-bilateral-combat-source-v3-20261025.json",
+    "bytes": 159503,
+    "sha256": "7ce6ef0be0d81f53fa9a4ed342252433ad6b7613cc39aa947253501710df6d02"
+  },
+  "source_cases": [
+    {
+      "name": "bilateral_job1",
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job1.json.gz",
+      "bytes": 1337104,
+      "sha256": "964b5733271fb42cc828cc25966e201868636015fa67fe34e43cefcd049b9ce6"
+    },
+    {
+      "name": "bilateral_job2",
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job2.json.gz",
+      "bytes": 1337336,
+      "sha256": "7958720addda6dd5f5eb97e9435ff518f2fc788825da78e3523c031d66b2392b"
+    },
+    {
+      "name": "bilateral_job3",
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job3.json.gz",
+      "bytes": 1235676,
+      "sha256": "7deb627d7397d0f796cc9b80b23f74f098fc9de532e4cf67d5d45ab5a1668249"
+    },
+    {
+      "name": "bilateral_job4",
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job4.json.gz",
+      "bytes": 1236662,
+      "sha256": "e585281b1a0e3c083e37153a8f91c799d668b08f51a59fdacd3e9be1a2abcb38"
+    },
+    {
+      "name": "mutual_neutral",
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-mutual_neutral.json.gz",
+      "bytes": 969535,
+      "sha256": "24fcb9653cd9955632e60a144c508fb880a63399eb276e7a7b71680a21c0f402"
+    },
+    {
+      "name": "both_search_disabled",
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-both_search_disabled.json.gz",
+      "bytes": 971419,
+      "sha256": "37482e4a1b7a5088d2477020833454c1960bf41c1d59473dbfcf6859b5af4a84"
+    },
+    {
+      "name": "passive_player",
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-passive_player.json.gz",
+      "bytes": 1153826,
+      "sha256": "f1b0ee7252acb5868ab2f180062a2f63efd03944bfaad786102331d8073ace0d"
+    }
+  ],
+  "independent_proof": {
+    "path": "analysis/battle-bilateral-combat-proof-v1-20261025.json",
+    "bytes": 12670,
+    "sha256": "e923e0795c55b0eb9d837a12f7fcab93e6e7642a04d839a9f6f27bf1e1b3b99f",
+    "independent_scope": "explicit function-entry inputs: AI/physical snapshots/effect packets/HP queues/regen and continuous RNG",
+    "whole_world_state_independently_predicted": false,
+    "all_recorded_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 7,
+    "complete_original_world_roots": 873,
+    "ordered_slot_predicates": 218250,
+    "naturally_called_unit_updates": 1746,
+    "original_instructions": 84382590,
+    "original_writes": 37412511,
+    "actual_TLS_LastError_leaves": 150,
+    "owned_regions": 37,
+    "recorded_CPU_registers": 57,
+    "hits_by_active_side_in_four_jobs": [
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "case_results": [
+      {
+        "name": "bilateral_job1",
+        "frames": 147,
+        "slot_predicates": 36750,
+        "unit_updates": 294,
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 62,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 84,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 123,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 145,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 62,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 85,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 123,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 146,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          962,
+          985
+        ],
+        "HP_stores": 107,
+        "scans": [
+          1,
+          2
+        ],
+        "selections": [
+          1,
+          2
+        ],
+        "battle_draws": 47,
+        "CRT_draws": 11,
+        "instructions": 14136718,
+        "writes": 6291262,
+        "actual_API_leaves": 33,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "bilateral_job2",
+        "frames": 147,
+        "slot_predicates": 36750,
+        "unit_updates": 294,
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 62,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 84,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 123,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 145,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 62,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 85,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 123,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 146,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          962,
+          985
+        ],
+        "HP_stores": 107,
+        "scans": [
+          1,
+          2
+        ],
+        "selections": [
+          1,
+          2
+        ],
+        "battle_draws": 47,
+        "CRT_draws": 11,
+        "instructions": 14136608,
+        "writes": 6291210,
+        "actual_API_leaves": 33,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "bilateral_job3",
+        "frames": 131,
+        "slot_predicates": 32750,
+        "unit_updates": 262,
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 58,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 80,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 107,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 129,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 58,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 81,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 107,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 130,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          962,
+          985
+        ],
+        "HP_stores": 107,
+        "scans": [
+          1,
+          2
+        ],
+        "selections": [
+          1,
+          2
+        ],
+        "battle_draws": 47,
+        "CRT_draws": 11,
+        "instructions": 12610979,
+        "writes": 5612364,
+        "actual_API_leaves": 33,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "bilateral_job4",
+        "frames": 131,
+        "slot_predicates": 32750,
+        "unit_updates": 262,
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 58,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 80,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 107,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 129,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 58,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 81,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 107,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 130,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          962,
+          985
+        ],
+        "HP_stores": 107,
+        "scans": [
+          1,
+          2
+        ],
+        "selections": [
+          1,
+          2
+        ],
+        "battle_draws": 47,
+        "CRT_draws": 11,
+        "instructions": 12610869,
+        "writes": 5612312,
+        "actual_API_leaves": 33,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "mutual_neutral",
+        "frames": 96,
+        "slot_predicates": 24000,
+        "unit_updates": 192,
+        "hits_by_side": [
+          0,
+          0
+        ],
+        "hit_results": [],
+        "received_events": [],
+        "HP": [
+          1000,
+          1000
+        ],
+        "HP_stores": 0,
+        "scans": [
+          55,
+          33
+        ],
+        "selections": [
+          0,
+          0
+        ],
+        "battle_draws": 39,
+        "CRT_draws": 0,
+        "instructions": 9749369,
+        "writes": 4190436,
+        "actual_API_leaves": 0,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "both_search_disabled",
+        "frames": 96,
+        "slot_predicates": 24000,
+        "unit_updates": 192,
+        "hits_by_side": [
+          0,
+          0
+        ],
+        "hit_results": [],
+        "received_events": [],
+        "HP": [
+          1000,
+          1000
+        ],
+        "HP_stores": 0,
+        "scans": [
+          55,
+          33
+        ],
+        "selections": [
+          0,
+          0
+        ],
+        "battle_draws": 39,
+        "CRT_draws": 0,
+        "instructions": 9208561,
+        "writes": 4104700,
+        "actual_API_leaves": 0,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "name": "passive_player",
+        "frames": 125,
+        "slot_predicates": 31250,
+        "unit_updates": 250,
+        "hits_by_side": [
+          2,
+          0
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 62,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 123,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 62,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 123,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          1000,
+          963
+        ],
+        "HP_stores": 43,
+        "scans": [
+          2,
+          0
+        ],
+        "selections": [
+          2,
+          0
+        ],
+        "battle_draws": 43,
+        "CRT_draws": 6,
+        "instructions": 11929486,
+        "writes": 5310227,
+        "actual_API_leaves": 18,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      }
+    ],
+    "external_attack_or_stop_requests": 0
+  },
+  "inherited_driver": {
+    "path": "analysis/battle-bilateral-combat-inherited-driver-v2-20261025.json",
+    "bytes": 1847,
+    "sha256": "90d76d4d17597787adad7c478ceb2c92a281556e8952d6575f09d43bd3e00b8f"
+  },
+  "diagnostics": {
+    "path": "analysis/battle-bilateral-combat-diagnostic-index-v1-20261025.json",
+    "bytes": 9499,
+    "sha256": "378d32f56209fe31adf7392b1bfdda33a8c47de5dc673846ec2c4900a4ef45a1"
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "bilateral_combat",
+        "checks": 45,
+        "passed": true,
+        "path": "analysis/battle-bilateral-combat-tests-v1-20261025.log",
+        "bytes": 4700,
+        "sha256": "53d8a6e5c8cfe2e007fade105ea32a5ec711b25a8cc2b974af7fe9656af3b5bb"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 616,
+        "passed": true,
+        "path": "analysis/battle-bilateral-combat-regression-v1-20261025.log",
+        "bytes": 60625,
+        "sha256": "12173e6ae812614849ffaafba483bad2a31c3f109c4e8d08e9b39d0d4c9df8c6"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-bilateral-combat-validation-before-v1-20261025.log",
+        "bytes": 3315,
+        "sha256": "004f3c34e12f3277bc5e539f72763fbd49b692af8dea84a7e060016cf705a896"
+      },
+      {
+        "kind": "strict_after_archive",
+        "checks": 31,
+        "passed": true,
+        "path": "analysis/battle-bilateral-combat-validation-after-v1-20261025.log",
+        "bytes": 3145,
+        "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+      }
+    ],
+    "tests": 661,
+    "all_passed": true,
+    "source_implementation_commit": "4ecc61be87d28e282237caa8e486089b56fedb28",
+    "preservation": {
+      "path": "analysis/battle-bilateral-combat-preservation-v2-20261025.json",
+      "bytes": 241970,
+      "sha256": "89daf47c7e99d4f290deb8eb74793dd4fa4433e178b1ffbce0882a8f701eba87",
+      "frozen_parent_artifacts": 32
+    },
+    "source_report": {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025.json",
+      "bytes": 159503,
+      "sha256": "7ce6ef0be0d81f53fa9a4ed342252433ad6b7613cc39aa947253501710df6d02"
+    },
+    "proof": {
+      "path": "analysis/battle-bilateral-combat-proof-v1-20261025.json",
+      "bytes": 12670,
+      "sha256": "e923e0795c55b0eb9d837a12f7fcab93e6e7642a04d839a9f6f27bf1e1b3b99f"
+    },
+    "inherited_driver": {
+      "path": "analysis/battle-bilateral-combat-inherited-driver-v2-20261025.json",
+      "bytes": 1847,
+      "sha256": "90d76d4d17597787adad7c478ceb2c92a281556e8952d6575f09d43bd3e00b8f"
+    },
+    "independent_whole_world_byte_model": false,
+    "independent_function_entry_contracts": true,
+    "all_owned_memory_CPU_and_original_trace_replayed": true,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false
+  },
+  "boundaries": {
+    "declared_loaded_cache_and_task_map": true,
+    "initial_factions": [
+      4,
+      0
+    ],
+    "positive_initial_commands": [
+      2,
+      2
+    ],
+    "initial_selected_and_reaction_targets": -1,
+    "independent_whole_world_byte_model": false,
+    "both_sides_autonomous_positive_cases": true,
+    "second_hit_followed_by_complete_world": true,
+    "second_full_recovery_round_complete": false,
+    "allies_special_AI_deaths_skills_magic_healing_counter_status_complete": false,
+    "original_scene_loader_or_native_retained_scheduler_connected": false,
+    "actual_render_or_victory_rewards_complete": false,
+    "OS_input_or_unlock_requested": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R6_complete": false,
+    "delivery_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 36749,
+      "sha256": "97005570233f696852132511701ff019b2c4f25e695ba684c47b49ee8cb28d35"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-apply-v1-20261025.json",
+      "bytes": 3107,
+      "sha256": "01a576413be8c945821c34408f5302b41f2998574bf66b6dcb76f1a70fb5cef8"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-archive-inputs-v1-20261025.json",
+      "bytes": 1006,
+      "sha256": "7862bf3ced7c1ca9f98d2067b1f4ecc265cd9360dfeccd1f8b641f0c5e0f38b7"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-archive-receipt-v1-20261025.json",
+      "bytes": 1076,
+      "sha256": "bf0ad26f9e21ff12b9c71e71c5ac38e4752dbd00d128ac6e4c0174080e20f497"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-diagnostic-index-v1-20261025.json",
+      "bytes": 9499,
+      "sha256": "378d32f56209fe31adf7392b1bfdda33a8c47de5dc673846ec2c4900a4ef45a1"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-explore-v2-20261025.json.gz.failure.json.gz",
+      "bytes": 20954,
+      "sha256": "004b8927f1ecccc56c388f961fd11cec4719b7c62578de8f0170317745189d6f"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-explore-v3-20261025.json.gz.failure.json.gz",
+      "bytes": 21013,
+      "sha256": "7d3bfce85adc4253930474061ce53ddbfaa26d669f0168cc799c4168dbd3f6c9"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-inherited-driver-v1-20261025.json",
+      "bytes": 1537,
+      "sha256": "ad57ad5ae7e2671110b4136512870b5cd05cecc7eb8af540710ca6949dbd43b4"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-inherited-driver-v2-20261025.json",
+      "bytes": 1847,
+      "sha256": "90d76d4d17597787adad7c478ceb2c92a281556e8952d6575f09d43bd3e00b8f"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-preservation-v1-20261025.json",
+      "bytes": 241576,
+      "sha256": "3f3efc524b68133480cf2a1e535bea6d9328b54b593de7ecf789b1a529f68481"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-preservation-v2-20261025.json",
+      "bytes": 241970,
+      "sha256": "89daf47c7e99d4f290deb8eb74793dd4fa4433e178b1ffbce0882a8f701eba87"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-proof-v1-20261025.json",
+      "bytes": 12670,
+      "sha256": "e923e0795c55b0eb9d837a12f7fcab93e6e7642a04d839a9f6f27bf1e1b3b99f"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-regression-v1-20261025.log",
+      "bytes": 60625,
+      "sha256": "12173e6ae812614849ffaafba483bad2a31c3f109c4e8d08e9b39d0d4c9df8c6"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v1-20261025-bilateral_job1.json.gz.failure.json.gz",
+      "bytes": 21071,
+      "sha256": "3143a6ac749a8ab7d59e786fec5b9e9b5a42a5298920e7da4e6f6d054bb3b8d0"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v1-20261025-bilateral_job2.json.gz.failure.json.gz",
+      "bytes": 21127,
+      "sha256": "7d8dfbaf7f9d8b3c3730562ccb35fa3dc5b09ec41e9dbae365f7f3524ad13012"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v1-20261025-bilateral_job3.json.gz.failure.json.gz",
+      "bytes": 21102,
+      "sha256": "7973384742cfdd8fead8c399adf86c996442091d92bd4f98acf9ee3da7ff735d"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v1-20261025-bilateral_job4.json.gz.failure.json.gz",
+      "bytes": 21221,
+      "sha256": "7f17ad2fc4579379c3868701d6ad28e785edae21ff2f45f090ccab7134c44241"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v1-20261025-both_search_disabled.json.gz",
+      "bytes": 980127,
+      "sha256": "7f94c47588ebb913e22c0f2ee379a6938c4025dd765359b46030b6e14027cef6"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v1-20261025-mutual_neutral.json.gz",
+      "bytes": 969565,
+      "sha256": "077408e18c78a1c265365b0f0e5c8f171a87433eb514103b61c2f0dafbbe6bd8"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v1-20261025-passive_player.json.gz",
+      "bytes": 1153482,
+      "sha256": "cee7e996c30b2fd66f69a7f62214fb69d95d87667d3c7920a909b4394a4555ad"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025-bilateral_job1.json.gz",
+      "bytes": 1337467,
+      "sha256": "9dca02eb93fb57c0de776eaa77ad18ad9dc9b6a979dfd8edc7e9c20151110fc9"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025-bilateral_job2.json.gz",
+      "bytes": 1337873,
+      "sha256": "34fb33b57f48ca490e50963764f489d8751fe23f2db90a01cde154eeec01b845"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025-bilateral_job3.json.gz",
+      "bytes": 1235946,
+      "sha256": "418adfeabb5238316a97faefae29b1a44b24b20f8b88ee6bf48c51c3152b3628"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025-bilateral_job4.json.gz",
+      "bytes": 1237030,
+      "sha256": "a89c6e6f81ae49525a010e1387486658d2e3f246e5b9640df27ab0f1dd59df51"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025-both_search_disabled.json.gz",
+      "bytes": 980194,
+      "sha256": "4979fc8fb50dad8f5bf2bc4c61f34113745cbf4553a9c0e2d13c0c50decb702b"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025-mutual_neutral.json.gz",
+      "bytes": 969617,
+      "sha256": "ccc6b67b203694f2f077ac7358693b6a5cbe827c2f9f4feaaff204ba71992e0a"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025-passive_player.json.gz",
+      "bytes": 1153571,
+      "sha256": "930b695b611ecbe9d704b1e50b99ed233e80edc856eced619cc9d1955b14b714"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v2-20261025.json",
+      "bytes": 159453,
+      "sha256": "cc5032a4188bb70bb7ae3c7ecbb40ae7585f035078c9ce04d862d4f871d7c896"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job1.json.gz",
+      "bytes": 1337104,
+      "sha256": "964b5733271fb42cc828cc25966e201868636015fa67fe34e43cefcd049b9ce6"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job2.json.gz",
+      "bytes": 1337336,
+      "sha256": "7958720addda6dd5f5eb97e9435ff518f2fc788825da78e3523c031d66b2392b"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job3.json.gz",
+      "bytes": 1235676,
+      "sha256": "7deb627d7397d0f796cc9b80b23f74f098fc9de532e4cf67d5d45ab5a1668249"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-bilateral_job4.json.gz",
+      "bytes": 1236662,
+      "sha256": "e585281b1a0e3c083e37153a8f91c799d668b08f51a59fdacd3e9be1a2abcb38"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-both_search_disabled.json.gz",
+      "bytes": 971419,
+      "sha256": "37482e4a1b7a5088d2477020833454c1960bf41c1d59473dbfcf6859b5af4a84"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-mutual_neutral.json.gz",
+      "bytes": 969535,
+      "sha256": "24fcb9653cd9955632e60a144c508fb880a63399eb276e7a7b71680a21c0f402"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025-passive_player.json.gz",
+      "bytes": 1153826,
+      "sha256": "f1b0ee7252acb5868ab2f180062a2f63efd03944bfaad786102331d8073ace0d"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-source-v3-20261025.json",
+      "bytes": 159503,
+      "sha256": "7ce6ef0be0d81f53fa9a4ed342252433ad6b7613cc39aa947253501710df6d02"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-status-v1-20261025.json",
+      "bytes": 2890,
+      "sha256": "fb9d7f8a4a4fd2f49e6482a415075e7ee4ff9ae6ae6935e29ab677fe4636ac74"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-tests-v1-20261025.log",
+      "bytes": 4700,
+      "sha256": "53d8a6e5c8cfe2e007fade105ea32a5ec711b25a8cc2b974af7fe9656af3b5bb"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-validation-after-v1-20261025.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-validation-before-v1-20261025.log",
+      "bytes": 3315,
+      "sha256": "004f3c34e12f3277bc5e539f72763fbd49b692af8dea84a7e060016cf705a896"
+    },
+    {
+      "path": "analysis/battle-bilateral-combat-validation-v1-20261025.json",
+      "bytes": 2053,
+      "sha256": "cce7dcf578386a127fe16f07e30c1da01467a4ff4c9c373cfb99ace71c2eaeca"
+    },
+    {
+      "path": "docs/battle_bilateral_combat.md",
+      "bytes": 5692,
+      "sha256": "dafa2a2240210d604494f515a94fdfc4f0ac1b8160def489f6dbe76873e129a4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-bilateral-combat/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "049e2683e8f1e88703285d6a8ac1fbd6fd013c15373c6b6af8fdf44ec25da4e4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-bilateral-combat/design.md",
+      "bytes": 2648,
+      "sha256": "7b700e3ac498d07c2ea4b1343d44bbaf7229b0003150c12744e82bc7dd09de17"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-bilateral-combat/proposal.md",
+      "bytes": 1351,
+      "sha256": "80260964d9c56592454acc18261171f71865cbc9dd4f1a922909f7adb054f5c5"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-bilateral-combat/tasks.md",
+      "bytes": 819,
+      "sha256": "de047499c4568e494009a55e50e96dfcb25652958344b440cd27fcadcca7440d"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 76630,
+      "sha256": "c10e4c84f13339e13d427ed4c1a8fcaf6c8e5a62e7dd619438c0ed9f3e1b6052"
+    },
+    {
+      "path": "tools/battle_bilateral_combat.py",
+      "bytes": 2034,
+      "sha256": "b5f8e825e271f0260f57de258038e210fc03452955ebd3c01e6adcb0ae59cd00"
+    },
+    {
+      "path": "tools/battle_bilateral_combat_emulation.py",
+      "bytes": 9916,
+      "sha256": "94ac32bdc85b09dffb1345661793ec77db595b232146e3891f0fdca63f0bf83c"
+    },
+    {
+      "path": "tools/battle_bilateral_combat_model.py",
+      "bytes": 9035,
+      "sha256": "c39bc5b53be449177dbeb2da5044e8e9c2c29801c79bd48d63fddb45f4df4208"
+    },
+    {
+      "path": "tools/battle_bilateral_combat_preservation.py",
+      "bytes": 1740,
+      "sha256": "8766549866918c0c57b6d1b809d72340a721bc28c06e80dd0ddcb82255e8e0d2"
+    },
+    {
+      "path": "tools/battle_bilateral_combat_verification.py",
+      "bytes": 14061,
+      "sha256": "0b15becc3491f7c85e2089e72e6017fe785d0f574278b75b52afb1400fcac034"
+    },
+    {
+      "path": "tools/tests/test_battle_bilateral_combat.py",
+      "bytes": 8419,
+      "sha256": "87617cb12c967ecb047f4cd2777691bc7bb97b202628eb454b5343795e271787"
+    }
+  ],
+  "raw_bytes": {
+    "worktree_index_HEAD_identical_before_acceptance": true,
+    "artifact_count": 53,
+    "LF_for_code_markdown_json_yaml": true,
+    "logs_preserved_as_binary_text": true,
+    "unrelated_preexisting_six_untracked_skill_directories_preserved": true
+  }
+}
