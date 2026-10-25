@@ -1,0 +1,975 @@
+{
+  "schema_version": 1,
+  "kind": "autonomous lethal melee, both faction removals and actual supplemental original result-input finalization",
+  "change": "connect-original-lethal-combat",
+  "archive": "openspec/changes/archive/2026-10-25-connect-original-lethal-combat",
+  "tasks_complete": 3,
+  "tasks_total": 3,
+  "baseline_commit": "53788397d6137f25c889aa45b260ffd6c0d1fb1e",
+  "source_implementation_commit": "4597e1194677ae60577cc2507ad282da002f7581",
+  "implementation_commit": "71ca12bcadcb8cbcd8026ba9fa2f2c7d73e743c2",
+  "archive_and_validation_commit": "a0e7a20ac3938e01bbc966f4a61e6cceb4094701",
+  "previous_acceptance": {
+    "path": "analysis/battle-bilateral-combat-acceptance-v1-20261025.json",
+    "bytes": 31300,
+    "sha256": "075c385c3827a91cefc7d3f3d9a428dcc9dffbac62145e1ea594df785f0ccd9a"
+  },
+  "source_report": {
+    "path": "analysis/battle-lethal-combat-source-v2-20261025.json",
+    "bytes": 163407,
+    "sha256": "23638812d4109f487130d2992deb7a9330a9b393ed72053f107f1eacc864a803"
+  },
+  "source_cases": [
+    {
+      "name": "enemy_dies_job1",
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-enemy_dies_job1.json.gz",
+      "bytes": 2112817,
+      "sha256": "3dc801e022afa836ba04410502e4610fd3803a92450a3e4e55accd42d603acd3"
+    },
+    {
+      "name": "player_dies_job1",
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-player_dies_job1.json.gz",
+      "bytes": 1939127,
+      "sha256": "a6eb85318a0833cb87e8e585d3b1cd70222e30a43bf5029e123461295e3f2bdc"
+    },
+    {
+      "name": "enemy_dies_job3",
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-enemy_dies_job3.json.gz",
+      "bytes": 2007358,
+      "sha256": "bcf282ad1ec211a27c4d21e3a2a5d6bcdc59f902eb1ffdd4220fa1aaa894a31b"
+    },
+    {
+      "name": "player_dies_job3",
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-player_dies_job3.json.gz",
+      "bytes": 1839295,
+      "sha256": "4e48d7744e9f5e5c55048d623ab9fc26afdadadc68219a2d1368db26dcca0f76"
+    },
+    {
+      "name": "player_threshold_survives",
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-player_threshold_survives.json.gz",
+      "bytes": 2143009,
+      "sha256": "76c4e8083166be3c9381d6e7765751d71b66f16113d323cb31e7d919c37563e2"
+    },
+    {
+      "name": "neutral_living_control",
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-neutral_living_control.json.gz",
+      "bytes": 1005289,
+      "sha256": "366c0f6c06936407304743bac7ac8b072de5504358f57add4e5d611391bdd72b"
+    }
+  ],
+  "independent_proof": {
+    "path": "analysis/battle-lethal-combat-proof-v1-20261025.json",
+    "bytes": 14477,
+    "sha256": "d62f6b9e32df2ef9a1a76207fd6f05b8ef30e07b2658ec9e0280cd8a15e4c79f",
+    "scope": "explicit function-entry inputs plus continuous HP/RNG/death/score ledger and complete result-data pages",
+    "whole_world_state_independently_predicted": false,
+    "all_recorded_memory_CPU_and_trace_replayed": true
+  },
+  "observed": {
+    "cases": 6,
+    "complete_original_world_roots": 1280,
+    "ordered_slot_predicates": 320000,
+    "naturally_called_unit_updates": 2560,
+    "original_instructions": 124127055,
+    "original_writes": 55113486,
+    "actual_TLS_LastError_leaves": 204,
+    "owned_regions": 38,
+    "recorded_CPU_registers": 57,
+    "supplemental_result_input_roots": 6,
+    "case_results": [
+      {
+        "result_inputs": {
+          "selector": 0,
+          "time_key": 1,
+          "unit_condition": 2,
+          "score": 20,
+          "player_kills": 1,
+          "player_contribution": 20,
+          "player_deaths": 0
+        },
+        "name": "enemy_dies_job1",
+        "frames": 252,
+        "slot_predicates": 63000,
+        "unit_updates": 504,
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 62,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 84,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 123,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 145,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 62,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 85,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 123,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 146,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          0,
+          922
+        ],
+        "HP_stores": 4,
+        "scans": [
+          1,
+          69
+        ],
+        "selections": [
+          1,
+          2
+        ],
+        "battle_draws": 47,
+        "CRT_draws": 12,
+        "instructions": 24345451,
+        "writes": 10839474,
+        "actual_API_leaves": 36,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "result_inputs": {
+          "selector": 0,
+          "time_key": 1,
+          "unit_condition": 1,
+          "score": 0,
+          "player_kills": 0,
+          "player_contribution": 0,
+          "player_deaths": 1
+        },
+        "name": "player_dies_job1",
+        "frames": 228,
+        "slot_predicates": 57000,
+        "unit_updates": 456,
+        "hits_by_side": [
+          2,
+          1
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 62,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 84,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 123,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 62,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 85,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 123,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          961,
+          0
+        ],
+        "HP_stores": 3,
+        "scans": [
+          66,
+          1
+        ],
+        "selections": [
+          1,
+          1
+        ],
+        "battle_draws": 45,
+        "CRT_draws": 11,
+        "instructions": 22032588,
+        "writes": 9810818,
+        "actual_API_leaves": 33,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "result_inputs": {
+          "selector": 0,
+          "time_key": 1,
+          "unit_condition": 2,
+          "score": 20,
+          "player_kills": 1,
+          "player_contribution": 20,
+          "player_deaths": 0
+        },
+        "name": "enemy_dies_job3",
+        "frames": 236,
+        "slot_predicates": 59000,
+        "unit_updates": 472,
+        "hits_by_side": [
+          2,
+          2
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 58,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 80,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 107,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 129,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 58,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 81,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 107,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 130,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          0,
+          922
+        ],
+        "HP_stores": 4,
+        "scans": [
+          1,
+          77
+        ],
+        "selections": [
+          1,
+          2
+        ],
+        "battle_draws": 47,
+        "CRT_draws": 12,
+        "instructions": 22826870,
+        "writes": 10164433,
+        "actual_API_leaves": 36,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "result_inputs": {
+          "selector": 0,
+          "time_key": 1,
+          "unit_condition": 1,
+          "score": 0,
+          "player_kills": 0,
+          "player_contribution": 0,
+          "player_deaths": 1
+        },
+        "name": "player_dies_job3",
+        "frames": 212,
+        "slot_predicates": 53000,
+        "unit_updates": 424,
+        "hits_by_side": [
+          2,
+          1
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 58,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 80,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 107,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 58,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 81,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 107,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          961,
+          0
+        ],
+        "HP_stores": 3,
+        "scans": [
+          74,
+          1
+        ],
+        "selections": [
+          1,
+          1
+        ],
+        "battle_draws": 45,
+        "CRT_draws": 11,
+        "instructions": 20511556,
+        "writes": 9134601,
+        "actual_API_leaves": 33,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "result_inputs": {
+          "selector": 0,
+          "time_key": 1,
+          "unit_condition": 1,
+          "score": 0,
+          "player_kills": 0,
+          "player_contribution": 0,
+          "player_deaths": 0
+        },
+        "name": "player_threshold_survives",
+        "frames": 256,
+        "slot_predicates": 64000,
+        "unit_updates": 512,
+        "hits_by_side": [
+          4,
+          3
+        ],
+        "hit_results": [
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 62,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 84,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 123,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 145,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2005
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 184,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2001
+          },
+          {
+            "attacker": 285741068,
+            "victim": 285739756,
+            "frame": 206,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2003
+          },
+          {
+            "attacker": 285739756,
+            "victim": 285741068,
+            "frame": 245,
+            "kind": 1,
+            "event_kind": 1,
+            "damage32": 39,
+            "delta16": -39,
+            "effect": 2003
+          }
+        ],
+        "received_events": [
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 62,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 85,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 123,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 146,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 184,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285739756,
+            "attacker_index": 1,
+            "frame": 207,
+            "kind": 1,
+            "delta": -39
+          },
+          {
+            "victim": 285741068,
+            "attacker_index": 0,
+            "frame": 245,
+            "kind": 1,
+            "delta": -39
+          }
+        ],
+        "HP": [
+          883,
+          1
+        ],
+        "HP_stores": 7,
+        "scans": [
+          1,
+          4
+        ],
+        "selections": [
+          1,
+          4
+        ],
+        "battle_draws": 53,
+        "CRT_draws": 22,
+        "instructions": 24657957,
+        "writes": 10972351,
+        "actual_API_leaves": 66,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      },
+      {
+        "result_inputs": {
+          "selector": 0,
+          "time_key": 1,
+          "unit_condition": 2,
+          "score": 0,
+          "player_kills": 0,
+          "player_contribution": 0,
+          "player_deaths": 0
+        },
+        "name": "neutral_living_control",
+        "frames": 96,
+        "slot_predicates": 24000,
+        "unit_updates": 192,
+        "hits_by_side": [
+          0,
+          0
+        ],
+        "hit_results": [],
+        "received_events": [],
+        "HP": [
+          1000,
+          70
+        ],
+        "HP_stores": 0,
+        "scans": [
+          55,
+          33
+        ],
+        "selections": [
+          0,
+          0
+        ],
+        "battle_draws": 39,
+        "CRT_draws": 0,
+        "instructions": 9752633,
+        "writes": 4191809,
+        "actual_API_leaves": 0,
+        "independent_function_contracts": true,
+        "full_state_independent": false,
+        "all_memory_CPU_trace_replayed": true
+      }
+    ]
+  },
+  "validation": {
+    "schema_version": 1,
+    "validation": [
+      {
+        "kind": "lethal_combat",
+        "checks": 41,
+        "passed": true,
+        "path": "analysis/battle-lethal-combat-tests-v1-20261025.log",
+        "bytes": 4087,
+        "sha256": "2a343fb2519359e0560b0b3182c6140546c0aae60036bec68c41c3042550566f"
+      },
+      {
+        "kind": "related_regression",
+        "checks": 661,
+        "passed": true,
+        "path": "analysis/battle-lethal-combat-regression-v1-20261025.log",
+        "bytes": 65220,
+        "sha256": "fb1e398d051afb61e4fc2f3b528991d74725df4cb7be74f730c895e11d69decb"
+      },
+      {
+        "kind": "strict_before_archive",
+        "checks": 32,
+        "passed": true,
+        "path": "analysis/battle-lethal-combat-validation-before-v1-20261025.log",
+        "bytes": 3312,
+        "sha256": "53bf523869948a07ee2605af1dce6e452db1405e9507fcbc7cdf668051f94a18"
+      },
+      {
+        "kind": "strict_after_archive",
+        "checks": 31,
+        "passed": true,
+        "path": "analysis/battle-lethal-combat-validation-after-v1-20261025.log",
+        "bytes": 3145,
+        "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+      }
+    ],
+    "tests": 702,
+    "all_passed": true,
+    "source_implementation_commit": "4597e1194677ae60577cc2507ad282da002f7581",
+    "preservation": {
+      "path": "analysis/battle-lethal-combat-preservation-v2-20261025.json",
+      "bytes": 251858,
+      "sha256": "4212d9fbd6d1b32653e4a46781488d4558f08f195cb052f237bdfac5cf1b1e1f",
+      "frozen_parent_artifacts": 51
+    },
+    "source_report": {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025.json",
+      "bytes": 163407,
+      "sha256": "23638812d4109f487130d2992deb7a9330a9b393ed72053f107f1eacc864a803"
+    },
+    "proof": {
+      "path": "analysis/battle-lethal-combat-proof-v1-20261025.json",
+      "bytes": 14477,
+      "sha256": "d62f6b9e32df2ef9a1a76207fd6f05b8ef30e07b2658ec9e0280cd8a15e4c79f"
+    },
+    "driver": {
+      "path": "analysis/battle-lethal-combat-driver-v1-20261025.json",
+      "bytes": 1359,
+      "sha256": "9b282fc9d1d5fe8a4995d547b2919123ddf352527ee829bf1bd2cbf96016764e"
+    },
+    "independent_whole_world_byte_model": false,
+    "independent_function_entry_contracts": true,
+    "all_owned_memory_CPU_and_original_trace_replayed": true,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R5_complete": false,
+    "R6_complete": false
+  },
+  "driver": {
+    "path": "analysis/battle-lethal-combat-driver-v1-20261025.json",
+    "bytes": 1359,
+    "sha256": "9b282fc9d1d5fe8a4995d547b2919123ddf352527ee829bf1bd2cbf96016764e"
+  },
+  "boundaries": {
+    "initial_victim_HP": 70,
+    "initial_opponent_HP": 1000,
+    "declared_recovery_interval": 32767,
+    "declared_loaded_cache_and_task_map": true,
+    "original_world_gate_108B3A": 0,
+    "actual_world_damage_death_and_removal": true,
+    "original_result_input_root_supplemental": true,
+    "task_result_selector_zero_is_unresolved": true,
+    "elapsed_timer_not_enabled": true,
+    "native_scheduler_or_loader_same_lifetime_connected": false,
+    "automatic_victory_selection_or_reward_distribution_complete": false,
+    "other_death_AI_skill_magic_status_categories_complete": false,
+    "independent_whole_world_byte_model": false,
+    "OS_input_or_unlock_requested": false,
+    "Godot_changed": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R5_complete": false,
+    "R6_complete": false,
+    "delivery_target": "2026-11-20"
+  },
+  "artifact_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 37426,
+      "sha256": "f7315b1b23dbf61847707ae84b6ceec260e372c0057eeeac9ac51a793cb5926f"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-apply-v1-20261025.json",
+      "bytes": 3001,
+      "sha256": "a6532c42c3f4bbe3d8a18f3ee35c32cc84f40d2b6b3cd73a6fa015d7ed1bd939"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-archive-inputs-v1-20261025.json",
+      "bytes": 1003,
+      "sha256": "d1018636bea574473422940299960a3137b26c38d92f7c90a967cfc16ea58c2d"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-archive-receipt-v1-20261025.json",
+      "bytes": 1067,
+      "sha256": "283e4e2364211989a1adcb8738bf7f73e914f11fbfe6c25d638a89db464ea4db"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-driver-v1-20261025.json",
+      "bytes": 1359,
+      "sha256": "9b282fc9d1d5fe8a4995d547b2919123ddf352527ee829bf1bd2cbf96016764e"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-initialization-diagnostic-v1-20261025.json",
+      "bytes": 458,
+      "sha256": "3caffa6f952f6a78495024308675300fad60db0992c3d833b55d43781cfe45c8"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-preservation-v1-20261025.json",
+      "bytes": 251467,
+      "sha256": "b3844ee5041266ddd4057f9fc3f26532accfcf3208dc936bc6363e2846ac81f6"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-preservation-v2-20261025.json",
+      "bytes": 251858,
+      "sha256": "4212d9fbd6d1b32653e4a46781488d4558f08f195cb052f237bdfac5cf1b1e1f"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-proof-v1-20261025.json",
+      "bytes": 14477,
+      "sha256": "d62f6b9e32df2ef9a1a76207fd6f05b8ef30e07b2658ec9e0280cd8a15e4c79f"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-regression-v1-20261025.log",
+      "bytes": 65220,
+      "sha256": "fb1e398d051afb61e4fc2f3b528991d74725df4cb7be74f730c895e11d69decb"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-enemy_dies_job1.json.gz",
+      "bytes": 2112817,
+      "sha256": "3dc801e022afa836ba04410502e4610fd3803a92450a3e4e55accd42d603acd3"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-enemy_dies_job3.json.gz",
+      "bytes": 2007358,
+      "sha256": "bcf282ad1ec211a27c4d21e3a2a5d6bcdc59f902eb1ffdd4220fa1aaa894a31b"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-neutral_living_control.json.gz",
+      "bytes": 1005289,
+      "sha256": "366c0f6c06936407304743bac7ac8b072de5504358f57add4e5d611391bdd72b"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-player_dies_job1.json.gz",
+      "bytes": 1939127,
+      "sha256": "a6eb85318a0833cb87e8e585d3b1cd70222e30a43bf5029e123461295e3f2bdc"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-player_dies_job3.json.gz",
+      "bytes": 1839295,
+      "sha256": "4e48d7744e9f5e5c55048d623ab9fc26afdadadc68219a2d1368db26dcca0f76"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025-player_threshold_survives.json.gz",
+      "bytes": 2143009,
+      "sha256": "76c4e8083166be3c9381d6e7765751d71b66f16113d323cb31e7d919c37563e2"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-source-v2-20261025.json",
+      "bytes": 163407,
+      "sha256": "23638812d4109f487130d2992deb7a9330a9b393ed72053f107f1eacc864a803"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-status-v1-20261025.json",
+      "bytes": 2860,
+      "sha256": "684baf2def7bd601228416f799bc30bf3523de0b8e0a205ece0a168566a757af"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-tests-v1-20261025.log",
+      "bytes": 4087,
+      "sha256": "2a343fb2519359e0560b0b3182c6140546c0aae60036bec68c41c3042550566f"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-validation-after-v1-20261025.log",
+      "bytes": 3145,
+      "sha256": "258d83b480506e8b22c6d57cf779f1f6680ad4b0b0caea971cc507d624e6371c"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-validation-before-v1-20261025.log",
+      "bytes": 3312,
+      "sha256": "53bf523869948a07ee2605af1dce6e452db1405e9507fcbc7cdf668051f94a18"
+    },
+    {
+      "path": "analysis/battle-lethal-combat-validation-v1-20261025.json",
+      "bytes": 2033,
+      "sha256": "9d4d9ea4b1078cefdf281aa414f1283f74b8b5207e6c27290f00bd48db60316d"
+    },
+    {
+      "path": "docs/battle_lethal_combat.md",
+      "bytes": 5488,
+      "sha256": "b349e626dad25bfbde608cfa30339845bb4786e7363e5254cc7bcf761c32fe0f"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-lethal-combat/.openspec.yaml",
+      "bytes": 57,
+      "sha256": "049e2683e8f1e88703285d6a8ac1fbd6fd013c15373c6b6af8fdf44ec25da4e4"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-lethal-combat/design.md",
+      "bytes": 2421,
+      "sha256": "a57a77b074c412909751bff172ba78a9bd1610fdd289292c783a5af6cf2177fb"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-lethal-combat/proposal.md",
+      "bytes": 1384,
+      "sha256": "ea6c7f0d2b115dcead1fc1871142f3fdb2e1d36f76c9d908ff601c310ff3848c"
+    },
+    {
+      "path": "openspec/changes/archive/2026-10-25-connect-original-lethal-combat/tasks.md",
+      "bytes": 734,
+      "sha256": "0ef2a8724a0888985a35238c9a3ef2740804aa36c5bb003ac0529da3d30bc916"
+    },
+    {
+      "path": "openspec/specs/reverse-engineering/completion/spec.md",
+      "bytes": 78769,
+      "sha256": "ffcfda51746e54b45e36bf3bda6ec4a3579743847971d6c2d803c192ba8f3b56"
+    },
+    {
+      "path": "tools/battle_lethal_combat.py",
+      "bytes": 2269,
+      "sha256": "4776008d9b6332c355ab4781d05bebfc7adddf01d1ced34a11990366ae1de03e"
+    },
+    {
+      "path": "tools/battle_lethal_combat_emulation.py",
+      "bytes": 8052,
+      "sha256": "beecc836e56ed19539ffdd28d8a69dc707bde3f3826d5265f1019b97d8351b1b"
+    },
+    {
+      "path": "tools/battle_lethal_combat_model.py",
+      "bytes": 6388,
+      "sha256": "bd2eb59ee10935cb4c8f9a12b998167d8b24646141fbb144fe8fb81773bbb309"
+    },
+    {
+      "path": "tools/battle_lethal_combat_preservation.py",
+      "bytes": 1717,
+      "sha256": "fa95250165d5750be7daf0050d8a5a6acba395dd0cacfc6126da66f0155c4dd2"
+    },
+    {
+      "path": "tools/battle_lethal_combat_verification.py",
+      "bytes": 16003,
+      "sha256": "8e803479addc4dc6e9827dc89c5d4f1ca23334f2e1545e0c07655849dc2e548b"
+    },
+    {
+      "path": "tools/tests/test_battle_lethal_combat.py",
+      "bytes": 8047,
+      "sha256": "7280a5fe1dc6e41c8f995fd0d30c5fbc839b6101d38fe189a764eeef72da47b1"
+    }
+  ],
+  "raw_bytes": {
+    "worktree_index_HEAD_identical_before_acceptance": true,
+    "artifact_count": 34,
+    "LF_for_code_markdown_json_yaml": true,
+    "logs_preserved_as_binary_text": true,
+    "unrelated_preexisting_six_untracked_skill_directories_preserved": true
+  }
+}
