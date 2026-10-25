@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "failed_original_executions": [
+    {
+      "path": "analysis/battle-terminal-selection-explore-v1-20261025.json.gz.failure.json.gz",
+      "bytes": 12645,
+      "sha256": "8514874df8717a5aba34a89edbe833f2aa35c9715557d06831cace57332c021f",
+      "accepted": false,
+      "error": "Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)",
+      "PC": 1996617600
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v2-20261025.json.gz.failure.json.gz",
+      "bytes": 13207,
+      "sha256": "a6bb1789b613af10757cc124f5ae0151b03b4665420e5709be88a86ba6e04162",
+      "accepted": false,
+      "error": "forbidden original write 0x7e167e",
+      "PC": 5036738
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v3-20261025.json.gz.failure.json.gz",
+      "bytes": 14771,
+      "sha256": "6fbda3da77d5254b0a96485a0a5fb37a235b9af8fa40b7c019623985014f8ab9",
+      "accepted": false,
+      "error": "forbidden original write 0x7a4e18",
+      "PC": 5040709
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v4-20261025.json.gz.failure.json.gz",
+      "bytes": 17280,
+      "sha256": "3e45c9e0cc8165c4e59dd7ab49da174ed06316252f30933e58593a6cace1d42c",
+      "accepted": false,
+      "error": "undeclared original instruction 0x40d120",
+      "PC": 4247840
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v5-20261025.json.gz.failure.json.gz",
+      "bytes": 19183,
+      "sha256": "b69c4177b886176c3d54c19dd9d73ed0ec2d66f620dca7e2693b3bcfa10f43e5",
+      "accepted": false,
+      "error": "Invalid memory read (UC_ERR_READ_UNMAPPED)",
+      "PC": 4618352
+    },
+    {
+      "path": "analysis/battle-terminal-selection-explore-v6-20261025.json.gz.failure.json.gz",
+      "bytes": 20704,
+      "sha256": "bc60de4cf34a9187ed0c8b8a1dbce2217ec2b8b7965e68a403b3766e9fae40db",
+      "accepted": false,
+      "error": "all original event contracts returned",
+      "PC": 303038464
+    }
+  ],
+  "success_explore": {
+    "path": "analysis/battle-terminal-selection-explore-v7-20261025.json.gz",
+    "bytes": 374735,
+    "sha256": "1a9823b676b9421e45782e4f343477d2ead853802e1f1e1f35df3d0bf25d4f4b"
+  },
+  "earlier_complete_sources": [
+    {
+      "path": "analysis/battle-terminal-selection-source-v1-20261025.json.gz",
+      "bytes": 2957732,
+      "sha256": "24b7788221a6719fed97a66d0acfacc780e99c7bff63f6ab73004d2066328838"
+    },
+    {
+      "path": "analysis/battle-terminal-selection-source-v2-20261025.json.gz",
+      "bytes": 2958951,
+      "sha256": "60252100e77dc22ac471d5b22bd39a39c4e355185e0c1fd8c42937e10b9dd9e0"
+    }
+  ],
+  "accepted_formal_source": {
+    "path": "analysis/battle-terminal-selection-source-v3-20261025.json.gz",
+    "bytes": 2962902,
+    "sha256": "8818a465255f3b1ae96e4bc80a725f07ceec5653e459ba0154da59cbb7a0f01f"
+  },
+  "notes": [
+    "v1 platform import page lacked mapping; actual API address retained, no IAT patch",
+    "v2/v3 original VM extra thread/global counter fields declared precisely",
+    "v4 original empty audio stop body added, no result stub",
+    "v5 original task contains UnitCtrl by value, declared prefix rebuilt at CTRL-190 and reverse owner rebound before first root",
+    "v6 root until-address stops before hook, actual return CPU explicitly observed; no instruction skipped"
+  ]
+}
