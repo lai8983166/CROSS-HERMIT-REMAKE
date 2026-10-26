@@ -1,0 +1,102 @@
+{
+  "changeName": "connect-terminal-first-dialogue",
+  "schemaName": "spec-driven",
+  "planningHome": {
+    "kind": "repo",
+    "root": "/mnt/f/project/chaomofa",
+    "changesDir": "/mnt/f/project/chaomofa/openspec/changes",
+    "defaultSchema": "spec-driven"
+  },
+  "changeRoot": "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue",
+  "artifactPaths": {
+    "proposal": {
+      "outputPath": "proposal.md",
+      "resolvedOutputPath": "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue/proposal.md",
+      "existingOutputPaths": [
+        "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue/proposal.md"
+      ]
+    },
+    "specs": {
+      "outputPath": "specs/**/*.md",
+      "resolvedOutputPath": "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue/specs/**/*.md",
+      "existingOutputPaths": []
+    },
+    "design": {
+      "outputPath": "design.md",
+      "resolvedOutputPath": "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue/design.md",
+      "existingOutputPaths": [
+        "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue/design.md"
+      ]
+    },
+    "tasks": {
+      "outputPath": "tasks.md",
+      "resolvedOutputPath": "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue/tasks.md",
+      "existingOutputPaths": [
+        "/mnt/f/project/chaomofa/openspec/changes/connect-terminal-first-dialogue/tasks.md"
+      ]
+    }
+  },
+  "isPlanningComplete": true,
+  "isComplete": true,
+  "applyRequires": [
+    "tasks"
+  ],
+  "nextSteps": [
+    "All planning artifacts are complete. Run openspec instructions apply --change \"connect-terminal-first-dialogue\" --json to inspect implementation progress."
+  ],
+  "actionContext": {
+    "mode": "repo-local",
+    "sourceOfTruth": "repo",
+    "planningArtifacts": [
+      "proposal",
+      "specs",
+      "design",
+      "tasks"
+    ],
+    "linkedContext": [],
+    "allowedEditRoots": [
+      "/mnt/f/project/chaomofa"
+    ],
+    "requiresAffectedAreaSelection": false,
+    "constraints": [
+      "Repo-local change artifacts and implementation edits are scoped to this project."
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "proposal",
+      "outputPath": "proposal.md",
+      "status": "done",
+      "requires": []
+    },
+    {
+      "id": "specs",
+      "outputPath": "specs/**/*.md",
+      "status": "skipped",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "design",
+      "outputPath": "design.md",
+      "status": "done",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "tasks",
+      "outputPath": "tasks.md",
+      "status": "done",
+      "requires": [
+        "specs",
+        "design"
+      ]
+    }
+  ],
+  "root": {
+    "path": "/mnt/f/project/chaomofa",
+    "source": "nearest"
+  }
+}

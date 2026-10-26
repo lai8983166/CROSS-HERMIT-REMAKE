@@ -38,6 +38,7 @@
 - 主Agent复核：`analysis/terminal-dialogue-review-v4-20261026.json`，另核原根/完整任务和全部CPU边界、原字重指令、四纹理释放及主机写入口；实现SHA与证明完全一致。
 - 专项`analysis/terminal-dialogue-tests-v2-20261026.log`47项、历史回归`analysis/terminal-dialogue-tests-regression-v2-20261026.log`308项通过，共355项。原资料保全`analysis/terminal-dialogue-preservation-v2-20261026.json`固定前驱46项及其验收，并递归复核原资产/存档/检查点和历史证据。
 - 验证器开发失败v1–v3和proof启动失败v1保留，分别发现姓名非空前提、原入队metadata副作用及导出引用范围；正式v4逐阶段核对和最终proof v2通过，不计失败作验收。
+- 严格规格归档前32/32、归档后31/31通过；全部3项任务完成，归档于`openspec/changes/archive/2026-10-26-connect-terminal-first-dialogue/`。最终清单为`analysis/terminal-dialogue-acceptance-v1-20261026.json`，工作区、Git索引与HEAD原始字节逐项比较后封存。
 
 ## 复现与后续
 
