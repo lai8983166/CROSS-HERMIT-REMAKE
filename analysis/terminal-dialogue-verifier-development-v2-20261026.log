@@ -1,0 +1,12 @@
+source neutral_running {'script_sha256': 'dfeffff8e6a7e1582797af89c9836058596b65b2fe91049f2466754a8a86eae0', 'segment': 2, 'source_offset': 1240, 'text_hex': 'a14ba14ba14ba14b', 'text_big5': '¡­¡­¡­¡­', 'commands': [{'PC': 96, 'source_offset': 884}, {'PC': 104, 'source_offset': 892}, {'PC': 110, 'source_offset': 898}, {'PC': 114, 'source_offset': 902}]}
+pixels
+native
+timing
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <listcomp>
+  File "F:\project\chaomofa\tools\terminal_dialogue_verification.py", line 250, in timing
+    need(bytes.fromhex(b['VM'])[obj:obj+TEXT_BYTES].hex()==update['after_hex'],'independent original text fade/cadence whole object')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: independent original text fade/cadence whole object

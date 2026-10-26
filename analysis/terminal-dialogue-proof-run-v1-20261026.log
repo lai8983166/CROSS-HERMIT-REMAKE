@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_dialogue_verification.py", line 288, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--out',required=True);a=p.parse_args();need(not(e.ROOT/a.out).exists(),'fresh immutable proof');e.terminal.save(a.out,verify(e.ROOT/a.report))
+  File "F:\project\chaomofa\tools\terminal_dialogue_verification.py", line 283, in verify
+    d=json.loads(gzip.decompress(path.read_bytes()));need(d['source_contract']==e.source_contract() and [r['input'] for r in d['cases']]==e.overlay.parent.corpus(),'exact original source and both terminal branches');h=e.helpers('terminal-dialogue-proof');rows=[]
+AttributeError: module 'tools.terminal_dialogue_emulation' has no attribute 'overlay'

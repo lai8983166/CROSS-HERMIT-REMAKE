@@ -1,0 +1,21 @@
+source neutral_running {'script_sha256': 'dfeffff8e6a7e1582797af89c9836058596b65b2fe91049f2466754a8a86eae0', 'segment': 2, 'source_offset': 1240, 'text_hex': 'a14ba14ba14ba14b', 'text_big5': '¡­¡­¡­¡­', 'commands': [{'PC': 96, 'source_offset': 884}, {'PC': 104, 'source_offset': 892}, {'PC': 110, 'source_offset': 898}, {'PC': 114, 'source_offset': 902}]}
+pixels
+native
+timing
+replay
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <listcomp>
+  File "F:\project\chaomofa\tools\terminal_dialogue_verification.py", line 208, in execute
+    self.stop=s['stop'];self.u.emu_start(s['entry'],0,count=4_000_000,timeout=60_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_dialogue_verification.py", line 188, in code
+    if index<len(d['leaves']) and at==d['leaves'][index]['call']['target']:self.leaf(d['leaves'][index]);index+=1;return
+  File "F:\project\chaomofa\tools\terminal_dialogue_verification.py", line 166, in leaf
+    name,slot,caller=e.TASK_APIS[c['target']];need((c['name'],c['import_slot'],ret)==(name,slot,caller) and num(self.read(slot,4),0)==c['target'] and c['actual_API_executed'] is True and c['value']==0 and c['memory_outputs']==[] and args==([0] if name=='ImmGetOpenStatus' else [e.INPUT+0x528]),'actual original null-IME and empty-input query');value=0
+AttributeError: module 'tools.terminal_dialogue_emulation' has no attribute 'TASK_APIS'

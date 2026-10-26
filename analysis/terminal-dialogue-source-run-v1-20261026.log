@@ -1,0 +1,41 @@
+neutral_running after-fade 0 {'PC': 52, 'wait': 1, 'value': 1296, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 58}
+neutral_running after-fade 20 {'PC': 52, 'wait': 1, 'value': 14256, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 38}
+neutral_running after-fade 40 {'PC': 52, 'wait': 1, 'value': 27216, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 18}
+neutral_running after-fade 60 {'PC': 60, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+neutral_running after-fade 80 {'PC': 76, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+neutral_running portrait wait 0 96 1
+neutral_running portrait wait 20 96 1
+neutral_running portrait wait 40 96 1
+neutral_running portrait wait 60 96 1
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_dialogue_emulation.py", line 127, in <module>
+    r=run_case(c,ch,gh);rows.append(r);print('dialogue source',c['name'],'PC118 held',len(r['terminal_dialogue']['frames']),flush=True)
+  File "F:\project\chaomofa\tools\terminal_dialogue_emulation.py", line 123, in run_case
+    fn=types.FunctionType(parent.overlay.run_case.__code__,dict(parent.overlay.run_case.__globals__,OverlayMachine=DialogueMachine,terminal=Diagnostics),closure=parent.overlay.run_case.__closure__);return fn(c,ch,gh,ticks)
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 184, in run_case
+    m=OverlayMachine(c,live,gpu,ticks);row=m.run();row.update(CRT_cleanup=live.close(),GPU_cleanup=gpu.close(),CRT_trace=live.trace,GPU_trace=gpu.trace,CRT_exit=live.exit_code,GPU_exit=gpu.process.returncode);return row
+  File "F:\project\chaomofa\tools\terminal_dialogue_emulation.py", line 114, in run
+    r=super().run();r.update(terminal_dialogue=self.dialogue_result,dialogue_cleanup=self.dialogue_cleanup);return r
+  File "F:\project\chaomofa\tools\terminal_portrait_emulation.py", line 104, in run
+    r=super().run();r.update(terminal_portrait=self.portrait_result,portrait_cleanup=self.portrait_cleanup);return r
+  File "F:\project\chaomofa\tools\terminal_name_emulation.py", line 117, in run
+    try:r=super().run();r['terminal_name']=self.name_result;r['name_cleanup']=self.name_cleanup;return r
+  File "F:\project\chaomofa\tools\terminal_after_fade_emulation.py", line 69, in run
+    r=super().run();r['after_fade']=self.fade;return r
+  File "F:\project\chaomofa\tools\terminal_overlay_emulation.py", line 170, in run
+    row=super().run();row.update(resource_initialization=copy.deepcopy(self.resource_steps),resource_loaded=self.loaded,overlay_continuation=self.continuation,resource_domain=self.domain,accounting_baseline=self.accounting_baseline,CRT_APIs=self.crt_apis,GPU_APIs=self.gpu_calls,extra_original_instruction_counts=dict(self.extra_counts),current_GPU_hello=self.gpu.hello,current_CRT_hello=self.live.hello,typed_GPU_projection=self.space.ledger())
+  File "F:\project\chaomofa\tools\terminal_task_emulation.py", line 119, in run
+    admission=self.admission();row=dict(input=self.live_input,combat_input=self.cycle_input,initial=initial,initialization=initialization,image_before=image_before,image_after=self.image_identity(),
+  File "F:\project\chaomofa\tools\terminal_dialogue_emulation.py", line 95, in admission
+    self.dialogue_frame(0,'first_sentence',True);need(self.get(VM+28)==110 and self.get(VM+32,'H')==0,'first sentence whole task PC110')
+  File "F:\project\chaomofa\tools\terminal_dialogue_emulation.py", line 88, in dialogue_frame
+    self.dialogue_segment('task_to_original_font',0x454CF0,self.font_target,dict(receiver=TASK,args=[]));sp=self.getreg('ESP');self.dialogue_font_boundary=self.dialogue_capture();self.dialogue_pending_font=dict(entry=self.font_target,caller=self.get(sp),args=[self.get(sp+4+j*4) for j in range(14)],CPU=self.cpu(),first_instruction_executed=False)
+  File "F:\project\chaomofa\tools\terminal_dialogue_emulation.py", line 80, in dialogue_segment
+    need(self.getreg('EIP')==stop,'natural original dialogue segment '+label)
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: natural original dialogue segment task_to_original_font
