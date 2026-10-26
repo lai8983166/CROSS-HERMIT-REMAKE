@@ -1,0 +1,15 @@
+............F.......................
+======================================================================
+FAIL: test_original_CPU_changed (tools.tests.test_terminal_portrait.TerminalPortraitTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_portrait.py", line 54, in test_original_CPU_changed
+    def test_original_CPU_changed(self):self.reject(lambda r:r['terminal_portrait']['final']['CPU'].update(EAX=0))
+  File "F:\project\chaomofa\tools\tests\test_terminal_portrait.py", line 12, in reject
+    with self.assertRaises((ValueError,KeyError,IndexError,StopIteration)):check(r)
+AssertionError: (<class 'ValueError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'StopIteration'>) not raised
+
+----------------------------------------------------------------------
+Ran 36 tests in 112.081s
+
+FAILED (failures=1)
