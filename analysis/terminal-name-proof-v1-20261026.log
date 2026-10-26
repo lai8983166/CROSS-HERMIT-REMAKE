@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 151, in verify_case
+    native(row);role,source,reference,cfg=independent_pixels(row);count,writes=Replay(row,reference,cfg).execute()
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 81, in __init__
+    for k in names:self.u.reg_write(getattr(x86,'UC_X86_REG_'+k),tuple(cpu[k]) if isinstance(cpu[k],list) else cpu[k])
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 535, in reg_write
+    self._reg_write(reg_id, reg_type, value)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 456, in _reg_write
+    raise UcError(status, reg_id)
+unicorn.unicorn_py3.unicorn.UcError: Unhandled CPU exception (UC_ERR_EXCEPTION)

@@ -1,0 +1,31 @@
+................................
+======================================================================
+ERROR: test_both_complete_contracts (tools.tests.test_terminal_name.TerminalNameTests) (name='timeout_before_combat')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_name.py", line 17, in test_both_complete_contracts
+    with self.subTest(name=row['input']['name']):self.assertEqual(v.verify_case(row)['VM_PC'],76)
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 155, in verify_case
+    native(row);role,source,reference,cfg=independent_pixels(row);count,writes=Replay(row,reference,cfg).execute()
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 147, in execute
+    self.u.hook_add(UC_HOOK_CODE,code);self.u.hook_add(UC_HOOK_MEM_WRITE,write);self.u.emu_start(self.cpu()['EIP'],0,count=2000000,timeout=60_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 138, in code
+    if at==0x4CDE10:check_boundary(n);u.emu_stop();return
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 135, in check_boundary
+    overlay.memory_equal(self.snapshot(),b['memory'],'independent original source whole boundary');need(self.cpu()==b['CPU'],'all57 independent original source registers');need(dict(instructions=count,writes=writes,code_sha256=ih.hexdigest(),write_sha256=wh.hexdigest())==b['local_trace'],'independent all original local PCs and writes')
+  File "F:\project\chaomofa\tools\terminal_overlay_verification.py", line 11, in memory_equal
+    e.need([(r['pointer'],r['bytes']) for r in a]==[(r['pointer'],r['bytes']) for r in b],label+' all exact mappings')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: independent original source whole boundary all exact mappings
+
+----------------------------------------------------------------------
+Ran 33 tests in 39.942s
+
+FAILED (errors=1)

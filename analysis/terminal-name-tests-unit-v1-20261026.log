@@ -1,0 +1,17 @@
+E
+======================================================================
+ERROR: setUpClass (tools.tests.test_terminal_name.TerminalNameTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_name.py", line 10, in setUpClass
+    def setUpClass(cls):cls.report=json.loads(gzip.decompress((e.ROOT/REPORT).read_bytes()));cls.rows=cls.report['cases']
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1126, in read_bytes
+    with self.open(mode='rb') as f:
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'F:\\project\\chaomofa\\analysis\\terminal-name-source-v5-20261026.json.gz'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.001s
+
+FAILED (errors=1)

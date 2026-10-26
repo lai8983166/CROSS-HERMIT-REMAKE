@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 153, in verify_case
+    native(row);role,source,reference,cfg=independent_pixels(row);count,writes=Replay(row,reference,cfg).execute()
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 145, in execute
+    self.u.hook_add(UC_HOOK_CODE,code);self.u.hook_add(UC_HOOK_MEM_WRITE,write);self.u.emu_start(self.cpu()['EIP'],0,count=2000000,timeout=60_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 140, in code
+    if at==c['target']:self.leaf(item['kind'],c);index+=1;return
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 112, in leaf
+    r=copy.deepcopy(c);r['dc_translated_args']=r['args'];self.check_raster_API(self,dict(va=c['target'],call=r));return
+  File "F:\project\chaomofa\tools\school_retained_name_verification.py", line 31, in api
+    need(a['key']=='retained_name_GDI','no game-function substitution');r=a['call'];sp=self.cpu()['ESP'];ret=word(self.read(sp));args=[word(self.read(sp+4+4*i)) for i in range(r['pop']//4)];slot=r['import_slot'];name=r['name'];o=self.case['offscreen'];frame=self.cpu()['EBP'];out=[];expect={}
+KeyError: 'key'

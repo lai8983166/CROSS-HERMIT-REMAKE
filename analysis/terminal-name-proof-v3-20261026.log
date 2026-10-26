@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 153, in verify_case
+    native(row);role,source,reference,cfg=independent_pixels(row);count,writes=Replay(row,reference,cfg).execute()
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 145, in execute
+    self.u.hook_add(UC_HOOK_CODE,code);self.u.hook_add(UC_HOOK_MEM_WRITE,write);self.u.emu_start(self.cpu()['EIP'],0,count=2000000,timeout=60_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 140, in code
+    if at==c['target']:self.leaf(item['kind'],c);index+=1;return
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 112, in leaf
+    r=copy.deepcopy(c);r['dc_translated_args']=r['args'];self.check_raster_API(self,dict(key='retained_name_GDI',va=c['target'],call=r));return
+  File "F:\project\chaomofa\tools\school_retained_name_verification.py", line 53, in api
+    need(args==[o['raster_dc'],frame-0x38,0,frame-0x3c,0,0] and self.read(args[1],40)==header and r['header_hex']==header.hex() and r['guest_bits']==work.RASTER and r['mapped_bytes']==extent and r['bitmap_bytes']==size and r['native_bits']>0 and r['result']==o['bitmap'],'exact source DIB header/extent/mapping')
+KeyError: 'native_bits'
