@@ -1,0 +1,10 @@
+contracts neutral_running
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\terminal_confirmation_verification.py", line 77, in execute
+    f=frames[i];self.capture(f['capture']);need(self.state()==f['after'] and self.queue()==f['queue_after'] and mark()==f['capture']['local_trace'] and last==f['capture']['trace'],'every complete frame original state/queue/digests')
+  File "F:\project\chaomofa\tools\terminal_confirmation_verification.py", line 25, in capture
+    equal(memory,b['memory'],'independent whole mapped region reread')
+  File "F:\project\chaomofa\tools\terminal_overlay_verification.py", line 13, in memory_equal
+    if x['hex']!=y['hex']:
+KeyError: 'hex'

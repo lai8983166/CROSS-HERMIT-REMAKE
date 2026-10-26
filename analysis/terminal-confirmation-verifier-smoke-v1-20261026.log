@@ -1,0 +1,10 @@
+source neutral_running {'segment': 2, 'script_sha256': 'dfeffff8e6a7e1582797af89c9836058596b65b2fe91049f2466754a8a86eae0', 'configuration4': [7, 256, 568, 0, 0, 0, 0, 308, 600, 715, 691, 0, 0, 4, 18, 12, 473, 154, 1], 'commands': [{'PC': 118, 'opcode': 27, 'bytes': 16, 'source_pointer': 311427978}, {'PC': 134, 'opcode': 43, 'bytes': 8, 'source_pointer': 311427994}, {'PC': 142, 'opcode': 17, 'bytes': 6, 'source_pointer': 311428002}], 'panel_transition_rules': [{'va': 5032052, 'hex': '6a2d', 'mnemonic': 'push', 'operands': '0x2d'}, {'va': 5022736, 'hex': '6683c201', 'mnemonic': 'add', 'operands': 'dx, 1'}, {'va': 5022743, 'hex': '66895006', 'mnemonic': 'mov', 'operands': 'word ptr [eax + 6], dx'}, {'va': 5022765, 'hex': '3bd1', 'mnemonic': 'cmp', 'operands': 'edx, ecx'}, {'va': 5022767, 'hex': '7e12', 'mnemonic': 'jle', 'operands': '0x4ca443'}, {'va': 5022772, 'hex': '66c742060000', 'mnemonic': 'mov', 'operands': 'word ptr [edx + 6], 0'}, {'va': 5022781, 'hex': '66c740020200', 'mnemonic': 'mov', 'operands': 'word ptr [eax + 2], 2'}]}
+protocol ok
+{'frames': 52, 'complete_tasks': 51, 'partial_tasks': 1}
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\terminal_confirmation_verification.py", line 22, in __init__
+    need(self.cpu()==cpu and len(cpu)==57,'all57 confirmation architectural registers restored')
+  File "F:\project\chaomofa\tools\terminal_name_verification.py", line 97, in cpu
+    for k in self.n['before']['CPU']:
+AttributeError: 'Replay' object has no attribute 'n'

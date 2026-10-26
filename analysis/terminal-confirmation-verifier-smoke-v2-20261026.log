@@ -1,0 +1,16 @@
+contracts neutral_running
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "F:\project\chaomofa\tools\terminal_confirmation_verification.py", line 67, in execute
+    self.stop=s['stop'];self.u.emu_start(s['entry'],0,count=4_000_000,timeout=60_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_confirmation_verification.py", line 42, in code
+    if at==0x407870 and ret==0x4CBE69:need(args[:2]==[20,0] and num(self.read(cpu['ECX']+0x4C,4),0)==e.MAIN,'original panel group20/index0 query and live owner')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: original panel group20/index0 query and live owner
