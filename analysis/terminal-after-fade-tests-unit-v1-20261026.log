@@ -1,0 +1,50 @@
+.............neutral_running after-fade 0 {'PC': 52, 'wait': 1, 'value': 1296, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 58}
+neutral_running after-fade 20 {'PC': 52, 'wait': 1, 'value': 14256, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 38}
+neutral_running after-fade 40 {'PC': 52, 'wait': 1, 'value': 27216, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 18}
+neutral_running after-fade 60 {'PC': 60, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+neutral_running after-fade 80 {'PC': 76, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+.......E......E..........
+======================================================================
+ERROR: test_both_source_contracts (tools.tests.test_terminal_after_fade.TerminalAfterFadeTests) (name='timeout_before_combat')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_after_fade.py", line 23, in test_both_source_contracts
+    with self.subTest(name=row['input']['name']):self.assertFalse(v.verify_case(row)['all_owned_memory_CPU_and_trace_replayed'])
+  File "F:\project\chaomofa\tools\terminal_after_fade_verification.py", line 10, in verify_case
+    prefix=model.prefix_view(row);previous=old.verify_case(prefix);result=model.verify(row);f=row['after_fade'];e.need(previous['VM_PC']==52,'accepted source prefix rules remain satisfied')
+  File "F:\project\chaomofa\tools\terminal_after_fade_model.py", line 42, in verify
+    operands=struct.unpack_from('<4I',script,start+80);need(operands==(0x20000008,0x20000000+role,0x20000000,0x2000001E),'complete literal role command')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: complete literal role command
+
+======================================================================
+ERROR: test_original_wait_endpoint_and_timer_boundary (tools.tests.test_terminal_after_fade.TerminalAfterFadeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_after_fade.py", line 28, in test_original_wait_endpoint_and_timer_boundary
+    x=m.verify(r);self.assertEqual((x['fade_updates'],x['fade_value'],x['timer_polls'],x['timer_count'],x['VM_PC']),(59,38880,31,31,76));self.assertFalse(x['font_executed'])
+  File "F:\project\chaomofa\tools\terminal_after_fade_model.py", line 42, in verify
+    operands=struct.unpack_from('<4I',script,start+80);need(operands==(0x20000008,0x20000000+role,0x20000000,0x2000001E),'complete literal role command')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: complete literal role command
+
+======================================================================
+ERROR: test_two_distinct_source_roles (tools.tests.test_terminal_after_fade.TerminalAfterFadeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_after_fade.py", line 25, in test_two_distinct_source_roles
+    self.assertEqual([m.verify(r)['role'] for r in self.rows],[2,1])
+  File "F:\project\chaomofa\tools\tests\test_terminal_after_fade.py", line 25, in <listcomp>
+    self.assertEqual([m.verify(r)['role'] for r in self.rows],[2,1])
+  File "F:\project\chaomofa\tools\terminal_after_fade_model.py", line 42, in verify
+    operands=struct.unpack_from('<4I',script,start+80);need(operands==(0x20000008,0x20000000+role,0x20000000,0x2000001E),'complete literal role command')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: complete literal role command
+
+----------------------------------------------------------------------
+Ran 39 tests in 104.429s
+
+FAILED (errors=3)

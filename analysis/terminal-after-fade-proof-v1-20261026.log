@@ -1,0 +1,22 @@
+neutral_running after-fade 0 {'PC': 52, 'wait': 1, 'value': 1296, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 58}
+neutral_running after-fade 20 {'PC': 52, 'wait': 1, 'value': 14256, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 38}
+neutral_running after-fade 40 {'PC': 52, 'wait': 1, 'value': 27216, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 18}
+neutral_running after-fade 60 {'PC': 60, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+neutral_running after-fade 80 {'PC': 76, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+verified after-fade neutral_running
+Traceback (most recent call last):
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "F:\project\chaomofa\tools\terminal_after_fade_verification.py", line 55, in <module>
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--report',required=True);p.add_argument('--out',required=True);a=p.parse_args();e.need(not(ROOT:=e.ROOT/a.out).exists(),'fresh immutable proof');e.terminal.save(a.out,verify(e.ROOT/a.report))
+  File "F:\project\chaomofa\tools\terminal_after_fade_verification.py", line 51, in verify
+    for row in d['cases']:rows.append(verify_case(row,True,helpers));print('verified after-fade',row['input']['name'],flush=True)
+  File "F:\project\chaomofa\tools\terminal_after_fade_verification.py", line 10, in verify_case
+    prefix=model.prefix_view(row);previous=old.verify_case(prefix);result=model.verify(row);f=row['after_fade'];e.need(previous['VM_PC']==52,'accepted source prefix rules remain satisfied')
+  File "F:\project\chaomofa\tools\terminal_after_fade_model.py", line 42, in verify
+    operands=struct.unpack_from('<4I',script,start+80);need(operands==(0x20000008,0x20000000+role,0x20000000,0x2000001E),'complete literal role command')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: complete literal role command
