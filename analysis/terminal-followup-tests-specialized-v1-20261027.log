@@ -1,0 +1,16 @@
+{"PID": 49176, "create_time": 1793109647.8834798}
+...................................................................................F............
+======================================================================
+FAIL: test_wrong_frame_queue_bytes_rejected (tools.tests.test_terminal_followup.TerminalFollowupTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_followup.py", line 192, in test_wrong_frame_queue_bytes_rejected
+    def test_wrong_frame_queue_bytes_rejected(self):self.reject(lambda r:r['terminal_followup']['frames'][0]['queue_after'].update(heads='00'),self.replay)
+  File "F:\project\chaomofa\tools\tests\test_terminal_followup.py", line 80, in reject
+    with self.assertRaises((ValueError,KeyError,IndexError,StopIteration,AssertionError)):check(row)
+AssertionError: (<class 'ValueError'>, <class 'KeyError'>, <class 'IndexError'>, <class 'StopIteration'>, <class 'AssertionError'>) not raised
+
+----------------------------------------------------------------------
+Ran 96 tests in 1097.641s
+
+FAILED (failures=1)

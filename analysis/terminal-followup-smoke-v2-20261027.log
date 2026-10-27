@@ -1,0 +1,24 @@
+{"PID": 51008, "create_time": 1793108935.0635095}
+baseline start neutral_running
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<string>", line 3, in <module>
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 577, in verify_case
+    p=prefix(row,old);provenance,refs=pixels(row);platform=native(row,old);timed=protocol(row);replay=Replay(row,refs);counts=replay.execute();d=row['terminal_followup'];equal(row['final'],d['final']['memory'],'all actual final mapped bytes');need(row['pending_CPU']==d['final']['CPU'] and row['image_before']==row['image_after'],'all actual final57 CPU and unchanged original image/IAT')
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 471, in execute
+    need(s['stop'] in (e.RETURN,0x4116A4,num(self.read(0x5920A0,4),0),0x403BD0,0x4CDE10,0x4CC0D2),'finite admitted natural stop points');self.stop=s['stop'];self.u.emu_start(s['entry'],0,count=4_000_000,timeout=60_000_000)
+  File "F:\project\chaomofa\.venv-audit\Lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 769, in emu_start
+    raise self._hook_exception
+  File "F:\project\chaomofa\.venv-audit\Lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 363, in wrapper
+    return func(uc, *args, **kwargs)
+  File "F:\project\chaomofa\.venv-audit\Lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 1063, in __hook_code_cb
+    callback(uc, address, size, user_data)
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 438, in code
+    layer=next(i for i in (4,5,7) if self.cpu()['ECX']==text_object(i));obj=text_object(layer);origin=[num(self.read(node(layer)+30,2),0,'H'),num(self.read(node(layer)+32,2),0,'H')];predict=types.FunctionType(previous.text_update.__code__,dict(previous.text_update.__globals__,OBJECT=obj));updates.append(dict(object=obj,expected=predict(self.read(obj,0xAB8),origin),draw_returns=0))
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 156, in text_update
+    result=expected_update(raw,origin,OBJECT);out=bytearray.fromhex(result['after_hex'])
+  File "F:\project\chaomofa\tools\school_text_timing_catalog.py", line 30, in expected_update
+    validate_records(records);out=bytearray(raw);draws=[];y=origin[1]
+  File "F:\project\chaomofa\tools\school_text_timing_catalog.py", line 12, in validate_records
+    if not isinstance(records,list) or not 1<=len(records)<=10:raise ValueError('text bounded record count')
+ValueError: text bounded record count

@@ -1,0 +1,12 @@
+{"PID": 20932, "create_time": 1793108555.800676}
+baseline start neutral_running
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<string>", line 3, in <module>
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 573, in verify_case
+    p=prefix(row,old);provenance,refs=pixels(row);platform=native(row,old);timed=protocol(row);replay=Replay(row,refs);counts=replay.execute();d=row['terminal_followup'];equal(row['final'],d['final']['memory'],'all actual final mapped bytes');need(row['pending_CPU']==d['final']['CPU'] and row['image_before']==row['image_after'],'all actual final57 CPU and unchanged original image/IAT')
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 533, in protocol
+    if i:need(f['before']==frames[i-1]['after'] and f['queue_before']==frames[i-1]['queue_after'],'continuous full paused task states and queues')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: continuous full paused task states and queues
