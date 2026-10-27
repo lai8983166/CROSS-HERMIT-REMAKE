@@ -1,0 +1,12 @@
+PID 63520 create_time 1793023483.044047
+loaded current source
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <listcomp>
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 435, in verify_case
+    d=row['terminal_panel_dialogue'];p=prefix(row,old);provenance,refs=pixels(row);platform=native(row,old);timed=timing(row);r=Replay(row,refs);counts=r.execute();equal(row['final'],d['final']['memory'],'all actual final mapped bytes');need(row['pending_CPU']==d['final']['CPU'] and row['image_before']==row['image_after'],'all actual final CPU and unchanged original image')
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 53, in prefix
+    for k in keys:need(guest(row[k])==guest(old[k]),'every fixed guest forward record '+k)
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: every fixed guest forward record blobs

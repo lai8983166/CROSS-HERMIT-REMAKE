@@ -1,0 +1,103 @@
+PID 27712 create_time 1793066104.276782
+neutral_running after-fade 0 {'PC': 52, 'wait': 1, 'value': 1296, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 58}
+neutral_running after-fade 20 {'PC': 52, 'wait': 1, 'value': 14256, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 38}
+neutral_running after-fade 40 {'PC': 52, 'wait': 1, 'value': 27216, 'delta': 648, 'active': 1, 'status': 1, 'remaining': 18}
+neutral_running after-fade 60 {'PC': 60, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+neutral_running after-fade 80 {'PC': 76, 'wait': 0, 'value': 38880, 'delta': 648, 'active': 0, 'status': 2, 'remaining': 0}
+neutral_running portrait wait 0 96 1
+neutral_running portrait wait 20 96 1
+neutral_running portrait wait 40 96 1
+neutral_running portrait wait 60 96 1
+neutral_running held_confirmation 0 118 1
+neutral_running held_confirmation 1 118 1
+neutral_running captured_press 2 118 0
+neutral_running panel27 3 134 1
+neutral_running panel_readiness 4 134 1
+neutral_running panel_readiness 5 134 1
+neutral_running panel_readiness 6 134 1
+neutral_running panel_readiness 7 134 1
+neutral_running panel_readiness 8 134 1
+neutral_running panel_readiness 9 134 1
+neutral_running panel_readiness 10 134 1
+neutral_running panel_readiness 11 134 1
+neutral_running panel_readiness 12 134 1
+neutral_running panel_readiness 13 134 1
+neutral_running panel_readiness 14 134 1
+neutral_running panel_readiness 15 134 1
+neutral_running panel_readiness 16 134 1
+neutral_running panel_readiness 17 134 1
+neutral_running panel_readiness 18 134 1
+neutral_running panel_readiness 19 134 1
+neutral_running panel_readiness 20 134 1
+neutral_running panel_readiness 21 134 1
+neutral_running panel_readiness 22 134 1
+neutral_running panel_readiness 23 134 1
+neutral_running panel_readiness 24 134 1
+neutral_running panel_readiness 25 134 1
+neutral_running panel_readiness 26 134 1
+neutral_running panel_readiness 27 134 1
+neutral_running panel_readiness 28 134 1
+neutral_running panel_readiness 29 134 1
+neutral_running panel_readiness 30 134 1
+neutral_running panel_readiness 31 134 1
+neutral_running panel_readiness 32 134 1
+neutral_running panel_readiness 33 134 1
+neutral_running panel_readiness 34 134 1
+neutral_running panel_readiness 35 134 1
+neutral_running panel_readiness 36 134 1
+neutral_running panel_readiness 37 134 1
+neutral_running panel_readiness 38 134 1
+neutral_running panel_readiness 39 134 1
+neutral_running panel_readiness 40 134 1
+neutral_running panel_readiness 41 134 1
+neutral_running panel_readiness 42 134 1
+neutral_running panel_readiness 43 134 1
+neutral_running panel_readiness 44 134 1
+neutral_running panel_readiness 45 134 1
+neutral_running panel_readiness 46 134 1
+neutral_running panel_readiness 47 134 1
+neutral_running panel_readiness 48 134 1
+neutral_running panel_readiness 49 134 0
+neutral_running select_layer7 50 142 0
+neutral_running next_sentence_font 51 142 0
+neutral_running resume_first_sentence 0 148 0
+neutral_running text_readiness 1 152 1
+neutral_running text_readiness 2 152 1
+neutral_running text_readiness 3 152 1
+neutral_running text_readiness 4 152 1
+neutral_running text_readiness 5 152 1
+neutral_running text_readiness 6 152 1
+neutral_running text_readiness 7 152 1
+neutral_running text_readiness 8 152 1
+neutral_running text_readiness 9 152 1
+neutral_running text_readiness 10 152 1
+neutral_running text_readiness 11 152 1
+neutral_running text_readiness 12 152 1
+neutral_running text_readiness 13 152 1
+neutral_running text_readiness 14 152 1
+neutral_running text_readiness 15 152 1
+neutral_running text_readiness 16 152 1
+neutral_running text_readiness 17 152 1
+neutral_running text_readiness 18 152 1
+neutral_running text_readiness 19 152 1
+neutral_running text_readiness 20 152 1
+neutral_running text_readiness 21 152 1
+neutral_running text_readiness 22 152 1
+neutral_running text_readiness 23 152 1
+neutral_running text_readiness 24 152 1
+neutral_running text_readiness 25 152 1
+neutral_running text_readiness 26 152 0
+neutral_running enter_confirmation 27 156 1
+neutral_running held_confirmation 28 156 1
+neutral_running held_confirmation 29 156 1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 586, in verify
+    old=parent_case(row);proof=verify_case(row,old);ticks=[x['result'] for x in old['APIs'] if x['name']=='GetTickCount'];other=e.run_case(row['input'],h[0],h[1],ticks);verify_case(other,old)
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 578, in verify_case
+    d=row['terminal_panel_dialogue'];p=prefix(row,old);provenance,refs=pixels(row);platform=native(row,old);timed=timing(row);r=Replay(row,refs);counts=r.execute();equal(row['final'],d['final']['memory'],'all actual final mapped bytes');need(row['pending_CPU']==d['final']['CPU'] and row['image_before']==row['image_after'],'all actual final CPU and unchanged original image')
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 72, in prefix
+    for k in keys:need(guest(row[k])==guest(old[k]),'every fixed guest forward record '+k)
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: every fixed guest forward record terminal_portrait
