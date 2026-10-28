@@ -1,0 +1,19 @@
+.........................
+======================================================================
+ERROR: test_complete_independent_original_branches (tools.tests.test_terminal_replacement.TerminalReplacementTests) (name='neutral_running')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_replacement.py", line 66, in test_complete_independent_original_branches
+    with self.subTest(name=row['input']['name']):self.assertEqual(v.verify_case(row)['timing']['VM_PC'],pc)
+  File "F:\project\chaomofa\tools\terminal_replacement_verification.py", line 294, in verify_case
+    provenance,refs=pixels(row);timed=protocol(row);platform=native(row,old);p=prefix(row,old);replay=Replay(row,refs);counts=replay.execute();d=row['terminal_replacement'];equal(row['final'],d['final']['memory'],'every final mapped byte');need(row['pending_CPU']==d['final']['CPU'] and row['image_before']==row['image_after'],'complete final57 CPU and unchanged original image/IAT')
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 490, in execute
+    need(index==self.forward_end and roots==4*len(d['frames']) and observed==d['writes'] and commands==d['commands'] and conversions==d['conversions'] and queries==d['queries'] and seen=={p for p,b in boundaries},'all current original roots, writes, commands, queries, conversions and full boundaries consumed')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: all current original roots, writes, commands, queries, conversions and full boundaries consumed
+
+----------------------------------------------------------------------
+Ran 26 tests in 361.990s
+
+FAILED (errors=1)

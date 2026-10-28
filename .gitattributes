@@ -1,4 +1,17 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# Original layer7 replacement evidence; full raw reports are stored locally.
+tools/terminal_replacement*.py text eol=lf
+tools/tests/test_terminal_replacement*.py text eol=lf
+docs/terminal_replacement.md text eol=lf
+analysis/terminal-replacement-*.json text eol=lf
+# Preserve this already emitted diagnostic receipt's original CRLF bytes.
+analysis/terminal-replacement-mapping-review-v1-20261028.json -text -whitespace
+analysis/terminal-replacement-*.json.gz binary
+analysis/terminal-replacement-*.log -text -whitespace
+openspec/changes/connect-terminal-replacement-dialogue/*.md text eol=lf
+openspec/changes/connect-terminal-replacement-dialogue/.openspec.yaml text eol=lf
+openspec/changes/archive/2026-10-28-connect-terminal-replacement-dialogue/*.md text eol=lf
+openspec/changes/archive/2026-10-28-connect-terminal-replacement-dialogue/.openspec.yaml text eol=lf
 analysis/school-script-opening-*.json text eol=lf
 analysis/school-script-opening-*.log text eol=lf
 analysis/school-script-opening-final-*/*.json text eol=lf
