@@ -1,0 +1,11 @@
+loaded locally generated SHA-bound transient cache
+timeout fixed prefix summary passed; replay only new interval
+debug variant: non-code owned data mapped RW
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\debug_next_replay.py", line 45, in <module>
+    result=v.Replay(row,refs).execute();print(json.dumps(result),flush=True)
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 481, in execute
+    need(s['stop'] in (e.RETURN,0x4116A4,num(self.read(0x5920A0,4),0),0x403BD0,0x4CDE10,0x4CC0D2),'finite admitted natural stop points');self.stop=s['stop'];self.u.emu_start(s['entry'],0,count=4_000_000,timeout=60_000_000)
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 766, in emu_start
+    raise UcError(status)
+unicorn.unicorn_py3.unicorn.UcError: Fetch from non-executable memory (UC_ERR_FETCH_PROT)

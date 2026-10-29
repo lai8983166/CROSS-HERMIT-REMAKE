@@ -1,0 +1,11 @@
+loaded locally generated SHA-bound transient cache
+timeout fixed prefix summary passed; replay only new interval
+debug variant: flush each segment entry exactly like source
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\debug_next_replay.py", line 24, in <module>
+    result=v.Replay(row,refs).execute();print(json.dumps(result),flush=True)
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 318, in __init__
+    need(len(bytes.fromhex(r['hex']))==r['bytes'],'complete declared before region');self.u.mem_map(r['pointer'],r['bytes']);self.u.mem_write(r['pointer'],bytes.fromhex(r['hex']))
+  File "F:\project\chaomofa\.venv-audit\lib\site-packages\unicorn\unicorn_py3\unicorn.py", line 831, in mem_map
+    status = uclib.uc_mem_map(self._uch, address, size, perms)
+AttributeError: 'UcIntel' object has no attribute '_uch'

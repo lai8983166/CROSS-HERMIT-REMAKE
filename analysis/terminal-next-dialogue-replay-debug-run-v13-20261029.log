@@ -1,0 +1,20 @@
+loaded locally generated SHA-bound transient cache
+timeout fixed prefix summary passed; replay only new interval
+debug variant: map original complete image first, one RAM backing
+debug variant: exact source PE RX and declared RW ranges
+Traceback (most recent call last):
+  File "F:\project\chaomofa\.venv-audit\debug_next_replay.py", line 106, in <module>
+    result=replay.execute();print(json.dumps(result),flush=True)
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 467, in execute
+    check_boundaries();hooks=[self.u.hook_add(UC_HOOK_CODE,code),self.u.hook_add(UC_HOOK_MEM_WRITE,write)]
+  File "F:\project\chaomofa\tools\terminal_followup_verification.py", line 431, in check_boundaries
+    self.capture(b)
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 298, in capture
+    if full:equal(mem,b['memory'],'independent every complete mapped region bytes')
+  File "F:\project\chaomofa\tools\terminal_panel_dialogue_verification.py", line 37, in equal
+    confirmation.equal(a,b,label)
+  File "F:\project\chaomofa\tools\terminal_overlay_verification.py", line 11, in memory_equal
+    e.need([(r['pointer'],r['bytes']) for r in a]==[(r['pointer'],r['bytes']) for r in b],label+' all exact mappings')
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: independent every complete mapped region bytes all exact mappings

@@ -1,0 +1,21 @@
+...........................................................E
+======================================================================
+ERROR: test_complete_original_branches (tools.tests.test_terminal_next_dialogue.TerminalNextDialogueTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_next_dialogue.py", line 92, in test_complete_original_branches
+    for row,pc in zip(self.rows,[256,268]):self.assertEqual(v.verify_case(row)['timing']['VM_PC'],pc)
+  File "F:\project\chaomofa\tools\terminal_next_dialogue_verification.py", line 408, in verify_case
+    prefix_trace(row);provenance,refs=pixels(row);timed=protocol(row);platform=native(row,old);replay=Replay(row,refs);counts=replay.execute();p=prefix(row,old);d=row['terminal_next_dialogue'];equal(row['final'],d['final']['memory'],'every final mapped byte');need(row['pending_CPU']==d['final']['CPU'] and row['image_before']==row['image_after'],'complete final57 CPU and unchanged original image/IAT')
+  File "F:\project\chaomofa\tools\terminal_next_dialogue_verification.py", line 224, in native
+    need(previous.gpu_value(t,resource_context(row,r,contexts))==previous.gpu_value(old['GPU_trace'][i],resource_context(old,o,oldcontexts)),'whole inherited GPU wire in original resource lifetime and exact fixed guest identity')
+  File "F:\project\chaomofa\tools\terminal_next_dialogue_verification.py", line 80, in resource_context
+    context=contexts[resource_domain(row,r)]
+  File "F:\project\chaomofa\tools\terminal_next_dialogue_verification.py", line 70, in resource_domain
+    d=row['terminal_next_dialogue']
+KeyError: 'terminal_next_dialogue'
+
+----------------------------------------------------------------------
+Ran 60 tests in 574.840s
+
+FAILED (errors=1)
