@@ -1,0 +1,41 @@
+.......................................................
+======================================================================
+ERROR: test_both_full_original_script_terminations (tools.tests.test_terminal_script_exit.TerminalScriptExitTests) (case='neutral_running')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_script_exit.py", line 86, in test_both_full_original_script_terminations
+    with self.subTest(case=r['input']['name']):p=v.verify_case(r);self.assertEqual(p['timing']['VM_PC'],pc);self.assertEqual(p['timing']['VM_active'],0);self.assertFalse(p['task_exit_complete'])
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py", line 337, in verify_case
+    prefix_trace(row);provenance=source(row);timed=protocol(row);platform=native(row,old);replay=Replay(row);counts=execute_with_events(replay);p=prefix(row,old);d=row['terminal_script_exit'];equal(row['final'],d['final']['memory'],'entire final mapped memory')
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py", line 266, in execute_with_events
+    try:counts=replay.execute()
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py:observation-payloads", line 71, in execute
+    for c in cfg['commands']:
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py", line 150, in replay_need
+    need(False,message+'; diagnostic='+path.relative_to(ROOT).as_posix())
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: all current original GDI calls consumed once; diagnostic=analysis/terminal-script-exit-replay-diagnostic-1793295756507602900-20261030.json
+
+======================================================================
+ERROR: test_both_full_original_script_terminations (tools.tests.test_terminal_script_exit.TerminalScriptExitTests) (case='timeout_before_combat')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_script_exit.py", line 86, in test_both_full_original_script_terminations
+    with self.subTest(case=r['input']['name']):p=v.verify_case(r);self.assertEqual(p['timing']['VM_PC'],pc);self.assertEqual(p['timing']['VM_active'],0);self.assertFalse(p['task_exit_complete'])
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py", line 337, in verify_case
+    prefix_trace(row);provenance=source(row);timed=protocol(row);platform=native(row,old);replay=Replay(row);counts=execute_with_events(replay);p=prefix(row,old);d=row['terminal_script_exit'];equal(row['final'],d['final']['memory'],'entire final mapped memory')
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py", line 266, in execute_with_events
+    try:counts=replay.execute()
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py:observation-payloads", line 71, in execute
+    for c in cfg['commands']:
+  File "F:\project\chaomofa\tools\terminal_script_exit_verification.py", line 150, in replay_need
+    need(False,message+'; diagnostic='+path.relative_to(ROOT).as_posix())
+  File "F:\project\chaomofa\tools\battle_pathfinding_emulation.py", line 22, in need
+    if not ok: raise ValueError(message)
+ValueError: all current original GDI calls consumed once; diagnostic=analysis/terminal-script-exit-replay-diagnostic-1793295847085051500-20261030.json
+
+----------------------------------------------------------------------
+Ran 56 tests in 1271.691s
+
+FAILED (errors=2)
