@@ -1,0 +1,19 @@
+............................E
+======================================================================
+ERROR: setUpClass (tools.tests.test_terminal_multiline.TerminalMultilineTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\project\chaomofa\tools\tests\test_terminal_multiline.py", line 46, in setUpClass
+    cls.data=v.load_report(e.ROOT/REPORT);cls.rows=cls.data['cases'];cls.refs={r['input']['name']:v.pixels(r)[1] for r in cls.rows}
+  File "F:\project\chaomofa\tools\terminal_next_dialogue_verification.py", line 46, in load_report
+    with opener(path,'rt',encoding='utf8') as stream:return json.load(stream,object_hook=strings)
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+  File "C:\Users\lai\AppData\Local\Programs\Python\Python310\lib\codecs.py", line 322, in decode
+    (result, consumed) = self._buffer_decode(data, self.errors, final)
+MemoryError
+
+----------------------------------------------------------------------
+Ran 28 tests in 149.049s
+
+FAILED (errors=1)
