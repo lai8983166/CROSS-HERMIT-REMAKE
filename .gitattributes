@@ -1003,3 +1003,15 @@ openspec/changes/archive/2026-10-30-complete-terminal-vm-script/.openspec.yaml t
 analysis/terminal-script-exit-source-abort-v1-20261030.json -text -whitespace
 analysis/terminal-script-exit-source-debug-preservation-v1-20261030.json -text -whitespace
 analysis/terminal-script-exit-source-termination-v1-20261030.json -text -whitespace
+
+# Original terminal task completion handshake
+tools/terminal_task_completion*.py text eol=lf
+tools/tests/test_terminal_task_completion*.py text eol=lf
+docs/terminal_task_completion.md text eol=lf
+analysis/terminal-task-completion-*.json text eol=lf
+analysis/terminal-task-completion-*.json.gz binary
+analysis/terminal-task-completion-*.log -text -whitespace
+openspec/changes/connect-terminal-task-completion/*.md text eol=lf
+openspec/changes/connect-terminal-task-completion/.openspec.yaml text eol=lf
+openspec/changes/archive/2026-10-30-connect-terminal-task-completion/*.md text eol=lf
+openspec/changes/archive/2026-10-30-connect-terminal-task-completion/.openspec.yaml text eol=lf
