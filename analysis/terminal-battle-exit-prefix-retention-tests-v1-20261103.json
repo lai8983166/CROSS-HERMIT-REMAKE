@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "purpose": "small existing guards after evidence retirement; no large-source replay",
+  "command": [
+    ".venv-audit/Scripts/python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "tools.tests.test_terminal_battle_exit_source",
+    "tools.tests.test_terminal_battle_exit_contract",
+    "tools.tests.test_terminal_battle_exit",
+    "tools.tests.test_terminal_battle_exit_budget"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 5.06,
+  "stdout": "",
+  "stderr": "......................................................................................................\n----------------------------------------------------------------------\nRan 102 tests in 0.632s\n\nOK\n"
+}
