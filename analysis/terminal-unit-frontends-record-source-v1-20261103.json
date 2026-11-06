@@ -1,0 +1,1024 @@
+{
+  "schema_version": 1,
+  "kind": "bounded_original_B0_record_source_reverse_audit",
+  "date": "2026-11-03",
+  "accepted": false,
+  "source": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "mapping": "memory-image address = file offset + 0x400000; no PE remapping applied"
+  },
+  "read_only_source_files": [
+    {
+      "path": "tools/battle_live_terminal_emulation.py",
+      "bytes": 10619,
+      "sha256": "e0ccd231577fc62cf774e90242de5afbcfd081eefadde411272aac40c22a54f1"
+    },
+    {
+      "path": "tools/battle_attack_launch_emulation.py",
+      "bytes": 5306,
+      "sha256": "250c1f0a6253d459d745ccbc0e729f5f3bf7d80398a9d168be6ad0f2eb6c9355"
+    },
+    {
+      "path": "tools/battle_attack_animation_emulation.py",
+      "bytes": 9123,
+      "sha256": "a8af832d71b6e11cabffb12086bb0a36c0d0e83718528e3efd7cc9d77c9635fe"
+    },
+    {
+      "path": "tools/battle_hit_damage_emulation.py",
+      "bytes": 9365,
+      "sha256": "4ee20af65435101b45a0aec534c2c61aac22c1a1cb08bb0ce8e0eb34859709f9"
+    },
+    {
+      "path": "tools/battle_bilateral_combat.py",
+      "bytes": 2034,
+      "sha256": "b5f8e825e271f0260f57de258038e210fc03452955ebd3c01e6adcb0ae59cd00"
+    },
+    {
+      "path": "tools/battle_lethal_combat.py",
+      "bytes": 2269,
+      "sha256": "4776008d9b6332c355ab4781d05bebfc7adddf01d1ced34a11990366ae1de03e"
+    },
+    {
+      "path": "tools/school_combat_records_emulation.py",
+      "bytes": 13210,
+      "sha256": "5c2045c6cffe54bcd940e50a51284a7a0a366a70be9056fa3316d885f29affc3"
+    },
+    {
+      "path": "tools/school_enemy_records_emulation.py",
+      "bytes": 11444,
+      "sha256": "3fa91d161a653752320eae88799e178fa8090c4b6a60f6c8d103475bea351311"
+    },
+    {
+      "path": "tools/school_enemy_records_catalog.py",
+      "bytes": 13219,
+      "sha256": "3775e1399bbe1c08a6d9b44e2781703482596ab3306defa10d642a1dfbb36206"
+    }
+  ],
+  "large_terminal_parent_source_read": false,
+  "profiles": [
+    {
+      "identity": 10,
+      "character_va": "0x6f7ec8",
+      "source_character_bytes": 1184,
+      "source_character_sha256": "acb79a44612dc6004610f2d2bba9b7668978128740b52635e9b901b9ee4a8813",
+      "source_character_prefix_hex": "0a00000007000100010000005b000000fcc916003d000000206f070019000000b0b3000025000000f8ec010037000000a49705004800000030c90b004100000088dd080096010b000000000020183b002d0000000000000000000000000000000000000000000000000000000000000000000100",
+      "original_job": 1,
+      "attributes": [
+        91,
+        61,
+        25,
+        37,
+        55,
+        72,
+        65
+      ],
+      "level": 45,
+      "profile_pointer": "0x7e11b0",
+      "profile_hex": "0a000100015b3d19253748412d0000000000000000000000000000000000000000000000000000000000000000000100",
+      "profile_generation_instructions": 104
+    },
+    {
+      "identity": 11,
+      "character_va": "0x6f8368",
+      "source_character_bytes": 1184,
+      "source_character_sha256": "eb1b1b64f0ebb4bf3b12914e99d5d2164dc017c0784158d0510a293f31696589",
+      "source_character_prefix_hex": "0b0000000e0009000500000007000000f00a000017000000b491000005000000dc05000001000000640000004b000000d0360d002f00000098a503003600000054510500d4001a0000000000a0d01600120000000000000000000000000000000000000000000000000000000000000000000100",
+      "original_job": 9,
+      "attributes": [
+        7,
+        23,
+        5,
+        1,
+        75,
+        47,
+        54
+      ],
+      "level": 18,
+      "profile_pointer": "0x7e11b0",
+      "profile_hex": "0b00090005071705014b2f36120000000000000000000000000000000000000000000000000000000000000000000100",
+      "profile_generation_instructions": 104
+    }
+  ],
+  "probes": [
+    {
+      "identity": 10,
+      "declared_profile_job_override": null,
+      "exact_unmodified_source_profile": true,
+      "record_hex": "0a000a005b3d19253748410001002d01000000008402840230001f011f018d01e0c40000e0c40000e0c4000005005b00000000006e0000037d005100280001000164e70300000000000000000f314908060080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000",
+      "record_sha256": "224a08c2075b2b745a2dcd5c80cb8104ff027de8460c7a945e84333edc36c626",
+      "HP": [
+        644,
+        644
+      ],
+      "MP": [
+        287,
+        287,
+        397
+      ],
+      "instructions": 1544,
+      "MP_stores": [
+        {
+          "pc": "0x4dfe3a",
+          "offset": 26,
+          "bytes": 2,
+          "value": 287
+        },
+        {
+          "pc": "0x4dfe48",
+          "offset": 28,
+          "bytes": 2,
+          "value": 287
+        },
+        {
+          "pc": "0x4dfe78",
+          "offset": 30,
+          "bytes": 2,
+          "value": 397
+        },
+        {
+          "pc": "0x4dfe86",
+          "offset": 30,
+          "bytes": 2,
+          "value": 397
+        }
+      ],
+      "return_EIP": "0x14000000",
+      "return_ESP": "0x1301f004"
+    },
+    {
+      "identity": 10,
+      "declared_profile_job_override": 1,
+      "exact_unmodified_source_profile": false,
+      "record_hex": "0a000a005b3d19253748410001002d01000000008402840230001f011f018d01e0c40000e0c40000e0c4000005005b00000000006e0000037d005100280001000164e70300000000000000000f314908060080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000",
+      "record_sha256": "224a08c2075b2b745a2dcd5c80cb8104ff027de8460c7a945e84333edc36c626",
+      "HP": [
+        644,
+        644
+      ],
+      "MP": [
+        287,
+        287,
+        397
+      ],
+      "instructions": 1544,
+      "MP_stores": [
+        {
+          "pc": "0x4dfe3a",
+          "offset": 26,
+          "bytes": 2,
+          "value": 287
+        },
+        {
+          "pc": "0x4dfe48",
+          "offset": 28,
+          "bytes": 2,
+          "value": 287
+        },
+        {
+          "pc": "0x4dfe78",
+          "offset": 30,
+          "bytes": 2,
+          "value": 397
+        },
+        {
+          "pc": "0x4dfe86",
+          "offset": 30,
+          "bytes": 2,
+          "value": 397
+        }
+      ],
+      "return_EIP": "0x14000000",
+      "return_ESP": "0x1301f004"
+    },
+    {
+      "identity": 10,
+      "declared_profile_job_override": 3,
+      "exact_unmodified_source_profile": false,
+      "record_hex": "0a000a005b3d19253748410003002d0100000000030203024e001f011f01d900e0c40000e0c40000e0c400000b00820000000000460000038d001b00090001000164e70300000000000000001e1f170e10003d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000",
+      "record_sha256": "c40bb02de355abef0b5a0ca9948d2dcc3cd60fe9ceda816f50397767032a5258",
+      "HP": [
+        515,
+        515
+      ],
+      "MP": [
+        287,
+        287,
+        217
+      ],
+      "instructions": 1545,
+      "MP_stores": [
+        {
+          "pc": "0x4dfe3a",
+          "offset": 26,
+          "bytes": 2,
+          "value": 287
+        },
+        {
+          "pc": "0x4dfe48",
+          "offset": 28,
+          "bytes": 2,
+          "value": 287
+        },
+        {
+          "pc": "0x4dfe78",
+          "offset": 30,
+          "bytes": 2,
+          "value": 217
+        },
+        {
+          "pc": "0x4dfe86",
+          "offset": 30,
+          "bytes": 2,
+          "value": 217
+        }
+      ],
+      "return_EIP": "0x14000000",
+      "return_ESP": "0x1301f004"
+    },
+    {
+      "identity": 11,
+      "declared_profile_job_override": null,
+      "exact_unmodified_source_profile": true,
+      "record_hex": "0b000b00071705014b2f36000900120100000000ab00ab00fa00ee00ee009c00c04b0300c04b0300b09a000007006400000000009600001364001e00070010000264e70300000000000000000901052420000d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000",
+      "record_sha256": "75f88f7daa233e2c6fb414bac6492cfc0c7b33b47333a72708e4db668b553ec0",
+      "HP": [
+        171,
+        171
+      ],
+      "MP": [
+        238,
+        238,
+        156
+      ],
+      "instructions": 1536,
+      "MP_stores": [
+        {
+          "pc": "0x4dfe3a",
+          "offset": 26,
+          "bytes": 2,
+          "value": 238
+        },
+        {
+          "pc": "0x4dfe48",
+          "offset": 28,
+          "bytes": 2,
+          "value": 238
+        },
+        {
+          "pc": "0x4dfe78",
+          "offset": 30,
+          "bytes": 2,
+          "value": 156
+        },
+        {
+          "pc": "0x4dfe86",
+          "offset": 30,
+          "bytes": 2,
+          "value": 156
+        }
+      ],
+      "return_EIP": "0x14000000",
+      "return_ESP": "0x1301f004"
+    },
+    {
+      "identity": 11,
+      "declared_profile_job_override": 1,
+      "exact_unmodified_source_profile": false,
+      "record_hex": "0b000b00071705014b2f360001001201000000002b012b017300ee00ee00aa01c04b0300c04b0300b09a000003004e00000000006e00000353000600030001000164e70300000000000000000503450b02003b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000",
+      "record_sha256": "8086b0ad9542320ed6913075527fb2c19a376191e3d2b4e51c971bf9de7f22e6",
+      "HP": [
+        299,
+        299
+      ],
+      "MP": [
+        238,
+        238,
+        426
+      ],
+      "instructions": 1544,
+      "MP_stores": [
+        {
+          "pc": "0x4dfe3a",
+          "offset": 26,
+          "bytes": 2,
+          "value": 238
+        },
+        {
+          "pc": "0x4dfe48",
+          "offset": 28,
+          "bytes": 2,
+          "value": 238
+        },
+        {
+          "pc": "0x4dfe78",
+          "offset": 30,
+          "bytes": 2,
+          "value": 426
+        },
+        {
+          "pc": "0x4dfe86",
+          "offset": 30,
+          "bytes": 2,
+          "value": 426
+        }
+      ],
+      "return_EIP": "0x14000000",
+      "return_ESP": "0x1301f004"
+    },
+    {
+      "identity": 11,
+      "declared_profile_job_override": 3,
+      "exact_unmodified_source_profile": false,
+      "record_hex": "0b000b00071705014b2f36000300120100000000ef00ef009100ee00ee00f600c04b0300c04b0300b09a000009006f00000000004600000367000a00030001000164e70300000000000000000a0213110c001c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050000000000000000000000",
+      "record_sha256": "e0b4b1a2b737ea4d944eaea54ba6f2ec577fc4a85f7be218e44d8914f42cff2b",
+      "HP": [
+        239,
+        239
+      ],
+      "MP": [
+        238,
+        238,
+        246
+      ],
+      "instructions": 1545,
+      "MP_stores": [
+        {
+          "pc": "0x4dfe3a",
+          "offset": 26,
+          "bytes": 2,
+          "value": 238
+        },
+        {
+          "pc": "0x4dfe48",
+          "offset": 28,
+          "bytes": 2,
+          "value": 238
+        },
+        {
+          "pc": "0x4dfe78",
+          "offset": 30,
+          "bytes": 2,
+          "value": 246
+        },
+        {
+          "pc": "0x4dfe86",
+          "offset": 30,
+          "bytes": 2,
+          "value": 246
+        }
+      ],
+      "return_EIP": "0x14000000",
+      "return_ESP": "0x1301f004"
+    }
+  ],
+  "code": [
+    {
+      "start": "0x4da5f0",
+      "end": "0x4da70c",
+      "bytes": 284,
+      "sha256": "9501f1c3b045bc93b589c4f43ba316a27ea0eda1974ed5b45b6e24e1113de51a"
+    },
+    {
+      "start": "0x4dfc20",
+      "end": "0x4e0931",
+      "bytes": 3345,
+      "sha256": "1e4248cfbf5140b0314add3f7a816dcf1eeaa0b0eaf39ccce17c3ad0619cd2ec"
+    },
+    {
+      "start": "0x4e0a00",
+      "end": "0x4e1a07",
+      "bytes": 4103,
+      "sha256": "40eaf36665120467ce03c9d763b071aa82bcc5b46b97b06aa462580743561ca3"
+    }
+  ],
+  "instructions": [
+    {
+      "va": "0x46d3d6",
+      "hex": "8b4508",
+      "instruction": "mov eax, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x46d3d9",
+      "hex": "8b8858020000",
+      "instruction": "mov ecx, dword ptr [eax + 0x258]"
+    },
+    {
+      "va": "0x46d3df",
+      "hex": "0fbf411c",
+      "instruction": "movsx eax, word ptr [ecx + 0x1c]"
+    },
+    {
+      "va": "0x46d3e3",
+      "hex": "6bc064",
+      "instruction": "imul eax, eax, 0x64"
+    },
+    {
+      "va": "0x46d3e6",
+      "hex": "8b5508",
+      "instruction": "mov edx, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x46d3e9",
+      "hex": "8b8a58020000",
+      "instruction": "mov ecx, dword ptr [edx + 0x258]"
+    },
+    {
+      "va": "0x46d3ef",
+      "hex": "0fbf491a",
+      "instruction": "movsx ecx, word ptr [ecx + 0x1a]"
+    },
+    {
+      "va": "0x46d3f3",
+      "hex": "99",
+      "instruction": "cdq "
+    },
+    {
+      "va": "0x46d3f4",
+      "hex": "f7f9",
+      "instruction": "idiv ecx"
+    },
+    {
+      "va": "0x4dfe04",
+      "hex": "8b45d8",
+      "instruction": "mov eax, dword ptr [ebp - 0x28]"
+    },
+    {
+      "va": "0x4dfe07",
+      "hex": "69c02c010000",
+      "instruction": "imul eax, eax, 0x12c"
+    },
+    {
+      "va": "0x4dfe0d",
+      "hex": "99",
+      "instruction": "cdq "
+    },
+    {
+      "va": "0x4dfe0e",
+      "hex": "b964000000",
+      "instruction": "mov ecx, 0x64"
+    },
+    {
+      "va": "0x4dfe13",
+      "hex": "f7f9",
+      "instruction": "idiv ecx"
+    },
+    {
+      "va": "0x4dfe15",
+      "hex": "8bc8",
+      "instruction": "mov ecx, eax"
+    },
+    {
+      "va": "0x4dfe17",
+      "hex": "8b45e0",
+      "instruction": "mov eax, dword ptr [ebp - 0x20]"
+    },
+    {
+      "va": "0x4dfe1a",
+      "hex": "6bc064",
+      "instruction": "imul eax, eax, 0x64"
+    },
+    {
+      "va": "0x4dfe1d",
+      "hex": "99",
+      "instruction": "cdq "
+    },
+    {
+      "va": "0x4dfe1e",
+      "hex": "be64000000",
+      "instruction": "mov esi, 0x64"
+    },
+    {
+      "va": "0x4dfe23",
+      "hex": "f7fe",
+      "instruction": "idiv esi"
+    },
+    {
+      "va": "0x4dfe25",
+      "hex": "03c8",
+      "instruction": "add ecx, eax"
+    },
+    {
+      "va": "0x4dfe27",
+      "hex": "8b45e4",
+      "instruction": "mov eax, dword ptr [ebp - 0x1c]"
+    },
+    {
+      "va": "0x4dfe2a",
+      "hex": "6bc064",
+      "instruction": "imul eax, eax, 0x64"
+    },
+    {
+      "va": "0x4dfe2d",
+      "hex": "99",
+      "instruction": "cdq "
+    },
+    {
+      "va": "0x4dfe2e",
+      "hex": "be64000000",
+      "instruction": "mov esi, 0x64"
+    },
+    {
+      "va": "0x4dfe33",
+      "hex": "f7fe",
+      "instruction": "idiv esi"
+    },
+    {
+      "va": "0x4dfe35",
+      "hex": "03c8",
+      "instruction": "add ecx, eax"
+    },
+    {
+      "va": "0x4dfe37",
+      "hex": "8b550c",
+      "instruction": "mov edx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4dfe3a",
+      "hex": "66894a1a",
+      "instruction": "mov word ptr [edx + 0x1a], cx"
+    },
+    {
+      "va": "0x4dfe3e",
+      "hex": "8b450c",
+      "instruction": "mov eax, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4dfe41",
+      "hex": "8b4d0c",
+      "instruction": "mov ecx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4dfe44",
+      "hex": "668b511a",
+      "instruction": "mov dx, word ptr [ecx + 0x1a]"
+    },
+    {
+      "va": "0x4dfe48",
+      "hex": "6689501c",
+      "instruction": "mov word ptr [eax + 0x1c], dx"
+    },
+    {
+      "va": "0x4dfe4c",
+      "hex": "8b45fc",
+      "instruction": "mov eax, dword ptr [ebp - 4]"
+    },
+    {
+      "va": "0x4dfe4f",
+      "hex": "33c9",
+      "instruction": "xor ecx, ecx"
+    },
+    {
+      "va": "0x4dfe51",
+      "hex": "668b480c",
+      "instruction": "mov cx, word ptr [eax + 0xc]"
+    },
+    {
+      "va": "0x4dfe55",
+      "hex": "8b45d8",
+      "instruction": "mov eax, dword ptr [ebp - 0x28]"
+    },
+    {
+      "va": "0x4dfe58",
+      "hex": "6bc064",
+      "instruction": "imul eax, eax, 0x64"
+    },
+    {
+      "va": "0x4dfe5b",
+      "hex": "99",
+      "instruction": "cdq "
+    },
+    {
+      "va": "0x4dfe5c",
+      "hex": "be64000000",
+      "instruction": "mov esi, 0x64"
+    },
+    {
+      "va": "0x4dfe61",
+      "hex": "f7fe",
+      "instruction": "idiv esi"
+    },
+    {
+      "va": "0x4dfe63",
+      "hex": "2bc8",
+      "instruction": "sub ecx, eax"
+    },
+    {
+      "va": "0x4dfe65",
+      "hex": "8b45e4",
+      "instruction": "mov eax, dword ptr [ebp - 0x1c]"
+    },
+    {
+      "va": "0x4dfe68",
+      "hex": "6bc032",
+      "instruction": "imul eax, eax, 0x32"
+    },
+    {
+      "va": "0x4dfe6b",
+      "hex": "99",
+      "instruction": "cdq "
+    },
+    {
+      "va": "0x4dfe6c",
+      "hex": "be64000000",
+      "instruction": "mov esi, 0x64"
+    },
+    {
+      "va": "0x4dfe71",
+      "hex": "f7fe",
+      "instruction": "idiv esi"
+    },
+    {
+      "va": "0x4dfe73",
+      "hex": "2bc8",
+      "instruction": "sub ecx, eax"
+    },
+    {
+      "va": "0x4dfe75",
+      "hex": "8b550c",
+      "instruction": "mov edx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4dfe78",
+      "hex": "66894a1e",
+      "instruction": "mov word ptr [edx + 0x1e], cx"
+    },
+    {
+      "va": "0x4dfe7c",
+      "hex": "8b450c",
+      "instruction": "mov eax, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4dfe7f",
+      "hex": "8b4d0c",
+      "instruction": "mov ecx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4dfe82",
+      "hex": "668b511e",
+      "instruction": "mov dx, word ptr [ecx + 0x1e]"
+    },
+    {
+      "va": "0x4dfe86",
+      "hex": "6689501e",
+      "instruction": "mov word ptr [eax + 0x1e], dx"
+    },
+    {
+      "va": "0x4e0d27",
+      "hex": "8b4508",
+      "instruction": "mov eax, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d2a",
+      "hex": "0fbf481a",
+      "instruction": "movsx ecx, word ptr [eax + 0x1a]"
+    },
+    {
+      "va": "0x4e0d2e",
+      "hex": "83f901",
+      "instruction": "cmp ecx, 1"
+    },
+    {
+      "va": "0x4e0d31",
+      "hex": "7d0b",
+      "instruction": "jge 0x4e0d3e"
+    },
+    {
+      "va": "0x4e0d33",
+      "hex": "8b5508",
+      "instruction": "mov edx, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d36",
+      "hex": "66c7421a0100",
+      "instruction": "mov word ptr [edx + 0x1a], 1"
+    },
+    {
+      "va": "0x4e0d3c",
+      "hex": "eb18",
+      "instruction": "jmp 0x4e0d56"
+    },
+    {
+      "va": "0x4e0d3e",
+      "hex": "8b4508",
+      "instruction": "mov eax, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d41",
+      "hex": "0fbf481a",
+      "instruction": "movsx ecx, word ptr [eax + 0x1a]"
+    },
+    {
+      "va": "0x4e0d45",
+      "hex": "81f9e7030000",
+      "instruction": "cmp ecx, 0x3e7"
+    },
+    {
+      "va": "0x4e0d4b",
+      "hex": "7e09",
+      "instruction": "jle 0x4e0d56"
+    },
+    {
+      "va": "0x4e0d4d",
+      "hex": "8b5508",
+      "instruction": "mov edx, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d50",
+      "hex": "66c7421ae703",
+      "instruction": "mov word ptr [edx + 0x1a], 0x3e7"
+    },
+    {
+      "va": "0x4e0d56",
+      "hex": "8b4508",
+      "instruction": "mov eax, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d59",
+      "hex": "0fbf481c",
+      "instruction": "movsx ecx, word ptr [eax + 0x1c]"
+    },
+    {
+      "va": "0x4e0d5d",
+      "hex": "85c9",
+      "instruction": "test ecx, ecx"
+    },
+    {
+      "va": "0x4e0d5f",
+      "hex": "7d0b",
+      "instruction": "jge 0x4e0d6c"
+    },
+    {
+      "va": "0x4e0d61",
+      "hex": "8b5508",
+      "instruction": "mov edx, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d64",
+      "hex": "66c7421c0000",
+      "instruction": "mov word ptr [edx + 0x1c], 0"
+    },
+    {
+      "va": "0x4e0d6a",
+      "hex": "eb18",
+      "instruction": "jmp 0x4e0d84"
+    },
+    {
+      "va": "0x4e0d6c",
+      "hex": "8b4508",
+      "instruction": "mov eax, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d6f",
+      "hex": "0fbf481c",
+      "instruction": "movsx ecx, word ptr [eax + 0x1c]"
+    },
+    {
+      "va": "0x4e0d73",
+      "hex": "81f9e7030000",
+      "instruction": "cmp ecx, 0x3e7"
+    },
+    {
+      "va": "0x4e0d79",
+      "hex": "7e09",
+      "instruction": "jle 0x4e0d84"
+    },
+    {
+      "va": "0x4e0d7b",
+      "hex": "8b5508",
+      "instruction": "mov edx, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d7e",
+      "hex": "66c7421ce703",
+      "instruction": "mov word ptr [edx + 0x1c], 0x3e7"
+    },
+    {
+      "va": "0x4e0d84",
+      "hex": "8b4508",
+      "instruction": "mov eax, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d87",
+      "hex": "0fbf481e",
+      "instruction": "movsx ecx, word ptr [eax + 0x1e]"
+    },
+    {
+      "va": "0x4e0d8b",
+      "hex": "83f901",
+      "instruction": "cmp ecx, 1"
+    },
+    {
+      "va": "0x4e0d8e",
+      "hex": "7d0b",
+      "instruction": "jge 0x4e0d9b"
+    },
+    {
+      "va": "0x4e0d90",
+      "hex": "8b5508",
+      "instruction": "mov edx, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d93",
+      "hex": "66c7421e0100",
+      "instruction": "mov word ptr [edx + 0x1e], 1"
+    },
+    {
+      "va": "0x4e0d99",
+      "hex": "eb18",
+      "instruction": "jmp 0x4e0db3"
+    },
+    {
+      "va": "0x4e0d9b",
+      "hex": "8b4508",
+      "instruction": "mov eax, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0d9e",
+      "hex": "0fbf481e",
+      "instruction": "movsx ecx, word ptr [eax + 0x1e]"
+    },
+    {
+      "va": "0x4e0da2",
+      "hex": "81f9e7030000",
+      "instruction": "cmp ecx, 0x3e7"
+    },
+    {
+      "va": "0x4e0da8",
+      "hex": "7e09",
+      "instruction": "jle 0x4e0db3"
+    },
+    {
+      "va": "0x4e0daa",
+      "hex": "8b5508",
+      "instruction": "mov edx, dword ptr [ebp + 8]"
+    },
+    {
+      "va": "0x4e0dad",
+      "hex": "66c7421ee703",
+      "instruction": "mov word ptr [edx + 0x1e], 0x3e7"
+    },
+    {
+      "va": "0x4b9777",
+      "hex": "68e7030000",
+      "instruction": "push 0x3e7"
+    },
+    {
+      "va": "0x4b977c",
+      "hex": "6a01",
+      "instruction": "push 1"
+    },
+    {
+      "va": "0x4b977e",
+      "hex": "0fbf55d4",
+      "instruction": "movsx edx, word ptr [ebp - 0x2c]"
+    },
+    {
+      "va": "0x4b9782",
+      "hex": "52",
+      "instruction": "push edx"
+    },
+    {
+      "va": "0x4b9783",
+      "hex": "b910117e00",
+      "instruction": "mov ecx, 0x7e1110"
+    },
+    {
+      "va": "0x4b9788",
+      "hex": "e813840100",
+      "instruction": "call 0x4d1ba0"
+    },
+    {
+      "va": "0x4b978d",
+      "hex": "8b4d0c",
+      "instruction": "mov ecx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4b9790",
+      "hex": "6689411a",
+      "instruction": "mov word ptr [ecx + 0x1a], ax"
+    },
+    {
+      "va": "0x4ba7f3",
+      "hex": "8b4d0c",
+      "instruction": "mov ecx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4ba7f6",
+      "hex": "668b5114",
+      "instruction": "mov dx, word ptr [ecx + 0x14]"
+    },
+    {
+      "va": "0x4ba7fa",
+      "hex": "66895016",
+      "instruction": "mov word ptr [eax + 0x16], dx"
+    },
+    {
+      "va": "0x4ba7fe",
+      "hex": "8b450c",
+      "instruction": "mov eax, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4ba801",
+      "hex": "8b4d0c",
+      "instruction": "mov ecx, dword ptr [ebp + 0xc]"
+    },
+    {
+      "va": "0x4ba804",
+      "hex": "668b511a",
+      "instruction": "mov dx, word ptr [ecx + 0x1a]"
+    },
+    {
+      "va": "0x4ba808",
+      "hex": "6689501c",
+      "instruction": "mov word ptr [eax + 0x1c], dx"
+    }
+  ],
+  "call_contract": {
+    "recommended_roots": [
+      {
+        "entry": "0x4DA5F0",
+        "args": [
+          "identity: 10 or 11"
+        ],
+        "convention": "cdecl",
+        "receiver": "unused",
+        "result": "EAX=0x7E11B0 scratch, overwritten by next call",
+        "writes": "48-byte scratch + stack"
+      },
+      {
+        "entry": "0x4DFC20",
+        "args": [
+          "profile_pointer",
+          "destination_pointer_to_full_176_bytes"
+        ],
+        "convention": "cdecl",
+        "receiver": "unused",
+        "result": "176-byte record; EAX not an audited status",
+        "writes": "whole destination B0 is zeroed then initialized; stack only otherwise"
+      }
+    ],
+    "dependent_original": "0x4E0A00 normalizer called from 0x4E08C3; retain full original code and jump table data through 0x4E09FF",
+    "external_leaves": [
+      {
+        "entry": "0x56CEC0",
+        "mode": "explicit bounded memset primitive, not native CRT witness"
+      },
+      {
+        "entry": "0x56CE80",
+        "mode": "debug stack-check leaf returns only with preceding CMP ZF=1"
+      }
+    ],
+    "probe_bounds": {
+      "code_instruction_limit": 100000,
+      "timeout_us": 1000000,
+      "output_address": "0x14000100",
+      "stack_bytes": 131072,
+      "no_file_heap_GPU_sound_or_host_API": true
+    },
+    "invalid_paths": "0x424F80 assertion function must be rejected; no bypass; source jobs1/3 plus exact source9 paths did not visit assertions"
+  },
+  "MP_provenance": {
+    "reading_HUD": "46D3DF sign-extends current +1C; 46D3EF sign-extends maximum +1A; 46D3F4 divides current*100 by maximum",
+    "profile_formula": "4DFC20: raw max/current = 3*profile[11] + profile[9] + profile[8]. Unlike school 4B93C0, this scene-profile path has no job MP multiplier.",
+    "stores": [
+      "4DFE3A writes +1A",
+      "4DFE48 copies +1A to +1C",
+      "4DFE78/+4DFE86 write +1E"
+    ],
+    "normalization": "4E0A00 clamps signed maxMP to1..999, currentMP to0..999, MP recovery to1..999; current clamp is independent of max",
+    "school_alternative": "4B9340(id,ordinal) resolves source7E17E8+id*4A0 and dest7F4518+ordinal*B0, calls4B93C0(src,dst,modifier4C). Calls equipment/skill composition4DB340, clamp4D1BA0, x87 conversion56CFCC. Not a pointer-compatible plug-in for 11200100."
+  },
+  "integration": {
+    "recommended": "Initialize complete target B0 through original roots before first combat/binding root, then apply existing HP, faction, slot identity, location and attack-test declarations as explicitly named experimental inputs. Never restore a whole old zero-filled B0 afterward; never write +1A/+1C at terminal exit.",
+    "job_boundary": "Current target fixture identity11/job1 or3 is not exact static character11/job9. Keep source raw profile immutable in evidence, make any job1/3 profile override an explicit early experimental declaration BEFORE4DFC20. Original max/currentMP stays238; recovery is426 forjob1,246 forjob3.",
+    "minimal_scope": "Target alone is sufficient for timeout HUD division. Actor already has deliberate maxMP50/current20 in AttackMachine; replacing actor with source10 original287/287 changes an existing tested input and needs separate validation.",
+    "full_record_changes": [
+      "whole176 bytes are reinitialized",
+      "identity+0/+2 default to source id; old slot +0 must be redeclared",
+      "attributes+4..+A, job+C, level+E, state+F",
+      "HP+14/+16 and recovery+18",
+      "MP+1A/+1C and recovery+1E",
+      "engage+20/+24, time+28, movement+2C/+2E/+30",
+      "attack/binding+32..+50, mental+52, threshold+54",
+      "skills+84..+93, category+A4 and remaining scene/state fields"
+    ],
+    "legacy_fields": "Use existing declaration lists in battle_hit_damage_emulation, battle_bilateral_combat, battle_lethal_combat and their predecessors as field ownership list. Previously unspecified zero bytes may now have real initial values; inspect all fields read in world path rather than assuming battle equivalence.",
+    "digest_impact": "Rerun fresh combat predecessor and all downstream terminal stages. Initial bytes, MP regeneration stores, HUD output and instruction/write hashes may change. Frozen reports/code are retained unchanged; new change records new parent refs/digests.",
+    "required_checks": [
+      "fullB0 native output vs independent profile projection",
+      "source/profile/job-declaration identity and exact MP writer PCs",
+      "constructor initialization precedes every combat root",
+      "no host MP writes after initialization",
+      "world/event/terminal cases rerun from fresh inputs and original outcomes independently checked"
+    ]
+  },
+  "limits": [
+    "This is a bounded diagnostic only, not original game loading or acceptance.",
+    "4DA5F0 static source uses original EXE character definitions, not current grown school records.",
+    "Exact source11 is job9; declared job1/3 branches are intentionally marked experimental.",
+    "No3.76GB source opened; no long terminal validation, code edits or commits.",
+    "School full-source chain was read, not freshly replayed."
+  ]
+}

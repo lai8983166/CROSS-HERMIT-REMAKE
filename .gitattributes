@@ -1041,3 +1041,14 @@ openspec/changes/archive/*-connect-terminal-battle-exit-prefix/*.md -text
 openspec/changes/archive/*-connect-terminal-battle-exit-prefix/.openspec.yaml -text
 .gitignore text eol=lf
 analysis/.gitignore -text
+
+# Original unit frontend source/proof: preserve executed bytes
+tools/terminal_unit_frontends* -text
+tools/tests/test_terminal_unit_frontends* -text
+analysis/terminal-unit-frontends-*.json -text
+analysis/terminal-unit-frontends-*.chunks.zip binary
+analysis/terminal-unit-frontends-*.delta.jsonl.gz binary
+analysis/terminal-unit-frontends-*.log -text -whitespace
+docs/terminal_unit_frontends.md -text
+openspec/changes/connect-terminal-unit-frontends/* -text
+openspec/changes/archive/*-connect-terminal-unit-frontends/* -text
