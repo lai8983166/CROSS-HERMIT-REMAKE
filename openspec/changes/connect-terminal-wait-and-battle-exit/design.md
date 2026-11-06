@@ -25,4 +25,4 @@
 
 ## Migration Plan
 
-在独立 `codex/connect-terminal-wait-and-battle-exit` 分支增量实施。各阶段保留实际未完成任务；仅全部适用验收完成才归档。每个连贯单元本地提交，不 push。收尾同时报告 Git 新增体积、全部新本地证据及清理情况。
+该单元起始于 `codex/connect-terminal-wait-and-battle-exit`；按用户后续要求合入主分支，之后默认沿用当前分支。各阶段保留实际未完成任务；仅全部适用验收完成才归档。每个连贯单元满足既有验收和体积规则后提交并自动 push；合并其它分支仍须用户明确要求。收尾同时报告 Git 新增体积、全部新本地证据及清理情况。

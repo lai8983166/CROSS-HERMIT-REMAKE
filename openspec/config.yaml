@@ -9,7 +9,7 @@ context: |
   每次继续推进先接续对应的有效change；没有对应change时才为下一个有限功能里程碑创建change。
   不为每次对话、每条消息或每个接口新建change，不将所有余下工作堆入一个持续扩张的change。
   完成的规格同步到总spec后归档对应change；历史原始证据、原存档及私有检查点保持不变。
-  完成连贯工作单元后本地Git提交，不push。
+  默认沿用当前分支，不因新change自动新建分支。完成连贯工作单元并满足既有验收和体积规则后，Git提交并自动push到当前分支的远程跟踪分支；用户明确要求暂不推送时例外。首次推送可设置origin同名upstream，不强制覆盖远程。合并主分支按用户明确要求执行。
 
 # Project context (optional)
 # This is shown to AI when creating artifacts.
