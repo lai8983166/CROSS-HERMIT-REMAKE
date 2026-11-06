@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "accepted": false,
+  "reason": "Tool-session Ctrl-C closed launchers but left two current-turn guest-only diagnostic process trees. Exact PID, parent PID, creation time and command lines were read before stopping only these own processes.",
+  "owned_trees": [
+    {"launcher_pid": 21064, "worker_pid": 33364, "created_at": "2026-11-06T22:02:24+08:00", "module": "devtools.terminal_wait_probe", "case": 0},
+    {"launcher_pid": 37212, "worker_pid": 41596, "created_at": "2026-11-06T22:09:45+08:00", "module": "devtools.terminal_wait_probe", "case": 0}
+  ],
+  "output_path": "analysis/terminal-wait-probe-v1-neutral-20261106.json",
+  "output_overwritten": false,
+  "preexisting_tasks_stopped": false,
+  "native_helpers_stopped": false,
+  "post_stop_verification": "devtools.reverse_iteration.require_idle() passed after Windows process exit propagation",
+  "verified_reverse_workers_remaining": 0,
+  "lesson": "A cancelled shell session is not proof its Python descendants ended; verify process identity and idle guard before another attempt. No acceptance used interrupted-run output."
+}
