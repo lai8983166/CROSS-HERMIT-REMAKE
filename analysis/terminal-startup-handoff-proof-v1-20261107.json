@@ -1,0 +1,44 @@
+{
+  "samples": 262,
+  "TLS_samples": 258,
+  "animation_limit_samples": [
+    258
+  ],
+  "native_handoff_observed": true,
+  "worker_exit_code": 0,
+  "status": "partial_handoff_observation",
+  "accepted": false,
+  "full_native_instruction_trace": false,
+  "normal_PTD_cleanup_proved": false,
+  "full_resource_lifetime_proved": false,
+  "full_battle_exit_accepted": false,
+  "formal_terminal_boundary_advanced": false,
+  "observed_graph_overlap": false,
+  "continuously_proved_no_overlap": false,
+  "all_static_contract_ranges_live_authenticated": false,
+  "limitations": [
+    "Only retained snapshots are independently checked; no complete instruction/API or continuous graph trace.",
+    "Original startup dispatch506713..50673A and stage initialization525080 were not in this collector live range list.",
+    "Normal worker exit0 plus graph handoff does not independently observe every destructor/PTD free/TLS clear.",
+    "No-input collector excludes its own submitted input; sparse mouse samples do not exclude all external input."
+  ],
+  "source_report": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-startup-handoff-v1-20261107.json.gz",
+    "bytes": 66917,
+    "sha256": "f855f920bef4b80bec82acaa3af90fb1c97c8c90c81e4cad18c46753d6abe42e"
+  },
+  "verifier_sha256": "9d9ab1b4fa8cfe467d48858635568b1145a55cb90009419fca049a3651b30815",
+  "native_dependency_attestation_complete": false,
+  "current_verification_dependencies": [
+    {
+      "path": "devtools/terminal_scene_owner_verification.py",
+      "bytes": 23238,
+      "sha256": "f5283d5d6fedfa873add0d8aa50f8052833686228c2ff1966b2ff13314a65c7d"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_contract.py",
+      "bytes": 13030,
+      "sha256": "4e3fd6fe81535c2abcab1f7c4b689560a035ac22c2553a3bd208bebc89970e35"
+    }
+  ]
+}

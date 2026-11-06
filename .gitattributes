@@ -1088,3 +1088,10 @@ analysis/terminal-scene-*.json -text whitespace=blank-at-eol,blank-at-eof,space-
 analysis/terminal-scene-*.json.gz -text
 analysis/terminal-scene-*.zip -text
 docs/terminal_scene_automation.md -text
+
+# Natural startup handoff: preserve sampled sources and verifier identities
+devtools/terminal_startup_*.py -text
+devtools/tests/test_terminal_startup_*.py -text
+analysis/terminal-startup-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-startup-*.gz -text
+docs/terminal_startup_handoff.md -text

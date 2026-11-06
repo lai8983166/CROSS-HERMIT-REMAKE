@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "kind": "independent_bounded_startup_handoff_review",
+  "status": "qualified_observation_verified",
+  "source": {
+    "path": "analysis/terminal-startup-handoff-v2-20261107.json.gz",
+    "bytes": 67418,
+    "sha256": "799a7fa3f50e29676a4bfaca8ea24689b3f15efe8e908291fb68a802ffadb85c"
+  },
+  "proof": {
+    "path": "analysis/terminal-startup-handoff-proof-v2-20261107.json",
+    "bytes": 2219,
+    "sha256": "a7bf97db7e8b121731c351b8fb5e538657aa6142c04fa35e1f6d7e6d74508692"
+  },
+  "static_contract": {
+    "path": "analysis/terminal-startup-handoff-contract-v1-20261107.json",
+    "bytes": 27754,
+    "sha256": "c707c9a18100e0c4fb1fff46515f5982022e5e7a1ea490fcddb220677e41dd4b"
+  },
+  "reviewer_implementation": {
+    "path": "devtools/terminal_startup_handoff_verification.py",
+    "bytes": 22479,
+    "sha256": "37f7a5e7f404918c81ec3578fe5c4dbfb8e9845441d211cada96b91540ea3aeb"
+  },
+  "original_source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "conclusions": [
+    "Original counter starts0;stage22 equality16204 sets100 and still yields;the next iteration16205 enters natural tail.60 is catch-up limit,not the configured frame rate.",
+    "Original callback returns421F8A;421F50 calls_endthreadex(0) itself.56E183 is a CRT ancestor return address,not a required executed return on this path.",
+    "Actual v2 has262 retained samples and258 complete TLS observations.Threshold sample258 precedes signaled startup thread exit0 and menu-only stable suffix.",
+    "v2 named static-contract ranges,IAT lists,raw761BC0 index,and node/manager Event identities match the recorded same-owner data.",
+    "Observed scheduler graphs are bounded complete single-linked graphs without observed startup/menu overlap;bucket+4 is not treated as a tail.",
+    "All historical receipts remain immutable. Current verifier CLI authenticates current collector and accepts v2;oldv1 full identity verification requires the archived collector/verifier implementation,not the current CLI."
+  ],
+  "validation": {
+    "normal_unittest_cases": 38,
+    "optimized_unittest_cases": 38,
+    "both_passed": true,
+    "fixed_actual_v2_file_verification_passed": true,
+    "diff_check_passed": true,
+    "native_process_started_by_reviewer": false,
+    "existing_collector_or_frozen_tools_modified": false,
+    "rejects": [
+      "source/IAT version mixing",
+      "missing or wrong raw TLS index and expansion pointer",
+      "foreign/wrong manager Event",
+      "PTD substitution across samples",
+      "callback local/counter/stack tamper",
+      "graph cycles",
+      "AV worker exit or unsignaled handle",
+      "after-cleanup exit claim",
+      "insufficient stable menu suffix",
+      "host memory write/call/input",
+      "forced Job cleanup",
+      "scope upgrades"
+    ]
+  },
+  "process_results": {
+    "startup_worker_exit_before_WM_CLOSE": {
+      "thread_id": 23128,
+      "exit_code": 0,
+      "wait_status": 0,
+      "before_WM_CLOSE": true,
+      "elapsed": 274.0,
+      "natural_return_full_trace_proved": false
+    },
+    "cleanup_process_exits": {
+      "37444": {
+        "signaled": true,
+        "code": 0
+      },
+      "36996": {
+        "signaled": true,
+        "code": 3221226324
+      }
+    },
+    "WinMain_normal_return_proved": false
+  },
+  "limitations": [
+    "Named code ranges are authenticated at endpoints;this is not a complete live-code image or instruction/API trace.",
+    "Live5CAA48/59B060 vtable contents were not separately sampled;task-header identity and original constructor code are authenticated,not every dynamic callback pointer.",
+    "Sparse samples cannot exclude unobserved graph overlap or all external input;the collector submits no input and calls no game roots.",
+    "Exit0 and graph retirement do not independently sample every PTD free,TLS clear,event close,destructor,or resource release.",
+    "Protected child cleanup code0xC0000354 is retained and is not called normal WinMain return.",
+    "No T0004 battle construction after this handoff was executed or accepted by this evidence."
+  ],
+  "scope": {
+    "accepted": false,
+    "formal_terminal_boundary_advanced": false,
+    "full_native_instruction_or_API_trace": false,
+    "normal_PTD_cleanup_proved": false,
+    "full_resource_lifetime_proved": false,
+    "full_battle_exit_accepted": false,
+    "independent_full_replay": false,
+    "R3_complete": false,
+    "R4_complete": false,
+    "R5_complete": false,
+    "R6_complete": false
+  },
+  "subagent_files": [
+    {
+      "path": "devtools/terminal_startup_handoff_contract.py",
+      "bytes": 13030,
+      "sha256": "4e3fd6fe81535c2abcab1f7c4b689560a035ac22c2553a3bd208bebc89970e35"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_verification.py",
+      "bytes": 22479,
+      "sha256": "37f7a5e7f404918c81ec3578fe5c4dbfb8e9845441d211cada96b91540ea3aeb"
+    },
+    {
+      "path": "devtools/tests/test_terminal_startup_handoff_contract.py",
+      "bytes": 2852,
+      "sha256": "6c2f8c0d1f4e37c2054a41645bfdc17744fdafafd43ab7991c897b58ff17982c"
+    },
+    {
+      "path": "devtools/tests/test_terminal_startup_handoff_verification.py",
+      "bytes": 10474,
+      "sha256": "4c0cf42d4eead9bde530641347c716485dd7dc72ee8290788754685c011ecd81"
+    },
+    {
+      "path": "analysis/terminal-startup-handoff-contract-v1-20261107.json",
+      "bytes": 27754,
+      "sha256": "c707c9a18100e0c4fb1fff46515f5982022e5e7a1ea490fcddb220677e41dd4b"
+    },
+    {
+      "path": "analysis/terminal-startup-handoff-proof-v1-20261107.json",
+      "bytes": 1850,
+      "sha256": "e342844e7ec0a9ae6b9a7341d00568cf93ead7fef2ab0d430b362bc8c4b6a714"
+    },
+    {
+      "path": "analysis/terminal-startup-handoff-proof-v2-20261107.json",
+      "bytes": 2219,
+      "sha256": "a7bf97db7e8b121731c351b8fb5e538657aa6142c04fa35e1f6d7e6d74508692"
+    }
+  ],
+  "subagent_files_bytes_excluding_this_review": 80658,
+  "cleanup": {
+    "existing_evidence_deleted": false,
+    "old_receipts_rewritten": false,
+    "new_large_evidence": false
+  }
+}
