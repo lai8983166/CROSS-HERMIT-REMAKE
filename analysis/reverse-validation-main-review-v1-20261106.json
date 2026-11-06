@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "accepted": false,
+  "reviewed_at_utc": "2026-11-06T13:20:28.477195+00:00",
+  "reviewer": "main agent; independently reviewed devtools implementation authored by subagent",
+  "core_files": [
+    {
+      "path": "devtools/reverse_iteration.py",
+      "bytes": 22735,
+      "sha256": "2c15a0845c9674d04c2ac477ee245a2d3d838e5657430156b39e823a8d7662af"
+    },
+    {
+      "path": "devtools/terminal_proof_resume.py",
+      "bytes": 1556,
+      "sha256": "4e8c8c6cd9dbc8d06a471e9ec7c1aebccdd1803418ea077a52ad8e7d4086e22c"
+    },
+    {
+      "path": "devtools/tests/test_reverse_iteration.py",
+      "bytes": 32498,
+      "sha256": "a939b4d2deffd3efd14258e0dbfed5f310f6da6f0651b81f5173051664b04e73"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_fast.py",
+      "bytes": 1401,
+      "sha256": "e8ff9f6996571a9e57e8e9fd2ac72ee4506032ceb545355b06e7beb46df42e99"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_fast_proof.py",
+      "bytes": 6612,
+      "sha256": "dbc67704e4332e85dc31d191545ac9ebf270e69c488289a19b2c04c59b2c370b"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_fast_benchmark.py",
+      "bytes": 6191,
+      "sha256": "06af8cb1896196d758e1364ddccd25410b63936e79346b827ea08a73bbecc8cc"
+    },
+    {
+      "path": "tools/tests/test_terminal_unit_frontends_fast.py",
+      "bytes": 6831,
+      "sha256": "1c043bf729adb464e3adc5ded60365111f3c3efb7704e53a9f3b23b8cb7b89c3"
+    }
+  ],
+  "cases": [
+    {
+      "case": "neutral",
+      "report": {
+        "path": "analysis/terminal-unit-frontends-fast-proof-v1-neutral-20261106.json",
+        "bytes": 724738,
+        "sha256": "4f5045a8e48418a2af0b1c401003deb726384eb7657a68c573ee8f76cd22955b"
+      },
+      "checkpoint": {
+        "path": "analysis/terminal-unit-frontends-proof-v10-neutral-20261105.json",
+        "bytes": 721493,
+        "sha256": "0ee7bdb3d00d9bf9bce2ac0818297b382eff51f511725fd7be620712c6297f40"
+      },
+      "full_source_and_fresh_proofs_equal": true,
+      "complete_original_execution_comparison": {
+        "entire_initial_memory": true,
+        "entire_forward_memory": true,
+        "final_memory_reconstructed_and_digest_equal": true,
+        "all57_CPU_at_all_transactions": true,
+        "all_original_cumulative_fields_equal": true,
+        "every_root_and_continuation_equal": true,
+        "transactions": 4944
+      },
+      "normal_resource_cleanup": true,
+      "all_start_entries_unchanged": true,
+      "late_old_modules_verified_against_baseline": [
+        {
+          "path": "tools/school_native_dialogue_handoff_verification.py",
+          "bytes": 7126,
+          "sha256": "8bb5c1bd28166a134bbde960ea22bb00fa39909dc90df417e9e506538bb768b7"
+        }
+      ],
+      "duration_seconds": 16261.583,
+      "historical_duration_seconds": 23190.03,
+      "observed_reduction_percent": 29.88
+    },
+    {
+      "case": "timeout",
+      "report": {
+        "path": "analysis/terminal-unit-frontends-fast-proof-v1-timeout-20261106.json",
+        "bytes": 724739,
+        "sha256": "4b341320ec9699a5b219f8e729a0ed7c775fd3ba6f9bd9d1e74d4c585b987964"
+      },
+      "checkpoint": {
+        "path": "analysis/terminal-unit-frontends-proof-v8-timeout-20261105.json",
+        "bytes": 721493,
+        "sha256": "dafc3c9e4edd3b380e4546837b21230c1c256c3f34f68cef3017af4a3ca86c05"
+      },
+      "full_source_and_fresh_proofs_equal": true,
+      "complete_original_execution_comparison": {
+        "entire_initial_memory": true,
+        "entire_forward_memory": true,
+        "final_memory_reconstructed_and_digest_equal": true,
+        "all57_CPU_at_all_transactions": true,
+        "all_original_cumulative_fields_equal": true,
+        "every_root_and_continuation_equal": true,
+        "transactions": 5062
+      },
+      "normal_resource_cleanup": true,
+      "all_start_entries_unchanged": true,
+      "late_old_modules_verified_against_baseline": [
+        {
+          "path": "tools/school_native_dialogue_handoff_verification.py",
+          "bytes": 7126,
+          "sha256": "8bb5c1bd28166a134bbde960ea22bb00fa39909dc90df417e9e506538bb768b7"
+        }
+      ],
+      "duration_seconds": 16357.709,
+      "historical_duration_seconds": 21431.33,
+      "observed_reduction_percent": 23.67
+    }
+  ],
+  "independent_reviews": [
+    {
+      "path": "analysis/reverse-validation-independent-review-v1-neutral-20261106.json",
+      "bytes": 18825,
+      "sha256": "13e3e042b22c4f20a0c67281ba1b9bb0ec6013b56a6df640034f0d83680b1ab3"
+    },
+    {
+      "path": "analysis/reverse-validation-independent-review-v1-final-20261106.json",
+      "bytes": 14300,
+      "sha256": "c57f1cb3b396d3cc976b6df4f328b8831072f9a6ff9a26ad80e0749c163adfd5"
+    }
+  ],
+  "tests": [
+    {
+      "receipt": {
+        "path": "analysis/terminal-unit-frontends-fast-tests-v1-20261106.json",
+        "bytes": 84987,
+        "sha256": "832753d6dd26eefbbf795fc924687a358a3209b6dfd8142fdde39670b5694798"
+      },
+      "tests_run": 124,
+      "frontend_tests": 95,
+      "devtools_tests": 29,
+      "all_recorded_implementations_still_current": true
+    },
+    {
+      "receipt": {
+        "path": "analysis/reverse-iteration-tests-v1-20261106.json",
+        "bytes": 5926,
+        "sha256": "42438e363c06946ccd4c716215e0f5195de7095e5a8330a3a98cb54bd904f452"
+      },
+      "tests_run": 41,
+      "frontend_tests": 0,
+      "devtools_tests": 41,
+      "all_recorded_implementations_still_current": true
+    }
+  ],
+  "unique_current_tests": 136,
+  "single_136_test_run_claimed": false,
+  "reruns_after_frozen_success": false,
+  "live_busy_guard": {
+    "path": "analysis/reverse-iteration-live-guard-v1-20261106.json",
+    "bytes": 899,
+    "sha256": "42f91d986f06557f55dc5626dfe8da791abffe5709aceb177a1068bf17697a3d"
+  },
+  "controller_checks": {
+    "explicit_checkpoint_and_SHA_per_case": true,
+    "frozen_resume_authentication_used": true,
+    "default_original_engine": true,
+    "scalar_opt_in_requires_both_checkpoints": true,
+    "busy_inventory_failure_closed": true,
+    "exclusive_wrapper_lock": true,
+    "failure_stops_before_second_case": true,
+    "no_automatic_retries": true,
+    "full_native_and_compare_and_independent_replay_retained": true,
+    "exit_zero_not_acceptance": true,
+    "retired_failure_provenance_and_unknown_duration_preserved": true
+  },
+  "raw_trace_note": "source/fresh original execution cumulative fields directly equal; independent replay preserves the frozen two paired REP raw retries and identical canonical/full states",
+  "performance_limit": "historical per-case observations, not controlled whole-run A/B; parent checkpoints already resumed; current first-validation cases sequential, no whole-campaign wall-speedup claim",
+  "blocking_findings": []
+}

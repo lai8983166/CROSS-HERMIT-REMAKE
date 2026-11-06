@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "accepted": false,
+  "reviewed_at_utc": "2026-11-06T13:17:20.755844+00:00",
+  "scope": "Final incremental independent review of completed timeout evidence and revalidation of the prior neutral review/core-file identities. No native/replay execution and no test rerun.",
+  "previous_neutral_review": {
+    "path": "analysis/reverse-validation-independent-review-v1-neutral-20261106.json",
+    "bytes": 18825,
+    "sha256": "13e3e042b22c4f20a0c67281ba1b9bb0ec6013b56a6df640034f0d83680b1ab3"
+  },
+  "previous_neutral_review_status": "Immutable prior review remains valid; its second-case pending status is superseded only by this incremental report.",
+  "neutral_recheck": {
+    "proof": {
+      "path": "analysis/terminal-unit-frontends-fast-proof-v1-neutral-20261106.json",
+      "bytes": 724738,
+      "sha256": "4f5045a8e48418a2af0b1c401003deb726384eb7657a68c573ee8f76cd22955b"
+    },
+    "all_prior_core_file_identities_still_match": true,
+    "all_neutral_end_module_identities_still_match": true,
+    "retained_fresh_helper_hashes_still_match": true
+  },
+  "timeout_evidence": {
+    "proof": {
+      "path": "analysis/terminal-unit-frontends-fast-proof-v1-timeout-20261106.json",
+      "bytes": 724739,
+      "sha256": "4b341320ec9699a5b219f8e729a0ed7c775fd3ba6f9bd9d1e74d4c585b987964"
+    },
+    "parent_checkpoint": {
+      "path": "analysis/terminal-unit-frontends-proof-v8-timeout-20261105.json",
+      "bytes": 721493,
+      "sha256": "dafc3c9e4edd3b380e4546837b21230c1c256c3f34f68cef3017af4a3ca86c05"
+    },
+    "source_process": {
+      "path": "analysis/terminal-unit-frontends-source-v6-timeout-20261105.process.json",
+      "bytes": 125861,
+      "sha256": "1ed70c9182e4edcc1c749548d46e4c75e13c01be2323efa1f95c3c92cfdd440a"
+    },
+    "source_artifacts": [
+      {
+        "path": "analysis/terminal-unit-frontends-source-v6-timeout-20261105.chunks.zip",
+        "bytes": 9284189,
+        "sha256": "953c72823a4eb3a1ac2a4895c6fd50000f8b27dc889dba84111a783d2a516ce6"
+      },
+      {
+        "path": "analysis/terminal-unit-frontends-source-v6-timeout-20261105.delta.jsonl.gz",
+        "bytes": 2313051,
+        "sha256": "67f0c997b3d4fe447f07ad0ea03c936124494d8591bd4c638b2cb069bc028f0c"
+      }
+    ],
+    "source_and_fresh_helpers": [
+      {
+        "path": "tools/terminal_unit_frontends_crt_platform.cs",
+        "bytes": 9886,
+        "sha256": "5120a505af36d993304201ef6e1425220afb7a3e5249e17adf8324e429cf90c1"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-source-v6-timeout-20261105-1-crt.exe",
+        "bytes": 29696,
+        "sha256": "d08557892ab429de01b27f15d944a3bf3f3851f50e06b24242c3cea3074de0ca"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-fast-proof-v1-timeout-20261106-fresh-crt.exe",
+        "bytes": 29696,
+        "sha256": "a15ea957131f937d3b9d4dcc1468bc24357d76cfe6ec3cd3267375eb1844c728"
+      },
+      {
+        "path": "tools/terminal_unit_frontends_d3d8_platform.cs",
+        "bytes": 12635,
+        "sha256": "f04b10bec86fa268b0a993d4495fec0e336d0de33393820732b1f9633e7eb8ef"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-source-v6-timeout-20261105-1-gpu.exe",
+        "bytes": 32768,
+        "sha256": "8b8d8529f07eb0fb9bbdbd4400129b9346b5edce689c9aced35cf183c4fac572"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-fast-proof-v1-timeout-20261106-fresh-gpu.exe",
+        "bytes": 32768,
+        "sha256": "c6925a8829d3755456556b3ca3497571d45c3fb99208baa3158250a9bc26c8d4"
+      }
+    ],
+    "resumed_source": {
+      "checkpoint": {
+        "path": "analysis/terminal-unit-frontends-proof-v8-timeout-20261105.json",
+        "bytes": 721493,
+        "sha256": "dafc3c9e4edd3b380e4546837b21230c1c256c3f34f68cef3017af4a3ca86c05"
+      },
+      "historical_orchestrator": null,
+      "source_replay_reexecuted": false,
+      "all_verification_modules_unchanged": true
+    }
+  },
+  "implementation_inventory": {
+    "start_count": 357,
+    "end_count": 358,
+    "every_start_entry_equal_at_end": true,
+    "all_end_entries_equal_current_bytes": true,
+    "start_and_end_dicts_exactly_equal": false,
+    "both_cases_used_identical_start_and_end_inventories": true,
+    "adapter_and_orchestrator_bound_at_start": true,
+    "end_only_module": {
+      "path": "tools/school_native_dialogue_handoff_verification.py",
+      "bytes": 7126,
+      "sha256": "8bb5c1bd28166a134bbde960ea22bb00fa39909dc90df417e9e506538bb768b7"
+    },
+    "end_only_module_equal_a83999c1_git_blob": true,
+    "assessment": "The sole additional old verifier is lazily imported by school_retained_keyboard.inputs. It matches the frozen baseline and current bytes. No nonexistent start entry or exact start/end dictionary equality is claimed."
+  },
+  "timeout_checks": {
+    "case_index": 1,
+    "source_proof_equals_parent_source_proof": true,
+    "fresh_proof_entirely_equals_source_proof": true,
+    "fresh_comparison_equals_parent": true,
+    "original_source_and_fresh_execution_state_and_cumulative_fields_equal": true,
+    "all57_CPU_full_mapped_memory_every_transaction_and_ABI_preserved": true,
+    "frozen_authentication_resume_compare_and_independent_replay_completed": true,
+    "all_nine_recorded_stages_complete": true,
+    "original_and_fresh_helper_source_executable_hashes_match": true,
+    "fresh_helpers_use_distinct_namespaces_from_source_and_neutral": true,
+    "helper_PE_machine_0x14c": true,
+    "normal_CRT_GPU_cleanup_and_no_forced_CRT_cleanup": true,
+    "no_error_or_partial_success": true
+  },
+  "timeout_proof_summary": {
+    "transactions": 5062,
+    "final_trace": {
+      "instructions": 148162086,
+      "writes": 42434941,
+      "code_sha256": "02925e0f8d8def05daa755b835d882574dbbe7266bcb2b9bcca52db6211e6b3f",
+      "write_sha256": "88eb957d7ff8ac6e157c821cdfa87f38186aafa6ca3fdb09a57543d6d4cece03"
+    },
+    "final_memory": {
+      "sha256": "826039287d699cb14e55e30d0179c95b44a09ca118a689a0673bb6bbef753852",
+      "regions": 9973,
+      "pages": 13574,
+      "bytes": 55599104
+    },
+    "raw_original_callback_trace": {
+      "instructions": 148162088,
+      "writes": 42434943,
+      "code_sha256": "ea7b50d022a5f757ddedf755a347d0ffe587d2bbd1e85bbb6e901dc22b03d228",
+      "write_sha256": "9c77730343f5aa04810c806347137335ffe1920a41515572004a75213e66979f"
+    },
+    "audited_paired_REP_retries": 2,
+    "canonical_trace_matches_source": true,
+    "raw_trace_matches_source": false,
+    "guest_execution_or_state_modified": false,
+    "platform": {
+      "events": {
+        "CRT": 307,
+        "GPU": 5396
+      },
+      "wire": {
+        "CRT": 455,
+        "GPU": 6486
+      },
+      "CRT_GPU_only": true,
+      "GDI_implemented": false,
+      "TLS_implemented": false,
+      "source_effects_used_as_oracle": false
+    },
+    "other_platform": {
+      "TLS": 0,
+      "clock": 1,
+      "task_text": 2277,
+      "COMMON_marker_strings": 119
+    },
+    "fresh_GDI": {
+      "calls": 405,
+      "fresh_native_GDI_API_outputs_compared": true
+    },
+    "GDI_lifetimes": {
+      "calls": 405,
+      "fixed_parent_calls": 324,
+      "lifetimes": 50,
+      "native_value_reissues": 0,
+      "all_argument_and_result_lifetimes_verified": true,
+      "all_actual_API_outputs_preserved": true
+    },
+    "fresh_native_creation": {
+      "thread": 38884,
+      "native_index": 11,
+      "guest_index": 51,
+      "guest_token": 308416512,
+      "actual_set_and_readback": true,
+      "pointer_is_guest_token_not_native_dereference": true
+    },
+    "CRT_cleanup": {
+      "all_owned_resources_released": true,
+      "heap_destroyed": true,
+      "critical_deleted": true,
+      "open_files": 0,
+      "allocations": 0,
+      "depth": 0,
+      "forced_cleanup": false
+    },
+    "GPU_cleanup": {
+      "texture_releases": [],
+      "device_release_count": 0,
+      "factory_release_count": 0,
+      "window_destroyed": true,
+      "all_owned_resources_released": true
+    }
+  },
+  "raw_trace_distinction": "Frozen compare_fresh directly matches retained-source versus optimized-fresh original execution cumulative fields and full state. Separately, frozen independent replay retains two audited redundant callback/store pairs in its raw trace while matching canonical source digests and complete state. Source/fresh proof raw fields are identical; no new optimization-specific relaxation was introduced.",
+  "timing": {
+    "timeout_duration_seconds": 16357.709,
+    "timeout_stages": [
+      {
+        "name": "authenticate_source",
+        "started_at": "2026-11-06T08:42:08.512310+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T08:42:08.824038+00:00",
+        "wall_seconds": 0.3104,
+        "process_CPU_seconds": 0.2344
+      },
+      {
+        "name": "decode_source",
+        "started_at": "2026-11-06T08:42:08.824087+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T08:42:44.144259+00:00",
+        "wall_seconds": 35.3207,
+        "process_CPU_seconds": 35.0469
+      },
+      {
+        "name": "authenticate_completed_source_replay",
+        "started_at": "2026-11-06T08:42:44.145259+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T08:42:44.410394+00:00",
+        "wall_seconds": 0.2648,
+        "process_CPU_seconds": 0.25
+      },
+      {
+        "name": "build_fresh_helpers",
+        "started_at": "2026-11-06T08:42:44.410394+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T08:42:44.872908+00:00",
+        "wall_seconds": 0.4622,
+        "process_CPU_seconds": 0.0
+      },
+      {
+        "name": "fresh_original_execution",
+        "started_at": "2026-11-06T08:42:44.872908+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T11:26:34.267155+00:00",
+        "wall_seconds": 9829.3938,
+        "process_CPU_seconds": 9195.9375
+      },
+      {
+        "name": "compact_fresh_and_collect",
+        "started_at": "2026-11-06T11:26:34.269157+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T11:35:45.713775+00:00",
+        "wall_seconds": 551.4442,
+        "process_CPU_seconds": 506.0469
+      },
+      {
+        "name": "compare_full_fresh_state_and_raw_traces",
+        "started_at": "2026-11-06T11:35:45.714774+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T11:35:46.517616+00:00",
+        "wall_seconds": 0.8027,
+        "process_CPU_seconds": 0.7031
+      },
+      {
+        "name": "independent_fresh_replay",
+        "started_at": "2026-11-06T11:35:46.518141+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T13:06:26.469775+00:00",
+        "wall_seconds": 5439.9514,
+        "process_CPU_seconds": 5270.2188
+      },
+      {
+        "name": "release_witnesses_and_collect",
+        "started_at": "2026-11-06T13:06:26.471775+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T13:14:45.324611+00:00",
+        "wall_seconds": 498.8526,
+        "process_CPU_seconds": 490.3594
+      }
+    ],
+    "CPU_timing_excludes_native_helpers": true,
+    "historical_observations": [
+      {
+        "case": "neutral_running",
+        "historical_process_seconds": 23190.03,
+        "optimized_process_seconds": 16261.583,
+        "observed_process_duration_reduction_percent": 29.88,
+        "parent_already_resumed_source_replay": true
+      },
+      {
+        "case": "timeout_before_combat",
+        "historical_process_seconds": 21431.33,
+        "optimized_process_seconds": 16357.709,
+        "observed_process_duration_reduction_percent": 23.67,
+        "parent_already_resumed_source_replay": true
+      }
+    ],
+    "interpretation": "These are observations across different load/scheduling conditions, not controlled A/B. This round ran representative then second case serially. Individual process-duration reductions are not whole-round elapsed-wall reductions; do not sum parallel historical process durations as wall time. Both historical final proofs already resumed source replay, so source-replay reuse is not counted again as speedup."
+  },
+  "test_receipt_clarification": {
+    "initial_preflight_receipt": {
+      "path": "analysis/terminal-unit-frontends-fast-tests-v1-20261106.json",
+      "bytes": 84987,
+      "sha256": "832753d6dd26eefbbf795fc924687a358a3209b6dfd8142fdde39670b5694798"
+    },
+    "initial_total": 124,
+    "initial_frontend_tests": 95,
+    "initial_devtools_tests": 29,
+    "later_devtools_receipt": {
+      "path": "analysis/reverse-iteration-tests-v1-20261106.json",
+      "bytes": 5926,
+      "sha256": "42438e363c06946ccd4c716215e0f5195de7095e5a8330a3a98cb54bd904f452"
+    },
+    "later_devtools_tests": 41,
+    "later_devtools_success": true,
+    "no_single_batch_136_claim": true,
+    "no_tests_rerun_by_reviewer": true,
+    "clarifies_prior_report_field": "The prior neutral report field fast_regressions_count=124 is the combined preflight total, not 124 frontend tests."
+  },
+  "review_independence": "This reviewer did not implement tools scalar adapter/proof/benchmark. This reviewer did implement devtools; its independent implementation review belongs to the main agent and is excluded here.",
+  "blocking_findings": [],
+  "remaining_risks_and_limits": [
+    "No additional native or replay execution was performed by this evidence reviewer; completed frozen pipeline receipts, identities and prior code inspection form the evidence basis.",
+    "Only the existing unit-frontend proof boundary is covered; complete battle exit and outer result consumption remain false.",
+    "Performance observations are not a controlled whole-workflow speedup measurement.",
+    "Final preservation, specifications, Git/local evidence capacity checks, devtools independent review and sealing remain main-agent responsibilities."
+  ],
+  "both_cases_conclusion": {
+    "neutral": "reviewed complete without blocking findings",
+    "timeout": "reviewed complete without blocking findings",
+    "both_cases_fresh_native_execution_full_comparison_and_independent_replay_verified": true,
+    "final_sealing_pending": true
+  },
+  "conclusion": "Both requested scalar cases satisfy the reviewed unchanged authentication, full-state/ABI/cumulative comparison, independent replay and native-resource contracts with matching current identities. No blocking finding. accepted remains false pending main-agent sealing and remaining closure checks."
+}

@@ -1,0 +1,88 @@
+# 逆向开发与最终验收的分层执行
+
+2026-11-05落实。目标是减少开发失败后的重复长跑；完整独立验收、真实原生资源寿命、原字节保全和既有完成标准不变。本文件不改写任何历史验收，也不把开发探针算作通过。
+
+## 运行中保护
+
+- 已启动的来源/证明所用Python、C#、助手二进制、输入、证据和测试保持原字节；不热修改、不覆盖输出、不并行启动额外原生探针。当前change的验收合同与任务勾选由原任务收尾。
+- `devtools/reverse_iteration.py`独立于`tools`，只使用标准库；只读汇总及计划不导入现有逆向模块。实际执行需要Windows，无法读取进程列表时拒绝启动。
+- 检测到逆向Python或CRT/GPU助手仍运行，执行入口直接拒绝，不等待、不终止、不重启它们。每个步骤开始前再次检查；独占锁防止本入口重复启动，但不能阻止其它聊天或手工命令在检查后启动，仍需遵守单一调度者规则。
+- 不在长任务运行期间改低层热点实现或提交改变其基线。文档规则用于后续调度，不追溯改变已启动命令。
+
+## 开发顺序
+
+1. 先写清本轮功能终点、输入、已有可靠来源和未知依赖。优先覆盖连续功能链，不以新增地址数、归档数或测试数代替功能进展。
+2. 新路径先用静态原字节与有界函数/尾段探针定位；预期尾段可能失败时，对一个代表例启用现有`--scene-failure-checkpoint`。每次补齐一处后先从经过身份核对的现场检查剩余路径，不立即重采两例全前缀。现有终局来源的该选项只在原场景根失败时保存现场，并非所有失败都有可恢复检查点。
+3. 失败现场须包含必要CPU、内存、原始输入及调用边界；遵守现有60 MiB每例上限和change总体预算。客体续跑不恢复已结束的原生句柄，不冒充新原生寿命或正式验收。平台替代只用于标明限制的开发探针。
+4. 将首个差异缩成局部回归：函数绑定参数、已有资源组、输入片段起点、自然返回哨兵、循环预算位置、REP回调与提交、实际篡改拒绝。修复后先跑这些检查，再安排长证明。已有回归不能证明尚未覆盖的尾段已经正确。
+5. 公共验证器变化先完成一个代表案例的完整证明；通过后再跑另一案例。稳定代码下、明确属于不同分支的研究可按资源条件并行；不要让两例反复发现相同公共错误。
+6. 成功来源的采集实现未变且原认证通过时复用来源。修改来源执行/输入/记录语义后必须重新采集；不能改receipt指纹或跳过认证来避免重跑。验证器修正则使用新proof输出名重新证明。
+7. 最终仍执行既有两例完整独立重放、每例全新原生寿命与再次重放、完整状态/ABI/累计摘要/资源清理、真实篡改拒绝、独立复核、严格规格、保全及Git体积检查。开发预检和本工具的成功状态都不是最终验收。
+
+## 可直接使用的入口
+
+在项目根目录，通过Git Bash调用Windows审计Python。以下只读命令可在当前任务运行时使用，不解压完整来源、不启动原生程序：
+
+```bash
+.venv-audit/Scripts/python.exe -B -X utf8 devtools/reverse_iteration.py report
+.venv-audit/Scripts/python.exe -B -X utf8 devtools/reverse_iteration.py pair \
+  --neutral analysis/terminal-unit-frontends-source-v6-neutral-20261105 \
+  --timeout analysis/terminal-unit-frontends-source-v6-timeout-20261105 \
+  --label REPRO_NEW
+```
+
+`report`只读取不超过2 MiB的小型运行回执，按阶段和完整错误内容汇总失败次数与进程耗时；并行进程耗时之和不等于用户等待时长。成功来源只列为待认证的复用候选。正在运行且尚未写回执的任务不在此列表中，不能据此认定没有活动进程。
+
+`pair`默认仅打印计划。只有原任务已结束、确定需要正式重验时才加`--execute`；不要为了启用新入口重跑已经通过的证明。当前v6来源仅为命令示例，后续以真实成功来源和未使用的label为准。
+
+默认original引擎的实际执行顺序：
+
+1. 用现有`authenticate_source`认证两份来源、原实现和保留助手；不读取历史数GiB案例树。
+2. 执行现有全部`test_terminal_unit_frontends_*.py`快速回归（180秒上限）。超时是预检失败，检查原因，不能当作通过或自动跳过。
+3. 分别使用已认证GPU助手创建独立短设备实例并显式`close`，检查资源全部释放。设备成功只证明当前可用，不保证之后不会锁屏或丢失设备。
+4. 原封不动调用`tools.terminal_unit_frontends_proof`完成中性例全部证明；成功且完整证明字段存在后才启动超时例。正式证明没有新增超时上限。
+5. 任一步失败立即返回，不自动重试、不自动重采来源；实现文件在预检后变化也拒绝继续。需排查后使用新label。
+
+### 显式复用已完成的来源重放（2026-11-06）
+
+当来源重放已通过、后续设备或fresh阶段失败时，每例可以指定checkpoint与明确SHA。工具先调用冻结的`authenticate_source`和`resume_source_proof`核对来源、案例、助手、完整末态及全部验证模块，再让原证明入口做相同认证并继续fresh。旧编排字节变化的例外只走已有`--prior-orchestrator`核对，不放宽其它验证模块身份。
+
+```bash
+.venv-audit/Scripts/python.exe -B -X utf8 devtools/reverse_iteration.py pair \
+  --neutral analysis/terminal-unit-frontends-source-v6-neutral-20261105 \
+  --timeout analysis/terminal-unit-frontends-source-v6-timeout-20261105 \
+  --neutral-checkpoint analysis/terminal-unit-frontends-proof-v10-neutral-20261105.json \
+  --neutral-checkpoint-sha256 0ee7bdb3d00d9bf9bce2ac0818297b382eff51f511725fd7be620712c6297f40 \
+  --timeout-checkpoint analysis/terminal-unit-frontends-proof-v8-timeout-20261105.json \
+  --timeout-checkpoint-sha256 dafc3c9e4edd3b380e4546837b21230c1c256c3f34f68cef3017af4a3ca86c05 \
+  --label RESUME_NEW
+```
+
+依然默认只打印计划；需要执行时加`--execute`。不会自动选latest、不会跳过fresh完整证明、不会因为历史最终proof成功就认定新实例已经通过。计划和账本明确区分`full_replay`与`authenticated_resume`，记录每步骤UTC起止及monotonic耗时。预认证多读一次本例压缩来源，以避免在长任务中才发现checkpoint不可用。
+
+默认`--engine original`保持冻结证明；显式`--engine scalar`使用新增的单寄存器观察优化及分阶段证明，并要求两例均提供已完成来源重放checkpoint。该引擎的正式可用状态以本轮性能验收记录为准，局部微基准不等于完整验收。详见[性能优化与验收](reverse-validation-performance.md)。
+
+本入口只在新`.venv-audit/reverse-iteration/<label>/run.json`记录步骤、耗时和错误，并让原证明写入新的`analysis/terminal-unit-frontends-proof-<label>-0/1.json`。不改变原证明的内容。原证明生成的fresh助手另由既有流程留存；总容量仍须计入本轮证据。`pipeline_complete`也始终伴随`accepted:false`，归档与验收结论仍走既有流程。异常中断可能留下锁；先确认所有相关进程结束，再人工检查锁中的PID/时间并处理，禁止盲删或自动解锁。
+
+## 性能优化和评估
+
+- 空闲时先做有界性能测量，分别记录来源、独立重放、fresh执行、序列化/哈希时间；原长任务仍运行时不启动竞争负载。
+- 用现有小型原指令回归做profiling，例如下面的命令；它只测局部用例，不可直接推算完整运行加速比：
+
+```bash
+.venv-audit/Scripts/python.exe -B -X utf8 -m cProfile -s cumulative \
+  -m unittest tools.tests.test_terminal_unit_frontends_trace
+```
+
+- 重点测量单寄存器查询触发完整57寄存器读取、逐指令Python继承回调、重复内存读取/摘要等成本。没有测量前不批量改写冻结工具。任何优化必须保留原指令/写入、完整CPU/内存、边界和资源校验，并用微型正反例与最终两例完整证明验证。
+- 接下来一个功能单元记录：功能终点、首次失败发现时间、完整采集/证明次数、相同错误重复次数、各进程时长及真实开始/结束时间、Git新增体积与全部新增本地证据。以同等验收标准比较，不用测试数或压缩率冒充执行提速。
+- R3原目标2026-11-03已过而总规格仍未完成；后续里程碑应按退出/结果消费/奖励学校等功能闭环更新预测。此次流程优化不调整日期、不声称已追回工期。
+
+## 工具自身验证
+
+```bash
+.venv-audit/Scripts/python.exe -B -X utf8 -m unittest discover \
+  -s devtools/tests -p 'test_reverse_iteration.py'
+```
+
+这些测试只使用临时目录、模拟进程与模拟子命令，不加载逆向模块、不占用GPU、不触发长证明。覆盖忙碌拒绝、失败短路、文件变化失效、两例完整调用顺序、输出冲突、退出码与证明内容不一致、设备清理失败，以及有界回执读取。

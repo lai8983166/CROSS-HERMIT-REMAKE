@@ -1052,3 +1052,15 @@ analysis/terminal-unit-frontends-*.log -text -whitespace
 docs/terminal_unit_frontends.md -text
 openspec/changes/connect-terminal-unit-frontends/* -text
 openspec/changes/archive/*-connect-terminal-unit-frontends/* -text
+
+# Reverse validation optimization: preserve measured and authenticated bytes
+AGENTS.md text eol=lf
+devtools/reverse_iteration.py -text
+devtools/terminal_proof_resume.py -text
+devtools/tests/test_reverse_iteration.py -text
+analysis/reverse-iteration-*.json -text
+analysis/reverse-validation-*.json -text
+docs/reverse-iteration.md -text
+docs/reverse-validation-performance.md -text
+openspec/changes/optimize-reverse-validation-iteration/* -text
+openspec/changes/archive/*-optimize-reverse-validation-iteration/* -text

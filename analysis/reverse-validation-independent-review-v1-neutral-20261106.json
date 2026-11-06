@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "accepted": false,
+  "reviewed_at_utc": "2026-11-06T08:46:16.605323+00:00",
+  "review_scope": "Independent read-only review of scalar adapter, optimized proof orchestration, bounded benchmark, fast tests and completed neutral evidence. No replay/native execution or test rerun.",
+  "reviewer_role": "Subagent independent of tools implementation; this reviewer previously implemented devtools, so devtools implementation is excluded from independent review and is reviewed by the main agent.",
+  "case_index": 0,
+  "case": "neutral_running",
+  "second_case": {
+    "case_index": 1,
+    "case": "timeout_before_combat",
+    "status": "pending",
+    "accepted": false,
+    "evidence_reviewed": false
+  },
+  "core_files": [
+    {
+      "path": "tools/terminal_unit_frontends_fast.py",
+      "bytes": 1401,
+      "sha256": "e8ff9f6996571a9e57e8e9fd2ac72ee4506032ceb545355b06e7beb46df42e99"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_fast_proof.py",
+      "bytes": 6612,
+      "sha256": "dbc67704e4332e85dc31d191545ac9ebf270e69c488289a19b2c04c59b2c370b"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_fast_benchmark.py",
+      "bytes": 6191,
+      "sha256": "06af8cb1896196d758e1364ddccd25410b63936e79346b827ea08a73bbecc8cc"
+    },
+    {
+      "path": "tools/tests/test_terminal_unit_frontends_fast.py",
+      "bytes": 6831,
+      "sha256": "1c043bf729adb464e3adc5ded60365111f3c3efb7704e53a9f3b23b8cb7b89c3"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_proof.py",
+      "bytes": 11266,
+      "sha256": "520c95d2b8c99217ec40d3b0d4e32b97f4edfa67c03089f1e145d2c7f2c46aeb"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_corpus.py",
+      "bytes": 8037,
+      "sha256": "470ad4c0ee5dadf61275ed454c8669ed790bcc78942c4661af449f7cd08d7b61"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_emulation.py",
+      "bytes": 21540,
+      "sha256": "39cdbf4bcbaf66f9d426422578a47d0fd90064d3c491fa65ee4dee2de001a186"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_trace.py",
+      "bytes": 21329,
+      "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_retries.py",
+      "bytes": 10054,
+      "sha256": "8a1c277734228bd9969279ae49d800befd8bfb2f8c0a2481bcccc9ef1f515c47"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_verification.py",
+      "bytes": 14513,
+      "sha256": "10334125b166696a212a3288b0ffc013ceb841307cdca30aa973e61bb3fadd7e"
+    },
+    {
+      "path": "tools/battle_attack_animation_emulation.py",
+      "bytes": 9123,
+      "sha256": "a8af832d71b6e11cabffb12086bb0a36c0d0e83718528e3efd7cc9d77c9635fe"
+    },
+    {
+      "path": "tools/terminal_overlay_emulation.py",
+      "bytes": 18313,
+      "sha256": "835a04cad3f66312eaa8f59a2cd9c6e8e69e6cd53aec42768fd429927d7ce065"
+    },
+    {
+      "path": "tools/school_retained_keyboard.py",
+      "bytes": 10813,
+      "sha256": "3006a2d6c094f5a8cf8f825cd81c61ea1400280c38248597bef2cc7c5d832ef2"
+    },
+    {
+      "path": "tools/school_native_dialogue_handoff_verification.py",
+      "bytes": 7126,
+      "sha256": "8bb5c1bd28166a134bbde960ea22bb00fa39909dc90df417e9e506538bb768b7"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "analysis/terminal-unit-frontends-fast-proof-v1-neutral-20261106.json",
+      "bytes": 724738,
+      "sha256": "4f5045a8e48418a2af0b1c401003deb726384eb7657a68c573ee8f76cd22955b"
+    },
+    {
+      "path": "analysis/terminal-unit-frontends-proof-v10-neutral-20261105.json",
+      "bytes": 721493,
+      "sha256": "0ee7bdb3d00d9bf9bce2ac0818297b382eff51f511725fd7be620712c6297f40"
+    },
+    {
+      "path": "analysis/terminal-unit-frontends-fast-tests-v1-20261106.json",
+      "bytes": 84987,
+      "sha256": "832753d6dd26eefbbf795fc924687a358a3209b6dfd8142fdde39670b5694798"
+    },
+    {
+      "path": "analysis/terminal-unit-frontends-fast-benchmark-v1-20261106.json",
+      "bytes": 131378,
+      "sha256": "35d44c1c4db58c74899f9b7565caf7b5a82af0e7b9345ee07452149d57d9424c"
+    },
+    {
+      "path": "analysis/reverse-iteration-tests-v1-20261106.json",
+      "bytes": 5926,
+      "sha256": "42438e363c06946ccd4c716215e0f5195de7095e5a8330a3a98cb54bd904f452"
+    }
+  ],
+  "baseline_commit": "a83999c1d8db79e59d1abcb908f66e239bec74c0",
+  "frozen_core_baseline_identity_checks": [
+    {
+      "path": "tools/terminal_unit_frontends_proof.py",
+      "bytes": 11266,
+      "sha256": "520c95d2b8c99217ec40d3b0d4e32b97f4edfa67c03089f1e145d2c7f2c46aeb"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_corpus.py",
+      "bytes": 8037,
+      "sha256": "470ad4c0ee5dadf61275ed454c8669ed790bcc78942c4661af449f7cd08d7b61"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_emulation.py",
+      "bytes": 21540,
+      "sha256": "39cdbf4bcbaf66f9d426422578a47d0fd90064d3c491fa65ee4dee2de001a186"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_trace.py",
+      "bytes": 21329,
+      "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_retries.py",
+      "bytes": 10054,
+      "sha256": "8a1c277734228bd9969279ae49d800befd8bfb2f8c0a2481bcccc9ef1f515c47"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_verification.py",
+      "bytes": 14513,
+      "sha256": "10334125b166696a212a3288b0ffc013ceb841307cdca30aa973e61bb3fadd7e"
+    },
+    {
+      "path": "tools/battle_attack_animation_emulation.py",
+      "bytes": 9123,
+      "sha256": "a8af832d71b6e11cabffb12086bb0a36c0d0e83718528e3efd7cc9d77c9635fe"
+    },
+    {
+      "path": "tools/terminal_overlay_emulation.py",
+      "bytes": 18313,
+      "sha256": "835a04cad3f66312eaa8f59a2cd9c6e8e69e6cd53aec42768fd429927d7ce065"
+    },
+    {
+      "path": "tools/school_retained_keyboard.py",
+      "bytes": 10813,
+      "sha256": "3006a2d6c094f5a8cf8f825cd81c61ea1400280c38248597bef2cc7c5d832ef2"
+    },
+    {
+      "path": "tools/school_native_dialogue_handoff_verification.py",
+      "bytes": 7126,
+      "sha256": "8bb5c1bd28166a134bbde960ea22bb00fa39909dc90df417e9e506538bb768b7"
+    }
+  ],
+  "implementation_inventory": {
+    "start_count": 357,
+    "end_count": 358,
+    "all_start_entries_equal_at_end": true,
+    "all_end_entries_equal_current_files": true,
+    "dictionaries_exactly_equal": false,
+    "end_only_entries": [
+      {
+        "path": "tools/school_native_dialogue_handoff_verification.py",
+        "bytes": 7126,
+        "sha256": "8bb5c1bd28166a134bbde960ea22bb00fa39909dc90df417e9e506538bb768b7"
+      }
+    ],
+    "late_import_assessment": "Non-blocking: school_retained_keyboard.inputs imports this existing verifier at function scope. End identity equals current bytes and a83999c1 Git blob. The original start-to-end predicate checks existing start entries and does not assert equal key sets; no retroactive start identity is claimed.",
+    "adapter_and_orchestrator_bound_before_authentication": true
+  },
+  "checks": {
+    "only_getreg_overridden": true,
+    "scalar_query_reads_one_register_and_preserves_tuple_to_list_normalization": true,
+    "full57_CPU_capture_and_original_memory_guards_callbacks_inherited": true,
+    "frozen_authentication_resume_comparison_and_independent_replay_calls_retained": true,
+    "scalar_binding_restored_before_independent_replay": true,
+    "failure_paths_leave_success_false_and_restore_binding": true,
+    "source_replay_exactly_equal_to_authenticated_parent": true,
+    "fresh_proof_entirely_equal_to_source_proof": true,
+    "source_and_parent_recorded_implementation_identities_match_current": true,
+    "fresh_helpers_actual_retained_executables_and_CS_hashes_verified": true,
+    "fresh_helper_PE_machine_0x14c_verified": true,
+    "CRT_GPU_cleanup_success_and_CRT_not_forced": true,
+    "ABI_and_native_wire_validation_retained": true,
+    "GC_releases_local_references_only_after_compact_or_finished_validation": true,
+    "no_source_or_checkpoint_bytes_modified": true
+  },
+  "identity_evidence": {
+    "source_process": {
+      "path": "analysis/terminal-unit-frontends-source-v6-neutral-20261105.process.json",
+      "bytes": 125864,
+      "sha256": "ddaa10e6f0069e4a811a8d4a2df2508dbd3eef7bef3aa3ebdf29bc541873e849"
+    },
+    "source_artifacts": [
+      {
+        "path": "analysis/terminal-unit-frontends-source-v6-neutral-20261105.chunks.zip",
+        "bytes": 9228414,
+        "sha256": "ca27e895b3bb57fa0f72736952493f1b9402653b51a8013cca61b859f05e9a75"
+      },
+      {
+        "path": "analysis/terminal-unit-frontends-source-v6-neutral-20261105.delta.jsonl.gz",
+        "bytes": 2275855,
+        "sha256": "a3231c6494f1b7aaca283cab497e8a0dc70b026cf641ff798fafaf57be5026b3"
+      }
+    ],
+    "source_and_fresh_helpers": [
+      {
+        "path": "tools/terminal_unit_frontends_crt_platform.cs",
+        "bytes": 9886,
+        "sha256": "5120a505af36d993304201ef6e1425220afb7a3e5249e17adf8324e429cf90c1"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-source-v6-neutral-20261105-0-crt.exe",
+        "bytes": 29696,
+        "sha256": "e61fc78bc1a1e5ed699ba1a3cb90a4834af5ab1bde0d9d52e653737f1061e6d5"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-fast-proof-v1-neutral-20261106-fresh-crt.exe",
+        "bytes": 29696,
+        "sha256": "f142037154c8ed47653456c70282329dc0c22bc1b7209bf089c315b1d75ed47a"
+      },
+      {
+        "path": "tools/terminal_unit_frontends_d3d8_platform.cs",
+        "bytes": 12635,
+        "sha256": "f04b10bec86fa268b0a993d4495fec0e336d0de33393820732b1f9633e7eb8ef"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-source-v6-neutral-20261105-0-gpu.exe",
+        "bytes": 32768,
+        "sha256": "1bc73b71e929c3475a403903bc6c0adf18834fefae44def2d484c11a48378cad"
+      },
+      {
+        "path": ".venv-audit/terminal-unit-frontends-fast-proof-v1-neutral-20261106-fresh-gpu.exe",
+        "bytes": 32768,
+        "sha256": "13e60908e57a6fbd962988ef35ba10776b795e3d0976acf9dbbaea84865e20c9"
+      }
+    ],
+    "resumed_source": {
+      "checkpoint": {
+        "path": "analysis/terminal-unit-frontends-proof-v10-neutral-20261105.json",
+        "bytes": 721493,
+        "sha256": "0ee7bdb3d00d9bf9bce2ac0818297b382eff51f511725fd7be620712c6297f40"
+      },
+      "historical_orchestrator": null,
+      "source_replay_reexecuted": false,
+      "all_verification_modules_unchanged": true
+    }
+  },
+  "proof_summary": {
+    "transactions": 4944,
+    "final_trace": {
+      "instructions": 147355444,
+      "writes": 42160367,
+      "code_sha256": "7eace24b446fd12d48612d9033ee1b5bf8abc77729025fbadd87debeb546e54f",
+      "write_sha256": "30ae3985bb806024c328aa7a1cbefeda8b79e839749d3caf02d6fdd39033aa12"
+    },
+    "final_memory": {
+      "sha256": "3bb9b4be93de66bbed51b963d6ec45f6cba2cd1437902e47266950ad461a64e5",
+      "regions": 9923,
+      "pages": 13500,
+      "bytes": 55296000
+    },
+    "full_comparison": {
+      "entire_initial_memory": true,
+      "entire_forward_memory": true,
+      "final_memory_reconstructed_and_digest_equal": true,
+      "all57_CPU_at_all_transactions": true,
+      "all_original_cumulative_fields_equal": true,
+      "every_root_and_continuation_equal": true,
+      "transactions": 4944
+    },
+    "platform": {
+      "events": {
+        "CRT": 307,
+        "GPU": 5378
+      },
+      "wire": {
+        "CRT": 455,
+        "GPU": 6444
+      },
+      "CRT_GPU_only": true,
+      "GDI_implemented": false,
+      "TLS_implemented": false,
+      "source_effects_used_as_oracle": false
+    },
+    "other_platform": {
+      "TLS": 0,
+      "clock": 1,
+      "task_text": 2223,
+      "COMMON_marker_strings": 119
+    },
+    "fresh_GDI": {
+      "calls": 324,
+      "fresh_native_GDI_API_outputs_compared": true
+    },
+    "GDI_lifetimes": {
+      "calls": 324,
+      "fixed_parent_calls": 297,
+      "lifetimes": 41,
+      "native_value_reissues": 0,
+      "all_argument_and_result_lifetimes_verified": true,
+      "all_actual_API_outputs_preserved": true
+    },
+    "fresh_native_creation": {
+      "thread": 23240,
+      "native_index": 11,
+      "guest_index": 51,
+      "guest_token": 308416512,
+      "actual_set_and_readback": true,
+      "pointer_is_guest_token_not_native_dereference": true
+    },
+    "CRT_cleanup": {
+      "all_owned_resources_released": true,
+      "heap_destroyed": true,
+      "critical_deleted": true,
+      "open_files": 0,
+      "allocations": 0,
+      "depth": 0,
+      "forced_cleanup": false
+    },
+    "GPU_cleanup": {
+      "texture_releases": [],
+      "device_release_count": 0,
+      "factory_release_count": 0,
+      "window_destroyed": true,
+      "all_owned_resources_released": true
+    }
+  },
+  "raw_callback_assessment": {
+    "canonical_trace_matches_source": true,
+    "raw_trace_matches_source": false,
+    "raw_callback_trace": {
+      "instructions": 147355446,
+      "writes": 42160369,
+      "code_sha256": "3b26ebca648cb0efcac02904871d0eee54e343dedf927dd1c47f5075d22133d6",
+      "write_sha256": "f5a2828224e84b290ab3388614a39671f32bc8c04886eaf21b9491bc14f4fe9f"
+    },
+    "audited_paired_REP_retries": 2,
+    "source_and_fresh_proof_raw_fields_identical": true,
+    "rule": "Frozen REP retry rule v1 audits full CPU, ordinary live heap write and committed bytes; two paired redundant callbacks are retained in raw digest and excluded from canonical digest. This is not a new adapter discrepancy or a direct raw-to-source equality claim.",
+    "original_execution_comparison": "Frozen compare_fresh requires the retained source original execution and optimized fresh original execution to have equal complete initial/forward/final state, every transaction boundary and original cumulative instruction/write fields. This succeeded. Separately, the unchanged independent replay retains two audited extra raw callback/store pairs while reproducing the canonical source digests and complete state. No optimization-specific weakening of either comparison was introduced."
+  },
+  "timing": {
+    "duration_seconds": 16261.583,
+    "stages": [
+      {
+        "name": "authenticate_source",
+        "started_at": "2026-11-06T04:09:41.889367+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T04:09:42.237769+00:00",
+        "wall_seconds": 0.3472,
+        "process_CPU_seconds": 0.3281
+      },
+      {
+        "name": "decode_source",
+        "started_at": "2026-11-06T04:09:42.238310+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T04:10:27.241419+00:00",
+        "wall_seconds": 45.0032,
+        "process_CPU_seconds": 43.75
+      },
+      {
+        "name": "authenticate_completed_source_replay",
+        "started_at": "2026-11-06T04:10:27.241959+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T04:10:27.585565+00:00",
+        "wall_seconds": 0.3424,
+        "process_CPU_seconds": 0.3125
+      },
+      {
+        "name": "build_fresh_helpers",
+        "started_at": "2026-11-06T04:10:27.586567+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T04:10:28.125550+00:00",
+        "wall_seconds": 0.5388,
+        "process_CPU_seconds": 0.0312
+      },
+      {
+        "name": "fresh_original_execution",
+        "started_at": "2026-11-06T04:10:28.126100+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T06:56:03.074600+00:00",
+        "wall_seconds": 9934.9481,
+        "process_CPU_seconds": 9702.4531
+      },
+      {
+        "name": "compact_fresh_and_collect",
+        "started_at": "2026-11-06T06:56:03.075599+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T07:04:26.262875+00:00",
+        "wall_seconds": 503.1866,
+        "process_CPU_seconds": 494.0156
+      },
+      {
+        "name": "compare_full_fresh_state_and_raw_traces",
+        "started_at": "2026-11-06T07:04:26.263401+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T07:04:27.009879+00:00",
+        "wall_seconds": 0.7465,
+        "process_CPU_seconds": 0.75
+      },
+      {
+        "name": "independent_fresh_replay",
+        "started_at": "2026-11-06T07:04:27.010865+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T08:33:24.501118+00:00",
+        "wall_seconds": 5337.4901,
+        "process_CPU_seconds": 5244.25
+      },
+      {
+        "name": "release_witnesses_and_collect",
+        "started_at": "2026-11-06T08:33:24.503089+00:00",
+        "complete": true,
+        "ended_at": "2026-11-06T08:40:39.370722+00:00",
+        "wall_seconds": 434.8674,
+        "process_CPU_seconds": 432.8594
+      }
+    ],
+    "CPU_timing_excludes_native_helper_processes": true,
+    "historical_comparison": "Observational only: workloads and scheduling differ. Parent final proof already resumed its source replay, so source-replay reuse cannot be counted again as an optimization speedup.",
+    "local_benchmark": [
+      {
+        "case": "neutral_running",
+        "unit_phase": true,
+        "profiled": false,
+        "entire_record_equal": true,
+        "transactions": 6,
+        "measured_local_speedup": 5.955509664292849
+      },
+      {
+        "case": "timeout_before_combat",
+        "unit_phase": false,
+        "profiled": false,
+        "entire_record_equal": true,
+        "transactions": 6,
+        "measured_local_speedup": 4.308956677886663
+      },
+      {
+        "case": "neutral_running",
+        "unit_phase": true,
+        "profiled": true,
+        "entire_record_equal": true,
+        "transactions": 6,
+        "measured_local_speedup": 4.984243003493686
+      }
+    ]
+  },
+  "existing_tests": {
+    "fast_regressions_count": 124,
+    "success": true,
+    "read_existing_receipt_only": true,
+    "devtools_receipt_read_for_context_only": true
+  },
+  "blocking_findings": [],
+  "limitations": [
+    "Only neutral case is reviewed as complete; timeout case remains pending.",
+    "No new independent execution was performed during this review; conclusions use immutable result records, current file/helper identity checks and source inspection.",
+    "Bounded memset A/B demonstrates local recorder equivalence and local timing only; no whole-run controlled speedup is inferred.",
+    "Late imported old verifier is authenticated at end and against baseline, not by a nonexistent start entry.",
+    "Final replay canonical digest matches source; raw callback digest differs by the two already-audited frozen REP retries.",
+    "Full battle exit/result consumption is still false in the proof; this optimization does not extend functional scope.",
+    "No independent review claim is made here for devtools authored by this reviewer."
+  ],
+  "conclusion": "Neutral scalar proof and adapter satisfy the reviewed existing proof chain, identities and resource/equivalence contracts; no blocking finding for this case. Overall acceptance remains false until pending second-case evidence and remaining closure checks are reviewed."
+}
