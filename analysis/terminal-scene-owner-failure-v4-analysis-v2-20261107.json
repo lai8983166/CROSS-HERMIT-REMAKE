@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "accepted": false,
+  "kind": "bounded_original_renderer_failure",
+  "source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "OS_record": {
+    "EventType": "APPCRASH",
+    "EventTime": "134384572201407536",
+    "Sig[3].Value": "d3d8.dll",
+    "Sig[4].Value": "10.0.19041.5794",
+    "Sig[5].Value": "85f4c054",
+    "Sig[6].Value": "c0000005",
+    "Sig[7].Value": "0004d8e8",
+    "AppSessionGuid": "00008204-0001-0109-ce26-64290e6edd01",
+    "AppPath": "F:\\project\\chaomofa\\.venv-audit\\scene-callback-runtime\\CROSS HERMIT\\CROSS HERMIT\\CROSS HERMIT.EXE"
+  },
+  "DLL": {
+    "sha256": "924aaa10ba0169686be914878f65f12933fc0c9c675401a5f248c5224948b81b",
+    "bytes": 715264,
+    "machine": 332,
+    "timestamp": 2247409748,
+    "native_base": 1867317248,
+    "fault_RVA": 317672,
+    "fault_instruction_hex": "ff4710",
+    "fault_instruction": "inc dword ptr [edi + 0x10]",
+    "argument_transform_hex": "8b7d108d47b0f7df1bff23f8",
+    "module_bytes_from_matching_disk_file_not_live_code_capture": true
+  },
+  "first_fault_sample": 135,
+  "first_fault_elapsed": 61.5,
+  "repeated_fault_contexts": 123,
+  "main_thread": 36716,
+  "main_context_hex": "3f0001000000000000000000000000000000000000000000000000007f00000030010000ffff000069e7400000000000000000000000000009c2b02a23000000ffff0000000000000000ffff0000000000000000ffff8000000000000000ffff0000000000000080ff3f1e9e9849237414b4ffff65255a8230acca08ffff00000000000000c8f63f000000002b000000530000002b0000002b0000008ddddddd70d8516f60b1220600503b0000000000e0413e0f24f11900e8d8516f230000008602010018f119002b0000007f0030010000000069e74000000000000000000000000000a11f0000ffff000009c2b02a23000000ffff0000000000000000000000000000ffff0000000000000000000000000000ffff0000000000008000000000000000ffff0000000000000000000000000080ff3f0000000000001e9e9849237414b4ffff00000000000065255a8230acca08ffff00000000000000000000000000c8f63f0000000000000400000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000803f000000000000000000000000000000000000000000000000000000000000008000000000000000000000000027f8c34300000000000000000000000000000020607d4c4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+  "main_chain": [
+    {
+      "bp": 1700132,
+      "saved_bp": 1700204,
+      "return_va": 1867634710
+    },
+    {
+      "bp": 1700204,
+      "saved_bp": 1700308,
+      "return_va": 4252234
+    },
+    {
+      "bp": 1700308,
+      "saved_bp": 1700568,
+      "return_va": 4254225
+    },
+    {
+      "bp": 1700568,
+      "saved_bp": 1700668,
+      "return_va": 4253043
+    },
+    {
+      "bp": 1700668,
+      "saved_bp": 1700772,
+      "return_va": 4252765
+    },
+    {
+      "bp": 1700772,
+      "saved_bp": 1700864,
+      "return_va": 4843230
+    },
+    {
+      "bp": 1700864,
+      "saved_bp": 1701220,
+      "return_va": 4842685
+    },
+    {
+      "bp": 1701220,
+      "saved_bp": 1701396,
+      "return_va": 4841560
+    },
+    {
+      "bp": 1701396,
+      "saved_bp": 1701540,
+      "return_va": 5706982
+    },
+    {
+      "bp": 1701540,
+      "saved_bp": 1701668,
+      "return_va": 12517549
+    },
+    {
+      "bp": 1701668,
+      "saved_bp": 1703560,
+      "return_va": 8607686
+    },
+    {
+      "bp": 1703560,
+      "saved_bp": 1703568,
+      "return_va": 8607852
+    },
+    {
+      "bp": 1703568,
+      "saved_bp": 1703612,
+      "return_va": 8609926
+    },
+    {
+      "bp": 1703612,
+      "saved_bp": 1703752,
+      "return_va": 8689329
+    },
+    {
+      "bp": 1703752,
+      "saved_bp": 8773632,
+      "return_va": 8773632
+    }
+  ],
+  "EDI": 3722304909,
+  "ECX": 0,
+  "device": 102936928,
+  "renderer": 81400000,
+  "same_original_startup_device_verified": true,
+  "attempted_write_address": 3722304925,
+  "inferred_nonnull_resource_argument": 3722304989,
+  "resource_argument_is_inference_from_matching_code_and_context": true,
+  "resource_argument_stack_bytes_not_captured": true,
+  "renderer_callsite_bytes_are_static_original_not_captured_live": true,
+  "VM_PC": 172,
+  "VM_wait": 1,
+  "input_at_fault": {
+    "game": 81395816,
+    "keyboard_edges_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "mouse_pointer": 81402324,
+    "mouse_hex": "d40200000e0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001e0000000200000000000000000000000000000000000000d40200000e010000"
+  },
+  "worker_exit": {
+    "thread_id": 34780,
+    "exit_code": 3221225477,
+    "wait_status": 0,
+    "before_WM_CLOSE": true,
+    "retreat_flag_observed": false,
+    "tail_wait_observed": false
+  },
+  "owned_job_empty": true,
+  "collector_secondary_error": "ValueError('unreadable actual object 0x7a4174')",
+  "close_secondary_error": "OSError(1400, 'owned WM_CLOSE')",
+  "interpretation": "Invalid resource reference at renderer +F4 call; 0xDD fill is consistent with freed debug-heap storage. Exact freeing owner and scheduling cause remain unproved.",
+  "CRT_debug_fill_reference": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/crt-debug-heap-details",
+  "complete_battle_exit": false,
+  "wait_API_success_proved": false,
+  "next_capture": [
+    "Original40E210 receiver/argument and40E9FF render descriptor +50/+2C bytes",
+    "Bounded renderer queue, texture creation/release and original scene transition order",
+    "Same current native owner; do not patch game results, bypass rendering or reuse exited handles"
+  ],
+  "report": {
+    "path": "analysis/terminal-scene-owner-v4-20261107.json.gz",
+    "bytes": 419722,
+    "sha256": "5b0c15243e68dd8c474605a8409ef5d41f8a4bdea2fa7fdd63bb08e5d16e5286"
+  },
+  "WER_original": {
+    "path": "C:\\ProgramData\\Microsoft\\Windows\\WER\\ReportArchive\\AppCrash_CROSS HERMIT.EXE_6150be8eca9dd1e9fcbcb116219970e5fa4c2bbd_52784837_f9cae520-237d-4a6b-8082-29cf0f8cfb5a\\Report.wer",
+    "bytes": 20166,
+    "sha256": "b4bc736797d4d58ac190ec2ad43177b158bfa7b774ba9b4f8f474973bbd10647"
+  },
+  "implementation_sha256": "2d5b5e961482b6a9e45ca9b7114cb9140a90225f81cbcb246e4cc066b2d24d27"
+}

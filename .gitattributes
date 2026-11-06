@@ -1072,3 +1072,19 @@ analysis/terminal-wait-*.json -text
 analysis/terminal-wait-*.json.gz -text
 docs/terminal_wait.md -text
 openspec/changes/connect-terminal-wait-and-battle-exit/* -text
+
+# Actual scene owner observations and bounded independent verification
+devtools/terminal_scene_owner*.py -text
+devtools/native_observer_guard.py -text
+devtools/tests/test_terminal_scene_owner*.py -text
+devtools/tests/test_native_observer_guard.py -text
+analysis/terminal-scene-owner-*.json -text
+analysis/terminal-scene-owner-*.json.gz -text
+
+# Bounded automated scene diagnostics and immutable input/guard receipts
+devtools/terminal_scene_*.py -text
+devtools/tests/test_terminal_scene_*.py -text
+analysis/terminal-scene-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-scene-*.json.gz -text
+analysis/terminal-scene-*.zip -text
+docs/terminal_scene_automation.md -text

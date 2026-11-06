@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "status": "bounded_automatic_confirmation_verified",
+  "accepted": false,
+  "core_owner": {
+    "schema_version": 1,
+    "status": "partial",
+    "accepted": false,
+    "scenario": 4,
+    "samples": 111,
+    "TLS_observations": 110,
+    "source_scenario_replay_instructions": 716,
+    "same_owner_observation_verified": true,
+    "observed_worker_return_sites": [
+      "0x421f8a",
+      "0x42240d",
+      "0x4516d5",
+      "0x451716",
+      "0x451abc",
+      "0x453cb5",
+      "0x56e183"
+    ],
+    "native_retreat_observed": false,
+    "lifecycle_error": null,
+    "forced_job_cleanup": false,
+    "full_memory_or_permissions_verified": false,
+    "full_native_instruction_or_API_trace": false,
+    "wait_API_success_proved": false,
+    "normal_PTD_cleanup_proved": false,
+    "callback_natural_return_directly_observed": false,
+    "full_battle_exit_accepted": false,
+    "old_terminal_cases_replayed": false,
+    "independent_full_replay": false,
+    "limitation": "Validates recorded bounded samples and independent scenario-root replay; no full native execution replay or API-return trace. Frame return sites are active-call observations, not proof of successful OS wait return.",
+    "source_report": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-scene-auto-v4-20261107.json.gz",
+      "bytes": 423646,
+      "sha256": "45dff6219eb8b6069ed3f729d61a4f07d99b0402ff2619a58d5ba4ad3e5b1b44"
+    },
+    "verifier_sha256": "f5283d5d6fedfa873add0d8aa50f8052833686228c2ff1966b2ff13314a65c7d"
+  },
+  "input": {
+    "original_key_query_replays": 6,
+    "query_results": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    "press_index": 3,
+    "release_index": 5,
+    "advanced_index": 4,
+    "transition_observed": true,
+    "full_instruction_causality_proved": false
+  },
+  "source_report": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-scene-auto-v4-20261107.json.gz",
+    "bytes": 423646,
+    "sha256": "45dff6219eb8b6069ed3f729d61a4f07d99b0402ff2619a58d5ba4ad3e5b1b44"
+  },
+  "verifier_sha256": "c5d1fceecd5477b4fc19c94b33c64d1b6c620c2f2c3d936e9da05b5b0f95970f",
+  "resource_failure_fixed": false,
+  "full_resource_lifetime_proved": false,
+  "full_battle_exit_accepted": false,
+  "limitation": "One real automatic confirmation and bounded owner snapshots; no full native instruction/API trace or resource lifetime proof."
+}

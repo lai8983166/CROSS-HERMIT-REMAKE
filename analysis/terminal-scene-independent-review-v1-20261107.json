@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent subagent /root/wait_contract",
+  "scope": "bounded source contracts, automatic input validation, and preflight refusal; not formal battle acceptance",
+  "findings": [
+    {
+      "issue": "inactive/non-confirmation VM could pass input proof",
+      "resolution": "require active opcode51 before press; allow actual wait0 while consumption precedes PC update",
+      "status": "fixed and tamper rejected"
+    },
+    {
+      "issue": "long hold or divergent timestamps could pass",
+      "resolution": "actual monotonic hold bounded120ms; wall/monotonic duration comparison25ms",
+      "status": "fixed and tamper rejected"
+    },
+    {
+      "issue": "zero IAT, wrong image, forged freed allocation extents could pass negative proof",
+      "resolution": "non-null exact IAT entries, private executable binding, exact aligned nonoverlapping allocation extents excluding native owners",
+      "status": "fixed and independently tamper rejected"
+    },
+    {
+      "issue": "empty scheduler snapshot could authorize a racing handoff",
+      "resolution": "fail closed even after empty snapshots until natural retirement and atomic handoff are implemented",
+      "status": "fixed; actual handoff remains unimplemented"
+    },
+    {
+      "issue": "historical archive proof omitted hook/base linkage",
+      "resolution": "bind base path and archived automation hook hash; require post-resume invocation",
+      "status": "fixed and archived-source regression passed"
+    },
+    {
+      "issue": "bucket+4 misidentified as tail",
+      "resolution": "withdrawn after original421C70/421D50/4217C0 disassembly; validate actual singly linked graph only",
+      "status": "review correction"
+    }
+  ],
+  "fresh_refusal_cases_independently_verified": [
+    43840,
+    40704
+  ],
+  "resource_lifetime_repaired": false,
+  "full_battle_exit_accepted": false,
+  "native_dependency_attestation_complete": false
+}

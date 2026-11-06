@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "unsafe_construction_refused_in_two_fresh_lifetimes",
+  "accepted": false,
+  "cases": [
+    {
+      "pid": 43840,
+      "parent_pid": 37876,
+      "refusal_verified": true,
+      "prior_task_vtables": [
+        "0x5caa48"
+      ],
+      "original_scene_roots": 0,
+      "input_actions": 0,
+      "private_allocations_released": 3,
+      "full_battle_exit_accepted": false,
+      "source": {
+        "path": "analysis/terminal-scene-preflight-v2-20261107.json.gz",
+        "bytes": 392892,
+        "sha256": "405f85f53f8f5079265eee6f9a17a0966ceefb20d8fd6599bb13d8590c76fd53"
+      }
+    },
+    {
+      "pid": 40704,
+      "parent_pid": 41656,
+      "refusal_verified": true,
+      "prior_task_vtables": [
+        "0x5caa48"
+      ],
+      "original_scene_roots": 0,
+      "input_actions": 0,
+      "private_allocations_released": 3,
+      "full_battle_exit_accepted": false,
+      "source": {
+        "path": "analysis/terminal-scene-preflight-v3-20261107.json.gz",
+        "bytes": 393291,
+        "sha256": "3a028556e6e0141746df00573766332ee91ec34bb7a6c19ba4e182724ff4d7ff"
+      }
+    }
+  ],
+  "verifier_sha256": "a3a01dd8d224d2236acaa7aa6cf4a5a09af9bc06a9c4a034b73cb17d94f7f941",
+  "current_verification_dependencies": [
+    {
+      "path": "devtools/terminal_scene_transition_contract.py",
+      "bytes": 16617,
+      "sha256": "ddb4cf2fca31a9ae8af7ef148d36c359228487f0d8634406a6015ef14189ebb6"
+    },
+    {
+      "path": "devtools/terminal_scene_owner_verification.py",
+      "bytes": 23238,
+      "sha256": "f5283d5d6fedfa873add0d8aa50f8052833686228c2ff1966b2ff13314a65c7d"
+    }
+  ],
+  "native_dependency_attestation_complete": false,
+  "full_battle_exit_accepted": false,
+  "resource_lifetime_repaired": false,
+  "natural_scene_handoff_implemented": false,
+  "limitation": "Proves fail-closed refusal and cleanup, not successful automatic battle execution."
+}
