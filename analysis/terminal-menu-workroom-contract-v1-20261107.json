@@ -1,0 +1,173 @@
+{
+  "source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "checks": [
+    {
+      "address": 4849313,
+      "hex": "6a1e",
+      "instruction": "push 0x1e"
+    },
+    {
+      "address": 4849315,
+      "hex": "688d000000",
+      "instruction": "push 0x8d"
+    },
+    {
+      "address": 4849320,
+      "hex": "68d6020000",
+      "instruction": "push 0x2d6"
+    },
+    {
+      "address": 4849325,
+      "hex": "684f030000",
+      "instruction": "push 0x34f"
+    },
+    {
+      "address": 4849339,
+      "hex": "e800600300",
+      "instruction": "call 0x4d5ec0"
+    },
+    {
+      "address": 4849344,
+      "hex": "8b45f0",
+      "instruction": "mov eax, dword ptr [ebp - 0x10]"
+    },
+    {
+      "address": 4849347,
+      "hex": "83e001",
+      "instruction": "and eax, 1"
+    },
+    {
+      "address": 4849352,
+      "hex": "747b",
+      "instruction": "je 0x49ff45"
+    },
+    {
+      "address": 4849469,
+      "hex": "66c745e80400",
+      "instruction": "mov word ptr [ebp - 0x18], 4"
+    },
+    {
+      "address": 4849490,
+      "hex": "e80924f8ff",
+      "instruction": "call 0x422360"
+    },
+    {
+      "address": 4849626,
+      "hex": "668b45e8",
+      "instruction": "mov ax, word ptr [ebp - 0x18]"
+    },
+    {
+      "address": 5070698,
+      "hex": "8b8290190000",
+      "instruction": "mov eax, dword ptr [edx + 0x1990]"
+    },
+    {
+      "address": 5070756,
+      "hex": "c21400",
+      "instruction": "ret 0x14"
+    },
+    {
+      "address": 4855243,
+      "hex": "e880e7ffff",
+      "instruction": "call 0x49fd50"
+    },
+    {
+      "address": 4855251,
+      "hex": "66894230",
+      "instruction": "mov word ptr [edx + 0x30], ax"
+    },
+    {
+      "address": 4855354,
+      "hex": "e8210df8ff",
+      "instruction": "call 0x422360"
+    },
+    {
+      "address": 4855359,
+      "hex": "0fbf05624e7a00",
+      "instruction": "movsx eax, word ptr [0x7a4e62]"
+    },
+    {
+      "address": 4855368,
+      "hex": "752c",
+      "instruction": "jne 0x4a1676"
+    },
+    {
+      "address": 4855370,
+      "hex": "66c705624e7a000100",
+      "instruction": "mov word ptr [0x7a4e62], 1"
+    },
+    {
+      "address": 4855379,
+      "hex": "6a09",
+      "instruction": "push 9"
+    },
+    {
+      "address": 4855381,
+      "hex": "680c095a00",
+      "instruction": "push 0x5a090c"
+    },
+    {
+      "address": 4855391,
+      "hex": "e8accb0200",
+      "instruction": "call 0x4ce210"
+    },
+    {
+      "address": 4855396,
+      "hex": "6a06",
+      "instruction": "push 6"
+    },
+    {
+      "address": 4855407,
+      "hex": "e8bc87f9ff",
+      "instruction": "call 0x439e30"
+    },
+    {
+      "address": 4855423,
+      "hex": "6a09",
+      "instruction": "push 9"
+    },
+    {
+      "address": 4855434,
+      "hex": "e8a187f9ff",
+      "instruction": "call 0x439e30"
+    },
+    {
+      "address": 4855455,
+      "hex": "c20400",
+      "instruction": "ret 4"
+    }
+  ],
+  "rectangle": [
+    847,
+    726,
+    141,
+    30
+  ],
+  "target": [
+    917,
+    741
+  ],
+  "rectangle_edges": "inclusive signed-16-bit deltas; unlike title menu strict edges",
+  "input": "GAME+1990 pressed bit0; held and GAME+199C release alone do not select",
+  "ready": {
+    "vtable": 5900548,
+    "node_state_offset": 48,
+    "node_state": 1,
+    "wait_return": 4849495,
+    "selector_caller": 4855248,
+    "selector_this_offset": -4
+  },
+  "selected_state": 4,
+  "first_exit": {
+    "flag": 8015458,
+    "script": "Data\\Adv\\dat\\CH002.ybc",
+    "script_next_event": 9,
+    "event": 6
+  },
+  "later_exit_event": 9,
+  "native_workroom_input_implemented": false,
+  "native_workroom_exit_observed": false,
+  "full_battle_exit_accepted": false,
+  "synthetic_memory_is_not_native_source": true,
+  "implementation_sha256": "c8ff5820412cf47f6e91242811b43931e0946334cb5e581c1227fe9c8af51177"
+}

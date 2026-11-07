@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "1695edf4848301d18c287a13ea8fc65ada30d9df",
+  "new_modules": [
+    "devtools.tests.test_terminal_menu_input",
+    "devtools.tests.test_terminal_menu_startup",
+    "devtools.tests.test_terminal_story_input",
+    "devtools.tests.test_terminal_menu_transition_contract",
+    "devtools.tests.test_terminal_workroom_contract",
+    "devtools.tests.test_terminal_menu_handoff_verification"
+  ],
+  "new_tests": {
+    "normal": {
+      "count": 80,
+      "seconds": 8.329,
+      "passed": true
+    },
+    "optimized": {
+      "count": 80,
+      "seconds": 8.398,
+      "passed": true
+    }
+  },
+  "earlier_related_regressions": {
+    "scene_suite": 106,
+    "native_guard_and_startup_suite": 43,
+    "passed": true,
+    "note": "Already passed during this work before final budget/ready-evidence changes; final new-module suite covers those changes."
+  },
+  "strict_openspec": {
+    "passed": 32,
+    "failed": 0
+  },
+  "native_sources": [
+    {
+      "path": "analysis/terminal-menu-handoff-v1-20261107.json.gz",
+      "bytes": 256732,
+      "sha256": "9dfb0e92101b965ff01f20b87f9b426ef582bf3ebafd66afef9685cc87a6458f",
+      "duration_seconds": 325.047,
+      "probe_error": null,
+      "lifecycle_error": null,
+      "mouse_action_count": 0,
+      "story_action_count": 0,
+      "owned_job_empty": true
+    },
+    {
+      "path": "analysis/terminal-menu-handoff-v2-20261107.json.gz",
+      "bytes": 33897,
+      "sha256": "dac49b5234eac9a26a69e35c31a02fce7a0e6455f462b034344e1b00c701eedb",
+      "duration_seconds": 103.343,
+      "probe_error": "ValueError('current native startup must retire before menu continuation')",
+      "lifecycle_error": "OSError(1400, 'owned WM_CLOSE')",
+      "mouse_action_count": 0,
+      "story_action_count": 0,
+      "owned_job_empty": true
+    },
+    {
+      "path": "analysis/terminal-menu-handoff-v3-20261107.json.gz",
+      "bytes": 46799,
+      "sha256": "e5d898d39429a36ba46e7388add2e9c42ad1531482ce16661b9abda4c94a59ab",
+      "duration_seconds": 184.172,
+      "probe_error": "ValueError('current native startup must retire before menu continuation')",
+      "lifecycle_error": null,
+      "mouse_action_count": 0,
+      "story_action_count": 0,
+      "owned_job_empty": true
+    },
+    {
+      "path": "analysis/terminal-menu-handoff-v4-20261107.json.gz",
+      "bytes": 92126,
+      "sha256": "9b5919e29485cb31a72af9f1350e1821b903edc3987f81294a4d9e2d1620c2cf",
+      "duration_seconds": 283.297,
+      "probe_error": "ValueError('single bounded original menu click completed')",
+      "lifecycle_error": null,
+      "mouse_action_count": 1,
+      "story_action_count": 0,
+      "owned_job_empty": true
+    },
+    {
+      "path": "analysis/terminal-menu-handoff-v5-20261107.json.gz",
+      "bytes": 2145395,
+      "sha256": "b169a2aff7064e3e6eddf8aefd7c7470031ed826e441bfa18fdf6851bf5d08df",
+      "duration_seconds": 476.0,
+      "probe_error": null,
+      "lifecycle_error": null,
+      "mouse_action_count": 1,
+      "story_action_count": 96,
+      "owned_job_empty": true
+    },
+    {
+      "path": "analysis/terminal-menu-handoff-v6-20261107.json.gz",
+      "bytes": 4113652,
+      "sha256": "af9e1d76f665ab06e913288b3e487f25d4777cd27acd98e6828bb1d991de7533",
+      "duration_seconds": 658.766,
+      "probe_error": null,
+      "lifecycle_error": null,
+      "mouse_action_count": 1,
+      "story_action_count": 178,
+      "owned_job_empty": true
+    }
+  ],
+  "this_resume_native_sources": [
+    "analysis/terminal-menu-handoff-v3-20261107.json.gz",
+    "analysis/terminal-menu-handoff-v4-20261107.json.gz",
+    "analysis/terminal-menu-handoff-v5-20261107.json.gz",
+    "analysis/terminal-menu-handoff-v6-20261107.json.gz"
+  ],
+  "this_resume_native_duration_sum_seconds": 1602.235,
+  "timing_note": "Sum of four bounded native lifetimes, not elapsed chat wall time and not a speedup comparison with full terminal proofs. No old hour-scale prefix replay was launched.",
+  "full_instruction_or_API_replay_performed": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "full_battle_exit_accepted": false,
+  "history_preservation_report": "analysis/terminal-menu-preservation-v1-20261107.json",
+  "working_artifacts_in_final_commit_not_historical_acceptance_rewrites": true,
+  "native_stage_completion": {
+    "automatic_title_selection": true,
+    "opening_ADV_to_workroom_observed": true,
+    "workroom_state1_wait_observed": true,
+    "workroom_button_input_executed": false,
+    "school_preparation_executed": false,
+    "real_battle_reached": false,
+    "battle_wait_return_executed": false,
+    "battle_result_consumption_executed": false
+  },
+  "cleanup": {
+    "manifests": [
+      "analysis/terminal-menu-retention-v1-20261107.json",
+      "analysis/terminal-menu-retention-v2-20261107.json",
+      "analysis/terminal-menu-retention-v3-20261107.json"
+    ],
+    "control_files_deleted": 10,
+    "logical_bytes_deleted": 827,
+    "historical_sources_or_assets_deleted": false
+  },
+  "final_targeted_verifier_regression": {
+    "normal": {
+      "count": 41,
+      "seconds": 7.836,
+      "passed": true
+    },
+    "optimized": {
+      "count": 41,
+      "seconds": 8.084,
+      "passed": true
+    },
+    "reason": "Actual v6 exposed original opcode-before-PC dispatch phase; three added source/phase/tamper regressions. Other passing modules not rerun."
+  },
+  "unique_new_tests_passed_normal_and_optimized": 83,
+  "independent_reviews": [
+    {
+      "path": "analysis/terminal-menu-independent-review-v5-20261107.json",
+      "bytes": 2556,
+      "sha256": "d4a407c32cfe3402c1eba9ddf23d0c6ec0df07f907c3ac97f01f38ad470cf5b3"
+    },
+    {
+      "path": "analysis/terminal-menu-independent-review-v6-20261107.json",
+      "bytes": 5429,
+      "sha256": "0c72e7abe1a6ff60201bd3cb1ddbe870b0a88cc638bcdaafb8d607f34a1da78a"
+    }
+  ]
+}

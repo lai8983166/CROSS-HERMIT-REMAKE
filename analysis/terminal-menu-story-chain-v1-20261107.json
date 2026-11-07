@@ -1,0 +1,54 @@
+{
+  "source": {
+    "path": "analysis/terminal-menu-handoff-v6-20261107.json.gz",
+    "bytes": 4113652,
+    "sha256": "af9e1d76f665ab06e913288b3e487f25d4777cd27acd98e6828bb1d991de7533"
+  },
+  "observed_confirmation_counts_by_program_span": {
+    "5560": 153,
+    "920": 16,
+    "412": 9
+  },
+  "candidate_scripts": [
+    {
+      "path": ".venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/DATA/ADV/DAT/CHAPTER003.YBC",
+      "bytes": 12788,
+      "sha256": "f976c7a9d6c3e87c029355477ef103ea06d72073debf3ad65f72490bc0706f6e",
+      "code_span": 5560,
+      "opcode51_count": 153,
+      "script_exec_records": [
+        {
+          "PC": 5548,
+          "record_index": 1,
+          "record_text": "data\\\\adv\\\\dat\\\\Chapter004.ybc"
+        }
+      ]
+    },
+    {
+      "path": ".venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/DATA/ADV/DAT/CHAPTER004.YBC",
+      "bytes": 2548,
+      "sha256": "228249975b534e216125f78a2c8563216700e6d40f38bfb250abe9e124227c4b",
+      "code_span": 920,
+      "opcode51_count": 16,
+      "script_exec_records": [
+        {
+          "PC": 908,
+          "record_index": 0,
+          "record_text": "data\\\\adv\\\\dat\\\\Chapter005.ybc"
+        }
+      ]
+    },
+    {
+      "path": ".venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/DATA/ADV/DAT/CHAPTER005.YBC",
+      "bytes": 1386,
+      "sha256": "1074cd9941645474e2c70f4394ddd79a740803f64f59edf383fc5c3a5163b2c0",
+      "code_span": 412,
+      "opcode51_count": 9,
+      "script_exec_records": []
+    }
+  ],
+  "candidate_basis": "Matching code-to-block1 span and confirmation counts; static SCRIPTEXEC records connect 003 to 004 to 005. Live program bytes not captured: candidates are not definitive identity proof.",
+  "native_program_bytes_authenticated": false,
+  "menu_to_workroom_full_instruction_trace": false,
+  "full_battle_exit_accepted": false
+}

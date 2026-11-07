@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "kind": "independent_menu_and_story_partial_review",
+  "source": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-menu-handoff-v5-20261107.json.gz",
+    "bytes": 2145395,
+    "sha256": "b169a2aff7064e3e6eddf8aefd7c7470031ed826e441bfa18fdf6851bf5d08df"
+  },
+  "proof": {
+    "path": "analysis/terminal-menu-handoff-proof-v5-20261107.json",
+    "bytes": 114498,
+    "sha256": "011dedb8ca73a80ab17345ff1d0489f677e55c1ad214bd2d75b05a1f20ad0c4b"
+  },
+  "verifier_archive": {
+    "path": "analysis/terminal-menu-handoff-verifier-v5-20261107.py.gz",
+    "bytes": 15710,
+    "sha256": "d581a87434843428207ab3cd969f3de64a46a721a63d02de413e5a5100daae69"
+  },
+  "verifier_raw_sha256": "ff093c2bac62b2438932d7ed09e51455e674b6870deaa6e653e7ae914ada9fb8",
+  "verified": {
+    "menu_samples": 343,
+    "TLS_samples": 343,
+    "mouse": {
+      "attempted": true,
+      "index": 0,
+      "input_edges_observed": true,
+      "movement_mode": "absolute_virtual_desktop",
+      "press_samples": [
+        47
+      ],
+      "held_samples": [
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "release_samples": [
+        52
+      ],
+      "asynchronous_incoherent_samples": [],
+      "input_after_elapsed": 282.53100000001723,
+      "down_to_up_ms": 105.2308
+    },
+    "menu_worker_exit": {
+      "code": 0,
+      "wait_status": 0,
+      "elapsed": 284.6720000000205,
+      "before_WM_CLOSE": true
+    },
+    "story_confirmations": 96,
+    "original_key_query_replays": 1198,
+    "ADV_owners": [
+      [
+        82193800,
+        42132
+      ]
+    ]
+  },
+  "gaps": [
+    "Short-lived NEW_GAME node/vtable5A0824 was not captured; its constructor/worker identity is not proved.",
+    "Menu first ready retention lacked one second of raw endpoint coverage; source timer condition is not substituted for that missing observation.",
+    "Story action11 snapshot began0.984s after first retained ready state; later pre-key raw VM sample preserves at least one second. Both spans are recorded, without changing source.",
+    "All96 story confirmations are finite input observations; chapter completion and original battle are not proved."
+  ],
+  "full_battle_exit_accepted": false,
+  "formal_terminal_boundary_advanced": false,
+  "full_resource_lifetime_proved": false,
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "WinMain_normal_return_proved": false,
+  "history_rewritten": false,
+  "native_execution_by_reviewer": false
+}

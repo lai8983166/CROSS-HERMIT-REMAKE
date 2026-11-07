@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "kind": "independent_menu_story_workroom_partial_review",
+  "source": {
+    "path": "analysis/terminal-menu-handoff-v6-20261107.json.gz",
+    "bytes": 4113652,
+    "sha256": "af9e1d76f665ab06e913288b3e487f25d4777cd27acd98e6828bb1d991de7533"
+  },
+  "proof": {
+    "path": "analysis/terminal-menu-handoff-proof-v6-20261107.json",
+    "bytes": 217706,
+    "sha256": "f12847f2c0d9f2092a571e630999b484af0364dbedc564a8140f5e00dd66c117"
+  },
+  "implementation": {
+    "path": "devtools/terminal_menu_handoff_verification.py",
+    "bytes": 62883,
+    "sha256": "2936eb51f81d878188f3d03ec1de9602abd7b8bf9c8e0d462033de9119421240"
+  },
+  "tests": {
+    "path": "devtools/tests/test_terminal_menu_handoff_verification.py",
+    "bytes": 26315,
+    "sha256": "dc9dabfc97386c8dce49b0b15eadbbc38334fe43468b3ed471127bb4648c86ea"
+  },
+  "verified": {
+    "menu_samples": 638,
+    "TLS_samples": 637,
+    "mouse": {
+      "attempted": true,
+      "index": 0,
+      "input_edges_observed": true,
+      "movement_mode": "absolute_virtual_desktop",
+      "press_samples": [
+        42
+      ],
+      "held_samples": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "release_samples": [
+        48
+      ],
+      "asynchronous_incoherent_samples": [],
+      "input_after_elapsed": 282.2809999999881,
+      "down_to_up_ms": 105.4062
+    },
+    "menu_ready_sampled_seconds": 1.0,
+    "menu_worker_exit": {
+      "code": 0,
+      "wait_status": 0,
+      "elapsed": 284.43700000000536,
+      "before_WM_CLOSE": true
+    },
+    "story_confirmations": 178,
+    "original_key_query_replays": 2219,
+    "recorded_code_span_groups": [
+      {
+        "code_span": 5560,
+        "confirmations": 153
+      },
+      {
+        "code_span": 920,
+        "confirmations": 16
+      },
+      {
+        "code_span": 412,
+        "confirmations": 9
+      }
+    ],
+    "ADV_exit0": [
+      {
+        "pointer": 81997192,
+        "thread_id": 43276,
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 646.9529999999795,
+        "before_WM_CLOSE": true
+      }
+    ],
+    "ADV_to_workroom_observed": true,
+    "workroom": {
+      "node": 82133408,
+      "thread_id": 41656,
+      "vtable": 5900548,
+      "state": 1,
+      "actual_frame_return_sites": [
+        "0x421f8a",
+        "0x49ff57",
+        "0x4a15d0",
+        "0x56e183"
+      ],
+      "stable_seconds": 10.26600000000326,
+      "TLS_owner_verified": true,
+      "callback_body_live_authenticated": false
+    },
+    "opcode40_intermediate": {
+      "action_index": 39,
+      "sample_index": 3,
+      "PC": 1514,
+      "opcode": 40,
+      "wait": 0,
+      "length": 12,
+      "next_PC": 1526,
+      "original_order_instructions": [
+        {
+          "address": 5040605,
+          "hex": "6689440a22",
+          "instruction": "mov word ptr [edx + ecx + 0x22], ax"
+        },
+        {
+          "address": 5040635,
+          "hex": "6689440a24",
+          "instruction": "mov word ptr [edx + ecx + 0x24], ax"
+        },
+        {
+          "address": 5041886,
+          "hex": "e8bd7bffff",
+          "instruction": "call 0x4c6aa0"
+        },
+        {
+          "address": 5046002,
+          "hex": "894c101c",
+          "instruction": "mov dword ptr [eax + edx + 0x1c], ecx"
+        },
+        {
+          "address": 5046028,
+          "hex": "6689440a20",
+          "instruction": "mov word ptr [edx + ecx + 0x20], ax"
+        }
+      ],
+      "all_order_instruction_ranges_live_authenticated": true
+    }
+  },
+  "regressions": {
+    "total_unique_tests": 41,
+    "normal": "passed,7.611s",
+    "optimized": "passed,7.775s",
+    "added_since_38": [
+      "actual v6 owner/input/partial-scope source replay",
+      "original opcode40 dispatch phase before PC update",
+      "pre-press and command-length tamper rejection"
+    ]
+  },
+  "workroom_static_review": {
+    "path": "devtools/terminal_workroom_contract.py",
+    "input_mask": "GAME+1990 press bit0",
+    "original_wait_return": "0x49FF57",
+    "original_selector_caller": "0x4A15D0",
+    "first_exit": "7A4E62==0: original CH002 request with next9, publish6; otherwise publish9",
+    "native_execution_reviewed": false
+  },
+  "limitations": [
+    "NEW_GAME vtable5A0824 lifetime was not captured; no fabricated constructor/worker/event7 proof.",
+    "Original workroom vtable bytes, node, full PTD/TLS and ready ancestry were observed; complete workroom callback live-code range was not included.",
+    "Code span groups are raw program observations; no loaded script byte identity or exact asset filename is proved by length alone.",
+    "Original worker exit0 and graph handoff do not supply a complete return/CRT cleanup/renderer/resource API trace.",
+    "No workroom input or workroom exit was executed; no battle wait-return or result-consumption acceptance."
+  ],
+  "full_battle_exit_accepted": false,
+  "formal_terminal_boundary_advanced": false,
+  "full_resource_lifetime_proved": false,
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "WinMain_normal_return_proved": false,
+  "normal_PTD_cleanup_proved": false,
+  "exact_ADV_asset_identity_proved": false,
+  "chapter_completion_proved": false,
+  "history_rewritten": false,
+  "native_execution_by_reviewer": false
+}
