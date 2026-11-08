@@ -1107,3 +1107,41 @@ devtools/terminal_story_*.py -text
 devtools/tests/test_terminal_story_*.py -text
 devtools/terminal_workroom_*.py -text
 devtools/tests/test_terminal_workroom_*.py -text
+
+# Native workroom/school continuation: bind all executed source bytes
+devtools/terminal_owned_mouse.py -text
+devtools/terminal_input_window.py -text
+devtools/tests/test_terminal_input_window.py -text
+devtools/terminal_school_*.py -text
+devtools/terminal_battle_input.py -text
+devtools/tests/test_terminal_owned_mouse.py -text
+devtools/tests/test_terminal_school_*.py -text
+devtools/tests/test_terminal_battle_input.py -text
+analysis/terminal-school-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-school-*.gz -text
+analysis/terminal-school-*.zip -text
+docs/terminal_school_handoff.md -text
+
+# Dedicated guest setup and bounded input isolation preflight
+devtools/isolated_*.py -text
+devtools/isolated_*.cs -text
+devtools/isolated_*.ps1 -text
+devtools/native_input_isolation.py -text
+devtools/tests/test_isolated_*.py -text
+devtools/tests/test_native_input_isolation.py -text
+analysis/isolated-windows-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/isolated-windows-*.gz -text
+analysis/isolated-windows-*.zip -text
+docs/isolated_windows_worker.md -text
+
+# Frozen CRLF source identities: recognize CR without rewriting executed bytes.
+devtools/terminal_battle_input.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_owned_mouse.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Preserve this sampled source's existing terminal blank line as well.
+devtools/terminal_school_handoff.py whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_school_input.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_workroom_input.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_battle_input.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_owned_mouse.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_school_input.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_workroom_input.py whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

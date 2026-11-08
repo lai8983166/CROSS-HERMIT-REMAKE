@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "kind": "isolated_windows_worker_milestone",
+  "created_utc": "2026-11-08T05:41:20.575523+00:00",
+  "resources": {
+    "vcpus": 2,
+    "memory_mib": 4096,
+    "disk_max_gib": 40
+  },
+  "environment_root": "F:\\project\\chaomofa\\.venv-audit\\native-worker",
+  "original_host_c_environment_absent": true,
+  "running_vms_after": "Total running VMs: 0",
+  "vmem_files_after": [],
+  "input_isolation_preflight_passed": true,
+  "d3d8_hal_window_and_fullscreen_preflight_passed": true,
+  "limited_original_startup_preflight_passed": true,
+  "continuous_host_performance_unaffected_proved": false,
+  "real_battle_owner_observed": true,
+  "complete_input_handoff_proof_passed": false,
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "full_battle_exit_accepted": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "accepted": false,
+  "failed_source_review": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-school-review-guest-v4-20261108.json",
+    "bytes": 11259,
+    "sha256": "cf1375eb54cf2590280de7d06b108a243bc332804e6c44b1b9dece5b7a7c43f3"
+  },
+  "sampling_fix": {
+    "unit_tests_passed": true,
+    "independent_review_passed": true,
+    "new_native_source_verified": false,
+    "interval_seconds": 0.005,
+    "retained_samples_maximum": 1024,
+    "observation_loop_seconds": 11,
+    "post_completion_target_ms": 100,
+    "verification_clock_tolerance_ms": 5,
+    "budget_is_not_strict_thread_termination_deadline": true
+  },
+  "next_dependency": {
+    "node": 157151296,
+    "thread_id": 5280,
+    "scene_vtable": "0x59A430",
+    "scene_offsets": {
+      "0x43": 1,
+      "0x59": 2
+    },
+    "controller_offset_0x108B3A": 0,
+    "next_step": "Identify original gate-release path; then collect a new source with corrected sampling, not patch old edges"
+  },
+  "evidence": [
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-checks-v1-20261108.json",
+      "bytes": 986,
+      "sha256": "a1ae87b5bbbc8acb443bbff69acd094c7b0e24ae9a16dca4996037b677a31013"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-diagnostics-v1-20261108.zip",
+      "bytes": 89378,
+      "sha256": "f3cb43c64ebfc70ee73ccba7ff3ee9379edacadc4c1bd1cbae42dac26a54abc9"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-game-compat-v5-20261108.json.gz",
+      "bytes": 28868,
+      "sha256": "ac7f4bbabf55f3c4d57ca3576f04d42b7be193b0e568476775ebbb76295c0afa"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-guest-modules-v4-20261108.json",
+      "bytes": 902,
+      "sha256": "e8f94b8d0418118c6db5151618da78374d3df2c195198f5faf743f0179691f8c"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-implementations-v5-20261108.zip",
+      "bytes": 40842,
+      "sha256": "b3bf8112815fdef6ed44c05472c653c2ff571c1e2fe6f1ae05651011886446de"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-preflight-v10-20261108.json",
+      "bytes": 4379,
+      "sha256": "eff0e58d363050f4834bb41ace0c1474158b1eaafb86c0a2a3f5ba5e35833f8c"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-preservation-v1-20261108.json",
+      "bytes": 560,
+      "sha256": "ecde0a0574511a207974ea60df97d7b8f081d8fa2bdd2c236c24a5ac12193b57"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-query-preflight-v2-20261108.json",
+      "bytes": 6569,
+      "sha256": "84b486f2ff417453cf452915e0fd6eb1c5b64424320b63781ef550194e3bab3b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\isolated-windows-retention-v1-20261108.json",
+      "bytes": 3117,
+      "sha256": "fdbdf48840bcb4cffdc41090e7c3d3ee6ee667666f2e7d0f307d19b09486d507"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-failure-v1-20261107.json",
+      "bytes": 3024,
+      "sha256": "b474bbdb8141f597a12cb102793169948f00b724a085992ec39a237e46028e5f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-handoff-guest-v3-20261108.json.gz",
+      "bytes": 111057,
+      "sha256": "9de4843e25e8071c0d8bc581f9acaa5f5edef9b5782658bb74ba41c4ff38c45b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-handoff-guest-v4-20261108.json.gz",
+      "bytes": 9004187,
+      "sha256": "889d6e65dd163c5ab831af32363b553adfbf03981b184b269b758f00545a3335"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-handoff-v1-20261107.json.gz",
+      "bytes": 81303,
+      "sha256": "bcc2fb7490feb0bcae304ecc77b8c65820f710a8c9ccc1c35714844949b802cb"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-handoff-v1-20261107.json.gz.progress.json",
+      "bytes": 147,
+      "sha256": "1d1765c820690cfba4ad6bc787f8ba9ea05792af162bf2d0ae44243c9b250b34"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-handoff-v2-20261107.json.gz",
+      "bytes": 79867,
+      "sha256": "a88052ae184109e1a8a834be0df5ce0c8f1036258743094ba637b9d13e34dd55"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-handoff-v2-20261107.json.gz.progress.json",
+      "bytes": 147,
+      "sha256": "1d1765c820690cfba4ad6bc787f8ba9ea05792af162bf2d0ae44243c9b250b34"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-implementations-guest-v4-20261108.zip",
+      "bytes": 114171,
+      "sha256": "6398803f27329372fa4b5b34d94faf065073c22b763dd684fe1b33bfc6e7d050"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-implementations-v1-20261107.zip",
+      "bytes": 31045,
+      "sha256": "55ed74975929e2ae56397fdaac8ac91a41fc2132682cef22a1665fd3bf2c1337"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-implementations-v2-20261107.zip",
+      "bytes": 33468,
+      "sha256": "50d7df500c5d13562c7fefd3471519e898389dc05746c3f2dc00a5a27d6a7a1e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-input-authorization-v1-20261107.json",
+      "bytes": 1502,
+      "sha256": "6f2bee32d6b020b0b6005af5bb60ce95b49d2db5e77da2fc1e62a3196bd14d9e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-preparation-contract-v1-20261107.json",
+      "bytes": 10541,
+      "sha256": "0db341e6070ef7902d808248073f94d0a0fe3a35c533ec05c2bfa638cd4a6798"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-review-guest-v4-20261108.json",
+      "bytes": 11259,
+      "sha256": "cf1375eb54cf2590280de7d06b108a243bc332804e6c44b1b9dece5b7a7c43f3"
+    }
+  ],
+  "storage": {
+    "worker_files": 153,
+    "worker_logical_bytes": 21175048482,
+    "worker_compressed_or_sparse_file_bytes": 21175048482,
+    "new_host_dependency_bytes": 20092644,
+    "new_host_dependency_compressed_or_sparse_file_bytes": 20092644,
+    "analysis_evidence_logical_bytes": 9657319,
+    "analysis_evidence_compressed_or_sparse_file_bytes": 9657319,
+    "total_new_environment_dependencies_and_evidence_logical_bytes": 21204798445,
+    "total_includes_worker_backups": true,
+    "inventory_file_itself_excluded": true,
+    "guest_contents_counted_in_vmdk_not_again": true,
+    "runtime_environment_is_user_authorized_budget_exception": true,
+    "largest_worker_files": [
+      {
+        "path": "worker.vmdk",
+        "bytes": 15884222464
+      },
+      {
+        "path": "SERVER_EVAL_x64FRE_en-us.iso",
+        "bytes": 5044094976
+      },
+      {
+        "path": "windows-tools.iso",
+        "bytes": 144656384
+      },
+      {
+        "path": "python-3.10.11-amd64.exe",
+        "bytes": 29037240
+      },
+      {
+        "path": "wheels\\unicorn-2.1.4-cp37-abi3-win_amd64.whl",
+        "bytes": 15943079
+      },
+      {
+        "path": "symbols\\ntkrnlmp.pdb\\D801A9AFC0FB7761380800F708633DEA1\\ntkrnlmp.pdb",
+        "bytes": 12095488
+      },
+      {
+        "path": "guest-ntoskrnl.exe",
+        "bytes": 11597168
+      },
+      {
+        "path": "terminal-school-handoff-guest-v4-20261108.json.gz",
+        "bytes": 9004187
+      },
+      {
+        "path": "wheels\\pillow-11.3.0-cp310-cp310-win_amd64.whl",
+        "bytes": 6985988
+      },
+      {
+        "path": "wheels\\pywin32-312-cp310-cp310-win_amd64.whl",
+        "bytes": 6926780
+      },
+      {
+        "path": "guest-system-dlls\\KERNELBASE.dll",
+        "bytes": 2376936
+      },
+      {
+        "path": "guest-system-dlls\\USER32.dll",
+        "bytes": 1734416
+      },
+      {
+        "path": "autoinst.flp",
+        "bytes": 1474560
+      },
+      {
+        "path": "wheels\\capstone-5.0.9-py3-none-win_amd64.whl",
+        "bytes": 1273459
+      },
+      {
+        "path": "vmware.log",
+        "bytes": 654675
+      }
+    ]
+  },
+  "host_dependency_packages": [
+    {
+      "name": "appdirs",
+      "version": "1.4.4",
+      "files": 8,
+      "bytes": 55852
+    },
+    {
+      "name": "fs",
+      "version": "2.4.16",
+      "files": 121,
+      "bytes": 959894
+    },
+    {
+      "name": "pycdlib",
+      "version": "1.14.0",
+      "files": 46,
+      "bytes": 1663107
+    },
+    {
+      "name": "pyfatfs",
+      "version": "1.1.0",
+      "files": 30,
+      "bytes": 231272
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1",
+      "files": 53,
+      "bytes": 940554
+    },
+    {
+      "name": "cryptography",
+      "version": "50.0.2",
+      "files": 199,
+      "bytes": 10951634
+    },
+    {
+      "name": "defusedxml",
+      "version": "0.7.1",
+      "files": 28,
+      "bytes": 98729
+    },
+    {
+      "name": "dissect.cstruct",
+      "version": "4.7",
+      "files": 53,
+      "bytes": 440690
+    },
+    {
+      "name": "dissect.hypervisor",
+      "version": "3.21",
+      "files": 74,
+      "bytes": 604897
+    },
+    {
+      "name": "dissect.ntfs",
+      "version": "3.16",
+      "files": 31,
+      "bytes": 284620
+    },
+    {
+      "name": "dissect.util",
+      "version": "3.24",
+      "files": 78,
+      "bytes": 612762
+    },
+    {
+      "name": "dissect.volume",
+      "version": "3.18",
+      "files": 81,
+      "bytes": 468295
+    },
+    {
+      "name": "pyspnego",
+      "version": "0.12.4",
+      "files": 71,
+      "bytes": 1016726
+    },
+    {
+      "name": "pywinrm",
+      "version": "0.5.0",
+      "files": 55,
+      "bytes": 332697
+    },
+    {
+      "name": "requests-ntlm",
+      "version": "1.3.0",
+      "files": 11,
+      "bytes": 24324
+    },
+    {
+      "name": "sspilib",
+      "version": "0.6.0",
+      "files": 36,
+      "bytes": 1348735
+    },
+    {
+      "name": "xmltodict",
+      "version": "1.0.4",
+      "files": 8,
+      "bytes": 57856
+    }
+  ],
+  "retirement": {
+    "host_transfers": {
+      "guest": false,
+      "rows": [
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\game-assets.zip",
+          "bytes": 603758672,
+          "sha256": "9b9ecce929be008418920feb229959b7caced38a541eeda9cdf25d568af2f750",
+          "reason": "Verified deployed bytes retained; redundant transfer archive",
+          "deleted": true
+        },
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\project-sources.zip",
+          "bytes": 6444893,
+          "sha256": "197bd23c2fa302497e2a6b90b486c38cd3738196f238d69432a64240c67c17d2",
+          "reason": "Verified deployed bytes retained; redundant transfer archive",
+          "deleted": true
+        },
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\guest-wheels.zip",
+          "bytes": 31204840,
+          "sha256": "c303d0a770fdce2ddce72e80905aa4629319c4fdb5897d8d3f1930041983493b",
+          "reason": "Verified deployed bytes retained; redundant transfer archive",
+          "deleted": true
+        }
+      ],
+      "original_assets_saves_history_deleted": false
+    },
+    "guest_transfers": {
+      "guest": true,
+      "rows": [
+        {
+          "path": "C:\\ChaomofaWorker\\game-assets.zip",
+          "bytes": 603758672,
+          "sha256": "9b9ecce929be008418920feb229959b7caced38a541eeda9cdf25d568af2f750",
+          "reason": "Verified deployed bytes retained; redundant transfer archive",
+          "deleted": true
+        },
+        {
+          "path": "C:\\ChaomofaWorker\\project-sources.zip",
+          "bytes": 6444893,
+          "sha256": "197bd23c2fa302497e2a6b90b486c38cd3738196f238d69432a64240c67c17d2",
+          "reason": "Verified deployed bytes retained; redundant transfer archive",
+          "deleted": true
+        },
+        {
+          "path": "C:\\ChaomofaWorker\\guest-wheels.zip",
+          "bytes": 31204840,
+          "sha256": "c303d0a770fdce2ddce72e80905aa4629319c4fdb5897d8d3f1930041983493b",
+          "reason": "Verified deployed bytes retained; redundant transfer archive",
+          "deleted": true
+        }
+      ],
+      "original_assets_saves_history_deleted": false
+    },
+    "guest_redundant_reports": [
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-school-handoff-guest-v4-20261108.json.gz",
+        "bytes": 9004187,
+        "sha256": "889d6e65dd163c5ab831af32363b553adfbf03981b184b269b758f00545a3335",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-school-handoff-guest-v3-20261108.json.gz",
+        "bytes": 111057,
+        "sha256": "9de4843e25e8071c0d8bc581f9acaa5f5edef9b5782658bb74ba41c4ff38c45b",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\isolated-game-compat-v5-20261108.json.gz",
+        "bytes": 28868,
+        "sha256": "ac7f4bbabf55f3c4d57ca3576f04d42b7be193b0e568476775ebbb76295c0afa",
+        "deleted": true
+      }
+    ],
+    "host_removed_bytes": 641408405,
+    "guest_logical_removed_bytes": 650552517,
+    "guest_deletion_does_not_imply_vmdk_shrink": true,
+    "old_assets_saves_checkpoints_deleted": false
+  },
+  "immutable_media": {
+    "official_page": "https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022",
+    "official_link": "https://go.microsoft.com/fwlink/p/?LinkID=2195280&clcid=0x409&country=US&culture=en-us",
+    "url": "https://software-static.download.prss.microsoft.com/sg/download/888969d5-f34g-4e03-ac9d-1f9786c66749/SERVER_EVAL_x64FRE_en-us.iso",
+    "expected_bytes": 5044094976,
+    "bytes": 5044094976,
+    "sha256": "3e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325",
+    "download_complete": true
+  },
+  "mutable_environment_disk": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\worker.vmdk",
+    "bytes": 15884222464,
+    "sha256_omitted_reason": "Mutable runnable environment, not a frozen acceptance source; changes on every boot"
+  },
+  "note": "Primary reports and one recovery copy share F:, not independent disaster recovery. All whole-handoff acceptance flags remain false."
+}

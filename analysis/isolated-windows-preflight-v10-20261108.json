@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "nonce": 1427428944,
+  "host": {
+    "uuid": "BD53569B-8CFC-CA17-A714-D8BBC150E486",
+    "computer": "DESKTOP-FBK3PBR",
+    "free_kib": 12411744
+  },
+  "guest_executable": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\guest-preflight.exe",
+    "bytes": 24576,
+    "sha256": "527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7"
+  },
+  "vmx": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\chaomofa-worker.vmx",
+    "bytes": 4100,
+    "sha256": "4fcea4eb6fa1c9aaf6430e0dba03333d907ace46ed82a9d2353e4949a78fb0d0"
+  },
+  "accepted": false,
+  "implementations": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\isolated_vm_preflight.py",
+      "bytes": 12936,
+      "sha256": "a6d1e745baf2f964222f751b845820d16b0b552bd5a0d6b659d1f63fa16be58b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\isolated_windows_vm.py",
+      "bytes": 16893,
+      "sha256": "c0413bd97d26fe24c849cc28358d88557f905bb7ff1922a72057ebbfc1f5dbf5"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\isolated_guest_preflight.cs",
+      "bytes": 13526,
+      "sha256": "b32780b5b0027d20082c67b3adacec8d27d8312488e4dae6369d918a8fe70644"
+    }
+  ],
+  "host_observation": {
+    "hooks_installed": true,
+    "tagged_mouse": 0,
+    "tagged_keyboard": 0,
+    "total_mouse_events": 0,
+    "total_keyboard_events": 0,
+    "host_input_injected": false,
+    "host_input_blocked": false,
+    "foreground_pids": [
+      21260
+    ],
+    "error": null,
+    "hooks_removed": [
+      true,
+      true
+    ],
+    "elapsed_seconds": 3.109
+  },
+  "guest": {
+    "schema_version": 1,
+    "accepted": false,
+    "game_executed": false,
+    "events": [
+      {
+        "message": 513,
+        "extra": 1427428944,
+        "foreground": true
+      },
+      {
+        "message": 514,
+        "extra": 1427428944,
+        "foreground": true
+      },
+      {
+        "message": 256,
+        "extra": 1427428944,
+        "foreground": true
+      },
+      {
+        "message": 257,
+        "extra": 1427428944,
+        "foreground": true
+      }
+    ],
+    "machine": {
+      "manufacturer": "VMware, Inc.",
+      "model": "VMware Virtual Platform",
+      "logical_processors": 2,
+      "memory_bytes": 4294430720,
+      "uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+      "boot_utc": "2026-11-07T17:00:18.5000000Z",
+      "computer_name": "CHAOMOFA-WORKER",
+      "session": 1,
+      "active_console_session": 1
+    },
+    "nonce": 1427428944,
+    "pid": 4488,
+    "executable_sha256": "527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7",
+    "foreground_before": {
+      "hwnd": 590102,
+      "pid": 4488,
+      "tid": 2284,
+      "title": "Dedicated guest input preflight",
+      "own_desktop": "Default",
+      "own_desktop_query_succeeded": true,
+      "own_window": 590102,
+      "own_pid": 4488,
+      "own_tid": 2284
+    },
+    "set_foreground_result": true,
+    "foreground_after": {
+      "hwnd": 590102,
+      "pid": 4488,
+      "tid": 2284,
+      "title": "Dedicated guest input preflight",
+      "own_desktop": "Default",
+      "own_desktop_query_succeeded": true,
+      "own_window": 590102,
+      "own_pid": 4488,
+      "own_tid": 2284
+    },
+    "input_messages_received": true,
+    "graphics": [
+      {
+        "fullscreen": false,
+        "create_hr": 0,
+        "format": 22,
+        "clear_hr": 0,
+        "present_hr": 0,
+        "device_release": 0,
+        "factory_release": 0,
+        "passed": true
+      },
+      {
+        "fullscreen": true,
+        "create_hr": 0,
+        "format": 22,
+        "clear_hr": 0,
+        "present_hr": 0,
+        "device_release": 0,
+        "factory_release": 0,
+        "passed": true
+      }
+    ],
+    "preflight_passed": true,
+    "cleanup_release_submissions": 2,
+    "window_destroyed": true
+  },
+  "verification": {
+    "input_isolation_preflight_passed": true,
+    "d3d8_preflight_passed": true,
+    "guest_probe_foreground_verified": true,
+    "guest_queue_fallback_used": false,
+    "guest_queue_detach_verified": false,
+    "original_game_compatible": false,
+    "full_battle_exit_accepted": false,
+    "continuous_host_performance_unaffected_proved": false,
+    "accepted": false
+  }
+}
