@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-09T05:02:57.043140+00:00",
+  "kind": "bounded_natural_battle_retreat_closeout",
+  "accepted": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "baseline_commit": "4b2a103cf25ecfe1781cdc4ade168be5f0e34b26",
+  "source": {
+    "path": "analysis/terminal-school-handoff-guest-v5-20261109.json.gz",
+    "bytes": 8717855,
+    "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+  },
+  "recovery_copy": {
+    "path": ".venv-audit/native-worker/terminal-school-handoff-guest-v5-20261109.json.gz",
+    "bytes": 8717855,
+    "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+  },
+  "proof": {
+    "path": "analysis/terminal-school-proof-guest-v5-r2-20261109.json",
+    "bytes": 457686,
+    "sha256": "4904292d2356ed05824b84463d2802d15e4310ecdab16c7b031d71c2cf221cf0"
+  },
+  "independent_review": {
+    "path": "analysis/terminal-school-review-guest-v5-20261109.json",
+    "bytes": 7666,
+    "sha256": "435b11975b9ae256357f26445c7e26d070f1a3ec0ec96ee723d223ed23a658af"
+  },
+  "new_native_runs": 1,
+  "observed_story_confirmations": 344,
+  "observed_mouse_actions": 7,
+  "stop_reason": "battle_worker_exit_and_menu_observed",
+  "observed_flags": {
+    "original_post_wait_callsite_with_saved_result_observed": true,
+    "callback_nonzero_result_and_tail_wait_observed": true,
+    "battle_worker_exit0_observed": true
+  },
+  "unproved_flags": {
+    "complete_instruction_causality_proved": false,
+    "successful_OS_wait_return_proved": false,
+    "wait_return_proved": false,
+    "result_consumption_proved": false,
+    "full_resource_lifetime_proved": false,
+    "normal_PTD_cleanup_proved": false,
+    "WinMain_normal_return_proved": false,
+    "full_battle_exit_accepted": false,
+    "old_terminal_cases_replayed": false,
+    "independent_full_replay": false,
+    "native_dependency_attestation_complete": false
+  },
+  "checks": {
+    "test_runs": [
+      {
+        "optimized": false,
+        "returncode": 0,
+        "elapsed": 13.140999999999622,
+        "output": "..................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 194 tests in 9.302s\n\nOK\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 0,
+        "elapsed": 14.265999999999622,
+        "output": "..................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 194 tests in 8.976s\n\nOK\n"
+      }
+    ],
+    "strict_openspec": "passed",
+    "independent_review": "passed within declared bounded scope",
+    "guest_running_vms": "Total running VMs: 0",
+    "host_input_sent": false,
+    "continuous_host_performance_unaffected_proved": false
+  },
+  "preservation": {
+    "parent": {
+      "path": "analysis/reverse-validation-preservation-v1-20261106.json",
+      "bytes": 171408,
+      "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+    },
+    "small_frozen_fresh_SHA_count": 832,
+    "small_frozen_fresh_SHA_bytes": 58598492,
+    "large_size_only_count": 13,
+    "large_SHA_freshly_rehashed": false,
+    "mismatches": [],
+    "old_history_assets_saves_or_checkpoints_rewritten": false
+  },
+  "retirement": {
+    "guest": {
+      "plan": {
+        "guest_path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-school-handoff-guest-v5-20261109.json.gz",
+        "bytes": 8717855,
+        "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6",
+        "primary": {
+          "path": "F:\\project\\chaomofa\\analysis\\terminal-school-handoff-guest-v5-20261109.json.gz",
+          "bytes": 8717855,
+          "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+        },
+        "recovery_copy": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-school-handoff-guest-v5-20261109.json.gz",
+          "bytes": 8717855,
+          "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+        }
+      },
+      "deleted_guest_copy": {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-school-handoff-guest-v5-20261109.json.gz",
+        "bytes": 8717855,
+        "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6",
+        "deleted": true
+      },
+      "reason": "Primary plus one verified F-drive recovery copy retained; redundant guest copy removed",
+      "original_assets_or_saves_deleted": false,
+      "soft_stop_result": "",
+      "running_vms_after": "Total running VMs: 0"
+    },
+    "host": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-school-proof-guest-v5-20261109.json",
+      "bytes": 457163,
+      "sha256": "dbded544a8f7f6d95e94066b093ae0343fa83c784c28a61baa63af616e78e1af",
+      "replacement": "analysis/terminal-school-proof-guest-v5-r2-20261109.json",
+      "reason": "Superseded partial edge summary; unchanged raw source retained",
+      "deleted": true
+    },
+    "total_removed_logical_bytes": 9175018,
+    "guest_deletion_does_not_imply_vmdk_shrink": true
+  },
+  "evidence": [
+    {
+      "path": "analysis/terminal-school-handoff-guest-v5-20261109.json.gz",
+      "bytes": 8717855,
+      "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+    },
+    {
+      "path": "analysis/terminal-school-input-authorization-v2-20261109.json",
+      "bytes": 1864,
+      "sha256": "eb3307e1052e0bca50445fe2fd7afe8bf8680ad8b49120cb24235f99111951cc"
+    },
+    {
+      "path": "analysis/terminal-school-layer-guest-v5-20261109.zip",
+      "bytes": 38115,
+      "sha256": "f693b80923251bfbb19f68cd265acd0dad524cc15d35c85f9d9a8bc20469c654"
+    },
+    {
+      "path": "analysis/terminal-school-notice-diagnosis-v1-20261109.json",
+      "bytes": 7298,
+      "sha256": "7d64255291baf30fb7ee874addf3002d6160b18562f034e3e13d08a5e8739bca"
+    },
+    {
+      "path": "analysis/terminal-school-proof-guest-v5-r2-20261109.json",
+      "bytes": 457686,
+      "sha256": "4904292d2356ed05824b84463d2802d15e4310ecdab16c7b031d71c2cf221cf0"
+    },
+    {
+      "path": "analysis/terminal-school-receipts-guest-v5-20261109.zip",
+      "bytes": 7987,
+      "sha256": "8215167d4955cd1421aee01212dbe4eada96a3c20d28acb473578b7232004657"
+    },
+    {
+      "path": "analysis/terminal-school-review-guest-v5-20261109.json",
+      "bytes": 7666,
+      "sha256": "435b11975b9ae256357f26445c7e26d070f1a3ec0ec96ee723d223ed23a658af"
+    }
+  ],
+  "new_local_files_including_backup_scripts_and_logs": [
+    {
+      "path": ".venv-audit/native-worker/boot-notice-v1-20261109.json",
+      "bytes": 1127,
+      "sha256": "b2f22f25536275678e612dc6ef0b1527473836ea4b1042055c4a9540db9cdee4"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-notice-change.py",
+      "bytes": 1367,
+      "sha256": "f3dc91d301ab4d52faeb742d18a0383ff7ff9ee5f32a32d70eed776e43b449e5"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-notice-mouse-results.py",
+      "bytes": 1419,
+      "sha256": "22d3dc35f8eff946fc6c055115e0cdd723d91baab417bba39236c81945ec84f1"
+    },
+    {
+      "path": ".venv-audit/native-worker/close-notice-guest.py",
+      "bytes": 2319,
+      "sha256": "537628b809b00d0c737f246cad17c8b5c33b72cb311c90a63958973f3a5866ba"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-notice-evidence.py",
+      "bytes": 8107,
+      "sha256": "c09c812868dca2c219512e7a9af22a0ee8e36007109a7d7a98a09b5ab583ce0e"
+    },
+    {
+      "path": ".venv-audit/native-worker/disasm-local.py",
+      "bytes": 469,
+      "sha256": "17d99125ba1b7c9ee835e50d20ce50f9d56d67c0880118320b6d03d5570d35f7"
+    },
+    {
+      "path": ".venv-audit/native-worker/freeze-notice-implementation.py",
+      "bytes": 1392,
+      "sha256": "fa0fea676fa167f055236615dad3b7aba1cfae30c370ae42a1a890b8f8ccae82"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-audio-notice-v1-20261109.json",
+      "bytes": 113,
+      "sha256": "71b6d4d2d907a9bafe3ff6750b70c3196636aaf1f80d8841c20f93bdf4b2de4a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-clock-notice-v1-20261109.json",
+      "bytes": 691,
+      "sha256": "e0383703a39d272f4111a074acd27527e3e0b734a943da3109f66b8bfc964402"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-notice-status.py",
+      "bytes": 644,
+      "sha256": "17973804f4b50d3c98b71c164fe529c47c34232da2b3d9d296216efb511a5b03"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-preflight-notice-v1-20261109.json",
+      "bytes": 1718,
+      "sha256": "b9eec12382b6ede5cab6fe0558f2db240d51a5ccb18509efc161e48983b9a336"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-modules-guest-v5-20261109.json",
+      "bytes": 902,
+      "sha256": "2410df0edea153fc684ca5e00f0768ea445d584992cbb7261df8005fb6c099d5"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-battle-stop.py",
+      "bytes": 1386,
+      "sha256": "76777c08caf82e60b1744ff03731b4de3e9d9712c5667b465cec88b0f05baf75"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-retreat-release.py",
+      "bytes": 827,
+      "sha256": "22b1484307677ffa50182c67ac9fac07cffcbb8ceba56c27f375e85b32179072"
+    },
+    {
+      "path": ".venv-audit/native-worker/notice-guest-retirement-plan.json",
+      "bytes": 690,
+      "sha256": "7548b8259d087e7bb277bf35c7e7d148e53e7232ae878835cef98c5845e8d2da"
+    },
+    {
+      "path": ".venv-audit/native-worker/notice-guest-retirement-result.json",
+      "bytes": 1223,
+      "sha256": "33a139dce7ef1fd95264cb63a05828b2749059edbd510a74f5825891c16615dc"
+    },
+    {
+      "path": ".venv-audit/native-worker/notice-host-retirement-result.json",
+      "bytes": 375,
+      "sha256": "abe66bcfa8e0541b650e04de06b3b32d3a6ece34cab1f099c13f8b265e20b310"
+    },
+    {
+      "path": ".venv-audit/native-worker/notice-unit-checks-v1.json",
+      "bytes": 816,
+      "sha256": "7cffdeb4c9a8fd109d9aa24a9e1432f97989e11b941334a9cb49f4bf42fe9431"
+    },
+    {
+      "path": ".venv-audit/native-worker/notice-unit-checks-v2.json",
+      "bytes": 824,
+      "sha256": "04675cfe9b2c39babdfab8d561d1a4695296f5c772a0394b4df22641b88780ff"
+    },
+    {
+      "path": ".venv-audit/native-worker/poll-notice-run.py",
+      "bytes": 589,
+      "sha256": "11e481da20b06e3bd1ef62c4fe593ce1a766bc1a5478030e0f00d77158a485dc"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-notice-run.py",
+      "bytes": 1374,
+      "sha256": "adfe3b22c91c4649693e7821c498575400c90e1fb8980e50b98749b7675edd6c"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-notice-v1-20261109.json",
+      "bytes": 4672,
+      "sha256": "df9939beaa8d27e80c439b42087982f738718b0685d75fa4d23b51c3ce382c76"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-notice-authorization.py",
+      "bytes": 1174,
+      "sha256": "ad2654a1d5327aebd2f233fa11a5508cfd72a9506bef16226a700238981a0cdf"
+    },
+    {
+      "path": ".venv-audit/native-worker/summarize-notice-result.py",
+      "bytes": 1852,
+      "sha256": "365a38e798e4d8a0efc43ab71dfa10213d10229ee31661e5347a413785a44fd8"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-school-handoff-guest-v5-20261109-driver.py",
+      "bytes": 556,
+      "sha256": "373b7f329ffcdfcc4c1c2acd3f1f4b1d75a25ed84e51b8b247cdf5559aebda17"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-school-handoff-guest-v5-20261109.json.gz",
+      "bytes": 8717855,
+      "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-school-handoff-guest-v5-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-school-handoff-guest-v5-20261109.log",
+      "bytes": 281,
+      "sha256": "60e9d6f25d7f78f61461420310b1677edc920cf04e6b474405e5d6f2113dccca"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-school-handoff-guest-v5-20261109.run.json",
+      "bytes": 2515,
+      "sha256": "f14069d1817002535a0012ea359593cd79dd272bdd79da389721b669f0fa0717"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-11800.log",
+      "bytes": 5578,
+      "sha256": "043c83ce89c8c53c0ea13ed18f3ae5594d6c5ca465388eced3be949c87816cee"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-11804.log",
+      "bytes": 4652,
+      "sha256": "f7631e9787c40ba85f1f84d6db2dfec34643a5dbeec7f03d5e88d1395cb3622d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-12764.log",
+      "bytes": 5359,
+      "sha256": "95c87a529ac85258cc56e7766fcd6198bad1633acaf3d9c8942aebd1571fcd26"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-12784.log",
+      "bytes": 5358,
+      "sha256": "53282eb617dc0e5f2fca018eb128597fb5febb871e4421139887a6bb7e47f03d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-16524.log",
+      "bytes": 5358,
+      "sha256": "877d6a0cac4fc0347081f95e6a9467cdf2ba156a69ee726c7e66d3ecf695ba2c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-19308.log",
+      "bytes": 5359,
+      "sha256": "07de87a58020bcf349aefb1b1412685acca9907f3a3be1beb410257a1fef90a3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-19356.log",
+      "bytes": 5359,
+      "sha256": "57984db32438eb74f2fa0c921c169a3c37aba6de8b03124629ef733e9da49bfc"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-19460.log",
+      "bytes": 5358,
+      "sha256": "1581a32df2f69f5121c09d474a4b211e50f187d3814cc819a35f8fd33451d870"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-21156.log",
+      "bytes": 5358,
+      "sha256": "28f8846bab0217751510418ba6ff2248da41e50669fb32f37bcc911f9f4e0d3e"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-22672.log",
+      "bytes": 5358,
+      "sha256": "a33509934ddd4ff73ce3df418b0f2945a0a73f8865b819321b0e0363a60f9b01"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24272.log",
+      "bytes": 5358,
+      "sha256": "76507583e49ea897ddb21123076d3f6f2e9e43749c751131b197fb46239f4283"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24336.log",
+      "bytes": 5358,
+      "sha256": "b5b96f4b85379824ddb8cac68cfca3e325071d092c92d4d30c592da9371bf05d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24452.log",
+      "bytes": 5358,
+      "sha256": "2f79f7bd43a191f1c66da7be7ec7d2d202b53c4f5116cecc45fea14827a963b9"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-2924.log",
+      "bytes": 5358,
+      "sha256": "47d1a504564d57f139f08ed71603001826a669fb2f7e0065d6bfeb0bdd05665f"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-3308.log",
+      "bytes": 5357,
+      "sha256": "71de370170af9786f0fe347cf64cae905abc5fcfb582324c5e087493a001a3bd"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-4492.log",
+      "bytes": 5548,
+      "sha256": "d5c6743c4e30d0826d847e10538b886b18db6eebd67f5f2c16d6bfc158797f9c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-5608.log",
+      "bytes": 5358,
+      "sha256": "50dd004b5c9299195a44c80ed13ac9e076119ba7dd816981c06134a4bfb25e03"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-5668.log",
+      "bytes": 5357,
+      "sha256": "1417eb7539b6fb7462d03f41af53654117e0fe478f8a2527be9a115db84bc8bb"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-6244.log",
+      "bytes": 5357,
+      "sha256": "fbc757817846e791a1f1f41818bcee43eaa8d7b1bd18d5cbb840a292493d36ba"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-6640.log",
+      "bytes": 5357,
+      "sha256": "1b6fc08c6e8e18c593f9246652b9d6b7fa6af335d2954463397dab639cc99b12"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-7344.log",
+      "bytes": 4650,
+      "sha256": "6f9e0256cf1c720f0466678e7b34df90c4dd58542115743358ab3f796b9200db"
+    },
+    {
+      "path": ".venv-audit/native-worker/verify-notice-run.py",
+      "bytes": 2780,
+      "sha256": "5f7c32c6dbaa1b0fcfc777a2d2f05237019cf514988130dc56c287f1ba07ca7f"
+    },
+    {
+      "path": ".venv-audit/native-worker/vmware.log",
+      "bytes": 380889,
+      "sha256": "2226942b5c1e3d507f66db51615667ae261bca1f06a8502decf967870f0f8beb"
+    }
+  ],
+  "storage": {
+    "worker_logical_bytes": 21875971485,
+    "previous_worker_logical_bytes": 21175048482,
+    "worker_growth_bytes": 700923003,
+    "mutable_vmdk_bytes": 16576610304,
+    "mutable_vmdk_growth_bytes": 692387840,
+    "newly_added_analysis_bytes": 9238471,
+    "new_local_bytes_including_backup_scripts_logs": 9252550,
+    "all_round_evidence_bytes_including_backup_scripts_logs": 18491021,
+    "environment_existing_dependencies_and_prior_plus_new_analysis_bytes": 21914959919,
+    "worker_includes_backups": true,
+    "guest_contents_counted_only_in_vmdk": true,
+    "new_local_selection": "mtime >= 2026-11-09T00:00:00Z; conservatively includes modified logs; excludes VMDK, VMX and nvram tracked as environment",
+    "report_itself_and_later_git_audit_outputs_excluded": true,
+    "evidence_budget_bytes": 268435456,
+    "mutable_environment_user_authorized_separately": true,
+    "same_F_volume_copy_not_independent_disaster_recovery": true
+  },
+  "next_required": "Continuous original wait/API/instruction/state/ABI/resource/PTD evidence, then two fresh native cases and independent full replay; no formal checkbox advanced"
+}

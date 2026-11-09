@@ -21,7 +21,8 @@ class ContinuationTests(unittest.TestCase):
     def test_receipt_scopes_and_empty_phases_are_explicit(self):
         r=collector.SchoolController(0,True).reports()
         self.assertEqual(r['collector_input_actions_scope'],'title_menu_only')
-        self.assertEqual(r['maximum_mouse_actions'],6);self.assertEqual(r['maximum_story_actions'],448)
+        self.assertEqual(r['maximum_mouse_actions'],7);self.assertEqual(r['maximum_story_actions'],448)
+        self.assertEqual(r['notice_inputs'],[])
         self.assertEqual(r['workroom_inputs'],[]);self.assertEqual(r['school_inputs'],[]);self.assertEqual(r['battle_inputs'],[])
     def test_only_retreat_confirmation_captures_after_release(self):
         c=collector.SchoolController(0,True)

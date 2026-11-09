@@ -144,11 +144,13 @@ class SchoolHandoffVerificationTests(unittest.TestCase):
         parents=v.identities(v.PARENT_IMPLEMENTATIONS)
         result=v.verify_implementations(dict(parent_implementations=parents,
             implementation_layers=v.identities(v.LAYER_IMPLEMENTATIONS),observer=parents[2]))
-        self.assertEqual(len(result['parent']),12);self.assertEqual(len(result['layers']),14)
+        self.assertEqual(len(result['parent']),12);self.assertEqual(len(result['layers']),15)
 
     def test_actual_first_failure_is_rejected_not_accepted(self):
         report=self.first_failure
-        self.assertEqual(report['probe']['source_before']['code'],v.source_rows(self.raw))
+        historical_rows=v.clone_verifier(v.source_rows,NOTICE_INPUT_RANGES=())(self.raw)
+        self.assertEqual(report['probe']['source_before']['code'],historical_rows)
+        self.assertNotEqual(historical_rows,v.source_rows(self.raw))
         action=report['probe']['collector_input_actions'][0]['action']
         self.assertFalse(action['down_submitted'])
         self.assertEqual(len(action['moves']),4)
@@ -322,10 +324,10 @@ class SchoolHandoffVerificationTests(unittest.TestCase):
     def test_guest_focus_private_views_cover_all_callers_without_raw_mutation(self):
         a,q=self.focus(True);action=dict(activation=a,raw_input_samples=[{'hex':'0123'}])
         p=dict(mouse_controller=dict(receipt=action),collector_input_actions=[copy.deepcopy(action)],
-               story_phases=[dict(actions=[action])],workroom_inputs=[action],school_inputs=[action],battle_inputs=[action])
+               story_phases=[dict(actions=[action])],workroom_inputs=[action],school_inputs=[action],notice_inputs=[action],battle_inputs=[action])
         report=dict(probe=p,startup_activation=[dict(a,elapsed=1)])
         before=copy.deepcopy(report);view,observations=v.guest_focus_view(report,q,222,77)
-        self.assertEqual(report,before);self.assertEqual(len(observations),6)
+        self.assertEqual(report,before);self.assertEqual(len(observations),7)
         self.assertEqual(view['probe']['collector_input_actions'][0]['activation']['operations'],[])
         self.assertIs(view['probe']['story_phases'][0]['actions'][0]['raw_input_samples'],action['raw_input_samples'])
         self.assertEqual(observations[0]['receipt']['operations'],a['operations'])

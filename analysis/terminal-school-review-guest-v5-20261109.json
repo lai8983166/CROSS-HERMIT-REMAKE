@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "kind": "independent_limited_native_observation_review",
+  "accepted": false,
+  "review_completed": true,
+  "blocking_findings": [],
+  "reviewer": "battle_gate independent subagent",
+  "source_report": {
+    "path": "analysis/terminal-school-handoff-guest-v5-20261109.json.gz",
+    "bytes": 8717855,
+    "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+  },
+  "proof_report": {
+    "path": "analysis/terminal-school-proof-guest-v5-r2-20261109.json",
+    "bytes": 457686,
+    "sha256": "4904292d2356ed05824b84463d2802d15e4310ecdab16c7b031d71c2cf221cf0"
+  },
+  "reviewed_implementations": [
+    {
+      "path": "devtools/terminal_story_dispatch_verification.py",
+      "bytes": 4400,
+      "sha256": "4fc5757acb12abd6e4621ac91db2950c84818d1a9c7d9b1e99ac368d4cc1b287"
+    },
+    {
+      "path": "devtools/terminal_school_handoff_verification.py",
+      "bytes": 80810,
+      "sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288"
+    },
+    {
+      "path": "devtools/terminal_menu_handoff_verification.py",
+      "bytes": 62883,
+      "sha256": "2936eb51f81d878188f3d03ec1de9602abd7b8bf9c8e0d462033de9119421240"
+    },
+    {
+      "path": "devtools/terminal_input_window.py",
+      "bytes": 1452,
+      "sha256": "ab2d5f567c2eb43eab92657bf55205364033bda991f272db5631debf62119925"
+    },
+    {
+      "path": "devtools/terminal_school_handoff.py",
+      "bytes": 23885,
+      "sha256": "847bbfc999e7e1e6fa03acd631c51c00b0b1683a77a86673acb4b95b2f1386d0"
+    },
+    {
+      "path": "devtools/tests/test_terminal_story_dispatch_verification.py",
+      "bytes": 3882,
+      "sha256": "0c3a522d348d24330680373dc5551c05e419f4420185ac269c77702aab26e121"
+    }
+  ],
+  "review_scope": [
+    "Read and hash-bind actual guest-v5 source and r2 proof; no native execution and no source mutation.",
+    "Independently inspect main-agent AST opcode30 extension and supplemental release ordering; parent verifier SHA fixed and exactly one predicate extended.",
+    "Revalidate selected raw task graph, CPU frames, TLS and result locals; independently replay every recorded story keyboard sample through OriginalKeyQuery.",
+    "Seven mouse-edge conclusions checked in hash-bound proof; supplemental retreat release independently validated by the four-test suite. Full proof not rerun by reviewer."
+  ],
+  "opcode30": {
+    "asset": "CROSS HERMIT/CROSS HERMIT/DATA/ADV/DAT/CHAPTER004.YBC",
+    "asset_sha256": "228249975b534e216125f78a2c8563216700e6d40f38bfb250abe9e124227c4b",
+    "action_index": 153,
+    "transient_samples": [
+      5,
+      6
+    ],
+    "opcode": 30,
+    "length": 20,
+    "before_PC": 104,
+    "after_PC": 124,
+    "wait_before": 0,
+    "wait_after": 1,
+    "raw_VM_mutated": false
+  },
+  "supplemental_release": {
+    "post_release_index": 0,
+    "fast_bracket": [
+      564,
+      565
+    ],
+    "previous": 1,
+    "current": 0,
+    "pressed": 0,
+    "released": 1,
+    "ordering_supported_by_source_bound_collector": true
+  },
+  "terminal_endpoints": [
+    {
+      "elapsed": 1035.328,
+      "node": 153305152,
+      "thread_id": 2776,
+      "retreat_flag": 1,
+      "original_result_locals": {
+        "inner_result": 1,
+        "dispatcher_result": 3435973836,
+        "callback_result": 0
+      },
+      "return_sites": [
+        "0x421f8a",
+        "0x451716",
+        "0x453cb5"
+      ],
+      "TLS_verified": true
+    },
+    {
+      "elapsed": 1035.344,
+      "node": 153305152,
+      "thread_id": 2776,
+      "retreat_flag": 1,
+      "original_result_locals": {
+        "inner_result": 1,
+        "dispatcher_result": 3435973836,
+        "callback_result": 0
+      },
+      "return_sites": [
+        "0x421f8a",
+        "0x451716",
+        "0x453cdd"
+      ],
+      "TLS_verified": true
+    },
+    {
+      "elapsed": 1035.375,
+      "node": 153305152,
+      "thread_id": 2776,
+      "retreat_flag": 1,
+      "original_result_locals": {
+        "callback_result": 1
+      },
+      "return_sites": [
+        "0x421f8a",
+        "0x451758"
+      ],
+      "TLS_verified": true
+    },
+    {
+      "elapsed": 1035.656,
+      "node": 153305152,
+      "thread_id": 2776,
+      "retreat_flag": 1,
+      "original_result_locals": {
+        "callback_result": 1
+      },
+      "return_sites": [
+        "0x421f8a",
+        "0x451796"
+      ],
+      "TLS_verified": true
+    }
+  ],
+  "battle_worker_exit": {
+    "node": 153305152,
+    "thread_id": 2776,
+    "code": 0,
+    "wait_status": 0,
+    "elapsed": 1036.515,
+    "before_WM_CLOSE": true
+  },
+  "post_battle_menu_observations": [
+    {
+      "elapsed": 1036.578,
+      "node": 70999520,
+      "thread_id": 1752
+    },
+    {
+      "elapsed": 1037.578,
+      "node": 70999520,
+      "thread_id": 1752
+    }
+  ],
+  "mouse_actions": [
+    {
+      "stage": "title",
+      "input_edges_observed": true
+    },
+    {
+      "stage": "workroom",
+      "input_edges_observed": true
+    },
+    {
+      "stage": "departure",
+      "input_edges_observed": true
+    },
+    {
+      "stage": "confirmation",
+      "input_edges_observed": true
+    },
+    {
+      "stage": "opening_notice",
+      "input_edges_observed": true
+    },
+    {
+      "stage": "retreat_request",
+      "input_edges_observed": true
+    },
+    {
+      "stage": "retreat_confirmation",
+      "input_edges_observed": true
+    }
+  ],
+  "story_confirmations": [
+    {
+      "phase": "opening_ADV",
+      "confirmations": 178
+    },
+    {
+      "phase": "after_workroom_ADV",
+      "confirmations": 141
+    },
+    {
+      "phase": "battle_dialogue",
+      "confirmations": 25
+    }
+  ],
+  "independent_original_key_queries": 9329,
+  "limited_conclusion": "Actual later wait-call sites with saved inner result1, callback result1 and tail waits, battle worker exit0 and a distinct menu worker are observed. Dispatcher CCCCCCCC/callback0 describe only the first release snapshot and must not be extrapolated to later observations.",
+  "unproved": {
+    "accepted": false,
+    "complete_instruction_causality_proved": false,
+    "original_constructor_full_trace_proved": false,
+    "successful_OS_wait_return_proved": false,
+    "wait_return_proved": false,
+    "result_consumption_proved": false,
+    "full_resource_lifetime_proved": false,
+    "normal_PTD_cleanup_proved": false,
+    "WinMain_normal_return_proved": false,
+    "full_battle_exit_accepted": false,
+    "old_terminal_cases_replayed": false,
+    "independent_full_replay": false,
+    "formal_terminal_boundary_advanced": false,
+    "native_dependency_attestation_complete": false
+  },
+  "limitations": [
+    "No complete OS wait-return or full instruction/API trace; observed saved result and call sites do not prove all intervening execution.",
+    "No full result consumption, resource/PTD cleanup, WinMain return, two-case fresh native lifetime acceptance or independent complete replay.",
+    "Opcode30 dispatch instructions are within captured live code range; jump table4D03CF and callee4C61C0 have fixed EXE static authentication only, not captured live-range attestation."
+  ],
+  "tests": {
+    "command": ".venv-audit/Scripts/python.exe -B -X utf8 -m unittest devtools.tests.test_terminal_story_dispatch_verification",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "result": "OK",
+    "elapsed_seconds": 1.233,
+    "temp_directory": "F:/project/chaomofa/.venv-audit/tmp",
+    "summary": [
+      "Real opcode30 transient and unchanged raw samples.",
+      "Exact asset header and advanced-state tamper rejection.",
+      "Frozen-parent and original-code tamper rejection.",
+      "Actual supplemental release plus six tamper conditions."
+    ]
+  },
+  "new_native_runs": 0,
+  "new_raw_evidence_bytes": 0
+}

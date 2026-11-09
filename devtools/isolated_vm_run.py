@@ -8,7 +8,8 @@ from devtools.isolated_vm_guest_admin import run_script
 
 OVERLAY = ('isolated_game_compat.py', 'isolated_guest_focus.py', 'isolated_guest_dep_observer.py',
            'native_input_isolation.py','terminal_input_window.py','terminal_school_handoff.py',
-           'terminal_school_handoff_verification.py')
+           'terminal_school_handoff_verification.py','terminal_battle_notice.py',
+           'terminal_story_dispatch_verification.py')
 
 
 def run(kind, label):
@@ -32,6 +33,9 @@ def run(kind, label):
     before = [identity(p) for p in sources]
     for path in sources:
         vmrun(['CopyFileFromHostToGuest', VMX, path, guest_root / 'devtools' / path.name], guest=True)
+    if kind == 'school':
+        authorization=ROOT/'analysis/terminal-school-input-authorization-v2-20261109.json'
+        vmrun(['CopyFileFromHostToGuest',VMX,authorization,guest_root/'analysis'/authorization.name],guest=True)
     module = 'devtools.isolated_game_compat' if kind == 'compat' else 'devtools.terminal_school_handoff'
     argv = [module, '--out', str(guest_output)]
     if kind == 'school':

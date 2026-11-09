@@ -24,6 +24,7 @@ from devtools import terminal_story_input as story
 from devtools import terminal_workroom_input as workroom
 from devtools import terminal_school_input as school
 from devtools import terminal_battle_input as battle
+from devtools import terminal_battle_notice as notice
 from devtools.terminal_scene_resources import clone
 from devtools.terminal_story_catalog import Catalog
 from devtools.native_input_isolation import require_qualified_guest
@@ -33,8 +34,8 @@ from devtools.terminal_input_window import observe as observe_input_window
 ROOT=base.ROOT
 need=base.need
 word=base.word
-RANGES=tuple(dict.fromkeys(menu.RANGES+workroom.INPUT_RANGES+school.INPUT_RANGES+battle.INPUT_RANGES))
-AUTHORIZATION=ROOT/'analysis/terminal-school-input-authorization-v1-20261107.json'
+RANGES=tuple(dict.fromkeys(menu.RANGES+workroom.INPUT_RANGES+school.INPUT_RANGES+battle.INPUT_RANGES+notice.INPUT_RANGES))
+AUTHORIZATION=ROOT/'analysis/terminal-school-input-authorization-v2-20261109.json'
 CONTROLLER=None
 CATALOG=None
 
@@ -72,9 +73,14 @@ class OwnedAction:
             record['activation']=story.keyboard.focus_owned_window(c,hwnd)
             game=word(c.get(0x7A49FC,4));foreground=base.original.ubind('GetForegroundWindow',W.HWND,[])
             def sample():
-                return dict(elapsed=owned.elapsed(),wall_time_ns=time.time_ns(),
+                result=dict(elapsed=owned.elapsed(),wall_time_ns=time.time_ns(),
                     foreground_hwnd=foreground()or 0,mouse_hex=c.get(game+0x196C,0x58).hex(),
                     MAIN_event_hex=c.get(c.main+0x2C,8).hex(),VM_hex=c.get(base.native.VM,128).hex())
+                if self.name=='opening_notice':
+                    pointer=row['tasks'][0]['pointer']
+                    result['notice_state_hex']=c.get(pointer+0x190+0x30998,0x14).hex()
+                    result['battle_head_tail_hex']=c.get(pointer+0x43,0x1D).hex()
+                return result
             def send():
                 try:outcome['action']=self.send(c,hwnd)
                 except BaseException as exc:outcome['error']=repr(exc)
@@ -159,6 +165,8 @@ class SchoolController:
         self.battle=[OwnedAction(stage,lambda r,s=stage:battle.ready(r,s),
             lambda c,h,s=stage:battle.action(c,h,s,explicit_user_override=True),
             post_release_snapshots=(stage=='confirmation'))for stage in ('request','confirmation')]
+        self.notice=OwnedAction('opening_notice',lambda r:notice.ready(r,'opening_notice'),
+            lambda c,h:notice.action(c,h,'opening_notice',explicit_user_override=True))
         self.stop_reason=None;self.battle_seen=False
 
     def observe(self,c,owned,row):
@@ -175,8 +183,12 @@ class SchoolController:
         elif kinds=={battle.BATTLE}:
             need(all(a.attempted for a in self.school),'battle input follows both original school controls')
             self.battle_seen=True
+            if not self.notice.attempted and notice.ready(row,'opening_notice'):
+                self.notice.observe(c,owned,row);return
             if self.battle[0].attempted:self.battle[1].observe(c,owned,row);return
-            if battle.ready(row,'request'):self.battle[0].observe(c,owned,row);return
+            if battle.ready(row,'request'):
+                need(self.notice.attempted,'declared opening notice precedes retreat')
+                self.battle[0].observe(c,owned,row);return
             head=bytes.fromhex(row['tasks'][0]['scene_head_hex'])
             if head[0x43] and head[0x59]:phase=2
         if phase is None:return
@@ -188,7 +200,7 @@ class SchoolController:
 
     def count(self):
         return int(self.title.done)+sum(len(s.actions)for s in self.story_phases)+sum(
-            int(a.attempted)for a in [self.workroom,*self.school,*self.battle])
+            int(a.attempted)for a in [self.workroom,*self.school,self.notice,*self.battle])
 
     def reports(self):
         return dict(collector_input_actions=[self.title.receipt]if self.title.receipt else [],
@@ -199,7 +211,8 @@ class SchoolController:
             workroom_inputs=[self.workroom.receipt]if self.workroom.receipt else [],
             school_inputs=[a.receipt for a in self.school if a.receipt],
             battle_inputs=[a.receipt for a in self.battle if a.receipt],
-            maximum_mouse_actions=6,maximum_story_actions=448)
+            notice_inputs=[self.notice.receipt]if self.notice.receipt else [],
+            maximum_mouse_actions=7,maximum_story_actions=448)
 
 
 def progress_signature(row,controller):
@@ -234,7 +247,7 @@ def snapshot(c,owned):
             if vt==0x59A430:
                 task['scene_head_hex']=c.get(pointer,0x200).hex()
                 task['controller_task_backpointer']=word(c.get(pointer+0x190+0x117C38,4))
-                task['battle_gates']=battle.capture(c,pointer)
+                task['battle_gates']=notice.capture(c,pointer)
                 task['terminal_frames']=[dict(return_va=f['return_va'],pointer=f['bp']-0x80,hex=c.get(f['bp']-0x80,0x90).hex())
                     for f in (frame['chain'] if frame else []) if f['return_va']in(0x451ABC,0x451716,0x421F8A)]
             row['tasks'].append(task)
@@ -343,7 +356,8 @@ def run(out,seconds):
            ROOT/'devtools/terminal_battle_input.py',ROOT/'devtools/terminal_scene_owner_contract.py',
            ROOT/'devtools/terminal_story_catalog.py',ROOT/'devtools/terminal_owned_mouse.py',
            ROOT/'devtools/native_input_isolation.py',ROOT/'devtools/isolated_vm_preflight.py',
-           ROOT/'devtools/isolated_guest_focus.py',ROOT/'devtools/terminal_input_window.py',AUTHORIZATION]
+           ROOT/'devtools/isolated_guest_focus.py',ROOT/'devtools/terminal_input_window.py',
+           ROOT/'devtools/terminal_battle_notice.py',AUTHORIZATION]
     identities=[base.identity(p)for p in paths];catalog=Catalog()
     continuation=clone(continue_school,CATALOG=catalog)
     with school_focus_scope():
@@ -351,7 +365,7 @@ def run(out,seconds):
     need(identities==[base.identity(p)for p in paths],'complete new input/collector layer frozen during lifetime')
     result['parent_implementations']=result.pop('implementations')
     result.update(kind='original_workroom_school_continuation_observation',implementation_layers=identities,input_isolation=isolation,
-        observation_plan=dict(maximum_seconds=seconds,maximum_mouse_actions=6,story_phase_budgets=[192,192,64],
+        observation_plan=dict(maximum_seconds=seconds,maximum_mouse_actions=7,story_phase_budgets=[192,192,64],
             stable_unhandled_wait_seconds=60,retreat_is_separate_from_retained_neutral_timeout_cases=True),
         full_battle_exit_accepted=False,full_resource_lifetime_proved=False,wait_return_proved=False,
         result_consumption_proved=False)

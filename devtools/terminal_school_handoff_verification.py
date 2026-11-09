@@ -20,6 +20,7 @@ import types
 from devtools import terminal_menu_handoff_verification as menu
 from devtools import terminal_school_preparation_contract as school_contract
 from devtools import terminal_workroom_contract as workroom_contract
+from devtools import terminal_story_dispatch_verification as story_dispatch
 
 owner=menu.owner
 startup=menu.startup
@@ -33,7 +34,7 @@ UI=0x5A0C18
 WORKROOM=0x5A0904
 BATTLE=0x59A430
 TARGETS={'workroom':(917,741),'departure':(374,57),'confirmation':(456,404),
-         'retreat_request':(48,12),'retreat_confirmation':(568,390)}
+         'opening_notice':(512,336),'retreat_request':(48,12),'retreat_confirmation':(568,390)}
 SCHOOL_INPUT_RANGES=tuple(school_contract.RANGES.values())+(
     (0x61B628,0x61B63A),(0x625558,0x625560),(0x73BFD0,0x73C0D0),
     (0x5A0A40,0x5A0A48),(0x5A0C18,0x5A0C20),
@@ -43,6 +44,76 @@ WORKROOM_INPUT_RANGES=((0x49FD50,0x49FFF0),(0x4D5B70,0x4D5BEC),(0x4D5EC0,0x4D5FA
 BATTLE_INPUT_RANGES=((0x4539B0,0x453CFC),(0x453D00,0x453E04),(0x458580,0x458929),
     (0x456B20,0x456B58),(0x454C40,0x454C7A),(0x4577F0,0x45782B),
     (0x46B470,0x46B663),(0x411DF0,0x4120A0),(0x414400,0x414439),(0x60CB18,0x60CB28))
+NOTICE_INPUT_RANGES=BATTLE_INPUT_RANGES+(
+    (0x4549D0,0x454AB0),(0x454C80,0x454EE0),(0x467850,0x467AA0),
+    (0x4998B0,0x499C90),(0x499DA0,0x49A310),(0x49AD50,0x49AD8C),
+    (0x4DB2B0,0x4DB2F4),(0x415040,0x415099),(0x497C50,0x497C90),(0x59EAA4,0x59EAC0))
+
+
+def notice_fields(head,gates,pointer,game):
+    """Independently bind the opening notification to its actual waiting owner."""
+    need(len(head)==512 and word(head)==BATTLE,'original notice battle owner')
+    need(gates['pointer']==pointer and gates['controller_pointer']==pointer+0x190
+         and gates['panel_pointer']==pointer+0x117F20
+         and word(blob(gates['backpointer_hex'],4,'notice backpointer'))==pointer,
+         'notice actual controller and scene binding')
+    need(blob(gates['network_hex'],1,'notice network')==b'\0'
+         and blob(gates['panel_hex'],1,'notice panel')==b'\0','local unoccupied notice')
+    fields=(('notice',pointer+0x30B28,20),('notice_flags',0x7F44B9,2),
+            ('VM',0x7D7C28,128),('keyboard_action',game+0x1950,4),('mouse_pressed',game+0x1990,4))
+    values={}
+    for name,address,size in fields:
+        need(gates[name+'_pointer']==address,'original notice field address '+name)
+        values[name]=blob(gates[name+'_hex'],size,'notice '+name)
+    need(gates['game_pointer']==game,'notice actual original input owner')
+    activity=blob(gates['controller_activity_hex'],32,'notice controller state')
+    anim=values['notice']
+    need(head[0x30:0x32]==b'\0\0' and word(head,0x34)==2 and word(head,0x38)==5
+         and (head[0x43],head[0x44],head[0x58],head[0x59])==(1,3,0,2),
+         'original scene waits for post-script notice handshake')
+    need(struct.unpack_from('<h',activity)[0]!=0 and activity[8]==0
+         and activity[0x16]==1 and activity[0x18]==9,'original controller notice phase9')
+    need(anim[:3]==bytes((1,2,0)) and word(anim,8)==0xFF00 and word(anim,12)==0x800,
+         'original mode0 notification fully visible and waiting for input')
+    need(values['notice_flags'][0]!=0 and values['VM'][4]==0,'enabled opening notice after VM end')
+    need(word(values['mouse_pressed'])==0 and not(word(values['keyboard_action'])&0x8000),
+         'notice confirmation not already pressed')
+
+
+def notice_contract(raw):
+    from capstone import Cs,CS_ARCH_X86,CS_MODE_32
+    menu.contract.authenticate(raw);decoder=Cs(CS_ARCH_X86,CS_MODE_32)
+    checks={0x49A1B3:('call','0x499910'),0x49A1BA:('je','0x49a1d8'),
+        0x49A1C5:('call','0x454c80'),0x454CD8:('mov','byte ptr [ecx + 0x14], 1'),
+        0x454DDB:('je','0x454e13'),0x454E89:('mov','byte ptr [edx + 0x43], 0'),
+        0x49A285:('mov','byte ptr [eax + 0x108b3a], 1'),
+        0x499A5C:('and','edx, 1'),0x499A61:('jne','0x499a78'),
+        0x499A6E:('and','ecx, 0x8000'),0x499A76:('je','0x499ab9'),
+        0x499A9C:('mov','byte ptr [ecx + 1], 4'),0x499B38:('mov','byte ptr [edx], 0')}
+    for address,expected in checks.items():
+        ins=next(decoder.disasm(raw[address-0x400000:address-0x400000+15],address))
+        need((ins.mnemonic,ins.op_str)==expected,'original opening-notice branch '+hex(address))
+    need(struct.unpack_from('<6I',raw,0x499B5D-0x400000)==
+         (0x49999D,0x4999CF,0x499A50,0x499ABE,0x499AFD,0x499B35),'original notice dispatch')
+    need(struct.unpack_from('<14h',raw,0x59EAA4-0x400000)==
+         (0,0x800,120,0x800,512,336,1,0,0x800,16,0x800,512,304,0),'original notice modes')
+    return dict(instruction_checks=len(checks),accepted=False)
+
+
+def notice_transition(receipt,edge_result):
+    need(edge_result['input_edges_observed'],'notice actual press/held/release edges')
+    rows=receipt['input_samples'];down=receipt['action']['down_wall_time_ns']
+    states=[blob(r['notice_state_hex'],20,'sampled original notification')for r in rows]
+    heads=[blob(r['battle_head_tail_hex'],29,'sampled original script gate')for r in rows]
+    need(states[0][:3]==bytes((1,2,0)) and heads[0][0:2]==bytes((1,3)),
+         'notification waiting before actual input')
+    progress=[i for i,(r,s)in enumerate(zip(rows,states))if r['wall_time_ns']>=down
+              and s[2]==0 and (s[0]==1 and s[1]in(4,5) or s[0]==0 and s[1]==5)]
+    need(progress,'actual original notification left input wait after press')
+    need(all(s[:3]==bytes((1,2,0))for r,s in zip(rows,states)if r['wall_time_ns']<down),
+         'notification did not advance before the declared click')
+    return dict(post_press_progress_samples=progress,accepted=False,
+                full_native_instruction_causality_proved=False)
 
 
 def battle_fields(head,gates,pointer,stage):
@@ -190,7 +261,10 @@ def verify_ready(row,p,raw,game,workers,stage):
         need(len(row['tasks'])==1 and row['tasks'][0]['vtable']==BATTLE,'sole actual battle ready owner')
         task=row['tasks'][0];head=blob(task['scene_head_hex'],0x200,'ready battle head')
         need(head[:64].hex()==task['header_hex'] and row['scene_global']==task['pointer'],'current battle global/head')
-        battle_fields(head,task['battle_gates'],task['pointer'],stage)
+        if stage=='opening_notice':
+            notice_fields(head,task['battle_gates'],task['pointer'],game)
+            need(task['battle_gates']['VM_hex']==row['VM_hex'],'same frozen notice VM fields')
+        else:battle_fields(head,task['battle_gates'],task['pointer'],stage)
         wait,caller=0x453CB5,0x451ABC
     need('TLS'in task,'ready full real TLS captured')
     frame=next(f for f in row['frames']if f['tid']==task['thread_id'])
@@ -204,7 +278,7 @@ def verify_action_guard(g,stage,p,raw,game,hwnd,worker,check_disk=True):
     need((g['pid'],g['hwnd'],g['game'],g['main'],g['node'])==
          (p['pid'],hwnd,game,p['main'],worker['pointer']),'actual guard owner tuple')
     need(g['all_threads_resumed_before_input']is True,'input after snapshot resume')
-    is_battle=stage.startswith('retreat_')
+    is_battle=stage.startswith('retreat_') or stage=='opening_notice'
     head=blob(g['head_hex'],0x200 if is_battle else 64,'guard node header');ptr=worker['pointer'];tid=worker['thread_id']
     need(word(head,8)==p['main']+0x64 and word(head,0x24)==tid and
          word(head,0x20)==worker['original_handle'] and word(head,0x1C)==worker['event']['remote_handle'],
@@ -231,7 +305,8 @@ def verify_action_guard(g,stage,p,raw,game,hwnd,worker,check_disk=True):
         need(word(selected)==ptr and word(selected,8)==caller,'school actual selector this/caller memory')
     elif is_battle:
         need(g['stage']==stage.removeprefix('retreat_') and g['scene_global']==ptr,'actual retreat stage/current scene')
-        battle_fields(head,g['battle_gates'],ptr,stage)
+        if stage=='opening_notice':notice_fields(head,g['battle_gates'],ptr,game)
+        else:battle_fields(head,g['battle_gates'],ptr,stage)
         heads=[word(manager,i*8)for i in range(32)]
         need(sum(v!=0 for v in heads)==1 and ptr in heads and word(head,12)==0,'guard sole original battle')
         inner=blob(g['inner_hex'],0x18,'ordinary battle original locals')
@@ -245,7 +320,7 @@ def verify_action_guard(g,stage,p,raw,game,hwnd,worker,check_disk=True):
              struct.unpack_from('<H',selected,4)[0]==1,'workroom actual selector this/caller/unaccepted state')
     cb=next(f for f in frame['chain']if f['return_va']==0x421F8A)
     startup.verify_tls(g['TLS'],frame,head,ptr,tid,p['pid'],{'pointer':cb['bp']-0x80},2)
-    need(g['code']==menu.code_rows(raw,BATTLE_INPUT_RANGES if is_battle else SCHOOL_INPUT_RANGES if school else WORKROOM_INPUT_RANGES),'complete original input ranges')
+    need(g['code']==menu.code_rows(raw,NOTICE_INPUT_RANGES if stage=='opening_notice' else BATTLE_INPUT_RANGES if is_battle else SCHOOL_INPUT_RANGES if school else WORKROOM_INPUT_RANGES),'complete original input ranges')
     need(word(blob(g['input_HWND_hex'],4,'actual input HWND'))==hwnd,'original input HWND global')
     mode=word(blob(g['coordinate_mode_hex'],4,'coordinate mode'));need(mode in(0,1),'original coordinate mode')
     blob(g['cursor_hex'],8,'actual game cursor')
@@ -380,6 +455,54 @@ def verify_title_input(p,raw,game,hwnd,worker,check_disk=True):
     return result
 
 
+def supplemental_release_rows(receipt,stage,p,raw,game,hwnd,workers,key):
+    """Use actual frozen release frames bracketed by raw fast input samples.
+
+    observe() captures a fast row, detects worker completion, then captures one
+    supplemental frame before the next fast row. Its final fast row closes the
+    last bracket. Keep these indices separate; never invent a fast sample.
+    """
+    post=receipt['post_release_snapshots']
+    if stage!='retreat_confirmation':
+        need(not post,'only retreat confirmation collects supplemental frames')
+        return []
+    if not post:return []
+    fast=receipt['input_samples'];finished=receipt['input_window']['finished_wall_time_ns']
+    up=receipt['action']['up_wall_time_ns']
+    starts=[i for i,s in enumerate(fast)if s['wall_time_ns']<=finished]
+    need(starts and up<=finished,'actual mouse release precedes completed-worker observation')
+    first=starts[-1]
+    need(first+len(post)<len(fast),'each frozen observation has both raw input brackets')
+    result=[]
+    for j,row in enumerate(post):
+        before,after=fast[first+j:first+j+2]
+        need(up<=before['wall_time_ns']<=after['wall_time_ns']
+             and before['elapsed']<=row['elapsed']<=after['elapsed']
+             and before['foreground_hwnd']==after['foreground_hwnd']==hwnd,
+             'frozen frame lies after release inside the same owned input bracket')
+        verify_task_row(row,p,raw,game,workers,False)
+        mouse=blob(row['mouse_hex'],0x58,'frozen original mouse fields')
+        previous,current,pressed,released=(word(mouse,o)for o in(28,32,36,48))
+        need(pressed==((previous^current)&current) and released==((previous^current)&previous),
+             'coherent mouse edge in atomic suspended frame')
+        if not(released&1):continue
+        need(previous&1 and not(current&1) and struct.unpack_from('<ii',mouse)==TARGETS[stage],
+             'actual left release at the reviewed retreat confirmation target')
+        task=next((t for t in row['tasks']if(t['pointer'],t['thread_id'])==key),None)
+        need(task is not None and task['vtable']==BATTLE and 'TLS'in task
+             and bytes.fromhex(task['scene_head_hex'])[0x31]==1,
+             'frozen release retains the same current retreat worker and TLS')
+        terminal=verify_terminal_rows([row],p,workers)
+        need(any(t['node']==key[0]and t['thread_id']==key[1]
+                 and(t['original_result_locals'].get('inner_result')==1
+                     or t['original_result_locals'].get('callback_result')==1)for t in terminal),
+             'frozen release bound to actual original accepted retreat result')
+        result.append(dict(post_release_index=j,before_input_index=first+j,
+            after_input_index=first+j+1,elapsed=row['elapsed'],
+            before_wall_time_ns=before['wall_time_ns'],after_wall_time_ns=after['wall_time_ns']))
+    return result
+
+
 def verify_mouse_action(receipt,stage,p,raw,game,hwnd,workers,check_disk=True):
     verify_input_window(receipt)
     need(stage in TARGETS and receipt['error']is None,'successful scoped mouse action')
@@ -428,16 +551,20 @@ def verify_mouse_action(receipt,stage,p,raw,game,hwnd,workers,check_disk=True):
             if stage=='retreat_request':
                 stored=struct.unpack_from('<ii',mouse,0x50)
                 if word(mouse,0x4C)==3 and 9<=stored[0]<=88 and 3<=stored[1]<=24:request_releases.append(i)
-    observed=bool(press and held and release and min(press)<max(release))
+    supplemental=supplemental_release_rows(receipt,stage,p,raw,game,hwnd,workers,key)
+    observed=bool(press and held and ((release and min(press)<max(release))
+                  or(supplemental and min(press)<supplemental[0]['before_input_index'])))
     if stage=='retreat_request':observed=bool(observed and request_releases)
     # Replay original hit consumer separately; native state is never input to a
     # host-side game call. This only checks the meaning of the recorded target.
     if stage=='departure':need(school_contract.original_depart_hit(raw,*target,pressed=1)['control']==0,'original departure control replay')
     elif stage=='confirmation':need(school_contract.original_confirm_hit(raw,*target,pressed=1)['selected'],'original confirmation replay')
     elif stage=='workroom':need(workroom_contract.original_hit(raw,*target,pressed=1)['exit_press_observed'],'original workroom exit replay')
+    elif stage=='opening_notice':notice_contract(raw)
     else:retreat_contract(raw)
     return dict(stage=stage,node=key[0],thread_id=key[1],input_edges_observed=observed,
         press_samples=press,held_samples=held,release_samples=release,asynchronous_incoherent_samples=incoherent,
+        supplemental_release_samples=supplemental,
         original_request_release_gate_samples=request_releases,
         feedback_corrections=corrections,
         down_to_up_ms=(up-down)/1e6,before_elapsed=before,after_elapsed=after,
@@ -446,7 +573,7 @@ def verify_mouse_action(receipt,stage,p,raw,game,hwnd,workers,check_disk=True):
 
 def source_rows(raw):
     rows=owner.source_rows(raw)+menu.code_rows(raw,startup.EXTRA_RANGES+startup.V2_RANGES+
-        menu.EXTRA_RANGES+menu.STORY_RANGES+WORKROOM_INPUT_RANGES+SCHOOL_INPUT_RANGES+BATTLE_INPUT_RANGES)
+        menu.EXTRA_RANGES+menu.STORY_RANGES+WORKROOM_INPUT_RANGES+SCHOOL_INPUT_RANGES+BATTLE_INPUT_RANGES+NOTICE_INPUT_RANGES)
     seen=set();result=[]
     for row in rows:
         key=(row['pointer'],row['bytes'])
@@ -568,10 +695,10 @@ def verify_report(report,raw,inventory,check_disk=True,startup_root=None):
     startup.verify_event(p['manager_event'],p['pid'],'continuation manager')
     need(p['manager_event']['remote_handle']==p['startup']['worker']['manager_event']['remote_handle'],'same original scheduler event')
     plan=report['observation_plan'];need(type(plan['maximum_seconds'])is int and 900<=plan['maximum_seconds']<=1800 and
-        plan['maximum_mouse_actions']==6 and plan['story_phase_budgets']==[192,192,64] and
+        plan['maximum_mouse_actions']==7 and plan['story_phase_budgets']==[192,192,64] and
         plan['stable_unhandled_wait_seconds']==60 and plan['retreat_is_separate_from_retained_neutral_timeout_cases']is True,
         'explicit bounded independent retreat observation plan')
-    need(p['maximum_mouse_actions']==6 and p['maximum_story_actions']==448 and
+    need(p['maximum_mouse_actions']==7 and p['maximum_story_actions']==448 and
          p['collector_input_actions_scope']=='title_menu_only','all mouse/story action budgets explicit')
     samples=p['samples'];need(1<=len(samples)<=5000 and [s['index']for s in samples]==list(range(len(samples))),'bounded ordered retained snapshots')
     times=[number(s['elapsed'],'snapshot elapsed')for s in samples]
@@ -580,12 +707,13 @@ def verify_report(report,raw,inventory,check_disk=True,startup_root=None):
     ws=p['workers'];need(1<=len(ws)<=128,'bounded retained worker identities')
     workers={(w['pointer'],w['thread_id']):w for w in ws};need(len(workers)==len(ws),'unique actual worker lifetimes')
     seen={};tls_ids={};tls_count=0;programs={};all_rows=list(samples);post_only=[]
-    action_lists=[p['workroom_inputs'],p['school_inputs'],p['battle_inputs']]
-    need(all(isinstance(x,list)for x in action_lists) and len(action_lists[0])<=1 and len(action_lists[1])<=2 and len(action_lists[2])<=2,'bounded declared continuation mouse actions')
+    action_lists=[p['workroom_inputs'],p['school_inputs'],p['notice_inputs'],p['battle_inputs']]
+    need(all(isinstance(x,list)for x in action_lists)
+         and all(len(x)<=n for x,n in zip(action_lists,(1,2,1,2))),'bounded declared continuation mouse actions')
     for actions in action_lists:
         for action in actions:
             post=action['post_release_snapshots'];need(isinstance(post,list) and len(post)<=128,'bounded supplemental post-release snapshots')
-            if actions is not action_lists[2] or action.get('stage')!='confirmation':need(not post,'only battle confirmation supplements terminal snapshots')
+            if actions is not action_lists[3] or action.get('stage')!='confirmation':need(not post,'only battle confirmation supplements terminal snapshots')
             need(all(action['before_elapsed']<=r['elapsed']<=action['after_elapsed']for r in post),'post-release snapshots within action interval')
             all_rows.extend(post)
             post_only.extend(post)
@@ -629,8 +757,13 @@ def verify_report(report,raw,inventory,check_disk=True,startup_root=None):
     for phase,name,maximum,vt in zip(phases,('opening_ADV','after_workroom_ADV','battle_dialogue'),(192,192,64),(menu.ADV,menu.ADV,BATTLE)):
         need(phase['name']==name and phase['maximum']==maximum and type(phase['budget_exhausted'])is bool,'explicit original story phase')
         view=dict(p,collector_story_input_actions=phase['actions'],maximum_story_confirmations=maximum,collector_input_actions_scope='mouse_menu_only')
-        verifier=menu.verify_story_actions if vt==menu.ADV else clone_verifier(menu.verify_story_actions,ADV=BATTLE)
-        results=verifier(view,raw,game,hwnd,workers,maximum)
+        def code_for_action(action):
+            row=action['before_sample'];record=row['program_code']
+            need(verify_program(record,bytes.fromhex(row['VM_hex']),inventory)is not None,
+                 'dispatch extension requires original live byte-identified program')
+            asset=record['assets'][0];data=asset_bytes(asset['path'],asset['sha256'],asset['bytes'])
+            return data[asset['code_offset']:asset['code_offset']+asset['code_bytes']]
+        results=story_dispatch.verify(view,raw,game,hwnd,workers,maximum,vt,code_for_action)
         for action in phase['actions']:
             row=action['before_sample'];need('program_code'in row and verify_program(row['program_code'],bytes.fromhex(row['VM_hex']),inventory)is not None,'input only to live byte-identified script')
             if vt==BATTLE:
@@ -638,10 +771,13 @@ def verify_report(report,raw,inventory,check_disk=True,startup_root=None):
                 need(head[0x43] and head[0x59],'original battle script/dialogue active')
         story_results.append(dict(name=name,confirmations=results,budget_exhausted=phase['budget_exhausted']))
     outputs=[]
-    for receipts,stages in zip(action_lists,(('workroom',),('departure','confirmation'),('retreat_request','retreat_confirmation'))):
-        for receipt,stage in zip(receipts,stages):outputs.append(verify_mouse_action(receipt,stage,p,raw,game,hwnd,workers,check_disk))
+    for receipts,stages in zip(action_lists,(('workroom',),('departure','confirmation'),('opening_notice',),('retreat_request','retreat_confirmation'))):
+        for receipt,stage in zip(receipts,stages):
+            observed=verify_mouse_action(receipt,stage,p,raw,game,hwnd,workers,check_disk)
+            if stage=='opening_notice':observed['notice_transition']=notice_transition(receipt,observed)
+            outputs.append(observed)
     before_by_stage={r['stage']:r['before_elapsed']for r in outputs}
-    order=['workroom','departure','confirmation','retreat_request','retreat_confirmation']
+    order=['workroom','departure','confirmation','opening_notice','retreat_request','retreat_confirmation']
     need([r['stage']for r in outputs]==order[:len(outputs)],'original UI continuation stages without bypass')
     need(all(a['after_elapsed']<=b['before_elapsed']for a,b in zip(outputs,outputs[1:])),'ordered nonoverlapping UI actions')
     if outputs:need(title.get('input_edges_observed')and 'exit'in opening[0],'workroom actions follow actual title input and menu retirement')
@@ -714,7 +850,8 @@ LAYER_IMPLEMENTATIONS=('devtools/terminal_school_handoff.py','devtools/terminal_
     'devtools/terminal_owned_mouse.py',
     'devtools/native_input_isolation.py','devtools/isolated_vm_preflight.py',
     'devtools/isolated_guest_focus.py','devtools/terminal_input_window.py',
-    'analysis/terminal-school-input-authorization-v1-20261107.json')
+    'devtools/terminal_battle_notice.py',
+    'analysis/terminal-school-input-authorization-v2-20261109.json')
 
 
 def read_report(path,digest):
@@ -740,8 +877,9 @@ def verify_implementations(report):
          'exact new collector/input/catalog implementation layers and base identity')
     authorization=(ROOT/LAYER_IMPLEMENTATIONS[-1]).read_bytes();doc=json.loads(authorization)
     need(doc['prior_explicit_mouse_override']==dict(path=menu.AUTHORIZATION,sha256=menu.AUTHORIZATION_SHA)
-         and doc['maximum_mouse_actions']==6 and doc['story_phase_budgets']==[192,192,64]
-         and len(doc['mouse_actions'])==6 and doc['keyboard_authorization_record']==menu.STORY_IMPLEMENTATIONS[-1],
+         and doc['maximum_mouse_actions']==7 and doc['story_phase_budgets']==[192,192,64]
+         and len(doc['mouse_actions'])==7 and doc['keyboard_authorization_record']==menu.STORY_IMPLEMENTATIONS[-1]
+         and doc['notice_confirmation_is_separate_from_ADV_opcode51'] is True,
          'continued explicit original input authorization scope')
     owner.false_fields(doc,('game_memory_or_result_writes_authorized','forced_task_termination_as_handoff_authorized',
                            'approval_repeated'))
@@ -783,6 +921,7 @@ def _verify_file(path,digest,report,startup_root=None):
             'devtools/terminal_menu_handoff_verification.py','devtools/terminal_scene_owner_verification.py',
             'devtools/terminal_startup_handoff_verification.py','devtools/terminal_menu_transition_contract.py',
             'devtools/terminal_school_preparation_contract.py','devtools/terminal_workroom_contract.py',
+            'devtools/terminal_story_dispatch_verification.py',
             'tools/school_native_dialogue_verification.py','tools/school_native_scene_verification.py')))
     return result
 
@@ -1006,7 +1145,7 @@ def guest_focus_view(report,isolation,pid,hwnd):
     for i,phase in enumerate(p['story_phases']):
         view['story_phases'].append(dict(phase,actions=[action(a,'story:%d:%d'%(i,j))
             for j,a in enumerate(phase['actions'])]))
-    for key in ('workroom_inputs','school_inputs','battle_inputs'):
+    for key in ('workroom_inputs','school_inputs','notice_inputs','battle_inputs'):
         view[key]=[action(a,key+':'+str(j))for j,a in enumerate(p[key])]
     need(len({o['receipt']['own_pid']for o in observations})<=1,
          'all guest activations belong to the same collector process lifetime')
