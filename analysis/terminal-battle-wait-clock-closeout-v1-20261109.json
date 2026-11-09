@@ -1,0 +1,796 @@
+{
+  "kind": "clock_boundary_and_original_endpoint_increment",
+  "created_utc": "2026-11-09T13:08:04.559294+00:00",
+  "parent": {
+    "path": "analysis/terminal-battle-wait-closeout-v1-20261109.json",
+    "bytes": 54585,
+    "sha256": "9c52186bb3664fcd814fc9db9afc35fe722a850bbabec7900c7d9dd8715fc55f"
+  },
+  "accepted": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "continuous_result_consumption_proved": false,
+  "full_resource_lifetime_proved": false,
+  "two_fresh_full_native_cases_verified": false,
+  "progress": {
+    "retained_same_battle_source_reused": true,
+    "recovered_result_endpoint": "453CB5 inner_result=1",
+    "recovered_tail_endpoint": "451758 tail_counter=0 callback_result=1",
+    "added_old_successful_waits": 0,
+    "old_crossing_frames_still_unproved": [
+      213,
+      239,
+      383,
+      419
+    ],
+    "clock_armed": {
+      "snapshots": 344,
+      "raw_QPC_qualified": 343,
+      "converted_UTC_false_crossings": 17,
+      "true_QPC_crossings": 1
+    },
+    "clock_settled": {
+      "snapshots": 218,
+      "raw_QPC_qualified": 218,
+      "distinct_waits": 61,
+      "true_QPC_crossings": 0,
+      "complete_ETL_events": 94597,
+      "selected_records": 1501
+    },
+    "actual_startup_PTD_debug_header_and_heap_mode_observed": true
+  },
+  "limitations": [
+    "old snapshots contain no raw QPC and cannot be retrospectively accepted",
+    "supplemental battle endpoints lack complete precise brackets and raw Nt argument stack",
+    "new data brackets exclude original context acquisition and settling; no complete state/ABI/instruction coverage",
+    "nonwait settling timing absent; no full-attempt cumulative holding duration claimed",
+    "current startup allocator observations do not prove old battle free, TLS clear, handle closure or scene cleanup",
+    "legacy UTC diagnostic local long-preflight flag is not production authorization for new collector"
+  ],
+  "efficiency": {
+    "new_full_battle_prefix_attempts": 0,
+    "new_formal_full_replays": 0,
+    "new_bounded_native_attempts": 4,
+    "attempts": [
+      "clock-v1 readiness failure",
+      "clock-v2 dual-clock diagnostic",
+      "clock-armed-v1 delayed sampling start",
+      "clock-settled-v1 held-thread settling"
+    ],
+    "decoder_fixes_reused_same_ETL": true,
+    "final_native_observation_seconds": 21.953,
+    "complete_path_speedup_claimed": false
+  },
+  "tests": {
+    "receipt": {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-gaps-v1-20261109.json",
+      "bytes": 1295,
+      "sha256": "f831a9abf45a313f23f32f5b0c4b26d6efe9dd2bcfc46e75187032820e39bfc5"
+    },
+    "ordinary_count": 429,
+    "optimized_count": 429,
+    "ordinary_seconds": 22.109000000004016,
+    "optimized_seconds": 22.43800000000192,
+    "passed": true
+  },
+  "preservation": {
+    "checked_utc": "2026-11-09T13:00:22.796472+00:00",
+    "parent": {
+      "path": "analysis/reverse-validation-preservation-v1-20261106.json",
+      "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+    },
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "independent_review": {
+    "path": "analysis/terminal-battle-wait-clock-settled-independent-review-v1-20261109.json",
+    "bytes": 18279,
+    "sha256": "207f83a63c5f7a77c6edc942f8e839fc14af8fcd3918967b789379efcb0ec8c1"
+  },
+  "strict_OpenSpec_valid": true,
+  "host_evidence_files": [
+    {
+      "path": ".venv-audit/native-worker/audit-battle-wait-clock-staged.py",
+      "bytes": 2144,
+      "sha256": "8711688052a3a613de5eef73d3487e82910ab346b3dfd822cc75393fd4f8bb46"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-clock-staged-audit-preclose-v1.json",
+      "bytes": 9662,
+      "sha256": "463a06e3c762ef9f6f8720b70c665535f67d3089efd5a4aa8345bde637f1c300"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-guest-storage-clock-v1-20261109.json",
+      "bytes": 2616,
+      "sha256": "cde967bb823b3e85042509dceb29378e32bd0a57757251575b43fdddf03d40cf"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-guest-transfer-retirement-clock-v1-20261109.json",
+      "bytes": 13827,
+      "sha256": "6611457ac188287f0f42042c6099189bf110c64915136a458024674f9a435456"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-preservation-clock-v1-20261109.json",
+      "bytes": 349,
+      "sha256": "5ad30026fa1ce9df9d0130a393cc19fb3bbe086fa2971c486b180673583b48c3"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-gaps-v1-20261109.json",
+      "bytes": 1295,
+      "sha256": "f831a9abf45a313f23f32f5b0c4b26d6efe9dd2bcfc46e75187032820e39bfc5"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-gaps-v1-console.log",
+      "bytes": 1074,
+      "sha256": "d871cef098d199aceccfdbb744b7286426fbdf85151acc314001f72d3c1b8c69"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-wait-gaps-login-v2-20261109.json",
+      "bytes": 1127,
+      "sha256": "40ee2762b19c21b618798911d274de5e69106115dfe5beb4a4b30e6eea09e716"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-wait-gaps-v1-20261109.json",
+      "bytes": 1127,
+      "sha256": "83ada2e053c773eb70305f2ad8ce73938929103efa4dea241be9acbbc695633a"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-gaps-v1.py",
+      "bytes": 2405,
+      "sha256": "d2e7a72fb606735e203e63785e56d37f8a2d2ec3e4d6e191e6b859534e9d9ea4"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-preservation-clock-v1.py",
+      "bytes": 1221,
+      "sha256": "abedfd84e01df604d1fdad9bef09880e4d38eb786ec16756aad127ad9f006fc1"
+    },
+    {
+      "path": ".venv-audit/native-worker/clock-settled-raw-v1-console.log",
+      "bytes": 1603,
+      "sha256": "29935567890da5c70f36fa29391cfdd3b618cc9f3fcb2ca122733d5402df94bc"
+    },
+    {
+      "path": ".venv-audit/native-worker/clock-settled-utc-v1-console.log",
+      "bytes": 1681,
+      "sha256": "b160c03c41fca6501126f357043af63a9527a0fe779925922d1f5aac80ef56ef"
+    },
+    {
+      "path": ".venv-audit/native-worker/clock-settled-v1-console.log",
+      "bytes": 1052,
+      "sha256": "64431907e224bb81eca5e43ea56ed32c13328e141a821e484e4cb03237105a90"
+    },
+    {
+      "path": ".venv-audit/native-worker/clock-transfer-cleanup-console.log",
+      "bytes": 239,
+      "sha256": "61a7432fafd1cf376688eee3ec02d8ce3c135942c4fe049f3370ebcf772fc511"
+    },
+    {
+      "path": ".venv-audit/native-worker/clock-transfer-plan-console.log",
+      "bytes": 228,
+      "sha256": "d3069e24a9172940c9546f010d9c6b2dcd4ed0a8e52ac10ff182effc15dc8365"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-battle-wait-clock.py",
+      "bytes": 7591,
+      "sha256": "75003cf1fe065643901b0fa9cf6202f34d01626deb0c055083ea8b3ee3e0dacd"
+    },
+    {
+      "path": ".venv-audit/native-worker/deploy-wait-gap-qualification.py",
+      "bytes": 369,
+      "sha256": "32efaccbb6bede96d6d8f1a6aaaaf6ace7b740734b3e9eedd241e444d10c64f8"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-preflight-wait-gaps-v2-20261109.json",
+      "bytes": 1510,
+      "sha256": "4d304e5483951c21f4817be20fd56c253d30d03bc9df1ddceeef5904e2db5469"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-battle-wait-gaps.py",
+      "bytes": 2670,
+      "sha256": "45a421b51cf9be988e648bd277c633cef5ecbc21259c8919f66a23371102d6ad"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-clock-comparison.py",
+      "bytes": 1427,
+      "sha256": "87e639ea0c84de582e1dbe861dfec239af4f765930b6c972475dce177551bb52"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-clock-guest.py",
+      "bytes": 573,
+      "sha256": "fa292ab185eb89d568ab77d5e55d1db01ce528afe951c94424e63fa43d57dfd3"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-clock-settled-progress.py",
+      "bytes": 599,
+      "sha256": "98c606d55fadd7f85b8529972192d90c27eeab46c50f74eccb353cfa9b621059"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-guest-login.py",
+      "bytes": 514,
+      "sha256": "e67ad093786bbe8dd9f269ebfc99bd79fa590337ed15f043ecbed43ae820a2fd"
+    },
+    {
+      "path": ".venv-audit/native-worker/inspect-heap-observer-capability.py",
+      "bytes": 1932,
+      "sha256": "f3fbefb3d261c06e8c178036b76148e02e80ad83913c770b5dd4fe94631f1a64"
+    },
+    {
+      "path": ".venv-audit/native-worker/inventory-battle-wait-guest-clock-v1.py",
+      "bytes": 1568,
+      "sha256": "4ff5fe746080ea1f30103fc0665949aad5c187d01501769d72569807db502e84"
+    },
+    {
+      "path": ".venv-audit/native-worker/nvram",
+      "bytes": 8684,
+      "sha256": "b97c01031e7afee8e3bc2cd6b8893c61f9e6810482ffd82cd8e7e74fdff9f32f"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-wait-gaps-v1-20261109.json",
+      "bytes": 1899,
+      "sha256": "9b2843ba6ac23ad478d5a21492164dde9b19de2749c744aae3235f47049955de"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-wait-gaps-v2-20261109.json",
+      "bytes": 4379,
+      "sha256": "9a523eb5c75d565d6116229ae7aa59ca4672dea1b284d5b9033837768718108a"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-battle-wait-clock-transfers-v1.py",
+      "bytes": 4368,
+      "sha256": "c3dfaacae88549fb37929ab12a3ffed6fb1c213d91742f551f005f7f7ecf590e"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-battle-wait-clock-main.py",
+      "bytes": 4191,
+      "sha256": "e935a2f319a74431ccea4f1d461bf75fafa499558bab462cf7bc5de4c2f74c9f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-raw-v1-20261109-driver.py",
+      "bytes": 953,
+      "sha256": "0d0b0c7da0343d0fd84c8e2652f7dea1bb0ab37267eb5c559ab8e69cab5a5b33"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-raw-v1-20261109.json",
+      "bytes": 18988,
+      "sha256": "5f3c851aa5c0bc026ac6747e766ebd94820ecb5cec423e4560e9c1c576a99847"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-raw-v1-20261109.log",
+      "bytes": 734,
+      "sha256": "f10616787f3638315bee41d4a824fad901ee5aa1695c501b90f09bf85c19f32b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-raw-v1-20261109.records.json.gz",
+      "bytes": 55918,
+      "sha256": "0ee5bff4b24acf70a2ecbdd72886d4ea476a2628c6bf5dce6434707f444ecf40"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-raw-v1-20261109.run.json",
+      "bytes": 4322,
+      "sha256": "79b399a2f83f56b8b7256ca837694fdc1f728b8351ac19a99aed02a3d313a8ba"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-utc-v1-20261109-driver.py",
+      "bytes": 959,
+      "sha256": "76a8c1a69dfee5f98a3f13ff330051f56b8afa19d1be797d324c5fb6c0f9af01"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-utc-v1-20261109.json",
+      "bytes": 29493,
+      "sha256": "de30ae36b8589f3511df7e32fe47756764943a008a9672c3170daeca236eed57"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-utc-v1-20261109.log",
+      "bytes": 832,
+      "sha256": "e4b0fd62ca31a03053819ce9a443d64a404ae22afeedf2fecd63b6b20ff5f1cd"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-utc-v1-20261109.records.json.gz",
+      "bytes": 56227,
+      "sha256": "b071cc90e8ad2d47fa1e7bce73c3fae9a43b47095baa2a74f9abffacbfdee368"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-armed-utc-v1-20261109.run.json",
+      "bytes": 4272,
+      "sha256": "f1cc971ac7c305ee70ae99b0115e8662b07cf232a7f734cdfbd143caa92c0ee8"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-raw-v1-20261109-driver.py",
+      "bytes": 929,
+      "sha256": "2ac4395c9af4c2e395391afd710d302e2e1615edc90e2a255fbd252421420128"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-raw-v1-20261109.json",
+      "bytes": 18746,
+      "sha256": "e6572d3972d478796edd42b3062ba0a36cb15d139249fefd2665c7b3e8085061"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-raw-v1-20261109.log",
+      "bytes": 727,
+      "sha256": "95c2bd383a5a342d993cd402489608869e46e2f2f7dbbf15eae2599ec271f7dc"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-raw-v1-20261109.records.json.gz",
+      "bytes": 16814,
+      "sha256": "2779f06e4d44503d6b900fe65dc284fed94a5b48c0446286ca910bc6c19a971f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-raw-v1-20261109.run.json",
+      "bytes": 4278,
+      "sha256": "04333a406d43b29ffd5e9a28adc46adc9a9893adf81249be46d4cbbe58f81165"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-raw-v1-20261109-driver.py",
+      "bytes": 961,
+      "sha256": "d8d26c9b0b1ab45d43d4baa459b6cbe955ecbb691e314f983704a3bc0ca11330"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-raw-v1-20261109.json",
+      "bytes": 18692,
+      "sha256": "70074009fe3b239f134a3ef1a9896ba810ea384c15f92bd5051cd4a38f1c9dc0"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-raw-v1-20261109.log",
+      "bytes": 735,
+      "sha256": "9993d3b6324c3c5b26681bb63c6b880c4e4b29ac6605c27bf10123caf850e008"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-raw-v1-20261109.records.json.gz",
+      "bytes": 32302,
+      "sha256": "92d337a3c3854dc01f19e6f66f28bddb6d3be59d14cea039ad5c253befbd537b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-raw-v1-20261109.run.json",
+      "bytes": 4335,
+      "sha256": "69353f102778707a0ed748a34e0de4cb179f2015c639473b94d52b4ceef6f01c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-utc-v1-20261109-driver.py",
+      "bytes": 967,
+      "sha256": "3b1426fcab20e80924a5366f2f67094a08ef505fb75c6181a9eace9a276560ec"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-utc-v1-20261109.json",
+      "bytes": 91323,
+      "sha256": "88049cbdcd2d45112e171e222f83c71b38ed60f09c479aa26e8b740a6afb25c2"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-utc-v1-20261109.log",
+      "bytes": 771,
+      "sha256": "46f6aac92e2c1bbe1bc87493b53705b111841a08a076456a0c5b57bf4037e563"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-utc-v1-20261109.records.json.gz",
+      "bytes": 32519,
+      "sha256": "c4a3c04912c3dc076e6504fcee291fd96f984f7cd7e345003e17870ff75dc519"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-utc-v1-20261109.run.json",
+      "bytes": 4207,
+      "sha256": "3b0b19d44e46d85942a51c62f13faa8593013075863ce4017d5f24c27f49e7ee"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-utc-v1-20261109-driver.py",
+      "bytes": 935,
+      "sha256": "2d021cfe009ab46ba13e967d978c76ead6dbd46735a7734049df85e89da73ec4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-utc-v1-20261109.json",
+      "bytes": 29085,
+      "sha256": "ba28e210c4ae3014653f89236e80d5dc4654425ead1dddf558e387e69f57adee"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-utc-v1-20261109.log",
+      "bytes": 841,
+      "sha256": "b09c9a0699bd3955ceb06f09ee925f7c29c8481c477d0dc8fe6836cc20ffa0c9"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-utc-v1-20261109.records.json.gz",
+      "bytes": 16976,
+      "sha256": "8aa64e2c48d1cb4ea180834410e57e701f113b24d49fa1cfddeeddca70ab525f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-utc-v1-20261109.run.json",
+      "bytes": 4244,
+      "sha256": "4fa81d4a73bd9ae3ee62510706cffba085d14067bf1176c8bd8404f3c9dd33b1"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-armed-v1-20261109-driver.py",
+      "bytes": 536,
+      "sha256": "f51de28e2a0cc6d068560710a2cbecbb8d7e4bd79f8b72c42124a533cee4b370"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-armed-v1-20261109.json.gz",
+      "bytes": 95146,
+      "sha256": "b0b44d36cdfcd95a5d7a17e25ea3c12b91cc06276cfc9955394727918295059f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-armed-v1-20261109.log",
+      "bytes": 703,
+      "sha256": "fc2c3bde10cafcb02a2284c91e1242d4441f92ce979cebac31f795f6d310ccd9"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-armed-v1-20261109.run.json",
+      "bytes": 2752,
+      "sha256": "c7b97fe0db6853a716fc13c3095c36f876aae7d58eb08ad717e5d637bb15bf8d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-settled-v1-20261109-driver.py",
+      "bytes": 542,
+      "sha256": "bc2afc74c5ce53666e2ebab77e6d012f75f68a39859fc3ca10014a3a9fb204c6"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-settled-v1-20261109.json.gz",
+      "bytes": 77260,
+      "sha256": "53c8e6755188543eead8326d2dd6799ab9196f3784dd1dff8502c073c0e7a1df"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-settled-v1-20261109.log",
+      "bytes": 707,
+      "sha256": "50ba09e50bb0f83ec376aed0172cc16a02e05e035d9b3e7f404bb91dc253047d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-settled-v1-20261109.run.json",
+      "bytes": 2970,
+      "sha256": "27a8202f39470a13342b0c5e5cedf56f24560aed13d57fe6d4ac7aa57cb9a0f7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v1-20261109-driver.py",
+      "bytes": 518,
+      "sha256": "1a1b60ed00a7a68d163f47bef4f771a8cd8e733af629780898c745ebee8ea658"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v1-20261109.json.gz",
+      "bytes": 19110,
+      "sha256": "391b48dc8166c0286b3d4c0e3cb89274017327d1ce2fe6b55846f1093cdd9361"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v1-20261109.log",
+      "bytes": 747,
+      "sha256": "e31120c74ee85269e2768e192241d88bddc8644bfc4f832ad30c8225d4e1c7fc"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v1-20261109.run.json",
+      "bytes": 2262,
+      "sha256": "10109f809e28f373752882fd5ba0df40dd6f7e6344d2e8f7b536753d56d4401f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v2-20261109-driver.py",
+      "bytes": 518,
+      "sha256": "8195b001c4d96aba05b981d40f34dec000539e2e07884255a765e636560b004e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v2-20261109.json.gz",
+      "bytes": 38559,
+      "sha256": "e67bd7f260b2605c2026f1b2a2803476dba400120144873bdf39ebc46abde344"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v2-20261109.log",
+      "bytes": 691,
+      "sha256": "12e081b75194d3aae1d7b71815f8e851662e850e1f7cbfd8291b8324cafd1186"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v2-20261109.run.json",
+      "bytes": 2518,
+      "sha256": "ae542da2269ef7e5760e274aa039274b3b1bf425962eee3362487ff037b26ba0"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-armed-v1-20261109/trace.etl",
+      "bytes": 4980736,
+      "sha256": "1a3701f07f9e35650104f84bc4e7eee346b6d8867889570a92001aa02706c955"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-settled-v1-20261109/trace.etl",
+      "bytes": 2752512,
+      "sha256": "19e2f25cee0603c36be2e8fd2f3653ddfaf16533c64b5928e2f5d9a5870971b1"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-v2-20261109/trace.etl",
+      "bytes": 3604480,
+      "sha256": "03ccb65f48b40ab28dd86f4274b2cd90a6e542a9a845b419713243f3af6bd01c"
+    }
+  ],
+  "analysis_evidence_files_before_closeout": [
+    {
+      "path": "analysis/terminal-battle-wait-clock-armed-independent-review-v1-20261109.json",
+      "bytes": 9736,
+      "sha256": "8b95c3dd7f6d3e8f7d727eae4939afc65b81afdcbaf9e18cfaece78c12e65c55"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-armed-review-v1-20261109.json",
+      "bytes": 311813,
+      "sha256": "3b1c381b434db2861cc473bc9d05c1d22778e9981ac85390b2d80ed7adab9653"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-failed-implementation-v1-20261109.zip",
+      "bytes": 3507,
+      "sha256": "49b7dc3b8d4edb3865f9920cfb93e3c629a760dce11fd716d478531210a94669"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-independent-review-v2-20261109.json",
+      "bytes": 12148,
+      "sha256": "a480e350b4804f803ac2e50dae0d3a89f2a04e955b03d2d59bd35a0a2e3ebc23"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-main-review-v1-20261109.json",
+      "bytes": 2322,
+      "sha256": "64a27d0869129ba20f63cc2b48500a94b18973efb40715ef2cf0ca10beb26810"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-reproduction-v1-20261109.zip",
+      "bytes": 12792,
+      "sha256": "e73cb90ed926a799189eb73cd42951143accf079ca9d7a63124d3794b18c696d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-review-implementation-v1-20261109.zip",
+      "bytes": 4757,
+      "sha256": "7feb716f8ceb75a69ffcfea9c9e5a39353159e30564f3594539f5dfe6de7dce5"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-review-implementation-v2-20261109.zip",
+      "bytes": 6507,
+      "sha256": "d61253e5b11c8b5614ba5d14aadfc2019fb30e5c7d12a1c183ac3806d4a48262"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-review-v1-20261109.json",
+      "bytes": 93676,
+      "sha256": "9f4db8dc88fc06aaa8e939ff4ce7a4af22d9f621fbc691d0cac0fbae5ce81dc8"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-review-v2-20261109.json",
+      "bytes": 94466,
+      "sha256": "cbfc219d2c73829ff3ba45c0972fab0c09d7592a502bbc7d6c145c0065e15455"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-settled-independent-review-v1-20261109.json",
+      "bytes": 18279,
+      "sha256": "207f83a63c5f7a77c6edc942f8e839fc14af8fcd3918967b789379efcb0ec8c1"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-settled-review-v1-20261109.json",
+      "bytes": 199597,
+      "sha256": "1aec2dd821581f29e81848465eea016811259fc3ae96716433814b65090aa58a"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-gap-audit-implementation-v1-20261109.zip",
+      "bytes": 3763,
+      "sha256": "facde92173f20c2bbf31868bca03dbda3c0dc96bea5efd4b402231aa466b0b2d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-gap-audit-v1-20261109.json",
+      "bytes": 8880,
+      "sha256": "fc83b3e0fa6cc124123e6ba72962f601e06313c81cebd127cc357f5a643171eb"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-gap-audit-v2-20261109.json",
+      "bytes": 14114,
+      "sha256": "261d66f1e5fc1c13fe1e3597117ad992d0b6d42307a02d22439f9bd860f6b1d1"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-gap-independent-review-v2-20261109.json",
+      "bytes": 14735,
+      "sha256": "26da7522c5fc0c883f869c82bbb97a1ea9cf14aba6d6d523b023f12cb5e1a00d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-guest-transfer-retirement-clock-v1-20261109.json",
+      "bytes": 19552,
+      "sha256": "f4d75ddc30e17d38137e3d53ce1e543d27a868cb45fab27858571de7114cfcf1"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-heap-capability-inventory-v1-20261109.json",
+      "bytes": 1421,
+      "sha256": "27377905c9e14e875be367e23e771246801dbf994d8f6483a93bccf98ce7a411"
+    },
+    {
+      "path": "analysis/terminal-ptd-evidence-inventory-v6-20261109.json",
+      "bytes": 9892,
+      "sha256": "697ea6387a8f44b5eea1b1b028d3b39dd3d209ecf166ac6e1663f58dea9d3a9f"
+    },
+    {
+      "path": "analysis/terminal-ptd-minimum-evidence-plan-v1-20261109.json",
+      "bytes": 15074,
+      "sha256": "258db19d97f40274f9c0211d216570740e5c9e2ae78f5441e9d26a16c1655e35"
+    }
+  ],
+  "guest_inventory": {
+    "path": ".venv-audit/native-worker/battle-wait-guest-storage-clock-v1-20261109.json",
+    "bytes": 2616,
+    "sha256": "cde967bb823b3e85042509dceb29378e32bd0a57757251575b43fdddf03d40cf"
+  },
+  "guest_retained_files": [
+    {
+      "path": "C:\\ChaomofaWorker\\isolation-qualified.json",
+      "bytes": 4379,
+      "sha256": "9a523eb5c75d565d6116229ae7aa59ca4672dea1b284d5b9033837768718108a"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\preflight-wait-gaps-v2-20261109.json",
+      "bytes": 1510,
+      "sha256": "4d304e5483951c21f4817be20fd56c253d30d03bc9df1ddceeef5904e2db5469"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-clock-armed-v1-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-clock-settled-v1-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-clock-v1-20261109.json.gz.progress.json",
+      "bytes": 149,
+      "sha256": "5593ce9369db03ada55db28f127ef12616d8a86e09691161bd03e25a3595d3ee"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-clock-v2-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_clock.py",
+      "bytes": 8341,
+      "sha256": "5e5b524cffba7aba76d7854a6bd187c6c932ff4174e070cc28294345d7b3a26e"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_clock_armed.py",
+      "bytes": 4365,
+      "sha256": "3570690add8e4ca7a1ef530c9924f2be7fc2f7261235691e1b41ba6037ba8cf6"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_clock_etl.py",
+      "bytes": 5475,
+      "sha256": "d4d48a6bcfe4a0954c9bdaaf861c13a6eba7bac4cbbd684a0f85f6e385f074f0"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_clock_settled.py",
+      "bytes": 4352,
+      "sha256": "a2ea64f5e85da0f99160ff085d4f234606f3ffb81357e3e23b4d44fa0d8276cf"
+    }
+  ],
+  "cleanup": {
+    "receipt": {
+      "path": ".venv-audit/native-worker/battle-wait-guest-transfer-retirement-clock-v1-20261109.json",
+      "bytes": 13827,
+      "sha256": "6611457ac188287f0f42042c6099189bf110c64915136a458024674f9a435456"
+    },
+    "guest_duplicate_files_removed": 39,
+    "guest_duplicate_bytes_removed": 12000192,
+    "host_originals_retained": true,
+    "retirement_scope": "only current clock transport leaf copies verified against retained F-drive originals",
+    "previous_kernel_duplicate_retained_bytes": 11597168,
+    "previous_kernel_duplicate_deletion": "previous automatic approval review rejection; not retried"
+  },
+  "environment": {
+    "host_drive": "F",
+    "guest_logical_C_inside_F_disk": true,
+    "cpu": 2,
+    "memory_bytes": 4294430720,
+    "VM_soft_stopped": true,
+    "VMEM_files_remaining": 0,
+    "guest_game_and_python_processes_before_shutdown": 0,
+    "host_interactive_input_used": false,
+    "continuous_host_performance_unaffected_proved": false,
+    "VM_disk_bytes": 16720855040,
+    "baseline_VM_disk_bytes": 16640507904,
+    "VM_disk_growth_bytes": 80347136,
+    "baseline_worker_logical_bytes": 22007431229,
+    "worker_logical_bytes_at_inventory": 22099809775,
+    "mutable_environment_files": [
+      {
+        "path": ".venv-audit/native-worker/chaomofa-worker.vmx",
+        "bytes": 4071
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware-0.log",
+        "bytes": 303470
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware.log",
+        "bytes": 391316
+      },
+      {
+        "path": ".venv-audit/native-worker/worker.vmdk",
+        "bytes": 16720855040
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-14512.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-15280.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-16208.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-1692.log",
+        "bytes": 5357
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24580.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-25068.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27592.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28144.log",
+        "bytes": 4651
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28288.log",
+        "bytes": 5249
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29664.log",
+        "bytes": 5357
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30308.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30676.log",
+        "bytes": 5249
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-31800.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-32228.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33060.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33084.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33148.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33432.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33452.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33484.log",
+        "bytes": 5550
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-6916.log",
+        "bytes": 5357
+      }
+    ]
+  },
+  "storage_scope": "Logical new evidence since parent commit 2026-11-09T11:41:37Z includes local helpers, all source/ETL/records, reports, capsules and guest retained copies. VM physical growth is separate, not double-counted as evidence. Repository implementation code is counted in Git size.",
+  "same_disk_backup_is_independent_disaster_recovery": false,
+  "staged_code_and_evidence_equal_executed_bytes": true,
+  "private_credential_scan_passed": true,
+  "host_new_evidence_bytes_including_closeout": 13009117,
+  "total_new_local_evidence_bytes_including_guest_and_backups": 13037961,
+  "Git_added_file_bytes_including_closeout": 976545,
+  "closeout_bytes": 31810
+}

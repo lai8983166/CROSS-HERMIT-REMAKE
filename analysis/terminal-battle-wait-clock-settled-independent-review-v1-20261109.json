@@ -1,0 +1,407 @@
+{
+  "kind": "independent_settled_clock_review",
+  "version": 1,
+  "status": "finite_startup_observations_recomputed",
+  "accepted": false,
+  "formal_acceptance": false,
+  "long_capture_preflight_passed": false,
+  "strict_battle_window_verified": false,
+  "fullABI": false,
+  "fullstate": false,
+  "full_instruction_trace": false,
+  "full_global_pairing": false,
+  "PTDcleanup": false,
+  "resource_cleanup_proved": false,
+  "old_four_battle_snapshots_repaired": false,
+  "source_rewritten": false,
+  "native_or_VM_run_by_reviewer": false,
+  "references": [
+    {
+      "path": "analysis\\terminal-battle-wait-clock-settled-review-v1-20261109.json",
+      "bytes": 199597,
+      "sha256": "1aec2dd821581f29e81848465eea016811259fc3ae96716433814b65090aa58a"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-clock-settled-v1-20261109.json.gz",
+      "bytes": 77260,
+      "sha256": "53c8e6755188543eead8326d2dd6799ab9196f3784dd1dff8502c073c0e7a1df"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-settled-utc-v1-20261109.json",
+      "bytes": 91323,
+      "sha256": "88049cbdcd2d45112e171e222f83c71b38ed60f09c479aa26e8b740a6afb25c2"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-settled-raw-v1-20261109.json",
+      "bytes": 18692,
+      "sha256": "70074009fe3b239f134a3ef1a9896ba810ea384c15f92bd5051cd4a38f1c9dc0"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-settled-utc-v1-20261109.records.json.gz",
+      "bytes": 32519,
+      "sha256": "c4a3c04912c3dc076e6504fcee291fd96f984f7cd7e345003e17870ff75dc519"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-settled-raw-v1-20261109.records.json.gz",
+      "bytes": 32302,
+      "sha256": "92d337a3c3854dc01f19e6f66f28bddb6d3be59d14cea039ad5c253befbd537b"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-clock-settled-v1-20261109\\trace.etl",
+      "bytes": 2752512,
+      "sha256": "19e2f25cee0603c36be2e8fd2f3653ddfaf16533c64b5928e2f5d9a5870971b1"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-clock-settled-v1-20261109.run.json",
+      "bytes": 2970,
+      "sha256": "27a8202f39470a13342b0c5e5cedf56f24560aed13d57fe6d4ac7aa57cb9a0f7"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-settled-utc-v1-20261109.run.json",
+      "bytes": 4207,
+      "sha256": "3b0b19d44e46d85942a51c62f13faa8593013075863ce4017d5f24c27f49e7ee"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-settled-raw-v1-20261109.run.json",
+      "bytes": 4335,
+      "sha256": "69353f102778707a0ed748a34e0de4cb179f2015c639473b94d52b4ceef6f01c"
+    }
+  ],
+  "reviewed_implementations": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock_settled.py",
+      "bytes": 4352,
+      "sha256": "a2ea64f5e85da0f99160ff085d4f234606f3ffb81357e3e23b4d44fa0d8276cf"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\isolated_vm_battle_wait_clock_settled.py",
+      "bytes": 2646,
+      "sha256": "87047a574a1fe0d072da8498504f4d5176b38914f55137b4c6886c94e928caaf"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock_armed.py",
+      "bytes": 4365,
+      "sha256": "3570690add8e4ca7a1ef530c9924f2be7fc2f7261235691e1b41ba6037ba8cf6"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock.py",
+      "bytes": 8341,
+      "sha256": "5e5b524cffba7aba76d7854a6bd187c6c932ff4174e070cc28294345d7b3a26e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_original_wait_etw.py",
+      "bytes": 19142,
+      "sha256": "9d7aff0b2f19796902a3b4973a0a48bea0162c89501029e45b45f5cfdb0926b0"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\isolated_vm_battle_wait.py",
+      "bytes": 14880,
+      "sha256": "335bc66418b506591e58a5a595b1ae90f5d27e947ee809f2afcc0f7229d54b3f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\tests\\test_terminal_battle_wait_clock_settled.py",
+      "bytes": 1332,
+      "sha256": "9daf98361cbf318546eb6be617f0f9913e874a3104925e38efde1de57dec1e57"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\tests\\test_terminal_battle_wait_clock_review.py",
+      "bytes": 5651,
+      "sha256": "504ec9059647ea4b90c0c7a85ec9f122b0b7da6dd8f3c16fcc13301e5c7c07fd"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\tests\\test_terminal_battle_wait_clock.py",
+      "bytes": 3223,
+      "sha256": "5cedbfda646bb0bf3210f7511c4135e3a85b28b47a384d31d00c6a2a6d00589d"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock_review.py",
+      "bytes": 12573,
+      "sha256": "956d46fde6c0e051e0f5866ecc2e9046d5f2eed38e2446cbc96cce6f23f7bce9"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification_v4.py",
+      "bytes": 8371,
+      "sha256": "a997d4476512c5ade851cf213cfd30f34802d0a2cf465cbe149d1ca7f7cbcf94"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification_v3.py",
+      "bytes": 3121,
+      "sha256": "f0971f5d964e9c96c16b61d2f0803d1595ec9e964074bd13ecb25dcf2d5481eb"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification_v2.py",
+      "bytes": 14523,
+      "sha256": "81bdbd01c9e782653d9d4ebc017f94185dddf4a4ca0b730f472fbf6235638043"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification.py",
+      "bytes": 36833,
+      "sha256": "08bf42629930144582c8bfbd369f872e01c8e5704c7d0e48019329ac7b9d532b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_original_wait_etw_verification.py",
+      "bytes": 39701,
+      "sha256": "3291ca9c213d67a333b0914b175bd80ff59fcbc598bad3b2c7ff8254f912e769"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_etl_v2.py",
+      "bytes": 1660,
+      "sha256": "b8f450a5a73c14d516f58bc0cbc961fdbe1cc99297822a4004e36c6f8a86e50f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_etl.py",
+      "bytes": 12795,
+      "sha256": "3c68044529b5f5fa1b9b3426b3f12382797ab7981e51db2af2b861e935f659ce"
+    }
+  ],
+  "observed": {
+    "subject": {
+      "pid": 3944,
+      "tid": 1204,
+      "main_tid": 4724,
+      "main": 71260304,
+      "node": 71387208
+    },
+    "source_duration_seconds": 21.953,
+    "capture_interval_seconds": 1.0607898,
+    "complete_ETL_events": 94597,
+    "selected_records": 1501,
+    "record_opcodes": {
+      "CSwitch": 1036,
+      "SysCallEnter": 233,
+      "SysCallExit": 232
+    },
+    "all_records_retained": true,
+    "ETL_start_status": 0,
+    "ETL_stop_status": 0,
+    "loss_statistics": {
+      "EventsLost": 0,
+      "LogBuffersLost": 0,
+      "RealTimeBuffersLost": 0,
+      "BuffersWritten": 42,
+      "NumberOfBuffers": 5
+    },
+    "wait_snapshots": 218,
+    "UTC_qualified_snapshots": 218,
+    "QPC_qualified_snapshots": 218,
+    "distinct_qualified_waits": 61,
+    "UTC_failed_QPC_passed": [],
+    "QPC_crossing_snapshots": [],
+    "boundary_ledger": {
+      "initial_unpaired_exits": [],
+      "final_unpaired_entry": 1499,
+      "closed_calls": 232,
+      "full_global_pairing": false
+    }
+  },
+  "independent_checks": [
+    "Rehashed the physical ETL, source, both native decode reports, both complete retained record artifacts, comparison, and current implementation dependencies.",
+    "Re-executed code, actual guest kernel PE export, relocated guest API bytes, TLS implementation, source, receipt, raw CPU ledger, all 219 before/window snapshot contracts, and same-call semantics checks. Recomputed all 218 comparison entries and the ledger exactly.",
+    "Separately unpacked every one of the 1501 original raw EVENT_HEADERs: GUID, opcode, TID/PID, QPC timestamp, CPU context, CSwitch old/new TIDs, syscall address and NTSTATUS. Verified converted header FILETIME-to-UTC values against the other retained record list.",
+    "Independently located every reported syscall pair by original global record indices; required kernel wait address, exit status zero, no intervening syscall record, and exactly one adjacent out/in interval strictly containing each whole QPC data interval with the existing one-tick guard.",
+    "Checked all 219 before/window same-handle owner receipts, actual TIDs and zero previous suspend counts, and actual positive integer settling endpoints before the first data timestamp. Checked all 219 allocator observations match their current TLS PTD and retained header bytes.",
+    "Called only the pure production authenticate_producers function with this diagnostic source/report. It rejected: exact independently bound complete prepared preflight producer set. No guest-status or native function was called."
+  ],
+  "held_interval": {
+    "requested_seconds": 0.001,
+    "frequency": 10000000,
+    "window_settle_ticks": {
+      "minimum": 714,
+      "maximum": 22566,
+      "total": 2575591,
+      "below_requested_1ms_count": 79
+    },
+    "window_settle_seconds": {
+      "minimum": 7.14e-05,
+      "maximum": 0.0022566,
+      "total": 0.2575591
+    },
+    "before_settle_ticks": 11739,
+    "sample_attempts": 220,
+    "before_snapshots": 1,
+    "wait_snapshots": 218,
+    "non_wait_attempts": 1,
+    "non_wait_settling_receipt_present": false,
+    "complete_all_attempt_settling_total_proved": false,
+    "contract": [
+      "A fixed-parent AST adaptation inserts one settling call inside the existing same-handle held scope after both contexts are acquired and before the first data timestamp; the original TLS wrapper remains the only other AST adaptation.",
+      "The original owned_frames context manager checks process and thread ownership before SuspendThread; reverse-order ResumeThread must return previous_suspend_count + 1, and all opened handles are closed in finally. Exceptions remain failures. This was reviewed in code; successful source receipts are not a full raw API trace.",
+      "Actual observed elapsed QPC values are used. The requested sleep is not a minimum-duration guarantee and does not itself prove descheduling.",
+      "The data-read interval excludes earlier context acquisition and settling. There is no second post-settling GetContext. Full CPU state coherency across that excluded phase is not claimed.",
+      "The one non-wait attempt retains timing and context but has no settling receipt because snapshot returned None. Its missing settling interval is not fabricated or included in a claimed full-attempt total.",
+      "All retained ETL records remain in the proof. The successful single-off-CPU result describes these finite captured data intervals, not all possible future samples or the earlier battle source."
+    ]
+  },
+  "startup_PTD": {
+    "observations": 219,
+    "PTD": "0x043F0D78",
+    "debug_header_pointer": "0x043F0D58",
+    "header_sha256": "df26c6fecdb059491df61a64fd777a01962dc9aeecde4450757ee9d8e1a898bc",
+    "header_size": 32,
+    "user_size": 116,
+    "block_type": 2,
+    "allocation_request": 61,
+    "leading_guard": "fdfdfdfd",
+    "globals": {
+      "0x007619C0": "0x00000001",
+      "0x00762130": "0x00578120",
+      "0x00761980": "0x0056CF50",
+      "0x0080AB28": "0x043F0000",
+      "0x0080AB2C": "0x00000001",
+      "0x00761BC0": "0x00000014"
+    },
+    "current_TLS_index": 20,
+    "all_observations_equal": true,
+    "limitations": [
+      "Mode 1 and flags 1 narrow the candidate allocator branch at these startup observation instants. They do not establish the values at a future free or at the earlier battle exit.",
+      "The hook pointer 0x578120 and exit callback 0x56CF50 are actual data observations. Their live code and execution at cleanup are not captured in this source.",
+      "No actual CRT free, HeapFree call/result, allocation release epoch, TLS clearing, or PTD cleanup is observed. Numeric PTD/heap addresses and later thread or process termination do not prove release.",
+      "The candidate debug allocation base is PTD minus 0x20, not the user PTD pointer. The trailing guard and an actual freeing call remain unobserved."
+    ]
+  },
+  "gate_and_scope": {
+    "source_clock_diagnostic_only": true,
+    "source_long_capture_preflight_passed": false,
+    "UTC_decoder_legacy_local_predicate": true,
+    "comparison_long_capture_preflight_passed": false,
+    "production_producer_guard_rejects": true,
+    "diagnostic_reader_guest_exit": 2,
+    "UTC_host_cli_exit": 1,
+    "explanation": "The UTC reader local predicate is not production authorization. Its diagnostic guest exit 2 was surfaced by the host as nonzero transport status; the retained reader reports ProcessTrace/CloseTrace zero and no callback errors. The dedicated short host has no battle phase and preserves the frozen parent guards.",
+    "blockers": [
+      "Finite startup sampling cannot authorize production long capture or full-state/ABI acceptance.",
+      "Earlier four battle CSwitch-spanning frames have no repaired timestamps or newly supplied raw data.",
+      "Full global pairing remains false with final entry 1499 retained.",
+      "Continuous instructions, complete result-consumption ABI/state, actual resource/PTD cleanup, and two fresh full replays remain unproved."
+    ]
+  },
+  "lifecycle": {
+    "error": null,
+    "forced_termination": false,
+    "members_after_cleanup": [],
+    "child_status_is_not_WinMain_return": true,
+    "limitation": "Natural observed process/job shutdown is not PTD, original thread-handle, or resource cleanup proof."
+  },
+  "tests": {
+    "command_modules": [
+      "devtools.tests.test_terminal_battle_wait_clock_settled",
+      "devtools.tests.test_terminal_battle_wait_clock_review",
+      "devtools.tests.test_terminal_battle_wait_clock"
+    ],
+    "normal": {
+      "tests": 16,
+      "exit_code": 0
+    },
+    "optimized": {
+      "tests": 16,
+      "exit_code": 0
+    },
+    "actual_source_recomputation_exit_code": 0,
+    "independent_raw_field_and_interval_checks_exit_code": 0
+  },
+  "modifications": {
+    "executed_modules_changed": false,
+    "old_reports_changed": false,
+    "new_files": [
+      "analysis/terminal-battle-wait-clock-settled-independent-review-v1-20261109.json"
+    ],
+    "native_runs": 0
+  },
+  "reviewed_implementations_after": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock_settled.py",
+      "bytes": 4352,
+      "sha256": "a2ea64f5e85da0f99160ff085d4f234606f3ffb81357e3e23b4d44fa0d8276cf"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\isolated_vm_battle_wait_clock_settled.py",
+      "bytes": 2646,
+      "sha256": "87047a574a1fe0d072da8498504f4d5176b38914f55137b4c6886c94e928caaf"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock_armed.py",
+      "bytes": 4365,
+      "sha256": "3570690add8e4ca7a1ef530c9924f2be7fc2f7261235691e1b41ba6037ba8cf6"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock.py",
+      "bytes": 8341,
+      "sha256": "5e5b524cffba7aba76d7854a6bd187c6c932ff4174e070cc28294345d7b3a26e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_original_wait_etw.py",
+      "bytes": 19142,
+      "sha256": "9d7aff0b2f19796902a3b4973a0a48bea0162c89501029e45b45f5cfdb0926b0"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\isolated_vm_battle_wait.py",
+      "bytes": 14880,
+      "sha256": "335bc66418b506591e58a5a595b1ae90f5d27e947ee809f2afcc0f7229d54b3f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\tests\\test_terminal_battle_wait_clock_settled.py",
+      "bytes": 1332,
+      "sha256": "9daf98361cbf318546eb6be617f0f9913e874a3104925e38efde1de57dec1e57"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\tests\\test_terminal_battle_wait_clock_review.py",
+      "bytes": 5651,
+      "sha256": "504ec9059647ea4b90c0c7a85ec9f122b0b7da6dd8f3c16fcc13301e5c7c07fd"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\tests\\test_terminal_battle_wait_clock.py",
+      "bytes": 3223,
+      "sha256": "5cedbfda646bb0bf3210f7511c4135e3a85b28b47a384d31d00c6a2a6d00589d"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_clock_review.py",
+      "bytes": 12573,
+      "sha256": "956d46fde6c0e051e0f5866ecc2e9046d5f2eed38e2446cbc96cce6f23f7bce9"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification_v4.py",
+      "bytes": 8371,
+      "sha256": "a997d4476512c5ade851cf213cfd30f34802d0a2cf465cbe149d1ca7f7cbcf94"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification_v3.py",
+      "bytes": 3121,
+      "sha256": "f0971f5d964e9c96c16b61d2f0803d1595ec9e964074bd13ecb25dcf2d5481eb"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification_v2.py",
+      "bytes": 14523,
+      "sha256": "81bdbd01c9e782653d9d4ebc017f94185dddf4a4ca0b730f472fbf6235638043"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_verification.py",
+      "bytes": 36833,
+      "sha256": "08bf42629930144582c8bfbd369f872e01c8e5704c7d0e48019329ac7b9d532b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_original_wait_etw_verification.py",
+      "bytes": 39701,
+      "sha256": "3291ca9c213d67a333b0914b175bd80ff59fcbc598bad3b2c7ff8254f912e769"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_etl_v2.py",
+      "bytes": 1660,
+      "sha256": "b8f450a5a73c14d516f58bc0cbc961fdbe1cc99297822a4004e36c6f8a86e50f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_wait_etl.py",
+      "bytes": 12795,
+      "sha256": "3c68044529b5f5fa1b9b3426b3f12382797ab7981e51db2af2b861e935f659ce"
+    }
+  ]
+}

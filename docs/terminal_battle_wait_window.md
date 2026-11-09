@@ -203,3 +203,61 @@ DLL，禁止宿主 DLL 后备。有效诊断退出 2，硬失败退出 1，绝�
 就宣称连续指令轨迹完成，也不能重试已不兼容的保护父进程 #DB relay。变更采集层
 后先跑短能力预检，再采一个代表完整案例；一个代表案例满足完整状态/ABI/累计
 摘要、资源/PTD与篡改拒绝要求之后，才调度第二例新鲜完整重放。正式任务仍为 2/8。
+
+## 2026-11-09：复用原输入来源补齐端点并分离时钟问题
+
+`terminal_battle_wait_gap_audit.py` 重新核对同一 battle-v6 的完整 school 来源及精确
+输入回执 SHA，找到此前独立窗口漏采的五份 `post_release_snapshots`。第 0 份实际为
+`453CB5 / inner_result=1`，第 2 份实际为 `451758 / tail_counter=0 / callback_result=1`。
+完整原上下文、当前 TLS/PTD、原栈局部变量、被保留的帧链接字节及重叠内存均通过
+复核。原 WAIT 帧有原字节，API 帧只有已认证来源的解码相邻关系；缺少精确采样区间
+及完整 Nt 参数栈，所以只补齐实际端点，**不增加成功等待次数，不证明连续结果消费**。
+见 `analysis/terminal-battle-wait-gap-audit-v2-20261109.json` 及 independent-review-v2。
+
+旧四帧没有保存原始 QPC，不能用推测偏移、时间容差或新实例时钟回填；严格拒绝不变。
+新增短观察器同时记录原 `GetSystemTimePreciseAsFileTime` 与其外侧原始 QPC，并在
+同一份 ETL 上分别使用原转换读取器和 `PROCESS_TRACE_MODE_RAW_TIMESTAMP` 读取器。
+逐事件验证原头、载荷、CPU、顺序及全部读取计数一致，唯一变化为时间坐标；不丢
+中间事件。QPC 仍要求每份数据读取区间严格落入同一实际切出/切入区间，并保留
+跨 CPU 的一个 tick 边界保护。此区间不包含之前的 GetThreadContext，不能升级为
+完整状态或指令轨迹证明。微软的 [原始 ETW 时间戳说明](https://learn.microsoft.com/en-us/windows/win32/api/evntrace/ns-evntrace-event_trace_logfilew)
+与 [QPC 排序限制](https://learn.microsoft.com/en-us/windows/win32/sysinfo/acquiring-high-resolution-time-stamps)
+仅解释实现选择，不替代原生证据。
+
+第一次短启动在候选线程就绪检查失败，旧失败没有保存具体候选 TID，不能追认原因。
+新观察器在 MAIN 仍被持有时记录图、实际线程清单及候选，再做原同句柄身份/上下文
+检查，真实错误仍直接拒绝。之后的 54 帧短来源保留 779 条目标记录，53 帧支持 16 次
+不同等待；首帧确有原始 QPC 调度交叉。另一短来源显式先运行无输入的 ETW arming
+阶段，再取得 344 帧和 2,705 条目标记录：343 帧支持 62 次不同等待，其中 17 帧仅在
+转换后的 UTC 坐标上失败；第 226 帧两种坐标都失败。该帧切出在数据起点后 1,898
+ticks，而选择器查询在起点后 2,687 ticks 才开始，不能归因于这次选择器调用。
+全部完整 ETL 保留，arming 不是删记录、成功握手或整个窗口通过。见 clock-review-v2、
+clock-armed-review-v1 和相应独立复核。
+
+资源方面，原 battle-v6 的 423 份 PTD 内容一致；后继菜单复用同一数值地址但所有者
+不同，不能算释放。新 startup 短来源补采了实际 PTD 调试头、分配模式、hook、退出
+回调和堆句柄：本例为 mode=1、flags=1、116 字节 type=2 块；该结果不能回填旧战斗。
+仍未观察实际 HeapFree 返回、TLS 清零或原句柄关闭，也没有证明整个场景资源清理。
+下一步的最小分支和拒绝条件见 `analysis/terminal-ptd-minimum-evidence-plan-v1-20261109.json`；
+不得仅凭 Thread End、exit 0、地址复用或静态释放路径勾选资源/PTD 验收。
+
+最后一次短能力实验在原同句柄挂起/上下文取得之后、数据时间戳之前增加显式记录的
+settling 阶段，未更改已经执行的采集器。请求延迟为 1 ms，实际延迟以原 QPC 为准，
+并非每次至少 1 ms；不把 sleep 当作静止证明。`clock-settled-v1` 实际运行 21.953 秒，
+218 份窗口快照全部通过原始 QPC 的严格单区间检查，支持 61 次不同等待，无真实跨界；
+同份 ETL 完整读取 94,597 条事件、1,501 条目标记录，UTC 与 QPC 均通过这些数据区间。
+一次非等待采样未保留 settling 时间，因此不报告全部尝试的完整累计持有延迟。
+原线程恢复仍由原 finally 按本次 Suspend 增量反序执行。
+
+这仅证明该短来源的有限采样能力：原上下文在 settling 前取得，完整上下文与数据
+的联合时间区间尚未证明；也没有完整逐指令轨迹、实际资源释放和生产采集资格。
+旧 UTC 验证器在诊断报告中的局部 `long_capture_preflight_passed=true` 不可作为新
+观察器生产授权，源和新 comparison 均明确保持 false。旧诊断按合同退出 2，传输层
+保留了该非零退出消息；完整读取错误为空。未通过新观察器的完整资格前不调度战斗
+长采集或两例正式重放。见 clock-settled-review-v1 及 independent-review-v1。
+
+客体只读工具清单确认有系统 wpr.exe，未发现 xperf/StartHeapTrace 命令或所查 WPT
+安装目录；未开启堆跟踪、改 IFEO 或安装工具。该清单不能证明原生 ETW API 不存在。
+资源接续仍需先完成自有 WOW64 helper 的有界 PID 定向堆观察能力检验，再核对实际
+原生释放调用和返回，不能用新 startup 的分配头或静态分支替代。普通及 `-O` 各
+429 项回归通过；旧 832 项 SHA 和 13 项大小保全核对无差异，后 13 项未重算全量 SHA。

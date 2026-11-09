@@ -1,0 +1,260 @@
+{
+  "kind": "independent_minimum_PTD_resource_evidence_plan",
+  "accepted": false,
+  "status": "existing_evidence_inventoried_actual_release_not_proved",
+  "inventory": {
+    "path": "analysis\\terminal-ptd-evidence-inventory-v6-20261109.json",
+    "bytes": 9892,
+    "sha256": "697ea6387a8f44b5eea1b1b028d3b39dd3d209ecf166ac6e1663f58dea9d3a9f"
+  },
+  "code": {
+    "path": "devtools\\terminal_ptd_evidence_inventory.py",
+    "bytes": 8923,
+    "sha256": "88b453d7045ca5e256f6ebc695014daecbaa26d91e9572f23d7b59e491fe3285"
+  },
+  "tests": {
+    "path": "devtools\\tests\\test_terminal_ptd_evidence_inventory.py",
+    "bytes": 2404,
+    "sha256": "bc16ea88de41e93f11cbbc1f6d384f991ccf0d2711b5d51b64ce3c412d039f60"
+  },
+  "fixed_original_cleanup_contract": {
+    "path": "devtools\\terminal_exit_cleanup_contract.py",
+    "bytes": 20628,
+    "sha256": "c35b55fe174aea87de60184ee5dea0fffa6c05b1674d4adb46ffe4d84809f237"
+  },
+  "source_window": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-battle-v6-20261109.json.gz",
+    "bytes": 92900,
+    "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+  },
+  "source_school": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-battle-v6-20261109.school.json.gz",
+    "bytes": 9505149,
+    "sha256": "271fb1e0a7e58c956c3d7eaa565c3490d17219a0ad60753d9d0243abe97d0ff7"
+  },
+  "actual_findings": {
+    "worker_pid": 6096,
+    "worker_tid": 5168,
+    "PTD": 70978936,
+    "PTD_hex": "0x043B0D78",
+    "TEB": "0x00302000",
+    "TLS_index": 20,
+    "TLS_slot": 3157600,
+    "PTD_bytes": 116,
+    "window_snapshots": 423,
+    "distinct_window_PTD_contents": 1,
+    "PTD_body_sha256": "71432c86ab0182ed4f97445f6258380d9c77f57d5cc5d1bc2d33d3ff646bd3c1",
+    "last_observed_nested_slots": {
+      "0x24": 0,
+      "0x28": 0,
+      "0x30": 0,
+      "0x38": 0,
+      "0x40": 0,
+      "0x44": 0
+    },
+    "conditional_slot_0x50": "0x00761D68 static sentinel",
+    "post_battle_menu": {
+      "tid": 1504,
+      "TEB": "0x0030E000",
+      "PTD": 70978936,
+      "first_elapsed": 1042.375,
+      "meaning": "same numeric address with new authentic TID and changed content; not an observed release call"
+    },
+    "actual_heap_free_events_retained": false,
+    "actual_TLS_zero_before_ExitThread_retained": false,
+    "actual_debug_allocation_header_retained": false,
+    "runtime_allocator_mode_hook_flags_retained": false,
+    "original_event_handle_close_outcome_retained": false
+  },
+  "first_dependency": {
+    "name": "read-only original allocator route and allocation identity",
+    "why": "PTD can use a CRT small-block allocator or delayed debug free, so HeapFree ETW is not necessarily emitted for this PTD. No release event should be sought using PTD user pointer alone.",
+    "proposed_new_held_owner_schema": {
+      "owner": "same already-authenticated PID/TID/TEB/TLS/PTD; current original code identities; precise snapshot begin/end; same-handle owner-before-suspend and exact restore receipt",
+      "original_reads": [
+        {
+          "pointer": "0x761980",
+          "bytes": 4,
+          "meaning": "optional original thread-exit callback"
+        },
+        {
+          "pointer": "0x7619c0",
+          "bytes": 4,
+          "meaning": "debug allocator flags"
+        },
+        {
+          "pointer": "0x762130",
+          "bytes": 4,
+          "meaning": "allocation hook"
+        },
+        {
+          "pointer": "0x80ab28",
+          "bytes": 8,
+          "meaning": "CRT OS heap handle plus heap mode"
+        },
+        {
+          "pointer": "0x761bc0",
+          "bytes": 4,
+          "meaning": "actual TLS index"
+        },
+        {
+          "pointer": "0x80a430",
+          "bytes": 16,
+          "meaning": "debug list globals/current bytes; diagnostic bookkeeping only"
+        }
+      ],
+      "dynamic_reads": [
+        {
+          "pointer": "current PTD-0x20",
+          "bytes": 32,
+          "meaning": "actual original debug header: links, size, type, request identity before invalidation"
+        },
+        {
+          "pointer": "current PTD",
+          "bytes": 116,
+          "meaning": "reuse original current TLS sample; do not duplicate repeated body in persistent output"
+        },
+        {
+          "pointer": "each actual nonzero nonstatic nested pointer minus0x20",
+          "bytes": 32,
+          "maximum_count": 7,
+          "meaning": "capture only actual allocation identities, no guessed free list"
+        }
+      ],
+      "read_failures": "retain bounded first failure; no substituted zeros; never dereference the former PTD or old TEB after owner exit merely to look for free patterns",
+      "maximum_additional_fixed_bytes": 72,
+      "maximum_additional_dynamic_debug_header_bytes": 256
+    },
+    "classification": {
+      "hook_nonzero": "Need actual callback identity/result; do not assume it approves free.",
+      "flags_and_2": "Original debug-retained path marks block free without underlying allocator release.",
+      "mode_3": "Actual membership result from578C00 selects578CC0; nonmember falls throughHeapFree578879.",
+      "mode_2": "Actual membership result from57AC20 selects57ACB0; nonmember falls throughHeapFree5788FA.",
+      "other_mode": "Original path can reachHeapFree57890F; requires actual event/outcome.",
+      "mode_only_insufficient": true
+    },
+    "current_status": "No guest call performed. These fields must be added only in a new collector layer and short preflight, not retrofitted into v6."
+  },
+  "minimum_capability_preflight": {
+    "subject": "Owned bounded WOW64 test helper first, then one short natural original startup worker if compatible; never a17-minute battle as the first capability test.",
+    "required_helper": "Use a32-bit helper with HeapAlloc/HeapFree and recorded address/heap/result receipts; also include an allocation that is intentionally kept live, and distinguish an independently owned small-block fixture if available. 64-bit Python alone does not establish WOW64 coverage.",
+    "initial_discovery": "Qualified guest only: query tool/API availability and original identities. No install, registry mutation or existing logger takeover merely to discover capabilities.",
+    "preferred_candidate": "Dedicated uniquely owned heap session selected by existing helper PID, using available authenticated StartHeapTrace or an independently pinned/ABI-tested Microsoft PID-extension implementation. This is instrumentation configuration, not a claim of zero perturbation.",
+    "do_not_do": [
+      "Do not WriteProcessMemory, modify original general/debug registers, use#DB relay, hook the game, add page guards, set hardware breakpoints or inject code/remote roots.",
+      "Do not enable global pageheap or assume a heap snapshot proves a free operation.",
+      "Do not start/stop an unrelated existing heap/kernel logger; conflict means blocked.",
+      "Do not silently switch to IFEO/name registry changes or download/install a toolkit if the PID route is unavailable."
+    ],
+    "budget": {
+      "maximum_seconds": 30,
+      "ETL_maximum_bytes": 4194304,
+      "compact_receipts_maximum_bytes": 65536,
+      "unique_new_guest_path": true,
+      "stop_owned_session_in_finally": true,
+      "no_truncation_or_circular_overwrite": true
+    },
+    "must_observe": [
+      "Raw TDH schema/header/payload of successful alloc+free for known helper heap/address with PID/TID/time and zero-loss counters.",
+      "Whether the real provider supplies a reliable caller stack and success semantics; if no return value exists, state that limitation rather than inventBOOL.",
+      "WOW64 pointer widths and allocation-address convention; verify the debug-header offset separately using the actual original allocator.",
+      "An intentionally retained allocation is not falsely called freed. Stop/close implementation and source identity unchanged."
+    ],
+    "not_proved_by_helper": [
+      "original protection compatibility",
+      "CRT small-block release",
+      "TlsSetValue result/slot clear",
+      "original handle closure",
+      "complete CPU/RAM/ABI/trace or formal acceptance"
+    ]
+  },
+  "event_match_contract": {
+    "only_if_actual_OS_heap_route_is_bound": true,
+    "match_key": "original PID/TID + actual CRT heap handle + allocation base from authenticated debug header + lifetime/request identity; never numeric PTD alone",
+    "PTD_user_pointer": "0x043B0D78 for old v6 only; future address must come from current TLS",
+    "candidate_OS_base": "PTD-0x20 only if raw debug allocation header and actual path establish this transformation",
+    "required_attribution": "actual caller stack through original PTD-release chain or equivalent independently authenticated call evidence; raw HeapFree event alone says heap operation, not which CRT owner released it",
+    "must_reject": [
+      "conflicting PID/TID or heap",
+      "pointer reuse with no allocation epoch",
+      "missing/truncated events or nonzero losses",
+      "mode2/3 membership unresolved",
+      "debug-retained or hook outcome unresolved",
+      "success inferred only fromThreadEnd, NtFreeVirtualMemory, changed bytes or later address reuse"
+    ],
+    "API_return_caveat": "Documented heap event fields do not themselves provide the original HeapFree BOOL. A weaker provider event finding must stay separate from full ABI/result proof.",
+    "small_block_caveat": "CRT suballocation release may occur without any OS heap-free event. Its real metadata/operation remains a separate first-class gap; do not force the OS event plan to pass it."
+  },
+  "TLS_clear_branch": {
+    "existing": "Every retained battle TLS slot points to the live PTD. No saved original TlsSetValue(index,0) return or live slot-zero transition exists.",
+    "minimum_candidate": "Same-owned-thread read-only sampler targeted to original575450/575555/56E21B ancestry can preserve authentic slot-zero while thread is still live, plus raw call parameters/return if actually sampled.",
+    "limits": "This very short path may be missed. A zero slot afterthreaddeath, missingTEB, or successorTLS is not proof ofTlsSetValue. No available retainedETW schema here supplies that user-mode operation. Full cleanup remains blocked if no actual transition/result evidence."
+  },
+  "original_handle_branch": {
+    "initial": "Retain observer query duplicates of original node+1C event and node+20 thread while current identity is frozen; record source PID/handle/TID/type and duplication results.",
+    "after_exit": "While originalprocess remains live, duplicate the same numeric remote handles with noDUPLICATE_CLOSE_SOURCE; compare newdup with original helddup usingCompareObjectHandles and query originaltype/TID. Close onlynewobserverduplicates.",
+    "interpretation": "Sameobject proves originalhandle still present at sample; INVALID_HANDLE is only a sampled absence under stableprocessidentity; differentobject proves numericreuse. None alone authenticates exact originalCloseHandle return.",
+    "observer_effect": "Holding duplicates pins kernelobjects, so do not claim final objectdestruction while a reference is held. Closing observer duplicates is distinct from game handle closure.",
+    "original_thread_handle": "Static normal path has no close for node+20. Do not silently supplement-close it; actual leak/owner correction requires an explicit separate original-handle ownership capability.",
+    "manager_event": "Successor menu still owns manager event; never count battle exit as manager cleanup."
+  },
+  "other_resources": {
+    "existing": "Controller large resource offsets and descendant GDI/COM/allocator release ledger are not present in the small scene-head/TLS snapshots.",
+    "minimum_scope": "Start with three actual controller resource-pointer slots from fixed cleanup contract and their resource identities; only add branch-specific events/returns after these are known.",
+    "no_claim": "PTD-only progress must not set fullscene/resource cleanuptrue."
+  },
+  "tests_run": {
+    "ordinary": 5,
+    "optimized": 5,
+    "passed": true,
+    "actual_v6_inventory_exit": 2,
+    "actual_423_snapshot_contract_checks": true,
+    "same_address_school_owner_TLS_rechecked": true,
+    "initial_typographical_source_SHA_rejected_before_output": true
+  },
+  "primary_sources": [
+    {
+      "title": "Microsoft StartHeapTrace",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/startheaptrace",
+      "supports": "Existing PID selection, optional allocation/deletion stacks, performance/loss caveats. Availability in the actual guest has not been queried."
+    },
+    {
+      "title": "Microsoft heap event schema",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/etw-heap-event-free",
+      "supports": "HeapHandle, Address and Source fields describe heap-free events; this schema is not a BOOL API-return record."
+    },
+    {
+      "title": "Microsoft HeapFree contract",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/heapapi/nf-heapapi-heapfree",
+      "supports": "Nonzero return is success; stale freed-pointer inspection is not a valid proof of its prior allocation state."
+    },
+    {
+      "title": "Microsoft WPR heap capture",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/recording-for-heap-analysis",
+      "supports": "Documented name-based IFEO configuration and Heap trace commands; a configuration change is not a read-only observation and must be accounted for."
+    },
+    {
+      "title": "Microsoft heap snapshot limitations",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/record-heap-snapshot",
+      "supports": "Heap snapshots export allocation state and are distinct from free events; cross-architecture PID use requires special care and documentation directs WOW64 users to the name option."
+    },
+    {
+      "title": "Microsoft CompareObjectHandles",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-compareobjecthandles",
+      "supports": "Compare two duplicated handles to bind underlying object identity; equality of numeric handle values is insufficient."
+    },
+    {
+      "title": "Microsoft TraceEvent implementation",
+      "url": "https://github.com/microsoft/perfview/blob/main/src/TraceEvent/ETWKernelControl.cs",
+      "supports": "Primary-source existing-PID StartWindowsHeapSession illustrates PID extension plus StartTraceW. This unpinned online implementation is design evidence, not an executed or authenticated guest dependency."
+    }
+  ],
+  "full_resource_lifetime_proved": false,
+  "PTDcleanup": false,
+  "original_handle_closure_proved": false,
+  "fullABI": false,
+  "fullstate": false,
+  "two_fresh_full_replays": false,
+  "native_execution_by_agent": false,
+  "source_files_modified": false
+}

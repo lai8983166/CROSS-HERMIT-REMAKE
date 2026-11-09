@@ -1,0 +1,49 @@
+{
+  "kind": "main_agent_raw_QPC_boundary_review",
+  "references": [
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-clock-settled-v1-20261109.json.gz",
+      "bytes": 77260,
+      "sha256": "53c8e6755188543eead8326d2dd6799ab9196f3784dd1dff8502c073c0e7a1df"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-utc-v1-20261109.records.json.gz",
+      "bytes": 32519,
+      "sha256": "c4a3c04912c3dc076e6504fcee291fd96f984f7cd7e345003e17870ff75dc519"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-clock-settled-raw-v1-20261109.records.json.gz",
+      "bytes": 32302,
+      "sha256": "92d337a3c3854dc01f19e6f66f28bddb6d3be59d14cea039ad5c253befbd537b"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-clock-settled-review-v1-20261109.json",
+      "bytes": 199597,
+      "sha256": "1aec2dd821581f29e81848465eea016811259fc3ae96716433814b65090aa58a"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-battle-wait-clock-main.py",
+      "bytes": 4191,
+      "sha256": "e935a2f319a74431ccea4f1d461bf75fafa499558bab462cf7bc5de4c2f74c9f"
+    }
+  ],
+  "actual_snapshots_checked": 218,
+  "distinct_waits_checked": 61,
+  "minimum_single_interval_margin_ticks": 93,
+  "raw_QPC_crossings": 0,
+  "all_original_selected_headers_checked": 1501,
+  "accepted": false,
+  "old_four_frames_remain_unproved": true,
+  "full_context_interval_proved": false,
+  "continuous_result_consumption_proved": false,
+  "PTDcleanup": false,
+  "full_resource_lifetime_proved": false,
+  "implementation_review": "Reviewed exact collector/adapter, original held-context restoration, raw reader, supplemental raw stack verification, guest-only logon recovery and bounded transfer cleanup; existing frozen production files unchanged.",
+  "blocking_capabilities": [
+    "context acquisition plus data full-state/ABI/instruction coverage",
+    "actual original allocator/free result and TLS-clear observation",
+    "original handle/resource cleanup",
+    "new production-collector qualification before a representative full replay"
+  ],
+  "first_next_capability": "bounded owned WOW64 PID-targeted heap observation plus complete context/state observation design; no repeated battle prefix yet"
+}

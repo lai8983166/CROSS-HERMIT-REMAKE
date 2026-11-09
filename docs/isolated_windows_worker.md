@@ -110,3 +110,15 @@ flags=0/permanent=true，四个私有可变文件恢复，Job非强制清空。
 替代位置。资产、原存档、旧验收及检查点未删。主来源与一份恢复副本都在F盘，
 不称为独立容灾备份；删除客体文件不会立即缩小VMDK物理文件。
 本轮原始结果与容量清单见 `analysis/isolated-windows-worker-v1-20261108.json`。
+## 2026-11-09：有限自动登录用尽后的无交互恢复
+
+本次冷启动 VMware Tools 已就绪，但客体没有 explorer 会话；隔离预检在启动游戏前
+拒绝。只读检查确认安装时有限次数自动登录已耗尽，`AutoAdminLogon=0` 且无残留
+密码配置。新增 `python -m devtools.isolated_vm_autologon arm-once` 只允许实际专用
+客体空闲、无桌面且旧设置已过期时，使用 F 盘已有私密凭证配置一次登录。管理通道
+校验 VMware MAC/UUID 并加密；不打印或持久化含密码的命令，不改宿主注册表。
+
+本次软关闭、冷启动后，客体实际出现唯一 explorer 会话，输入隔离与 D3D8 预检通过；
+已执行 `python -m devtools.isolated_vm_autologon clear`，核实临时密码和次数已删除，
+AutoAdminLogon 恢复 0。后续冷启动需要同样自动恢复流程，不依赖用户登录或点击。
+这只恢复自动化环境，不算游戏完整兼容或逆向功能验收；所有文件仍在 F 盘虚拟磁盘。

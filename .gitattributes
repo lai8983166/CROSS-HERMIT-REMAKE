@@ -1,4 +1,10 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# PTD inventory receipts bind the executed bytes, including existing CRLF.
+devtools/terminal_ptd_evidence_inventory.py -text
+devtools/tests/test_terminal_ptd_evidence_inventory.py -text
+analysis/terminal-ptd-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# This executed host adapter's CRLF bytes are bound by the native run receipt.
+devtools/isolated_vm_battle_wait_clock_settled.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Original layer7 replacement evidence; full raw reports are stored locally.
 tools/terminal_replacement*.py text eol=lf
 tools/tests/test_terminal_replacement*.py text eol=lf

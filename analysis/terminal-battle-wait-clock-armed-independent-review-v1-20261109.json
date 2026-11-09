@@ -1,0 +1,242 @@
+{
+  "kind": "independent_armed_clock_capture_and_review",
+  "status": "bounded_clock_difference_observed_one_true_QPC_crossing_remains",
+  "accepted": false,
+  "review_source": {
+    "path": "analysis\\terminal-battle-wait-clock-armed-review-v1-20261109.json",
+    "bytes": 311813,
+    "sha256": "3b1c381b434db2861cc473bc9d05c1d22778e9981ac85390b2d80ed7adab9653"
+  },
+  "artifacts": [
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-clock-armed-v1-20261109.json.gz",
+      "bytes": 95146,
+      "sha256": "b0b44d36cdfcd95a5d7a17e25ea3c12b91cc06276cfc9955394727918295059f"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-armed-utc-v1-20261109.json",
+      "bytes": 29493,
+      "sha256": "de30ae36b8589f3511df7e32fe47756764943a008a9672c3170daeca236eed57"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-armed-raw-v1-20261109.json",
+      "bytes": 18988,
+      "sha256": "5f3c851aa5c0bc026ac6747e766ebd94820ecb5cec423e4560e9c1c576a99847"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-armed-utc-v1-20261109.records.json.gz",
+      "bytes": 56227,
+      "sha256": "b071cc90e8ad2d47fa1e7bce73c3fae9a43b47095baa2a74f9abffacbfdee368"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-clock-armed-raw-v1-20261109.records.json.gz",
+      "bytes": 55918,
+      "sha256": "0ee5bff4b24acf70a2ecbdd72886d4ea476a2628c6bf5dce6434707f444ecf40"
+    }
+  ],
+  "ETL": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-clock-armed-v1-20261109\\trace.etl",
+    "bytes": 4980736,
+    "sha256": "1a3701f07f9e35650104f84bc4e7eee346b6d8867889570a92001aa02706c955"
+  },
+  "host_run_receipt": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-clock-armed-v1-20261109.run.json",
+    "bytes": 2752,
+    "sha256": "c7b97fe0db6853a716fc13c3095c36f876aae7d58eb08ad717e5d637bb15bf8d"
+  },
+  "reviewed_code": [
+    {
+      "path": "devtools\\terminal_battle_wait_clock_armed.py",
+      "bytes": 4365,
+      "sha256": "3570690add8e4ca7a1ef530c9924f2be7fc2f7261235691e1b41ba6037ba8cf6"
+    },
+    {
+      "path": "devtools\\isolated_vm_battle_wait_clock_armed.py",
+      "bytes": 2546,
+      "sha256": "4df49d9f1ed9653ff8ba28aea108b78737a18db94bb0b41b8bcb77777e154251"
+    },
+    {
+      "path": "devtools\\terminal_battle_wait_clock.py",
+      "bytes": 8341,
+      "sha256": "5e5b524cffba7aba76d7854a6bd187c6c932ff4174e070cc28294345d7b3a26e"
+    },
+    {
+      "path": "devtools\\terminal_battle_wait_clock_etl.py",
+      "bytes": 5475,
+      "sha256": "d4d48a6bcfe4a0954c9bdaaf861c13a6eba7bac4cbbd684a0f85f6e385f074f0"
+    },
+    {
+      "path": "devtools\\terminal_battle_wait_clock_review.py",
+      "bytes": 12573,
+      "sha256": "956d46fde6c0e051e0f5866ecc2e9046d5f2eed38e2446cbc96cce6f23f7bce9"
+    }
+  ],
+  "previous_review_code_capsule": {
+    "path": "analysis\\terminal-battle-wait-clock-review-implementation-v2-20261109.zip",
+    "bytes": 6507,
+    "sha256": "d61253e5b11c8b5614ba5d14aadfc2019fb30e5c7d12a1c183ac3806d4a48262"
+  },
+  "source_identities_match_current": true,
+  "reader_and_review_execution_identities_unchanged": true,
+  "actual_recomputation": {
+    "complete_events": 176818,
+    "selected_records": 2705,
+    "all_buffers": 76,
+    "source_snapshots": 344,
+    "raw_QPC_qualified_snapshots": 343,
+    "converted_UTC_qualified_snapshots": 326,
+    "distinct_raw_QPC_qualified_waits": 62,
+    "UTC_failed_QPC_passed": [
+      172,
+      175,
+      186,
+      190,
+      209,
+      214,
+      233,
+      236,
+      242,
+      288,
+      294,
+      297,
+      304,
+      305,
+      323,
+      330,
+      340
+    ],
+    "QPC_crossing_snapshots": [
+      226
+    ],
+    "all_raw_headers_payloads_CPU_and_Nt_contexts_rechecked": true,
+    "kernel_export_and_guest_API_TLS_sources_rechecked": true,
+    "full_global_pairing": false,
+    "final_pending_selected_index": 2703,
+    "all_output_snapshot_fields_equal_to_recomputation": true
+  },
+  "armed_sequence_review": {
+    "actual_warmup_seconds": 0.0517999,
+    "warmup": {
+      "qpc_begin": 13403006670,
+      "minimum_seconds": 0.05,
+      "target_suspended_during_warmup": false,
+      "input_submitted": false,
+      "ETL_records_discarded": false,
+      "qpc_end": 13403524669
+    },
+    "all_window_data_starts_after_arming_end": true,
+    "before_snapshot": "The original begin still takes its baseline before starting ETW. The50ms boundary controls subsequent window snapshots; it does not erase the baseline.",
+    "no_input_or_target_suspend_during_sleep": "poll returns while arming; after original begin restores owned frames, the observer sleeps. It only queries the retained thread duplicate before clearing arming under lock.",
+    "unchanged_limits": {
+      "sampling_seconds": 3.0,
+      "window_snapshots": 768,
+      "source_expanded_bytes": 8388608,
+      "source_gzip_bytes": 2097152,
+      "ETL_bytes": 67108864
+    },
+    "actual_capture_interval_seconds": 1.0725614,
+    "drain": {
+      "original_drain_seconds": 0.15,
+      "actual_drain_seconds": 0.9,
+      "maximum_window_seconds": 3.0,
+      "maximum_snapshots": 768,
+      "no_input": true
+    },
+    "limit_caveat": "These bounds do not make every underlying WinAPI call preemptible. ETL limit is64MiB;8MiB is expanded source JSON, not ETL.",
+    "host_adapter": "Fixed parent SHA and unique collector/deployment AST substitutions preserve fresh paths, guest-idle check, guest-only module execution and exact transfer identities; phase is hard-bound startup_preflight. No battle-long gate is bypassed or success flag upgraded."
+  },
+  "serialization_review": {
+    "previous_module_SHA": "6d5abc128d80d2dad6f55161d79adcf0c38af18c9d586a6a41b31615eaf5f185",
+    "AST_equivalent_except_one_TLS_output_assignment": true,
+    "allocator_original_bytes_remain_in_SHA_bound_source": true,
+    "all344_allocator_canonical_SHA_projections_recomputed": true,
+    "verification_or_selection_logic_changed": false
+  },
+  "actual_crossing_226": {
+    "snapshot_QPC_interval": [
+      13410442637,
+      13410448460
+    ],
+    "raw_switches_near_interval": [
+      {
+        "global_index": 64736,
+        "relative_to_data_begin_ticks": -1690,
+        "cpu": 0,
+        "data": {
+          "NewThreadId": 3056,
+          "OldThreadId": 1736
+        }
+      },
+      {
+        "global_index": 64773,
+        "relative_to_data_begin_ticks": 1898,
+        "cpu": 0,
+        "data": {
+          "NewThreadId": 3532,
+          "OldThreadId": 3056
+        }
+      },
+      {
+        "global_index": 64862,
+        "relative_to_data_begin_ticks": 6621,
+        "cpu": 1,
+        "data": {
+          "NewThreadId": 3056,
+          "OldThreadId": 0
+        }
+      },
+      {
+        "global_index": 64863,
+        "relative_to_data_begin_ticks": 6649,
+        "cpu": 1,
+        "data": {
+          "NewThreadId": 1736,
+          "OldThreadId": 3056
+        }
+      }
+    ],
+    "TLS_call_offsets_ticks": [
+      1572,
+      4441
+    ],
+    "selector_offsets_ticks": [
+      2687,
+      2750
+    ],
+    "interpretation": "Actual switch-out is inside the data interval and before selector entry. This crossing is not caused by that later selector invocation. The data interval begins while the target still has recorded CPU activity; no inferred correction is applied."
+  },
+  "settling_proposal_contract": {
+    "allowed_scope": "A new explicitly recorded held-observer delay before first data timestamp is a bounded sampling experiment, not a passed wait or a suspension guarantee.",
+    "must_keep": [
+      "Same owned handle and exact Suspend increment restoration in finally.",
+      "Actual raw QPC settle begin/end and duration; all ETL records retained.",
+      "Unchanged per-frame single-offCPU test, one-tick guard and original source budgets.",
+      "Explicit exclusion of context acquisition and settling from the later data interval.",
+      "If coherent data-phase current CPU context is claimed, reacquire context on the same still-held handle after settling and retain old/new comparison; otherwise disclose the earlier context.",
+      "No old source repair, timestamp shift, tolerance, discarded middle records or implied equivalence of whole original execution."
+    ],
+    "not_observed_in_this_review": true
+  },
+  "tests": {
+    "ordinary": 13,
+    "optimized": 13,
+    "passed": true
+  },
+  "must_fix_findings": [],
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "full_resource_lifetime_proved": false,
+  "strict_battle_window_verified": false,
+  "long_capture_preflight_passed": false,
+  "timestamp_offset_applied": false,
+  "two_fresh_full_replays": false,
+  "new_VM_or_native_execution_by_reviewer": false,
+  "source_or_producer_files_modified": false,
+  "limitations": [
+    "17 observed coordinate-dependent classifications are real findings for this new source. They do not establish why each historicalbattle frame crossed or repair theoldfour windows.",
+    "The remaining actualQPC crossing keeps whole-window success false.62individualwaits do not establish complete CPU/RAM/ABI/instruction/resource history.",
+    "Heap/global observations and contentSHA references still do not prove actualHeapFree, TlsSetValue or PTDcleanup.",
+    "Warmup/settling affect observation scheduling. Their elapsed time alone is not an originalprogram synchronization event or proof that the target cannot execute."
+  ]
+}
