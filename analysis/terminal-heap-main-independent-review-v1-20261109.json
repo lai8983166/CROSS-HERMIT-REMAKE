@@ -1,0 +1,104 @@
+{
+  "kind": "main_agent_independent_heap_raw_review",
+  "references": [
+    {
+      "path": ".venv-audit/native-worker/terminal-heap-capability-v2-20261109.json",
+      "bytes": 13645,
+      "sha256": "ea64989c04abfe59cb71216341192ec36025d3a312ec83754d48e9b96bc8c56a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-heap-capability-v2-20261109/trace.etl",
+      "bytes": 262144,
+      "sha256": "11ebdae815e9fa7d4c0e59e0e617af45268ea99b3f49f17ee44469067030792f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-heap-decode-v3-20261109.records.json.gz",
+      "bytes": 5375,
+      "sha256": "0ab457945075d0ac361a63234bcbec298ff5acee0f173d0839be3641c30fc3cd"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-heap-decode-v3-20261109.schemas.json.gz",
+      "bytes": 1472,
+      "sha256": "3ea4c968861c159cdbe09849e0be331c452c0c1f2b2ca2163cf6381d60e936f8"
+    },
+    {
+      "path": "analysis/terminal-heap-capability-proof-v1-20261109.json",
+      "bytes": 6052,
+      "sha256": "469347d4b5ec15bb7a42efe470deeaf6f935ec1dd563c057f44af405e7358089"
+    }
+  ],
+  "owned_heap_events": [
+    {
+      "index": 117,
+      "opcode": 32,
+      "payload_dwords": [
+        91881472,
+        4098,
+        65536,
+        4096,
+        1488
+      ]
+    },
+    {
+      "index": 226,
+      "opcode": 33,
+      "payload_dwords": [
+        91881472,
+        152,
+        91882936,
+        3
+      ]
+    },
+    {
+      "index": 228,
+      "opcode": 33,
+      "payload_dwords": [
+        91881472,
+        296,
+        91883096,
+        3
+      ]
+    },
+    {
+      "index": 338,
+      "opcode": 36,
+      "payload_dwords": [
+        91881472,
+        91882936,
+        3
+      ]
+    }
+  ],
+  "foreign_headers_preserved": [
+    {
+      "index": 7,
+      "header_pid": 6000,
+      "payload_pid": 6092
+    },
+    {
+      "index": 8,
+      "header_pid": 6000,
+      "payload_pid": 6092
+    },
+    {
+      "index": 348,
+      "header_pid": 6000,
+      "payload_pid": 6092
+    },
+    {
+      "index": 349,
+      "header_pid": 6000,
+      "payload_pid": 6092
+    }
+  ],
+  "passed": true,
+  "reviewed_code": [
+    "devtools/terminal_heap_etw_verification.py",
+    "devtools/tests/test_terminal_heap_etw_verification.py"
+  ],
+  "scope": "Main agent independently checks delegated verifier against raw headers and payloads without importing it. Agent review separately covers main context/inventory implementation. Helper BOOL is separate from heap events; original-game cleanup and caller stacks unproved.",
+  "accepted": false,
+  "original_game": false,
+  "fullABI": false,
+  "PTDcleanup": false
+}

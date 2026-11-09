@@ -1,0 +1,153 @@
+{
+  "kind": "owned_WOW64_PID_heap_ETW_implementation_review",
+  "status": "implemented_local_contract_tests_only_pending_guest_capability",
+  "accepted": false,
+  "original_game": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "full_resource_cleanup": false,
+  "native_execution_by_agent": false,
+  "files": [
+    {
+      "path": "devtools\\terminal_heap_etw_probe.py",
+      "bytes": 25594,
+      "sha256": "e7b4b12e007e72ba6fae6f1c1b9300f4dd9908776930a8e21b1686015463897b"
+    },
+    {
+      "path": "devtools\\terminal_heap_etw_helper.cs",
+      "bytes": 3513,
+      "sha256": "48b71a742b57947e3c1f02d77acaeee7f59d5e289e63c911aabd92d933de3931"
+    },
+    {
+      "path": "devtools\\tests\\test_terminal_heap_etw_probe.py",
+      "bytes": 7103,
+      "sha256": "b8e4873db41fa615f4d60374ddede3b3055df32210395a4115757e3eed17ba64"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "devtools\\native_input_isolation.py",
+      "bytes": 3363,
+      "sha256": "1cc19284218e44f5a9ee6209b34cae644c9a2a8680b00651bd1754831c29355a"
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://github.com/microsoft/perfview/blob/fd17789ba95a2e176b14d725721867c06d2377ed/src/TraceEvent/ETWKernelControl.cs",
+      "bytes": 26378,
+      "sha256": "be6094f341112ca8b85dbb2174c37208b6b43ad7fee56eb8c5aa0b91b8cda79e",
+      "local_original": {
+        "path": ".venv-audit\\native-worker\\heap-primary-source-fd17789\\ETWKernelControl.cs",
+        "bytes": 26378,
+        "sha256": "be6094f341112ca8b85dbb2174c37208b6b43ad7fee56eb8c5aa0b91b8cda79e"
+      }
+    },
+    {
+      "url": "https://github.com/microsoft/perfview/blob/fd17789ba95a2e176b14d725721867c06d2377ed/src/TraceEvent/Parsers/KernelTraceEventParser.cs",
+      "bytes": 565156,
+      "sha256": "30ba785aa815ec546aa1ee4c1fb87f64af57066b0f852b1657a0bb2639a3f65c",
+      "local_original": {
+        "path": ".venv-audit\\native-worker\\heap-primary-source-fd17789\\KernelTraceEventParser.cs",
+        "bytes": 565156,
+        "sha256": "30ba785aa815ec546aa1ee4c1fb87f64af57066b0f852b1657a0bb2639a3f65c"
+      }
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/startheaptrace",
+      "supports": "Existing-PID heap tracing and optional stacks; instrumentation and loss caveats."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/etw-heap-event-free",
+      "supports": "Heap handle/address/source event fields; not the original HeapFree BOOL return."
+    }
+  ],
+  "design": {
+    "route": "StartTraceW with the Microsoft existing-PID heap extension encoding; no KernelTraceControl DLL or WPT command required.",
+    "provider": "222962ab-6180-4b88-a825-346b75f2a24a",
+    "extensions_dwords": [
+      131078,
+      131074,
+      "actual_owned_helper_PID",
+      196611,
+      4129,
+      4132
+    ],
+    "pinned_source_adaptation": "PID item and property extension encoding match the pinned primary source. Requested stack IDs are allocation and free; Microsoft source example requests allocation and reallocation. Unsupported stack/session flags are a precise blocked status, never an automatic fallback.",
+    "helper": "Existing guest Framework/v4.0.30319/csc.exe compiles the new C# fixture /platform:x86. Actual PE32 machine and helper IsWow64Process receipts are checked. Missing compiler is blocked; no install.",
+    "phases": [
+      "Helper readiness before StartTrace, identifying PID/TID and WOW64.",
+      "Start a uniquely named PID-targeted heap session; failures never stop or reconfigure an existing logger.",
+      "Own helper creates a heap, allocates 152 and 296 bytes, frees only the first, reports its real BOOL and addresses, and waits.",
+      "Stop the owned session before asking the helper to free the second allocation and destroy its heap. The second allocation is the live negative example during the entire recorded period.",
+      "Offline decoder reads the full original ETL and matches exactly those two allocation records and one free, with raw header PID/TID/timestamp, pinned version-zero payload width, heap/address/size/order and operation-envelope checks. A free for the live allocation rejects."
+    ],
+    "bounds": {
+      "capture_seconds": 30,
+      "offline_decode_seconds": 30,
+      "helper_watchdog_seconds": 25,
+      "ETL_maximum_bytes": 4194304,
+      "report_maximum_bytes": 65536,
+      "buffer_kib": 64,
+      "minimum_buffers": 4,
+      "maximum_buffers": 8,
+      "mode": "sequential; no circular overwrite",
+      "maximum_decoded_events": 100000,
+      "maximum_buffer_callbacks": 80
+    },
+    "cleanup": "StopTrace in finally only if this controller acquired the exact unique session handle. Stop errors, forced owned-helper termination, nonzero losses, runtime over budget or implementation drift block capability. Helper finally frees its own allocations on error. No game process is opened.",
+    "temporary_storage": "Host work uses F:/project/chaomofa/.venv-audit/native-worker/tmp. Guest compiler TEMP/TMP are a new artifact-directory/tmp inside the guest disk on F. No toolkit installation or registry writes.",
+    "limitations": [
+      "This is an executable capability test, not an actual guest success source. No VM or native helper has been launched by this agent.",
+      "The capture CLI returns 2 when a trace is retained for decoding; that is intentional incomplete acceptance. Decode success also returns 2 and accepted remains false.",
+      "Unknown event versions, ambiguous pointer flags, non-WOW64 layouts, foreign heap events, missing/duplicate events or losses reject. No guessed schema or success return is substituted.",
+      "The decoder uses the pinned Microsoft raw heap payload parser, not a new claim that TDH was observed. Original headers/payloads for matches and bounded first schema samples remain in the report; the full ETL is authoritative.",
+      "Stack capture is requested, but only actual extended-data counts are reported initially. Caller stack content and its association are not yet verified.",
+      "The event schema does not provide the HeapFree BOOL. A real BOOL comes only from this owned fixture, never from the original game.",
+      "Elapsed budgets are checked around work and at callbacks; blocking OS calls are not claimed to have hard real-time deadlines.",
+      "A successful future helper trace cannot prove protected original-game compatibility, CRT free hook approval, TLS clearing, PTD release, small-block allocator cleanup, original handle closure, or complete ABI/state."
+    ],
+    "actual_stop_binding": "New directly observed GetSystemTimePreciseAsFileTime envelopes surround StartTrace and StopTrace. Pure checks require ready <= start <= helper operation <= stop <= helper cleanup; ETL end must precede stop completion and retained-allocation cleanup.",
+    "cleanup_failure_reporting": "Each emergency helper kill/wait, pipe read/close and final identity operation preserves a bounded blocker. A still-live helper stderr is never synchronously read; the report states remaining ownership instead of hanging or claiming cleanup."
+  },
+  "exact_commands": {
+    "capture": "python.exe -B -m devtools.terminal_heap_etw_probe --out <qualified guest ROOT>/analysis/<new-label>.json",
+    "decode": "python.exe -B -m devtools.terminal_heap_etw_probe --decode --source <capture.json> --source-sha <SHA256> --etl <capture-stem>/trace.etl --etl-sha <SHA256> --out <qualified guest ROOT>/analysis/<new-decode-label>.json"
+  },
+  "tests": {
+    "normal": 12,
+    "optimized": 12,
+    "passed": true,
+    "cases": [
+      "exact extension encoding and PID zero/bool rejection",
+      "unique sequential bounded properties",
+      "positive alloc/free plus live counterexample",
+      "missing/duplicate/false free rejection",
+      "raw header PID/TID/time/opcode tamper rejection",
+      "unknown schema/ambiguous pointer flags rejection",
+      "qualification before creation/API",
+      "failed start cannot stop existing logger",
+      "owned stop exact acquired handle",
+      "raw properties PID/loss tamper rejection",
+      "helper owner and timing mismatch rejection",
+      "actual StopTrace envelope after helper operations and before cleanup",
+      "failed emergency kill preserves blocker without blocking stderr read"
+    ]
+  },
+  "remaining_first_dependency": "Main must independently review and deploy only this new helper/module and frozen ABI dependencies, then run one short guest capability capture. Missing compiler or StartTrace unsupported/denied status is the exact blocker. Do not begin original-game heap tracing or a long prefix based on local tests.",
+  "original_PTD_context": {
+    "prior_review": {
+      "path": "analysis\\terminal-battle-wait-clock-settled-independent-review-v1-20261109.json",
+      "bytes": 18279,
+      "sha256": "207f83a63c5f7a77c6edc942f8e839fc14af8fcd3918967b789379efcb0ec8c1"
+    },
+    "known": "219 startup observations show mode 1, flags 1, heap 0x043F0000, PTD 0x043F0D78 and header 0x043F0D58. Hook 0x578120 and callback 0x56CF50 remain pointer observations.",
+    "absent": "No actual original free result/event/stack or TLS-zero transition exists. The proposed helper identifies only whether PID-targeted WOW64 heap event collection works."
+  },
+  "local_primary_source_bytes": 591534
+}

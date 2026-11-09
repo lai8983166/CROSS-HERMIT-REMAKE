@@ -1,0 +1,222 @@
+{
+  "kind": "heap_implementation_self_review_and_independent_result_inventory_review",
+  "accepted": false,
+  "formal_acceptance": false,
+  "original_game_heap_free_proved": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "caller_stack_proved": false,
+  "continuous_result_consumption_proved": false,
+  "two_fresh_full_replays": false,
+  "native_or_VM_run_by_reviewer": false,
+  "references": [
+    {
+      "path": "analysis\\terminal-heap-capability-proof-v1-20261109.json",
+      "bytes": 6052,
+      "sha256": "469347d4b5ec15bb7a42efe470deeaf6f935ec1dd563c057f44af405e7358089"
+    },
+    {
+      "path": "devtools\\terminal_heap_etw_verification.py",
+      "bytes": 14021,
+      "sha256": "368dca7e54cc4e70d8202bf22af09b208af16b0d061e1fb98f431b39dcacb32b"
+    },
+    {
+      "path": "devtools\\tests\\test_terminal_heap_etw_verification.py",
+      "bytes": 5015,
+      "sha256": "3c97ac8a6616794c1e17f173c609885e41fdf5c61b37d122adb243f14fc111d3"
+    },
+    {
+      "path": "analysis\\terminal-battle-wait-result-inventory-v1-20261109.json",
+      "bytes": 2628,
+      "sha256": "dea18d513adcd1bdb6cc96d44d1fbaba5de9d8615aee5552ce6392318062ef5a"
+    },
+    {
+      "path": "devtools\\terminal_battle_result_inventory.py",
+      "bytes": 5969,
+      "sha256": "1c14b87309ec0563d285ce4466f9d4f82690fe27afe687d6d0990a0352190b7e"
+    },
+    {
+      "path": "devtools\\tests\\test_terminal_battle_result_inventory.py",
+      "bytes": 1319,
+      "sha256": "26146ab5c9ed57ab034a2dea7f6c9e9544230db5c5d064cd5b84a4c438d90db5"
+    },
+    {
+      "path": "devtools\\terminal_original_wait_etw_verification.py",
+      "bytes": 39701,
+      "sha256": "3291ca9c213d67a333b0914b175bd80ff59fcbc598bad3b2c7ff8254f912e769"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-capability-v2-20261109.json",
+      "bytes": 13645,
+      "sha256": "ea64989c04abfe59cb71216341192ec36025d3a312ec83754d48e9b96bc8c56a"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-capability-v2-20261109\\trace.etl",
+      "bytes": 262144,
+      "sha256": "11ebdae815e9fa7d4c0e59e0e617af45268ea99b3f49f17ee44469067030792f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-decode-v3-20261109.json",
+      "bytes": 5268,
+      "sha256": "23420a10f683c145135cb36caae3e4452e90cee748c817c56490a404892a4e7b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-decode-v3-20261109.records.json.gz",
+      "bytes": 5375,
+      "sha256": "0ab457945075d0ac361a63234bcbec298ff5acee0f173d0839be3641c30fc3cd"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-decode-v3-20261109.schemas.json.gz",
+      "bytes": 1472,
+      "sha256": "3ea4c968861c159cdbe09849e0be331c452c0c1f2b2ca2163cf6381d60e936f8"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-battle-wait-window-battle-v6-20261109.json.gz",
+      "bytes": 92900,
+      "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-battle-wait-window-battle-v6-20261109.school.json.gz",
+      "bytes": 9505149,
+      "sha256": "271fb1e0a7e58c956c3d7eaa565c3490d17219a0ad60753d9d0243abe97d0ff7"
+    }
+  ],
+  "finite_helper_finding": {
+    "capability": true,
+    "scope": "One owned WOW64 helper and its dedicated OS heap in this unchanged short lifetime only.",
+    "complete_ETL_events": 349,
+    "all_heap_events_checked": 180,
+    "all_original_TDH_schemas_checked": 6,
+    "target_header_PID_events": 176,
+    "foreign_header_PID_events": 4,
+    "helper_pid": 6092,
+    "helper_tid": 2948,
+    "heap": "0x057A0000",
+    "original_event_indices": [
+      117,
+      226,
+      228,
+      338
+    ],
+    "operations": [
+      "heap creation",
+      "152-byte allocation",
+      "296-byte allocation",
+      "free of152-byte allocation"
+    ],
+    "allocation_addresses": [
+      91882936,
+      91883096
+    ],
+    "kept_live_allocation_free_events_before_stop": 0,
+    "stop_loss_counters_zero": true,
+    "all_four_ETL_buffers_consumed": true,
+    "helper_HeapFree_BOOL": true,
+    "event_schema_contains_HeapFree_BOOL": false,
+    "helper_natural_cleanup": true,
+    "foreign_statistics": {
+      "original_header_pid": 6000,
+      "original_opcode": 38,
+      "original_version": 3,
+      "actual_payload_ProcessId": 6092,
+      "original_header_preserved": true,
+      "foreign_alloc_free_events_accepted": 0,
+      "emitter_is_controller_independently_authenticated": false
+    },
+    "raw_validation": [
+      "Fixed source, ETL, v3 report and sidecar hashes; exact original four producers and three executed reader identities.",
+      "Each80-byte heap header, actual PID/TID/time/opcode/version/pointer-width flags, buffer CPU and full payload are checked.",
+      "All six original TDH metadata blobs match retained hashes. Property-info names and scalar widths are checked; no version2-to-version0 substitution.",
+      "Every payload is reproduced byte-for-byte from its ordered successful native TDH property bytes. Unknown schemas/events, omissions and foreign alloc/free reject.",
+      "Foreign statistics retain PID6000 in the header. Their independent payload ProcessId identifies6092; there is no relabeling or silent filtering.",
+      "The owned heap has one Create, two exact address/size Alloc records and one Free inside its real operation envelope. The second allocation has no free before StopTrace; actual cleanup begins afterward."
+    ],
+    "limits": [
+      "The helper API BOOL is not an original-game HeapFree return or an event field.",
+      "All180 heap records have no extended data. Separate stack-walk records elsewhere in the full ETL remain possible; caller-stack association is unverified.",
+      "Helper capability does not prove protected-game compatibility, CRT hook approval, original allocation epoch/release, TLS clearing, PTD cleanup or original handle closure."
+    ]
+  },
+  "result_inventory_review": {
+    "status": "counts and raw field distinctions independently reproduced",
+    "actual_scene_entries": 198,
+    "distinct_elapsed_context_sha_pairs": 169,
+    "not_claimed_as_169_independent_sampling_calls": true,
+    "entry_containers": {
+      "samples": 159,
+      "story_phases": 25,
+      "battle_inputs": 11,
+      "notice_inputs": 3
+    },
+    "declared_actual_consumer_ranges": [
+      [
+        "0x453CB5",
+        "0x453CFC"
+      ],
+      [
+        "0x4967B0",
+        "0x4968A9"
+      ]
+    ],
+    "direct_current_consumer_EIP_entries": 0,
+    "entries_with_saved_consumer_return_sites": 191,
+    "saved_site_counts": {
+      "0x453CB5": 190,
+      "0x453CDD": 1
+    },
+    "saved_site_raw_savedBP_and_return_bytes_checked": 191,
+    "saved_site_raw_bytes_missing": 0,
+    "window_contexts": 423,
+    "current_authenticated_Nt_call_return_PC_contexts": 423,
+    "recording_gate_zero_entries": 423,
+    "independent_checks": [
+      "Loaded the exact compressed school/window sources without copying them. Recounted matching scene/TID/TLS entries and actual raw716-byte EIP values.",
+      "Located and compared the raw8-byte saved-BP/return pairs for all191 consumer return sites in the corresponding task terminal_frames.",
+      "Authenticated the actual relocated guest NtWait DLL/stub and checked all423 raw contexts/stacks, including owned event, FALSE alertable and NULL timeout.",
+      "Recomputed duplicate keys without calling them independent native reads or distinct observation times."
+    ],
+    "limits": [
+      "A saved return PC is not current EIP or proof of downstream instruction execution.",
+      "The classification covers only the two explicitly declared consumer ranges.",
+      "The pending NtWait context EAX is not promoted to the later syscall result.",
+      "Gate zero and endpoint locals do not supply the missing continuous instruction/write/ABI trace."
+    ]
+  },
+  "tests": {
+    "heap_actual_tamper_normal": 11,
+    "heap_actual_tamper_optimized": 11,
+    "inventory_normal": 3,
+    "inventory_optimized": 3,
+    "all_passed": true,
+    "rejection_coverage": [
+      "missing/duplicate event",
+      "payload versus TDH mismatch",
+      "false live free with consistent altered payload/property",
+      "foreign alloc/free",
+      "statistics wrong payload PID",
+      "foreign header relabeling",
+      "unknown opcode/version",
+      "metadata/width tamper",
+      "loss/incomplete buffers",
+      "false helper BOOL",
+      "cleanup overlap",
+      "raw owner mismatch"
+    ]
+  },
+  "file_scope": {
+    "new_verifier": "devtools/terminal_heap_etw_verification.py",
+    "new_tests": "devtools/tests/test_terminal_heap_etw_verification.py",
+    "new_proof": "analysis\\terminal-heap-capability-proof-v1-20261109.json",
+    "frozen_capture_reader_and_sources_modified": false,
+    "original_large_source_copied": false
+  },
+  "remaining_first_dependency": "Before original PTD cleanup can be proved, bind the current original OS-heap branch, allocation header/epoch and actual freeing caller/result. Continuous result consumption and complete state remain separate prior gaps.",
+  "review_roles": {
+    "heap_implementation_and_tests_author": "battle_gate subagent",
+    "heap_portion_of_this_report": "Implementation self-review and local verification; not an independent review of its own heap code.",
+    "heap_independent_review": "Main agent separately reviews the heap producer, decoder and verifier. The main review is not attributed to this subagent.",
+    "result_inventory_independent_review": "battle_gate subagent independently reviewed the main agent result_inventory implementation and actual retained source.",
+    "context_independent_review": "battle_gate subagent independently reviewed the main agent context producer/verifier; separately recorded in analysis/terminal-battle-wait-context-independent-review-v1-20261109.json"
+  }
+}

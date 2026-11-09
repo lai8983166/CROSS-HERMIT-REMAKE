@@ -1,0 +1,186 @@
+{
+  "finite_owned_WOW64_heap_capability": true,
+  "alloc_free_events_verified": true,
+  "live_negative_verified": true,
+  "original_game": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "accepted": false,
+  "caller_stack_verified": false,
+  "helper_HeapFree_BOOL_observed": true,
+  "event_HeapFree_BOOL_present": false,
+  "source_total_events": 349,
+  "all_heap_events_checked": 180,
+  "all_TDH_schemas_checked": 6,
+  "owned_heap_events": [
+    {
+      "index": 117,
+      "opcode": 32,
+      "FILETIME": 134387048061421780,
+      "properties": {
+        "HeapHandle": 91881472,
+        "HeapFlags": 4098,
+        "ReservedSpace": 65536,
+        "CommittedSpace": 4096,
+        "AllocatedSpace": 1488
+      }
+    },
+    {
+      "index": 226,
+      "opcode": 33,
+      "FILETIME": 134387048061423753,
+      "properties": {
+        "HeapHandle": 91881472,
+        "AllocSize": 152,
+        "AllocAddress": 91882936,
+        "SourceId": 3
+      }
+    },
+    {
+      "index": 228,
+      "opcode": 33,
+      "FILETIME": 134387048061423776,
+      "properties": {
+        "HeapHandle": 91881472,
+        "AllocSize": 296,
+        "AllocAddress": 91883096,
+        "SourceId": 3
+      }
+    },
+    {
+      "index": 338,
+      "opcode": 36,
+      "FILETIME": 134387048061427135,
+      "properties": {
+        "HeapHandle": 91881472,
+        "FreeAddress": 91882936,
+        "SourceId": 3
+      }
+    }
+  ],
+  "foreign_snapshot_statistics": [
+    {
+      "index": 7,
+      "header_pid": 6000,
+      "header_tid": 5860,
+      "payload_process_id": 6092,
+      "heap": 19595264
+    },
+    {
+      "index": 8,
+      "header_pid": 6000,
+      "header_tid": 5860,
+      "payload_process_id": 6092,
+      "heap": 14548992
+    },
+    {
+      "index": 348,
+      "header_pid": 6000,
+      "header_tid": 5860,
+      "payload_process_id": 6092,
+      "heap": 19595264
+    },
+    {
+      "index": 349,
+      "header_pid": 6000,
+      "header_tid": 5860,
+      "payload_process_id": 6092,
+      "heap": 14548992
+    }
+  ],
+  "foreign_emitter_is_controller_independently_proved": false,
+  "limitation": "Foreign header PID is preserved; only its TDH ProcessId attributes the snapshot statistics to the target. This source has no independent controller-PID receipt. Heap-event matches plus helper BOOL do not prove original-game free ABI, caller stacks, TLS clearing or PTD cleanup.",
+  "references": [
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-capability-v2-20261109.json",
+      "bytes": 13645,
+      "sha256": "ea64989c04abfe59cb71216341192ec36025d3a312ec83754d48e9b96bc8c56a"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-capability-v2-20261109\\trace.etl",
+      "bytes": 262144,
+      "sha256": "11ebdae815e9fa7d4c0e59e0e617af45268ea99b3f49f17ee44469067030792f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-decode-v3-20261109.json",
+      "bytes": 5268,
+      "sha256": "23420a10f683c145135cb36caae3e4452e90cee748c817c56490a404892a4e7b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-decode-v3-20261109.records.json.gz",
+      "bytes": 5375,
+      "sha256": "0ab457945075d0ac361a63234bcbec298ff5acee0f173d0839be3641c30fc3cd"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-heap-decode-v3-20261109.schemas.json.gz",
+      "bytes": 1472,
+      "sha256": "3ea4c968861c159cdbe09849e0be331c452c0c1f2b2ca2163cf6381d60e936f8"
+    }
+  ],
+  "kind": "finite_owned_WOW64_heap_capability_verification",
+  "implementations": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_verification.py",
+      "bytes": 14021,
+      "sha256": "368dca7e54cc4e70d8202bf22af09b208af16b0d061e1fb98f431b39dcacb32b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_decode_v3.py",
+      "bytes": 15926,
+      "sha256": "131749c8cd53d1eb5bd17081e073596b513af3b2c669066b71fcc68697bee860"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_probe.py",
+      "bytes": 25594,
+      "sha256": "e7b4b12e007e72ba6fae6f1c1b9300f4dd9908776930a8e21b1686015463897b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_probe_v2.py",
+      "bytes": 1293,
+      "sha256": "29c7fb18d030a07be26f55be4d2f0c158d0c48c031c868e4c09e9c689402670e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_helper.cs",
+      "bytes": 3513,
+      "sha256": "48b71a742b57947e3c1f02d77acaeee7f59d5e289e63c911aabd92d933de3931"
+    }
+  ],
+  "implementations_after": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_verification.py",
+      "bytes": 14021,
+      "sha256": "368dca7e54cc4e70d8202bf22af09b208af16b0d061e1fb98f431b39dcacb32b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_decode_v3.py",
+      "bytes": 15926,
+      "sha256": "131749c8cd53d1eb5bd17081e073596b513af3b2c669066b71fcc68697bee860"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_probe.py",
+      "bytes": 25594,
+      "sha256": "e7b4b12e007e72ba6fae6f1c1b9300f4dd9908776930a8e21b1686015463897b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_probe_v2.py",
+      "bytes": 1293,
+      "sha256": "29c7fb18d030a07be26f55be4d2f0c158d0c48c031c868e4c09e9c689402670e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_helper.cs",
+      "bytes": 3513,
+      "sha256": "48b71a742b57947e3c1f02d77acaeee7f59d5e289e63c911aabd92d933de3931"
+    }
+  ]
+}

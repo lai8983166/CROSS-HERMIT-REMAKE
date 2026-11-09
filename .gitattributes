@@ -1,4 +1,12 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# Current context/result and heap capability evidence binds executed raw bytes.
+devtools/terminal_battle_result_inventory.py -text
+devtools/tests/test_terminal_battle_result_inventory.py -text
+devtools/terminal_heap_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_heap_*.cs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_heap_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-heap-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-heap-*.zip -text
 # PTD inventory receipts bind the executed bytes, including existing CRLF.
 devtools/terminal_ptd_evidence_inventory.py -text
 devtools/tests/test_terminal_ptd_evidence_inventory.py -text

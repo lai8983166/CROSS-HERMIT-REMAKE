@@ -1,0 +1,68 @@
+{
+  "kind": "retained_same_battle_result_consumption_coverage_inventory",
+  "references": [
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-battle-wait-window-battle-v6-20261109.json.gz",
+      "bytes": 92900,
+      "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-battle-wait-window-battle-v6-20261109.school.json.gz",
+      "bytes": 9505149,
+      "sha256": "271fb1e0a7e58c956c3d7eaa565c3490d17219a0ad60753d9d0243abe97d0ff7"
+    }
+  ],
+  "accepted": false,
+  "original_subject": {
+    "pid": 6096,
+    "tid": 5168,
+    "main_tid": 4336,
+    "main": 70998160,
+    "node": 153481280
+  },
+  "actual_scene_contexts": 198,
+  "direct_consumer_PC_contexts": [],
+  "actual_EIP_counts": {
+    "0x77d13c1c": 1,
+    "0x76b0139c": 1,
+    "0x77d13bfc": 196
+  },
+  "contexts_with_saved_consumer_return_sites": 191,
+  "first_saved_return_witness": {
+    "source_path": [
+      "probe",
+      "samples",
+      1216
+    ],
+    "elapsed": 933.25,
+    "actual_EIP": 2010201084,
+    "actual_consumer_PC": false,
+    "saved_consumer_return_sites": [
+      4537525
+    ],
+    "context_sha256": "49166e30bdb36e0eaf0fa978b454e95c95f3ba71723e82e64dbfafceb2761412"
+  },
+  "wait_window_contexts": 423,
+  "wait_window_current_Nt_return_PC_contexts": 423,
+  "wait_window_direct_consumer_PC_contexts": 0,
+  "original_recording_gate_byte_counts": {
+    "00": 423
+  },
+  "result_endpoint_audit": "analysis/terminal-battle-wait-gap-audit-v2-20261109.json",
+  "continuous_result_consumption_proved": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "new_native_capture": false,
+  "limitations": [
+    "A saved 453CB5/453CD3/453CDD stack return site is not current EIP in the consumer.",
+    "Pending NtWait user context EAX is not the later syscall return; no result/register is patched.",
+    "Observed recording gate bytes select a candidate original branch, not evidence that its instructions executed.",
+    "Snapshots and recovered endpoint locals do not supply the intervening instruction/write/ABI trace."
+  ],
+  "next_required_observation": "Authenticate complete live caller/return context and original consumer code/data across the completed wait; retain actual instruction/write/leaf outcomes. Existing discarded or absent records cannot be reconstructed from stack return sites.",
+  "implementation": {
+    "path": "F:\\project\\chaomofa\\devtools\\terminal_battle_result_inventory.py",
+    "sha256": "1c14b87309ec0563d285ce4466f9d4f82690fe27afe687d6d0990a0352190b7e"
+  }
+}

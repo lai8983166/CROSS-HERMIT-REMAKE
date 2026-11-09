@@ -1,0 +1,119 @@
+{
+  "kind": "heap_schema_decoder_v3_local_contract",
+  "accepted": false,
+  "original_game": false,
+  "fullABI": false,
+  "PTDcleanup": false,
+  "native_or_VM_run_by_agent": false,
+  "status": "ready_for_existing_ETL_offline_diagnostic_only",
+  "files": [
+    {
+      "path": "devtools\\terminal_heap_etw_decode_v3.py",
+      "bytes": 15926,
+      "sha256": "131749c8cd53d1eb5bd17081e073596b513af3b2c669066b71fcc68697bee860"
+    },
+    {
+      "path": "devtools\\tests\\test_terminal_heap_etw_decode_v3.py",
+      "bytes": 5299,
+      "sha256": "1a4fb607d9f60e2a6467d26225f1734a6c98d38f3ed7454644bfa89d9cf3f21b"
+    }
+  ],
+  "fixed_source": {
+    "path": ".venv-audit\\native-worker\\terminal-heap-capability-v2-20261109.json",
+    "bytes": 13645,
+    "sha256": "ea64989c04abfe59cb71216341192ec36025d3a312ec83754d48e9b96bc8c56a"
+  },
+  "fixed_ETL": {
+    "path": ".venv-audit\\native-worker\\terminal-heap-capability-v2-20261109\\trace.etl",
+    "bytes": 262144,
+    "sha256": "11ebdae815e9fa7d4c0e59e0e617af45268ea99b3f49f17ee44469067030792f"
+  },
+  "preserved_rejection": {
+    "path": ".venv-audit\\native-worker\\terminal-heap-decode-v2-20261109.json",
+    "bytes": 4690,
+    "sha256": "b46d9ffa8c0c9ccc0dd001b907a8224bce06d42522e70fc24514fd3bfd490427"
+  },
+  "source_producer_manifest": {
+    "terminal_heap_etw_probe.py": [
+      25594,
+      "e7b4b12e007e72ba6fae6f1c1b9300f4dd9908776930a8e21b1686015463897b"
+    ],
+    "terminal_heap_etw_probe_v2.py": [
+      1293,
+      "29c7fb18d030a07be26f55be4d2f0c158d0c48c031c868e4c09e9c689402670e"
+    ],
+    "terminal_heap_etw_helper.cs": [
+      3513,
+      "48b71a742b57947e3c1f02d77acaeee7f59d5e289e63c911aabd92d933de3931"
+    ],
+    "terminal_wait_etw_probe.py": [
+      50506,
+      "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    ]
+  },
+  "decoder_dependencies": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_decode_v3.py",
+      "bytes": 15926,
+      "sha256": "131749c8cd53d1eb5bd17081e073596b513af3b2c669066b71fcc68697bee860"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_heap_etw_probe.py",
+      "bytes": 25594,
+      "sha256": "e7b4b12e007e72ba6fae6f1c1b9300f4dd9908776930a8e21b1686015463897b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    }
+  ],
+  "changes": [
+    "Separate decoder identity from the four frozen capture producer identities. Fixed source/ETL hashes and each original producer name/size/hash are checked before and after reading.",
+    "Read every ETL event and account for all buffers/loss counters. Retain every heap-provider record, including foreign PIDs and unrecognized opcodes/versions, without relabeling.",
+    "Retain complete80-byte event headers, buffer context, payloads and extended-data items for every heap record. Record timestamps are ProcessTrace FILETIME values; no manual conversion/tolerance is used.",
+    "Call native TDH for each unique schema and retain full TRACE_EVENT_INFO bytes. Read bounded actual top-level TDH property bytes. Missing/complex/unavailable metadata is explicitly retained rather than interpreted using a guessed layout.",
+    "Never invoke the v1 version-zero heap parser or accept version2 on size alone. No alloc/free/live-negative/caller-stack capability flag becomes true in this stage."
+  ],
+  "bounds": {
+    "ETL_bytes": 262144,
+    "max_decode_seconds": 30,
+    "max_total_events": 100000,
+    "max_heap_records": 65536,
+    "max_raw_heap_retention_bytes": 8388608,
+    "max_schema_count": 64,
+    "max_schema_bytes_total": 524288,
+    "max_property_bytes": 256,
+    "max_records_gzip_bytes": 2097152,
+    "max_schemas_gzip_bytes": 262144,
+    "max_summary_bytes": 65536
+  },
+  "outputs": [
+    "<out>.json small summary",
+    "<out-stem>.records.json.gz all heap-provider records",
+    "<out-stem>.schemas.json.gz all observed TDH metadata"
+  ],
+  "command": "python.exe -B -m devtools.terminal_heap_etw_decode_v3 --decode --source <original-v2-source.json> --source-sha ea64989c04abfe59cb71216341192ec36025d3a312ec83754d48e9b96bc8c56a --etl <original-v2-trace.etl> --etl-sha 11ebdae815e9fa7d4c0e59e0e617af45268ea99b3f49f17ee44469067030792f --out <new guest analysis report.json>",
+  "exit_codes": {
+    "2": "Complete finite schema diagnostic, still unaccepted.",
+    "1": "Blocked/incomplete decoder; original ETL and prior failure remain unchanged."
+  },
+  "tests": {
+    "normal": 6,
+    "optimized": 6,
+    "passed": true,
+    "coverage": [
+      "real source/ETL/producer authentication",
+      "wrong source SHA rejected",
+      "actual metadata version not rewritten",
+      "metadata offset/count/truncation/string bounds",
+      "host rejection before any WinAPI",
+      "mock complete reader retains foreign PID/version2/TDH failure and closes owned handle"
+    ]
+  },
+  "primary_metadata_sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/api/tdh/ns-tdh-trace_event_info",
+    "https://learn.microsoft.com/en-us/windows/win32/api/tdh/ns-tdh-event_property_info"
+  ],
+  "first_actual_question": "What are all version2 heap schemas, foreign PID/opcode records and TDH named scalar values in this exact retained ETL? Interpretation is deferred until those original bytes exist."
+}
