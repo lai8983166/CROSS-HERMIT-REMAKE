@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "kind": "independent_failed_wait_relay_review",
+  "date": "2026-11-09",
+  "accepted": false,
+  "full_native_wait_trace_accepted": false,
+  "full_resource_lifetime_proved": false,
+  "original_debug_behavior_equivalence_proved": false,
+  "native_or_VM_started_by_reviewer": false,
+  "source": {
+    "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v5-20261109.json.gz",
+    "bytes": 20257,
+    "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf"
+  },
+  "frozen_observers": [
+    {
+      "path": "devtools/terminal_wait_native_probe.py",
+      "bytes": 7353,
+      "sha256": "895fc6395f7c2adcfa7888d32826ef39eddd20bac71ce1ddfb882953f0e060c0",
+      "archive": "analysis/terminal-wait-relay-implementation-v4-20261109.zip"
+    },
+    {
+      "path": "devtools/terminal_debug_relay.py",
+      "bytes": 17721,
+      "sha256": "dd55c8bd8edf533ab384a406c360d98f1add64b33731870e58d0d3278c754264",
+      "archive": "analysis/terminal-wait-relay-implementation-v5-20261109.zip"
+    }
+  ],
+  "reviewed_verifier": {
+    "path": "devtools/terminal_wait_native_verification.py",
+    "bytes": 9109,
+    "sha256": "6c5601e1442a95a4a15b2d81d033dda5210c90f524cdf264bb201bee792fe8f7"
+  },
+  "reviewed_dependencies": [
+    {
+      "path": "tools/school_crt_init_capture.py",
+      "bytes": 11695,
+      "sha256": "4cb6dee65b51fbfdd80ca11e1cf5c6a4f4e32a4f4efc73a69f3aa4cf10b93e26"
+    },
+    {
+      "path": "tools/school_crt_init_nested.py",
+      "bytes": 9511,
+      "sha256": "fa9d0781faffa7e152531aaa19c549d553ebfb96359b123a13520b742d75476e"
+    },
+    {
+      "path": "tools/school_startup_lifetime.py",
+      "bytes": 12988,
+      "sha256": "9199bbd3a645b9a3886ca8309cd46be466582812beb396b1446d85c826deef9b"
+    }
+  ],
+  "checks": {
+    "source_hash": true,
+    "original_hash": true,
+    "frozen_observer_hashes": 2,
+    "live_original_code_ranges": 3,
+    "raw_reply_and_hit_binding": true,
+    "debug_write_records_checked": 13,
+    "actual_current_TLS_at_entry": true,
+    "recorded_API_relocation_pairs": 5,
+    "independent_API_module_file_authentication": false,
+    "failed_source_verifier_rejection": "successful bounded native wait observation",
+    "abnormal_and_forced_cleanup_verified": true
+  },
+  "observed": {
+    "parent_pid": 5196,
+    "child_pid": 3952,
+    "worker_tid": 3924,
+    "parent_reply_tid": 884,
+    "hit_count": 1,
+    "EIP": "0x422360",
+    "elapsed_seconds": 0.031000000000176442,
+    "original_parent_reply": "0x80010001",
+    "parent_reply_stack_hex": "7c1a2b776001000000dc190001000180",
+    "parent_exit_event": "0x4000001E",
+    "process_exits": {
+      "5196": {
+        "signaled": true,
+        "code": 1073741854
+      },
+      "3952": {
+        "signaled": true,
+        "code": 1073741854
+      }
+    },
+    "relay_error": "ValueError('parent exited before observation completed')",
+    "cleanup": {
+      "errors": [
+        "child: OSError(5, 'suspend owned instrumentation cleanup')"
+      ],
+      "parent_detached": true,
+      "child_debug_registers_restored": false,
+      "event_handle_cleanup": [],
+      "own_event_handle_duplicates_closed": true,
+      "last_original_continue_return_observed": false
+    },
+    "lifecycle_error": "OSError(1400, 'owned WM_CLOSE')",
+    "WM_CLOSE_posted": false,
+    "forced_termination": true,
+    "members_before_cleanup": [
+      3952
+    ],
+    "members_after_cleanup": []
+  },
+  "conclusion": "The injected hardware-debug observation is incompatible in this actual v5 attempt. It observed only wait function entry, not a completed native wait, normal battle exit, or natural resource cleanup. Preserve failure and disable this path; do not replace the original parent reply or lower acceptance.",
+  "boundaries": [
+    "The raw parent-stack reply is DBG_EXCEPTION_NOT_HANDLED and frozen source does not substitute it. This is a bounded source/record audit, not an independent full memory-write trace.",
+    "The exact child exception-handler chain is absent. Parent exit4000001E is directly recorded; child code4000001E is queried after emergency TerminateJobObject(job,1). Precise child exit timing relative to cleanup is not established.",
+    "SuspendThread ACCESS_DENIED alone does not establish target thread exit; no contemporaneous thread-exit query exists.",
+    "parent_detached=true and empty final Job are containment receipts, not natural cleanup or context restoration. Child restore failed; no final desired continuation-return receipt exists.",
+    "Outer lifecycle original_registers_written=false does not mean no debug-register instrumentation. Relay wrote DR registers explicitly.",
+    "The instrument helper resets DR6 during restoration. Full debug-status restoration is not implemented; this failure has no successful child restore.",
+    "Top-level verifier does not invoke verify_debug_write or authenticate API_exports/restoration records. It correctly rejects this failure; these remain requirements for any future success interpretation.",
+    "Low-level helper hashes identify files reviewed now; v5 observer manifest pins only two observer modules. Full dependency provenance is not claimed."
+  ],
+  "no_DB_routes": [
+    {
+      "name": "Guest kernel ETW",
+      "mechanism": "Bounded SystemCall enter51/exit52 + CSwitch/ReadyThread + process/thread/image events with supported stacks. Pair NT entry address and returned SysCallNtStatus by current TID/CPU and lifetime; identify relevant NT functions using matching kernel image/symbol identity. Reject lost buffers and unresolved pairings.",
+      "next_check": "Owned synthetic helper: finite successful event wait plus timeout. Check guest schemas/privilege, real entry/exit records and lost counters, without game debug attachment or DR/INT3/TF/PAGE_GUARD.",
+      "limits": "No arbitrary arguments/handles, complete x86 context, critical-section fast paths, exact13 user sites or full replay; supplemental native evidence only.",
+      "implemented_or_run_in_review": false
+    },
+    {
+      "name": "External full-system instruction callback",
+      "mechanism": "QEMU TCG instruction callbacks can observe execution and CPU state without guest #DB; filter process/address-space and collect next-instruction/memory evidence.",
+      "limits": "Current VMware vmrun worker lacks TCG callbacks; different platform requires compatibility/native qualification and cannot silently replace current acceptance.",
+      "implemented_or_run_in_review": false
+    },
+    {
+      "name": "Read-only context/object queries",
+      "mechanism": "Owned-thread context, actual FS/TLS and non-consuming object queries supplement observed post-call/exit endpoints.",
+      "limits": "Periodic sampling cannot guarantee every short-lived API boundary or an unseen ABI return."
+    }
+  ],
+  "references": [
+    {
+      "title": "Microsoft SysCallEnter",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/etw/syscallenter"
+    },
+    {
+      "title": "Microsoft SysCallExit",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/etw/syscallexit"
+    },
+    {
+      "title": "Microsoft CSwitch",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/etw/cswitch"
+    },
+    {
+      "title": "Microsoft StackWalk_Event",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/etw/stackwalk-event"
+    },
+    {
+      "title": "QEMU TCG plugins",
+      "url": "https://www.qemu.org/docs/master/devel/tcg-plugins.html"
+    }
+  ],
+  "formal_tasks_advanced": false
+}

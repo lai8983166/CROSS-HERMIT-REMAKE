@@ -1,0 +1,321 @@
+{
+  "scope": "two owned fixture wait windows only",
+  "accepted": false,
+  "window_capability_observed": true,
+  "fixture_architecture": "64-bit guest Python helper; not original game WOW64",
+  "original_game": false,
+  "fullABI": false,
+  "fullglobalpairing": false,
+  "kernel_symbol_identity": false,
+  "original_global_status": "blocked",
+  "original_global_errors": [
+    "ValueError('overlapping/unclosed target syscall')"
+  ],
+  "raw_records_checked": 511,
+  "helper_pid": 2112,
+  "helper_tid": 1168,
+  "windows": [
+    {
+      "label": "success",
+      "fixture_interval": [
+        1794203389492915500,
+        1794203389544046800
+      ],
+      "selected_indices": [
+        27,
+        28,
+        29,
+        30
+      ],
+      "global_indices": [
+        5867,
+        5868,
+        5956,
+        5957
+      ],
+      "syscall_address": 18446735286446574592,
+      "NTSTATUS": 0,
+      "prefix_before": {
+        "enters": 10,
+        "exits": 10,
+        "balance": 0
+      },
+      "prefix_after": {
+        "enters": 11,
+        "exits": 11,
+        "balance": 0
+      },
+      "original_records": [
+        {
+          "index": 5867,
+          "guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+          "opcode": 51,
+          "ns": 1794203389492920800,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 0,
+          "decoder_cpu_tid_before": 1168,
+          "data": {
+            "SysCallAddress": 18446735286446574592
+          },
+          "record_header_hex": "1800000050030000ffffffffffffffff387319220e70dd01b4bf1dce7e13a64d87b03f59aa102cbc00000200003300000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0000ffff",
+          "payload_hex": "00cc4f0e02f8ffff"
+        },
+        {
+          "index": 5868,
+          "guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+          "opcode": 36,
+          "ns": 1794203389492922200,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 0,
+          "decoder_cpu_tid_before": 1168,
+          "data": {
+            "NewThreadId": 0,
+            "OldThreadId": 1168
+          },
+          "record_header_hex": "2800000050030000ffffffffffffffff467319220e70dd01d1a86f3d05fed0119dda00c04fd7ba7c00000400002400000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0000ffff",
+          "payload_hex": "000000009004000000090000060105012d0d0000531a0800"
+        },
+        {
+          "index": 5956,
+          "guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+          "opcode": 36,
+          "ns": 1794203389544027000,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 1,
+          "decoder_cpu_tid_before": 0,
+          "data": {
+            "NewThreadId": 1168,
+            "OldThreadId": 0
+          },
+          "record_header_hex": "2800000050030000ffffffffffffffff8e3f21220e70dd01d1a86f3d05fed0119dda00c04fd7ba7c00000400002400000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0100ffff",
+          "payload_hex": "9004000000000000090000001900020104000000739b58a1"
+        },
+        {
+          "index": 5957,
+          "guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+          "opcode": 52,
+          "ns": 1794203389544028300,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 1,
+          "decoder_cpu_tid_before": 1168,
+          "data": {
+            "SysCallNtStatus": 0
+          },
+          "record_header_hex": "1400000050030000ffffffffffffffff9b3f21220e70dd01b4bf1dce7e13a64d87b03f59aa102cbc00000200003400000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0100ffff",
+          "payload_hex": "00000000"
+        }
+      ]
+    },
+    {
+      "label": "timeout",
+      "fixture_interval": [
+        1794203389544057000,
+        1794203389638015700
+      ],
+      "selected_indices": [
+        31,
+        32,
+        33,
+        34
+      ],
+      "global_indices": [
+        5962,
+        5963,
+        6403,
+        6404
+      ],
+      "syscall_address": 18446735286446574592,
+      "NTSTATUS": 258,
+      "prefix_before": {
+        "enters": 11,
+        "exits": 11,
+        "balance": 0
+      },
+      "prefix_after": {
+        "enters": 12,
+        "exits": 12,
+        "balance": 0
+      },
+      "original_records": [
+        {
+          "index": 5962,
+          "guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+          "opcode": 51,
+          "ns": 1794203389544059700,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 1,
+          "decoder_cpu_tid_before": 1168,
+          "data": {
+            "SysCallAddress": 18446735286446574592
+          },
+          "record_header_hex": "1800000050030000ffffffffffffffffd54021220e70dd01b4bf1dce7e13a64d87b03f59aa102cbc00000200003300000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0100ffff",
+          "payload_hex": "00cc4f0e02f8ffff"
+        },
+        {
+          "index": 5963,
+          "guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+          "opcode": 36,
+          "ns": 1794203389544061200,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 1,
+          "decoder_cpu_tid_before": 1168,
+          "data": {
+            "NewThreadId": 0,
+            "OldThreadId": 1168
+          },
+          "record_header_hex": "2800000050030000ffffffffffffffffe44021220e70dd01d1a86f3d05fed0119dda00c04fd7ba7c00000400002400000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0100ffff",
+          "payload_hex": "0000000090040000000900000601050196610200b81c0800"
+        },
+        {
+          "index": 6403,
+          "guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+          "opcode": 36,
+          "ns": 1794203389637985900,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 0,
+          "decoder_cpu_tid_before": 628,
+          "data": {
+            "NewThreadId": 1168,
+            "OldThreadId": 628
+          },
+          "record_header_hex": "2800000050030000ffffffffffffffffd3952f220e70dd01d1a86f3d05fed0119dda00c04fd7ba7c00000400002400000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0000ffff",
+          "payload_hex": "90040000740200000808000006010500000000004c140800"
+        },
+        {
+          "index": 6404,
+          "guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+          "opcode": 52,
+          "ns": 1794203389637986700,
+          "tid": 4294967295,
+          "pid": 4294967295,
+          "cpu": 0,
+          "decoder_cpu_tid_before": 1168,
+          "data": {
+            "SysCallNtStatus": 258
+          },
+          "record_header_hex": "1400000050030000ffffffffffffffffdb952f220e70dd01b4bf1dce7e13a64d87b03f59aa102cbc00000200003400000000000000000000000000000000000000000000000000000000000000000000",
+          "buffer_context_hex": "0000ffff",
+          "payload_hex": "02010000"
+        }
+      ]
+    }
+  ],
+  "observed_prefix_ledger": {
+    "enters": 241,
+    "exits": 240,
+    "final_balance": 1,
+    "minimum_balance": 0,
+    "overlap_entries": [
+      {
+        "index": 5831,
+        "ns": 1794203389492607500,
+        "observed_prior_balance": 1
+      },
+      {
+        "index": 5835,
+        "ns": 1794203389492722600,
+        "observed_prior_balance": 1
+      },
+      {
+        "index": 5837,
+        "ns": 1794203389492727100,
+        "observed_prior_balance": 1
+      },
+      {
+        "index": 6940,
+        "ns": 1794203389648460000,
+        "observed_prior_balance": 1
+      },
+      {
+        "index": 6942,
+        "ns": 1794203389648466100,
+        "observed_prior_balance": 1
+      },
+      {
+        "index": 6944,
+        "ns": 1794203389648472000,
+        "observed_prior_balance": 1
+      },
+      {
+        "index": 6946,
+        "ns": 1794203389648502700,
+        "observed_prior_balance": 1
+      }
+    ]
+  },
+  "limits": [
+    "Every event in each window is retained and strictly paired; no window event is dropped.",
+    "Prefix balances are observed enter-minus-exit counts, not a proof of outside nesting semantics or of absent unrecorded events.",
+    "No LIFO interpretation is assigned to outside overlaps; the original global single-open rejection remains blocked.",
+    "Zero ETW loss counters do not by themselves establish a globally complete syscall pairing."
+  ],
+  "schema_version": 1,
+  "kind": "independent_local_owned_wait_window_proof",
+  "new_native_capture": false,
+  "source": {
+    "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109.json",
+    "bytes": 10170,
+    "sha256": "a93689e8c87b93fe053dcace56caca3a5b03909c7a2c9b951cc5b0f9d542b1ee"
+  },
+  "offline_decode": {
+    "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v2-20261109.json",
+    "bytes": 21897,
+    "sha256": "26afb4d7ceb2f970032a4bfa8a3219cee74b876b7a2eaef514a067986bd950d2"
+  },
+  "helper_records": {
+    "path": "analysis/terminal-wait-etw-decode-v2-20261109.helper.json.gz",
+    "bytes": 8117,
+    "sha256": "f43c9cee281e55e7ab4f1b93de421d48562eadf63ab67b06fc1fc25cc0f6e54a"
+  },
+  "complete_ETL": {
+    "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109/trace.etl",
+    "bytes": 3735552,
+    "sha256": "c3be0decc31aca6d12b27be955a7e7ad70df4ad4a960b13e5b04aa6000b13a0c"
+  },
+  "frozen_decoder_capsule": {
+    "path": "analysis/terminal-wait-etw-implementation-v3-20261109.zip",
+    "bytes": 12986,
+    "sha256": "f08ef902f8c31c4af3bcdce2bef770f854f418920b713833d16ef4c357c9874e"
+  },
+  "frozen_decoder_member": {
+    "path": "devtools/terminal_wait_etw_probe.py",
+    "bytes": 43152,
+    "sha256": "d57c38c03871f044fbec3844e78c99bd0bbbaff116c33345cfba8e7dea6552dd"
+  },
+  "local_verifier": {
+    "path": "devtools/terminal_wait_etw_probe.py",
+    "bytes": 50506,
+    "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+  },
+  "tests": {
+    "path": "devtools/tests/test_terminal_wait_etw_probe.py",
+    "bytes": 19593,
+    "sha256": "d1b611fb8c0007a4ff6a9dd15ec34cfc8bbff39a398342ec2f3fbbf9e7ee6949"
+  },
+  "validation": {
+    "complete_original_source_binding": true,
+    "original_stop_loss_counters_zero": true,
+    "ETL_loss_counters_zero": true,
+    "all_57_buffers_consumed": true,
+    "actual_first_FILETIME_equals_StartTime": true,
+    "original_global_rejection_unchanged": true,
+    "pure_tests_normal": 31,
+    "pure_tests_optimized": 31,
+    "VM_or_native_launched": false
+  },
+  "evidence_note": "The 8117-byte helper extraction is not a replacement for the complete3735552-byte ETL retained at its recorded WORKER location. Original source/decode statuses are unchanged."
+}

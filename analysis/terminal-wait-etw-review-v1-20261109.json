@@ -1,0 +1,55 @@
+{
+  "kind": "primary_agent_independent_raw_record_review",
+  "accepted": false,
+  "review_completed": true,
+  "blocking_findings_within_declared_scope": [],
+  "proof": {
+    "path": "analysis/terminal-wait-etw-window-proof-v1-20261109.json",
+    "bytes": 11079,
+    "sha256": "b3e588170d1e30adb4610a47f26345d224bf09950d82425b88b907464c089c1f"
+  },
+  "source_artifacts_verified": 7,
+  "actual_frozen_decoder_verified": true,
+  "raw_headers_payloads_CPU_switches_checked": 511,
+  "all_57_buffers_recorded": true,
+  "first_FILETIME_matches_ETL": true,
+  "windows": [
+    {
+      "label": "success",
+      "global_indices": [
+        5867,
+        5868,
+        5956,
+        5957
+      ],
+      "NTSTATUS": 0
+    },
+    {
+      "label": "timeout",
+      "global_indices": [
+        5962,
+        5963,
+        6403,
+        6404
+      ],
+      "NTSTATUS": 258
+    }
+  ],
+  "global_anomalies_preserved": {
+    "enters": 241,
+    "exits": 240,
+    "final_balance": 1,
+    "overlap_indices": [
+      5831,
+      5835,
+      5837,
+      6940,
+      6942,
+      6944,
+      6946
+    ]
+  },
+  "scope": "two 64-bit guest Python helper wait windows; no claim of game WOW64 observation, full global syscall pairing, complete ABI, resource/PTD cleanup or replay",
+  "full_battle_exit_accepted": false,
+  "independent_full_replay": false
+}

@@ -1,0 +1,49 @@
+{
+  "accepted": false,
+  "kind": "authenticated_incompatible_observer_failure",
+  "source": {
+    "path": "analysis/terminal-wait-native-probe-relay-v5-20261109.json.gz",
+    "bytes": 20257,
+    "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf"
+  },
+  "guest_modules": [
+    {
+      "path": ".venv-audit\\native-worker\\guest-system-dlls\\NTDLL.dll",
+      "bytes": 1713880,
+      "sha256": "2761f133cac12188ed380666104527884b2f89dab918bc5082692ca1b7f341e6"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\guest-system-dlls\\kernel32.dll",
+      "bytes": 640800,
+      "sha256": "b213db8068dd3a7fea88ad547aa6518ce2e8eb7e46cd704d66643cd0bc499fc1"
+    }
+  ],
+  "qualification": {
+    "input_isolation_preflight_passed": true,
+    "d3d8_preflight_passed": true,
+    "guest_probe_foreground_verified": true,
+    "guest_queue_fallback_used": false,
+    "guest_queue_detach_verified": false,
+    "original_game_compatible": false,
+    "full_battle_exit_accepted": false,
+    "continuous_host_performance_unaffected_proved": false,
+    "accepted": false
+  },
+  "original_wait_entry_TLS_verified": true,
+  "original_OS_API_export_entries_verified": 5,
+  "debug_only_write_receipts_verified": 13,
+  "original_parent_reply": 2147549185,
+  "parent_exit_during_scope": 1073741854,
+  "child_pre_cleanup_exit_not_proved": true,
+  "cleanup_errors": [
+    "child: OSError(5, 'suspend owned instrumentation cleanup')"
+  ],
+  "forced_Job_cleanup": true,
+  "Job_members_after": [],
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "full_resource_lifetime_proved": false,
+  "original_debug_behavior_equivalence_proved": false,
+  "independent_full_replay": false,
+  "next_required": "Non-injected-trap observation preflight; do not retry this mechanism or start two long cases."
+}

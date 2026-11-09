@@ -1,0 +1,1010 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-09T06:21:25.409186+00:00",
+  "kind": "bounded_wait_observer_and_cleanup_contract_closeout",
+  "accepted": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "baseline_commit": "f5f84ebbdad2f84c455513edaebbdef47086839c",
+  "previous_legal_retreat_source": {
+    "path": "analysis/terminal-school-handoff-guest-v5-20261109.json.gz",
+    "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+  },
+  "functional_endpoint": "Original wait entry only for injected-trap observer; original wait returns/result/PTD cleanup remain unproved",
+  "new_original_short_runs": 5,
+  "new_full_battle_collections": 0,
+  "new_fresh_native_full_replays": 0,
+  "new_ETW_fixture_captures": 1,
+  "offline_ETL_decodes_of_same_source": 2,
+  "ETW_fixture_window_proof": {
+    "path": "analysis/terminal-wait-etw-window-proof-v1-20261109.json",
+    "bytes": 11079,
+    "sha256": "b3e588170d1e30adb4610a47f26345d224bf09950d82425b88b907464c089c1f"
+  },
+  "ETW_independent_review": {
+    "path": "analysis/terminal-wait-etw-review-v1-20261109.json",
+    "bytes": 1379,
+    "sha256": "34b2f92bdade0936188f8c09b007458c14688cdb17ca85ef3a6320548b7df12c"
+  },
+  "ETW_global_pairing_status": "blocked; local two-window capability only, 64-bit helper rather than original game",
+  "relay_native_process_seconds": [
+    5.953,
+    4.657,
+    8.14,
+    17.641,
+    12.109
+  ],
+  "relay_time_scope": "Original process runtimes, excludes asset checks/deployment; not wall-clock task time",
+  "unproved": {
+    "continuous_wait_returns": false,
+    "result_consumption": false,
+    "complete_resource_PTD_cleanup": false,
+    "two_fresh_native_full_replays": false,
+    "independent_full_state_replay": false
+  },
+  "checks": {
+    "test_runs": [
+      {
+        "optimized": false,
+        "returncode": 0,
+        "elapsed": 11.703000000001339,
+        "output": "........................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 248 tests in 9.371s\n\nOK\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 0,
+        "elapsed": 12.889999999999418,
+        "output": "........................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 248 tests in 9.454s\n\nOK\n"
+      }
+    ],
+    "strict_openspec": "passed",
+    "independent_failure_review": {
+      "path": "analysis/terminal-wait-relay-review-v1-20261109.json",
+      "bytes": 7670,
+      "sha256": "140ed4a996d28b053b75ced259ee54018523c1a7890c9a0d86cd9549dea65e1d"
+    },
+    "guest_running_vms": 0,
+    "host_input_sent": false,
+    "host_input_blocked": false,
+    "continuous_host_performance_unaffected_proved": false
+  },
+  "preservation": {
+    "parent": {
+      "path": "analysis\\reverse-validation-preservation-v1-20261106.json",
+      "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+    },
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": [],
+    "final_verification": {
+      "path": ".venv-audit/native-worker/wait-observer-preservation-final-v1.json",
+      "bytes": 192,
+      "sha256": "e89411b8867ad9c99e59a0c836296e04696c4126e3209b5f38c9c18326cc936d"
+    }
+  },
+  "retirement": {
+    "plan": [
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v1-20261109.json.gz",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v1-20261109.json.gz",
+          "bytes": 20880,
+          "sha256": "7f9d5250b51714863fc92887a5733874d08da55b1f6e24a950b6ea89c07a0adf"
+        },
+        "bytes": 20880,
+        "sha256": "7f9d5250b51714863fc92887a5733874d08da55b1f6e24a950b6ea89c07a0adf",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v2-20261109.json.gz",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v2-20261109.json.gz",
+          "bytes": 20722,
+          "sha256": "679a5533722ade3dcf861efedddcde236494c84f20b7f577ae20ddc7bec7c151"
+        },
+        "bytes": 20722,
+        "sha256": "679a5533722ade3dcf861efedddcde236494c84f20b7f577ae20ddc7bec7c151",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v3-20261109.json.gz",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v3-20261109.json.gz",
+          "bytes": 20661,
+          "sha256": "7bdd3a2be82683872efa47de3c3487760803ef540ed518e3fecd76eca167bc2a"
+        },
+        "bytes": 20661,
+        "sha256": "7bdd3a2be82683872efa47de3c3487760803ef540ed518e3fecd76eca167bc2a",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v4-20261109.json.gz",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v4-20261109.json.gz",
+          "bytes": 21044,
+          "sha256": "ac45587933c1108bf11c1c17af4e047e4458cabebabe06806d847327c30714d5"
+        },
+        "bytes": 21044,
+        "sha256": "ac45587933c1108bf11c1c17af4e047e4458cabebabe06806d847327c30714d5",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v5-20261109.json.gz",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v5-20261109.json.gz",
+          "bytes": 20257,
+          "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf"
+        },
+        "bytes": 20257,
+        "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109.json",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-capability-v1-20261109.json",
+          "bytes": 10170,
+          "sha256": "a93689e8c87b93fe053dcace56caca3a5b03909c7a2c9b951cc5b0f9d542b1ee"
+        },
+        "bytes": 10170,
+        "sha256": "a93689e8c87b93fe053dcace56caca3a5b03909c7a2c9b951cc5b0f9d542b1ee",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-decode-v1-20261109.json",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-decode-v1-20261109.json",
+          "bytes": 16385,
+          "sha256": "9b63e0cfaf39d3debdded2a71fd3719598b8fd13f4cf14c416da29a1a2d1caed"
+        },
+        "bytes": 16385,
+        "sha256": "9b63e0cfaf39d3debdded2a71fd3719598b8fd13f4cf14c416da29a1a2d1caed",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-decode-v2-20261109.json",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-decode-v2-20261109.json",
+          "bytes": 21897,
+          "sha256": "26afb4d7ceb2f970032a4bfa8a3219cee74b876b7a2eaef514a067986bd950d2"
+        },
+        "bytes": 21897,
+        "sha256": "26afb4d7ceb2f970032a4bfa8a3219cee74b876b7a2eaef514a067986bd950d2",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-decode-v2-20261109.helper.json.gz",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-decode-v2-20261109.helper.json.gz",
+          "bytes": 8117,
+          "sha256": "f43c9cee281e55e7ab4f1b93de421d48562eadf63ab67b06fc1fc25cc0f6e54a"
+        },
+        "bytes": 8117,
+        "sha256": "f43c9cee281e55e7ab4f1b93de421d48562eadf63ab67b06fc1fc25cc0f6e54a",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-etw-capability-v1-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-capability-v1-20261109.log",
+          "bytes": 743,
+          "sha256": "45cc9771454e1d7e417955f41936ffa8ee63f238004293fcafba011c74547f1d"
+        },
+        "bytes": 743,
+        "sha256": "45cc9771454e1d7e417955f41936ffa8ee63f238004293fcafba011c74547f1d",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v1-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-decode-v1-20261109.log",
+          "bytes": 747,
+          "sha256": "77be22dce91f0a5b1bc9d78212b3b576b102d6745b799f98c59307057c36341d"
+        },
+        "bytes": 747,
+        "sha256": "77be22dce91f0a5b1bc9d78212b3b576b102d6745b799f98c59307057c36341d",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v2-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-decode-v2-20261109.log",
+          "bytes": 747,
+          "sha256": "045a5f1cdb4ce4fcb0a6c2116d19eed1298d94f947174165876a6513f86bbaae"
+        },
+        "bytes": 747,
+        "sha256": "045a5f1cdb4ce4fcb0a6c2116d19eed1298d94f947174165876a6513f86bbaae",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v1-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v1-20261109.log",
+          "bytes": 980,
+          "sha256": "59f3cf29b0443cd8288197476ec1a2884b611e3d0fef1ac1b8cb8649e120050c"
+        },
+        "bytes": 980,
+        "sha256": "59f3cf29b0443cd8288197476ec1a2884b611e3d0fef1ac1b8cb8649e120050c",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v2-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v2-20261109.log",
+          "bytes": 980,
+          "sha256": "4a1bcd5f87858c03c4ed015bb53135266b99c4f7e251f77d84e31471ec921e05"
+        },
+        "bytes": 980,
+        "sha256": "4a1bcd5f87858c03c4ed015bb53135266b99c4f7e251f77d84e31471ec921e05",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v3-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v3-20261109.log",
+          "bytes": 957,
+          "sha256": "6488d552af53469a96d5e52b96a0d1d5d0ea712b79eef347632bce57b546ca9e"
+        },
+        "bytes": 957,
+        "sha256": "6488d552af53469a96d5e52b96a0d1d5d0ea712b79eef347632bce57b546ca9e",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v4-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v4-20261109.log",
+          "bytes": 980,
+          "sha256": "493da993ec7330ccbe1def61827a7a6628ebc0b6fe5554af41de880e307d9d1d"
+        },
+        "bytes": 980,
+        "sha256": "493da993ec7330ccbe1def61827a7a6628ebc0b6fe5554af41de880e307d9d1d",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v5-20261109.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v5-20261109.log",
+          "bytes": 1009,
+          "sha256": "2b1f22dcb327eb70a60ec288e430076b9082a7810983aac33e17227797963ae7"
+        },
+        "bytes": 1009,
+        "sha256": "2b1f22dcb327eb70a60ec288e430076b9082a7810983aac33e17227797963ae7",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-etw-capability-v1-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-capability-v1-20261109-driver.py",
+          "bytes": 529,
+          "sha256": "6c7c27f25ff236a7a349195b05682135bdae26cde3389ada41ffcf202b116034"
+        },
+        "bytes": 529,
+        "sha256": "6c7c27f25ff236a7a349195b05682135bdae26cde3389ada41ffcf202b116034",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v1-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-decode-v1-20261109-driver.py",
+          "bytes": 896,
+          "sha256": "fe91e52e59773dc8e160065826fcad3e108579bc1663f44946045704b1833467"
+        },
+        "bytes": 896,
+        "sha256": "fe91e52e59773dc8e160065826fcad3e108579bc1663f44946045704b1833467",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v2-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-decode-v2-20261109-driver.py",
+          "bytes": 896,
+          "sha256": "de2b0c6e3403a96e066ea9a9d46a1f98684891e92e944363253dbd62c88cf7f6"
+        },
+        "bytes": 896,
+        "sha256": "de2b0c6e3403a96e066ea9a9d46a1f98684891e92e944363253dbd62c88cf7f6",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v1-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v1-20261109-driver.py",
+          "bytes": 547,
+          "sha256": "a550339abc2162b73837e3f4fcce278bdb46df1d350c22280f0f33226181b3e8"
+        },
+        "bytes": 547,
+        "sha256": "a550339abc2162b73837e3f4fcce278bdb46df1d350c22280f0f33226181b3e8",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v2-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v2-20261109-driver.py",
+          "bytes": 547,
+          "sha256": "77b23de0ccd4251dcbbb1d0b8772af9bcf4fa968e6b32e8c372183eba0341acf"
+        },
+        "bytes": 547,
+        "sha256": "77b23de0ccd4251dcbbb1d0b8772af9bcf4fa968e6b32e8c372183eba0341acf",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v3-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v3-20261109-driver.py",
+          "bytes": 547,
+          "sha256": "14e8f03e5747f2b8f1f68e42491a87a2bd38decc28ba465c826701403d5711ce"
+        },
+        "bytes": 547,
+        "sha256": "14e8f03e5747f2b8f1f68e42491a87a2bd38decc28ba465c826701403d5711ce",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v4-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v4-20261109-driver.py",
+          "bytes": 547,
+          "sha256": "b1ceb415ac67fe8df619bacc0b6d86309938f3909759390c643f801ce416cd03"
+        },
+        "bytes": 547,
+        "sha256": "b1ceb415ac67fe8df619bacc0b6d86309938f3909759390c643f801ce416cd03",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v5-20261109-driver.py",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-native-probe-relay-v5-20261109-driver.py",
+          "bytes": 547,
+          "sha256": "37a0b69a4274e55213fcf552383803272b344cc6b9a1c54e206f14a0cfca32da"
+        },
+        "bytes": 547,
+        "sha256": "37a0b69a4274e55213fcf552383803272b344cc6b9a1c54e206f14a0cfca32da",
+        "reason": "exact redundant guest copy; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109\\events.xml",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-capability-v1-20261109\\trace.etl",
+          "bytes": 3735552,
+          "sha256": "c3be0decc31aca6d12b27be955a7e7ad70df4ad4a960b13e5b04aa6000b13a0c"
+        },
+        "bytes": 25551667,
+        "sha256": "2ca425e48f960889c42271cad7f7d618ecc6f36fd3b1d5c3d2bd08f2f92b1c87",
+        "reason": "partial derived XML over limit; same original ETL retained and decoded through ProcessTrace"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109\\trace.etl",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-capability-v1-20261109\\trace.etl",
+          "bytes": 3735552,
+          "sha256": "c3be0decc31aca6d12b27be955a7e7ad70df4ad4a960b13e5b04aa6000b13a0c"
+        },
+        "bytes": 3735552,
+        "sha256": "c3be0decc31aca6d12b27be955a7e7ad70df4ad4a960b13e5b04aa6000b13a0c",
+        "reason": "exact duplicate; host original retained"
+      },
+      {
+        "guest": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109\\tracerpt.log",
+        "kept": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\terminal-wait-etw-capability-v1-20261109\\tracerpt.log",
+          "bytes": 141,
+          "sha256": "f29e87aab480879669bf15c3c92cec079f3e104357100f5e2bfec74ac0f77c25"
+        },
+        "bytes": 141,
+        "sha256": "f29e87aab480879669bf15c3c92cec079f3e104357100f5e2bfec74ac0f77c25",
+        "reason": "exact duplicate; host original retained"
+      }
+    ],
+    "guest_deleted": [
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v1-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v2-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v3-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v4-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-native-probe-relay-v5-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109.json",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-decode-v1-20261109.json",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-decode-v2-20261109.json",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-decode-v2-20261109.helper.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-etw-capability-v1-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v1-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v2-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v1-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v2-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v3-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v4-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v5-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-etw-capability-v1-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v1-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-etw-decode-v2-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v1-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v2-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v3-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v4-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-wait-native-probe-relay-v5-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109\\events.xml",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109\\trace.etl",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-etw-capability-v1-20261109\\tracerpt.log",
+        "deleted": true
+      }
+    ],
+    "original_assets_saves_checkpoints_deleted": false,
+    "guest_remaining_evidence": "small current cleanup plan and deployed code only; raw reports/ETL/derived XML/logs listed here removed after host-byte verification",
+    "guest_deletion_does_not_imply_vmdk_shrink": true,
+    "total_removed_logical_bytes": 29459692,
+    "soft_stop_result": "",
+    "running_vms_after": "Total running VMs: 0"
+  },
+  "evidence": [
+    {
+      "path": "analysis/terminal-exit-cleanup-contract-v1-20261109.json",
+      "bytes": 28740,
+      "sha256": "7e14629cc17ff1def6d3322714b07661990e797271ef14614696da935e37433d"
+    },
+    {
+      "path": "analysis/terminal-wait-etw-decode-v2-20261109.helper.json.gz",
+      "bytes": 8117,
+      "sha256": "f43c9cee281e55e7ab4f1b93de421d48562eadf63ab67b06fc1fc25cc0f6e54a"
+    },
+    {
+      "path": "analysis/terminal-wait-etw-implementation-v1-20261109.zip",
+      "bytes": 7833,
+      "sha256": "01d96133f6e4ea2d56219a635ae25035c1f478c3f1c8361207ba0403d9dc45f2"
+    },
+    {
+      "path": "analysis/terminal-wait-etw-implementation-v2-20261109.zip",
+      "bytes": 13719,
+      "sha256": "c3e159005f5326a81ac6d120f633ba905657545f1e45e0185585b32bb89e3931"
+    },
+    {
+      "path": "analysis/terminal-wait-etw-implementation-v3-20261109.zip",
+      "bytes": 12986,
+      "sha256": "f08ef902f8c31c4af3bcdce2bef770f854f418920b713833d16ef4c357c9874e"
+    },
+    {
+      "path": "analysis/terminal-wait-etw-review-v1-20261109.json",
+      "bytes": 1379,
+      "sha256": "34b2f92bdade0936188f8c09b007458c14688cdb17ca85ef3a6320548b7df12c"
+    },
+    {
+      "path": "analysis/terminal-wait-etw-window-proof-v1-20261109.json",
+      "bytes": 11079,
+      "sha256": "b3e588170d1e30adb4610a47f26345d224bf09950d82425b88b907464c089c1f"
+    },
+    {
+      "path": "analysis/terminal-wait-native-probe-relay-v5-20261109.json.gz",
+      "bytes": 20257,
+      "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf"
+    },
+    {
+      "path": "analysis/terminal-wait-observer-receipts-v1-20261109.zip",
+      "bytes": 39823,
+      "sha256": "fec4407145bdad00e76bbb06425fda03d8d7aefa5c7db0a50e792b313b0f795a"
+    },
+    {
+      "path": "analysis/terminal-wait-relay-failure-proof-v1-20261109.json",
+      "bytes": 1864,
+      "sha256": "efca05ce5affa0dee61a99b411e62319bb5d3f3cdd352023cd575fa734b2f6bc"
+    },
+    {
+      "path": "analysis/terminal-wait-relay-implementation-v1-20261109.zip",
+      "bytes": 7979,
+      "sha256": "0b7e92b2e5e4347de70cde7822ab046e5886263c1cb1e62f44988299ee82963a"
+    },
+    {
+      "path": "analysis/terminal-wait-relay-implementation-v2-20261109.zip",
+      "bytes": 9538,
+      "sha256": "4ea0c777c13a29452adcebe3599a56ffdedd8a61fd468c6860e06b53b1fe864b"
+    },
+    {
+      "path": "analysis/terminal-wait-relay-implementation-v3-20261109.zip",
+      "bytes": 8649,
+      "sha256": "d90c22a707557e7c881c3c070c6f0f2188dd644013646be91e8b92e43b3ce527"
+    },
+    {
+      "path": "analysis/terminal-wait-relay-implementation-v4-20261109.zip",
+      "bytes": 3373,
+      "sha256": "9119449c4bb9dcdffc70f1d7384bcec772cb8bf73065925d64e58db1dba62e20"
+    },
+    {
+      "path": "analysis/terminal-wait-relay-implementation-v5-20261109.zip",
+      "bytes": 5752,
+      "sha256": "2f01494e149311fb34f6ed5cfffa1ae7899749ad2bf3b453d4e49c7364ca8d7f"
+    },
+    {
+      "path": "analysis/terminal-wait-relay-review-v1-20261109.json",
+      "bytes": 7670,
+      "sha256": "140ed4a996d28b053b75ced259ee54018523c1a7890c9a0d86cd9549dea65e1d"
+    }
+  ],
+  "new_local_files_including_backups_scripts_logs": [
+    {
+      "path": ".venv-audit/native-worker/boot-wait-relay-v1-20261109.json",
+      "bytes": 1126,
+      "sha256": "fce6ad66c3eb92bfdbcdabf68dec8db71bd72b8e61bc3926a60cf4c61d9f8fa6"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-wait-observer-change.py",
+      "bytes": 1551,
+      "sha256": "60764bff8b676e1ff94eaae3770bc80d0d9ed456fcef76ff44ee80340e959530"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-wait-observer.py",
+      "bytes": 6698,
+      "sha256": "66b5e6cb826ad6873231cc7359cd460b98bca4b4d0a4fc748aeaf1a2de9ae7c2"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-audio-wait-relay-v1-20261109.json",
+      "bytes": 113,
+      "sha256": "71b6d4d2d907a9bafe3ff6750b70c3196636aaf1f80d8841c20f93bdf4b2de4a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-clock-wait-relay-v1-20261109.json",
+      "bytes": 691,
+      "sha256": "c72163d26355cd48c71cab481167c01a10ac0cbaa93d36b44964e1a1e7bc2eb3"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-preflight-wait-relay-v1-20261109.json",
+      "bytes": 1510,
+      "sha256": "ececefb51a45896e87ff82b167f870e47e7edb9a2187bed3d8560be1e05e5c46"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/kernel32.dll",
+      "bytes": 640800,
+      "sha256": "b213db8068dd3a7fea88ad547aa6518ce2e8eb7e46cd704d66643cd0bc499fc1"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/ntdll.dll",
+      "bytes": 1713880,
+      "sha256": "2761f133cac12188ed380666104527884b2f89dab918bc5082692ca1b7f341e6"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-wait-relay-run.py",
+      "bytes": 1407,
+      "sha256": "b9feeecfde69439aff3a3808322712a4cae0725b9dbe7a848aa2196831044132"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-wait-relay-v1-20261109.json",
+      "bytes": 4379,
+      "sha256": "254fee6acf4a3602e4bfed9fe36c5e713a1623555885df1b8d2fa99705f42bfa"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-wait-observer-guest.py",
+      "bytes": 4024,
+      "sha256": "04b11e496f07f1936231d34f25cc015c782c2131ba57f15c3a474cb3c73c072f"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-wait-etw-decode.py",
+      "bytes": 3054,
+      "sha256": "8b43528249b5bb0320c507946decdb121cd40ebcc415e88be211de1851aae6a2"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-wait-etw-preflight.py",
+      "bytes": 3275,
+      "sha256": "0a2cfea4ec917770c367c0abf639c4f90ad17f4b30f4f90b421ed820922577ea"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109/trace.etl",
+      "bytes": 3735552,
+      "sha256": "c3be0decc31aca6d12b27be955a7e7ad70df4ad4a960b13e5b04aa6000b13a0c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109/tracerpt.log",
+      "bytes": 141,
+      "sha256": "f29e87aab480879669bf15c3c92cec079f3e104357100f5e2bfec74ac0f77c25"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109-driver.py",
+      "bytes": 529,
+      "sha256": "6c7c27f25ff236a7a349195b05682135bdae26cde3389ada41ffcf202b116034"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109.json",
+      "bytes": 10170,
+      "sha256": "a93689e8c87b93fe053dcace56caca3a5b03909c7a2c9b951cc5b0f9d542b1ee"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109.log",
+      "bytes": 743,
+      "sha256": "45cc9771454e1d7e417955f41936ffa8ee63f238004293fcafba011c74547f1d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109.recovery.json",
+      "bytes": 1322,
+      "sha256": "a4d0199a999e106ed93e8f2a1ced193c82c487004a1ee7864d18be36dfdb6cd7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v1-20261109-driver.py",
+      "bytes": 896,
+      "sha256": "fe91e52e59773dc8e160065826fcad3e108579bc1663f44946045704b1833467"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v1-20261109.json",
+      "bytes": 16385,
+      "sha256": "9b63e0cfaf39d3debdded2a71fd3719598b8fd13f4cf14c416da29a1a2d1caed"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v1-20261109.log",
+      "bytes": 747,
+      "sha256": "77be22dce91f0a5b1bc9d78212b3b576b102d6745b799f98c59307057c36341d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v1-20261109.run.json",
+      "bytes": 1686,
+      "sha256": "9271889cfad93e554e833b5337659db53539a6733195e89ad12fed4f4a30fc5d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v2-20261109-driver.py",
+      "bytes": 896,
+      "sha256": "de2b0c6e3403a96e066ea9a9d46a1f98684891e92e944363253dbd62c88cf7f6"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v2-20261109.helper.json.gz",
+      "bytes": 8117,
+      "sha256": "f43c9cee281e55e7ab4f1b93de421d48562eadf63ab67b06fc1fc25cc0f6e54a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v2-20261109.json",
+      "bytes": 21897,
+      "sha256": "26afb4d7ceb2f970032a4bfa8a3219cee74b876b7a2eaef514a067986bd950d2"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v2-20261109.log",
+      "bytes": 747,
+      "sha256": "045a5f1cdb4ce4fcb0a6c2116d19eed1298d94f947174165876a6513f86bbaae"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-decode-v2-20261109.run.json",
+      "bytes": 1686,
+      "sha256": "a0f4d05b41d53533c2910bcfb55cc307c6c3edda109187f22c9e1ab798917bde"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-etw-schema-samples-v1.json",
+      "bytes": 8294,
+      "sha256": "34202519e964ea701bc5379d4b90e8a634207b597320b57c76ce2cc515241b45"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v1-20261109-driver.py",
+      "bytes": 547,
+      "sha256": "a550339abc2162b73837e3f4fcce278bdb46df1d350c22280f0f33226181b3e8"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v1-20261109.json.gz",
+      "bytes": 20880,
+      "sha256": "7f9d5250b51714863fc92887a5733874d08da55b1f6e24a950b6ea89c07a0adf"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v1-20261109.log",
+      "bytes": 980,
+      "sha256": "59f3cf29b0443cd8288197476ec1a2884b611e3d0fef1ac1b8cb8649e120050c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v1-20261109.run.json",
+      "bytes": 3208,
+      "sha256": "5310ddb52d24fbe8923371418be7815c0d7146044f3c77a736fee48a69ae5cf2"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v2-20261109-driver.py",
+      "bytes": 547,
+      "sha256": "77b23de0ccd4251dcbbb1d0b8772af9bcf4fa968e6b32e8c372183eba0341acf"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v2-20261109.json.gz",
+      "bytes": 20722,
+      "sha256": "679a5533722ade3dcf861efedddcde236494c84f20b7f577ae20ddc7bec7c151"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v2-20261109.log",
+      "bytes": 980,
+      "sha256": "4a1bcd5f87858c03c4ed015bb53135266b99c4f7e251f77d84e31471ec921e05"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v2-20261109.run.json",
+      "bytes": 3209,
+      "sha256": "bf7f29562d6d07b803854976a188b3aae6e91a94fa2279359f24f2337a335230"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v3-20261109-driver.py",
+      "bytes": 547,
+      "sha256": "14e8f03e5747f2b8f1f68e42491a87a2bd38decc28ba465c826701403d5711ce"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v3-20261109.json.gz",
+      "bytes": 20661,
+      "sha256": "7bdd3a2be82683872efa47de3c3487760803ef540ed518e3fecd76eca167bc2a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v3-20261109.log",
+      "bytes": 957,
+      "sha256": "6488d552af53469a96d5e52b96a0d1d5d0ea712b79eef347632bce57b546ca9e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v3-20261109.run.json",
+      "bytes": 3209,
+      "sha256": "b5eff209bf7fdc50e364cea6409b9a8ed2e663f9b8b08578c1deebe59e57802e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v4-20261109-driver.py",
+      "bytes": 547,
+      "sha256": "b1ceb415ac67fe8df619bacc0b6d86309938f3909759390c643f801ce416cd03"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v4-20261109.json.gz",
+      "bytes": 21044,
+      "sha256": "ac45587933c1108bf11c1c17af4e047e4458cabebabe06806d847327c30714d5"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v4-20261109.log",
+      "bytes": 980,
+      "sha256": "493da993ec7330ccbe1def61827a7a6628ebc0b6fe5554af41de880e307d9d1d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v4-20261109.run.json",
+      "bytes": 3209,
+      "sha256": "65923ae7ebd439bba2a6e435287feef7f92655e9454ddc3bc895acbfaa7d57b7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v5-20261109-driver.py",
+      "bytes": 547,
+      "sha256": "37a0b69a4274e55213fcf552383803272b344cc6b9a1c54e206f14a0cfca32da"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v5-20261109.json.gz",
+      "bytes": 20257,
+      "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v5-20261109.log",
+      "bytes": 1009,
+      "sha256": "2b1f22dcb327eb70a60ec288e430076b9082a7810983aac33e17227797963ae7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-wait-native-probe-relay-v5-20261109.run.json",
+      "bytes": 3210,
+      "sha256": "fbe56bae7b0f2795a2a2f2a1c6c6747994737f42e3c82188fd79c73b4dd71748"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-10316.log",
+      "bytes": 5358,
+      "sha256": "b8c2a2a1fd1fda5741ac4c412ffc5c56d9e6d5eeaa9e60378cfc5f09a288ff86"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-12356.log",
+      "bytes": 5358,
+      "sha256": "bc012b4fc335823dc4a7852f7d9470423d9691d5cec28221b35c3369786eac83"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-15220.log",
+      "bytes": 5358,
+      "sha256": "eae149be96414823b301d152d4a36e7d14e6b2c254e683497f4e395a7e99eaeb"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-1600.log",
+      "bytes": 5248,
+      "sha256": "84b15a0b3051645664c517cdff70dfd7517a67ae1dc7a966291e3aecc72392a6"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-16468.log",
+      "bytes": 5250,
+      "sha256": "325d069934e2a821ed6384510cb01a02b40cd78e6be705a117739f066a2f9455"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-17168.log",
+      "bytes": 5358,
+      "sha256": "47903d1f6c6288ed12c16d611e3ebfcc627417afd4af5b6ab7c76ac79a3fc5ca"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-21388.log",
+      "bytes": 4651,
+      "sha256": "80e7c833509e44e369036555f498dad14405b236208e286127244e0aaed133e3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24228.log",
+      "bytes": 5358,
+      "sha256": "4264b0b1a9e6fa38145bba3c2e67aed1f6c43148d20771ee641a373555859505"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-25744.log",
+      "bytes": 5549,
+      "sha256": "c7f35b016e638f266d5b5505ced9c62ccee3cda0ff379e8b94f54e0a00ceb77b"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28492.log",
+      "bytes": 5249,
+      "sha256": "0f02be670eaf92a3503e3394377ba2fda5386192cf2a41eb84b5042a712410fb"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28632.log",
+      "bytes": 5358,
+      "sha256": "f405e1747b153559f8fcbb6166d6ae6b61720456b36eae4d77e5e72b7de4cc09"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28656.log",
+      "bytes": 5358,
+      "sha256": "c4bb75a6dfa8e43c18c20638c81ef1c61bd0702c8aa5b3a8e37106c3a0f0edfd"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28832.log",
+      "bytes": 5358,
+      "sha256": "1a5c7f542a5f264f62f0d480b276796bc5216afce08bb88265ebdb7be2a2c3d3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29648.log",
+      "bytes": 5358,
+      "sha256": "94fc3b9dec5bfaa746ad320dc619ad66d4891fb078ce6c277d392a642f3f44f4"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29776.log",
+      "bytes": 5358,
+      "sha256": "2f80c41fbcfe997e00546e3f6f75d18f9f7e6da7ccfe0212b28d80e993eb87a9"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30024.log",
+      "bytes": 5358,
+      "sha256": "0029386b35840d87e4f84a1d8c904930cadfdd49839df0e75b865563bd7b5257"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30048.log",
+      "bytes": 5358,
+      "sha256": "857bc69b656b14e55ee505746c831eacfc59dd7152f57ee54cd867bfb59ce692"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30348.log",
+      "bytes": 5358,
+      "sha256": "cf2a7a8d7ba21d9f9a4a5db42630de2bd0e222a652f9d35b8c2b764c3ae50159"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30420.log",
+      "bytes": 5359,
+      "sha256": "b8ed4612df0e324aaeee69ce92000ec31521d73dbe7addb290898a6709a2f5ba"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30620.log",
+      "bytes": 5359,
+      "sha256": "4593e6eabff17ca186b2be8d4f661b588522779397237bf78eb54dd043d23e62"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-5072.log",
+      "bytes": 5357,
+      "sha256": "4421f0af09e85d6133077dfe0fa3a8b5856814bcd4f7f3d5e11b84cb57e42317"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-9816.log",
+      "bytes": 4650,
+      "sha256": "56560f847c7d7d160c392c3c678f5ac786a8ab619b16d510fdbf33d58dcf3281"
+    },
+    {
+      "path": ".venv-audit/native-worker/vmware.log",
+      "bytes": 394620,
+      "sha256": "64966786d25c61aa8c21861c85ab6d7851d1b353ef0d4c675dc144cc9af2bf26"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-observer-preservation-final-v1.json",
+      "bytes": 192,
+      "sha256": "e89411b8867ad9c99e59a0c836296e04696c4126e3209b5f38c9c18326cc936d"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-observer-preservation-v1.json",
+      "bytes": 296,
+      "sha256": "62fedbd368d1cf7c424ee37295093e68c368e734e78ab2e945dcaeea2c17b3b0"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-observer-retirement-plan-v1.json",
+      "bytes": 14720,
+      "sha256": "097b6d5afd2ba6b3804ded97f621e8df7ce3432bbed3e6d5196ce4455f94ffa7"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-observer-retirement-result-v1.json",
+      "bytes": 19531,
+      "sha256": "ef87509a86acc9405ff0c6ade481725433de0a079ec63d07c3fbf4252fac9b2b"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-observer-unit-checks-v1.json",
+      "bytes": 870,
+      "sha256": "9c0a5472002ec14722cd94e96a576a18239b804b9364341d04f69a3fb2de9870"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-observer-unit-checks-v2.json",
+      "bytes": 932,
+      "sha256": "6c805d370a260b7c2ee9ee9e5da3279f9a5a7df25d472f78c09faba81f0cd08d"
+    }
+  ],
+  "storage": {
+    "worker_logical_bytes": 21907382277,
+    "previous_worker_logical_bytes": 21875985033,
+    "worker_growth_bytes": 31397244,
+    "mutable_vmdk_bytes": 16601579520,
+    "mutable_vmdk_growth_bytes": 24969216,
+    "newly_added_analysis_bytes": 188758,
+    "new_local_bytes_including_backup_scripts_logs": 6867053,
+    "all_round_evidence_bytes_including_backups_scripts_logs": 7055811,
+    "environment_existing_dependencies_and_prior_plus_new_analysis_bytes": 21946577927,
+    "new_local_selection": "mtime >= 2026-11-09T05:06:00Z; includes modified logs and explicit new ntdll/kernel32 guest copies; excludes VMDK/VMX/nvram measured as environment and secret credentials",
+    "guest_remaining_evidence": "small current cleanup plan and deployed code only; raw reports/ETL/derived XML/logs listed here removed after host-byte verification",
+    "guest_contents_counted_in_vmdk": true,
+    "report_itself_and_later_git_audit_outputs_excluded": true,
+    "evidence_budget_bytes": 268435456,
+    "same_F_volume_copy_not_independent_disaster_recovery": true
+  },
+  "next_required": "A continuous original user-mode state observer with API/ABI and real resource/PTD lifetime proof; only then launch first fresh full case, and second after first independent full proof passes"
+}

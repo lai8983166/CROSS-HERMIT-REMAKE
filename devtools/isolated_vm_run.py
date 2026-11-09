@@ -9,13 +9,18 @@ from devtools.isolated_vm_guest_admin import run_script
 OVERLAY = ('isolated_game_compat.py', 'isolated_guest_focus.py', 'isolated_guest_dep_observer.py',
            'native_input_isolation.py','terminal_input_window.py','terminal_school_handoff.py',
            'terminal_school_handoff_verification.py','terminal_battle_notice.py',
-           'terminal_story_dispatch_verification.py')
+           'terminal_story_dispatch_verification.py','terminal_debug_relay.py',
+           'terminal_wait_native_probe.py','terminal_wait_observer_gate.py')
 
 
 def run(kind, label):
-    if kind not in ('compat', 'school') or not re.fullmatch('[a-z0-9-]+', label):
+    if kind not in ('compat', 'school', 'wait-probe') or not re.fullmatch('[a-z0-9-]+', label):
         raise ValueError('explicit bounded observation and unique simple label required')
-    stem = ('isolated-game-compat-' if kind == 'compat' else 'terminal-school-handoff-') + label
+    if kind=='wait-probe':
+        from devtools.terminal_wait_observer_gate import require_supported_relay
+        require_supported_relay()
+    stem = {'compat':'isolated-game-compat-', 'school':'terminal-school-handoff-',
+            'wait-probe':'terminal-wait-native-probe-'}[kind] + label
     output = WORKER / (stem + '.json.gz')
     receipt = WORKER / (stem + '.run.json')
     if output.exists() or receipt.exists():
@@ -36,7 +41,8 @@ def run(kind, label):
     if kind == 'school':
         authorization=ROOT/'analysis/terminal-school-input-authorization-v2-20261109.json'
         vmrun(['CopyFileFromHostToGuest',VMX,authorization,guest_root/'analysis'/authorization.name],guest=True)
-    module = 'devtools.isolated_game_compat' if kind == 'compat' else 'devtools.terminal_school_handoff'
+    module = {'compat':'devtools.isolated_game_compat', 'school':'devtools.terminal_school_handoff',
+              'wait-probe':'devtools.terminal_wait_native_probe'}[kind]
     argv = [module, '--out', str(guest_output)]
     if kind == 'school':
         argv += ['--seconds', '1800']
@@ -58,7 +64,7 @@ def run(kind, label):
         vmrun(['CopyFileFromHostToGuest', VMX, launcher, guest_launcher], guest=True)
         vmrun(['runProgramInGuest', VMX, '-activeWindow', '-interactive',
                PureWindowsPath('C:/ChaomofaWorker/Python/pythonw.exe'), '-B', guest_launcher],
-              guest=True, timeout=240 if kind == 'compat' else 2400)
+              guest=True, timeout=2400 if kind == 'school' else 240)
     except Exception as exc:
         report['errors'].append(str(exc))
     finally:
@@ -76,7 +82,7 @@ def run(kind, label):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('kind', choices=['compat', 'school'])
+    parser.add_argument('kind', choices=['compat', 'school', 'wait-probe'])
     parser.add_argument('--label', required=True)
     args = parser.parse_args()
     result = run(args.kind, args.label)

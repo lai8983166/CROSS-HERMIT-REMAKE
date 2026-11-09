@@ -53,3 +53,89 @@
 ## 保全与状态
 
 历史工具、来源、存档、私有检查点及验收保持原字节；没有新增游戏功能验收，R3/R4/R5/R6不因此完成，Godot未改变。本轮只保留一份注册成功报告及其两个助手。被替代的本轮v1–v3及六个助手已按 `terminal-wait-registration-development-v1-20261106.json` 退役，不能再报告为可用。小型失败结论、回归和原大小/SHA保留；没有扩展历史删除授权。
+
+## 连续采证的观察器预检（2026-11-09）
+
+guest-v5 已从真实学校自然到战斗退却和后继菜单，详见 `terminal_school_handoff.md`。
+该来源的离散栈观察没有补齐连续等待、结果消费及资源/PTD寿命。旧中立/超时来源也
+不能借用该进程已经失效的句柄。两例新鲜完整重放必须等连续路径和验证器稳定后再启动。
+
+新增 `terminal_exit_cleanup_contract.py` 核对固定原镜像、53处关键指令、18个范围、
+PTD各释放点与真实析构虚表。局部原x86探针只验证PTD指针选择及调度卸链：前者明确
+用合成free/TLS叶返回，后者执行原search/unlink及ABI检查、核对整个1KiB对象区。
+这些探针不是当前堆真实释放或完整场景重放。原正常路径为
+`421F8A → 422021 → 56E1E0 → 575450 → ExitThread`，不是返回仍在栈中的56E183。
+
+资源取证必须进一步区分：
+
+- `575450`处理PTD的6个非空嵌套指针及+50静态指针例外，最后释放PTD并清TLS；
+  原代码不检查TlsSetValue失败，分配器还可能因hook拒绝或调试标志而延迟释放。
+- MAIN在421B4C关闭节点事件，然后卸链、析构；该正常链没有关闭node+20线程句柄。
+  需以动态对象身份确认并单列补充owner；关闭观察器DuplicateHandle副本不是关闭原句柄。
+- manager事件跨后继菜单仍然有效，到整体manager析构才关闭。465E60在多层析构中重复
+  调用，不能按进入次数重复计资源释放。
+
+连续观察器先做短startup等待预检，没有重跑17分钟战斗前缀或两例小时级证明。
+原保护父进程占有游戏debug对象，实验仅调试该父进程，以硬件断点观察其
+NtDebugContinue；没有写游戏内存、通用寄存器或原debugger回复参数。
+实测父线程DR0–3为0、DR7=155，并非四个空闲槽。开发实验只暂时复用一个槽，保留
+另三个零地址执行断点；零页MEM_FREE不证明原断点无效，也不证明调试行为等价。
+旧nested-v3也有此配置，但该旧实验失败，不能当作兼容性先例。
+
+有界relay-v5实际仅命中422360入口。原父进程调用NtDebugContinue时，栈上回复为
+80010001（NOT_HANDLED）；未修改它。随后观察父进程以4000001E退出，没有到下一
+调用点4223A8，更没有观察到WaitForSingleObject返回。收尾WM_CLOSE窗口已失效，
+Job对剩余成员执行应急清理，最终为空，四个可变私有文件恢复。
+child退出码在应急清理后查询；不能据此判断它在TerminateJobObject前已经退出，
+也不能用SuspendThread的ACCESS_DENIED单独推断线程状态。此例明确是失败，不能
+以Job清空、进程结束或字段已恢复称正常资源寿命成功。
+
+完整失败来源为 `analysis/terminal-wait-native-probe-relay-v5-20261109.json.gz`，
+20,257字节，SHA-256 `6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf`。
+独立核对入口的当前FS/TEB/TLS/PTD、3段原代码、5个实际OS导出入口（按客体DLL与
+实际加载基址应用PE重定位）及13条仅DR写入回执。相关failure-proof和独立review均
+保持accepted=false；它们认证的是失败边界，不是连续等待成功。
+
+`terminal_wait_observer_gate.py`已在宿主调度、guest probe和底层relay三个入口拒绝
+重复启动这条已知不兼容路径，没有“换label重试”或关闭检查的CLI开关。
+执行版本按增量ZIP封存；当前禁用代码不能重新签名旧来源。调试事件原句柄与显式
+DuplicateHandle副本分开管理，最后一次续行返回、异常NOT_HANDLED、部分写入后的
+恢复及预算超限pending事件均有局部回归。
+
+下一路线先检查不注入#DB的客体ETW系统调用/调度事件能力及丢失计数。即使ETW可用，
+它也不能单独替代完整用户态调用点、ABI、CPU/内存/累计轨迹或PTD实际释放证明。
+正式进度仍2/8；连续证据未接通前，不启动两例长重放、不勾选后续任务。
+
+### 客体ETW短预检与原来源接续
+
+本轮只增加一次自有测试线程的ETW采集，没有启动游戏。测试线程分别取得等待成功0
+和超时258，两个自有事件均关闭；NT Kernel Logger由本次StartTrace成功取得，StopTrace
+返回0，三项丢失计数均为0。原ETL为3,735,552字节，SHA-256
+`c3be0decc31aca6d12b27be955a7e7ad70df4ad4a960b13e5b04aa6000b13a0c`，保存在
+`.venv-audit/native-worker/terminal-wait-etw-capability-v1-20261109/trace.etl`。
+该测试线程不是原游戏worker，也不证明游戏结果消费或PTD清理。
+
+首次tracerpt解码达到24 MiB派生XML上限而停止；其显示的时区偏移也与ETL原始
+FILETIME不一致。保留原报告和实现，不通过提高上限、补时间容差或重采掩盖问题。
+新入口`terminal_wait_etw_probe.py --decode-source ... --source-sha ... --etl ...
+--etl-sha ... --out ...`只在核验的专用客体中读取已有ETL；不启动logger、测试线程或游戏。
+以OpenTrace/ProcessTrace/TDH读取原始类型和FILETIME，检查实际64位结构布局、
+源SHA、StopTrace原始统计字节、ETL时间范围、CPU数及线程PID/TID事件，关闭自有读取句柄。
+源与解码输出分开，失败后也不重签原来源。
+
+同一ETL已经完整读取77,137条记录、全部57个缓冲区，首事件时间严格等于ETL StartTime，
+没有加校准偏移。第一次严格配对仍在目标线程两条连续SysCallEnter处拒绝，不能用
+丢失计数为零推断逐调用配对完整。有限首差异及511条目标线程相关记录以约8 KiB
+压缩现场保存；全系统事件不展开成持久化JSON/XML。原始ETL仍是可重新解码的来源。
+
+`terminal-wait-etw-window-proof-v1-20261109.json`及独立review逐项核对了511条抽取的
+原事件头、载荷、时间和CPU归属。两个原测试时间窗口内分别只有Enter、切出、切入、
+Exit四条事件，实际NTSTATUS为0和258；同一服务地址跨CPU迁移的归属正确，窗口两端
+观察到的Enter减Exit计数均为0。窗口外仍有7处重叠、全局241次Enter/240次Exit及
+末尾计数1，未按猜测的嵌套栈消掉差异，原全局报告继续blocked。局部能力结论只适用
+64位Python测试线程，未证明内核服务符号、游戏WOW64兼容或任何完整ABI/状态重放。
+
+本轮248项相关回归普通及`-O`通过。客体冗余来源及可重建的派生XML共29,459,692字节
+按SHA核对后退役，原ETL、必要小报告、原执行版本和一份必要恢复副本留在F盘；
+删除客体文件不代表VMDK已经缩小。虚拟机已正常关闭，未向宿主机发送输入。
+完整连续游戏采证仍需解决，不能把这次工具预检计作两例新鲜原生完整重放。
