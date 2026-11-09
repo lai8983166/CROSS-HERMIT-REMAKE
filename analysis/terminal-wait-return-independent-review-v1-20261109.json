@@ -1,0 +1,86 @@
+{
+  "kind": "main_independent_native_wait_return_failure_review",
+  "passed": true,
+  "accepted": false,
+  "self_helper_preflight_passed": false,
+  "game_wait_return_observed": false,
+  "first_result_consumer_observed": false,
+  "three_game_handshakes_proved": false,
+  "source": {
+    "path": "C:\\ChaomofaWorker\\wait-return-self-v1-20261109\\report.json",
+    "bytes": 68284,
+    "sha256": "18d326a03da81c8140a7d445a0a7203bf26fb38bc392307a037af80ca1853c7c"
+  },
+  "parent_game_source": {
+    "path": "C:\\ChaomofaWorker\\project\\analysis\\wait-return-inputs-v1-20261109\\terminal-battle-wait-window-battle-v6-20261109.json.gz",
+    "bytes": 92900,
+    "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+  },
+  "static_failure_proof": {
+    "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-wait-return-callback-failure-v1-20261109.json",
+    "bytes": 23136,
+    "sha256": "56a222304c0c4d9ed5518ba2e31e4bbb021cbf3212dfd258a9c566ee265b2ec1"
+  },
+  "original_game_same_ntdll_and_turbo_selector": true,
+  "callback_records": 0,
+  "post_returns": [
+    0,
+    0,
+    0,
+    258
+  ],
+  "actual_raw_post_frames": [
+    [
+      1092,
+      9568808,
+      3993784,
+      3993724,
+      0,
+      0,
+      1997610227,
+      0,
+      582
+    ],
+    [
+      1092,
+      9568808,
+      3993784,
+      3993724,
+      0,
+      0,
+      1997610227,
+      0,
+      582
+    ],
+    [
+      1092,
+      9568808,
+      3993784,
+      3993724,
+      0,
+      0,
+      1997610227,
+      0,
+      582
+    ],
+    [
+      1092,
+      9568808,
+      3993784,
+      3993724,
+      0,
+      0,
+      1997610227,
+      258,
+      582
+    ]
+  ],
+  "strict_capability_rejection": "exact callback and return counts; no overflow/bounds error",
+  "limitations": [
+    "Self-helper post-return frames are not original game frames.",
+    "The original game DLL hash authenticates NtWait selector13; this is not a new game run.",
+    "Loaded wow64cpu base is not captured; post ECX is only a consistency hint.",
+    "No complete ABI, first result consumption, three game handshakes or resource/PTD cleanup is proved."
+  ],
+  "review_method": "Main independently checks raw post frames, zero callback memory, original game export and exact fast-path branch/call instructions; strict verifier remains rejecting."
+}

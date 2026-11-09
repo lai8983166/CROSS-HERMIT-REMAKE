@@ -1,0 +1,873 @@
+{
+  "kind": "owned_wow64_wait_callback_static_failure_review",
+  "accepted": false,
+  "self_helper_preflight_passed": false,
+  "original_program_observed": false,
+  "full_original_abi": false,
+  "native_wait_relay_supported": false,
+  "dlls": [
+    {
+      "path": "C:\\Windows\\SysWOW64\\ntdll.dll",
+      "bytes": 1713880,
+      "sha256": "2761f133cac12188ed380666104527884b2f89dab918bc5082692ca1b7f341e6"
+    },
+    {
+      "path": "C:\\Windows\\System32\\wow64.dll",
+      "bytes": 363984,
+      "sha256": "0724e69cd73787d56011bbf958265761ccb4878754b0d4752282efccf7c7e656"
+    },
+    {
+      "path": "C:\\Windows\\System32\\wow64cpu.dll",
+      "bytes": 45816,
+      "sha256": "6d3e9d039c22b58c577435ef0209d43668ef2003e284be9980e4ad1289045a66"
+    }
+  ],
+  "source": {
+    "path": "C:\\ChaomofaWorker\\wait-return-self-v1-20261109\\report.json",
+    "bytes": 68284,
+    "sha256": "18d326a03da81c8140a7d445a0a7203bf26fb38bc392307a037af80ca1853c7c"
+  },
+  "matched_callback_records": 0,
+  "actual_self_helper_post_returns": [
+    0,
+    0,
+    0,
+    258
+  ],
+  "expected_pc_rva": 474108,
+  "wow64_info_peb32_offset": 1160,
+  "callback_peb32_offset": 1168,
+  "wow64_info_pointer_global_rva": 320128,
+  "teb64_wow64_info_pointer_offset": 5328,
+  "turbo_selector": 13,
+  "turbo_table_rva": 14032,
+  "turbo_path_rva": 6982,
+  "native_syscall_rva": 7409,
+  "callback_setup_rva": 139100,
+  "post_return_ecx": [
+    1997610227,
+    1997610227,
+    1997610227,
+    1997610227
+  ],
+  "loaded_wow64cpu_base_authenticated": false,
+  "post_ecx_used_only_as_consistency_hint": true,
+  "conclusion": "The fixed NtWait selector13 uses the audited direct wow64cpu syscall/return path; it bypasses the wow64.dll callback dispatcher. Successful registration and native EAX returns do not establish a callback observation.",
+  "forbidden_substitutions": [
+    "changing the original NtWait selector/stub",
+    "disabling turbo thunks to claim original equivalence",
+    "inferring full context from sparse returns"
+  ],
+  "excerpts": [
+    {
+      "module": "ntdll.dll",
+      "start_rva": 474096,
+      "end_rva": 474111,
+      "hex": "b804000d00ba1067314bffd2c20c00",
+      "instructions": [
+        {
+          "rva": 474096,
+          "hex": "b804000d00",
+          "mnemonic": "mov",
+          "operands": "eax, 0xd0004"
+        },
+        {
+          "rva": 474101,
+          "hex": "ba1067314b",
+          "mnemonic": "mov",
+          "operands": "edx, 0x4b316710"
+        },
+        {
+          "rva": 474106,
+          "hex": "ffd2",
+          "mnemonic": "call",
+          "operands": "edx"
+        },
+        {
+          "rva": 474108,
+          "hex": "c20c00",
+          "mnemonic": "ret",
+          "operands": "0xc"
+        }
+      ]
+    },
+    {
+      "module": "wow64cpu.dll",
+      "start_rva": 5737,
+      "end_rva": 5744,
+      "hex": "4c8d3d60200000",
+      "instructions": [
+        {
+          "rva": 5737,
+          "hex": "4c8d3d60200000",
+          "mnemonic": "lea",
+          "operands": "r15, [rip + 0x2060]"
+        }
+      ]
+    },
+    {
+      "module": "wow64cpu.dll",
+      "start_rva": 6009,
+      "end_rva": 6063,
+      "hex": "4987e6458b064983c6044589453c458975484d8d5e0441897d204189752441895d2841896d389c4158458945448bc8c1e91041ff24cf",
+      "instructions": [
+        {
+          "rva": 6009,
+          "hex": "4987e6",
+          "mnemonic": "xchg",
+          "operands": "r14, rsp"
+        },
+        {
+          "rva": 6012,
+          "hex": "458b06",
+          "mnemonic": "mov",
+          "operands": "r8d, dword ptr [r14]"
+        },
+        {
+          "rva": 6015,
+          "hex": "4983c604",
+          "mnemonic": "add",
+          "operands": "r14, 4"
+        },
+        {
+          "rva": 6019,
+          "hex": "4589453c",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r13 + 0x3c], r8d"
+        },
+        {
+          "rva": 6023,
+          "hex": "45897548",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r13 + 0x48], r14d"
+        },
+        {
+          "rva": 6027,
+          "hex": "4d8d5e04",
+          "mnemonic": "lea",
+          "operands": "r11, [r14 + 4]"
+        },
+        {
+          "rva": 6031,
+          "hex": "41897d20",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r13 + 0x20], edi"
+        },
+        {
+          "rva": 6035,
+          "hex": "41897524",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r13 + 0x24], esi"
+        },
+        {
+          "rva": 6039,
+          "hex": "41895d28",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r13 + 0x28], ebx"
+        },
+        {
+          "rva": 6043,
+          "hex": "41896d38",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r13 + 0x38], ebp"
+        },
+        {
+          "rva": 6047,
+          "hex": "9c",
+          "mnemonic": "pushfq",
+          "operands": ""
+        },
+        {
+          "rva": 6048,
+          "hex": "4158",
+          "mnemonic": "pop",
+          "operands": "r8"
+        },
+        {
+          "rva": 6050,
+          "hex": "45894544",
+          "mnemonic": "mov",
+          "operands": "dword ptr [r13 + 0x44], r8d"
+        },
+        {
+          "rva": 6054,
+          "hex": "8bc8",
+          "mnemonic": "mov",
+          "operands": "ecx, eax"
+        },
+        {
+          "rva": 6056,
+          "hex": "c1e910",
+          "mnemonic": "shr",
+          "operands": "ecx, 0x10"
+        },
+        {
+          "rva": 6059,
+          "hex": "41ff24cf",
+          "mnemonic": "jmp",
+          "operands": "qword ptr [r15 + rcx*8]"
+        }
+      ]
+    },
+    {
+      "module": "wow64cpu.dll",
+      "start_rva": 6982,
+      "end_rva": 7110,
+      "hex": "4d6313418b5304458b4308e88a010000418b7d20418b7524418b5d28418b6d38410fba75800072234c8bf4c74424042300000041b82b000000418ed0458b4d3c44890c24418b654841ff2e4c8bf466c7442408230066c74424202b00458b454441816544fffeffff4489442410458b45484c89442418458b453c4c89042448cf",
+      "instructions": [
+        {
+          "rva": 6982,
+          "hex": "4d6313",
+          "mnemonic": "movsxd",
+          "operands": "r10, dword ptr [r11]"
+        },
+        {
+          "rva": 6985,
+          "hex": "418b5304",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [r11 + 4]"
+        },
+        {
+          "rva": 6989,
+          "hex": "458b4308",
+          "mnemonic": "mov",
+          "operands": "r8d, dword ptr [r11 + 8]"
+        },
+        {
+          "rva": 6993,
+          "hex": "e88a010000",
+          "mnemonic": "call",
+          "operands": "0x1ce0"
+        },
+        {
+          "rva": 6998,
+          "hex": "418b7d20",
+          "mnemonic": "mov",
+          "operands": "edi, dword ptr [r13 + 0x20]"
+        },
+        {
+          "rva": 7002,
+          "hex": "418b7524",
+          "mnemonic": "mov",
+          "operands": "esi, dword ptr [r13 + 0x24]"
+        },
+        {
+          "rva": 7006,
+          "hex": "418b5d28",
+          "mnemonic": "mov",
+          "operands": "ebx, dword ptr [r13 + 0x28]"
+        },
+        {
+          "rva": 7010,
+          "hex": "418b6d38",
+          "mnemonic": "mov",
+          "operands": "ebp, dword ptr [r13 + 0x38]"
+        },
+        {
+          "rva": 7014,
+          "hex": "410fba758000",
+          "mnemonic": "btr",
+          "operands": "dword ptr [r13 - 0x80], 0"
+        },
+        {
+          "rva": 7020,
+          "hex": "7223",
+          "mnemonic": "jb",
+          "operands": "0x1b91"
+        },
+        {
+          "rva": 7022,
+          "hex": "4c8bf4",
+          "mnemonic": "mov",
+          "operands": "r14, rsp"
+        },
+        {
+          "rva": 7025,
+          "hex": "c744240423000000",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp + 4], 0x23"
+        },
+        {
+          "rva": 7033,
+          "hex": "41b82b000000",
+          "mnemonic": "mov",
+          "operands": "r8d, 0x2b"
+        },
+        {
+          "rva": 7039,
+          "hex": "418ed0",
+          "mnemonic": "mov",
+          "operands": "ss, r8d"
+        },
+        {
+          "rva": 7042,
+          "hex": "458b4d3c",
+          "mnemonic": "mov",
+          "operands": "r9d, dword ptr [r13 + 0x3c]"
+        },
+        {
+          "rva": 7046,
+          "hex": "44890c24",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp], r9d"
+        },
+        {
+          "rva": 7050,
+          "hex": "418b6548",
+          "mnemonic": "mov",
+          "operands": "esp, dword ptr [r13 + 0x48]"
+        },
+        {
+          "rva": 7054,
+          "hex": "41ff2e",
+          "mnemonic": "jmp",
+          "operands": "ptr [r14]"
+        },
+        {
+          "rva": 7057,
+          "hex": "4c8bf4",
+          "mnemonic": "mov",
+          "operands": "r14, rsp"
+        },
+        {
+          "rva": 7060,
+          "hex": "66c74424082300",
+          "mnemonic": "mov",
+          "operands": "word ptr [rsp + 8], 0x23"
+        },
+        {
+          "rva": 7067,
+          "hex": "66c74424202b00",
+          "mnemonic": "mov",
+          "operands": "word ptr [rsp + 0x20], 0x2b"
+        },
+        {
+          "rva": 7074,
+          "hex": "458b4544",
+          "mnemonic": "mov",
+          "operands": "r8d, dword ptr [r13 + 0x44]"
+        },
+        {
+          "rva": 7078,
+          "hex": "41816544fffeffff",
+          "mnemonic": "and",
+          "operands": "dword ptr [r13 + 0x44], 0xfffffeff"
+        },
+        {
+          "rva": 7086,
+          "hex": "4489442410",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp + 0x10], r8d"
+        },
+        {
+          "rva": 7091,
+          "hex": "458b4548",
+          "mnemonic": "mov",
+          "operands": "r8d, dword ptr [r13 + 0x48]"
+        },
+        {
+          "rva": 7095,
+          "hex": "4c89442418",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rsp + 0x18], r8"
+        },
+        {
+          "rva": 7100,
+          "hex": "458b453c",
+          "mnemonic": "mov",
+          "operands": "r8d, dword ptr [r13 + 0x3c]"
+        },
+        {
+          "rva": 7104,
+          "hex": "4c890424",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rsp], r8"
+        },
+        {
+          "rva": 7108,
+          "hex": "48cf",
+          "mnemonic": "iretq",
+          "operands": ""
+        }
+      ]
+    },
+    {
+      "module": "wow64cpu.dll",
+      "start_rva": 7392,
+      "end_rva": 7415,
+      "hex": "4c8b1de915000041f683080300000175030f05c3cd2ec3",
+      "instructions": [
+        {
+          "rva": 7392,
+          "hex": "4c8b1de9150000",
+          "mnemonic": "mov",
+          "operands": "r11, qword ptr [rip + 0x15e9]"
+        },
+        {
+          "rva": 7399,
+          "hex": "41f6830803000001",
+          "mnemonic": "test",
+          "operands": "byte ptr [r11 + 0x308], 1"
+        },
+        {
+          "rva": 7407,
+          "hex": "7503",
+          "mnemonic": "jne",
+          "operands": "0x1cf4"
+        },
+        {
+          "rva": 7409,
+          "hex": "0f05",
+          "mnemonic": "syscall",
+          "operands": ""
+        },
+        {
+          "rva": 7411,
+          "hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        },
+        {
+          "rva": 7412,
+          "hex": "cd2e",
+          "mnemonic": "int",
+          "operands": "0x2e"
+        },
+        {
+          "rva": 7414,
+          "hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    },
+    {
+      "module": "wow64.dll",
+      "start_rva": 54994,
+      "end_rva": 55039,
+      "hex": "8b41304c8d450065488b0c2530000000480588040000488905910b040033d2488b05880b0400488981d0140000",
+      "instructions": [
+        {
+          "rva": 54994,
+          "hex": "8b4130",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [rcx + 0x30]"
+        },
+        {
+          "rva": 54997,
+          "hex": "4c8d4500",
+          "mnemonic": "lea",
+          "operands": "r8, [rbp]"
+        },
+        {
+          "rva": 55001,
+          "hex": "65488b0c2530000000",
+          "mnemonic": "mov",
+          "operands": "rcx, qword ptr gs:[0x30]"
+        },
+        {
+          "rva": 55010,
+          "hex": "480588040000",
+          "mnemonic": "add",
+          "operands": "rax, 0x488"
+        },
+        {
+          "rva": 55016,
+          "hex": "488905910b0400",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rip + 0x40b91], rax"
+        },
+        {
+          "rva": 55023,
+          "hex": "33d2",
+          "mnemonic": "xor",
+          "operands": "edx, edx"
+        },
+        {
+          "rva": 55025,
+          "hex": "488b05880b0400",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rip + 0x40b88]"
+        },
+        {
+          "rva": 55032,
+          "hex": "488981d0140000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rcx + 0x14d0], rax"
+        }
+      ]
+    },
+    {
+      "module": "wow64.dll",
+      "start_rva": 28418,
+      "end_rva": 28440,
+      "hex": "488b05777304008b480885c90f85655b01008b442420",
+      "instructions": [
+        {
+          "rva": 28418,
+          "hex": "488b0577730400",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rip + 0x47377]"
+        },
+        {
+          "rva": 28425,
+          "hex": "8b4808",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [rax + 8]"
+        },
+        {
+          "rva": 28428,
+          "hex": "85c9",
+          "mnemonic": "test",
+          "operands": "ecx, ecx"
+        },
+        {
+          "rva": 28430,
+          "hex": "0f85655b0100",
+          "mnemonic": "jne",
+          "operands": "0x1ca79"
+        },
+        {
+          "rva": 28436,
+          "hex": "8b442420",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [rsp + 0x20]"
+        }
+      ]
+    },
+    {
+      "module": "wow64.dll",
+      "start_rva": 117369,
+      "end_rva": 117400,
+      "hex": "8b442440a8030f858fa4feffa8040f8587a4feffe8ca54000090e97ca4feff",
+      "instructions": [
+        {
+          "rva": 117369,
+          "hex": "8b442440",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [rsp + 0x40]"
+        },
+        {
+          "rva": 117373,
+          "hex": "a803",
+          "mnemonic": "test",
+          "operands": "al, 3"
+        },
+        {
+          "rva": 117375,
+          "hex": "0f858fa4feff",
+          "mnemonic": "jne",
+          "operands": "0x6f14"
+        },
+        {
+          "rva": 117381,
+          "hex": "a804",
+          "mnemonic": "test",
+          "operands": "al, 4"
+        },
+        {
+          "rva": 117383,
+          "hex": "0f8587a4feff",
+          "mnemonic": "jne",
+          "operands": "0x6f14"
+        },
+        {
+          "rva": 117389,
+          "hex": "e8ca540000",
+          "mnemonic": "call",
+          "operands": "0x21f5c"
+        },
+        {
+          "rva": 117394,
+          "hex": "90",
+          "mnemonic": "nop",
+          "operands": ""
+        },
+        {
+          "rva": 117395,
+          "hex": "e97ca4feff",
+          "mnemonic": "jmp",
+          "operands": "0x6f14"
+        }
+      ]
+    },
+    {
+      "module": "wow64.dll",
+      "start_rva": 139100,
+      "end_rva": 139310,
+      "hex": "48895c241055488dac24f0fdffff4881ec10030000488b0508b202004833c4488985000200008bd94533c0488d4c242033d248ff153b7901000f1f440000b84c01000066394424207527488d4c2430c744243003000100e890a6feff8b45e8488d4c24308945dcc744243002000100eb33b8c401000066394424207535488d4c2430c744243003002000e85da6feff8b442470488d4c243089442464c744243002002000e893a9feff33d28bcbe8a6a4feff488b8d000200004833cce8436cffff488b9c24280300004881c4100300005dc3",
+      "instructions": [
+        {
+          "rva": 139100,
+          "hex": "48895c2410",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rsp + 0x10], rbx"
+        },
+        {
+          "rva": 139105,
+          "hex": "55",
+          "mnemonic": "push",
+          "operands": "rbp"
+        },
+        {
+          "rva": 139106,
+          "hex": "488dac24f0fdffff",
+          "mnemonic": "lea",
+          "operands": "rbp, [rsp - 0x210]"
+        },
+        {
+          "rva": 139114,
+          "hex": "4881ec10030000",
+          "mnemonic": "sub",
+          "operands": "rsp, 0x310"
+        },
+        {
+          "rva": 139121,
+          "hex": "488b0508b20200",
+          "mnemonic": "mov",
+          "operands": "rax, qword ptr [rip + 0x2b208]"
+        },
+        {
+          "rva": 139128,
+          "hex": "4833c4",
+          "mnemonic": "xor",
+          "operands": "rax, rsp"
+        },
+        {
+          "rva": 139131,
+          "hex": "48898500020000",
+          "mnemonic": "mov",
+          "operands": "qword ptr [rbp + 0x200], rax"
+        },
+        {
+          "rva": 139138,
+          "hex": "8bd9",
+          "mnemonic": "mov",
+          "operands": "ebx, ecx"
+        },
+        {
+          "rva": 139140,
+          "hex": "4533c0",
+          "mnemonic": "xor",
+          "operands": "r8d, r8d"
+        },
+        {
+          "rva": 139143,
+          "hex": "488d4c2420",
+          "mnemonic": "lea",
+          "operands": "rcx, [rsp + 0x20]"
+        },
+        {
+          "rva": 139148,
+          "hex": "33d2",
+          "mnemonic": "xor",
+          "operands": "edx, edx"
+        },
+        {
+          "rva": 139150,
+          "hex": "48ff153b790100",
+          "mnemonic": "call",
+          "operands": "qword ptr [rip + 0x1793b]"
+        },
+        {
+          "rva": 139157,
+          "hex": "0f1f440000",
+          "mnemonic": "nop",
+          "operands": "dword ptr [rax + rax]"
+        },
+        {
+          "rva": 139162,
+          "hex": "b84c010000",
+          "mnemonic": "mov",
+          "operands": "eax, 0x14c"
+        },
+        {
+          "rva": 139167,
+          "hex": "6639442420",
+          "mnemonic": "cmp",
+          "operands": "word ptr [rsp + 0x20], ax"
+        },
+        {
+          "rva": 139172,
+          "hex": "7527",
+          "mnemonic": "jne",
+          "operands": "0x21fcd"
+        },
+        {
+          "rva": 139174,
+          "hex": "488d4c2430",
+          "mnemonic": "lea",
+          "operands": "rcx, [rsp + 0x30]"
+        },
+        {
+          "rva": 139179,
+          "hex": "c744243003000100",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp + 0x30], 0x10003"
+        },
+        {
+          "rva": 139187,
+          "hex": "e890a6feff",
+          "mnemonic": "call",
+          "operands": "0xc648"
+        },
+        {
+          "rva": 139192,
+          "hex": "8b45e8",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [rbp - 0x18]"
+        },
+        {
+          "rva": 139195,
+          "hex": "488d4c2430",
+          "mnemonic": "lea",
+          "operands": "rcx, [rsp + 0x30]"
+        },
+        {
+          "rva": 139200,
+          "hex": "8945dc",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rbp - 0x24], eax"
+        },
+        {
+          "rva": 139203,
+          "hex": "c744243002000100",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp + 0x30], 0x10002"
+        },
+        {
+          "rva": 139211,
+          "hex": "eb33",
+          "mnemonic": "jmp",
+          "operands": "0x22000"
+        },
+        {
+          "rva": 139213,
+          "hex": "b8c4010000",
+          "mnemonic": "mov",
+          "operands": "eax, 0x1c4"
+        },
+        {
+          "rva": 139218,
+          "hex": "6639442420",
+          "mnemonic": "cmp",
+          "operands": "word ptr [rsp + 0x20], ax"
+        },
+        {
+          "rva": 139223,
+          "hex": "7535",
+          "mnemonic": "jne",
+          "operands": "0x2200e"
+        },
+        {
+          "rva": 139225,
+          "hex": "488d4c2430",
+          "mnemonic": "lea",
+          "operands": "rcx, [rsp + 0x30]"
+        },
+        {
+          "rva": 139230,
+          "hex": "c744243003002000",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp + 0x30], 0x200003"
+        },
+        {
+          "rva": 139238,
+          "hex": "e85da6feff",
+          "mnemonic": "call",
+          "operands": "0xc648"
+        },
+        {
+          "rva": 139243,
+          "hex": "8b442470",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [rsp + 0x70]"
+        },
+        {
+          "rva": 139247,
+          "hex": "488d4c2430",
+          "mnemonic": "lea",
+          "operands": "rcx, [rsp + 0x30]"
+        },
+        {
+          "rva": 139252,
+          "hex": "89442464",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp + 0x64], eax"
+        },
+        {
+          "rva": 139256,
+          "hex": "c744243002002000",
+          "mnemonic": "mov",
+          "operands": "dword ptr [rsp + 0x30], 0x200002"
+        },
+        {
+          "rva": 139264,
+          "hex": "e893a9feff",
+          "mnemonic": "call",
+          "operands": "0xc998"
+        },
+        {
+          "rva": 139269,
+          "hex": "33d2",
+          "mnemonic": "xor",
+          "operands": "edx, edx"
+        },
+        {
+          "rva": 139271,
+          "hex": "8bcb",
+          "mnemonic": "mov",
+          "operands": "ecx, ebx"
+        },
+        {
+          "rva": 139273,
+          "hex": "e8a6a4feff",
+          "mnemonic": "call",
+          "operands": "0xc4b4"
+        },
+        {
+          "rva": 139278,
+          "hex": "488b8d00020000",
+          "mnemonic": "mov",
+          "operands": "rcx, qword ptr [rbp + 0x200]"
+        },
+        {
+          "rva": 139285,
+          "hex": "4833cc",
+          "mnemonic": "xor",
+          "operands": "rcx, rsp"
+        },
+        {
+          "rva": 139288,
+          "hex": "e8436cffff",
+          "mnemonic": "call",
+          "operands": "0x18c60"
+        },
+        {
+          "rva": 139293,
+          "hex": "488b9c2428030000",
+          "mnemonic": "mov",
+          "operands": "rbx, qword ptr [rsp + 0x328]"
+        },
+        {
+          "rva": 139301,
+          "hex": "4881c410030000",
+          "mnemonic": "add",
+          "operands": "rsp, 0x310"
+        },
+        {
+          "rva": 139308,
+          "hex": "5d",
+          "mnemonic": "pop",
+          "operands": "rbp"
+        },
+        {
+          "rva": 139309,
+          "hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "kind": "real_wait_return_observer_architecture_blocker_increment",
+  "created_utc": "2026-11-09T15:41:25.324819+00:00",
+  "parent": {
+    "path": "analysis/terminal-result-tail-closeout-v1-20261109.json",
+    "bytes": 15978,
+    "sha256": "d52a9d6adc8e4d098bbb0e1dd5923e4dd95bc5d7f1d99c4c215d8e4e47696897"
+  },
+  "inventory_correction": {
+    "incomplete_draft": {
+      "path": ".venv-audit/native-worker/wait-return-inventory-incomplete-v1-20261109.json",
+      "bytes": 18251,
+      "sha256": "78cf5bfb5776dc3b6129699f51dd9b59d9cc299b40d1b9f21d5b215cb4aae38a"
+    },
+    "reason": "Timestamp-only draft omitted 409800 bytes of newly copied DLLs with source timestamps; explicit transfer receipt now included. Incomplete draft not a valid final capacity report."
+  },
+  "accepted": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "formal_gates_passed": 0,
+  "formal_gates_total": 3,
+  "gate_A": {
+    "actual_original_wait_return_captured": false,
+    "first_original_result_consumer_captured": false,
+    "three_original_game_handshakes_proved": false,
+    "current_original_native_bridge_established": false,
+    "outcome": "No game execution progress claimed: bounded capability probe rejects the proposed return mechanism."
+  },
+  "gate_B": {
+    "original_resources_released_proved": false,
+    "original_PTD_TLS_lifetime_proved": false
+  },
+  "gate_C": {
+    "two_fresh_complete_native_cases_verified": false,
+    "full_independent_replay": false
+  },
+  "existing_acceptance_contract_unchanged": true,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "native_probe": {
+    "source": {
+      "path": ".venv-audit/native-worker/wait-return-self-v1-20261109/report.json",
+      "bytes": 68284,
+      "sha256": "18d326a03da81c8140a7d445a0a7203bf26fb38bc392307a037af80ca1853c7c"
+    },
+    "original_program_observed": false,
+    "original_game_launches": 0,
+    "self_helper_native_launches": 1,
+    "actual_returns": [
+      0,
+      0,
+      0,
+      258
+    ],
+    "matching_callback_records": 0,
+    "registration_status": 0,
+    "unregistration_status": 0,
+    "own_buffers_released": true,
+    "own_handles_closed": true,
+    "cleanup_errors": [],
+    "self_helper_preflight_passed": false,
+    "callback_entry_state_preservation_natively_proved": false,
+    "scope": "Four actual post-return self-helper frames; no original game frame or complete game handshake."
+  },
+  "architecture": {
+    "original_game_and_helper_same_ntdll_turbo_selector": true,
+    "selector": 13,
+    "fast_path": "wow64cpu RVA 1B46 -> 1CE0 -> syscall 1CF1 -> direct original 32-bit return",
+    "wow64_callback_bypassed": true,
+    "actual_wow64_callback_peb32_offset": 1168,
+    "native64_to_wow64_callback_rejected_by_actual_kernel_static_branch": true,
+    "status": 3221225659,
+    "kernel_live_execution_trace": false,
+    "loaded_wow64cpu_base_authenticated": false,
+    "next_required_boundary": "unchanged wow64cpu real wait return with complete original state and owner; callback candidates are unsupported"
+  },
+  "independent_review": {
+    "report": {
+      "path": "analysis/terminal-wait-return-independent-review-v1-20261109.json",
+      "bytes": 2395,
+      "sha256": "343dfd7ebbf470e07e183d0098b24c0bb500247cfc7149e9f11e92b7b2a199f3"
+    },
+    "reviewer": "main agent independently checks raw native records and original battle-v6 export",
+    "kernel_refusal_manually_reviewed_by_main": true,
+    "kernel_paths_checked": [
+      "6F5DAA PsGetCurrentProcess -> RDI",
+      "6F5E05 target WOW64 +580 and +96C",
+      "6F5E2B current WOW64 +580",
+      "6F5E35 target WOW64 -> 6F5F1E",
+      "6F5F21 native64 caller -> 6F5FDC C00000BB",
+      "6F5FAE WOW64 caller writes PEB32+490"
+    ],
+    "no_independent_full_replay_claim": true
+  },
+  "references": [
+    {
+      "path": "analysis/terminal-wait-return-callback-failure-v1-20261109.json",
+      "bytes": 23136,
+      "sha256": "56a222304c0c4d9ed5518ba2e31e4bbb021cbf3212dfd258a9c566ee265b2ec1"
+    },
+    {
+      "path": "analysis/terminal-wait-return-kernel-refusal-v2-20261109.json",
+      "bytes": 31029,
+      "sha256": "df1813728a610988d795864ba837172eafbffbc904f96301a028ea4cb09972ce"
+    },
+    {
+      "path": "analysis/terminal-wait-return-support-v1-20261109.zip",
+      "bytes": 38906,
+      "sha256": "b7a8e96095bff8ccdc799cc016e1399f282a5984372bc7806844f090c3017ec7"
+    }
+  ],
+  "efficiency": {
+    "full_battle_prefixes": 0,
+    "formal_long_replays": 0,
+    "game_native_captures": 0,
+    "self_helper_native_runs": 1,
+    "compiled_helper_first_execution_exit": 0,
+    "capability_verifier_correctly_rejected": true,
+    "compiler_initial_failure": "guest TEMP directory absent; no helper binary or native report created",
+    "correction": "created dedicated guest TEMP; one actual native run; original failed receipt retained",
+    "native_run_including_compilation_and_transport_seconds": 2.656,
+    "same_known_native_failure_retried": false,
+    "native64_candidate_rejected_statically_without_trial": true,
+    "no_functional_completion_or_complete_path_speedup_claim": true
+  },
+  "tests": {
+    "receipt": {
+      "path": ".venv-audit/native-worker/wait-return-unit-checks-v1-20261109.json",
+      "bytes": 439,
+      "sha256": "0d1b48e40c04006a27fd2ea14c7f3ef955a277a4ef9cc10d9d850b68ce78ef5f"
+    },
+    "ordinary_count": 6,
+    "optimized_count": 6,
+    "executed_inside_VM": true,
+    "passed": true,
+    "native_capability_is_separate_and_failed": true
+  },
+  "preservation": {
+    "checked_utc": "2026-11-09T15:37:07.787328+00:00",
+    "parent": {
+      "path": "analysis/reverse-validation-preservation-v1-20261106.json",
+      "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+    },
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "strict_OpenSpec_valid": true,
+  "host_evidence_files": [
+    {
+      "path": ".venv-audit/native-worker/battle-wait-clock-staged-audit-wait-return-precloseout.json",
+      "bytes": 3089,
+      "sha256": "b082c39328f24607049c22d52aaa981306c8b0bde42bb194d8ba481d7f9a02bb"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-guest-storage-wait-return-v1-20261109.json",
+      "bytes": 388,
+      "sha256": "b3b1d4bc07c48889548411c3cc94ee2ac794c0e7772c785232da64fcd831b8a5"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-wait-return-v1-20261109.json",
+      "bytes": 1127,
+      "sha256": "ca3f885cbb5e0e18eba9f3b2d0390d91fcf9ade5ec86a7b0b8386d2acec29aff"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-wait-return-compile-v1.py",
+      "bytes": 556,
+      "sha256": "fe2b6f4e8e9411bd3d0569afb392fe7bb88c738fc3325667ee1e452e4b2c7be7"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-wait-return-guest-v1.py",
+      "bytes": 1948,
+      "sha256": "026d4b529399abbc8e2ec05c681e2b0a8bc3a3bf391931ec27991d9128173e16"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-wait-return-preservation-v1.py",
+      "bytes": 1215,
+      "sha256": "38f6525bc31f68c3a812cbe3dbedc69f859362602b31a18c32d6c6ab4cf99639"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-wait-return-v1.py",
+      "bytes": 9230,
+      "sha256": "47c35f343a31d4fcdb09621dec389b476b555d504e430b0b5f7d5de4e089209f"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-wait-return-v2.py",
+      "bytes": 10108,
+      "sha256": "59f4b8d58794194a49a64d3f10d12e606e8d2465da82dc09e27f915c5c52f386"
+    },
+    {
+      "path": ".venv-audit/native-worker/inventory-wait-return-guest-v1.py",
+      "bytes": 1603,
+      "sha256": "8e6c6fcb896094095acf01f7e6cd59d52aed397f401483be4c21878328736088"
+    },
+    {
+      "path": ".venv-audit/native-worker/nvram",
+      "bytes": 8684,
+      "sha256": "b97c01031e7afee8e3bc2cd6b8893c61f9e6810482ffd82cd8e7e74fdff9f32f"
+    },
+    {
+      "path": ".venv-audit/native-worker/package-wait-return-v1.py",
+      "bytes": 1945,
+      "sha256": "9ef7f0d20d1ebdea389f82ae49b91606be526c10f533e9949df6d204427dda29"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-wait-return-closeout-v2.py",
+      "bytes": 1343,
+      "sha256": "510fabf1024ac8ab0849d49651b5873b600e96c28130129571fd28e8345a3a98"
+    },
+    {
+      "path": ".venv-audit/native-worker/read-wow64-return-v1.py",
+      "bytes": 1304,
+      "sha256": "f2f9956c81aec684de01dcc5c2bde0d9678507cd1a5c2372234f9bf1a1e4411a"
+    },
+    {
+      "path": ".venv-audit/native-worker/resume-wait-return-self-v2.py",
+      "bytes": 2432,
+      "sha256": "69395c408f3b72530ef35f01676b945af9a42589ebe00badf4f204aa1bda3525"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-wait-return-transfers-v1.py",
+      "bytes": 3285,
+      "sha256": "7110d40f3bdc6bb175706092af5c1745553573fb8f812c1ac6888479dad3e8cc"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-wait-return-main-v1.py",
+      "bytes": 3951,
+      "sha256": "f24db525fc850f1b5288b3ae6538a189969da8eb610bb943ff16f0984b962929"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-wait-return-kernel-review-v2.py",
+      "bytes": 2164,
+      "sha256": "36b35aecf888b5794592117ac007e81c4dc4202139ebef783368fa5cfd1663ba"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-wait-return-main-review-v1.py",
+      "bytes": 1089,
+      "sha256": "42d5f88be5d8f995c179e9bd66426430234912e1ffc65f2fafca6bcb8147eaa2"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-wait-return-review-v1.py",
+      "bytes": 1725,
+      "sha256": "89c56c5325733c7e662dba860293f56d0f3682fdcb7837a346f0680d8f6087c3"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-wait-return-self-v1.py",
+      "bytes": 3254,
+      "sha256": "41da22eab3330261b7790942869b3056864519953cfe2f59d5c65abdeb3bc283"
+    },
+    {
+      "path": ".venv-audit/native-worker/stop-wait-return-worker-v1.py",
+      "bytes": 1065,
+      "sha256": "c9bf59f32bdee07c60c6d313d972a10414f7896d2bf4aebafddb009e110b47f9"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-inventory-incomplete-v1-20261109.json",
+      "bytes": 18251,
+      "sha256": "78cf5bfb5776dc3b6129699f51dd9b59d9cc299b40d1b9f21d5b215cb4aae38a"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-kernel-review-v2-driver.py",
+      "bytes": 1054,
+      "sha256": "60178bdc133c87d9f250bba7b9486aa252e5e1fcbf4d0e82f6436514edc7f61a"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-preservation-v1-20261109.json",
+      "bytes": 349,
+      "sha256": "b8452283ff0fc8ec19c5f5a8b8c37dc3a0c0bd838f79e36aac97b1e46eb7d761"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-review-v1-driver.py",
+      "bytes": 618,
+      "sha256": "00c4d71f82de145df6341d275bf842d272b3a2286c4f0f0805a306bb7007e98e"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-self-v1-20261109.run.json",
+      "bytes": 1862,
+      "sha256": "db07033b154be74c347273727e1a6c3e553402675cead5761a90780e45b5fd13"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-self-v2-20261109.run.json",
+      "bytes": 1897,
+      "sha256": "702a629c49aef969a1ac2c88c108dfbdb5c01f98548fe251a95b6c0f0a26eaa2"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-transfer-retirement-v1-20261109.json",
+      "bytes": 6302,
+      "sha256": "b7256a1af75d92f2790888b1611b87d5ccd07ae4700d5d3106f1a55c77ea5f16"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-unit-checks-v1-20261109.json",
+      "bytes": 439,
+      "sha256": "0d1b48e40c04006a27fd2ea14c7f3ef955a277a4ef9cc10d9d850b68ce78ef5f"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-unit-checks-v1-driver.py",
+      "bytes": 695,
+      "sha256": "c8e1d60002d073cdd6017136a6ac82597994efe1ec3e4eb52fd6b1c000fe3f99"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-worker-stop-v1-20261109.json",
+      "bytes": 202,
+      "sha256": "c406c065c444cfdfb81809963a9c88dd4dda1c4f485b6884515aff14139ee142"
+    },
+    {
+      "path": ".venv-audit/native-worker/wow64-return-dll-read-v1-20261109.json",
+      "bytes": 1211,
+      "sha256": "616381434f7a5bcdacaf90bcb91ba9325c0f0e4ed5af6ad2c5da52b29e42a914"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-self-v1-20261109/callback.bin",
+      "bytes": 378,
+      "sha256": "7c6d229240478a8f15427df9360ca1ff718147b31e8a712900d710f03e6feb74"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-self-v1-20261109/helper.exe",
+      "bytes": 14848,
+      "sha256": "daf33b711d9cd696c223dd4c4ce1f4e6ac289d03181d9337132a136e0840f66f"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-self-v1-20261109/manifest.json",
+      "bytes": 13863,
+      "sha256": "a323fd580a7b993abaac474bf632f113e6b29652cffcd4b3e901b31977622f42"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-self-v1-20261109/report.json",
+      "bytes": 68284,
+      "sha256": "18d326a03da81c8140a7d445a0a7203bf26fb38bc392307a037af80ca1853c7c"
+    },
+    {
+      "path": ".venv-audit/native-worker/wait-return-self-v1-20261109/terminal_wait_return_callback.cs",
+      "bytes": 12407,
+      "sha256": "d5c7b832ea6f084efc0f1448aa483b52ce98605f436df43ce4c6fda565de750a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/wow64.dll",
+      "bytes": 363984,
+      "sha256": "0724e69cd73787d56011bbf958265761ccb4878754b0d4752282efccf7c7e656"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/wow64cpu.dll",
+      "bytes": 45816,
+      "sha256": "6d3e9d039c22b58c577435ef0209d43668ef2003e284be9980e4ad1289045a66"
+    }
+  ],
+  "analysis_evidence_files_before_closeout": [
+    {
+      "path": "analysis/terminal-wait-return-callback-failure-v1-20261109.json",
+      "bytes": 23136,
+      "sha256": "56a222304c0c4d9ed5518ba2e31e4bbb021cbf3212dfd258a9c566ee265b2ec1"
+    },
+    {
+      "path": "analysis/terminal-wait-return-independent-review-v1-20261109.json",
+      "bytes": 2395,
+      "sha256": "343dfd7ebbf470e07e183d0098b24c0bb500247cfc7149e9f11e92b7b2a199f3"
+    },
+    {
+      "path": "analysis/terminal-wait-return-kernel-refusal-v2-20261109.json",
+      "bytes": 31029,
+      "sha256": "df1813728a610988d795864ba837172eafbffbc904f96301a028ea4cb09972ce"
+    },
+    {
+      "path": "analysis/terminal-wait-return-support-v1-20261109.zip",
+      "bytes": 38906,
+      "sha256": "b7a8e96095bff8ccdc799cc016e1399f282a5984372bc7806844f090c3017ec7"
+    },
+    {
+      "path": "analysis/terminal-wait-return-transfer-retirement-v1-20261109.json",
+      "bytes": 8668,
+      "sha256": "9fb78708ac5f4128c1a6221bdf5009dbd1c3f02705bf55bd15a25c114f6d2630"
+    }
+  ],
+  "guest_inventory": {
+    "path": ".venv-audit/native-worker/battle-wait-guest-storage-wait-return-v1-20261109.json",
+    "bytes": 388,
+    "sha256": "b3b1d4bc07c48889548411c3cc94ee2ac794c0e7772c785232da64fcd831b8a5"
+  },
+  "guest_retained_files": [],
+  "cleanup": {
+    "receipt": {
+      "path": ".venv-audit/native-worker/wait-return-transfer-retirement-v1-20261109.json",
+      "bytes": 6302,
+      "sha256": "b7256a1af75d92f2790888b1611b87d5ccd07ae4700d5d3106f1a55c77ea5f16"
+    },
+    "guest_duplicate_files_removed": 19,
+    "guest_duplicate_bytes_removed": 305262,
+    "all_current_planned_transfers_removed": true,
+    "host_originals_retained": true,
+    "historical_assets_sources_or_checkpoints_removed": false,
+    "previous_kernel_duplicate_retained_bytes": 11597168,
+    "previous_kernel_deletion_not_retried": true
+  },
+  "environment": {
+    "host_drive": "F",
+    "guest_logical_C_inside_F_disk": true,
+    "cpu": 2,
+    "memory_bytes": 4294430720,
+    "VM_soft_stopped": true,
+    "VMEM_files_remaining": 0,
+    "interactive_desktop_or_autologon_used": false,
+    "host_input_actions": 0,
+    "continuous_host_performance_unaffected_proved": false,
+    "VM_disk_bytes": 16735600640,
+    "baseline_VM_disk_bytes": 16721051648,
+    "VM_disk_growth_bytes": 14548992,
+    "worker_logical_bytes_at_inventory": 22121064285,
+    "mutable_environment_files": [
+      {
+        "path": ".venv-audit/native-worker/chaomofa-worker.vmx",
+        "bytes": 4071
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware.log",
+        "bytes": 314129
+      },
+      {
+        "path": ".venv-audit/native-worker/worker.vmdk",
+        "bytes": 16735600640
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-13856.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-14992.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-15120.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-17340.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-1736.log",
+        "bytes": 5357
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24436.log",
+        "bytes": 4651
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24708.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27140.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27144.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28176.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28816.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29268.log",
+        "bytes": 5537
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30200.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30580.log",
+        "bytes": 5538
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30964.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-32836.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-32956.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33208.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-34072.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-3604.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-7564.log",
+        "bytes": 5548
+      }
+    ],
+    "stop_receipt": {
+      "path": ".venv-audit/native-worker/wait-return-worker-stop-v1-20261109.json",
+      "bytes": 202,
+      "sha256": "c406c065c444cfdfb81809963a9c88dd4dda1c4f485b6884515aff14139ee142"
+    }
+  },
+  "storage_scope": "All new local evidence since parent commit 2026-11-09T14:24:00Z including system DLL reads, native helper, raw bounded failure, transport scripts/receipts and one recovery capsule. Current guest duplicates removed; F-drive VM growth counted separately.",
+  "same_disk_backup_is_independent_disaster_recovery": false,
+  "staged_code_and_evidence_equal_executed_bytes": true,
+  "private_credential_scan_passed": true,
+  "host_new_evidence_bytes_including_closeout": 737785,
+  "total_new_local_evidence_bytes_including_guest_and_backups": 737785,
+  "Git_added_file_bytes_including_closeout": 163085,
+  "closeout_bytes": 19686
+}
