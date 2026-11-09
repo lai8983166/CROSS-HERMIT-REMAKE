@@ -1,5 +1,9 @@
 # 原生战斗等待窗口（进行中）
 
+剩余执行按 [三个关口](../openspec/changes/connect-terminal-wait-and-battle-exit/tasks.md)
+推进：连续等待与结果消费、真实资源/PTD 清理、两例完整验收。原八项合同仍保留，
+2/8 不是工作量百分比；以下有限采样和开发接续均不自动提高正式验收进度。
+
 此工具把原游戏中的短等待观察接到已验证的菜单→职务室→学校→真实战斗退却路径。
 它保留当前原生事件、线程/TLS/PTD、原调用栈及内核等待返回的联系；ETW 和暂停快照
 不替代完整用户态指令、CPU/RAM/ABI、累计轨迹和实际资源/PTD 清理证明。
@@ -321,3 +325,33 @@ helper，不能把两种 PID 改成相同值，也不据此独立认证外部 PI
 委派的堆验证器由主 Agent 单独读取原 header/payload 检查。严格 OpenSpec 检查通过，
 正式仍为 2/8。新证据位置、SHA、体积和客体副本清理见
 `analysis/terminal-battle-wait-context-heap-closeout-v1-20261109.json`。
+
+### 第三次等待后的原结果传播尾段
+
+新增 `terminal_result_tail_replay.py` 复用 battle-v6 第 15 帧和固定的旧等待证明。
+该帧对应已配对记录 16928/19426、NTSTATUS=0，四个跨界样本仍拒绝。原 pending
+整数上下文本来就是 EAX=0；恢复其原值后不再主机赋值，不把它说成真实 post-syscall
+上下文。只装入实际保留的栈、节点、TEB 和原代码字节；每条指令先核内存读写范围，
+页容器中的零填充没有证据资格，未知输入在执行前阻止接续。
+
+F 盘 2 核/4 GiB 客体无桌面登录、无游戏或输入，两个全新 Unicorn 实例各完成
+118 次原指令回调、36 次原写入，已声明的稀疏字节模型、整数 CPU 和轨迹逐项相等：
+
+`Nt ret → Win32 尾部 → 42240D → 清10000标志 → 453CDD → 451ABC → 451716 → 451723停点`
+
+原 `453CDD` 的 `mov eax,1` 经真实保留栈的自然 RET 传播，`451ABC` 把
+`027FFE60` 从 CCCCCCCC 写为 1，`451716` 把 `027FFED4` 从 0 写为 1。
+没有跳到消费者、改返回值或拼调用栈。停止指令为 `mov ecx,[7A49FC]`，该读取没有
+执行；下一函数 `415420` 涉及 GAME 时钟状态，不能借用启动期完整对象替代当前状态。
+
+这只证明声明的条件输入能使原指令完成这一段结果传播。kernelbase wrapper 正文来自
+同 SHA 客体 DLL，尚无对应 live 完整正文认证；Unicorn 的直接段装载不能恢复原
+SS=2B，故模型明确使用 flat SS=18。原 FS=53 描述符及 TEB 字节保留，浮点、完整段
+架构与并发影响仍未证明。原 `453CB5`、录像分支及三次完整握手不在执行范围；
+两个 Unicorn 实例不等于两例新鲜原生寿命或独立完整重放。原验收合同不变。
+
+主 Agent 独立核对原字节、实际栈目标和有限范围，普通与 `-O` 各 8 项拒绝/来源回归
+在客体通过。未启动游戏前缀或正式长跑。原报告、复核和体积清理清单分别为
+`analysis/terminal-result-tail-proof-v1-20261109.json`、
+`analysis/terminal-result-tail-independent-review-v1-20261109.json`、
+`analysis/terminal-result-tail-closeout-v1-20261109.json`。

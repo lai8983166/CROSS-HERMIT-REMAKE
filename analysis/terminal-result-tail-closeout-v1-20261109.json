@@ -1,0 +1,421 @@
+{
+  "kind": "three_gate_plan_and_conditional_original_result_tail_increment",
+  "created_utc": "2026-11-09T14:23:23.611078+00:00",
+  "parent": {
+    "path": "analysis/terminal-battle-wait-context-heap-closeout-v1-20261109.json",
+    "bytes": 27128,
+    "sha256": "310f48a2230ce9b3eb719eb7753481bf0a7373e7da2ac1caa1f4e6a2f937fef7"
+  },
+  "accepted": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "formal_gates_passed": 0,
+  "formal_gates_total": 3,
+  "gate_status": {
+    "A": "conditional third-wait tail executed; native continuity/first consumer/three handshakes unproved",
+    "B": "original resource and PTD lifetime unproved",
+    "C": "two fresh complete native cases not started"
+  },
+  "existing_acceptance_contract_unchanged": true,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "continuous_native_result_consumption_proved": false,
+  "two_fresh_full_native_cases_verified": false,
+  "functional_progress": {
+    "original_pending_EIP": "77D13BFC",
+    "original_pending_EAX": 0,
+    "no_return_value_substitution": true,
+    "original_result_creation": "453CDD MOV EAX,1",
+    "natural_original_consumers": [
+      "451ABC -> 027FFE60 = 1",
+      "451716 -> 027FFED4 = 1"
+    ],
+    "original_wait_node_flag_cleared": true,
+    "instruction_callbacks_per_instance": 118,
+    "original_writes_per_instance": 36,
+    "same_implementation_fresh_Unicorn_instances": 2,
+    "full_independent_replay": false,
+    "stop_before_instruction": "451723 MOV ECX,[7A49FC]",
+    "missing_global_not_read": true,
+    "old_native_handles_called": false
+  },
+  "limitations": [
+    "Pending integer context plus matching ETW status is a conditional input, not authenticated post-return ABI.",
+    "No contemporaneous after-wait state or concurrent scheduler effects are reconstructed.",
+    "OS wrapper body is derived from a matching guest DLL; its live bytes were not captured.",
+    "Uncaptured page padding is storage only; exact comparison is of a declared sparse-byte model.",
+    "Only original consumer tail through the first uncaptured global is executed; no full wait/lifetime acceptance.",
+    "Source SS=2B is not restored; explicit synthetic flat SS=18 is a conditional platform input.",
+    "Original 453CB5, 4967B0 and three complete handshakes were not executed. Original result-tail writes do not certify the actual post-kernel ABI."
+  ],
+  "references": [
+    {
+      "path": "analysis/terminal-result-tail-proof-v1-20261109.json",
+      "bytes": 14200,
+      "sha256": "4f56711de21ce738b19589501f59e5d214dcec722ee46e701e9f84681a6e48fc"
+    },
+    {
+      "path": "analysis/terminal-result-tail-independent-review-v1-20261109.json",
+      "bytes": 3104,
+      "sha256": "36a54e866f29a95b4179e12c9590881901705d889b61d6cc9dfe1444bc634b3a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-result-tail-v1-20261109.run.json",
+      "bytes": 2313,
+      "sha256": "b3dd795e414624a6d2f4b2dfc9fa26a81575f830305123225fdd1136901e2bf4"
+    },
+    {
+      "path": ".venv-audit/native-worker/result-tail-headless-preflight-v1-20261109.json",
+      "bytes": 961,
+      "sha256": "07b900ca08568e34ca704d69af8a8ec79570b607c0cc71d9fdbf272c5bc1d2b7"
+    }
+  ],
+  "efficiency": {
+    "original_game_launches": 0,
+    "new_full_battle_prefixes": 0,
+    "new_native_game_captures": 0,
+    "formal_long_replays": 0,
+    "existing_battle_v6_source_and_prior_wait_proof_reused": true,
+    "first_guest_tail_attempt_succeeded": true,
+    "regression_transport_first_attempt": "missing guest devtools/tests directory before tests; create directory, use new v2 outputs; no collector or source rerun",
+    "no_claim_of_complete_path_speedup": true
+  },
+  "tests": {
+    "receipt": {
+      "path": ".venv-audit/native-worker/result-tail-unit-checks-v2-20261109.json",
+      "bytes": 435,
+      "sha256": "f0d3d64921e0d4a8d4982e6a961fedee45eab407876e3821aba049098458fe7d"
+    },
+    "ordinary_count": 8,
+    "optimized_count": 8,
+    "executed_inside_VM": true,
+    "ordinary_seconds": 2.4850000000000136,
+    "optimized_seconds": 4.125,
+    "passed": true
+  },
+  "preservation": {
+    "checked_utc": "2026-11-09T14:21:01.503881+00:00",
+    "parent": {
+      "path": "analysis/reverse-validation-preservation-v1-20261106.json",
+      "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+    },
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "strict_OpenSpec_valid": true,
+  "host_evidence_files": [
+    {
+      "path": ".venv-audit/native-worker/battle-wait-clock-staged-audit-result-tail-preclose-v1-20261109.json",
+      "bytes": 2692,
+      "sha256": "387440173267eb33e9a37af0e7ca8f316cb505c1135fcc6cc0dabf4350a59c35"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-guest-storage-result-tail-v1-20261109.json",
+      "bytes": 826,
+      "sha256": "8de044ac0f9a333c40e10dde10ea4e2d9726447064eef012db377f3abd109d36"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-result-tail-v1-20261109.json",
+      "bytes": 1126,
+      "sha256": "682601819047bebc822831e93ccb749605c81a47ff93d0bf29818e79861d37d2"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-result-tail-guest-v1.py",
+      "bytes": 2877,
+      "sha256": "3bc6515e9960c16c20e98b4f29f06322e88be4806db9777619c0c942e10bf25a"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-result-tail-guest-v2.py",
+      "bytes": 3024,
+      "sha256": "d69428c6fa53d2d628f0ad1754115b7d780bd2e9798e7517af29fdb7a2d54dbb"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-result-tail-preservation-v1.py",
+      "bytes": 1215,
+      "sha256": "ffdcf2177d502681f9225768707b7e9290aaa42de90e38228307a342384f8ce3"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-result-tail-v1.py",
+      "bytes": 7800,
+      "sha256": "5ea0732837f7a9f4dbbe06dcad78e0b42e3dd8f2189e7f26006c550cb8db88d0"
+    },
+    {
+      "path": ".venv-audit/native-worker/inventory-result-tail-guest-v1.py",
+      "bytes": 1609,
+      "sha256": "80b0fdd4816260f46aab4c717a9e4a48dcca2d1320101349cb3c9579fd6de86a"
+    },
+    {
+      "path": ".venv-audit/native-worker/nvram",
+      "bytes": 8684,
+      "sha256": "573cee506a5785854b57feb2ec5a664b035bc26e08a7be0e861d71b1db6ab003"
+    },
+    {
+      "path": ".venv-audit/native-worker/package-result-tail-v1.py",
+      "bytes": 1455,
+      "sha256": "61ef7c3732a003b251cabe9e0c77c599659b73a1445aa57344468474b4f5ffc2"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-result-tail-v1.py",
+      "bytes": 1620,
+      "sha256": "bbd01f573e8b37a66e5c0496854b9f9c14a02696c3986a5a7515d2e6397c2ecc"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-result-tail-retirement-v1.py",
+      "bytes": 3511,
+      "sha256": "258c2077cdeb49f82b9f82636fb82c4d636091259d141099f5996313d9f688fa"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-result-tail-tests-v2.py",
+      "bytes": 565,
+      "sha256": "feb60c756a3a617c1c766c66d1481c8b4b2ff8aa1a6cff581903c626db220ce9"
+    },
+    {
+      "path": ".venv-audit/native-worker/result-tail-headless-preflight-v1-20261109.json",
+      "bytes": 961,
+      "sha256": "07b900ca08568e34ca704d69af8a8ec79570b607c0cc71d9fdbf272c5bc1d2b7"
+    },
+    {
+      "path": ".venv-audit/native-worker/result-tail-preservation-v1-20261109.json",
+      "bytes": 349,
+      "sha256": "e984ecb27bd70e528450c55a6de575ea03357ad24274835e67b3a4b605dc70ff"
+    },
+    {
+      "path": ".venv-audit/native-worker/result-tail-transfer-retirement-v1-20261109.json",
+      "bytes": 2646,
+      "sha256": "702156e41e9afecc576982473276da993f3a71bab8ba0bc6680206512756c451"
+    },
+    {
+      "path": ".venv-audit/native-worker/result-tail-unit-checks-v1-20261109-driver.py",
+      "bytes": 1250,
+      "sha256": "b3a3faacb54fde0ffd8d89eda02993db4b06bffbcf95faf8d8b971e79439106e"
+    },
+    {
+      "path": ".venv-audit/native-worker/result-tail-unit-checks-v2-20261109-driver.py",
+      "bytes": 1250,
+      "sha256": "0e396e00bb568813058f08dfb11021bd60b43a114f89db6c5ac7113d0bc51681"
+    },
+    {
+      "path": ".venv-audit/native-worker/result-tail-unit-checks-v2-20261109.json",
+      "bytes": 435,
+      "sha256": "f0d3d64921e0d4a8d4982e6a961fedee45eab407876e3821aba049098458fe7d"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-result-tail-transfers-v1.py",
+      "bytes": 4561,
+      "sha256": "1ccf5fd123a8a816f117a2c9a24466bacf372d304626356fffccb7d2ae7328e7"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-result-tail-main-v1.py",
+      "bytes": 6214,
+      "sha256": "49a38dc3a7d2bdfe9f6baa11e06ffb5268c33024be9891f2313151e91d8222d2"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-result-tail-v1.py",
+      "bytes": 4520,
+      "sha256": "98fecf5777c5f9b530b09e892a5d9a115e3e140c46c79ea19227d0214bc16b2e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-result-tail-v1-20261109-driver.py",
+      "bytes": 1053,
+      "sha256": "6fe8021b7bc08317da3e0e8901c28187f1aef4208d13134844462b970c97c0a4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-result-tail-v1-20261109.json",
+      "bytes": 14200,
+      "sha256": "4f56711de21ce738b19589501f59e5d214dcec722ee46e701e9f84681a6e48fc"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-result-tail-v1-20261109.log",
+      "bytes": 479,
+      "sha256": "5a20f094c37adf3c4772e2ae35ccfcbc01e33244afdf61187641f824e3e0f154"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-result-tail-v1-20261109.run.json",
+      "bytes": 2313,
+      "sha256": "b3dd795e414624a6d2f4b2dfc9fa26a81575f830305123225fdd1136901e2bf4"
+    }
+  ],
+  "analysis_evidence_files_before_closeout": [
+    {
+      "path": "analysis/terminal-result-tail-independent-review-v1-20261109.json",
+      "bytes": 3104,
+      "sha256": "36a54e866f29a95b4179e12c9590881901705d889b61d6cc9dfe1444bc634b3a"
+    },
+    {
+      "path": "analysis/terminal-result-tail-proof-v1-20261109.json",
+      "bytes": 14200,
+      "sha256": "4f56711de21ce738b19589501f59e5d214dcec722ee46e701e9f84681a6e48fc"
+    },
+    {
+      "path": "analysis/terminal-result-tail-support-v1-20261109.zip",
+      "bytes": 24243,
+      "sha256": "5f2fdd9864f9e798a3ebaf2bcabd7705a0a1cb90ea1c4534f7c7cca513537d35"
+    },
+    {
+      "path": "analysis/terminal-result-tail-transfer-retirement-v1-20261109.json",
+      "bytes": 3529,
+      "sha256": "20e6848d8cec27835c443593812039d11d818ea1e0dea86e4e52d42c96311fb6"
+    }
+  ],
+  "guest_inventory": {
+    "path": ".venv-audit/native-worker/battle-wait-guest-storage-result-tail-v1-20261109.json",
+    "bytes": 826,
+    "sha256": "8de044ac0f9a333c40e10dde10ea4e2d9726447064eef012db377f3abd109d36"
+  },
+  "guest_retained_files": [
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_result_tail_replay.py",
+      "bytes": 24971,
+      "sha256": "29b4d64c7d6a85b365395edf5e90e0e6c1ac0b02c77285d09f421a85265d3744"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\tests\\test_terminal_result_tail_replay.py",
+      "bytes": 7216,
+      "sha256": "ffbcc49dd30e1bfdc792fdb9e3c2817aee9de3d66f24917ce2f7de4476cacf9c"
+    }
+  ],
+  "cleanup": {
+    "receipt": {
+      "path": ".venv-audit/native-worker/result-tail-transfer-retirement-v1-20261109.json",
+      "bytes": 2646,
+      "sha256": "702156e41e9afecc576982473276da993f3a71bab8ba0bc6680206512756c451"
+    },
+    "guest_duplicate_files_removed": 7,
+    "guest_duplicate_bytes_removed": 214733,
+    "all_current_planned_transfers_removed": true,
+    "host_originals_retained": true,
+    "historical_assets_sources_or_checkpoints_removed": false,
+    "previous_kernel_duplicate_retained_bytes": 11597168,
+    "previous_kernel_deletion_not_retried": true
+  },
+  "environment": {
+    "host_drive": "F",
+    "guest_logical_C_inside_F_disk": true,
+    "cpu": 2,
+    "memory_bytes": 4294430720,
+    "VM_soft_stopped": true,
+    "VMEM_files_remaining": 0,
+    "original_game_started": false,
+    "interactive_desktop_or_autologon_used": false,
+    "host_input_actions": 0,
+    "continuous_host_performance_unaffected_proved": false,
+    "VM_disk_bytes": 16721051648,
+    "baseline_VM_disk_bytes": 16720986112,
+    "VM_disk_growth_bytes": 65536,
+    "baseline_worker_logical_bytes": 22105841795,
+    "worker_logical_bytes_at_inventory": 22105986338,
+    "mutable_environment_files": [
+      {
+        "path": ".venv-audit/native-worker/chaomofa-worker.vmx",
+        "bytes": 4071
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware.log",
+        "bytes": 309207
+      },
+      {
+        "path": ".venv-audit/native-worker/worker.vmdk",
+        "bytes": 16721051648
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-13508.log",
+        "bytes": 5550
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-16460.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-17728.log",
+        "bytes": 4813
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-18636.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-20260.log",
+        "bytes": 4651
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-20936.log",
+        "bytes": 5250
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-21280.log",
+        "bytes": 5249
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-23052.log",
+        "bytes": 11682
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-2400.log",
+        "bytes": 5248
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-26532.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28156.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29028.log",
+        "bytes": 5249
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29288.log",
+        "bytes": 4651
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29496.log",
+        "bytes": 5249
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30872.log",
+        "bytes": 5249
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-31000.log",
+        "bytes": 5550
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-31060.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-31336.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-31876.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-32192.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33364.log",
+        "bytes": 5250
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33428.log",
+        "bytes": 5359
+      }
+    ]
+  },
+  "storage_scope": "Logical evidence since parent commit 2026-11-09T13:53:59Z, including all new helpers/reports/receipts/capsule and retained guest code copies. Parent source files reused without host duplication. VM disk growth is separate; repository implementation counted in Git.",
+  "same_disk_backup_is_independent_disaster_recovery": false,
+  "staged_code_and_evidence_equal_executed_bytes": true,
+  "private_credential_scan_passed": true,
+  "host_new_evidence_bytes_including_closeout": 138289,
+  "total_new_local_evidence_bytes_including_guest_and_backups": 170476,
+  "Git_added_file_bytes_including_closeout": 93241,
+  "closeout_bytes": 15978
+}

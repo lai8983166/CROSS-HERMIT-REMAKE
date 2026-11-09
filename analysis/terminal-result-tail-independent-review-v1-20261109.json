@@ -1,0 +1,81 @@
+{
+  "kind": "independent_main_review_of_conditional_original_result_tail",
+  "passed": true,
+  "accepted": false,
+  "references": [
+    {
+      "path": "analysis/terminal-result-tail-proof-v1-20261109.json",
+      "bytes": 14200,
+      "sha256": "4f56711de21ce738b19589501f59e5d214dcec722ee46e701e9f84681a6e48fc"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109.json.gz",
+      "bytes": 92900,
+      "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-result-tail-v1-20261109.run.json",
+      "bytes": 2313,
+      "sha256": "b3dd795e414624a6d2f4b2dfc9fa26a81575f830305123225fdd1136901e2bf4"
+    },
+    {
+      "path": "devtools/terminal_result_tail_replay.py",
+      "bytes": 24971,
+      "sha256": "29b4d64c7d6a85b365395edf5e90e0e6c1ac0b02c77285d09f421a85265d3744"
+    }
+  ],
+  "independently_checked_original_consumer_writes": [
+    {
+      "PC": 4528828,
+      "address": 41942624,
+      "after_hex": "01000000",
+      "before_hex": "cccccccc"
+    },
+    {
+      "PC": 4527894,
+      "address": 41942740,
+      "after_hex": "01000000",
+      "before_hex": "00000000"
+    }
+  ],
+  "original_wait_flag_write": {
+    "PC": 4335054,
+    "address": 153481284,
+    "after_hex": "01000000",
+    "before_hex": "01000100"
+  },
+  "callback_count": 118,
+  "writes": 36,
+  "first_missing_read": {
+    "PC": 4527907,
+    "address": 8014332,
+    "bytes": 4,
+    "first_missing": 8014332,
+    "instruction_executed": false,
+    "instruction_hex": "8b0dfc497a00",
+    "integer_CPU": {
+      "EAX": 1,
+      "EBP": 41942752,
+      "EBX": 70978936,
+      "ECX": 153481280,
+      "EDI": 41942752,
+      "EDX": 1,
+      "EFLAGS": 514,
+      "EIP": 4527907,
+      "ESI": 41942764,
+      "ESP": 41942640
+    },
+    "kind": "uncaptured_read",
+    "writes_before": 36
+  },
+  "no_live_or_full_ABI_acceptance": true,
+  "three_complete_gates_passed": 0,
+  "legacy_formal_tasks_completed": 2,
+  "code_review": "Sparse source bytes only; original integer registers copied once, no substituted EAX/result/call stack. Operand guards stop unknown reads before executing; RX source pages and known writable spans. Synthetic flat SS differs from native source and remains explicitly unproved. Two executions use the same implementation and are not independent full replay.",
+  "next_dependencies": [
+    "Actual post-wait CPU/ABI and contemporaneous memory remain unproved.",
+    "Current snapshot lacks raw GAME pointer at 7A49FC; ready/other-action pointer cannot silently replace this instant.",
+    "415420 resets GAME+B1E8/B1EC/B1F4 then 415530 reads GAME+B1D0 and timer fields B188/B18C before real clock API; no disk defaults or prior clock values may fill these reads."
+  ],
+  "limits": "Only the conditional tail after the third wait reaches outer callback result propagation. 453CB5, 4967B0, three handshakes, full memory/segments, actual resources/PTD and original native continuation remain unproved."
+}
