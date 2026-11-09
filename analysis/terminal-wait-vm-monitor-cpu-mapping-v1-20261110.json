@@ -1,0 +1,229 @@
+{
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "scope": "offline CPU-only parser/state-mapping development check; no game/native replay acceptance",
+  "sources": {
+    "cpu_tags": {
+      "path": "analysis/terminal-wait-vm-monitor-cpu-tags-v1-20261110.json",
+      "bytes": 253148,
+      "sha256": "a18695da076a51903cb7f93906f157a80095d5c7748da5c43c8b5aa61e50cc79"
+    },
+    "before_suspend": {
+      "path": ".venv-audit/native-worker/vm-monitor-checkpoint-v1-20261109.json",
+      "bytes": 9292,
+      "sha256": "da3dfd6d47637c11444775880ef4711ae55eef38dc608a7de7321cf3dd6a9193"
+    },
+    "xml": {
+      "path": ".venv-audit/native-worker/vm-monitor-availability-v4-20261109.json",
+      "bytes": 66228,
+      "sha256": "d4f7ea34b6d24fc685371d05eba28537a33b4769e3c7560db7039428b7722a7d"
+    }
+  },
+  "raw_cpu_bytes_retained": 22357,
+  "cpu_group_sha256": "3c9eda4d165f9cedd147a6d79013b175d7e9963115a4aac63b35bb5ed3387e89",
+  "cpu_tags_read_io_bytes": 52086,
+  "memory_groups_read": false,
+  "before_suspend_checks": [
+    {
+      "cpu": 0,
+      "rsp_id": "1",
+      "compared_gpr": 16,
+      "rip_hex": "0xfffff80010e1251f",
+      "flags_hex": "0x40282",
+      "flags_parts": {
+        "eflags": 130,
+        "EFLAGS": 262658
+      },
+      "cr3_hex": "0x1aa000",
+      "selector_count": 6,
+      "differences": {},
+      "debug64_hex": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0xffff0ff0",
+        "0x400"
+      ],
+      "GS_base_hex": "0xfffff8000df76000",
+      "TR": [
+        64,
+        18446735277851291648,
+        103,
+        35584
+      ],
+      "LDTR": [
+        0,
+        0,
+        1048575,
+        0
+      ],
+      "fx_common_missing": [
+        "FIP",
+        "FDP",
+        "FCS",
+        "FDS"
+      ],
+      "compatibility32": false,
+      "unicorn32_descriptor_base_truncation_gap": true
+    },
+    {
+      "cpu": 1,
+      "rsp_id": "2",
+      "compared_gpr": 16,
+      "rip_hex": "0xfffff80010e1251f",
+      "flags_hex": "0x40282",
+      "flags_parts": {
+        "eflags": 130,
+        "EFLAGS": 262658
+      },
+      "cr3_hex": "0x1aa000",
+      "selector_count": 6,
+      "differences": {},
+      "debug64_hex": [
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0xffff0ff0",
+        "0x400"
+      ],
+      "GS_base_hex": "0xffffd2809f040000",
+      "TR": [
+        64,
+        18446694048598388736,
+        103,
+        35584
+      ],
+      "LDTR": [
+        0,
+        0,
+        1048575,
+        0
+      ],
+      "fx_common_missing": [
+        "FIP",
+        "FDP",
+        "FCS",
+        "FDS"
+      ],
+      "compatibility32": false,
+      "unicorn32_descriptor_base_truncation_gap": true
+    }
+  ],
+  "all_observed_gpr_rip_flags_cr3_selectors_match": true,
+  "static_vmss2core": {
+    "file": {
+      "path": "C:/虚拟机/vmss2core.exe",
+      "bytes": 752688,
+      "sha256": "3ee561c7c76f4ce2ae0459fa665594109085ad7ffab3d9cf99def9b916d6780b"
+    },
+    "image_base": "0x400000",
+    "gpr_order": [
+      "rax",
+      "rcx",
+      "rdx",
+      "rbx",
+      "rsp",
+      "rbp",
+      "rsi",
+      "rdi",
+      "r8",
+      "r9",
+      "r10",
+      "r11",
+      "r12",
+      "r13",
+      "r14",
+      "r15"
+    ],
+    "segment_order": [
+      "ES",
+      "CS",
+      "SS",
+      "DS",
+      "FS",
+      "GS",
+      "LDTR",
+      "TR"
+    ],
+    "segment_table_index6_literal": "ltr",
+    "flags_operation": "cpu.eflags | cpu.EFLAGS, instruction VA 0x4029a1",
+    "anchors": [
+      {
+        "label": "flags_reads_and_or",
+        "va": "0x402901",
+        "file_offset": 7425,
+        "bytes": 189,
+        "hex": "6a048845b38d45a8506aff5668d850450053e8b843000083c42884c0752168e45045006a02ff15e432450083c40450e8db4c000083c4086a00ff15883245006a048d45ac506aff5668fc50450053e87c43000083c41884c0752168085145006a02ff15e432450083c40450e89f4c000083c4086a00ff1588324500833dd83b0b110d8b4da88b45ac7516505156681c514500e8485900008b45ac83c4108b4da80bc1807db30074128987b0000000c787b400000000000000eb03894758",
+        "sha256": "8dda32c0f86206cf7c48a2c05c3d5cb9d6f964e53f40eeb20375a8564b8c6dd6"
+      },
+      {
+        "label": "gpr_array_read",
+        "va": "0x406651",
+        "file_offset": 23121,
+        "bytes": 70,
+        "hex": "8b5e048b3e6a085357ff7510ff76fc52e86a06000083c41884c0745683ffff7425833dd83b0b110d751cff7304ff33ff34bd20304800ff75106864514500e84c1c000083c414",
+        "sha256": "17c254d81f453deec72b2805719100e567d4540062dedada39a7a7a10b34db9e"
+      },
+      {
+        "label": "gpr_names_pointer_table",
+        "va": "0x483020",
+        "file_offset": 530976,
+        "bytes": 64,
+        "hex": "d0414500d4414500d8414500dc414500e0414500e4414500e8414500ec414500f0414500f4414500f8414500fc4145000042450004424500084245000c424500",
+        "sha256": "3615408a99779c79e18fb68ff7771d5901086bc7f80c817a187446ecb018bf39"
+      },
+      {
+        "label": "segment_index_read_and_names_lookup",
+        "va": "0x406ba0",
+        "file_offset": 24480,
+        "bytes": 67,
+        "hex": "8b46048b1e6a025053ff7510ff76fc52e81b01000083c41884c0745b833dd83b0b110d751e8b46040fb70050ff349d70414500ff751068f8514500e80017000083c410",
+        "sha256": "823493ed6a06277f8e1e7e164975018140c208b19d99d107753549cdd3820fd1"
+      },
+      {
+        "label": "segment_names_pointer_table",
+        "va": "0x454170",
+        "file_offset": 339312,
+        "bytes": 32,
+        "hex": "9041450094414500984145009c414500a0414500a4414500a8414500ac414500",
+        "sha256": "2a071903f193b348da47e6a666abfcbf7a391f6956d6374af640d67e08d24908"
+      }
+    ]
+  },
+  "mapping_limitations": [
+    "fpu:fxstate common fields decoded; pointer layout is explicitly unresolved in this idle zero-pointer source",
+    "fpu:vmFcs/vmFds raw values retained; not silently substituted for architectural selectors",
+    "Unicorn2.1.4 UC_MODE_32 descriptor-register reads truncate 64-bit bases; raw native bases retained and bridge gap remains",
+    "Only observed CPU values compared across suspend; guest RAM atomicity, monitor-breakpoint transparency, restart restoration and real-wait return not proven"
+  ],
+  "primary_format_references": [
+    "https://raw.githubusercontent.com/volatilityfoundation/volatility/master/volatility/plugins/addrspaces/vmware.py",
+    "https://raw.githubusercontent.com/crash-utility/crash/master/vmware_vmss.h",
+    "https://raw.githubusercontent.com/unicorn-engine/unicorn/2.1.4/qemu/target/i386/unicorn.c",
+    "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf"
+  ],
+  "implementations": [
+    {
+      "path": "devtools/vmware_vmss_cpu_v2.py",
+      "bytes": 7631,
+      "sha256": "ab25cc5b14bf2196848494048f6c82ce4d99b0d1b6b1a542d7f69f7beb219d4d"
+    },
+    {
+      "path": "devtools/vmware_vmss_state.py",
+      "bytes": 8358,
+      "sha256": "5737c61076929ddf39cb4939a3cc3471ad6fe290cfbda2ba03fd19c06b82281f"
+    },
+    {
+      "path": "devtools/vmware_rsp_state_v2.py",
+      "bytes": 6467,
+      "sha256": "226520fb34c8a3bb5457edcdf95309759ff1d70e14faeebed6eca558c204b0e2"
+    }
+  ]
+}

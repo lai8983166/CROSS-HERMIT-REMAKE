@@ -1,0 +1,104 @@
+{
+  "accepted": false,
+  "reviewer": "main agent; direct raw-field arithmetic independent of subagent canonical-state decoder",
+  "idle_cpu_checks": [
+    {
+      "raw_source": {
+        "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-vm-monitor-cpu-tags-v1-20261110.json",
+        "bytes": 253148,
+        "sha256": "a18695da076a51903cb7f93906f157a80095d5c7748da5c43c8b5aa61e50cc79"
+      },
+      "rsp_source": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\vm-monitor-checkpoint-v1-20261109.json",
+        "bytes": 9292,
+        "sha256": "da3dfd6d47637c11444775880ef4711ae55eef38dc608a7de7321cf3dd6a9193"
+      },
+      "cpus": [
+        {
+          "cpu": 0,
+          "core_registers_matched": 24,
+          "fullstate": false
+        },
+        {
+          "cpu": 1,
+          "core_registers_matched": 24,
+          "fullstate": false
+        }
+      ],
+      "FX_pointer_mode_proved": false
+    },
+    {
+      "raw_source": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\vm-monitor-snapshot-cpu-v1-20261110.json.gz",
+        "bytes": 18927,
+        "sha256": "8d75d56912ac7348bec76d84f279705f610f322b426ef15d5957ff1f48d46c56"
+      },
+      "rsp_source": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\vm-monitor-snapshot-v1-20261110.json",
+        "bytes": 5955,
+        "sha256": "056c3bb367e116decd59b6d8c3a40ce55135409f0a6ca74abf733d5541c8d897"
+      },
+      "cpus": [
+        {
+          "cpu": 0,
+          "core_registers_matched": 24,
+          "fullstate": false
+        },
+        {
+          "cpu": 1,
+          "core_registers_matched": 24,
+          "fullstate": false
+        }
+      ],
+      "FX_pointer_mode_proved": false
+    }
+  ],
+  "monitor_gate": {
+    "source": "analysis/terminal-wait-vm-monitor-breakpoint-failure-v1-20261110.json",
+    "sha256": "dd040cee4ca8427525890dccb53aaed7749c82820ad807f31fc77146ad2310b5",
+    "accepted": false,
+    "hidden_breakpoint_request_acknowledged": true,
+    "actual_wait_return_observed": false,
+    "fullstate": false,
+    "fullABI": false,
+    "original_game_observed": false,
+    "native_wait_monitor_supported": false,
+    "reason": "VMware 16 build 16894299 ULM monitor panicked after hidden breakpoint activation",
+    "next_requirement": "Qualify a non-mutating exact-return observer on a supported isolated platform first"
+  },
+  "baseline_source": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\vm-wait-baseline-v1-20261110.json",
+    "bytes": 35826,
+    "sha256": "a5beadbf113f2d3bd6a75ab7fefaf9cb75707b31f4b68fd4c1ed304fb3464e67"
+  },
+  "same_helper_binary": true,
+  "baseline_postreturns": [
+    {
+      "index": 0,
+      "result": 0,
+      "post_frame_hex": "6666555544443333d8ec7500c8ec75002222111100000000f31c68770000000046020000"
+    },
+    {
+      "index": 1,
+      "result": 0,
+      "post_frame_hex": "6666555544443333d8ec7500c8ec75002222111100000000f31c68770000000046020000"
+    },
+    {
+      "index": 2,
+      "result": 0,
+      "post_frame_hex": "6666555544443333d8ec7500c8ec75002222111100000000f31c68770000000046020000"
+    },
+    {
+      "index": 3,
+      "result": 258,
+      "post_frame_hex": "6666555544443333d8ec7500c8ec75002222111100000000f31c68770201000046020000"
+    }
+  ],
+  "self_helper_cleanup_proved": true,
+  "original_game_wait_return_captured": false,
+  "first_result_consumer_captured": false,
+  "three_original_game_handshakes_proved": false,
+  "fullstate": false,
+  "fullABI": false,
+  "original_resource_PTD_cleanup": false
+}

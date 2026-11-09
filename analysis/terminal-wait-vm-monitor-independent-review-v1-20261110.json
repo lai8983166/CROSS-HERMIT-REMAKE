@@ -1,0 +1,223 @@
+{
+  "kind": "independent_parent_native_outcome_review_v1",
+  "scope": "Independent static review of parent-owned native attempt and evidence boundaries; parser-author self-review of own offline decoders is explicitly not a second independent parser implementation.",
+  "sources": [
+    {
+      "path": ".venv-audit/native-worker/vm-wait-fixture-run-v1-20261110.json",
+      "bytes": 3448,
+      "sha256": "3578fa1d39be62565d0bab8c4ebd1b7d9e9e818e9e3846087a58425200d7ef0c"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-breakpoint-panic-v1-20261110.log",
+      "bytes": 354529,
+      "sha256": "030b4f0d053bb51a1bd00b384c22b19ad418561e8d5960fab759df028360f3c4"
+    }
+  ],
+  "reviewed_files": [
+    {
+      "path": "devtools/vmware_rsp_state.py",
+      "bytes": 9387,
+      "sha256": "0aef31d74fc9dcf2ef5bb640e370c8351dd85832bf49048593779732b198d457"
+    },
+    {
+      "path": "devtools/vmware_rsp_state_v2.py",
+      "bytes": 6467,
+      "sha256": "226520fb34c8a3bb5457edcdf95309759ff1d70e14faeebed6eca558c204b0e2"
+    },
+    {
+      "path": "devtools/vmware_vmss_cpu_v2.py",
+      "bytes": 7631,
+      "sha256": "ab25cc5b14bf2196848494048f6c82ce4d99b0d1b6b1a542d7f69f7beb219d4d"
+    },
+    {
+      "path": "devtools/vmware_vmss_state.py",
+      "bytes": 8358,
+      "sha256": "5737c61076929ddf39cb4939a3cc3471ad6fe290cfbda2ba03fd19c06b82281f"
+    },
+    {
+      "path": "devtools/vmware_vmss_state_v2.py",
+      "bytes": 9888,
+      "sha256": "2fbe7ae696e97963263d02903235e535f8aa83774c2921ee231b80fd37b54f5c"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-vm-wait-fixture-v1.py",
+      "bytes": 8484,
+      "sha256": "dea683798866ddd6c4071881519a59090b1c68ae3e920c94efda2d52e0e686dc"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-monitor-cpu-mapping-v1-20261110.json",
+      "bytes": 7138,
+      "sha256": "4495f256e0657e41ed9050e9b0a5d4779c82d2cdcad1e84ecaae5fc99a859987"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-snapshot-v3-cpu-mapping-v1-20261110.json",
+      "bytes": 2732,
+      "sha256": "c1536b144ab777f18492017433027b2975ac301b79747fa509033f1e987a1270"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-resume-clock-spin-v1-20261110.json",
+      "bytes": 8320,
+      "sha256": "9f27f3d803ee8a7b179ede93bb37cfe72b40438abf5e1f7ce6ee13589f86d0a0"
+    }
+  ],
+  "log_anchors": [
+    {
+      "line": 1,
+      "text": "2026-11-10T00:19:27.828+08:00| vmx| I005: Log for VMware Workstation pid=30512 version=16.0.0 build=build-16894299 option=Release"
+    },
+    {
+      "line": 52,
+      "text": "2026-11-10T00:19:27.992+08:00| vmx| I005: IOPL_Init: Hyper-V detected by CPUID"
+    },
+    {
+      "line": 383,
+      "text": "2026-11-10T00:19:28.184+08:00| vmx| I005: DICT debugStub.hideBreakpoints = \"TRUE\""
+    },
+    {
+      "line": 411,
+      "text": "2026-11-10T00:19:28.192+08:00| vmx| I005: Monitor Mode: ULM"
+    },
+    {
+      "line": 3130,
+      "text": "2026-11-10T00:26:01.998+08:00| vmx| W003: Debug stub: Remote connection accepted from 127.0.0.1"
+    },
+    {
+      "line": 3131,
+      "text": "2026-11-10T00:26:01.999+08:00| vmx| I005: SOCKET 28 (2980) AsyncTCPSocketSetOption: Option layer/level [6], option/name [1]: successfully set OS option for TCP socket."
+    },
+    {
+      "line": 3132,
+      "text": "2026-11-10T00:26:01.999+08:00| vcpu-0| I005: Vix: [vmxCommands.c:4557]: VMAutomation_Pause: pause = TRUE"
+    },
+    {
+      "line": 3133,
+      "text": "2026-11-10T00:26:01.999+08:00| vcpu-0| I005: Not informing DCL we are stopping."
+    },
+    {
+      "line": 3134,
+      "text": "2026-11-10T00:26:02.000+08:00| vcpu-0| E001: PANIC: NOT_IMPLEMENTED D:\\build\\ob\\bora-16894299\\bora\\vmcore\\monitor\\common\\main\\vmm\\debugReg.c:287"
+    },
+    {
+      "line": 3135,
+      "text": "2026-11-10T00:26:02.000+08:00| vcpu-0| I005: Panic: can't get userlevel lock."
+    },
+    {
+      "line": 3136,
+      "text": "2026-11-10T00:26:02.000+08:00| vcpu-1| E001: PANIC: NOT_IMPLEMENTED D:\\build\\ob\\bora-16894299\\bora\\vmcore\\monitor\\common\\main\\vmm\\debugReg.c:287"
+    },
+    {
+      "line": 3137,
+      "text": "2026-11-10T00:26:02.000+08:00| vcpu-1| E001: Panic loop"
+    },
+    {
+      "line": 3138,
+      "text": "2026-11-10T00:26:02.000+08:00| vcpu-1| I005: Backtrace:"
+    },
+    {
+      "line": 3139,
+      "text": "2026-11-10T00:26:02.000+08:00| vcpu-0| I005: CoreDump_CoreDump: faking exception to get context"
+    },
+    {
+      "line": 3140,
+      "text": "2026-11-10T00:26:02.000+08:00| vcpu-0| W003: CoreDump: Writing minidump to F:\\project\\chaomofa\\.venv-audit\\native-worker\\vmware-vmx.dmp"
+    },
+    {
+      "line": 3141,
+      "text": "2026-11-10T00:26:02.000+08:00| vmx| I005: Vix: [vmxCommands.c:4557]: VMAutomation_Pause: pause = FALSE"
+    }
+  ],
+  "protocol_events": [
+    {
+      "direction": "send",
+      "monotonic": 56861.578,
+      "payload": "?"
+    },
+    {
+      "direction": "receive",
+      "monotonic": 56861.578,
+      "payload": "T05thread:00000001;06:0000000000000000;07:a8e5d60f01f8ffff;10:1f25011101f8ffff;"
+    },
+    {
+      "direction": "send",
+      "monotonic": 56861.578,
+      "payload": "Z1,772b3bfc,1"
+    },
+    {
+      "direction": "receive",
+      "monotonic": 56861.578,
+      "payload": "OK"
+    },
+    {
+      "direction": "send",
+      "monotonic": 56861.578,
+      "payload": "c"
+    },
+    {
+      "direction": "interrupt",
+      "monotonic": 56861.906
+    }
+  ],
+  "checks": {
+    "actual_receive_frame_checksums_and_decoded_payloads_match": true,
+    "Z1_target_equals_ready_return_pc": true,
+    "hidden_breakpoint_OK_before_continue": true,
+    "no_stop_reply_after_continue": true,
+    "wait_return_field_absent": true,
+    "no_fixture_cpu_checkpoint_reported": true,
+    "no_postcall_fxsave_result_reported": true,
+    "original_game_started_false": true,
+    "idle_snapshot_both_cpu_24_register_comparison_recomputed": true,
+    "all_reviewed_acceptance_fields_false": true
+  },
+  "findings": [
+    {
+      "severity": "blocker_for_native_observer_qualification",
+      "title": "Hidden execution breakpoint path panics before any qualified wait-return stop",
+      "detail": "The source records ?/T05, Z1,772b3bfc,1/OK, c, then no receive packet. Fixed VMware log records both vCPU debugReg.c:287 NOT_IMPLEMENTED panics adjacent to this loopback connection, with Workstation 16 build16894299, Hyper-V CPUID, ULM and hideBreakpoints TRUE. This environment/path is negatively qualified. OK acknowledges registration only; it does not prove a working trap or guest DR preservation."
+    },
+    {
+      "severity": "scope",
+      "title": "The 0.328-second marker is cleanup interrupt, not independently timed panic latency",
+      "detail": "The transcript timestamps c at56861.578 and cleanup interrupt at56861.906. Exception time is not separately recorded. Say reset occurred before cleanup/no wait stop; do not claim exact panic latency from this marker."
+    },
+    {
+      "severity": "scope",
+      "title": "Idle state mapping is not true wait-return evidence",
+      "detail": "Recomputed both CPU24-register comparisons remain exact, and v3 CPU tag layout matches v2. Those sources are idle kernel stops. They cannot establish helper/original-game wait return, native post-FXSAVE equality, allCPU pinned-counter freeze, restored resource lifetime or guest DR/code/context unchanged."
+    },
+    {
+      "severity": "qualification_gap",
+      "title": "Four x87 pointer fields and 32-bit descriptor representation remain unresolved",
+      "detail": "Default decoder keeps FIP/FDP/FCS/FDS absent. FXSAVE pointer mode requires explicit evidence. Full64 descriptor bases are retained with Unicorn32 truncation gap. canonical57_mapping_complete is only a mapping flag when caller selects a mode, not ABI acceptance; accepted/fullstate/fullABI stay false."
+    },
+    {
+      "severity": "integration_constraint",
+      "title": "Offline decoders require externally authenticated source bytes",
+      "detail": "Their raw SHA checks detect inconsistency against a supplied digest, not malicious coordinated replacement of bytes+digest. Header/report consistency is not cryptographic binding to original VM file or paused epoch. Current reports validate externally retained gzip/source identities; future acceptance must preserve that outer binding and epoch contract."
+    },
+    {
+      "severity": "review_result",
+      "title": "No additional blocking parser defect found for the reviewed negative conclusion",
+      "detail": "Reviewed bounded reads, frame checksum/escaping, XML register widths, whole-register g prefixes, exact p width rejection, duplicate CPU tag retention, required-tag uniqueness, unknown-profile rejection, original raw reparse and explicit false acceptance. The v2 profile extension preserves actual magic/version/reserved without changing the frozen v1. No parser/source modification was made during review."
+    }
+  ],
+  "verdict": {
+    "negative_qualification_supported": true,
+    "same_environment_hidden_breakpoint_retry_approved": false,
+    "software_breakpoint_fallback_approved": false,
+    "true_wait_return_observed": false,
+    "original_game_acceptance": false,
+    "fullstate": false,
+    "fullABI": false,
+    "accepted": false
+  },
+  "unreviewed_followup": "Parent VM recovery, no-observer fixture baseline and shutdown occur after this static review and require their own evidence; no claim here about those outcomes.",
+  "review_actions": {
+    "VM_operations": 0,
+    "native_process_starts": 0,
+    "guest_or_host_input_actions": 0,
+    "symbol_downloads": 0,
+    "VMEM_reads": 0,
+    "large_log_copies": 0
+  }
+}

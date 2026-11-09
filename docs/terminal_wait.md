@@ -288,3 +288,42 @@ ETW 只补充系统等待返回，不能替代完整状态和累计轨迹；该�
 再进入原游戏短预检；此后才有条件接 `453CB5 → 4967B0` 和另两次完整握手。
 正式进度仍 2/8，三关均未通过；首次消费、三次游戏握手、资源/PTD 释放和两例新鲜
 完整原生重放均未完成。
+
+## 外部虚拟机监控器预检（2026-11-10）
+
+第一关仍未通过。本轮不重试已证伪的父进程 #DB relay、WOW64 callback 或时间包络，
+也没有启动原游戏。先检查当前 VMware 16.0.0 build 16894299 的外部监控能力。
+
+| 本轮实际检查 | 结果与边界 |
+| --- | --- |
+| localhost GDB 接口与客体身份 | 由当前监听 PID/创建时间、同次启动日志中的专用 VMX 和可执行文件、运行清单共同认证；只允许本机连接。 |
+| 原始状态读取 | XML 声明 536 字节，实际 `g` 仅 164 字节；x87 `p` 返回宽度也不同于 XML。没有补零或截断后当作完整状态。 |
+| 同停点 CPU 元数据 | 有界读取 VMSS/VMSN 的 CPU group，每份读取 52,086 字节，CPU 原字节 22,357 字节，不读取 RAM。两颗 CPU 的 24 个核心寄存器与原 RSP 停点一致。支持原始 CR/DR、段缓存和 FXSAVE 解码；四个 FX 指针字段的格式仍未原生验证，64 位描述符 base 不截断成 Unicorn32 的值。 |
+| 保存后恢复 | `suspend/resume` 后进入高 IRQL 时钟中断补齐循环。原栈 QPC 为 `fffffffffdc9587e`，CPU1 追赶异常巨大时间，CPU2 等待跨核 TLB 刷新。保留原字节和故障定位，不再次使用此恢复方式采游戏。 |
+| 当前停点快照后直接续跑 | idle 快照的 CPU 字节可复用，直接续跑后客体通信正常。等待整个 lazy snapshot 在暂停期间完成会超时；不能把该超时回执改写成成功。由后续独立提取及清理回执记录实际结果。临时 4 GiB 快照已由 VMware 删除。 |
+| 精确真实等待返回断点 | 自有 WOW64 fixture 在 `Z1/OK → c` 后触发两颗虚拟 CPU 的 `debugReg.c:287 NOT_IMPLEMENTED` panic。日志确认 Hyper-V/ULM 模式；没有得到等待返回停点、post-FXSAVE 或断点不改变 guest DR 的证据。 |
+| 不附加观察器的同字节 fixture | 新鲜启动完成 `[0,0,0,258]`，三次 peer 响应、原 NtWait 字节不变、自有句柄/缓冲释放及 watchdog 撤销正常。仅证明 fixture 基线，不能冒充原游戏握手。 |
+
+新增 [失败拒绝入口](../devtools/terminal_vm_wait_observer_gate.py) 固定认证真实失败，
+拒绝把断点请求的 `OK` 当成资格通过。冻结的 `terminal_vm_monitor` v1–v4 和本地运行
+脚本只用于复现与审计，不是生产采集入口；不得换标签重跑当前环境的隐藏断点。
+也不把 `hideBreakpoints=FALSE` 的 INT3 写码路径作为替代。当前恢复为原先无调试监听
+的虚拟机配置；本轮没有修改宿主 Hyper-V/VBS、启动宿主游戏或发送宿主输入。
+
+证据见 [断点失败原始回执](../analysis/terminal-wait-vm-monitor-breakpoint-failure-v1-20261110.json)、
+[恢复时钟故障](../analysis/terminal-wait-vm-resume-clock-spin-v1-20261110.json)、
+[独立原生结果复核](../analysis/terminal-wait-vm-monitor-independent-review-v1-20261110.json)
+和 [本轮收尾清单](../analysis/terminal-wait-vm-monitor-closeout-v1-20261110.json)。
+普通及 `-O` 各 33 项检查在客体通过，均不能替代缺失的原游戏采集。
+
+下一步必须先取得**当前隔离平台上可用、精确且不改写原代码的等待返回观察能力**，
+通过当前线程/原栈、完整 57 项状态、全 CPU 一致暂停和正常继续/清理预检，再采原游戏。
+恢复时钟异常与隐藏断点 panic 是不同故障，修复其中一个不代表另一个通过。
+第一消费 `453CB5 → 4967B0`、三次完整握手、真实资源/PTD 释放及两例新鲜完整重放
+仍未完成，正式保持 2/8，没有新增完成勾选。
+
+协议范围参考 [GNU RSP](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Packets.html)；
+VMware 快照/保存状态用途参考 [Broadcom 文档](https://knowledge.broadcom.com/external/article/323788/converting-a-snapshot-file-to-memory-dum.html)。
+隐藏硬件断点与 INT3 的区别参考 [OpenCore 调试文档](https://github.com/acidanthera/OpenCorePkg/blob/master/Debug/README.md)。
+同一 `debugReg.c:287` 在其它平台也有 [厂商社区记录](https://community.broadcom.com/vmware-cloud-foundation/communities/community-home/digestviewer/viewthread?CommunityKey=0c3a2021-5113-4ad1-af9e-018f5da40bc0&GroupId=7165&MessageKey=f6cffd4d-6518-4924-adb9-fa9876147e00)；
+该记录不是当前 Windows 平台已修复的证明，本轮结论来自本机原始日志与协议回执。

@@ -1198,3 +1198,11 @@ devtools/terminal_wait_return_callback.cs -text whitespace=blank-at-eol,blank-at
 devtools/tests/test_terminal_wait_return_callback.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 analysis/terminal-wait-return-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 analysis/terminal-wait-return-*.zip -text
+# Preserve executed VMM preflight sources and raw CRLF evidence identities.
+devtools/terminal_vm_*.py -text
+devtools/terminal_vm_*.cs -text
+devtools/vmware_*.py -text
+devtools/tests/test_vmware_*.py -text
+devtools/tests/test_terminal_vm_wait_observer_gate.py -text
+analysis/terminal-wait-vm-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-vm-*.zip -text

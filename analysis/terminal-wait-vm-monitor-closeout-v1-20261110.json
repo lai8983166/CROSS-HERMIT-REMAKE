@@ -1,0 +1,823 @@
+{
+  "kind": "bounded_external_vm_wait_observer_negative_qualification",
+  "created_utc": "2026-11-09T16:39:18.802593+00:00",
+  "parent": {
+    "path": "analysis/terminal-wait-return-closeout-v2-20261109.json",
+    "bytes": 19686,
+    "sha256": "228b26fb048474d61006cb9e135897dfc07d96fdaa44cb10f481c047a6699953"
+  },
+  "baseline_commit": "4117c298588e954f24d13c4cab915b3a8c129b88",
+  "accepted": false,
+  "formal_tasks_complete": 2,
+  "formal_tasks_total": 8,
+  "functional_gates_complete": 0,
+  "functional_gates_total": 3,
+  "gate_A": {
+    "actual_original_wait_return_captured": false,
+    "first_original_result_consumer_captured": false,
+    "three_original_game_handshakes_proved": false,
+    "current_original_native_bridge_established": false
+  },
+  "gate_B": {
+    "original_resources_released_proved": false,
+    "original_PTD_TLS_lifetime_proved": false
+  },
+  "gate_C": {
+    "two_fresh_complete_native_cases_verified": false,
+    "full_independent_replay": false
+  },
+  "fullstate": false,
+  "fullABI": false,
+  "PTDcleanup": false,
+  "existing_acceptance_contract_unchanged": true,
+  "outcomes": {
+    "idle_CPU_group_bytes_each": 22357,
+    "checkpoint_bytes_read_each": 52086,
+    "guest_RAM_read_by_parser": false,
+    "idle_core_registers_matched_per_CPU": 24,
+    "FX_pointer_format_unproved": [
+      "FIP",
+      "FDP",
+      "FCS",
+      "FDS"
+    ],
+    "native64_descriptor_bases_preserved": true,
+    "hidden_breakpoint_requested_once": true,
+    "hidden_breakpoint_failed_before_wait_stop": true,
+    "platform": "VMware16.0.0 build16894299, Hyper-V detected, ULM",
+    "platform_panic": "debugReg.c:287 NOT_IMPLEMENTED on both vCPUs",
+    "suspend_resume_clock_loop_localized": true,
+    "live_idle_snapshot_direct_continue_guest_transport_recovered": true,
+    "snapshot_while_paused_completion_deadline_failure_preserved": true
+  },
+  "native_baseline": {
+    "source": {
+      "path": ".venv-audit/native-worker/vm-wait-baseline-v1-20261110.json",
+      "bytes": 35826,
+      "sha256": "a5beadbf113f2d3bd6a75ab7fefaf9cb75707b31f4b68fd4c1ed304fb3464e67"
+    },
+    "same_fixture_binary_as_failed_probe": true,
+    "actual_returns": [
+      0,
+      0,
+      0,
+      258
+    ],
+    "three_peer_responses": true,
+    "own_buffers_and_handles_normally_released": true,
+    "scope": "self-owned helper only; not original game handshake or original resource lifetime"
+  },
+  "efficiency": {
+    "original_game_launches": 0,
+    "full_battle_prefixes": 0,
+    "formal_long_replays": 0,
+    "hidden_breakpoint_native_attempts": 1,
+    "self_fixture_native_launches": 2,
+    "known_DB_relay_or_WOW64_callback_retries": 0,
+    "failed_mechanism_not_retried": true,
+    "no_functional_completion_or_complete_path_speedup_claim": true
+  },
+  "validation": {
+    "ordinary_guest_tests": 33,
+    "optimized_guest_tests": 33,
+    "tests_executed_inside_VM": true,
+    "receipts": [
+      {
+        "path": ".venv-audit/native-worker/vm-monitor-guest-checks-v1-20261110.json",
+        "bytes": 3561,
+        "sha256": "a86cb66b6d4f2a011bafa82351d906a9150c4431fb8b3297967d37a3f1feac82"
+      },
+      {
+        "path": ".venv-audit/native-worker/vm-monitor-gate-guest-checks-v1-20261110.json",
+        "bytes": 1188,
+        "sha256": "4206d211b7e4dec5cb2ee0e2d3b731048faf65f2979c1adc7ef6f03d81ca5ae5"
+      }
+    ],
+    "independent_native_review": {
+      "path": "analysis/terminal-wait-vm-monitor-independent-review-v1-20261110.json",
+      "bytes": 9847,
+      "sha256": "9935f5ba411bafd53af28bcb80d190d5767a8297b2d42187685ad2aae50dcf85"
+    },
+    "main_raw_arithmetic_review": {
+      "path": "analysis/terminal-wait-vm-monitor-main-review-v1-20261110.json",
+      "bytes": 3637,
+      "sha256": "528ea49b74c7b07ef667a8d48f9d4eca9715fafc50e59a40088c3468b779bdf6"
+    },
+    "strict_OpenSpec_passed": true,
+    "preservation": {
+      "checked_utc": "2026-11-09T16:33:23.412603+00:00",
+      "parent": {
+        "path": "analysis/reverse-validation-preservation-v1-20261106.json",
+        "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+      },
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    }
+  },
+  "cleanup": {
+    "guest_transfer_receipt": {
+      "path": ".venv-audit/native-worker/vm-monitor-transfer-retirement-v1-20261110.json",
+      "bytes": 27217,
+      "sha256": "7aa581dd890a3da107e5443bba447af7563440896dedf8c44f8e8f171257862f"
+    },
+    "guest_duplicate_bytes_removed": 206361,
+    "guest_retained_evidence_bytes": 0,
+    "own_monitor_settings_removed": true,
+    "own_monitor_config_restoration": {
+      "path": ".venv-audit/native-worker/vm-monitor-restoration-v1-20261110.json",
+      "bytes": 1487,
+      "sha256": "3a76473311a058f92cf3f4c0f910990d1fceb19fb14cf8d9fea3bf520271418b"
+    },
+    "snapshot_files_deleted_by_VMware": true,
+    "original_VMSS_deleted_by_VMware_on_resume": true,
+    "full_checkpoint_files_still_available": false,
+    "retained_CPU_subsets_not_full_VM_restore": true,
+    "transient_snapshot_RAM_bytes_removed": 4294967296,
+    "minidump_retirement": {
+      "removed": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\vmware-vmx.dmp",
+        "bytes": 42450146,
+        "sha256": "ad6b06d76144694354416c6f9851cb18751210c975ca9b7a519b2d9f3bf61468"
+      },
+      "retained": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\vm-monitor-breakpoint-panic-v1-20261110.dmp.gz",
+        "bytes": 8183689,
+        "sha256": "0c720ad76b92537cc67f2eb637c02a49c2a854c66fb242257dbb2277e5dd0739"
+      },
+      "reason": "Only duplicate uncompressed current preflight minidump removed after lossless reconstruction hash verification",
+      "historical_files_removed": false,
+      "remaining_original": false
+    },
+    "historical_sources_checkpoints_or_saves_removed": false,
+    "original_failed_fixture_normal_cleanup_proved": false,
+    "crashed_VM_emergency_end_not_original_resource_cleanup": true
+  },
+  "environment": {
+    "host_drive": "F",
+    "guest_C_inside_F_disk": true,
+    "cpu": 2,
+    "memory_bytes": 4294967296,
+    "host_input_actions": 0,
+    "host_HyperV_VBS_settings_changed": false,
+    "host_game_started": false,
+    "interactive_guest_desktop_used": false,
+    "VM_soft_stopped": true,
+    "VMEM_files_remaining": 0,
+    "VM_disk_bytes": 16735797248,
+    "baseline_VM_disk_bytes": 16735600640,
+    "VM_disk_growth_bytes": 196608,
+    "worker_logical_bytes_at_inventory": 22130555621,
+    "mutable_environment_files": [
+      {
+        "path": ".venv-audit/native-worker/chaomofa-worker.vmsd",
+        "bytes": 43
+      },
+      {
+        "path": ".venv-audit/native-worker/chaomofa-worker.vmx",
+        "bytes": 4207
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware-0.log",
+        "bytes": 354529
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware-1.log",
+        "bytes": 224245
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware-2.log",
+        "bytes": 317993
+      },
+      {
+        "path": ".venv-audit/native-worker/vmware.log",
+        "bytes": 310656
+      },
+      {
+        "path": ".venv-audit/native-worker/worker.vmdk",
+        "bytes": 16735797248
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-11416.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-14364.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24476.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-24612.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-25144.log",
+        "bytes": 5250
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-26140.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27300.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27332.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28404.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28840.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29200.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30692.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-31956.log",
+        "bytes": 5359
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33064.log",
+        "bytes": 4652
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33340.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-33508.log",
+        "bytes": 4813
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-34032.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-34104.log",
+        "bytes": 5549
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-34612.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-34792.log",
+        "bytes": 5358
+      },
+      {
+        "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-4108.log",
+        "bytes": 5357
+      }
+    ],
+    "stop_receipt": {
+      "path": ".venv-audit/native-worker/vm-monitor-worker-stop-v1-20261110.json",
+      "bytes": 718,
+      "sha256": "c9b3072296fe57b1c43e78b2f63f854bc9cd815b46cd5af5fbd36c04ec3c8499"
+    },
+    "continuous_host_performance_unaffected_proved": false
+  },
+  "host_new_evidence_files": [
+    {
+      "path": ".venv-audit/native-worker/battle-wait-clock-staged-audit-vm-monitor-preclose-v1-20261110.json",
+      "bytes": 6685,
+      "sha256": "2e7200fdcb4fad5ee9bac9f45c5b8d9741ddb52339b5e8ae15b323fe59fea618"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-vm-monitor-recovery-v1-20261110.json",
+      "bytes": 1215,
+      "sha256": "600a5923596e117f175884c3f6a6bb89f425f93cf796739432e254dedbaddd1d"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-vm-monitor-restored-v1-20261110.json",
+      "bytes": 1127,
+      "sha256": "b18d0eaf475d6555bd5329eac57a81994f14c7e6909c0d9629cfc8b058fb42b3"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-vm-monitor-v1-20261109.json",
+      "bytes": 1127,
+      "sha256": "4842d6a8e177adacfef09d3cc012efa746f9e9b6e95ae8474da9a2a63afc838d"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-vm-monitor-gate-guest-v1.py",
+      "bytes": 1772,
+      "sha256": "1a498f0fa2659905c15fce1cdc026d1fb3c92d357a5ffe92d031a8c82685c1b2"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-vm-monitor-guest-v1.py",
+      "bytes": 2407,
+      "sha256": "1114e200b224ce2b3c0c73ce02ac3b358377f1bd0c3b7a26256e5fbb54c6536e"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-vm-monitor-preservation-v1.py",
+      "bytes": 1214,
+      "sha256": "1959716139bd9668e3f8900940febde49e2024f15b35f6d3271a3cf0983e3267"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-vm-monitor-v1.py",
+      "bytes": 9183,
+      "sha256": "0db182afbbc1933212b2c7c11f1c18fad1a13fc974b4ba2844c8194c34ea38d8"
+    },
+    {
+      "path": ".venv-audit/native-worker/continue-vm-monitor-resume-v2.py",
+      "bytes": 1057,
+      "sha256": "aa6cd853aae569fb1ac6cc0fdb68a7b57b5a3586bb2f7e2e7566c79376955e9f"
+    },
+    {
+      "path": ".venv-audit/native-worker/diagnose-vm-resume-v3.py",
+      "bytes": 1556,
+      "sha256": "97e30dbb7320a6f18c6ce42282a2e6e804849ad88f944e71774ee21118b0a83c"
+    },
+    {
+      "path": ".venv-audit/native-worker/finish-vm-monitor-snapshot-v1.py",
+      "bytes": 2194,
+      "sha256": "c0f5a527c87d7173f96f85806ca99f4c52dd49b4cf8ad99dc58069a142844027"
+    },
+    {
+      "path": ".venv-audit/native-worker/finish-vm-monitor-snapshot-v2.py",
+      "bytes": 1946,
+      "sha256": "eeedab4540b19f50b4ab7c0822e9a127e6dc5259d6c7a7312875440afbdee748"
+    },
+    {
+      "path": ".venv-audit/native-worker/nvram",
+      "bytes": 8684,
+      "sha256": "b97c01031e7afee8e3bc2cd6b8893c61f9e6810482ffd82cd8e7e74fdff9f32f"
+    },
+    {
+      "path": ".venv-audit/native-worker/package-vm-monitor-support-v1.py",
+      "bytes": 2047,
+      "sha256": "231deffa1577279ca1a82199843438a16b37a35e61a8d5fcc7c720808ae328a3"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-vm-monitor-v1.py",
+      "bytes": 1449,
+      "sha256": "2b25f3bf5a4c798e80578dca01bd3c76a0bb3aa04d75ecbd1a2d075fe7f2e0cc"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-vm-monitor-v4.py",
+      "bytes": 666,
+      "sha256": "8d396fa66aa0eb2ee92e2c1bcab65ff5f487790b024a1865d93b90702bcf7838"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-vm-wait-fixture-v1.py",
+      "bytes": 1946,
+      "sha256": "4935a32500b1ece31c23150785f1ba19cea99de37a5cc4faae937a0d9214f0d9"
+    },
+    {
+      "path": ".venv-audit/native-worker/probe-vm-monitor-checkpoint-v1.py",
+      "bytes": 2629,
+      "sha256": "b75f0cca025dffd647dae1662be1dced2004787fa2e0b4eba0df6890a6acbaba"
+    },
+    {
+      "path": ".venv-audit/native-worker/probe-vm-monitor-registers-v1.py",
+      "bytes": 1814,
+      "sha256": "ae362be662ba1a68bf7785a9bc52eb5c14571ff62889c41e6446d9188ed4ecd0"
+    },
+    {
+      "path": ".venv-audit/native-worker/probe-vm-monitor-snapshot-v1.py",
+      "bytes": 4111,
+      "sha256": "a8782c689fd63f4a050a7e1ff3be94542da5f6fdedc8e3402f01d15e79fd76a0"
+    },
+    {
+      "path": ".venv-audit/native-worker/probe-vm-monitor-v1.py",
+      "bytes": 3651,
+      "sha256": "fabc08b372b417d8142f74b45d0fa14e4922f5cf00ccdbd46f111009a2d75f33"
+    },
+    {
+      "path": ".venv-audit/native-worker/probe-vm-monitor-v2.py",
+      "bytes": 3752,
+      "sha256": "5d2025c07f0d50c248b1adb60a4c21a751c0fd25e28fc8063b65c4eb45d7b6c9"
+    },
+    {
+      "path": ".venv-audit/native-worker/probe-vm-monitor-v3.py",
+      "bytes": 3752,
+      "sha256": "fd48082a5188b1f6ca6720cc2f7e9ace039d40fbcac1ed22f3e7d7040f6c18ef"
+    },
+    {
+      "path": ".venv-audit/native-worker/probe-vm-monitor-v4.py",
+      "bytes": 3886,
+      "sha256": "936b9840b63409f11f5fbf1977f4189ffc9cd6b1155e2126d049d0b815977340"
+    },
+    {
+      "path": ".venv-audit/native-worker/recover-vm-monitor-idle-v1.py",
+      "bytes": 1472,
+      "sha256": "80bb6c19d5475e66952c4e92b60efb3b38e9b46a78b01c51686f49643a87b956"
+    },
+    {
+      "path": ".venv-audit/native-worker/recover-vm-monitor-idle-v2.py",
+      "bytes": 1582,
+      "sha256": "9ce1f8ba6bc0e3e77392997bf447337e73af00b5027a238f8026c60c4b9cc927"
+    },
+    {
+      "path": ".venv-audit/native-worker/restore-vm-monitor-config-v1.py",
+      "bytes": 2224,
+      "sha256": "96f4511b874688f0e7272510f07b7c6ad73c53d162ca804e6f9a81adee5f05d0"
+    },
+    {
+      "path": ".venv-audit/native-worker/resume-vm-monitor-v1.py",
+      "bytes": 1012,
+      "sha256": "0dfcaafb13a47de1ee4d390922c4b32817a493fa451cee14e1f62d4fe124778d"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-vm-monitor-transfers-v1.py",
+      "bytes": 3864,
+      "sha256": "8645e9687dffb0a1e2c0693acad2211924bc49608bdf24f5a3c181a2ecfbc180"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-vm-monitor-main-v1.py",
+      "bytes": 4219,
+      "sha256": "3cd74466f872f3b10ce576f30de912f031ae2359c59ad42ffaccdac999ae5762"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-vm-wait-baseline-v1.py",
+      "bytes": 1957,
+      "sha256": "7c3f90bf0e031486112b10b6795f9fc9c0f5bfc19b18b1b64e0c58d566919348"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-vm-wait-fixture-v1.py",
+      "bytes": 8484,
+      "sha256": "dea683798866ddd6c4071881519a59090b1c68ae3e920c94efda2d52e0e686dc"
+    },
+    {
+      "path": ".venv-audit/native-worker/stop-vm-monitor-worker-v1.py",
+      "bytes": 1421,
+      "sha256": "7651735d3eac63ecad5aa8f358a25fdcd2ff05af68a7a10af62122008cb0e9bc"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-availability-v1-20261109.json",
+      "bytes": 1016,
+      "sha256": "6211f63956c7c6364d6874f0442ca6a5c2edeb7ca0dd868c0b77463aabe26884"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-availability-v2-20261109.json",
+      "bytes": 2558,
+      "sha256": "66647319b1aa694cac2715a8d65af3361a146c00930b360c630cc44a52154295"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-availability-v3-20261109.json",
+      "bytes": 41878,
+      "sha256": "b83e5b8bb0219241dd4b97194ddef21a5140ac838f3c51d7cadf5a1f4ba7e99a"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-availability-v4-20261109.json",
+      "bytes": 66228,
+      "sha256": "d4f7ea34b6d24fc685371d05eba28537a33b4769e3c7560db7039428b7722a7d"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-breakpoint-panic-v1-20261110.dmp.gz",
+      "bytes": 8183689,
+      "sha256": "0c720ad76b92537cc67f2eb637c02a49c2a854c66fb242257dbb2277e5dd0739"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-breakpoint-panic-v1-20261110.log",
+      "bytes": 354529,
+      "sha256": "030b4f0d053bb51a1bd00b384c22b19ad418561e8d5960fab759df028360f3c4"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-checkpoint-v1-20261109.json",
+      "bytes": 9292,
+      "sha256": "da3dfd6d47637c11444775880ef4711ae55eef38dc608a7de7321cf3dd6a9193"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-config-before-v1-20261109.txt",
+      "bytes": 4071,
+      "sha256": "754454779fa99cb293c36fde3d7341f37032bc260cb6f3713d0e398de1303457"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-config-v1-20261109.json",
+      "bytes": 1040,
+      "sha256": "55215c03ca01297960fa36d28905f61b6332f91c3bba854a75a7a5e75a305873"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-failed-resume-v1-20261110.log",
+      "bytes": 199290,
+      "sha256": "1882012fe6b843c4e65ed6aeec131f8156aab51787cc11a1d038f29f97a0d28f"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-failed-resume-v2-20261110.log",
+      "bytes": 199693,
+      "sha256": "ba567ba9d8daf3ba69379e3da53c6ce20f3c3b527c95222996437836cdb527eb"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-gate-guest-checks-v1-20261110.json",
+      "bytes": 1188,
+      "sha256": "4206d211b7e4dec5cb2ee0e2d3b731048faf65f2979c1adc7ef6f03d81ca5ae5"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-checks-v1-20261110.json",
+      "bytes": 3561,
+      "sha256": "a86cb66b6d4f2a011bafa82351d906a9150c4431fb8b3297967d37a3f1feac82"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-checks-v1-20261110.zip",
+      "bytes": 26086,
+      "sha256": "61ccc54c70778ca5b524fa486c2e6820372b1f5db4aaf4fc07ea84c329db3c53"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-idle-recovery-v2-20261110.json",
+      "bytes": 1001,
+      "sha256": "e435dd42f172d5097d5563cb97b281b56fbf48dfa3287a2ae35a2ef920b47cfc"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-minidump-retirement-v1-20261110.json",
+      "bytes": 654,
+      "sha256": "02470ce328ab94d507893ea808ce3be88e51e1929a554735866cd900119eba4e"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-preservation-v1-20261110.json",
+      "bytes": 349,
+      "sha256": "5632281fdbdedecdc9b7f1272e5aea169ab4da47919438e0e6189d8c9c885633"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-registers-v1-20261109.json",
+      "bytes": 4807,
+      "sha256": "af9c95622fc172c05c7e28dda3600773ac953d5b935e06d0f559f27d573e873a"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-restoration-v1-20261110.json",
+      "bytes": 1487,
+      "sha256": "3a76473311a058f92cf3f4c0f910990d1fceb19fb14cf8d9fea3bf520271418b"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-resume-v2-20261110.json",
+      "bytes": 1111,
+      "sha256": "49c48eb219599d96436639ded319e1d34fdb21b0bd0320923ce1d40133621630"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-resume-v3-20261110.json",
+      "bytes": 22053,
+      "sha256": "134751d4167e13d43ae6d1d5ba7cbbeea13d438b9b22f55a691cee2be8257c22"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-snapshot-cpu-v1-20261110.json.gz",
+      "bytes": 18927,
+      "sha256": "8d75d56912ac7348bec76d84f279705f610f322b426ef15d5957ff1f48d46c56"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-snapshot-finish-v2-20261110.json",
+      "bytes": 1576,
+      "sha256": "44c16db4c12a533cd4912194b0e110e51aa66233b9b4e68976357f0cff2d08c1"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-snapshot-v1-20261110.json",
+      "bytes": 5955,
+      "sha256": "056c3bb367e116decd59b6d8c3a40ce55135409f0a6ca74abf733d5541c8d897"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-transfer-retirement-v1-20261110.json",
+      "bytes": 27217,
+      "sha256": "7aa581dd890a3da107e5443bba447af7563440896dedf8c44f8e8f171257862f"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-worker-stop-v1-20261110.json",
+      "bytes": 718,
+      "sha256": "c9b3072296fe57b1c43e78b2f63f854bc9cd815b46cd5af5fbd36c04ec3c8499"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-wait-baseline-v1-20261110.json",
+      "bytes": 35826,
+      "sha256": "a5beadbf113f2d3bd6a75ab7fefaf9cb75707b31f4b68fd4c1ed304fb3464e67"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-wait-fixture-deployment-v1-20261110.json",
+      "bytes": 1402,
+      "sha256": "c2e5ece79298d3c5534db33588ae817e15aa618afb736ca8596a469ed86b15a0"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-wait-fixture-run-v1-20261110.json",
+      "bytes": 3448,
+      "sha256": "3578fa1d39be62565d0bab8c4ebd1b7d9e9e818e9e3846087a58425200d7ef0c"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/070c55be9301040a.json",
+      "bytes": 21,
+      "sha256": "070c55be9301040a869be8f02e3ee4a63fb9634924dfd81f53b7f09f5f4972af"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/4336f1b199f69774.json",
+      "bytes": 21,
+      "sha256": "4336f1b199f69774b72bc6290504f9fbc924b36c474921bad71dadaf89ddb928"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/90b123973e784f80.json",
+      "bytes": 23,
+      "sha256": "90b123973e784f8018b96da3e4420cdee04605ddc6433f06fa809836729ae092"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/c763c9143dc84d71.json",
+      "bytes": 907,
+      "sha256": "c763c9143dc84d71fbb36b94fe37aee926d9d0e55ddb188ea6e730c4ceb768f1"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/cfd6a2dc1304a2c7.json",
+      "bytes": 21,
+      "sha256": "cfd6a2dc1304a2c799540d012ecac021d641aae520000a975e5c32247cbcc6c7"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/d2f74b2bb6ab837b.json",
+      "bytes": 905,
+      "sha256": "d2f74b2bb6ab837bf2baaec2f39bd71ea995cf33b46f68909203fa69e6706e04"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/e256ee8e7aff6957",
+      "bytes": 8,
+      "sha256": "e256ee8e7aff6957a781d8328f0f68e26996564c81fa458da59fbca2305138ad"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/e3b0c44298fc1c14.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-guest-retained-v1-20261110/f5477996bf5ba5ed.json",
+      "bytes": 34742,
+      "sha256": "f5477996bf5ba5ed2dbea8fdeeb7c42cbbcfb8b041f7a84e0ba16fe10fa82291"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-wait-fixture-v1-20261110/fixture.bin",
+      "bytes": 214,
+      "sha256": "671774f8ea30c622791f1bae1cd5f005936f6c2e2389e0e4ef3f26c9732cc99a"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-wait-fixture-v1-20261110/fixture.exe",
+      "bytes": 16384,
+      "sha256": "f98841b082ea3b347aa43f1a9ed0b263a2edf95bbd276600d6ff12107d886f94"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-wait-fixture-v1-20261110/manifest.json",
+      "bytes": 7177,
+      "sha256": "c6993bf36b5c4d19177963499f4859a3065e1285f5aa7ad05c266ac1632045ed"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-wait-fixture-v1-20261110/terminal_vm_wait_fixture.cs",
+      "bytes": 9637,
+      "sha256": "be796683e77276923c2312631fce336579fa5cec8bbdddde355e7f54f435878d"
+    }
+  ],
+  "analysis_evidence_files_before_closeout": [
+    {
+      "path": "analysis/terminal-wait-vm-monitor-breakpoint-failure-v1-20261110.json",
+      "bytes": 5147,
+      "sha256": "dd040cee4ca8427525890dccb53aaed7749c82820ad807f31fc77146ad2310b5"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-monitor-cpu-mapping-v1-20261110.json",
+      "bytes": 7138,
+      "sha256": "4495f256e0657e41ed9050e9b0a5d4779c82d2cdcad1e84ecaae5fc99a859987"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-monitor-cpu-tags-v1-20261110.json",
+      "bytes": 253148,
+      "sha256": "a18695da076a51903cb7f93906f157a80095d5c7748da5c43c8b5aa61e50cc79"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-monitor-independent-review-v1-20261110.json",
+      "bytes": 9847,
+      "sha256": "9935f5ba411bafd53af28bcb80d190d5767a8297b2d42187685ad2aae50dcf85"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-monitor-main-review-v1-20261110.json",
+      "bytes": 3637,
+      "sha256": "528ea49b74c7b07ef667a8d48f9d4eca9715fafc50e59a40088c3468b779bdf6"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-monitor-support-v1-20261110.zip",
+      "bytes": 205920,
+      "sha256": "538e51f6958ba1e58e7016f8d59618e680ecd3c0f2573db1a1147e5bb0d9f0eb"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-resume-clock-spin-v1-20261110.json",
+      "bytes": 8320,
+      "sha256": "9f27f3d803ee8a7b179ede93bb37cfe72b40438abf5e1f7ce6ee13589f86d0a0"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-snapshot-v3-cpu-mapping-v1-20261110.json",
+      "bytes": 2732,
+      "sha256": "c1536b144ab777f18492017433027b2975ac301b79747fa509033f1e987a1270"
+    }
+  ],
+  "new_reproduction_code_files": [
+    {
+      "path": "devtools/terminal_vm_monitor.py",
+      "bytes": 5699,
+      "sha256": "b26819f59c4db7d4dacbd4f94b3bbbbb2f1685186169e3de3a95dc1c5a5e24e5"
+    },
+    {
+      "path": "devtools/terminal_vm_monitor_v2.py",
+      "bytes": 3310,
+      "sha256": "aa3c28ace89adedbe3394b01af5cf79228c9fbd8e5b880ceb647eea9d9fff7fa"
+    },
+    {
+      "path": "devtools/terminal_vm_monitor_v3.py",
+      "bytes": 530,
+      "sha256": "87bd751903e1460a02ff73dd9f551569678bcce29e7283c739b75b52c93327d4"
+    },
+    {
+      "path": "devtools/terminal_vm_monitor_v4.py",
+      "bytes": 844,
+      "sha256": "182027f8b99d488f18c0e317fa0c8e471351d8ef88782425acddb17650603af2"
+    },
+    {
+      "path": "devtools/terminal_vm_wait_fixture.cs",
+      "bytes": 9637,
+      "sha256": "be796683e77276923c2312631fce336579fa5cec8bbdddde355e7f54f435878d"
+    },
+    {
+      "path": "devtools/terminal_vm_wait_fixture.py",
+      "bytes": 2482,
+      "sha256": "4ac2586aad7381018a6895fd3d0855ed7f536b4d61a85ac1239827b06e77aa00"
+    },
+    {
+      "path": "devtools/terminal_vm_wait_observer_gate.py",
+      "bytes": 2755,
+      "sha256": "8ee7723d6d6cde9a9625fc5dadc2fe733825bb52dd7301d6ca5cf35564fcb6a3"
+    },
+    {
+      "path": "devtools/tests/test_terminal_vm_wait_observer_gate.py",
+      "bytes": 807,
+      "sha256": "ac503d3e322ee29d6fbf636c2b2fbae4aa5b0539735e7aec2a80b657659ddb87"
+    },
+    {
+      "path": "devtools/tests/test_vmware_rsp_state.py",
+      "bytes": 3534,
+      "sha256": "53f068c93ec028906d1301ab9805f569de923843a55cd59f6cf6165788be9c77"
+    },
+    {
+      "path": "devtools/tests/test_vmware_rsp_state_v2.py",
+      "bytes": 3531,
+      "sha256": "6d7aa715285ca2dc7d256f806d88230b5680de343bd0de79b91e10da9dc634da"
+    },
+    {
+      "path": "devtools/tests/test_vmware_vmss_cpu.py",
+      "bytes": 3196,
+      "sha256": "b56388c28f03dcd36a20c09da4a75912f5dea5485b3b86671b98b5242770748b"
+    },
+    {
+      "path": "devtools/tests/test_vmware_vmss_cpu_v2.py",
+      "bytes": 1264,
+      "sha256": "66db06bdc021a8c993498d93385c6fa1b06eb9074d5561d4974dbbf7c261c106"
+    },
+    {
+      "path": "devtools/tests/test_vmware_vmss_state.py",
+      "bytes": 4613,
+      "sha256": "f21939f0fdcb04f33887513c6074c9ebdd566a6cf78451b67d67c9a67428b0b7"
+    },
+    {
+      "path": "devtools/tests/test_vmware_vmss_state_v2.py",
+      "bytes": 2814,
+      "sha256": "c34512f7fd142e83f0c3d86584d03912af38877094394bb74ea04b77cc58d431"
+    },
+    {
+      "path": "devtools/vmware_rsp_state.py",
+      "bytes": 9387,
+      "sha256": "0aef31d74fc9dcf2ef5bb640e370c8351dd85832bf49048593779732b198d457"
+    },
+    {
+      "path": "devtools/vmware_rsp_state_v2.py",
+      "bytes": 6467,
+      "sha256": "226520fb34c8a3bb5457edcdf95309759ff1d70e14faeebed6eca558c204b0e2"
+    },
+    {
+      "path": "devtools/vmware_vmss_cpu.py",
+      "bytes": 7379,
+      "sha256": "13236fe01e7c957e3e4263dc196e721da8bb8488bb536c6996c20dcac6600273"
+    },
+    {
+      "path": "devtools/vmware_vmss_cpu_v2.py",
+      "bytes": 7631,
+      "sha256": "ab25cc5b14bf2196848494048f6c82ce4d99b0d1b6b1a542d7f69f7beb219d4d"
+    },
+    {
+      "path": "devtools/vmware_vmss_state.py",
+      "bytes": 8358,
+      "sha256": "5737c61076929ddf39cb4939a3cc3471ad6fe290cfbda2ba03fd19c06b82281f"
+    },
+    {
+      "path": "devtools/vmware_vmss_state_v2.py",
+      "bytes": 9888,
+      "sha256": "2fbe7ae696e97963263d02903235e535f8aa83774c2921ee231b80fd37b54f5c"
+    }
+  ],
+  "same_disk_recovery_capsule_is_independent_backup": false,
+  "storage_scope": "All new retained evidence since baseline commit, one same-disk support capsule, exact guest artifacts and config backup; explicit retained transfer mapping supplements timestamp scan. Mutable VM/log files and VMDK growth listed separately. Full RAM snapshots are transient and gone.",
+  "staged_code_and_evidence_equal_executed_bytes": true,
+  "private_credential_scan_passed": true,
+  "next_step": "Qualify a supported isolated non-mutating exact wait-return observer before original-game collection; do not repeat this ULM hidden-breakpoint or suspend/resume path.",
+  "all_new_local_evidence_bytes_including_backups": 9913663,
+  "all_new_local_files_including_reproduction_code_bytes": 10007789,
+  "Git_added_file_bytes_including_closeout": 620974,
+  "closeout_bytes": 30959
+}

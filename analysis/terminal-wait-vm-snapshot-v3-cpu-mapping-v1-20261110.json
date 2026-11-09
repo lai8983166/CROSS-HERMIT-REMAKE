@@ -1,0 +1,80 @@
+{
+  "kind": "offline_vmsn_v3_cpu_profile_and_g_coherence_v1",
+  "sources": [
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-snapshot-cpu-v1-20261110.json.gz",
+      "bytes": 18927,
+      "sha256": "8d75d56912ac7348bec76d84f279705f610f322b426ef15d5957ff1f48d46c56"
+    },
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-snapshot-v1-20261110.json",
+      "bytes": 5955,
+      "sha256": "056c3bb367e116decd59b6d8c3a40ce55135409f0a6ca74abf733d5541c8d897"
+    }
+  ],
+  "decoder": {
+    "path": "devtools/vmware_vmss_state_v2.py",
+    "bytes": 9888,
+    "sha256": "2fbe7ae696e97963263d02903235e535f8aa83774c2921ee231b80fd37b54f5c"
+  },
+  "frozen_v1": {
+    "path": "devtools/vmware_vmss_state.py",
+    "bytes": 8358,
+    "sha256": "5737c61076929ddf39cb4939a3cc3471ad6fe290cfbda2ba03fd19c06b82281f"
+  },
+  "container_profile": {
+    "magic": "bed3bed3",
+    "version": 3,
+    "header_reserved": 8
+  },
+  "source_cpu_group_sha256": "1c4a66ef22b8aa23b672d8b732e980c9eed0b88d13bc7d0c82ac4b4f75f5a202",
+  "source_cpu_group_bytes": 22357,
+  "source_reader_bytes_read": 52086,
+  "source_memory_groups_read": false,
+  "v2_v3_ordered_tag_name_index_size_occurrence_shape_identical": true,
+  "comparisons": [
+    {
+      "cpu_index": 0,
+      "register_count": 24,
+      "differences": {},
+      "rip": "0xfffff8011101251f",
+      "eflags": "0x40282",
+      "canonical_missing": [
+        "FIP",
+        "FDP",
+        "FCS",
+        "FDS"
+      ]
+    },
+    {
+      "cpu_index": 1,
+      "register_count": 24,
+      "differences": {},
+      "rip": "0xfffff8011101251f",
+      "eflags": "0x40282",
+      "canonical_missing": [
+        "FIP",
+        "FDP",
+        "FCS",
+        "FDS"
+      ]
+    }
+  ],
+  "all_24_observed_registers_match_both_cpus": true,
+  "tests": {
+    "normal": 9,
+    "optimized": 9,
+    "passed": true
+  },
+  "limitations": [
+    "This is an offline correspondence check of 16 GPRs, RIP, EFLAGS and six selectors against the recorded g_before. No unobserved state is inferred from g.",
+    "The raw CPU source is retained by the parent; original temporary snapshot has been removed by VMware. This report does not claim that deleted VMSN remains available.",
+    "No suspend/resume or restore was attempted by this decoder. Snapshot creation timeout/operational success remains the parent runner assessment.",
+    "FX pointer format remains unspecified and FIP/FDP/FCS/FDS stay missing; no complete57/fullABI acceptance.",
+    "Header reserved value is preserved without assigning undocumented semantics."
+  ],
+  "same_stopped_epoch_allstate_proven": false,
+  "fullstate": false,
+  "fullABI": false,
+  "accepted": false
+}

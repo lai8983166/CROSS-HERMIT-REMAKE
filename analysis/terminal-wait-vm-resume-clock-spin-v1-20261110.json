@@ -1,0 +1,199 @@
+{
+  "kind": "bounded_offline_vm_resume_clock_spin_review_v1",
+  "sources": [
+    {
+      "path": ".venv-audit/native-worker/vm-monitor-resume-v3-20261110.json",
+      "bytes": 22053,
+      "sha256": "134751d4167e13d43ae6d1d5ba7cbbeea13d438b9b22f55a691cee2be8257c22"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-ntoskrnl.exe",
+      "bytes": 11597168,
+      "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+    },
+    {
+      "path": ".venv-audit/native-worker/symbols/ntkrnlmp.pdb/D801A9AFC0FB7761380800F708633DEA1/ntkrnlmp.pdb",
+      "bytes": 12095488,
+      "sha256": "9a5c323aaf56e25099a99aa7f51e077a54972a74637014af8837603730322e48"
+    }
+  ],
+  "runtime_kernel_base": "0xfffff80010a00000",
+  "symbol_identity": {
+    "guid_le": "afa901d8fbc06177380800f708633dea",
+    "pe_age": 1,
+    "pdb_info_age": 5,
+    "pdb_dbi_age": 1,
+    "microsoft_open_validate_rule_satisfied": true,
+    "public_symbols": {
+      "KiIpiSendRequest": "0x371360",
+      "MiFlushTbList": "0x34af10",
+      "KiCallInterruptServiceRoutine": "0x285200",
+      "KeQueryPerformanceCounter": "0x251800",
+      "HalpVpptArmTimer": "0x4fe5c0",
+      "RtlGetInterruptTimePrecise": "0x251e50",
+      "HalpTimerClockInterrupt": "0x251c90",
+      "KiFlushRangeWorker": "0x2b9ef0",
+      "HalpVpptAcknowledgeInterrupt": "0x4fe410",
+      "HalpAcquireHighLevelLock": "0x385bd4"
+    },
+    "export_crosschecks": {
+      "KeQueryPerformanceCounter": true
+    }
+  },
+  "samples": [
+    {
+      "monotonic": 56354.406,
+      "cpus": [
+        {
+          "id": 1,
+          "rip": "0xfffff80010efe4bf",
+          "rva": "0x4fe4bf",
+          "registers": {
+            "rax": "0x7ffffffffdc7c39f",
+            "rbx": "0xfffff7fa800158a0",
+            "rcx": "0x213e5d7f60675d0",
+            "rdx": "0x2625a",
+            "rbp": "0xfffff80011701100",
+            "rsp": "0xfffff8000dffcf10"
+          },
+          "live_code_disk_match": true,
+          "clock_interrupt_return": "0xfffff80010c51cc5",
+          "qpc_output_at_rsp_plus_30": "0xfffffffffdc9587e"
+        },
+        {
+          "id": 2,
+          "rip": "0xfffff80010d4b33e",
+          "rva": "0x34b33e",
+          "registers": {
+            "rax": "0x1",
+            "rbx": "0xd2bf2ec6",
+            "rcx": "0x674b4bcf24170000",
+            "rdx": "0xc00e1",
+            "rbp": "0xffffd2809f040180",
+            "rsp": "0xffffc18053fb5ce0"
+          },
+          "live_code_disk_match": true
+        }
+      ]
+    },
+    {
+      "monotonic": 56357.125,
+      "cpus": [
+        {
+          "id": 1,
+          "rip": "0xfffff80010efe4bf",
+          "rva": "0x4fe4bf",
+          "registers": {
+            "rax": "0x7ffffffffdc7c39f",
+            "rbx": "0xfffff7fa800158a0",
+            "rcx": "0x216a5449700e8d4",
+            "rdx": "0x2625a",
+            "rbp": "0xfffff80011701100",
+            "rsp": "0xfffff8000dffcf10"
+          },
+          "live_code_disk_match": true,
+          "clock_interrupt_return": "0xfffff80010c51cc5",
+          "qpc_output_at_rsp_plus_30": "0xfffffffffdc9587e"
+        },
+        {
+          "id": 2,
+          "rip": "0xfffff80010d4b33e",
+          "rva": "0x34b33e",
+          "registers": {
+            "rax": "0x1",
+            "rbx": "0xda91d102",
+            "rcx": "0x674b4bcf24170000",
+            "rdx": "0xc00e1",
+            "rbp": "0xffffd2809f040180",
+            "rsp": "0xffffc18053fb5ce0"
+          },
+          "live_code_disk_match": true
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "entry": "HalpVpptAcknowledgeInterrupt",
+    "loop_offset": "0xaf",
+    "period_100ns": 156250,
+    "period_ms": 15.625,
+    "current_time_100ns": "0x7ffffffffdc7c39f",
+    "current_time_years": 29227.102304413314,
+    "iterations_between_samples": 4949908682,
+    "host_elapsed_seconds": 2.7189999999973224,
+    "remaining_iterations_from_second_sample": 58066449185564,
+    "extrapolated_remaining_hours": 8.860021774493788,
+    "extrapolation_is_not_a_runtime_guarantee": true,
+    "no_clock_reread_inside_loop": true,
+    "high_level_lock_held": true
+  },
+  "qpc": {
+    "output_hex": "0xfffffffffdc9587e",
+    "signed_interpretation": -37136258,
+    "provenance": "Caller passes RSP+0x30 to RtlGetInterruptTimePrecise; callee writes returned QPC there; no later write before sampled loop.",
+    "abnormal_unsigned_timestamp": true
+  },
+  "conclusions": [
+    "The sampled guest has not stopped executing: CPU1 is advancing a periodic timer deadline by 156250 until it exceeds a fixed, implausibly huge interrupt-time result.",
+    "The native timer entry acquires CR8=15 and does not release it until after this loop. CPU2 is waiting for IPI/TLB-flush completion, consistent with CPU1 being unavailable at HIGH_LEVEL.",
+    "The recorded caller return identifies HalpTimerClockInterrupt+0x35, independently confirming the timer-interrupt path.",
+    "The preserved QPC output is near 2^64. Original kernel interpolation compares QPC to its shared baseline as unsigned and scales its difference, providing a direct link between the observed bad time and the catch-up loop.",
+    "Observed failure follows suspend/resume, but no captured before/after QPC calibration or virtual timer state proves which VMware/Windows clock field caused the discontinuity. Ordinary pause duration cannot explain a 29227-year result."
+  ],
+  "limitations": [
+    "No VM operation, memory reread, kernel write, symbol download, configuration change or recovery attempt.",
+    "No claim that all suspend/resume paths fail, nor that guest sleep/hibernate equals hypervisor suspension.",
+    "The selected timer-source identity, QPC bias, frequency/scale and shared baseline at failure were not captured; root cause remains at clock restoration/calibration boundary.",
+    "No full ABI or original game acceptance implied."
+  ],
+  "bounded_code_anchors": [
+    {
+      "start_rva": "0x4fe410",
+      "end_rva": "0x4fe429",
+      "hex": "48895c2410574883ec20488bd9488d0d0c837500e8ab77e8ff",
+      "meaning": "Entry saves timer object and acquires HIGH_LEVEL lock"
+    },
+    {
+      "start_rva": "0x385bdd",
+      "end_rva": "0x385bea",
+      "hex": "440f20c3b90f000000440f22c1",
+      "meaning": "High-level lock sets CR8 to 15"
+    },
+    {
+      "start_rva": "0x4fe497",
+      "end_rva": "0x4fe4cb",
+      "hex": "48837b28000f848f000000488364243000488d4c2430e89e39d5ff488b4b20483bc87710488b53284803ca483bc876f848894b20",
+      "meaning": "Periodic catch-up loop: current=RtlGetInterruptTimePrecise(&QpcTimestamp); while (due<=current) due+=period"
+    },
+    {
+      "start_rva": "0x4fe66f",
+      "end_rva": "0x4fe694",
+      "hex": "488364244000488d4c2440e8d137d5ff4c8d043833c04c89432083fd03480f45c748894328",
+      "meaning": "Arm path sets due=interrupt_time+interval and stores periodic interval at object+0x28"
+    },
+    {
+      "start_rva": "0x251c9f",
+      "end_rva": "0x251cc5",
+      "hex": "488b9988000000488b155b67a000488bca0fb67329e827040000488bc8488b4278e8dbde1c00",
+      "meaning": "Clock interrupt indirect acknowledgement call; observed return matches end"
+    },
+    {
+      "start_rva": "0x251e90",
+      "end_rva": "0x251eea",
+      "hex": "498b1ef6c3017570498b3c2433c9498b6d00e859f9ffff488bd0498b06483bc3755a488916483bd77656a06903000080f7ffff482bd749b86003000080f7ffff48ffca4d8b0084c074060fb6c848d3e2498bc048f7e2488d042a",
+      "meaning": "Stable shared-data snapshot plus QPC, unsigned delta, scale and interrupt-time base"
+    },
+    {
+      "start_rva": "0x34b2f1",
+      "end_rva": "0x34b348",
+      "hex": "4889442420488bcde862600200488d4c2440e8e8ebf6ff8b85802d00004489bc24b000000085c00f8415feffff66908b9c24b0000000ffc3851d4d3f9c00899c24b00000000f84f8100f00f3908b85802d000085c075d8",
+      "meaning": "IPI request, local flush, pending-completion spin"
+    }
+  ],
+  "primary_references": [
+    "https://raw.githubusercontent.com/microsoft/microsoft-pdb/master/PDB/dbi/pdb.cpp#L783-L815",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-kequeryinterrupttimeprecise",
+    "https://learn.microsoft.com/en-us/windows/win32/sysinfo/interrupt-time"
+  ],
+  "accepted": false
+}
