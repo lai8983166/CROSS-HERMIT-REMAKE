@@ -1,0 +1,76 @@
+{
+  "kind": "original_worker_ETW_wait_decode",
+  "status": "blocked",
+  "accepted": false,
+  "qualification": {
+    "path": "C:\\ChaomofaWorker\\isolation-qualified.json",
+    "bytes": 4378,
+    "sha256": "c8b131cf9033760b838ed174beaabe954f84327474c71eccda148eda32361447",
+    "current_guest_uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+    "current_guest_boot_utc": "2026-11-09T06:28:41.5000000Z",
+    "current_guest_resources": {
+      "logical_processors": 2,
+      "memory_bytes": 4294430720
+    },
+    "verification": {
+      "input_isolation_preflight_passed": true,
+      "d3d8_preflight_passed": true,
+      "guest_probe_foreground_verified": true,
+      "guest_queue_fallback_used": false,
+      "guest_queue_detach_verified": false,
+      "original_game_compatible": false,
+      "full_battle_exit_accepted": false,
+      "continuous_host_performance_unaffected_proved": false,
+      "accepted": false
+    },
+    "source_utf8": "{\r\n  \"schema_version\": 1,\r\n  \"nonce\": 1584075205,\r\n  \"host\": {\r\n    \"uuid\": \"BD53569B-8CFC-CA17-A714-D8BBC150E486\",\r\n    \"computer\": \"DESKTOP-FBK3PBR\",\r\n    \"free_kib\": 8173156\r\n  },\r\n  \"guest_executable\": {\r\n    \"path\": \"F:\\\\project\\\\chaomofa\\\\.venv-audit\\\\native-worker\\\\guest-preflight.exe\",\r\n    \"bytes\": 24576,\r\n    \"sha256\": \"527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7\"\r\n  },\r\n  \"vmx\": {\r\n    \"path\": \"F:\\\\project\\\\chaomofa\\\\.venv-audit\\\\native-worker\\\\chaomofa-worker.vmx\",\r\n    \"bytes\": 4100,\r\n    \"sha256\": \"4fcea4eb6fa1c9aaf6430e0dba03333d907ace46ed82a9d2353e4949a78fb0d0\"\r\n  },\r\n  \"accepted\": false,\r\n  \"implementations\": [\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_vm_preflight.py\",\r\n      \"bytes\": 12936,\r\n      \"sha256\": \"a6d1e745baf2f964222f751b845820d16b0b552bd5a0d6b659d1f63fa16be58b\"\r\n    },\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_windows_vm.py\",\r\n      \"bytes\": 16893,\r\n      \"sha256\": \"c0413bd97d26fe24c849cc28358d88557f905bb7ff1922a72057ebbfc1f5dbf5\"\r\n    },\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_guest_preflight.cs\",\r\n      \"bytes\": 13526,\r\n      \"sha256\": \"b32780b5b0027d20082c67b3adacec8d27d8312488e4dae6369d918a8fe70644\"\r\n    }\r\n  ],\r\n  \"host_observation\": {\r\n    \"hooks_installed\": true,\r\n    \"tagged_mouse\": 0,\r\n    \"tagged_keyboard\": 0,\r\n    \"total_mouse_events\": 0,\r\n    \"total_keyboard_events\": 0,\r\n    \"host_input_injected\": false,\r\n    \"host_input_blocked\": false,\r\n    \"foreground_pids\": [\r\n      21472\r\n    ],\r\n    \"error\": null,\r\n    \"hooks_removed\": [\r\n      true,\r\n      true\r\n    ],\r\n    \"elapsed_seconds\": 3.109\r\n  },\r\n  \"guest\": {\r\n    \"schema_version\": 1,\r\n    \"accepted\": false,\r\n    \"game_executed\": false,\r\n    \"events\": [\r\n      {\r\n        \"message\": 513,\r\n        \"extra\": 1584075205,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 514,\r\n        \"extra\": 1584075205,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 256,\r\n        \"extra\": 1584075205,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 257,\r\n        \"extra\": 1584075205,\r\n        \"foreground\": true\r\n      }\r\n    ],\r\n    \"machine\": {\r\n      \"manufacturer\": \"VMware, Inc.\",\r\n      \"model\": \"VMware Virtual Platform\",\r\n      \"logical_processors\": 2,\r\n      \"memory_bytes\": 4294430720,\r\n      \"uuid\": \"E6D84D56-0960-FA47-1543-6C62C21D5DC7\",\r\n      \"boot_utc\": \"2026-11-09T06:28:41.5000000Z\",\r\n      \"computer_name\": \"CHAOMOFA-WORKER\",\r\n      \"session\": 1,\r\n      \"active_console_session\": 1\r\n    },\r\n    \"nonce\": 1584075205,\r\n    \"pid\": 6116,\r\n    \"executable_sha256\": \"527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7\",\r\n    \"foreground_before\": {\r\n      \"hwnd\": 197010,\r\n      \"pid\": 6116,\r\n      \"tid\": 6124,\r\n      \"title\": \"Dedicated guest input preflight\",\r\n      \"own_desktop\": \"Default\",\r\n      \"own_desktop_query_succeeded\": true,\r\n      \"own_window\": 197010,\r\n      \"own_pid\": 6116,\r\n      \"own_tid\": 6124\r\n    },\r\n    \"set_foreground_result\": true,\r\n    \"foreground_after\": {\r\n      \"hwnd\": 197010,\r\n      \"pid\": 6116,\r\n      \"tid\": 6124,\r\n      \"title\": \"Dedicated guest input preflight\",\r\n      \"own_desktop\": \"Default\",\r\n      \"own_desktop_query_succeeded\": true,\r\n      \"own_window\": 197010,\r\n      \"own_pid\": 6116,\r\n      \"own_tid\": 6124\r\n    },\r\n    \"input_messages_received\": true,\r\n    \"graphics\": [\r\n      {\r\n        \"fullscreen\": false,\r\n        \"create_hr\": 0,\r\n        \"format\": 22,\r\n        \"clear_hr\": 0,\r\n        \"present_hr\": 0,\r\n        \"device_release\": 0,\r\n        \"factory_release\": 0,\r\n        \"passed\": true\r\n      },\r\n      {\r\n        \"fullscreen\": true,\r\n        \"create_hr\": 0,\r\n        \"format\": 22,\r\n        \"clear_hr\": 0,\r\n        \"present_hr\": 0,\r\n        \"device_release\": 0,\r\n        \"factory_release\": 0,\r\n        \"passed\": true\r\n      }\r\n    ],\r\n    \"preflight_passed\": true,\r\n    \"cleanup_release_submissions\": 2,\r\n    \"window_destroyed\": true\r\n  },\r\n  \"verification\": {\r\n    \"input_isolation_preflight_passed\": true,\r\n    \"d3d8_preflight_passed\": true,\r\n    \"guest_probe_foreground_verified\": true,\r\n    \"guest_queue_fallback_used\": false,\r\n    \"guest_queue_detach_verified\": false,\r\n    \"original_game_compatible\": false,\r\n    \"full_battle_exit_accepted\": false,\r\n    \"continuous_host_performance_unaffected_proved\": false,\r\n    \"accepted\": false\r\n  }\r\n}"
+  },
+  "implementation": {
+    "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_original_wait_etw_verification.py",
+    "bytes": 36486,
+    "sha256": "c18ce13b8841fdea481e8467034d05023b21ad78221391c24d44d09bf5e9bf3c"
+  },
+  "reader_implementation": {
+    "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_wait_etw_probe.py",
+    "bytes": 50506,
+    "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+  },
+  "errors": [
+    "ValueError('original globals cleared and source CRT zero result observed before protection exit')"
+  ],
+  "TLS_validator_implementation": {
+    "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_wait_native_verification.py",
+    "bytes": 14922,
+    "sha256": "89508caa40398d847ebb6b0a25a3b6d845730c3ab4aca835924b3c0ac228003e"
+  },
+  "new_native_capture": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "source": {
+    "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v3-20261109.json.gz",
+    "bytes": 23357,
+    "sha256": "8a913ded6ba27899f596c8399c21d56b830bb4715c382a35980a5c38d6624492"
+  },
+  "ETL": {
+    "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v3-20261109\\trace.etl",
+    "bytes": 1114112,
+    "sha256": "ed4879ca710a0debc2f0f7705ca2ccd7e62c40d63e5ddf05d540f6489e6336d7"
+  },
+  "elapsed_seconds": 0.5460000000000491,
+  "implementation_after": {
+    "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_original_wait_etw_verification.py",
+    "bytes": 36486,
+    "sha256": "c18ce13b8841fdea481e8467034d05023b21ad78221391c24d44d09bf5e9bf3c"
+  },
+  "reader_implementation_after": {
+    "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_wait_etw_probe.py",
+    "bytes": 50506,
+    "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+  },
+  "TLS_validator_implementation_after": {
+    "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_wait_native_verification.py",
+    "bytes": 14922,
+    "sha256": "89508caa40398d847ebb6b0a25a3b6d845730c3ab4aca835924b3c0ac228003e"
+  }
+}

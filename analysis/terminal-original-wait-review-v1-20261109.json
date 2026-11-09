@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "kind": "independent_original_wait_ETW_review",
+  "scope": "One original WOW64 startup worker wait only",
+  "accepted": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "full_instruction_trace": false,
+  "independent_full_replay": false,
+  "two_fresh_native_lifetimes_verified": false,
+  "formal_progress": "2/8 unchanged",
+  "source": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109.json.gz",
+    "bytes": 22989,
+    "sha256": "64a446caf8bb2738eb9ad0723b6efa2735a2ce31b6ef486ad4c0278d0cd22bb8"
+  },
+  "ETL": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109/trace.etl",
+    "bytes": 2621440,
+    "sha256": "26245d4507e1cf61c28222d362fea115edd4e895808cb96056cad873dc5f7c7d"
+  },
+  "decode": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-decode-v1-20261109.json",
+    "bytes": 21386,
+    "sha256": "81c07fe590cf6cac57fba49270164321e176f63805b0dbe260c7b97edbef15df"
+  },
+  "selected_records": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-decode-v1-20261109.records.json.gz",
+    "bytes": 13653,
+    "sha256": "9939e054953e8ccc8a89fb64a2f11dd85477771429b66b4d68bbf2ef83feae0b"
+  },
+  "collector_capsule": {
+    "path": "analysis/terminal-original-wait-implementation-v2-20261109.zip",
+    "bytes": 9362,
+    "sha256": "6cb06535329a57cf32ab4a1d507218363d672ddb1c28f8f1bfaad96de738c120"
+  },
+  "decoder_capsule": {
+    "path": "analysis/terminal-original-wait-decoder-implementation-v1-20261109.zip",
+    "bytes": 15534,
+    "sha256": "7fed77f32cb6e1675ec4c57dc1ae567202550fad7a22cefc56f3556f0341beab"
+  },
+  "executed_dependency_identities": [
+    {
+      "path": "devtools/terminal_original_wait_etw_verification.py",
+      "bytes": 33287,
+      "sha256": "1412af1760b0ac36dc9da8b4e69e4607a619eae398a98349091b1825cc121b37"
+    },
+    {
+      "path": "devtools/terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "devtools/terminal_wait_native_verification.py",
+      "bytes": 14922,
+      "sha256": "89508caa40398d847ebb6b0a25a3b6d845730c3ab4aca835924b3c0ac228003e"
+    },
+    {
+      "path": "devtools/terminal_menu_handoff.py",
+      "bytes": 16715,
+      "sha256": "154efedd03310eee9321c71dd975903ae432dca7f48b5db8ad51f82bc97e9079"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff.py",
+      "bytes": 11996,
+      "sha256": "179fa74b62e74f36e0de1918190f5bc759bc329a3be28bbbf6209c062bab3da4"
+    },
+    {
+      "path": "devtools/terminal_scene_owner.py",
+      "bytes": 27413,
+      "sha256": "7ecdcac1599d674bcb24a40b2a52cd824173bc99ff9fe1c0cc4d6f3200a721f5"
+    },
+    {
+      "path": "devtools/terminal_scene_resources.py",
+      "bytes": 19764,
+      "sha256": "dfbbbe7281a48cb36b215e9990e6448269665dcd74953e3efd2babfe7bcdcfa5"
+    },
+    {
+      "path": "devtools/terminal_menu_startup.py",
+      "bytes": 6934,
+      "sha256": "36b21cb31d1e8a279bd8a7d2ce1810ca3519dbdd16de87632e12b8d325f7afaf"
+    }
+  ],
+  "review_method": "Independent local raw-byte recomputation using EVENT_HEADER offsets, CPU transitions and single-open pairing, plus actual source/PE/owner receipts; no native/VM run or frozen-code changes.",
+  "actual_result": {
+    "subject": {
+      "pid": 2668,
+      "tid": 3600,
+      "main_tid": 3288,
+      "main": 69818512,
+      "node": 69945416
+    },
+    "raw_selected_records_checked": 689,
+    "whole_ETL_records": 88598,
+    "opcode_counts": {
+      "36": 204,
+      "51": 243,
+      "52": 242
+    },
+    "closed_pairs": 242,
+    "final_open_global_entry": 86585,
+    "pair_selected_indices": [
+      13,
+      20
+    ],
+    "pair_global_indices": [
+      1861,
+      3739
+    ],
+    "pair_events": [
+      {
+        "index": 1861,
+        "ns": 1794206685478803900,
+        "opcode": 51,
+        "cpu": 1,
+        "fields": {
+          "address": 18446735296609373184
+        }
+      },
+      {
+        "index": 1862,
+        "ns": 1794206685478805500,
+        "opcode": 36,
+        "cpu": 1,
+        "fields": {
+          "new": 0,
+          "old": 3600
+        }
+      },
+      {
+        "index": 2103,
+        "ns": 1794206685488240100,
+        "opcode": 36,
+        "cpu": 0,
+        "fields": {
+          "new": 3600,
+          "old": 1724
+        }
+      },
+      {
+        "index": 2104,
+        "ns": 1794206685488270700,
+        "opcode": 36,
+        "cpu": 0,
+        "fields": {
+          "new": 3028,
+          "old": 3600
+        }
+      },
+      {
+        "index": 2345,
+        "ns": 1794206685488974100,
+        "opcode": 36,
+        "cpu": 0,
+        "fields": {
+          "new": 3600,
+          "old": 3028
+        }
+      },
+      {
+        "index": 2347,
+        "ns": 1794206685488975700,
+        "opcode": 36,
+        "cpu": 0,
+        "fields": {
+          "new": 3028,
+          "old": 3600
+        }
+      },
+      {
+        "index": 3738,
+        "ns": 1794206685495130700,
+        "opcode": 36,
+        "cpu": 0,
+        "fields": {
+          "new": 3600,
+          "old": 0
+        }
+      },
+      {
+        "index": 3739,
+        "ns": 1794206685495131800,
+        "opcode": 52,
+        "cpu": 0,
+        "fields": {
+          "NTSTATUS": 0
+        }
+      }
+    ],
+    "NTSTATUS": 0,
+    "actual_kernel_target_hex": "0xfffff8046c0fcc00",
+    "snapshot_interval_ns": [
+      1794206685488402400,
+      1794206685488966100
+    ],
+    "unique_switched_out_interval_global_indices": [
+      2104,
+      2345
+    ],
+    "selected_raw_digest": "ce9e9b36e1a57077952a791dc27361d426a8f31c95fdd4f131d802cb7a2794bd",
+    "selected_raw_digest_coverage": "Selected EVENT_HEADER80 + BUFFER_CONTEXT4 + uint32 payload length + payload, in order",
+    "current_owner": {
+      "TEB": 3317760,
+      "TLS_slot": 3321440,
+      "PTD": 69799288,
+      "node_event": 2032,
+      "thread_handle": 2036,
+      "manager_event": 1128
+    },
+    "original_wait_return": "0x42240D",
+    "original_wait_timeout": "0xFFFFFFFF",
+    "original_IAT_raw_verified": true,
+    "kernel_disk_export_identity_verified": true,
+    "live_kernel_code_verified": false
+  },
+  "clock_and_losses": {
+    "first_FILETIME": 134386802854455158,
+    "end_FILETIME": 134386802866519115,
+    "buffer_reads_1_through": 40,
+    "ProcessTrace": 0,
+    "CloseTrace": 0,
+    "StopTrace": 0,
+    "all_reported_loss_counters_zero": true,
+    "timestamp_tolerance_or_calibration_used": false
+  },
+  "actual_os_module_files": [
+    {
+      "path": ".venv-audit/native-worker/guest-ntoskrnl.exe",
+      "bytes": 11597168,
+      "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/kernel32.dll",
+      "bytes": 640800,
+      "sha256": "b213db8068dd3a7fea88ad547aa6518ce2e8eb7e46cd704d66643cd0bc499fc1"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/ntdll.dll",
+      "bytes": 1713880,
+      "sha256": "2761f133cac12188ed380666104527884b2f89dab918bc5082692ca1b7f341e6"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/kernelbase.dll",
+      "bytes": 2376936,
+      "sha256": "254d4a108d9873dd9b01ed9083cf1075951ee814739a9403db1fe6081715d5ca"
+    }
+  ],
+  "cleanup_scope": {
+    "nonforced_owned_job_empty": true,
+    "private_mutable_bytes_restored": true,
+    "source_CRT_zero_receipt": true,
+    "window_and_three_globals_ended": true,
+    "protector_parent_status": 0,
+    "protected_child_status": "0xC0000354",
+    "process_status_is_not_WinMain_result": true,
+    "continuous_cleanup_or_PTD_proof": false
+  },
+  "remaining_boundaries": [
+    "All 689 selected target events were checked; complete ETL remains primary evidence. Zero loss counters alone do not establish missing-event absence or whole-system state.",
+    "A later syscall entry remains open at trace end and is not selected; full global pairing remains false.",
+    "No battle result consumption, original callback continuation, dispatcher branch, or battle thread exit is established by this startup wait.",
+    "No full CPU/register/RAM trace, cumulative complete state/ABI digest, or independent full execution replay was collected.",
+    "No continuous PTD freeing, TLS clearing, scheduler unlinking, event/thread handle closure or complete resource lifetime is established.",
+    "Only one short original native lifespan is represented; two fresh complete native cases and strict full replay/ABI/resource/tamper acceptance remain required.",
+    "Kernel address uses actual EnumDeviceDrivers and disk export receipts; live kernel instruction bytes were not read.",
+    "The frozen collector uses the old suspend helper without same-handle PID/TID validation before SuspendThread. Actual snapshots and ETW bind the observed owner; future guard fixes are not retroactively attributed to this source."
+  ],
+  "kernel_inventory_note": {
+    "retained": {
+      "path": ".venv-audit/native-worker/guest-ntoskrnl.exe",
+      "bytes": 11597168,
+      "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+    },
+    "file_creation_metadata_UTC": "2026-11-07T16:40:36.194482+00:00",
+    "file_mtime_UTC": "2026-11-07T16:40:36.197480+00:00",
+    "provenance": "This file existed before this original-worker task and was used for earlier fixture PE export checks. Filesystem dates are metadata, not acquisition time. Current guest module hash/base come from authenticated v2 source; old file supplies same-byte disk PE. Main will retire only its new duplicate; this retained old file is not deleted."
+  },
+  "tests": {
+    "module": "devtools/tests/test_terminal_original_wait_etw_verification.py",
+    "sha256": "5d8f6c53070a41e635b26cd90718f3d39b0ba114adb822d9d64d19cbcb1390d6",
+    "ordinary": "19 passed",
+    "optimized": "19 passed",
+    "scope": "Pure static/tamper tests, no native rerun"
+  },
+  "conclusion": "Actual original wait entry/NTSTATUS zero, complete suspended original stack/current owner, and exact CPU-switch interval agree. Bounded worker observation only; formal terminal/battle acceptance remains false."
+}

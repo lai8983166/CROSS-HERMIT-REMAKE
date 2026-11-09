@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "kind": "independent_original_wait_ETW_diagnostic_review",
+  "scope": "One v3 original WOW64 startup worker wait, diagnostic only because actual CRT exit was not sampled",
+  "accepted": false,
+  "strict_source_cleanup_verified": false,
+  "source_CRT_zero_result_observed": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "full_instruction_trace": false,
+  "independent_full_replay": false,
+  "two_fresh_full_native_cases_verified": false,
+  "formal_progress": "2/8 unchanged",
+  "source": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109.json.gz",
+    "bytes": 23357,
+    "sha256": "8a913ded6ba27899f596c8399c21d56b830bb4715c382a35980a5c38d6624492"
+  },
+  "ETL": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109/trace.etl",
+    "bytes": 1114112,
+    "sha256": "ed4879ca710a0debc2f0f7705ca2ccd7e62c40d63e5ddf05d540f6489e6336d7"
+  },
+  "decode": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-decode-v3-diagnostic-20261109.json",
+    "bytes": 23422,
+    "sha256": "1f009e7a13dc2e8e4a8005412dd535ddb18194b4f185dc61c32ad9ce6907fbce"
+  },
+  "selected_records": {
+    "path": ".venv-audit/native-worker/terminal-original-wait-decode-v3-diagnostic-20261109.records.json.gz",
+    "bytes": 2942,
+    "sha256": "1a6e34a6454dab3ed5b5d980481b46042638dcad652a9630c85f9512d9437cb4"
+  },
+  "collector_capsule": {
+    "path": "analysis/terminal-original-wait-implementation-v3-20261109.zip",
+    "bytes": 8775,
+    "sha256": "fd2ff5756351d37b869b602dd1b9a6fd6f2de75d3780ac557717c6ad312acaa3"
+  },
+  "decoder_capsule": {
+    "path": "analysis/terminal-original-wait-decoder-implementation-v3-20261109.zip",
+    "bytes": 22247,
+    "sha256": "d80e2f9eb6fea73faf469c008ac85ec0bb5e4ddec2d7eea839de81759826afc2"
+  },
+  "retained_original_kernel_PE": {
+    "path": ".venv-audit/native-worker/guest-ntoskrnl.exe",
+    "bytes": 11597168,
+    "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+  },
+  "prior_review": {
+    "path": "analysis/terminal-original-wait-review-v1-20261109.json",
+    "bytes": 10136,
+    "sha256": "8a1661038415aeb5c798b3ef6366b94cf7fddfe05e476783aa25e6e4bea9279c"
+  },
+  "status": "diagnostic_original_wait_observed_cleanup_unproven",
+  "diagnostic_cli_exit_code": 2,
+  "default_strict_error": "original globals cleared and source CRT zero result observed before protection exit",
+  "review_method": "Independent raw event/context/stack recomputation plus authenticated capsule and retained guest PE/current owner verification; only local pure checks, no VM/native calls.",
+  "wait_observation": {
+    "subject": {
+      "pid": 5580,
+      "tid": 1860,
+      "main_tid": 2504,
+      "main": 69752976,
+      "node": 69879880
+    },
+    "whole_ETL_records": 33527,
+    "raw_selected_records_checked": 107,
+    "counts": {
+      "36": 34,
+      "51": 37,
+      "52": 36
+    },
+    "closed_pairs": 36,
+    "unselected_final_open_entry": 33125,
+    "global_pair_indices": [
+      1615,
+      2165
+    ],
+    "pair_events": [
+      {
+        "index": 1615,
+        "ns": 1794207431194858300,
+        "opcode": 51,
+        "cpu": 0,
+        "data": {
+          "address": 18446735296609373184
+        }
+      },
+      {
+        "index": 1616,
+        "ns": 1794207431194859500,
+        "opcode": 36,
+        "cpu": 0,
+        "data": {
+          "new": 0,
+          "old": 1860
+        }
+      },
+      {
+        "index": 1947,
+        "ns": 1794207431204787200,
+        "opcode": 36,
+        "cpu": 1,
+        "data": {
+          "new": 1860,
+          "old": 0
+        }
+      },
+      {
+        "index": 1948,
+        "ns": 1794207431204806800,
+        "opcode": 36,
+        "cpu": 1,
+        "data": {
+          "new": 0,
+          "old": 1860
+        }
+      },
+      {
+        "index": 2033,
+        "ns": 1794207431205369700,
+        "opcode": 36,
+        "cpu": 1,
+        "data": {
+          "new": 1860,
+          "old": 0
+        }
+      },
+      {
+        "index": 2034,
+        "ns": 1794207431205371700,
+        "opcode": 36,
+        "cpu": 1,
+        "data": {
+          "new": 5368,
+          "old": 1860
+        }
+      },
+      {
+        "index": 2164,
+        "ns": 1794207431211561100,
+        "opcode": 36,
+        "cpu": 1,
+        "data": {
+          "new": 1860,
+          "old": 0
+        }
+      },
+      {
+        "index": 2165,
+        "ns": 1794207431211561900,
+        "opcode": 52,
+        "cpu": 1,
+        "data": {
+          "NTSTATUS": 0
+        }
+      }
+    ],
+    "snapshot_interval_ns": [
+      1794207431205020900,
+      1794207431205305200
+    ],
+    "unique_switched_out_global_indices": [
+      1948,
+      2033
+    ],
+    "kernel_wait_address_hex": "0xfffff8046c0fcc00",
+    "NTSTATUS": 0,
+    "raw_selected_digest": "bff26c93c19d2b53af5c989670cd8729437d3ac4032fd169e57fae26eb7df75f",
+    "raw_digest_coverage": "EVENT_HEADER80 + BUFFER_CONTEXT4 + uint32 payload length + payload for each retained event"
+  },
+  "NT_context": {
+    "stub_entry_hex": "0x77893bf0",
+    "actual_EIP_hex": "0x77893bfc",
+    "raw_stub_hex": "b804000d00ba10678b77ffd2c20c00",
+    "raw_stack_first_16_hex": "29823776f00700000000000000000000",
+    "EventHandle": 2032,
+    "Alertable": false,
+    "TimeoutPointer": 0,
+    "snapshot_EAX": 1,
+    "snapshot_EAX_is_return_value": false,
+    "later_ETW_NTSTATUS": 0,
+    "caller_callsite_instruction_verified": false
+  },
+  "ownership": {
+    "actual_before_wait_after_current_TLS_PTD_and_original_stack_verified": true,
+    "original_wait_return": "0x42240D",
+    "original_wait_event": 2032,
+    "original_wait_milliseconds": "0xFFFFFFFF",
+    "IAT_raw_verified": true,
+    "current_PE_exports_and_relocated_live_bytes_verified": true,
+    "live_kernel_instruction_bytes_verified": false,
+    "owned_suspend_frame_receipts": [
+      {
+        "snapshot": "before",
+        "role": "frame",
+        "tid": 1860,
+        "previous_suspend_count": 0
+      },
+      {
+        "snapshot": "before",
+        "role": "scheduler_frame",
+        "tid": 2504,
+        "previous_suspend_count": 0
+      },
+      {
+        "snapshot": "observed_wait",
+        "role": "frame",
+        "tid": 1860,
+        "previous_suspend_count": 0
+      },
+      {
+        "snapshot": "observed_wait",
+        "role": "scheduler_frame",
+        "tid": 2504,
+        "previous_suspend_count": 0
+      },
+      {
+        "snapshot": "after",
+        "role": "frame",
+        "tid": 1860,
+        "previous_suspend_count": 0
+      },
+      {
+        "snapshot": "after",
+        "role": "scheduler_frame",
+        "tid": 2504,
+        "previous_suspend_count": 0
+      }
+    ],
+    "guard_code_review": "Same retained handle is checked for PID/TID before SuspendThread; GetContext and exactly one compensating Resume use that handle; foreign-thread failures close without suspension; reverse restoration count is checked before closing."
+  },
+  "missing_CRT": {
+    "shutdown_rows": 34,
+    "crt_exit_receipts": 0,
+    "frames_returning_to_5714F2": 0,
+    "last_snapshot_index": 33,
+    "last_elapsed": 6.405999999999949,
+    "last_MAIN_EIP_hex": "0x774519bc",
+    "three_globals_zero": true,
+    "WinMain_frame_present": true,
+    "WinMain_return_to": "0x5714E6",
+    "sampled_return_local": 0,
+    "sampled_local_is_actual_CRT_return": false,
+    "default_strict_contract_still_rejects": true
+  },
+  "cleanup_receipts": {
+    "no_forced_termination": true,
+    "Job_empty": true,
+    "window_invalid": true,
+    "private_mutable_bytes_restored": true,
+    "parent_exit": 0,
+    "child_protection_exit": "0xC0000354",
+    "process_exit_is_not_WinMain_return": true,
+    "continuous_cleanup_verified": false
+  },
+  "lost_events": {
+    "StopTrace": 0,
+    "ProcessTrace": 0,
+    "CloseTrace": 0,
+    "all_reported_losses_zero": true,
+    "all_buffers_1_through": 17,
+    "zero_loss_does_not_prove_full_system_state": true
+  },
+  "limitations": [
+    "This diagnostic result is not a source-cleanup success and does not replace the retained earlier v2 success or its review.",
+    "The final WinMain local zero is an earlier raw stack value, not a sampled CRT exit argument or return; no inference is made to fill the missing 5714F2 observation.",
+    "Later syscall entry remains open at trace end; complete global pairing is false.",
+    "No battle-result consumption, battle dispatcher/callback continuation, or battle thread exit is proved by this startup observation.",
+    "No complete CPU/RAM/ABI trace, cumulative full-state replay, PTD/TLS destruction, scheduler unlinking, or complete event/thread-handle lifetime proof.",
+    "Two fresh complete native terminal cases and independent full replay/tamper/resource acceptance are still absent; short probes do not satisfy them.",
+    "Current kernel base/hash come from v3 collector API receipts; older retained guest-ntoskrnl.exe supplies matching disk PE bytes only; no live kernel code read.",
+    "The new same-handle ownership guard applies to the v3 collector snapshots and does not retroactively certify old sources or every legacy lifecycle helper."
+  ],
+  "tests": {
+    "module": "devtools/tests/test_terminal_original_wait_etw_verification.py",
+    "sha256": "fc3700e11bb38a402ff91661ba225d0d939de9ff86f477ac60113780d385fc2e",
+    "ordinary": "30 passed",
+    "optimized": "30 passed",
+    "new_regressions": "Default strict rejection; diagnostic cannot bypass forced/error cleanup, missing original cleanup endpoint, contradictory CRT, substituted raw WinMain local, ETL identity or loss counters."
+  },
+  "conclusion": "Raw evidence supports one original NT wait and later NTSTATUS zero with original WOW64 arguments and owner. Exact actual CRT cleanup sample is absent, so diagnostic status and all formal flags remain unaccepted."
+}

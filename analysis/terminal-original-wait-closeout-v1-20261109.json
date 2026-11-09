@@ -1,0 +1,732 @@
+{
+  "schema_version": 1,
+  "kind": "original_WOW64_single_wait_observation_closeout",
+  "created_utc": "2026-11-09T07:21:27.241908+00:00",
+  "baseline_commit": "677da0e9ee995f5b83951f4fb4b9fd41df6a697c",
+  "accepted": false,
+  "formal_progress": "2/8 unchanged",
+  "new_full_battle_collections": 0,
+  "new_fresh_native_full_replays": 0,
+  "new_short_original_lifetimes": 3,
+  "functional_endpoint": "One actual original startup worker wait correlated to original Win32/Nt stack, current event/TLS and unique kernel NTSTATUS 0 return; latest source lacks actual CRT exit sample",
+  "sources": [
+    {
+      "source": {
+        "path": ".venv-audit/native-worker/terminal-original-wait-etw-v1-20261109.json.gz",
+        "bytes": 19552,
+        "sha256": "8b0dfff5fc72e27f1e917ea0640f6fec059a97b662044ea6266ac66cef44a5c7"
+      },
+      "native_process_seconds": 10.391,
+      "observer_error": "ValueError('one actual startup node for short original wait observation')",
+      "lifecycle_error": null,
+      "forced_cleanup": false,
+      "ETL": null
+    },
+    {
+      "source": {
+        "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109.json.gz",
+        "bytes": 22989,
+        "sha256": "64a446caf8bb2738eb9ad0723b6efa2735a2ce31b6ef486ad4c0278d0cd22bb8"
+      },
+      "native_process_seconds": 7.797,
+      "observer_error": null,
+      "lifecycle_error": null,
+      "forced_cleanup": false,
+      "ETL": {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v2-20261109\\trace.etl",
+        "bytes": 2621440,
+        "sha256": "26245d4507e1cf61c28222d362fea115edd4e895808cb96056cad873dc5f7c7d"
+      }
+    },
+    {
+      "source": {
+        "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109.json.gz",
+        "bytes": 23357,
+        "sha256": "8a913ded6ba27899f596c8399c21d56b830bb4715c382a35980a5c38d6624492"
+      },
+      "native_process_seconds": 6.5,
+      "observer_error": null,
+      "lifecycle_error": null,
+      "forced_cleanup": false,
+      "ETL": {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v3-20261109\\trace.etl",
+        "bytes": 1114112,
+        "sha256": "ed4879ca710a0debc2f0f7705ca2ccd7e62c40d63e5ddf05d540f6489e6336d7"
+      }
+    }
+  ],
+  "offline_decodes": 3,
+  "offline_v3_seconds": 8.672,
+  "offline_v3_total_records": 33527,
+  "offline_v3_selected_records": 107,
+  "original_v3_strict_status": "blocked before ETL read: no original CRT zero result receipt",
+  "original_v3_diagnostic_status": "diagnostic_original_wait_observed_cleanup_unproven; guest CLI 2 / host nonzero",
+  "diagnostics_do_not_change_strict_contract": true,
+  "new_host_restore_branch": "local tests plus independent code review only; actual old host runner retained in decoder implementation v3 capsule",
+  "host_restore_review": {
+    "reviewer": "battle_gate",
+    "blocking_findings": [],
+    "single_scheduler_idle_guest_required": true,
+    "atomic_concurrent_create_claimed": false,
+    "native_validation": false,
+    "files": [
+      {
+        "path": "devtools/isolated_vm_original_wait_decode.py",
+        "bytes": 8811,
+        "sha256": "63ef70a21a2e444c36651f52a65dc2317647413d11728f56ed27e47b43dbd4db"
+      },
+      {
+        "path": "devtools/tests/test_isolated_vm_original_wait_decode.py",
+        "bytes": 4119,
+        "sha256": "c81c09f3fa97e18e00f2157225d5d8d61bd6008722d1cfba386c68691af24279"
+      }
+    ]
+  },
+  "unproved": {
+    "continuous_battle_wait_returns": false,
+    "result_consumption": false,
+    "complete_resource_PTD_cleanup": false,
+    "two_fresh_native_full_replays": false,
+    "independent_full_state_ABI_cumulative_replay": false
+  },
+  "checks": {
+    "unit_test_runs": [
+      {
+        "optimized": false,
+        "returncode": 0,
+        "elapsed": 13.5,
+        "output": "......................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 294 tests in 10.892s\n\nOK\n"
+      },
+      {
+        "optimized": true,
+        "returncode": 0,
+        "elapsed": 13.78099999999904,
+        "output": "......................................................................................................................................................................................................................................................................................................\n----------------------------------------------------------------------\nRan 294 tests in 9.956s\n\nOK\n"
+      }
+    ],
+    "strict_openspec": "passed",
+    "main_raw_review": {
+      "path": ".venv-audit/native-worker/original-wait-main-review-v1.json",
+      "bytes": 1705,
+      "sha256": "ac1f1cf27cf52c0b0244a692d1374111948cbeb72d98ce6c467b9cb9a9e9bfb7"
+    },
+    "independent_review": {
+      "path": "analysis/terminal-original-wait-review-v2-20261109.json",
+      "bytes": 9797,
+      "sha256": "b19242c500402376dd381784c333f51c5df09f53fa902a6ecbcea2d633173a21"
+    },
+    "vm_stop": {
+      "path": ".venv-audit/native-worker/original-wait-vm-stop-v1.json",
+      "bytes": 137,
+      "sha256": "176f7d7730ac84658007b73ce15ff7bdc76ec8ac12adc783b89ad30cc72122a6"
+    },
+    "host_input_sent": false,
+    "host_input_blocked": false,
+    "continuous_host_performance_unaffected_proved": false
+  },
+  "preservation": {
+    "parent": {
+      "path": "analysis/reverse-validation-preservation-v1-20261106.json",
+      "bytes": 171408,
+      "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+    },
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "retirement": {
+    "plan": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\original-wait-retirement-plan-v1.json",
+      "bytes": 13896,
+      "sha256": "39f232c0c6d690e2342a05f003293ad79727c99f3d72d3b7b003d147a144a452"
+    },
+    "guest_deleted": [
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v1-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v2-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v3-20261109.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-decode-v1-20261109.json",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-decode-v2-20261109.json",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-decode-v3-diagnostic-20261109.json",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-decode-v1-20261109.records.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-decode-v3-diagnostic-20261109.records.json.gz",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-decode-v1-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-decode-v2-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-decode-v3-diagnostic-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-etw-v1-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-etw-v2-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-etw-v3-20261109.log",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-decode-v1-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-decode-v2-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-decode-v3-diagnostic-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-etw-v1-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-etw-v2-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\terminal-original-wait-etw-v3-20261109-driver.py",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v2-20261109\\trace.etl",
+        "deleted": true
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-original-wait-etw-v3-20261109\\trace.etl",
+        "deleted": true
+      }
+    ],
+    "host_deleted": [],
+    "host_retained_duplicates": [
+      {
+        "candidate": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\guest-system-dlls\\ntoskrnl-5669b9b8bfcf.exe",
+          "bytes": 11597168,
+          "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+        },
+        "retained_original": {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\guest-ntoskrnl.exe",
+          "bytes": 11597168,
+          "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+        },
+        "deleted": false,
+        "reason": "Python unlink failed with WinError 5; subsequent exact PowerShell deletion rejected by automatic approval policy (blocked by policy), no more deletion attempts. Counted as retained same-volume duplicate."
+      }
+    ],
+    "guest_removed_logical_bytes": 3880553,
+    "host_removed_logical_bytes": 0,
+    "original_assets_saves_checkpoints_deleted": false,
+    "old_kernel_copy_unchanged": true,
+    "guest_deletion_does_not_imply_vmdk_shrink": true,
+    "cleanup_complete": false
+  },
+  "evidence": [
+    {
+      "path": "analysis/terminal-original-wait-audit-scripts-v1-20261109.zip",
+      "bytes": 11303,
+      "sha256": "473aa42897b7900609099fb21a4300d30c79ce6a4bcdbf9002484c7d74d7b1b1"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decode-v1-20261109.json",
+      "bytes": 21386,
+      "sha256": "81c07fe590cf6cac57fba49270164321e176f63805b0dbe260c7b97edbef15df"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decode-v1-20261109.records.json.gz",
+      "bytes": 13653,
+      "sha256": "9939e054953e8ccc8a89fb64a2f11dd85477771429b66b4d68bbf2ef83feae0b"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decode-v2-20261109.json",
+      "bytes": 8033,
+      "sha256": "59623f3aad8328807ba446dd53e7d4a331600391bd55d4a390b553009e147b2c"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decode-v3-diagnostic-20261109.json",
+      "bytes": 23422,
+      "sha256": "1f009e7a13dc2e8e4a8005412dd535ddb18194b4f185dc61c32ad9ce6907fbce"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decode-v3-diagnostic-20261109.records.json.gz",
+      "bytes": 2942,
+      "sha256": "1a6e34a6454dab3ed5b5d980481b46042638dcad652a9630c85f9512d9437cb4"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decoder-implementation-v1-20261109.zip",
+      "bytes": 15534,
+      "sha256": "7fed77f32cb6e1675ec4c57dc1ae567202550fad7a22cefc56f3556f0341beab"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decoder-implementation-v2-20261109.zip",
+      "bytes": 17105,
+      "sha256": "0887eaab2a689228948a593e037c61c30e5245d011cfc955ea151a4edeb3b67a"
+    },
+    {
+      "path": "analysis/terminal-original-wait-decoder-implementation-v3-20261109.zip",
+      "bytes": 22247,
+      "sha256": "d80e2f9eb6fea73faf469c008ac85ec0bb5e4ddec2d7eea839de81759826afc2"
+    },
+    {
+      "path": "analysis/terminal-original-wait-etw-v1-20261109.json.gz",
+      "bytes": 19552,
+      "sha256": "8b0dfff5fc72e27f1e917ea0640f6fec059a97b662044ea6266ac66cef44a5c7"
+    },
+    {
+      "path": "analysis/terminal-original-wait-etw-v2-20261109.json.gz",
+      "bytes": 22989,
+      "sha256": "64a446caf8bb2738eb9ad0723b6efa2735a2ce31b6ef486ad4c0278d0cd22bb8"
+    },
+    {
+      "path": "analysis/terminal-original-wait-etw-v3-20261109.json.gz",
+      "bytes": 23357,
+      "sha256": "8a913ded6ba27899f596c8399c21d56b830bb4715c382a35980a5c38d6624492"
+    },
+    {
+      "path": "analysis/terminal-original-wait-implementation-v1-20261109.zip",
+      "bytes": 6692,
+      "sha256": "95800a2f417b9cfe4045ab0528087e4bd542b1f011d4835f929451d75e83cca6"
+    },
+    {
+      "path": "analysis/terminal-original-wait-implementation-v2-20261109.zip",
+      "bytes": 9362,
+      "sha256": "6cb06535329a57cf32ab4a1d507218363d672ddb1c28f8f1bfaad96de738c120"
+    },
+    {
+      "path": "analysis/terminal-original-wait-implementation-v3-20261109.zip",
+      "bytes": 8775,
+      "sha256": "fd2ff5756351d37b869b602dd1b9a6fd6f2de75d3780ac557717c6ad312acaa3"
+    },
+    {
+      "path": "analysis/terminal-original-wait-receipts-v1-20261109.zip",
+      "bytes": 19106,
+      "sha256": "579401628ae2e189ae096ab3238480f2c92dc42c05e312fa57ce10170c988b6e"
+    },
+    {
+      "path": "analysis/terminal-original-wait-review-v1-20261109.json",
+      "bytes": 10136,
+      "sha256": "8a1661038415aeb5c798b3ef6366b94cf7fddfe05e476783aa25e6e4bea9279c"
+    },
+    {
+      "path": "analysis/terminal-original-wait-review-v2-20261109.json",
+      "bytes": 9797,
+      "sha256": "b19242c500402376dd381784c333f51c5df09f53fa902a6ecbcea2d633173a21"
+    }
+  ],
+  "new_local_files_including_backups_scripts_logs": [
+    {
+      "path": ".venv-audit/native-worker/boot-original-wait-etw-v1-20261109.json",
+      "bytes": 1127,
+      "sha256": "39c7af4ca03a9a1d7db482e40f2f77de51b634b876bb98f1040bf14ff12a4ed8"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-original-wait-change.py",
+      "bytes": 1657,
+      "sha256": "4d4d851a8c2005788735372cc1a2743d27eb9ac4032374c8810b49fdf9a7c291"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-original-wait-evidence.py",
+      "bytes": 6409,
+      "sha256": "52e30bb6ce0c9772341e5460a89926e38ef8b26543f0f52eac963081fc56bd0f"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-original-wait.py",
+      "bytes": 7410,
+      "sha256": "b46336d6241a01b8787bb57210db23c5b68873c0bfdaa940ad55c59dafec7175"
+    },
+    {
+      "path": ".venv-audit/native-worker/finish-original-wait-retirement.py",
+      "bytes": 1918,
+      "sha256": "42542bbfd481dc572f338e43a02ebe9c26f5fd04e737aed7c2d3fbd9ca5aceeb"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-audio-original-wait-etw-v1-20261109.json",
+      "bytes": 113,
+      "sha256": "71b6d4d2d907a9bafe3ff6750b70c3196636aaf1f80d8841c20f93bdf4b2de4a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-clock-original-wait-etw-v1-20261109.json",
+      "bytes": 691,
+      "sha256": "b06c7232093d8d21d807850392fe2210f9f610e3f52b0531d2c0d78317bf45e7"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-preflight-original-wait-etw-v1-20261109.json",
+      "bytes": 1510,
+      "sha256": "231e5b69da94acaf62da96a45a56285065bf0b5085baa44e63231cec2c921dbe"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/ntoskrnl-5669b9b8bfcf.exe",
+      "bytes": 11597168,
+      "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+    },
+    {
+      "path": ".venv-audit/native-worker/original-wait-main-review-v1.json",
+      "bytes": 1705,
+      "sha256": "ac1f1cf27cf52c0b0244a692d1374111948cbeb72d98ce6c467b9cb9a9e9bfb7"
+    },
+    {
+      "path": ".venv-audit/native-worker/original-wait-preservation-v1.json",
+      "bytes": 317,
+      "sha256": "bd855abdeb7736f83a08543df420ba5b8c844ed53b310c950d5b9dff0aee7f3d"
+    },
+    {
+      "path": ".venv-audit/native-worker/original-wait-retirement-plan-v1.json",
+      "bytes": 13896,
+      "sha256": "39f232c0c6d690e2342a05f003293ad79727c99f3d72d3b7b003d147a144a452"
+    },
+    {
+      "path": ".venv-audit/native-worker/original-wait-retirement-result-v1.json",
+      "bytes": 4317,
+      "sha256": "6f1d3da825ce9699b862d5e8270a6b23faab82397409dab760f9e605ddca6675"
+    },
+    {
+      "path": ".venv-audit/native-worker/original-wait-unit-checks-v1-20261109.json",
+      "bytes": 1018,
+      "sha256": "785b3dc3ee97c26946041934e2479e9564d5aafbbcea0e946eb1402d8bbb84be"
+    },
+    {
+      "path": ".venv-audit/native-worker/original-wait-unit-checks-v2-20261109.json",
+      "bytes": 1010,
+      "sha256": "c072f09b70eddea7dda904a9fce06f4ad1d689ff2db4293e23223f46a7cde586"
+    },
+    {
+      "path": ".venv-audit/native-worker/original-wait-vm-stop-v1.json",
+      "bytes": 137,
+      "sha256": "176f7d7730ac84658007b73ce15ff7bdc76ec8ac12adc783b89ad30cc72122a6"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-original-wait-etw-run.py",
+      "bytes": 1428,
+      "sha256": "2eb36d9fd5165a8872f3c1d96fefcefecc809a3856650607aa47a3f144ab9f73"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-original-wait-etw-v1-20261109.json",
+      "bytes": 4378,
+      "sha256": "c8b131cf9033760b838ed174beaabe954f84327474c71eccda148eda32361447"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-original-wait-duplicates.py",
+      "bytes": 4912,
+      "sha256": "d994e42c3972dfe5cc6ceedeee15a40b6f5d465ccb7eff37042543e0e415e460"
+    },
+    {
+      "path": ".venv-audit/native-worker/run-original-wait-decode.py",
+      "bytes": 3856,
+      "sha256": "b49aa3d051505be2865f529e5da57d5a67b09589c35cf34223d981d7d0fbda49"
+    },
+    {
+      "path": ".venv-audit/native-worker/stop-original-wait-vm.py",
+      "bytes": 775,
+      "sha256": "49da9c74d84394df17d169af87603e9873cef655fefb7d0dca7b3806f414277a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v1-20261109-driver.py",
+      "bytes": 926,
+      "sha256": "41920df7b4ca3dd42f8b8a20b94a3f0e3c62c766016e05b57620d232a437a7b8"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v1-20261109.json",
+      "bytes": 21386,
+      "sha256": "81c07fe590cf6cac57fba49270164321e176f63805b0dbe260c7b97edbef15df"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v1-20261109.log",
+      "bytes": 750,
+      "sha256": "971b936aa82adeaacc2b7afd599355fe661fd0c6640dcead6b1eab5ba1f1f805"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v1-20261109.records.json.gz",
+      "bytes": 13653,
+      "sha256": "9939e054953e8ccc8a89fb64a2f11dd85477771429b66b4d68bbf2ef83feae0b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v1-20261109.run.json",
+      "bytes": 1831,
+      "sha256": "5d8d48767d624f84d5414149fe9487a779eed3ec9570d41321141e84b2473a33"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v2-20261109-driver.py",
+      "bytes": 926,
+      "sha256": "8997f271fe4321e6530121320c0a46af0a5806b82d28dfff0b71b3b16b3ef024"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v2-20261109.json",
+      "bytes": 8033,
+      "sha256": "59623f3aad8328807ba446dd53e7d4a331600391bd55d4a390b553009e147b2c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v2-20261109.log",
+      "bytes": 826,
+      "sha256": "eabf8e6f0fda09795f50203375c6a22929d9b42c732b49737681214d5af826ed"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v2-20261109.run.json",
+      "bytes": 1742,
+      "sha256": "e64e7b01848810d40341b9a02a2b9c7bb2f9fc9e6d1bbbef8a5bacda58da193a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v3-diagnostic-20261109-driver.py",
+      "bytes": 969,
+      "sha256": "8dd8a12e2dcdf80a6c881f71a99729c3db680f69d51af9c834f6b62b903123e0"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v3-diagnostic-20261109.json",
+      "bytes": 23422,
+      "sha256": "1f009e7a13dc2e8e4a8005412dd535ddb18194b4f185dc61c32ad9ce6907fbce"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v3-diagnostic-20261109.log",
+      "bytes": 838,
+      "sha256": "7f56acf56a4528addd316605eeec12f966ecd6533c50f2db4fd3d3953c7d3da2"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v3-diagnostic-20261109.records.json.gz",
+      "bytes": 2942,
+      "sha256": "1a6e34a6454dab3ed5b5d980481b46042638dcad652a9630c85f9512d9437cb4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-decode-v3-diagnostic-20261109.run.json",
+      "bytes": 2246,
+      "sha256": "f1b9ec974ec78da4ab62c814a9b07dcff2e5c45c63afd1fc6508768ad03cbe7f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v1-20261109-driver.py",
+      "bytes": 530,
+      "sha256": "ac049472065da7279c912800c0d857bcd4454c6d2eae687fd9125908d1d66b3e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v1-20261109.json.gz",
+      "bytes": 19552,
+      "sha256": "8b0dfff5fc72e27f1e917ea0640f6fec059a97b662044ea6266ac66cef44a5c7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v1-20261109.log",
+      "bytes": 816,
+      "sha256": "02b4712b5d7d7dd97fdca488d70bbaab023d2547b435b0301f2cbfce3562c7a3"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v1-20261109.run.json",
+      "bytes": 2073,
+      "sha256": "7b2979440ae70f317dd55217cff0334e05dec88b6a29973ea18a56de0a510bfd"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109/trace.etl",
+      "bytes": 2621440,
+      "sha256": "26245d4507e1cf61c28222d362fea115edd4e895808cb96056cad873dc5f7c7d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109-driver.py",
+      "bytes": 530,
+      "sha256": "3ce1d2a153d4b1d0653dc34ed4bb1dfcca8a68b0355326886f095d3270bef1be"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109.json.gz",
+      "bytes": 22989,
+      "sha256": "64a446caf8bb2738eb9ad0723b6efa2735a2ce31b6ef486ad4c0278d0cd22bb8"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109.log",
+      "bytes": 1013,
+      "sha256": "0fdc57779b3ece731d455e1fe633dfd6971848d2e5f3e6ed6cb3f8b78fa507e4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v2-20261109.run.json",
+      "bytes": 2287,
+      "sha256": "513d07836b0faf042a7f5e707823f6b4a5906eaa2978047491d7d26720771eec"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109/trace.etl",
+      "bytes": 1114112,
+      "sha256": "ed4879ca710a0debc2f0f7705ca2ccd7e62c40d63e5ddf05d540f6489e6336d7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109-driver.py",
+      "bytes": 530,
+      "sha256": "250ade29a9518b688854b864f986786d6ddaf6e2d46354a1c3ae87f27a4f1a03"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109.json.gz",
+      "bytes": 23357,
+      "sha256": "8a913ded6ba27899f596c8399c21d56b830bb4715c382a35980a5c38d6624492"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109.log",
+      "bytes": 1013,
+      "sha256": "52ffa102488a6464403e38424ba6ca9be03d2b054cb6338fd00be80b35612c09"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-original-wait-etw-v3-20261109.run.json",
+      "bytes": 2287,
+      "sha256": "d73ee997c4819f0dddbc065c95f746ad40703b4497f032c5443b1f2f15b48eca"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-12272.log",
+      "bytes": 5358,
+      "sha256": "76ba273fc610ab4a7bd1d7931311477456826be22799928f9152733edef21d66"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-13812.log",
+      "bytes": 5358,
+      "sha256": "af161e03e6324b071e206a5f0772283de368929606e25b2774be28c523e023ea"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-17932.log",
+      "bytes": 5358,
+      "sha256": "ab413cfb949527f677d26317fc2c951c0199675bf3364c719eddebbf79240995"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-20712.log",
+      "bytes": 5358,
+      "sha256": "889b1572f67167bab2f9f6d2a4cd66a8d1c276116399b85565e7dbf488160bb5"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-2160.log",
+      "bytes": 5248,
+      "sha256": "27f95c9ad04ae430a05f7f59d07ff5e334edf25647901d37b1b85f8e01771775"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-21888.log",
+      "bytes": 5249,
+      "sha256": "9e2749c63722eeecf414eca543c7f695eb3673c960fa9417e8fb28b5d85015c0"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-22060.log",
+      "bytes": 5358,
+      "sha256": "401f02c7b4c245f48deb97cf3b787a39bea441f34acf28344086ff38f19c0a03"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-2400.log",
+      "bytes": 4650,
+      "sha256": "d2cca44307e90edea121a883ca79965f7b88b0486c64883e5a30d7263505275b"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-25536.log",
+      "bytes": 5359,
+      "sha256": "1ea8130ccbe7e79721486ce52b55111e2a8abcb2f0697f0dbe9fbfc7ff87bfe5"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27112.log",
+      "bytes": 5358,
+      "sha256": "e033190fc1f6039a07acb4e5ae4b0c5a9adde1a278915eded8aac449f958f3b7"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27296.log",
+      "bytes": 4652,
+      "sha256": "ff1b899c73a1be16fec82ddef3cbd0edcc1a734e1f5f8125016598bf4fad56ea"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27328.log",
+      "bytes": 5358,
+      "sha256": "93818710a8f92ce62af444d5885bdfa6d05653887493d06b03b36918c90a19be"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-27708.log",
+      "bytes": 5549,
+      "sha256": "d25bb8521fee8fa7bbead60749ae1388e5937d0e4da18672b7dfacbdad21c97e"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28040.log",
+      "bytes": 5358,
+      "sha256": "cd52ffc2c5e58e86eadcb229d4bebf979c697655512adc89c6c43e8385f426a6"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-28288.log",
+      "bytes": 5249,
+      "sha256": "5b33ca0d8b8be3ae78e45573b36e762a2a89efc87030c1a6eef1d33ccf45ba5d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29004.log",
+      "bytes": 5358,
+      "sha256": "f0a7b55bbd84458da2050e0becbb9577a1a5f3a21b1f4a564942beda980b2073"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29032.log",
+      "bytes": 5358,
+      "sha256": "7db3b281d71d1775b5efea2cda29795233745a5d8ef7d31e4452d6e4fda6e382"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29812.log",
+      "bytes": 5359,
+      "sha256": "c9e38ca5c5a76ed43de8b8eca168a5f6bcebbda786591b00c265be1dfa40cd61"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-29928.log",
+      "bytes": 5358,
+      "sha256": "dc130661c009f41dc6215b1248c8f4e7d21875dc5d2252459ad6f71752a4fbd0"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30552.log",
+      "bytes": 5358,
+      "sha256": "c603653a4fd797bdcd395c07918375c2dbeea5685247aa24b88ebc0a487a28ee"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-30600.log",
+      "bytes": 5358,
+      "sha256": "e934651bfdbfe30ddc87515a7d8fbc1ebf1e1d94adc944711c3126287997fd48"
+    },
+    {
+      "path": ".venv-audit/native-worker/tmp/vmware-lai/vmware-vix-8764.log",
+      "bytes": 5357,
+      "sha256": "40bd937d603dcfb1e45593b925ad5d3f82aea984f05d9de7fd0b8f2da0fd6639"
+    },
+    {
+      "path": ".venv-audit/native-worker/vmware.log",
+      "bytes": 372387,
+      "sha256": "ebe56d87b60e60cd8185a8672aad0c0d47a91f9ab78bf8a8fc0c1416fe0cdeac"
+    }
+  ],
+  "storage": {
+    "worker_logical_bytes": 21961531040,
+    "previous_worker_logical_bytes": 21907397595,
+    "worker_growth_bytes": 54133445,
+    "mutable_vmdk_bytes": 16640311296,
+    "mutable_vmdk_growth_bytes": 38731776,
+    "newly_added_analysis_bytes": 265391,
+    "new_local_bytes_including_backups_scripts_logs": 16037484,
+    "all_round_evidence_bytes_including_backups_scripts_logs": 16302875,
+    "environment_existing_dependencies_and_prior_plus_new_analysis_bytes": 22001036958,
+    "new_local_selection": "mtime >= 2026-11-09T06:25:00Z plus explicit new kernel duplicate; mutable VMDK/VMX/nvram counted as environment, secret credentials excluded from evidence manifest",
+    "guest_remaining_evidence": "small preflight and retirement plan plus deployed source code; listed original-wait raw sources/ETL/logs/drivers retired",
+    "guest_contents_counted_in_vmdk": true,
+    "host_duplicate_retained_bytes": 11597168,
+    "cleanup_complete": false,
+    "same_F_volume_copy_not_independent_disaster_recovery": true,
+    "report_itself_and_later_git_audit_outputs_excluded": true,
+    "evidence_budget_bytes": 268435456
+  },
+  "next_required": "Continuous original user-mode state/ABI and actual result/resource/PTD lifetime evidence; do not start two formal long replays with this gap"
+}
