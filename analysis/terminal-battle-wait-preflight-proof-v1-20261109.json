@@ -1,0 +1,999 @@
+{
+  "kind": "battle_wait_result_window_decode",
+  "status": "diagnostic_wait_window_observed_cleanup_unproven",
+  "phase": "startup_preflight",
+  "accepted": false,
+  "long_capture_preflight_passed": true,
+  "diagnostic_only": true,
+  "new_native_capture": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "full_instruction_trace": false,
+  "full_resource_lifetime_proved": false,
+  "result_consumption_proved": false,
+  "qualification": {
+    "path": "C:\\ChaomofaWorker\\isolation-qualified.json",
+    "bytes": 4378,
+    "sha256": "8b8b48174fd844913bd831067acb5fd6b2c6c2ef0701fcee89adfc2c394af65d",
+    "current_guest_uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+    "current_guest_boot_utc": "2026-11-09T07:35:13.5000000Z",
+    "current_guest_resources": {
+      "logical_processors": 2,
+      "memory_bytes": 4294430720
+    },
+    "verification": {
+      "input_isolation_preflight_passed": true,
+      "d3d8_preflight_passed": true,
+      "guest_probe_foreground_verified": true,
+      "guest_queue_fallback_used": false,
+      "guest_queue_detach_verified": false,
+      "original_game_compatible": false,
+      "full_battle_exit_accepted": false,
+      "continuous_host_performance_unaffected_proved": false,
+      "accepted": false
+    },
+    "source_utf8": "{\r\n  \"schema_version\": 1,\r\n  \"nonce\": 1392635436,\r\n  \"host\": {\r\n    \"uuid\": \"BD53569B-8CFC-CA17-A714-D8BBC150E486\",\r\n    \"computer\": \"DESKTOP-FBK3PBR\",\r\n    \"free_kib\": 10297500\r\n  },\r\n  \"guest_executable\": {\r\n    \"path\": \"F:\\\\project\\\\chaomofa\\\\.venv-audit\\\\native-worker\\\\guest-preflight.exe\",\r\n    \"bytes\": 24576,\r\n    \"sha256\": \"527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7\"\r\n  },\r\n  \"vmx\": {\r\n    \"path\": \"F:\\\\project\\\\chaomofa\\\\.venv-audit\\\\native-worker\\\\chaomofa-worker.vmx\",\r\n    \"bytes\": 4100,\r\n    \"sha256\": \"4fcea4eb6fa1c9aaf6430e0dba03333d907ace46ed82a9d2353e4949a78fb0d0\"\r\n  },\r\n  \"accepted\": false,\r\n  \"implementations\": [\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_vm_preflight.py\",\r\n      \"bytes\": 12936,\r\n      \"sha256\": \"a6d1e745baf2f964222f751b845820d16b0b552bd5a0d6b659d1f63fa16be58b\"\r\n    },\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_windows_vm.py\",\r\n      \"bytes\": 16893,\r\n      \"sha256\": \"c0413bd97d26fe24c849cc28358d88557f905bb7ff1922a72057ebbfc1f5dbf5\"\r\n    },\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_guest_preflight.cs\",\r\n      \"bytes\": 13526,\r\n      \"sha256\": \"b32780b5b0027d20082c67b3adacec8d27d8312488e4dae6369d918a8fe70644\"\r\n    }\r\n  ],\r\n  \"host_observation\": {\r\n    \"hooks_installed\": true,\r\n    \"tagged_mouse\": 0,\r\n    \"tagged_keyboard\": 0,\r\n    \"total_mouse_events\": 0,\r\n    \"total_keyboard_events\": 0,\r\n    \"host_input_injected\": false,\r\n    \"host_input_blocked\": false,\r\n    \"foreground_pids\": [\r\n      9568\r\n    ],\r\n    \"error\": null,\r\n    \"hooks_removed\": [\r\n      true,\r\n      true\r\n    ],\r\n    \"elapsed_seconds\": 3.281\r\n  },\r\n  \"guest\": {\r\n    \"schema_version\": 1,\r\n    \"accepted\": false,\r\n    \"game_executed\": false,\r\n    \"events\": [\r\n      {\r\n        \"message\": 513,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 514,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 256,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 257,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      }\r\n    ],\r\n    \"machine\": {\r\n      \"manufacturer\": \"VMware, Inc.\",\r\n      \"model\": \"VMware Virtual Platform\",\r\n      \"logical_processors\": 2,\r\n      \"memory_bytes\": 4294430720,\r\n      \"uuid\": \"E6D84D56-0960-FA47-1543-6C62C21D5DC7\",\r\n      \"boot_utc\": \"2026-11-09T07:35:13.5000000Z\",\r\n      \"computer_name\": \"CHAOMOFA-WORKER\",\r\n      \"session\": 1,\r\n      \"active_console_session\": 1\r\n    },\r\n    \"nonce\": 1392635436,\r\n    \"pid\": 4760,\r\n    \"executable_sha256\": \"527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7\",\r\n    \"foreground_before\": {\r\n      \"hwnd\": 197074,\r\n      \"pid\": 4760,\r\n      \"tid\": 4908,\r\n      \"title\": \"Dedicated guest input preflight\",\r\n      \"own_desktop\": \"Default\",\r\n      \"own_desktop_query_succeeded\": true,\r\n      \"own_window\": 197074,\r\n      \"own_pid\": 4760,\r\n      \"own_tid\": 4908\r\n    },\r\n    \"set_foreground_result\": true,\r\n    \"foreground_after\": {\r\n      \"hwnd\": 197074,\r\n      \"pid\": 4760,\r\n      \"tid\": 4908,\r\n      \"title\": \"Dedicated guest input preflight\",\r\n      \"own_desktop\": \"Default\",\r\n      \"own_desktop_query_succeeded\": true,\r\n      \"own_window\": 197074,\r\n      \"own_pid\": 4760,\r\n      \"own_tid\": 4908\r\n    },\r\n    \"input_messages_received\": true,\r\n    \"graphics\": [\r\n      {\r\n        \"fullscreen\": false,\r\n        \"create_hr\": 0,\r\n        \"format\": 22,\r\n        \"clear_hr\": 0,\r\n        \"present_hr\": 0,\r\n        \"device_release\": 0,\r\n        \"factory_release\": 0,\r\n        \"passed\": true\r\n      },\r\n      {\r\n        \"fullscreen\": true,\r\n        \"create_hr\": 0,\r\n        \"format\": 22,\r\n        \"clear_hr\": 0,\r\n        \"present_hr\": 0,\r\n        \"device_release\": 0,\r\n        \"factory_release\": 0,\r\n        \"passed\": true\r\n      }\r\n    ],\r\n    \"preflight_passed\": true,\r\n    \"cleanup_release_submissions\": 2,\r\n    \"window_destroyed\": true\r\n  },\r\n  \"verification\": {\r\n    \"input_isolation_preflight_passed\": true,\r\n    \"d3d8_preflight_passed\": true,\r\n    \"guest_probe_foreground_verified\": true,\r\n    \"guest_queue_fallback_used\": false,\r\n    \"guest_queue_detach_verified\": false,\r\n    \"original_game_compatible\": false,\r\n    \"full_battle_exit_accepted\": false,\r\n    \"continuous_host_performance_unaffected_proved\": false,\r\n    \"accepted\": false\r\n  }\r\n}"
+  },
+  "implementations": [
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_verification.py",
+      "bytes": 36833,
+      "sha256": "08bf42629930144582c8bfbd369f872e01c8e5704c7d0e48019329ac7b9d532b"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_etl.py",
+      "bytes": 12795,
+      "sha256": "3c68044529b5f5fa1b9b3426b3f12382797ab7981e51db2af2b861e935f659ce"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_original_wait_etw_verification.py",
+      "bytes": 39701,
+      "sha256": "3291ca9c213d67a333b0914b175bd80ff59fcbc598bad3b2c7ff8254f912e769"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_school_handoff_verification.py",
+      "bytes": 80810,
+      "sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288"
+    }
+  ],
+  "trace_limits": {
+    "maximum_file_mib": 64,
+    "buffer_kib": 64,
+    "minimum_buffers": 4,
+    "maximum_buffers": 8,
+    "max_events": 2000000,
+    "max_buffers": 1024,
+    "max_selected_records": 16384,
+    "max_selected_gzip_bytes": 524288,
+    "decode_seconds": 180
+  },
+  "errors": [],
+  "source": {
+    "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-preflight-v1-20261109.json.gz",
+    "bytes": 30953,
+    "sha256": "826e59774cab215e99664f6cece863f2884c50cf2dc03d73d8686de27e81038d"
+  },
+  "ETL": {
+    "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-preflight-v1-20261109\\trace.etl",
+    "bytes": 3407872,
+    "sha256": "7434e2ab2c2c92789acd0fff585d012fdbb1ba55ddc380fd1990f19aa6ea9ce8"
+  },
+  "source_cleanup": {
+    "process_status_is_not_WinMain_return": true,
+    "window_and_global_cleanup_observed": true,
+    "source_CRT_zero_result_observed": false,
+    "diagnostic_only": true,
+    "PTDcleanup": false,
+    "full_resource_lifetime_proved": false,
+    "strict_source_cleanup_verified": false,
+    "missing_observation": "No crt_exit receipt or original 5714F2 CRT-exit frame; WinMain frame remains on sampled stack.",
+    "pre_CRT_cleanup_witness": {
+      "shutdown_index": 33,
+      "elapsed": 17.10899999999998,
+      "WinMain_bp": 1701400,
+      "WinMain_return_local": 0,
+      "WinMain_caller": 5706982,
+      "sampled_return_local_is_CRT_return": false
+    }
+  },
+  "window_implementations": [
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_window.py",
+      "bytes": 15254,
+      "sha256": "efedb67200d4ae03a2437d88b55c3a0015913f227e8e74e6fa7f68d4aa46750b"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_original_wait_etw.py",
+      "bytes": 19142,
+      "sha256": "9d7aff0b2f19796902a3b4973a0a48bea0162c89501029e45b45f5cfdb0926b0"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    }
+  ],
+  "reader_qualification": {
+    "path": "C:\\ChaomofaWorker\\isolation-qualified.json",
+    "bytes": 4378,
+    "sha256": "8b8b48174fd844913bd831067acb5fd6b2c6c2ef0701fcee89adfc2c394af65d",
+    "current_guest_uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+    "current_guest_boot_utc": "2026-11-09T07:35:13.5000000Z",
+    "current_guest_resources": {
+      "logical_processors": 2,
+      "memory_bytes": 4294430720
+    },
+    "verification": {
+      "input_isolation_preflight_passed": true,
+      "d3d8_preflight_passed": true,
+      "guest_probe_foreground_verified": true,
+      "guest_queue_fallback_used": false,
+      "guest_queue_detach_verified": false,
+      "original_game_compatible": false,
+      "full_battle_exit_accepted": false,
+      "continuous_host_performance_unaffected_proved": false,
+      "accepted": false
+    },
+    "source_utf8": "{\r\n  \"schema_version\": 1,\r\n  \"nonce\": 1392635436,\r\n  \"host\": {\r\n    \"uuid\": \"BD53569B-8CFC-CA17-A714-D8BBC150E486\",\r\n    \"computer\": \"DESKTOP-FBK3PBR\",\r\n    \"free_kib\": 10297500\r\n  },\r\n  \"guest_executable\": {\r\n    \"path\": \"F:\\\\project\\\\chaomofa\\\\.venv-audit\\\\native-worker\\\\guest-preflight.exe\",\r\n    \"bytes\": 24576,\r\n    \"sha256\": \"527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7\"\r\n  },\r\n  \"vmx\": {\r\n    \"path\": \"F:\\\\project\\\\chaomofa\\\\.venv-audit\\\\native-worker\\\\chaomofa-worker.vmx\",\r\n    \"bytes\": 4100,\r\n    \"sha256\": \"4fcea4eb6fa1c9aaf6430e0dba03333d907ace46ed82a9d2353e4949a78fb0d0\"\r\n  },\r\n  \"accepted\": false,\r\n  \"implementations\": [\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_vm_preflight.py\",\r\n      \"bytes\": 12936,\r\n      \"sha256\": \"a6d1e745baf2f964222f751b845820d16b0b552bd5a0d6b659d1f63fa16be58b\"\r\n    },\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_windows_vm.py\",\r\n      \"bytes\": 16893,\r\n      \"sha256\": \"c0413bd97d26fe24c849cc28358d88557f905bb7ff1922a72057ebbfc1f5dbf5\"\r\n    },\r\n    {\r\n      \"path\": \"F:\\\\project\\\\chaomofa\\\\devtools\\\\isolated_guest_preflight.cs\",\r\n      \"bytes\": 13526,\r\n      \"sha256\": \"b32780b5b0027d20082c67b3adacec8d27d8312488e4dae6369d918a8fe70644\"\r\n    }\r\n  ],\r\n  \"host_observation\": {\r\n    \"hooks_installed\": true,\r\n    \"tagged_mouse\": 0,\r\n    \"tagged_keyboard\": 0,\r\n    \"total_mouse_events\": 0,\r\n    \"total_keyboard_events\": 0,\r\n    \"host_input_injected\": false,\r\n    \"host_input_blocked\": false,\r\n    \"foreground_pids\": [\r\n      9568\r\n    ],\r\n    \"error\": null,\r\n    \"hooks_removed\": [\r\n      true,\r\n      true\r\n    ],\r\n    \"elapsed_seconds\": 3.281\r\n  },\r\n  \"guest\": {\r\n    \"schema_version\": 1,\r\n    \"accepted\": false,\r\n    \"game_executed\": false,\r\n    \"events\": [\r\n      {\r\n        \"message\": 513,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 514,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 256,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      },\r\n      {\r\n        \"message\": 257,\r\n        \"extra\": 1392635436,\r\n        \"foreground\": true\r\n      }\r\n    ],\r\n    \"machine\": {\r\n      \"manufacturer\": \"VMware, Inc.\",\r\n      \"model\": \"VMware Virtual Platform\",\r\n      \"logical_processors\": 2,\r\n      \"memory_bytes\": 4294430720,\r\n      \"uuid\": \"E6D84D56-0960-FA47-1543-6C62C21D5DC7\",\r\n      \"boot_utc\": \"2026-11-09T07:35:13.5000000Z\",\r\n      \"computer_name\": \"CHAOMOFA-WORKER\",\r\n      \"session\": 1,\r\n      \"active_console_session\": 1\r\n    },\r\n    \"nonce\": 1392635436,\r\n    \"pid\": 4760,\r\n    \"executable_sha256\": \"527436a5cc8ff70a0bccfef35cd1f9fefeed4d8fc066a08a551fa16bafb884e7\",\r\n    \"foreground_before\": {\r\n      \"hwnd\": 197074,\r\n      \"pid\": 4760,\r\n      \"tid\": 4908,\r\n      \"title\": \"Dedicated guest input preflight\",\r\n      \"own_desktop\": \"Default\",\r\n      \"own_desktop_query_succeeded\": true,\r\n      \"own_window\": 197074,\r\n      \"own_pid\": 4760,\r\n      \"own_tid\": 4908\r\n    },\r\n    \"set_foreground_result\": true,\r\n    \"foreground_after\": {\r\n      \"hwnd\": 197074,\r\n      \"pid\": 4760,\r\n      \"tid\": 4908,\r\n      \"title\": \"Dedicated guest input preflight\",\r\n      \"own_desktop\": \"Default\",\r\n      \"own_desktop_query_succeeded\": true,\r\n      \"own_window\": 197074,\r\n      \"own_pid\": 4760,\r\n      \"own_tid\": 4908\r\n    },\r\n    \"input_messages_received\": true,\r\n    \"graphics\": [\r\n      {\r\n        \"fullscreen\": false,\r\n        \"create_hr\": 0,\r\n        \"format\": 22,\r\n        \"clear_hr\": 0,\r\n        \"present_hr\": 0,\r\n        \"device_release\": 0,\r\n        \"factory_release\": 0,\r\n        \"passed\": true\r\n      },\r\n      {\r\n        \"fullscreen\": true,\r\n        \"create_hr\": 0,\r\n        \"format\": 22,\r\n        \"clear_hr\": 0,\r\n        \"present_hr\": 0,\r\n        \"device_release\": 0,\r\n        \"factory_release\": 0,\r\n        \"passed\": true\r\n      }\r\n    ],\r\n    \"preflight_passed\": true,\r\n    \"cleanup_release_submissions\": 2,\r\n    \"window_destroyed\": true\r\n  },\r\n  \"verification\": {\r\n    \"input_isolation_preflight_passed\": true,\r\n    \"d3d8_preflight_passed\": true,\r\n    \"guest_probe_foreground_verified\": true,\r\n    \"guest_queue_fallback_used\": false,\r\n    \"guest_queue_detach_verified\": false,\r\n    \"original_game_compatible\": false,\r\n    \"full_battle_exit_accepted\": false,\r\n    \"continuous_host_performance_unaffected_proved\": false,\r\n    \"accepted\": false\r\n  }\r\n}"
+  },
+  "ABI": {
+    "DESCRIPTOR": 16,
+    "EVENT_HEADER": 80,
+    "BUFFER_CONTEXT": 4,
+    "EVENT_RECORD": 112,
+    "LEGACY_EVENT": 88,
+    "LOG_HEADER": 280,
+    "LOGFILE": 448,
+    "PROPERTY_DESCRIPTOR": 16
+  },
+  "open_trace_handle": 65,
+  "ETL_header": {
+    "StartTime": 134386836028761071,
+    "EndTime": 134386836035347077,
+    "BootTime": 134386833135000000,
+    "PerfFreq": 10000000,
+    "NumberOfProcessors": 2,
+    "PointerSize": 8,
+    "EventsLost": 0,
+    "BuffersLost": 0,
+    "BuffersWritten": 52,
+    "ReservedFlags": 1,
+    "LogFileMode": 33554561
+  },
+  "ETL_header_raw_hex": "000001000a0001057c4f000002000000852260881d70dd015a620200400000008100000234000000010000000800000000000000580b00000200000000000000070000000000000020feffff400074007a007200650073002e0064006c006c002c002d00350037003200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400074007a007200650073002e0064006c006c002c002d003500370031000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c4ffffff00000000c05980db1c70dd018096980000000000efa3fb871d70dd010100000000000000",
+  "first_record": {
+    "header_hex": "18020000400300007007000030070000efa3fb871d70dd0100d9fd683e4ad11184f40000f80464e300000200000000000000000000000000d1030000af05000000000000000000000000000000000000",
+    "payload_prefix_hex": "000001000a0001057c4f000002000000852260881d70dd015a620200400000008100000234000000010000000800000000000000580b00000200000000000000070000000000000020feffff400074007a007200650073002e0064006c006c002c002d00350037003200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400074007a007200650073002e0064006c006c002c002d003500370031000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c4ffffff00000000c05980db1c70dd018096980000000000efa3fb871d70dd0101000000000000004e00540020004b00650072006e0065006c0020004c006f006700670065007200000043003a005c004300680061006f006d006f006600610057006f0072006b00650072005c00700072006f006a006500630074005c0061006e0061006c0079007300690073005c007400650072006d0069006e0061006c002d0062006100740074006c0065002d0077006100690074002d00770069006e0064006f0077002d0070007200650066006c0069006700680074002d00760031002d00320030003200360031003100300039005c00740072006100630065002e00650074006c000000",
+    "payload_bytes": 504,
+    "FILETIME": 134386836028761071
+  },
+  "process_trace_status": 0,
+  "callback_errors": [],
+  "total_records": 123180,
+  "buffer_reads": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52
+  ],
+  "matching_schema_counts": {
+    "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc:51": 58121,
+    "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc:52": 57994,
+    "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c:36": 4925
+  },
+  "first_schema_records": [
+    {
+      "header_provider_guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+      "schema": {
+        "provider_guid": "9e814aad-3204-11d2-9a82-006008a86939",
+        "event_guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+        "metadata_sha256": "dc9a1ffc107a7045015262305e0e97ae13dd4580f144cf70f940b499b5f0a799",
+        "metadata_prefix_hex": "ad4a819e0432d2119a82006008a86939b4bf1dce7e13a64d87b03f59aa102cbc000002000033000000000000000000000100000088000000000000000000000000000000aa000000bc000000000000000000000000000000000000000000000000000000010000000100000000000000",
+        "metadata_bytes": 240
+      },
+      "record_header_hex": "1800000050030000ffffffffffffffffe835fc871d70dd01b4bf1dce7e13a64d87b03f59aa102cbc00000200003300000000000000000000000000000000000000000000000000000000000000000000",
+      "buffer_context_hex": "0100ffff",
+      "payload_hex": "4c2ccebfb58effff",
+      "decoded": {
+        "index": 31,
+        "guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+        "opcode": 51,
+        "ns": 1794210002879844000,
+        "tid": 4294967295,
+        "pid": 4294967295,
+        "cpu": 1,
+        "decoder_cpu_tid_before": null,
+        "data": {
+          "SysCallAddress": 18446619509991025740
+        }
+      }
+    },
+    {
+      "header_provider_guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+      "schema": {
+        "provider_guid": "9e814aad-3204-11d2-9a82-006008a86939",
+        "event_guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+        "metadata_sha256": "b4641796d21fdc0cddcd35d6b3728adbeb09f6075c5d088f97a99a0c38be50a4",
+        "metadata_prefix_hex": "ad4a819e0432d2119a82006008a86939b4bf1dce7e13a64d87b03f59aa102cbc000002000034000000000000000000000100000088000000000000000000000000000000aa000000bc000000000000000000000000000000000000000000000000000000010000000100000000000000",
+        "metadata_bytes": 240
+      },
+      "record_header_hex": "1400000050030000ffffffffffffffff0e36fc871d70dd01b4bf1dce7e13a64d87b03f59aa102cbc00000200003400000000000000000000000000000000000000000000000000000000000000000000",
+      "buffer_context_hex": "0100ffff",
+      "payload_hex": "00000000",
+      "decoded": {
+        "index": 42,
+        "guid": "ce1dbfb4-137e-4da6-87b0-3f59aa102cbc",
+        "opcode": 52,
+        "ns": 1794210002879847800,
+        "tid": 4294967295,
+        "pid": 4294967295,
+        "cpu": 1,
+        "decoder_cpu_tid_before": null,
+        "data": {
+          "SysCallNtStatus": 0
+        }
+      }
+    },
+    {
+      "header_provider_guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+      "schema": {
+        "provider_guid": "9e814aad-3204-11d2-9a82-006008a86939",
+        "event_guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+        "metadata_sha256": "4c64e387a827df446cc498ff5e046f770b96057053c732e94b477dc23188403a",
+        "metadata_prefix_hex": "ad4a819e0432d2119a82006008a86939d1a86f3d05fed0119dda00c04fd7ba7c000004000024000000000000000000000100000090010000000000000000000000000000b2010000c00100000000000000000000000000000000000000000000000000000c0000000c00000000000000",
+        "metadata_bytes": 840
+      },
+      "record_header_hex": "2800000050030000ffffffffffffffff5e38fc871d70dd01d1a86f3d05fed0119dda00c04fd7ba7c00000400002400000000000000000000000000000000000000000000000000000000000000000000",
+      "buffer_context_hex": "0000ffff",
+      "payload_hex": "3c00000070070000170900001700090117000000fe190800",
+      "decoded": {
+        "index": 135,
+        "guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+        "opcode": 36,
+        "ns": 1794210002879907000,
+        "tid": 4294967295,
+        "pid": 4294967295,
+        "cpu": 0,
+        "decoder_cpu_tid_before": null,
+        "data": {
+          "NewThreadId": 60,
+          "OldThreadId": 1904
+        }
+      }
+    }
+  ],
+  "subject_thread_bindings": [
+    {
+      "opcode": 3,
+      "pid": 2144,
+      "tid": 3628,
+      "ns": 1794210002886246100,
+      "header_hex": "6a000000400300002c0e000060080000fd2ffd871d70dd01d1a86f3d05fed0119dda00c04fd7ba7c00000300000300000000000000000000080000000700000000000000000000000000000000000000",
+      "payload_hex": "600800002c0e00000010c31982f9ffff00b0c21982f9ffff000074060000000000c0730600000000030000000000000010e156000000000000203e000000000000000000080502000000",
+      "schema": {
+        "provider_guid": "9e814aad-3204-11d2-9a82-006008a86939",
+        "event_guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+        "metadata_sha256": "fef36f5466f840c7f9f826c38f044fab204406e93954e29625a111bce2241ca8",
+        "metadata_prefix_hex": "ad4a819e0432d2119a82006008a86939d1a86f3d05fed0119dda00c04fd7ba7c0000030000030000000000000000000001000000c0010000000000000000000000000000e2010000f00100000000000000000000000000000000000000000000000000000e0000000e00000000000000",
+        "metadata_bytes": 848
+      }
+    },
+    {
+      "opcode": 4,
+      "pid": 2144,
+      "tid": 3628,
+      "ns": 1794210003533512600,
+      "header_hex": "6a000000400300002c0e000060080000d6f35f881d70dd01d1a86f3d05fed0119dda00c04fd7ba7c00000300000400000000000000000000080000000700000000000000000000000000000000000000",
+      "payload_hex": "600800002c0e00000010c31982f9ffff00b0c21982f9ffff000074060000000000c0730600000000030000000000000010e156000000000000203e000000000000000000080502000000",
+      "schema": {
+        "provider_guid": "9e814aad-3204-11d2-9a82-006008a86939",
+        "event_guid": "3d6fa8d1-fe05-11d0-9dda-00c04fd7ba7c",
+        "metadata_sha256": "9d9e73dbfa22e3f4122e308bba1087ad13d2ef38a2e67a03917b4c59144f2e0c",
+        "metadata_prefix_hex": "ad4a819e0432d2119a82006008a86939d1a86f3d05fed0119dda00c04fd7ba7c0000030000040000000000000000000001000000c0010000000000000000000000000000e2010000f00100000000000000000000000000000000000000000000000000000e0000000e00000000000000",
+        "metadata_bytes": 840
+      }
+    }
+  ],
+  "retained_subject_records": 563,
+  "complete_record_digest": "441e9c4a115f5abf1371b3bf545cc79c967a3ccf650991c26d4d9290e882550c",
+  "digest_coverage": "uint32 payload-length + converted EVENT_HEADER80 + BUFFER_CONTEXT4 + UserData, per record; original complete ETL remains SHA-bound",
+  "retained_sequence_scope": "subject syscall records plus every subject switch on/off CPU; not a stored whole-system event array",
+  "analysis": {
+    "scope": "bounded original wait and sampled result endpoints; not continuous instruction/state proof",
+    "phase": "startup_preflight",
+    "accepted": false,
+    "fullABI": false,
+    "fullstate": false,
+    "PTDcleanup": false,
+    "full_instruction_trace": false,
+    "full_resource_lifetime_proved": false,
+    "independent_full_replay": false,
+    "two_fresh_full_native_cases_verified": false,
+    "result_consumption_proved": false,
+    "diagnostic_only": true,
+    "source_cleanup": {
+      "process_status_is_not_WinMain_return": true,
+      "window_and_global_cleanup_observed": true,
+      "source_CRT_zero_result_observed": false,
+      "diagnostic_only": true,
+      "PTDcleanup": false,
+      "full_resource_lifetime_proved": false,
+      "strict_source_cleanup_verified": false,
+      "missing_observation": "No crt_exit receipt or original 5714F2 CRT-exit frame; WinMain frame remains on sampled stack.",
+      "pre_CRT_cleanup_witness": {
+        "shutdown_index": 33,
+        "elapsed": 17.10899999999998,
+        "WinMain_bp": 1701400,
+        "WinMain_return_local": 0,
+        "WinMain_caller": 5706982,
+        "sampled_return_local_is_CRT_return": false
+      }
+    },
+    "qualification": {
+      "bytes": 4378,
+      "sha256": "8b8b48174fd844913bd831067acb5fd6b2c6c2ef0701fcee89adfc2c394af65d",
+      "current_guest_uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+      "current_guest_boot_utc": "2026-11-09T07:35:13.5000000Z",
+      "console_session": 1,
+      "current_guest_resources": {
+        "logical_processors": 2,
+        "memory_bytes": 4294430720
+      },
+      "verification": {
+        "input_isolation_preflight_passed": true,
+        "d3d8_preflight_passed": true,
+        "guest_probe_foreground_verified": true,
+        "guest_queue_fallback_used": false,
+        "guest_queue_detach_verified": false,
+        "original_game_compatible": false,
+        "full_battle_exit_accepted": false,
+        "continuous_host_performance_unaffected_proved": false,
+        "accepted": false
+      },
+      "original_game_compatible": false
+    },
+    "kernel": {
+      "kernel_export_address_verified": true,
+      "live_kernel_code_verified": false,
+      "target": 18446735305453063168,
+      "module_sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+    },
+    "API_exports": [
+      {
+        "symbol": "WaitForSingleObject",
+        "target": 1983658272,
+        "module_sha256": "b213db8068dd3a7fea88ad547aa6518ce2e8eb7e46cd704d66643cd0bc499fc1",
+        "original_IAT_raw_verified": true
+      },
+      {
+        "symbol": "NtWaitForSingleObject",
+        "target": 2010201072,
+        "module_sha256": "2761f133cac12188ed380666104527884b2f89dab918bc5082692ca1b7f341e6",
+        "original_IAT_raw_verified": false
+      }
+    ],
+    "TLS_implementation": {
+      "actual_TLS_code_verified": true,
+      "module_sha256": "254d4a108d9873dd9b01ed9083cf1075951ee814739a9403db1fe6081715d5ca"
+    },
+    "input_reference": {
+      "input_required": false,
+      "input_transition_claimed": false
+    },
+    "snapshots_checked": 38,
+    "distinct_successful_waits": 10,
+    "waits": [
+      {
+        "selected_indices": [
+          9,
+          28
+        ],
+        "global_indices": [
+          334,
+          2985
+        ],
+        "interval_ns": [
+          1794210002880650600,
+          1794210002896947200
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "switched_out_intervals": [
+          [
+            1769,
+            1885
+          ],
+          [
+            1970,
+            2082
+          ],
+          [
+            2224,
+            2317
+          ],
+          [
+            2579,
+            2804
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          33,
+          40
+        ],
+        "global_indices": [
+          2998,
+          10913
+        ],
+        "interval_ns": [
+          1794210002897046900,
+          1794210002914132900
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          4
+        ],
+        "switched_out_intervals": [
+          [
+            3109,
+            3271
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          45,
+          60
+        ],
+        "global_indices": [
+          10918,
+          16850
+        ],
+        "interval_ns": [
+          1794210002914169700,
+          1794210002930256300
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          5,
+          6,
+          7
+        ],
+        "switched_out_intervals": [
+          [
+            13341,
+            13609
+          ],
+          [
+            13994,
+            14539
+          ],
+          [
+            14984,
+            15250
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          69,
+          80
+        ],
+        "global_indices": [
+          16861,
+          20542
+        ],
+        "interval_ns": [
+          1794210002930286600,
+          1794210002947021800
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          8,
+          9
+        ],
+        "switched_out_intervals": [
+          [
+            19491,
+            19778
+          ],
+          [
+            20196,
+            20410
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          85,
+          108
+        ],
+        "global_indices": [
+          20552,
+          24230
+        ],
+        "interval_ns": [
+          1794210002947054000,
+          1794210002964181900
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "switched_out_intervals": [
+          [
+            20787,
+            20884
+          ],
+          [
+            21097,
+            21300
+          ],
+          [
+            21742,
+            22430
+          ],
+          [
+            22909,
+            23076
+          ],
+          [
+            23525,
+            23741
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          113,
+          132
+        ],
+        "global_indices": [
+          24239,
+          26908
+        ],
+        "interval_ns": [
+          1794210002964222200,
+          1794210002980811300
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          15,
+          16,
+          17,
+          18
+        ],
+        "switched_out_intervals": [
+          [
+            25000,
+            25170
+          ],
+          [
+            25603,
+            25783
+          ],
+          [
+            26153,
+            26367
+          ],
+          [
+            26752,
+            26857
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          137,
+          156
+        ],
+        "global_indices": [
+          26913,
+          29176
+        ],
+        "interval_ns": [
+          1794210002980857500,
+          1794210002998143800
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          19,
+          20,
+          21,
+          22
+        ],
+        "switched_out_intervals": [
+          [
+            27019,
+            27130
+          ],
+          [
+            27230,
+            27414
+          ],
+          [
+            27830,
+            27919
+          ],
+          [
+            28858,
+            29107
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          161,
+          192
+        ],
+        "global_indices": [
+          29196,
+          34775
+        ],
+        "interval_ns": [
+          1794210002998218800,
+          1794210003014528200
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "switched_out_intervals": [
+          [
+            29390,
+            29640
+          ],
+          [
+            30068,
+            30163
+          ],
+          [
+            30719,
+            31159
+          ],
+          [
+            31792,
+            31944
+          ],
+          [
+            32036,
+            32175
+          ],
+          [
+            33730,
+            34276
+          ],
+          [
+            34549,
+            34718
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          197,
+          224
+        ],
+        "global_indices": [
+          34780,
+          37088
+        ],
+        "interval_ns": [
+          1794210003014569200,
+          1794210003030346100
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          30,
+          31,
+          32,
+          33,
+          34,
+          35
+        ],
+        "switched_out_intervals": [
+          [
+            34899,
+            35098
+          ],
+          [
+            35494,
+            35617
+          ],
+          [
+            36042,
+            36213
+          ],
+          [
+            36478,
+            36566
+          ],
+          [
+            36656,
+            36747
+          ],
+          [
+            36856,
+            36949
+          ]
+        ],
+        "recording_gate_samples": []
+      },
+      {
+        "selected_indices": [
+          229,
+          240
+        ],
+        "global_indices": [
+          37098,
+          40286
+        ],
+        "interval_ns": [
+          1794210003030478400,
+          1794210003046934700
+        ],
+        "NTSTATUS": 0,
+        "syscall_address": 18446735305453063168,
+        "semantic": {
+          "wait_return_site": 5283888,
+          "wait_frame_bp": 108264968,
+          "caller_frame_bp": 108265184,
+          "result_locals": {},
+          "tail_counter": null
+        },
+        "snapshot_indices": [
+          36,
+          37
+        ],
+        "switched_out_intervals": [
+          [
+            37294,
+            37408
+          ],
+          [
+            38007,
+            38359
+          ]
+        ],
+        "recording_gate_samples": []
+      }
+    ],
+    "boundary_ledger": {
+      "initial_unpaired_exits": [],
+      "final_unpaired_entry": 561,
+      "closed_calls": 142,
+      "full_global_pairing": false
+    },
+    "unpaired_boundary_snapshots": [],
+    "unsupported_Nt_snapshots": [],
+    "first_Nt_context": {
+      "suspended_Nt_wait_context_verified": true,
+      "stub_entry": 2010201072,
+      "return_PC": 2010201084,
+      "stub_instruction_bytes_hex": "b804000d00ba1067d377ffd2c20c00",
+      "service_number": 851972,
+      "transition_target": 2010343184,
+      "stack_pointer": 108264736,
+      "stack_return_address": 2008449577,
+      "stack_parameter_bytes_hex": "f00700000000000000000000",
+      "EventHandle": 2032,
+      "Alertable": 0,
+      "Timeout": 0,
+      "snapshot_EAX": 1,
+      "snapshot_EAX_is_syscall_result": false,
+      "NTSTATUS_source": "later ETW SysCallExit, not the suspended snapshot EAX",
+      "caller_callsite_instruction_verified": false,
+      "fullABI": false
+    },
+    "result_endpoints": {
+      "observed_sites": {
+        "0x453cb5": [],
+        "0x453cd3": [],
+        "0x453cdd": [],
+        "0x451758": [],
+        "0x451796": []
+      },
+      "post_result_three_wait_endpoints_observed": false,
+      "callback_nonzero_consumption_endpoint_observed": false,
+      "ten_distinct_tail_waits_observed": false,
+      "observed_tail_counters": [],
+      "completion_gate_wait_observed": false,
+      "recording_call_execution_verified": false,
+      "recording_file_effects_verified": false,
+      "continuous_instruction_result_consumption_verified": false
+    },
+    "worker_exit_query": null,
+    "limits": [
+      "ETW and sparse snapshots do not establish a continuous original instruction stream or complete CPU/RAM/ABI.",
+      "Each counted wait has its own complete pair and actual original owner/Nt stack snapshot; duplicate samples count once.",
+      "Unpaired trace boundaries are explicit and never promoted to successful waits; no intermediate overlap is ignored.",
+      "Recording gate samples do not establish 4967B0 execution or exact replay file side effects.",
+      "Actual worker exit or menu observation is not PTD/TLS/event/thread-handle cleanup proof."
+    ]
+  },
+  "close_trace_status": 0,
+  "selected_records": {
+    "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-decode-preflight-v1-20261109.records.json.gz",
+    "bytes": 12212,
+    "sha256": "8548e08d291aa27287b20f93e456bbf78cc2423acb83ba569906717f88319232"
+  },
+  "same_current_guest_boot_and_resources": true,
+  "elapsed_seconds": 11.342999999999961,
+  "implementations_after": [
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_verification.py",
+      "bytes": 36833,
+      "sha256": "08bf42629930144582c8bfbd369f872e01c8e5704c7d0e48019329ac7b9d532b"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_etl.py",
+      "bytes": 12795,
+      "sha256": "3c68044529b5f5fa1b9b3426b3f12382797ab7981e51db2af2b861e935f659ce"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_original_wait_etw_verification.py",
+      "bytes": 39701,
+      "sha256": "3291ca9c213d67a333b0914b175bd80ff59fcbc598bad3b2c7ff8254f912e769"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_wait_etw_probe.py",
+      "bytes": 50506,
+      "sha256": "60af4a1e487fff1e738808804be36cf7223b2843a365b123b49b1784087a31f6"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_school_handoff_verification.py",
+      "bytes": 80810,
+      "sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288"
+    }
+  ]
+}

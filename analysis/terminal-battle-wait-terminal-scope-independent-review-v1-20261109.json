@@ -1,0 +1,155 @@
+{
+  "kind": "independent_offline_capacity_and_proposed_terminal_scope_review",
+  "accepted": false,
+  "source": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-battle-v6-20261109.json.gz",
+    "bytes": 92900,
+    "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+  },
+  "blocked_decode": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-battle-v7-20261109.json",
+    "bytes": 30247,
+    "sha256": "7904f13cec7674211b9fa77b5b2c8fe7500d9dd33a076ef83ff37ba90067803c"
+  },
+  "complete_selected_records": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-decode-battle-v7-20261109.records.json.gz",
+    "bytes": 331260,
+    "sha256": "cdf4001adf1759d5487b1fc003b621e28041b0d1549e76ef8026a9182053ae4c"
+  },
+  "reviewed_implementations": [
+    {
+      "path": "devtools\\terminal_battle_wait_etl_v2.py",
+      "bytes": 1660,
+      "sha256": "b8f450a5a73c14d516f58bc0cbc961fdbe1cc99297822a4004e36c6f8a86e50f"
+    },
+    {
+      "path": "devtools\\terminal_battle_wait_verification_v3.py",
+      "bytes": 3121,
+      "sha256": "f0971f5d964e9c96c16b61d2f0803d1595ec9e964074bd13ecb25dcf2d5481eb"
+    },
+    {
+      "path": "devtools\\terminal_battle_wait_etl.py",
+      "bytes": 12795,
+      "sha256": "3c68044529b5f5fa1b9b3426b3f12382797ab7981e51db2af2b861e935f659ce"
+    },
+    {
+      "path": "devtools\\terminal_battle_wait_verification_v2.py",
+      "bytes": 14523,
+      "sha256": "81bdbd01c9e782653d9d4ebc017f94185dddf4a4ca0b730f472fbf6235638043"
+    }
+  ],
+  "capacity_review": {
+    "original_source_limits_preserved": {
+      "maximum_file_mib": 64,
+      "buffer_kib": 64,
+      "minimum_buffers": 4,
+      "maximum_buffers": 8,
+      "max_events": 2000000,
+      "max_buffers": 1024,
+      "max_selected_records": 16384,
+      "max_selected_gzip_bytes": 524288,
+      "decode_seconds": 180
+    },
+    "expanded_offline_limits": {
+      "maximum_file_mib": 64,
+      "buffer_kib": 64,
+      "minimum_buffers": 4,
+      "maximum_buffers": 8,
+      "max_events": 2000000,
+      "max_buffers": 1024,
+      "max_selected_records": 65536,
+      "max_selected_gzip_bytes": 2097152,
+      "decode_seconds": 180
+    },
+    "truncated": false,
+    "source_rewritten": false,
+    "complete_events": 186675,
+    "raw_selected_verified": 22243,
+    "all_buffers_and_zero_loss_receipt_verified": true,
+    "only_selected_offline_capacity_changed": true
+  },
+  "observed_thread_end": {
+    "pid": 6096,
+    "tid": 5168,
+    "opcode": 2,
+    "ns": 1794222107616307000,
+    "raw_header_SHA256": "68808c16a84f7afc6c95870e3ce28faf2aa81f93c0b665cbda6e0499aa1ea6af",
+    "raw_payload_SHA256": "492b14540cb22c946cbb5b1c30de21554214b224f9d37fc78f2599b458e4daec",
+    "last_snapshot_end_ns": 1794222107612869200,
+    "worker_exit_query": {
+      "code": 0,
+      "wait_status": 0,
+      "observed_ns": 1794222107616840900,
+      "before_WM_CLOSE": true,
+      "duplicate_handle_query_only": true,
+      "PTDcleanup": false
+    }
+  },
+  "strict_original_before_end": {
+    "records": 22234,
+    "closed_calls": 6219,
+    "initial_unpaired_exits": [],
+    "final_pending_selected_index": 22233,
+    "final_pending_global_index": 151441,
+    "final_pending_ns": 1794222107616305800,
+    "full_global_pairing": false
+  },
+  "terminal_tail_observed": {
+    "records": 9,
+    "CSwitch_records": 5,
+    "syscall_records": 4,
+    "selected_indices": [
+      22234,
+      22235,
+      22236,
+      22237,
+      22238,
+      22239,
+      22240,
+      22241,
+      22242
+    ],
+    "global_indices": [
+      151449,
+      151466,
+      151467,
+      151470,
+      151481,
+      151482,
+      151483,
+      151490,
+      151493
+    ],
+    "all_raw_payload_headers_CPU_flow_verified": true,
+    "final_active_cpu": null,
+    "pairing_claim": false,
+    "cleanup_or_NTSTATUS_semantic_claim": false
+  },
+  "original_full_sequence_rejection_preserved": [
+    "ValueError('overlapping target syscalls; no inferred nesting or discarded entry')"
+  ],
+  "proposed_scope_requirements": [
+    "Unique authentic opcode2 ThreadEnd, with exact raw header PID/TID and payload/schema/time identity; opcode4 rundown is not interchangeable. No later birth or conflicting lifetime binding.",
+    "Authenticate every retained header, payload and CPU transition across both regions; never omit or alter the nine terminal records.",
+    "All actual snapshots must strictly precede ThreadEnd. Reject timestamp-equality ambiguity. Real owned exit0 query follows the authenticated End and remains before WM_CLOSE.",
+    "Preserve strict single-pending validation for every record before End, including unmatched entry22233. Retain terminal rows separately without selecting them as waits, pairing them or inferring nesting/termination/PTD semantics.",
+    "ThreadEnd is an event boundary only. The actual retained tail contains subsequent switches and syscalls for this CPU-attributed TID, so End must not be called the last CPU execution instant.",
+    "Previously blocked v7 report remains immutable; a new verifier/report must declare the changed finite scope and full_global_pairing false."
+  ],
+  "tests": {
+    "ordinary_capacity_tests": 5,
+    "optimized_capacity_tests": 5,
+    "passed": true
+  },
+  "new_VM_or_native_execution_by_reviewer": false,
+  "fullABI": false,
+  "fullstate": false,
+  "full_instruction_trace": false,
+  "full_resource_lifetime_proved": false,
+  "PTDcleanup": false,
+  "two_fresh_full_replays": false,
+  "limitations": [
+    "The proposed v4 implementation has not yet been reviewed by this record. This record supports its precise scope design, not a successful-source acceptance.",
+    "No function identity is assigned to the last pre-End entry. Raw status fields in the tail are retained facts, not authenticated cleanup-return claims."
+  ]
+}

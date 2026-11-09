@@ -1,0 +1,71 @@
+{
+  "kind": "independent_worker_retention_and_precise_timing_adapter_review",
+  "accepted": false,
+  "files": [
+    {
+      "path": "devtools\\terminal_worker_retention_verification.py",
+      "bytes": 10488,
+      "sha256": "a127b7fe2426d34fc0ccc831061075a0541deb378ddbddb5b491fe24ea388bf2"
+    },
+    {
+      "path": "devtools\\tests\\test_terminal_worker_retention_verification.py",
+      "bytes": 6363,
+      "sha256": "3c551596e6b3cbfc3641f0986f917b35abffab9355220797b688212b3e2d0ccc"
+    },
+    {
+      "path": "devtools\\terminal_battle_wait_verification_v2.py",
+      "bytes": 12451,
+      "sha256": "a37842afef82cffeaab58af66c23da54c97039413e17cb57d53d2b1e161c9acd"
+    }
+  ],
+  "preflight_review": {
+    "path": "analysis\\terminal-worker-retention-preflight-independent-review-v1-20261109.json",
+    "bytes": 4289,
+    "sha256": "f947a95f93d0a081332818da5cf4eeb4bd9a16742bf4b24925401ca7319ca89e"
+  },
+  "frozen_school_verifier_sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288",
+  "adapted_function_source_sha256": {
+    "verify_task_row": "0aff27180acbb06f1b95c2e23cc0d1143fdac24b4e11da922c72ae2baa6fc80f",
+    "verify_report": "b9d503d6647aa3235823b867ad4860c7bc185760397a5beffb5cd49c34765100"
+  },
+  "adaptation_scope": [
+    "Three exact AST If predicates only, under complete immutable parent SHA: pending membership, pending versus later worker handle, first retained observation chronology.",
+    "Shared scoped function globals propagate task/ready checks through the full existing verifier. Frozen collector and verifier files remain unchanged.",
+    "Pending requires absent TLS and absent both original callback ancestors; partial ancestry rejected. Ready input targets require retained current TLS.",
+    "Original raw graph, contexts, TLS, input edges, source identity, lifetime and false acceptance flags remain required."
+  ],
+  "tests": {
+    "command": "python -B [-O] -X utf8 -m unittest devtools.tests.test_terminal_worker_retention_verification",
+    "ordinary": {
+      "tests": 8,
+      "result": "OK"
+    },
+    "optimized": {
+      "tests": 8,
+      "result": "OK"
+    }
+  },
+  "precise_timing_review": {
+    "status": "no blocking issue identified in reviewed scope",
+    "checked": [
+      "28/40-byte INPUT layout and actual mouse type/flags, coordinates, data/time and ExtraInfo",
+      "One final down/up pair, complete preceding move ledger and same original action submission results",
+      "Positive ordered PreciseFILETIME submit envelopes and trace begin before down envelope",
+      "Frozen v1 source SHA and six before/after decoder dependency identities",
+      "Original coarse timestamps are preserved, and original independent raw input-edge verification still executes"
+    ],
+    "scope": "Submit envelope ordering only; hold duration remains checked by original input verification.",
+    "precise_hold_duration_independently_bounded": false
+  },
+  "remaining": [
+    "Full adapted school-report path awaits a new actual school source; eight local tests and startup preflight do not establish that full representative verification.",
+    "If first retained row was not saved by unchanged progress signature, strict first_elapsed verification must reject rather than rewrite chronology.",
+    "Startup preflight did not exercise pending construction state or any school/battle input.",
+    "No full CPU/RAM/ABI/cumulative instruction trace, original resource/PTD cleanup or two fresh full replays proved."
+  ],
+  "full_school_source_verified": false,
+  "full_instruction_or_API_trace": false,
+  "full_resource_lifetime_proved": false,
+  "PTDcleanup": false,
+  "two_fresh_full_replays": false
+}

@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "kind": "independent_battle_wait_preflight_and_adapter_review",
+  "scope": "Startup capture/decoder capability and static legal-retreat adapter review only",
+  "accepted": false,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "full_instruction_trace": false,
+  "independent_full_replay": false,
+  "full_resource_lifetime_proved": false,
+  "two_fresh_full_native_cases_verified": false,
+  "result_consumption_proved": false,
+  "formal_progress": "2/8 unchanged",
+  "source": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v1-20261109.json.gz",
+    "bytes": 30953,
+    "sha256": "826e59774cab215e99664f6cece863f2884c50cf2dc03d73d8686de27e81038d"
+  },
+  "ETL": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v1-20261109/trace.etl",
+    "bytes": 3407872,
+    "sha256": "7434e2ab2c2c92789acd0fff585d012fdbb1ba55ddc380fd1990f19aa6ea9ce8"
+  },
+  "decode": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v1-20261109.json",
+    "bytes": 41039,
+    "sha256": "86cfbcd39613966c6427fdb271014ed7145f7f77579e0239982a050227cda6f7"
+  },
+  "selected_records": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v1-20261109.records.json.gz",
+    "bytes": 12212,
+    "sha256": "8548e08d291aa27287b20f93e456bbf78cc2423acb83ba569906717f88319232"
+  },
+  "preflight_collector_capsule": {
+    "path": "analysis/terminal-battle-wait-collector-implementation-v1-20261109.zip",
+    "bytes": 8609,
+    "sha256": "0ac2b0d30f9075c511d2475a7c009a09c40503a2d2e97ffdc1de3762c7a752c5"
+  },
+  "battle_collector_capsule": {
+    "path": "analysis/terminal-battle-wait-collector-implementation-v2-20261109.zip",
+    "bytes": 15213,
+    "sha256": "4e3d03dbd858de334283fd91d1b1d503f46cea0f3ad8c9568ba8d29be02ef415"
+  },
+  "decoder_capsule": {
+    "path": "analysis/terminal-battle-wait-decoder-implementation-v1-20261109.zip",
+    "bytes": 21563,
+    "sha256": "65bccc24f058aee8078389c317b5d80b833703cdd5be7265bc2f599e7a6f3843"
+  },
+  "main_review": {
+    "path": "analysis/terminal-battle-wait-preflight-main-review-v1-20261109.json",
+    "bytes": 2788,
+    "sha256": "c92be91b77f118f33be8eb18d590b5731836cba3b52fb397ffc6cc611e2ace7d"
+  },
+  "independent_method": "All 563 EVENT_HEADER80/payload/CPU records and all 38 actual paused intervals were independently recomputed locally, then the full pure verifier output was checked against the retained decoder analysis. No VM/native run.",
+  "preflight": {
+    "status": "diagnostic_wait_window_observed_cleanup_unproven",
+    "long_capture_preflight_passed": true,
+    "ability_flag_is_formal_acceptance": false,
+    "whole_ETL_events": 123180,
+    "raw_selected_records_checked": 563,
+    "raw_owner_snapshots_checked": 38,
+    "closed_target_syscalls": 142,
+    "distinct_successful_Nt_waits": 10,
+    "actual_global_pairs": [
+      [
+        334,
+        2985
+      ],
+      [
+        2998,
+        10913
+      ],
+      [
+        10918,
+        16850
+      ],
+      [
+        16861,
+        20542
+      ],
+      [
+        20552,
+        24230
+      ],
+      [
+        24239,
+        26908
+      ],
+      [
+        26913,
+        29176
+      ],
+      [
+        29196,
+        34775
+      ],
+      [
+        34780,
+        37088
+      ],
+      [
+        37098,
+        40286
+      ]
+    ],
+    "original_wait_caller": "0x50A030",
+    "unpaired_snapshot_count": 0,
+    "unselected_final_open_selected_index": 561,
+    "unselected_final_open_global_index": 121503,
+    "kernel_NtWait_actual_export_bound": true,
+    "Win32_wait_event_and_infinite_timeout_bound": true,
+    "Nt_event_false_null_parameters_bound": true,
+    "current_TEB_TLS_PTD_and_manager_bound": true,
+    "actual_same_handle_pre_suspend_owner_guard": true,
+    "ProcessTrace": 0,
+    "CloseTrace": 0,
+    "all_reported_loss_counters_zero": true,
+    "source_cleanup": {
+      "process_status_is_not_WinMain_return": true,
+      "window_and_global_cleanup_observed": true,
+      "source_CRT_zero_result_observed": false,
+      "diagnostic_only": true,
+      "PTDcleanup": false,
+      "full_resource_lifetime_proved": false,
+      "strict_source_cleanup_verified": false,
+      "missing_observation": "No crt_exit receipt or original 5714F2 CRT-exit frame; WinMain frame remains on sampled stack.",
+      "pre_CRT_cleanup_witness": {
+        "shutdown_index": 33,
+        "elapsed": 17.10899999999998,
+        "WinMain_bp": 1701400,
+        "WinMain_return_local": 0,
+        "WinMain_caller": 5706982,
+        "sampled_return_local_is_CRT_return": false
+      }
+    },
+    "qualified_guest_boot": "2026-11-09T07:35:13.5000000Z"
+  },
+  "adapter_review": {
+    "files": [
+      {
+        "path": "devtools/terminal_battle_wait_window.py",
+        "bytes": 15254,
+        "sha256": "efedb67200d4ae03a2437d88b55c3a0015913f227e8e74e6fa7f68d4aa46750b"
+      },
+      {
+        "path": "devtools/terminal_battle_wait_capture.py",
+        "bytes": 6904,
+        "sha256": "5c8158aada040a617044d97f76cf7e83cb1732d4911409de476c0a9b100bc2d2"
+      }
+    ],
+    "blocking_defect_found": false,
+    "checked": [
+      "SchoolController replacement is propagated by school.run to menu.OneMenuSelection, then to the continuation CONTROLLER through the existing clone chain.",
+      "Confirmation waits for the same original readiness dwell and creates one window. Its attempted receipt prevents retries; exactly one window is allowed.",
+      "The second left-button query first begins the trace, then executes the original query, final guard and cursor checks before the unchanged original down submission. Begin failure produces an error and no synthetic click.",
+      "The scoped RLock wraps frozen input snapshots rather than holding the lock for the whole action. Poll/guard snapshots serialize; begin to snapshot is same-thread reentrant.",
+      "The original action still submits one down, waits its original hold, submits up, and uses its existing release fallback. The new adapter does not write game fields or replace the original results.",
+      "The scope finally restores the original frozen function; window finish stops only its acquired logger and closes its own retained thread duplicate.",
+      "Whole legal input history is saved once; the small window references its SHA and the exact original confirmation object canonical SHA.",
+      "Source identity is frozen before the long run and checked after; no old source or executed module was modified by this review."
+    ],
+    "limits": [
+      "Trace begin includes PE/export/read-only validation work and can consume the unchanged 11-second input observation budget. A timeout remains an explicit failure; no retry or extra click is permitted.",
+      "Three-second/64-MiB limits may omit some result/cleanup endpoints; only actually paired sampled waits may be counted.",
+      "Current adapter uses original mouse time.time_ns versus precise FILETIME for the window. Local audit Python reports GetSystemTimeAsFileTime with 15.625ms resolution. Guest timing may therefore expose quantization at the begin/down inequality. This is a potential verifier boundary, not a proven failure and not a permission to add tolerance.",
+      "The running battle source must remain immutable. If clock quantization is observed, preserve values and use a new explicitly bounded interpretation; never fabricate precise input instants or patch the running adapter."
+    ]
+  },
+  "local_clock_observation": {
+    "platform_scope": "host audit Python only; not a new guest/native observation",
+    "implementation": "GetSystemTimeAsFileTime()",
+    "resolution_seconds": 0.015625,
+    "guest_clock_observation_collected": false
+  },
+  "tests": {
+    "independent_verifier_pure": "12 passed ordinary and 12 passed optimized",
+    "main_adapter_integration": "Reported by main: fake Controller-to-confirmation-to-second-query/down/poll/drain/restore/receipt integration passed; reviewed statically, not rerun here"
+  },
+  "next_cleanup_dependencies": {
+    "reference": {
+      "path": "devtools/terminal_exit_cleanup_contract.py",
+      "bytes": 20628,
+      "sha256": "c35b55fe174aea87de60184ee5dea0fffa6c05b1674d4adb46ffe4d84809f237"
+    },
+    "required_worker_endpoints": [
+      "421F8A actual callback return and original worker identity",
+      "421FCB flags4 and actual reciprocal event success",
+      "422021 -> 56E1E0(0), optional runtime exit pointer761980",
+      "5753CB actual current PTD lookup; 575450 actual free branches",
+      "57554F/575555 successful TlsSetValue(index,0) and same current TEB slot zero",
+      "56E21B ExitThread(0) plus actual retained-handle exit; never read PTD after free"
+    ],
+    "required_MAIN_endpoints": [
+      "421AE2 GetExitCodeThread BOOL/out DWORD0",
+      "421B4C node event CloseHandle BOOL/object identity",
+      "421D50 / 421E09 actual manager bucket unlink before node free",
+      "421BB2 virtual destructor and421BC6 allocation release when autoDelete",
+      "Explicit separate original node+20 thread-handle ownership; closing the observer duplicate does not close it"
+    ],
+    "unresolved": [
+      "The current 0x92 ETW trace does not collect arbitrary user-mode CRT free/TlsSetValue instruction boundaries or full allocator inputs/outputs.",
+      "A thread end event/exit0 cannot establish successful PTD/nested free, TLS zeroing, event close, manager unlink or full resource accounting.",
+      "Allocator hook762130, debug flags7619C0 and heap mode80AB2C can change free behavior. Presence of a free call is not proof of physical release.",
+      "Normal scheduler static path closes node+1C but does not close node+20. Any supplemental original-handle close must use explicit same-owner identity and separate authorization/receipt; no blind numeric close after reuse.",
+      "A future bounded capture must establish supported observation mechanisms first; the known incompatible #DB/protection-parent route stays disabled."
+    ]
+  },
+  "conclusion": "Startup proves limited current-guest ETW/owner pairing capability, and no static adapter blocker was found. Original battle result consumption and all continuous/full-state/resource/replay requirements await actual independent evidence."
+}

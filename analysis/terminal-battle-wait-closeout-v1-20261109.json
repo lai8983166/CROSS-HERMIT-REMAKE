@@ -1,0 +1,1309 @@
+{
+  "kind": "bounded_native_battle_wait_increment_not_final_acceptance",
+  "created_utc": "2026-11-09T11:41:19.351917+00:00",
+  "accepted": false,
+  "formal_tasks_completed": 2,
+  "formal_tasks_total": 8,
+  "fullABI": false,
+  "fullstate": false,
+  "PTDcleanup": false,
+  "full_instruction_trace": false,
+  "full_resource_lifetime_proved": false,
+  "continuous_result_consumption_proved": false,
+  "two_fresh_full_native_cases_verified": false,
+  "progress": {
+    "original_full_prefix_observed": true,
+    "full_prefix_seconds": 1044.703,
+    "mouse_actions": 7,
+    "keyboard_actions": 344,
+    "original_battle_thread_exit_and_successor_menu_observed": true,
+    "window_snapshots": 423,
+    "strict_qualified_snapshots": 419,
+    "distinct_successful_waits": 69,
+    "ETL_events": 186675,
+    "selected_records": 22243,
+    "observer_duplicates_closed": 9,
+    "actual_retries_observed": 1,
+    "actual_pending_constructor_observed": 1
+  },
+  "remaining": {
+    "strict_window_rejected_snapshots": [
+      213,
+      239,
+      383,
+      419
+    ],
+    "missing_tail_counters": [
+      0
+    ],
+    "missing_result_endpoint": "nonzero inner_result at original 0x453CB5",
+    "continuous_instructions_state_ABI_and_cumulative_digest": "not proved",
+    "original_resource_PTD_cleanup": "not proved; exit query, observed CRT point, Job empty and observer duplicate close are insufficient"
+  },
+  "efficiency": {
+    "full_native_prefix_attempts": 6,
+    "failures_retained": 5,
+    "successful_observation_prefixes": 1,
+    "offline_battle_decoder_attempts": 3,
+    "offline_diagnostic_attempts": 1,
+    "new_native_capture_for_decoder_fixes": false,
+    "original_input_deadline_seconds": 11,
+    "latest_prepare_before_input_seconds": 10.4404787,
+    "latest_trigger_seconds": 0.0088592,
+    "original_input_observation_seconds": 2.078,
+    "formal_full_replays_started": 0,
+    "comparison_limit": "timing demonstrates moving preparation out of input deadline, not full-path speedup"
+  },
+  "references": [
+    {
+      "path": "analysis/terminal-battle-wait-diagnostic-v1-20261109.json",
+      "bytes": 104416,
+      "sha256": "72f66232fc2f0ee016115f3948f2bbc1f9ab666a52e154674b661c529653fc41"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-main-review-battle-v6-20261109.json",
+      "bytes": 18490,
+      "sha256": "2e3203273d6cc4b220c820bc8baf074bb0180224e0d1621b779234c92f76c935"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-diagnostic-independent-review-v1-20261109.json",
+      "bytes": 14457,
+      "sha256": "b9a89eb84c3a30eece505f5d394510051f638d593f7afbbfde64eb7ff1c5a68d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-full-prefix-proof-v6-20261109.json",
+      "bytes": 468284,
+      "sha256": "e2259a701effe4fd325f05eb997e163df65f8c592f7b1ce0faf9ffb3f74988d1"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-full-prefix-independent-review-v6-20261109.json",
+      "bytes": 15174,
+      "sha256": "48024ae8831e0f309c7e2fa591dd3e5f0bfa519420d110e81105cec0251e3c5a"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-regression-v3-20261109.json",
+      "bytes": 16995,
+      "sha256": "ad4c23f2a1751c2d4cb959ba604944642a1aac4454c69d7e48a7d66334ab885b"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-run-summary-v2-20261109.json",
+      "bytes": 9044,
+      "sha256": "fa8f2310b8c3d4ee41dc9a5c89d23c24bb62812e7105b8103a6f87ef56025590"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-guest-transfer-retirement-v2-20261109.json",
+      "bytes": 35725,
+      "sha256": "f0dac220fcdd66a2756226226848cf8d9b72193d5c17eacb51663193de803678"
+    }
+  ],
+  "preservation": {
+    "checked_utc": "2026-11-09T11:37:39.549189+00:00",
+    "parent": {
+      "path": "analysis/reverse-validation-preservation-v1-20261106.json",
+      "sha256": "e9edf85c49481b0f138e3c9fe5acc5ce604eec908e401ac619cb69f05b1e5302"
+    },
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "storage_inventory": {
+    "path": ".venv-audit/native-worker/battle-wait-storage-final-v1-20261109.json",
+    "bytes": 45215,
+    "sha256": "efb3fcadb275b090d3868d911da936444c3b00e1a1ac9eee1773d616bdee33f1"
+  },
+  "host_evidence_files": [
+    {
+      "path": ".venv-audit/native-worker/battle-wait-guest-storage-final-v1-20261109.json",
+      "bytes": 7000,
+      "sha256": "93139d09eace9ca32b3f12b5cc33abdab2a1bf922e030af778519b9f5ff7130b"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-guest-transfer-retirement-v2-20261109.json",
+      "bytes": 25208,
+      "sha256": "320789375eb89f68f449759082d560611b6e9e6f44cbcbee4ba2352d1b05dccf"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-monitor-v1.jsonl",
+      "bytes": 4897,
+      "sha256": "ea1f5e9a012edff91a2555ed0896f6d37edfd7b30d608c11b351ba7c1c73e31f"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-monitor-v2.jsonl",
+      "bytes": 3495,
+      "sha256": "6df90f3272565ff38f34eccd97c7111b1ddf41135ef9eab933667de6dd54212c"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-monitor-v3.jsonl",
+      "bytes": 1773,
+      "sha256": "e2c107a77ff45bf2476b0d60610fcb1811fc646e71c44b8b9aa1cf639da087a6"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-monitor-v4.jsonl",
+      "bytes": 45,
+      "sha256": "ed2961fc8c28d213b0d1fb2be9a680a8ed37f4231f261c4cbffc92a8e58e9f99"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-monitor-v5.jsonl",
+      "bytes": 5947,
+      "sha256": "90c748320109fc9503f8fc8f2bd18152b39e8f71af93d88b9a03d642db9e09ee"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-monitor-v6.jsonl",
+      "bytes": 6094,
+      "sha256": "31678b9e0f17894c9e7e164768112bb19488c351b0cd8e6ee61b391a411fef96"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-preservation-v1.json",
+      "bytes": 349,
+      "sha256": "d19d1f916e7a76ff02b4e512b05cc76e6af6c86e80794df76d15bf20a4949ef8"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-preservation-v2.json",
+      "bytes": 349,
+      "sha256": "6b3fbf94812928bb08cb04205c764afd7dac8b1ab66b5c23f51afaccc6f6c46f"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-preservation-v3.json",
+      "bytes": 349,
+      "sha256": "1335d90c3cd052c3ef5391de1a9d35cf16d2b52be180b43b5008cc366bc12e6a"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-staged-audit-final.json",
+      "bytes": 15794,
+      "sha256": "141c9f4a0937d8f2bfd3e95271a70df5ccd8984956c2fdc2ee8bd60d194b0226"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-storage-development-v1.json",
+      "bytes": 26363,
+      "sha256": "776510d144ff87a1ff4fd87cde3dc2a8d59ebaa92db42835eb6846b2df301ac5"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-final-v1-20261109.json",
+      "bytes": 1103,
+      "sha256": "84910be6d0935fe845901616bc0be30c9c3ee99f879a6536e318d5257e9e6033"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-final-v2-20261109.json",
+      "bytes": 1156,
+      "sha256": "8b3139291987f46afec405fa244a06794b39b64bd85da851ec490a695dcc9ac8"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-final-v3-20261109.json",
+      "bytes": 1176,
+      "sha256": "cf2791ac26c0a90cdbefb4bcea85b05a1bb2afa1cbc86524983bf1d033ade8bf"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-final-v4-20261109.json",
+      "bytes": 1187,
+      "sha256": "164f23a3bd314e1e5a5e6fa8e9d6b1de9955ad4390ae423a6869235a53547da2"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-final-v5-20261109.json",
+      "bytes": 1210,
+      "sha256": "8fbab5cd53bcebee0d8431d66836a767af39aed62b8842c4f022429555d80fe9"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-final-v6-20261109.json",
+      "bytes": 1238,
+      "sha256": "2dc80f049b722ee1363ef70b616255b5807b249675b6917af0419852e16908ba"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-prelaunch-v1-20261109.json",
+      "bytes": 1067,
+      "sha256": "74e16c69cfdb00d9426b733c5d14010ffc516b3ceeb71447bea48449ffffdd8a"
+    },
+    {
+      "path": ".venv-audit/native-worker/battle-wait-unit-checks-retention-prelaunch-v1-20261109.json",
+      "bytes": 1078,
+      "sha256": "41e983a259d240756260fa0f659c6336f202a2ed60fde1d7c3b1c3b06f8c662d"
+    },
+    {
+      "path": ".venv-audit/native-worker/bind-battle-guest-modules.py",
+      "bytes": 1849,
+      "sha256": "eb2a08406dfbeccf74ee94555d2fa3c279f2e8f72ca3c46f717f0012734852bf"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-battle-wait-window-v1-20261109.json",
+      "bytes": 1127,
+      "sha256": "a282d3abb929332e6e9b11baf9a182a2895011b35ae059d9a0efa19118f0ba30"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-change.py",
+      "bytes": 1778,
+      "sha256": "9ab593579b129dbc328eda6b18ba95cdd6cd28619f6e98c69748a257914bafd9"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-final-v2.py",
+      "bytes": 1992,
+      "sha256": "febc22129ee256c0348d3209cdb3031e1244a0c27535f94457bb975ec31c811d"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-final-v3.py",
+      "bytes": 2017,
+      "sha256": "16eb2251e480a5690f2c555552c1fbea972612890fb628c8bf8416621dba9d9d"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-final-v4.py",
+      "bytes": 2055,
+      "sha256": "68f6e587df1197bb0c3b77e60d1ab64e0046de22cbed03ff65e3650d26e9501a"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-final-v5.py",
+      "bytes": 2088,
+      "sha256": "4810c49fc1272748159da287dcf7bae0ddba444e0b2287af3df3289110238ca3"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-final-v6.py",
+      "bytes": 2200,
+      "sha256": "1d74c3664ff671c577f47492276c7fea8f32462151ee9b90a98e6e1dc3d2af30"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-final.py",
+      "bytes": 1886,
+      "sha256": "a1bbc4cfa8c877ad522c502c7c68a1a1c88b2bd8549caa076311dd9ab1502a83"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-preservation-v2.py",
+      "bytes": 1206,
+      "sha256": "d979a04fa26df066b0d64dc0012c041f310bc66bf49c871895bcae216064e6a1"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-preservation-v3.py",
+      "bytes": 1206,
+      "sha256": "d6b5103b72d7a64266d3b3b34a2627659848aae437cdaf894bae5732d1a2a255"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-preservation.py",
+      "bytes": 1188,
+      "sha256": "6b7bbdf9c805083e5f3cd657c388316e6216e07bd6bba63a21754d5977a372ac"
+    },
+    {
+      "path": ".venv-audit/native-worker/check-battle-wait-retention-change.py",
+      "bytes": 1806,
+      "sha256": "e66f769b17a0d2e2119103e069cabce080bf3cdccc1d631235d9cdb98ebc5481"
+    },
+    {
+      "path": ".venv-audit/native-worker/closeout-battle-wait-final.py",
+      "bytes": 5975,
+      "sha256": "7b1f34880571bc76905b0d4e34ee540e007de086f26836619414cb4ff3c7a9ef"
+    },
+    {
+      "path": ".venv-audit/native-worker/debug-transfer-readonly.py",
+      "bytes": 638,
+      "sha256": "0a2f8a6978a21f714af26475dc3e3a32eb15b67baca17bebda92116c8a13d00c"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-audio-battle-wait-window-v1-20261109.json",
+      "bytes": 113,
+      "sha256": "71b6d4d2d907a9bafe3ff6750b70c3196636aaf1f80d8841c20f93bdf4b2de4a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-clock-battle-wait-window-v1-20261109.json",
+      "bytes": 691,
+      "sha256": "f5c6397cede9e6f45444b4aab1c11896cf1f79f2bceb620ab5b4aaa200c4790c"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-preflight-battle-wait-window-v1-20261109.json",
+      "bytes": 1510,
+      "sha256": "0f7131014089bf7e0c8cd2f861fa74d243eee37f937800ab6fb2cdc494a23901"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-modules-battle-v6-20261109.json",
+      "bytes": 902,
+      "sha256": "c13b8fcb362f31b45346cd38cc1e6ede51d6442aeef1477d5246ff488fd6d7e3"
+    },
+    {
+      "path": ".venv-audit/native-worker/inventory-battle-wait-guest-final.py",
+      "bytes": 1550,
+      "sha256": "04842d1d1aaac4f7d828cd11f30b85d2d9fdc978cd7cafbac63e3b5f3eafa2ba"
+    },
+    {
+      "path": ".venv-audit/native-worker/inventory-battle-wait-storage.py",
+      "bytes": 3404,
+      "sha256": "f3ea8a1ae26ab0408007a49dbe1b2525d84871ed28af4f32080cb3a188564ae9"
+    },
+    {
+      "path": ".venv-audit/native-worker/monitor-battle-wait-v1.py",
+      "bytes": 1091,
+      "sha256": "878e105a62a6bd8100c9a8972c8c6a9655290f48ea16e50de61846d962ae0a44"
+    },
+    {
+      "path": ".venv-audit/native-worker/monitor-battle-wait-v2.py",
+      "bytes": 1109,
+      "sha256": "4174725f7c2466d54b7c8d2d2523a8ba3261b24d0a4937f87932aef402cb3b4b"
+    },
+    {
+      "path": ".venv-audit/native-worker/monitor-battle-wait-v3.py",
+      "bytes": 1109,
+      "sha256": "9239e02ebd60afac98a289eff10008d625c0118b8aa8935561480ab034e25fc2"
+    },
+    {
+      "path": ".venv-audit/native-worker/monitor-battle-wait-v4.py",
+      "bytes": 1109,
+      "sha256": "4568fc0a3c4a5aba8129ff820a1efc958e2991edfa9163d6d43e62ca67d0cf13"
+    },
+    {
+      "path": ".venv-audit/native-worker/monitor-battle-wait-v5.py",
+      "bytes": 1109,
+      "sha256": "190593fce22c005df735d4d9716f3e4b3e9b7888e6c8ae26fcf8898fce50b77e"
+    },
+    {
+      "path": ".venv-audit/native-worker/monitor-battle-wait-v6.py",
+      "bytes": 1109,
+      "sha256": "096206a7590d34f595919a039b494f1fc87497bf9d2071685647a0c0c7e30a18"
+    },
+    {
+      "path": ".venv-audit/native-worker/package-battle-wait-final.py",
+      "bytes": 769,
+      "sha256": "9a6f5319a234e48889b540f092e9f2d9a87191897f23f34e25fef81dbfd99cca"
+    },
+    {
+      "path": ".venv-audit/native-worker/package-battle-wait-verification-v2.py",
+      "bytes": 2152,
+      "sha256": "0d35118da17511d878ca8fa56f70a1eda766260843525d0fb930adaad9aab4ac"
+    },
+    {
+      "path": ".venv-audit/native-worker/package-battle-wait-verification-v3.py",
+      "bytes": 2336,
+      "sha256": "3f14152f61bb41352f2a94e807972488e3ad8608e563fa7e284dc74cd71780b5"
+    },
+    {
+      "path": ".venv-audit/native-worker/package-battle-wait-verification.py",
+      "bytes": 2130,
+      "sha256": "75bbb1ed20c9eb4545564ff6c7b61d3551f735b86334483c02ffaa25ccd07519"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-battle-wait-window-run.py",
+      "bytes": 1431,
+      "sha256": "a3d7efa175ddcd04dbddbeaddfaec26641d08ba68dbf5ccfea9fde19cee38373"
+    },
+    {
+      "path": ".venv-audit/native-worker/preflight-battle-wait-window-v1-20261109.json",
+      "bytes": 4378,
+      "sha256": "8b8b48174fd844913bd831067acb5fd6b2c6c2ef0701fcee89adfc2c394af65d"
+    },
+    {
+      "path": ".venv-audit/native-worker/prepare-battle-wait-closeout.py",
+      "bytes": 3209,
+      "sha256": "178053caea872fc8773f7071a17e5746e4a82c2b92da29bac7e9c672175ab70c"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-battle-wait-transfers-v2.py",
+      "bytes": 4257,
+      "sha256": "35325d6430fb39397e6acc45576aca99cf34aec67dd1c00431c929ec9e9cf30a"
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-battle-wait-transfers.py",
+      "bytes": 4113,
+      "sha256": "41a121177076cb7bfaeea9a4c47123dcf99ff28cfae4d39b70328dccb1db7a84"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-battle-input-window-failure.py",
+      "bytes": 1859,
+      "sha256": "10c7aa1db9130274b594a05caddfe3170b25a3376d6e81109d24610983f24e47"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-battle-retirement-failure.py",
+      "bytes": 2552,
+      "sha256": "124fbb5f2546edcad796817697fd8f6f8000631302f1c9a990190d04fc3a2356"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-battle-wait-preflight.py",
+      "bytes": 4913,
+      "sha256": "4b86529e4dfc4665a2db0381f485086bbebc17b49e7c9f0bd25909bdb12a3505"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-battle-wait-window-v2.py",
+      "bytes": 7765,
+      "sha256": "11ba0bed931bbfdfa81ec849378f9b0488383614fa52c456c57e4a26a18c6cea"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-battle-wait-window.py",
+      "bytes": 5799,
+      "sha256": "45b1cbf9c3c2f1245af8b814cc9f2f02a9a88270cf98eaecebdb466d530fc896"
+    },
+    {
+      "path": ".venv-audit/native-worker/review-factory-preflight-v4.py",
+      "bytes": 4439,
+      "sha256": "47c9ef7d3c25c97e05ae6ca6aa52600bf2ed404f082a975af1c0f0a4814fc55a"
+    },
+    {
+      "path": ".venv-audit/native-worker/stage-battle-wait-final.py",
+      "bytes": 2648,
+      "sha256": "ad41db9f69bdb6172d0835866ee6d3ae398fa10b27b7ab071cc844902f62d418"
+    },
+    {
+      "path": ".venv-audit/native-worker/summarize-battle-wait-runs.py",
+      "bytes": 1590,
+      "sha256": "e14328cd94d51dee36eb88986f3483a37e25ed9b1d43dfddf06e8cf00e6e7e89"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v6-20261109-driver.py",
+      "bytes": 910,
+      "sha256": "3fb1cf89b234d04d17f486d1ddd0c6e013ec93a23498a421f5da04f70be2b98b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v6-20261109.json",
+      "bytes": 26871,
+      "sha256": "a8acc4c60843b7cee35c95b31df4de40c29b85c5d76f27bc592fe340b3a6f5d4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v6-20261109.log",
+      "bytes": 888,
+      "sha256": "53e95f4009f67dce1f4853fbce1ef806a550262386f33db9e0bb6f167e7ccbf2"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v6-20261109.run.json",
+      "bytes": 3627,
+      "sha256": "843a7e77a4958527a68eabed0049534f174134e114251ed36d51191912e845da"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v7-20261109-driver.py",
+      "bytes": 910,
+      "sha256": "5d329894a9eeb261eb786b88873a37bdd4a79a82c369ce5bc151efd6e30a64ef"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v7-20261109.json",
+      "bytes": 30247,
+      "sha256": "7904f13cec7674211b9fa77b5b2c8fe7500d9dd33a076ef83ff37ba90067803c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v7-20261109.log",
+      "bytes": 818,
+      "sha256": "d1c49ff44fae76e9a6f58923b9d8d97394e74ed455c90d1e8478a072574302f5"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v7-20261109.records.json.gz",
+      "bytes": 331260,
+      "sha256": "cdf4001adf1759d5487b1fc003b621e28041b0d1549e76ef8026a9182053ae4c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v7-20261109.run.json",
+      "bytes": 4278,
+      "sha256": "af5930c0d4117f5792ea510fd94f9e110a7242e87d7a04395b1c675f011e0fc1"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v8-20261109-driver.py",
+      "bytes": 910,
+      "sha256": "fb73e4845a969069bc600d3a8dd4a9dc7125512b39b9ef7094c9255348cb5345"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v8-20261109.json",
+      "bytes": 30677,
+      "sha256": "1315a2d66c30d49d20af4f240a1625564b1209a310f98fff57e42e38fe0a504c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v8-20261109.log",
+      "bytes": 823,
+      "sha256": "e20a34401eb80878d5b9215193a210a92457fddd2b6089aaa8c11bb9cfd9318c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v8-20261109.records.json.gz",
+      "bytes": 331260,
+      "sha256": "cdf4001adf1759d5487b1fc003b621e28041b0d1549e76ef8026a9182053ae4c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-battle-v8-20261109.run.json",
+      "bytes": 4494,
+      "sha256": "64fa9b881cdc1736e1a644deb3e57370271aca99761b1abe865352913ab800fe"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v1-20261109-driver.py",
+      "bytes": 940,
+      "sha256": "25038d818faa720d8d8cb2fcf2c7a667c8aa91150a7ee1d8bacd99d5f13af224"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v1-20261109.json",
+      "bytes": 41039,
+      "sha256": "86cfbcd39613966c6427fdb271014ed7145f7f77579e0239982a050227cda6f7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v1-20261109.log",
+      "bytes": 818,
+      "sha256": "917d2c7d1cfa280526617befbcfaeb62fae7288c130a4ae358383ff4d4211e7c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v1-20261109.records.json.gz",
+      "bytes": 12212,
+      "sha256": "8548e08d291aa27287b20f93e456bbf78cc2423acb83ba569906717f88319232"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v1-20261109.run.json",
+      "bytes": 3314,
+      "sha256": "f1b08a39007c199aacb38358641260be8d13f621c2665db02f506357bf441bd0"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v2-20261109-driver.py",
+      "bytes": 940,
+      "sha256": "e4216fd2c01b94342d82e5e833a9828f00ec22ab61cb780585ec679691e96cd0"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v2-20261109.json",
+      "bytes": 26117,
+      "sha256": "88e59a62e69e10247863e8b5f7dc0b1893f459693b5eb749892eef1d76f6ed31"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v2-20261109.log",
+      "bytes": 880,
+      "sha256": "cbbcf2bd7640071241e860001c2e8a2f5048e290aef650dae108a3794919d0da"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v2-20261109.records.json.gz",
+      "bytes": 12424,
+      "sha256": "bb1ad80c11f4896a180c196946c01894b75ab2c880a9508a83a85a1b9d8a27a4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v2-20261109.run.json",
+      "bytes": 3417,
+      "sha256": "3258d224a2e97208d732a5737ca9af2ccc2eb1924b11aa3c3a82776b65907578"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v3-20261109-driver.py",
+      "bytes": 943,
+      "sha256": "173d591cef0335cb9616813cd8f7d819fb8e674f8f5fb2a7e03a23c9b62ac51a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v3-20261109.json",
+      "bytes": 48598,
+      "sha256": "aaa4393fd867ed8b5270198ad532ad7ad69db8459f1241b0ff049e03ccda2743"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v3-20261109.log",
+      "bytes": 804,
+      "sha256": "82ab66d34405b9f86cfc59e076d1c6dc8f4dc60a688a3a14eaf78bc4dab2c06b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v3-20261109.records.json.gz",
+      "bytes": 12424,
+      "sha256": "bb1ad80c11f4896a180c196946c01894b75ab2c880a9508a83a85a1b9d8a27a4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v3-20261109.run.json",
+      "bytes": 3537,
+      "sha256": "50b8239c91382930e180e0fbeeabc22d40d046c54f4fc9767ef2cb34a485220f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v4-20261109-driver.py",
+      "bytes": 922,
+      "sha256": "992ad74ea2c1516cb17d7d8fdca655c7632848820f1ca9769d9cabb37bc7a5aa"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v4-20261109.json",
+      "bytes": 48578,
+      "sha256": "db37a1d677591294750ead37137adf92e281fb33862d14391c53659aedde3eff"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v4-20261109.log",
+      "bytes": 793,
+      "sha256": "6ab09b13af3719e64ea4d535e27d4844eb5bcdd2e281054e5dd67062cd77b044"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v4-20261109.records.json.gz",
+      "bytes": 12424,
+      "sha256": "bb1ad80c11f4896a180c196946c01894b75ab2c880a9508a83a85a1b9d8a27a4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-decode-preflight-v4-20261109.run.json",
+      "bytes": 3443,
+      "sha256": "f7e801ae6b547026934d273d4af456b4b80314a2f6cbd88a42c0d8163d327e02"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v1-20261109-driver.py",
+      "bytes": 551,
+      "sha256": "72c56a06c06ba36639d71e0ffc405f909d187fc928f092ab55f4815dca4b141c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v1-20261109.json.gz",
+      "bytes": 19171,
+      "sha256": "764dc1d76544df6fbc553d1104dbe42336fe8741a9156d0065e82047d52f8821"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v1-20261109.log",
+      "bytes": 915,
+      "sha256": "cafa75ab986a093175c154fd3ac65301cbf36856b15b298b6326d4ad3325d9f3"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v1-20261109.run.json",
+      "bytes": 3602,
+      "sha256": "a37dc59f33bd163b472a59bc1786f26c3ce1367208d54a1889dfb4c0d852a9ab"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v1-20261109.school.json.gz",
+      "bytes": 7621242,
+      "sha256": "6ae3bf402db2338b1b05b7f2149b97a16c8deb1b48aa698178cf54158518d798"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v2-20261109-driver.py",
+      "bytes": 551,
+      "sha256": "5afc3f8cdfa60a3dd6f36c47ec8dffb8099fc0926f98fbc8291bddfcccb378ec"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v2-20261109.json.gz",
+      "bytes": 19397,
+      "sha256": "ea61989cb50c93f6917deecf66c7ca28841a108a56ed44ab2fd87c3d0c128fdf"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v2-20261109.log",
+      "bytes": 924,
+      "sha256": "fa78b18a6651dea935dfbbbcbec3699e72f629f3ee6e373c875ce673af5ba05a"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v2-20261109.run.json",
+      "bytes": 4189,
+      "sha256": "fa69010528420785549b72072f4196837dd8658ffc7bb487cfd094a132ac68e7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v2-20261109.school.json.gz",
+      "bytes": 4629884,
+      "sha256": "5bdb47515d6b97802d9970a501cf317cab7b2354ece5a694e2bdfca4926c7a3b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v3-20261109-driver.py",
+      "bytes": 551,
+      "sha256": "63b959d0ada4a36a4ed91fac3399e8ac8223ba4347d8a5d5229720017720b6fe"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v3-20261109.json.gz",
+      "bytes": 20122,
+      "sha256": "84f3deb83ae90fea7de4bfbec4fd7ea136797729213c8557298ec3f33dbe337c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v3-20261109.log",
+      "bytes": 928,
+      "sha256": "32527756cc2c8a0ac9fdfdc4ff674735f78b404720f4794634a0ef83f465b138"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v3-20261109.run.json",
+      "bytes": 4397,
+      "sha256": "f4fe3d506dce3a5f8f4d743578b64545d37ef8baa37df227c1c77c83c159aa67"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v3-20261109.school.json.gz",
+      "bytes": 1151973,
+      "sha256": "0316d4023ae7b68ec9844f8d61df00c1b68898f99454eef8c20555b22c5208f7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v4-20261109-driver.py",
+      "bytes": 551,
+      "sha256": "38204c349250aa11c075c6907f890c4796c5f28b10e2bc0abbcaea2ee3ed7dc4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v4-20261109.json.gz",
+      "bytes": 11765,
+      "sha256": "75c8b470fc872f4765d3102eb50e58c0ff3d157e2f520181229c0ab32f336b5b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v4-20261109.log",
+      "bytes": 873,
+      "sha256": "c3c7334c098ae161e651415f7c8306055799a15cc6c46d4fcdc1be869b4d75d0"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v4-20261109.run.json",
+      "bytes": 4618,
+      "sha256": "45601332a86b228b97eb5d0d457557229df65b9b56beb1529d5d387b129607b1"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v4-20261109.school.json.gz",
+      "bytes": 14059,
+      "sha256": "084b46cd706f0b26daee5e695dd932c7af0a0cfe996462b2ff5d50b1f1f3d1f1"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109-driver.py",
+      "bytes": 551,
+      "sha256": "50c909c2f28f7859959cd8c7fe8c4315d0a2d8ae9634fd0337ceb2cc7e8fc3a5"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109.json.gz",
+      "bytes": 24874,
+      "sha256": "8feaca258117422c788ad8f100a3aaf07d7c0db163d783aa0943acb7c5073d2f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109.log",
+      "bytes": 1165,
+      "sha256": "0f81ff3d00dce6c08145fcccf9416640a6d3bab3668fb3d97b1a355dbd4a694b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109.run.json",
+      "bytes": 5203,
+      "sha256": "e9878a0ac5e10860e8aeceb3aff604a6f195a0be888c7661037d097b9cce24ea"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109.school.json.gz",
+      "bytes": 9549111,
+      "sha256": "3610608e01f214fc33b7327d56ec5bb6a2a99bffe88aec39e1ea51de97f0b8d1"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109-driver.py",
+      "bytes": 551,
+      "sha256": "16893a1d09c0a1a34ca1f5094a717ba000e6b59c63b8c67aca0022b6947655f5"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109.json.gz",
+      "bytes": 92900,
+      "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109.log",
+      "bytes": 1082,
+      "sha256": "1332d31263fdb397b8c54363cd2f0f8971e8f0621a680bf8acdce71d6d733c76"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109.run.json",
+      "bytes": 5219,
+      "sha256": "933e00a70a01afc9ac339d5521a442a7e11c4129159e341aae7296728d9b5565"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109.school.json.gz",
+      "bytes": 9505149,
+      "sha256": "271fb1e0a7e58c956c3d7eaa565c3490d17219a0ad60753d9d0243abe97d0ff7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v1-20261109-driver.py",
+      "bytes": 586,
+      "sha256": "594acfd3f69300c8725f4b78c8a1adbe439ae917565af5dc6911e2e84e557571"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v1-20261109.json.gz",
+      "bytes": 30953,
+      "sha256": "826e59774cab215e99664f6cece863f2884c50cf2dc03d73d8686de27e81038d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v1-20261109.log",
+      "bytes": 939,
+      "sha256": "1858b3e9efeea13b74146235474e90f4575ec83a600c8ade7f82a60caa43d5e6"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v1-20261109.run.json",
+      "bytes": 2030,
+      "sha256": "3114262eac5d0d66c83a79c86cabaf4cd05b4e148574a7c6882964053f9de5c9"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v2-20261109-driver.py",
+      "bytes": 562,
+      "sha256": "c46efafb214747c05bb77c1767fab23571aeec09f8130ff42ae3be48434a97b2"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v2-20261109.json.gz",
+      "bytes": 38049,
+      "sha256": "77bc2ef25f6630e8c33e1d913f3f4bcd77ecda6cbebb0f87cba848d50325b920"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v2-20261109.log",
+      "bytes": 915,
+      "sha256": "6d1ad8fabf92def10699d3a019beea88c46fee7b4f6bbccc5c73567c49c3713e"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v2-20261109.run.json",
+      "bytes": 2324,
+      "sha256": "f2d6fa4cd9ca090204503d9b176c388de14969acfcec17c0b3283bca62cc5439"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v1-20261109-driver.py",
+      "bytes": 555,
+      "sha256": "da3d92a94a4bfdaf35f3ef8ccac1309bb925a594d87a881790a8c2d2bd095e38"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v1-20261109.json.gz",
+      "bytes": 49590,
+      "sha256": "4e8abf0a5f8a5272bcc9d3e25cb1512ca351cf545c590964eebc2bd9add4445c"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v1-20261109.log",
+      "bytes": 811,
+      "sha256": "50b42ef0264dd67013f34e346a04ace672d63d816b8e786c821e25b29ef38d46"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v1-20261109.run.json",
+      "bytes": 2203,
+      "sha256": "39e6e11310909316b26217f5268803e2c3dd3fba517b0ecc8af7c607de671573"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v2-20261109-driver.py",
+      "bytes": 555,
+      "sha256": "9f00148a4d1197399c7653776fe803a4f5b3c073caeb321f689fe97dd8f80ab8"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v2-20261109.json.gz",
+      "bytes": 50418,
+      "sha256": "fa1f5fd59fed94c50a05950c78ea264d51ee189b977a4d52f7da87da0f3a79c2"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v2-20261109.log",
+      "bytes": 811,
+      "sha256": "3be401d384c8353775ddb46bc876410bd77f1393a0fe3cfb90f159e345031782"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v2-20261109.run.json",
+      "bytes": 2407,
+      "sha256": "ef78b065640321e366255296f4630d1b61b7fc9726fae923ab10fda444b58b9f"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v3-20261109-driver.py",
+      "bytes": 555,
+      "sha256": "a522176ef4d6e677a7fdf01554bc61011d19424fc9329582617e9649b126a44d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v3-20261109.json.gz",
+      "bytes": 49343,
+      "sha256": "0bfdc8b263b2ba8b30331ae123d004973f568d9916f4c559606dbeb56cabc25b"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v3-20261109.log",
+      "bytes": 811,
+      "sha256": "88980120a9605abb4c8b5d261f7d8fd6efdfcbd97627ac68929a961ddc6b7328"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v3-20261109.run.json",
+      "bytes": 2611,
+      "sha256": "fec1e444b15103a27e4cf384aaaf7db69d2fc09ece1ce8a7e23003878403d485"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v4-20261109-driver.py",
+      "bytes": 555,
+      "sha256": "dc409e336fffab7138153257e94fb86b469a5550cc3a2f7b45e9bd1ec1b5a554"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v4-20261109.json.gz",
+      "bytes": 51415,
+      "sha256": "6c605fe778f11bb7613608ae2059df14eb8ca3112f64bbd54e7a7f40cc7e2dd4"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v4-20261109.log",
+      "bytes": 811,
+      "sha256": "2354c1bdc5863c66244c3af3590cb2a1c9e69e83fd4e684c2db562c74133d2c0"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-retention-preflight-v4-20261109.run.json",
+      "bytes": 2809,
+      "sha256": "dde1bc04ecd404323e32dc8f3232fac000e886355118b6f152625e56938572d7"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109/trace.etl",
+      "bytes": 1310720,
+      "sha256": "5c730a8d2eaeeb1609c2237d751d23b28b41f241375f11f72b54e06e416e960d"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109/trace.etl",
+      "bytes": 5177344,
+      "sha256": "d7aa7e47c5e0f34fc46df64cc91c1e08ae451148f1df3d51ea81a5719220c4fb"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v1-20261109/trace.etl",
+      "bytes": 3407872,
+      "sha256": "7434e2ab2c2c92789acd0fff585d012fdbb1ba55ddc380fd1990f19aa6ea9ce8"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-preflight-v2-20261109/trace.etl",
+      "bytes": 1703936,
+      "sha256": "1cc8ff12c9bb19303dddf38ed5ce756a2a04fa4e3493ae3a4948c14d0f9e9c74"
+    }
+  ],
+  "analysis_files_before_closeout": [
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v1-20261109.zip",
+      "bytes": 8609,
+      "sha256": "0ac2b0d30f9075c511d2475a7c009a09c40503a2d2e97ffdc1de3762c7a752c5"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v2-20261109.zip",
+      "bytes": 15213,
+      "sha256": "4e3d03dbd858de334283fd91d1b1d503f46cea0f3ad8c9568ba8d29be02ef415"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v3-20261109.zip",
+      "bytes": 21529,
+      "sha256": "45fef6eb332b0e9bfc83a2aa197afea5e33d0630e22345005df27a2b712d481f"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v4-20261109.zip",
+      "bytes": 20093,
+      "sha256": "868cb8ff609e53fe7c75dbdbf543ccdce1205e447323ddda00df66ab2693009f"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v5-20261109.zip",
+      "bytes": 21525,
+      "sha256": "0cb1ec0582b8e3ca0a2bfed2febd9ad6e82f68149e18a842ba5030bbef4c9982"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v6-20261109.zip",
+      "bytes": 25506,
+      "sha256": "567d3914fd645fd69bd28f2cf7c66fb7afb4be94ef6b20355dce7c9bdec3f9e4"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v7-20261109.zip",
+      "bytes": 28636,
+      "sha256": "6b512d8cbbc49bc73a92b244ed31fc7c569a441bfcc6c616acfa3dd35d7177b4"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-collector-implementation-v8-20261109.zip",
+      "bytes": 28834,
+      "sha256": "4387291a25f7592d5b295713e84b73bb8653555f65174d4ffe764b9bcfae5546"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-decoder-implementation-v1-20261109.zip",
+      "bytes": 21563,
+      "sha256": "65bccc24f058aee8078389c317b5d80b833703cdd5be7265bc2f599e7a6f3843"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-diagnostic-independent-review-v1-20261109.json",
+      "bytes": 14457,
+      "sha256": "b9a89eb84c3a30eece505f5d394510051f638d593f7afbbfde64eb7ff1c5a68d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-diagnostic-v1-20261109.json",
+      "bytes": 104416,
+      "sha256": "72f66232fc2f0ee016115f3948f2bbc1f9ab666a52e154674b661c529653fc41"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-full-prefix-independent-review-v6-20261109.json",
+      "bytes": 15174,
+      "sha256": "48024ae8831e0f309c7e2fa591dd3e5f0bfa519420d110e81105cec0251e3c5a"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-full-prefix-proof-v6-20261109.json",
+      "bytes": 468284,
+      "sha256": "e2259a701effe4fd325f05eb997e163df65f8c592f7b1ce0faf9ffb3f74988d1"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-guest-transfer-retirement-v2-20261109.json",
+      "bytes": 35725,
+      "sha256": "f0dac220fcdd66a2756226226848cf8d9b72193d5c17eacb51663193de803678"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-input-window-failure-v5-20261109.json",
+      "bytes": 2875,
+      "sha256": "07fabf63b338d3f257f7567b5a02d31681ca53ac7fde3b799bd9c7ff793c24b6"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-main-review-battle-v6-20261109.json",
+      "bytes": 18490,
+      "sha256": "2e3203273d6cc4b220c820bc8baf074bb0180224e0d1621b779234c92f76c935"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-main-review-preflight-v2-20261109.json",
+      "bytes": 3992,
+      "sha256": "1e15ae039b3d694da814b665f09c8610ad1f1eaf3ae84a2e2da21bf9d34c1b10"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-preflight-independent-review-v1-20261109.json",
+      "bytes": 10259,
+      "sha256": "239c9c03d6f6963c83f085584cdffde9491f070a501896866b7e1214d013f64f"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-preflight-main-review-v1-20261109.json",
+      "bytes": 2788,
+      "sha256": "c92be91b77f118f33be8eb18d590b5731836cba3b52fb397ffc6cc611e2ace7d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-preflight-proof-v1-20261109.json",
+      "bytes": 41039,
+      "sha256": "86cfbcd39613966c6427fdb271014ed7145f7f77579e0239982a050227cda6f7"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-preflight-records-v1-20261109.json.gz",
+      "bytes": 12212,
+      "sha256": "8548e08d291aa27287b20f93e456bbf78cc2423acb83ba569906717f88319232"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-preflight-source-v1-20261109.json.gz",
+      "bytes": 30953,
+      "sha256": "826e59774cab215e99664f6cece863f2884c50cf2dc03d73d8686de27e81038d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-regression-v1-20261109.json",
+      "bytes": 14377,
+      "sha256": "92772758cfcc15c2df3cbba74dd2c23d41a439c8b9537032d2208414d917eb71"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-regression-v2-20261109.json",
+      "bytes": 14652,
+      "sha256": "308d5b59d55f66a837eab03c4bf2c2935b19018c09c56c294e042d24a59774d0"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-regression-v3-20261109.json",
+      "bytes": 16995,
+      "sha256": "ad4c23f2a1751c2d4cb959ba604944642a1aac4454c69d7e48a7d66334ab885b"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-retention-preflight-source-v1-20261109.json.gz",
+      "bytes": 49590,
+      "sha256": "4e8abf0a5f8a5272bcc9d3e25cb1512ca351cf545c590964eebc2bd9add4445c"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-retirement-failure-v2-20261109.json",
+      "bytes": 83418,
+      "sha256": "c5b80414ecee6e8e050c0c46e63c01546aac14c05edc955487ec366c8786b8e5"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-run-summary-v1-20261109.json",
+      "bytes": 7007,
+      "sha256": "cf372dec32cb15e11122b55a5c1a69663c8df2285734acb5844fa4ccd8f9d563"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-run-summary-v2-20261109.json",
+      "bytes": 9044,
+      "sha256": "fa8f2310b8c3d4ee41dc9a5c89d23c24bb62812e7105b8103a6f87ef56025590"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-school-retention-failure-v1-20261109.json",
+      "bytes": 14356,
+      "sha256": "0717f73434b2f1fb226d974ed93d1086fd0b0e24215de9c06c1bfb0087f48c7e"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-terminal-scope-independent-review-v1-20261109.json",
+      "bytes": 5961,
+      "sha256": "a3a34c2ea12f486045c67ce841584081fa03343bd4bcf1269ba9185417bd08b1"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-verification-implementation-v1-20261109.zip",
+      "bytes": 52816,
+      "sha256": "5ea3eb625ce1fc106f3a20178b6ac6f09f05343fbbfc2d1a442f8bbf0c3d1c34"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-verification-implementation-v2-20261109.zip",
+      "bytes": 54044,
+      "sha256": "3e23d5a8ff47bf81f06d18ebec21d93be1adae6af0c19c708148cf9f1280324c"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-verification-implementation-v3-20261109.zip",
+      "bytes": 69046,
+      "sha256": "6c894bb460b5484ce848899150d64ad448bc418c774108de35776e42fd9fdd33"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-adapter-independent-review-v1-20261109.json",
+      "bytes": 3741,
+      "sha256": "d6df49d7e9d6cea90a26a9d637cf009f4beca9a44b6d0e982ae9b7cc6211bf26"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-battle-v5-independent-review-20261109.json",
+      "bytes": 9410,
+      "sha256": "1a0ca8e23a8a3090375d7608cee5f773d1579262280d1210fdfa302b257c0f8e"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-factory-proof-v4-20261109.json",
+      "bytes": 4113,
+      "sha256": "ca1e93835afc1a69dd5156d4e928034fdf91c3ea9adfd8b88e4f5e997579256f"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-preflight-independent-review-v1-20261109.json",
+      "bytes": 4289,
+      "sha256": "f947a95f93d0a081332818da5cf4eeb4bd9a16742bf4b24925401ca7319ca89e"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-preflight-independent-review-v2-20261109.json",
+      "bytes": 3229,
+      "sha256": "fb1d69b99cc2bd778518f629cec3c88bd1aec9f6f3a0e98a115a46a5303fbdbc"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-preflight-independent-review-v3-20261109.json",
+      "bytes": 5853,
+      "sha256": "063539af3e32c6a81de2ef09ccbef1e559a0c4673083499d4ca44f4badda11cb"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-preflight-independent-review-v4-20261109.json",
+      "bytes": 6375,
+      "sha256": "d6391b2371e8b766be490141be5ef14298bb9fcab9095a0e8ea5ede7b2424aa1"
+    },
+    {
+      "path": "analysis/terminal-worker-retention-preflight-main-review-v4-20261109.json",
+      "bytes": 1695,
+      "sha256": "bbc1ca90bc112ed23bffa91face12c5b0b0e931d89dc1aab91ca8e20bf59360a"
+    },
+    {
+      "path": "analysis/terminal-prepared-window-boundary-independent-review-v1-20261109.json",
+      "bytes": 9406,
+      "sha256": "7b3d5c47d0ff0fc73cc363babc4988f5e32703614e224f34214d630c11a7c2e4"
+    }
+  ],
+  "host_storage_inventory_receipt_self_bytes": 45215,
+  "guest_inventory": {
+    "path": ".venv-audit/native-worker/battle-wait-guest-storage-final-v1-20261109.json",
+    "bytes": 7000,
+    "sha256": "93139d09eace9ca32b3f12b5cc33abdab2a1bf922e030af778519b9f5ff7130b"
+  },
+  "guest_remaining_files": [
+    {
+      "path": "C:\\ChaomofaWorker\\guest-audio-battle-wait-window-v1-20261109.json",
+      "bytes": 113,
+      "sha256": "71b6d4d2d907a9bafe3ff6750b70c3196636aaf1f80d8841c20f93bdf4b2de4a"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\guest-clock-battle-wait-window-v1-20261109.json",
+      "bytes": 691,
+      "sha256": "f5c6397cede9e6f45444b4aab1c11896cf1f79f2bceb620ab5b4aaa200c4790c"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\isolation-qualified.json",
+      "bytes": 4378,
+      "sha256": "8b8b48174fd844913bd831067acb5fd6b2c6c2ef0701fcee89adfc2c394af65d"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\preflight-battle-wait-window-v1-20261109.json",
+      "bytes": 1510,
+      "sha256": "0f7131014089bf7e0c8cd2f861fa74d243eee37f937800ab6fb2cdc494a23901"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-battle-v1-20261109.school.json.gz.progress.json",
+      "bytes": 133,
+      "sha256": "0d204bbf4bb77bd1fa91505db6b93c6c5553f533ba13366b9fa72509c41c46d5"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-battle-v2-20261109.school.json.gz.progress.json",
+      "bytes": 142,
+      "sha256": "c784f813803227604413ff31339d5879ae9790c2166681e9dc6a36e4016b6330"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-battle-v3-20261109.school.json.gz.progress.json",
+      "bytes": 146,
+      "sha256": "e7236544d302718adbf76648b83459873d8d32cefcd94e0ccd94336a8e504dd9"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-battle-v4-20261109.school.json.gz.progress.json",
+      "bytes": 165,
+      "sha256": "0b702fcc1140073e95b9053e19f40b0cbf238120f20df95d03ef921257d96ee6"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-battle-v5-20261109.school.json.gz.progress.json",
+      "bytes": 167,
+      "sha256": "acbdb5e3578e69dd0c835c393c1ef82117e123d81008a3f6a89b6576251233d7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-battle-v6-20261109.school.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-preflight-v1-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-preflight-v2-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-retention-preflight-v1-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-retention-preflight-v2-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-retention-preflight-v3-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\analysis\\terminal-battle-wait-window-retention-preflight-v4-20261109.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_capture.py",
+      "bytes": 9046,
+      "sha256": "770dd649446f3becd91a3acf5af37a0bcf1b970e199256729b1be84113f284a0"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_etl_v2.py",
+      "bytes": 1660,
+      "sha256": "b8f450a5a73c14d516f58bc0cbc961fdbe1cc99297822a4004e36c6f8a86e50f"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_verification.py",
+      "bytes": 36833,
+      "sha256": "08bf42629930144582c8bfbd369f872e01c8e5704c7d0e48019329ac7b9d532b"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_verification_v2.py",
+      "bytes": 14523,
+      "sha256": "81bdbd01c9e782653d9d4ebc017f94185dddf4a4ca0b730f472fbf6235638043"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_verification_v3.py",
+      "bytes": 3121,
+      "sha256": "f0971f5d964e9c96c16b61d2f0803d1595ec9e964074bd13ecb25dcf2d5481eb"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_verification_v4.py",
+      "bytes": 8371,
+      "sha256": "a997d4476512c5ade851cf213cfd30f34802d0a2cf465cbe149d1ca7f7cbcf94"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_window.py",
+      "bytes": 15254,
+      "sha256": "efedb67200d4ae03a2437d88b55c3a0015913f227e8e74e6fa7f68d4aa46750b"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_battle_wait_window_v2.py",
+      "bytes": 7024,
+      "sha256": "dd25cf00dc4f408a24bdbd2182eef5c9f934715abfa84181455d0af1136dac63"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_factory_focus.py",
+      "bytes": 9220,
+      "sha256": "84328f32f5f7cf3651e1e4ea6a3acffdcf2f1183e6ea7412e435966e9adf5981"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_worker_retention.py",
+      "bytes": 11866,
+      "sha256": "8101263c5f356358ea365d37d58d36a779ad7a680c267dba86907770d4e0c088"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_worker_retention_preflight.py",
+      "bytes": 4840,
+      "sha256": "bcbb7a830f4eaf29495d85a97b5b95e23354ebb19f61ecc220373a4357c83231"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_worker_retention_v2.py",
+      "bytes": 6028,
+      "sha256": "4db717cfc4dd55a215521347c35eb029d6c1b15df5a50d0edae5f2d34abfca97"
+    },
+    {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_worker_retention_v3.py",
+      "bytes": 3411,
+      "sha256": "6b7ff9d2531958ecb19325acd617e046689251005514553d23d4823ff2e2dc8c"
+    }
+  ],
+  "guest_remaining_current_round_bytes": 139279,
+  "cleanup": {
+    "receipt": {
+      "path": ".venv-audit/native-worker/battle-wait-guest-transfer-retirement-v2-20261109.json",
+      "bytes": 25208,
+      "sha256": "320789375eb89f68f449759082d560611b6e9e6f44cbcbee4ba2352d1b05dccf"
+    },
+    "guest_transport_files_removed": 73,
+    "guest_transport_bytes_removed": 45523376,
+    "host_originals_retained": true,
+    "deleted_guest_paths_must_not_be_reported_available": true,
+    "mapping": "exact host replacement path and SHA for every deleted guest leaf in referenced retirement plan",
+    "previous_kernel_duplicate_retained_bytes": 11597168,
+    "previous_kernel_duplicate_deletion": "prior automatic approval review rejection; not retried"
+  },
+  "environment": {
+    "all_new_environment_data_on_host_drive": "F",
+    "guest_logical_C_inside_F_virtual_disk": true,
+    "guest_game_and_python_processes_before_shutdown": 0,
+    "cpu": 2,
+    "memory_bytes": 4294430720,
+    "VM_soft_stopped": true,
+    "VMEM_files_remaining": 0,
+    "host_interactive_input_used": false,
+    "continuous_host_performance_unaffected_proved": false,
+    "VM_disk_bytes": 16640507904,
+    "VM_disk_growth_bytes": 196608,
+    "mutable_environment_log_configuration_bytes": 621102
+  },
+  "same_disk_backup_is_independent_disaster_recovery": false,
+  "staged_code_evidence_byte_check": true,
+  "private_credential_scan_passed": true,
+  "host_new_evidence_bytes_including_closeout": 47289522,
+  "total_new_logical_evidence_bytes_including_guest_and_backups": 47428801,
+  "Git_added_file_bytes_including_closeout": 1678943,
+  "closeout_bytes": 54585,
+  "scope_note": "logical evidence bytes include same-disk copies and guest leftovers; F-drive VM allocation growth separately stated, not added again as duplicate evidence"
+}

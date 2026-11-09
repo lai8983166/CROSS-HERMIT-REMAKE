@@ -1,0 +1,104 @@
+{
+  "kind": "independent_worker_retention_v2_startup_review",
+  "source": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-retention-preflight-v2-20261109.json.gz",
+    "bytes": 50418,
+    "sha256": "fa1f5fd59fed94c50a05950c78ea264d51ee189b977a4d52f7da87da0f3a79c2"
+  },
+  "implementations": [
+    {
+      "path": "devtools\\terminal_worker_retention_preflight.py",
+      "bytes": 4015,
+      "sha256": "1453bf6a19a0c124f98600c31b6fbfc21d2a6fb218d564e2efac0eeeda7442b5"
+    },
+    {
+      "path": "devtools\\terminal_worker_retention_v2.py",
+      "bytes": 6028,
+      "sha256": "4db717cfc4dd55a215521347c35eb029d6c1b15df5a50d0edae5f2d34abfca97"
+    },
+    {
+      "path": "devtools\\terminal_original_wait_etw.py",
+      "bytes": 19142,
+      "sha256": "9d7aff0b2f19796902a3b4973a0a48bea0162c89501029e45b45f5cfdb0926b0"
+    },
+    {
+      "path": "devtools\\terminal_school_handoff.py",
+      "bytes": 23885,
+      "sha256": "847bbfc999e7e1e6fa03acd631c51c00b0b1683a77a86673acb4b95b2f1386d0"
+    },
+    {
+      "path": "devtools\\terminal_worker_retention.py",
+      "bytes": 11866,
+      "sha256": "8101263c5f356358ea365d37d58d36a779ad7a680c267dba86907770d4e0c088"
+    }
+  ],
+  "verifier": {
+    "path": "F:\\project\\chaomofa\\devtools\\terminal_worker_retention_verification_v2.py",
+    "bytes": 13437,
+    "sha256": "1d6993708e6cbd191870f92c16b45b8541f2bf68a77b98c56d80469131c25796"
+  },
+  "observations": [
+    {
+      "elapsed": 1.5469999999995707,
+      "cohort_count": 20,
+      "status": "retained",
+      "worker_tid": 5092
+    },
+    {
+      "elapsed": 1.594000000000051,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 5092
+    },
+    {
+      "elapsed": 1.625,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 5092
+    },
+    {
+      "elapsed": 1.655999999999949,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 5092
+    },
+    {
+      "elapsed": 1.7029999999995198,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 5092
+    },
+    {
+      "elapsed": 1.75,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 5092
+    },
+    {
+      "elapsed": 1.8279999999995198,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 5092
+    },
+    {
+      "elapsed": 1.8599999999996726,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 5092
+    }
+  ],
+  "accepted": false,
+  "raw_contexts_verified": 160,
+  "raw_graph_headers_vtables_TLS_and_retained_event_verified": true,
+  "same_TLS_identity": true,
+  "transition_branch_exercised": false,
+  "pending_constructor_branch_exercised": false,
+  "full_school_source_verified": false,
+  "full_resource_lifetime_proved": false,
+  "PTDcleanup": false,
+  "two_fresh_full_replays": false,
+  "limitations": [
+    "Eight original startup snapshots only; native vtable-transition path not exercised.",
+    "Same retained owner and observer duplicate cleanup are bounded observations, not full API/CPU/state or original cleanup proof."
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "kind": "independent_retention_review_of_failed_battle_v5_source",
+  "status": "partial_retention_observations_verified_source_remains_failed",
+  "accepted": false,
+  "source": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-battle-v5-20261109.school.json.gz",
+    "bytes": 9549111,
+    "sha256": "3610608e01f214fc33b7327d56ec5bb6a2a99bffe88aec39e1ea51de97f0b8d1"
+  },
+  "execution_implementations": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_worker_retention_verification_v2.py",
+      "bytes": 18606,
+      "sha256": "8291a9534fc87e5afb8c2b162d98b64ee20f64ee78406788430130a5cd70134c"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_worker_retention_verification.py",
+      "bytes": 10717,
+      "sha256": "63891a42f0f6ecf73791bc5a13ccdce213ba2341fdafe678457af88c333d1fc8"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_school_handoff_verification.py",
+      "bytes": 80810,
+      "sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_factory_focus_verification.py",
+      "bytes": 9707,
+      "sha256": "e3c40e9f3a6bd87a69125bd10d7c825d55cb2be6468a32aac5042e329c749df1"
+    }
+  ],
+  "execution_implementations_after": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_worker_retention_verification_v2.py",
+      "bytes": 18606,
+      "sha256": "8291a9534fc87e5afb8c2b162d98b64ee20f64ee78406788430130a5cd70134c"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_worker_retention_verification.py",
+      "bytes": 10717,
+      "sha256": "63891a42f0f6ecf73791bc5a13ccdce213ba2341fdafe678457af88c333d1fc8"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_school_handoff_verification.py",
+      "bytes": 80810,
+      "sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_factory_focus_verification.py",
+      "bytes": 9707,
+      "sha256": "e3c40e9f3a6bd87a69125bd10d7c825d55cb2be6468a32aac5042e329c749df1"
+    }
+  ],
+  "retention_layers": {
+    "worker_retention_version": 3,
+    "worker_retention_implementation": {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_worker_retention_v3.py",
+      "bytes": 3411,
+      "sha256": "6b7ff9d2531958ecb19325acd617e046689251005514553d23d4823ff2e2dc8c"
+    },
+    "worker_retention_parent_implementation": {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_worker_retention_v2.py",
+      "bytes": 6028,
+      "sha256": "4db717cfc4dd55a215521347c35eb029d6c1b15df5a50d0edae5f2d34abfca97"
+    },
+    "worker_retention_grandparent_implementation": {
+      "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_worker_retention.py",
+      "bytes": 11866,
+      "sha256": "8101263c5f356358ea365d37d58d36a779ad7a680c267dba86907770d4e0c088"
+    }
+  },
+  "method": "Traverse every probe dictionary with worker_retention; verify each distinct complete canonical JSON row using source3 retention and frozen task-row graph/context/TLS checks. Duplicate references are skipped only when all canonical row bytes match.",
+  "atomic_row_references": 1752,
+  "statistics": {
+    "TLS_observations": 1415,
+    "raw_contexts": 27227,
+    "verified_distinct_rows": 1400,
+    "retained": 8,
+    "already_retained": 1407,
+    "pending_callback_ancestry": 1
+  },
+  "first_retention_mismatch": null,
+  "observed_special_cases": [
+    {
+      "kind": "recorded_inventory_retry",
+      "source_path": "probe.samples[32]",
+      "elapsed": 300.4380000000001,
+      "row_canonical_sha256": "2200aa112a058773910a6299e600ddb97f0ff5f6b3f9cf02cb9ff069ff71eba5",
+      "attempt": 1,
+      "added_tids": [
+        5020
+      ],
+      "removed_tids": [],
+      "failed_attempt_duration_ns": 22640100,
+      "successful_attempt_start_since_budget_ns": 32934200,
+      "owned_suspend_restored": true,
+      "source_snapshot_emitted": false
+    },
+    {
+      "kind": "recorded_inventory_retry",
+      "source_path": "probe.samples[110]",
+      "elapsed": 345.15699999999924,
+      "row_canonical_sha256": "793b83c57f27225f227a68d707293c442717fae2f9f994966d534d531e3cfad9",
+      "attempt": 1,
+      "added_tids": [
+        932,
+        3708
+      ],
+      "removed_tids": [],
+      "failed_attempt_duration_ns": 26332500,
+      "successful_attempt_start_since_budget_ns": 36442100,
+      "owned_suspend_restored": true,
+      "source_snapshot_emitted": false
+    },
+    {
+      "kind": "pending_constructed_node",
+      "source_path": "probe.samples[1221]",
+      "elapsed": 929.8600000000006,
+      "row_canonical_sha256": "2f0f8080c953e27f20e420a1bd1d3d129bbdf040049e3c8cb92c89b86f948616",
+      "pointer": 71175848,
+      "thread_id": 3452816845,
+      "vtable": 5901368,
+      "header_hex": "380c5a0000000000f4583e0400000000cdcdcdcd0000000002000000cdcdcdcdcdcdcdcdcdcdcdcd01cdcdcdcdcdcdcdfdfdfdfdddddddddddddddddfc130000",
+      "TLS_present": false,
+      "observed_context_present": false
+    }
+  ],
+  "initial_original_code_ranges_verified": true,
+  "initial_TLS_implementation_receipt_verified": true,
+  "source_after_present": false,
+  "exact_first_retained_times_verified": 8,
+  "event_owner_identities_verified": 8,
+  "queried_before_WM_CLOSE_exit0_observations": 7,
+  "observer_duplicate_cleanup_receipt": {
+    "closed_observer_handles": 8,
+    "original_resource_cleanup_proved": false
+  },
+  "factory_focus": {
+    "status": "partial_factory_focus_observation",
+    "accepted": false,
+    "pid": 5832,
+    "factory_elapsed": 0.7970000000004802,
+    "ready_elapsed": 1.4689999999991414,
+    "focused_members_elapsed": 1.485000000000582,
+    "activation_elapsed": 1.485000000000582,
+    "canonical_factory": {
+      "bytes": 18565,
+      "sha256": "927ad7cbba4249c796fcf851dc5b91266a7b34c2512b62010c83fd91b190f717"
+    },
+    "canonical_ready": {
+      "bytes": 155808,
+      "sha256": "183e87ecfe1ccaa1f3ec14f500768ae715f6245b7f45fcc5312ab70102d20768"
+    },
+    "activation": {
+      "outcome": "original_activation_verified",
+      "path": "direct"
+    },
+    "deferred_members_calls": 590,
+    "capture_hook_restored": true,
+    "implementations": [
+      {
+        "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_menu_handoff.py",
+        "bytes": 16715,
+        "sha256": "154efedd03310eee9321c71dd975903ae432dca7f48b5db8ad51f82bc97e9079"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\tools\\school_startup_lifetime.py",
+        "bytes": 12988,
+        "sha256": "9199bbd3a645b9a3886ca8309cd46be466582812beb396b1446d85c826deef9b"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\project\\devtools\\terminal_factory_focus.py",
+        "bytes": 9220,
+        "sha256": "84328f32f5f7cf3651e1e4ea6a3acffdcf2f1183e6ea7412e435966e9adf5981"
+      }
+    ],
+    "qualification": {
+      "path": "C:\\ChaomofaWorker\\isolation-qualified.json",
+      "bytes": 4378,
+      "sha256": "8b8b48174fd844913bd831067acb5fd6b2c6c2ef0701fcee89adfc2c394af65d",
+      "current_guest_uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+      "current_guest_boot_utc": "2026-11-09T07:35:13.5000000Z",
+      "current_guest_resources": {
+        "logical_processors": 2,
+        "memory_bytes": 4294430720
+      }
+    },
+    "full_factory_trace_proved": false,
+    "full_school_source_verified": false,
+    "full_resource_lifetime_proved": false,
+    "PTDcleanup": false
+  },
+  "first_full_prefix_rejection": "ValueError('successful bounded observation, not a failed acquisition')",
+  "source_error": "ValueError('mouse action did not finish inside continuous observation window')",
+  "last_input": {
+    "stage": "confirmation",
+    "error": "ValueError('mouse action did not finish inside continuous observation window')",
+    "before_elapsed": 1028.3600000000006,
+    "after_elapsed": 1040.5159999999996,
+    "action_object_present": false
+  },
+  "subsequent_real_worker_after_pending": [
+    {
+      "pointer": 71175848,
+      "thread_id": 3604,
+      "first_elapsed": 929.9380000000001,
+      "original_handle": 2444,
+      "event": 2372
+    }
+  ],
+  "complete_input_verified": false,
+  "full_school_source_verified": false,
+  "retiring_vtable_transition_native_observed": false,
+  "full_native_instruction_or_API_trace": false,
+  "full_resource_lifetime_proved": false,
+  "PTDcleanup": false,
+  "two_fresh_full_replays": false,
+  "limitations": [
+    "This source remains failed. The final retreat confirmation has no complete action object, and probe.source_after was never emitted.",
+    "The original frozen full-prefix verifier rejects the failed acquisition before accepting any full input result.",
+    "One pending constructor and two actual inventory changes are bounded original observations with matching held-scope receipts; this is not a complete Suspend/Resume/API trace.",
+    "No retained_vtable_transition receipt occurred, so the prior destructor-transition branch has not gained native coverage from this source.",
+    "Seven worker exit0 queries and eight observer duplicate closure receipts do not establish original PTD/resource cleanup or battle worker completion."
+  ]
+}

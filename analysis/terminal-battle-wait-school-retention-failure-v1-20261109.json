@@ -1,0 +1,517 @@
+{
+  "kind": "bounded failed battle prefix diagnosis",
+  "source": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v1-20261109.school.json.gz",
+    "bytes": 7621242,
+    "sha256": "6ae3bf402db2338b1b05b7f2149b97a16c8deb1b48aa698178cf54158518d798"
+  },
+  "image": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+  },
+  "accepted": false,
+  "error": "OSError(6, 'retain current original worker')",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\ChaomofaWorker\\project\\devtools\\terminal_school_handoff.py\", line 290, in continue_school\n    base.original.check(base.parent.duplicate(h,word(head,0x20),base.parent.current_process(),\n  File \"C:\\ChaomofaWorker\\project\\tools\\school_startup_inputs.py\", line 18, in check\n    if not v:raise OSError(C.get_last_error(),name)\nOSError: [Errno 6] retain current original worker\n",
+  "saved_samples": 1186,
+  "last_saved_elapsed": 908.4069999999999,
+  "last_saved_tasks": [
+    {
+      "pointer": 69995896,
+      "thread_id": 4008,
+      "vtable": 6041708,
+      "header_hex": "6c305c0001000100f4582c0400000000cdcdcdcd0000000002000000e8080000f0080000a80f000001cdcdcdcdcdcdcdfdfdfdfddddddddddddddddddddddddd"
+    }
+  ],
+  "retained_workers": [
+    {
+      "pointer": 69995896,
+      "thread_id": 284,
+      "vtable": 5877856,
+      "original_handle": 1480,
+      "event": {
+        "remote_handle": 2264,
+        "owner_pid": 1216,
+        "duplicate_succeeded": true,
+        "query_status": 0,
+        "type_name": "Event",
+        "wait_or_signal_called": false
+      },
+      "first_elapsed": 277.375,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 284.39099999999985,
+        "before_WM_CLOSE": true
+      }
+    },
+    {
+      "pointer": 69995896,
+      "thread_id": 2148,
+      "vtable": 6041708,
+      "original_handle": 2072,
+      "event": {
+        "remote_handle": 2200,
+        "owner_pid": 1216,
+        "duplicate_succeeded": true,
+        "query_status": 0,
+        "type_name": "Event",
+        "wait_or_signal_called": false
+      },
+      "first_elapsed": 284.39099999999985,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 646.579,
+        "before_WM_CLOSE": true
+      }
+    },
+    {
+      "pointer": 70142024,
+      "thread_id": 1308,
+      "vtable": 5900548,
+      "original_handle": 2264,
+      "event": {
+        "remote_handle": 2200,
+        "owner_pid": 1216,
+        "duplicate_succeeded": true,
+        "query_status": 0,
+        "type_name": "Event",
+        "wait_or_signal_called": false
+      },
+      "first_elapsed": 646.579,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 650.125,
+        "before_WM_CLOSE": true
+      }
+    },
+    {
+      "pointer": 69995896,
+      "thread_id": 4008,
+      "vtable": 6041708,
+      "original_handle": 2288,
+      "event": {
+        "remote_handle": 2280,
+        "owner_pid": 1216,
+        "duplicate_succeeded": true,
+        "query_status": 0,
+        "type_name": "Event",
+        "wait_or_signal_called": false
+      },
+      "first_elapsed": 650.125
+    },
+    {
+      "pointer": 70142024,
+      "thread_id": 4460,
+      "vtable": 5900864,
+      "original_handle": 1484,
+      "event": {
+        "remote_handle": 2284,
+        "owner_pid": 1216,
+        "duplicate_succeeded": true,
+        "query_status": 0,
+        "type_name": "Event",
+        "wait_or_signal_called": false
+      },
+      "first_elapsed": 908.4689999999998
+    }
+  ],
+  "story_counts": [
+    178,
+    141,
+    0
+  ],
+  "input_counts": {
+    "workroom_inputs": 1,
+    "school_inputs": 0,
+    "battle_inputs": 0
+  },
+  "native_process_seconds": 908.891,
+  "lifecycle_error": null,
+  "static_original_bytes": [
+    {
+      "start": "0x422290",
+      "end": "0x4222c7",
+      "hex": "558bec83ec44535657518d7dbcb911000000b8ccccccccf3ab59894dfc8b45fcc700544a59008b4dfcc64128008b45fc5f5e5b8be55dc3",
+      "instructions": [
+        {
+          "address": "0x422290",
+          "mnemonic": "push",
+          "operands": "ebp"
+        },
+        {
+          "address": "0x422291",
+          "mnemonic": "mov",
+          "operands": "ebp, esp"
+        },
+        {
+          "address": "0x422293",
+          "mnemonic": "sub",
+          "operands": "esp, 0x44"
+        },
+        {
+          "address": "0x422296",
+          "mnemonic": "push",
+          "operands": "ebx"
+        },
+        {
+          "address": "0x422297",
+          "mnemonic": "push",
+          "operands": "esi"
+        },
+        {
+          "address": "0x422298",
+          "mnemonic": "push",
+          "operands": "edi"
+        },
+        {
+          "address": "0x422299",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "address": "0x42229a",
+          "mnemonic": "lea",
+          "operands": "edi, [ebp - 0x44]"
+        },
+        {
+          "address": "0x42229d",
+          "mnemonic": "mov",
+          "operands": "ecx, 0x11"
+        },
+        {
+          "address": "0x4222a2",
+          "mnemonic": "mov",
+          "operands": "eax, 0xcccccccc"
+        },
+        {
+          "address": "0x4222a7",
+          "mnemonic": "rep stosd",
+          "operands": "dword ptr es:[edi], eax"
+        },
+        {
+          "address": "0x4222a9",
+          "mnemonic": "pop",
+          "operands": "ecx"
+        },
+        {
+          "address": "0x4222aa",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 4], ecx"
+        },
+        {
+          "address": "0x4222ad",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 4]"
+        },
+        {
+          "address": "0x4222b0",
+          "mnemonic": "mov",
+          "operands": "dword ptr [eax], 0x594a54"
+        },
+        {
+          "address": "0x4222b6",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 4]"
+        },
+        {
+          "address": "0x4222b9",
+          "mnemonic": "mov",
+          "operands": "byte ptr [ecx + 0x28], 0"
+        },
+        {
+          "address": "0x4222bd",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 4]"
+        },
+        {
+          "address": "0x4222c0",
+          "mnemonic": "pop",
+          "operands": "edi"
+        },
+        {
+          "address": "0x4222c1",
+          "mnemonic": "pop",
+          "operands": "esi"
+        },
+        {
+          "address": "0x4222c2",
+          "mnemonic": "pop",
+          "operands": "ebx"
+        },
+        {
+          "address": "0x4222c3",
+          "mnemonic": "mov",
+          "operands": "esp, ebp"
+        },
+        {
+          "address": "0x4222c5",
+          "mnemonic": "pop",
+          "operands": "ebp"
+        },
+        {
+          "address": "0x4222c6",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    },
+    {
+      "start": "0x421731",
+      "end": "0x421767",
+      "hex": "6aff8b4d08e8650e00008b4d08c74114000000008b55088b45fc8942088b4d088b55108951188b450c508b4d08518b4dfce809050000",
+      "instructions": [
+        {
+          "address": "0x421731",
+          "mnemonic": "push",
+          "operands": "-1"
+        },
+        {
+          "address": "0x421733",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x421736",
+          "mnemonic": "call",
+          "operands": "0x4225a0"
+        },
+        {
+          "address": "0x42173b",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x42173e",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ecx + 0x14], 0"
+        },
+        {
+          "address": "0x421745",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x421748",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 4]"
+        },
+        {
+          "address": "0x42174b",
+          "mnemonic": "mov",
+          "operands": "dword ptr [edx + 8], eax"
+        },
+        {
+          "address": "0x42174e",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x421751",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp + 0x10]"
+        },
+        {
+          "address": "0x421754",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ecx + 0x18], edx"
+        },
+        {
+          "address": "0x421757",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp + 0xc]"
+        },
+        {
+          "address": "0x42175a",
+          "mnemonic": "push",
+          "operands": "eax"
+        },
+        {
+          "address": "0x42175b",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x42175e",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "address": "0x42175f",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 4]"
+        },
+        {
+          "address": "0x421762",
+          "mnemonic": "call",
+          "operands": "0x421c70"
+        }
+      ]
+    },
+    {
+      "start": "0x421d19",
+      "end": "0x421d3f",
+      "hex": "8b55f08b45f48b08890a8b55f48b450889028b450c5f5e5b83c4503bece845b114008be55dc2",
+      "instructions": [
+        {
+          "address": "0x421d19",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp - 0x10]"
+        },
+        {
+          "address": "0x421d1c",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 0xc]"
+        },
+        {
+          "address": "0x421d1f",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [eax]"
+        },
+        {
+          "address": "0x421d21",
+          "mnemonic": "mov",
+          "operands": "dword ptr [edx], ecx"
+        },
+        {
+          "address": "0x421d23",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp - 0xc]"
+        },
+        {
+          "address": "0x421d26",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x421d29",
+          "mnemonic": "mov",
+          "operands": "dword ptr [edx], eax"
+        },
+        {
+          "address": "0x421d2b",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp + 0xc]"
+        },
+        {
+          "address": "0x421d2e",
+          "mnemonic": "pop",
+          "operands": "edi"
+        },
+        {
+          "address": "0x421d2f",
+          "mnemonic": "pop",
+          "operands": "esi"
+        },
+        {
+          "address": "0x421d30",
+          "mnemonic": "pop",
+          "operands": "ebx"
+        },
+        {
+          "address": "0x421d31",
+          "mnemonic": "add",
+          "operands": "esp, 0x50"
+        },
+        {
+          "address": "0x421d34",
+          "mnemonic": "cmp",
+          "operands": "ebp, esp"
+        },
+        {
+          "address": "0x421d36",
+          "mnemonic": "call",
+          "operands": "0x56ce80"
+        },
+        {
+          "address": "0x421d3b",
+          "mnemonic": "mov",
+          "operands": "esp, ebp"
+        },
+        {
+          "address": "0x421d3d",
+          "mnemonic": "pop",
+          "operands": "ebp"
+        }
+      ]
+    },
+    {
+      "start": "0x421ebd",
+      "end": "0x421ee1",
+      "hex": "8b450883c024506a048b4d085168501f42006a006a00e878c1140083c4188b5508894220",
+      "instructions": [
+        {
+          "address": "0x421ebd",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x421ec0",
+          "mnemonic": "add",
+          "operands": "eax, 0x24"
+        },
+        {
+          "address": "0x421ec3",
+          "mnemonic": "push",
+          "operands": "eax"
+        },
+        {
+          "address": "0x421ec4",
+          "mnemonic": "push",
+          "operands": "4"
+        },
+        {
+          "address": "0x421ec6",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x421ec9",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "address": "0x421eca",
+          "mnemonic": "push",
+          "operands": "0x421f50"
+        },
+        {
+          "address": "0x421ecf",
+          "mnemonic": "push",
+          "operands": "0"
+        },
+        {
+          "address": "0x421ed1",
+          "mnemonic": "push",
+          "operands": "0"
+        },
+        {
+          "address": "0x421ed3",
+          "mnemonic": "call",
+          "operands": "0x56e050"
+        },
+        {
+          "address": "0x421ed8",
+          "mnemonic": "add",
+          "operands": "esp, 0x18"
+        },
+        {
+          "address": "0x421edb",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp + 8]"
+        },
+        {
+          "address": "0x421ede",
+          "mnemonic": "mov",
+          "operands": "dword ptr [edx + 0x20], eax"
+        }
+      ]
+    }
+  ],
+  "conclusion": "Original constructor does not initialize thread handle/TID; manager publication can precede suspended CRT thread creation. Old snapshot resumed before DuplicateHandle. Both partial construction and post-snapshot lifetime race must be excluded before retention.",
+  "limitation": "Failing row was not saved by the old observer: exact failing node/handle and whether construction or retirement caused ERROR_INVALID_HANDLE remain unknown. Successfully retained school GROUP is not the failing owner.",
+  "repaired_observer": "devtools/terminal_worker_retention.py",
+  "full_resource_PTD_cleanup_proved": false
+}

@@ -1,0 +1,77 @@
+{
+  "kind": "actual_input_observation_deadline_failure",
+  "source": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109.json.gz",
+    "bytes": 24874,
+    "sha256": "8feaca258117422c788ad8f100a3aaf07d7c0db163d783aa0943acb7c5073d2f"
+  },
+  "school_source": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109.school.json.gz",
+    "bytes": 9549111,
+    "sha256": "3610608e01f214fc33b7327d56ec5bb6a2a99bffe88aec39e1ea51de97f0b8d1"
+  },
+  "ETL": {
+    "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v5-20261109/trace.etl",
+    "bytes": 1310720,
+    "sha256": "5c730a8d2eaeeb1609c2237d751d23b28b41f241375f11f72b54e06e416e960d"
+  },
+  "duration_seconds": 1041.906,
+  "error": "ValueError('mouse action did not finish inside continuous observation window')",
+  "source_after_present": false,
+  "action_receipt_present": false,
+  "trigger_ns": 1794219915906533100,
+  "capture_interval": {
+    "begin_ns": 1794219926389807000,
+    "end_ns": 1794219926501488500
+  },
+  "preparation_inside_input_window_seconds": 10.4832739,
+  "input_window": {
+    "maximum_seconds": 11,
+    "maximum_retained_samples": 1024,
+    "retained_samples": 146,
+    "captured_samples": 146,
+    "evicted_samples": 0,
+    "complete": false,
+    "elapsed_seconds": 12.061999999999898,
+    "finished_wall_time_ns": null
+  },
+  "first_retained_input_sample_ns": 1794219914341797000,
+  "last_retained_input_sample_ns": 1794219915888796900,
+  "actual_submissions": [
+    {
+      "type": 0,
+      "flags": 49153,
+      "packet_hex": "0000000000000000238e00002b8200000000000001c0000000000000000000000000000000000000",
+      "begin_ns": 1794219915731051900,
+      "result": 1,
+      "error": null,
+      "end_ns": 1794219915731651200
+    },
+    {
+      "type": 0,
+      "flags": 2,
+      "packet_hex": "00000000000000000000000000000000000000000200000000000000000000000000000000000000",
+      "begin_ns": 1794219926414961500,
+      "result": 1,
+      "error": null,
+      "end_ns": 1794219926418797100
+    },
+    {
+      "type": 0,
+      "flags": 4,
+      "packet_hex": "00000000000000000000000000000000000000000400000000000000000000000000000000000000",
+      "begin_ns": 1794219926499065100,
+      "result": 1,
+      "error": null,
+      "end_ns": 1794219926499463800
+    }
+  ],
+  "wait_snapshot_count": 1,
+  "original_input_deadline_increased": false,
+  "actual_game_input_edges_verified": false,
+  "native_SendInput_success_is_not_game_consumption": true,
+  "accepted": false,
+  "full_battle_exit_accepted": false,
+  "PTDcleanup": false,
+  "next_action": "move PE/export/TLS preparation before the original input observation; keep fresh owner/event/duplicate/ETW start at trigger; short actual concurrency preflight before any new full prefix"
+}

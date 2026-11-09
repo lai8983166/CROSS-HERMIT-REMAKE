@@ -1138,6 +1138,21 @@ analysis/terminal-school-*.zip -text
 docs/terminal_school_handoff.md -text
 
 # Dedicated guest setup and bounded input isolation preflight
+devtools/terminal_battle_wait_*.py -text
+devtools/terminal_worker_retention*.py -text
+# Frozen executed collector includes a trailing blank line; preserve its SHA.
+devtools/terminal_worker_retention.py whitespace=-blank-at-eof
+devtools/tests/test_terminal_worker_retention*.py -text
+devtools/terminal_factory_focus.py -text
+devtools/terminal_factory_focus_verification.py -text
+devtools/tests/test_terminal_factory_focus.py -text
+devtools/tests/test_terminal_factory_focus_verification.py -text
+devtools/tests/test_terminal_battle_wait_*.py -text
+analysis/terminal-battle-wait-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-worker-retention-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-prepared-window-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-battle-wait-*.gz -text
+analysis/terminal-battle-wait-*.zip -text
 devtools/isolated_*.py -text
 devtools/isolated_*.cs -text
 devtools/isolated_*.ps1 -text

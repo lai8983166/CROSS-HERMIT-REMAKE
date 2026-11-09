@@ -1,0 +1,158 @@
+{
+  "kind": "independent_worker_retention_preflight_review",
+  "accepted": false,
+  "source": {
+    "path": ".venv-audit\\native-worker\\terminal-battle-wait-window-retention-preflight-v1-20261109.json.gz",
+    "bytes": 49590,
+    "sha256": "4e8abf0a5f8a5272bcc9d3e25cb1512ca351cf545c590964eebc2bd9add4445c"
+  },
+  "implementations": [
+    {
+      "path": "devtools\\terminal_worker_retention_preflight.py",
+      "bytes": 3980,
+      "sha256": "d88867d491b127948ba59e66cc70bfd246a1c32572a8db0626786c487c1d18fb"
+    },
+    {
+      "path": "devtools\\terminal_worker_retention.py",
+      "bytes": 11866,
+      "sha256": "8101263c5f356358ea365d37d58d36a779ad7a680c267dba86907770d4e0c088"
+    },
+    {
+      "path": "devtools\\terminal_original_wait_etw.py",
+      "bytes": 19142,
+      "sha256": "9d7aff0b2f19796902a3b4973a0a48bea0162c89501029e45b45f5cfdb0926b0"
+    },
+    {
+      "path": "devtools\\terminal_school_handoff.py",
+      "bytes": 23885,
+      "sha256": "847bbfc999e7e1e6fa03acd631c51c00b0b1683a77a86673acb4b95b2f1386d0"
+    }
+  ],
+  "verifier": {
+    "path": "F:\\project\\chaomofa\\devtools\\terminal_worker_retention_verification.py",
+    "bytes": 10488,
+    "sha256": "a127b7fe2426d34fc0ccc831061075a0541deb378ddbddb5b491fe24ea388bf2"
+  },
+  "observations": [
+    {
+      "elapsed": 1.5459999999998217,
+      "cohort_count": 20,
+      "status": "retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x42240d",
+        "0x5063e7",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    },
+    {
+      "elapsed": 1.5779999999999745,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x42240d",
+        "0x50641a",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    },
+    {
+      "elapsed": 1.625,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x42240d",
+        "0x50641a",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    },
+    {
+      "elapsed": 1.655999999999949,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x42240d",
+        "0x50641a",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    },
+    {
+      "elapsed": 1.7179999999998472,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x42ad82",
+        "0x42ae47",
+        "0x50af67",
+        "0x506422",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    },
+    {
+      "elapsed": 1.780999999999949,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x578915",
+        "0x56f7d7",
+        "0x56f3f1",
+        "0x428b45",
+        "0x50af93",
+        "0x506422",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    },
+    {
+      "elapsed": 1.8119999999998981,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x42240d",
+        "0x506437",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    },
+    {
+      "elapsed": 1.8589999999999236,
+      "cohort_count": 20,
+      "status": "already_retained",
+      "worker_tid": 3732,
+      "wait_callers": [
+        "0x42240d",
+        "0x50646a",
+        "0x421f8a",
+        "0x56e183"
+      ]
+    }
+  ],
+  "verified": {
+    "raw_contexts": 160,
+    "original_graph_and_headers": true,
+    "actual_TLS_PTD_ancestry": true,
+    "same_TLS_identity": true,
+    "held_cohort_receipts": true,
+    "observer_duplicate_close_receipt": true
+  },
+  "pending_construction_branch_exercised": false,
+  "full_school_continuation_verified": false,
+  "full_instruction_or_ABI_trace": false,
+  "original_resource_cleanup_proved": false,
+  "PTDcleanup": false,
+  "two_fresh_full_replays": false,
+  "limitations": [
+    "Eight startup observations only; this native preflight did not encounter pending constructor nodes or execute school/battle input.",
+    "Owner-before-suspend and same-held retention are source receipts plus exact implementation review; no full OS API trace."
+  ]
+}
