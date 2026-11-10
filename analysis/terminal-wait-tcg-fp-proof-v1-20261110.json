@@ -1,0 +1,181 @@
+{
+  "schema": "tcg-fp-proof-v1",
+  "accepted": false,
+  "full57": false,
+  "windows_wow64_admission": false,
+  "actual": {
+    "accepted": false,
+    "fullstate": false,
+    "windows_boots": 0,
+    "original_game_starts": 0,
+    "host_input_actions": 0,
+    "seconds": 0.8279999999940628,
+    "exit_code": 33,
+    "errors": [],
+    "args": [
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\qemu-worker\\runtime\\qemu-system-x86_64.exe",
+      "-machine",
+      "pc",
+      "-accel",
+      "tcg,thread=single,one-insn-per-tb=on",
+      "-smp",
+      "2",
+      "-m",
+      "4G",
+      "-display",
+      "none",
+      "-serial",
+      "none",
+      "-monitor",
+      "none",
+      "-nic",
+      "none",
+      "-no-reboot",
+      "-kernel",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-fp-v1-20261110\\guest.elf",
+      "-debugcon",
+      "file:F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-fp-v1-20261110\\guest.bin",
+      "-device",
+      "isa-debug-exit,iobase=0xf4,iosize=4",
+      "-d",
+      "exec,int,nochain",
+      "-dfilter",
+      "0x100000..0x105000",
+      "-D",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-fp-v1-20261110\\trace.log"
+    ],
+    "expected": {
+      "fip": 1048943,
+      "fdp": 1050884,
+      "fcs": 8,
+      "fds": 16,
+      "fop": 5
+    },
+    "observed": {
+      "fx": {
+        "fop": 42405,
+        "fip": 0,
+        "fcs": 0,
+        "fdp": 0,
+        "fds": 0,
+        "st0": "00000000000000c00040"
+      },
+      "env": {
+        "fip": 1048943,
+        "fcs": 8,
+        "fop": 0,
+        "fdp": 1050884,
+        "fds": 16
+      },
+      "cpuid_7_0_ebx": 0
+    },
+    "files": [
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-fp-v1-20261110\\guest.bin",
+        "bytes": 544,
+        "sha256": "36c55f9abc9d4540f9a94d0b7e40fbcffcd392693ad7e5c25ece54ceb3b767e6"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-fp-v1-20261110\\guest.elf",
+        "bytes": 8192,
+        "sha256": "ccc46290f1a8dbbe15dbb99a7e885c3dca3ea7f5fab0f225aad2739e6223d382"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-fp-v1-20261110\\stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-fp-v1-20261110\\trace.log",
+        "bytes": 128865,
+        "sha256": "1921b71e978c0aeebe4fdab19312144111bd53103a0936efe784cdeb7b93b8bb"
+      }
+    ],
+    "execution_complete": true
+  },
+  "supervision": {
+    "deadline_seconds": 25,
+    "host_input_actions": 0,
+    "remote_completion": "observed",
+    "errors": [],
+    "host_pid": 27972,
+    "assigned_before_request": true,
+    "host_job_active_after": 0,
+    "host_exit_code": 0,
+    "output_bytes": 277,
+    "response": {
+      "ok": true,
+      "remote_completion": "observed",
+      "exit_code": 33,
+      "observed": {
+        "fx": {
+          "fop": 42405,
+          "fip": 0,
+          "fcs": 0,
+          "fdp": 0,
+          "fds": 0,
+          "st0": "00000000000000c00040"
+        },
+        "env": {
+          "fip": 1048943,
+          "fcs": 8,
+          "fop": 0,
+          "fdp": 1050884,
+          "fds": 16
+        },
+        "cpuid_7_0_ebx": 0
+      },
+      "errors": []
+    },
+    "elapsed_seconds": 1.5
+  },
+  "source_commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+  "source_pack": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-source-identity-v1\\source.git\\objects\\pack\\pack-7ac2bb658717e6693d94760b2842181bdfd4d0ed.pack",
+    "bytes": 45386546,
+    "sha256": "8c7d443c2d459830f9382427a20c9517cc246ad542e79c2e583067c03bbf764d"
+  },
+  "executable": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\qemu-worker\\runtime\\qemu-system-x86_64.exe",
+    "bytes": 25457048,
+    "sha256": "47d57a6072e0bb3bd98f87926eb129eb1736dfe818c67b3b81ef7ce4edd0b3cd"
+  },
+  "source_identity": "analysis/terminal-wait-tcg-source-identity-v1-20261110.json",
+  "limitations": [
+    "Only 32-bit protected mode BSP under TCG, no Windows or game.",
+    "Source commit content authenticated, publisher binary not reproducibly rebuilt.",
+    "FXSAVE FOP retained A5 sentinel; pointer fields zero despite nonzero FNSTENV pointers.",
+    "FNSTENV omits FOP. No full-state export/restore or hardware equivalence acceptance."
+  ],
+  "next_required": [
+    "Build a separately identified pinned runtime on F with dependency/configuration manifests.",
+    "Implement and independently review x87 opcode/pointer/tag update, save/load and state export semantics; do not patch guest state.",
+    "Bounded nonzero state and restore contrasts before Windows/WOW64 or original wait/consumer acquisition."
+  ],
+  "tests": {
+    "normal": 4,
+    "optimized": 4,
+    "strict_openspec": true
+  },
+  "preservation": {
+    "checked_utc": "2026-11-10T10:30:55.640742+00:00",
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "cleanup": {
+    "file": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-source-identity-v1\\source.git\\objects\\pack\\tmp_pack_v3dbWj",
+      "bytes": 26206207,
+      "sha256": "c73515d9c2c18928ad4193658b555ef712be68209d22a538a1cb6bfa54fb0c28"
+    },
+    "reason": "This turn first timed-out shallow fetch; replaced by complete authenticated pinned pack",
+    "replacement": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\tcg-source-identity-v1\\source.git\\objects\\pack\\pack-7ac2bb658717e6693d94760b2842181bdfd4d0ed.pack",
+    "removed": true
+  },
+  "no_historical_deletion": true,
+  "new_vm_disks": 0,
+  "new_windows_boots": 0,
+  "new_game_starts": 0
+}

@@ -1,0 +1,355 @@
+{
+  "schema": "terminal-wait-tcg-state-independent-review-v2",
+  "date": "2026-11-10",
+  "scope": "Independent bounded exact-commit source and existing FP microguest raw-artifact review. No native/VM/input action, download, source modification or commit by reviewer.",
+  "decision": {
+    "exact_source_commit_content_authenticated": true,
+    "publisher_binary_build_reproduced": false,
+    "stock_tcg_canonical57_complete": false,
+    "stock_tcg_lossless_state_restore": false,
+    "stock_fxsave_is_lossless_source": false,
+    "parser_only_fix_sufficient": false,
+    "windows_probe_admission": false,
+    "original_game_accepted": false
+  },
+  "summary": [
+    "The exact publisher-named commit is now locally readable and its relevant Git objects are verified. This closes the previous unavailable-source gap for this review, but not compiler/configuration/dependency/dirty-tree or binary-build reproducibility gaps.",
+    "Stock TCG has modeling and save/restore defects as well as export gaps: FOP is not updated by reviewed TCG x87 execution; FXSAVE leaves its two output bytes untouched and zeros pointer/selector blocks; FNSTENV exports nonzero pointers/selectors but no FOP. Missing fields cannot be repaired by zeros, a more elaborate parser or opcode inference alone.",
+    "The real frozen binary microguest confirms those export behaviors with A5 sentinels, actual nonzero FIP/FDP and ST0=3.0. It is a negative capability result and does not admit Windows/full57 acquisition."
+  ],
+  "identities": {
+    "prior_report": {
+      "path": "analysis/terminal-wait-qemu-state-contract-v1-20261110.json",
+      "bytes": 17058,
+      "sha256": "82c5a30ba01795787c198a7f5b0c4fa815d93ca444e2d6d695b5ce009a5831d7"
+    },
+    "source_manifest": {
+      "path": "analysis/terminal-wait-tcg-source-identity-v1-20261110.json",
+      "bytes": 3386,
+      "sha256": "af250a779169f7d5dd9159ee1e5e3e93884d565d3490716d6149c019afd912aa"
+    },
+    "source_git_path": ".venv-audit/native-worker/tcg-source-identity-v1/source.git",
+    "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+    "commit_object_sha1_recomputed": true,
+    "tree": "f7f8eccd4e165c6c448946419cfbdb48f9e3db28",
+    "commit_sha256": "b4b87d661a898235e4678dd5693c71af48b8ca6a8ae3315d587ebe14dee0d9a7",
+    "source_files": [
+      {
+        "path": "target/i386/cpu.h",
+        "git_blob": "e6a197602d874bec5e99fa936675052f7759d44f",
+        "bytes": 109828,
+        "sha256": "04b7d87e3ba12746420262bbe5876b05ac0a669f9e73590d6b2729ada5ebf520"
+      },
+      {
+        "path": "target/i386/cpu.c",
+        "git_blob": "5805d33ab92d74155c5382e0acb0bb5781d2ce0b",
+        "bytes": 419553,
+        "sha256": "fb20acebe01b7c46a214921bdd768eadb0798607e6c49d7864c457eec3ea0755"
+      },
+      {
+        "path": "target/i386/gdbstub.c",
+        "git_blob": "5c5fa72721637cdf2258291c8d3eeaf2b3b5bc9e",
+        "bytes": 16952,
+        "sha256": "19e432e4fdaf50212a8c66c0cc3770960380b80d364bc165d1c6d55a4da9f4b2"
+      },
+      {
+        "path": "target/i386/cpu-dump.c",
+        "git_blob": "9e290c0b9b425c6e2c9a5e357ff8f51559f15b3d",
+        "bytes": 21988,
+        "sha256": "72a31dc3a82823a932f888e658eeff29c4e1b73770801c397bb4dd109cd200d2"
+      },
+      {
+        "path": "target/i386/machine.c",
+        "git_blob": "df0e0c178e436050ecede6d576fc25bc5846692c",
+        "bytes": 56018,
+        "sha256": "b7070861e3949e1f067a7e3ba6907e5f89cacce8d9ec73f499f419577b3d1aa1"
+      },
+      {
+        "path": "target/i386/tcg/translate.c",
+        "git_blob": "2115c5cd24ba4b07ad7588c2413095dc37d15dc0",
+        "bytes": 115586,
+        "sha256": "aa592807072c0ed3680e049e251f29c796c8de136c2fc827d18087e3575f0945"
+      },
+      {
+        "path": "target/i386/tcg/fpu_helper.c",
+        "git_blob": "978eb1411b4dd52006b37702e8d08b4cac39e009",
+        "bytes": 114184,
+        "sha256": "e1e50290821ee658f8834c889be5b4a1debeaa137278ea989db6093e0fb6fc87"
+      },
+      {
+        "path": "target/i386/tcg/system/bpt_helper.c",
+        "git_blob": "2feea69c8a17ef64a0671fdbcbb015a05f343930",
+        "bytes": 9362,
+        "sha256": "2c8a6069482d943b8ba82fd03eb2344e561c69ae5226a104c2b86197424304bb"
+      },
+      {
+        "path": "target/i386/tcg/tcg-cpu.c",
+        "git_blob": "6f5dc06b3b9853dfb91ea154d2178dbf58702c8d",
+        "bytes": 7673,
+        "sha256": "7ae34b79e3d7d0f6448cfc213830b31a0d5a33adf975c41e9bcac913658d568e"
+      },
+      {
+        "path": "target/i386/xsave_helper.c",
+        "git_blob": "625bae103ab4912ca470060279a788326ceac18c",
+        "bytes": 17696,
+        "sha256": "0163c9cc364da84b1530422f636393701a9cdaf27cf2a3830330f4abfbf5bf73"
+      }
+    ],
+    "probe_source": {
+      "path": "devtools/terminal_tcg_fp_probe.py",
+      "bytes": 5355,
+      "sha256": "19eb17e46ae45edcbb42089a453f1892934a47eaa8a3bdc8533c60083e0ad62f"
+    },
+    "image_parent_source": {
+      "path": "devtools/terminal_tcg_predecessor_probe_v3.py",
+      "bytes": 4929,
+      "sha256": "ca0cf4dbc9936992d1d6a361189318438573c9d557ccdc9530df48d7626df0dc"
+    },
+    "report": {
+      "path": ".venv-audit/native-worker/tcg-fp-v1-20261110/report.json",
+      "bytes": 2398,
+      "sha256": "ae2dacd4bf8b074a83ec10db442409b2d6f83ff728ce035f6310e09a3bd3974e"
+    },
+    "supervision": {
+      "path": ".venv-audit/native-worker/tcg-fp-supervision-v1.json",
+      "bytes": 742,
+      "sha256": "dcf96f5e21b8ca33f8d7dfe13ff307f41080170005a578008472fb6ef64fa22c"
+    },
+    "raw_artifacts": [
+      {
+        "path": ".venv-audit/native-worker/tcg-fp-v1-20261110/guest.bin",
+        "bytes": 544,
+        "sha256": "36c55f9abc9d4540f9a94d0b7e40fbcffcd392693ad7e5c25ece54ceb3b767e6"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-fp-v1-20261110/guest.elf",
+        "bytes": 8192,
+        "sha256": "ccc46290f1a8dbbe15dbb99a7e885c3dca3ea7f5fab0f225aad2739e6223d382"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-fp-v1-20261110/stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-fp-v1-20261110/trace.log",
+        "bytes": 128865,
+        "sha256": "1921b71e978c0aeebe4fdab19312144111bd53103a0936efe784cdeb7b93b8bb"
+      }
+    ],
+    "canonical_schema_source": {
+      "path": "tools/terminal_unit_frontends_trace.py",
+      "bytes": 21329,
+      "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920"
+    }
+  },
+  "primary_source": {
+    "publisher_commit_url": "https://repo.or.cz/qemu/ar7.git/commit/e470268ff446ec56728215a987ed166d5ed8fb64",
+    "local_reproduction": "git --git-dir=.venv-audit/native-worker/tcg-source-identity-v1/source.git show e470268ff446ec56728215a987ed166d5ed8fb64:PATH",
+    "reference_rule": "All source line references below are from this exact commit; not upstream approximation. The existing binary reports this commit, but source identity alone is not source-to-binary equivalence."
+  },
+  "exact_source_findings": [
+    {
+      "id": "x87-fields",
+      "refs": [
+        "target/i386/cpu.h:2030",
+        "target/i386/tcg/translate.c:2369",
+        "target/i386/tcg/translate.c:2681"
+      ],
+      "finding": "Model stores fpuc/fpus/fpstt, physical fpregs[8], empty-only fptags[8], fpop/fpcs/fpds/fpip/fpdp. Translator updates FDP offset and selected segment on relevant memory operations and updates FIP/CS on applicable x87 operations; no corresponding fpop update exists in this TCG path."
+    },
+    {
+      "id": "fop-lifecycle",
+      "refs": [
+        "target/i386/tcg/fpu_helper.c:813",
+        "target/i386/machine.c:545",
+        "target/i386/xsave_helper.c:173"
+      ],
+      "finding": "Exact-tree grep of env.fpop assignments finds accelerator bridges and generic xsave helper, not TCG arithmetic translator/helper updates. FNINIT clears pointers/selectors but does not reset fpop. Serialized env.fpop can therefore be stale or initial data; existing storage is not evidence of maintained architectural opcode."
+    },
+    {
+      "id": "fstenv",
+      "refs": [
+        "target/i386/tcg/fpu_helper.c:2445",
+        "target/i386/tcg/translate.c:2309"
+      ],
+      "finding": "32-bit FNSTENV writes FIP at+12, a32-bit zero-extended fpcs at+16, FDP at+20 and fpds at+24. Thus FOP position+18 is zero, not env.fpop. 16-bit output has different widths. The helper also has no exception-mask update; the present all-masked microguest does not dynamically test that additional architectural side effect."
+    },
+    {
+      "id": "fxsave",
+      "refs": [
+        "target/i386/tcg/fpu_helper.c:2591",
+        "target/i386/tcg/fpu_helper.c:2699"
+      ],
+      "finding": "do_xsave_fpu writes FCW/FSW/abridgedFTW, never writes legacy.fpop(+6), explicitly writes zeroQWORD at+8 and+16, and stores logicalST(i) payloads. BothFXSAVE and relevantXSAVE paths call this helper. A5A5 is untouched caller memory, not an architectural FOP."
+    },
+    {
+      "id": "restore",
+      "refs": [
+        "target/i386/tcg/fpu_helper.c:2517",
+        "target/i386/tcg/fpu_helper.c:2815",
+        "target/i386/tcg/fpu_helper.c:2960"
+      ],
+      "finding": "FLDENV restores control/status/empty-tag information only; FXRSTOR/XRSTOR x87 helper restores control/status/tags andST payloads, not FIP/FDP/FCS/FDS/FOP. Correct export alone cannot provide lossless restoration."
+    },
+    {
+      "id": "gdb",
+      "refs": [
+        "target/i386/gdbstub.c:135",
+        "target/i386/gdbstub.c:180",
+        "target/i386/gdbstub.c:295",
+        "target/i386/gdbstub.c:345"
+      ],
+      "finding": "RSP reads logicalST(i) using TOP, but writes fpregs[n] directly; nonzeroTOP requires a corrected round-trip contract. FPTAG/pointers/selectors/FOP read slots are constant placeholders and corresponding writes are ignored."
+    },
+    {
+      "id": "migration",
+      "refs": [
+        "target/i386/machine.c:219",
+        "target/i386/machine.c:553",
+        "target/i386/machine.c:1765"
+      ],
+      "finding": "CPU version12 serializes physicalFP80, normalizedFSW and physical abridgedFTW, segments/table caches, controls, DR[8], MXCSR/XMM. Optional cpu/fpop_ip_dp carriesfpop/fpip/fpdp but omitsfpcs/fpds. Migration does not fix modeledFOP or lossless selector recovery. Absent subsection zero semantics require exact version-complete parsing, not heuristic omission defaults."
+    },
+    {
+      "id": "tags",
+      "refs": [
+        "target/i386/tcg/fpu_helper.c:2454",
+        "target/i386/tcg/fpu_helper.c:2527",
+        "target/i386/cpu.h:2032"
+      ],
+      "finding": "fptags retains only empty/nonempty. Full two-bit tag is reconstructed from physicalFP payload. Arbitrary FLDENV-loaded valid/zero/special tag encodings are collapsed to nonempty; a complete raw full-tag round-trip claim requires preserving or explicitly validating/rejecting such states."
+    },
+    {
+      "id": "dr4-dr5",
+      "refs": [
+        "target/i386/tcg/system/bpt_helper.c:238",
+        "target/i386/tcg/system/bpt_helper.c:257",
+        "target/i386/machine.c:1798"
+      ],
+      "finding": "Guest MOVDR4/5 aliasesDR6/7 whenCR4.DE=0; whenDE=1 it raises#UD. GD adds#DB side effects. Serialized env.dr[4]/[5] are internal array slots, not independently guest-readable architectural values. Never export unused slots as canonicalDR4/5 or silently fillzeros."
+    },
+    {
+      "id": "flags-width-epoch",
+      "refs": [
+        "target/i386/tcg/tcg-cpu.c:33",
+        "target/i386/tcg/tcg-cpu.c:43",
+        "target/i386/cpu-dump.c:353",
+        "target/i386/cpu-dump.c:450"
+      ],
+      "finding": "TCG maintains lazy condition codes during execution; use synchronized/materialized flags, not arbitraryenv.eflags reads midTB. HMP prints some bases/control fields at32bit depending onmode. A new raw host exporter must retain full widths and explicit mode, with allVPs stopped at one epoch."
+    },
+    {
+      "id": "cpuid",
+      "refs": [
+        "target/i386/cpu.c:977",
+        "target/i386/cpu.h:901",
+        "target/i386/cpu.h:913"
+      ],
+      "finding": "TCG supportedEBX mask does not include FDP_EXCPTN_ONLY or ZERO_FCS_FDS. The probe observed CPUID7.0EBX=0. No claim that this run architecturally advertises unconditional-zero selectors or exception-only pointer validity is available."
+    },
+    {
+      "id": "generic-helper-not-rescue",
+      "refs": [
+        "target/i386/xsave_helper.c:37",
+        "target/i386/xsave_helper.c:173"
+      ],
+      "finding": "The generic host xsave helper does copyenv.fpop and pointer fields. It is not the TCG guestFXSAVE helper and cannot manufacture missing TCG updates; do not confuse similarly named codepaths."
+    }
+  ],
+  "raw_probe": {
+    "elf_pure_builder_exact_match": true,
+    "whole_elf_bytes": 8192,
+    "output_bytes": 544,
+    "trace_entries": 1670,
+    "trace_vps": [
+      0
+    ],
+    "configured_vps": 2,
+    "dual_vp_execution": false,
+    "ordered_fp_instruction_pcs": [
+      "0x100165",
+      "0x100167",
+      "0x100169",
+      "0x10016f",
+      "0x100175",
+      "0x10017c"
+    ],
+    "fadd_original_bytes": "d80504091000",
+    "decoded_fadd": "FADD m32real [00100904], x87opcode005",
+    "expected_fip": "0x10016f",
+    "expected_fdp": "0x100904",
+    "expected_cs": 8,
+    "expected_ds": 16,
+    "fx_header_hex": "7f0300388000a5a500000000000000000000000000000000801f0000ffff0000",
+    "fcw": "0x037f",
+    "fsw": "0x3800",
+    "top": 7,
+    "abridged_physical_ftw": "0x80",
+    "full_physical_env_tag": "0x3fff",
+    "fx_fop": "0xa5a5 (unwritten sentinel)",
+    "fx_fip_fdp_fcs_fds": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "env_raw_hex": "7f03000000380000ff3f00006f011000080000000409100010000000",
+    "env_fop": 0,
+    "env_fip": "0x10016f",
+    "env_fdp": "0x100904",
+    "env_cs": 8,
+    "env_ds": 16,
+    "logical_st0_raw80": "00000000000000c00040",
+    "logical_st0_exact_value": "3.0",
+    "output_loop_counts": [
+      512,
+      28,
+      4
+    ],
+    "cpuid7_ebx": "0x00000000",
+    "exception_records": 0,
+    "exit_code": 33,
+    "native_elapsed_seconds": 0.8279999999940628,
+    "supervision_elapsed_seconds": 1.5,
+    "job_active_after": 0
+  },
+  "canonical57_source_plan": [
+    {
+      "group": "EAX..EIP/EFLAGS/CS DS ES FS GS SS/CR0 CR2 CR3 CR4/GDTR IDTR LDTR TR",
+      "required": "Capture synchronized modelGPRs, materialized flags and full descriptor caches directly from stoppedVP, with mode and full base widths preserved; reject unsupported truncation."
+    },
+    {
+      "group": "FPCW FPSW FPTAG FP0..7",
+      "required": "Record raw physicalFP80+TOP+empty mask and define canonicalFP order explicitly. FullFPTAG cannot always be recovered solely from payload after arbitrary tag loads; fix model or reject that state class."
+    },
+    {
+      "group": "FIP FDP FCS FDS FOP",
+      "required": "Repair maintained opcode and relevant save/load/reset lifecycle; export maintained full-width values and selectors. ExistingFNSTENV is a useful negative-test cross-check, not a complete observer."
+    },
+    {
+      "group": "MXCSR XMM0..7",
+      "required": "Synchronize lazySSE status before capture and retain all128bits; test nontrivial lanes/control/exceptions. No zero initialization substitute."
+    },
+    {
+      "group": "DR0..7",
+      "required": "DR0..3/6/7 are readable modeled state. DR4/5 need an explicit architecture-qualified alias/undefined policy verified against the existing canonical contract; raw internaldr4/dr5 is insufficient."
+    }
+  ],
+  "minimal_implementation_sequence": [
+    "1. Freeze exact basecommit and produce a separate source patch/build identity. Record compiler, toolchain/dependency versions, configure flags, generated config and binarySHA; do not relabel stock publisher binary as patched/reproduced.",
+    "2. Fix x87 state modeling before writing a parser: opcode decode/update/reset; protected/real/compat/64-bit FIP/FDP/selector/opcode save and restore; masking and pending-exception behavior; preserve fulltag semantics or declare supported/rejected state classes. A naive tail-store ofFOP is insufficient if an earlier helper faults or restores state.",
+    "3. Add one narrow versioned CPU-only host capture endpoint at a proven stopped-vCPU boundary. Export typed raw fields plusvalidity/mode/build/VP/epoch metadata, physicalFP order and descriptor64bit bases. Avoid guest-injected save instructions, host process-memory scans, RAM migration streaming and broad text parser fallback. This endpoint is proposed, not implemented here.",
+    "4. Define restoration separately: direct architectural fields must update hidden caches, lazyflags/SSE state and breakpoint configuration via correct model helpers; invalidate affectedTBs and re-read. Include nonzeroTOP to catch existingRSP read/write order mismatch. Never treat assigning a rawCPU struct as safe restoration.",
+    "5. Bound tests to owned microguests first: masked and unmasked x87 arithmetic; nonzero opcode/pointers/selectors; FXsave sentinel; FNSTENV/FLDENV andFXRSTOR roundtrip; nonzeroTOP+holes/specialvalues; selector/base widths above4GiB in supportedmodes; DR4/5 withDE0/DE1/GD; original#DB→IRETD behavior before and after capture. Untested cases stay rejected.",
+    "6. A complete57 data shape is not complete machine continuation: exception/pending interrupt state, hidden segment/cache state, timing/device state, RAM and original resource ownership still require their own proof. Only after model/export/restore tests and source-build identity can a separateWindows admission decision be considered."
+  ],
+  "limitations": [
+    "No new backend code, parser or restore implementation was created. The proposed steps are required work, not completed capabilities.",
+    "The microguest tests32-bit protectedmode, oneVP, one all-masked x87 arithmetic path. No64bit/compatibility pointer roundtrip, pendingunmasked exception, arbitrarytag load or hardware differential was run here.",
+    "No executable source-to-binary reproducible-build closure. Exact source objects and behavior agreement are stronger than previousupstream approximation but do not prove every byte came from thattree.",
+    "DR4/5 may make the current57 contract incompatible with an all-independent-register interpretation. Resolve semantics explicitly; do not change frozenvalidator or silently normalizealiases.",
+    "Successfulprocess exit and valid544B source only show negative capability probe completion. They do not certify fullstate/fullABI/Windows/game lifetimes."
+  ],
+  "retention": "Only one new small JSON. Existing source.git and raw probe artifacts were read in place; no duplicate source tree, ELF, binary or trace saved by reviewer."
+}

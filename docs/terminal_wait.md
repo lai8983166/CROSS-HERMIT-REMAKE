@@ -582,3 +582,31 @@ WOW64和原生资源寿命仍未证明。没有据此修复WHP的RF，也没有�
 下一步先补全这一后端的状态来源与精确构建身份，并验证真实Windows边界；只有
 通过原验收标准才接等待消费。任务继续2/8。原始小包、有限proof及独立review见
 analysis/terminal-wait-tcg-predecessor-*；原字节未覆写，未复制旧QEMU环境。
+# 2026-11-10 TCG 精确源码与 x87 实际导出预检
+
+本轮只执行 F 盘 headless、无磁盘/网络的自有 ELF32 客体，2 VP/4 GiB，目标路径仅
+VP0；Windows 与原游戏未启动。预检外层约 1.5 秒、Job 清空，没有宿主输入。
+发布者 Git 浅层源码现已取得并按 Git 对象校验：提交
+`e470268ff446ec56728215a987ed166d5ed8fb64`，树
+`f7f8eccd4e165c6c448946419cfbdb48f9e3db28`。它与运行时版本字符串对应，但发布
+构建脚本未锁定编译器/MSYS2 依赖，缺少该次构建日志及干净树证明；未做字节一致重建，
+不能把源码提交可读报告为精确二进制构建来源全部闭合。
+
+新实际反例先把 FXSAVE 区域填 A5，再执行 FNINIT、FLD 1、FADD 2、FXSAVE、FNSTENV。
+ST0 得到 3.0；FNSTENV 给出 FIP=10016F、FDP=100904、CS=8、DS=10h，但 FOP=0，
+并非该 FADD 的 005。FXSAVE 的 FOP 保留 A5A5，FIP/FDP/CS/DS 全零；实测
+CPUID.7.0:EBX=0，不可用 zero-fcs-fds/fdp-excptn-only 特性解释。完整原始 544B 与
+逐 TB 轨迹保留，独立复核按实际 ELF 指令定位，未用预期值填充采样。
+
+精确源码进一步显示恢复路径缺口：FLDENV/FXRSTOR 未恢复指针/操作码，GDB 浮点
+读写旋转不对称，完整 tag 的表示也需审查。因此完整57项及 Windows/WOW64 准入
+**拒绝**；只增加 getter 或推算/补零不合格。下一实施门是 F 盘可追溯的独立构建，
+修正并复核 x87 更新/保存/恢复及状态接口，先通过有界非零状态与恢复对照，再接原
+等待和消费者。未勾选任何新验收项，仍 2/8。
+
+证据：`analysis/terminal-wait-tcg-source-identity-v1-20261110.json`、
+`analysis/terminal-wait-tcg-fp-proof-v1-20261110.json`、
+`analysis/terminal-wait-tcg-state-review-v2-20261110.json`。小原件另有一份同盘 ZIP，
+不是独立容灾备份；精确源码 pack 留 F 盘，不进 Git。首轮45秒超时的26,206,207B
+不完整 pack 已记 SHA 并删除，旧运行时/旧历史证据不变。832份小文件新鲜 SHA、13份
+大文件仅大小保全通过，普通/-O各4项检查与严格 OpenSpec 通过，不替代功能验收。
