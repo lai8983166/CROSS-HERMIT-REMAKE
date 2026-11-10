@@ -532,3 +532,26 @@ HRESULT=80370300、written=0，未获得有效 8 字节能力结构。因此 PMU
 公开能力入口的支持条件，并建立合法的记录读取路径；能力位即使可用，也不等于
 已取得目标前驱或完整事件递送来源。原查询实现及回执见
 terminal_whp_predecessor_capability.py 和 terminal-wait-whp-predecessor-capability-v1-20261110.json。
+
+### 当前运行时支持边界（2026-11-10）
+
+实测宿主 Windows 10 家庭中文版 build19045，WHP DLL FileVersion19041.6093。
+独立原字节分析确认 WHvGetCapability 对1009在分派阶段直接返回80370300：
+WrittenSize先置0，没有进入硬件能力读取，也不写返回缓冲。因此当前障碍是这份
+宿主 DLL 未实现该 selector，不能靠换 SDK、重复查询或仅升级客体系统解决；不据此
+推断物理CPU没有LBR。原字节范围/分支及哈希见 runtime-review 报告。
+
+接口分开处理：WHP 的 perfmon property 是功能暴露开关，不是前驱记录读取器；
+TLFS编号不能混入WHP。微软另公开了受管 Hyper-V VM 的
+[Set-VMProcessor -Perfmon](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/performance-monitoring-hardware)
+配置路径，但本机 Hyper-V 模块和该命令均不可用。该路径还要求受支持硬件/VM配置，
+开启后仍需客体记录读取及精确停止、事件过滤/丢失验证，不能冒称现有VMware客体
+或WHP分区已具备前驱读取资格。QEMU作者的
+[兼容性补丁](https://patchew.org/QEMU/20260324151323.74473-1-mohamed@unpredictable.fr/20260324151323.74473-2-mohamed@unpredictable.fr/)
+将20348系列作为这项WHP查询的实现起点；这是上游实现说明，不是任意后续系统
+及硬件组合的通过保证。
+
+本轮有界预检止于接口/运行时条件，不创建分区、不启动游戏、不更换系统DLL、
+启用宿主功能或重启。当前配置下，WHP-LBR路线尚不具备采集入口。后续必须先取得
+兼容运行时和合法读取机制，或验证不依赖该接口的观察后端；不能把问题继续归为
+等待/消费代码错误而重复长跑。真实前驱、事件递送、RF恢复和第一关仍未完成，2/8不变。

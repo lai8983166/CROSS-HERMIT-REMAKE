@@ -1,0 +1,168 @@
+{
+  "schema": "terminal-wait-whp-runtime-review-v1",
+  "date": "2026-11-10",
+  "scope": "Bounded independent static PE/export/unwind parsing and objdump Intel disassembly of on-disk WinHvPlatform.dll. No DLL load, native probe, VM or guest run by reviewer. Prior artifacts unchanged.",
+  "decision": {
+    "capability_selector_0x1009_implemented_in_reviewed_dll": false,
+    "current_unknown_capability_is_local_software_dispatch_failure": true,
+    "hardware_pmu_supported": null,
+    "hardware_lbr_supported": null,
+    "hardware_pt_supported": null,
+    "current_whp_predecessor_acquisition_available": false,
+    "predecessor_obtained": false,
+    "event_history_obtained": false,
+    "rf_restoration_proved": false,
+    "full57_accepted": false,
+    "original_game_accepted": false
+  },
+  "sources": {
+    "dll": {
+      "path": "/mnt/c/Windows/System32/WinHvPlatform.dll",
+      "bytes": 135168,
+      "sha256": "30631842e3917c63396e2b1b3337b9dbaf7dc2fd4d51d06efdd148f08fbab492"
+    },
+    "previous_capability_receipt": {
+      "path": "analysis/terminal-wait-whp-predecessor-capability-v1-20261110.json",
+      "bytes": 1043,
+      "sha256": "27389f61ebda5d5cfdf94203f6511e8df9a456390b99f888bdacb1438d96eba6"
+    },
+    "previous_api_review": {
+      "path": "analysis/terminal-wait-whp-predecessor-api-review-v1-20261110.json",
+      "bytes": 9785,
+      "sha256": "a955f3fd4e3c49a7215589dd4609d117c5118ad7af95eb9796701665deb2c864"
+    },
+    "parent_runtime_inventory": {
+      "path": "analysis/terminal-wait-whp-runtime-inventory-v1-20261110.json",
+      "bytes": 372,
+      "sha256": "3cc0ba5c8bc95e45f5c13ba08c662cf696843a147e833b56e0f2f81da1fd745b"
+    }
+  },
+  "runtime": {
+    "parent_observed_os": {
+      "Caption": "Microsoft Windows 10 家庭中文版",
+      "Version": "10.0.19045",
+      "BuildNumber": "19045"
+    },
+    "parent_observed_hyperv_module": false,
+    "parent_observed_set_vm_processor": false,
+    "independently_parsed_fixed_file_version": "10.0.19041.6093",
+    "fixed_version_resource_file_offset": "0x20888",
+    "dll_version_is_context_not_proof": true
+  },
+  "binary_method": {
+    "disassembler": "GNU objdump -d -M intel; no capstone/pefile installed in offline Bash Python, so stdlib PE parsing and existing objdump used without adding dependencies",
+    "bounded_disassembly": "VA 0x180011340..0x180011950, 1552 bytes, covering target and immediate neighboring entries; conclusion uses target function only",
+    "preferred_image_base": "0x180000000",
+    "export_name": "WHvGetCapability",
+    "export_rva": "0x11340",
+    "export_file_offset": "0x10740",
+    "pdata_begin": "0x11340",
+    "pdata_end_exclusive": "0x117ea",
+    "unwind_info_rva": "0x1d708",
+    "function_bytes": 1194,
+    "function_sha256": "ee3ef7ce365c92a789c078d6c6d549b3f268cc613666fdf78d1fb67ef0f41809",
+    "live_process_code_integrity_not_examined": true
+  },
+  "decisive_original_byte_ranges": [
+    {
+      "rva_start": "0x1135d",
+      "rva_end_exclusive": "0x113b8",
+      "file_offset": "0x1075d",
+      "bytes": 91,
+      "sha256": "856834f1d3438b605a2db5dfd64e098e63e35b9890ca38a1dce4076aa31fed45",
+      "raw_hex": "418bf0488bfa448bf9488d5c24604533f64d85c9490f45d944893381e900100000740f83e901740a83e901740583f9017515e8b033ffff488b8c24a800000085c00f88d6020000b801100000443bf80f8f7b0100000f843f010000",
+      "meaning": "Save code ECX to R15D, output pointer RDX to RDI and size R8D to ESI. Select R9 written pointer or local scratch; write zero. Only codes1000..1003 call initialization at RVA4744. Code1009 bypasses this call. Signed compare1001 routes1009 to1152d."
+    },
+    {
+      "rva_start": "0x1152d",
+      "rva_end_exclusive": "0x11560",
+      "file_offset": "0x1092d",
+      "bytes": 51,
+      "sha256": "366205201462f1768b75efcfb5e0baf62f4a5360aa4e5b204f1ba26b29ad2073",
+      "raw_hex": "418bcf81e9021000000f84fc00000083e9010f84d200000083e9010f84ab00000083e9010f848200000083f9010f85de010000",
+      "meaning": "Subtract1002 then repeated decrement branches for1002,1003,1004,1005; remaining1 is1006. For1009 remaining4, JNE at1155a jumps1173e. There is no case1009."
+    },
+    {
+      "rva_start": "0x1173e",
+      "rva_end_exclusive": "0x11775",
+      "file_offset": "0x10b3e",
+      "bytes": 55,
+      "sha256": "b2f77042fb52d646002419e540ffa7416c4824279cb37b2b392276de279064dd",
+      "raw_hex": "b900033780e8d024ffff448bc8488b8c24a800000044897c2428488d050187000048894424204c8d05cd860000badf000000e84f3cffff",
+      "meaning": "Load ECX=80370300 before local error-conversion/report path. Original requested code R15D is passed to diagnostics. No capability getter or caller-buffer output store occurs before this rejection."
+    }
+  ],
+  "symbolic_input_trace": {
+    "input_code": "0x1009",
+    "input_buffer_size": 64,
+    "written_initialization": "RVA11375 writes0 to provided WrittenSize",
+    "initialization_checks": [
+      "1009-1000=9",
+      "9-1=8",
+      "8-1=7",
+      "7!=1 -> skip call4744"
+    ],
+    "dispatch_checks": [
+      "1009>1001 -> RVA1152d",
+      "1009-1002=7",
+      "7->6->5->4 after three decrements",
+      "4!=1 -> RVA1173e"
+    ],
+    "error_constructed": "WHV_E_UNKNOWN_CAPABILITY 0x80370300",
+    "caller_buffer_written_before_error": false,
+    "cpu_or_hypervisor_capability_query_before_error": false,
+    "caveat": "Local error/report helpers and exception-unwind machinery are not fully re-proved. Static evidence proves selector rejection before capability dispatch; the existing receipt independently confirms returned HRESULT80370300, WrittenSize0 and unchanged64B buffer."
+  },
+  "implemented_selector_domain": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "0x1000",
+    "0x1001",
+    "0x1002",
+    "0x1003",
+    "0x1004",
+    "0x1005",
+    "0x1006"
+  ],
+  "selector_domain_limit": "Only the WHvGetCapability entry in this fixed binary is classified. This does not assert that every other exported API or kernel/hypervisor component lacks all PMU/LBR functions.",
+  "reading_interface_boundary": [
+    "The fixed SDK/public WHP getter accepts WHV_REGISTER_NAME and exposes no DebugCtl/LBR/LER/PT names. No documented direct host history getter was identified; TLFS identifiers remain a distinct namespace.",
+    "Guest architectural LBR use can employ model-supported control/read MSRs when virtualized support is exposed. The absence of a public WHP getter does not prove guest MSRs are the only possible interface across Windows: privileged TLFS and managed Hyper-V are different interfaces with distinct requirements.",
+    "Microsoft managed Hyper-V documentation exposes performance-monitoring hardware with Set-VMProcessor -Perfmon while VM is stopped. This is guest feature configuration, not a WHP partition-handle history getter. Host inventory reports neither Hyper-V module nor that cmdlet available; no configuration command was attempted.",
+    "Even working guest MSR access would be an instrumented capability experiment: additional guest instructions and VM transitions may affect the history. It cannot be labeled an untouched original-game predecessor without a preservation/ownership/loss contract."
+  ],
+  "official_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvgetcapability",
+      "scope": "Current SDK/API publishes ProcessorPerfmonFeatures1009; publication does not imply implementation in older installed DLLs."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvvirtualprocessordatatypes",
+      "scope": "Public WHP register name namespace."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/hypercalls/hvcallgetvpregisters",
+      "scope": "Separate privileged HV_REGISTER_NAME hypercall, not WHV_HANDLE ABI."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/performance-monitoring-hardware",
+      "scope": "Managed Hyper-V configuration requires suitable processor and software/VM setup; unsupported hardware can cause VM startup failure. This page does not establish a WHP direct LBR getter."
+    }
+  ],
+  "minimal_next_conditions": [
+    "An approved compatible runtime/environment must actually implement the documented capability selector; require successfulHRESULT and valid returned layout, then inspect LbrSupport. Merely installing newer headers, changing buffer size, repeating the same call, or casting TLFS IDs cannot add this missing branch.",
+    "A newer runtime alone is not enough: establish support on that physical processor/hypervisor and a documented configuration/readout mechanism with explicit guest/host distinction. No OS upgrade, DLL replacement, driver install, new VM or environment download is performed or authorized by this report.",
+    "Do not claim a precise minimum supported Windows build from the current-binary disassembly. The auxiliary QEMU author patch supplied by parent may motivate later version screening, but no compatibility claim here relies on it.",
+    "After a supported interface exists, a separately bounded owned microguest must validate actual per-VP predecessor/event records, trace-loss detection and original #DB/IRETD behavior before considering RF reasoning. Until then keep unknown provenance rejected and do not clearRF."
+  ],
+  "not_proved": [
+    "Physical CPU absence of LBR/PMU/PT.",
+    "Availability of tracing through every other privileged/native Windows interface.",
+    "Managed Hyper-V availability from OS version alone.",
+    "Any acquired actual predecessor, event history, transparentRF/full57 state or original-game result."
+  ],
+  "retention": "Only this small JSON with197 decisive raw code bytes plus hashes. No copiedDLL, full disassembly artifact, environment download or new native evidence."
+}
