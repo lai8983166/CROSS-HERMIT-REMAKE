@@ -1218,3 +1218,8 @@ analysis/terminal-wait-kd-*.zip -text
 devtools/tests/test_terminal_kd_session*.py -text
 devtools/isolated_vm_bounded_query*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 analysis/terminal-wait-bounded-query*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Preserve executed WHP fixtures and byte-identified native reports.
+devtools/terminal_whp_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_whp_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-whp-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-whp-*.zip -text

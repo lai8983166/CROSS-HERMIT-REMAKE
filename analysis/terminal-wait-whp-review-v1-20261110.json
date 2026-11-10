@@ -1,0 +1,580 @@
+{
+  "schema": "terminal-wait-whp-independent-review-v1",
+  "reviewed_utc": "2026-11-10T02:54:52.226076+00:00",
+  "baseline": "807f57bb",
+  "scope": "Independent static SDK/source review, official architecture/API documentation and bounded offline recomputation of parent-owned CPU-only raw evidence. No reviewer VM/native execution or source/environment download; old implementation/evidence unchanged.",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "original_game_starts": 0,
+  "windows_boots": 0,
+  "verdict": {
+    "owned_natural_return_execute_gate_supported": true,
+    "nonzero_fop_fdp_read_capability_supported_for_v2_pending_exception": true,
+    "full_rflags_transparency": false,
+    "canonical57_complete": false,
+    "windows_or_wow64_qualified": false,
+    "no_new_native_run_required_by_review": true
+  },
+  "conclusion": "Two owned 32-bit protected-mode VPs execute real CALL/RET and stop before the page-internal return consumer through GPA execute denial. v2 demonstrates nonzero exception-valid FOP/FDP and matching FP/XMM evidence. The same stop transforms saved RF to1, so this is not a complete transparent original-state observer and cannot yet be used as canonical57 or Windows/game acceptance.",
+  "capability_identity": {
+    "path": ".venv-audit/native-worker/whp-capability-v1-20261110.json",
+    "bytes": 1214,
+    "sha256": "7d0a7e1141f3559235b9fd868b27f5b3506686a566de65b16553f527ac05b811"
+  },
+  "dll_identity_recorded_by_capability": {
+    "path": "C:\\Windows\\System32\\WinHvPlatform.dll",
+    "bytes": 135168,
+    "sha256": "30631842e3917c63396e2b1b3337b9dbaf7dc2fd4d51d06efdd148f08fbab492"
+  },
+  "sdk_identities": [
+    {
+      "path": "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/WinHvPlatform.h",
+      "bytes": 23811,
+      "sha256": "da7b74cecb8d335609e64385274b13ca3c2ddfaeb38d73add6073401cefdefd1"
+    },
+    {
+      "path": "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/WinHvPlatformDefs.h",
+      "bytes": 138461,
+      "sha256": "91a864b6ec2d932bcc7ce17f503f72a7813759cde81be2d1ac86cba9abb61c4a"
+    }
+  ],
+  "prior_contract_identity": {
+    "path": "analysis/terminal-wait-kd-raw-context-contract-v1-20261110.json",
+    "bytes": 27256,
+    "sha256": "5c394bd5eb201c22900832eedc2324b4b588ec92f8a3325754a535655843331f"
+  },
+  "versions": [
+    {
+      "version": 1,
+      "source": {
+        "path": "devtools/terminal_whp_return_probe.py",
+        "bytes": 12149,
+        "sha256": "1207add14c9b0eea0ebf8a5e25085cf43e788134cfe21b557be226b32ebba904"
+      },
+      "runner": {
+        "path": "devtools/terminal_whp_return_runner.py",
+        "bytes": 1102,
+        "sha256": "9fb2072918e9f0387a33db4114a7c038bb5abadb1248f2a77e0b66570e1e8618"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-return-v1-supervision-20261110.json",
+        "bytes": 427,
+        "sha256": "4897f602afe1092c62a40ef868739f63a9b7025dd707f0716e238e94a85f6071"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/after-consumer-vp0.xsave",
+          "bytes": 960,
+          "sha256": "f83763ad5fa0b470b290cb162d1942d08066e03f1d8d6f94776fa94edc0218de"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/after-consumer-vp1.xsave",
+          "bytes": 960,
+          "sha256": "78fc281acb3b667825e6ad99f9180550de5ef09af5f21a7e880561be0ad30332"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/after-consumer.memory.bin",
+          "bytes": 65536,
+          "sha256": "3e7ff250b9260c2b6a712d440c35de90c44ff5d60e17c9ca8bc59047051e08e0"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/callee-entry-vp0.xsave",
+          "bytes": 960,
+          "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/callee-entry-vp1.xsave",
+          "bytes": 960,
+          "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/callee-entry.memory.bin",
+          "bytes": 65536,
+          "sha256": "a10aacac4e3e8a609e250222abe5a5a5315c84e5881d2cd4c2d27acbcabad416"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/initial.memory.bin",
+          "bytes": 65536,
+          "sha256": "2571eb69dc5a56074e1dbc0cc3fbd2c56f31c91b66e2ad3e8b930d934d2e6c9c"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/natural-return-vp0.xsave",
+          "bytes": 960,
+          "sha256": "f83763ad5fa0b470b290cb162d1942d08066e03f1d8d6f94776fa94edc0218de"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/natural-return-vp1.xsave",
+          "bytes": 960,
+          "sha256": "78fc281acb3b667825e6ad99f9180550de5ef09af5f21a7e880561be0ad30332"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/natural-return.memory.bin",
+          "bytes": 65536,
+          "sha256": "ce3db8d5f6183d0f659e52197e0ce2cb099e339c00349f1c7e7c85376e09abd1"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v1-20261110/report.json",
+          "bytes": 40216,
+          "sha256": "e6c5e0b37f18acfb8bb5d5e022fefba7f3c720b3330ccfb16672050d8e2fd294"
+        }
+      ],
+      "native_elapsed_seconds": 0.125,
+      "host_elapsed_seconds": 0.3129999999946449,
+      "host_job_active_after": 0,
+      "host_exit_code": 0,
+      "cleanup": [
+        "deleted VP 1",
+        "deleted VP 0",
+        "unmapped 64 KiB",
+        "deleted partition",
+        "released 4 GiB reservation"
+      ],
+      "samples": [
+        {
+          "phase": "callee-entry",
+          "vp": 0,
+          "rip": "0x2000",
+          "rsp": "0xaefc",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x2",
+          "xcomp_bv": "0x800000000000001f"
+        },
+        {
+          "phase": "callee-entry",
+          "vp": 1,
+          "rip": "0x2000",
+          "rsp": "0xbefc",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x2",
+          "xcomp_bv": "0x800000000000001f"
+        },
+        {
+          "phase": "natural-return",
+          "vp": 0,
+          "rip": "0x307b",
+          "rsp": "0xaf00",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37f",
+          "fsw": "0x2000",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x0",
+          "fip": "0x2051",
+          "fdp": "0x0",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        },
+        {
+          "phase": "natural-return",
+          "vp": 1,
+          "rip": "0x307b",
+          "rsp": "0xbf00",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37f",
+          "fsw": "0x2000",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x0",
+          "fip": "0x2051",
+          "fdp": "0x0",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        },
+        {
+          "phase": "after-consumer",
+          "vp": 0,
+          "rip": "0x5000",
+          "rsp": "0xaf00",
+          "rflags": "0x10002",
+          "marker": 1,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37f",
+          "fsw": "0x2000",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x0",
+          "fip": "0x2051",
+          "fdp": "0x0",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        },
+        {
+          "phase": "after-consumer",
+          "vp": 1,
+          "rip": "0x5000",
+          "rsp": "0xbf00",
+          "rflags": "0x10002",
+          "marker": 1,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37f",
+          "fsw": "0x2000",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x0",
+          "fip": "0x2051",
+          "fdp": "0x0",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        }
+      ],
+      "raw_directory_bytes": 347804,
+      "xsaves_reread": false
+    },
+    {
+      "version": 2,
+      "source": {
+        "path": "devtools/terminal_whp_return_probe_v2.py",
+        "bytes": 13189,
+        "sha256": "bc432f39e3de073d8a5182762a922b381930fdebabe2bf2b092e5f9a9a94adce"
+      },
+      "runner": {
+        "path": "devtools/terminal_whp_return_runner_v2.py",
+        "bytes": 1125,
+        "sha256": "050200f61882b588a91a1dd152ed88d0adfd3fe47b8561d7bd16b64b2f3f9614"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-return-v2-supervision-20261110.json",
+        "bytes": 428,
+        "sha256": "39f535ce82022685c2189de5a0102304ba5bc666f8c14f37653875ffd9f930e5"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/after-consumer-vp0-reread.xsave",
+          "bytes": 960,
+          "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/after-consumer-vp0.xsave",
+          "bytes": 960,
+          "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/after-consumer-vp1-reread.xsave",
+          "bytes": 960,
+          "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/after-consumer-vp1.xsave",
+          "bytes": 960,
+          "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/after-consumer.memory.bin",
+          "bytes": 65536,
+          "sha256": "a9031c2c4c3f0cdb364743385355572e72a9c36662f8886abe801c82079fa52c"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/callee-entry-vp0-reread.xsave",
+          "bytes": 960,
+          "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/callee-entry-vp0.xsave",
+          "bytes": 960,
+          "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/callee-entry-vp1-reread.xsave",
+          "bytes": 960,
+          "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/callee-entry-vp1.xsave",
+          "bytes": 960,
+          "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/callee-entry.memory.bin",
+          "bytes": 65536,
+          "sha256": "8c4635c00f702bd0b195a34ed1d313d56412de20012f8e73880a133b8dc186f0"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/initial.memory.bin",
+          "bytes": 65536,
+          "sha256": "96378270ebb0df52a81245265dab01016065dfb2227c6849b16e9735ef05299d"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/natural-return-vp0-reread.xsave",
+          "bytes": 960,
+          "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/natural-return-vp0.xsave",
+          "bytes": 960,
+          "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/natural-return-vp1-reread.xsave",
+          "bytes": 960,
+          "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/natural-return-vp1.xsave",
+          "bytes": 960,
+          "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/natural-return.memory.bin",
+          "bytes": 65536,
+          "sha256": "e9a9d26ebd447cef9adf179f45bc901eedafee6f34cbc039b4f42cb677ec6f24"
+        },
+        {
+          "path": ".venv-audit/native-worker/whp-return-v2-20261110/report.json",
+          "bytes": 43910,
+          "sha256": "03991027a35b569408e4ba3af6417ee3aa57ca1ceca33f64627b3c20edf9fd29"
+        }
+      ],
+      "native_elapsed_seconds": 0.11000000000058208,
+      "host_elapsed_seconds": 0.26600000000325963,
+      "host_job_active_after": 0,
+      "host_exit_code": 0,
+      "cleanup": [
+        "deleted VP 1",
+        "deleted VP 0",
+        "unmapped 64 KiB",
+        "deleted partition",
+        "released 4 GiB reservation"
+      ],
+      "samples": [
+        {
+          "phase": "callee-entry",
+          "vp": 0,
+          "rip": "0x2000",
+          "rsp": "0xaefc",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x2",
+          "xcomp_bv": "0x800000000000001f"
+        },
+        {
+          "phase": "callee-entry",
+          "vp": 1,
+          "rip": "0x2000",
+          "rsp": "0xbefc",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x2",
+          "xcomp_bv": "0x800000000000001f"
+        },
+        {
+          "phase": "natural-return",
+          "vp": 0,
+          "rip": "0x307b",
+          "rsp": "0xaf00",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37b",
+          "fsw": "0xa084",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x4b3",
+          "fip": "0x2059",
+          "fdp": "0x8008",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        },
+        {
+          "phase": "natural-return",
+          "vp": 1,
+          "rip": "0x307b",
+          "rsp": "0xbf00",
+          "rflags": "0x10046",
+          "marker": 0,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37b",
+          "fsw": "0xa084",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x4b3",
+          "fip": "0x2059",
+          "fdp": "0x9008",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        },
+        {
+          "phase": "after-consumer",
+          "vp": 0,
+          "rip": "0x5000",
+          "rsp": "0xaf00",
+          "rflags": "0x10002",
+          "marker": 1,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37b",
+          "fsw": "0xa084",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x4b3",
+          "fip": "0x2059",
+          "fdp": "0x8008",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        },
+        {
+          "phase": "after-consumer",
+          "vp": 1,
+          "rip": "0x5000",
+          "rsp": "0xbf00",
+          "rflags": "0x10002",
+          "marker": 1,
+          "xstate_bv": "0x3",
+          "xcomp_bv": "0x800000000000001f",
+          "fcw": "0x37b",
+          "fsw": "0xa084",
+          "top": 4,
+          "physical_ftw": "0xb0",
+          "reconstructed_full_tag": "0x30ff",
+          "fop": "0x4b3",
+          "fip": "0x2059",
+          "fdp": "0x9008",
+          "fcs": 0,
+          "fds": 0,
+          "three_sources_match": true
+        }
+      ],
+      "raw_directory_bytes": 360853,
+      "xsaves_reread": true
+    }
+  ],
+  "independent_checks": [
+    "All referenced native report/implementation/memory/XSAVE hashes were recomputed from local retained bytes; v2 XSAVE second captures were compared byte-for-byte.",
+    "All12 reported exits were independently checked against their raw224-byte exit buffers and register RIP: MemoryAccess reason1, execute type2, AccessInfo0x0a, validGVA=GPA=RIP.",
+    "Each version has both VPs joined before capture or permission changes. CALL at3076 pushes307b, callee entry SP=aefc/befc; natural RET restoresaf00/bf00. Marker is0 at callee and return and1 only after original consumer.",
+    "All executable source pages1000..3fff and5000..5fff match initial bytes at every captured phase. No instruction patch or post-start register-set call appears in the reviewed implementation.",
+    "DR0..3/6/7 and selected pending interruption/event/debug fields match actual initialized reads at all captured phases. This verifies bytes for disabled execution-breakpoint configuration, not equivalence of all debug behavior.",
+    "At return and after-consumer, WHV FP control/data heads, each8x80-bit FP slot and8x128-bit XMM values match guest FXSAVE and WHP XSAVE. XMM values also match independently known source pattern bytes.",
+    "TOP4 and physicalFTWb0 map logicalST0/1/3 to physicalR4/5/7. Reconstructed full tag30ff matches v1 FNSTENV. Empty logicalST2 retains stored bytes but is not a valid operand.",
+    "FP/XMM records are unchanged across the integer-only consumer in both versions. v1 repeats registers/memory only per phase; v2 additionally repeats all6 XSAVE buffers byte-for-byte."
+  ],
+  "execution_contract": {
+    "source_basis": "Microsoft documents RunVirtualProcessor returning for unmapped/inaccessible GPA; MemoryAccess reports access type/address validity. MapGpaRange replaces page mappings and permissions. These are VMM exits, not a requirement to inject a guest exception.",
+    "actual_scheme": "Initially caller page RX/helper NX. Both VPs first exit at2000 after original CALL. While both are stopped, caller becomes NX and helper RX. Original helper ends inRET and both exit at307b, inside caller page, beforeINC. Only caller permission is restored; INC executes once and JMP reaches next NX page5000.",
+    "important_boundary": "This establishes this synchronized CALL/RET path, including a non-page-boundary target. It does not establish arbitrary target discovery in a running OS or uninterrupted execution of unrelated threads sharing the page.",
+    "all_vp_stop": "Both synchronous RunVP calls actually returned and threads joined. Cancel API success alone would not prove this. The two exits need not occur simultaneously; the stable capture epoch starts after the last VP has stopped.",
+    "observer_events": "Source has no guest event injection call and pending fields remain equal. The v2 x87 exception is generated intentionally by guest FDIV, not an observer-injected #DB.",
+    "memory_budget": "Each private partition has2VP;4GiB is host virtual address reservation only. Exactly64KiB backing is committed/mapped. No Windows image, disk or network device exists in these probes."
+  },
+  "rf_blocker": {
+    "observed": "Each version exposes0x10046 at callee and natural return;0x10002 afterINC. RF(bit16)=1 in both exit context and raw register value.",
+    "official_basis": "Intel SDM VM-exit saving rules specify RF=1 for EPT-violation/misconfiguration exits outside IDT event delivery. This explains the observed Intel vendor1 behavior; it is not an ordinary unchanged RFLAGS copy.",
+    "information_loss": "The saved1 alone does not identify priorRF. Known ordinary CALL/RET and the constrained synthetic instruction trace support priorRF0 here; arbitrary code including IRET/task-switch/event paths needs separate provenance.",
+    "resume_risk": "RF1 suppresses an instruction-breakpoint #DB for the next instruction. Unchanged DR bytes therefore do not imply unchanged debug semantics. These probes keep DR7 execution-breakpoint enables clear and do not test a protected parent debugport.",
+    "prohibited_shortcuts": [
+      "Do not uniformly clearRF in captures or on resume.",
+      "Do not claim raw flags are transparent because other registers matched.",
+      "Do not claim successful consumer execution proves existing guest breakpoint behavior preserved."
+    ],
+    "next_capability_condition": "Either prove the originalRF source and exact existing guest debug/event behavior with a narrowly justified reconstruction/restoration contract, or establish a precise stop mechanism that does not lose/transformRF. Neither condition is satisfied by this evidence."
+  },
+  "floating_point_contract": {
+    "layout": "Installed SDK FP/MMX values have80 architectural bits in16-byte records. FpControlStatus and XmmControlStatus unions distinguish64-bit pointer form from32-bit pointer+selector form. Record reserved bytes but do not turn them into architectural values.",
+    "order_confirmed_here": "WHP FpMmx0..7 correspond to logicalST0..7 for these x87 cases; XSAVE/FXSAVE slots agree. For canonical physicalR[n], take logical slot(n-TOP)&7. AbridgedFTW bits are already physical and must not be rotated.",
+    "tag_conversion": "FTWbit0 means empty tag3. Otherwise classify corresponding80-bit physical value: exponent0/significand0 =>zero1; exponent0/7fff or missing explicit integer bit =>special2; otherwise valid0. This case exercises normal/empty, not every exceptional encoding or MMX mode.",
+    "xsave_validity": "Returned960-byte XSAVE images use compactedXCOMP_BV800000000000001f. Natural-return/consumerXSTATE_BV3 marks x87/SSE present. Initial calleeXSTATE_BV2 marks x87 init state: its zero legacy bytes are not FCW0 and cannot be parsed as populated x87 state. Actual WHV initialFCW is037f.",
+    "v1": "FNINIT and normal arithmetic/load leaveFCW037f/FSW2000/FTWb0/FIP2051;FOP/FDP0. FNSTENV captures fulltag30ff and masks exceptions; FCW was already all-masked so the observed value remains unchanged.",
+    "v2": "FLDCW037b unmasks divide-by-zero;DC B3 08 00 00 00 at2059 dividesST0 by the zeroqword atEBX+8. FSWa084 hasZE andES pending;FOP04b3,FIP2059,FDP8008/9008 are nonzero and match all three sources. NoFNSTENV/FWAIT or later waiting-FPU instruction clears/delivers it before capture.",
+    "interpretation": "v2 refutes a blanket claim that WHP always omits FOP/FDP. It demonstrates this pending-exception case, not unconditional last-instruction pointer updates. v1 zeros are actual observed outputs and are not replaced with inferred opcode/address.",
+    "cpuid": "Both guests reportCPUID7.0 EBX009c67a9: bit6 FDP_EXCPTN_ONLY=0,bit13 FCS/FDS deprecation=1. v2CPUID1 EAX000a0653 is recorded. Bit13 supports architectural saved-selector zeros for these inputs; bit6=0 alone does not explain v1FDP0. CPU/hypervisor-specific validity/update cause remains unproved.",
+    "mode_limits": "ObservedCR0=33,CR4=600,EFER=0,CS.D=1/CS.L=0:32-bit protected mode, no paging/long mode. No WOW64 compatibility or64-bit pointer mode was tested; no inference of high zero pointer/base bits for other modes."
+  },
+  "canonical_remaining_gaps": [
+    "FullEFLAGS provenance/resume debug behavior is blocked by RF conversion.",
+    "DR4/5 have no WHP enumeration or independent hardware state. With CR4.DE=0 they aliasDR6/7; withDE=1 access is#UD. Do not manufacture independent zero registers. CurrentDE=0 was set but guestMOVDR4/5 behavior was not tested.",
+    "FCS/FDS zeros have guestCPUID backing only for the tested mode/feature.64-bit andWOW64 union interpretation, high pointer bits and more descriptor cache patterns are untested.",
+    "Segment/table/control values were synthetic initial state and read back; no independent high64 descriptor or guestLGDT/LLDT/LTR coverage was established.",
+    "Pending-x87 exception and normal cases cover only chosen encodings. MMX aliasing, zero/special/denormal tag classification and full hardware state transitions need separate qualification if required by the target.",
+    "NoWindows kernel/WOW64/native handles, original game, full ABI, cumulative replay, fresh game resource lifetime or protected-debugger compatibility was observed."
+  ],
+  "cleanup_and_scope_limits": {
+    "observed": "Both reports record VP1/VP0 deletion,64KiB unmap,partition deletion and4GiB reservation release;host Job supervision reportsactive0/exit0 and no errors.30-second host bound was not reached.",
+    "unexercised_failures": "Cancellation/timeout, failedDelete/Unmap/Free, thread exceptions and inherited supervisor failure paths were not exercised by these fast successful probes. Reported zero post-start writes/events were confirmed by source structure, not an independent API-call trace.",
+    "same_epoch_limit": "Raw getter API success and equality are not universal CPU accuracy proof. This audit adds known fixture byte and guest-save comparisons for the actual bounded states only.",
+    "verifier_scope": "Parent offline verifier and tamper tests were still being authored; this report does not claim to have run or authenticated their later results."
+  },
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvrunvirtualprocessor",
+      "supports": "Synchronous RunVP and inaccessible GPA exits."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/memoryaccess",
+      "supports": "Execute type2,40-byte x64 access context and address-validity semantics."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvmapgparange",
+      "supports": "Read/write/execute mapping flags and replacement mapping."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvcancelrunvirtualprocessor",
+      "supports": "Cancellation returns control to RunVP thread; joining still required."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorstate",
+      "supports": "State query size/HRESULT andXSAVE state category."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/datatypes/hv_register_name",
+      "supports": "FP/MMX register namesST0/MMX0 throughST7/MMX7; actualWHP ordering independently checked."
+    },
+    {
+      "url": "https://cdrdv2-public.intel.com/789573/252046-sdm-change-document.pdf",
+      "supports": "SDM28.3.3 EPT-relatedRF saving rule."
+    },
+    {
+      "url": "https://cdrdv2-public.intel.com/812383/253666-sdm-vol-2a.pdf",
+      "supports": "FXSAVE physical abridgedFTW andFCS/FDS deprecation semantics."
+    },
+    {
+      "url": "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf",
+      "supports": "FNSTENV stores environment then masks x87 exceptions."
+    },
+    {
+      "url": "https://cdrdv2-public.intel.com/843860/architecture-instruction-set-extensions-programming-reference-dec-24.pdf",
+      "supports": "CPUID7 EBX6 and13 feature meanings."
+    },
+    {
+      "url": "https://docs.amd.com/api/khub/documents/sD1_QL~h4Afq2_tvzxqqSQ/content",
+      "supports": "DR4/5 reserved aliases andCR4.DE#UD semantics;not an assertion that this host isAMD."
+    }
+  ],
+  "artifact_policy": {
+    "new_files": [
+      "analysis/terminal-wait-whp-review-v1-20261110.json"
+    ],
+    "old_reports_or_sources_modified": false,
+    "reviewer_native_runs": 0,
+    "reviewer_VM_operations": 0,
+    "new_download_files": 0,
+    "temporary_harness_files": 0,
+    "commit_performed": false,
+    "total_local_and_Git_accounting_owner": "parent agent"
+  }
+}

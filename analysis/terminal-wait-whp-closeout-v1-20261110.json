@@ -1,0 +1,370 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-10T02:57:48.692887+00:00",
+  "baseline": "807f57bb84966e72a8f9ea074949c1a55ac70b85",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "change": "connect-terminal-wait-and-battle-exit",
+  "tasks_completed": 2,
+  "tasks_total": 8,
+  "functional_result": {
+    "owned_two_vp_natural_return_and_one_consumer": true,
+    "raw_FP_XMM_guest_and_monitor_agree": true,
+    "nonzero_pending_exception_FOP_FDP": true,
+    "complete_flags_transparency": false,
+    "windows_wow64_qualified": false,
+    "original_game_starts": 0,
+    "qualified_game_wait_returns": 0,
+    "first_game_consumer": false,
+    "three_game_handshakes": false,
+    "resource_PTD_release": false
+  },
+  "native": [
+    {
+      "version": 1,
+      "report": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\report.json",
+        "bytes": 40216,
+        "sha256": "e6c5e0b37f18acfb8bb5d5e022fefba7f3c720b3330ccfb16672050d8e2fd294"
+      },
+      "native_seconds": 0.125,
+      "supervision": {
+        "deadline_seconds": 30,
+        "host_input_actions": 0,
+        "remote_completion": "observed",
+        "errors": [],
+        "host_pid": 29124,
+        "assigned_before_request": true,
+        "host_job_active_after": 0,
+        "host_exit_code": 0,
+        "output_bytes": 93,
+        "response": {
+          "ok": true,
+          "errors": [],
+          "remote_completion": "observed",
+          "accepted": false,
+          "phases": 3
+        },
+        "elapsed_seconds": 0.3129999999946449
+      }
+    },
+    {
+      "version": 2,
+      "report": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\report.json",
+        "bytes": 43910,
+        "sha256": "03991027a35b569408e4ba3af6417ee3aa57ca1ceca33f64627b3c20edf9fd29"
+      },
+      "native_seconds": 0.11000000000058208,
+      "supervision": {
+        "deadline_seconds": 30,
+        "host_input_actions": 0,
+        "remote_completion": "observed",
+        "errors": [],
+        "host_pid": 35504,
+        "assigned_before_request": true,
+        "host_job_active_after": 0,
+        "host_exit_code": 0,
+        "output_bytes": 93,
+        "response": {
+          "ok": true,
+          "errors": [],
+          "remote_completion": "observed",
+          "accepted": false,
+          "phases": 3
+        },
+        "elapsed_seconds": 0.26600000000325963
+      }
+    }
+  ],
+  "validation": {
+    "offline_proofs": [
+      {
+        "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-proof-v1-20261110.json",
+        "bytes": 1832,
+        "sha256": "179aa822ded575036d059b0436617b1a264dbba57e7b9648d75e8d6e72c0c4fe"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-proof-v2-20261110.json",
+        "bytes": 1864,
+        "sha256": "d691947e3d32018a04b037ebe1116bb7a1ba98b395c647d1592c15e0c951cb28"
+      }
+    ],
+    "unittest_normal": 7,
+    "unittest_optimized": 7,
+    "strict_openspec_passed": true,
+    "preservation": {
+      "checked_utc": "2026-11-10T02:57:47.930702+00:00",
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    },
+    "independent_review": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-review-v1-20261110.json",
+      "bytes": 28194,
+      "sha256": "d40aebc5703fcff4421920341e1282e311be336ed8c1fe2b91a73da838a344d0"
+    }
+  },
+  "environment": {
+    "all_new_data_F": true,
+    "windows_vm_running": false,
+    "windows_boots": 0,
+    "VMX_current": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\chaomofa-worker.vmx",
+      "bytes": 4211,
+      "sha256": "1b7d138e03fe1377fe92a98b5af8c17c3785001085cbb1d1db26680f41f4e7a8"
+    },
+    "running": "Total running VMs: 0",
+    "snapshots": "Total snapshots: 0",
+    "vmem_files": [],
+    "VMDK_total_bytes": 16761683968,
+    "VMDK_growth_bytes": 0,
+    "new_download_bytes": 0,
+    "new_guest_files": 0,
+    "host_input_actions": 0,
+    "host_BCD_changes": 0,
+    "synthetic_each": {
+      "vp_count": 2,
+      "reserved_address_bytes": 4294967296,
+      "committed_mapped_bytes": 65536,
+      "OS_boots": 0,
+      "devices": 0,
+      "disks": 0
+    }
+  },
+  "next_gate": [
+    "Prove original RF provenance and resumed debug semantics, or use a stop mechanism preserving the missing original flag; never silently clear RF.",
+    "Qualify 64-bit/WOW64 mode and complete state before considering Windows/game migration; WHP cannot attach the existing VMware partition.",
+    "Then capture real wait return to 453CB5/4967B0 and three original handshakes, before resource/PTD and two fresh full native replays."
+  ],
+  "evidence": {
+    "source_files": [
+      {
+        "member": "build-whp-return-v2.py",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-whp-return-v2.py",
+        "bytes": 2441,
+        "sha256": "dd8d20eca38d70c02cc0bf45b420433af5db5a06c4468c26d17182e1dd187f6c"
+      },
+      {
+        "member": "seal-whp-v1.py",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\seal-whp-v1.py",
+        "bytes": 5267,
+        "sha256": "8b882a77aa31d7e56aad47f95e88fc2a356909916815b349942fbae554d4304c"
+      },
+      {
+        "member": "whp-capability-v1-20261110.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-capability-v1-20261110.json",
+        "bytes": 1214,
+        "sha256": "7d0a7e1141f3559235b9fd868b27f5b3506686a566de65b16553f527ac05b811"
+      },
+      {
+        "member": "whp-preservation-v1-20261110.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-preservation-v1-20261110.json",
+        "bytes": 172,
+        "sha256": "cf521dea19304e3454d3401518a5c9e3a51b30ac2e3c69cad157f950dc737518"
+      },
+      {
+        "member": "whp-return-v1-20261110/after-consumer-vp0.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\after-consumer-vp0.xsave",
+        "bytes": 960,
+        "sha256": "f83763ad5fa0b470b290cb162d1942d08066e03f1d8d6f94776fa94edc0218de"
+      },
+      {
+        "member": "whp-return-v1-20261110/after-consumer-vp1.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\after-consumer-vp1.xsave",
+        "bytes": 960,
+        "sha256": "78fc281acb3b667825e6ad99f9180550de5ef09af5f21a7e880561be0ad30332"
+      },
+      {
+        "member": "whp-return-v1-20261110/after-consumer.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\after-consumer.memory.bin",
+        "bytes": 65536,
+        "sha256": "3e7ff250b9260c2b6a712d440c35de90c44ff5d60e17c9ca8bc59047051e08e0"
+      },
+      {
+        "member": "whp-return-v1-20261110/callee-entry-vp0.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "member": "whp-return-v1-20261110/callee-entry-vp1.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "member": "whp-return-v1-20261110/callee-entry.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "a10aacac4e3e8a609e250222abe5a5a5315c84e5881d2cd4c2d27acbcabad416"
+      },
+      {
+        "member": "whp-return-v1-20261110/initial.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "2571eb69dc5a56074e1dbc0cc3fbd2c56f31c91b66e2ad3e8b930d934d2e6c9c"
+      },
+      {
+        "member": "whp-return-v1-20261110/natural-return-vp0.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\natural-return-vp0.xsave",
+        "bytes": 960,
+        "sha256": "f83763ad5fa0b470b290cb162d1942d08066e03f1d8d6f94776fa94edc0218de"
+      },
+      {
+        "member": "whp-return-v1-20261110/natural-return-vp1.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\natural-return-vp1.xsave",
+        "bytes": 960,
+        "sha256": "78fc281acb3b667825e6ad99f9180550de5ef09af5f21a7e880561be0ad30332"
+      },
+      {
+        "member": "whp-return-v1-20261110/natural-return.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\natural-return.memory.bin",
+        "bytes": 65536,
+        "sha256": "ce3db8d5f6183d0f659e52197e0ce2cb099e339c00349f1c7e7c85376e09abd1"
+      },
+      {
+        "member": "whp-return-v1-20261110/progress.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\progress.json",
+        "bytes": 39684,
+        "sha256": "3bd6cf340fc1101b5c133db85781b1292fa63320bc453fec4f3236ff72001e36"
+      },
+      {
+        "member": "whp-return-v1-20261110/report.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-20261110\\report.json",
+        "bytes": 40216,
+        "sha256": "e6c5e0b37f18acfb8bb5d5e022fefba7f3c720b3330ccfb16672050d8e2fd294"
+      },
+      {
+        "member": "whp-return-v1-supervision-20261110.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v1-supervision-20261110.json",
+        "bytes": 427,
+        "sha256": "4897f602afe1092c62a40ef868739f63a9b7025dd707f0716e238e94a85f6071"
+      },
+      {
+        "member": "whp-return-v2-20261110/after-consumer-vp0-reread.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\after-consumer-vp0-reread.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "member": "whp-return-v2-20261110/after-consumer-vp0.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\after-consumer-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "member": "whp-return-v2-20261110/after-consumer-vp1-reread.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\after-consumer-vp1-reread.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "member": "whp-return-v2-20261110/after-consumer-vp1.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\after-consumer-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "member": "whp-return-v2-20261110/after-consumer.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\after-consumer.memory.bin",
+        "bytes": 65536,
+        "sha256": "a9031c2c4c3f0cdb364743385355572e72a9c36662f8886abe801c82079fa52c"
+      },
+      {
+        "member": "whp-return-v2-20261110/callee-entry-vp0-reread.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\callee-entry-vp0-reread.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "member": "whp-return-v2-20261110/callee-entry-vp0.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "member": "whp-return-v2-20261110/callee-entry-vp1-reread.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\callee-entry-vp1-reread.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "member": "whp-return-v2-20261110/callee-entry-vp1.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "member": "whp-return-v2-20261110/callee-entry.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "8c4635c00f702bd0b195a34ed1d313d56412de20012f8e73880a133b8dc186f0"
+      },
+      {
+        "member": "whp-return-v2-20261110/initial.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "96378270ebb0df52a81245265dab01016065dfb2227c6849b16e9735ef05299d"
+      },
+      {
+        "member": "whp-return-v2-20261110/natural-return-vp0-reread.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\natural-return-vp0-reread.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "member": "whp-return-v2-20261110/natural-return-vp0.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\natural-return-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "member": "whp-return-v2-20261110/natural-return-vp1-reread.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\natural-return-vp1-reread.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "member": "whp-return-v2-20261110/natural-return-vp1.xsave",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\natural-return-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "member": "whp-return-v2-20261110/natural-return.memory.bin",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\natural-return.memory.bin",
+        "bytes": 65536,
+        "sha256": "e9a9d26ebd447cef9adf179f45bc901eedafee6f34cbc039b4f42cb677ec6f24"
+      },
+      {
+        "member": "whp-return-v2-20261110/progress.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\progress.json",
+        "bytes": 43279,
+        "sha256": "f9f5a9f946635d34dc76bf91d486b0476cbc665513df54074b4a6c39a80ad63d"
+      },
+      {
+        "member": "whp-return-v2-20261110/report.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-20261110\\report.json",
+        "bytes": 43910,
+        "sha256": "03991027a35b569408e4ba3af6417ee3aa57ca1ceca33f64627b3c20edf9fd29"
+      },
+      {
+        "member": "whp-return-v2-supervision-20261110.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-return-v2-supervision-20261110.json",
+        "bytes": 428,
+        "sha256": "39f535ce82022685c2189de5a0102304ba5bc666f8c14f37653875ffd9f930e5"
+      }
+    ],
+    "support_capsule": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-support-v1-20261110.zip",
+      "bytes": 30041,
+      "sha256": "7f4dce201295a5dece729bc812c2d3a7ea81624c7723e3c60e8822fc949d1850"
+    },
+    "source_logical_bytes": 718606,
+    "same_disk_recovery_copy_not_independent_backup": true,
+    "cleanup": "Both owned WHP partitions/VPs/mappings/reservations explicitly released; host Jobs report zero active processes. Existing Windows VM never booted. Tiny raw evidence plus one compressed recovery copy retained; no historical evidence/assets or existing QEMU files removed. Final volume audit includes code, raw originals, recovery copy, audit files and new Git object bytes."
+  }
+}
