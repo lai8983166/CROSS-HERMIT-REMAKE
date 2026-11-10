@@ -1206,3 +1206,12 @@ devtools/tests/test_vmware_*.py -text
 devtools/tests/test_terminal_vm_wait_observer_gate.py -text
 analysis/terminal-wait-vm-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 analysis/terminal-wait-vm-*.zip -text
+# Frozen KD development probes and their byte-identified reports.
+devtools/isolated_kd_engine*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_kd_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_kd_*.cs -text
+devtools/terminal_wait_kd_dispatch_review.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-kd-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-kernel-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-qemu-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-kd-*.zip -text

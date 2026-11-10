@@ -1,0 +1,1763 @@
+{
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "change": "connect-terminal-wait-and-battle-exit",
+  "tasks_completed": 2,
+  "tasks_total": 8,
+  "baseline_commit": "174ce997ba49f47004a84f1efc698fb06ed97055",
+  "created_utc": "2026-11-10T01:39:05.392441+00:00",
+  "functional_result": {
+    "original_game_starts": 0,
+    "complete_original_replays": 0,
+    "qualified_target_fixture_wait_stops": 0,
+    "three_game_handshakes": false,
+    "first_result_consumption": false,
+    "resource_PTD_release": false,
+    "achieved": [
+      "Official SDK KD observed one ordinary kernel NtWait tail and guest response after breakpoint removal.",
+      "Guest-only supervisor read the actual own WOW64 fixture native64 PEB/Ldr entry and wow64cpu loaded base; target wait identity remains unqualified."
+    ],
+    "blockers": [
+      "Canonical full user post-wait CPU/ABI/memory state remains missing.",
+      "Manual COM client access violation root cause not established; it is audit-only.",
+      "CLI compound condition and control handoff yielded no target stops; pending debugger breaks require explicit consumption and verified continuation.",
+      "Stock QEMU GDB/HMP/VMState field coverage not sufficient; no VM migration performed."
+    ]
+  },
+  "evidence": [
+    {
+      "path": "analysis\\terminal-wait-kd-dispatch-static-refusal-v1-20261110.json",
+      "bytes": 16290,
+      "sha256": "ef31e253782c5a1e565d0e5894b1bb6c68a852cb6b2d4f77556d323e5d98857c"
+    },
+    {
+      "path": "analysis\\terminal-wait-kernel-boundary-static-candidate-v1-20261110.json",
+      "bytes": 25455,
+      "sha256": "c97b6ad769aa9a986b32a66a8857da6e72b9e75e4d222f2a9fd317c2106185c1"
+    },
+    {
+      "path": "analysis\\terminal-wait-kernel-pdb-context-v1-20261110.json",
+      "bytes": 13746,
+      "sha256": "b5320f4eba106546f435e466885d034e46fdd86d0035bc6abfeccc7dacf375a8"
+    },
+    {
+      "path": "analysis\\terminal-wait-qemu-state-contract-v1-20261110.json",
+      "bytes": 17058,
+      "sha256": "82c5a30ba01795787c198a7f5b0c4fa815d93ca444e2d6d695b5ce009a5831d7"
+    },
+    {
+      "path": "analysis\\terminal-wait-kd-independent-review-v1-20261110.json",
+      "bytes": 16748,
+      "sha256": "321fd4fd466ca60007548cf10761ab1b23644b46891627ff97af62fd73325ab5"
+    },
+    {
+      "path": "analysis\\terminal-wait-kd-recovery-review-v1-20261110.json",
+      "bytes": 9654,
+      "sha256": "b9955ae5d8e0481b4a60779d6073fa3450a639a7809e6028541ce87f7f9c6324"
+    }
+  ],
+  "support_capsule": {
+    "path": "analysis\\terminal-wait-kd-support-v1-20261110.zip",
+    "bytes": 574744,
+    "sha256": "310018d45535eab83ef3331702d794d7d5485940542fe6997d59890ef1f4cafe"
+  },
+  "native_sources": [
+    {
+      "path": "devtools\\isolated_kd_engine.py",
+      "bytes": 6245,
+      "sha256": "af0f7b417e0f2870fe0effb00d53e5c26095c2737c07e89f5c931a46c5b07975"
+    },
+    {
+      "path": "devtools\\isolated_kd_engine_v2.py",
+      "bytes": 6355,
+      "sha256": "01d78d0af9b449e04d8302bb038108923bdd5ae6bf597e7468ebe0f884deb882"
+    },
+    {
+      "path": "devtools\\isolated_kd_engine_v3.py",
+      "bytes": 6355,
+      "sha256": "78bcc8bab4acb09e96491d210161f42c19a5589f0a750d127bc80a0f96efd286"
+    },
+    {
+      "path": "devtools\\isolated_kd_engine_v4.py",
+      "bytes": 6361,
+      "sha256": "9f16612e6bff09d6809e0dd9a883463d282009ce040930e11a16875227af452d"
+    },
+    {
+      "path": "devtools\\isolated_kd_engine_v5.py",
+      "bytes": 6550,
+      "sha256": "064d4625b7d7d72f5621eac833f189f100bad0c082514ce748ddda6ef864d8fd"
+    },
+    {
+      "path": "devtools\\isolated_kd_engine_v6.py",
+      "bytes": 6765,
+      "sha256": "bf5090f86aae83f4bdda1169cd76a3d303bb47ea1f5ec0586208a9330269fa2c"
+    },
+    {
+      "path": "devtools\\isolated_kd_engine_v7.py",
+      "bytes": 7302,
+      "sha256": "cb5401b6ea1eee26c06f98013c00e9055335b8d3effac7416fa3a317c08be17b"
+    },
+    {
+      "path": "devtools\\isolated_vm_kd.py",
+      "bytes": 1750,
+      "sha256": "8dabf6ca7fbc3cd29cd81e89bc51f4e93ac01744f781ba3fbc5c0f422a38d0b7"
+    },
+    {
+      "path": "devtools\\terminal_kd_fixture_supervisor.py",
+      "bytes": 4581,
+      "sha256": "24252df8fe489b68132f0df4c116cb065113b41b989368ac53808d64d3418d07"
+    },
+    {
+      "path": "devtools\\terminal_kd_module_peb.cs",
+      "bytes": 2505,
+      "sha256": "aad88155e0bae8cd504e17aff9a339f151d9b673ebb6b50fd7c85e35ad5a0de1"
+    },
+    {
+      "path": "devtools\\terminal_kd_wait_cli.py",
+      "bytes": 6626,
+      "sha256": "30b366becfac725b65b3e2e1e77a61d7c4b5778405800818a5599c7352f5650a"
+    },
+    {
+      "path": "devtools\\terminal_kd_wait_cli_v2.py",
+      "bytes": 7396,
+      "sha256": "6c73552e06c56cb62dfece72ba5975899a5fddd38e2e070a078413819dc93dc1"
+    },
+    {
+      "path": "devtools\\terminal_kd_wait_preflight.py",
+      "bytes": 7157,
+      "sha256": "c1822fb194d786df28f0266190982aca0bd5ce33c3336fc223d3eadd9684fa51"
+    },
+    {
+      "path": "devtools\\terminal_kd_wait_preflight_v2.py",
+      "bytes": 9734,
+      "sha256": "4db354c6d9f9a4c0ff90a07376d38d4052cc934787222f8cba26db5fac4354a5"
+    },
+    {
+      "path": "devtools\\terminal_wait_kd_dispatch_review.py",
+      "bytes": 11707,
+      "sha256": "b314f531763e0863f00f544876690ee6e445371183742be760f048b312f3a025"
+    }
+  ],
+  "recovery": {
+    "restore_receipt": {
+      "path": ".venv-audit\\native-worker\\kd-worker\\restore-v2.json",
+      "bytes": 1849,
+      "sha256": "8f5ea5f7fecf3104d152a7ab2dd3afa3220a16cf170e748b202d8d20f7a441f5"
+    },
+    "cold_boot_and_off_receipt": {
+      "path": ".venv-audit\\native-worker\\kd-worker\\final-worker-v1.json",
+      "bytes": 13243,
+      "sha256": "158e44e753efa3c0d9acc7c7e8a7270230cb70c119b48d87679009421911d782"
+    },
+    "pending_break_recovery": {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-recovery-v2.json",
+      "bytes": 668,
+      "sha256": "f131090ae8c06a4f209e4b9b870b33844c1d9b28c944b183d910f08429c0999e"
+    },
+    "guest_debug_boot_disabled": true,
+    "guest_debug_settings": "original Local",
+    "serial_settings_removed": 7,
+    "vm_powered_off": true,
+    "snapshots": 0,
+    "vmem_files": 0,
+    "active_test_processes": 0,
+    "original_host_backup": {
+      "path": ".venv-audit\\native-worker\\kd-worker\\bcd-before",
+      "bytes": 24576,
+      "sha256": "3978cee5e7afcbb438842e1d0635095116e6c4ac339aaa0a702b1fd753c2e325"
+    },
+    "byte_identity_limit": "Guest BCD backup changed after import/reboot; retained host backup matches original SHA. VMX configuration contract restored, not byte-equal to pre-run VMX. No host BCD/Hyper-V/VBS modifications."
+  },
+  "validation": {
+    "preservation": {
+      "checked_utc": "2026-11-10T01:27:58.684877+00:00",
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    },
+    "independent_reviews": 2,
+    "strict_openspec_passed": true,
+    "syntax_checked_python_files": 14,
+    "no_runtime_test_suite_claim": true,
+    "staged_preclose_audit": {
+      "path": ".venv-audit\\native-worker\\battle-wait-clock-staged-audit-kd-preclose-v1-20261110.json",
+      "bytes": 5220,
+      "sha256": "100e453c367961d9d34b7220b5a5ba4432be3df47cffeae8477673d04be27340"
+    }
+  },
+  "storage": {
+    "host_local_evidence_and_reproduction_bytes": 3170089,
+    "recovery_capsule_extra_copy_bytes": 574744,
+    "new_environment_files_bytes": 382814083,
+    "guest_new_evidence_logical_bytes": 412518,
+    "current_vmdk_bytes": 16761552896,
+    "vmdk_growth_since_parent_bytes": 25755648,
+    "volume_boundary": "Host evidence manifest includes root drivers, raw receipts, original BCD backup and source audit; Git working-tree files reported separately. Guest logical evidence is already inside VMDK and is not added twice to physical growth. Final Git object/audit metadata is reported after commit.",
+    "portable_environment_retirement": {
+      "executed": false,
+      "available": true,
+      "bytes": 382814083,
+      "reason": "Removal of the newly downloaded package/extracted runtime was rejected by tool policy (blocked by policy); no equivalent deletion workaround attempted.",
+      "installer_url": "https://qemu.weilnetz.de/w64/qemu-w64-setup-20260811.exe",
+      "installer": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\qemu-worker\\qemu-w64-setup-20260811.exe",
+        "bytes": 206615928,
+        "sha256": "f98a8aeb5f7faea9765b6dee28316c266cd179d80354a2fed8e50176f9a2e59f"
+      },
+      "runtime_manifest": {
+        "path": ".venv-audit\\native-worker\\qemu-worker\\runtime-v1.json",
+        "bytes": 28710,
+        "sha256": "64059004edc00502ceb71648b6947d412230495a4e6a3e92bb325d2357b3fae2"
+      },
+      "git_tracking": false
+    },
+    "earlier_duplicate_static_json_retirement": {
+      "path": ".venv-audit\\native-worker\\kd-static-retention-v1.json",
+      "bytes": 1476,
+      "sha256": "cc0d984dc420e7f58d9b56718571b46f4e091023c56a3c916f90207232c2926a"
+    },
+    "closeout_manifest_bytes": 75085,
+    "git_new_file_bytes_at_closeout": 846169
+  },
+  "all_new_host_files": [
+    {
+      "path": ".venv-audit\\native-worker\\battle-wait-clock-staged-audit-kd-preclose-v1-20261110.json",
+      "bytes": 5220,
+      "sha256": "100e453c367961d9d34b7220b5a5ba4432be3df47cffeae8477673d04be27340",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\boot-kd-preparation-v1-20261110.json",
+      "bytes": 1127,
+      "sha256": "cc8487b33084ffc78b2120829e1f5672bab0cd78865f5d2a52bade0cc9438e08",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\boot-kd-restored-v1-20261110.json",
+      "bytes": 1127,
+      "sha256": "abfd7087788508021e552d234e88cc996640a6bbd976051e6ebcdc79f6c635b8",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-finish-kd-cli-v2.py",
+      "bytes": 316,
+      "sha256": "57fc7f6b8bc78716d65596d3237e50991de9d32d594ba690708a4ee604d91615",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-cli-recovery-v2.py",
+      "bytes": 774,
+      "sha256": "090827a9914f6f87535b3837327b4ab9039328cba310b148a4b61b8d47a65901",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-cli-v2.py",
+      "bytes": 1961,
+      "sha256": "73d594ca58148b3633cac787de84ce6ed8df1b87948bd9bc788e1c9ccc998885",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-cli-v3b.py",
+      "bytes": 1041,
+      "sha256": "994c248209285665698e0f0162253ef8fa092099d2fc74034675a2e9d73e8cba",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-engine-v6.py",
+      "bytes": 743,
+      "sha256": "ea1b657da021bd2576b0510e583a1fdaec75ad4601f92af6363355ae3a123577",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-engine-v7.py",
+      "bytes": 1369,
+      "sha256": "ade63828b0a40f00c1034f5c29932e3e923f25c5e441f5553bc47e24094ba29c",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-recovery-v2.py",
+      "bytes": 442,
+      "sha256": "43917bba37d3a42b372b76c02a7f28011c633b5cf404c78d28adf1b6d648e71d",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-recovery-v3.py",
+      "bytes": 212,
+      "sha256": "a9bdccb30c7937814c7028b297477920d087785261de9162bf63a78927fb398c",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-recovery-v4.py",
+      "bytes": 212,
+      "sha256": "cede5981d521db6faa0d2ad29ba02fbc3ab3a3123c4f2732c3ee0e8a2fa54c2b",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-support-v1.py",
+      "bytes": 1834,
+      "sha256": "e63b91416eae0ab03099772a8a008e47c18781da67d8ab2e45432124d806488a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-kd-wait-v2.py",
+      "bytes": 3848,
+      "sha256": "f6e55c9df0663b7a45588044d1c6d642b8c9d73baf2fad824c0b6fda41481dab",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\build-restore-kd-v2.py",
+      "bytes": 248,
+      "sha256": "8d41cd36f648cf65ffae183404f4852959bdf5b3748c9d7cc73d04e5f0629dad",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\check-kd-guest-v1.py",
+      "bytes": 519,
+      "sha256": "6416183d71cd4b1ca13c29615bad233fa406c33ba18b84e6e345498b67b2612f",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\check-kd-preservation-v1.py",
+      "bytes": 1007,
+      "sha256": "41db98f692a341472f839d935126c6cc34d09b04866fbcf32e2939600caa0aa5",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\closeout-kd-v1.py",
+      "bytes": 6811,
+      "sha256": "faeec02df3a1a9bcc0ae046f863bfa07bef023cf087c33b42c0e1bee767bc526",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\extract-qemu-runtime-v1.py",
+      "bytes": 2046,
+      "sha256": "0c7c1ab7290e6663221cf2e22592bd837190093833bb220158b5060f2d39b94c",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\finalize-kd-worker-v1.py",
+      "bytes": 2588,
+      "sha256": "b4164e5440b1a941c419e63e8a045c9e2a79868d19afc2dbe908406719a6b8fc",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\finish-kd-cli-v1.py",
+      "bytes": 973,
+      "sha256": "7416b9b8d89e19e50d5517921cd3fb6b17c4bbb78204757767644867b0050d09",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\finish-kd-cli-v2.py",
+      "bytes": 992,
+      "sha256": "439c58d5c83c48a4ae49d65bc08681f1c55a74df3c8b0dea7f9469ba9a16e09e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\finish-kd-fixture-v1.py",
+      "bytes": 907,
+      "sha256": "f8e6f474e03f76f9bbe13ace7a9bb87fbdd9e8bdb13166b5d6de0bd8d3e2b075",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\inspect-kd-cli-stage-v1.py",
+      "bytes": 779,
+      "sha256": "358ac4fefabd72f3cac01532d92565f209c69310685c6a4512aad89a458ce162",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-kernel-boundaries-v1.py",
+      "bytes": 5115,
+      "sha256": "e9d04418c64ddf2c4efdf3aa3fd3360bd226d63c2a39930a714812064b25db1e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-kernel-types-v1.py",
+      "bytes": 3972,
+      "sha256": "7b2edc16ad876be1d35c5af10dcebd8b98af136923d770312c1acab46e26dda6",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-static-retention-v1.json",
+      "bytes": 1476,
+      "sha256": "cc0d984dc420e7f58d9b56718571b46f4e091023c56a3c916f90207232c2926a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-static-symbols-v1.py",
+      "bytes": 4915,
+      "sha256": "201a7a428f8a3dc23f463766633f923a7a79c9f9a3c32209763fbf73881dc859",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\bcd-before",
+      "bytes": 24576,
+      "sha256": "3978cee5e7afcbb438842e1d0635095116e6c4ac339aaa0a702b1fd753c2e325",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\channel-v1.json",
+      "bytes": 285,
+      "sha256": "e75143e4e8deb862cb8deb64f5407a41d86bea5604c58909dc719190442b89c1",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\channel-v2.json",
+      "bytes": 349,
+      "sha256": "1ef29a52fbdafba79d431e3ca04fd12ef51aabc9d0bade656432ebf5487b0a10",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\channel-v3.json",
+      "bytes": 1513,
+      "sha256": "a0fc99eccf412781fac0ad96ca95603dc2c3b59d41403ef59f1d3ab9843016d0",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\channel-v4.json",
+      "bytes": 1516,
+      "sha256": "e80539e7d88dbd6de0445d511fe98f8da1019313a37af41363bc646961a3ceee",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\channel-v5.json",
+      "bytes": 10214,
+      "sha256": "2645f1437bf477cc9d07b6c1f4e59736ca5b65100609161ec4ed966076e90d24",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-channel-v1.json",
+      "bytes": 1486,
+      "sha256": "35d03e23534b47ef1fc3afd40a943bdeeb0d7f68fc9bc70ba5429a9219120b96",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-channel-v1.log",
+      "bytes": 3062,
+      "sha256": "67b3ed2319bc0e113571b70e0963933e1f89716f4a194a925c8f004078ceb854",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-fixture-final-v1.json",
+      "bytes": 35102,
+      "sha256": "f164dc06e9d38bc45bc3912c92b3eb249efd209133bfa1e3bf0f0166711af8a5",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-fixture-final-v2.json",
+      "bytes": 35103,
+      "sha256": "275035ad84bf2152f39731727d7fde674a1bffd3df258002d7dbf8626764a0ac",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-fixture-result-v1.json",
+      "bytes": 34450,
+      "sha256": "192c3ca624df98f730930bc886f74f99506bb5f5c1646e63b9cefa6088e00f63",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-fixture-result-v2.json",
+      "bytes": 34451,
+      "sha256": "dba1ba23d056351d8d755ddcb8420825c0b9f9a20afde94c12de8629d732bd42",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-ready-copy-v1.json",
+      "bytes": 905,
+      "sha256": "382aba7ada6d6679f8d1c90fca9159d2a2343ccdfe267e5f4d1efeb6d2f45139",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-ready-transfer-v1.json",
+      "bytes": 1068,
+      "sha256": "f28ae683366d2269447e8f5f9d3830011c404c6907e22d272494688e485a72bb",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-recovery-v1.json",
+      "bytes": 401,
+      "sha256": "a056b7f4f333c9cb6e699a61c10f2428db76d1c2da4d53df97c9c1e26a70f644",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-recovery-v1.log",
+      "bytes": 3208,
+      "sha256": "0c5404b2ba06a7c065cc95bc42afc24be290a9a455d0c1b5046334d193a2e564",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-recovery-v2.json",
+      "bytes": 668,
+      "sha256": "f131090ae8c06a4f209e4b9b870b33844c1d9b28c944b183d910f08429c0999e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-recovery-v2.log",
+      "bytes": 4219,
+      "sha256": "f2c91318cd1e9b8f42a71792bfc687d73c7128a665f935f7d20b913ca5283153",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-v3-final-result.json",
+      "bytes": 34452,
+      "sha256": "f8d20b38a1625ea93d812ad0e8776c01692f0f8be7b882d7309a845e637ef187",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-v3-final-supervisor-progress.json",
+      "bytes": 36028,
+      "sha256": "7ac35993b22c39d476a73bad186e859edba5bb1a42eba3c7c69fa59eb2e42d1b",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-v3-final-supervisor.json",
+      "bytes": 36576,
+      "sha256": "cea1d2cc822a9cfe98b98872c59d2c84c0a28557b2082f62d9c99fc4c2d73611",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-v3-go.txt",
+      "bytes": 8,
+      "sha256": "e256ee8e7aff6957a781d8328f0f68e26996564c81fa458da59fbca2305138ad",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-v3-supervisor-ready.json",
+      "bytes": 1185,
+      "sha256": "2727fae2fff4c8e4382758fb1d905e0a3f85d67a5272a150c23993cbe6f53b56",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-wait-v1.json",
+      "bytes": 1657,
+      "sha256": "411fe6d8ae6706192adcebb41886a6c47b6a4afb239623f9bc714def6eae1631",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-wait-v2.json",
+      "bytes": 1944,
+      "sha256": "9223d74e576d6dd03dc73eaad3e5de3892387abe6466926ea3cf8e587ebdf94d",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-wait-v3.json",
+      "bytes": 885,
+      "sha256": "a0582d6fb8fe9acccf3a8606a67ea9487d41cc345f5566229f064f6d11587d07",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-wait-v3b.json",
+      "bytes": 3292,
+      "sha256": "c85cc193eb202683060aee65889a64f5077c9e3f0916b1aab160380d6c5d5003",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\cli-wait-v3b.log",
+      "bytes": 2750,
+      "sha256": "db91d7449deabfcdc7d7879109e13680a9cf25a70e95c92e8032ba4b55af3a3a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\final-worker-v1.json",
+      "bytes": 13243,
+      "sha256": "158e44e753efa3c0d9acc7c7e8a7270230cb70c119b48d87679009421911d782",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\fixture-v1-final.json",
+      "bytes": 721,
+      "sha256": "d2f779fd27dd2b0cba5988c2f3b96f7175ce48bcde8ccb3ae476a9e564d03bc3",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\guest-status-v1.json",
+      "bytes": 329,
+      "sha256": "ade500b4ca79cd8ae10ddd3d390c66fd595bbba392f474c0ec7308a9e1df849e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\prepare-v3.json",
+      "bytes": 3250,
+      "sha256": "88f3adf015c99a2072f6a940ef6d92c80d2ae58ddd52bf61fdd9a433bf618fed",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\preservation-v1.json",
+      "bytes": 172,
+      "sha256": "7047cd6b1ca643d374d15be5e8c481b09d69c1d96f6e49e0ce6230ae4494da8a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\recovery-v1.json",
+      "bytes": 6428,
+      "sha256": "4636eede19b0b99607a4c2eeedd6f91d4a8cd8557b9560cad787616a0181dd3d",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\recovery-v2.json",
+      "bytes": 9278,
+      "sha256": "4c099d58d39e5fb2eff0417607b9da228a6abbc51c43585c204df12a087ce51a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\recovery-v3.json",
+      "bytes": 11068,
+      "sha256": "fa8b79d5738c27912663afefbed4a1953e89344294ddbe0de4f25b9810541797",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\recovery-v4-abort.json",
+      "bytes": 547,
+      "sha256": "814b1ab615f1e3472024e135146c51be333a9129f5c9b04d904ba69080b9830c",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\release-fixture-v2-go.txt",
+      "bytes": 8,
+      "sha256": "e256ee8e7aff6957a781d8328f0f68e26996564c81fa458da59fbca2305138ad",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\release-fixture-v2.json",
+      "bytes": 23,
+      "sha256": "880257483e179eea5fcadaa77bb74a991cb5eab330ddfb05b2afede648202554",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\restore-v1.json",
+      "bytes": 500,
+      "sha256": "b1ebfdd56a95c6e570a71b5150650395758ebd482020e46d3b7dea2067859768",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\restore-v2.json",
+      "bytes": 1849,
+      "sha256": "8f5ea5f7fecf3104d152a7ab2dd3afa3220a16cf170e748b202d8d20f7a441f5",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\support-manifest-v1.json",
+      "bytes": 37252,
+      "sha256": "a5f52ea6a12b3fdd35fb2dffdabdf4c35d57d169c4d5c48a8ce1416bb68fe687",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\vmx-before.txt",
+      "bytes": 4207,
+      "sha256": "11593184d933d848288cf34ce3f484f7df0fbb84435773cc25ac2d3aa1d95d04",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\wait-tail-v1.json",
+      "bytes": 16009,
+      "sha256": "e1c7855ffb1a0deb0a7768177b308cfa05ce037a1cb9e87df2a8c195c9adf45e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\kd-worker\\wait-tail-v2.json",
+      "bytes": 13229,
+      "sha256": "fd546150a4087d7303bdc67a866f31782fb3f13d2ff9d753d19339bda1638f09",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\prepare-kd-guest-v1.py",
+      "bytes": 2836,
+      "sha256": "c60afff64b6ecfb40c3c908c77cf1710211bdb15794570679e9e984044cea242",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\prepare-kd-guest-v2.py",
+      "bytes": 2850,
+      "sha256": "19023d3eb0528cfa7e1320ce1ac0dbba1c1161e966c7e580001e6e397ebeb064",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\prepare-kd-guest-v3.py",
+      "bytes": 2851,
+      "sha256": "b1990cf6b4e8329737369269b26a0ba6b650bb11ccb100f5e2c44c91233e7eec",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\prepare-qemu-download-v1.py",
+      "bytes": 1643,
+      "sha256": "7631e86233ad36a367b231ac41c5eb21b3f75160e9b7fac4b3b05cf3242c8c07",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\probe-kd-channel-v1.py",
+      "bytes": 2794,
+      "sha256": "054e0a2225f8222f7345021604c908c30197ca84b4243d80ca28ab7e53f0f04b",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\probe-kd-channel-v2.py",
+      "bytes": 2874,
+      "sha256": "16ba0fcb9a36536c8a94d68735301fd3e110f9465deecad2f24e24f5b8e400ee",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\probe-kd-channel-v3.py",
+      "bytes": 2874,
+      "sha256": "846386d2fc88efb9a7e9396483e69f56a4ac971a2e6fecf2f244f4593ca70e8c",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\probe-kd-channel-v4.py",
+      "bytes": 2874,
+      "sha256": "a111496867b1509f614ac1827e47f998b01c3a7bf2c5d1c5caba0318795d3afa",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\probe-kd-channel-v5.py",
+      "bytes": 2862,
+      "sha256": "03c1719f21a58e05a09d5915be7d52f2b3b008ffe2aa5cf563fbbe214af8b53f",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\probe-kd-cli-v1.py",
+      "bytes": 2419,
+      "sha256": "31545987f44fce053408f1636ce8560e835cb02326d871f93459a4f173011ba6",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\download-v1.json",
+      "bytes": 870,
+      "sha256": "ba1e48a66c9a837ac61692a30535405dcc5f3ba25a5b67425b56952b3d8fe34e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\installer-members-v1.txt",
+      "bytes": 672798,
+      "sha256": "e7fce9b3bb150a4e48d004a2a5be05724e8534de235f4f4bc6dc0ec1ff7eb9d1",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\qemu-w64-setup-20260811.exe",
+      "bytes": 206615928,
+      "sha256": "f98a8aeb5f7faea9765b6dee28316c266cd179d80354a2fed8e50176f9a2e59f",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\brlapi-0.8.dll",
+      "bytes": 115200,
+      "sha256": "de4dcc2ed566e5f900eac322007a55a39cc51a5e157211df5e4f366e095b965a",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libaom.dll",
+      "bytes": 9424346,
+      "sha256": "bc6feb90adf4a423f89b34ae975642024461c2f624019443ca3886309a69f3c3",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libatk-1.0-0.dll",
+      "bytes": 159478,
+      "sha256": "e705edd64fc3ba7da51b942e0331d55ebaeebad467d782be6b218be349384ee2",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libavif-16.dll",
+      "bytes": 335578,
+      "sha256": "47afa7f14e332e220325c8d6fc837064fbc0fdcbfc3901dfc340fbb93102300e",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libbrotlicommon.dll",
+      "bytes": 143429,
+      "sha256": "ca7bc06ead80259971badf2cd0bfc688db9154dad65f139f49a38b4be9976f97",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libbrotlidec.dll",
+      "bytes": 62461,
+      "sha256": "a142dc6cfa77cb907028aa9426f486f3d8de37855e8db2ae2894147908121881",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libbrotlienc.dll",
+      "bytes": 788364,
+      "sha256": "50c3aca8abcf0d5576f0b62dbd608be285246f8fd1b48ef87d58fa6b8b744e5f",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libbz2-1.dll",
+      "bytes": 100964,
+      "sha256": "b79cd3a7102e359ef6324e98966a67939e58ec2b651ae2847cae84a4dfa453f7",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libcacard-0.dll",
+      "bytes": 109915,
+      "sha256": "16aadf1283fdcb0c74abb84faaec11dcfdb315e5e073d047273414b11b3d94d6",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libcairo-2.dll",
+      "bytes": 1247164,
+      "sha256": "c474166543aed18b389b20122ca2741189504994dafd86cd5ed121e95bd82ce4",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libcairo-gobject-2.dll",
+      "bytes": 35639,
+      "sha256": "faf68e5929b89461ad58c5d26c549cde07bc06b368fb89ace82923df645c9bd5",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libcapstone.dll",
+      "bytes": 8022840,
+      "sha256": "191098a054c186ecc8e1063f109bef0b07450b48c0ca9bce5d89f23cf2df2f71",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libcrypto-3-x64.dll",
+      "bytes": 5495118,
+      "sha256": "4d2e724eb852f78ec0adbd1b7265325f79f503c9572658a26434f27f0cedb051",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libcurl-4.dll",
+      "bytes": 1226963,
+      "sha256": "3d302f9690e810fdfd950254e2f0663d0ff768737f350c602a4ed3a06e9b6b2b",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libdatrie-1.dll",
+      "bytes": 35033,
+      "sha256": "2f784872e6404e57847201fe1e7e591bd5b5be4a319ef38ebcb36014ac7f385d",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libdav1d-7.dll",
+      "bytes": 1931258,
+      "sha256": "29385f5f9b9f8c945eac3366403f529b3bd4bd59aa6eb492e043ffd2d82268c0",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libdb-6.2.dll",
+      "bytes": 1534932,
+      "sha256": "4035b713d0b127c87a6f369950fe9fde052f042438e5a7cf53df0959a8349c90",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libdeflate.dll",
+      "bytes": 99228,
+      "sha256": "3f3fc3a73bc3623dc93b37bb321c484d3731d93006fd01c0495d15711826eb44",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libEGL.dll",
+      "bytes": 261632,
+      "sha256": "da93c851b7e2e1614787dcd59bcebb61126e3905fa8e196ba57de44811ce251b",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libEGL_vulkan_secondaries.dll",
+      "bytes": 261632,
+      "sha256": "fb0fdf92968926680f068cfbdc14dec6547f4a36beee7f1ed93d67ab26d7a51a",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libepoxy-0.dll",
+      "bytes": 1771389,
+      "sha256": "8e7d48294d79eb5b1f44cd7c2a637239d8ddcdabaedea12bf9fb7ca919d1a37a",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libexpat-1.dll",
+      "bytes": 237567,
+      "sha256": "1ace13a4460a04cccb4b1e532af98a8e4610581f7ed55413a5ccb615e7d1e1ca",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libfdt-1.dll",
+      "bytes": 42010,
+      "sha256": "bc6e57d01be355f7ede6576a86cddefab8e61160e4c123bbc1b2802df4a453ef",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libfeature_support.dll",
+      "bytes": 326656,
+      "sha256": "f85e6c34d20760180c4e84f926b3321afddd58625b8170078b6853492fdf47fe",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libffi-8.dll",
+      "bytes": 40945,
+      "sha256": "390e4bf8abd037abd0e1dd1f311606715e43f8efe812e5c5b8775acf2cb2f21e",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libfontconfig-1.dll",
+      "bytes": 508462,
+      "sha256": "bed1827dbb226483026b2b33127866ce173aa2423d89ae7da6f88d6328792ec9",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libfreetype-6.dll",
+      "bytes": 790651,
+      "sha256": "bbb3e6390ee229c867ef31f10e42a49a61a92e434a11d40c6139a2608ebc6194",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libfribidi-0.dll",
+      "bytes": 156403,
+      "sha256": "84930fd86a3b46b62794a3bbaff21fbbaeaade5ff7cdc70be7f717ad29af87ed",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgcc_s_seh-1.dll",
+      "bytes": 150998,
+      "sha256": "b37c1770c8ca092700875845b34918803ee6311573eba1c32ff4b1166e4a0e1e",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgdk-3-0.dll",
+      "bytes": 1384574,
+      "sha256": "2deedc5411a5b452f1aa35347984fef6293ac87a17c54a7676a81547b19362fd",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgdk_pixbuf-2.0-0.dll",
+      "bytes": 362253,
+      "sha256": "de8c9155341167121f1890224a152da4d283753bac74a0325dee770d76ce30ab",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgio-2.0-0.dll",
+      "bytes": 1913623,
+      "sha256": "50a134823cd2f5849f3d43889077164a16f5fc79ec8a9f26e8af77ef3e9906ca",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libGLESv1_CM.dll",
+      "bytes": 28672,
+      "sha256": "1fa5c6f2d7d6aaf8a48742a44ff2776f7fe388cd2688f1a20afc4e86e171c95e",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libGLESv2.dll",
+      "bytes": 11627008,
+      "sha256": "50ec0a8e4b060fa3a965bf922dd244752122c794bff2b0a851a5f4780e254add",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libGLESv2_vulkan_secondaries.dll",
+      "bytes": 11610112,
+      "sha256": "145deba3953b135e53ad224b4253f091ad1a28d1ecfc6f275449f245d27d8c92",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libGLESv2_with_capture.dll",
+      "bytes": 13489664,
+      "sha256": "9682f155f14a51347bc34f865a537b4e7ef5fedcb6177222ec34f8d063de1e6c",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libglib-2.0-0.dll",
+      "bytes": 1566649,
+      "sha256": "7b5c19f5540857ec2288323f3b1654cbe5655fc3ea21417a25da69bece489eec",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgmodule-2.0-0.dll",
+      "bytes": 26748,
+      "sha256": "8dbef9e9647d773433cddfdfba84fd34dd699955c78cceea6ff7d7fc45efc495",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgmp-10.dll",
+      "bytes": 679747,
+      "sha256": "37248cda33845e7c5c35a574e57da762dd0a8268f0270d179f30a33746809681",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgnutls-30.dll",
+      "bytes": 2316158,
+      "sha256": "aca67ef2c8429557e9ac3a02ad313e9fdad35a1416972a248f0a205f83d39fbd",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgobject-2.0-0.dll",
+      "bytes": 359475,
+      "sha256": "912936c8782605f29db0abfd528aeecbc550c45782ae14d7e2f0aa0c4809136f",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgraphite2.dll",
+      "bytes": 167155,
+      "sha256": "063a9ad34a5ec87d038b4646660957395224ecf2cf707917256b7d251a7c5f57",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgstapp-1.0-0.dll",
+      "bytes": 100140,
+      "sha256": "0ac57076a157071327736d483a97a8d7e81a0b2ccd0b187525787c8643f48b1d",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgstbase-1.0-0.dll",
+      "bytes": 546663,
+      "sha256": "000711b65a0c39c879f3d73be442754b9297a8092894a309b19eea04e78b8722",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgstreamer-1.0-0.dll",
+      "bytes": 1481894,
+      "sha256": "e20ce49a194f891022503b7bbcb0608ca0526ab6c909452b70ec50b11b61dfcd",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libgtk-3-0.dll",
+      "bytes": 7165030,
+      "sha256": "e2cc2698e2e04214e04b18d685550b76558423ebdb2b0a0782171876fe13eb9c",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libharfbuzz-0.dll",
+      "bytes": 1530181,
+      "sha256": "cbc66233d9291f499aa38f6991f6e74570950502d8913df852d35a90f6da861b",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libhogweed-7.dll",
+      "bytes": 275389,
+      "sha256": "8a4785b98e5418c32035f570904f65360c89825358702954b53c77ee2df8c97d",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libhwy.dll",
+      "bytes": 88615,
+      "sha256": "4cd65f4bb3c123471a23f3eed734adbb31522b012c2c1776640d9634fbeb623c",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libiconv-2.dll",
+      "bytes": 1143148,
+      "sha256": "7a282a854e01be726c6cccfe46f548c716aa45b3014818468253aaa4efbcd067",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libidn2-0.dll",
+      "bytes": 247081,
+      "sha256": "9880b52651a0247640a2531d777380f7c35fac7efa7e3979b265ddcb78db8642",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libintl-8.dll",
+      "bytes": 298731,
+      "sha256": "0537c3dd2378218508ebe3cc416d72a99ee2d24ae1c5525e23458f32544ef861",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libjack64.dll",
+      "bytes": 312511,
+      "sha256": "34065f120befc2ebf913754a0d8fdd54c4bb3fa09bea4a79ffa369fe5cf1cd28",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libjbig-0.dll",
+      "bytes": 62083,
+      "sha256": "275a827ba6839d47cfdbe059db1b1b403a92ff26e2b76a29362915487868bef2",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libjpeg-8.dll",
+      "bytes": 967968,
+      "sha256": "b564d34adaca83e73af0e2231719dd0198ea6cd074c64b2ba85bfd7182f27db7",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libjsoncpp-26.dll",
+      "bytes": 281584,
+      "sha256": "bb0d8799fca2da9738b87397c0eae726cf5507d1d684db546b73003215365d08",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libjxl.dll",
+      "bytes": 6218625,
+      "sha256": "d8d1ba0ba4c12ae74a15d44e06a798eafe18842dde71130653dd982dab5fe2a1",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libjxl_cms.dll",
+      "bytes": 147921,
+      "sha256": "6d822a9ac8288fda334b460cbe008716c7b6e9b20e160b9b6ca23871506f0a00",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\liblcms2-2.dll",
+      "bytes": 456345,
+      "sha256": "dc241cbdf2d295846ec564c1eb3c01639d43c0d72415a8758e65d71df31cc0ba",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libLerc.dll",
+      "bytes": 804265,
+      "sha256": "6887fb5aeabf382a835a4cb693025e8d48d9c90e82ca4eae5d2d8ffb70c6ca9a",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\liblz4.dll",
+      "bytes": 158649,
+      "sha256": "35f917274bca8f19677ba66f1b3cc3c83568c3249fc43215fc16e76439c8e856",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\liblzma-5.dll",
+      "bytes": 191836,
+      "sha256": "dc9edb9bd83b0371fe68d96cb3e70cd17b7a5aba958326a18f8210cb812432e9",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\liblzo2-2.dll",
+      "bytes": 155548,
+      "sha256": "7c34ad01e75c97c6636a2f609089a85abdb50b75e13c5fda731352ec8aa053e9",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libncursesw6.dll",
+      "bytes": 548227,
+      "sha256": "946a84047652d337349d4880fdfe88e81d64dcd36d5b042b0a28d0b185be45c8",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libnettle-9.dll",
+      "bytes": 360977,
+      "sha256": "208002d990684946c7923a87022bedea588fef8e31286598c08805e37be2a95a",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libnfs-16.dll",
+      "bytes": 361411,
+      "sha256": "d6210876b2ecf7b6016c360bee32f4e16af3e808046e2e7a99c58a02a6984eed",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libnspr4.dll",
+      "bytes": 335552,
+      "sha256": "bbdb3f57a653a6614e9fe6e9510179e478f66649c6526f76bb0cb6b43d49fba0",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libopus-0.dll",
+      "bytes": 500112,
+      "sha256": "90aa25a0a6525d7da48a7ae8dd3306e45b0c28ce09a73d2a02b56cd95418d5be",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\liborc-0.4-0.dll",
+      "bytes": 479279,
+      "sha256": "6386359f54e38acc3517774d3f74b72f06f51ad4eb946b6085a7295820456992",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libp11-kit-0.dll",
+      "bytes": 1594910,
+      "sha256": "ada3949f3763db47a754eec56388f3305c41c259eb3bbae188a820fd01c5445b",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpango-1.0-0.dll",
+      "bytes": 434535,
+      "sha256": "078881c139e7dd422c4cb5f9c43b939712eb7ad4f3d7d25c41639873e8aec6d6",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpangocairo-1.0-0.dll",
+      "bytes": 83118,
+      "sha256": "b9f800abeafd27c07dc9f9fa4a41bb614564038ce7ac5753ca6c60c1d7d555cc",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpangoft2-1.0-0.dll",
+      "bytes": 111841,
+      "sha256": "38602e75c85e149bf7294bccb8792f54299daed45509a8ac4b3a18e3921ec56e",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpangowin32-1.0-0.dll",
+      "bytes": 111376,
+      "sha256": "2fb6d21cce830182c9d4bf22015dec9abbb0846ebce828ca0a5d4cefc74e46c6",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpcre2-8-0.dll",
+      "bytes": 717955,
+      "sha256": "a499fb8a7eff453d6e4f0842576bc5171d40a1505d8f7f13fff6cee51b738a62",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpixman-1-0.dll",
+      "bytes": 740378,
+      "sha256": "55ce45825eb8e825c635416171be4736147a6b0b690469f545d8c4ae8e85b4a3",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libplc4.dll",
+      "bytes": 22514,
+      "sha256": "014449ff3f1ba191f9879b2db9ec93915d198a65e159cfffdaa9d78d8c5560e9",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libplds4.dll",
+      "bytes": 19281,
+      "sha256": "8ee6e210d94e9bfc95a30fb8bafa15be6b6b16c5b220db8816b7b5e056e97cdb",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpng16-16.dll",
+      "bytes": 264269,
+      "sha256": "3737838ee8d6b893df7bdabf7439775371a57dce7e17ee6b35586023c64bd9ab",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libpsl-5.dll",
+      "bytes": 105304,
+      "sha256": "b31fc70eda598a39b65fe2736d815518db0652d641346f75eac40c2a0499b058",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\librav1e.dll",
+      "bytes": 3527680,
+      "sha256": "6fe18e4a040c471dc13bcea44ecd2c6a3c040971542c6b798627e4c787056acb",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libsasl2-3.dll",
+      "bytes": 167600,
+      "sha256": "ea10d3aa40ccb6a385af666173b3364fc41f39dfbdc90aa8f2f1d8071cb63537",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libsharpyuv-0.dll",
+      "bytes": 53757,
+      "sha256": "ab0c9f61dc69b6bcdff1011e215f8d5fd6e5096aba9be3386ab87f217fbbeffe",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libslirp-0.dll",
+      "bytes": 217294,
+      "sha256": "098093db72095516c877c371942444a508aaa3c546de563bd2ea36ba2e88a646",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libsnappy.dll",
+      "bytes": 55237,
+      "sha256": "a0692c93212898f29d072d611184828ccaf7add78137fbe977a8504fcc278c21",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libspice-server-1.dll",
+      "bytes": 1198840,
+      "sha256": "23bc03b20fefe99123759c79c59a83b4402a55529c99f3d5dcd1fe1445cb2b33",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libssh.dll",
+      "bytes": 626451,
+      "sha256": "4e872f2b9329edfb3112c433a2c4c98efc915d0bca2b1b935a58e45e37ce0a3b",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libssh2-1.dll",
+      "bytes": 271318,
+      "sha256": "ee7fe3e749859334c99e9261689481dd879811122598d22585421f95d29fc7ae",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libssl-3-x64.dll",
+      "bytes": 994446,
+      "sha256": "b0aaaab67558716ea8cb03516d0e83ab92d1c0e3ddfc774c466032053f8b2331",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libssp-0.dll",
+      "bytes": 43432,
+      "sha256": "cf6037efa19fd9cbd59402741e201e325bb10f44aca16c56aeff8a7c188178d1",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libstdc++-6.dll",
+      "bytes": 2661299,
+      "sha256": "887c21dbe2a211ac4d1a790e4f608b7dee27fae12352856963004e7a715d2e6c",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libSvtAv1Enc-4.dll",
+      "bytes": 7573028,
+      "sha256": "c4d9e2ae03f80d43c0a16d1461503e1768b160cdba9f3fe9e95e339f69fc2b24",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libsystre-0.dll",
+      "bytes": 14593,
+      "sha256": "2aa59d15365f676356a25c941744d1b75406b426b1fde24ad609b7002a3d85e1",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libtasn1-6.dll",
+      "bytes": 113467,
+      "sha256": "95821132a7d4ea90f7c37540118ad1459809ff23162d6dc3d5600b15755a644b",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libthai-0.dll",
+      "bytes": 72294,
+      "sha256": "5d741974fdec19e0f6cddbcdb539428af0c7392740a056634714c2884157fdb9",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libtiff-6.dll",
+      "bytes": 625178,
+      "sha256": "47fe69165bf8e211aaa84224f51f145dc894e330fe7ca167f7c99419e0c8c894",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libtre-5.dll",
+      "bytes": 100574,
+      "sha256": "5833b2b1f62b67d8b4b3881f1bc05f42b0dee1a9f10cef897cdf44d74d094fdf",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libu2f-emu-0.dll",
+      "bytes": 103045,
+      "sha256": "09cec929ca4f74fb06250b80367a374c7c1b8000aeb8e71e00e7323ba053a759",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libunistring-5.dll",
+      "bytes": 2251328,
+      "sha256": "b91e2850d3668d4931056a8f4d35783b8ec3eea3735485108a936a072cd16071",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libusb-1.0.dll",
+      "bytes": 246863,
+      "sha256": "9858e2381221619e26a78a2824e5970c2a7ec48cdb75071c19eb7b61baa268e2",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libusbredirparser-1.dll",
+      "bytes": 66480,
+      "sha256": "085806c137047cc195608509b1fa935dfcfa633877b4780e6e23fb5e3e0a86cf",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libvirglrenderer-1.dll",
+      "bytes": 881380,
+      "sha256": "df0d6a26ca2328ac54ebc3efb5d03f3315c5bf39a999505d08bc76890e07be6c",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libvk_swiftshader.dll",
+      "bytes": 8521728,
+      "sha256": "d4d9ac7d3215880a8ac24b5a57f4695f12aff7ef1c2e6f84a1211fad9560a058",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libVkICD_mock_icd.dll",
+      "bytes": 210944,
+      "sha256": "94934ad4f273c2261cff08a2790094923098662f44e9f86c3e2788bbea8da636",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libwebp-7.dll",
+      "bytes": 749724,
+      "sha256": "c6c21a10f8cfe13270832e64640b82709e1d87b956b5f15af435a6c25acd6bbf",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libwebpdemux-2.dll",
+      "bytes": 25726,
+      "sha256": "10fd43e1820a03dea175e3c4a7c96ba0463d41971f4ec75dbd375d10b585446a",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libwinpthread-1.dll",
+      "bytes": 64419,
+      "sha256": "d54ed5baa6d339e28fe18c0106caffd110ac42612908593e07211d7bb48f5e79",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libyuv.dll",
+      "bytes": 1009713,
+      "sha256": "13ce09a22df9396cae847cb474614a5337c7b2e1a3c5c2d949c771c7297ccad0",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\libzstd.dll",
+      "bytes": 1218273,
+      "sha256": "b95c223a9548a9ecf51377c962e0bc8f0c51eb0c6f67a296dbc885996f0dd40d",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\nss3.dll",
+      "bytes": 1408181,
+      "sha256": "fff93a74e524ee09376f007373d16d2705fb21a0b3886404c9a7c27865cace73",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\nssutil3.dll",
+      "bytes": 172668,
+      "sha256": "31adbd22bb5df93334c8d013cc8814192e21f64500b4113f682fbe8ddfb2c79f",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\qemu-img.exe",
+      "bytes": 1934744,
+      "sha256": "9d930582d0d574bb106d89982c547688e10b8f356192d302cc3d0ae4e8674534",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\qemu-system-x86_64.exe",
+      "bytes": 25457048,
+      "sha256": "47d57a6072e0bb3bd98f87926eb129eb1736dfe818c67b3b81ef7ce4edd0b3cd",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\SDL2.dll",
+      "bytes": 2412441,
+      "sha256": "47a3b27654832d9f7e5719c88078210a3dbfd6407b559c5a3c4eb8ab7d0ebdb6",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\SDL2_image.dll",
+      "bytes": 136769,
+      "sha256": "af7bdfa2a2333291776297e85acdecf7801bde20b4025229de304a3d1555a2ef",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\share\\bios-256k.bin",
+      "bytes": 262144,
+      "sha256": "ae6f6aa973aaccc143f57aa960fb035fd9de4daee4ad0cd713322f8c259e7650",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\share\\bios.bin",
+      "bytes": 131072,
+      "sha256": "3dfd946d0c03ab0e022f84f10c3eb5f1dd507761f73e7d8067511ba35a10f776",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\share\\keymaps\\en-us",
+      "bytes": 27086,
+      "sha256": "52cf4c523e686078699ed58761c7e1443080305237a5f67a3716832570c5c8e5",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\share\\kvmvapic.bin",
+      "bytes": 9216,
+      "sha256": "cdf057a71b07e3b52b19cbe210bdefa59250d01a9810b960f7fe1f98eed95a27",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\share\\vgabios-stdvga.bin",
+      "bytes": 39424,
+      "sha256": "e8fc9e55790dbe3cb31f019a3deb57206ba6c54f5e581adb2ab2677a9d391472",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\share\\vgabios-vmware.bin",
+      "bytes": 39424,
+      "sha256": "00bfccc4e09b832a98a727c0fa5bceaaad0556e38b7718f5a6579189abbe627b",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime\\zlib1.dll",
+      "bytes": 128488,
+      "sha256": "93e9243a44c29200eeacaf9658efe2558581770e4b11ca4b500e18e424a6e3b5",
+      "category": "new_portable_environment"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\runtime-v1.json",
+      "bytes": 28710,
+      "sha256": "64059004edc00502ceb71648b6947d412230495a4e6a3e92bb325d2357b3fae2",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\accel__tcg__cpu-exec.c",
+      "bytes": 33775,
+      "sha256": "ffb228a2eda3e556572ee275aa76f66d18bccb89ecfe9ea51a8a844ae0cb40f5",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\accel__tcg__tcg-accel-ops-mttcg.c",
+      "bytes": 4258,
+      "sha256": "c14c7303d36200631f0fcd74050a6a90145cc5b8c9fd842735ad559e31385c82",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\accel__tcg__tcg-accel-ops.c",
+      "bytes": 7003,
+      "sha256": "8371f6f03bda6b909f702ff0f68149dea2b20d8cad753dcecf427d908c5a3b95",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\accel__tcg__translate-all.c",
+      "bytes": 20892,
+      "sha256": "3f8751500e66057b13e4ed567f49d232d8bb30381f22d9893ae36f4e9a515642",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\accel__tcg__translator.c",
+      "bytes": 16092,
+      "sha256": "9b78a2b0d2baf863bbc9b4d05a1367373fcc7443ef7937bcf3230e1ba80bd974",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\gdbstub__gdbstub.c",
+      "bytes": 70791,
+      "sha256": "69a9d8be5dab45afaa34110fe05342624b9c62d4541ad14a7c202fd3da15ad3e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\gdbstub__system.c",
+      "bytes": 16826,
+      "sha256": "1842d70b3a47cd21b98a11c0530684c96f000b4fff86dde67f407fab75f728a1",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\hw__core__cpu-common.c",
+      "bytes": 11574,
+      "sha256": "6012b7264674d135a04d37524333ca53c0281d692b0067d8090f864833752c55",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\manifest.json",
+      "bytes": 5954,
+      "sha256": "e0f853140e17740c2bf447473819a86b895a1209fae0728a2574ae99593da54a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\migration__ram.c",
+      "bytes": 148428,
+      "sha256": "edb190e93d3208849955ed4204e02c846b94f2eb1aedef6a5a4e6546f61ad4d0",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\migration__savevm.c",
+      "bytes": 108261,
+      "sha256": "3eee4dda1c113ddc15b37876b662e466883a02bf06d1bcdb4b2636b0db385791",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\monitor__hmp-cmds.c",
+      "bytes": 20371,
+      "sha256": "7ac3e7675efaf35ea08b914db2da5118d7164dd8e0cc0adfd230357b840ea7b8",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\qapi__machine.json",
+      "bytes": 59424,
+      "sha256": "45c29367ab4572dc2995eab049165015c64077404c7f91422278a1807235c171",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\qapi__migration.json",
+      "bytes": 72513,
+      "sha256": "2119066211d2eff88101dd614133e42d95822a188bf0058192a4a9d0c7b1923d",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\system__cpus.c",
+      "bytes": 20606,
+      "sha256": "f1ec947920111341e5921c34fade4226e6185b4661fe68db9da84a4e6830d444",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__cpu-dump.c",
+      "bytes": 21988,
+      "sha256": "72a31dc3a82823a932f888e658eeff29c4e1b73770801c397bb4dd109cd200d2",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__cpu.h",
+      "bytes": 109136,
+      "sha256": "e4161376ce7f839b51aac81abb6b01830593d0729dfd7a7e27a4789259c72c63",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__gdbstub.c",
+      "bytes": 16952,
+      "sha256": "19e432e4fdaf50212a8c66c0cc3770960380b80d364bc165d1c6d55a4da9f4b2",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__machine.c",
+      "bytes": 56037,
+      "sha256": "99c1bd9aecef7f38e94a22fd00abaa3d34cf99e0cc9459ca3d41ab0e885d2a85",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__tcg__fpu_helper.c",
+      "bytes": 113970,
+      "sha256": "4dcc843e64cab327236f43378c7df3bb0f65b639c08bcc7807f8c6f3f1e8badb",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__tcg__system__bpt_helper.c",
+      "bytes": 9330,
+      "sha256": "14b932fdd1b64c2d4dfb7f56efb01b7b4f659d99e17fb86827129ffafa387ec6",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__tcg__system__excp_helper.c",
+      "bytes": 20046,
+      "sha256": "7955e64348f76d2eaa9fdfbb55d6a72a10595754f6fbf3bddac6ab78127178f5",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__tcg__system__misc_helper.c",
+      "bytes": 15709,
+      "sha256": "e999d1509fc47ec233b9b0684421961cc90580a0c1c3936ba90b95345cd178fb",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__tcg__system__tcg-cpu.c",
+      "bytes": 3003,
+      "sha256": "6f13a260e44453e23fafaf21f7eccaf65df2cc4168f8c02ce71d4181dcb27c54",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__tcg__tcg-cpu.c",
+      "bytes": 7673,
+      "sha256": "7ae34b79e3d7d0f6448cfc213830b31a0d5a33adf975c41e9bcac913658d568e",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.0.0\\target__i386__tcg__translate.c",
+      "bytes": 115553,
+      "sha256": "491e6023ddaf370a0428b44558ec6a50977d756fda0837fac9bc092970a25c5a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\accel__tcg__tcg-accel-ops.c",
+      "bytes": 7101,
+      "sha256": "79a918acaf0e6c770b2095036c06c513a567beb478a3aed113edb738d00151a2",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\manifest.json",
+      "bytes": 3397,
+      "sha256": "aa8b6ad8411a0fe51933742e6946611b207759de042af9daea8293772cbf1557",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\migration__savevm.c",
+      "bytes": 111434,
+      "sha256": "e0807930539a09bf21ee126efb5d9f0ef5714c6dfa434c6119f077ad7128b342",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\target__i386__cpu.c",
+      "bytes": 419553,
+      "sha256": "fb20acebe01b7c46a214921bdd768eadb0798607e6c49d7864c457eec3ea0755",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\target__i386__cpu.h",
+      "bytes": 109828,
+      "sha256": "04b7d87e3ba12746420262bbe5876b05ac0a669f9e73590d6b2729ada5ebf520",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\target__i386__machine.c",
+      "bytes": 56018,
+      "sha256": "b7070861e3949e1f067a7e3ba6907e5f89cacce8d9ec73f499f419577b3d1aa1",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\target__i386__tcg__fpu_helper.c",
+      "bytes": 114184,
+      "sha256": "e1e50290821ee658f8834c889be5b4a1debeaa137278ea989db6093e0fb6fc87",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\qemu-worker\\source-contract-v11.1.0\\target__i386__tcg__system__bpt_helper.c",
+      "bytes": 9362,
+      "sha256": "2c8a6069482d943b8ba82fd03eb2344e561c69ae5226a104c2b86197424304bb",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\read-kd-cli-ready-v1.py",
+      "bytes": 603,
+      "sha256": "305caa20cd4f4ae1aae95963a4a263ab926eca9a780a6b1443d78d78d67beb2d",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\recover-kd-cli-v1.py",
+      "bytes": 1560,
+      "sha256": "dd29d1023706fb2b4c4406362fee2d35f9d1cbe59e46bf780ed17e4b7192508c",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\recover-kd-cli-v2.py",
+      "bytes": 2039,
+      "sha256": "bf55f2cb256fd25ac0751ee64f6630f63e9d9b67152754bf8f45aab70d9dc693",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\recover-kd-stop-v1.py",
+      "bytes": 825,
+      "sha256": "8b788d5c485eed30d67d43e918afd83d1ddab61dea936977674a1b10f32a614a",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\recover-kd-stop-v2.py",
+      "bytes": 924,
+      "sha256": "b583573f902cbd67865ff874df339425c0ecbeb2fcae095b7b1259fc9271c63f",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\recover-kd-stop-v3.py",
+      "bytes": 924,
+      "sha256": "255abecbbce7b3e8e0b921f4b7377b6ea36ab21de9273727b5948dc2ec9ea11c",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\recover-kd-stop-v4.py",
+      "bytes": 924,
+      "sha256": "a8cdfdd65388ea673846f72a3ee3eedbfc2eb35da3ffcc0e4acb6e49638b6aa5",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\release-kd-cli-v2.py",
+      "bytes": 516,
+      "sha256": "6e36ac8c819eeb94b94751578811dc91d84f389ff30bb47d306eba7df2883645",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\restore-kd-guest-v1.py",
+      "bytes": 2393,
+      "sha256": "34da43722d51f7f18ccd44987b8c4a6c9a75709fe9eff819376980c6ffd584aa",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\restore-kd-guest-v2.py",
+      "bytes": 2428,
+      "sha256": "85f38e7c39d77ac05b584f288010bac0fd2c39b15db55039f98f22ec325148db",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\run-kd-cli-v3.py",
+      "bytes": 4597,
+      "sha256": "87f8fafd65d870f1fad1007f151cda0037b4c7ff57c3476efaa3181627c9d951",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\run-kd-cli-v3b.py",
+      "bytes": 3746,
+      "sha256": "b39a58d27decb7537e65c08bf214aa00f28b1340448b4c7b895ee60f1450c3e8",
+      "category": "local_evidence_or_reproduction"
+    },
+    {
+      "path": ".venv-audit\\native-worker\\summarize-kd-wait-v2.py",
+      "bytes": 273,
+      "sha256": "10cff12188aac2588a453adb5cd8097f9155cce4decbb31d45e9b2e1662a7ed0",
+      "category": "local_evidence_or_reproduction"
+    }
+  ],
+  "next_step": "Do not launch original game or repeat this compound breakpoint recipe. First bound and isolate debugger break/continue plus control handoff, then obtain the complete real user-return state; only then reconnect 453CB5 -> 4967B0 and three handshakes."
+}

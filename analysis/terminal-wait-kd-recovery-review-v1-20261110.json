@@ -1,0 +1,224 @@
+{
+  "schema": "terminal-wait-kd-recovery-review-v1",
+  "date": "2026-11-10",
+  "reviewed_at_utc": "2026-11-10T01:38:31.818618+00:00",
+  "reviewer": "independent subagent qemu_state_contract",
+  "scope": "Offline read-only receipt/source authentication; no VM access or native execution. One new supplement; prior review is immutable.",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "three_fixture_returns_proven": false,
+  "four_fixture_returns_proven": false,
+  "original_game_handshake_proven": false,
+  "target_fixture_stop_count": 0,
+  "prior_review": {
+    "path": "analysis/terminal-wait-kd-independent-review-v1-20261110.json",
+    "bytes": 16748,
+    "sha256": "321fd4fd466ca60007548cf10761ab1b23644b46891627ff97af62fd73325ab5"
+  },
+  "prior_review_original_bytes_unchanged": true,
+  "recovery": {
+    "errors": [],
+    "initial_command": "bc *;bl;r;.echo OWNED_RECOVERED;g",
+    "break_instruction_exception_count": 2,
+    "extra_break_after_initial_g": "DbgBreakPointWithStatus at kernel+0x41edc0 after OWNED_RECOVERED",
+    "additional_stdin_command_from_authenticated_source": "bc *;.echo OWNED_CONTINUE;g",
+    "additional_continue_count": 1,
+    "additional_marker_observed": true,
+    "same_boot_heartbeat": "2026-11-10T01:00:17.5000000Z",
+    "client_stopped_after_guest_resumed": true,
+    "elapsed_seconds": 10.875,
+    "limit": "First recovery marker/g alone did not prove resume; subsequent authenticated guest heartbeat supplies that evidence. No pending-break root cause or COM AV fix is claimed."
+  },
+  "configuration_restoration": {
+    "original_local_bcd_backup": {
+      "path": ".venv-audit/native-worker/kd-worker/bcd-before",
+      "bytes": 24576,
+      "sha256": "3978cee5e7afcbb438842e1d0635095116e6c4ac339aaa0a702b1fd753c2e325"
+    },
+    "guest_import_before_hash_guard_matches_original": true,
+    "bcd_import_result": "The operation completed successfully.",
+    "restored_current_and_settings_equal_preparation_text": true,
+    "cold_boot_settings_equal_original_current_plus_settings": true,
+    "debug_configuration": "No debug Yes entry; dbgsettings Local, exactly matching recorded original configuration. No live kernel-variable probe inferred.",
+    "host_boot_configuration_changed_reported": false,
+    "removed_owned_serial_keys": [
+      "serial0.present",
+      "serial0.fileType",
+      "serial0.fileName",
+      "serial0.pipe.endPoint",
+      "serial0.startConnected",
+      "serial0.tryNoRxLoss",
+      "serial0.yieldOnMsrRead"
+    ],
+    "final_vmx": {
+      "path": ".venv-audit/native-worker/chaomofa-worker.vmx",
+      "bytes": 4209,
+      "sha256": "84f1d28bbd6e7b847bb186637825f920c7df8fa9b13ce927ff2a6d5f7faf8220"
+    },
+    "offline_original_validator_result": "pass",
+    "validator_method": "Executed only AST-extracted original validate_vmx using PureWindowsPath lexical resolution for absolute Windows paths; no control functions/module top-level code executed. Authenticated Windows finalizer also invoked original validator.",
+    "vmx_changed_keys_from_pre_kd_snapshot": [],
+    "vmx_byte_identity_restored": false,
+    "vmx_limit": "Configuration contract and serial removal verified, not original byte sequence restoration.",
+    "guest_backup_file_after_cold_boot": {
+      "path": "C:\\ChaomofaWorker\\kd-preflight-v1-20261110\\bcd-before",
+      "bytes": 24576,
+      "sha256": "45E40F25C088760C1E00BBC86056DD84396675517AA427837BB5B890A7D548DE"
+    },
+    "guest_backup_file_matches_original_local_hash": false,
+    "bcd_byte_identity_limit": "Guest same-name backup hash differs after restoration; cause unresolved. Source and successful receipt establish original SHA verification immediately before import; original local backup is unchanged and cold-boot configuration matches original. Do not claim final guest backup/live BCD hive byte identity."
+  },
+  "final_worker_state": {
+    "cold_boot": "2026-11-10T01:32:26.5000000Z",
+    "guest_uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+    "cpu": 2,
+    "memory": 4294430720,
+    "active_test_process_query_output": "",
+    "process_query_scope": [
+      "fixture",
+      "pythonw",
+      "CROSS HERMIT"
+    ],
+    "soft_shutdown_receipt": "",
+    "running_vms_receipt": "Total running VMs: 0",
+    "snapshots_receipt": "Total snapshots: 0",
+    "vmem_files_receipt": [],
+    "no_serial_properties_in_current_vmx": true,
+    "vmdk_bytes_receipt": 16761552896,
+    "limit": "Authenticated finalizer observations, not a new live query. Does not prove every unrelated host process absent."
+  },
+  "v3_failure_completion": {
+    "supervisor_errors": [],
+    "supervisor_phases": [
+      {
+        "name": "fixture started",
+        "seconds": 0.09400000000005093
+      },
+      {
+        "name": "original fixture ready",
+        "seconds": 0.7970000000000255
+      },
+      {
+        "name": "module captured",
+        "seconds": 2.0
+      },
+      {
+        "name": "fixture finished",
+        "seconds": 30.422000000000025
+      }
+    ],
+    "actual_module_matches_prepared_receipt": true,
+    "module_capture_seconds": 2.0,
+    "fixture_pid": 3160,
+    "fixture_exit_code": 1,
+    "fixture_error": "System.Exception: bounded owned gate win32=2",
+    "signals": 0,
+    "peer_completed": false,
+    "returns_field_present": false,
+    "handles_closed": true,
+    "buffers_released": true,
+    "watchdog_disarmed": true,
+    "cleanup_errors": [],
+    "nt_wait_stub_before_equals_after": true,
+    "forced_own_fixture_exit_reported": false,
+    "interpretation": "Module captured at supervisor elapsed 2 seconds. Original fixture failed in preparation gate before tested wait loop: exit 1, zero signals, no returns field. Supervisor errors=[] is not fixture success. Monotonic phase timing and fixture wall-clock gate timeout retained without invented clock-cause explanation."
+  },
+  "conclusion": "New evidence supports recovery and configuration closeout, superseding only prior pending-cleanup status. No successful fixture return, game handshake or fullstate acceptance is established; do not repeat native acquisition based on this supplement.",
+  "sources": [
+    {
+      "path": "analysis/terminal-wait-kd-independent-review-v1-20261110.json",
+      "bytes": 16748,
+      "sha256": "321fd4fd466ca60007548cf10761ab1b23644b46891627ff97af62fd73325ab5"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-recovery-v2.json",
+      "bytes": 668,
+      "sha256": "f131090ae8c06a4f209e4b9b870b33844c1d9b28c944b183d910f08429c0999e"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-recovery-v2.log",
+      "bytes": 4219,
+      "sha256": "f2c91318cd1e9b8f42a71792bfc687d73c7128a665f935f7d20b913ca5283153"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/restore-v2.json",
+      "bytes": 1849,
+      "sha256": "8f5ea5f7fecf3104d152a7ab2dd3afa3220a16cf170e748b202d8d20f7a441f5"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/final-worker-v1.json",
+      "bytes": 13243,
+      "sha256": "158e44e753efa3c0d9acc7c7e8a7270230cb70c119b48d87679009421911d782"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-v3-final-supervisor.json",
+      "bytes": 36576,
+      "sha256": "cea1d2cc822a9cfe98b98872c59d2c84c0a28557b2082f62d9c99fc4c2d73611"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-v3-final-supervisor-progress.json",
+      "bytes": 36028,
+      "sha256": "7ac35993b22c39d476a73bad186e859edba5bb1a42eba3c7c69fa59eb2e42d1b"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-v3-final-result.json",
+      "bytes": 34452,
+      "sha256": "f8d20b38a1625ea93d812ad0e8776c01692f0f8be7b882d7309a845e637ef187"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-v3-supervisor-ready.json",
+      "bytes": 1185,
+      "sha256": "2727fae2fff4c8e4382758fb1d905e0a3f85d67a5272a150c23993cbe6f53b56"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/prepare-v3.json",
+      "bytes": 3250,
+      "sha256": "88f3adf015c99a2072f6a940ef6d92c80d2ae58ddd52bf61fdd9a433bf618fed"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/bcd-before",
+      "bytes": 24576,
+      "sha256": "3978cee5e7afcbb438842e1d0635095116e6c4ac339aaa0a702b1fd753c2e325"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/vmx-before.txt",
+      "bytes": 4207,
+      "sha256": "11593184d933d848288cf34ce3f484f7df0fbb84435773cc25ac2d3aa1d95d04"
+    },
+    {
+      "path": ".venv-audit/native-worker/chaomofa-worker.vmx",
+      "bytes": 4209,
+      "sha256": "84f1d28bbd6e7b847bb186637825f920c7df8fa9b13ce927ff2a6d5f7faf8220"
+    },
+    {
+      "path": "devtools/isolated_windows_vm.py",
+      "bytes": 16893,
+      "sha256": "c0413bd97d26fe24c849cc28358d88557f905bb7ff1922a72057ebbfc1f5dbf5"
+    },
+    {
+      "path": ".venv-audit/native-worker/recover-kd-cli-v2.py",
+      "bytes": 2039,
+      "sha256": "bf55f2cb256fd25ac0751ee64f6630f63e9d9b67152754bf8f45aab70d9dc693"
+    },
+    {
+      "path": ".venv-audit/native-worker/restore-kd-guest-v2.py",
+      "bytes": 2428,
+      "sha256": "85f38e7c39d77ac05b584f288010bac0fd2c39b15db55039f98f22ec325148db"
+    },
+    {
+      "path": ".venv-audit/native-worker/finalize-kd-worker-v1.py",
+      "bytes": 2588,
+      "sha256": "b4164e5440b1a941c419e63e8a045c9e2a79868d19afc2dbe908406719a6b8fc"
+    }
+  ],
+  "evidence_budget": {
+    "new_native_evidence_bytes": 0,
+    "new_backups_bytes": 0,
+    "original_files_modified": false,
+    "new_files": [
+      "analysis/terminal-wait-kd-recovery-review-v1-20261110.json"
+    ],
+    "retention": "One small supplement references original local receipts; no full fixture data duplicated."
+  }
+}

@@ -1,0 +1,704 @@
+{
+  "kind": "retained_guest_pdb_context_layout_v1",
+  "accepted": false,
+  "kernel": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\guest-ntoskrnl.exe",
+    "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a",
+    "bytes": 11597168
+  },
+  "pdb": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\symbols\\ntkrnlmp.pdb\\D801A9AFC0FB7761380800F708633DEA1\\ntkrnlmp.pdb",
+    "sha256": "9a5c323aaf56e25099a99aa7f51e077a54972a74637014af8837603730322e48",
+    "bytes": 12095488,
+    "guid": "d801a9af-c0fb-7761-3808-00f708633dea",
+    "age": 1,
+    "identity_matches": true,
+    "pdb_info_age": 5,
+    "dbi_age": 1,
+    "match_basis": "PE GUID matches PDB info GUID; PE age matches DBI age; exact-symbol DbgHelp lookup"
+  },
+  "symbol_lookup": "local Windows SDK dbghelp.dll with SYMOPT_EXACT_SYMBOLS and local-only search path; no downloads",
+  "symbols": {
+    "KiDispatchException": {
+      "available": true,
+      "error": 0,
+      "rva": 2778864,
+      "size": 1760,
+      "tag": 10
+    },
+    "KdTrap": {
+      "available": true,
+      "error": 0,
+      "rva": 2782244,
+      "size": 47,
+      "tag": 10
+    },
+    "KdpTrap": {
+      "available": true,
+      "error": 0,
+      "rva": 10763112,
+      "size": 463,
+      "tag": 10
+    },
+    "KdIgnoreUmExceptions": {
+      "available": true,
+      "error": 0,
+      "rva": 12887536,
+      "size": 0,
+      "tag": 10
+    },
+    "KiDebugRoutine": {
+      "available": false,
+      "error": 1168
+    },
+    "KdIsThisAKdTrap": {
+      "available": true,
+      "error": 0,
+      "rva": 10764528,
+      "size": 37,
+      "tag": 10
+    },
+    "DbgkForwardException": {
+      "available": true,
+      "error": 0,
+      "rva": 7644036,
+      "size": 227,
+      "tag": 5
+    },
+    "PsGetProcessDebugPort": {
+      "available": true,
+      "error": 0,
+      "rva": 3063520,
+      "size": 9,
+      "tag": 10
+    },
+    "KiDebugTrapOrFault": {
+      "available": true,
+      "error": 0,
+      "rva": 4332800,
+      "size": 423,
+      "tag": 10
+    },
+    "KiExceptionDispatch": {
+      "available": true,
+      "error": 0,
+      "rva": 4362880,
+      "size": 840,
+      "tag": 10
+    },
+    "KdpReportExceptionStateChange": {
+      "available": true,
+      "error": 0,
+      "rva": 10777412,
+      "size": 232,
+      "tag": 10
+    },
+    "KdDebuggerEnabled": {
+      "available": true,
+      "error": 0,
+      "rva": 12903992,
+      "size": 0,
+      "tag": 10
+    },
+    "KdDebuggerNotPresent": {
+      "available": true,
+      "error": 0,
+      "rva": 12828521,
+      "size": 0,
+      "tag": 10
+    },
+    "NtWaitForSingleObject": {
+      "available": true,
+      "error": 0,
+      "rva": 7326720,
+      "size": 112,
+      "tag": 10
+    },
+    "KiSystemCall64": {
+      "available": true,
+      "error": 0,
+      "rva": 4360064,
+      "size": 2679,
+      "tag": 10
+    },
+    "KiSystemCall64Shadow": {
+      "available": true,
+      "error": 0,
+      "rva": 11055488,
+      "size": 606,
+      "tag": 10
+    },
+    "KiSystemServiceExit": {
+      "available": true,
+      "error": 0,
+      "rva": 4361280,
+      "size": 1463,
+      "tag": 10
+    },
+    "KiSystemServiceUser": {
+      "available": true,
+      "error": 0,
+      "rva": 4360666,
+      "size": 2077,
+      "tag": 10
+    },
+    "KiSystemServiceCopyEnd": {
+      "available": true,
+      "error": 0,
+      "rva": 4361232,
+      "size": 1511,
+      "tag": 10
+    },
+    "KiServiceExit": {
+      "available": false,
+      "error": 1168
+    },
+    "KiSystemServiceRepeat": {
+      "available": true,
+      "error": 0,
+      "rva": 4360884,
+      "size": 1859,
+      "tag": 10
+    },
+    "KeWaitForSingleObject": {
+      "available": true,
+      "error": 0,
+      "rva": 3536416,
+      "size": 2202,
+      "tag": 5
+    }
+  },
+  "types": {
+    "_KTRAP_FRAME": {
+      "bytes": 400,
+      "fields": [
+        {
+          "name": "P1Home",
+          "offset": 0
+        },
+        {
+          "name": "P2Home",
+          "offset": 8
+        },
+        {
+          "name": "P3Home",
+          "offset": 16
+        },
+        {
+          "name": "P4Home",
+          "offset": 24
+        },
+        {
+          "name": "P5",
+          "offset": 32
+        },
+        {
+          "name": "PreviousMode",
+          "offset": 40
+        },
+        {
+          "name": "InterruptRetpolineState",
+          "offset": 40
+        },
+        {
+          "name": "PreviousIrql",
+          "offset": 41
+        },
+        {
+          "name": "FaultIndicator",
+          "offset": 42
+        },
+        {
+          "name": "NmiMsrIbrs",
+          "offset": 42
+        },
+        {
+          "name": "ExceptionActive",
+          "offset": 43
+        },
+        {
+          "name": "MxCsr",
+          "offset": 44
+        },
+        {
+          "name": "Rax",
+          "offset": 48
+        },
+        {
+          "name": "Rcx",
+          "offset": 56
+        },
+        {
+          "name": "Rdx",
+          "offset": 64
+        },
+        {
+          "name": "R8",
+          "offset": 72
+        },
+        {
+          "name": "R9",
+          "offset": 80
+        },
+        {
+          "name": "R10",
+          "offset": 88
+        },
+        {
+          "name": "R11",
+          "offset": 96
+        },
+        {
+          "name": "GsBase",
+          "offset": 104
+        },
+        {
+          "name": "GsSwap",
+          "offset": 104
+        },
+        {
+          "name": "Xmm0",
+          "offset": 112
+        },
+        {
+          "name": "Xmm1",
+          "offset": 128
+        },
+        {
+          "name": "Xmm2",
+          "offset": 144
+        },
+        {
+          "name": "Xmm3",
+          "offset": 160
+        },
+        {
+          "name": "Xmm4",
+          "offset": 176
+        },
+        {
+          "name": "Xmm5",
+          "offset": 192
+        },
+        {
+          "name": "FaultAddress",
+          "offset": 208
+        },
+        {
+          "name": "ContextRecord",
+          "offset": 208
+        },
+        {
+          "name": "Dr0",
+          "offset": 216
+        },
+        {
+          "name": "Dr1",
+          "offset": 224
+        },
+        {
+          "name": "Dr2",
+          "offset": 232
+        },
+        {
+          "name": "Dr3",
+          "offset": 240
+        },
+        {
+          "name": "Dr6",
+          "offset": 248
+        },
+        {
+          "name": "Dr7",
+          "offset": 256
+        },
+        {
+          "name": "ShadowStackFrame",
+          "offset": 216
+        },
+        {
+          "name": "Spare",
+          "offset": 224
+        },
+        {
+          "name": "DebugControl",
+          "offset": 264
+        },
+        {
+          "name": "LastBranchToRip",
+          "offset": 272
+        },
+        {
+          "name": "LastBranchFromRip",
+          "offset": 280
+        },
+        {
+          "name": "LastExceptionToRip",
+          "offset": 288
+        },
+        {
+          "name": "LastExceptionFromRip",
+          "offset": 296
+        },
+        {
+          "name": "SegDs",
+          "offset": 304
+        },
+        {
+          "name": "SegEs",
+          "offset": 306
+        },
+        {
+          "name": "SegFs",
+          "offset": 308
+        },
+        {
+          "name": "SegGs",
+          "offset": 310
+        },
+        {
+          "name": "TrapFrame",
+          "offset": 312
+        },
+        {
+          "name": "Rbx",
+          "offset": 320
+        },
+        {
+          "name": "Rdi",
+          "offset": 328
+        },
+        {
+          "name": "Rsi",
+          "offset": 336
+        },
+        {
+          "name": "Rbp",
+          "offset": 344
+        },
+        {
+          "name": "ErrorCode",
+          "offset": 352
+        },
+        {
+          "name": "ExceptionFrame",
+          "offset": 352
+        },
+        {
+          "name": "Rip",
+          "offset": 360
+        },
+        {
+          "name": "SegCs",
+          "offset": 368
+        },
+        {
+          "name": "Fill0",
+          "offset": 370
+        },
+        {
+          "name": "Logging",
+          "offset": 371
+        },
+        {
+          "name": "Fill1",
+          "offset": 372
+        },
+        {
+          "name": "EFlags",
+          "offset": 376
+        },
+        {
+          "name": "Fill2",
+          "offset": 380
+        },
+        {
+          "name": "Rsp",
+          "offset": 384
+        },
+        {
+          "name": "SegSs",
+          "offset": 392
+        },
+        {
+          "name": "Fill3",
+          "offset": 394
+        },
+        {
+          "name": "Fill4",
+          "offset": 396
+        }
+      ]
+    },
+    "_KTHREAD": {
+      "bytes": 1152,
+      "fields": [
+        {
+          "name": "InitialStack",
+          "offset": 40
+        },
+        {
+          "name": "StateSaveArea",
+          "offset": 96
+        },
+        {
+          "name": "TrapFrame",
+          "offset": 144
+        },
+        {
+          "name": "XStateSave",
+          "offset": 408
+        },
+        {
+          "name": "Process",
+          "offset": 544
+        },
+        {
+          "name": "PreviousMode",
+          "offset": 562
+        },
+        {
+          "name": "NpxState",
+          "offset": 592
+        }
+      ]
+    },
+    "_KEXCEPTION_FRAME": {
+      "bytes": 320,
+      "fields": [
+        {
+          "name": "P1Home",
+          "offset": 0
+        },
+        {
+          "name": "P2Home",
+          "offset": 8
+        },
+        {
+          "name": "P3Home",
+          "offset": 16
+        },
+        {
+          "name": "P4Home",
+          "offset": 24
+        },
+        {
+          "name": "P5",
+          "offset": 32
+        },
+        {
+          "name": "Spare1",
+          "offset": 40
+        },
+        {
+          "name": "Xmm6",
+          "offset": 48
+        },
+        {
+          "name": "Xmm7",
+          "offset": 64
+        },
+        {
+          "name": "Xmm8",
+          "offset": 80
+        },
+        {
+          "name": "Xmm9",
+          "offset": 96
+        },
+        {
+          "name": "Xmm10",
+          "offset": 112
+        },
+        {
+          "name": "Xmm11",
+          "offset": 128
+        },
+        {
+          "name": "Xmm12",
+          "offset": 144
+        },
+        {
+          "name": "Xmm13",
+          "offset": 160
+        },
+        {
+          "name": "Xmm14",
+          "offset": 176
+        },
+        {
+          "name": "Xmm15",
+          "offset": 192
+        },
+        {
+          "name": "TrapFrame",
+          "offset": 208
+        },
+        {
+          "name": "OutputBuffer",
+          "offset": 216
+        },
+        {
+          "name": "OutputLength",
+          "offset": 224
+        },
+        {
+          "name": "Spare2",
+          "offset": 232
+        },
+        {
+          "name": "MxCsr",
+          "offset": 240
+        },
+        {
+          "name": "Rbp",
+          "offset": 248
+        },
+        {
+          "name": "Rbx",
+          "offset": 256
+        },
+        {
+          "name": "Rdi",
+          "offset": 264
+        },
+        {
+          "name": "Rsi",
+          "offset": 272
+        },
+        {
+          "name": "R12",
+          "offset": 280
+        },
+        {
+          "name": "R13",
+          "offset": 288
+        },
+        {
+          "name": "R14",
+          "offset": 296
+        },
+        {
+          "name": "R15",
+          "offset": 304
+        },
+        {
+          "name": "Return",
+          "offset": 312
+        }
+      ]
+    },
+    "_XSAVE_FORMAT": {
+      "bytes": 512,
+      "fields": [
+        {
+          "name": "ControlWord",
+          "offset": 0
+        },
+        {
+          "name": "StatusWord",
+          "offset": 2
+        },
+        {
+          "name": "TagWord",
+          "offset": 4
+        },
+        {
+          "name": "Reserved1",
+          "offset": 5
+        },
+        {
+          "name": "ErrorOpcode",
+          "offset": 6
+        },
+        {
+          "name": "ErrorOffset",
+          "offset": 8
+        },
+        {
+          "name": "ErrorSelector",
+          "offset": 12
+        },
+        {
+          "name": "Reserved2",
+          "offset": 14
+        },
+        {
+          "name": "DataOffset",
+          "offset": 16
+        },
+        {
+          "name": "DataSelector",
+          "offset": 20
+        },
+        {
+          "name": "Reserved3",
+          "offset": 22
+        },
+        {
+          "name": "MxCsr",
+          "offset": 24
+        },
+        {
+          "name": "MxCsr_Mask",
+          "offset": 28
+        },
+        {
+          "name": "FloatRegisters",
+          "offset": 32
+        },
+        {
+          "name": "XmmRegisters",
+          "offset": 160
+        },
+        {
+          "name": "Reserved4",
+          "offset": 416
+        }
+      ]
+    },
+    "_XSTATE_SAVE": {
+      "bytes": 56,
+      "fields": [
+        {
+          "name": "Prev",
+          "offset": 0
+        },
+        {
+          "name": "Thread",
+          "offset": 8
+        },
+        {
+          "name": "Level",
+          "offset": 16
+        },
+        {
+          "name": "XStateContext",
+          "offset": 24
+        }
+      ]
+    },
+    "_KPROCESSOR_STATE": {
+      "bytes": 1472,
+      "fields": [
+        {
+          "name": "SpecialRegisters",
+          "offset": 0
+        },
+        {
+          "name": "ContextFrame",
+          "offset": 240
+        }
+      ]
+    }
+  },
+  "limits": [
+    "These are PDB layout facts, not evidence that memory fields were populated at a chosen syscall stop.",
+    "PDB info age is 5; DBI age and PE RSDS age are 1; GUID agrees. Both ages retained explicitly.",
+    "No live KD target or kernel context was read."
+  ],
+  "sources": [
+    "https://llvm.org/docs/PDB/DbiStream.html",
+    "https://learn.microsoft.com/en-us/windows/win32/api/dbghelp/nf-dbghelp-symgettypeinfo"
+  ]
+}

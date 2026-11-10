@@ -1,0 +1,321 @@
+{
+  "schema": "qemu-state-contract-v1",
+  "date": "2026-11-10",
+  "scope": "static source audit only; no guest execution, no acceptance, no frozen code changes",
+  "accepted": false,
+  "canonical57_capability": "reject_stock_rsp_hmp_and_vmstate",
+  "binary_reported_by_parent": {
+    "version": "11.1.0 (v11.1.0-12130-ge470268ff4)",
+    "installer_sha256": "f98a8aeb5f7faea9765b6dee28316c266cd179d80354a2fed8e50176f9a2e59f",
+    "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+    "commit_url": "https://repo.or.cz/qemu/ar7.git/commit/e470268ff446ec56728215a987ed166d5ed8fb64",
+    "same_commit_source_verified": false,
+    "gap": "Publisher commit metadata verified; raw source blocked by anti-bot page; GitHub publisher mirror does not expose this commit. Findings below are upstream v11.1.0, with v11.0.0 comparison, not binary authentication."
+  },
+  "breakpoint": {
+    "source_version": "upstream v11.1.0 tcg-accel-ops.c and bpt_helper.c; v11.0.0 cpu-exec.c",
+    "mechanism": "Z1 maps to cpu_breakpoint_insert(..., BP_GDB) for every CPU; PC match exits CPU loop with EXCP_DEBUG. No guest instruction patch or guest DR write on this insertion path.",
+    "qualification": "Guest BP_CPU at overlapping PC may independently trigger #DB in breakpoint_handler. Require no overlapping guest CPU breakpoint/watchpoint; distinguish debugger stop from guest exception. Resume and instruction re-execution behavior need bounded runtime checks.",
+    "no_guest_instruction_patch_source_supported": true,
+    "no_guest_dr_write_source_supported": true,
+    "unconditional_no_guest_DB_claim": false
+  },
+  "rsp_hmp": {
+    "rsp_real_fields": "EAX..EIP EFLAGS selectors CR0/2/3/4 FPCW FPSW logical ST0..7 XMM0..7 MXCSR",
+    "rsp_constant_zero_placeholders": [
+      "ftag",
+      "fiseg",
+      "fioff",
+      "foseg",
+      "fooff",
+      "fop"
+    ],
+    "hmp_adds": "GDT IDT LDT TR descriptors, DR0..3 DR6 DR7, abridged FTW and physical FPR0..7",
+    "missing_even_combined": [
+      "FIP",
+      "FDP",
+      "FCS",
+      "FDS",
+      "FOP",
+      "DR4",
+      "DR5"
+    ],
+    "x87_order": "RSP ST(i)=physical FP[(i+TOP)&7]; HMP FPRi is physical. TOP=(FSW>>11)&7. FTW bit i is physical nonempty. Full two-bit tag: empty=3, exponent=0 and mantissa=0 => zero=1; exponent in {0,0x7fff} or integer bit clear => special=2; otherwise valid=0. Do not rotate physical FTW.",
+    "base_width": "HMP segment cache base width follows CS64, so x86_64 compatibility mode truncates LDT/TR and segment bases to 32 bits. GDT/IDT width follows LMA. RSP FS/GS base and controls use target width. Never silently truncate or infer high zero bits from HMP.",
+    "epoch": "All vCPUs must be stopped; identify selected CPU, retain stop/resume transcript. A text parser cannot establish a coherent stopped epoch."
+  },
+  "cpu_vmstate": {
+    "version": 12,
+    "minimum": 11,
+    "available": "GPRs EIP EFLAGS hflags; physical FP registers (mantissa64+exponent16), FPCW FPSW abridged physical FTW; segment caches/tables; CR0/2/3/4; all eight DR slots; MXCSR and XMM. Target-sized fields require actual system-i386 versus system-x86_64 identity.",
+    "optional_subsection": "cpu/fpop_ip_dp version1 holds uint16 fpop, uint64 fpip, uint64 fpdp. needed iff any nonzero. Absence is only semantically meaningful after full valid version-bound section parsing; no heuristic scan or guessed zero.",
+    "missing": [
+      "FCS",
+      "FDS"
+    ],
+    "fop_model_gap": "Serialized env.fpop exists, but reviewed TCG x87 translator/helper does not update opcode alongside FIP/FDP; no claim of architectural accuracy.",
+    "full_state_possible_from_stock_vmstate": false
+  },
+  "cpuid_and_fxsave": {
+    "source_version": "upstream v11.1.0",
+    "names": {
+      "CPUID.7.0:EBX.13": "zero-fcs-fds",
+      "CPUID.7.0:EBX.6": "fdp-excptn-only"
+    },
+    "both_in_tcg_supported_mask": false,
+    "conclusion": "Cannot justify missing fields as architectural zero using these features. Actual emulated CPUID still must be measured. The x87 translator updates fpcs/fpds; do_xsave_fpu writes zero pointer blocks regardless, so guest FXSAVE is not a lossless fallback."
+  },
+  "bounded_acquisition_candidates": {
+    "preferred_if_further_development_needed": "QMP xen-save-devices-state with explicit live:false, while stopped, writes non-iterable device state including CPU without RAM/block images. Not called by this audit. File is not CPU-only and its size remains device-dependent. No complete57 gain because FCS/FDS omitted.",
+    "cautions": "Default live:true can inactivate block storage when already stopped. Preserve stop epoch, bound output and verify state; no destination load or guest helper injection. Validate actual command availability and source behavior before use.",
+    "migration_tcp": "Streaming receiver could parse/discard RAM pages without persisting 4GiB, but stream is version/device-dependent and not a sequence of arbitrary length-prefixed chunks. Never scan raw byte strings for cpu section. CPU is saved at final stopped phase; streaming discard still incurs migration work. Not implemented or tested.",
+    "resume": "Upstream runstate allows POSTMIGRATE->RUNNING, but migration completion leaves source POSTMIGRATE; block reactivation and guest clock/liveness require actual bounded experiment. Static allowed transition does not prove successful cont or native resource continuity."
+  },
+  "acceptance_boundary": "TCG executes translated guest instructions. A future real Windows guest process may own Windows resources, but this audit proves neither original-game compatibility nor required native ownership/lifetime. TCG CPU semantics and missing fullstate prevent declaring full native acceptance. No parser, VM, tests, commits or guest input were created by this subtask.",
+  "sources": [
+    {
+      "path": "target/i386/gdbstub.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/gdbstub.c",
+      "size": 16952,
+      "sha256": "19e432e4fdaf50212a8c66c0cc3770960380b80d364bc165d1c6d55a4da9f4b2"
+    },
+    {
+      "path": "target/i386/cpu-dump.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/cpu-dump.c",
+      "size": 21988,
+      "sha256": "72a31dc3a82823a932f888e658eeff29c4e1b73770801c397bb4dd109cd200d2"
+    },
+    {
+      "path": "gdbstub/system.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/gdbstub/system.c",
+      "size": 16826,
+      "sha256": "1842d70b3a47cd21b98a11c0530684c96f000b4fff86dde67f407fab75f728a1"
+    },
+    {
+      "path": "accel/tcg/tcg-accel-ops.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/accel/tcg/tcg-accel-ops.c",
+      "size": 7003,
+      "sha256": "8371f6f03bda6b909f702ff0f68149dea2b20d8cad753dcecf427d908c5a3b95"
+    },
+    {
+      "path": "accel/tcg/cpu-exec.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/accel/tcg/cpu-exec.c",
+      "size": 33775,
+      "sha256": "ffb228a2eda3e556572ee275aa76f66d18bccb89ecfe9ea51a8a844ae0cb40f5"
+    },
+    {
+      "path": "accel/tcg/translate-all.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/accel/tcg/translate-all.c",
+      "size": 20892,
+      "sha256": "3f8751500e66057b13e4ed567f49d232d8bb30381f22d9893ae36f4e9a515642"
+    },
+    {
+      "path": "accel/tcg/translator.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/accel/tcg/translator.c",
+      "size": 16092,
+      "sha256": "9b78a2b0d2baf863bbc9b4d05a1367373fcc7443ef7937bcf3230e1ba80bd974"
+    },
+    {
+      "path": "system/cpus.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/system/cpus.c",
+      "size": 20606,
+      "sha256": "f1ec947920111341e5921c34fade4226e6185b4661fe68db9da84a4e6830d444"
+    },
+    {
+      "path": "target/i386/tcg/fpu_helper.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/fpu_helper.c",
+      "size": 113970,
+      "sha256": "4dcc843e64cab327236f43378c7df3bb0f65b639c08bcc7807f8c6f3f1e8badb"
+    },
+    {
+      "path": "target/i386/tcg/system/misc_helper.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/system/misc_helper.c",
+      "size": 15709,
+      "sha256": "e999d1509fc47ec233b9b0684421961cc90580a0c1c3936ba90b95345cd178fb"
+    },
+    {
+      "path": "target/i386/tcg/system/excp_helper.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/system/excp_helper.c",
+      "size": 20046,
+      "sha256": "7955e64348f76d2eaa9fdfbb55d6a72a10595754f6fbf3bddac6ab78127178f5"
+    },
+    {
+      "path": "target/i386/tcg/translate.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/translate.c",
+      "size": 115553,
+      "sha256": "491e6023ddaf370a0428b44558ec6a50977d756fda0837fac9bc092970a25c5a"
+    },
+    {
+      "path": "target/i386/cpu.h",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/cpu.h",
+      "size": 109136,
+      "sha256": "e4161376ce7f839b51aac81abb6b01830593d0729dfd7a7e27a4789259c72c63"
+    },
+    {
+      "path": "hw/core/cpu-common.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/hw/core/cpu-common.c",
+      "size": 11574,
+      "sha256": "6012b7264674d135a04d37524333ca53c0281d692b0067d8090f864833752c55"
+    },
+    {
+      "path": "monitor/hmp-cmds.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/monitor/hmp-cmds.c",
+      "size": 20371,
+      "sha256": "7ac3e7675efaf35ea08b914db2da5118d7164dd8e0cc0adfd230357b840ea7b8"
+    },
+    {
+      "path": "target/i386/tcg/system/bpt_helper.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/system/bpt_helper.c",
+      "size": 9330,
+      "sha256": "14b932fdd1b64c2d4dfb7f56efb01b7b4f659d99e17fb86827129ffafa387ec6"
+    },
+    {
+      "path": "gdbstub/gdbstub.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/gdbstub/gdbstub.c",
+      "size": 70791,
+      "sha256": "69a9d8be5dab45afaa34110fe05342624b9c62d4541ad14a7c202fd3da15ad3e"
+    },
+    {
+      "path": "target/i386/machine.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/machine.c",
+      "size": 56037,
+      "sha256": "99c1bd9aecef7f38e94a22fd00abaa3d34cf99e0cc9459ca3d41ab0e885d2a85"
+    },
+    {
+      "path": "migration/savevm.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/migration/savevm.c",
+      "size": 108261,
+      "sha256": "3eee4dda1c113ddc15b37876b662e466883a02bf06d1bcdb4b2636b0db385791"
+    },
+    {
+      "path": "migration/ram.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/migration/ram.c",
+      "size": 148428,
+      "sha256": "edb190e93d3208849955ed4204e02c846b94f2eb1aedef6a5a4e6546f61ad4d0"
+    },
+    {
+      "path": "qapi/migration.json",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/qapi/migration.json",
+      "size": 72513,
+      "sha256": "2119066211d2eff88101dd614133e42d95822a188bf0058192a4a9d0c7b1923d"
+    },
+    {
+      "path": "target/i386/tcg/tcg-cpu.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/tcg-cpu.c",
+      "size": 7673,
+      "sha256": "7ae34b79e3d7d0f6448cfc213830b31a0d5a33adf975c41e9bcac913658d568e"
+    },
+    {
+      "path": "target/i386/tcg/system/tcg-cpu.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/system/tcg-cpu.c",
+      "size": 3003,
+      "sha256": "6f13a260e44453e23fafaf21f7eccaf65df2cc4168f8c02ce71d4181dcb27c54"
+    },
+    {
+      "path": "accel/tcg/tcg-accel-ops-mttcg.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/accel/tcg/tcg-accel-ops-mttcg.c",
+      "size": 4258,
+      "sha256": "c14c7303d36200631f0fcd74050a6a90145cc5b8c9fd842735ad559e31385c82"
+    },
+    {
+      "path": "qapi/machine.json",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/qapi/machine.json",
+      "size": 59424,
+      "sha256": "45c29367ab4572dc2995eab049165015c64077404c7f91422278a1807235c171"
+    },
+    {
+      "path": "target/i386/gdbstub.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/gdbstub.c",
+      "size": 16952,
+      "sha256": "19e432e4fdaf50212a8c66c0cc3770960380b80d364bc165d1c6d55a4da9f4b2",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.0.0/target__i386__gdbstub.c",
+      "identical_to_v11": true
+    },
+    {
+      "path": "target/i386/cpu-dump.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/cpu-dump.c",
+      "size": 21988,
+      "sha256": "72a31dc3a82823a932f888e658eeff29c4e1b73770801c397bb4dd109cd200d2",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.0.0/target__i386__cpu-dump.c",
+      "identical_to_v11": true
+    },
+    {
+      "path": "target/i386/machine.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/machine.c",
+      "size": 56018,
+      "sha256": "b7070861e3949e1f067a7e3ba6907e5f89cacce8d9ec73f499f419577b3d1aa1",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/target__i386__machine.c",
+      "identical_to_v11": false
+    },
+    {
+      "path": "target/i386/tcg/fpu_helper.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/tcg/fpu_helper.c",
+      "size": 114184,
+      "sha256": "e1e50290821ee658f8834c889be5b4a1debeaa137278ea989db6093e0fb6fc87",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/target__i386__tcg__fpu_helper.c",
+      "identical_to_v11": false
+    },
+    {
+      "path": "target/i386/tcg/system/bpt_helper.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/tcg/system/bpt_helper.c",
+      "size": 9362,
+      "sha256": "2c8a6069482d943b8ba82fd03eb2344e561c69ae5226a104c2b86197424304bb",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/target__i386__tcg__system__bpt_helper.c",
+      "identical_to_v11": false
+    },
+    {
+      "path": "accel/tcg/tcg-accel-ops.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/accel/tcg/tcg-accel-ops.c",
+      "size": 7101,
+      "sha256": "79a918acaf0e6c770b2095036c06c513a567beb478a3aed113edb738d00151a2",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/accel__tcg__tcg-accel-ops.c",
+      "identical_to_v11": false
+    },
+    {
+      "path": "migration/savevm.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/migration/savevm.c",
+      "size": 111434,
+      "sha256": "e0807930539a09bf21ee126efb5d9f0ef5714c6dfa434c6119f077ad7128b342",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/migration__savevm.c",
+      "identical_to_v11": false
+    },
+    {
+      "path": "target/i386/cpu.c",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/cpu.c",
+      "size": 419553,
+      "sha256": "fb20acebe01b7c46a214921bdd768eadb0798607e6c49d7864c457eec3ea0755",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/target__i386__cpu.c",
+      "identical_to_v11": false
+    },
+    {
+      "path": "target/i386/cpu.h",
+      "url": "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/cpu.h",
+      "size": 109828,
+      "sha256": "04b7d87e3ba12746420262bbe5876b05ac0a669f9e73590d6b2729ada5ebf520",
+      "local_path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/target__i386__cpu.h",
+      "identical_to_v11": false
+    }
+  ],
+  "additional_links": [
+    "https://www.qemu.org/docs/master/system/gdb.html",
+    "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/tcg/translate.c",
+    "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/system/runstate.c",
+    "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/migration/migration.c",
+    "https://qemu.weilnetz.de/"
+  ],
+  "evidence": {
+    "local_bytes_including_manifests": 1937042,
+    "new_backup_bytes": 0,
+    "retention": "Bounded source excerpts plus manifests retained below 2MiB. Equal files across versions deduplicated by local_path. No guest dumps or full source archive. Empty failed version lookup directory only; no pre-existing files removed."
+  },
+  "hmp_expression": {
+    "source_version": "upstream v11.1.0; actual publisher commit remains unauthenticated",
+    "route": "monitor/hmp.c gdb_get_register reads existing GDB descriptor via gdb_read_register. Fallback x86_monitor_defs in target/i386/cpu.c contains only six segment .limit values and pc; i386_sysemu_ops has no monitor_get_register override.",
+    "additional_fp_state_available": false,
+    "conclusion": "fpip/fpdp/fpcs/fpds/fpop have no separate monitor accessor. Matching GDB fioff/fooff/fiseg/foseg/fop names retain their placeholder-zero semantics.",
+    "sources": [
+      "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/monitor/hmp.c",
+      "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/cpu.c"
+    ]
+  }
+}

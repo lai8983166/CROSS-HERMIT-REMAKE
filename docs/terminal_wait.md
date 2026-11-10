@@ -327,3 +327,54 @@ VMware 快照/保存状态用途参考 [Broadcom 文档](https://knowledge.broad
 隐藏硬件断点与 INT3 的区别参考 [OpenCore 调试文档](https://github.com/acidanthera/OpenCorePkg/blob/master/Debug/README.md)。
 同一 `debugReg.c:287` 在其它平台也有 [厂商社区记录](https://community.broadcom.com/vmware-cloud-foundation/communities/community-home/digestviewer/viewthread?CommunityKey=0c3a2021-5113-4ad1-af9e-018f5da40bc0&GroupId=7165&MessageKey=f6cffd4d-6518-4924-adb9-fa9876147e00)；
 该记录不是当前 Windows 平台已修复的证明，本轮结论来自本机原始日志与协议回执。
+
+## 内核等待尾部与替代后端预检（2026-11-10，KD）
+
+本轮没有启动原游戏，第一关仍未通过。实际新增能力是：在原客体内核
+`NtWaitForSingleObject+0x6a` 用官方 SDK KD 客户端停住一次普通系统等待，清除
+断点后，同次启动的客体继续正常响应；另取得自有 WOW64 fixture 的当前 PID/TID、
+native64 PEB/Ldr 链及实际 `wow64cpu.dll` 加载基址。两者不是同一目标等待现场。
+目标 fixture 的合格停点为 **0**，没有三次受控返回、首次游戏结果消费或完整状态。
+
+已复用原内核/PDB和DLL做静态核对：用户地址的硬件断点仍可能把异常交给原保护
+DebugPort，不能用 KD 名称替代旧 #DB 路径；内核 PreviousMode=0 的分发边界不同。
+固定内核 SHA 下，尾部 live RAX 才是返回值；原 handle 位于 `[RBP-48h]`，
+Alertable 位于 `[RBP-40h]` 低字节。用户 timeout 会被复制到尾部 `[RSP+58h]`，
+`[RSP+50h]` 已改成这个本地副本地址，不能拿它和原用户指针比较。
+trap.R8/XMM 等槽位存在不代表本轮保存有效；陷阱帧也不含完整 x87 状态。
+实际用户 RIP 必须与独立认证的 wow64cpu 基址加 `1CF3h` 核对，不能由 RIP 反推
+基址再循环认证。详见 kernel-boundary、kernel-pdb-context 和独立复核报告。
+
+本轮失败保持原样：
+
+- 手写 DbgEng 客户端经历接口标识、遗漏 `STDMETHODV`、live-kernel 超时契约的修正；
+  v6条件中的 `&&` 被 MASM 拒绝，只取得其它线程的停点。v7 在事件处理时发生宿主
+  客户端 AV，根因未定位，不能称已修复；它的异常清理也不能保证脱离成功。
+- 官方 KD 的单次普通内核尾部预检通过；CLI v1/v2 在后台准备调用超时，尚未启动 KD。
+  没有分阶段回执，不能把这些超时归因于某个 PEB 读取或模块枚举函数。
+- v3 改为客体监督进程和 VMware Tools 小文件交接，取得真实模块来源；最初的
+  fileExists 缺失返回被编排当错误。v3b接续同一fixture，装好复合条件断点后 go
+  文件复制超时，0个目标 BEGIN/END/COMPLETE。不得换标签重复同一配方。
+- 恢复期间另观察到初次 `g` 后仍有待处理的 `DbgBreakPointWithStatus`；官方 CLI
+  显式再续跑一次后，同boot响应恢复。该现象解释恢复停住的现场，不足以把此前
+  所有超时归为同一根因。`EndSession`、`GO`请求或客户端退出不代替客体恢复证据。
+
+QEMU 候选也在迁移前拒绝：所查 GDB 路径把多个 x87 状态字段返回为零；HMP/
+VMState 未补齐完整字段，FXSAVE helper 同样不能补造。当前发布二进制与所查上游
+源的精确构建闭合还未建立。没有启动 QEMU VM、创建磁盘覆盖层或迁移原游戏。
+
+所有 `isolated_kd_engine*`、`terminal_kd_wait_*` 和本轮监督器均是冻结的开发/失败
+复现代码，**不是生产采集入口**。接续先解决原调用身份过滤、调试中断续跑和
+控制交接的有界可靠性，再证明完整用户postreturn状态；不使用内核RAX、浮点文本
+或文件SHA充当完整原CPU/映射内存/ABI证据。此后才可采原游戏并接
+`453CB5 → 4967B0`。三关及原任务2.1–4.2继续未完成，正式保持2/8。
+
+本轮原始小回执及执行脚本见 `analysis/terminal-wait-kd-support-v1-20261110.zip`，
+独立复核见 `analysis/terminal-wait-kd-independent-review-v1-20261110.json`，
+环境恢复、保全和全部新增体积见 `analysis/terminal-wait-kd-closeout-v1-20261110.json`。
+QEMU下载包及提取运行时的删除被工具策略拦截，暂留F盘且不进入Git；获取URL、
+字节数/SHA和未退役状态保存在收尾清单，未把这些文件报告为已清理。
+
+SDK契约参考微软 [WaitForEvent](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/dbgeng/nf-dbgeng-idebugcontrol-waitforevent)
+及 [结束KD会话](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/ending-a-debugging-session-in-kd)；
+live kernel要求INFINITE等待，外部中断请求和实际恢复必须分别检查。

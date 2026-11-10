@@ -1,0 +1,320 @@
+{
+  "schema": "terminal-wait-kd-independent-review-v1",
+  "date": "2026-11-10",
+  "reviewed_at_utc": "2026-11-10T01:29:19.972661+00:00",
+  "reviewer": "independent subagent qemu_state_contract",
+  "scope": "Offline source, original PE bytes, retained PDB identity and bounded native receipts only. No native executable invoked, no VM access, no changes to frozen collectors.",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "canonical57_proven": false,
+  "original_game_started_or_observed_by_this_evidence": false,
+  "original_game_handshake_proven": false,
+  "three_fixture_returns_proven": false,
+  "four_fixture_returns_proven": false,
+  "target_fixture_stop_count": 0,
+  "verdict": "Do not advance to native game acceptance. A single unfiltered kernel-tail hardware-breakpoint/continue channel check succeeded. All target-fixture wait captures remain unproven. Stop repeated native acquisition and close out the environment separately.",
+  "authentication": {
+    "kernel_sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a",
+    "static_pe_checks": {
+      "terminal-wait-kd-dispatch-static-refusal-v1-20261110.json": {
+        "count": 9,
+        "mismatches": []
+      },
+      "terminal-wait-kernel-boundary-static-candidate-v1-20261110.json": {
+        "count": 16,
+        "mismatches": []
+      }
+    },
+    "qemu_source_records_verified": 34,
+    "qemu_unique_source_hashes": 32,
+    "pdb_sha256_verified": true,
+    "pdb_identity_basis": "PE GUID matches PDB info GUID; PE age matches DBI age; exact-symbol DbgHelp lookup",
+    "pdb_info_age": 5,
+    "pdb_dbi_age": 1,
+    "pe_codeview_age": 1,
+    "pdb_warning": "Info age 5 is not silently rewritten as 1; retained report records PE/DBI age 1 and matching GUID. This closeout rehashes the PDB and checks retained native lookup evidence, without rerunning DbgHelp."
+  },
+  "qemu": {
+    "decision": "reject stock candidate as complete canonical57 acquisition",
+    "same_binary_commit_source_verified": false,
+    "source_scope": "Upstream v11.1.0 with v11.0.0 comparison. Actual Weil commit e470268ff4 source identity remains unverified. This is a reason to refuse an unsupported capability claim, not proof of every actual-binary behavior.",
+    "z1": "Reviewed upstream BP_GDB is an internal CPU-loop debug exit; insertion does not patch guest code or guest DRs. An overlapping guest BP_CPU can independently raise #DB, so no unconditional no-guest-DB claim.",
+    "missing": "RSP has constant-zero x87 metadata placeholders; HMP lacks FIP/FDP/FCS/FDS/FOP and DR4/5; expressions do not supply hidden alternatives. VMState omits FCS/FDS; modeled x87 opcode semantics remain incomplete. Zero-fcs-fds/fdp-excptn-only cannot justify fabricated zeros.",
+    "refused_workarounds": [
+      "silent zero fill",
+      "silent high-base truncation",
+      "heuristic migration-stream scans",
+      "unproven host-memory scans",
+      "partial parser advertised as complete"
+    ],
+    "tcg_native_boundary": "TCG emulates instructions and architectural CPU state. A Windows guest may own real guest-kernel resources, but this alone neither proves hardware-accelerated CPU equivalence nor authenticates the original game resource lifetime. No QEMU Windows/game acceptance is established."
+  },
+  "kernel_static": {
+    "user_db_candidate": "rejected for original user protection DebugPort: KiDispatchException forwards ordinary user #DB/WOW64 single-step to that debugger; KdIgnoreUmExceptions does not bypass the non-null DebugPort route.",
+    "kernel_tail_candidate": "distinct bounded development candidate: kernel-mode #DB dispatch reaches KdTrap; NtWaitForSingleObject+0x6a at RVA 0x6fcc6a is add rsp,0x38 then ret.",
+    "required_dynamic_checks": [
+      "same kernel bytes/base",
+      "current fixture PID/TID",
+      "original event handle at [RBP-0x48]",
+      "Alertable low byte [RBP-0x40]",
+      "dispatcher caller [RSP+0x38] normally kernel+0x428c35",
+      "original trap CS 0x33 and authenticated WOW64 return RIP",
+      "live EAX status and monotonically ordered fixture count",
+      "user-mode timeout copy [RSP+0x58] and branch validity"
+    ],
+    "context_limits": "RBP=trap+0x80 must be established on the actual call path. Trap R8 save is conditional; never treat [RBP-0x38] as universally valid. KTRAP_FRAME is not full user CPU state: no x87 stack/control/pointers or XMM6..15; syscall saves may be conditional, live kernel registers differ from user values, and sysret/WOW64 bridge changes remain to be proved."
+  },
+  "sdk_cli_channel": {
+    "observed_single_kernel_tail_markers": 1,
+    "rip": "0xfffff806208fcc6a",
+    "live_rax": 0,
+    "kernel_cs": "0x10",
+    "bp_command": "kernel ba e 1, then r; bc *; bl; gc",
+    "log_contains_no_remaining_bp_listing_after_bc": true,
+    "guest_before_and_after_same_boot": "2026-11-10T01:00:17.5000000Z",
+    "elapsed_seconds": 4.1560000000026776,
+    "client_terminated_after_guest_resumed": true,
+    "scope_limit": "One arbitrary kernel NtWait tail, without fixture PID/TID/handle filtering; not three fixture responses, full state, game handshake, or proof that the later compound filter works."
+  },
+  "manual_com_v2": {
+    "errors": [
+      "OSError('exception: access violation writing 0x000001D6C429EC00')",
+      "detach: OSError('exception: access violation writing 0x000001D6C429EC00')"
+    ],
+    "target_stops": 0,
+    "root_cause": "unresolved host access violation; not evidence of a VM panic",
+    "abi_review": "Installed SDK layout counts include STDMETHODV. Used interface slots and Win64 signatures match; callback objects/vtable remain strongly referenced. No proven early-GC cause. EventCallbacks registration is optional.",
+    "defects_or_limits": [
+      "close() re-enters WaitForEvent and an OSError skips later detach/callback deregistration/releases",
+      "timer SetInterrupt HRESULT is neither checked nor logged; INFINITE wait is not a demonstrated hard deadline",
+      "QueryInterface has no AddRef and callback refcount methods return constants; a COM lifetime contract weakness, not a proven crash cause"
+    ],
+    "recovery": "recovery-v3 was followed by guest-status-v1: same boot, responsive and no listed fixture. This does not identify or fix the AV."
+  },
+  "cli_preparation_failures": [
+    {
+      "version": 1,
+      "run_errors": [
+        "RuntimeError('dedicated guest administration transport failed: WinRMOperationTimeoutError')"
+      ],
+      "elapsed_seconds": 156.5619999999908,
+      "kd_started": false,
+      "target_stops": 0,
+      "final_fixture_error": "System.Exception: bounded owned gate win32=2",
+      "returns_recorded": null,
+      "cleanup_errors": [],
+      "handles_closed": true,
+      "buffers_released": true,
+      "watchdog_disarmed": true,
+      "guest_boot": "2026-11-10T01:00:17.5000000Z",
+      "active_process_query_output": ""
+    },
+    {
+      "version": 2,
+      "run_errors": [
+        "RuntimeError('dedicated guest administration transport failed: WinRMOperationTimeoutError')",
+        "launcher: RuntimeError('dedicated guest administration failed, exit 1')"
+      ],
+      "elapsed_seconds": 158.79699999999139,
+      "kd_started": false,
+      "target_stops": 0,
+      "final_fixture_error": "System.Exception: bounded owned gate win32=2",
+      "returns_recorded": null,
+      "cleanup_errors": [],
+      "handles_closed": true,
+      "buffers_released": true,
+      "watchdog_disarmed": true,
+      "guest_boot": "2026-11-10T01:00:17.5000000Z",
+      "active_process_query_output": ""
+    }
+  ],
+  "peb_reader_review": {
+    "permissions": "OpenProcess 0x410 = QUERY_INFORMATION | VM_READ; no target memory/code writes or thread creation",
+    "layout": "native64 PBI size48/PEB pointer+8; PEB.Ldr+0x18; InLoadOrder head+0x10; entry DllBase+0x30, SizeOfImage+0x40, FullDllName+0x48, BaseDllName+0x58",
+    "bounds": "native64 and WOW64 guards; <=64 entries, repeated-node rejection, <=1024 bytes/read, <=512-byte UTF16 name, exact byte count, finally CloseHandle",
+    "limitations": "Version-bound internal layout; no loader-lock snapshot, reverse-link or MaximumLength consistency proof; CloseHandle status not checked. File path hash is not authentication of every mapped memory byte. A bounded loop does not bound remote guard, Add-Type, hashing or transport.",
+    "scope": "v2 C# reader terminal_kd_module_peb.cs; v3 supervisor differences are recorded separately."
+  },
+  "cli_v3": {
+    "initial_run_error": [
+      "RuntimeError('vmrun failed: The file does not exist.')"
+    ],
+    "prepared_pid": 3160,
+    "prepared_tid": 3840,
+    "event_handle": 1076,
+    "module": {
+      "peb": 7254016,
+      "ldr": 140722241024256,
+      "entry": 11695472,
+      "image_base": 2003501056,
+      "path": "C:\\Windows\\System32\\wow64cpu.dll",
+      "size": 36864,
+      "sha256": "6d3e9d039c22b58c577435ef0209d43668ef2003e284be9980e4ad1289045a66"
+    },
+    "expected_wow64_syscall_return_rip": "0x776b1cf3",
+    "module_scope": "Retained supervisor receipt independently identifies PEB/LDR entry, actual image base and file SHA; its expected return RIP was not dynamically captured at a target wait stop.",
+    "armed_markers": 1,
+    "target_begin_markers": 0,
+    "target_end_markers": 0,
+    "four_complete_markers": 0,
+    "errors": [
+      "RuntimeError('vmrun exceeded bounded timeout; command credentials withheld')"
+    ],
+    "emergency_client_stop": true,
+    "interpretation": "Compound filter was armed; Tools go-copy timed out. No target stop, completion, or fullstate is established. No isolated root cause assigned to the expression, transport or fixture from this log alone.",
+    "supervisor_source_review": "Native64 ctypes signatures match PBI/RPM sizes, retains the actual launched child PID, requests only QUERY_INFORMATION|VM_READ, limits traversal to 64 nodes and exact bounded reads. Unlike the v2 C# reader, it checks Unicode MaximumLength and CloseHandle success. Original fixture source itself requires WOW64. Traversal remains non-atomic and file SHA does not authenticate all mapped pages. Its finally may force termination after bounded waits; no completed supervisor receipt was available in this review, so graceful fixture cleanup is not inferred."
+  },
+  "closeout": {
+    "final_recovery_v4_bcd_vmx_restoration_verified_by_this_review": false,
+    "status": "pending separate main-agent closeout evidence",
+    "known_at_cutoff": "Parent reports recovery-v4 and original guest BCD/VMX restoration in progress. No completion claimed here. Earlier v1/v2 fixture cleanup and same-boot receipts are authenticated above.",
+    "required_final_evidence": [
+      "breakpoints cleared and guest resumed or orderly shutdown",
+      "owned fixture/supervisor inactive",
+      "original guest BCD and VMX restored with identities and readback",
+      "host debugger clients absent",
+      "evidence volume/retention accounting"
+    ],
+    "handoff": "Main agent may append a separate closeout report referencing this immutable review hash; do not retroactively invent observations."
+  },
+  "sources": [
+    {
+      "path": "analysis/terminal-wait-qemu-state-contract-v1-20261110.json",
+      "bytes": 17058,
+      "sha256": "82c5a30ba01795787c198a7f5b0c4fa815d93ca444e2d6d695b5ce009a5831d7"
+    },
+    {
+      "path": "analysis/terminal-wait-kd-dispatch-static-refusal-v1-20261110.json",
+      "bytes": 16290,
+      "sha256": "ef31e253782c5a1e565d0e5894b1bb6c68a852cb6b2d4f77556d323e5d98857c"
+    },
+    {
+      "path": "analysis/terminal-wait-kernel-boundary-static-candidate-v1-20261110.json",
+      "bytes": 25455,
+      "sha256": "c97b6ad769aa9a986b32a66a8857da6e72b9e75e4d222f2a9fd317c2106185c1"
+    },
+    {
+      "path": "analysis/terminal-wait-kernel-pdb-context-v1-20261110.json",
+      "bytes": 13746,
+      "sha256": "b5320f4eba106546f435e466885d034e46fdd86d0035bc6abfeccc7dacf375a8"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-channel-v1.json",
+      "bytes": 1486,
+      "sha256": "35d03e23534b47ef1fc3afd40a943bdeeb0d7f68fc9bc70ba5429a9219120b96"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-channel-v1.log",
+      "bytes": 3062,
+      "sha256": "67b3ed2319bc0e113571b70e0963933e1f89716f4a194a925c8f004078ceb854"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/wait-tail-v2.json",
+      "bytes": 13229,
+      "sha256": "fd546150a4087d7303bdc67a866f31782fb3f13d2ff9d753d19339bda1638f09"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/recovery-v3.json",
+      "bytes": 11068,
+      "sha256": "fa8b79d5738c27912663afefbed4a1953e89344294ddbe0de4f25b9810541797"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/guest-status-v1.json",
+      "bytes": 329,
+      "sha256": "ade500b4ca79cd8ae10ddd3d390c66fd595bbba392f474c0ec7308a9e1df849e"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-wait-v1.json",
+      "bytes": 1657,
+      "sha256": "411fe6d8ae6706192adcebb41886a6c47b6a4afb239623f9bc714def6eae1631"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-wait-v2.json",
+      "bytes": 1944,
+      "sha256": "9223d74e576d6dd03dc73eaad3e5de3892387abe6466926ea3cf8e587ebdf94d"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-fixture-final-v1.json",
+      "bytes": 35102,
+      "sha256": "f164dc06e9d38bc45bc3912c92b3eb249efd209133bfa1e3bf0f0166711af8a5"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-fixture-final-v2.json",
+      "bytes": 35103,
+      "sha256": "275035ad84bf2152f39731727d7fde674a1bffd3df258002d7dbf8626764a0ac"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-v3-supervisor-ready.json",
+      "bytes": 1185,
+      "sha256": "2727fae2fff4c8e4382758fb1d905e0a3f85d67a5272a150c23993cbe6f53b56"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-wait-v3.json",
+      "bytes": 885,
+      "sha256": "a0582d6fb8fe9acccf3a8606a67ea9487d41cc345f5566229f064f6d11587d07"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-wait-v3b.json",
+      "bytes": 3292,
+      "sha256": "c85cc193eb202683060aee65889a64f5077c9e3f0916b1aab160380d6c5d5003"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-worker/cli-wait-v3b.log",
+      "bytes": 2750,
+      "sha256": "db91d7449deabfcdc7d7879109e13680a9cf25a70e95c92e8032ba4b55af3a3a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-ntoskrnl.exe",
+      "bytes": 11597168,
+      "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+    },
+    {
+      "path": ".venv-audit/native-worker/symbols/ntkrnlmp.pdb/D801A9AFC0FB7761380800F708633DEA1/ntkrnlmp.pdb",
+      "bytes": 12095488,
+      "sha256": "9a5c323aaf56e25099a99aa7f51e077a54972a74637014af8837603730322e48"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/wow64cpu.dll",
+      "bytes": 45816,
+      "sha256": "6d3e9d039c22b58c577435ef0209d43668ef2003e284be9980e4ad1289045a66"
+    },
+    {
+      "path": "devtools/isolated_kd_engine_v7.py",
+      "bytes": 7302,
+      "sha256": "cb5401b6ea1eee26c06f98013c00e9055335b8d3effac7416fa3a317c08be17b"
+    },
+    {
+      "path": "devtools/terminal_kd_module_peb.cs",
+      "bytes": 2505,
+      "sha256": "aad88155e0bae8cd504e17aff9a339f151d9b673ebb6b50fd7c85e35ad5a0de1"
+    },
+    {
+      "path": "devtools/terminal_kd_fixture_supervisor.py",
+      "bytes": 4581,
+      "sha256": "24252df8fe489b68132f0df4c116cb065113b41b989368ac53808d64d3418d07"
+    },
+    {
+      "path": "devtools/terminal_kd_wait_cli_v2.py",
+      "bytes": 7396,
+      "sha256": "6c73552e06c56cb62dfece72ba5975899a5fddd38e2e070a078413819dc93dc1"
+    }
+  ],
+  "official_references": [
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/using-callback-objects",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/dbgeng/nf-dbgeng-idebugclient2-geteventcallbacks",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/dbgeng/nf-dbgeng-idebugcontrol-waitforevent",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/dbgeng/nf-dbgeng-idebugcontrol-setinterrupt",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winternl/ns-winternl-peb_ldr_data"
+  ],
+  "evidence_budget": {
+    "new_backups_bytes": 0,
+    "new_native_evidence_bytes": 0,
+    "new_parser_or_native_tool": false,
+    "files_changed_by_this_final_review": [
+      "analysis/terminal-wait-kd-independent-review-v1-20261110.json"
+    ],
+    "retention": "One small review referencing original local receipts by SHA256; no raw CPU/memory duplication and no original evidence deletion."
+  }
+}
