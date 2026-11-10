@@ -1,0 +1,728 @@
+{
+  "schema": "tcg-build-closeout-v1",
+  "utc": "2026-11-10T11:43:53.156430+00:00",
+  "accepted": false,
+  "formal_progress": "2/8",
+  "windows_admitted": false,
+  "windows_boots": 0,
+  "game_starts": 0,
+  "host_input": 0,
+  "source_base": "e470268ff446ec56728215a987ed166d5ed8fb64",
+  "current_runtime": {
+    "path": ".venv-audit/native-worker/tcg-runtime-v4/qemu-system-x86_64",
+    "bytes": 29725696,
+    "sha256": "a5741b8d79fe42b17a91e9b094a4e173be389a2cd06e9e174f94a1651c79739d"
+  },
+  "capsule": {
+    "path": "analysis/terminal-wait-tcg-build-capsule-v1-20261110.zip",
+    "bytes": 638044,
+    "sha256": "96efb2143a0082808c5bf294ec5201ce722eece3cac59b1d318c9c7621ff911e"
+  },
+  "review": {
+    "path": "analysis/terminal-wait-tcg-device-restore-review-v4-20261110.json",
+    "bytes": 24575,
+    "sha256": "dcf5579a59162f87ab8d047fff276457d01a1d36886723bcd0279c43e1420fe4"
+  },
+  "preservation": {
+    "checked_utc": "2026-11-10T11:33:49.092116+00:00",
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "reports": [
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v3-rich/report.json",
+      "bytes": 53787,
+      "sha256": "2c0373df14e75bd21db1ae340b93270a59704da961ba26971c9e015c5632b027",
+      "bounded_case_passed": false,
+      "seconds": 5.605770807000226,
+      "errors": [
+        "timed out"
+      ],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v4-rich/report.json",
+      "bytes": 89016,
+      "sha256": "2ccef3b34afba8dd7720d32411803a41a1215df84da925dc9cc773fe607d6d35",
+      "bounded_case_passed": true,
+      "seconds": 1.0079791640018811,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v4-zero/report.json",
+      "bytes": 89002,
+      "sha256": "e030141ef9993233db23e8aebdbcbc6ff6325de43544f6d0739e5b48246518bb",
+      "bounded_case_passed": true,
+      "seconds": 1.012671907999902,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore64-v4/report.json",
+      "bytes": 89083,
+      "sha256": "70a5bda568688bd1fbaf758d896589d0e87d87321bc31936a49770e33e7f9d2d",
+      "bounded_case_passed": true,
+      "seconds": 1.0300359950051643,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-invalid-masked/report.json",
+      "bytes": 2894,
+      "sha256": "5d3a22472b037631238f9d93e3e674302194458aeec93054801eea952eea82ae",
+      "bounded_case_passed": true,
+      "seconds": 1.4233058629906736,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-invalid-unmasked/report.json",
+      "bytes": 2981,
+      "sha256": "36427b79825dc6e4d3c78c8537a096b1e437aae0139f850635cf94439840950f",
+      "bounded_case_passed": true,
+      "seconds": 1.428940533005516,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-normal-forward/report.json",
+      "bytes": 2894,
+      "sha256": "52c711eb7023b04236144c2963ab1156a5dde227a565f90c65242d4a6463e87d",
+      "bounded_case_passed": true,
+      "seconds": 1.4257233620010084,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-normal-reverse/report.json",
+      "bytes": 2894,
+      "sha256": "be547d056b3332ff4ceb4a1dc143dd5d1c3fa6f6d1270144c26fefe34fba706e",
+      "bounded_case_passed": true,
+      "seconds": 1.3741758639953332,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-zero-masked/report.json",
+      "bytes": 2867,
+      "sha256": "4efaa182337a597c2543171c536829062de192b9ab4986468a76b2d39104ce0a",
+      "bounded_case_passed": true,
+      "seconds": 1.3742995639913715,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-zero-unmasked/report.json",
+      "bytes": 2953,
+      "sha256": "74b0d12ffd5031a87a21f006350b27c4413c9684dcb347846875552dfef4951f",
+      "bounded_case_passed": true,
+      "seconds": 1.4243841560091823,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-env-v2/report.json",
+      "bytes": 20438,
+      "sha256": "46be055de5fbbf4aae6b2cb65d5f6ded013ed0e88e2bb85d9ba1fac7ce6ec242",
+      "bounded_case_passed": true,
+      "seconds": 0.7532076010102173,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip32-v1/report.json",
+      "bytes": 20389,
+      "sha256": "2881dcde035c9424cd8403c082c6528e0743835870ffd3ec61c7c098851e8074",
+      "bounded_case_passed": true,
+      "seconds": 2.1588110820011934,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip32-v2/report.json",
+      "bytes": 20389,
+      "sha256": "fb809f772f655312be5bf4ac2119c881634e460662217ef1661cfcbce8b5f629",
+      "bounded_case_passed": true,
+      "seconds": 2.2025129929970717,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip64-v1/report.json",
+      "bytes": 23469,
+      "sha256": "b879bb7b079c090bc13561300a8384e4b87f9ed1c0c69da47e119c9fcf25ff84",
+      "bounded_case_passed": true,
+      "seconds": 3.0985566610033857,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip64-v2/report.json",
+      "bytes": 23469,
+      "sha256": "6513a1fb920ca76d45d6f6b35d169b59ffa9cb6c863d0553f7070c9170dcbaca",
+      "bounded_case_passed": true,
+      "seconds": 2.9524927029997343,
+      "errors": [],
+      "process_exited": true
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-v1/report.json",
+      "bytes": 2657,
+      "sha256": "a7c5a954354a7e131434453dc9e86223d93e22af12c6311b203b03ba64254054",
+      "bounded_case_passed": false,
+      "seconds": 0.668148694006959,
+      "errors": [],
+      "process_exited": true
+    }
+  ],
+  "volumes": [
+    {
+      "path": ".venv-audit/native-worker/close-tcg-build-v1.py",
+      "files": 1,
+      "logical_bytes": 4664,
+      "ntfs_allocated_bytes": 4664,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/refactor-tcg-probe-before-run.py",
+      "files": 1,
+      "logical_bytes": 723,
+      "ntfs_allocated_bytes": 723,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-tcg-build-v1.py",
+      "files": 1,
+      "logical_bytes": 2294,
+      "ntfs_allocated_bytes": 2294,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/run-tcg-division-oracles-v2.sh",
+      "files": 1,
+      "logical_bytes": 285,
+      "ntfs_allocated_bytes": 285,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/run-tcg-division-rest-v2.sh",
+      "files": 1,
+      "logical_bytes": 489,
+      "ntfs_allocated_bytes": 489,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/run-tcg-restores-v2.sh",
+      "files": 1,
+      "logical_bytes": 696,
+      "ntfs_allocated_bytes": 696,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/seal-tcg-build-v1.py",
+      "files": 1,
+      "logical_bytes": 2228,
+      "ntfs_allocated_bytes": 2228,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-apply-context.json",
+      "files": 1,
+      "logical_bytes": 5322,
+      "ntfs_allocated_bytes": 5322,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1",
+      "files": 15108,
+      "logical_bytes": 288876742,
+      "ntfs_allocated_bytes": 288876742,
+      "unfollowed_symlinks": [],
+      "allocation_errors": [
+        ".venv-audit/native-worker/tcg-build-v1/build/.gdbinit",
+        ".venv-audit/native-worker/tcg-build-v1/build/Makefile",
+        ".venv-audit/native-worker/tcg-build-v1/build/python",
+        ".venv-audit/native-worker/tcg-build-v1/build/scripts",
+        ".venv-audit/native-worker/tcg-build-v1/build/docs/config",
+        ".venv-audit/native-worker/tcg-build-v1/build/linux-headers/asm",
+        ".venv-audit/native-worker/tcg-build-v1/build/pc-bios/optionrom/Makefile",
+        ".venv-audit/native-worker/tcg-build-v1/build/pc-bios/s390-ccw/Makefile",
+        ".venv-audit/native-worker/tcg-build-v1/build/pc-bios/vof/Makefile",
+        ".venv-audit/native-worker/tcg-build-v1/build/pyvenv/bin/python",
+        ".venv-audit/native-worker/tcg-build-v1/build/pyvenv/bin/python3",
+        ".venv-audit/native-worker/tcg-build-v1/build/pyvenv/bin/python3.12",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/bin/qemu-system-x86_64",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/applications/qemu.desktop",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/128x128/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/16x16/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/24x24/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/256x256/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/32x32/apps/qemu.bmp",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/32x32/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/48x48/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/512x512/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/64x64/apps/qemu.png",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/icons/hicolor/scalable/apps/qemu.svg",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/ast27x0_bootrom.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/bios-256k.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/bios-microvm.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/bios.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-aarch64-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-arm-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-arm-vars.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-i386-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-i386-secure-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-i386-vars.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-licenses.txt",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-loongarch64-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-loongarch64-vars.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-riscv-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-riscv-vars.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-x86_64-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/edk2-x86_64-secure-code.fd",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-e1000.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-e1000e.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-eepro100.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-ne2k_pci.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-pcnet.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-rtl8139.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-virtio.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/efi-vmxnet3.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/hppa-firmware.img",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/hppa-firmware64.img",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/kvmvapic.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/linuxboot_dma.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/multiboot_dma.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/npcm7xx_bootrom.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/npcm8xx_bootrom.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/openbios-ppc",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/openbios-sparc32",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/openbios-sparc64",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/opensbi-riscv32-generic-fw_dynamic.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/opensbi-riscv64-generic-fw_dynamic.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/palcode-clipper",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pnv-pnor.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pvh.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pxe-e1000.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pxe-eepro100.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pxe-ne2k_pci.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pxe-pcnet.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pxe-rtl8139.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/pxe-virtio.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/qboot.rom",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/QEMU,cgthree.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/QEMU,tcx.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/qemu-nsis.bmp",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/qemu_vga.ndrv",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/s390-ccw.img",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/skiboot.lid",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/slof.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/trace-events-all",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/u-boot-sam460.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/u-boot.e500",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-ati.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-bochs-display.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-cirrus.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-qxl.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-ramfb.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-stdvga.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-virtio.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios-vmware.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vgabios.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vof-nvram.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/vof.bin",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/dtb/bamboo.dtb",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/dtb/canyonlands.dtb",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/dtb/pegasos1.dtb",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/dtb/pegasos2.dtb",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/dtb/petalogix-ml605.dtb",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/dtb/petalogix-s3adsp1800.dtb",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/50-edk2-i386-secure.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/50-edk2-x86_64-secure.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/60-edk2-aarch64.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/60-edk2-arm.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/60-edk2-i386.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/60-edk2-loongarch64.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/60-edk2-riscv64.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/firmware/60-edk2-x86_64.json",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/ar",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/bepo",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/cz",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/da",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/de",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/de-ch",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/en-gb",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/en-us",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/es",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/et",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/fi",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/fo",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/fr",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/fr-be",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/fr-ca",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/fr-ch",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/hr",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/hu",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/is",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/it",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/ja",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/lt",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/lv",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/mk",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/nl",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/no",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/pl",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/pt",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/pt-br",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/ru",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/sl",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/sv",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/th",
+        ".venv-audit/native-worker/tcg-build-v1/build/qemu-bundle/usr/local/share/qemu/keymaps/tr",
+        ".venv-audit/native-worker/tcg-build-v1/build/tests/data",
+        ".venv-audit/native-worker/tcg-build-v1/build/tests/qemu-iotests/check",
+        ".venv-audit/native-worker/tcg-build-v1/build/tests/qemu-iotests/Makefile",
+        ".venv-audit/native-worker/tcg-build-v1/build/tests/tcg/x86_64-softmmu/Makefile",
+        ".venv-audit/native-worker/tcg-build-v1/source/rust/bindings/chardev-sys/build.rs",
+        ".venv-audit/native-worker/tcg-build-v1/source/rust/bindings/hwcore-sys/build.rs",
+        ".venv-audit/native-worker/tcg-build-v1/source/rust/bindings/migration-sys/build.rs",
+        ".venv-audit/native-worker/tcg-build-v1/source/rust/bindings/qom-sys/build.rs",
+        ".venv-audit/native-worker/tcg-build-v1/source/rust/bindings/system-sys/build.rs",
+        ".venv-audit/native-worker/tcg-build-v1/source/rust/bindings/util-sys/build.rs",
+        ".venv-audit/native-worker/tcg-build-v1/source/rust/hw/char/pl011/build.rs",
+        ".venv-audit/native-worker/tcg-build-v1/source/subprojects/libvduse/include/atomic.h",
+        ".venv-audit/native-worker/tcg-build-v1/source/subprojects/libvduse/include/compiler.h",
+        ".venv-audit/native-worker/tcg-build-v1/source/subprojects/libvhost-user/include/atomic.h",
+        ".venv-audit/native-worker/tcg-build-v1/source/subprojects/libvhost-user/include/compiler.h"
+      ]
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v3-rich",
+      "files": 5,
+      "logical_bytes": 79293,
+      "ntfs_allocated_bytes": 79293,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v4-rich",
+      "files": 5,
+      "logical_bytes": 114424,
+      "ntfs_allocated_bytes": 114424,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v4-zero",
+      "files": 5,
+      "logical_bytes": 114410,
+      "ntfs_allocated_bytes": 114410,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-device-restore64-v4",
+      "files": 5,
+      "logical_bytes": 114491,
+      "ntfs_allocated_bytes": 114491,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-invalid-masked",
+      "files": 5,
+      "logical_bytes": 136975,
+      "ntfs_allocated_bytes": 136975,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-invalid-masked.run.log",
+      "files": 1,
+      "logical_bytes": 1086,
+      "ntfs_allocated_bytes": 1086,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-invalid-unmasked",
+      "files": 5,
+      "logical_bytes": 136891,
+      "ntfs_allocated_bytes": 136891,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-normal-forward",
+      "files": 5,
+      "logical_bytes": 136947,
+      "ntfs_allocated_bytes": 136947,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-normal-forward.run.log",
+      "files": 1,
+      "logical_bytes": 1086,
+      "ntfs_allocated_bytes": 1086,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-normal-reverse",
+      "files": 5,
+      "logical_bytes": 137162,
+      "ntfs_allocated_bytes": 137162,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-normal-reverse.run.log",
+      "files": 1,
+      "logical_bytes": 1086,
+      "ntfs_allocated_bytes": 1086,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-zero-masked",
+      "files": 5,
+      "logical_bytes": 137063,
+      "ntfs_allocated_bytes": 137063,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-zero-masked.run.log",
+      "files": 1,
+      "logical_bytes": 1080,
+      "ntfs_allocated_bytes": 1080,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-zero-unmasked",
+      "files": 5,
+      "logical_bytes": 137149,
+      "ntfs_allocated_bytes": 137149,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-div-v2-zero-unmasked.run.log",
+      "files": 1,
+      "logical_bytes": 1152,
+      "ntfs_allocated_bytes": 1152,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-division-oracle-v2",
+      "files": 8,
+      "logical_bytes": 35624,
+      "ntfs_allocated_bytes": 35624,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-env-v2",
+      "files": 5,
+      "logical_bytes": 48840,
+      "ntfs_allocated_bytes": 48840,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-env-v2.run.log",
+      "files": 1,
+      "logical_bytes": 1163,
+      "ntfs_allocated_bytes": 1163,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-longmode-image-static-v1",
+      "files": 0,
+      "logical_bytes": 0,
+      "ntfs_allocated_bytes": 0,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip32-v1",
+      "files": 5,
+      "logical_bytes": 268532,
+      "ntfs_allocated_bytes": 268532,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip32-v2",
+      "files": 5,
+      "logical_bytes": 268703,
+      "ntfs_allocated_bytes": 268703,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip32-v2.run.log",
+      "files": 1,
+      "logical_bytes": 1039,
+      "ntfs_allocated_bytes": 1039,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip64-v1",
+      "files": 5,
+      "logical_bytes": 400212,
+      "ntfs_allocated_bytes": 400212,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip64-v2",
+      "files": 5,
+      "logical_bytes": 399898,
+      "ntfs_allocated_bytes": 399898,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-roundtrip64-v2.run.log",
+      "files": 1,
+      "logical_bytes": 4094,
+      "ntfs_allocated_bytes": 4094,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-runtime-v1",
+      "files": 0,
+      "logical_bytes": 0,
+      "ntfs_allocated_bytes": 0,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-runtime-v2",
+      "files": 0,
+      "logical_bytes": 0,
+      "ntfs_allocated_bytes": 0,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-runtime-v3",
+      "files": 0,
+      "logical_bytes": 0,
+      "ntfs_allocated_bytes": 0,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-runtime-v4",
+      "files": 1,
+      "logical_bytes": 29725696,
+      "ntfs_allocated_bytes": 29725696,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-selectors-v3",
+      "files": 0,
+      "logical_bytes": 0,
+      "ntfs_allocated_bytes": 0,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-oracle-v1",
+      "files": 2,
+      "logical_bytes": 16148,
+      "ntfs_allocated_bytes": 16148,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-v1",
+      "files": 5,
+      "logical_bytes": 24027,
+      "ntfs_allocated_bytes": 24027,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-x87-exception-v2",
+      "files": 0,
+      "logical_bytes": 0,
+      "ntfs_allocated_bytes": 0,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-x87-patch-v1",
+      "files": 0,
+      "logical_bytes": 0,
+      "ntfs_allocated_bytes": 0,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    },
+    {
+      "path": ".venv-audit/native-worker/x87-grep.txt",
+      "files": 1,
+      "logical_bytes": 3900,
+      "ntfs_allocated_bytes": 3900,
+      "unfollowed_symlinks": [],
+      "allocation_errors": []
+    }
+  ],
+  "new_local_work_bytes": 321382473,
+  "new_local_work_allocated_bytes": 321341614,
+  "git_new_artifact_bytes_before_closeout": 895582,
+  "total_new_local_bytes_including_git_artifacts_before_closeout": 322278055,
+  "cleanup": {
+    "deleted_bytes": 92403055,
+    "deleted_files": 67,
+    "all_deleted": true,
+    "old_runtime_v1_v2_v3_available": false,
+    "historical_evidence_deleted": false,
+    "empty_temporary_directories_remain": true
+  },
+  "evidence_budget": {
+    "default_bytes": 268435456,
+    "build_environment_exception": "Announced 1\u20133 GiB; actual volumes itemized. Fixed source/dependencies, object cache and current runtime retained for reproducible continuation; no large memory dump.",
+    "same_disk_capsule_is_independent_backup": false
+  },
+  "validation": {
+    "openspec_strict": true,
+    "ordinary_and_optimized_tamper_checks": true,
+    "independent_review": true,
+    "all_qemu_and_build_processes_exited": true
+  },
+  "next_gate": "Canonical57 adapter semantics, active DR/RF/event and full checkpoint coherence; only then Windows/WOW64, original wait return and result consumption",
+  "limitations": [
+    "Device stream excludes RAM; 20 KiB unchanged microguest region is not full machine rollback.",
+    "Other optional VMState zero restoration and broad x87 exceptions remain uncertified.",
+    "No original game lifetime, ABI, full replay or resource/PTD acceptance."
+  ],
+  "linux_link_volume_reconciliation": {
+    "all_155_errors_are_linux_symlinks": true,
+    "link_payload_bytes": 13344,
+    "allocated_payload_bytes": 0,
+    "record_path": ".venv-audit\\native-worker\\tcg-build-v1\\link-volume-v1.json",
+    "record_sha256": "d7b17087ec9f88ce156e530e8ee47872cb7394dbe352a00b7d0d404a7755392f",
+    "excludes_filesystem_directory_and_reparse_metadata": true
+  }
+}

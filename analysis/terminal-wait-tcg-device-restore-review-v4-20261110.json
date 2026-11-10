@@ -1,0 +1,613 @@
+{
+  "schema": "terminal-tcg-device-restore-independent-review-v4",
+  "date": "2026-11-10",
+  "scope": "Independent offline review of original source/patch, ELF, QMP receipts, snapshots and build identity. No native execution by reviewer.",
+  "bounded_microguest_restore_observed": true,
+  "full57_accepted": false,
+  "windows_admitted": false,
+  "original_game_cases": 0,
+  "conclusion": "Three owned diskless microguests demonstrate same-process stopped CPU/device load, exact exported CPU state readback for both VPs, bounded RAM preservation and natural register-only re-execution. This is neither arbitrary machine rollback nor original-program native-lifetime acceptance.",
+  "prior_contract": {
+    "path": "analysis/terminal-wait-tcg-selectors-v3-contract-20261110.json",
+    "bytes": 13976,
+    "sha256": "34fd9380cd9bbc61b00dc2d5fba647e82d1c49b9e1a1019ee2b087cf0cec0f92"
+  },
+  "patches": [
+    {
+      "path": "devtools/patches/terminal-tcg-selectors-v3.patch",
+      "bytes": 2411,
+      "sha256": "fee6527f3ad5b1d6f0319cd92586791fadb2f1d2cfe9cb4a1ec3df31ce3c8e2a"
+    },
+    {
+      "path": "devtools/patches/terminal-tcg-device-yank-v4.patch",
+      "bytes": 484,
+      "sha256": "fdd73b90ef753a201d3ed7095ca63012c21ec8f8a1671ba6c3fdb3335331aba9"
+    }
+  ],
+  "build": {
+    "manifest": {
+      "path": "analysis/terminal-wait-tcg-build-manifest-v4-20261110.json",
+      "bytes": 8602,
+      "sha256": "ce6b8c9dbfcec11195ec8fbcfbd66d177d98ef89d68e905732ccfe88e908938c"
+    },
+    "runtime": {
+      "path": ".venv-audit/native-worker/tcg-runtime-v4/qemu-system-x86_64",
+      "bytes": 29725696,
+      "sha256": "a5741b8d79fe42b17a91e9b094a4e173be389a2cd06e9e174f94a1651c79739d"
+    },
+    "rehash_verified_entries": [
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/qapi/misc-i386.json",
+        "bytes": 11750,
+        "sha256": "32dc82a919a0f950f5ebb06d91312837ad977d4639530376069b87e2a6f4c3e9"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/cpu.h",
+        "bytes": 110615,
+        "sha256": "89fa08987d5633e56bc8dd0be30405cc78ab1e70d776bb3a7bed0740ea2f9afa"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/gdbstub.c",
+        "bytes": 17346,
+        "sha256": "2808a0f3360981bab291883f62512dcb8343956f9e75de80619d548d65787236"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/helper.h",
+        "bytes": 8099,
+        "sha256": "9aee32712a2bf7418fd623df610d949ffe994139df5ca3e6da7710876b0cd8f3"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/meson.build",
+        "bytes": 1247,
+        "sha256": "53c47b999f32783eb74c15f27cd700d2a595604328b7e58d6532c21e8487aef7"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/emit.c.inc",
+        "bytes": 153656,
+        "sha256": "9838fa6264d244b98155321834534e0aec7509524954ef2c743ea3cc65d385c2"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/fpu_helper.c",
+        "bytes": 118779,
+        "sha256": "d9390f148fbfe26bd9c3dde5e085a9f209524dcdc6e3f89b23573fbc2c4f827b"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/translate.c",
+        "bytes": 117240,
+        "sha256": "e37bd29c50246ab9e86105829d01f9be6e008853532c02a157fb857ac60b4328"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/terminal-state.c",
+        "bytes": 4587,
+        "sha256": "c264c78751e3260b224d9219364490626bfd75793f90f2c9c268acccab5cedc0"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/machine.c",
+        "bytes": 57432,
+        "sha256": "360bc2a6b6fdf39d88f3e47051c660fb991e6c804843d649eb9eeaf00371e8e0"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/migration/savevm.c",
+        "bytes": 111625,
+        "sha256": "0eab4ab2dd2a8e0416e38b8fcf8ae2855f1aa40754b6afd171a19b1ed1c3d71b"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/config-host.mak",
+        "bytes": 709,
+        "sha256": "0cc03285b5ae34b390a243513f925c9f498f54bf52e463bf1066471b7009c3c3"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/config-host.h",
+        "bytes": 6815,
+        "sha256": "742d66a54768a3009c5d0f926a16bcf8d696ca9a73406fd578d13e01e7a3bda8"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/meson-info/intro-buildoptions.json",
+        "bytes": 54674,
+        "sha256": "5c559addc8855abc8b6251d730f73f6270d979808e52397bfd24c19eb9b8417f"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/compile_commands.json",
+        "bytes": 5443983,
+        "sha256": "9153de024e68f203b250c2dedd1a4e7eede8c789c3b08dee2b2a0664fdba0330"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/logs/toolchain.txt",
+        "bytes": 1187,
+        "sha256": "2b6d45455a7d6d3e235378cc02783a73df8103d9a1ba8175752aec902d5dd221"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/qemu-system-x86_64",
+        "bytes": 29725696,
+        "sha256": "a5741b8d79fe42b17a91e9b094a4e173be389a2cd06e9e174f94a1651c79739d"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/logs/final-source-v4.diff",
+        "bytes": 33894,
+        "sha256": "0bb5c21ea99ab4a90637d4ad6cd94e1179f385848796cf596d65764dbc067991"
+      },
+      {
+        "path": "analysis/terminal-wait-tcg-build-manifest-v3-20261110.json",
+        "bytes": 8375,
+        "sha256": "9af96cb44110f53d29fd6863d016c5b5a79b969da5d4d35411704436c49fb222"
+      }
+    ],
+    "machine_c_and_savevm_c_equal_independently_generated_patches": true,
+    "limit": "Local source/configuration/binary chain verified. Dynamic-library and compiler hashes are retained in parent manifest but were not rehashed by this reviewer. No deterministic rebuild or publisher-binary reproduction claim."
+  },
+  "reviewed_probe_sources": [
+    {
+      "path": "devtools/terminal_tcg_device_restore_probe_v2.py",
+      "bytes": 8471,
+      "sha256": "73f2b5a1b5664875a1a4e18a7d6559b883f6ab5d101262039546c907a4c050f0"
+    },
+    {
+      "path": "devtools/terminal_tcg_device_restore_probe_v3.py",
+      "bytes": 8677,
+      "sha256": "7fdca38b959eb9750cbeff386242cf176b7d715759148fc8d47a1023da825326"
+    },
+    {
+      "path": "devtools/terminal_tcg_device_restore64_probe.py",
+      "bytes": 1228,
+      "sha256": "734f8f2d69e7ecdef4c28ad153f7e2d6b8e58309f64fc91f8c8b1a802c46f593"
+    },
+    {
+      "path": "devtools/terminal_tcg_longmode_image.py",
+      "bytes": 8743,
+      "sha256": "1be3c362e27067c4ad6042d7aec2ec9dde703b48ea7275f1954b7df057752989"
+    },
+    {
+      "path": "devtools/terminal_tcg_roundtrip_probe.py",
+      "bytes": 12159,
+      "sha256": "8dccbc29269163b2c3ff359ec0b3e266721639bba00370e76932f6bcc28ad223"
+    },
+    {
+      "path": "devtools/terminal_tcg_state_export_v3.c",
+      "bytes": 4587,
+      "sha256": "c264c78751e3260b224d9219364490626bfd75793f90f2c9c268acccab5cedc0"
+    }
+  ],
+  "cases": [
+    {
+      "name": "rich32",
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-device-restore-v4-rich/report.json",
+        "bytes": 89016,
+        "sha256": "2ccef3b34afba8dd7720d32411803a41a1215df84da925dc9cc773fe607d6d35"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-rich/guest.elf",
+          "bytes": 8192,
+          "sha256": "f1ae2ff33ba3c196e7ec45aa0ad5fe91316ca4c1a8dfbc103df7090add249991"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-rich/devices.bin",
+          "bytes": 17215,
+          "sha256": "9e7fabeb4478db18ef436d16d5bfba2d07b59c906387aa6adf979161cad72f2c"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-rich/guest.bin",
+          "bytes": 1,
+          "sha256": "8c2574892063f995fdf756bce07f46c1a5193e54cd52837ed91e32008ccf41ac"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-rich/stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "seconds": 1.0079791640018811,
+      "builder_byte_exact": true,
+      "qmp_state_receipts_equal_report": true,
+      "all_typed_states_restored": true,
+      "natural_B_reexecution_equal": true,
+      "clean_exit": 33,
+      "wire_subsections": [
+        {
+          "name": "cpu/fpop_ip_dp",
+          "version": 1,
+          "instances": [
+            {
+              "offset": 2371,
+              "cpu_in_wire_order": 0,
+              "values": {
+                "fop": 5,
+                "fip": 1048910,
+                "fdp": 1050884
+              }
+            },
+            {
+              "offset": 4567,
+              "cpu_in_wire_order": 1,
+              "values": {
+                "fop": 0,
+                "fip": 0,
+                "fdp": 0
+              }
+            }
+          ]
+        },
+        {
+          "name": "cpu/chaomofa-tcg-x87-selectors-v1",
+          "version": 1,
+          "instances": [
+            {
+              "offset": 2409,
+              "cpu_in_wire_order": 0,
+              "values": {
+                "fcs": 8,
+                "fds": 16
+              }
+            },
+            {
+              "offset": 4605,
+              "cpu_in_wire_order": 1,
+              "values": {
+                "fcs": 0,
+                "fds": 0
+              }
+            }
+          ]
+        }
+      ],
+      "ram_range": {
+        "address": 1048576,
+        "bytes": 20480,
+        "a": "2d676f9bc0474e7da463255f8fafe991806265deb6a5739c68c2644bc66e9902",
+        "b": "2d676f9bc0474e7da463255f8fafe991806265deb6a5739c68c2644bc66e9902",
+        "restored": "2d676f9bc0474e7da463255f8fafe991806265deb6a5739c68c2644bc66e9902",
+        "second_b": "2d676f9bc0474e7da463255f8fafe991806265deb6a5739c68c2644bc66e9902"
+      },
+      "ram_reconstructed_from_ELF_sha256": "2d676f9bc0474e7da463255f8fafe991806265deb6a5739c68c2644bc66e9902",
+      "changed_fields": [
+        "gpr",
+        "eip",
+        "eflags",
+        "fp_status",
+        "top",
+        "fp_empty_mask",
+        "fop",
+        "fcs",
+        "fds",
+        "fip",
+        "fdp",
+        "mxcsr",
+        "xmm_low64_high64"
+      ],
+      "A_summary": {
+        "eip": "0000000000100176",
+        "eflags": "0000000000000447",
+        "efer": "0000000000000000",
+        "fcs": 8,
+        "fds": 16,
+        "fop": 5,
+        "fip": "000000000010014e",
+        "fdp": "0000000000100904",
+        "fp_control": 895,
+        "fp_status": 14336,
+        "fp_empty_mask": 127
+      },
+      "B_summary": {
+        "eip": "000000000010018e",
+        "eflags": "0000000000000002",
+        "fcs": 0,
+        "fds": 0,
+        "fop": 0,
+        "fip": "0000000000000000",
+        "fdp": "0000000000000000"
+      }
+    },
+    {
+      "name": "zero32",
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-device-restore-v4-zero/report.json",
+        "bytes": 89002,
+        "sha256": "e030141ef9993233db23e8aebdbcbc6ff6325de43544f6d0739e5b48246518bb"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-zero/guest.elf",
+          "bytes": 8192,
+          "sha256": "0dcd9b5b2259fe3a8a748c1e164344a00a9cfef287134f2d0cb6fce8ca211d31"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-zero/devices.bin",
+          "bytes": 17215,
+          "sha256": "8290f2537c397315921717cbe6f01e367ff2cd3eda2e76cd9ea77ce444da8361"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-zero/guest.bin",
+          "bytes": 1,
+          "sha256": "8c2574892063f995fdf756bce07f46c1a5193e54cd52837ed91e32008ccf41ac"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore-v4-zero/stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "seconds": 1.012671907999902,
+      "builder_byte_exact": true,
+      "qmp_state_receipts_equal_report": true,
+      "all_typed_states_restored": true,
+      "natural_B_reexecution_equal": true,
+      "clean_exit": 33,
+      "wire_subsections": [
+        {
+          "name": "cpu/fpop_ip_dp",
+          "version": 1,
+          "instances": [
+            {
+              "offset": 2371,
+              "cpu_in_wire_order": 0,
+              "values": {
+                "fop": 0,
+                "fip": 0,
+                "fdp": 0
+              }
+            },
+            {
+              "offset": 4567,
+              "cpu_in_wire_order": 1,
+              "values": {
+                "fop": 0,
+                "fip": 0,
+                "fdp": 0
+              }
+            }
+          ]
+        },
+        {
+          "name": "cpu/chaomofa-tcg-x87-selectors-v1",
+          "version": 1,
+          "instances": [
+            {
+              "offset": 2409,
+              "cpu_in_wire_order": 0,
+              "values": {
+                "fcs": 0,
+                "fds": 0
+              }
+            },
+            {
+              "offset": 4605,
+              "cpu_in_wire_order": 1,
+              "values": {
+                "fcs": 0,
+                "fds": 0
+              }
+            }
+          ]
+        }
+      ],
+      "ram_range": {
+        "address": 1048576,
+        "bytes": 20480,
+        "a": "d683a510011d37ffa23b96e4a6b72549058add228029caada50a29e763b78275",
+        "b": "d683a510011d37ffa23b96e4a6b72549058add228029caada50a29e763b78275",
+        "restored": "d683a510011d37ffa23b96e4a6b72549058add228029caada50a29e763b78275",
+        "second_b": "d683a510011d37ffa23b96e4a6b72549058add228029caada50a29e763b78275"
+      },
+      "ram_reconstructed_from_ELF_sha256": "d683a510011d37ffa23b96e4a6b72549058add228029caada50a29e763b78275",
+      "changed_fields": [
+        "gpr",
+        "eip",
+        "eflags",
+        "fp_status",
+        "top",
+        "fp_physical_low64_high16",
+        "fp_empty_mask",
+        "fop",
+        "fcs",
+        "fds",
+        "fip",
+        "fdp",
+        "mxcsr",
+        "xmm_low64_high64"
+      ],
+      "A_summary": {
+        "eip": "000000000010015d",
+        "eflags": "0000000000000002",
+        "efer": "0000000000000000",
+        "fcs": 0,
+        "fds": 0,
+        "fop": 0,
+        "fip": "0000000000000000",
+        "fdp": "0000000000000000",
+        "fp_control": 895,
+        "fp_status": 0,
+        "fp_empty_mask": 255
+      },
+      "B_summary": {
+        "eip": "000000000010018e",
+        "eflags": "0000000000000447",
+        "fcs": 8,
+        "fds": 16,
+        "fop": 5,
+        "fip": "0000000000100166",
+        "fdp": "0000000000100904"
+      }
+    },
+    {
+      "name": "high64",
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-device-restore64-v4/report.json",
+        "bytes": 89083,
+        "sha256": "70a5bda568688bd1fbaf758d896589d0e87d87321bc31936a49770e33e7f9d2d"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore64-v4/guest.elf",
+          "bytes": 8192,
+          "sha256": "01f1a19d4c2028056ea64f23226d683ebb6e000d7e8cc4fc2ea8778e2764c7d0"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore64-v4/devices.bin",
+          "bytes": 17215,
+          "sha256": "715fefce411e50f31c383bb11581183b6e468019f9ac6461b55f74583fcd2606"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore64-v4/guest.bin",
+          "bytes": 1,
+          "sha256": "8c2574892063f995fdf756bce07f46c1a5193e54cd52837ed91e32008ccf41ac"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-device-restore64-v4/stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "seconds": 1.0300359950051643,
+      "builder_byte_exact": true,
+      "qmp_state_receipts_equal_report": true,
+      "all_typed_states_restored": true,
+      "natural_B_reexecution_equal": true,
+      "clean_exit": 33,
+      "wire_subsections": [
+        {
+          "name": "cpu/fpop_ip_dp",
+          "version": 1,
+          "instances": [
+            {
+              "offset": 2371,
+              "cpu_in_wire_order": 0,
+              "values": {
+                "fop": 4,
+                "fip": 4296016799,
+                "fdp": 4296018180
+              }
+            },
+            {
+              "offset": 4567,
+              "cpu_in_wire_order": 1,
+              "values": {
+                "fop": 0,
+                "fip": 0,
+                "fdp": 0
+              }
+            }
+          ]
+        },
+        {
+          "name": "cpu/chaomofa-tcg-x87-selectors-v1",
+          "version": 1,
+          "instances": [
+            {
+              "offset": 2409,
+              "cpu_in_wire_order": 0,
+              "values": {
+                "fcs": 0,
+                "fds": 0
+              }
+            },
+            {
+              "offset": 4605,
+              "cpu_in_wire_order": 1,
+              "values": {
+                "fcs": 0,
+                "fds": 0
+              }
+            }
+          ]
+        }
+      ],
+      "ram_range": {
+        "address": 1048576,
+        "bytes": 20480,
+        "a": "46ea1ce6aa7048d8a828d7200b7940047bdc72a440d272558d87ae1f2d7800a8",
+        "b": "46ea1ce6aa7048d8a828d7200b7940047bdc72a440d272558d87ae1f2d7800a8",
+        "restored": "46ea1ce6aa7048d8a828d7200b7940047bdc72a440d272558d87ae1f2d7800a8",
+        "second_b": "46ea1ce6aa7048d8a828d7200b7940047bdc72a440d272558d87ae1f2d7800a8"
+      },
+      "ram_reconstructed_from_ELF_sha256": null,
+      "changed_fields": [
+        "gpr",
+        "eip",
+        "eflags",
+        "fp_status",
+        "top",
+        "fp_empty_mask",
+        "fop",
+        "fip",
+        "fdp",
+        "xmm_low64_high64"
+      ],
+      "A_summary": {
+        "eip": "0000000100100410",
+        "eflags": "0000000000000046",
+        "efer": "0000000000000500",
+        "fcs": 0,
+        "fds": 0,
+        "fop": 4,
+        "fip": "000000010010039f",
+        "fdp": "0000000100100904",
+        "fp_control": 895,
+        "fp_status": 14336,
+        "fp_empty_mask": 127
+      },
+      "B_summary": {
+        "eip": "0000000100100426",
+        "eflags": "0000000000000002",
+        "fcs": 0,
+        "fds": 0,
+        "fop": 0,
+        "fip": "0000000000000000",
+        "fdp": "0000000000000000"
+      }
+    }
+  ],
+  "wire_evidence_limit": "Decoded exact subsection framing/version/payload at both CPU occurrences, checked against QMP state; not an independent parser of every device/CPU field in the migration stream.",
+  "memory_evidence_limit": "32-bit 20 KiB hash reconstructed independently from ELF initialized bytes plus BSS. 64-bit hash consistency comes from retained live read digests; the report does not preserve the whole 20 KiB to independently reconstruct dynamic page-table/FXSAVE bytes. No whole-4-GiB snapshot or rollback claim.",
+  "canonical57_groups": [
+    {
+      "names": "EAX EBX ECX EDX ESI EDI EBP ESP EIP EFLAGS",
+      "count": 10,
+      "source": "Full-width gpr/eip and materialized eflags; 32-bit GPR indices 0,3,1,2,6,7,5,4. No silent truncation outside confirmed 32-bit context.",
+      "coverage": "GPR, RIP and condition/DF changes exercised; privileged RF/TF/IOPL/VM/event restoration not independently qualified."
+    },
+    {
+      "names": "FPCW FPSW FPTAG FIP FDP FCS FDS FOP MXCSR",
+      "count": 9,
+      "source": "fp_control/status/top, empty mask plus raw physical FP80 classification, full-width fip/fdp, actual selectors/opcode, materialized mxcsr.",
+      "coverage": "Zero/nonzero selectors/opcode/pointers exercised; high pointers restored in long mode. FPTAG is derived using empty plus exponent/mantissa, not equal to abridged mask. Broad x87 operation/exception semantics remain limited."
+    },
+    {
+      "names": "CS DS ES FS GS SS CR0 CR2 CR3 CR4 GDTR IDTR LDTR TR",
+      "count": 14,
+      "source": "Segment/table selector/base/limit/flags retained at target width and CR slots.",
+      "coverage": "Preserved across reload, including high FS base and enabled long mode. Most CR/descriptor fields were not changed between A/B; faults, privilege transitions, hidden segment cache and mapping changes not stress-tested."
+    },
+    {
+      "names": "FP0..FP7 XMM0..XMM7",
+      "count": 16,
+      "source": "Eight physical raw FP80 slots, all XMM lanes; 64-bit endpoint also exports XMM8..15.",
+      "coverage": "Raw payload preservation including empty slots checked; XMM0 or XMM15 actually changed. Canonical FP versus logical ST(i) ordering and write order must be explicitly checked at adapter boundary; no API-name-based rotation guess."
+    },
+    {
+      "names": "DR0..DR7",
+      "count": 8,
+      "source": "Raw DR0..3/6/7 plus CR4.DE architectural policy; DR4/5 are aliases at DE=0 and faulting encodings at DE=1, not independent architectural stores.",
+      "coverage": "Unchanged debug registers preserved, but active hardware watch/execute breakpoints and DR4/5 DE-mode behavior were not exercised by these restore cases. Raw internal dr[4/5] padding is not valid canonical evidence."
+    }
+  ],
+  "remaining_admission_gaps": [
+    "No integrated validated canonical57 adapter/readback into the existing independent replay system. The endpoint supplies candidate raw sources; fullstate_accepted remains false.",
+    "x87 v2 fixes register FDIV/R/FDIVP/RP pre-computation exceptions only. Memory arithmetic, other x87 instructions and overflow/underflow/precision post-computation semantics remain outside coverage. Hardware comparisons of six division cases are not a general x87 correctness certificate.",
+    "Optional VMState fields outside the patched FOP/FIP/FDP/FCS/FDS subset can remain stale when omitted during same-process load; arbitrary changed-state restore is not certified. Export omits broader pending-event/internal machine state and is not entire CPU VMState.",
+    "GDB observer breakpoint ownership, guest active DR events and pending exception delivery across load need their own bounded qualification. Software TB and translated memory must stay consistent; unchanged guest code and mappings were used.",
+    "Only BSP executes test instructions. CPU1 state is saved/restored while inactive; no two-running-VP synchronization, AP handshake or Windows scheduler behavior proved.",
+    "No Windows/WOW64 syscall/exception/FP context, game instruction continuity, original debug port behavior, ABI, resource ownership or real wait/handle lifetime has been observed on this backend.",
+    "Device-only stream excludes RAM/block contents. Passing own RAM-unchanged interval does not authorize restoring a live Windows machine or resurrecting external resources. Load failure is not atomic."
+  ],
+  "bounded_next_checks_not_executed": [
+    "A short owned guest can perturb all raw FP/XMM slots and CW plus nonzero TOP/empty holes, then load once; compare independent guest FX/FNSTENV images to typed state. Existing tests already prove selected slots, so avoid rerunning identical patterns.",
+    "Use a single owned IDT fixture to check DE=0 DR4/5 alias semantics and DE=1 #UD, then active DR0/DR7 pending-event restore without host-injected exceptions. This targets an untested canonical contract rather than repeating ordinary register restore.",
+    "Offline adapter refusal tests should reject wrong binary/configuration, missing selector subsection or absent fields, high-pointer truncation and treating unsupported DR4/5 as zero."
+  ],
+  "retention_review": {
+    "old_runtime_v1_v2_v3": "No remaining unique unresolved failure in the scoped division/yank fixes was identified that requires these exact runnable copies. Parent may retire superseded runtime copies under explicit manifest with original sizes/SHA and retained source/patch/configuration plus failure raw data.",
+    "retain": "Current successful v4 runtime and its provenance; six hardware oracle raw cases; first division mismatch and first yank failure small source/log/stream identity; successful restore original bytes.",
+    "limitation": "Source provenance does not guarantee byte-identical rebuilding. After deletion, old executable must be marked unavailable and cannot be claimed directly rerunnable; no deletion performed by reviewer."
+  }
+}

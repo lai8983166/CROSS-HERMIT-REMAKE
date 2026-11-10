@@ -1,0 +1,202 @@
+{
+  "schema": "tcg-project-build-v1",
+  "base_commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+  "exact_local_build_identity": true,
+  "publisher_binary_reproduction": false,
+  "full57": false,
+  "windows_admitted": false,
+  "host": "Existing Ubuntu WSL2 registered at F:/WSL_Linux; no host package/config install",
+  "binary": {
+    "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/build/qemu-system-x86_64",
+    "bytes": 29725696,
+    "sha256": "d5683d1a03bb9e018daa0023252dee840b161b8a1392d732f7c21e7dd909b649"
+  },
+  "version": "QEMU emulator version 11.1.0\nCopyright (c) 2003-2026 Fabrice Bellard and the QEMU Project developers\n",
+  "source_delta": {
+    "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/logs/final-source-v3.diff",
+    "bytes": 33312,
+    "sha256": "8b703fdaf3f829b0193b8c862183b1515a5cc26e978052da2354e30546a51ba5"
+  },
+  "source_inventory_parent": {
+    "path": "/mnt/f/project/chaomofa/analysis/terminal-wait-tcg-build-manifest-v2-20261110.json",
+    "bytes": 8150,
+    "sha256": "afbb3914ed96d6631242d56665f3da3b83106883d608292fade986cac28dbf6d"
+  },
+  "source_inventory_basis": "Reuse prior full-tree scan, apply scoped machine.c patch, freshly rehash all ten modified source files",
+  "modified_source": [
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/qapi/misc-i386.json",
+      "bytes": 11750,
+      "sha256": "32dc82a919a0f950f5ebb06d91312837ad977d4639530376069b87e2a6f4c3e9"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/cpu.h",
+      "bytes": 110615,
+      "sha256": "89fa08987d5633e56bc8dd0be30405cc78ab1e70d776bb3a7bed0740ea2f9afa"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/gdbstub.c",
+      "bytes": 17346,
+      "sha256": "2808a0f3360981bab291883f62512dcb8343956f9e75de80619d548d65787236"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/helper.h",
+      "bytes": 8099,
+      "sha256": "9aee32712a2bf7418fd623df610d949ffe994139df5ca3e6da7710876b0cd8f3"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/meson.build",
+      "bytes": 1247,
+      "sha256": "53c47b999f32783eb74c15f27cd700d2a595604328b7e58d6532c21e8487aef7"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/emit.c.inc",
+      "bytes": 153656,
+      "sha256": "9838fa6264d244b98155321834534e0aec7509524954ef2c743ea3cc65d385c2"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/fpu_helper.c",
+      "bytes": 118779,
+      "sha256": "d9390f148fbfe26bd9c3dde5e085a9f209524dcdc6e3f89b23573fbc2c4f827b"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/translate.c",
+      "bytes": 117240,
+      "sha256": "e37bd29c50246ab9e86105829d01f9be6e008853532c02a157fb857ac60b4328"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/terminal-state.c",
+      "bytes": 4587,
+      "sha256": "c264c78751e3260b224d9219364490626bfd75793f90f2c9c268acccab5cedc0"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/source/target/i386/machine.c",
+      "bytes": 57432,
+      "sha256": "360bc2a6b6fdf39d88f3e47051c660fb991e6c804843d649eb9eeaf00371e8e0"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "keycodemapdb",
+      "commit": "f5772a62ec52591ff6870b7e8ef32482371f22c6",
+      "overlay_status": []
+    },
+    {
+      "name": "berkeley-softfloat-3",
+      "commit": "b64af41c3276f97f0e181920400ee056b9c88037",
+      "overlay_status": [
+        "?? meson.build",
+        "?? meson_options.txt"
+      ]
+    },
+    {
+      "name": "berkeley-testfloat-3",
+      "commit": "e7af9751d9f9fd3b47911f51a5cfd08af256a9ab",
+      "overlay_status": [
+        "?? meson.build",
+        "?? meson_options.txt"
+      ]
+    }
+  ],
+  "build_configuration": [
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/build/config-host.mak",
+      "bytes": 709,
+      "sha256": "0cc03285b5ae34b390a243513f925c9f498f54bf52e463bf1066471b7009c3c3"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/build/config-host.h",
+      "bytes": 6815,
+      "sha256": "742d66a54768a3009c5d0f926a16bcf8d696ca9a73406fd578d13e01e7a3bda8"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/build/meson-info/intro-buildoptions.json",
+      "bytes": 54674,
+      "sha256": "5c559addc8855abc8b6251d730f73f6270d979808e52397bfd24c19eb9b8417f"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/build/compile_commands.json",
+      "bytes": 5443983,
+      "sha256": "9153de024e68f203b250c2dedd1a4e7eede8c789c3b08dee2b2a0664fdba0330"
+    },
+    {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-build-v1/logs/toolchain.txt",
+      "bytes": 1187,
+      "sha256": "2b6d45455a7d6d3e235378cc02783a73df8103d9a1ba8175752aec902d5dd221"
+    }
+  ],
+  "dynamic_dependencies": [
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libpixman-1.so.0.42.2",
+      "bytes": 710832,
+      "sha256": "73aa0daeedb7228754d798b194e2ff69c8b82a689b9aa4f1d8ab32a8763b0cc5"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libz.so.1.3",
+      "bytes": 113000,
+      "sha256": "f61677c7bdb7c2aa2a243ea781bfd16afcb361cede7b4ef76127a9d8eb9a5242"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "bytes": 952616,
+      "sha256": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.8000.0",
+      "bytes": 1343056,
+      "sha256": "96ef9163aee942bdc09e6f4a1acd2fd6b178c03af824c569741440d63ac9f4f4"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "bytes": 2129424,
+      "sha256": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "bytes": 236616,
+      "sha256": "c20a2dc8917c755f02b94049356320fe1f62ac7d9f8994731f807d9df39302da"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.11.2",
+      "bytes": 625344,
+      "sha256": "6075a70c30fd7216b9214ae50f2def0ce835092b034088ed9bd64c6a376c740f"
+    }
+  ],
+  "compiler_components": [
+    {
+      "role": "cc1",
+      "path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1",
+      "bytes": 30487984,
+      "sha256": "5d1679131184e2de4435b426eb264bf13472fe026db8e5c6bc97445814e8e2f4"
+    },
+    {
+      "role": "cc1plus",
+      "path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus",
+      "bytes": 32675168,
+      "sha256": "840b332fb62ec6f694ac77d91fe69ef7f80b0d69512ed89374af0ee7a506255d"
+    },
+    {
+      "role": "collect2",
+      "path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "bytes": 336056,
+      "sha256": "4d1f341ae5b763b513258ee2812422a45e063c30a2f1924a0cf63d3699f3a158"
+    },
+    {
+      "role": "ld",
+      "path": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "bytes": 1359128,
+      "sha256": "e46a122cc3a29feba3b1d0fc2a274b6e46538be016ebe381370c0801bb98b0b8"
+    },
+    {
+      "role": "as",
+      "path": "/usr/bin/x86_64-linux-gnu-as",
+      "bytes": 745768,
+      "sha256": "7a2ef948033b05ad0c5dcb0d5be059bc68562b5d45713d91aee21df2b4bf4e92"
+    }
+  ],
+  "ldd": "\tlinux-vdso.so.1 (0x0000751117bca000)\n\tlibpixman-1.so.0 => /lib/x86_64-linux-gnu/libpixman-1.so.0 (0x00007511160b0000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x0000751116094000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x0000751115fab000)\n\tlibglib-2.0.so.0 => /lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x0000751115e62000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000751115c00000)\n\t/lib64/ld-linux-x86-64.so.2 (0x0000751117bcc000)\n\tlibpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x0000751115b66000)\n",
+  "limitations": [
+    "Traceable local source/configuration/toolchain/binary chain; no claim of byte-identical rebuild.",
+    "Subset architecture probes do not imply complete CPU, machine or resource restore."
+  ]
+}

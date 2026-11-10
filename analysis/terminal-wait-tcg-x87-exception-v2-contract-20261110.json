@@ -1,0 +1,173 @@
+{
+  "schema": "terminal-tcg-x87-exception-v2-contract",
+  "date": "2026-11-10",
+  "status": "patch_ready_parent_build_and_native_tests_pending",
+  "patch": {
+    "path": "devtools/patches/terminal-tcg-x87-exception-v2.patch",
+    "bytes": 5780,
+    "sha256": "1d31a90a15eeb3ad866bef5823bc063d05b4b276580624da53e55e228f604164"
+  },
+  "base": "exact e470268ff446ec56728215a987ed166d5ed8fb64 plus terminal-tcg-x87-v1.patch; three files independently matched frozen built-source-v1.zip",
+  "source_files": [
+    {
+      "path": "target/i386/helper.h",
+      "before_bytes": 8050,
+      "before_sha256": "dafcf81af5ac47e41060b295decdc05933ddd8674b362695c545a3a1698e8e2e",
+      "after_bytes": 8099,
+      "after_sha256": "9aee32712a2bf7418fd623df610d949ffe994139df5ca3e6da7710876b0cd8f3"
+    },
+    {
+      "path": "target/i386/tcg/fpu_helper.c",
+      "before_bytes": 115888,
+      "before_sha256": "a7493ff5dffff56efdf714e06165986653c20747e91d8a7925faeb0dd46d05ef",
+      "after_bytes": 118779,
+      "after_sha256": "d9390f148fbfe26bd9c3dde5e085a9f209524dcdc6e3f89b23573fbc2c4f827b"
+    },
+    {
+      "path": "target/i386/tcg/translate.c",
+      "before_bytes": 116423,
+      "before_sha256": "cc34fe32473b7ac716b613488957c65481a34ff66e0d03f61605e8cc154bd894",
+      "after_bytes": 117240,
+      "after_sha256": "e37bd29c50246ab9e86105829d01f9be6e008853532c02a157fb857ac60b4328"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "devtools/terminal_tcg_unmasked_oracle.c",
+      "bytes": 670,
+      "sha256": "d842ee9687657ca1ba3eeccd9bb7a2cc200bd886a94279ec080f2d3d6d6bfee4"
+    },
+    {
+      "path": "devtools/terminal_tcg_unmasked_probe.py",
+      "bytes": 3538,
+      "sha256": "f06d1ceb75edf28ea8ca4157a282568fabf3b403cb2295ad2a4cda8689d77fd7"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-oracle-v1/oracle",
+      "bytes": 16120,
+      "sha256": "86687a683c7a6768ca5e392bc3d1fbde30a4b1cf42aeb8c245bc2c6266a3c837"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-oracle-v1/env.bin",
+      "bytes": 28,
+      "sha256": "04a9a9c350c29314ab72978b2b95c09f40d5c25e8e7ce3df3d6ec3ff68d06960"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-v1/guest.elf",
+      "bytes": 8192,
+      "sha256": "2f98eed54bb9d4c850e1d7f9354af0a3f76b6838b59a5aea94bfe3d157612d04"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-v1/env.bin",
+      "bytes": 28,
+      "sha256": "83cbc2dd85ba16a56339e098e118054f0372d0a63a398086c3c9dcf6ebf38217"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-unmasked-v1/trace.log",
+      "bytes": 13150,
+      "sha256": "31545d47cc80273f84c2bb38e04da08e18111e5bff9b92ff458090c1a6ca2387"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/logs/built-source-v1.zip",
+      "bytes": 111183,
+      "sha256": "248f17b29fa0e331654eb238eca6ad9e753782afd9b02a93bf6d8c9c593fea18"
+    }
+  ],
+  "first_difference": {
+    "hardware": {
+      "cw": "0x37e",
+      "sw": "0xb081",
+      "top": 6,
+      "fulltag": "0x5fff",
+      "fop": "0x6f9"
+    },
+    "tcg": {
+      "cw": "0x37e",
+      "sw": "0xb881",
+      "top": 7,
+      "fulltag": "0xbfff",
+      "fop": "0x6f9"
+    },
+    "same_semantics": "ELF disassembly and guest bytes both contain FNINIT; FLDCW 037e; FLDZ; FLDZ; DE F9; non-waiting FNSTENV; FNINIT. Hardware REX/default address encoding and pointer values differ; reserved words are deliberately not compared. AT&T objdump mnemonic direction spelling is not used as identity; DE F9 bytes are the same. Guest trace entries contain the FLDZ/FLDZ/DE F9/FNSTENV PCs 100143/100145/100147/100149. No intervening waiting x87 instruction occurs before sampling.",
+    "cause": "Old helper writes the SoftFloat invalid result to physical ST7, then translator emits an unconditional fpop. Hardware keeps both zero operands nonempty and TOP6 for unmasked #I. FNSTENV pre-mask images show the mismatch; it is not an exit-code or FXSAVE formatting discrepancy."
+  },
+  "implemented_scope": [
+    "Only register-operand FDIV/FDIVR/FDIVP/FDIVRP (D8 F0-FF, DC F0-FF, DE F0-FF) dispatch to the new helper. Both source values are sampled before any destination assignment; pop is owned by that helper.",
+    "Stack-underflow precondition sets IE/SF and clears C1. Masked stack invalid writes the default x87 indefinite to the destination and performs the requested pop; unmasked stack invalid leaves destination/tags/TOP unchanged.",
+    "Normal register division computes a local SoftFloat result and retains only current-instruction flags for the commit decision. Prior sticky SoftFloat flags are merged afterwards rather than mistaken for a new exception.",
+    "Exception precedence: invalid dominates; a quiet NaN result suppresses lower conditions; zero-divide dominates denormal; unmasked denormal suppresses lower post-computation flags. True and pseudo-denormal raw register encodings are considered.",
+    "Unmasked #I/#Z/#D updates exception flags/summary but returns without result/tag/TOP writes. Masked preconditions commit the result and requested pop. The surrounding translator still updates FIP/FOP, leaving the faulting instruction provenance available to FNSTENV and the deferred handler.",
+    "No whole-CPU backup/rollback or generic abort-on-ES was added. The existing memory-source helpers and all non-division arithmetic dispatch remain unchanged."
+  ],
+  "explicit_limits": [
+    "This patch does not implement correct unmasked numeric overflow/underflow result scaling or all inexact/C1 rounding behavior; these post-computation cases are not suppressed by the pre-computation rule and remain unqualified.",
+    "Memory-source FDIV/FIDIV/FDIVR/FIDIVR conversion, operand-load faults and exception suppression are outside this patch. Memory conversions can raise flags before the old divide helper, and need a separate instruction-level design.",
+    "Other x87 arithmetic/comparison/store/pop helpers remain unchanged. Existing transcendental helper_fdiv users are not redirected.",
+    "Complete CR0.NE=0 FERR/IGNNE behavior, legacy CPU model differences, all special-value combinations and unsupported instruction priorities are not certified. The observed single division plus non-waiting FNSTENV discrepancy is independent of delayed #MF delivery.",
+    "Neither whole CPU restore nor machine state, devices/RAM/resources, Windows/WOW64 or original game correctness follows. full57 and Windows admission remain false."
+  ],
+  "checks_completed": [
+    "All three input files byte-equal to frozen built-source-v1.zip",
+    "git apply --check --whitespace=error on isolated exact base passed",
+    "Applied patch in isolated verify copy; all three result files byte-equal independently edited source",
+    "Enumerated all 48 targeted opcode/register combinations and verified destination/source/reverse/pop mapping",
+    "Independently decoded both retained FNSTENV images and disassembled hardware ELF; checked guest bytes and trace PCs"
+  ],
+  "checks_not_completed": [
+    "No compilation or native execution by this subagent",
+    "Main new hardware four-case oracle artifacts are available but new patched TCG comparison not yet observed"
+  ],
+  "minimum_parent_matrix": [
+    {
+      "cw": "037e",
+      "sequence": "FLDZ; FLDZ; DE F9",
+      "expect": "unmasked invalid: TOP6, fulltag5fff, both original +0 payloads retained, IE/ES/B set, no SF"
+    },
+    {
+      "cw": "037b",
+      "sequence": "FLD1; FLDZ; DE F9",
+      "expect": "unmasked zero-divide: TOP6, original +1/+0 payloads retained, ZE/ES/B set, no pop"
+    },
+    {
+      "cw": "037f",
+      "sequence": "FLDZ; FLDZ; DE F9",
+      "expect": "masked invalid: TOP7, destination indefinite and popped source empty; no ES/B"
+    },
+    {
+      "cw": "037f",
+      "sequence": "FLD1; FLDZ; DE F9",
+      "expect": "masked zero-divide: TOP7, destination +infinity and popped source empty; no ES/B"
+    },
+    {
+      "cw": "037f",
+      "sequence": "load ST1=8 and ST0=2; DE F9 then separate DE F1 case",
+      "expect": "normal and reverse direction yield 4 and 0.25 respectively; both pop"
+    },
+    {
+      "scope": "additional before broader approval",
+      "expect": "nonpop D8/DC destinations; SNaN/QNaN+zero; denormal/zero priority; denormal/finite masked and unmasked; empty-source masked and unmasked; sticky flags must not suppress a new successful operation"
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://www.intel.com/content/dam/develop/external/us/en/documents-tps/253665-sdm-vol-11.pdf",
+      "section": "4.9.2",
+      "claim": "pre-computation #I/#Z/#D versus post-computation #O/#U/#P, and exception priority"
+    },
+    {
+      "url": "https://cdrdv2-public.intel.com/774492/325383-sdm-vol-2abcd.pdf",
+      "section": "FDIV/FDIVP/FIDIV, FDIVR/FDIVRP/FIDIVR",
+      "claim": "opcode direction and no result for unmasked zero divide"
+    },
+    {
+      "url": "https://www.intel.com/content/dam/support/us/en/documents/processors/pentium4/sb/25366521.pdf",
+      "section": "8.5.1-8.5.3",
+      "claim": "unmasked invalid/denormal/zero-divide retains operands and TOP"
+    }
+  ],
+  "accepted_full57": false,
+  "windows_admission": false,
+  "subagent_native_runs": 0,
+  "subagent_changed_old_patch_or_runtime": false,
+  "local_working_bytes": 729439
+}

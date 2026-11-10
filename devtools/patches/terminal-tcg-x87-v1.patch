@@ -1,0 +1,625 @@
+diff --git a/target/i386/cpu.h b/target/i386/cpu.h
+--- a/target/i386/cpu.h
++++ b/target/i386/cpu.h
+@@ -2957,6 +2957,33 @@
+     }
+ }
+ 
++/* Modern x87 tag loads distinguish only empty/nonempty.  Classify the
++ * physical 80-bit payload when exporting the full architectural tag word.
++ * Intel SDM Vol. 1, x87 FPU Tag Word; Vol. 3, Architecture Compatibility.
++ */
++static inline uint16_t cpu_x86_fptag(const CPUX86State *env)
++{
++    uint16_t tag = 0;
++
++    for (int i = 0; i < 8; i++) {
++        uint64_t mant = env->fpregs[i].d.low;
++        unsigned exp = env->fpregs[i].d.high & 0x7fff;
++        unsigned value;
++
++        if (env->fptags[i]) {
++            value = 3;
++        } else if (exp == 0 && mant == 0) {
++            value = 1;
++        } else if (exp == 0 || exp == 0x7fff || !(mant >> 63)) {
++            value = 2;
++        } else {
++            value = 0;
++        }
++        tag |= value << (2 * i);
++    }
++    return tag;
++}
++
+ static inline void cpu_set_fpuc(CPUX86State *env, uint16_t fpuc)
+ {
+      env->fpuc = fpuc;
+diff --git a/target/i386/gdbstub.c b/target/i386/gdbstub.c
+--- a/target/i386/gdbstub.c
++++ b/target/i386/gdbstub.c
+@@ -183,17 +183,17 @@
+             return gdb_get_reg32(mem_buf, (env->fpus & ~0x3800) |
+                                           (env->fpstt & 0x7) << 11);
+         case IDX_FP_REGS + 10:
+-            return gdb_get_reg32(mem_buf, 0); /* ftag */
++            return gdb_get_reg32(mem_buf, cpu_x86_fptag(env));
+         case IDX_FP_REGS + 11:
+-            return gdb_get_reg32(mem_buf, 0); /* fiseg */
++            return gdb_get_reg32(mem_buf, env->fpcs);
+         case IDX_FP_REGS + 12:
+-            return gdb_get_reg32(mem_buf, 0); /* fioff */
++            return gdb_get_reg32(mem_buf, 0); /* fioff: unchanged placeholder */
+         case IDX_FP_REGS + 13:
+-            return gdb_get_reg32(mem_buf, 0); /* foseg */
++            return gdb_get_reg32(mem_buf, env->fpds);
+         case IDX_FP_REGS + 14:
+-            return gdb_get_reg32(mem_buf, 0); /* fooff */
++            return gdb_get_reg32(mem_buf, 0); /* fooff: unchanged placeholder */
+         case IDX_FP_REGS + 15:
+-            return gdb_get_reg32(mem_buf, 0); /* fop */
++            return gdb_get_reg32(mem_buf, env->fpop);
+ 
+         case IDX_MXCSR_REG:
+             update_mxcsr_from_sse_status(env);
+@@ -293,9 +293,10 @@
+             return 4;
+         }
+     } else if (n >= IDX_FP_REGS && n < IDX_FP_REGS + 8) {
+-        floatx80 *fp = (floatx80 *) &env->fpregs[n - IDX_FP_REGS];
+-        fp->low = le64_to_cpu(* (uint64_t *) mem_buf);
+-        fp->high = le16_to_cpu(* (uint16_t *) (mem_buf + 8));
++        int r_index = (n - IDX_FP_REGS + env->fpstt) & 7;
++        floatx80 *fp = &env->fpregs[r_index].d;
++        fp->low = ldq_p(mem_buf);
++        fp->high = lduw_p(mem_buf + 8);
+         return 10;
+     } else if (n >= IDX_XMM_REGS && n < IDX_XMM_REGS + CPU_NB_REGS) {
+         n -= IDX_XMM_REGS;
+@@ -343,16 +344,23 @@
+             env->fpus = tmp & ~0x3800;
+             return 4;
+         case IDX_FP_REGS + 10: /* ftag */
++            tmp = ldl_p(mem_buf);
++            for (int i = 0; i < 8; i++) {
++                env->fptags[i] = ((tmp >> (2 * i)) & 3) == 3;
++            }
+             return 4;
+         case IDX_FP_REGS + 11: /* fiseg */
+-            return 4;
+-        case IDX_FP_REGS + 12: /* fioff */
++            env->fpcs = ldl_p(mem_buf) & 0xffff;
++            return 4;
++        case IDX_FP_REGS + 12: /* fioff: unchanged unsupported write */
+             return 4;
+         case IDX_FP_REGS + 13: /* foseg */
+-            return 4;
+-        case IDX_FP_REGS + 14: /* fooff */
++            env->fpds = ldl_p(mem_buf) & 0xffff;
++            return 4;
++        case IDX_FP_REGS + 14: /* fooff: unchanged unsupported write */
+             return 4;
+         case IDX_FP_REGS + 15: /* fop */
++            env->fpop = ldl_p(mem_buf) & 0x7ff;
+             return 4;
+ 
+         case IDX_MXCSR_REG:
+diff --git a/target/i386/helper.h b/target/i386/helper.h
+--- a/target/i386/helper.h
++++ b/target/i386/helper.h
+@@ -182,11 +182,11 @@
+ DEF_HELPER_3(fldenv, void, env, tl, int)
+ DEF_HELPER_3(fsave, void, env, tl, int)
+ DEF_HELPER_3(frstor, void, env, tl, int)
+-DEF_HELPER_FLAGS_2(fxsave, TCG_CALL_NO_WG, void, env, tl)
+-DEF_HELPER_FLAGS_2(fxrstor, TCG_CALL_NO_WG, void, env, tl)
+-DEF_HELPER_FLAGS_3(xsave, TCG_CALL_NO_WG, void, env, tl, i64)
+-DEF_HELPER_FLAGS_3(xsaveopt, TCG_CALL_NO_WG, void, env, tl, i64)
+-DEF_HELPER_FLAGS_3(xrstor, TCG_CALL_NO_WG, void, env, tl, i64)
++DEF_HELPER_FLAGS_3(fxsave, TCG_CALL_NO_WG, void, env, tl, i32)
++DEF_HELPER_FLAGS_3(fxrstor, TCG_CALL_NO_WG, void, env, tl, i32)
++DEF_HELPER_FLAGS_4(xsave, TCG_CALL_NO_WG, void, env, tl, i64, i32)
++DEF_HELPER_FLAGS_4(xsaveopt, TCG_CALL_NO_WG, void, env, tl, i64, i32)
++DEF_HELPER_FLAGS_4(xrstor, TCG_CALL_NO_WG, void, env, tl, i64, i32)
+ DEF_HELPER_FLAGS_2(xgetbv, TCG_CALL_NO_WG, i64, env, i32)
+ DEF_HELPER_FLAGS_3(xsetbv, TCG_CALL_NO_WG, void, env, i32, i64)
+ DEF_HELPER_FLAGS_2(rdpkru, TCG_CALL_NO_WG, i64, env, i32)
+diff --git a/target/i386/tcg/emit.c.inc b/target/i386/tcg/emit.c.inc
+--- a/target/i386/tcg/emit.c.inc
++++ b/target/i386/tcg/emit.c.inc
+@@ -2036,7 +2036,8 @@
+     if ((s->flags & HF_EM_MASK) || (s->flags & HF_TS_MASK)) {
+         gen_NM_exception(s);
+     } else {
+-        gen_helper_fxrstor(tcg_env, s->A0);
++        gen_helper_fxrstor(tcg_env, s->A0,
++                           tcg_constant_i32(s->dflag == MO_64));
+     }
+ }
+ 
+@@ -2045,7 +2046,8 @@
+     if ((s->flags & HF_EM_MASK) || (s->flags & HF_TS_MASK)) {
+         gen_NM_exception(s);
+     } else {
+-        gen_helper_fxsave(tcg_env, s->A0);
++        gen_helper_fxsave(tcg_env, s->A0,
++                           tcg_constant_i32(s->dflag == MO_64));
+     }
+ }
+ 
+@@ -4796,7 +4798,8 @@
+     TCGv_i64 features = tcg_temp_new_i64();
+ 
+     tcg_gen_concat_tl_i64(features, cpu_regs[R_EAX], cpu_regs[R_EDX]);
+-    gen_helper_xrstor(tcg_env, s->A0, features);
++    gen_helper_xrstor(tcg_env, s->A0, features,
++                      tcg_constant_i32(s->dflag == MO_64));
+     if (s->cpuid_7_0_ebx_features & CPUID_7_0_EBX_MPX) {
+         /*
+          * XRSTOR is how MPX is enabled, which changes how
+@@ -4811,7 +4814,8 @@
+     TCGv_i64 features = tcg_temp_new_i64();
+ 
+     tcg_gen_concat_tl_i64(features, cpu_regs[R_EAX], cpu_regs[R_EDX]);
+-    gen_helper_xsave(tcg_env, s->A0, features);
++    gen_helper_xsave(tcg_env, s->A0, features,
++                     tcg_constant_i32(s->dflag == MO_64));
+ }
+ 
+ static void gen_XSAVEOPT(DisasContext *s, X86DecodedInsn *decode)
+@@ -4819,5 +4823,6 @@
+     TCGv_i64 features = tcg_temp_new_i64();
+ 
+     tcg_gen_concat_tl_i64(features, cpu_regs[R_EAX], cpu_regs[R_EDX]);
+-    gen_helper_xsave(tcg_env, s->A0, features);
+-}
++    gen_helper_xsaveopt(tcg_env, s->A0, features,
++                     tcg_constant_i32(s->dflag == MO_64));
++}
+diff --git a/target/i386/tcg/fpu_helper.c b/target/i386/tcg/fpu_helper.c
+--- a/target/i386/tcg/fpu_helper.c
++++ b/target/i386/tcg/fpu_helper.c
+@@ -793,9 +793,23 @@
+     set_floatx80_rounding_precision(rnd_prec, &env->fp_status);
+ }
+ 
++static void fpu_update_summary(CPUX86State *env)
++{
++    env->fpus &= ~(FPUS_SE | FPUS_B);
++    if (env->fpus & (~env->fpuc & FPUC_EM)) {
++        env->fpus |= FPUS_SE | FPUS_B;
++    }
++#if !defined(CONFIG_USER_ONLY)
++    if (!(env->fpus & FPUS_SE)) {
++        cpu_clear_ignne();
++    }
++#endif
++}
++
+ void helper_fldcw(CPUX86State *env, uint32_t val)
+ {
+     cpu_set_fpuc(env, val);
++    fpu_update_summary(env);
+ }
+ 
+ void helper_fclex(CPUX86State *env)
+@@ -818,6 +832,7 @@
+     env->fpds = 0;
+     env->fpip = 0;
+     env->fpdp = 0;
++    env->fpop = 0;
+     cpu_set_fpuc(env, 0x37f);
+     env->fptags[0] = 1;
+     env->fptags[1] = 1;
+@@ -2445,37 +2460,18 @@
+ static void do_fstenv(X86Access *ac, target_ulong ptr, int data32)
+ {
+     CPUX86State *env = ac->env;
+-    int fpus, fptag, exp, i;
+-    uint64_t mant;
+-    CPU_LDoubleU tmp;
++    int fpus, fptag;
+ 
+     fpus = (env->fpus & ~0x3800) | (env->fpstt & 0x7) << 11;
+-    fptag = 0;
+-    for (i = 7; i >= 0; i--) {
+-        fptag <<= 2;
+-        if (env->fptags[i]) {
+-            fptag |= 3;
+-        } else {
+-            tmp.d = env->fpregs[i].d;
+-            exp = EXPD(tmp);
+-            mant = MANTD(tmp);
+-            if (exp == 0 && mant == 0) {
+-                /* zero */
+-                fptag |= 1;
+-            } else if (exp == 0 || exp == MAXEXPD
+-                       || (mant & (1LL << 63)) == 0) {
+-                /* NaNs, infinity, denormal */
+-                fptag |= 2;
+-            }
+-        }
+-    }
++    fptag = cpu_x86_fptag(env);
+     if (data32) {
+         /* 32 bit */
+         access_stl(ac, ptr, env->fpuc);
+         access_stl(ac, ptr + 4, fpus);
+         access_stl(ac, ptr + 8, fptag);
+         access_stl(ac, ptr + 12, env->fpip); /* fpip */
+-        access_stl(ac, ptr + 16, env->fpcs); /* fpcs */
++        access_stl(ac, ptr + 16,
++                   env->fpcs | ((env->fpop & 0x7ff) << 16));
+         access_stl(ac, ptr + 20, env->fpdp); /* fpoo */
+         access_stl(ac, ptr + 24, env->fpds); /* fpos */
+     } else {
+@@ -2496,6 +2492,9 @@
+ 
+     access_prepare(&ac, env, ptr, 14 << data32, MMU_DATA_STORE, GETPC());
+     do_fstenv(&ac, ptr, data32);
++    /* The stored image precedes the masking of all six exceptions. */
++    cpu_set_fpuc(env, env->fpuc | FPUC_EM);
++    fpu_update_summary(env);
+ }
+ 
+ static void cpu_set_fpus(CPUX86State *env, uint16_t fpus)
+@@ -2524,6 +2523,20 @@
+     fptag = access_ldw(ac, ptr + (4 << data32));
+ 
+     cpu_set_fpus(env, fpus);
++    fpu_update_summary(env);
++    if (data32) {
++        env->fpip = access_ldl(ac, ptr + 12);
++        env->fpcs = access_ldw(ac, ptr + 16);
++        env->fpop = access_ldw(ac, ptr + 18) & 0x7ff;
++        env->fpdp = access_ldl(ac, ptr + 20);
++        env->fpds = access_ldw(ac, ptr + 24);
++    } else {
++        env->fpip = access_ldw(ac, ptr + 6);
++        env->fpcs = access_ldw(ac, ptr + 8);
++        env->fpdp = access_ldw(ac, ptr + 10);
++        env->fpds = access_ldw(ac, ptr + 12);
++        /* The protected-mode 14-byte image has no FOP field. */
++    }
+     for (i = 0; i < 8; i++) {
+         env->fptags[i] = ((fptag & 3) == 3);
+         fptag >>= 2;
+@@ -2534,7 +2547,7 @@
+ {
+     X86Access ac;
+ 
+-    access_prepare(&ac, env, ptr, 14 << data32, MMU_DATA_STORE, GETPC());
++    access_prepare(&ac, env, ptr, 14 << data32, MMU_DATA_LOAD, GETPC());
+     do_fldenv(&ac, ptr, data32);
+ }
+ 
+@@ -2588,7 +2601,7 @@
+ 
+ #define XO(X)  offsetof(X86XSaveArea, X)
+ 
+-static void do_xsave_fpu(X86Access *ac, target_ulong ptr)
++static void do_xsave_fpu(X86Access *ac, target_ulong ptr, bool data64)
+ {
+     CPUX86State *env = ac->env;
+     int fpus, fptag, i;
+@@ -2604,11 +2617,16 @@
+     access_stw(ac, ptr + XO(legacy.fsw), fpus);
+     access_stw(ac, ptr + XO(legacy.ftw), fptag ^ 0xff);
+ 
+-    /* In 32-bit mode this is eip, sel, dp, sel.
+-       In 64-bit mode this is rip, rdp.
+-       But in either case we don't write actual data, just zeros.  */
+-    access_stq(ac, ptr + XO(legacy.fpip), 0); /* eip+sel; rip */
+-    access_stq(ac, ptr + XO(legacy.fpdp), 0); /* edp+sel; rdp */
++    access_stw(ac, ptr + XO(legacy.fpop), env->fpop & 0x7ff);
++    if (data64) {
++        access_stq(ac, ptr + XO(legacy.fpip), env->fpip);
++        access_stq(ac, ptr + XO(legacy.fpdp), env->fpdp);
++    } else {
++        access_stl(ac, ptr + XO(legacy.fpip), env->fpip);
++        access_stl(ac, ptr + XO(legacy.fpip) + 4, env->fpcs);
++        access_stl(ac, ptr + XO(legacy.fpdp), env->fpdp);
++        access_stl(ac, ptr + XO(legacy.fpdp) + 4, env->fpds);
++    }
+ 
+     addr = ptr + XO(legacy.fpregs);
+ 
+@@ -2692,11 +2710,11 @@
+     access_stq(ac, ptr, ac->env->pkru);
+ }
+ 
+-static void do_fxsave(X86Access *ac, target_ulong ptr)
++static void do_fxsave(X86Access *ac, target_ulong ptr, bool data64)
+ {
+     CPUX86State *env = ac->env;
+ 
+-    do_xsave_fpu(ac, ptr);
++    do_xsave_fpu(ac, ptr, data64);
+     if (env->cr[4] & CR4_OSFXSR_MASK) {
+         do_xsave_mxcsr(ac, ptr);
+         /* Fast FXSAVE leaves out the XMM registers */
+@@ -2708,7 +2726,7 @@
+     }
+ }
+ 
+-void helper_fxsave(CPUX86State *env, target_ulong ptr)
++void helper_fxsave(CPUX86State *env, target_ulong ptr, uint32_t data64)
+ {
+     uintptr_t ra = GETPC();
+     X86Access ac;
+@@ -2720,7 +2738,7 @@
+ 
+     access_prepare(&ac, env, ptr, sizeof(X86LegacyXSaveArea),
+                    MMU_DATA_STORE, ra);
+-    do_fxsave(&ac, ptr);
++    do_fxsave(&ac, ptr, data64);
+ }
+ 
+ static uint64_t get_xinuse(CPUX86State *env)
+@@ -2738,12 +2756,12 @@
+ }
+ 
+ static void do_xsave_access(X86Access *ac, target_ulong ptr, uint64_t rfbm,
+-                            uint64_t inuse, uint64_t opt)
++                            uint64_t inuse, uint64_t opt, bool data64)
+ {
+     uint64_t old_bv, new_bv;
+ 
+     if (opt & XSTATE_FP_MASK) {
+-        do_xsave_fpu(ac, ptr);
++        do_xsave_fpu(ac, ptr, data64);
+     }
+     if (rfbm & XSTATE_SSE_MASK) {
+         /* Note that saving MXCSR is not suppressed by XSAVEOPT.  */
+@@ -2785,7 +2803,8 @@
+ }
+ 
+ static void do_xsave(CPUX86State *env, target_ulong ptr, uint64_t rfbm,
+-                     uint64_t inuse, uint64_t opt, uintptr_t ra)
++                     uint64_t inuse, uint64_t opt, uintptr_t ra,
++                     bool data64)
+ {
+     X86Access ac;
+     unsigned size;
+@@ -2798,21 +2817,23 @@
+     size = xsave_area_size(opt, false);
+ 
+     access_prepare(&ac, env, ptr, size, MMU_DATA_STORE, ra);
+-    do_xsave_access(&ac, ptr, rfbm, inuse, opt);
+-}
+-
+-void helper_xsave(CPUX86State *env, target_ulong ptr, uint64_t rfbm)
+-{
+-    do_xsave(env, ptr, rfbm, get_xinuse(env), rfbm, GETPC());
+-}
+-
+-void helper_xsaveopt(CPUX86State *env, target_ulong ptr, uint64_t rfbm)
++    do_xsave_access(&ac, ptr, rfbm, inuse, opt, data64);
++}
++
++void helper_xsave(CPUX86State *env, target_ulong ptr, uint64_t rfbm,
++                      uint32_t data64)
++{
++    do_xsave(env, ptr, rfbm, get_xinuse(env), rfbm, GETPC(), data64);
++}
++
++void helper_xsaveopt(CPUX86State *env, target_ulong ptr, uint64_t rfbm,
++                      uint32_t data64)
+ {
+     uint64_t inuse = get_xinuse(env);
+-    do_xsave(env, ptr, rfbm, inuse, inuse, GETPC());
+-}
+-
+-static void do_xrstor_fpu(X86Access *ac, target_ulong ptr)
++    do_xsave(env, ptr, rfbm, inuse, inuse, GETPC(), data64);
++}
++
++static void do_xrstor_fpu(X86Access *ac, target_ulong ptr, bool data64)
+ {
+     CPUX86State *env = ac->env;
+     int i, fpuc, fpus, fptag;
+@@ -2823,6 +2844,19 @@
+     fptag = access_ldw(ac, ptr + XO(legacy.ftw));
+     cpu_set_fpuc(env, fpuc);
+     cpu_set_fpus(env, fpus);
++    env->fpop = access_ldw(ac, ptr + XO(legacy.fpop)) & 0x7ff;
++    if (data64) {
++        env->fpip = access_ldq(ac, ptr + XO(legacy.fpip));
++        env->fpdp = access_ldq(ac, ptr + XO(legacy.fpdp));
++        /* Intel SDM Vol. 1: REX.W=1 clears the selectors. */
++        env->fpcs = 0;
++        env->fpds = 0;
++    } else {
++        env->fpip = access_ldl(ac, ptr + XO(legacy.fpip));
++        env->fpcs = access_ldw(ac, ptr + XO(legacy.fpip) + 4);
++        env->fpdp = access_ldl(ac, ptr + XO(legacy.fpdp));
++        env->fpds = access_ldw(ac, ptr + XO(legacy.fpdp) + 4);
++    }
+ 
+     fptag ^= 0xff;
+     for (i = 0; i < 8; i++) {
+@@ -2941,11 +2975,11 @@
+     ac->env->pkru = access_ldq(ac, ptr);
+ }
+ 
+-static void do_fxrstor(X86Access *ac, target_ulong ptr)
++static void do_fxrstor(X86Access *ac, target_ulong ptr, bool data64)
+ {
+     CPUX86State *env = ac->env;
+ 
+-    do_xrstor_fpu(ac, ptr);
++    do_xrstor_fpu(ac, ptr, data64);
+     if (env->cr[4] & CR4_OSFXSR_MASK) {
+         do_xrstor_mxcsr(ac, ptr);
+         /* Fast FXRSTOR leaves out the XMM registers */
+@@ -2957,7 +2991,7 @@
+     }
+ }
+ 
+-void helper_fxrstor(CPUX86State *env, target_ulong ptr)
++void helper_fxrstor(CPUX86State *env, target_ulong ptr, uint32_t data64)
+ {
+     uintptr_t ra = GETPC();
+     X86Access ac;
+@@ -2969,7 +3003,7 @@
+ 
+     access_prepare(&ac, env, ptr, sizeof(X86LegacyXSaveArea),
+                    MMU_DATA_LOAD, ra);
+-    do_fxrstor(&ac, ptr);
++    do_fxrstor(&ac, ptr, data64);
+ }
+ 
+ static bool valid_xrstor_header(X86Access *ac, uint64_t *pxsbv,
+@@ -2997,13 +3031,13 @@
+ }
+ 
+ static void do_xrstor(X86Access *ac, target_ulong ptr,
+-                      uint64_t rfbm, uint64_t xstate_bv)
++                      uint64_t rfbm, uint64_t xstate_bv, bool data64)
+ {
+     CPUX86State *env = ac->env;
+ 
+     if (rfbm & XSTATE_FP_MASK) {
+         if (xstate_bv & XSTATE_FP_MASK) {
+-            do_xrstor_fpu(ac, ptr);
++            do_xrstor_fpu(ac, ptr, data64);
+         } else {
+             do_fninit(env);
+             memset(env->fpregs, 0, sizeof(env->fpregs));
+@@ -3059,7 +3093,8 @@
+ 
+ #undef XO
+ 
+-void helper_xrstor(CPUX86State *env, target_ulong ptr, uint64_t rfbm)
++void helper_xrstor(CPUX86State *env, target_ulong ptr, uint64_t rfbm,
++                      uint32_t data64)
+ {
+     uintptr_t ra = GETPC();
+     X86Access ac;
+@@ -3082,7 +3117,7 @@
+         access_prepare(&ac, env, ptr, size_ext, MMU_DATA_LOAD, ra);
+     }
+ 
+-    do_xrstor(&ac, ptr, rfbm, xstate_bv);
++    do_xrstor(&ac, ptr, rfbm, xstate_bv, data64);
+ }
+ 
+ #if defined(CONFIG_USER_ONLY)
+@@ -3119,7 +3154,7 @@
+     };
+ 
+     assert(ac.size <= len);
+-    do_fxsave(&ac, 0);
++    do_fxsave(&ac, 0, TARGET_LONG_BITS == 64);
+ }
+ 
+ void cpu_x86_fxrstor(CPUX86State *env, void *host, size_t len)
+@@ -3131,7 +3166,7 @@
+     };
+ 
+     assert(ac.size <= len);
+-    do_fxrstor(&ac, 0);
++    do_fxrstor(&ac, 0, TARGET_LONG_BITS == 64);
+ }
+ 
+ void cpu_x86_xsave(CPUX86State *env, void *host, size_t len, uint64_t rfbm)
+@@ -3148,7 +3183,8 @@
+     assert((rfbm & ~env->xcr0) == 0);
+     ac.size = xsave_area_size(rfbm, false);
+     assert(ac.size <= len);
+-    do_xsave_access(&ac, 0, rfbm, get_xinuse(env), rfbm);
++    do_xsave_access(&ac, 0, rfbm, get_xinuse(env), rfbm,
++                    TARGET_LONG_BITS == 64);
+ }
+ 
+ bool cpu_x86_xrstor(CPUX86State *env, void *host, size_t len, uint64_t rfbm)
+@@ -3170,7 +3206,7 @@
+     if (!valid_xrstor_header(&ac, &xstate_bv, 0)) {
+         return false;
+     }
+-    do_xrstor(&ac, 0, rfbm, xstate_bv);
++    do_xrstor(&ac, 0, rfbm, xstate_bv, TARGET_LONG_BITS == 64);
+     return true;
+ }
+ #endif
+diff --git a/target/i386/tcg/translate.c b/target/i386/tcg/translate.c
+--- a/target/i386/tcg/translate.c
++++ b/target/i386/tcg/translate.c
+@@ -2166,6 +2166,16 @@
+     mod = (modrm >> 6) & 3;
+     rm = modrm & 7;
+     op = ((b & 7) << 3) | ((modrm >> 3) & 7);
++    /* All waiting x87 instructions check the previous pending exception
++     * before touching memory or overwriting its FIP/FDP/FOP provenance.
++     * The six FN control instructions are deliberately excluded.
++     */
++    if (!((mod != 3 && (op == 0x0e || op == 0x0f ||
++                        op == 0x2e || op == 0x2f)) ||
++          (mod == 3 && (b == 0xdb && (modrm == 0xe2 || modrm == 0xe3))) ||
++          (mod == 3 && b == 0xdf && modrm == 0xe0))) {
++        gen_helper_fwait(tcg_env);
++    }
+     if (mod != 3) {
+         /* memory op */
+         TCGv ea = gen_lea_modrm_1(s, decode->mem, false);
+@@ -2176,6 +2186,10 @@
+ 
+         tcg_gen_mov_tl(last_addr, ea);
+         gen_lea_v_seg(s, ea, decode->mem.def_seg, s->override);
++        if (CODE64(s)) {
++            /* In 64-bit mode FDP is linear, including an FS/GS base. */
++            tcg_gen_mov_tl(last_addr, s->A0);
++        }
+ 
+         switch (op) {
+         case 0x00 ... 0x07: /* fxxxs */
+@@ -2296,7 +2310,7 @@
+             break;
+         case 0x0c: /* fldenv mem */
+             gen_helper_fldenv(tcg_env, s->A0,
+-                              tcg_constant_i32(s->dflag - 1));
++                              tcg_constant_i32(s->dflag != MO_16));
+             update_fip = update_fdp = false;
+             break;
+         case 0x0d: /* fldcw mem */
+@@ -2308,7 +2322,7 @@
+             break;
+         case 0x0e: /* fnstenv mem */
+             gen_helper_fstenv(tcg_env, s->A0,
+-                              tcg_constant_i32(s->dflag - 1));
++                              tcg_constant_i32(s->dflag != MO_16));
+             update_fip = update_fdp = false;
+             break;
+         case 0x0f: /* fnstcw mem */
+@@ -2327,12 +2341,12 @@
+             break;
+         case 0x2c: /* frstor mem */
+             gen_helper_frstor(tcg_env, s->A0,
+-                              tcg_constant_i32(s->dflag - 1));
++                              tcg_constant_i32(s->dflag != MO_16));
+             update_fip = update_fdp = false;
+             break;
+         case 0x2e: /* fnsave mem */
+             gen_helper_fsave(tcg_env, s->A0,
+-                             tcg_constant_i32(s->dflag - 1));
++                             tcg_constant_i32(s->dflag != MO_16));
+             update_fip = update_fdp = false;
+             break;
+         case 0x2f: /* fnstsw mem */
+@@ -2645,6 +2659,7 @@
+                 gen_helper_fnstsw(t32, tcg_env);
+                 tcg_gen_extu_i32_tl(s->T0, t32);
+                 gen_op_mov_reg_v(s, MO_16, R_EAX, s->T0);
++                update_fip = false;
+                 break;
+             default:
+                 goto illegal_op;
+@@ -2686,6 +2701,8 @@
+                          offsetof(CPUX86State, fpcs));
+         tcg_gen_st_tl(eip_cur_tl(s),
+                       tcg_env, offsetof(CPUX86State, fpip));
++        tcg_gen_st16_i32(tcg_constant_i32(((b & 7) << 8) | modrm),
++                        tcg_env, offsetof(CPUX86State, fpop));
+     }
+     return;
+ 

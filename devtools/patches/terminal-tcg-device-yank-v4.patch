@@ -1,0 +1,15 @@
+diff --git a/migration/savevm.c b/migration/savevm.c
+--- a/migration/savevm.c
++++ b/migration/savevm.c
+@@ -3445,6 +3445,11 @@
+     f = qemu_file_new_input(QIO_CHANNEL(ioc));
+     object_unref(OBJECT(ioc));
+ 
++    /* Pair with migration_incoming_state_destroy(), including load errors. */
++    if (!yank_register_instance(MIGRATION_YANK_INSTANCE, errp)) {
++        qemu_fclose(f);
++        return;
++    }
+     ret = qemu_loadvm_state(f, errp);
+     qemu_fclose(f);
+     if (ret < 0) {

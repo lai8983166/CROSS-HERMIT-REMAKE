@@ -1,0 +1,269 @@
+{
+  "schema": "terminal-tcg-selectors-device-restore-contract-v3",
+  "date": "2026-11-10",
+  "role": "independent static implementation/review; no VM or native execution by this reviewer",
+  "accepted": false,
+  "full57": false,
+  "windows_admitted": false,
+  "arbitrary_machine_restore_proven": false,
+  "base": {
+    "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+    "prior_patches": [
+      "devtools/patches/terminal-tcg-x87-v1.patch",
+      "devtools/patches/terminal-tcg-x87-exception-v2.patch"
+    ],
+    "machine_and_savevm_unchanged_by_prior_patches": true
+  },
+  "patches": [
+    {
+      "path": "devtools/patches/terminal-tcg-selectors-v3.patch",
+      "bytes": 2411,
+      "sha256": "fee6527f3ad5b1d6f0319cd92586791fadb2f1d2cfe9cb4a1ec3df31ce3c8e2a"
+    },
+    {
+      "path": "devtools/patches/terminal-tcg-device-yank-v4.patch",
+      "bytes": 484,
+      "sha256": "fdd73b90ef753a201d3ed7095ca63012c21ec8f8a1671ba6c3fdb3335331aba9"
+    }
+  ],
+  "source_outputs": [
+    {
+      "path": ".venv-audit/native-worker/tcg-selectors-v3/old/target/i386/machine.c",
+      "bytes": 56018,
+      "sha256": "b7070861e3949e1f067a7e3ba6907e5f89cacce8d9ec73f499f419577b3d1aa1"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-selectors-v3/new/target/i386/machine.c",
+      "bytes": 57432,
+      "sha256": "360bc2a6b6fdf39d88f3e47051c660fb991e6c804843d649eb9eeaf00371e8e0"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-selectors-v3/old/migration/savevm.c",
+      "bytes": 111434,
+      "sha256": "e0807930539a09bf21ee126efb5d9f0ef5714c6dfa434c6119f077ad7128b342"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-selectors-v3/new/migration/savevm.c",
+      "bytes": 111625,
+      "sha256": "0eab4ab2dd2a8e0416e38b8fcf8ae2855f1aa40754b6afd171a19b1ed1c3d71b"
+    }
+  ],
+  "implemented": [
+    "Add cpu/chaomofa-tcg-x87-selectors-v1 subsection, version/minimum 1, two uint16 FCS/FDS fields. Always emitted for TCG, including zero, for each registered x86 CPU.",
+    "TCG always emits existing cpu/fpop_ip_dp subsection, including all-zero FOP/FIP/FDP. Existing subsection field order, types and version unchanged.",
+    "TCG cpu_post_load reconstructs cc_src, cc_op=CC_OP_EFLAGS and df from loaded EFLAGS, leaving materialized EFLAGS intact. This prevents immediate cpu_compute_eflags from ORing stale B condition/DF bits into restored A before exec_enter.",
+    "xen_load pairs migration yank instance registration with the existing incoming-state destroy. Registration failure closes only its newly opened file and returns an error; successful registration is destroyed on both loader success and loader error."
+  ],
+  "wire_contract": {
+    "main_cpu_version_unchanged": [
+      12,
+      11
+    ],
+    "main_cpu_existing_fields_byte_exact": true,
+    "existing_fpop_subsection_layout_byte_exact": true,
+    "same_build_only": true,
+    "identity_enforcement": "Caller must authenticate exact binary SHA, source/patch manifest, configuration, CPU model/features/topology, guest bytes and checkpoint SHA before loading. The subsection name is not a binary identity attestation.",
+    "compatibility": "Old readers reject the new unknown subsection. New readers can accept old streams missing it and cannot recover selectors absent from those streams; such streams are outside this contract. No cross-build or old-stock restore claim.",
+    "remaining_optional_fields": "Same-process loading does not reset CPU/device state. Other optional subsections can still leave stale nonzero B fields if A omitted them. The patch closes this issue only for FCS/FDS and FOP/FIP/FDP; constrain B to explicitly exercised, serialized fields."
+  },
+  "api_findings": {
+    "availability": "QAPI and handlers have no Xen-accelerator-only check. Actual configured devices can still block migration; first QMP error must reject.",
+    "save": "Explicit live=false. Caller first stops all VPs. Save synchronizes registered CPU states and writes early/non-iterable CPU/device sections, not RAM iteration or block contents. If initially running it restarts; the pre-stopped protocol avoids that.",
+    "load": "Rejects running VM; no machine reset; calls full loader and incoming cleanup; does not itself vm_start. Require query-status not running and exported stopped=true for both VPs after load. Serialized global RUNNING metadata alone is not live runstate.",
+    "required_cli": [
+      "-global migration.send-configuration=off",
+      "-machine pc,suppress-vmdesc=on"
+    ],
+    "why_cli": "Device save writes basic header but no configuration or VMDESC. Default loader expects configuration and otherwise rejects; optional VMDESC read at EOF emits a diagnostic. Both omissions are deliberate for this device-only route.",
+    "cpu_coverage": "CPU common plus legacy x86 VMState registered per CPU index. Main state includes full target-width GPR/RIP/EFLAGS, segments/table base, CRs, DR array, FP80 slots, CW/SW/TOP/empty tags, MXCSR and XMM. New selectors complete this particular missing storage pair, not architecture semantics or all optional state.",
+    "post_load": "Common CPU restores halted/interrupt state and invalidates TLB; TLB helper also invalidates per-CPU jump cache synchronously. x86 restores FP TOP/tags/status, SSE status and hardware BP_CPU watch/breakpoint registrations. GDB breakpoints are not serialized or removed by BP_CPU cleanup.",
+    "tb_limit": "No general TB cache flush was found on this route. Retaining immutable guest RAM/code with unchanged mapping is required for this probe. It does not authorize changed-memory restore or cold replay.",
+    "ram_limit": "RAM load_setup allocates receive bookkeeping but device stream contains no RAM pages. Guest RAM and block contents are not rolled back. A register-only interval in a nonpaged, IF=0 guest avoids explicit memory writes, but whole-machine DMA/timer/resource state is not thereby proved unchanged.",
+    "mxcsr_limit": "Current diagnostic query materializes lazy SSE exception flags before save. This reviewed sequence queries all CPUs before saving; generic save API correctness for arbitrary unqueried SIMD exceptions is not established.",
+    "failure_semantics": "Load is not atomic. A parsing/post-load failure may leave partially modified CPU/devices; terminate the owned microguest after failure, do not continue as if A or B were intact."
+  },
+  "first_native_failure_review": {
+    "source": {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v3-rich/report.json",
+      "bytes": 53787,
+      "sha256": "2c0373df14e75bd21db1ae340b93270a59704da961ba26971c9e015c5632b027"
+    },
+    "stderr": {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v3-rich/stderr.txt",
+      "bytes": 99,
+      "sha256": "64c4cd03630d529c999e482ff73a8afd53e13710afc8ca421db29ca86e2d6b36"
+    },
+    "saved_stream": {
+      "path": ".venv-audit/native-worker/tcg-device-restore-v3-rich/devices.bin",
+      "bytes": 17215,
+      "sha256": "ef09222de9e3588cca1cd054d60920128e039ae6e0ffad6741beef5c34e11cf8"
+    },
+    "observed": "save completed; first xen-load aborts at util/yank.c:105 assert(entry). No successful restore or continuation can be inferred.",
+    "root_cause": "qmp_xen_load_devices_state lacks yank_register_instance while its migration_incoming_state_destroy unconditionally unregisters. Ordinary load_snapshot explicitly pairs registration. v4 patch addresses this precise mismatch; runtime result remains parent-owned."
+  },
+  "probe_review": {
+    "reviewed_source": {
+      "path": "devtools/terminal_tcg_device_restore_probe.py",
+      "bytes": 7109,
+      "sha256": "94801ead5d743f68ef7079e89f114930bf376dbc50f95f1ab2fcc1bca4428dc9"
+    },
+    "pure_images": [
+      {
+        "path": ".venv-audit/native-worker/tcg-selectors-v3/rich.elf",
+        "bytes": 8192,
+        "sha256": "f1ae2ff33ba3c196e7ec45aa0ad5fe91316ca4c1a8dfbc103df7090add249991"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-selectors-v3/inverse.elf",
+        "bytes": 8192,
+        "sha256": "0dcd9b5b2259fe3a8a748c1e164344a00a9cfef287134f2d0cb6fce8ca211d31"
+      }
+    ],
+    "decoded_stops": {
+      "rich_A": "0x100176",
+      "inverse_A": "0x10015d",
+      "B": "0x10018e"
+    },
+    "decoded_interval": "NOP plus FNINIT/FLD/FADD/MOVDQA/LDMXCSR/GPR arithmetic and STC/STD/CLD; no explicit RAM store between A/B. Rich and inverse perturb pointer/selector zero cases, physical tags, XMM0/MXCSR, GPR and condition/DF flags.",
+    "required_before_operations": [
+      "Verify schema, VP identities and both VPs stopped; exact A before save and exact B before load.",
+      "Assert CR0.PG=0 and IF=0 before A/B protocol; do not merely infer from instruction bytes.",
+      "Read/hash owned 0x100000..0x105000 bytes at A, B, after-load and second B; reject mismatch. This proves only that bounded region.",
+      "Preserve first raw before/after state and QMP errors; compare all exported fields, all FP80 slots including empty payloads, and both VPs.",
+      "Require after-save state identical A; immediate after-load identical A before resuming; re-execution identical B; only then remove B breakpoint and require exact output and exit."
+    ],
+    "coverage_limit": "Matching unchanged CR/segment/DR fields proves preservation in this fixture, not perturbation coverage. Only BSP executes; VP1 preservation is not SMP execution. No game, Windows, native handles or arbitrary CPU restore acceptance."
+  },
+  "offline_validation": {
+    "git_apply_check": true,
+    "applied_bytes_equal_generated_new": true,
+    "main_build_tree_modified_by_reviewer": false,
+    "native_or_vm_started_by_reviewer": false,
+    "compiled_by_reviewer": false,
+    "ordinary_loader_assertion_not_disabled": true
+  },
+  "sources": [
+    {
+      "path": "target/i386/machine.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 56018,
+      "sha256": "b7070861e3949e1f067a7e3ba6907e5f89cacce8d9ec73f499f419577b3d1aa1",
+      "anchors": [
+        "17-27 segment full-width base",
+        "219-310 pre-save normalization",
+        "313-405 x86 post-load",
+        "545-564 optional FOP/FIP/FDP",
+        "1765-1906 CPU main fields/subsections"
+      ]
+    },
+    {
+      "path": "target/i386/tcg/tcg-cpu.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 7673,
+      "sha256": "7ae34b79e3d7d0f6448cfc213830b31a0d5a33adf975c41e9bcac913658d568e",
+      "anchors": [
+        "32-49 exec_enter/exit CC/DF materialization"
+      ]
+    },
+    {
+      "path": "hw/core/cpu-system.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 8361,
+      "sha256": "ccd2f285ccfb4a397b3deeb5cb4763611bf6065281a255071c19f042aa91b0bd",
+      "anchors": [
+        "197-214 post-load TLB invalidation",
+        "260-299 CPU common and x86 legacy registration"
+      ]
+    },
+    {
+      "path": "accel/tcg/cputlb.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 93216,
+      "sha256": "a990689aea048a90e89f617bc72acaabca3a51acf355b56a16956dfdfc530260",
+      "anchors": [
+        "370-422 synchronous TLB flush plus jump-cache invalidation"
+      ]
+    },
+    {
+      "path": "migration/savevm.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 111434,
+      "sha256": "e0807930539a09bf21ee126efb5d9f0ef5714c6dfa434c6119f077ad7128b342",
+      "anchors": [
+        "1066-1090 static VMState save filter",
+        "1740-1769 all registered non-iterable state",
+        "1954-1971 no RAM iteration",
+        "2807-2845 header/config expectations",
+        "3088-3184 load setup, errors and post-init",
+        "3374-3454 Xen device APIs",
+        "3519-3527 ordinary snapshot yank pairing"
+      ]
+    },
+    {
+      "path": "migration/migration.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 126111,
+      "sha256": "ecbea04f8fce9d9adfafaf455415c634c9bbe27a09ae7673a195f83a08f0eec5",
+      "anchors": [
+        "432-497 incoming cleanup unconditionally unregisters yank"
+      ]
+    },
+    {
+      "path": "migration/ram.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 148060,
+      "sha256": "0c941730301aecc6577437ce1e4fe62f492bcac0ee8f40d7163bacc6fb71379d",
+      "anchors": [
+        "3754-3759 receive map setup",
+        "4694-4706 RAM handler has no static save_state/vmsd"
+      ]
+    },
+    {
+      "path": "migration/vmstate.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 29486,
+      "sha256": "dbb83f46b138df6a80712b2a6331a3e80fd253e2f4fe4d2b351ea5a3beee40f0",
+      "anchors": [
+        "388-394 subsections load before parent post-load",
+        "798-850 unknown subsection rejected"
+      ]
+    },
+    {
+      "path": "migration/global_state.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 4204,
+      "sha256": "4a2d9faa81ba917c29752a00a8907f904626e9b070d7bbaf5c6f951c541df39d",
+      "anchors": [
+        "58-61 store RUNNING metadata",
+        "78-116 post-load parses state; no vm_start"
+      ]
+    },
+    {
+      "path": "hw/core/machine.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 58922,
+      "sha256": "189c891714f0928cdd6648f7d2799b529029345a4c47fcf1fc92adb01a9d6e27",
+      "anchors": [
+        "1179-1182 suppress-vmdesc property"
+      ]
+    },
+    {
+      "path": "util/yank.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 5061,
+      "sha256": "b3621230ab81ecc05095be0bd1c7f53ed46d1b734ab37146aa47b6ae78b75151",
+      "anchors": [
+        "80-109 duplicate rejection and required unregister pairing"
+      ]
+    },
+    {
+      "path": "docs/about/removed-features.rst",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 59435,
+      "sha256": "ad149e29219721332e1787b5fee4900ccd8800608b831e011346e49316fb1599",
+      "anchors": [
+        "216-220 migration.send-configuration option"
+      ]
+    }
+  ]
+}

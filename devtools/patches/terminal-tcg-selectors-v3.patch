@@ -1,0 +1,69 @@
+diff --git a/target/i386/machine.c b/target/i386/machine.c
+--- a/target/i386/machine.c
++++ b/target/i386/machine.c
+@@ -389,6 +389,17 @@
+     }
+     if (tcg_enabled()) {
+         target_ulong dr7;
++
++        /*
++         * A stopped TCG CPU keeps materialized EFLAGS as well as lazy CC/DF
++         * caches.  A same-process device-state load must replace both before
++         * any observer calls cpu_compute_eflags(), not only on exec_enter.
++         * Keep the materialized flags intact for the next exec_enter.
++         */
++        env->cc_src = env->eflags & (CC_O | CC_S | CC_Z | CC_A | CC_P | CC_C);
++        env->cc_op = CC_OP_EFLAGS;
++        env->df = 1 - (2 * ((env->eflags >> 10) & 1));
++
+         update_fp_status(env);
+         update_mxcsr_status(env);
+ 
+@@ -547,7 +558,8 @@
+     X86CPU *cpu = opaque;
+     CPUX86State *env = &cpu->env;
+ 
+-    return env->fpop != 0 || env->fpip != 0 || env->fpdp != 0;
++    /* Same-process TCG restore must also overwrite nonzero values with zero. */
++    return tcg_enabled() || env->fpop != 0 || env->fpip != 0 || env->fpdp != 0;
+ }
+ 
+ static const VMStateDescription vmstate_fpop_ip_dp = {
+@@ -559,6 +571,29 @@
+         VMSTATE_UINT16(env.fpop, X86CPU),
+         VMSTATE_UINT64(env.fpip, X86CPU),
+         VMSTATE_UINT64(env.fpdp, X86CPU),
++        VMSTATE_END_OF_LIST()
++    }
++};
++
++/*
++ * Project-local, same-build device-state checkpoints.  Always emit for TCG:
++ * omitting a zero selector would leave the destination CPU's previous value.
++ * The existing CPU and subsection wire layouts are deliberately unchanged.
++ * The caller must validate the exact binary/configuration identity externally.
++ */
++static bool terminal_tcg_selectors_needed(void *opaque)
++{
++    return tcg_enabled();
++}
++
++static const VMStateDescription vmstate_terminal_tcg_selectors = {
++    .name = "cpu/chaomofa-tcg-x87-selectors-v1",
++    .version_id = 1,
++    .minimum_version_id = 1,
++    .needed = terminal_tcg_selectors_needed,
++    .fields = (const VMStateField[]) {
++        VMSTATE_UINT16(env.fpcs, X86CPU),
++        VMSTATE_UINT16(env.fpds, X86CPU),
+         VMSTATE_END_OF_LIST()
+     }
+ };
+@@ -1865,6 +1900,7 @@
+         &vmstate_steal_time_msr,
+         &vmstate_poll_control_msr,
+         &vmstate_fpop_ip_dp,
++        &vmstate_terminal_tcg_selectors,
+         &vmstate_msr_tsc_adjust,
+         &vmstate_msr_tscdeadline,
+         &vmstate_msr_ia32_misc_enable,

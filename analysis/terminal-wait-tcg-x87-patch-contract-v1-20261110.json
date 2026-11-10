@@ -1,0 +1,132 @@
+{
+  "schema": "terminal-tcg-x87-patch-contract-v1",
+  "date": "2026-11-10",
+  "status": "implementation_ready_for_parent_build_and_bounded_guest_tests",
+  "accepted_full57": false,
+  "windows_admission": false,
+  "base_commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+  "patch": {
+    "path": "devtools/patches/terminal-tcg-x87-v1.patch",
+    "bytes": 21430,
+    "sha256": "6c540e3477633fc563eba24b84856c3353ad72966bf8c8c987a41efb61ee9464"
+  },
+  "source_files": [
+    {
+      "path": "target/i386/cpu.h",
+      "base_bytes": 109828,
+      "base_sha256": "04b7d87e3ba12746420262bbe5876b05ac0a669f9e73590d6b2729ada5ebf520",
+      "patched_bytes": 110615,
+      "patched_sha256": "89fa08987d5633e56bc8dd0be30405cc78ab1e70d776bb3a7bed0740ea2f9afa"
+    },
+    {
+      "path": "target/i386/gdbstub.c",
+      "base_bytes": 16952,
+      "base_sha256": "19e432e4fdaf50212a8c66c0cc3770960380b80d364bc165d1c6d55a4da9f4b2",
+      "patched_bytes": 17346,
+      "patched_sha256": "2808a0f3360981bab291883f62512dcb8343956f9e75de80619d548d65787236"
+    },
+    {
+      "path": "target/i386/helper.h",
+      "base_bytes": 8025,
+      "base_sha256": "d3defa6895ab948ac3c9dfad54b3cfebc0e5b376df998b08d0948e7258f41657",
+      "patched_bytes": 8050,
+      "patched_sha256": "dafcf81af5ac47e41060b295decdc05933ddd8674b362695c545a3a1698e8e2e"
+    },
+    {
+      "path": "target/i386/tcg/emit.c.inc",
+      "base_bytes": 153350,
+      "base_sha256": "02ae084ba963e295e70ad886b254af87d5207ecee826baa7879ca431745520cc",
+      "patched_bytes": 153656,
+      "patched_sha256": "9838fa6264d244b98155321834534e0aec7509524954ef2c743ea3cc65d385c2"
+    },
+    {
+      "path": "target/i386/tcg/fpu_helper.c",
+      "base_bytes": 114184,
+      "base_sha256": "e1e50290821ee658f8834c889be5b4a1debeaa137278ea989db6093e0fb6fc87",
+      "patched_bytes": 115888,
+      "patched_sha256": "a7493ff5dffff56efdf714e06165986653c20747e91d8a7925faeb0dd46d05ef"
+    },
+    {
+      "path": "target/i386/tcg/translate.c",
+      "base_bytes": 115586,
+      "base_sha256": "aa592807072c0ed3680e049e251f29c796c8de136c2fc827d18087e3575f0945",
+      "patched_bytes": 116423,
+      "patched_sha256": "cc34fe32473b7ac716b613488957c65481a34ff66e0d03f61605e8cc154bd894"
+    }
+  ],
+  "implemented": [
+    "TCG FOP stores ((primary opcode & 7)<<8)|ModRM alongside the existing non-control FIP update; FNINIT/FNSAVE reset FOP. This deliberately selects legacy fopcode-compatibility style (every completed non-control x87 instruction), not a claim to model every Intel generation IA32_MISC_ENABLE mode.",
+    "Waiting x87 instructions test prior pending exceptions before memory/provenance changes; the six FN controls remain non-waiting. FNSTSW AX no longer replaces the prior instruction provenance.",
+    "FNSTENV stores the pre-mask environment then masks all six exceptions and recomputes ES/B; FLDCW and FLDENV recompute ES/B from status exception flags and loaded masks. Existing CR0.NE/FERR handling is reused.",
+    "32-bit protected/compatibility 28-byte FNSTENV/FLDENV include FOP, FIP, FDP, FCS, FDS. FLDENV uses MMU_DATA_LOAD rather than STORE. FRSTOR/FNSAVE inherit the environment fixes. 64-bit REX-prefixed legacy environment operations retain 28-byte size rather than accidentally preparing 56 bytes.",
+    "FXSAVE/FXRSTOR and XSAVE/XSAVEOPT/XRSTOR carry explicit instruction operand-size mode through decoder/helper calls. Non-REX.W format has 32-bit offsets and 16-bit selectors; REX.W format has full-width offsets, and Intel-defined REX.W restore clears FCS/FDS. FOP is explicitly written/read (11-bit mask). Linux-user signal wrappers select target ABI width.",
+    "64-bit memory x87 FDP records the linear address including FS/GS base; non-64-bit FDP retains segment-relative offset.",
+    "Shared inline cpu_x86_fptag(const CPUX86State *) returns physical full tag classifications from empty mask and exact 80-bit payload; FNSTENV and GDB tag export use it. GDB writes distinguish empty/nonempty, per modern x87 semantics.",
+    "GDB individual ST(i) writes use physical[(TOP+i)&7], matching reads, and use unaligned-safe byte loads. FOP/selector fields are no longer placeholders. GDB FIP/FDP XML remains unsupported/placeholder explicitly; it is not a canonical-state source.",
+    "XSAVEOPT emitter now invokes its existing XSAVEOPT helper while forwarding pointer-layout mode."
+  ],
+  "correction_to_prior_review": {
+    "prior_report": "analysis/terminal-wait-tcg-state-review-v2-20261110.json",
+    "immutable_prior": true,
+    "correction": "The prior concern that modern FLDENV/FRSTOR must preserve arbitrary nonempty full-tag classifications was incorrect. Intel explicitly loads only empty/nonempty and classifies the actual payload on save. No full-tag shadow state is added; no CPUX86State layout or migration ABI change."
+  },
+  "checks_performed": [
+    "git apply --check --whitespace=error against six exact-commit files passed",
+    "Applied patch in a separate verification copy; all six results byte-equal independently edited files",
+    "Five exported helper declaration/implementation arities checked",
+    "Decoder source confirms s->dflag distinguishes REX.W, independent of CS.L; all five TCG call sites and four Linux-user wrappers reviewed"
+  ],
+  "checks_not_performed": [
+    "No C compilation by subagent; parent build required",
+    "No native/guest/VM execution by subagent",
+    "No full57, game, Windows, migration or resource-lifetime validation"
+  ],
+  "required_parent_tests": [
+    "Build fixed source+patch; pin configure/compiler/dependencies/final ELF SHA. Reject warning/error or unexpected source changes.",
+    "A5-filled FXSAVE plus FNSTENV for known nonzero FADD/FOP and nonzero offset/selectors: compare raw data and stopped QMP state, physical tags and logical ST order. Verify FNINIT clears FOP.",
+    "Roundtrip FXRSTOR and FLDENV with nonzero FOP/pointers/selectors, multiple TOP values, holes, signed zero, finite, subnormal, infinity/NaN/unsupported 80-bit payload. Read-only FLDENV page must succeed.",
+    "64-bit code with >4GiB FIP/FDP including FS/GS-base operand; distinguish REX.W=0 and REX.W=1 layouts and clear-selectors restore behavior. Compatibility code must select the 32-bit image. Do not treat architectural 32-bit save-format truncation as a full64 capture.",
+    "Pending-state fixture loaded by FLDENV: FNSTENV succeeds/stores old masks then prevents FWAIT fault; FLDCW unmasks a preexisting flag and the following waiting instruction traps before data/provenance changes. FNSTSW AX and other FN controls preserve provenance. CR0.NE=1 primary scope.",
+    "FXRSTOR/XSAVE/XRSTOR roundtrips require their own bounded tests; passing FXSAVE alone is insufficient. Snapshot restore must preserve hidden caches/events/resources via separate contract.",
+    "Individual GDB ST writes at TOP!=0 check logical slot mapping only; bulk G packet and pointer XML are not certified by that check."
+  ],
+  "remaining_blockers": [
+    "CURRENT-INSTRUCTION unmasked x87 exception result/store/pop suppression is not repaired. Existing arithmetic helpers can commit a result before pending exception delivery; Windows/full57 continuation stays rejected.",
+    "Real-mode/v8086 packed legacy environment pointer/opcode formats are not implemented by this patch; protected 16-bit FOP-load policy is unverified and retained. Do not admit those modes from these tests.",
+    "CPU-model-specific FOP exception-only versus legacy compatibility mode is not implemented. CPUID FDP_EXCPTN_ONLY/ZERO_FCS_FDS or forced unsupported feature combinations are not certified. Use pinned feature profile with those bits clear.",
+    "Control-word reserved-bit normalization, stack under/overflow and all unmasked arithmetic cases, MMX pending exception behavior, page/MMIO fault atomicity, invalid-opcode exception priority, and MXCSR-reserved-bit FXRSTOR #GP atomicity remain outside this patch.",
+    "GDB FIP/FDP are still zero placeholders; GDB bulk G writes that also change TOP are not a full-state restore protocol. Use typed full-width stopped-state QMP export for provenance.",
+    "CPU migration omits FCS/FDS in the stock VMState; this patch does not change that ABI. Stock savevm/migration therefore cannot be certified as full-state save/restore.",
+    "No DR4/DR5 semantics, all-vCPU stop epoch proof, hidden state restore, devices/RAM/resource ownership, original Windows/WOW64 or original-game acceptance is established."
+  ],
+  "primary_sources": [
+    {
+      "url": "https://cdrdv2-public.intel.com/868136/252046-081-sdm-change-document.pdf",
+      "sections": "24.18.4 x87 tag word",
+      "supports": "empty/nonempty load and payload-derived exported classification"
+    },
+    {
+      "url": "https://cdrdv2-public.intel.com/843827/253665-sdm-vol-1-dec-24.pdf",
+      "sections": "8.1.8-8.1.9",
+      "supports": "mode-specific pointer save/restore, REX.W restore clears selectors, fopcode compatibility distinction"
+    },
+    {
+      "url": "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf",
+      "sections": "FLDCW/FLDENV/FSTENV/FXSAVE/FXRSTOR",
+      "supports": "waiting/no-wait environment semantics and image layout"
+    },
+    {
+      "url": "https://www.intel.com/content/dam/support/us/en/documents/processors/pentium4/sb/25366521.pdf",
+      "sections": "8.1.7 and 8.7.1",
+      "supports": "tag reconstruction and prior pending exception checking on waiting instructions"
+    }
+  ],
+  "ownership": {
+    "subagent_modified_main_build_tree": false,
+    "subagent_native_runs": 0,
+    "subagent_downloads": 0,
+    "subagent_commits": 0
+  },
+  "local_working_directory": ".venv-audit/native-worker/tcg-x87-patch-v1",
+  "local_working_bytes_excluding_report_and_patch": 1583934
+}

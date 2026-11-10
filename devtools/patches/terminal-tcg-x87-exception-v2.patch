@@ -1,0 +1,142 @@
+diff --git a/target/i386/helper.h b/target/i386/helper.h
+--- a/target/i386/helper.h
++++ b/target/i386/helper.h
+@@ -145,6 +145,7 @@
+ DEF_HELPER_2(fsubr_STN_ST0, void, env, int)
+ DEF_HELPER_2(fdiv_STN_ST0, void, env, int)
+ DEF_HELPER_2(fdivr_STN_ST0, void, env, int)
++DEF_HELPER_4(fdiv_reg, void, env, int, int, i32)
+ DEF_HELPER_1(fchs_ST0, void, env)
+ DEF_HELPER_1(fabs_ST0, void, env)
+ DEF_HELPER_1(fxam_ST0, void, env)
+diff --git a/target/i386/tcg/fpu_helper.c b/target/i386/tcg/fpu_helper.c
+--- a/target/i386/tcg/fpu_helper.c
++++ b/target/i386/tcg/fpu_helper.c
+@@ -655,6 +655,80 @@
+ 
+     p = &ST(st_index);
+     *p = helper_fdiv(env, ST0, *p);
++}
++
++/* Register FDIV/FDIVR/FDIVP/FDIVRP only.  Bit 0 reverses the
++ * operands, bit 1 requests a pop.  Keep both the destination and TOP
++ * untouched for an unmasked pre-computation exception (#I, #Z, #D).
++ * Do not apply this rule to post-computation #O/#U/#P: those have
++ * different result rules (Intel SDM Vol. 1, 4.9.2 and 8.5).
++ */
++void helper_fdiv_reg(CPUX86State *env, int dst_index, int src_index,
++                     uint32_t op)
++{
++    int dst = (env->fpstt + dst_index) & 7;
++    int src = (env->fpstt + src_index) & 7;
++    floatx80 a = env->fpregs[dst].d;
++    floatx80 b = env->fpregs[src].d;
++    floatx80 result;
++    int old_flags, flags, pre;
++
++    /* Stack underflow has priority over all arithmetic operand classes. */
++    env->fpus &= ~0x0200; /* C1: no rounding up on a pre-computation fault */
++    if (env->fptags[dst] || env->fptags[src]) {
++        fpu_set_exception(env, FPUS_IE | FPUS_SF);
++        if (!(env->fpuc & FPUS_IE)) {
++            return;
++        }
++        result = floatx80_default_nan(&env->fp_status);
++    } else {
++        if (op & 1) {
++            floatx80 tmp = a;
++            a = b;
++            b = tmp;
++        }
++        old_flags = save_exception_flags(env);
++        result = floatx80_div(a, b, &env->fp_status);
++        flags = get_float_exception_flags(&env->fp_status);
++
++        /* SoftFloat can inspect both operands before selecting its result.
++         * x87 gives invalid/NaN/zero-divide precedence over denormals.
++         * In particular, denormal / zero must report #Z, not #D + #Z.
++         */
++        if (flags & float_flag_invalid) {
++            flags = float_flag_invalid;
++        } else if (floatx80_is_any_nan(a) || floatx80_is_any_nan(b)) {
++            flags = 0;
++        } else if (flags & float_flag_divbyzero) {
++            flags = float_flag_divbyzero;
++        } else {
++            /* Include x87 pseudo-denormals (explicit integer bit set). */
++            if (((a.high & 0x7fff) == 0 && a.low != 0) ||
++                ((b.high & 0x7fff) == 0 && b.low != 0)) {
++                flags |= float_flag_input_denormal_used;
++            }
++            if ((flags & float_flag_input_denormal_used) &&
++                !(env->fpuc & FPUS_DE)) {
++                /* No lower-priority post-computation flags are committed. */
++                flags = float_flag_input_denormal_used;
++            }
++        }
++        set_float_exception_flags(flags, &env->fp_status);
++        merge_exception_flags(env, old_flags);
++        pre = (flags & float_flag_invalid ? FPUS_IE : 0) |
++              (flags & float_flag_divbyzero ? FPUS_ZE : 0) |
++              (flags & float_flag_input_denormal_used ? FPUS_DE : 0);
++        if (pre & ~env->fpuc) {
++            return;
++        }
++    }
++
++    /* Commit only after the pre-computation checks; no state rollback. */
++    env->fpregs[dst].d = result;
++    env->fptags[dst] = 0;
++    if (op & 2) {
++        fpop(env);
++    }
+ }
+ 
+ /* misc FPU operations */
+diff --git a/target/i386/tcg/translate.c b/target/i386/tcg/translate.c
+--- a/target/i386/tcg/translate.c
++++ b/target/i386/tcg/translate.c
+@@ -2537,19 +2537,35 @@
+         case 0x00 ... 0x07: /* fxxx st, sti */
+         case 0x22 ... 0x23: /* fcom2 and fcomp3, undocumented ops */
+         case 0x32: /* fcomp5, undocumented op */
+-            gen_helper_fmov_FT0_STN(tcg_env,
+-                                    tcg_constant_i32(opreg));
+-            gen_helper_fp_arith_ST0_FT0(op & 7);
+-            if (op >= 0x30) {
+-                gen_helper_fpop(tcg_env);
++            if ((op & 7) >= 6) {
++                gen_helper_fdiv_reg(tcg_env, tcg_constant_i32(0),
++                                    tcg_constant_i32(opreg),
++                                    tcg_constant_i32((op & 7) == 7));
++            } else {
++                gen_helper_fmov_FT0_STN(tcg_env,
++                                        tcg_constant_i32(opreg));
++                gen_helper_fp_arith_ST0_FT0(op & 7);
++                if (op >= 0x30) {
++                    gen_helper_fpop(tcg_env);
++                }
+             }
+             break;
+ 
+         case 0x20: case 0x21: case 0x24 ... 0x27: /* fxxx sti, st */
+         case 0x30: case 0x31: case 0x34 ... 0x37: /* fxxxp sti, st */
+-            gen_helper_fp_arith_STN_ST0(op & 7, opreg);
+-            if (op >= 0x30) {
+-                gen_helper_fpop(tcg_env);
++            if ((op & 7) >= 6) {
++                /* ST(i) forms reverse the opcode direction.  The helper
++                 * owns the pop so an unmasked #I/#Z/#D cannot consume ST0.
++                 */
++                gen_helper_fdiv_reg(tcg_env, tcg_constant_i32(opreg),
++                                    tcg_constant_i32(0),
++                                    tcg_constant_i32(((op & 7) == 6) |
++                                                     (op >= 0x30 ? 2 : 0)));
++            } else {
++                gen_helper_fp_arith_STN_ST0(op & 7, opreg);
++                if (op >= 0x30) {
++                    gen_helper_fpop(tcg_env);
++                }
+             }
+             break;
+         case 0x15: /* da/5 */
