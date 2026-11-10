@@ -1,0 +1,368 @@
+{
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "original_game_starts": 0,
+  "contrast_checks_passed": true,
+  "uniform_RF_clear_refuted": true,
+  "stack_and_return_PC_prove_direct_RET": false,
+  "raw_preserve_matches_two_fixture_baselines": true,
+  "production_RF_restoration_authorized": false,
+  "sources": [
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\report.json",
+      "sha256": "a7fee9d5945cb992825d12172360271ac84f06493b8f101b7b07ea2584e31f6a",
+      "bytes": 33216,
+      "native_errors_retained": [
+        "ValueError('expected boundary after-consumer-halt')"
+      ]
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\report.json",
+      "sha256": "510af73babd5c093b84b629afc451866e81a684efe617a350afdd14cb1081b04",
+      "bytes": 33193,
+      "native_errors_retained": [
+        "ValueError('no consumer or #DB handler before EPT')"
+      ]
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\report.json",
+      "sha256": "e78538b09c8bdab0b8abd6e0ba7e38543293bd571c3ef8f202fefdcf160685e6",
+      "bytes": 34055,
+      "native_errors_retained": []
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\report.json",
+      "sha256": "ee8721b8ffe0e9e44df2c3b61ad0268a5d4e430a483bdfbff136497baa702d3b",
+      "bytes": 43361,
+      "native_errors_retained": []
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\report.json",
+      "sha256": "cc0951417c8d3eedd01bcff3713f69e324e2a42bdb0e6a0f55ce89b35d51f924",
+      "bytes": 43922,
+      "native_errors_retained": []
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\report.json",
+      "sha256": "fc7346b083912fdb37fd0b159d7953abe965cfa65f718e72827209afc3cdaaae",
+      "bytes": 42782,
+      "native_errors_retained": []
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\report.json",
+      "sha256": "f049c394f27c8b7403f38ec1b8a172dad132feebadbcd76dafcbd7e1c51007cb",
+      "bytes": 43370,
+      "native_errors_retained": []
+    }
+  ],
+  "observations": {
+    "ret-baseline": [
+      {
+        "phase": "callee-entry",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "callee-entry",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 0,
+        "consumer": 1,
+        "debug_handler": 1,
+        "rflags": 2,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 1,
+        "consumer": 1,
+        "debug_handler": 1,
+        "rflags": 2,
+        "dr6": 4294905841
+      }
+    ],
+    "ret-before-ept-guard-refusal": [
+      {
+        "phase": "callee-entry",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "callee-entry",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "return-ept",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 1,
+        "rflags": 65606,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "return-ept",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 1,
+        "rflags": 65606,
+        "dr6": 4294905841
+      }
+    ],
+    "iret-baseline": [
+      {
+        "phase": "callee-entry",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "callee-entry",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 0,
+        "consumer": 1,
+        "debug_handler": 0,
+        "rflags": 2,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 1,
+        "consumer": 1,
+        "debug_handler": 0,
+        "rflags": 2,
+        "dr6": 4294905840
+      }
+    ],
+    "iret-ept-preserve": [
+      {
+        "phase": "callee-entry",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "callee-entry",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "return-ept",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "return-ept",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 0,
+        "consumer": 1,
+        "debug_handler": 0,
+        "rflags": 2,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 1,
+        "consumer": 1,
+        "debug_handler": 0,
+        "rflags": 2,
+        "dr6": 4294905840
+      }
+    ],
+    "iret-ept-unsafe-clear": [
+      {
+        "phase": "callee-entry",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "callee-entry",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "return-ept",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "return-ept",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 0,
+        "consumer": 1,
+        "debug_handler": 1,
+        "rflags": 2,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 1,
+        "consumer": 1,
+        "debug_handler": 1,
+        "rflags": 2,
+        "dr6": 4294905841
+      }
+    ],
+    "ret-ept-raw": [
+      {
+        "phase": "callee-entry",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "callee-entry",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "return-ept",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 1,
+        "rflags": 65606,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "return-ept",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 1,
+        "rflags": 65606,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 0,
+        "consumer": 1,
+        "debug_handler": 1,
+        "rflags": 2,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 1,
+        "consumer": 1,
+        "debug_handler": 1,
+        "rflags": 2,
+        "dr6": 4294905841
+      }
+    ],
+    "ret-ept-unsafe-clear": [
+      {
+        "phase": "callee-entry",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "callee-entry",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 0,
+        "rflags": 65606,
+        "dr6": 4294905840
+      },
+      {
+        "phase": "return-ept",
+        "vp": 0,
+        "consumer": 0,
+        "debug_handler": 1,
+        "rflags": 65606,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "return-ept",
+        "vp": 1,
+        "consumer": 0,
+        "debug_handler": 1,
+        "rflags": 65606,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 0,
+        "consumer": 1,
+        "debug_handler": 2,
+        "rflags": 2,
+        "dr6": 4294905841
+      },
+      {
+        "phase": "after-consumer-halt",
+        "vp": 1,
+        "consumer": 1,
+        "debug_handler": 2,
+        "rflags": 2,
+        "dr6": 4294905841
+      }
+    ]
+  },
+  "limits": [
+    "Baselines share the callee-entry EPT; only return EPT is contrasted.",
+    "Closed 32-bit self-owned code, explicit guest #DB handler and disabled external input; not Windows/WOW64 or original-game acceptance.",
+    "Original RF provenance at arbitrary Windows return still missing. Do not infer it from stack or final register equality."
+  ]
+}

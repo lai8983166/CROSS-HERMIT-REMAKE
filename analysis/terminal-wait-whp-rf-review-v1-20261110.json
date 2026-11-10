@@ -1,0 +1,799 @@
+{
+  "schema": "terminal-wait-whp-rf-independent-review-v1",
+  "date": "2026-11-10",
+  "baseline": "fe5d2d84",
+  "scope": "Independent offline source and raw artifact review only; reviewer started no native probe, VM or guest. One new report; frozen sources and old reports unchanged.",
+  "decision": {
+    "finite_owned_guest_contrasts_verified": true,
+    "automatic_rf_clear_rejected": true,
+    "completed_near_ret_rf_zero_general_proof": false,
+    "transparent_original_fullstate": false,
+    "canonical57_accepted": false,
+    "original_game_accepted": false,
+    "original_game_starts": 0,
+    "windows_boots": 0
+  },
+  "conclusion": [
+    "With real DR0=307b and DR7=401, target execution #DB runs before return-page EPT denial. RET origin plus matching restored stack is insufficient provenance: the immediately preceding transfer at the observed EPT point can be the guest handler IRETD restoring RF=1.",
+    "Preserving raw RF reproduces both corresponding no-return-EPT baselines. Unsafe RF clearing duplicates RET #DB (1 to 2) or introduces IRET #DB (0 to 1), despite consumer executing once. No successful constrained RF restoration arm is established.",
+    "RET unsafe final CPU register values and XSAVE equal the preserve arm; only handler count differs in memory. Final register equality alone cannot establish debug-event or resource behavior equivalence."
+  ],
+  "primary_contract": [
+    {
+      "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html",
+      "revision": "093; portal updated 2026-10-09; linked volumes September 2026"
+    },
+    {
+      "url": "https://cdrdv2.intel.com/v1/dl/getContent/671427",
+      "section": "Vol 3B 20.3.1.1, PDF pages 153-154 zero-based",
+      "finding": "RF suppresses instruction breakpoints. RF clears at instruction start after breakpoint/CS-limit/FP checks. IRETD/IRETQ load RF from the saved image. Instruction #DB does not itself force stacked RF=1; the handler can set it."
+    },
+    {
+      "url": "https://cdrdv2.intel.com/v1/dl/getContent/671506",
+      "section": "Vol 3C 30.3.3; 31.3.3.3",
+      "finding": "Non-event-delivery EPT exits save RF=1, losing its prior bit. Event-delivery cases have different rules. EPT translation ordering is specified separately; it does not make every instruction fetch the earliest observable event."
+    },
+    {
+      "url": "https://cdrdv2.intel.com/v1/dl/getContent/671190",
+      "section": "Vol 3A Table 7-2",
+      "finding": "Instruction-breakpoint faults precede instruction-fetch faults in the instruction-boundary event table. This table alone is not a blanket proof for all EPT exits during instruction execution or event delivery. Actual target-fetch order is additionally demonstrated here by guest handler memory before EPT."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/virtualprocessorexception",
+      "finding": "WHP exception exits require ExceptionExit enabled. The reviewed probe does not enable interception or write pending-event registers; #DB follows the actual guest IDT."
+    },
+    {
+      "local_sdk": {
+        "path": "/mnt/c/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/WinHvPlatformDefs.h",
+        "bytes": 138461,
+        "sha256": "91a864b6ec2d932bcc7ce17f503f72a7813759cde81be2d1ac86cba9abb61c4a"
+      },
+      "lines": "1001-1019; 1229-1245; 2207",
+      "finding": "PendingExceptionEvent is a 16-byte delivery request including EventPending/type/vector/error code/parameter. PendingDebugException is a distinct 8-byte breakpoint/single-step mask. Neither is evidence of transparent reinjection merely from its type definition. No host exception injection is used or certified here."
+    }
+  ],
+  "source_identities": [
+    {
+      "path": "devtools/terminal_whp_rf_probe.py",
+      "bytes": 10403,
+      "sha256": "0543bb644bec0d37f6d1b0623f15ac2ed7bd1a44924d3f2c17e46b76b67ce0a7"
+    },
+    {
+      "path": "devtools/terminal_whp_rf_probe_v2.py",
+      "bytes": 10624,
+      "sha256": "a79f924fa9ce00d86bf3d709849cf8403f548c2a464ca71102870952705a3e57"
+    },
+    {
+      "path": "devtools/terminal_whp_rf_probe_v3.py",
+      "bytes": 10610,
+      "sha256": "ccc92935aebf4b3cf4bbf7d8c68db4daa75ee88ed4e0d37643d6ee29dd054c4d"
+    },
+    {
+      "path": "devtools/terminal_whp_rf_runner_v3.py",
+      "bytes": 1159,
+      "sha256": "a1c21790e1c7c8fa5bfa5c60e0531f647071af7c70a6b22b967f9ff14bef2d6c"
+    },
+    {
+      "path": "devtools/terminal_whp_return_probe_v2.py",
+      "bytes": 13189,
+      "sha256": "bc432f39e3de073d8a5182762a922b381930fdebabe2bf2b092e5f9a9a94adce"
+    },
+    {
+      "path": "analysis/terminal-wait-whp-review-v1-20261110.json",
+      "bytes": 28194,
+      "sha256": "d40aebc5703fcff4421920341e1282e311be336ed8c1fe2b91a73da838a344d0"
+    }
+  ],
+  "guest_bytes": {
+    "gdt_at_6008": "ffff0000009bcf00ffff00000093cf00",
+    "idt_vector1_at_6808": "00400800008e0000",
+    "handler_at_4000": "60ff83040200000f21f08983080200008b44242089830c0200008b442428898310020000814c24280000010061cf",
+    "handler_semantics": "PUSHAD preserves GPRs; increments [EBX+204]; MOV EAX,DR6; saves DR6, frame EIP at ESP+20 and frame EFLAGS at ESP+28; ORs original frame RF bit; POPAD; IRETD. Thus frame flags=46 precedes the handler RF modification, not the IRETD return flags.",
+    "iret_tail": "589c810c24000001000e50cf",
+    "iret_semantics": "POP original return target; PUSHFD; set RF in saved stack image; PUSH CS; PUSH target; IRETD. PUSHFD alone is not a measurement of live RF.",
+    "marker_order": [
+      "consumer",
+      "debug_handler",
+      "handler_dr6",
+      "handler_eip",
+      "handler_stacked_flags"
+    ]
+  },
+  "offline_checks": {
+    "raw_artifacts_verified": 61,
+    "raw_artifact_bytes_checked": 1672960,
+    "all_report_artifact_size_sha_fields_match": true,
+    "raw_exit224_reason_rip_rflags_match_getters": true,
+    "execution_exits_access_info_0xa_and_gpa_gva_equal_rip": true,
+    "all_code_1000_to_5fff_unchanged": true,
+    "real_dr0_and_dr7_remain_enabled": true,
+    "fp_control_and_valid_fp80_xmm128_fields_match_guest_fxsave_and_xsave": true,
+    "return_ept_to_halt_xsave_all960_bytes_equal": true,
+    "no_native_test_by_reviewer": true
+  },
+  "cases": [
+    {
+      "name": "whp-rf-v1-20261110-ret-baseline",
+      "report": {
+        "path": ".venv-audit/native-worker/whp-rf-v1-20261110-ret-baseline/report.json",
+        "bytes": 33216,
+        "sha256": "a7fee9d5945cb992825d12172360271ac84f06493b8f101b7b07ea2584e31f6a"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-rf-v1-20261110-ret-baseline-supervision.json",
+        "bytes": 486,
+        "sha256": "56d533d702d841ea63fb5be282e491b80cc812458eaa7a527e342fbdb7b20fc8"
+      },
+      "reported_errors": [
+        "ValueError('expected boundary after-consumer-halt')"
+      ],
+      "experiment_completed": false,
+      "phases": [
+        {
+          "name": "callee-entry",
+          "reason": 1,
+          "rip": "0x2000",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "after-consumer-halt",
+          "reason": 8,
+          "rip": "0x5001",
+          "rflags": "0x2",
+          "vp_markers": [
+            [
+              1,
+              1,
+              4294905841,
+              12411,
+              70
+            ],
+            [
+              1,
+              1,
+              4294905841,
+              12411,
+              70
+            ]
+          ]
+        }
+      ],
+      "rf_write_count": 0,
+      "native_elapsed_seconds": 0.07799999999406282,
+      "host_elapsed_seconds": 0.25,
+      "job_deadline_seconds": 20,
+      "job_active_after": 0,
+      "all_cleanup_calls_successful": true
+    },
+    {
+      "name": "whp-rf-v2-20261110-ret-ept-raw",
+      "report": {
+        "path": ".venv-audit/native-worker/whp-rf-v2-20261110-ret-ept-raw/report.json",
+        "bytes": 33193,
+        "sha256": "510af73babd5c093b84b629afc451866e81a684efe617a350afdd14cb1081b04"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-rf-v2-20261110-ret-ept-raw-supervision.json",
+        "bytes": 486,
+        "sha256": "d22f2655571d40b627471d7e42bade1b57d98baf01cd9ee7e6f845146ef79ce3"
+      },
+      "reported_errors": [
+        "ValueError('no consumer or #DB handler before EPT')"
+      ],
+      "experiment_completed": false,
+      "phases": [
+        {
+          "name": "callee-entry",
+          "reason": 1,
+          "rip": "0x2000",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "return-ept",
+          "reason": 1,
+          "rip": "0x307b",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              1,
+              4294905841,
+              12411,
+              70
+            ],
+            [
+              0,
+              1,
+              4294905841,
+              12411,
+              70
+            ]
+          ]
+        }
+      ],
+      "rf_write_count": 0,
+      "native_elapsed_seconds": 0.09399999999732245,
+      "host_elapsed_seconds": 0.25,
+      "job_deadline_seconds": 20,
+      "job_active_after": 0,
+      "all_cleanup_calls_successful": true
+    },
+    {
+      "name": "whp-rf-v3-20261110-iret-baseline",
+      "report": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-iret-baseline/report.json",
+        "bytes": 34055,
+        "sha256": "e78538b09c8bdab0b8abd6e0ba7e38543293bd571c3ef8f202fefdcf160685e6"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-iret-baseline-supervision.json",
+        "bytes": 745,
+        "sha256": "fa6e7c658cce464c9ce54449559895d4ff09886e0b1bbddad1b1e94561fb6769"
+      },
+      "reported_errors": [],
+      "experiment_completed": true,
+      "phases": [
+        {
+          "name": "callee-entry",
+          "reason": 1,
+          "rip": "0x2000",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "after-consumer-halt",
+          "reason": 8,
+          "rip": "0x5001",
+          "rflags": "0x2",
+          "vp_markers": [
+            [
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ],
+      "rf_write_count": 0,
+      "native_elapsed_seconds": 0.07799999999406282,
+      "host_elapsed_seconds": 0.25,
+      "job_deadline_seconds": 20,
+      "job_active_after": 0,
+      "all_cleanup_calls_successful": true
+    },
+    {
+      "name": "whp-rf-v3-20261110-iret-ept-preserve",
+      "report": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-iret-ept-preserve/report.json",
+        "bytes": 43361,
+        "sha256": "ee8721b8ffe0e9e44df2c3b61ad0268a5d4e430a483bdfbff136497baa702d3b"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-iret-ept-preserve-supervision.json",
+        "bytes": 745,
+        "sha256": "23d93ae56c3e13302ab4239bfec32719abfe8e0a2cf7644855ebad80d1869119"
+      },
+      "reported_errors": [],
+      "experiment_completed": true,
+      "phases": [
+        {
+          "name": "callee-entry",
+          "reason": 1,
+          "rip": "0x2000",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "return-ept",
+          "reason": 1,
+          "rip": "0x307b",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "after-consumer-halt",
+          "reason": 8,
+          "rip": "0x5001",
+          "rflags": "0x2",
+          "vp_markers": [
+            [
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ],
+      "rf_write_count": 0,
+      "native_elapsed_seconds": 0.09399999999732245,
+      "host_elapsed_seconds": 0.25,
+      "job_deadline_seconds": 20,
+      "job_active_after": 0,
+      "all_cleanup_calls_successful": true
+    },
+    {
+      "name": "whp-rf-v3-20261110-iret-ept-unsafe-clear",
+      "report": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-iret-ept-unsafe-clear/report.json",
+        "bytes": 43922,
+        "sha256": "cc0951417c8d3eedd01bcff3713f69e324e2a42bdb0e6a0f55ce89b35d51f924"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-iret-ept-unsafe-clear-supervision.json",
+        "bytes": 773,
+        "sha256": "172d14c90d3372eb306ff1c07dcd79178f1272411698f1662c626a7130d6833d"
+      },
+      "reported_errors": [],
+      "experiment_completed": true,
+      "phases": [
+        {
+          "name": "callee-entry",
+          "reason": 1,
+          "rip": "0x2000",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "return-ept",
+          "reason": 1,
+          "rip": "0x307b",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "after-consumer-halt",
+          "reason": 8,
+          "rip": "0x5001",
+          "rflags": "0x2",
+          "vp_markers": [
+            [
+              1,
+              1,
+              4294905841,
+              12411,
+              70
+            ],
+            [
+              1,
+              1,
+              4294905841,
+              12411,
+              70
+            ]
+          ]
+        }
+      ],
+      "rf_write_count": 2,
+      "native_elapsed_seconds": 0.09399999999732245,
+      "host_elapsed_seconds": 0.25,
+      "job_deadline_seconds": 20,
+      "job_active_after": 0,
+      "all_cleanup_calls_successful": true
+    },
+    {
+      "name": "whp-rf-v3-20261110-ret-ept-raw",
+      "report": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-ret-ept-raw/report.json",
+        "bytes": 42782,
+        "sha256": "fc7346b083912fdb37fd0b159d7953abe965cfa65f718e72827209afc3cdaaae"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-ret-ept-raw-supervision.json",
+        "bytes": 773,
+        "sha256": "25efa8997746e4bbd79959454ea312494a4722004c21d6a4630b2f863b943143"
+      },
+      "reported_errors": [],
+      "experiment_completed": true,
+      "phases": [
+        {
+          "name": "callee-entry",
+          "reason": 1,
+          "rip": "0x2000",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "return-ept",
+          "reason": 1,
+          "rip": "0x307b",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              1,
+              4294905841,
+              12411,
+              70
+            ],
+            [
+              0,
+              1,
+              4294905841,
+              12411,
+              70
+            ]
+          ]
+        },
+        {
+          "name": "after-consumer-halt",
+          "reason": 8,
+          "rip": "0x5001",
+          "rflags": "0x2",
+          "vp_markers": [
+            [
+              1,
+              1,
+              4294905841,
+              12411,
+              70
+            ],
+            [
+              1,
+              1,
+              4294905841,
+              12411,
+              70
+            ]
+          ]
+        }
+      ],
+      "rf_write_count": 0,
+      "native_elapsed_seconds": 0.09399999999732245,
+      "host_elapsed_seconds": 0.25,
+      "job_deadline_seconds": 20,
+      "job_active_after": 0,
+      "all_cleanup_calls_successful": true
+    },
+    {
+      "name": "whp-rf-v3-20261110-ret-ept-unsafe-clear",
+      "report": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-ret-ept-unsafe-clear/report.json",
+        "bytes": 43370,
+        "sha256": "f049c394f27c8b7403f38ec1b8a172dad132feebadbcd76dafcbd7e1c51007cb"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/whp-rf-v3-20261110-ret-ept-unsafe-clear-supervision.json",
+        "bytes": 786,
+        "sha256": "78339cb56ecce28dc0c73d26ee3c24aa4e5280247a0fb5e458a0b511ea729edf"
+      },
+      "reported_errors": [],
+      "experiment_completed": true,
+      "phases": [
+        {
+          "name": "callee-entry",
+          "reason": 1,
+          "rip": "0x2000",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "name": "return-ept",
+          "reason": 1,
+          "rip": "0x307b",
+          "rflags": "0x10046",
+          "vp_markers": [
+            [
+              0,
+              1,
+              4294905841,
+              12411,
+              70
+            ],
+            [
+              0,
+              1,
+              4294905841,
+              12411,
+              70
+            ]
+          ]
+        },
+        {
+          "name": "after-consumer-halt",
+          "reason": 8,
+          "rip": "0x5001",
+          "rflags": "0x2",
+          "vp_markers": [
+            [
+              1,
+              2,
+              4294905841,
+              12411,
+              70
+            ],
+            [
+              1,
+              2,
+              4294905841,
+              12411,
+              70
+            ]
+          ]
+        }
+      ],
+      "rf_write_count": 2,
+      "native_elapsed_seconds": 0.09399999999732245,
+      "host_elapsed_seconds": 0.2659999999887077,
+      "job_deadline_seconds": 20,
+      "job_active_after": 0,
+      "all_cleanup_calls_successful": true
+    }
+  ],
+  "pairwise_final_raw_comparisons": [
+    {
+      "left": "whp-rf-v1-20261110-ret-baseline",
+      "right": "whp-rf-v3-20261110-ret-ept-raw",
+      "final_64KiB_memory_equal": true,
+      "memory_different_byte_addresses": [],
+      "final_register_different_ids_by_vp": [
+        [],
+        []
+      ],
+      "final_xsave_960_bytes_equal_by_vp": [
+        true,
+        true
+      ]
+    },
+    {
+      "left": "whp-rf-v3-20261110-ret-ept-raw",
+      "right": "whp-rf-v3-20261110-ret-ept-unsafe-clear",
+      "final_64KiB_memory_equal": false,
+      "memory_different_byte_addresses": [
+        "0x8204",
+        "0x9204"
+      ],
+      "final_register_different_ids_by_vp": [
+        [],
+        []
+      ],
+      "final_xsave_960_bytes_equal_by_vp": [
+        true,
+        true
+      ]
+    },
+    {
+      "left": "whp-rf-v3-20261110-iret-baseline",
+      "right": "whp-rf-v3-20261110-iret-ept-preserve",
+      "final_64KiB_memory_equal": true,
+      "memory_different_byte_addresses": [],
+      "final_register_different_ids_by_vp": [
+        [],
+        []
+      ],
+      "final_xsave_960_bytes_equal_by_vp": [
+        true,
+        true
+      ]
+    },
+    {
+      "left": "whp-rf-v3-20261110-iret-ept-preserve",
+      "right": "whp-rf-v3-20261110-iret-ept-unsafe-clear",
+      "final_64KiB_memory_equal": false,
+      "memory_different_byte_addresses": [
+        "0x8204",
+        "0x8208",
+        "0x8209",
+        "0x820a",
+        "0x820b",
+        "0x820c",
+        "0x820d",
+        "0x8210",
+        "0x9204",
+        "0x9208",
+        "0x9209",
+        "0x920a",
+        "0x920b",
+        "0x920c",
+        "0x920d",
+        "0x9210",
+        "0xaed5",
+        "0xaee0",
+        "0xaee1",
+        "0xaee5",
+        "0xaee8",
+        "0xaee9",
+        "0xaeea",
+        "0xaeeb",
+        "0xaeec",
+        "0xaeed",
+        "0xaeee",
+        "0xaeef",
+        "0xaef0",
+        "0xaef1",
+        "0xbed5",
+        "0xbee0",
+        "0xbee1",
+        "0xbee5",
+        "0xbee8",
+        "0xbee9",
+        "0xbeea",
+        "0xbeeb",
+        "0xbeec",
+        "0xbeed",
+        "0xbeee",
+        "0xbeef",
+        "0xbef0",
+        "0xbef1"
+      ],
+      "final_register_different_ids_by_vp": [
+        [
+          "37"
+        ],
+        [
+          "37"
+        ]
+      ],
+      "final_xsave_960_bytes_equal_by_vp": [
+        true,
+        true
+      ]
+    }
+  ],
+  "limitations": [
+    "The baseline arms omit only return-page EPT. Both still use a common initial callee-entry EPT stop; they are not all-execution-without-EPT baselines.",
+    "v1 ret-baseline retains its failed receipt: validator expected RIP=5000, while actual WHP halt reason=8 has RIP=5001 after F4 at 5000. Offline review uses recorded final bytes; it neither rewrites the receipt nor treats host exit0 as experiment success. This WHP observation must not be conflated with every raw VMCS HLT-exit RIP rule.",
+    "v2 ret-ept-raw retains its failed pre-EPT no-handler guard; no continuation or RF write was attempted in that case.",
+    "The two unsafe-clear arms are negative controls only. They cannot authorize production RF clearing. Host post-write assertions check other registers unchanged, but full before/after register arrays for that instant were not persisted; the report preserves RFLAGS pairs and subsequent phase snapshots.",
+    "Each phase re-reads registers and memory in the source and reports stability; the duplicate bytes are not persisted. RF probes capture XSAVE once per phase, unlike frozen return-v2 explicit duplicate XSAVE reads. Cross-phase XSAVE equality is independently verified here, not relabeled same-stop duplicate capture.",
+    "The handler stores the latest frame rather than a complete event trace. Count and original bytes suffice for these bounded differential cases, not arbitrary interrupt histories.",
+    "No general reconstruction of pre-EPT RF is obtained. To claim a completed-near-RET RF0 boundary, an independent actual execution-path and absence-of-intervening-event proof is required; target RIP, CALL stack, DR snapshot or zero pending-event getters alone do not provide it.",
+    "No Windows/WOW64, CPL3 transition, IRETQ, task switch, MOV-SS blocking, async event, self-modifying code or original game evidence. DR4/5 independent raw values and previous canonical57 limitations remain unresolved.",
+    "These contrast results demonstrate preserving guest debug semantics on tested paths, not arbitrary instruction-boundary transparency, full ABI, all57 state, original Windows handles, original-game handshake or two fresh accepted lifetimes."
+  ],
+  "next_gate": "Keep unknown, IRET and event paths fail-closed. Require independent pre-EPT RF provenance and debug-event equivalence before considering any scoped restoration; no uniform clear or guessed zero. These results support rejecting the current general restoration plan without more native repetition."
+}

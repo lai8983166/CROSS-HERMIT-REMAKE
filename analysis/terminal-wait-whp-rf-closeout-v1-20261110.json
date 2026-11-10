@@ -1,0 +1,638 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-10T03:12:54.262920+00:00",
+  "baseline": "fe5d2d84b0ce01db70d051a911f3c858425398ba",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "change": "connect-terminal-wait-and-battle-exit",
+  "tasks_completed": 2,
+  "tasks_total": 8,
+  "functional_result": {
+    "RF_normalization_plan_refuted": true,
+    "raw_preserve_two_fixture_baselines_equal": true,
+    "native_debug_repeat_counterexample": true,
+    "direct_RET_cannot_be_inferred_from_stack": true,
+    "original_RF_general_provenance": false,
+    "production_RF_restoration": false,
+    "qualified_game_wait_returns": 0,
+    "first_game_consumer": false,
+    "three_game_handshakes": false,
+    "resource_PTD_release": false
+  },
+  "native": [
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\report.json",
+      "sha256": "a7fee9d5945cb992825d12172360271ac84f06493b8f101b7b07ea2584e31f6a",
+      "case": "ret-baseline",
+      "native_seconds": 0.07799999999406282,
+      "supervision_seconds": 0.25,
+      "deadline": 20,
+      "errors_retained": [
+        "ValueError('expected boundary after-consumer-halt')"
+      ],
+      "host_job_active_after": 0,
+      "raw_files_available_via_capsule": true,
+      "original_expanded_path_exists": false
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\report.json",
+      "sha256": "510af73babd5c093b84b629afc451866e81a684efe617a350afdd14cb1081b04",
+      "case": "ret-ept-raw",
+      "native_seconds": 0.09399999999732245,
+      "supervision_seconds": 0.25,
+      "deadline": 20,
+      "errors_retained": [
+        "ValueError('no consumer or #DB handler before EPT')"
+      ],
+      "host_job_active_after": 0,
+      "raw_files_available_via_capsule": true,
+      "original_expanded_path_exists": false
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\report.json",
+      "sha256": "e78538b09c8bdab0b8abd6e0ba7e38543293bd571c3ef8f202fefdcf160685e6",
+      "case": "iret-baseline",
+      "native_seconds": 0.07799999999406282,
+      "supervision_seconds": 0.25,
+      "deadline": 20,
+      "errors_retained": [],
+      "host_job_active_after": 0,
+      "raw_files_available_via_capsule": true,
+      "original_expanded_path_exists": false
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\report.json",
+      "sha256": "ee8721b8ffe0e9e44df2c3b61ad0268a5d4e430a483bdfbff136497baa702d3b",
+      "case": "iret-ept-preserve",
+      "native_seconds": 0.09399999999732245,
+      "supervision_seconds": 0.25,
+      "deadline": 20,
+      "errors_retained": [],
+      "host_job_active_after": 0,
+      "raw_files_available_via_capsule": true,
+      "original_expanded_path_exists": false
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\report.json",
+      "sha256": "cc0951417c8d3eedd01bcff3713f69e324e2a42bdb0e6a0f55ce89b35d51f924",
+      "case": "iret-ept-unsafe-clear",
+      "native_seconds": 0.09399999999732245,
+      "supervision_seconds": 0.25,
+      "deadline": 20,
+      "errors_retained": [],
+      "host_job_active_after": 0,
+      "raw_files_available_via_capsule": true,
+      "original_expanded_path_exists": false
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\report.json",
+      "sha256": "fc7346b083912fdb37fd0b159d7953abe965cfa65f718e72827209afc3cdaaae",
+      "case": "ret-ept-raw",
+      "native_seconds": 0.09399999999732245,
+      "supervision_seconds": 0.25,
+      "deadline": 20,
+      "errors_retained": [],
+      "host_job_active_after": 0,
+      "raw_files_available_via_capsule": true,
+      "original_expanded_path_exists": false
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\report.json",
+      "sha256": "f049c394f27c8b7403f38ec1b8a172dad132feebadbcd76dafcbd7e1c51007cb",
+      "case": "ret-ept-unsafe-clear",
+      "native_seconds": 0.09399999999732245,
+      "supervision_seconds": 0.2659999999887077,
+      "deadline": 20,
+      "errors_retained": [],
+      "host_job_active_after": 0,
+      "raw_files_available_via_capsule": true,
+      "original_expanded_path_exists": false
+    }
+  ],
+  "validation": {
+    "archive_only_proof_after_retirement": true,
+    "proof": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-rf-proof-v1-20261110.json",
+      "bytes": 9451,
+      "sha256": "1d06e0637896af6afbddbfcee1196a5703a72e209bc700d41c70197d3bdb695f"
+    },
+    "unittest_normal": 8,
+    "unittest_optimized": 8,
+    "strict_openspec_passed": true,
+    "preservation": {
+      "checked_utc": "2026-11-10T03:12:54.254882+00:00",
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    },
+    "independent_review": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-rf-review-v1-20261110.json",
+      "bytes": 24615,
+      "sha256": "64107665f15fbf9654ee5828306889202f05339450f6a217133aa6e579a340fa"
+    }
+  },
+  "environment": {
+    "all_new_data_F": true,
+    "synthetic_vp_count": 2,
+    "reserved_address_bytes": 4294967296,
+    "committed_mapped_bytes": 65536,
+    "windows_boots": 0,
+    "original_game_starts": 0,
+    "host_input_actions": 0,
+    "host_BCD_changes": 0,
+    "VMX_unchanged": true,
+    "running": "Total running VMs: 0",
+    "snapshots": "Total snapshots: 0",
+    "vmem_files": [],
+    "VMDK_total_bytes": 16761683968,
+    "VMDK_growth_bytes": 0,
+    "new_environment_download_bytes": 0,
+    "guest_Windows_files_created": 0
+  },
+  "limits": [
+    "Baselines share the callee-entry EPT; only return EPT is contrasted.",
+    "Closed 32-bit self-owned code, explicit guest #DB handler and disabled external input; not Windows/WOW64 or original-game acceptance.",
+    "Original RF provenance at arbitrary Windows return still missing. Do not infer it from stack or final register equality.",
+    "No successful constrained RF restoration was established. Both RF-clearing arms are deliberately unsafe negative controls.",
+    "No same-stop raw XSAVE reread in these RF probes. No Windows event-history, CPL3/WOW64 or general instruction-boundary proof.",
+    "v1 HLT predicate and v2 no-handler predicate failures stay failures; raw original observations independently reused, not re-signed."
+  ],
+  "next_gate": "Obtain independently authenticated actual predecessor/event-delivery provenance, or qualify a stop API preserving original RF; do not repeat uniform-clear or stack-only proofs. Then qualify Windows/WOW64 before any game migration.",
+  "evidence": {
+    "capsule": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-rf-support-v1-20261110.zip",
+      "bytes": 88276,
+      "sha256": "93e34a67c286a1dfe0a9ca6ae25954e2736f9602886588f605f1583e589cfb8b"
+    },
+    "manifest_member": "manifest.json",
+    "original_source_file_bytes": 2271553,
+    "unique_blob_bytes": 1256833,
+    "deduplicated_file_count": 92,
+    "retired_expanded_files": [
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\after-consumer-halt-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\after-consumer-halt-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\after-consumer-halt.memory.bin",
+        "bytes": 65536,
+        "sha256": "4693a610108f11401c93be5bf6e210f55a511c8f9b641607dc446dc7316ec8b4",
+        "replacement_member": "sha256/4693a610108f11401c93be5bf6e210f55a511c8f9b641607dc446dc7316ec8b4"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f",
+        "replacement_member": "sha256/0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321",
+        "replacement_member": "sha256/5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\progress.json",
+        "bytes": 32515,
+        "sha256": "4a3be2b340bf6a212d31d493120d5db172f3d7d990005af5a1fcf8b3f0142768",
+        "replacement_member": "sha256/4a3be2b340bf6a212d31d493120d5db172f3d7d990005af5a1fcf8b3f0142768"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v1-20261110-ret-baseline\\report.json",
+        "bytes": 33216,
+        "sha256": "a7fee9d5945cb992825d12172360271ac84f06493b8f101b7b07ea2584e31f6a",
+        "replacement_member": "sha256/a7fee9d5945cb992825d12172360271ac84f06493b8f101b7b07ea2584e31f6a"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f",
+        "replacement_member": "sha256/0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321",
+        "replacement_member": "sha256/5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\progress.json",
+        "bytes": 32489,
+        "sha256": "18f13be6a39d87f4e0acebc8ca8c0e955700fd761de711477b93f34e8be7e8eb",
+        "replacement_member": "sha256/18f13be6a39d87f4e0acebc8ca8c0e955700fd761de711477b93f34e8be7e8eb"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\report.json",
+        "bytes": 33193,
+        "sha256": "510af73babd5c093b84b629afc451866e81a684efe617a350afdd14cb1081b04",
+        "replacement_member": "sha256/510af73babd5c093b84b629afc451866e81a684efe617a350afdd14cb1081b04"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\return-ept-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\return-ept-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v2-20261110-ret-ept-raw\\return-ept.memory.bin",
+        "bytes": 65536,
+        "sha256": "902b00287c04ed23f8a9f4f31d79ae4e993077451d7dfbcd3ee1a74c06a7b3c7",
+        "replacement_member": "sha256/902b00287c04ed23f8a9f4f31d79ae4e993077451d7dfbcd3ee1a74c06a7b3c7"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\after-consumer-halt-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\after-consumer-halt-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\after-consumer-halt.memory.bin",
+        "bytes": 65536,
+        "sha256": "de4fbc6481480992492e03fa3bd912bf65ac342c626bb95315b48e5a441e365a",
+        "replacement_member": "sha256/de4fbc6481480992492e03fa3bd912bf65ac342c626bb95315b48e5a441e365a"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "3e09bf940536f9cbb52c71fc2c3606f6bf7cbb480eed11c95431e6e95e64e4ef",
+        "replacement_member": "sha256/3e09bf940536f9cbb52c71fc2c3606f6bf7cbb480eed11c95431e6e95e64e4ef"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "756de83afc104996859e77649a356b3956df0752e66bf1bcde4382bb88d5190d",
+        "replacement_member": "sha256/756de83afc104996859e77649a356b3956df0752e66bf1bcde4382bb88d5190d"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\progress.json",
+        "bytes": 33064,
+        "sha256": "f254a5be4f3f084ba11628f04dee98e73a42b7b335988ce30430ff0d64ec1fac",
+        "replacement_member": "sha256/f254a5be4f3f084ba11628f04dee98e73a42b7b335988ce30430ff0d64ec1fac"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-baseline\\report.json",
+        "bytes": 34055,
+        "sha256": "e78538b09c8bdab0b8abd6e0ba7e38543293bd571c3ef8f202fefdcf160685e6",
+        "replacement_member": "sha256/e78538b09c8bdab0b8abd6e0ba7e38543293bd571c3ef8f202fefdcf160685e6"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\after-consumer-halt-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\after-consumer-halt-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\after-consumer-halt.memory.bin",
+        "bytes": 65536,
+        "sha256": "de4fbc6481480992492e03fa3bd912bf65ac342c626bb95315b48e5a441e365a",
+        "replacement_member": "sha256/de4fbc6481480992492e03fa3bd912bf65ac342c626bb95315b48e5a441e365a"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "3e09bf940536f9cbb52c71fc2c3606f6bf7cbb480eed11c95431e6e95e64e4ef",
+        "replacement_member": "sha256/3e09bf940536f9cbb52c71fc2c3606f6bf7cbb480eed11c95431e6e95e64e4ef"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "756de83afc104996859e77649a356b3956df0752e66bf1bcde4382bb88d5190d",
+        "replacement_member": "sha256/756de83afc104996859e77649a356b3956df0752e66bf1bcde4382bb88d5190d"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\progress.json",
+        "bytes": 42370,
+        "sha256": "b0b4af287ad29eff08cd0201e9c67beee5ccb3dd14073ee520a90a53047aebec",
+        "replacement_member": "sha256/b0b4af287ad29eff08cd0201e9c67beee5ccb3dd14073ee520a90a53047aebec"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\report.json",
+        "bytes": 43361,
+        "sha256": "ee8721b8ffe0e9e44df2c3b61ad0268a5d4e430a483bdfbff136497baa702d3b",
+        "replacement_member": "sha256/ee8721b8ffe0e9e44df2c3b61ad0268a5d4e430a483bdfbff136497baa702d3b"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\return-ept-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\return-ept-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-preserve\\return-ept.memory.bin",
+        "bytes": 65536,
+        "sha256": "74c8b9fdeca32c82d50751304712889c177220015c1ea6ba1c617ef0af46834f",
+        "replacement_member": "sha256/74c8b9fdeca32c82d50751304712889c177220015c1ea6ba1c617ef0af46834f"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\after-consumer-halt-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\after-consumer-halt-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\after-consumer-halt.memory.bin",
+        "bytes": 65536,
+        "sha256": "5e740ed9f3b3a8e942941fd4a269b712a4fc5f4ac429d03a0ba74e54341769bd",
+        "replacement_member": "sha256/5e740ed9f3b3a8e942941fd4a269b712a4fc5f4ac429d03a0ba74e54341769bd"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "3e09bf940536f9cbb52c71fc2c3606f6bf7cbb480eed11c95431e6e95e64e4ef",
+        "replacement_member": "sha256/3e09bf940536f9cbb52c71fc2c3606f6bf7cbb480eed11c95431e6e95e64e4ef"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "756de83afc104996859e77649a356b3956df0752e66bf1bcde4382bb88d5190d",
+        "replacement_member": "sha256/756de83afc104996859e77649a356b3956df0752e66bf1bcde4382bb88d5190d"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\progress.json",
+        "bytes": 42903,
+        "sha256": "bbaf1e1b8c142acad1196ff9449190d0f9fdde2023c237833f694c477f4e00b2",
+        "replacement_member": "sha256/bbaf1e1b8c142acad1196ff9449190d0f9fdde2023c237833f694c477f4e00b2"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\report.json",
+        "bytes": 43922,
+        "sha256": "cc0951417c8d3eedd01bcff3713f69e324e2a42bdb0e6a0f55ce89b35d51f924",
+        "replacement_member": "sha256/cc0951417c8d3eedd01bcff3713f69e324e2a42bdb0e6a0f55ce89b35d51f924"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\return-ept-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\return-ept-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-iret-ept-unsafe-clear\\return-ept.memory.bin",
+        "bytes": 65536,
+        "sha256": "74c8b9fdeca32c82d50751304712889c177220015c1ea6ba1c617ef0af46834f",
+        "replacement_member": "sha256/74c8b9fdeca32c82d50751304712889c177220015c1ea6ba1c617ef0af46834f"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\after-consumer-halt-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\after-consumer-halt-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\after-consumer-halt.memory.bin",
+        "bytes": 65536,
+        "sha256": "4693a610108f11401c93be5bf6e210f55a511c8f9b641607dc446dc7316ec8b4",
+        "replacement_member": "sha256/4693a610108f11401c93be5bf6e210f55a511c8f9b641607dc446dc7316ec8b4"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f",
+        "replacement_member": "sha256/0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321",
+        "replacement_member": "sha256/5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\progress.json",
+        "bytes": 41763,
+        "sha256": "73667efde611218e1271cd9ce2f8b8f8b7d2b405cbaa98bbbcb5b4596eae3999",
+        "replacement_member": "sha256/73667efde611218e1271cd9ce2f8b8f8b7d2b405cbaa98bbbcb5b4596eae3999"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\report.json",
+        "bytes": 42782,
+        "sha256": "fc7346b083912fdb37fd0b159d7953abe965cfa65f718e72827209afc3cdaaae",
+        "replacement_member": "sha256/fc7346b083912fdb37fd0b159d7953abe965cfa65f718e72827209afc3cdaaae"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\return-ept-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\return-ept-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-raw\\return-ept.memory.bin",
+        "bytes": 65536,
+        "sha256": "902b00287c04ed23f8a9f4f31d79ae4e993077451d7dfbcd3ee1a74c06a7b3c7",
+        "replacement_member": "sha256/902b00287c04ed23f8a9f4f31d79ae4e993077451d7dfbcd3ee1a74c06a7b3c7"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\after-consumer-halt-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\after-consumer-halt-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\after-consumer-halt.memory.bin",
+        "bytes": 65536,
+        "sha256": "a913cf48b578e8f09f2cd27b67cd42f249e2015ad2acb898b7dc3236082c6953",
+        "replacement_member": "sha256/a913cf48b578e8f09f2cd27b67cd42f249e2015ad2acb898b7dc3236082c6953"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\callee-entry-vp0.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\callee-entry-vp1.xsave",
+        "bytes": 960,
+        "sha256": "9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928",
+        "replacement_member": "sha256/9f1420724fb0601dd7384939cfb0864c19fc263a2ea2fe2f22601f82139e6928"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\callee-entry.memory.bin",
+        "bytes": 65536,
+        "sha256": "0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f",
+        "replacement_member": "sha256/0718038e20ea4dd05e7db6499176109fb6d0440fefc2d77aee5b3a34e5d3887f"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\initial.memory.bin",
+        "bytes": 65536,
+        "sha256": "5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321",
+        "replacement_member": "sha256/5137014540781c60cc8e931b3ba945d9611f0f5aaa89c631339805eb1be10321"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\progress.json",
+        "bytes": 42351,
+        "sha256": "cc1703df164e71a4ddb4b3d82e4a454b022ccf70b41d3fb4a1f97298957d9632",
+        "replacement_member": "sha256/cc1703df164e71a4ddb4b3d82e4a454b022ccf70b41d3fb4a1f97298957d9632"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\report.json",
+        "bytes": 43370,
+        "sha256": "f049c394f27c8b7403f38ec1b8a172dad132feebadbcd76dafcbd7e1c51007cb",
+        "replacement_member": "sha256/f049c394f27c8b7403f38ec1b8a172dad132feebadbcd76dafcbd7e1c51007cb"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\return-ept-vp0.xsave",
+        "bytes": 960,
+        "sha256": "6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c",
+        "replacement_member": "sha256/6a55a822ff6441807848cb7d1d3215f7f14f8ceb60698871400cd9fd191a731c"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\return-ept-vp1.xsave",
+        "bytes": 960,
+        "sha256": "275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743",
+        "replacement_member": "sha256/275696767121ce1725a6485dc30a30d3db1fbd2c75b77196e8c8518378b6b743"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\whp-rf-v3-20261110-ret-ept-unsafe-clear\\return-ept.memory.bin",
+        "bytes": 65536,
+        "sha256": "902b00287c04ed23f8a9f4f31d79ae4e993077451d7dfbcd3ee1a74c06a7b3c7",
+        "replacement_member": "sha256/902b00287c04ed23f8a9f4f31d79ae4e993077451d7dfbcd3ee1a74c06a7b3c7"
+      }
+    ],
+    "retirement": {
+      "recursive_delete": false,
+      "original_bytes_retained": true,
+      "removed_logical_bytes": 2214314,
+      "capsule_sha256": "93e34a67c286a1dfe0a9ca6ae25954e2736f9602886588f605f1583e589cfb8b",
+      "capsule": "F:\\project\\chaomofa\\analysis\\terminal-wait-whp-rf-support-v1-20261110.zip",
+      "remaining": [],
+      "removed_files": 75
+    },
+    "raw_sources_now_available_only_in_capsule": true,
+    "no_full_parent_history_copy": true,
+    "cleanup": "Only 75 individually size/SHA-authenticated new expanded evidence files retired after verified content-addressed archive and independent review. Every original byte retained and archive-only proof passed afterwards. No historical evidence/assets/saves, old QEMU files or parent probes changed. All new native VP/partition/memory/Job resources released."
+  }
+}
