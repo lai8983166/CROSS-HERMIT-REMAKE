@@ -1,0 +1,331 @@
+{
+  "schema": "terminal-wait-tcg-predecessor-independent-review-v1",
+  "date": "2026-11-10",
+  "scope": "Independent offline source, ELF bytes, trace, binary guest output and receipt review. Reviewer ran no QEMU, VM, guest or native acquisition and modified no old file.",
+  "decision": {
+    "finite_owned_tcg_guest_predecessor_and_event_path_verified": true,
+    "hardware_native_cpu_semantics_verified": false,
+    "dual_vp_execution_verified": false,
+    "transparent_original_program_observer": false,
+    "canonical57_accepted": false,
+    "rf_general_reconstruction": false,
+    "windows_accepted": false,
+    "original_game_accepted": false,
+    "original_game_starts": 0,
+    "windows_boots": 0
+  },
+  "conclusion": [
+    "In this bounded VP0 TCG microguest, actual path evidence establishes CALL100300 -> helper100380 -> near RET100384 -> guest execution-breakpoint exception1 at100305 -> guest IDT handler100400 -> IRETD100433 -> first target instruction100305 and consumer output. The direct predecessor of the observed target execution is IRETD, not the earlier near RET.",
+    "v3 outputs the original12-byte #DB stack frame before modifying its RF bit, plus guest-read DR6. EIP100305/CS8/EFLAGS6/DR6ffff0ff1 independently match the event log. The handler then sets RF in that frame and returns; this is genuine modeled guest exception delivery and IRETD, without host exception injection or host RFLAGS patch.",
+    "This proves a finite TCG path and the source of RF1 for this owned guest, not equivalence to hardware, general event-history completeness, Windows/WOW64, original-game state or canonical57."
+  ],
+  "source_identities": [
+    {
+      "path": "devtools/terminal_tcg_predecessor_probe.py",
+      "bytes": 4581,
+      "sha256": "e93d14da57d2bdd0373ab4a4921de66878f25c1a5395bbf1772b0e3c8885b156"
+    },
+    {
+      "path": "devtools/terminal_tcg_predecessor_probe_v2.py",
+      "bytes": 4730,
+      "sha256": "1f3dcd71ce732f04574b458f8b2a68602038366ce8b1bb6469b4e69282eeb0fa"
+    },
+    {
+      "path": "devtools/terminal_tcg_predecessor_probe_v3.py",
+      "bytes": 4929,
+      "sha256": "ca0cf4dbc9936992d1d6a361189318438573c9d557ccdc9530df48d7626df0dc"
+    }
+  ],
+  "previous_contract": {
+    "path": "analysis/terminal-wait-qemu-state-contract-v1-20261110.json",
+    "bytes": 17058,
+    "sha256": "82c5a30ba01795787c198a7f5b0c4fa815d93ca444e2d6d695b5ce009a5831d7"
+  },
+  "runtime": {
+    "executable": {
+      "path": ".venv-audit/native-worker/qemu-worker/runtime/qemu-system-x86_64.exe",
+      "bytes": 25457048,
+      "sha256": "47d57a6072e0bb3bd98f87926eb129eb1736dfe818c67b3b81ef7ce4edd0b3cd"
+    },
+    "additional_firmware": {
+      "path": ".venv-audit/native-worker/qemu-worker/runtime/share/multiboot_dma.bin",
+      "bytes": 1024,
+      "sha256": "46def003b1c413cc4a5880d858ca54456ad6978d5fdb6e1b7d086b2905a66df0"
+    },
+    "reported_version": "11.1.0 (v11.1.0-12130-ge470268ff4)",
+    "exact_commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+    "exact_commit_source_verified": false,
+    "compiler_to_binary_closure": false
+  },
+  "configuration": {
+    "cpus_configured": 2,
+    "observed_trace_vps": [
+      0
+    ],
+    "smp_handshake": false,
+    "ram_argument": "4G",
+    "ram_actually_committed_not_measured": true,
+    "acceleration": "tcg,thread=single,one-insn-per-tb=on",
+    "logging": "exec,int,nochain",
+    "exec_log_range": "0x100000..0x105000",
+    "display_serial_monitor_nic": "none",
+    "diskless_guest": true,
+    "guest_internal_deadline_seconds": 15,
+    "outer_job_deadline_seconds": 25,
+    "trace_budget_bytes": 2097152
+  },
+  "elf_contract": {
+    "format": "ELF32 little-endian i386 ET_EXEC",
+    "entry": "0x100100",
+    "load_file_offset": "0x1000",
+    "load_virtual_physical_address": "0x100000",
+    "file_bytes": 4096,
+    "memory_bytes": 20480,
+    "whole_elf_bytes": 8192,
+    "segment_flags": "RWX",
+    "multiboot_checksum_verified": true,
+    "initial_stack": "0x104000",
+    "gdt": "0x100800",
+    "idt": "0x101000",
+    "exception_vector1_gate": "selector8 offset100400 type8e",
+    "counter_address": "0x102000",
+    "call_bytes": "e87b000000",
+    "ret_rva": "0x100384",
+    "ret_bytes": "c3",
+    "v3_handler_bytes": "60ff0500201000b044e6e98d742420b90c000000ace6e9e2fb0f21f05089e6b904000000ace6e9e2fb58814c24280000010061cf",
+    "handler_semantics": "PUSHAD saves32B. At ESP+20h lies original EIP, then CS and EFLAGS; LODSB/OUT loop exports12B. MOV EAX,DR6 then PUSH/LODSB/OUT exports4B and POP balances temporary stack. OR [ESP+28h],10000h modifies original EFLAGS, POPAD restoresGPRs, IRETD transfers control. Observed original EFLAGS6 has DF0, so byte loops advance as intended."
+  },
+  "v3_raw_event": {
+    "debugcon_hex": "534844050310000800000006000000f10fffff523145",
+    "prefix": "SHD",
+    "suffix": "R1E",
+    "original_exception_frame_hex": "050310000800000006000000",
+    "original_frame_address": "0x103ff4 (inferred from pre-event ESP104000 and same-CPL three-dword frame)",
+    "original_eip": "0x100305",
+    "original_cs": 8,
+    "original_eflags": "0x6",
+    "guest_dr6": "0xffff0ff1",
+    "log_dr0": "0x100305",
+    "log_dr7": "0x401",
+    "frame_dump_before_rf_or": true,
+    "rf_after_handler_or": "0x10006 (instruction-semantic inference; not a separate raw EFLAGS getter)",
+    "handler_iret": "0x100433",
+    "first_post_iret_trace_pc": "0x100305",
+    "first_post_iret_tb_flags": "0x100b0",
+    "following_tb_flags": "0xb0",
+    "internal_tb_flags_are_not_full_eflags": true
+  },
+  "trace_contract": {
+    "upstream_sources": [
+      {
+        "path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.0.0/accel__tcg__cpu-exec.c",
+        "bytes": 33775,
+        "sha256": "ffb228a2eda3e556572ee275aa76f66d18bccb89ecfe9ea51a8a844ae0cb40f5"
+      },
+      {
+        "path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.0.0/target__i386__tcg__translate.c",
+        "bytes": 115553,
+        "sha256": "491e6023ddaf370a0428b44558ec6a50977d756fda0837fac9bc092970a25c5a"
+      },
+      {
+        "path": ".venv-audit/native-worker/qemu-worker/source-contract-v11.1.0/target__i386__tcg__system__bpt_helper.c",
+        "bytes": 9362,
+        "sha256": "2c8a6069482d943b8ba82fd03eb2344e561c69ae5226a104c2b86197424304bb"
+      }
+    ],
+    "urls": [
+      "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/accel/tcg/cpu-exec.c",
+      "https://raw.githubusercontent.com/qemu/qemu/v11.0.0/target/i386/tcg/translate.c",
+      "https://raw.githubusercontent.com/qemu/qemu/v11.1.0/target/i386/tcg/system/bpt_helper.c"
+    ],
+    "source_findings": [
+      "cpu-exec.c 264-274 logs CPU index, host TB pointer, CS base, guestPC and internal flags. cpu_tb_exec 434-440 writes the entry record before calling generated code.",
+      "cpu-exec.c 455-475 explicitly handles a TB that did not begin execution and may emit Stopped execution. A Trace line alone is not retirement evidence. Synchronous faults can prevent an entered instruction from completing.",
+      "cpu-exec.c 308-309 skips breakpoint checks for singlestep_enabled. The recorded accelerator option is one-insn-per-tb, not debugger single stepping.",
+      "bpt_helper.c 231-233 recognizes BP_CPU and raises EXCP01_DB. Guest MOV DR configuration is distinct from GDB VMM-internal breakpoints.",
+      "No matching exact-fork source for interrupt log formatting was established in the retained source subset. Event attribution here is additionally tied to guest original frame bytes and actual handler path, not a claim of exact source/binary authentication."
+    ],
+    "finite_checks": [
+      "Each logged TB cflags has low instruction-count field1; observed handler loops follow exact original instruction boundaries.",
+      "v2 has39 trace entries; v3 has94. All areVP0. One exception1 event exists in each complete log.",
+      "RET trace precedes exception event, which precedes handler. Target100305 appears once, only after handler IRETD.",
+      "v3 stack-output loop has12 iterations and DR6-output loop4; ordered trace PCs match every expected handler instruction and loop edge.",
+      "No Stopped execution lines exist. No logged hardware interrupt or SMM entry occurs after first microguest trace; earlier firmware SMM/INT8 records are retained, not mislabeled guest failures.",
+      "Source pure image() AST was evaluated offline without imports or run(), and each generatedELF exactly matches its saved original; ELF header, segment, checksum, call displacement and original handler bytes independently parsed."
+    ]
+  },
+  "cases": [
+    {
+      "version": 1,
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-predecessor-v1-20261110/report.json",
+        "bytes": 2628,
+        "sha256": "b40a8f0ed5c14c699f6ca239e7e9bb82168869f5f755cee6459a344219a4dba3"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/tcg-predecessor-supervision-v1.json",
+        "bytes": 473,
+        "sha256": "3012651fcbcffb82f5e3feba3c575b33b37951fbc603c87f2cd8e5f9fdcac21c"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v1-20261110/guest.elf",
+          "bytes": 8192,
+          "sha256": "93503047f043e45c05e86941204feac0b6073c19bebaa6684c6962eab9b740b6"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v1-20261110/guest.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v1-20261110/stderr.txt",
+          "bytes": 110,
+          "sha256": "cbb9af0ac6061560ec26ea9adfa9b326a3a4329fdb6b15149a37572e2ae5817e"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v1-20261110/trace.log",
+          "bytes": 12999,
+          "sha256": "d679872ad1dc5838c969cb1c63e870e59d407241ec60c6411770142d3c332ab3"
+        }
+      ],
+      "source_generated_elf_exact": true,
+      "trace_entries": 0,
+      "trace_vps": [],
+      "events": [],
+      "source_start_jump_target": "0x100304",
+      "source_errors": [
+        "deadline or trace budget"
+      ],
+      "execution_complete": false,
+      "exit_code": 1,
+      "native_seconds": 15.047000000005937,
+      "host_seconds": 15.781000000002678,
+      "host_job_active_after": 0
+    },
+    {
+      "version": 2,
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-predecessor-v2-20261110/report.json",
+        "bytes": 2821,
+        "sha256": "2f431f53412efb1eddf7d83aeadbc7b036c9d1cb6f29787523fcc74864a8c53b"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/tcg-predecessor-supervision-v2.json",
+        "bytes": 439,
+        "sha256": "6a137bd76385ed97d6454b4ab427fce86a1b1f646ac0cc2d97413c41941cc703"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v2-20261110/guest.elf",
+          "bytes": 8192,
+          "sha256": "d4a7eef93827e3b5dc4cb7710376f6985aba6d04315bdbab7a99167bc315e300"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v2-20261110/guest.txt",
+          "bytes": 6,
+          "sha256": "af445f8ea4d4400c804368e849b2dfc50dc74df1940f1d5e99ef81a44974986f"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v2-20261110/stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v2-20261110/trace.log",
+          "bytes": 9241,
+          "sha256": "2227d453aec618576f0d0931f4e8c7bbe97c971a44ef4a80e19a3029e480446f"
+        }
+      ],
+      "source_generated_elf_exact": true,
+      "trace_entries": 39,
+      "trace_vps": [
+        0
+      ],
+      "events": [
+        {
+          "line": 141,
+          "text": "     0: v=01 e=0000 i=0 cpl=0 IP=0008:0000000000100305 pc=0000000000100305 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000448"
+        }
+      ],
+      "source_start_jump_target": "0x100300",
+      "source_errors": [],
+      "execution_complete": true,
+      "exit_code": 33,
+      "native_seconds": 0.875,
+      "host_seconds": 1.5780000000086147,
+      "host_job_active_after": 0
+    },
+    {
+      "version": 3,
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-predecessor-v3-20261110/report.json",
+        "bytes": 2874,
+        "sha256": "83b759356869b4e1aab7b578e971138dec64effcfbd7cd864017ed494023615c"
+      },
+      "supervision": {
+        "path": ".venv-audit/native-worker/tcg-predecessor-supervision-v3.json",
+        "bytes": 476,
+        "sha256": "ac12adc37767fc6840f70660cc020b647fa243b52dc50f3bdc88d1958543a4c7"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v3-20261110/guest.elf",
+          "bytes": 8192,
+          "sha256": "3320ce3e0522194f5eada34e76ed36fc4417615f316cfea0b59cc0d999e1a48d"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v3-20261110/guest.txt",
+          "bytes": 22,
+          "sha256": "383a7d6a9d4ba0c93fb453a17e814f9c976a395a53284c585a8196baa825354c"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v3-20261110/stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-predecessor-v3-20261110/trace.log",
+          "bytes": 13340,
+          "sha256": "29df8e4ea70d53fa623fcc66669791aa605668c59dce57012c80f1cb068920d1"
+        }
+      ],
+      "source_generated_elf_exact": true,
+      "trace_entries": 94,
+      "trace_vps": [
+        0
+      ],
+      "events": [
+        {
+          "line": 142,
+          "text": "     0: v=01 e=0000 i=0 cpl=0 IP=0008:0000000000100305 pc=0000000000100305 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000448"
+        }
+      ],
+      "source_start_jump_target": "0x100300",
+      "source_errors": [],
+      "execution_complete": true,
+      "exit_code": 33,
+      "native_seconds": 0.9379999999946449,
+      "host_seconds": 1.687999999994645,
+      "host_job_active_after": 0
+    }
+  ],
+  "checked_artifact_bytes": 60294,
+  "version_history": [
+    "v1 has no target Trace entries, empty guest output, stderr reports missing multiboot_dma.bin, and15.047s deadline failure. It remains failed. Its static setup JMP also targeted100304, an independently identified latent bug; the trace does not prove that bad JMP executed.",
+    "v2 adds the1024B firmware and corrects setupJMP to100300. It establishesSHDR1E and finite event order but lacks original event-frame binary output.",
+    "v3 is a distinct acquisition with extra guest instrumentation, not a byte-identical replay ofv2. Its22-byte output adds frame+DR6 and closes only that local evidence gap."
+  ],
+  "limitations": [
+    "2VP configuration is not two executed guest paths: no AP startup, per-VP handshake or concurrent-resource evidence.",
+    "The consumer has no dedicated counter: R appears once and targetPC path occurs once in the finite trace. Character1 is handler counter low byte plus30h; uniqueness is corroborated by the single event and single handler entry, not a general unbounded count proof.",
+    "The source execution_complete check accepts exit33/output length/prefix/suffix. This independent review additionally decodes all16 middle bytes and validates trace ordering; execution_complete alone is insufficient.",
+    "Trace collection is address-filtered and not a universal whole-system event history. Firmware events are present; absence of arbitrary unlogged activity cannot be inferred.",
+    "No complete finalRAM/CPU snapshot was captured. ELF identity and traced writes establish this small path; they do not establish arbitrary self-modifying-code or mutable-memory equivalence.",
+    "The debugcon dump is instrumentation in a self-owned handler. It is not a permitted rewrite of an original protected program and does not prove unchanged timing or original resource lifetime.",
+    "Exception instruction not-retired cases must remain distinct from completed predecessors. An isolated TB-entry PC or two adjacentPCs is never enough.",
+    "TCG modeled execution cannot validate VMware/WHP hardware transparency. Earlier QEMU full57 rejection remains in force, and exact publisher-fork source/compiled-binary closure is absent."
+  ],
+  "next_gate": "Use this only as a bounded alternative-backend predecessor/event observation capability. Any broader chain must retain actual branch/event provenance, instruction completion distinctions, per-VP identity, original-program and complete-state requirements; do not convert this microguest success into original-game acceptance.",
+  "retention": "Only one new small independent JSON. No VM/native action, download, added source copy or modified frozen artifact by reviewer."
+}

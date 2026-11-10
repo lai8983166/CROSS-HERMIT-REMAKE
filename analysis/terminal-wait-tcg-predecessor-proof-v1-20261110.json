@@ -1,0 +1,597 @@
+{
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "finite_TCG_predecessor_event_observed": true,
+  "original_game_starts": 0,
+  "windows_boots": 0,
+  "measured_vps": [
+    0
+  ],
+  "configured_vps": 2,
+  "event_frame": {
+    "eip": 1049349,
+    "cs": 8,
+    "eflags": 6,
+    "dr6": 4294905841
+  },
+  "direct_consumer_predecessor": {
+    "line": 221,
+    "pc": 1049651,
+    "hex": "cf",
+    "instruction": "iretd "
+  },
+  "trace": [
+    {
+      "line": 118,
+      "pc": 1048832,
+      "hex": "fa",
+      "instruction": "cli "
+    },
+    {
+      "line": 119,
+      "pc": 1048833,
+      "hex": "0f011520081000",
+      "instruction": "lgdt [0x100820]"
+    },
+    {
+      "line": 120,
+      "pc": 1048840,
+      "hex": "ea200110000800",
+      "instruction": "ljmp 8:0x100120"
+    },
+    {
+      "line": 121,
+      "pc": 1048864,
+      "hex": "66b81000",
+      "instruction": "mov ax, 0x10"
+    },
+    {
+      "line": 122,
+      "pc": 1048868,
+      "hex": "8ed8",
+      "instruction": "mov ds, eax"
+    },
+    {
+      "line": 123,
+      "pc": 1048870,
+      "hex": "8ec0",
+      "instruction": "mov es, eax"
+    },
+    {
+      "line": 124,
+      "pc": 1048872,
+      "hex": "8ed0",
+      "instruction": "mov ss, eax"
+    },
+    {
+      "line": 125,
+      "pc": 1048874,
+      "hex": "bc00401000",
+      "instruction": "mov esp, 0x104000"
+    },
+    {
+      "line": 126,
+      "pc": 1048879,
+      "hex": "c7050810100000040800",
+      "instruction": "mov dword ptr [0x101008], 0x80400"
+    },
+    {
+      "line": 127,
+      "pc": 1048889,
+      "hex": "c7050c101000008e1000",
+      "instruction": "mov dword ptr [0x10100c], 0x108e00"
+    },
+    {
+      "line": 128,
+      "pc": 1048899,
+      "hex": "0f011d28081000",
+      "instruction": "lidt [0x100828]"
+    },
+    {
+      "line": 129,
+      "pc": 1048906,
+      "hex": "b805031000",
+      "instruction": "mov eax, 0x100305"
+    },
+    {
+      "line": 130,
+      "pc": 1048911,
+      "hex": "0f23c0",
+      "instruction": "mov dr0, eax"
+    },
+    {
+      "line": 131,
+      "pc": 1048914,
+      "hex": "b801040000",
+      "instruction": "mov eax, 0x401"
+    },
+    {
+      "line": 132,
+      "pc": 1048919,
+      "hex": "0f23f8",
+      "instruction": "mov dr7, eax"
+    },
+    {
+      "line": 133,
+      "pc": 1048922,
+      "hex": "b053",
+      "instruction": "mov al, 0x53"
+    },
+    {
+      "line": 134,
+      "pc": 1048924,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 135,
+      "pc": 1048926,
+      "hex": "e99d010000",
+      "instruction": "jmp 0x100300"
+    },
+    {
+      "line": 136,
+      "pc": 1049344,
+      "hex": "e87b000000",
+      "instruction": "call 0x100380"
+    },
+    {
+      "line": 137,
+      "pc": 1049472,
+      "hex": "b048",
+      "instruction": "mov al, 0x48"
+    },
+    {
+      "line": 138,
+      "pc": 1049474,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 139,
+      "pc": 1049476,
+      "hex": "c3",
+      "instruction": "ret "
+    },
+    {
+      "line": 160,
+      "pc": 1049600,
+      "hex": "60",
+      "instruction": "pushal "
+    },
+    {
+      "line": 161,
+      "pc": 1049601,
+      "hex": "ff0500201000",
+      "instruction": "inc dword ptr [0x102000]"
+    },
+    {
+      "line": 162,
+      "pc": 1049607,
+      "hex": "b044",
+      "instruction": "mov al, 0x44"
+    },
+    {
+      "line": 163,
+      "pc": 1049609,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 164,
+      "pc": 1049611,
+      "hex": "8d742420",
+      "instruction": "lea esi, [esp + 0x20]"
+    },
+    {
+      "line": 165,
+      "pc": 1049615,
+      "hex": "b90c000000",
+      "instruction": "mov ecx, 0xc"
+    },
+    {
+      "line": 166,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 167,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 168,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 169,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 170,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 171,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 172,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 173,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 174,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 175,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 176,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 177,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 178,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 179,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 180,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 181,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 182,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 183,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 184,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 185,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 186,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 187,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 188,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 189,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 190,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 191,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 192,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 193,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 194,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 195,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 196,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 197,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 198,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 199,
+      "pc": 1049620,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 200,
+      "pc": 1049621,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 201,
+      "pc": 1049623,
+      "hex": "e2fb",
+      "instruction": "loop 0x100414"
+    },
+    {
+      "line": 202,
+      "pc": 1049625,
+      "hex": "0f21f0",
+      "instruction": "mov eax, dr6"
+    },
+    {
+      "line": 203,
+      "pc": 1049628,
+      "hex": "50",
+      "instruction": "push eax"
+    },
+    {
+      "line": 204,
+      "pc": 1049629,
+      "hex": "89e6",
+      "instruction": "mov esi, esp"
+    },
+    {
+      "line": 205,
+      "pc": 1049631,
+      "hex": "b904000000",
+      "instruction": "mov ecx, 4"
+    },
+    {
+      "line": 206,
+      "pc": 1049636,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 207,
+      "pc": 1049637,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 208,
+      "pc": 1049639,
+      "hex": "e2fb",
+      "instruction": "loop 0x100424"
+    },
+    {
+      "line": 209,
+      "pc": 1049636,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 210,
+      "pc": 1049637,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 211,
+      "pc": 1049639,
+      "hex": "e2fb",
+      "instruction": "loop 0x100424"
+    },
+    {
+      "line": 212,
+      "pc": 1049636,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 213,
+      "pc": 1049637,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 214,
+      "pc": 1049639,
+      "hex": "e2fb",
+      "instruction": "loop 0x100424"
+    },
+    {
+      "line": 215,
+      "pc": 1049636,
+      "hex": "ac",
+      "instruction": "lodsb al, byte ptr [esi]"
+    },
+    {
+      "line": 216,
+      "pc": 1049637,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 217,
+      "pc": 1049639,
+      "hex": "e2fb",
+      "instruction": "loop 0x100424"
+    },
+    {
+      "line": 218,
+      "pc": 1049641,
+      "hex": "58",
+      "instruction": "pop eax"
+    },
+    {
+      "line": 219,
+      "pc": 1049642,
+      "hex": "814c242800000100",
+      "instruction": "or dword ptr [esp + 0x28], 0x10000"
+    },
+    {
+      "line": 220,
+      "pc": 1049650,
+      "hex": "61",
+      "instruction": "popal "
+    },
+    {
+      "line": 221,
+      "pc": 1049651,
+      "hex": "cf",
+      "instruction": "iretd "
+    },
+    {
+      "line": 222,
+      "pc": 1049349,
+      "hex": "b052",
+      "instruction": "mov al, 0x52"
+    },
+    {
+      "line": 223,
+      "pc": 1049351,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 224,
+      "pc": 1049353,
+      "hex": "a000201000",
+      "instruction": "mov al, byte ptr [0x102000]"
+    },
+    {
+      "line": 225,
+      "pc": 1049358,
+      "hex": "0430",
+      "instruction": "add al, 0x30"
+    },
+    {
+      "line": 226,
+      "pc": 1049360,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 227,
+      "pc": 1049362,
+      "hex": "b045",
+      "instruction": "mov al, 0x45"
+    },
+    {
+      "line": 228,
+      "pc": 1049364,
+      "hex": "e6e9",
+      "instruction": "out 0xe9, al"
+    },
+    {
+      "line": 229,
+      "pc": 1049366,
+      "hex": "b810000000",
+      "instruction": "mov eax, 0x10"
+    },
+    {
+      "line": 230,
+      "pc": 1049371,
+      "hex": "e7f4",
+      "instruction": "out 0xf4, eax"
+    },
+    {
+      "line": 231,
+      "pc": 1049373,
+      "hex": "f4",
+      "instruction": "hlt "
+    }
+  ],
+  "limits": [
+    "Trace records TB entry, not instruction retirement by itself; conclusion combines original code, event record, guest frame and subsequent execution.",
+    "Self-owned TCG code only. R appears once; 1 is the handler count, not an independent consumer counter.",
+    "No Windows/WOW64, complete57, hardware-native equivalence, two-VP handshake or original-game state.",
+    "Exact publisher binary to source-build correspondence remains unproven; old GDB/HMP floating-point limitations unchanged."
+  ],
+  "report_sha256": "83b759356869b4e1aab7b578e971138dec64effcfbd7cd864017ed494023615c"
+}

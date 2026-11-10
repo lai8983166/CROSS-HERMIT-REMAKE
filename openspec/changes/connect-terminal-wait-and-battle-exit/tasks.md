@@ -265,3 +265,12 @@ WHP XSAVE 一致，恢复后各消费一次。v2 非零 FOP/FDP 和复读一致�
 因此拒绝按返回地址通用清 RF，继续要求前驱/事件来源及完整轨迹。七次 CPU-only
 短对照，无 Windows/game 启动，正式仍2/8。细节、失败原件复用及内容去重封存见
 docs/terminal_wait.md 的 RF 对照节；未勾选任何新功能项。
+
+### 同日不修改宿主的替代观察预检
+
+复用F盘QEMU TCG单条TB/事件日志，自有ELF32取得VP0的RET→#DB→原处理器→IRETD→
+消费实际路径，原12B异常栈与DR6独立匹配事件日志。v1缺启动固件在15秒边界退出，
+从既有安装包增提1KiB固件并修正未执行JMP；v2/v3分别约1.578/1.688秒监督完成。
+没有宿主配置/输入、Windows或原游戏启动。仅有限TCG前驱来源通过；精确构建源码
+闭合、完整57项/FP、硬件等价及Windows原生寿命尚未通过，不据此接游戏长前缀。
+正式2/8不变，详见terminal-wait-tcg-predecessor proof/review和docs/terminal_wait.md。
