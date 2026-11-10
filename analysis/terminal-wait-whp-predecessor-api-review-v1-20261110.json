@@ -1,0 +1,170 @@
+{
+  "schema": "terminal-wait-whp-predecessor-api-review-v1",
+  "date": "2026-11-10",
+  "scope": "Independent bounded static/offline interface review. Reviewer executed no native capability call, partition, VM, guest, debugger or probe. The parent-produced capability receipt is reviewed as existing evidence.",
+  "decision": {
+    "public_whp_direct_predecessor_register_getter_found": false,
+    "tlfs_ids_authorized_as_whv_names": false,
+    "current_perfmon_capability_query_valid": false,
+    "hardware_lbr_supported": null,
+    "whp_lbr_supported": null,
+    "actual_predecessor_obtained": false,
+    "event_history_obtained": false,
+    "rf_reconstruction_accepted": false,
+    "full57_accepted": false,
+    "original_game_accepted": false
+  },
+  "summary": [
+    "The installed x64 WHV_REGISTER_NAME has no DebugCtl, LBR, LER or RTIT/PT register enumerants. This is an interface limitation, not proof that CPU hardware lacks tracing.",
+    "TLFS HV_REGISTER_NAME and WHP WHV_REGISTER_NAME are distinct namespaces and call contracts. Directly passing 0x8007d, 0x82002 or 0x82100 to WHvGetVirtualProcessorRegisters is not documented. Guessing 0x207d from neighboring mappings is equally unsupported.",
+    "A documented PMU/LBR feature query exists, but the current DLL returned WHV_E_UNKNOWN_CAPABILITY, zero bytes written and untouched requested buffer. Capability is unknown, not false; current evidence does not justify starting an LBR acquisition experiment."
+  ],
+  "local_sources": [
+    {
+      "path": "/mnt/c/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/WinHvPlatformDefs.h",
+      "bytes": 138461,
+      "sha256": "91a864b6ec2d932bcc7ce17f503f72a7813759cde81be2d1ac86cba9abb61c4a"
+    },
+    {
+      "path": "/mnt/c/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/WinHvPlatform.h",
+      "bytes": 23811,
+      "sha256": "da7b74cecb8d335609e64385274b13ca3c2ddfaeb38d73add6073401cefdefd1"
+    },
+    {
+      "path": "/mnt/c/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared/winerror.h",
+      "bytes": 1622014,
+      "sha256": "0284ea46280c14063bb714d08c9ec48de18de6a7f0384323b263fec234428833"
+    }
+  ],
+  "sdk_findings": {
+    "x64_register_enum_identifiers": 255,
+    "register_enum_lines": "WinHvPlatformDefs.h 35-323",
+    "missing_register_families": [
+      "DebugCtl",
+      "LbrTos/LbrSelect/LbrFrom/LbrTo/LbrInfo",
+      "LerFrom/LerTo",
+      "RtitCtl/RtitStatus/RtitOutputBase/RtitOutputMaskPtrs/RtitCr3Match"
+    ],
+    "get_register_signature": "WinHvPlatform.h 197-203 takes WHV_REGISTER_NAME*, returns WHV_REGISTER_VALUE*",
+    "counterexamples": [
+      {
+        "register": "TscAux",
+        "whp": "0x0000207b",
+        "tlfs": "0x0008007b"
+      },
+      {
+        "register": "Bndcfgs",
+        "whp": "0x0000207c",
+        "tlfs": "0x0008007c"
+      },
+      {
+        "register": "SpecCtrl",
+        "whp": "0x00002084",
+        "tlfs": "0x00080084"
+      }
+    ],
+    "perfmon": {
+      "capability_code": "0x00001009",
+      "capability_line": 1412,
+      "partition_property": "0x0000100e",
+      "property_line": 2241,
+      "union_lines": "2309-2326",
+      "size_bytes": 8,
+      "bit0": "PmuSupport",
+      "bit1": "LbrSupport",
+      "remaining_bits": "reserved",
+      "meaning": "Supported feature exposure; not a host register-read API or branch-history buffer."
+    },
+    "nested_debugctl": {
+      "line": 2016,
+      "meaning": "A synthetic processor feature indicates nonzero DEBUG_CTL writes for nested context; it is not a WHV_REGISTER_NAME or evidence of an accessible current-VP history."
+    },
+    "state_getter": {
+      "lines": "3664-3676",
+      "documented_x64_types": [
+        "SynicMessagePage",
+        "SynicEventFlagPage",
+        "SynicTimerState",
+        "InterruptControllerState2",
+        "XsaveState",
+        "NestedState"
+      ],
+      "limit": "No dedicated LBR/LER/PT trace-buffer state category. Generic XSAVE existence alone does not establish that this partition saves an architectural LBR/PT component; component capability, enabled state, layout and valid captured bytes would need independent evidence. NestedState is not a license to parse undocumented outer VMCS data."
+    }
+  },
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorregisters",
+      "supports": "WHP signature requires WHV_REGISTER_NAME and a partition HANDLE; success is S_OK."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvvirtualprocessordatatypes",
+      "supports": "Public WHP x64 register enum and values; no matching DebugCtl/LBR names found in the reviewed page."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/datatypes/hv_register_name",
+      "supports": "TLFS separately lists DebugCtl=0x8007d, LerFromLip=0x82002, LerToLip=0x82003, LbrFrom0=0x82100, LbrTo0=0x82200 and RTIT registers starting at0x81008. These names are not WHP enumerants."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/tlfs/hypercalls/hvcallgetvpregisters",
+      "supports": "TLFS hypercall0x0050 takes HV_PARTITION_ID, HV_VP_INDEX, VTL and HV_REGISTER_NAME. Requires parent partition or self with AccessVpRegisters. A user-mode WHP partition HANDLE does not satisfy that contract by casting."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvgetcapability",
+      "supports": "Queries API/hypervisor/processor capabilities, including ProcessorPerfmonFeatures0x1009."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvpartitionpropertydatatypes",
+      "supports": "Processor-related partition features are configured before WHvSetupPartition; property0x100e is ProcessorPerfmonFeatures."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorstate",
+      "supports": "Public saved-state categories and buffer rules; no dedicated branch-history state type."
+    }
+  ],
+  "existing_capability_evidence": {
+    "source": {
+      "path": "devtools/terminal_whp_predecessor_capability.py",
+      "bytes": 1613,
+      "sha256": "c363360a356a1e7d81073b139271acfd6a413b579b3d1df75296c04cd48982e5"
+    },
+    "receipt": {
+      "path": "analysis/terminal-wait-whp-predecessor-capability-v1-20261110.json",
+      "bytes": 1043,
+      "sha256": "27389f61ebda5d5cfdf94203f6511e8df9a456390b99f888bdacb1438d96eba6"
+    },
+    "dll": {
+      "path": "/mnt/c/Windows/System32/WinHvPlatform.dll",
+      "bytes": 135168,
+      "sha256": "30631842e3917c63396e2b1b3337b9dbaf7dc2fd4d51d06efdd148f08fbab492"
+    },
+    "hresult": "0x80370300",
+    "sdk_error_name": "WHV_E_UNKNOWN_CAPABILITY",
+    "error_definition": "winerror.h 54374-54382",
+    "written_bytes": 0,
+    "requested_buffer_bytes": 64,
+    "requested_buffer_all_a5_unchanged": true,
+    "recorded_buffer_bytes": 65,
+    "extra_byte_explanation": "ctypes.create_string_buffer(bytes64) allocates a trailing NUL; only64 bytes were supplied to WHvGetCapability. The65th recorded byte is allocation terminator, not returned capability data.",
+    "decode_accepted": false,
+    "pmu_supported": null,
+    "lbr_supported": null,
+    "partition_created": false,
+    "source_review": "One documented WHvGetCapability call; success requires HRESULT0 and exactly8 returned bytes. Failure leaves both feature values null. Reviewer verified receipt SDK/DLL identities against current disk; no rerun.",
+    "interpretation": "The runtime does not recognize this capability request. This does not identify whether the limitation is DLL/OS/hypervisor version or underlying CPU support; no hardware no-LBR conclusion follows."
+  },
+  "next_executable_conditions": [
+    "Do not probe guessed TLFS or fabricated WHV register IDs. First establish a documented, version-compatible interface that returns a valid capability response or explicitly documented alternative trace facility. No capability retry is justified without an interface/environment change or a concrete diagnosed calling error.",
+    "Only after capability succeeds, identify supported per-VP configuration and retrieval semantics, including CPU model, trace format, enabled scope, buffer ownership, event recording/filtering, overflow/loss and stop/freeze behavior. A feature bit alone does not produce a predecessor.",
+    "A guest RDMSR/WRMSR collection microfixture, if later supported and separately authorized, is an instrumented capability experiment: additional guest instructions can change last-branch history and do not supply untouched original-program state. No guest injection into the original program is proposed.",
+    "A privileged TLFS path would require its own supported access mechanism and partition/VTL rights, not a WHP enum cast. No driver, kernel component, environment download or VM is introduced by this review.",
+    "Any later successful acquisition must distinguish RET from intervening #DB/IRETD, prove records belong to the stopped VP and exact interval, and detect missing/overwritten events. Unknown sources stay rejected; no automatic RF clear."
+  ],
+  "not_proved": [
+    "No actual predecessor or event history was acquired.",
+    "No LBR/PT configuration or tracing was started.",
+    "No current host getter for LBR/LER/PT was demonstrated.",
+    "No transparent RF reconstruction, full canonical57 state, Windows/WOW64 or original-game acceptance."
+  ],
+  "retention": "One small JSON report only; no copied SDK, executable, memory capture or downloaded environment. Existing frozen evidence remains unchanged."
+}

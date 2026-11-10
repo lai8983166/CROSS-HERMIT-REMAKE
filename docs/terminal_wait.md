@@ -518,3 +518,17 @@ Windows/WOW64、真实等待消费、三次握手及资源/PTD 仍未通过，�
 去重保存在 `analysis/terminal-wait-whp-rf-support-v1-20261110.zip`；manifest 记录
 原路径、大小、SHA 和恢复位置，验证器直接读取压缩包，不依赖展开缓存。清理清单
 只针对本轮已核对入包的展开副本，不删除历史原始资料或旧证据。
+
+### 前驱记录接口预检（2026-11-10）
+
+当前 SDK 26100 的 WHV_REGISTER_NAME 没有直接的 DebugCtl/LBR/LER/PT 项；TLFS
+HV_REGISTER_NAME 属于另一接口，禁止把其编号直接传入 WHP getter。公开的
+ProcessorPerfmonFeatures 能力查询 code=1009 已只读执行：当前 DLL 返回
+HRESULT=80370300、written=0，未获得有效 8 字节能力结构。因此 PMU/LBR 支持状态
+保持 unknown，不能解释为硬件不支持，也不能把 XSAVE 能力当作 LBR 能力。
+
+此次没有创建分区、启动 Windows/游戏、修改配置或发送输入。真实前驱及事件历史
+仍未取得，RF 恢复、等待消费及正式任务2/8不变。下一步需先查明当前运行时对该
+公开能力入口的支持条件，并建立合法的记录读取路径；能力位即使可用，也不等于
+已取得目标前驱或完整事件递送来源。原查询实现及回执见
+terminal_whp_predecessor_capability.py 和 terminal-wait-whp-predecessor-capability-v1-20261110.json。
