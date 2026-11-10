@@ -378,3 +378,44 @@ QEMU下载包及提取运行时的删除被工具策略拦截，暂留F盘且不
 SDK契约参考微软 [WaitForEvent](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/dbgeng/nf-dbgeng-idebugcontrol-waitforevent)
 及 [结束KD会话](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/ending-a-debugging-session-in-kd)；
 live kernel要求INFINITE等待，外部中断请求和实际恢复必须分别检查。
+
+## 限定线程的等待尾部复核（2026-11-10，thread v1–v4）
+
+本轮原游戏启动数和合格目标等待停点均为 **0**，第一关仍未通过，原任务保持
+2/8。没有取得 `453CB5 → 4967B0` 或三次游戏握手的新连续证据。
+
+已将普通系统停点缩到当前 fixture 的 EPROCESS/ETHREAD，独立读取实际 wow64cpu
+加载基址，再设置内核尾部硬件断点。v2 日志出现一次 `Breakpoint 0 hit`，但没有
+停点时的 PID/TID/handle/返回状态核验，不能认证为目标等待；客体最终回执是
+准备门超时，没有目标 returns。v1 的启动命令虽然超时，监督进程实际已启动，
+不能按“没有启动”再次发起。v3 因准备脚本把 source SHA 写入错误键而被夹具
+原有身份检查拒绝；v4 修正清单后仍在获取准备回执时遇到控制通道超时，没有
+附加 KD。其监督器超时后放行清理，首个返回为 258，并非三次成功握手。
+
+已修正一个明确的客户端缺陷：发出 `g` 后，旧日志末尾的 `kd>` 不能继续授权
+查询或清除断点。`terminal_kd_session_v3.py` 区分连接中、运行、暂停、查询和
+未知状态，仅接受当前游标之后的新提示符；查询标记允许紧跟提示符同一行。
+12 项离线回归通过。v3/v4 在附加前已失败，因此**新状态机尚未通过原生验证**。
+旧 v2 未记录逐次输出可见时间和 gate future 结果，无法证明那一次停点是迟到
+还是日志迟显，不能把所有超时都归因于同一个解析错误。
+
+完整状态的另一处阻塞已从原字节确认：本内核的 KD context 指针位于
+KPRCB+8980h，但 kernel-CS 的 `KeContextFromKframes` 路径跳过 FXSAVE；浮点
+有效标志不能证明槽位保存过原 x87。DS/ES/FS/GS 有常量赋值，控制状态里的
+LDTR 被写零，DR4/DR5 没有独立原值槽位。WOW64 返回块也没有补全这些原值。
+见 `analysis/terminal-wait-kd-raw-context-contract-v1-20261110.json` 的 57 项来源
+逐项清单。普通 KD CONTEXT 不能被提升为完整用户返回现场；在补齐缺失字段的
+真实来源前，停止沿这条不完整状态路径采原游戏，不能通过填零或拼接旧现场通过。
+
+另外，本机 pywinrm 的 `operation_timeout_sec` 只限制单次请求；
+`Protocol.get_command_output` 会对接收超时无限重试。这不是整个任务的期限。
+后续调度必须先给控制交接加独立总期限并核实远程命令是否结束；仅调整 20/30 秒
+参数或在外围写一个轮询 deadline，不能证明有界。未热修改旧管理器或第三方包。
+
+晚到的客体批量回执确认四例均已结束，均报告自有句柄/缓冲释放；这不是原游戏
+资源/PTD 释放证据。控制恢复曾需要专用 VM 强制关机，已单独记录；随后恢复原
+客体 BCD、移除本轮七项串口设置，冷启动核对后正常关机。没有宿主输入、宿主
+BCD 修改或 VM 快照。收尾、独立复核及小型复现包见
+`analysis/terminal-wait-kd-thread-closeout-v1-20261110.json`、
+`analysis/terminal-wait-kd-thread-review-v1-20261110.json` 和
+`analysis/terminal-wait-kd-thread-support-v1-20261110.zip`。

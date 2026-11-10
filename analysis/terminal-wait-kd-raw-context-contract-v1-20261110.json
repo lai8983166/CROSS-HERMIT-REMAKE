@@ -1,0 +1,637 @@
+{
+  "schema": "terminal-wait-kd-raw-context-contract-v1",
+  "accepted": false,
+  "native_test_performed": false,
+  "pdb_types": {
+    "_KPRCB": [
+      {
+        "type_index": "0x12f3",
+        "bytes": 1792,
+        "fields": {
+          "CurrentThread": 8,
+          "Number": 36,
+          "ProcessorState": 256
+        }
+      },
+      {
+        "type_index": "0x1a00",
+        "bytes": 48896,
+        "fields": {
+          "CurrentThread": 8,
+          "Number": 36,
+          "ProcessorState": 256
+        }
+      }
+    ],
+    "_KPROCESSOR_STATE": [
+      {
+        "type_index": "0x1427",
+        "bytes": 1472,
+        "fields": {
+          "SpecialRegisters": 0,
+          "ContextFrame": 240
+        }
+      }
+    ],
+    "_CONTEXT": [
+      {
+        "type_index": "0x1511",
+        "bytes": 1232,
+        "fields": {
+          "P1Home": 0,
+          "P2Home": 8,
+          "P3Home": 16,
+          "P4Home": 24,
+          "P5Home": 32,
+          "P6Home": 40,
+          "ContextFlags": 48,
+          "MxCsr": 52,
+          "SegCs": 56,
+          "SegDs": 58,
+          "SegEs": 60,
+          "SegFs": 62,
+          "SegGs": 64,
+          "SegSs": 66,
+          "EFlags": 68,
+          "Dr0": 72,
+          "Dr1": 80,
+          "Dr2": 88,
+          "Dr3": 96,
+          "Dr6": 104,
+          "Dr7": 112,
+          "Rax": 120,
+          "Rcx": 128,
+          "Rdx": 136,
+          "Rbx": 144,
+          "Rsp": 152,
+          "Rbp": 160,
+          "Rsi": 168,
+          "Rdi": 176,
+          "R8": 184,
+          "R9": 192,
+          "R10": 200,
+          "R11": 208,
+          "R12": 216,
+          "R13": 224,
+          "R14": 232,
+          "R15": 240,
+          "Rip": 248,
+          "FltSave": 256,
+          "Header": 256,
+          "Legacy": 288,
+          "Xmm0": 416,
+          "Xmm1": 432,
+          "Xmm2": 448,
+          "Xmm3": 464,
+          "Xmm4": 480,
+          "Xmm5": 496,
+          "Xmm6": 512,
+          "Xmm7": 528,
+          "Xmm8": 544,
+          "Xmm9": 560,
+          "Xmm10": 576,
+          "Xmm11": 592,
+          "Xmm12": 608,
+          "Xmm13": 624,
+          "Xmm14": 640,
+          "Xmm15": 656,
+          "VectorRegister": 768,
+          "VectorControl": 1184,
+          "DebugControl": 1192,
+          "LastBranchToRip": 1200,
+          "LastBranchFromRip": 1208,
+          "LastExceptionToRip": 1216,
+          "LastExceptionFromRip": 1224
+        }
+      }
+    ],
+    "_KSPECIAL_REGISTERS": [
+      {
+        "type_index": "0x16b9",
+        "bytes": 240,
+        "fields": {
+          "Cr0": 0,
+          "Cr2": 8,
+          "Cr3": 16,
+          "Cr4": 24,
+          "KernelDr0": 32,
+          "KernelDr1": 40,
+          "KernelDr2": 48,
+          "KernelDr3": 56,
+          "KernelDr6": 64,
+          "KernelDr7": 72,
+          "Gdtr": 80,
+          "Idtr": 96,
+          "Tr": 112,
+          "Ldtr": 114,
+          "MxCsr": 116,
+          "DebugControl": 120,
+          "LastBranchToRip": 128,
+          "LastBranchFromRip": 136,
+          "LastExceptionToRip": 144,
+          "LastExceptionFromRip": 152,
+          "Cr8": 160,
+          "MsrGsBase": 168,
+          "MsrGsSwap": 176,
+          "MsrStar": 184,
+          "MsrLStar": 192,
+          "MsrCStar": 200,
+          "MsrSyscallMask": 208,
+          "Xcr0": 216,
+          "MsrFsBase": 224,
+          "SpecialPadding0": 232
+        }
+      }
+    ],
+    "_KDESCRIPTOR": [
+      {
+        "type_index": "0x17c2",
+        "bytes": 16,
+        "fields": {
+          "Pad": 0,
+          "Limit": 6,
+          "Base": 8
+        }
+      }
+    ]
+  },
+  "symbols": {
+    "KiSaveProcessorControlState": 4287248,
+    "KeContextFromKframes": 2780992,
+    "KdpGetContext": 10764660,
+    "KiSaveProcessorState": 2612992,
+    "KiRestoreProcessorState": 2612800,
+    "KdpReportExceptionStateChange": 10777412,
+    "KiRestoreProcessorControlState": 4287040,
+    "KdpTrap": 10763112,
+    "KdpGetContextEx": 3772516
+  },
+  "additional_pdb_layout": {
+    "_KPCR": [
+      {
+        "type_index": "0x1246",
+        "bytes": 376,
+        "fields": [
+          {
+            "name": "CurrentPrcb",
+            "offset": 32
+          }
+        ]
+      },
+      {
+        "type_index": "0x19bf",
+        "bytes": 49280,
+        "fields": [
+          {
+            "name": "CurrentPrcb",
+            "offset": 32
+          },
+          {
+            "name": "Prcb",
+            "offset": 384
+          }
+        ]
+      }
+    ],
+    "_KPRCB": [
+      {
+        "type_index": "0x12f3",
+        "bytes": 1792,
+        "fields": [
+          {
+            "name": "CurrentThread",
+            "offset": 8
+          },
+          {
+            "name": "Number",
+            "offset": 36
+          },
+          {
+            "name": "ProcessorState",
+            "offset": 256
+          }
+        ]
+      },
+      {
+        "type_index": "0x1a00",
+        "bytes": 48896,
+        "fields": [
+          {
+            "name": "CurrentThread",
+            "offset": 8
+          },
+          {
+            "name": "Number",
+            "offset": 36
+          },
+          {
+            "name": "ProcessorState",
+            "offset": 256
+          },
+          {
+            "name": "Context",
+            "offset": 35200
+          }
+        ]
+      }
+    ]
+  },
+  "date": "2026-11-10",
+  "reviewed_at_utc": "2026-11-10T01:53:08.117136+00:00",
+  "scope": "Independent offline PDB MSF/TPI/public-symbol decoding, fixed original PE disassembly and installed SDK inspection only. No native target execution, VM access, debugger connection, new parser tool or frozen-source modification.",
+  "fullstate": false,
+  "fullABI": false,
+  "canonical57_supported": false,
+  "user_poststate_supported": false,
+  "decision": "Raw KD CONTEXT plus PRCB special-register blocks do not constitute unmodified complete57 state. Read bounded raw blocks only as explicitly qualified development evidence; do not manufacture missing fields.",
+  "pdb_method": "Read retained MSF streams directly with Python struct; resolve complete LF_STRUCTURE/LF_FIELDLIST/LF_MEMBER records including numeric leaves and CodeView padding, and S_PUB32 section-relative addresses. Multiple KPRCB/KPCR definitions retained; full definitions and smaller prefix definitions agree on the used offsets. No DbgHelp execution or PDB download.",
+  "api_contract": {
+    "IDebugAdvanced_GetThreadContext": {
+      "slot": 3,
+      "signature": "HRESULT(this, PVOID Context, ULONG ContextSize)",
+      "buffer_alignment": 16,
+      "amd64_context_bytes": 1232,
+      "format": "Target effective processor CONTEXT, not automatically WOW64_CONTEXT. Confirm IMAGE_FILE_MACHINE_AMD64=0x8664 and actual stopped processor/thread; do not switch to x86 effective mode and reinterpret returned bytes.",
+      "flags": "Preserve returned ContextFlags at +0x30 and every raw byte. AMD64 group bits: CONTROL1, INTEGER2, SEGMENTS4, FLOAT8, DEBUG0x10, XSTATE0x40 with architecture0x100000. Group flag is necessary but not sufficient for architectural provenance on this kernel path. GetThreadContext is an output API, not a hardware FXSAVE request.",
+      "extended": "Base0x4d0 does not contain arbitrary extended-state payload; refuse claiming XSTATE coverage without validated buffer format, offset/length, masks and supported component layout."
+    },
+    "PRCB_location": "ReadProcessorSystemData(current CPU, DEBUG_DATA_KPRCB_OFFSET=1) can return an 8-byte PRCB address. CLI alternative: poi(@+0x20), crosschecked against current CPU/thread.",
+    "stale_embedded_context": "PDB ProcessorState starts at PRCB+0x100 and ContextFrame at +0xf0 within it, hence PRCB+0x1f0. Actual current save/report/get paths use pointer at PRCB+0x8980 and flags at +0x8988. Never substitute embedded ContextFrame by name alone."
+  },
+  "kernel_provenance_findings": [
+    {
+      "claim": "General CONTROL/INTEGER fields are reconstructed from the debug exception trap/exception frames, not from the original syscall user frame. At this stop RIP is the 64-bit kernel tail, and live RAX is the wait result.",
+      "rvas": [
+        "0x2a6f89",
+        "0x2a6ff5",
+        "0x2a704d"
+      ]
+    },
+    {
+      "claim": "KeContextFromKframes writes DS=ES=0x2b and FS=0x53, GS=0x2b as constants when SEGMENTS is requested. These are normalized context values, not captured segment selectors.",
+      "rvas": [
+        "0x2a6fd4",
+        "0x2a6fdc"
+      ]
+    },
+    {
+      "claim": "Its FLOAT path tests trap SegCs bit0; for kernel-origin CS0x10 the FXSAVE at 0x2a71d5 is skipped. It still copies XMM0..5 from debug trap and XMM6..15 from debug exception frame, and MXCSR from trap. Thus FltSave x87 header/register bytes cannot be certified from FLOAT flag or nonzero data alone.",
+      "rvas": [
+        "0x2a71bb",
+        "0x2a71cc",
+        "0x2a71d3",
+        "0x2a71dc",
+        "0x2a7233",
+        "0x2a72ba"
+      ]
+    },
+    {
+      "claim": "KiDispatchException creates a local context; kernel-mode path skips its user-mode zeroing branch and later calls KeContextFromKframes. The KD report path copies 0x4d0 bytes from that context into PRCB.Context before reporting. Unpopulated x87 bytes are not repaired by the copy.",
+      "rvas": [
+        "0x2a691c",
+        "0x2a6920",
+        "0x2a6938",
+        "0x2a694a",
+        "0x473cdd",
+        "0x473cea",
+        "0xa43475",
+        "0xa44344"
+      ]
+    },
+    {
+      "claim": "Separate KiSaveProcessorState has a conditional FXSAVE helper before frame conversion, but this does not establish that the context exposed for the current kernel #DB retains those bytes after the later report-copy. Do not conflate other-CPU freeze save with current fault-context provenance.",
+      "rvas": [
+        "0x27df23",
+        "0x27df33",
+        "0x47355c",
+        "0x27e204"
+      ]
+    },
+    {
+      "claim": "SpecialRegisters captures CR0/2/3/4 and debug registers on debugger entry. It writes LDTR=0 instead of SLDT; two globals can bypass SGDT/SIDT/STR. Its MsrGsBase/MsrFsBase/etc structure members are not refreshed by this routine.",
+      "rvas": [
+        "0x416b10",
+        "0x416b36",
+        "0x416b38",
+        "0x416b3c",
+        "0x416b4a",
+        "0x416b4c",
+        "0x416b58",
+        "0x416b8a"
+      ]
+    },
+    {
+      "claim": "The save routine clears hardware DR7 after saving it. Kernel ba changes debug-register usage and #DB changes debug status; these observed registers are not the untouched application debug state. CONTEXT debug fields may additionally be normalized to zero when trap DR7 mask0x355 is clear.",
+      "rvas": [
+        "0x416bac",
+        "0x416bb6",
+        "0x2a72d4",
+        "0x2a7322"
+      ]
+    }
+  ],
+  "bounded_read_plan": {
+    "prerequisites": [
+      "actual kernel/wow64cpu/x86 ntdll file identities and runtime bases",
+      "one stopped epoch; actual event CPU/thread/process and RIP=kernel+0x6fcc6a",
+      "do not issue .cxr/.trap/.thread/.effmach switching before raw stop capture",
+      "reject unreadable/short blocks, invalid pointers or identity disagreement; no fallback zero"
+    ],
+    "commands_with_validated_P_and_C": [
+      "dq @+0x20 L1",
+      "dq P+0x8 L1",
+      "dd P+0x24 L1",
+      "dq P+0x8980 L2",
+      "db C L4d0",
+      "db P+0x100 Lf0",
+      "db @rbp-0x80 L190",
+      "db @r13-0x80 L2d0"
+    ],
+    "definitions": {
+      "P": "current PRCB from independently crosschecked PCR/current CPU",
+      "C": "poi(P+0x8980); validate alignment, current flags and matching raw RIP/RSP/thread epoch before use",
+      "U": "original syscall trap base = captured kernel RBP-0x80; must match caller/path",
+      "B": "native user R13 preserved as nonvolatile by this syscall path; authenticate WOW64 TLS relation before treating R13-0x80 as CPU reserved area"
+    },
+    "total_base_context_special_trap_wow64_bytes": 2592,
+    "optional_small_bridge_reads": [
+      "qword at original native user RSP=poi(U+0x180) must identify wow64cpu+0x1b56 after ret from +0x1cf3",
+      "dword [B+0x3c] expected x86 ntdll NtWait+0xc; dword [B+0x48] original x86 return stack",
+      "actual original x86 caller word at [B+0x48] plus 12 argument bytes; first three kernel returns also need timeout/handle identity",
+      "GDT entry bytes referenced by actual selectors/TR require validated 64-bit GDTR Base+limit; descriptor memory does not automatically equal cached hidden descriptor state"
+    ],
+    "not_a_complete_cpu_parser": true
+  },
+  "canonical57_groups": [
+    {
+      "fields": "EAX EBX ECX EDX ESI EDI EBP ESP EIP EFLAGS",
+      "availability": "AMD64 CONTEXT has 64-bit GPR/RIP plus EFlags; preserve full width. Kernel RSP/RBP/RIP and volatile values are already kernel-state values. Do not truncate them into x86 canonical57. Candidate user GPRs require original trap and WOW64 return semantics."
+    },
+    {
+      "fields": "FPCW FPSW FPTAG FIP FDP FCS FDS FOP FP0 FP1 FP2 FP3 FP4 FP5 FP6 FP7",
+      "availability": "No certified current kernel #DB x87 source in the reviewed context-copy path. Legacy FXSAVE storage format alone is not validity. Existing KTHREAD.StateSaveArea/XStateSave pointers may be stale, nested or thread-save data; ownership/currentness needs separate proof."
+    },
+    {
+      "fields": "MXCSR XMM0 XMM1 XMM2 XMM3 XMM4 XMM5 XMM6 XMM7",
+      "availability": "Debug trap/exception-frame reconstruction is a bounded source for interrupted kernel SIMD with matching flags/path; original syscall user trap saves are conditional. Common exit loads trap MXCSR and zeros XMM0..5, so kernel-tail SIMD is not the eventual user postreturn set."
+    },
+    {
+      "fields": "CS DS ES FS GS SS",
+      "availability": "CS/SS derive from debug trap; DS/ES/FS/GS are normalized constants in context conversion. Hidden bases/limits/access and 64-bit GS swap state are absent. Original user CS/SS come from original syscall trap, later WOW64 transition produces CS0x23/SS0x2b."
+    },
+    {
+      "fields": "CR0 CR2 CR3 CR4",
+      "availability": "SpecialRegisters stores 64-bit values on debugger entry, later than breakpoint exception arrival. CR3 can change on shadow return; CR2 may be affected by intervening fault handling. Not inherently pre-call/user-return controls."
+    },
+    {
+      "fields": "GDTR IDTR LDTR TR",
+      "availability": "GDTR/IDTR have 16-bit limits and 64-bit bases at Special+0x56/+0x58 and +0x66/+0x68 when SGDT/SIDT branch ran. TR selector at +0x70; LDTR +0x72 is synthesized zero. Descriptor hidden caches not captured. Do not equate null-looking fields or current GDT bytes with complete cached state."
+    },
+    {
+      "fields": "DR0 DR1 DR2 DR3 DR4 DR5 DR6 DR7",
+      "availability": "Only DR0..3/6/7 have context/special slots. DR4/5 are not independent readable storage: CR4.DE controls alias-to-DR6/7 versus #UD. Do not add arbitrary zero slots. Applied ba/#DB affects DR contents; app-pristine debug state and simulator-specific DR4/5 contract are not recovered."
+    }
+  ],
+  "fx_format_rules": {
+    "source_format_gate": "Only parse a demonstrably valid FXSAVE image. Reviewed opcodes 0f ae /0 have no REX.W: FIP/FDP are 32-bit offset fields plus selectors, not 64-bit pointers. High pointer halves cannot be fabricated. CPUID.7.0 EBX13/6 semantics require actual guest CPUID evidence before accepting architectural-zero/pointer-update behavior.",
+    "offsets_relative_to_valid_FXSAVE": "FCW0:2, FSW2:2, abridged FTW4:1, FOP6:2, FIP8:4/FCS12:2, FDP16:4/FDS20:2, MXCSR24:4, ST slots32+16*i (10 meaningful bytes), XMM160+16*i",
+    "canonical_mapping": "canonical FPn are physical. TOP=(FSW>>11)&7; physical n uses logical slot (n-TOP)&7. FTW bits are physical; do not rotate FTW. Full tags: empty3; exponent0/mantissa0 zero1; exponent0 or0x7fff or integer-bit-clear special2; otherwise valid0. Preserve raw empty slot payload rather than inventing bytes.",
+    "scope": "These rules do not cure missing/unrefreshed x87 state in the kernel #DB context."
+  },
+  "wow64_bridge": {
+    "original_flow": [
+      "Kernel tail +0x6fcc6a add rsp,0x38; ret to verified dispatcher normally +0x428c35.",
+      "Kernel return includes pending APC/instrumentation/debug/shadow/CET branches. Common path loads MXCSR at +0x428d86, changes DRs conditionally, zeros XMM0..5 and RDX, loads user RIP/RFLAGS and RSP/RBP, swapgs/sysretq; do not assume all other paths inactive.",
+      "Native user saved RIP must equal loaded wow64cpu base+0x1cf3 for syscall branch; int2e alternative is +0x1cf6. Ret pops native user stack to +0x1b56.",
+      "wow64cpu +0x1b56/+1b5a/+1b5e/+1b62 restore EDI/ESI/EBX/EBP from [R13+0x20/24/28/38]. +1b66 tests-and-clears flag bit0 at [R13-0x80].",
+      "Flag0 clear: +1b6e..1b8e builds far pointer with CS0x23 and [R13+0x3c], loads SS0x2b and ESP=[R13+0x48], then far-jumps. Flag set: +1b91..1bc4 builds an IRET frame using saved EFLAGS at +0x44, stack at+0x48 and RIP at+0x3c, then iretq.",
+      "Expected x86 return is ntdll runtime base+0x73bfc: original instruction c2 0c 00 (ret12). It pops x86 caller address and consumes 12 argument bytes. Confirm actual native user stack/R13 memory/runtime relocation before linking it to fixture/game postcall."
+    ],
+    "cpu_reserved_layout_inference": "Original +0x1660/1670/1678 sets R13=poi(TEB64+0x1488)+0x80. SDK WOW64_CONTEXT field alignment matches Context=R13-0x7c; reserved area starts R13-0x80. ExtendedRegisters begins R13+0x50 and XMM0 R13+0xf0. This layout match does not prove freshness: fast entry +0x1779..17ab writes selected GP/flags only, not complete x87/FX state.",
+    "no_direct_fx_restore_on_selected_return": "The selector13 return block +0x1b56..1bc4 contains no FXSAVE/FXRSTOR and no XMM reload. Other WOW64 entry/slow paths differ; do not import their behavior into this path.",
+    "original_ntdll_export": "PE export NtWaitForSingleObject RVA0x73bf0, selector eax0x000d0004; call edx; ret12 at+0xc. Trampoline RVA0x96710 jumps through Wow64Transition RVA0x12b220. Relocated immediate differs from on-disk preferred base and must be checked as relocation, not a patch.",
+    "unresolved": [
+      "No complete dynamic branch trace from kernel epilogue through SYSRET/IRET/shadow exit, WOW64 far transition and x86 RET has been captured by this static review.",
+      "Pending APC/instrumentation may change the intended user context after this tail. A snapshot here is not a deterministic full interval unless those paths and memory inputs are accounted for.",
+      "x87/current user extended-state ownership, hidden segment caches, authoritative LDTR and pristine debug state remain missing.",
+      "Even successful own-fixture stops would not establish original-game handshake, resource lifetime or canonical57 acceptance."
+    ]
+  },
+  "original_byte_excerpts": [
+    {
+      "module": "kernel",
+      "rva": "0x27df23",
+      "bytes": 18,
+      "hex": "488b9f808900008b9788890000895330f681",
+      "sha256": "b17f2a79946d6853602908f574cd9f53ba7d3f969396c3daa6b23c746951db45"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x27e1f4",
+      "bytes": 23,
+      "hex": "41b8080010008bc24123c0413bc075070fae8100010000",
+      "sha256": "f6467ed4330e093753ff658c454e1b0750e1ec5d50970d200486b44b101febbc"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x2a691c",
+      "bytes": 51,
+      "hex": "807d0000740a33d2488bcfe8d43218004d8bce4c8d45288bd6488bcfe833f1ffff4c8bc74c8b7510498bd6488bcbe8f1050000",
+      "sha256": "7de48eed5ed1b8ee2d0c624707db7597c920470c88f2e2db933f1b8646b79b08"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x2a6fd4",
+      "bytes": 16,
+      "hex": "41c7403a2b002b0041c7403e53002b00",
+      "sha256": "6fedd330274d53e665ccecc7eaf034d35985b61c6d575afa769b0599c2e2c608"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x2a71bb",
+      "bytes": 45,
+      "hex": "b9080010008bc623c13bc10f85fd0000004484a77001000074070fae83000100000f104770f30f7f83a0010000",
+      "sha256": "d06aa66e5685b069c84a084c43e58be07d36de7d6a9ba902bfe2de61e515540f"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x2a7233",
+      "bytes": 24,
+      "hex": "0f104530f30f7f83000200000f104d40f30f7f8b10020000",
+      "sha256": "80295b19abdfd920c9fcd834b11bc5be02c09f82f850f9d8f561201d4adf5ca5"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x2a72c9",
+      "bytes": 117,
+      "hex": "b81000100023f03bf075788b870001000048a9550300007440488b87d800000048894348488b87e000000048894350488b87e800000048894358488b87f000000048894360488b87f800000048894368488b8700010000eb1b4883634800488363500048836358004883636000488363680033c048",
+      "sha256": "2f154bfacddaabe4de0512f13c499ab9baf79c0aefd940cd81d10b80ef181fd7"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x416b10",
+      "bytes": 76,
+      "hex": "0f20c04889010f20d0488941080f20d8488941100f20e048894118440f20c0488981a000000033c0668941728a05869c8f000a05879e8f0084c0750c0f0141560f0149660f0049700fae5974",
+      "sha256": "4e94ceae3099b6b15ec280a6df9b5fd2efd4228987dda24b6363654090de511c"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x416b8a",
+      "bytes": 47,
+      "hex": "0f21c00f21ca48894120488951280f21d00f21da48894130488951380f21f00f21fa488941404889514833c00f23f8",
+      "sha256": "431f86b7a1614a20646574ac2c67afadad6e0d8d6c65a11de50fd74675cc2be5"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x473cdd",
+      "bytes": 56,
+      "hex": "239588890000488b8d80890000e879f75c00488db500010000488bcee8122efaff488b9580890000448ac3488bcfe834365d008b95888900",
+      "sha256": "0d6e78757a1873ee3535f351a72933938b56f3ca333b589156026b7f18073d2a"
+    },
+    {
+      "module": "kernel",
+      "rva": "0xa43468",
+      "bytes": 36,
+      "hex": "4883ec284d8bd8448bca498bd341b8d00400004c8bd1e8c10e0000b94000100045894a30",
+      "sha256": "b2d95c0515561c8084defbb58ddb750631dc68fb2e7d984dac5c966d7cb01c85"
+    },
+    {
+      "module": "kernel",
+      "rva": "0xa44344",
+      "bytes": 23,
+      "hex": "4585c07411482bca8a0288041148ffc24183c0ff75f2c3",
+      "sha256": "57e0ca1ba987f85515a64f6563bc6a0177150d004f025f2e50247482a839badf"
+    },
+    {
+      "module": "kernel",
+      "rva": "0xa441c4",
+      "bytes": 25,
+      "hex": "658b0425a401000066443bc07407498ba980890000448b7530",
+      "sha256": "a5cd41906378c8fd2013f4e07bcdeacd6aa89b052095255bb6ec0ef55e22771f"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x428d86",
+      "bytes": 4,
+      "hex": "0fae55ac",
+      "sha256": "f71bc632fa736fde0186f45a60ff1ffc50dc27a41f2ae7fc9d96b48d025e09f8"
+    },
+    {
+      "module": "kernel",
+      "rva": "0x428e62",
+      "bytes": 103,
+      "hex": "4c8b85000100004c8b8dd800000033d2660fefc0660fefc9660fefd2660fefdb660fefe4660fefed488b8de80000004c8b9df8000000f605a1899d00010f851b1f6600498be9498be04533c9f3490f1ec94d85c97408f3410fae314533c90f01f8480f07488b95",
+      "sha256": "ea55b7315e5704c1f88aeb7d4313b49298da16ec8cee2315d3107b6346252bd2"
+    },
+    {
+      "module": "wow64cpu",
+      "rva": "0x1660",
+      "bytes": 31,
+      "hex": "654c8b2425300000004c8d3d602000004d8bac24881400004981c580000000",
+      "sha256": "9b4b4e705ae361ed72c93ee8b2638a2d989db0c92e62222a913acc5dcc1c905b"
+    },
+    {
+      "module": "wow64cpu",
+      "rva": "0x1779",
+      "bytes": 54,
+      "hex": "4987e6458b064983c6044589453c458975484d8d5e0441897d204189752441895d2841896d389c4158458945448bc8c1e91041ff24cf",
+      "sha256": "aaf4d6291c2a5e841c65572f6ccdef128e0f0d8a38011b39de5d3b932ad24cc2"
+    },
+    {
+      "module": "wow64cpu",
+      "rva": "0x1b46",
+      "bytes": 128,
+      "hex": "4d6313418b5304458b4308e88a010000418b7d20418b7524418b5d28418b6d38410fba75800072234c8bf4c74424042300000041b82b000000418ed0458b4d3c44890c24418b654841ff2e4c8bf466c7442408230066c74424202b00458b454441816544fffeffff4489442410458b45484c89442418458b453c4c89042448cf",
+      "sha256": "74113a2727f4ced3db9e8b0022998e68400e0f51857102d0515833d711b92900"
+    },
+    {
+      "module": "wow64cpu",
+      "rva": "0x1ce0",
+      "bytes": 23,
+      "hex": "4c8b1de915000041f683080300000175030f05c3cd2ec3",
+      "sha256": "0124e55ec13cce179c06b46df6390392677b4ee7742370feda6407692c26f182"
+    },
+    {
+      "module": "x86_ntdll",
+      "rva": "0x73bf0",
+      "bytes": 15,
+      "hex": "b804000d00ba1067314bffd2c20c00",
+      "sha256": "c936320b9d1dfad2414b96dc65c509d4d7062edd8f5fef100f70a4178afdfe65"
+    },
+    {
+      "module": "x86_ntdll",
+      "rva": "0x96710",
+      "bytes": 6,
+      "hex": "ff2520b23a4b",
+      "sha256": "741303e60da664d767735b465f426b52aef1ad574180aaf29f0828fcd56451d6"
+    }
+  ],
+  "source_identities": [
+    {
+      "path": ".venv-audit/native-worker/guest-ntoskrnl.exe",
+      "bytes": 11597168,
+      "sha256": "5669b9b8bfcf20f08b7d1d65dc2deccbf836279c0e3f66722d72ad33ee7f672a"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/wow64cpu.dll",
+      "bytes": 45816,
+      "sha256": "6d3e9d039c22b58c577435ef0209d43668ef2003e284be9980e4ad1289045a66"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-dlls/ntdll.dll",
+      "bytes": 1713880,
+      "sha256": "2761f133cac12188ed380666104527884b2f89dab918bc5082692ca1b7f341e6"
+    },
+    {
+      "path": ".venv-audit/native-worker/symbols/ntkrnlmp.pdb/D801A9AFC0FB7761380800F708633DEA1/ntkrnlmp.pdb",
+      "bytes": 12095488,
+      "sha256": "9a5c323aaf56e25099a99aa7f51e077a54972a74637014af8837603730322e48"
+    },
+    {
+      "path": "/mnt/c/Program Files (x86)/Windows Kits/10/Debuggers/inc/dbgeng.h",
+      "bytes": 836455,
+      "sha256": "fdbf995ed8b8cbf1e6774154122f9e061bb1bc3a4639ebf74c35941882ff5bb4"
+    },
+    {
+      "path": "/mnt/c/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um/winnt.h",
+      "bytes": 776716,
+      "sha256": "be490e4517ccd0d90d88b6e751f027babd501f704f53da5b596a5d88c718ee03"
+    },
+    {
+      "path": "analysis/terminal-wait-kernel-pdb-context-v1-20261110.json",
+      "bytes": 13746,
+      "sha256": "b5320f4eba106546f435e466885d034e46fdd86d0035bc6abfeccc7dacf375a8"
+    },
+    {
+      "path": "analysis/terminal-wait-kernel-boundary-static-candidate-v1-20261110.json",
+      "bytes": 25455,
+      "sha256": "c97b6ad769aa9a986b32a66a8857da6e72b9e75e4d222f2a9fd317c2106185c1"
+    },
+    {
+      "path": "devtools/vmware_vmss_state_v2.py",
+      "bytes": 9888,
+      "sha256": "2fbe7ae696e97963263d02903235e535f8aa83774c2921ee231b80fd37b54f5c"
+    },
+    {
+      "path": "tools/terminal_unit_frontends_trace.py",
+      "bytes": 21329,
+      "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920"
+    }
+  ],
+  "official_references": [
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/dbgeng/nf-dbgeng-idebugadvanced-getthreadcontext",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-context",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/dbgeng/nf-dbgeng-idebugdataspaces-readprocessorsystemdata",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debuggercmds/pseudo-register-syntax",
+    "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2a-manual.pdf",
+    "https://www.amd.com/content/dam/amd/en/documents/processor-tech-docs/programmer-references/24593.pdf"
+  ],
+  "evidence_budget": {
+    "new_reports": 1,
+    "new_native_evidence_bytes": 0,
+    "new_download_bytes": 0,
+    "new_backup_bytes": 0,
+    "new_tool_files": 0,
+    "existing_evidence_deleted": false
+  }
+}

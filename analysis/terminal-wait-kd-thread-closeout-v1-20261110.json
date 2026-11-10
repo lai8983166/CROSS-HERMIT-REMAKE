@@ -1,0 +1,595 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-10T02:17:59.525674+00:00",
+  "baseline_commit": "bbc626f3530690d32bdc39ee1c0b46ac179ed0e2",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "change": "connect-terminal-wait-and-battle-exit",
+  "tasks_completed": 2,
+  "tasks_total": 8,
+  "functional_result": {
+    "original_game_starts": 0,
+    "qualified_target_stops": 0,
+    "three_game_handshakes": false,
+    "first_result_consumption": false,
+    "resource_PTD_release": false,
+    "complete_original_replays": 0,
+    "native_session_v3_exercised": false
+  },
+  "achieved": [
+    "Fixed historical-prompt authorization and prompt-inline query marker parsing in an explicit offline-validated session state machine.",
+    "Bounded original-byte analysis identifies why kernel CONTEXT cannot supply all canonical57 fields.",
+    "Collected actual failed fixture completion, restored original guest boot/serial settings, verified cold boot and final normal shutdown."
+  ],
+  "blockers": [
+    "Target wait return, first game consumer and three handshakes remain unobserved.",
+    "No valid complete x87/segment/control/debug provenance at original user postreturn; kernel state cannot substitute.",
+    "SDK session_v3 is development-only and unqualified natively; independent review lists remaining exceptional recovery/parser edge cases.",
+    "WinRM receive timeout is silently retried indefinitely by installed library; current collect deadline/pool shutdown is not a hard end-to-end bound."
+  ],
+  "native_attempts": [
+    {
+      "version": 1,
+      "host_receipt": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\probe.json",
+        "bytes": 888,
+        "sha256": "4b9c86ab7cbfef64d501695515518d1263d1b9f592bea6227b0e9298f359fe0f"
+      },
+      "host_errors": [
+        "RuntimeError('vmrun exceeded bounded timeout; command credentials withheld')"
+      ],
+      "host_elapsed_seconds": 10.562000000005355,
+      "qualified_target_stops": 0,
+      "fixture_error": "System.Exception: actual original wait return win32=0\r\n   at VMWaitFixture.Need(Boolean v, String s)\r\n   at VMWaitFixture.Main(String[] args)",
+      "fixture_returns": [
+        0,
+        258
+      ],
+      "own_handles_closed": true,
+      "own_buffers_released": true
+    },
+    {
+      "version": 2,
+      "host_receipt": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\probe.json",
+        "bytes": 5956,
+        "sha256": "08f687d333df614d1f4ddb3c1b5448f657fda080509c014c6f8ad1b442dc441a"
+      },
+      "host_errors": [
+        "ValueError('all four owned wait tails captured')",
+        "recovery: TimeoutError('bounded debugger query')"
+      ],
+      "host_elapsed_seconds": 112.31299999999464,
+      "qualified_target_stops": 0,
+      "fixture_error": "System.Exception: bounded owned gate win32=2\r\n   at VMWaitFixture.Need(Boolean v, String s)\r\n   at VMWaitFixture.Gate(String path)\r\n   at VMWaitFixture.Main(String[] args)",
+      "fixture_returns": null,
+      "own_handles_closed": true,
+      "own_buffers_released": true
+    },
+    {
+      "version": 3,
+      "host_receipt": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\probe.json",
+        "bytes": 868,
+        "sha256": "fe75d0fc7be60860f8c2d0eab7db2d05b87e85d33518a946000e1e5b9239191e"
+      },
+      "host_errors": [
+        "TimeoutError('bounded file supervisor-ready.json')"
+      ],
+      "host_elapsed_seconds": 17.014999999999418,
+      "qualified_target_stops": 0,
+      "fixture_error": "System.Exception: exact fixture inputs win32=0\r\n   at VMWaitFixture.Need(Boolean v, String s)\r\n   at VMWaitFixture.Main(String[] args)",
+      "fixture_returns": null,
+      "own_handles_closed": true,
+      "own_buffers_released": true
+    },
+    {
+      "version": 4,
+      "host_receipt": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\probe.json",
+        "bytes": 950,
+        "sha256": "41b76d975d155e94c489db5008be34a3a9efd3f7bafc1fcbc2cec610630b4cfc"
+      },
+      "host_errors": [
+        "RuntimeError('dedicated guest administration transport failed: WinRMOperationTimeoutError')"
+      ],
+      "host_elapsed_seconds": 29.687000000005355,
+      "qualified_target_stops": 0,
+      "fixture_error": "System.Exception: actual original wait return win32=2\r\n   at VMWaitFixture.Need(Boolean v, String s)\r\n   at VMWaitFixture.Main(String[] args)",
+      "fixture_returns": [
+        258
+      ],
+      "own_handles_closed": true,
+      "own_buffers_released": true
+    }
+  ],
+  "validation": {
+    "offline_unittests": {
+      "command": ".venv-audit/Scripts/python.exe -B -X utf8 -m unittest devtools.tests.test_terminal_kd_session devtools.tests.test_terminal_kd_session_v3",
+      "tests": 12,
+      "passed": 12,
+      "native": false
+    },
+    "openspec_strict": {
+      "passed": true,
+      "zero_spec_deltas_declared": true
+    },
+    "preservation": {
+      "checked_utc": "2026-11-10T02:11:45.174991+00:00",
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    },
+    "independent_review": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-thread-review-v1-20261110.json",
+      "bytes": 18565,
+      "sha256": "dc298d0e32bbcc1e06b4f321188d852a75ea4bed07a1e75385c38f2f49535cca"
+    }
+  },
+  "environment": {
+    "host_input_actions": 0,
+    "host_BCD_changes": 0,
+    "new_environment_download_bytes": 0,
+    "all_new_data_under_host_F": true,
+    "cpu": 2,
+    "memory_bytes": 4294430720,
+    "forced_owned_VM_recovery": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-power-recovery-v1.json",
+      "bytes": 655,
+      "sha256": "cff00b28856723581082722e40369d14e936c009ded0656188739eeee1008d56"
+    },
+    "restore": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-restore-v1.json",
+      "bytes": 1849,
+      "sha256": "519c7d53f6a21496aa0994e0d6d6df778401ed9d0b86e18dab94030327440e1c"
+    },
+    "cold_boot": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\boot-kd-thread-restored-v1-20261110.json",
+      "bytes": 1127,
+      "sha256": "63086c3824a71462a345082ed29b922022779deea5dcdf06f07cc3f150573db3"
+    },
+    "final": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-final-worker-v1.json",
+      "bytes": 12813,
+      "sha256": "de37471ee5daaefb91779b3fea174dfd6c1a56f1bbbcc6eb0aff5188d77d2206"
+    },
+    "running_VMs": 0,
+    "snapshots": 0,
+    "vmem_files": 0,
+    "previous_vmdk_bytes": 16761552896,
+    "current_vmdk_bytes": 16761683968,
+    "vmdk_growth_bytes": 131072,
+    "previous_QEMU_files_unchanged_and_retained_bytes": 382814083
+  },
+  "evidence": {
+    "support_capsule": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-thread-support-v1-20261110.zip",
+      "bytes": 249917,
+      "sha256": "aeb8a831afa2c57225618288351048be55687a922733c4c10148bb2976bd770e"
+    },
+    "support_uncompressed_bytes": 1652970,
+    "raw_context_contract": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-raw-context-contract-v1-20261110.json",
+      "bytes": 27256,
+      "sha256": "5c394bd5eb201c22900832eedc2324b4b588ec92f8a3325754a535655843331f"
+    },
+    "retired_new_expanded_JSON": {
+      "reason": "new derived PowerShell ETS metadata expansion; exact original bytes recoverable from the verified small support capsule; no original game/save/checkpoint/history removed",
+      "file": {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\state-no-module-query.json",
+        "bytes": 746165,
+        "sha256": "31221598d478b93e4451fbe2be8bba20a05c270602bfe0ab4909b0d137d70058"
+      },
+      "capsule": {
+        "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-thread-support-v1-20261110.zip",
+        "bytes": 249917,
+        "sha256": "aeb8a831afa2c57225618288351048be55687a922733c4c10148bb2976bd770e"
+      },
+      "member": "kd-thread-v1-20261110/state-no-module-query.json"
+    },
+    "cleanup": {
+      "removed_bytes": 746165,
+      "exact_retired_bytes_available_in_capsule": true,
+      "no_originals_or_historical_evidence_removed": true
+    },
+    "guest_files": [
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\ack-0",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\ack-1",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\ack-2",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\ack-3",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\bcd-before",
+        "bytes": 24576,
+        "sha256": "0967ADDD1119AC3DDF6965827FC18EFF455BD34530D789FB19875E72F18E4628"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\fixture.bin",
+        "bytes": 214,
+        "sha256": "671774F8EA30C622791F1BAE1CD5F005936F6C2E2389E0E4EF3F26C9732CC99A"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\fixture.exe",
+        "bytes": 16384,
+        "sha256": "4358370FFE0A864F7A3420C42EBB6321B7F64775AC68BCB90EDC281573830304"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\go",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\manifest.json",
+        "bytes": 7677,
+        "sha256": "025B4EFF22B50C2B3AC352B1428030755A8A9BB503C631CB5DF5188A14D2D059"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\ready.json",
+        "bytes": 907,
+        "sha256": "1360C90FFE493F2B1F2AE4CE3FF6292D3CE97778418A35E68F0E3B53C42C48DA"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\result.json",
+        "bytes": 34438,
+        "sha256": "4B8C350EBEF081C5F4104E455B5E94EC1DBCEA8B075ECE494E5A41BCA8A6E03B"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\returned-0.json",
+        "bytes": 21,
+        "sha256": "070C55BE9301040A869BE8F02E3EE4A63FB9634924DFD81F53B7F09F5F4972AF"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\supervisor-progress.json",
+        "bytes": 1417,
+        "sha256": "168269B4AB29687F39812CD8A7811406FD83F5DA0F1EADA00BE18036FF5A4209"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\supervisor-ready.json",
+        "bytes": 1185,
+        "sha256": "220D0D8835594385E0E8BE2296313E99CB216F044AF31A0E8724980BDDA18360"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\supervisor.json",
+        "bytes": 1862,
+        "sha256": "98F290F41633BCCAFCD1FD851D2746AB4CF677293EDB1D1F2BEB2E1782921736"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\supervisor.py",
+        "bytes": 4660,
+        "sha256": "32E2B0A85A4EDCFD1C63CC6A22AB2376228C0E7FFB5A7B33DDC4A8F3F642BFD4"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v1-20261110\\terminal_vm_wait_fixture.cs",
+        "bytes": 9775,
+        "sha256": "9B0AE21E84621E7A59E185481286E63E7117C77B83B33BD28EE26D6D2A303EF9"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\ack-0",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\ack-1",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\ack-2",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\ack-3",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\fixture.bin",
+        "bytes": 214,
+        "sha256": "671774F8EA30C622791F1BAE1CD5F005936F6C2E2389E0E4EF3F26C9732CC99A"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\fixture.exe",
+        "bytes": 16384,
+        "sha256": "4358370FFE0A864F7A3420C42EBB6321B7F64775AC68BCB90EDC281573830304"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\manifest.json",
+        "bytes": 7677,
+        "sha256": "025B4EFF22B50C2B3AC352B1428030755A8A9BB503C631CB5DF5188A14D2D059"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\ready.json",
+        "bytes": 907,
+        "sha256": "2BCBE78D621783DF3B334E7322AAA233B1EC08E8CD03DF9D04062A9EFFD44546"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\result.json",
+        "bytes": 34452,
+        "sha256": "C897B8EF3787823DD7791BE2AFB28A92EBB9DE59A130732D66A56820A63997D2"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\supervisor-progress.json",
+        "bytes": 36040,
+        "sha256": "924C36644D46EA69D1C5DEE2A490ACDBA02D6B76AF6309FD7C5C5D87E51AA954"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\supervisor-ready.json",
+        "bytes": 1185,
+        "sha256": "0BF54225289338F6EDEDC112B6005632B27A36AD68C2F2DD295758A81232496B"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\supervisor.json",
+        "bytes": 36587,
+        "sha256": "18A504C7F317D08E37C9C4AF21D7F5EF85467E07E02520AE0D8B82A966BE19A0"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\supervisor.py",
+        "bytes": 4660,
+        "sha256": "2B8BB02960721675101828854AD605F4B35FDB1524D5C33A39F0D34DFD1C0D9B"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v2-20261110\\terminal_vm_wait_fixture.cs",
+        "bytes": 9775,
+        "sha256": "9B0AE21E84621E7A59E185481286E63E7117C77B83B33BD28EE26D6D2A303EF9"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\ack-0",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\ack-1",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\ack-2",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\ack-3",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\fixture.bin",
+        "bytes": 214,
+        "sha256": "671774F8EA30C622791F1BAE1CD5F005936F6C2E2389E0E4EF3F26C9732CC99A"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\fixture.exe",
+        "bytes": 16384,
+        "sha256": "C83A01020102FB79267CB0E40E37C2A16F29EC1B69865A49574DB892007DDFAF"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\manifest.json",
+        "bytes": 7814,
+        "sha256": "D7DA75BB3CC96409E99BE4923B8E13A9F905520009D46D205786B784CF4EAFA0"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\result.json",
+        "bytes": 380,
+        "sha256": "27B2B8F6A76AA5A18FE5E8E10C42DFE0D6E50AAA4B60A2D6A4ADE9339B5802F8"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\supervisor-progress.json",
+        "bytes": 118,
+        "sha256": "6C6DE9FE41251D11E4CE8AF29E824DE172A2B8A03EFBC5BEF95D5733EB9B29B6"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\supervisor.json",
+        "bytes": 254,
+        "sha256": "2973C770340FEEEF9F3D81A88D93A263C2CB1E83244D00B36E4EA20120F273E1"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\supervisor.py",
+        "bytes": 4660,
+        "sha256": "00E9D2CCB1F0771A0EF0AE4C2141C78501A5BC85B80CF4D60E570CD289D09727"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v3-20261110\\terminal_vm_wait_fixture.cs",
+        "bytes": 9712,
+        "sha256": "03B80B3D36492C0E6E3824B06DCC096F6E187E8C1A8D59B6771E576CFDCCA126"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\ack-0",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\ack-1",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\ack-2",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\ack-3",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\fixture.bin",
+        "bytes": 214,
+        "sha256": "671774F8EA30C622791F1BAE1CD5F005936F6C2E2389E0E4EF3F26C9732CC99A"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\fixture.exe",
+        "bytes": 16384,
+        "sha256": "A7CDC7FE47FA42FCF86137823771099A3CBD3CA5C06185E965C9E0EFE766DC7B"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\go",
+        "bytes": 8,
+        "sha256": "E256EE8E7AFF6957A781D8328F0F68E26996564C81FA458DA59FBCA2305138AD"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\manifest.json",
+        "bytes": 7718,
+        "sha256": "44F036E66245620E70A023235F58A19DB7998E22FE5E6EC22B8D3BF5F8C71CFC"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\ready.json",
+        "bytes": 906,
+        "sha256": "0F46D9C15CBF459DA61581D7E5BCCD7A679161DD033F80E57CD157B35FABA5B6"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\result.json",
+        "bytes": 34435,
+        "sha256": "1E99FED13525E1BFDD1A3FF619498D572912C71B1E19FFF66C87C5C2EC0D5C90"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\supervisor-progress.json",
+        "bytes": 1428,
+        "sha256": "035B46B964B00567440BDB6B06A0DD1C57215D579F5C7A115553F67378FAA36D"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\supervisor-ready.json",
+        "bytes": 1183,
+        "sha256": "FB8F860791916FD6808258B5CA18864FD07D708388AB61382191568BD0C17F7C"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\supervisor.json",
+        "bytes": 1884,
+        "sha256": "FE39D2157AEEDBA7AA6A0FB06205FA7C97CFCAD652598018D2114560166A4B9A"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\supervisor.py",
+        "bytes": 4660,
+        "sha256": "B40C84C6B68413100421935A8B349C00B045FDE3BF765B3C0346D0DACDCBFD21"
+      },
+      {
+        "path": "C:\\ChaomofaWorker\\kd-thread-v4-20261110\\terminal_vm_wait_fixture.cs",
+        "bytes": 9712,
+        "sha256": "03B80B3D36492C0E6E3824B06DCC096F6E187E8C1A8D59B6771E576CFDCCA126"
+      }
+    ],
+    "host_inventory_paths": [
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\boot-kd-thread-preparation-v1-20261110.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\boot-kd-thread-restored-v1-20261110.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-kd-thread-closeout-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-kd-thread-probe-v2.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-kd-thread-probe-v3.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-kd-thread-recovery.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-kd-thread-v4.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-restore-kd-thread-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\check-kd-thread-compile-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\check-kd-thread-compile-v2.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\check-kd-thread-compiler-error.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\check-kd-thread-launch.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\check-kd-thread-preservation-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\check-kd-thread-state-v2.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\collect-kd-thread-batch-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\collect-kd-thread-results-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\continue-kd-thread-preparation.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\finalize-kd-thread-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\inspect-kd-unrequested-stop-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-batch-final-v1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-final-worker-v1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-power-recovery-v1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-preservation-v1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-restore-v1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-retire-expanded-json-v1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\bcd-before",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\compile-path-check-v2.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\final-guest-result.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\final-guest-returned-0.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\final-guest-returned-1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\final-guest-returned-2.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\final-guest-returned-3.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\final-guest-supervisor-progress.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\final-guest-supervisor.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\fixture\\fixture.bin",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\fixture\\fixture.exe",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\fixture\\manifest.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\fixture\\terminal_vm_wait_fixture.cs",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\passive-stop.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\passive-stop.log",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\prepare-continuation.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\prepare.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\probe.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\progress.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\supervisor.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v1-20261110\\vmx-before.txt",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\debugger.log",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\final-guest-result.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\final-guest-returned-0.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\final-guest-returned-1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\final-guest-returned-2.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\final-guest-returned-3.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\final-guest-supervisor-progress.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\final-guest-supervisor.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\fixture\\fixture.bin",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\fixture\\fixture.exe",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\fixture\\manifest.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\fixture\\terminal_vm_wait_fixture.cs",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\go.txt",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\guest-supervisor-ready.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\prepare.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\probe.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\progress.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\recovery-v1.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\recovery-v1.log",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v2-20261110\\supervisor.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\fixture\\fixture.bin",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\fixture\\fixture.exe",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\fixture\\manifest.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\fixture\\terminal_vm_wait_fixture.cs",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\prepare.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\probe.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\progress.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v3-20261110\\supervisor.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\fixture\\fixture.bin",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\fixture\\fixture.exe",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\fixture\\manifest.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\fixture\\terminal_vm_wait_fixture.cs",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\prepare.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\probe.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\progress.json",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\supervisor.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\kd-thread-v4-20261110\\vmware-before-recovery.log",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\prepare-kd-thread-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\prepare-kd-thread-v2.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\prepare-kd-thread-v3.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\prepare-kd-thread-v4.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\recover-kd-thread-power-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\recover-kd-thread-v2.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\restore-kd-thread-v1.py",
+      "F:\\project\\chaomofa\\.venv-audit\\native-worker\\seal-kd-thread-support-v1.py",
+      "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-raw-context-contract-v1-20261110.json",
+      "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-thread-closeout-v1-20261110.json",
+      "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-thread-review-v1-20261110.json",
+      "F:\\project\\chaomofa\\analysis\\terminal-wait-kd-thread-support-v1-20261110.zip"
+    ],
+    "same_disk_capsule_is_recovery_copy_not_independent_backup": true
+  },
+  "accounting": {
+    "note": "Host evidence includes capsule, all retained new local input/reports/scripts and this report; guest logical evidence already resides inside the F-drive VMDK and must not be added to physical disk growth. Git objects and any subsequent audit receipts are measured after commit in the final local volume receipt. Existing QEMU storage is not new this turn.",
+    "git_added_file_bytes": 380990,
+    "host_retained_evidence_logical_bytes": 1240294,
+    "host_retained_evidence_allocated_bytes": 1240294,
+    "guest_evidence_logical_bytes": 369201
+  }
+}

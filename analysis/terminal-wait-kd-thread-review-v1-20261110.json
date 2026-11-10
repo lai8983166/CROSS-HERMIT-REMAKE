@@ -1,0 +1,314 @@
+{
+  "schema": "terminal-wait-kd-thread-independent-review-v1",
+  "reviewed_utc": "2026-11-10T02:16:20.428264+00:00",
+  "scope": "Independent static source, bounded local receipts and offline model review only. No VM, native debugger, guest process or network operation by reviewer; executed/frozen sources and old reports unchanged.",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "original_game_starts": 0,
+  "qualified_target_stops": 0,
+  "native_session_v3_exercised": false,
+  "functional_gate_passed": false,
+  "conclusion": "session_v3 fixes the two demonstrated transcript-control mistakes in offline examples, but v3/v4 preparation failed before Session construction. Neither four owned kernel returns nor complete canonical57 or original-game handshake has been observed. Recovery is a separate completed operation and does not qualify the failed experiment.",
+  "source_and_receipt_identities": [
+    {
+      "path": "devtools/terminal_kd_session.py",
+      "bytes": 5570,
+      "sha256": "8804ab8c028608510e42474853bff85ff759263df6a02a37a29262323229788b"
+    },
+    {
+      "path": "devtools/terminal_kd_session_v2.py",
+      "bytes": 1224,
+      "sha256": "27055a69d2593185fdfdb694b0f65941afc28bc152856e3c16ffe57a957ffc6f"
+    },
+    {
+      "path": "devtools/terminal_kd_session_v3.py",
+      "bytes": 4094,
+      "sha256": "f786cbb4ceb1cb23b23ebded17e08e8fd2f105f1a39af4c84217253573629611"
+    },
+    {
+      "path": "devtools/tests/test_terminal_kd_session.py",
+      "bytes": 1104,
+      "sha256": "71edd9bd8c7abd0ace717db785b204007f9ee2a9f607d26ca40c8c2e6ac1e656"
+    },
+    {
+      "path": "devtools/tests/test_terminal_kd_session_v3.py",
+      "bytes": 2002,
+      "sha256": "7ea489bdca3de1876023faf506e5587f75dc1b2dc326073f8e645e742c8b3c8e"
+    },
+    {
+      "path": "devtools/terminal_kd_thread_probe_v2.py",
+      "bytes": 9951,
+      "sha256": "84039e0836ec51c0ba226127b0df7a0ff11f78c5756ed4125be487aae87329fb"
+    },
+    {
+      "path": "devtools/terminal_kd_thread_probe_v3.py",
+      "bytes": 10495,
+      "sha256": "6ec63e6add15ac727bbf49e01694a338a4cd56957206221dc2571e2e20c99fc0"
+    },
+    {
+      "path": "devtools/terminal_kd_thread_probe_v4.py",
+      "bytes": 10495,
+      "sha256": "5cdf3917b21ca1f84cdc24b1da71122f96b9c92191809b49f9707760af19c180"
+    },
+    {
+      "path": "analysis/terminal-wait-kd-raw-context-contract-v1-20261110.json",
+      "bytes": 27256,
+      "sha256": "5c394bd5eb201c22900832eedc2324b4b588ec92f8a3325754a535655843331f"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v2-20261110/probe.json",
+      "bytes": 5956,
+      "sha256": "08f687d333df614d1f4ddb3c1b5448f657fda080509c014c6f8ad1b442dc441a"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v3-20261110/probe.json",
+      "bytes": 868,
+      "sha256": "fe75d0fc7be60860f8c2d0eab7db2d05b87e85d33518a946000e1e5b9239191e"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v4-20261110/probe.json",
+      "bytes": 950,
+      "sha256": "41b76d975d155e94c489db5008be34a3a9efd3f7bafc1fcbc2cec610630b4cfc"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v2-20261110/debugger.log",
+      "bytes": 5403,
+      "sha256": "ed6ee44e3ac290c946cf4cf3f8dc6e86dbd950fcd5d7f1992ee390a6d85f5bc9"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v3-20261110/fixture/manifest.json",
+      "bytes": 7814,
+      "sha256": "d7da75bb3cc96409e99be4923b8e13a9f905520009d46d205786b784cf4eafa0"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v3-20261110/fixture/terminal_vm_wait_fixture.cs",
+      "bytes": 9712,
+      "sha256": "03b80b3d36492c0e6e3824b06dcc096f6e187e8c1a8d59b6771e576cfdcca126"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v3-20261110/fixture/fixture.bin",
+      "bytes": 214,
+      "sha256": "671774f8ea30c622791f1bae1cd5f005936f6c2e2389e0e4ef3f26c9732cc99a"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v4-20261110/fixture/manifest.json",
+      "bytes": 7718,
+      "sha256": "44f036e66245620e70a023235f58a19db7998e22fe5e6ec22b8d3bf5f8c71cfc"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v4-20261110/fixture/terminal_vm_wait_fixture.cs",
+      "bytes": 9712,
+      "sha256": "03b80b3d36492c0e6e3824b06dcc096f6e187e8c1a8d59b6771e576cfdcca126"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-v4-20261110/fixture/fixture.bin",
+      "bytes": 214,
+      "sha256": "671774f8ea30c622791f1bae1cd5f005936f6c2e2389e0e4ef3f26c9732cc99a"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-batch-final-v1.json",
+      "bytes": 193210,
+      "sha256": "a1c14f04caee770938348c9926c98801ab3db7495e7c8fa63e91fa6331ccac87"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-power-recovery-v1.json",
+      "bytes": 655,
+      "sha256": "cff00b28856723581082722e40369d14e936c009ded0656188739eeee1008d56"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-restore-v1.json",
+      "bytes": 1849,
+      "sha256": "519c7d53f6a21496aa0994e0d6d6df778401ed9d0b86e18dab94030327440e1c"
+    },
+    {
+      "path": ".venv-audit/native-worker/boot-kd-thread-restored-v1-20261110.json",
+      "bytes": 1127,
+      "sha256": "63086c3824a71462a345082ed29b922022779deea5dcdf06f07cc3f150573db3"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-final-worker-v1.json",
+      "bytes": 12813,
+      "sha256": "de37471ee5daaefb91779b3fea174dfd6c1a56f1bbbcc6eb0aff5188d77d2206"
+    },
+    {
+      "path": ".venv-audit/native-worker/kd-thread-preservation-v1.json",
+      "bytes": 172,
+      "sha256": "b3e375d47792603818128bcd1a5a5f7d4b3e62a30326591a9f023c89d107f549"
+    }
+  ],
+  "prior_failure_and_repair": [
+    {
+      "location": "terminal_kd_session.py:81-103; kd-thread-v2/debugger.log",
+      "finding": "Old go retained an old completed prompt in the full transcript. Cleanup could treat it as a current stop and queue bc while running; a subsequent Breakpoint 0 hit preceded a marker on the same line as 1: kd> . The old ^MARKER$ completion expression missed this shape. One textual hit is not a qualified owner/trap/status capture."
+    },
+    {
+      "location": "terminal_kd_session_v3.py:24-31,62-64",
+      "finding": "go advances cursor, clears stopped text and enters running; observe_prompt only promotes connecting/running when fresh tail ends in a full prompt. An unchanged historical prompt no longer permits query or second g. This fixes that normal-flow authorization bug in the offline model."
+    },
+    {
+      "location": "terminal_kd_session_v3.py:11-12,53-57",
+      "finding": "marker_complete accepts the observed inline prompt marker and requires a completed trailing prompt. Positive offline execute returns stopped. Native command/stdio timing remains unverified."
+    },
+    {
+      "finding": "The existing v2 receipt has no timestamps per child output write and no complete gate-future outcome. Its 45-second monitor miss followed by a recovery-time hit cannot distinguish delayed guest gate, delayed actual stop, or child stdio visibility. Parent file flush would not flush the child debugger runtime."
+    }
+  ],
+  "offline_validation": {
+    "existing_regressions": {
+      "tests_reviewed": 12,
+      "pass_count_reported_by_parent": 12,
+      "independently_rerun_existing_suite": false,
+      "limits": "Six v3 tests exercise stale/fresh/partial prompts, exact marker examples and an explicitly assigned unknown state. They do not prove real KD transport or full exceptional cleanup."
+    },
+    "independent_bounded_check": {
+      "method": "Parsed the frozen v3 source AST, executed only function/class definitions against an in-memory text/stdio fake with Prior=object; no imports with native side effects and no Session constructor. No persistent harness file created.",
+      "observed": {
+        "stale_prompt_rejected": true,
+        "stale_cleanup_rejected": true,
+        "inline_marker_accepted": true,
+        "positive_execute_state": "stopped",
+        "state_after_injected_go_send_failure": "running",
+        "state_after_injected_query_send_failure": "query",
+        "unknown_late_prompt_still_rejected": true,
+        "embedded_prompt_marker_false_accept": true
+      }
+    }
+  },
+  "residual_findings": [
+    {
+      "priority": "before further native session",
+      "location": "terminal_kd_session_v3.py:49-60,62-64; terminal_kd_thread_probe_v4.py:131-144",
+      "finding": "go marks running before send succeeds; a BrokenPipeError preserves running. execute marks query before send; send/read/process-exit exceptions can preserve query, while only the explicit time deadline becomes unknown. Both were reproduced offline for send failure. State records intent rather than confirmed acceptance on these edges.",
+      "minimal_action": "Record attempted/sent/fault separately, transition to unknown on local IO/child failures, persist terminal error and last cursor. Treat running only as a continuation request until independent guest response, not proof of execution."
+    },
+    {
+      "priority": "before further native session",
+      "location": "terminal_kd_session_v3.py:24-31; terminal_kd_thread_probe_v4.py:134-140",
+      "finding": "query/unknown intentionally reject later prompts, so timeout recovery cannot automatically clear a breakpoint or resume via the normal API. A fresh late prompt does not fix this state. This fails closed but may leave a paused guest and unresolved owned breakpoint.",
+      "minimal_action": "Specify a separate bounded recovery handshake with fresh prompt/new marker and explicit current-event validation, or report recovery pending for the owner-controlled external recovery. Never switch to stopped merely from a historical prompt."
+    },
+    {
+      "priority": "before further transport work",
+      "location": "terminal_kd_thread_probe_v4.py:33-41,77-84,127,145",
+      "finding": "collect deadline bounds loop entry, not one synchronous run_guest call. Actual v4 elapsed 29.687 seconds exceeded collect(15). pool.shutdown(wait=True) is also not a hard outer bound. Gate future outcomes are recorded only when monitor polls them or successful path reaches pending results; an earlier exception can omit the final outcome.",
+      "minimal_action": "Bound transport receives/retries and overall call; record all started future terminal outcomes in finally without an unbounded wait. Do not infer guest gate time from host monitor duration."
+    },
+    {
+      "priority": "offline regression",
+      "location": "terminal_kd_session_v3.py:12,66-73",
+      "finding": "Marker prompt alternative is not start-of-line anchored: junk1: kd> MARKER is accepted. Pending break recognition searches the complete tail and checks only an exception-code substring in .lastevent, rather than parsing the newest event identity.",
+      "minimal_action": "Anchor optional CPU prompt at beginning of a line, tolerate CRLF/chunk boundaries, and test mixed old/new stop blocks plus an exact latest pending break. This is a parser strictness finding, not an observed native failure."
+    },
+    {
+      "priority": "evidence semantics",
+      "location": "terminal_kd_thread_probe_v4.py:95-114",
+      "finding": "A candidate row is appended to stops before status/caller/CS/timeout/counter/raw reads finish. A future len(stops)==4 is not by itself four qualified captures if the fourth check fails.",
+      "minimal_action": "Keep candidates distinct from qualified rows or mark validation complete only after all required checks. Current actual list is empty, so this issue does not alter the zero-qualified-stop conclusion."
+    }
+  ],
+  "native_receipts": {
+    "v2": {
+      "qualified_stops": 0,
+      "textual_unparsed_breakpoint_hit": true,
+      "meaning": "No captured live owner/trap/status record; not a target observation."
+    },
+    "v3": {
+      "host_error": [
+        "TimeoutError('bounded file supervisor-ready.json')"
+      ],
+      "manifest_contract": {
+        "required_key": "source_sha256",
+        "stale_value": "9b0ae21e84621e7a59e185481286e63e7117c77b83b33bd28ee26d6d2a303ef9",
+        "incorrect_extra_key": "fixture_source_sha256",
+        "actual_source_sha256": "03b80b3d36492c0e6e3824b06dcc096f6e187e8c1a8d59b6771e576cfdcca126"
+      },
+      "late_guest_error": "System.Exception: exact fixture inputs win32=0\r\n   at VMWaitFixture.Need(Boolean v, String s)\r\n   at VMWaitFixture.Main(String[] args)",
+      "signals": 0,
+      "no_debugger_transcript": true,
+      "meaning": "Guest exact-input rejection corroborates the static manifest mismatch; host only observed ready timeout. No native v3 session."
+    },
+    "v4": {
+      "host_error": [
+        "RuntimeError('dedicated guest administration transport failed: WinRMOperationTimeoutError')"
+      ],
+      "manifest_source_matches": true,
+      "guest_module_capture_seconds": 2.280999999999949,
+      "guest_module": {
+        "peb": 3915776,
+        "ldr": 140726985961728,
+        "entry": 6387040,
+        "image_base": 1999306752,
+        "path": "C:\\Windows\\System32\\wow64cpu.dll",
+        "size": 36864,
+        "sha256": "6d3e9d039c22b58c577435ef0209d43668ef2003e284be9980e4ad1289045a66"
+      },
+      "late_guest_returns": [
+        258
+      ],
+      "late_guest_signals": 1,
+      "late_guest_error": "System.Exception: actual original wait return win32=2\r\n   at VMWaitFixture.Need(Boolean v, String s)\r\n   at VMWaitFixture.Main(String[] args)",
+      "supervisor_errors": [
+        "TimeoutExpired(['C:\\\\ChaomofaWorker\\\\kd-thread-v4-20261110\\\\fixture.exe', '--owned-vmm-fixture', 'C:\\\\ChaomofaWorker\\\\kd-thread-v4-20261110'], 140)"
+      ],
+      "no_debugger_transcript": true,
+      "meaning": "Guest preparation eventually existed, but host collect failed before Session assignment. Later recovery-time fixture output [258] and one signal is failed fixture execution, not three successful returns or four KD observations."
+    }
+  },
+  "recovery": {
+    "evidence": "Authenticated local parent receipts; reviewer did not independently operate or query the VM.",
+    "power_recovery": "Both guest transports unavailable; soft stop timed out; owner used hard stop then headless restart on dedicated fixture-only VM. This ended the old native lifetime.",
+    "batch_active": [],
+    "all_four_own_handles_and_buffers_closed": true,
+    "bcd_restore": "Restore receipt reports successful import and Local debug settings; seven owned serial properties removed. This is configuration recovery, not byte-identical VMX restoration.",
+    "serial_removed": [
+      "serial0.present",
+      "serial0.fileType",
+      "serial0.fileName",
+      "serial0.pipe.endPoint",
+      "serial0.startConnected",
+      "serial0.tryNoRxLoss",
+      "serial0.yieldOnMsrRead"
+    ],
+    "cold_boot": "2026-11-10T02:12:30.5000000Z",
+    "guest_uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+    "debug_configuration": "Current boot output has no debug Yes entry, debugtype Local; active_test_processes empty.",
+    "final_soft_stop": "",
+    "running_after": "Total running VMs: 0",
+    "snapshots": "Total snapshots: 0",
+    "vmem_files": [],
+    "vmdk_bytes": 16761683968,
+    "preservation": {
+      "checked_utc": "2026-11-10T02:11:45.174991+00:00",
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    },
+    "limits": "Large 13-file preservation is size-only, explicitly not fresh SHA authentication. Self-reported handles/buffers true does not prove original-game resources. New cold boot cannot continue the prior resource lifetime."
+  },
+  "canonical57_blockers": [
+    "No current target capture exists. The PDB-derived Context pointer at PRCB+0x8980, embedded ContextFrame, user syscall trap, and WOW64 save block are different sources; none may be silently treated as a complete user postreturn CPU.",
+    "Fixed kernel KeContextFromKframes normalizes DS/ES/FS/GS and skips current x87 FXSAVE on the inspected kernel-CS debug path. FLOAT context flag or rF output is not proof of a valid x87 header/register image. Missing FIP/FDP/FCS/FDS/FOP and physical-tag/order validity cannot be filled with zero.",
+    "SpecialRegisters save writes LDTR zero on the inspected route and conditionally captures descriptors; descriptor bases require full width and hidden caches are not guaranteed by descriptor-table bytes. DR4/5 lack independent storage and CR4.DE determines alias/exception semantics; hardware ba and #DB already alter debug state.",
+    "Kernel wait-tail GPRs are not x86 postreturn state. Original trap RAX is not live return status, conditional trap fields need branch validity, and kernel SYSRET path changes registers/MXCSR before WOW64 restores selected saved values.",
+    "No dynamic continuous SYSRET/64-to-32 WOW64 branch trace has bound the restored registers, x87/FX state, user return PC and original resources. The saved WOW64 block is a candidate with provenance/validity obligations, not automatic fullstate.",
+    "All fixed original-byte excerpts and precise minimal raw-read addresses remain in the separately hashed raw-context contract; this review neither changes that contract nor relaxes complete canonical57, ABI, replay, fresh-lifetime or original-game requirements."
+  ],
+  "next_bounded_validation_only": [
+    "Before any new native probe, offline fault-inject stdin write/flush, log read, client exit, query deadline and late prompt; assert no historical prompt authorizes continuation and recovery state remains explicit.",
+    "Replay the exact v2 inline marker transcript in arbitrarily split chunks including CRLF; require exact marker/latest event and reject embedded prompt text.",
+    "Test single transport receive and whole operation hard budgets with simulated silent/stuck guest, and persist each gate/launcher terminal outcome on exception. No repeated long native run is requested by this review.",
+    "After transport/recovery fixes, any future authorized native precheck must remain one bounded owned-fixture observation; native session and complete57 qualification stay false until actual evidence exists."
+  ],
+  "artifact_policy": {
+    "new_files": [
+      "analysis/terminal-wait-kd-thread-review-v1-20261110.json"
+    ],
+    "old_reports_modified": false,
+    "new_native_evidence_bytes": 0,
+    "temporary_harness_files": 0,
+    "commit_performed": false,
+    "note": "Only this small report is newly persisted by the reviewer. Parent owns total change/local evidence accounting and final commit."
+  }
+}
