@@ -1,0 +1,325 @@
+{
+  "schema": "terminal-wait-bounded-query-independent-review-v1",
+  "reviewed_utc": "2026-11-10T02:30:45.801259+00:00",
+  "baseline": "e545f423e8df3dab4fdb1b3b3bead1b478062cb9",
+  "scope": "Independent read-only source, local receipt and installed-SDK review, plus in-memory AST model checks. No reviewer VM/native-process operation or source download; only this report is newly persisted. Final implementation is v3; frozen v1/v2 failures and fixes remain distinct.",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "original_game_starts": 0,
+  "verdict": {
+    "observed_v3_host_deadline_gate_supported": true,
+    "remote_cancellation_proven": false,
+    "all_exception_cleanup_paths_proven": false,
+    "old_transports_all_replaced": false,
+    "canonical57_source_available": false
+  },
+  "conclusion": "The final new read-only entry point passes its observed status/sleep host-deadline preflight with private Job cleanup and same-boot guest response. V3 closes the reviewed v2 cleanup sequencing gaps. This neither qualifies a KD stop/full CPU state nor replaces frozen old transport callers. Complete57 remains blocked.",
+  "identities": [
+    {
+      "path": "devtools/isolated_vm_bounded_query.py",
+      "bytes": 8192,
+      "sha256": "032248b30753bb33fc5fb44bef75668e143a781fe36beb30c23bff5175e8c847"
+    },
+    {
+      "path": "devtools/isolated_vm_bounded_query_v2.py",
+      "bytes": 8899,
+      "sha256": "eb0ae9504d76117b4e6a65da5f29a6586ffa02b4123586dc18d777ed4efa91ee"
+    },
+    {
+      "path": "devtools/isolated_vm_bounded_query_v3.py",
+      "bytes": 9667,
+      "sha256": "4838ed0cf9cac282f51c3cea50d5060eafb0a85d19c347f448d5ea8f23fac3fe"
+    },
+    {
+      "path": "devtools/tests/test_isolated_vm_bounded_query.py",
+      "bytes": 1786,
+      "sha256": "b307df00167d398f62d030e2d068ad2d44ac24c2c70854c9ba58716b37554e2b"
+    },
+    {
+      "path": "devtools/tests/test_isolated_vm_bounded_query_v2.py",
+      "bytes": 1794,
+      "sha256": "8f2fc28b93838e41386aa980b7b03fb9cb467b30aae6479f67ff574cd5e83b1e"
+    },
+    {
+      "path": "devtools/tests/test_isolated_vm_bounded_query_v3.py",
+      "bytes": 1812,
+      "sha256": "a72c6a190c80039f7c0426a9a780505c71030c53817c60973a8b5c041748da7a"
+    },
+    {
+      "path": "devtools/isolated_vm_bounded_query_preflight_v3.py",
+      "bytes": 3721,
+      "sha256": "9ebfae0fa5c074f255eaa226c3ba7651f669477cf7f1b85b84d05a8667d5ad7c"
+    },
+    {
+      "path": "devtools/isolated_vm_guest_admin.py",
+      "bytes": 3060,
+      "sha256": "a3d619f3cbf5c5bf3164ccab4ce0ccf99ee6e6f8b8128f580e77f06ad1fa8406"
+    },
+    {
+      "path": "devtools/isolated_vm_kd.py",
+      "bytes": 1750,
+      "sha256": "8dabf6ca7fbc3cd29cd81e89bc51f4e93ac01744f781ba3fbc5c0f422a38d0b7"
+    },
+    {
+      "path": "devtools/isolated_windows_vm.py",
+      "bytes": 16893,
+      "sha256": "c0413bd97d26fe24c849cc28358d88557f905bb7ff1922a72057ebbfc1f5dbf5"
+    },
+    {
+      "path": "analysis/terminal-wait-kd-raw-context-contract-v1-20261110.json",
+      "bytes": 27256,
+      "sha256": "5c394bd5eb201c22900832eedc2324b4b588ec92f8a3325754a535655843331f"
+    },
+    {
+      "path": "analysis/terminal-wait-qemu-state-contract-v1-20261110.json",
+      "bytes": 17058,
+      "sha256": "82c5a30ba01795787c198a7f5b0c4fa815d93ca444e2d6d695b5ce009a5831d7"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-monitor-independent-review-v1-20261110.json",
+      "bytes": 9847,
+      "sha256": "9935f5ba411bafd53af28bcb80d190d5767a8297b2d42187685ad2aae50dcf85"
+    },
+    {
+      "path": "analysis/terminal-wait-vm-snapshot-v3-cpu-mapping-v1-20261110.json",
+      "bytes": 2732,
+      "sha256": "c1536b144ab777f18492017433027b2975ac301b79747fa509033f1e987a1270"
+    },
+    {
+      "path": ".venv-audit/native-worker/bounded-query-v1-20261110/report.json",
+      "bytes": 3227,
+      "sha256": "797e99c05278d90f0033d5db04356382da9860d2fcb151d3b3bae7a86766b113"
+    },
+    {
+      "path": ".venv-audit/native-worker/bounded-query-v2-20261110/report.json",
+      "bytes": 4951,
+      "sha256": "bd8de55fe5f68866aeb23ce9e64d09cbb2bb7d9c166080d215ee5cffc1c9f4a8"
+    },
+    {
+      "path": ".venv-audit/native-worker/bounded-query-v3-20261110/report.json",
+      "bytes": 5253,
+      "sha256": "6da2abf44f01bf699b67d61c9b8929fb0f7cb366f424c0d0f6979a2de11f5452"
+    }
+  ],
+  "installed_sdk_identities": [
+    {
+      "path": "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/WinHvPlatform.h",
+      "bytes": 23811,
+      "sha256": "da7b74cecb8d335609e64385274b13ca3c2ddfaeb38d73add6073401cefdefd1"
+    },
+    {
+      "path": "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/WinHvPlatformDefs.h",
+      "bytes": 138461,
+      "sha256": "91a864b6ec2d932bcc7ce17f503f72a7813759cde81be2d1ac86cba9abb61c4a"
+    }
+  ],
+  "version_history": {
+    "v1": {
+      "native_failure": "Four responses returned ModuleNotFoundError in 0.157-0.172 seconds. Manual -S search paths omitted installed system dependencies; no successful guest connection was established. Final soft stop reports zero running VMs/snapshots/vmem.",
+      "independently_reproduced_defects": [
+        "Deadline checked only while poll was None: fake already-exited worker at t=1.0 accepted observed response with deadline0.1.",
+        "100010-character allowed read_text path generated100182-character script; synchronous pipe write preceded monitor with no wire cap."
+      ]
+    },
+    "v2": {
+      "repairs": [
+        "Copies absolute trusted parent sys.path without executing child site/.pth hooks.",
+        "Path <=256 chars and serialized request <=1024 bytes before child creation.",
+        "Checks monotonic deadline after loop exit, rejecting late already-completed response."
+      ],
+      "residuals_reported_before_v3": [
+        "Job existed before base/runtime_paths code outside try; initialization failure could leak its empty handle.",
+        "An exception in finally job.close skipped fallback direct child cleanup and elapsed recording."
+      ]
+    },
+    "v3": {
+      "repairs": [
+        "Job construction, base resolve and runtime_paths are within try/finally.",
+        "Finally independently attempts Job termination, handle close and direct-child cleanup; each failure is recorded by type and does not skip later stages.",
+        "completed requires no errors/timeout, Job active0, exit0, observed remote completion and response.ok exactly true; final preflight uses it."
+      ],
+      "limits": "A recorded cleanup failure remains failure, not evidence that all handles/processes were released. A failed actual CloseHandle can leave a handle; continued fallback only bounds/report attempts."
+    }
+  },
+  "validation_review": {
+    "parent_tests_reported_passed": {
+      "v1": 5,
+      "v2": 4,
+      "v3_unittest_entry": 7
+    },
+    "test_count_note": "V3 imports the four v2 tests and adds three methods; one method also reruns those four behaviors against v3. Do not treat overlapping checks as independent native evidence.",
+    "reviewer_reran_native_tests": false,
+    "independent_offline_model": {
+      "method": "Only frozen function AST definitions were executed with fake Job/Popen/clock and BytesIO; no constructor/native child or persistent harness.",
+      "v1_result": {
+        "deadline": 0.1,
+        "elapsed": 1.0,
+        "remote_completion": "observed",
+        "response_present": true,
+        "oversized_path_refused": false
+      },
+      "v2_result": {
+        "deadline": 0.1,
+        "elapsed": 1.0,
+        "remote_completion": "unknown",
+        "timed_out": true,
+        "response_present": false,
+        "oversized_path_refused": true,
+        "oversized_payload_refused": true
+      }
+    },
+    "v3_source_review": "The corrected v2 size/deadline logic is preserved. Independent finally handlers and completed predicate were read directly. Native receipt code hashes match the current frozen files.",
+    "remaining_regression_limits": "Initialize/close injections cover the reviewed sequencing defects. The close test closes the real handle and then raises; it does not simulate an actual kernel CloseHandle failure. The initialization test asserts errors/elapsed/no child, not independently enumerated handle disappearance. Job assign/query/terminate, stdin flush/read and compound OS failures are not exhaustively fault-injected."
+  },
+  "job_deadline_and_guard_review": [
+    {
+      "topic": "Job ownership",
+      "finding": "KILL_ON_JOB_CLOSE is set without breakaway flags. Direct base Python uses CREATE_NO_WINDOW and -I/-S/-B. Audited worker reads stdin before importing/running WinRM, and parent assigns the process before delivering the request.",
+      "limit": "Process is not created suspended; safety relies on the audited bootstrap/import path doing no task work before stdin. Arbitrary bootstrap is a private test hook, not a safe public executor."
+    },
+    {
+      "topic": "descendants",
+      "finding": "Ordinary CreateProcess descendants join the private Job; timeout terminates that Job, waits for direct process and queries active descendants. Final cleanup attempts both job termination and close before direct fallback.",
+      "limit": "Remote WinRM processes and service/WMI-brokered host processes are not made members by this design. Audited worker does not spawn brokered host tasks. Host timeout never proves remote cancellation."
+    },
+    {
+      "topic": "deadline",
+      "finding": "Final logic supervises transport in a disposable process, independent of WinRM receive retries; operation deadline is checked even when child has already exited.",
+      "limit": "seconds is not a hard OS-level total-return bound. Parent request/profile validation precedes started; process creation/assignment/short pipe write and system scheduling remain synchronous. Normal cleanup includes wait2 plus descendant polling up to2 seconds; exceptional fallback has another wait2. Report actual elapsed and cleanup outcome."
+    },
+    {
+      "topic": "allowlist and identity",
+      "finding": "Only status, sleep_echo integer1..15 and restricted owned JSON read_text paths are exposed. Parent/child validate normal or exact-owned-KD VMX. Existing transport retains actual MAC lease/private address, authenticated encrypted NTLM and guest-name/manufacturer/SMBIOS-UUID guard before action.",
+      "limit": "Configured VMX is trusted; final preflight additionally checks fixed UUID. read_text is lexical path containment, not a hostile-reparse-point sandbox."
+    },
+    {
+      "topic": "secrets",
+      "finding": "Guest credential is read inside child transport and never put in argv/request. Transport replaces exact password in returned stdout; worker/host failures report exception type rather than arbitrary exception text. Raw stderr/invalid output is not returned. Temporary output stays under owned F tmp.",
+      "limit": "Reviewer did not read secrets. Exact password redaction is not universal arbitrary-secret sanitization. Allowed read_text returns requested evidence contents."
+    },
+    {
+      "topic": "output",
+      "finding": "Output >2MiB is refused and child Job terminated; guest read_text checks file size <=1MiB first.",
+      "limit": "Polling is approximately20ms, so MAX_OUTPUT is an evidence acceptance limit, not exact temporary-disk allocation cap. Concurrent guest growth between length-check and ReadAllText is not atomically bounded."
+    },
+    {
+      "topic": "completion",
+      "finding": "Final completed predicate prevents cleanup errors, timeout, nonzero exit and ok=false worker failures from being treated as success.",
+      "limit": "Raw scalar/array JSON or inconsistent malformed schema is not fully validated, although current worker emits a fixed dict and the supervisor catches non-dict access. Use completed plus expected value/identity checks; errors=[] alone is insufficient."
+    }
+  ],
+  "native_receipts": {
+    "v2": {
+      "boot": "2026-11-10T02:25:37.5000000Z",
+      "uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+      "completed_sleep_elapsed": 2.6719999999913853,
+      "deadline_sleep": {
+        "deadline_seconds": 2,
+        "host_input_actions": 0,
+        "remote_completion": "unknown",
+        "errors": [],
+        "host_pid": 15180,
+        "assigned_before_request": true,
+        "timed_out": true,
+        "host_job_active_after": 0,
+        "host_exit_code": 124,
+        "output_bytes": 0,
+        "elapsed_seconds": 2.0
+      },
+      "followup_status_elapsed": 1.264999999999418,
+      "soft_stop": "",
+      "running_after": "Total running VMs: 0",
+      "snapshots": "Total snapshots: 0",
+      "vmem_files": [],
+      "vmx_same_sha256": "1b7d138e03fe1377fe92a98b5af8c17c3785001085cbb1d1db26680f41f4e7a8",
+      "vmdk_before_and_after_bytes": 16761683968,
+      "elapsed_seconds": 32.73500000000058
+    },
+    "final_v3": {
+      "boot": "2026-11-10T02:28:25.5000000Z",
+      "uuid": "E6D84D56-0960-FA47-1543-6C62C21D5DC7",
+      "completed_sleep_elapsed": 1.9059999999881256,
+      "deadline_sleep": {
+        "deadline_seconds": 2,
+        "host_input_actions": 0,
+        "remote_completion": "unknown",
+        "errors": [],
+        "host_pid": 35400,
+        "assigned_before_request": true,
+        "timed_out": true,
+        "host_job_active_after": 0,
+        "host_exit_code": 124,
+        "output_bytes": 0,
+        "elapsed_seconds": 2.0
+      },
+      "followup_status_elapsed": 0.9530000000086147,
+      "soft_stop": "",
+      "running_after": "Total running VMs: 0",
+      "snapshots": "Total snapshots: 0",
+      "vmem_files": [],
+      "vmx_same_sha256": "1b7d138e03fe1377fe92a98b5af8c17c3785001085cbb1d1db26680f41f4e7a8",
+      "vmdk_before_and_after_bytes": 16761683968,
+      "elapsed_seconds": 35.562999999994645
+    },
+    "v3_boot_readiness": "First status attempt itself hit12.000s host deadline with exit124/Jobactive0/remote unknown; the second succeeded. This is bounded readiness recovery, not evidence first remote request was cancelled.",
+    "scope": "v2/v3 sleep8 with host deadline2 returned timed_out at2.000s, Jobactive0/exit124 and remote unknown. Separate status succeeded in the same boot, then normal shutdown produced0VM/0snapshot/no vmem. No debugger, game or CPU fixture was started by these preflights."
+  },
+  "canonical57_future_gate": {
+    "already_rejected_paths": [
+      "Same VMware16 build16894299 Hyper-V ULM hidden Z1 path: registration OK then debugReg.c287 panic, no qualified stop.",
+      "Idle VMware snapshot maps24 fields but pointer encoding/full epoch remain unresolved; suspension/restore clock and resource-lifetime failures are not parser fixes.",
+      "Stock QEMU TCG RSP/HMP/VMState lacks/unmodels required x87 state; prior audit did not authenticate publisher commit raw source.",
+      "Fixed-kernel KD CONTEXT normalizes segments and does not freshly capture all x87 state on this route; another raw CONTEXT/rF read cannot reconstruct discarded state."
+    ],
+    "only_candidate_class_identified": "A controllable hardware VMM owning the partition and raw guest CPU/XSTATE at a transparent, coherent stopped boundary. WHP installed headers provide a plausible read API surface; they do not supply an attachment into existing VMware or a working observer.",
+    "sdk_evidence": {
+      "WinHvPlatformDefs.h:35-118": "GPR/RIP/RFLAGS, segments/LDTR/TR, GDTR/IDTR, CR0/2/3/4, DR0..3/6/7, FP/MMX0..7, XMMs and FP/SSE control aggregates.",
+      "WinHvPlatformDefs.h:869-920": "FPCW/FPSW/abridgedFTW/FOP; union64FIP versus32FIP+FCS, union64FDP versus32FDP+FDS; MXCSR/mask.",
+      "WinHvPlatformDefs.h:924-958": "Full64 segment/table base plus selector/limit/attributes.",
+      "WinHvPlatform.h:197,411": "GetVirtualProcessorRegisters and GetVirtualProcessorState take an owned partition handle and VP index. Current official docs prefer state(XsaveState) over deprecated Xsave-specific API."
+    },
+    "minimal_gate_0": "Before any new environment, identify supported owned hardware backend, all-vCPU stopped epoch, raw FP/XSTATE mode/order and transparent execution-boundary exit semantics. Header fields alone do not pass this gate.",
+    "minimal_gate_1_if_separately_authorized": "One bounded CPU-only fixture, before Windows boot, would need known nontrivial x87 FIP/FDP/FOP/selectors, TOP/tag rotations, x87/XMM patterns and full64 descriptor bases, with exact stop/read/resume equality. Reject placeholders or absent validity; never fill zeros.",
+    "minimal_gate_2": "Prove exact execution boundary with no guest instruction patch, guest DR modification or injected guest #DB, while every vCPU is stopped and independently checked. No WHP execution-control implementation or capability demonstration exists here.",
+    "unresolved": [
+      "WHP omits DR4/5; CR4.DE controls alias versus invalid semantics and canonical contract must represent it without fabricated independent storage.",
+      "FP pointer unions do not provide simultaneous64-bit pointer and32-bit selector fields. Actual guest mode/CPUID FPCSDS/FDP-exception semantics and hardware state validity require proof.",
+      "FP/MMX ordering and FTW interpretation need known-value/TOP authentication; XSAVE presence alone does not certify all legacy fields.",
+      "No owned WHP partition/backend was acquired and no existing VMware partition attachment API was established.",
+      "Even a future CPU gate pass would not establish Windows compatibility, game handshake, native resources, complete ABI/replay or fresh original-game lifetime."
+    ],
+    "no_new_environment_or_parser": true
+  },
+  "official_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects",
+      "purpose": "Ordinary child membership, breakaway and kill-on-close scope."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorregisters",
+      "purpose": "Partition-handle/VP-index register query API, not accuracy qualification."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/virtualization/api/hypervisor-platform/funcs/whvgetvirtualprocessorxsavestate",
+      "purpose": "XSAVE retrieval and deprecation in favor of GetVirtualProcessorState."
+    }
+  ],
+  "next_actions_scope": [
+    "No additional native retry required for this review. Preserve v1/v2/v3 and final receipts.",
+    "Use final completed result and expected identity/value checks only in future explicitly migrated callers; frozen old WinRM/KD tools remain unchanged.",
+    "Retain remote unknown after timeout and reconcile only within authorized read-only scope.",
+    "Further 57-state work must first pass the stated CPU/transparent-stop capability gates; do not provision or repeat the disproven paths from this review."
+  ],
+  "artifact_policy": {
+    "new_files": [
+      "analysis/terminal-wait-bounded-query-review-v1-20261110.json"
+    ],
+    "old_reports_modified": false,
+    "new_native_evidence_bytes_by_reviewer": 0,
+    "new_download_bytes_by_reviewer": 0,
+    "temporary_harness_files": 0,
+    "commit_performed": false,
+    "total_disk_and_git_accounting": "parent agent"
+  }
+}

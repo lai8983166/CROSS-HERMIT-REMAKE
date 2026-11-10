@@ -80,6 +80,29 @@
 
 ## 工具自身验证
 
+### 隔离客体只读控制期限（2026-11-10）
+
+后续状态/准备回执查询使用 `devtools.isolated_vm_bounded_query_v3.query`，不要直接
+把同步 WinRM 调用放入一个外层 deadline 循环。原库的接收超时会无限重试；旧冻结
+工具保持原字节，它们不会因新增入口自动获得总期限。
+
+新入口只提供 `status`、有界自有 JSON 文件读取和短 `sleep_echo` 诊断。每次启动
+独立宿主解释器，在交付请求前加入私有 Windows Job；期限到后终止该 Job 的进程树。
+请求/输出有大小预算，超过期限后才观察到的完成响应也拒绝；清理有单独预算和错误
+记录，不能称为操作系统级硬实时保证。网络认证、加密和客体身份检查复用原实现。
+
+`completed(report)` 才是查询成功条件，不能只看 `response.ok`。超时保持
+`remote_completion=unknown`：宿主进程清空不证明客体 PowerShell 已取消，更不证明
+游戏或资源清理；状态未知时仅做只读核实，不据此开始下一项原生工作。新入口不提供
+启动/输入/写 gate 等变更操作，不能套用它来推断这些动作的取消语义。
+
+在 F 盘 2 核/4 GiB 客体中，v3 的 12 秒启动查询和 2 秒短查询分别在实测 12.000/
+2.000 秒结束，宿主 Job active=0；同 boot 后续状态查询成功，最后正常关机。此结果
+仅验证控制期限，不是完整状态、真实等待或战斗退出验收。详见
+`analysis/terminal-wait-bounded-query-closeout-v1-20261110.json`。
+
+### 迭代编排工具回归
+
 ```bash
 .venv-audit/Scripts/python.exe -B -X utf8 -m unittest discover \
   -s devtools/tests -p 'test_reverse_iteration.py'

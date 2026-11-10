@@ -1,0 +1,196 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-10T02:32:23.923166+00:00",
+  "baseline": "e545f423e8df3dab4fdb1b3b3bead1b478062cb9",
+  "accepted": false,
+  "fullstate": false,
+  "fullABI": false,
+  "change": "connect-terminal-wait-and-battle-exit",
+  "tasks_completed": 2,
+  "tasks_total": 8,
+  "functional_result": {
+    "new_read_only_host_deadline_preflight": true,
+    "normal_response_and_same_boot_after_timeout": true,
+    "remote_cancellation_proven": false,
+    "old_callers_replaced": false,
+    "original_game_starts": 0,
+    "qualified_game_wait_returns": 0,
+    "first_consumer": false,
+    "three_game_handshakes": false,
+    "resource_PTD_release": false
+  },
+  "native_result": {
+    "final_report": {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v3-20261110\\report.json",
+      "bytes": 5253,
+      "sha256": "6da2abf44f01bf699b67d61c9b8929fb0f7cb366f424c0d0f6979a2de11f5452"
+    },
+    "initial_boot_timeout_seconds": 12.0,
+    "requested_timeout_seconds": 2,
+    "actual_timeout_seconds": 2.0,
+    "host_job_active_after": 0,
+    "remote_completion": "unknown",
+    "subsequent_query_seconds": 0.9530000000086147,
+    "preflight_elapsed_seconds": 35.562999999994645
+  },
+  "validation": {
+    "unittest_runs": [
+      {
+        "module": "test_isolated_vm_bounded_query",
+        "reported_tests": 5,
+        "passed": true
+      },
+      {
+        "module": "test_isolated_vm_bounded_query_v2",
+        "reported_tests": 4,
+        "passed": true
+      },
+      {
+        "module": "test_isolated_vm_bounded_query_v3",
+        "reported_tests": 7,
+        "passed": true,
+        "note": "Includes four imported v2 cases and a case reusing four behaviors against v3; counts are not unique requirements."
+      }
+    ],
+    "test_sources": [
+      {
+        "path": "F:\\project\\chaomofa\\devtools\\tests\\test_isolated_vm_bounded_query.py",
+        "bytes": 1786,
+        "sha256": "b307df00167d398f62d030e2d068ad2d44ac24c2c70854c9ba58716b37554e2b"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\devtools\\tests\\test_isolated_vm_bounded_query_v2.py",
+        "bytes": 1794,
+        "sha256": "8f2fc28b93838e41386aa980b7b03fb9cb467b30aae6479f67ff574cd5e83b1e"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\devtools\\tests\\test_isolated_vm_bounded_query_v3.py",
+        "bytes": 1812,
+        "sha256": "a72c6a190c80039f7c0426a9a780505c71030c53817c60973a8b5c041748da7a"
+      }
+    ],
+    "strict_openspec_passed": true,
+    "preservation": {
+      "checked_utc": "2026-11-10T02:30:01.409488+00:00",
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    },
+    "independent_review": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-bounded-query-review-v1-20261110.json",
+      "bytes": 19148,
+      "sha256": "f5c0f44a0b4b1c282a9707a98002a68f7f2421c68c983c630d511148ce0a526e"
+    }
+  },
+  "environment": {
+    "all_new_data_F": true,
+    "cpu": 2,
+    "memory": 4294430720,
+    "host_input_actions": 0,
+    "new_download_bytes": 0,
+    "host_BCD_changes": 0,
+    "VMX_unchanged": true,
+    "final_soft_stop": true,
+    "running_VMs": 0,
+    "snapshots": 0,
+    "vmem_files": [],
+    "VMDK_growth_bytes": 0
+  },
+  "limits": [
+    "Operation deadline plus separately budgeted host cleanup; not an OS hard-real-time upper bound.",
+    "Only read-only status/owned bounded JSON/short sleep diagnostics are exposed; no launch, input, gate write or cancellation semantics.",
+    "Timed-out guest command remains unknown; no next mutating/native task is authorized by host cleanup.",
+    "Complete57 and transparent all-vCPU precise stop remain unproven. WHP field definitions are only a static candidate; no new monitor/VM was created."
+  ],
+  "evidence": {
+    "reports": [
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v1-20261110\\report.json",
+        "bytes": 3227,
+        "sha256": "797e99c05278d90f0033d5db04356382da9860d2fcb151d3b3bae7a86766b113"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v2-20261110\\report.json",
+        "bytes": 4951,
+        "sha256": "bd8de55fe5f68866aeb23ce9e64d09cbb2bb7d9c166080d215ee5cffc1c9f4a8"
+      },
+      {
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v3-20261110\\report.json",
+        "bytes": 5253,
+        "sha256": "6da2abf44f01bf699b67d61c9b8929fb0f7cb366f424c0d0f6979a2de11f5452"
+      }
+    ],
+    "support_capsule": {
+      "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-bounded-query-support-v1-20261110.zip",
+      "bytes": 11604,
+      "sha256": "9d35c0d90f7e627c505a36c89af530c4bad456433f7d64447f78693f5d3db472"
+    },
+    "source_files": [
+      {
+        "member": "bounded-query-v1-20261110/progress.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v1-20261110\\progress.json",
+        "bytes": 2332,
+        "sha256": "49601a38de9eeb15ee9e1d63e72f1cedce9d99bdf1ab1c27c501e0dd63ee1eb5"
+      },
+      {
+        "member": "bounded-query-v1-20261110/report.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v1-20261110\\report.json",
+        "bytes": 3227,
+        "sha256": "797e99c05278d90f0033d5db04356382da9860d2fcb151d3b3bae7a86766b113"
+      },
+      {
+        "member": "bounded-query-v2-20261110/progress.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v2-20261110\\progress.json",
+        "bytes": 1567,
+        "sha256": "e91a1b6559ea7d6c8f1732688975536806f4d0300b8908278d9502baa3d58f36"
+      },
+      {
+        "member": "bounded-query-v2-20261110/report.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v2-20261110\\report.json",
+        "bytes": 4951,
+        "sha256": "bd8de55fe5f68866aeb23ce9e64d09cbb2bb7d9c166080d215ee5cffc1c9f4a8"
+      },
+      {
+        "member": "bounded-query-v3-20261110/preservation.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v3-20261110\\preservation.json",
+        "bytes": 172,
+        "sha256": "01d3e0c02066a3fa619bc08deefef36a38bfb196a7ef33e88b4d81d028f2f010"
+      },
+      {
+        "member": "bounded-query-v3-20261110/progress.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v3-20261110\\progress.json",
+        "bytes": 1449,
+        "sha256": "3698cae35e3b0fd49fce6e7d071ef4a7b228b19a16a42b4bdec0c9a888e844e3"
+      },
+      {
+        "member": "bounded-query-v3-20261110/report.json",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\bounded-query-v3-20261110\\report.json",
+        "bytes": 5253,
+        "sha256": "6da2abf44f01bf699b67d61c9b8929fb0f7cb366f424c0d0f6979a2de11f5452"
+      },
+      {
+        "member": "build-bounded-query-v2.py",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-bounded-query-v2.py",
+        "bytes": 2387,
+        "sha256": "4ffb38965172955539de3e0a91b899f8f3a36224f77daecab14956fd544d785f"
+      },
+      {
+        "member": "build-bounded-query-v3.py",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\build-bounded-query-v3.py",
+        "bytes": 2593,
+        "sha256": "b467af69e2232d55d0693129db026a59c0a0c0e3a7e75c061f23d5b3eaf5114c"
+      },
+      {
+        "member": "seal-bounded-query-v1.py",
+        "path": "F:\\project\\chaomofa\\.venv-audit\\native-worker\\seal-bounded-query-v1.py",
+        "bytes": 5019,
+        "sha256": "cbb77792b1c4745a0481b1dbc1b80c6722e8dad6adcd21b4757deee0357e600b"
+      }
+    ],
+    "host_logical_bytes_before_final_audit": 67957,
+    "guest_artifact_files_created": 0,
+    "same_disk_recovery_copy_not_independent_backup": true,
+    "cleanup": "Temporary query output files close/delete automatically; no historical evidence, original assets, saves or retained QEMU environment removed. Final audit records all new local evidence and Git objects."
+  }
+}
