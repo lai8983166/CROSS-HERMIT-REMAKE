@@ -1,0 +1,115 @@
+{
+  "accepted": false,
+  "control_preflight_passed": true,
+  "wow64_process_preflight_passed": true,
+  "cleanup_observed": true,
+  "original_wait_return_verified": false,
+  "full_state_replay_admitted": false,
+  "timing_scope": "Scheduled sampling and bounded WinRM requests; not a hard whole-system deadline",
+  "formal_progress": "2/8",
+  "windows_full_state_admitted": false,
+  "game_starts": 0,
+  "host_input": 0,
+  "raw_sources": [
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/report.json",
+      "bytes": 119076,
+      "sha256": "93571758c32853234b49ad76e06fe3572e358f45c249153c87627425ddb7bf70"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/sidecar.json",
+      "bytes": 1981,
+      "sha256": "297d1e1f73bb0cf98ee78cd906e1ffdb4d30fc76da63024b0dc4e18c52e1c3af"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/status-query-1.json",
+      "bytes": 263,
+      "sha256": "5441e7994fb619b96a1955b02e479371955a27ed6c3c739eff5208a3ea2f5279"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/status-resume-1.json",
+      "bytes": 653,
+      "sha256": "1bd0d2051b06cec1f7f341bcb700acc16590c1c00c60a25492316c6b648112b0"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/wow64-query-1.json",
+      "bytes": 276,
+      "sha256": "f13da83182d40eb88b6e28a296470311675ed2cd28b0909921eff8de9f6dd84d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/wow64-resume-1.json",
+      "bytes": 629,
+      "sha256": "ffb91bdbe7c804a193d64d0e97175403779128fbab11f9a4ae183217114d5052"
+    }
+  ],
+  "phases": [
+    {
+      "path": ".venv-audit/native-worker/tcg-control-evidence-v1/phase-11788.json",
+      "bytes": 292,
+      "sha256": "c014441b3c070272e2392e2e9ed9fe1f74f7de295c4e458ce59353ac16faade8"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-control-evidence-v1/phase-37748.json",
+      "bytes": 292,
+      "sha256": "48608239dc691921405d734bfd25c01dadc070887a5d75815a92510a9043e7bf"
+    }
+  ],
+  "independent_review": {
+    "path": "analysis/terminal-wait-tcg-windows-control-independent-final-review-v1-20261111.json",
+    "bytes": 6760,
+    "sha256": "d1b157f37fb50df0272c1407a8df1317294732d8e8a6b6246898c963a10f2305"
+  },
+  "code": [
+    {
+      "path": "devtools/terminal_tcg_windows_control_v7.py",
+      "bytes": 7095,
+      "sha256": "215b4a3fde1f1ac534dd9cdfdcaa608a969a21510626845a5b92d1049f2ec40b"
+    },
+    {
+      "path": "devtools/terminal_tcg_net_sidecar_v4.py",
+      "bytes": 3154,
+      "sha256": "a00fb957443b1ea6cbf2a24ca0cfc213bbb729bb0d47e131a491d9f3f623d269"
+    },
+    {
+      "path": "devtools/terminal_tcg_guest_query_v3.py",
+      "bytes": 4149,
+      "sha256": "5254d0d0420a7acb69dd379d3acb70b9ec924e093fe1cd84d83383640f0c5a59"
+    },
+    {
+      "path": "devtools/terminal_tcg_query_resume.py",
+      "bytes": 2465,
+      "sha256": "6e48562a07f4a56f6677727082d827c8a3ff312860369ebffc269ece2fea8b4a"
+    },
+    {
+      "path": "devtools/terminal_tcg_control_verify.py",
+      "bytes": 1711,
+      "sha256": "409ed3b71e6798c06341331d41f944742c8f055acaa5a2595e2b9fa42e3967fe"
+    }
+  ],
+  "status": {
+    "computer": "CHAOMOFA-WORKER",
+    "manufacturer": "QEMU",
+    "uuid": "626D1A20-6383-4CD3-85D5-6C9831D6F941",
+    "cpu": 2,
+    "memory": 4294430720,
+    "boot": "2026-11-10T19:13:20.5000000Z",
+    "explorer": [],
+    "services": [
+      {
+        "Name": "WinRM",
+        "Status": 4
+      }
+    ]
+  },
+  "wow64": {
+    "pointer_bytes": 4,
+    "process64": false,
+    "os64": true,
+    "pid": 3524,
+    "image": "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "child_exited": true,
+    "uuid": "626D1A20-6383-4CD3-85D5-6C9831D6F941"
+  },
+  "receive_resume_semantics": "Original authenticated command IDs, immutable phase digest; never resubmit; explicit command/shell close after output",
+  "limitation": "WOW64 process existence/exit only; no original wait return or CPU context/replay proof"
+}

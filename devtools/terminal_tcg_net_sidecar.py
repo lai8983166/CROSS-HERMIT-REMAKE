@@ -1,0 +1,32 @@
+"""Bounded CPU-less user-network sidecar. No host network configuration."""
+import argparse,json,subprocess,time
+from pathlib import Path
+from devtools.isolated_vm_bounded_query_v3 import Job,environment
+from devtools.isolated_windows_vm import WORKER
+from devtools.terminal_tcg_roundtrip_probe import identity
+
+def run(out):
+    out=out.resolve()
+    if not out.is_relative_to(WORKER.resolve()) or (out/'sidecar.json').exists():raise ValueError('owned fresh report')
+    binary=WORKER/'qemu-worker/runtime/qemu-system-x86_64.exe'
+    command=[str(binary),'-machine','none','-m','0','-S','-nodefaults','-display','none','-monitor','none','-serial','none',
+        '-netdev','socket,id=s,connect=127.0.0.1:15986',
+        '-netdev','user,id=u,restrict=on,hostfwd=tcp:127.0.0.1:15985-:5985',
+        '-netdev','hubport,id=hs,hubid=0,netdev=s','-netdev','hubport,id=hu,hubid=0,netdev=u']
+    r=dict(binary=identity(binary),slirp=identity(binary.parent/'libslirp-0.dll'),command=command,
+        virtual_cpus=0,guest_ram_bytes=0,host_input=0,errors=[]);job=Job();proc=None;start=time.monotonic()
+    try:
+        with (out/'sidecar.stderr').open('xb')as log:
+            proc=subprocess.Popen(command,stdout=log,stderr=log,env=environment(),creationflags=subprocess.CREATE_NO_WINDOW)
+            job.assign(proc)
+            while proc.poll()is None and not (out/'sidecar.stop').exists() and time.monotonic()-start<225:time.sleep(.2)
+            if proc.poll()is not None:r['errors'].append('sidecar exited early')
+            r['stop_requested']=(out/'sidecar.stop').exists()
+    finally:
+        job.terminate()
+        if proc:proc.wait(timeout=3)
+        r.update(seconds=time.monotonic()-start,host_job_active_after=job.active(),process_exited=proc is None or proc.poll()is not None)
+        job.close();(out/'sidecar.json').write_text(json.dumps(r,indent=2))
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('output',type=Path);run(p.parse_args().output)

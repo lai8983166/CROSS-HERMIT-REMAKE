@@ -1,0 +1,195 @@
+{
+  "schema": "independent-tcg-windows-control-review-v1",
+  "date": "2026-11-11",
+  "reviewer": "windows_boot_review subagent",
+  "scope": "Read-only code/evidence review; no VM operation or source/evidence mutation",
+  "accepted": false,
+  "windows_admitted": false,
+  "wow64_verified": false,
+  "original_game_verified": false,
+  "evidence": [
+    {
+      "path": ".venv-audit/native-worker/tcg-network-preflight-v1/report.json",
+      "bytes": 2538,
+      "sha256": "348aa16b25b3f21050c03e564bf07688a391b77f92904e09e205f5d39702d416"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v4/report.json",
+      "bytes": 134102,
+      "sha256": "0118fdf663fa953af299af0e616aac9fa27229905729ec77e9d19bf34b02a379"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v4/sidecar.json",
+      "bytes": 1982,
+      "sha256": "19bc9f234ed652c6fa868e7b9d561eca0e200a7ad17fe8a491e3aac3dd333a53"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v4/network.pcap",
+      "bytes": 23463,
+      "sha256": "5318bd796d1c5638d7a276295b490a622aeb7f91979257d645f070ed3bbe42fc"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v4/screen-180.png",
+      "bytes": 703563,
+      "sha256": "23a27d126d68d889705bfed72bd6d9bd8d9abd617819b903815f5a9b049ab1ae"
+    },
+    {
+      "path": "devtools/terminal_tcg_net_preflight.py",
+      "bytes": 2386,
+      "sha256": "40b9283aead7a98d1a6d1c5440764578738590572021a1dc7317764f590ebcbf"
+    },
+    {
+      "path": "devtools/terminal_tcg_net_sidecar_v2.py",
+      "bytes": 3154,
+      "sha256": "4ea9b869796a44e0376fb646e9feff83b1f9cfe559f240ba159a4d319edd9f9d"
+    },
+    {
+      "path": "devtools/terminal_tcg_windows_control_v5.py",
+      "bytes": 6802,
+      "sha256": "55ef2f504e0094c34b79c497402a023c9ddd16b239675f010a81549d502dd60a"
+    },
+    {
+      "path": "devtools/terminal_tcg_guest_query.py",
+      "bytes": 2933,
+      "sha256": "23b75daca565c60d9ac923ee90594cc1313ed760690962f694e7b26965493b8e"
+    }
+  ],
+  "arp": {
+    "checks": {
+      "destination_mac": true,
+      "ethernet_arp": true,
+      "hardware_protocol_lengths": true,
+      "reply_opcode": true,
+      "sender_ip": true,
+      "target_mac": true,
+      "target_ip": true
+    },
+    "passed": true,
+    "seconds": 0.7660000000032596,
+    "limit": "Windows-local sidecar ARP; not by itself WSL link or WinRM authentication"
+  },
+  "sidecar": {
+    "running": true,
+    "cpus": [],
+    "memory": {
+      "base-memory": 0,
+      "plugged-memory": 0
+    },
+    "errors": [],
+    "host_job_active_after": 0,
+    "process_exited": true,
+    "stop_requested": true
+  },
+  "windows": {
+    "seconds": 188.10732084699998,
+    "errors": [],
+    "observations": [
+      {
+        "seconds": 30.021939646999954,
+        "cpu_rip": [
+          "fffff8001065137d",
+          "fffff800106b36aa"
+        ],
+        "read_bytes": 189144064,
+        "write_bytes": 32721408,
+        "control": null
+      },
+      {
+        "seconds": 90.02345642,
+        "cpu_rip": [
+          "fffff8001060875a",
+          "fffff8001072fb11"
+        ],
+        "read_bytes": 345774080,
+        "write_bytes": 38766080,
+        "control": {
+          "deadline_seconds": 18,
+          "host_input_actions": 0,
+          "remote_completion": "unknown",
+          "errors": [],
+          "host_pid": 35448,
+          "assigned_before_request": true,
+          "host_job_active_after": 0,
+          "host_exit_code": 0,
+          "output_bytes": 80,
+          "response": {
+            "ok": false,
+            "error_type": "ConnectionError",
+            "remote_completion": "unknown"
+          },
+          "elapsed_seconds": 0.5160000000032596
+        }
+      },
+      {
+        "seconds": 180.16926357399996,
+        "cpu_rip": [
+          "fffff80015853ffe",
+          "fffff8001081d8e8"
+        ],
+        "read_bytes": 478135296,
+        "write_bytes": 46936576,
+        "control": {
+          "deadline_seconds": 18,
+          "host_input_actions": 0,
+          "remote_completion": "unknown",
+          "errors": [],
+          "host_pid": 21968,
+          "assigned_before_request": true,
+          "host_job_active_after": 0,
+          "host_exit_code": 0,
+          "output_bytes": 91,
+          "response": {
+            "ok": false,
+            "error_type": "WinRMOperationTimeoutError",
+            "remote_completion": "unknown"
+          },
+          "elapsed_seconds": 7.327999999979511
+        }
+      }
+    ],
+    "visual": "180-second screenshot visibly reaches Windows lock screen with Ctrl+Alt+Delete prompt; no login input sent",
+    "control_connected": false,
+    "wow64_attempted": false,
+    "vm_exit_observed": true,
+    "parent_size_mtime_unchanged": true,
+    "overlay": {
+      "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-windows-control-v4/disk.qcow2",
+      "bytes": 63832064,
+      "sha256": "a5b220dc7e3a528410a27de1c28594681ef8bb3ff1fe7f6a8e51d2814c6d36da"
+    }
+  },
+  "network": {
+    "pcap_bytes": 23463,
+    "packet_capture_maxlen": 128,
+    "observed": "First TCP 5985 SYN receives RST/ACK; later two TCP connections receive SYN/ACK and bidirectional data packets.",
+    "conclusion": "Actual WSL-to-sidecar-to-guest path and late TCP 5985 reachability observed; authenticated status did not complete."
+  },
+  "findings": [
+    {
+      "severity": "resolved",
+      "issue": "Prior sidecar -S prevented normal packet delivery while QEMU runstate paused.",
+      "resolution": "v2 removes -S, checks running/zero CPUs/zero RAM, and real ARP succeeds."
+    },
+    {
+      "severity": "limitation",
+      "issue": "Both status attempts failed: ConnectionError at 90s; WinRMOperationTimeoutError at 180s. All remote completion remains unknown. WOW64 not attempted."
+    },
+    {
+      "severity": "limitation",
+      "issue": "Run report all_processes_exited covers Linux VM only; sidecar and query Job receipts were independently combined to establish observed host cleanup."
+    },
+    {
+      "severity": "limitation",
+      "issue": "Parent preservation observed through size/mtime and selected overlay hash checks; not full original VMDK byte authentication."
+    },
+    {
+      "severity": "limitation",
+      "issue": "215s watchdog is bounded supervision, not operating-system hard real-time guarantee. Successful actual run ended in 188.107s."
+    },
+    {
+      "severity": "next_step",
+      "issue": "Use a short authenticated status diagnostic with an adequate bounded operation timeout on a new version; distinguish WinRM service readiness and execution timeout before further full boot attempts. No host input fallback."
+    }
+  ],
+  "new_review_artifacts": "Only this small JSON report; no local evidence or backup created by reviewer"
+}

@@ -740,3 +740,51 @@ Windows标志，60秒仍为加载指示，未观察到桌面或WOW64应用；不
 当前构建无slirp，后续需先完成有界启动定位和客体内自动控制通道，再验证WOW64真实
 模式切换/等待边界。不得改宿主网络或回退到宿主交互桌面；不得直接把无盘同步保存
 接口用于Windows磁盘快照。当前两个截图及覆盖层保留在F盘，尚未重跑游戏前缀。
+
+### Windows 启动定位与隔离控制通道（2026-11-11 接续）
+
+复用精确v12运行时与上一轮只读覆盖层。分阶段CPU/RAM架构读取、磁盘计数和画面
+显示Windows从64位内核启动推进到设备准备、计算机设置和锁屏，不是始终停在同一
+位置。保留原盘和父覆盖层，写入仅进入本轮新子层；2VP/4GiB，无宿主显示或输入。
+
+既有Linux环境已含libslirp0；仅在F盘提取同版本开发包头文件，不安装宿主软件。
+启用slirp触发整个目标重编，180秒预算停止且没有产生v13运行时，不重复长构建。
+后续仍用已验v12执行客体，复用已有Windows QEMU的machine none网络转发进程。
+转发端只绑定回环地址，restrict=on，无TAP/桥接及宿主网络配置修改；实际QMP确认
+running、CPU列表为空、base/plugged memory均为0，不把该进程当另一台Windows客体。
+
+首个转发配置带-S，源码复核发现非running时发送路径仅排队；旧失败保留，发现后
+立即停止下一次尚未认证的探针。移除-S后0.766秒真实ARP请求/应答及Job清理通过。
+客体抓包随后证明DHCP及10.0.2.15地址使用，5985端口先RST、后SYN/ACK和双向数据；
+因此网络与WinRM服务启动阶段已分开定位。raw PCAP仅在F盘保留，Git摘要不含认证载荷。
+
+WinRM保持NTLM与强制消息加密，使用独立QEMU UUID/Manufacturer/计算机名约束，不
+冒用原VMware DHCP/UUID身份。宿主查询复用已验Windows Job监督，明确区分请求完成
+与超时未知。第一次5秒operation超时，增大至20秒/55秒宿主总期限仍未成功，不能
+将失败仅归因为预算过短；后续记录open_shell/run_command/get_command_output等
+阶段，并保持同一客体有界运行以定位，避免每次失败就重新启动Windows。
+
+这些启动/网络结果不替代完整状态恢复或游戏原生验收。Windows磁盘仍禁止使用仅
+认证无盘微客体的同步检查点接口；真实等待返回、453CB5消费、三握手、资源/PTD
+和两例完整重放均须按原合同验证，三关及正式2/8不因网络可达而改变。
+
+最终同一客体内的阶段记录证实open_shell约7.4秒、run_command约0.4秒成功，停点是
+get_command_output。55秒监督到期仅终止客户端Job，未宣称远端取消。新接续工具校验
+原phase文件SHA及owned shell/command GUID，仅继续Receive，绝不重投；约1.438秒
+取得客体身份、2CPU/4GiB和WinRM运行状态，随后cleanup_command/close_shell完成。
+同寿命WOW64命令也通过原GUID续收：SysWOW64 PowerShell中IntPtr.Size=4、Is64BitProcess
+为false、Is64BitOperatingSystem为true，退出后PID不存在；约8.453秒续收并清理完成。
+原超时报告不改成成功，新的成功报告明确引用原命令和续收；普通/-O各5项拒绝回归通过。
+
+最后一轮455.27秒内由Agent主动结束，未到600秒监督上限；所有VM/sidecar及宿主查询
+Job均清空，无用户输入。这里只证明实际32位进程可运行/退出，不证明该进程的完整
+CPU上下文恢复、原游戏ABI/等待返回或原生资源清理。Windows时钟/boot字段按客体原值
+记录，不将其UTC显示直接当宿主时间对齐证据。下一步使用已通控制通道准备无UI的
+当前所有者等待探针，补TCG真实停止点和完整Windows/WOW64状态合同，再接原游戏消费链。
+
+本轮最终磁盘用safe rebase合并到上轮只读基线，qemu-img compare验证虚拟内容等价；
+比较前后本轮源层和上轮基线SHA不变。之后才退役本轮源层，旧qcow2容器字节不再可用，
+当前逻辑磁盘内容由`tcg-windows-current-v1/disk.qcow2`及固定父链保留，不冒称容器字节
+相同；原worker.vmdk只做size/mtime检查，未重新全盘哈希。原盘、上轮基线、旧验收均未改。
+证据入口为`analysis/terminal-wait-tcg-windows-control-proof-v1-20261111.json`、对应
+evidence/capsule/retirement和三份独立复核；raw认证网络片段仅留F盘，Git只含头部摘要。

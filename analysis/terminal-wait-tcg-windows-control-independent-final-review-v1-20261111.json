@@ -1,0 +1,170 @@
+{
+  "schema": "independent-tcg-windows-control-final-review-v1",
+  "date": "2026-11-11",
+  "reviewer": "windows_boot_review subagent",
+  "scope": "Independent code and frozen receipt review; no guest or host-input action",
+  "accepted": false,
+  "full_windows_admission": false,
+  "original_game_wait_accepted": false,
+  "continuous_cpu_capture_accepted": false,
+  "bounded_control_and_wow64_probe_passed": true,
+  "checks": {
+    "status_completed": true,
+    "status_identity": true,
+    "two_cpu": true,
+    "status_memory_consistent_with_4GiB": true,
+    "wow64_completed": true,
+    "wow64_identity": true,
+    "wow64_32bit_on_64bit": true,
+    "wow64_image": true,
+    "wow64_child_exit": true,
+    "owned_cleanup": true,
+    "vm_quit_and_exit": true,
+    "sidecar_clean": true
+  },
+  "evidence": [
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/report.json",
+      "bytes": 119076,
+      "sha256": "93571758c32853234b49ad76e06fe3572e358f45c249153c87627425ddb7bf70"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/sidecar.json",
+      "bytes": 1981,
+      "sha256": "297d1e1f73bb0cf98ee78cd906e1ffdb4d30fc76da63024b0dc4e18c52e1c3af"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/status-query-1.json",
+      "bytes": 263,
+      "sha256": "5441e7994fb619b96a1955b02e479371955a27ed6c3c739eff5208a3ea2f5279"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/status-resume-1.json",
+      "bytes": 653,
+      "sha256": "1bd0d2051b06cec1f7f341bcb700acc16590c1c00c60a25492316c6b648112b0"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/wow64-query-1.json",
+      "bytes": 276,
+      "sha256": "f13da83182d40eb88b6e28a296470311675ed2cd28b0909921eff8de9f6dd84d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-windows-control-v6/wow64-resume-1.json",
+      "bytes": 629,
+      "sha256": "ffb91bdbe7c804a193d64d0e97175403779128fbab11f9a4ae183217114d5052"
+    },
+    {
+      "path": "devtools/terminal_tcg_guest_query_v3.py",
+      "bytes": 4149,
+      "sha256": "5254d0d0420a7acb69dd379d3acb70b9ec924e093fe1cd84d83383640f0c5a59"
+    },
+    {
+      "path": "devtools/terminal_tcg_query_resume.py",
+      "bytes": 2465,
+      "sha256": "6e48562a07f4a56f6677727082d827c8a3ff312860369ebffc269ece2fea8b4a"
+    },
+    {
+      "path": "devtools/terminal_tcg_windows_control_v7.py",
+      "bytes": 7095,
+      "sha256": "215b4a3fde1f1ac534dd9cdfdcaa608a969a21510626845a5b92d1049f2ec40b"
+    },
+    {
+      "path": "devtools/terminal_tcg_net_sidecar_v4.py",
+      "bytes": 3154,
+      "sha256": "a00fb957443b1ea6cbf2a24ca0cfc213bbb729bb0d47e131a491d9f3f623d269"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-control-evidence-v1/phase-11788.json",
+      "bytes": 292,
+      "sha256": "c014441b3c070272e2392e2e9ed9fe1f74f7de295c4e458ce59353ac16faade8"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-control-evidence-v1/phase-37748.json",
+      "bytes": 292,
+      "sha256": "48608239dc691921405d734bfd25c01dadc070887a5d75815a92510a9043e7bf"
+    }
+  ],
+  "owned_command_provenance": [
+    {
+      "action": "status",
+      "origin_query_pid": 11788,
+      "phase": {
+        "path": ".venv-audit/native-worker/tcg-control-evidence-v1/phase-11788.json",
+        "bytes": 292,
+        "sha256": "c014441b3c070272e2392e2e9ed9fe1f74f7de295c4e458ce59353ac16faade8"
+      },
+      "methods": [
+        "open_shell",
+        "run_command",
+        "get_command_output"
+      ],
+      "shell_id": "F25C1033-CB80-442D-BEF4-7DB56F34D661",
+      "command_id": "D1C50241-93A9-49BE-88B8-1481F3D2DC6C",
+      "open_shell_seconds": 7.437999999994645,
+      "submit_seconds": 0.4370000000053551,
+      "pending_receive": true,
+      "origin_timed_out": true,
+      "origin_host_job_active_after": 0
+    },
+    {
+      "action": "wow64",
+      "origin_query_pid": 37748,
+      "phase": {
+        "path": ".venv-audit/native-worker/tcg-control-evidence-v1/phase-37748.json",
+        "bytes": 292,
+        "sha256": "48608239dc691921405d734bfd25c01dadc070887a5d75815a92510a9043e7bf"
+      },
+      "methods": [
+        "open_shell",
+        "run_command",
+        "get_command_output"
+      ],
+      "shell_id": "A43E3BC1-5A4B-4171-B466-9B05DC9218AD",
+      "command_id": "6DE45731-F3B7-4D76-8FAC-4BB3C0D4BB29",
+      "open_shell_seconds": 4.98399999999674,
+      "submit_seconds": 1.860000000015134,
+      "pending_receive": true,
+      "origin_timed_out": true,
+      "origin_host_job_active_after": 0
+    }
+  ],
+  "resume_contract": "Parent hashes selected phase bytes; isolated worker rehashes before receiving. Strict pending method sequence and owned GUID validation, current v6 lifetime files required. The implementation only receives existing output then cleans command and shell; no command re-submission. Phase filenames match originating supervised host PIDs. Both final results retain command_resubmitted=false.",
+  "results": {
+    "status": {
+      "computer": "CHAOMOFA-WORKER",
+      "manufacturer": "QEMU",
+      "uuid": "626D1A20-6383-4CD3-85D5-6C9831D6F941",
+      "cpu": 2,
+      "memory": 4294430720,
+      "boot": "2026-11-10T19:13:20.5000000Z",
+      "explorer": [],
+      "services": [
+        {
+          "Name": "WinRM",
+          "Status": 4
+        }
+      ]
+    },
+    "wow64": {
+      "pointer_bytes": 4,
+      "process64": false,
+      "os64": true,
+      "pid": 3524,
+      "image": "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "child_exited": true,
+      "uuid": "626D1A20-6383-4CD3-85D5-6C9831D6F941"
+    },
+    "status_resume_seconds": 1.437999999994645,
+    "wow64_resume_seconds": 8.453000000008615,
+    "vm_seconds": 455.2707435949999,
+    "sidecar_seconds": 454.7820000000065,
+    "parent_size_mtime_unchanged": true
+  },
+  "limitations": [
+    "Status and WOW64 originally timed out at 55 seconds; success is authenticated continuation of those same owned commands in the same guest lifetime, not fresh commands or replay.",
+    "WOW64 proves only a 32-bit PowerShell process, expected guest identity, child exit, and owned shell/command cleanup. It does not verify original game, real wait, graphical/input isolation, native game resources, continuous CPU capture, full state restore, or deterministic replay.",
+    "The raw VM runner report deliberately retains wow64_verified=false because separate external query receipts are reviewed here; historical report bytes were not changed.",
+    "Parent size/mtime checks alone are not full original-parent byte authentication.",
+    "Any later overlay rebase/retirement is outside this review and needs its own virtual-byte comparison and retention manifest; cited report identities remain immutable."
+  ]
+}

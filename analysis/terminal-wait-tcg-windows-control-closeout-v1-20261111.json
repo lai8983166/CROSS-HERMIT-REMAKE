@@ -1,0 +1,72 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "control_preflight_passed": true,
+  "wow64_process_preflight_passed": true,
+  "original_wait_return": false,
+  "first_game_result_consumption": false,
+  "three_handshakes": false,
+  "resources_ptd": false,
+  "original_game_starts": 0,
+  "full_windows_state_replay_admitted": false,
+  "proof": {
+    "path": "analysis/terminal-wait-tcg-windows-control-proof-v1-20261111.json",
+    "bytes": 4130,
+    "sha256": "d435df0d1252c165ca0d13ce9b29042504ae1273c5bf3596288ca380bf2bf808"
+  },
+  "final_review": {
+    "path": "analysis/terminal-wait-tcg-windows-control-independent-final-review-v1-20261111.json",
+    "bytes": 6760,
+    "sha256": "d1b157f37fb50df0272c1407a8df1317294732d8e8a6b6246898c963a10f2305"
+  },
+  "evidence": {
+    "path": "analysis/terminal-wait-tcg-windows-control-evidence-v1-20261111.json",
+    "bytes": 11083,
+    "sha256": "f5659c6ee96d2e2aac14f3e75bec451d8e262f4f48f8b46b3516fff15aee3b6c"
+  },
+  "current_disk": {
+    "path": ".venv-audit/native-worker/tcg-windows-current-v1/disk.qcow2",
+    "bytes": 119341056,
+    "sha256": "4793ea281b842ddc8efcdc0616ade3b33ee5b83bc9cf6970ab5c564a856db138"
+  },
+  "disk_virtual_bytes": 42949672960,
+  "compaction_report": {
+    "path": ".venv-audit/native-worker/tcg-windows-current-v1/report.json",
+    "bytes": 2341,
+    "sha256": "0cf92ee9fbb64620edc2655cfd2bb357d76e5646b2081620662a9f35cb034543"
+  },
+  "host_cleanup": {
+    "listeners": [],
+    "owned_qemu": []
+  },
+  "host_input": 0,
+  "host_network_changes": 0,
+  "host_packages_installed": 0,
+  "validation": {
+    "normal_tests": 5,
+    "optimized_tests": 5,
+    "openspec_strict": true,
+    "independent_review": true,
+    "preservation_sha_count": 832,
+    "preservation_size_only_count": 13,
+    "preservation_mismatches": 0,
+    "staged_credential_scan": true,
+    "large_git_objects": false
+  },
+  "volume": {
+    "new_or_rewritten_local_before_closeout": 171839412,
+    "git_added_file_bytes_before_closeout": 2472517,
+    "total_including_git_before_closeout": 174311929,
+    "deleted_bytes": 311493824,
+    "new_backup_copies": 0,
+    "accounting": "Shared rewritten build files counted at whole-file size; final small closeout/audit overhead excluded; all persistent evidence stays below 256 MiB"
+  },
+  "actual_result": "Windows reaches lock screen; authenticated QEMU guest control and real WOW64 child/exit validated; owned command output resumed without resubmission.",
+  "next_gate": "Use authenticated guest channel for a no-UI current-owner wait fixture and exact TCG stopping/complete Windows-WOW64 context; then original wait return/consumer. No blind boot/network rerun.",
+  "remaining_limitations": [
+    "No original game process was started; no A/B/C gate marked passed.",
+    "WOW64 process bitness/exit is not full-context restore or original native resource lifetime evidence.",
+    "Expired client Job does not cancel remote commands; phase ownership and explicit resumed cleanup are required.",
+    "Only current-turn overlay containers retired; current virtual disk content compared equal; original VMDK only size/mtime checked."
+  ]
+}
