@@ -347,3 +347,14 @@ RET→post 仅 EIP/ESP 改变。四次助手等待及清理、外部退出已确
 当前剩余问题是本次阻塞等待 R9/XMM0–5 写入路径的逐条认证，不套用旧零超时证明。
 完整 Windows 状态与原游戏等待/结果链仍未验收，三关未通过、仍 2/8。参见本日
 CR2 windows proof/review/closeout 和 docs/terminal_wait.md。
+
+
+### 2026-11-11 同次等待 R9/XMM 原写入闭合（正式仍 2/8）
+
+固定 context-v1 后端先通过异上下文筛选与完整微客体端点等价，再在一个新的自有
+非零超时等待取得六条 PXOR、MOV SS 前驱、MOV R9d、RET12 与连续17事件 CR2账本。
+CPU0 完整导出端点、首条实际 PUSHFD/PUSHAD/FXSAVE32 结果记录及助手清理验证通过。
+独立复核补严离线 v3，复用原来源、不重采；不是旧 v8 中间轨迹的追补，也不证明
+原游戏三握手或实际阻塞时长。TCG 原游戏准入仍缺同 boot 的交互输入/D3D8 资格，
+不能复用 VMware 专属资格。先完成该有界平台关口，再接原等待/453CB5消费。
+详见 docs/terminal_wait.md 同日 context 节与 context proof/review/game-admission 报告。

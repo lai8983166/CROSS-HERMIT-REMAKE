@@ -1,0 +1,55 @@
+{
+  "accepted": false,
+  "entries": [
+    {
+      "action": "lossless_compression",
+      "original": {
+        "path": ".venv-audit/native-worker/tcg-context-wait-native-v1/boot.ppm",
+        "bytes": 2359312,
+        "sha256": "6c9246282f8a0b713044c2aef3348a0c70e245cf2a7204494597c07447e1bbc8"
+      },
+      "replacement": {
+        "path": ".venv-audit/native-worker/tcg-context-wait-native-v1/boot.ppm.gz",
+        "bytes": 827552,
+        "sha256": "e5b79dc20126239a2d8a5619cdfa4bea137fb233a4428374f983c8a6527b8387"
+      }
+    },
+    {
+      "action": "lossless_compression",
+      "original": {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v9/boot.ppm",
+        "bytes": 2359312,
+        "sha256": "d62137c85b9f4f167fac6f7c47f8f626ead006c537b8cb4407265c0c0b814a8b"
+      },
+      "replacement": {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v9/boot.ppm.gz",
+        "bytes": 827570,
+        "sha256": "f7680ec9fa30e43b47dba7e3251527e316906dedf6c05f6fe46aeddd5b39b648"
+      }
+    },
+    {
+      "action": "lossless_compression",
+      "original": {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v9/observation.json",
+        "bytes": 840355,
+        "sha256": "326e61eb38927e835ae2c0af4892233cd88bb67e2093da217176a59ea570818c"
+      },
+      "replacement": {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v9/observation.json.gz",
+        "bytes": 28427,
+        "sha256": "72773e2a8b6d9470efdc9b605caf6c25da5d3664adc14b04de8573c791fae9da"
+      }
+    },
+    {
+      "action": "retire_replaced_failed_overlay",
+      "original": {
+        "path": ".venv-audit/native-worker/tcg-context-wait-native-v1/disk.qcow2",
+        "bytes": 64815104,
+        "sha256": "666530ae29e92551f8ced943ea22b0cea945f099a69edeb2664a2a34d5907d92"
+      },
+      "reason": "Local case-name guard rejected before any guest fixture command. Failure reports preserved; corrected v9 native source succeeds.",
+      "replacement": "tcg-wait-native-v9/disk.qcow2",
+      "parent_preserved": "tcg-wait-native-v5/disk.qcow2"
+    }
+  ]
+}

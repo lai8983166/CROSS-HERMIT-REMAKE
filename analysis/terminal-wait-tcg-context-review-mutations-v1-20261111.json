@@ -1,0 +1,103 @@
+{
+  "accepted": false,
+  "source": {
+    "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-wait-native-v9/observation.json",
+    "bytes": 840355,
+    "sha256": "326e61eb38927e835ae2c0af4892233cd88bb67e2093da217176a59ea570818c"
+  },
+  "baseline": true,
+  "mutations": [
+    {
+      "name": "ret_cpu0_rax",
+      "rejected": true,
+      "failed": [
+        "continuous_cr2",
+        "entire_exported_call_ret_endpoint",
+        "ret12_exact_and_connected"
+      ],
+      "errors": []
+    },
+    {
+      "name": "point_teb_owner",
+      "rejected": true,
+      "failed": [
+        "current_teb_at_every_point"
+      ],
+      "errors": []
+    },
+    {
+      "name": "pxor_bytes",
+      "rejected": true,
+      "failed": [
+        "strict_raw64_and_seven_effects"
+      ],
+      "errors": []
+    },
+    {
+      "name": "duplicate_point",
+      "rejected": true,
+      "failed": [
+        "strict_raw64_and_seven_effects"
+      ],
+      "errors": []
+    },
+    {
+      "name": "CR2_digest",
+      "rejected": true,
+      "failed": [
+        "continuous_cr2"
+      ],
+      "errors": []
+    },
+    {
+      "name": "filter_poison",
+      "rejected": true,
+      "failed": [
+        "filter_lifetime"
+      ],
+      "errors": []
+    },
+    {
+      "name": "syscall_wrong_stop_thread",
+      "rejected": false,
+      "failed": [],
+      "errors": []
+    },
+    {
+      "name": "ret12_wrong_stop_thread",
+      "rejected": false,
+      "failed": [],
+      "errors": []
+    },
+    {
+      "name": "remove_selector13_point",
+      "rejected": false,
+      "failed": [],
+      "errors": []
+    },
+    {
+      "name": "reverse_point_chronology",
+      "rejected": false,
+      "failed": [],
+      "errors": []
+    },
+    {
+      "name": "kernel_entry_signature_corrupt",
+      "rejected": false,
+      "failed": [],
+      "errors": []
+    },
+    {
+      "name": "filter_negative_rejection_count",
+      "rejected": false,
+      "failed": [],
+      "errors": []
+    },
+    {
+      "name": "filter_empty_points",
+      "rejected": false,
+      "failed": [],
+      "errors": []
+    }
+  ]
+}

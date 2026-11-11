@@ -1,0 +1,52 @@
+{
+  "accepted": false,
+  "original_game": false,
+  "source_sha256": "326e61eb38927e835ae2c0af4892233cd88bb67e2093da217176a59ea570818c",
+  "consumer_sha256": "d0e4fa66f18b3a1032d47b9c494b298adcaa2ae8c3b4df08c5cd3bc972063f70",
+  "baseline_passed": true,
+  "baseline_checks": 15,
+  "mutations": [
+    {
+      "name": "saved_eax",
+      "rejected": true,
+      "failed": [
+        "actual_pushfd_pushad_record"
+      ],
+      "errors": []
+    },
+    {
+      "name": "saved_flags",
+      "rejected": true,
+      "failed": [
+        "actual_pushfd_pushad_record"
+      ],
+      "errors": []
+    },
+    {
+      "name": "saved_xmm0",
+      "rejected": true,
+      "failed": [
+        "actual_fxsave32_record"
+      ],
+      "errors": []
+    },
+    {
+      "name": "result_owner",
+      "rejected": true,
+      "failed": [
+        "same_current_fixture"
+      ],
+      "errors": []
+    },
+    {
+      "name": "handles_not_closed",
+      "rejected": true,
+      "failed": [
+        "cleanup_exit"
+      ],
+      "errors": []
+    }
+  ],
+  "all_mutations_rejected": true,
+  "scope": "Conditional on the separately verified v3 endpoint trace. First owned helper saved record and receipt cleanup only, never original-game consumption."
+}

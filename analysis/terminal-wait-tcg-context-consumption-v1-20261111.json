@@ -1,0 +1,71 @@
+{
+  "accepted": false,
+  "original_game": false,
+  "first_saved_record_verified": true,
+  "checks": [
+    {
+      "name": "same_current_fixture",
+      "passed": true
+    },
+    {
+      "name": "original_helper_bytes",
+      "passed": true
+    },
+    {
+      "name": "helper_source",
+      "passed": true
+    },
+    {
+      "name": "nt_wait_unchanged",
+      "passed": true
+    },
+    {
+      "name": "native_returns",
+      "passed": true
+    },
+    {
+      "name": "cleanup_exit",
+      "passed": true
+    },
+    {
+      "name": "four_saved_records",
+      "passed": true
+    },
+    {
+      "name": "call.lossless_context",
+      "passed": true
+    },
+    {
+      "name": "call.first_record_not_yet_written",
+      "passed": true
+    },
+    {
+      "name": "ret32.lossless_context",
+      "passed": true
+    },
+    {
+      "name": "ret32.first_record_not_yet_written",
+      "passed": true
+    },
+    {
+      "name": "consumer.lossless_context",
+      "passed": true
+    },
+    {
+      "name": "consumer.first_record_not_yet_written",
+      "passed": true
+    },
+    {
+      "name": "actual_pushfd_pushad_record",
+      "passed": true
+    },
+    {
+      "name": "actual_fxsave32_record",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "frame_differences": [],
+  "fx_differences": [],
+  "scope": "First owned helper record only; FXSAVE32 architectural fields, not reserved bytes/MXCSR_MASK; remaining three returns are helper receipts, not three fully observed game handshakes."
+}

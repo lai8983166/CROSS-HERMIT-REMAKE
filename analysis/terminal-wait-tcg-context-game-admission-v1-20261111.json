@@ -1,0 +1,49 @@
+{
+  "accepted": false,
+  "original_game_launched": false,
+  "static_admission_review_only": true,
+  "current_runtime": "QEMU TCG context-v1",
+  "current_guest_authentication": "v9 prepare/launch guard requires QEMU manufacturer and fixed UUID; durable/authenticated receipts retained in source capsule",
+  "sources": [
+    {
+      "path": "devtools/native_input_isolation.py",
+      "bytes": 3363,
+      "sha256": "1cc19284218e44f5a9ee6209b34cae644c9a2a8680b00651bd1754831c29355a"
+    },
+    {
+      "path": "devtools/isolated_vm_preflight.py",
+      "bytes": 12936,
+      "sha256": "a6d1e745baf2f964222f751b845820d16b0b552bd5a0d6b659d1f63fa16be58b"
+    },
+    {
+      "path": "devtools/isolated_guest_preflight.cs",
+      "bytes": 13526,
+      "sha256": "b32780b5b0027d20082c67b3adacec8d27d8312488e4dae6369d918a8fe70644"
+    },
+    {
+      "path": "devtools/isolated_vm_run.py",
+      "bytes": 5067,
+      "sha256": "aa710bb5f209b842ab2f8ba6c1a16fcfcb04bbdbd226d3cf1646580793ac6ed9"
+    },
+    {
+      "path": "devtools/terminal_tcg_wait_control_v6.py",
+      "bytes": 5484,
+      "sha256": "a3f3e9882b75249fdcc74b1a20251cbb3325d9a78690926ddbba003a2fb6e52a"
+    }
+  ],
+  "findings": [
+    "Existing native_input_isolation.validate_machine explicitly requires VMware manufacturer.",
+    "Existing isolated_guest_preflight Machine and isolated_vm_preflight.verify require dedicated VMware interactive console, same boot and 2 CPU/4 GiB.",
+    "Existing original game transport uses VMware vmrun interactive launch. TCG control demonstrated only owned no-UI WinRM fixture launch.",
+    "No current-TCG-boot interactive input isolation or HAL D3D8 windowed/fullscreen Clear/Present/release qualification has been observed."
+  ],
+  "next_required": [
+    "Implement a dedicated QEMU guest identity/console transport with current-boot authentication, preserving fixed guest identity and resource bounds.",
+    "Run bounded guest-only input challenge and D3D8 qualification before original startup; no host UI/input or blanket manufacturer guard bypass.",
+    "Then qualify original startup and legal school/battle construction before observing actual original wait return/453CB5 result consumption."
+  ],
+  "not_claimed": [
+    "TCG graphics incompatibility has NOT been experimentally established.",
+    "Owned wait state proof is not original-game compatibility, two fresh game lifetimes or full resource/PTD acceptance."
+  ]
+}
