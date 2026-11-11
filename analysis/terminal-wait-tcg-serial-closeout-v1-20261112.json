@@ -1,0 +1,221 @@
+{
+  "schema": "terminal-tcg-serial-closeout-v1",
+  "checked_utc": "2026-11-11T16:51:35.418592+00:00",
+  "accepted": false,
+  "gates": {
+    "accepted": false,
+    "formal_tasks_complete": 2,
+    "formal_tasks_total": 8,
+    "offline_seed_copy_verified": true,
+    "serial_agent_readiness": false,
+    "serial_command_return_and_guest_cleanup": false,
+    "small_block_deployment": false,
+    "original_probe_executed": false,
+    "input_isolation_verified": false,
+    "d3d8_tested": false,
+    "d3d8_compatible": null,
+    "game_starts": 0,
+    "formal_replays": 0,
+    "host_input_injected": false,
+    "host_input_blocked": false,
+    "host_foreground_takeover": false,
+    "all_owned_vm_processes_exited": true,
+    "host_jobs_empty_and_closed": true,
+    "guest_autologon_or_bootstrap_cleanup_verified": false,
+    "continuous_host_performance_unaffected_proved": false
+  },
+  "cases": [
+    {
+      "case": "tcg-serial-seed-v1",
+      "vm_seconds": 252.121744937,
+      "vm_process_exited": true,
+      "parents_size_mtime_unchanged": true,
+      "guest_poweroff": true,
+      "qmp_quit": false,
+      "runner_errors": [],
+      "overlay_original": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-serial-seed-v1/disk.qcow2",
+        "bytes": 5636096,
+        "sha256": "3f825d5ff7f7c1a085b06916c505940ca9edfb86b4da1d21ec014a554971252c"
+      },
+      "offline_seed_verified": true
+    },
+    {
+      "case": "tcg-serial-native-v1",
+      "vm_seconds": 307.38181406700005,
+      "vm_process_exited": true,
+      "parents_size_mtime_unchanged": true,
+      "guest_poweroff": false,
+      "qmp_quit": true,
+      "runner_errors": [],
+      "overlay_original": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-serial-native-v1/disk.qcow2",
+        "bytes": 77987840,
+        "sha256": "8543395adf82419fa567ba55b0cd695b52fd20dc64d12bc5f441c76986733b62"
+      },
+      "operations": 0,
+      "failure": [
+        "TimeoutError: guest serial agent readiness"
+      ],
+      "host_control": {
+        "accepted": false,
+        "deadline_seconds": 700,
+        "errors": [],
+        "assigned_before_request": true,
+        "exit_code": 0,
+        "active_processes_after": 0,
+        "job_closed": true,
+        "seconds": 300.75
+      }
+    },
+    {
+      "case": "tcg-serial-seed-v2",
+      "vm_seconds": 302.91293605099986,
+      "vm_process_exited": true,
+      "parents_size_mtime_unchanged": true,
+      "guest_poweroff": true,
+      "qmp_quit": false,
+      "runner_errors": [],
+      "overlay_original": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-serial-seed-v2/disk.qcow2",
+        "bytes": 5636096,
+        "sha256": "3263eab2039d2d2fe03c97c2bd483527c48336492685ed07e6c6a6735fb9e1bd"
+      },
+      "offline_seed_verified": true
+    },
+    {
+      "case": "tcg-serial-native-v2",
+      "vm_seconds": 363.1515184540001,
+      "vm_process_exited": true,
+      "parents_size_mtime_unchanged": true,
+      "guest_poweroff": false,
+      "qmp_quit": true,
+      "runner_errors": [],
+      "overlay_original": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-serial-native-v2/disk.qcow2",
+        "bytes": 78315520,
+        "sha256": "93fb476584fe2c5f51ff725dd0d8abe81fd10c567cbaf6e92f7314a9581be9ac"
+      },
+      "operations": 0,
+      "failure": [
+        "TimeoutError: guest serial agent readiness"
+      ],
+      "host_control": {
+        "accepted": false,
+        "deadline_seconds": 700,
+        "errors": [],
+        "assigned_before_request": true,
+        "exit_code": 0,
+        "active_processes_after": 0,
+        "job_closed": true,
+        "seconds": 360.73499999998603
+      }
+    },
+    {
+      "case": "tcg-serial-seed-v3",
+      "vm_seconds": 590.2444721870002,
+      "vm_process_exited": true,
+      "parents_size_mtime_unchanged": true,
+      "guest_poweroff": false,
+      "qmp_quit": true,
+      "runner_errors": [],
+      "overlay_original": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-serial-seed-v3/disk.qcow2",
+        "bytes": 4521984,
+        "sha256": "d038ae26e24ac60ea07595cc3bf337fc3a2241f4579b8ac10cb36863f8d02329"
+      }
+    }
+  ],
+  "decision": "Current TCG/Windows/control-bootstrap combination is not admitted for bounded interactive collection; stop these launch recipes. D3D8 remains untested, not incompatible.",
+  "next_boundary": "Inspect the pre-script WinPE startup stall or use a separately qualified bootstrap/backend; do not blindly rerun Startup or Userinit recipe. Require hello, native completion/cleanup, blocks, original probe and same-boot input/D3D8 before game.",
+  "limitations": [
+    "v1/v2 no durable Startup/agent execution evidence; SMBIOS tail issue was static, not established runtime cause",
+    "v3 no SEED.START or new SerialV3 directory; Userinit remains original; reg load was not observed",
+    "host exit0 / VM errors=[] do not imply success",
+    "failed frozen guest disks retain private autologon/bootstrap state; never present as cleaned runnable sources",
+    "base VMDK preservation is size/mtime scope, not a fresh full SHA"
+  ],
+  "source_capsule": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-tcg-serial-source-v1-20261112.zip",
+    "bytes": 148573,
+    "sha256": "a94831c92fc0050649b593088563774b5d5b3714ef6d17bd2fae6533f9c571ec"
+  },
+  "retired_live_recipes": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_agent_v1.cs",
+      "bytes": 23108,
+      "sha256": "d11b7bc9f074d6f1384e9782f107c211456b5a4d30938deb8da3cbdcdc23013f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_agent_v2.cs",
+      "bytes": 26667,
+      "sha256": "71a4bd15730e7f659b40b3b8fea5fabb2dee19d3e8e517daf5b3f1ebee5a69eb"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_client_v1.py",
+      "bytes": 8550,
+      "sha256": "db6aa20e6755b2b5915193650ad10e610c28fa789de236efb2d89afce49090bf"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_client_v2.py",
+      "bytes": 9022,
+      "sha256": "38ba293354da269b48f28be96322855474a543a9050b2540a6a8c3f5463c411e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_media_v1.py",
+      "bytes": 4559,
+      "sha256": "ccfd43251587683b9ac5daa1b1ffc34782c3534100688e5a435774b7bb2397ce"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_media_v2.py",
+      "bytes": 4772,
+      "sha256": "bb2592caedfed96ac1b8ca9970f9b731ed52a25622f88aaf1ea62142681e028b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_seed_verify_v1.py",
+      "bytes": 2433,
+      "sha256": "be01488033aec9ef1e3612e388da310a60f4ac2e8c2d009da36e218c45cda895"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_seed_verify_v2.py",
+      "bytes": 2433,
+      "sha256": "367e4314097f1792bc7415ec04f1be5dae215648d74a33eaafb6898be1b923ba"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_vm_v1.py",
+      "bytes": 6340,
+      "sha256": "f0397f7211eb3d196104d98b0cbd7dbc593ae14c0e61c5622f31d5f13d37dee9"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_vm_v2.py",
+      "bytes": 7756,
+      "sha256": "542cf69369f1f79c914228f93f78a24b27f43bab7194ba9fafb2f8fe93a99018"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_vm_v3.py",
+      "bytes": 7756,
+      "sha256": "bae85ce418c4bea61ef39bf6f1399f51c02343e94714fb72155cc4fae707baad"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_tcg_serial_vm_v4.py",
+      "bytes": 7756,
+      "sha256": "139b8bbf60ddc2b199fd774fff49884a37b435e5bf5f93f1c79a45fbcec711f8"
+    }
+  ],
+  "tests": {
+    "command": "python -B -X utf8 -m unittest devtools.tests.test_terminal_tcg_serial_v1 devtools.tests.test_terminal_tcg_qualification_verify_v1",
+    "passed": 10,
+    "guest_execution": false
+  },
+  "preservation": {
+    "checked_utc": "2026-11-11T16:08:23.566811+00:00",
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "guest_start_count": 5,
+  "readiness_failures": 2,
+  "first_native_failure_bound_seconds": 300,
+  "full_game_collection_count": 0
+}

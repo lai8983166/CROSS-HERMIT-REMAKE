@@ -1,0 +1,34 @@
+{
+  "accepted": false,
+  "independent_reviewer": "/root/serial_agent",
+  "primary_reviewed_agent_source": true,
+  "independent_reviewed_media_client_and_actual_reports": true,
+  "conclusion": "not admitted; all serial/game/graphics gates remain closed",
+  "reviewed_facts": [
+    "seed v1/v2 exact copied bytes and guest poweroff",
+    "native v1/v2 empty operation lists and readiness timeouts; host jobs/VM exited",
+    "v2 startup/agent markers absent",
+    "v3 empty seed markers, no seed verification, QMP stop rather than guest poweroff",
+    "gzip SHA matches compression receipts; reviewer did not re-decompress"
+  ],
+  "findings_resolved": [
+    "v2/v3 strict late complete response rejection",
+    "unassigned child host kill path",
+    "explicit bootstrap cleanup checks",
+    "fixed ancestor SHA and agent source/build binding",
+    "startup template exactness",
+    "original Userinit exact offline REG_SZ read; v3 verifier checks REG_SZ"
+  ],
+  "remaining_limitations": [
+    "v1/v2 no durable Startup/agent execution evidence; SMBIOS tail issue was static, not established runtime cause",
+    "v3 no SEED.START or new SerialV3 directory; Userinit remains original; reg load was not observed",
+    "host exit0 / VM errors=[] do not imply success",
+    "failed frozen guest disks retain private autologon/bootstrap state; never present as cleaned runnable sources",
+    "base VMDK preservation is size/mtime scope, not a fresh full SHA"
+  ],
+  "source_capsule": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-tcg-serial-source-v1-20261112.zip",
+    "bytes": 148573,
+    "sha256": "a94831c92fc0050649b593088563774b5d5b3714ef6d17bd2fae6533f9c571ec"
+  }
+}
