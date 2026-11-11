@@ -1,0 +1,197 @@
+{
+  "schema": "terminal-tcg-canonical57-contract-v1",
+  "date": "2026-11-11",
+  "architecture57_adapter_complete_for_qualified_context": true,
+  "legacy_raw_unicorn57_byte_compatible": false,
+  "full_machine_state_accepted": false,
+  "windows_admitted": false,
+  "vm_runs": 0,
+  "game_starts": 0,
+  "implementation": [
+    {
+      "path": "devtools/terminal_tcg_canonical57.py",
+      "bytes": 11954,
+      "sha256": "ff382885e811dbe525cd64cf0c50b717c42a620cc1736d664278d1f9c911ef44"
+    },
+    {
+      "path": "devtools/terminal_tcg_canonical57_oracle.py",
+      "bytes": 5359,
+      "sha256": "bfbc0c812e8cd8c397c522741f5ba6eebfb4ff5161d66e50b95f652a8c11d3c3"
+    },
+    {
+      "path": "devtools/terminal_tcg_canonical57_verify.py",
+      "bytes": 2309,
+      "sha256": "c78066010e40640235d2cb1b007bc7d1c8d899193e3bc2190620b5d5d0090194"
+    },
+    {
+      "path": "devtools/tests/test_terminal_tcg_canonical57.py",
+      "bytes": 7893,
+      "sha256": "2a0f1398a40bea3a72bb87905f829ca579e8fd419d7d6b846c08b3a2be811aaf"
+    }
+  ],
+  "semantic_inputs": [
+    {
+      "path": "tools/terminal_unit_frontends_trace.py",
+      "bytes": 21329,
+      "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920"
+    },
+    {
+      "path": ".venv-audit/Lib/site-packages/unicorn/lib/unicorn.dll",
+      "bytes": 9598976,
+      "sha256": "010d85dce84b8f6ffaec3d5420f1b5f7768f859eb831be574c7da23e656ee8f1"
+    },
+    {
+      "path": ".venv-audit/Lib/site-packages/unicorn/unicorn_py3/arch/intel.py",
+      "bytes": 5453,
+      "sha256": "b3b8338a85ac74623e7a67dfb4f44dc9933786a329e64d772987490dbf751637"
+    },
+    {
+      "path": ".venv-audit/Lib/site-packages/unicorn/include/unicorn/x86.h",
+      "bytes": 41722,
+      "sha256": "dd75a7680a5552717a4abe559c10f5b805f7c68ae6f2be9729387f2300860c0f"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/adapter-input-sha256.txt",
+      "bytes": 103,
+      "sha256": "4151994b7d37f1c4c3d2ac0123194d31528026cf6b470d53e695319319e31460"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/oracle-input-sha256.txt",
+      "bytes": 230,
+      "sha256": "bb33ec1ee86b57c8decbf4d61c2c3c0f0a23c9432952f4363dca6d180d0c03b4"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/readback-input-sha256.txt",
+      "bytes": 327,
+      "sha256": "539c80728af419ca88e0c5657186c70a26c1502ee1d41e647b923914daa837e3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/readback-v1.json",
+      "bytes": 11292,
+      "sha256": "57281245c19f7b9124766997219ed264187423f808d51c41aef516d905948f32"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/test-input-sha256.txt",
+      "bytes": 217,
+      "sha256": "d712b41c8afcae5a45949ab736199332a0a3a64e518bb8b58ea1dda5bf0fe3b1"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/tests-optimized-v1.txt",
+      "bytes": 1248,
+      "sha256": "498f5c116c940018cdc7545540f12e3cdcc12063cc377a96b97bc026f2630908"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/tests-v1.txt",
+      "bytes": 1248,
+      "sha256": "f6b33b29578e37c8310d8e97198dab0dc8475f68344fcdd6119c3f858dfd6fe4"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/unicorn-oracle-v1.json",
+      "bytes": 14370,
+      "sha256": "714af277da2ffa76b5ae4cad36016d05bb3ac8f5c3758a08d876f3ae84afb196"
+    }
+  ],
+  "api": {
+    "schema": "x86-architectural-canonical57-v1",
+    "from_tcg": "from_tcg(raw, expected_cpu=N, expected_vcpus=M) returns a versioned receipt with registers in frozen CPU_REGISTERS order plus source digest and retained context. Source schema must be exact tcg-state-v1.",
+    "from_unicorn": "Read-only from_unicorn(uc) returns the SAME new architecture57 contract for a UC_MODE_32 engine. Reads actual DR6/7 once; derives DR4/5 aliases without consulting or writing their padding slots. Checks 32-bit present CS against actual descriptor bytes.",
+    "fail_closed": "Canonical57Error for unrepresentable widths/modes, unknown or missing source fields, topology/stop mismatch, malformed exact hex, contradictory TOP, unknown debug semantics, CR4.DE=1, nonzero extended R8..15/XMM8..15. No partial result and no masked truncation.",
+    "scope": "A versioned projection and readback adapter, not a production CPU loader. The test loader explicitly loads retained ELF/GDT before selectors; it is not substituted for the frozen replay machine."
+  },
+  "canonical_mapping": [
+    {
+      "names": "EAX EBX ECX EDX ESI EDI EBP ESP EIP EFLAGS",
+      "count": 10,
+      "mapping": "QEMU gpr indices 0,3,1,2,6,7,5,4; full EIP/EFLAGS. Every selected value must already fit uint32. No AND 0xffffffff."
+    },
+    {
+      "names": "FPCW FPSW FPTAG FIP FDP FCS FDS FOP MXCSR",
+      "count": 9,
+      "mapping": "Control/status actual uint16; TOP checked against FPSW bits11..13. Fulltag from physical raw FP80 and actual empty mask. FIP/FDP must fit uint32 in this qualified legacy32 projection despite the Unicorn FIP/FDP API accepting 64 bits. FCS/FDS fit uint16, FOP11 bits, MXCSR16 bits."
+    },
+    {
+      "names": "CS DS ES FS GS SS",
+      "count": 6,
+      "mapping": "Actual selectors. Full source cached base/limit/flags retained separately in receipt context; canonical six scalar fields cannot encode those hidden caches. Their base must fit uint32."
+    },
+    {
+      "names": "CR0 CR2 CR3 CR4",
+      "count": 4,
+      "mapping": "Actual 32-bit values. CR0.PE required; EFLAGS.VM refused. CR4.DE=1 makes DR4/5 unreadable and refuses the complete57 projection."
+    },
+    {
+      "names": "GDTR IDTR LDTR TR",
+      "count": 4,
+      "mapping": "Existing list[selector,base,limit,flags]. Base<=uint32. GDTR/IDTR require actual selector/flags zero and limit<=uint16; LDTR/TR retain selector16/limit32/flags32. Nonzero ignored fields are rejected, never silently zeroed."
+    },
+    {
+      "names": "FP0..7",
+      "count": 8,
+      "mapping": "Physical registers R0..7 as [mantissa64,signExponent16], independent of TOP. Empty physical payloads retained. Logical FXSAVE slot j maps to physical (TOP+j)&7 only when interpreting the FXSAVE image."
+    },
+    {
+      "names": "XMM0..7",
+      "count": 8,
+      "mapping": "128-bit integer low64 | (high64<<64). Extra XMM8..15 must be zero or refuse; no silent drop of live inaccessible fields."
+    },
+    {
+      "names": "DR0..7",
+      "count": 8,
+      "mapping": "DR0..3/6/7 actual32; DR4=DR6 and DR5=DR7 only with DE=0. These are architectural aliases, not absent source fields or invented zeros."
+    }
+  ],
+  "local_unicorn_findings": {
+    "identity": "Local unicorn 2.1.4 DLL SHA256 010d85dce84b8f6ffaec3d5420f1b5f7768f859eb831be574c7da23e656ee8f1",
+    "fp_top": "Unique normal, +/-zero, denormal, infinity, NaN, unnormal and pseudo-denormal FP80 patterns remained in identical FP0..7 API slots at TOP=0,3,7. Actual FXSAVE at TOP3 rotated logical ST slots exactly as expected.",
+    "fulltag": "API writes of 0000/5555/aaaa all read aa94 with the same nonempty payloads; ffff reads ffff; 300c reads ba9c. API tag writes encode empty/nonempty, and nonempty types are reclassified from the physical payload.",
+    "dr_conflict": "API DR4/5 can independently retain 12345678/23456789 while actual MOV EAX,DR4/5 at DE=0 returns DR6/7. At DE=1 both encodings raise UC_ERR_INSN_INVALID. New adapter never equates API padding to architectural evidence.",
+    "mmr_truncation": "Actual UC_MODE32 writes base=0x100234567 read back0x234567 for all four MMRs. GDTR/IDTR also discard selector/flags and truncate limit0x12345 to0x2345. Adapter rejects such inputs before projection.",
+    "scalar_widths": "EAX/EIP/CR2/DR0 writes >32 bits truncate in local API; FCS/FDS truncate16. FIP/FDP API retains64, but current projection requires architectural legacy32 range. All unsupported high bits are refused rather than relying on API behavior."
+  },
+  "actual_source_verification": {
+    "sources": [
+      "tcg-roundtrip32-v2",
+      "tcg-device-restore-v4-rich",
+      "tcg-device-restore-v4-zero"
+    ],
+    "all_57_actual_readbacks_equal": true,
+    "raw_DR4_DR5_left_zero": true,
+    "legacy_raw_DR4_DR5_disagreed_with_architectural_aliases": true,
+    "original_fxsave_crosscheck": "roundtrip32-v2 guest.bin physical payloads, TOP/fulltag and FIP/FDP matched projection; guest.bin is original frozen data.",
+    "actual_high64_rejected": "nonzero R8..15/XMM8..15 cannot be silently discarded by 32-bit projection",
+    "restore_reuse": "Before/after and disturbed/second-B canonical projections match on both 32-bit restore sources, with no native recollection.",
+    "instruction_counterexample": "Actual Unicorn MOV DR6,EAX followed by MOV EBX,DR4 updated new readback aliases and EBX consistently, while raw DR4 padding remained zero."
+  },
+  "tests": {
+    "normal": {
+      "count": 10,
+      "pass": true,
+      "seconds": 0.249
+    },
+    "python_optimized": {
+      "count": 10,
+      "pass": true,
+      "seconds": 0.238
+    },
+    "emulator_limits": "Each instruction case uses Unicorn timeout=100000us and count<=32; shell process limit15/20 seconds. No VM, UI, network or original program instructions.",
+    "frozen_before_execution": "Source/DLL SHA manifests were written before oracle, test and readback executions; no executed source was subsequently modified.",
+    "refusals": "Missing/unknown/malformed fields; TOP mismatch; wrong/un-stopped VP; DE=1; high-width GPR/IP/FP pointer/CR/DR/MMR; GDTR ignored fields; nonzero extended XMM; high64; v8086; incompatible CS descriptor. Validation does not use removable assert statements."
+  },
+  "limitations": [
+    "Authenticating raw JSON capture, exact source/binary/configuration, stop epoch and memory is a caller responsibility. Digest in receipt is an identifier, not authentication. Arbitrary plausible in-range GPR replacement is not automatically detected; source file/SHA must be pinned externally.",
+    "The frozen tools/terminal_unit_frontends_trace.py still reads Unicorn DR4/5 padding. It has not been changed, and historical acceptance records are not rewritten. Only callers that explicitly adopt the new schema and readback adapter may compare architectural57 results.",
+    "No hidden segment-cache restoration proof: CS descriptor memory is checked, but stale cache versus memory cannot be recovered through these 57 API values alone. Full source cached segment metadata is retained for separate comparison.",
+    "No compatibility-mode or long-mode projection. Real Windows WOW64 normally has long mode active, which is deliberately refused until a separate lossless contract handles high registers, segment bases and wider state.",
+    "A successful initial 57-register write/read comparison proves representability of those particular states, not correctness of arbitrary future Unicorn/x87 instructions, pending exceptions, privileged events or replay.",
+    "No RAM, device, kernel/native handle, driver, scheduler, resource-lifetime, original-game or complete machine acceptance is implied. Event/RAM evidence will receive a separate review when available.",
+    "Both adapters must be called while their engine is stopped and exclusively owned; the Unicorn API provides no per-read multi-register epoch attestation here."
+  ],
+  "storage": {
+    "new_local_evidence_bytes": 29035,
+    "implementation_bytes": 27515,
+    "old_evidence_modified": false,
+    "cleanup": "No old evidence/runtime removed; new small evidence only."
+  }
+}

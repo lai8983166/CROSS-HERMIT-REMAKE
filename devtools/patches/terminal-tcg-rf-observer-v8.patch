@@ -1,0 +1,19 @@
+diff --git a/target/i386/tcg/system/bpt_helper.c b/target/i386/tcg/system/bpt_helper.c
+--- a/target/i386/tcg/system/bpt_helper.c
++++ b/target/i386/tcg/system/bpt_helper.c
+@@ -228,7 +228,14 @@
+             }
+         }
+     } else {
+-        if (cpu_breakpoint_test(cs, env->eip, BP_CPU)) {
++        /*
++         * A GDB breakpoint can enter this handler even while RF suppresses
++         * architectural instruction breakpoints.  Do not turn that observer
++         * stop into a guest #DB merely because DRn names the same address.
++         * Data watchpoints above are not suppressed by RF.
++         */
++        if (!(env->eflags & RF_MASK) &&
++            cpu_breakpoint_test(cs, env->eip, BP_CPU)) {
+             check_hw_breakpoints(env, true);
+             raise_exception(env, EXCP01_DB);
+         }

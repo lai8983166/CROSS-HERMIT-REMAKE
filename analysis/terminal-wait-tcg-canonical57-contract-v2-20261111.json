@@ -1,0 +1,75 @@
+{
+  "schema": "canonical57-v2-pointer-width-correction",
+  "date": "2026-11-11",
+  "schema_version": "x86-architectural-canonical57-v2",
+  "legacy_raw_api_compatible": false,
+  "full_machine_state_accepted": false,
+  "windows_admitted": false,
+  "supersedes": "v1 FIP/FDP32 rejection only; v1 executed source/reports remain byte-original",
+  "correction": "Instruction execution width does not determine the stored FIP/FDP payload width. Local Unicorn2.1.4 retains64 bits for both in UC_MODE32, and existing canonical57 Python integers impose no32-bit pointer limit. v2 preserves all64 bits without masking.",
+  "unchanged": "EIP/GPR/CR/DR/MMR bases must fit32; fulltag/physical FP and DE=0 architectural DR4/5 aliases unchanged. Long/compatibility mode still refused because of the broader missing64 context, not FIP/FDP width.",
+  "code": [
+    {
+      "path": "devtools/terminal_tcg_canonical57_v2.py",
+      "bytes": 12066,
+      "sha256": "8a0a46643545458bae5d67f97ce7c29eab53d5c0cb3b0a6bdd4ef93561fccbaa"
+    },
+    {
+      "path": "devtools/tests/test_terminal_tcg_canonical57_v2.py",
+      "bytes": 3345,
+      "sha256": "09664e19f45ba73904b35311cc98a05a2ee6c1ef4db86be58e3108b65bccd678"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/v2-input-sha256.txt",
+      "bytes": 223,
+      "sha256": "4a1d94d87ceb90f389082c08794cf315882ae81376373bde7d93894255618e70"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/tests-v2.txt",
+      "bytes": 611,
+      "sha256": "cb5d9e7dcb639fa2b7997ddba3a7fb28e52001cb8acb2f13fb28a22359ac4a84"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/tests-optimized-v2.txt",
+      "bytes": 611,
+      "sha256": "076cc052dfcf31d2aa5297342fa400f53d8941c0d23e6a62bdfcbcb8d762200e"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/v2-width-oracle.py",
+      "bytes": 1329,
+      "sha256": "59c18727a3989bc76df719bbbe43e2fdd19ff88a08cb0c5a320c54bee006ba3b"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/v2-width-oracle-input-sha256.txt",
+      "bytes": 130,
+      "sha256": "1c5d3edbdab4e716c94e1b8976b881b0e4e86f22c9a1e880e3428cccde781581"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1/v2-width-readback.json",
+      "bytes": 3086,
+      "sha256": "51b94ffb001822600d9ee769785eec98caa33356f3e6fb4e9a907934cc33d51b"
+    }
+  ],
+  "verification": {
+    "normal_tests": 4,
+    "optimized_tests": 4,
+    "all_passed": true,
+    "actual_pointer_payloads": {
+      "FIP": "0x10010039f",
+      "FDP": "0x100100904"
+    },
+    "actual_uc_mode32_write_read_preserved": true,
+    "all57_readback_equal": true,
+    "synthetic_context_explicit": true,
+    "new_vm_or_guest_capture": false,
+    "whole_actual_longmode_context_still_refused": true
+  },
+  "source_construction": "Only two high pointer scalars are copied from retained actual longmode parent into an explicit synthetic width oracle based on ordinary32 state. Original captures were not modified; synthetic result is not represented as a native ordinary32 capture.",
+  "limits": [
+    "Source authenticity/whole memory/event lifetime still external requirements.",
+    "New architecture57 is still distinct from frozen Unicorn raw DR4/5 API semantics.",
+    "EFER.LMA compatibility-mode plus complete64 context envelope remain required before WOW64 use."
+  ]
+}

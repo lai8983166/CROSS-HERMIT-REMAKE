@@ -1,0 +1,43 @@
+diff --git a/target/i386/machine.c b/target/i386/machine.c
+--- a/target/i386/machine.c
++++ b/target/i386/machine.c
+@@ -594,6 +594,31 @@
+     .fields = (const VMStateField[]) {
+         VMSTATE_UINT16(env.fpcs, X86CPU),
+         VMSTATE_UINT16(env.fpds, X86CPU),
++        VMSTATE_END_OF_LIST()
++    }
++};
++
++/*
++ * Project-local TCG execution-loop payload, for same-build checkpoints.
++ * Preserve raw values even while exception_index is inactive: their validity
++ * is interpreted by the execution loop, not by dropping or clearing fields.
++ * The existing cpu/error_code subsection and CPU main layout stay unchanged.
++ */
++static bool terminal_tcg_event_context_needed(void *opaque)
++{
++    return tcg_enabled();
++}
++
++static const VMStateDescription vmstate_terminal_tcg_event_context = {
++    .name = "cpu/chaomofa-tcg-event-context-v1",
++    .version_id = 1,
++    .minimum_version_id = 1,
++    .needed = terminal_tcg_event_context_needed,
++    .fields = (const VMStateField[]) {
++        VMSTATE_INT32(env.error_code, X86CPU),
++        VMSTATE_INT32(env.exception_is_int, X86CPU),
++        VMSTATE_UINTTL(env.exception_next_eip, X86CPU),
++        VMSTATE_INT32(env.old_exception, X86CPU),
+         VMSTATE_END_OF_LIST()
+     }
+ };
+@@ -1901,6 +1926,7 @@
+         &vmstate_poll_control_msr,
+         &vmstate_fpop_ip_dp,
+         &vmstate_terminal_tcg_selectors,
++        &vmstate_terminal_tcg_event_context,
+         &vmstate_msr_tsc_adjust,
+         &vmstate_msr_tscdeadline,
+         &vmstate_msr_ia32_misc_enable,

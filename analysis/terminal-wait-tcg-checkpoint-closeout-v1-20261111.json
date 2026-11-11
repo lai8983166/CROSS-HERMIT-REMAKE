@@ -1,0 +1,329 @@
+{
+  "schema": "tcg-checkpoint-closeout-v1",
+  "utc": "2026-11-11T02:14:11.387470+00:00",
+  "accepted": false,
+  "formal_progress": "2/8",
+  "windows_admitted": false,
+  "windows_boots": 0,
+  "game_starts": 0,
+  "host_input": 0,
+  "host_configuration_changes": 0,
+  "runtime": {
+    "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8/qemu-system-x86_64",
+    "bytes": 29734864,
+    "sha256": "ce3d2c519c775ec70f02bb7590555d4f717638130650257c9c20564eb3059eeb"
+  },
+  "manifest": {
+    "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8/manifest.json",
+    "bytes": 4811,
+    "sha256": "48ebadd7bb032a45e2a72c2226f72e61183cf3d82cb41aeba7ccfd685d1b7ecf"
+  },
+  "independent_review": {
+    "path": "analysis/terminal-wait-tcg-ram-event-independent-review-v1-20261111.json",
+    "bytes": 33303,
+    "sha256": "14be79398a80a6486563a01482a90c54594be4b9395e49f04f3138f76a953259"
+  },
+  "capsule": {
+    "path": "analysis/terminal-wait-tcg-checkpoint-capsule-v1-20261111.zip",
+    "bytes": 170687,
+    "sha256": "7ed87f531019c9f6683030f8d765946412b339f64482d513a0fbdc6c82abf6a2"
+  },
+  "same_disk_stream_backup": {
+    "path": ".venv-audit/native-worker/tcg-checkpoint-evidence-v1/current-streams-backup.zip",
+    "bytes": 5018293,
+    "sha256": "9b95983282b418f31bd34ea62416a1a5cfb3fffbaa2c2288b56e052b6820beab"
+  },
+  "actual_scope": {
+    "canonical57": "Architectural57 v2, ordinary protected32; explicit DR aliases, 64-bit FIP/FDP",
+    "cases": [
+      "v7 before-CALL retained endpoint proof",
+      "v8 RF=1 return",
+      "v8 real PIT/PIC pending IRQ"
+    ],
+    "ram_blocks": 8,
+    "ram_block_bytes": 4312342528,
+    "pc_ram_bytes": 4294967296,
+    "two_vp_raw_state": true,
+    "only_bsp_executes": true,
+    "full_guest_os_or_game_acceptance": false
+  },
+  "retained_raw_failures": {
+    "debug_runstate": "v5 target rejected INMIGRATE to DEBUG; source reused for diagnosis",
+    "event_diagnostic": "Inactive exception payload plus real HARD IRQ differed; no field was filtered",
+    "endpoint_verifier": "v7 original continued_trajectory=false retained; exact A/B proof and unequal asynchronous exit suffix separately retained",
+    "compatibility_fixture": "v1 off-by-one ELF splice caused GDT corruption; fixed-size v2 reaches actual compatibility context"
+  },
+  "compatibility_gate": {
+    "actual_mode_observed": true,
+    "current_adapter_rejects": true,
+    "reason": "Real extended registers/high FS cache/long-mode context require lossless full64 envelope and compatibility32 projection; FIP/FDP64 already supported",
+    "next": "Implement and independently verify that envelope/adapter and compatibility continuation before Windows/WOW64"
+  },
+  "validations": {
+    "canonical_tests_normal": 14,
+    "canonical_tests_optimized": 14,
+    "actual_file_corruption_tests_normal": 5,
+    "actual_file_corruption_tests_optimized": 5,
+    "strict_openspec": true,
+    "independent_review": true,
+    "all_test_processes_exited": true
+  },
+  "preservation": {
+    "checked_utc": "2026-11-11T02:07:08.612821+00:00",
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "recovery": {
+    "lossless_gzip_materialization": true,
+    "bounded_endpoint_recheck": true,
+    "source_report_sha256": "56c3547d73bc1c531bf2df5d5f135aa50564c8934bbc80875b3ed5c183144fe1",
+    "temporary_deleted": true
+  },
+  "volumes": [
+    {
+      "path": ".venv-audit/native-worker/close-tcg-checkpoint-v1.py",
+      "files": 1,
+      "bytes": 5304
+    },
+    {
+      "path": ".venv-audit/native-worker/compress-tcg-checkpoint-v1.py",
+      "files": 1,
+      "bytes": 1180
+    },
+    {
+      "path": ".venv-audit/native-worker/retire-tcg-checkpoint-v1.py",
+      "files": 1,
+      "bytes": 3311
+    },
+    {
+      "path": ".venv-audit/native-worker/seal-tcg-checkpoint-v1.py",
+      "files": 1,
+      "bytes": 2488
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-canonical57-v1",
+      "files": 20,
+      "bytes": 157752
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-checkpoint-build-v5",
+      "files": 4,
+      "bytes": 52100
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-checkpoint-build-v6",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-checkpoint-build-v6b",
+      "files": 3,
+      "bytes": 39416
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-checkpoint-build-v7",
+      "files": 3,
+      "bytes": 40411
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8",
+      "files": 4,
+      "bytes": 29776403
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-checkpoint-evidence-v1",
+      "files": 3,
+      "bytes": 5019012
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compatibility-v8",
+      "files": 5,
+      "bytes": 18263
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compatibility-v8b",
+      "files": 5,
+      "bytes": 246983
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-pending-irq-static-v1",
+      "files": 1,
+      "bytes": 8192
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-ram-event-resume-v6-before-call",
+      "files": 5,
+      "bytes": 64519
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-ram-event-v1-before-call",
+      "files": 8,
+      "bytes": 78756
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call",
+      "files": 9,
+      "bytes": 173126
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq",
+      "files": 9,
+      "bytes": 11356304
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return",
+      "files": 9,
+      "bytes": 2654893
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-rf-stop-v8",
+      "files": 5,
+      "bytes": 47896
+    }
+  ],
+  "new_local_directory_bytes": 49746309,
+  "rewritten_shared_environment_files": [
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/.ninja_deps",
+      "bytes": 2255004
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/.ninja_log",
+      "bytes": 222270
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a",
+      "bytes": 713458
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/qemu-system-x86_64",
+      "bytes": 29734864
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemu-x86_64-softmmu.a.p/hw_i386_monitor.c.o",
+      "bytes": 2496
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemu-x86_64-softmmu.a.p/hw_i386_sgx-stub.c.o",
+      "bytes": 2712
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemu-x86_64-softmmu.a.p/target_i386_machine.c.o",
+      "bytes": 69472
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemu-x86_64-softmmu.a.p/target_i386_tcg_system_bpt_helper.c.o",
+      "bytes": 5688
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemu-x86_64-softmmu.a.p/target_i386_terminal-state.c.o",
+      "bytes": 19176
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/meson-generated_.._qapi_qapi-commands-misc-i386.c.o",
+      "bytes": 28704
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/meson-generated_.._qapi_qapi-commands.c.o",
+      "bytes": 992
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/meson-generated_.._qapi_qapi-init-commands.c.o",
+      "bytes": 48008
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/meson-generated_.._qapi_qapi-introspect.c.o",
+      "bytes": 1555096
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/meson-generated_.._trace_trace-qapi_commands_misc_i386_trace_events.c.o",
+      "bytes": 9160
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/stubs_qmp-i386-rtc.c.o",
+      "bytes": 1896
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/stubs_qmp-i386-sev.c.o",
+      "bytes": 3176
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/stubs_qmp-i386-sgx.c.o",
+      "bytes": 2168
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libqemuutil.a.p/stubs_qmp-i386-xen.c.o",
+      "bytes": 2160
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/libsystem.a.p/system_runstate.c.o",
+      "bytes": 28296
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/qapi/qapi-commands-misc-i386.c",
+      "bytes": 18121
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/qapi/qapi-commands-misc-i386.h",
+      "bytes": 2162
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/qapi/qapi-commands-misc-i386.trace-events",
+      "bytes": 1569
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/qapi/qapi-init-commands.c",
+      "bytes": 32041
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/qapi/qapi-introspect.c",
+      "bytes": 1125533
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/trace/trace-qapi_commands_misc_i386_trace_events.c",
+      "bytes": 8618
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/build/trace/trace-qapi_commands_misc_i386_trace_events.h",
+      "bytes": 18285
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/source/qapi/misc-i386.json",
+      "bytes": 11982
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/source/system/runstate.c",
+      "bytes": 31582
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/machine.c",
+      "bytes": 58385
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/terminal-state.c",
+      "bytes": 7188
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/system/bpt_helper.c",
+      "bytes": 9714
+    }
+  ],
+  "rewritten_shared_environment_bytes": 36029976,
+  "git_new_artifact_bytes_before_closeout": 364732,
+  "cleanup": {
+    "deleted_bytes": 127662486,
+    "deleted_files": 51,
+    "all_deleted": true,
+    "old_evidence_deleted": false,
+    "current_runtime": "v8 only among this-turn build copies",
+    "streams": "Current v8 RF compressed primary; pending IRQ raw primary; one same-disk backup. Superseded v5/v7 full streams retired explicitly."
+  },
+  "limitations": [
+    "Not a validated arbitrary-machine snapshot: external DMA/disks/network/native resources absent.",
+    "No queued synchronous exception, NMI, active AP scheduler or general device-event proof.",
+    "No original wait return, first game consumption, three game handshakes, resource/PTD cleanup or final two native game replays."
+  ],
+  "total_new_or_rewritten_local_bytes_including_git_before_closeout": 86141017
+}

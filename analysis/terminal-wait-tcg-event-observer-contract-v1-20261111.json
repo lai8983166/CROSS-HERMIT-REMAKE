@@ -1,0 +1,176 @@
+{
+  "schema": "terminal-tcg-event-observer-contract-v1",
+  "date": "2026-11-11",
+  "accepted": false,
+  "full_machine_state": false,
+  "windows_admitted": false,
+  "review_scope": "Bounded static source/patch/fixture review plus first completed restore-only diagnostic; no VM run by reviewer.",
+  "patches": [
+    {
+      "path": "devtools/patches/terminal-tcg-event-context-v7.patch",
+      "bytes": 1522,
+      "sha256": "d021d366831bd5fd08b224a533a6193a1ca486cbaa0ee112d2490afed7cdf315"
+    },
+    {
+      "path": "devtools/patches/terminal-tcg-rf-observer-v8.patch",
+      "bytes": 810,
+      "sha256": "0945a8addc87bd12ba4063b7ec3cc8c1e35a33d776fb66db69478167e084fe77"
+    },
+    {
+      "path": "devtools/patches/terminal-tcg-incoming-debug-v6.patch",
+      "bytes": 468,
+      "sha256": "9570d1c8eac34b30be9c3ecc0408ad63a1c07b173c73bc866707d5e4a5a7778c"
+    }
+  ],
+  "event_context_patch": {
+    "format": "cpu/chaomofa-tcg-event-context-v1, version1/minimum1, always sent for TCG; INT32 error_code, INT32 exception_is_int, target_ulong exception_next_eip, INT32 old_exception.",
+    "basis": "Existing main CPU version/fields and cpu/error_code subsection unchanged. Extra subsection is same-build only; old readers reject unknown section and old streams lack these values.",
+    "inactive_values": "Preserve exact raw fields even if not currently meaningful. No load-time clear or comparator filtering. Existing error_code subsection, if also emitted, carries the same source value.",
+    "validity": "exception_index<0 bypasses synchronous exception handling. Internal exit indices >=EXCP_INTERRUPT(0x10000) take the loop-exit path and are reset to -1. Guest exception indices dispatch through x86_cpu_do_interrupt, except EXCP_VMEXIT(0x100) has a separate VM-exit path. exception_next_eip is relevant to INT-instruction delivery when exception_is_int is true. old_exception tracks in-flight nested-fault classification and becomes -1 after successful delivery.",
+    "diagnostic_interpretation": "First source A has exception_index=-1/old_exception=-1 but exception_is_int=1,next_eip=0x168. Those are retained earlier INT payload, not proof of a pending INT. Target resetting them was nonetheless a raw-state equality failure, now addressed by serialization.",
+    "remaining_scope": "Preserving four fields is not exhaustive CPU event-state capture. CPU common already stores exception_index/interrupt_request/halted; hflags2 is in main x86 VMState. Device interrupt controller/timer state and other queued events remain separate."
+  },
+  "rf_observer_patch": {
+    "source_mechanism": "RF suppresses BP_CPU in x86_debug_check_breakpoint. BP_GDB may still cause EXCP_DEBUG, and the old breakpoint_handler then tested BP_CPU at that address without rechecking RF, calling raise_exception(#DB). Thus an observer at a DR execution-breakpoint address could introduce an extra guest exception despite RF=1.",
+    "change": "Only non-watchpoint branch now requires !(env->eflags & RF_MASK) before reclassifying observer exit as architectural instruction #DB. Does not change guest instruction bytes, RF, DRs, watchpoints or RF=0 event behavior.",
+    "must_test": "Owned guest with active DR0/DR7 must first take its ordinary RF=0 #DB, have its IDT handler set RF in the saved frame, return by IRETD to the overlapping GDB stop, expose RF=1/handler_count=1, then resume/consume once without a second #DB. Raw trace, saved exception frame and final counters must agree.",
+    "not_claimed": "At report creation this reviewer has only statically validated the v8 change; no assertion of a completed native RF case or general observer transparency."
+  },
+  "runstate_patch": {
+    "change": "Adds INMIGRATE -> DEBUG to legal transitions. No automatic cont or forced guest run.",
+    "reason": "process_incoming_migration_bh loads a saved nonlive runstate by runstate_set(global_state_get_runstate()). Source at a debugger stop saves DEBUG. This requires the missing transition.",
+    "actual_diagnostic": "Source v6 to target v6b restore-only reused the original stream, exited33 with matching CPU/RAM/output but retained raw-event differences. Different builds mean diagnostic only, not same-build acceptance."
+  },
+  "observer_review": {
+    "source": {
+      "path": "devtools/terminal_tcg_checkpoint_observer.c",
+      "bytes": 2600,
+      "sha256": "4cb7976a528d575d7249e953182a0a0e9d253ec84ce159044198ca78533085b5"
+    },
+    "ram": "Enumerates RAMBlock host mappings under RCU and hashes used_length with SHA256; current 64-bit build supports each full4GiB size. Fixed machine observed eight blocks totaling4,312,342,528 bytes including VGA and ROM blocks. This measures RAMBlock payloads, not the complete MMIO address-space topology or external resources.",
+    "stopping": "Requires nonrunning TCG and every CPUState.stopped. RCU protects RAMBlock lifetime, not contents; VP stop alone is not a universal DMA/IOthread quiescence guarantee. Current diskless/no-network/no-passthrough fixture is the bounded scope.",
+    "strings": "Current observed IDs contain no JSON control characters; source rejects quote/backslash/LF/CR, not every possible control byte. Generic arbitrary machine IDs are not qualified.",
+    "events": "Raw selected CPU fields retained, no lossy pending/inactive normalization. HARD=2 is a real independent interrupt request and cannot be removed as an inactive synchronous payload.",
+    "clock": "Default RTC clock is HOST, whereas icount controls VIRTUAL. Explicit identical -icount shift=0,align=off,sleep=off and -rtc clock=vm,base=fixed in both processes avoids that known host-time source; actual event equality still required."
+  },
+  "pending_irq_fixture_review": {
+    "source": {
+      "path": "devtools/terminal_tcg_pending_irq_probe.py",
+      "bytes": 1960,
+      "sha256": "936ad086173319943ab38be014f63341f1801f418f0d1d0c528d4508509c129b"
+    },
+    "static_findings": [
+      "Master/slave PIC vectors20h/28h, onlyIRQ0 unmasked. PIT channel0 command30h/count16 programs one-shot mode0.",
+      "IF remains clear from entry; OCW3 IRR polling JZ f6 returns exactly to the10-byte polling sequence. A at1002f0 precedes STI/NOP; relativeJMP09 goes to100300.",
+      "IRQ32 gate points to100500. Handler PUSHAD, increments102004, emitsQ, sends master EOI, POPAD/IRETD. #DB remains separate vector1 path.",
+      "Require real HARD request at A, IF0, exactly one delivered INT20 and IRQ count1 after resume; source/target complete events, allRAM and architectural57 still must match. This asynchronous IRQ is not a queued synchronous exception payload test."
+    ],
+    "executed_by_reviewer": false
+  },
+  "retained_first_diagnostic": [
+    {
+      "path": ".venv-audit/native-worker/tcg-ram-event-v1-before-call/report.json",
+      "bytes": 57405,
+      "sha256": "60e973492ad755e7516d024a6cc2c68e2eb083d2f9f87089412b0a9d5498ab73"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-ram-event-resume-v6-before-call/report.json",
+      "bytes": 49572,
+      "sha256": "0f975e440763adb17c987aebb8bd37c6563632fda00a746a18ba723776718040"
+    }
+  ],
+  "source_refs": [
+    {
+      "path": "accel/tcg/cpu-exec.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 33853,
+      "sha256": "c124864dd8f900e4f24e3ac4d380b5d05d00be8a9219fcfd01a822a16e2978d9",
+      "anchors": [
+        "296-338 GDB and architectural breakpoint selection",
+        "690-743 exception validity and consume path"
+      ]
+    },
+    {
+      "path": "target/i386/tcg/tcg-cpu.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 7673,
+      "sha256": "7ae34b79e3d7d0f6448cfc213830b31a0d5a33adf975c41e9bcac913658d568e",
+      "anchors": [
+        "135-142 architectural instruction BP disabled by RF"
+      ]
+    },
+    {
+      "path": "target/i386/tcg/system/bpt_helper.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 9362,
+      "sha256": "2c8a6069482d943b8ba82fd03eb2344e561c69ae5226a104c2b86197424304bb",
+      "anchors": [
+        "164-239 check_hw_breakpoints and breakpoint_handler"
+      ]
+    },
+    {
+      "path": "target/i386/tcg/excp_helper.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 5814,
+      "sha256": "d45412ce82a13c0f9251d96d062086ca02596cc1679165efaedb3eb0f620a666",
+      "anchors": [
+        "40-82 old_exception and nested faults",
+        "85-113 pending exception payload assignment"
+      ]
+    },
+    {
+      "path": "target/i386/tcg/system/seg_helper.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 8634,
+      "sha256": "10c1d133386a65f1ad0ba7343681b87f4a3fe738d1b36cd13d233a9a236f2ea9",
+      "anchors": [
+        "113-128 dispatch and old_exception reset",
+        "157-226 separate hardware IRQ handling"
+      ]
+    },
+    {
+      "path": "target/i386/machine.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 56018,
+      "sha256": "b7070861e3949e1f067a7e3ba6907e5f89cacce8d9ec73f499f419577b3d1aa1",
+      "anchors": [
+        "464-479 error_code optional subsection",
+        "1765-1906 existing CPU VMState"
+      ]
+    },
+    {
+      "path": "hw/core/cpu-system.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 8361,
+      "sha256": "ccd2f285ccfb4a397b3deeb5cb4763611bf6065281a255071c19f042aa91b0bd",
+      "anchors": [
+        "214-274 common exception_index and interrupt_request VMState"
+      ]
+    },
+    {
+      "path": "migration/migration.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 126111,
+      "sha256": "ecbea04f8fce9d9adfafaf455415c634c9bbe27a09ae7673a195f83a08f0eec5",
+      "anchors": [
+        "679-730 incoming target runstate selection"
+      ]
+    },
+    {
+      "path": "system/rtc.c",
+      "commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+      "bytes": 6030,
+      "sha256": "08355efc2e86b8d2691ea8f12b447d9c47cb02d1af5a4bbbb04b1f83f1a2af46",
+      "anchors": [
+        "146-169 HOST default versus explicit VIRTUAL clock"
+      ]
+    }
+  ],
+  "checks": {
+    "patches_git_apply_check": true,
+    "applied_bytes_match_generated_new": true,
+    "main_tree_modified_by_reviewer": false,
+    "vm_or_native_probe_started_by_reviewer": false
+  },
+  "admission_limit": "Canonical57 remains ordinary protected32 only. WOW64 compatibility mode and full64 envelope are refused by the current adapter. No Windows/game/resource-lifetime acceptance follows from these source fixes or microguests."
+}

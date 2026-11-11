@@ -1,0 +1,830 @@
+{
+  "schema": "terminal-tcg-ram-event-independent-review-v1",
+  "date": "2026-11-11",
+  "reviewer_script": {
+    "path": ".venv-audit/native-worker/tcg-canonical57-v1/review_ram_event.py",
+    "bytes": 13233,
+    "sha256": "41ccaf3e3fe1e06fb814a2e25262dde704ef80ce653cfaa6b99707f40e267064"
+  },
+  "bounded_owned_microguest_restore_passed": true,
+  "full_machine_state_accepted": false,
+  "windows_admitted": false,
+  "original_game_cases": 0,
+  "summary": "Independently checked full RAMBlock A/B fingerprints, typed CPU/event records, original migration event subsections, guest frames/output and unique fixed-boundary traces. Source and fresh target run sequentially; no VM launched by reviewer.",
+  "cases": [
+    {
+      "name": "tcg-ram-event-v2-before-call",
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/report.json",
+        "bytes": 131166,
+        "sha256": "a26b4a77ab0620c62b7ca34e75bbfffcb0a23b98ca78551f8eb29efb5c3974d2"
+      },
+      "binary": {
+        "path": ".venv-audit/native-worker/tcg-checkpoint-build-v7/qemu-system-x86_64",
+        "bytes": 29734864,
+        "sha256": "5b316eda6d311ad9bf71288bf6b0f187a0721eeae9582560acf43861ca5480ab"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/checkpoint.bin",
+          "bytes": 10223273,
+          "sha256": "84aa3f8228165c5d2c2a44a9b1217178017ed6e5743482c2373fc86c065f712a"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/guest.elf",
+          "bytes": 8192,
+          "sha256": "301a1f255e054597e032c6fc21ebd1a6bb61710e66cd68ac84687497770dfb16"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/source.bin",
+          "bytes": 22,
+          "sha256": "383a7d6a9d4ba0c93fb453a17e814f9c976a395a53284c585a8196baa825354c"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/source.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/source.trace",
+          "bytes": 12810,
+          "sha256": "8c7908f81ae8499874e17dbc713b31b20c1c8d385493f8a27ccd50a9e5907120"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/target.bin",
+          "bytes": 21,
+          "sha256": "57bbad5079e268fa2c5bf4b792a30fb86d7180c330249041f7775ecf95c8d80e"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/target.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/target.trace",
+          "bytes": 6591,
+          "sha256": "0ad3e5f6e391871a9dfa5c4750b3699d21026a1f0433cb6224ea409b22e3408a"
+        }
+      ],
+      "seconds": 71.03160267400006,
+      "original_case_passed": false,
+      "original_trace_check": false,
+      "independent_A_B_passed": true,
+      "v2_projection_equal": true,
+      "exact_qmp_receipts": true,
+      "all_raw_CPU_and_events_equal": true,
+      "ram_bytes": 4312342528,
+      "ram_inventory": [
+        {
+          "id": "pc.ram",
+          "bytes": 4294967296,
+          "sha256_a": "67f015bd3d6014b43b72b2757dc6e8b5425c9bd4f565513d53f790ae412419c4",
+          "sha256_b": "ea9a2a3b0c81d78001ae9a4d9445a7fbf1b2a576ec5126329adf32269a4704fd"
+        },
+        {
+          "id": "0000:00:02.0/vga.vram",
+          "bytes": 16777216,
+          "sha256_a": "8ea3d995871388c1f6b47f510c9f559d75de64faa6868b25a547335d9a7d2e2b",
+          "sha256_b": "8ea3d995871388c1f6b47f510c9f559d75de64faa6868b25a547335d9a7d2e2b"
+        },
+        {
+          "id": "/rom@etc/acpi/tables",
+          "bytes": 131072,
+          "sha256_a": "aed8762fc4794df0296fecaaa35f04cd380448edff085b77327d9af75946db1a",
+          "sha256_b": "aed8762fc4794df0296fecaaa35f04cd380448edff085b77327d9af75946db1a"
+        },
+        {
+          "id": "pc.bios",
+          "bytes": 262144,
+          "sha256_a": "ae6f6aa973aaccc143f57aa960fb035fd9de4daee4ad0cd713322f8c259e7650",
+          "sha256_b": "ae6f6aa973aaccc143f57aa960fb035fd9de4daee4ad0cd713322f8c259e7650"
+        },
+        {
+          "id": "pc.rom",
+          "bytes": 131072,
+          "sha256_a": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471",
+          "sha256_b": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471"
+        },
+        {
+          "id": "0000:00:02.0/vga.rom",
+          "bytes": 65536,
+          "sha256_a": "e6df1e238b0160969a544b77066c1c683801294558c6e08ef314cf0dd39a7d1b",
+          "sha256_b": "e6df1e238b0160969a544b77066c1c683801294558c6e08ef314cf0dd39a7d1b"
+        },
+        {
+          "id": "/rom@etc/table-loader",
+          "bytes": 4096,
+          "sha256_a": "ba070f97a6a4424dff7de796515cdc44dd3d5b9febeae0d789c066e5cc727917",
+          "sha256_b": "ba070f97a6a4424dff7de796515cdc44dd3d5b9febeae0d789c066e5cc727917"
+        },
+        {
+          "id": "/rom@etc/acpi/rsdp",
+          "bytes": 4096,
+          "sha256_a": "6081cb14e639ba8ff14de982aba798f9a2a21f919e2a60ce88188556a8ad15dd",
+          "sha256_b": "6081cb14e639ba8ff14de982aba798f9a2a21f919e2a60ce88188556a8ad15dd"
+        }
+      ],
+      "payloads": [
+        {
+          "offset": 10100830,
+          "version": 1,
+          "cpu_wire_order": 0,
+          "error_code": 0,
+          "exception_is_int": 1,
+          "exception_next_eip": "0x168",
+          "old_exception": -1
+        },
+        {
+          "offset": 10103085,
+          "version": 1,
+          "cpu_wire_order": 1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "exception_next_eip": "0x0",
+          "old_exception": -1
+        }
+      ],
+      "trace_entries": 74,
+      "trace_including_cflags_sha256": "9a8c9257aba4a10dc82a4fd74cd9e1ed6367cf9129aaee3752e4cbcdd551ddfb",
+      "unique_trace_A_B": true,
+      "exit_suffix_equal": false,
+      "event_frames_source": [
+        "     0: v=01 e=0000 i=0 cpl=0 IP=0008:0000000000100305 pc=0000000000100305 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000448"
+      ],
+      "event_frames_target": [
+        "     0: v=01 e=0000 i=0 cpl=0 IP=0008:0000000000100305 pc=0000000000100305 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000448"
+      ],
+      "guest_db_stack_eip_cs_eflags_dr6": [
+        1049349,
+        8,
+        6,
+        4294905841
+      ],
+      "source_output_hex": "534844050310000800000006000000f10fffff523145",
+      "target_output_hex": "4844050310000800000006000000f10fffff523145",
+      "prefix_bytes": 1,
+      "source_a_events": [
+        {
+          "cpu": 0,
+          "halted": 0,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 1,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000168"
+        },
+        {
+          "cpu": 1,
+          "halted": 1,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000000"
+        }
+      ],
+      "source_b_events": [
+        {
+          "cpu": 0,
+          "halted": 0,
+          "interrupt_request": 2,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000100305"
+        },
+        {
+          "cpu": 1,
+          "halted": 1,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000000"
+        }
+      ]
+    },
+    {
+      "name": "tcg-ram-event-v3-rf-return",
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/report.json",
+        "bytes": 124252,
+        "sha256": "56c3547d73bc1c531bf2df5d5f135aa50564c8934bbc80875b3ed5c183144fe1"
+      },
+      "binary": {
+        "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8/qemu-system-x86_64",
+        "bytes": 29734864,
+        "sha256": "ce3d2c519c775ec70f02bb7590555d4f717638130650257c9c20564eb3059eeb"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/checkpoint.bin",
+          "bytes": 10231463,
+          "sha256": "03c69e7aa8003413b036aee5485a568323e579c50393ffa08f398e0b759c2089"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/guest.elf",
+          "bytes": 8192,
+          "sha256": "301a1f255e054597e032c6fc21ebd1a6bb61710e66cd68ac84687497770dfb16"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/source.bin",
+          "bytes": 22,
+          "sha256": "383a7d6a9d4ba0c93fb453a17e814f9c976a395a53284c585a8196baa825354c"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/source.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/source.trace",
+          "bytes": 12951,
+          "sha256": "fcf44584f75564082215336daf085436821cd6d4c451853468317b2777ed0f4b"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/target.bin",
+          "bytes": 3,
+          "sha256": "512563b0614ecefca670f9cd1bfe39651cca8e338a2140892813a2ee70e32660"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/target.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-rf-return/target.trace",
+          "bytes": 853,
+          "sha256": "9ffe9e242e3f1184b3f5e93d5b3876571f8f3effefdc50ec7f9364c93f9bdd49"
+        }
+      ],
+      "seconds": 69.31152395000004,
+      "original_case_passed": true,
+      "original_trace_check": true,
+      "independent_A_B_passed": true,
+      "v2_projection_equal": true,
+      "exact_qmp_receipts": true,
+      "all_raw_CPU_and_events_equal": true,
+      "ram_bytes": 4312342528,
+      "ram_inventory": [
+        {
+          "id": "pc.ram",
+          "bytes": 4294967296,
+          "sha256_a": "fba576f9df83f7a3d1125ea192dd96148683249b22411fc0dbeace109c10fd10",
+          "sha256_b": "fbabdd30397209db8bcfc560fa1c7b3bd420ec8f5b050535941a8e711a036b98"
+        },
+        {
+          "id": "0000:00:02.0/vga.vram",
+          "bytes": 16777216,
+          "sha256_a": "8ea3d995871388c1f6b47f510c9f559d75de64faa6868b25a547335d9a7d2e2b",
+          "sha256_b": "8ea3d995871388c1f6b47f510c9f559d75de64faa6868b25a547335d9a7d2e2b"
+        },
+        {
+          "id": "/rom@etc/acpi/tables",
+          "bytes": 131072,
+          "sha256_a": "aed8762fc4794df0296fecaaa35f04cd380448edff085b77327d9af75946db1a",
+          "sha256_b": "aed8762fc4794df0296fecaaa35f04cd380448edff085b77327d9af75946db1a"
+        },
+        {
+          "id": "pc.bios",
+          "bytes": 262144,
+          "sha256_a": "ae6f6aa973aaccc143f57aa960fb035fd9de4daee4ad0cd713322f8c259e7650",
+          "sha256_b": "ae6f6aa973aaccc143f57aa960fb035fd9de4daee4ad0cd713322f8c259e7650"
+        },
+        {
+          "id": "pc.rom",
+          "bytes": 131072,
+          "sha256_a": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471",
+          "sha256_b": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471"
+        },
+        {
+          "id": "0000:00:02.0/vga.rom",
+          "bytes": 65536,
+          "sha256_a": "e6df1e238b0160969a544b77066c1c683801294558c6e08ef314cf0dd39a7d1b",
+          "sha256_b": "e6df1e238b0160969a544b77066c1c683801294558c6e08ef314cf0dd39a7d1b"
+        },
+        {
+          "id": "/rom@etc/table-loader",
+          "bytes": 4096,
+          "sha256_a": "ba070f97a6a4424dff7de796515cdc44dd3d5b9febeae0d789c066e5cc727917",
+          "sha256_b": "ba070f97a6a4424dff7de796515cdc44dd3d5b9febeae0d789c066e5cc727917"
+        },
+        {
+          "id": "/rom@etc/acpi/rsdp",
+          "bytes": 4096,
+          "sha256_a": "6081cb14e639ba8ff14de982aba798f9a2a21f919e2a60ce88188556a8ad15dd",
+          "sha256_b": "6081cb14e639ba8ff14de982aba798f9a2a21f919e2a60ce88188556a8ad15dd"
+        }
+      ],
+      "payloads": [
+        {
+          "offset": 10109020,
+          "version": 1,
+          "cpu_wire_order": 0,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "exception_next_eip": "0x100305",
+          "old_exception": -1
+        },
+        {
+          "offset": 10111275,
+          "version": 1,
+          "cpu_wire_order": 1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "exception_next_eip": "0x0",
+          "old_exception": -1
+        }
+      ],
+      "trace_entries": 8,
+      "trace_including_cflags_sha256": "f9429e7d600cbb7827157fec84143f70528098cd220ed107c55f18da214e7215",
+      "unique_trace_A_B": true,
+      "exit_suffix_equal": true,
+      "event_frames_source": [
+        "     0: v=01 e=0000 i=0 cpl=0 IP=0008:0000000000100305 pc=0000000000100305 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000448"
+      ],
+      "event_frames_target": [],
+      "guest_db_stack_eip_cs_eflags_dr6": [
+        1049349,
+        8,
+        6,
+        4294905841
+      ],
+      "source_output_hex": "534844050310000800000006000000f10fffff523145",
+      "target_output_hex": "523145",
+      "prefix_bytes": 19,
+      "source_a_events": [
+        {
+          "cpu": 0,
+          "halted": 0,
+          "interrupt_request": 2,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000100305"
+        },
+        {
+          "cpu": 1,
+          "halted": 1,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000000"
+        }
+      ],
+      "source_b_events": [
+        {
+          "cpu": 0,
+          "halted": 0,
+          "interrupt_request": 2,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000100305"
+        },
+        {
+          "cpu": 1,
+          "halted": 1,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000000"
+        }
+      ]
+    },
+    {
+      "name": "tcg-ram-event-v3-pending-irq",
+      "report": {
+        "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/report.json",
+        "bytes": 147173,
+        "sha256": "72f8f93950eaf9ff91b146646648deee6a23b72b2e0ebef9113c2c497dd86fc4"
+      },
+      "binary": {
+        "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8/qemu-system-x86_64",
+        "bytes": 29734864,
+        "sha256": "ce3d2c519c775ec70f02bb7590555d4f717638130650257c9c20564eb3059eeb"
+      },
+      "files": [
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/checkpoint.bin",
+          "bytes": 10223255,
+          "sha256": "0ee4c65d02335f8828aeb23e5e337b1acc4f024ab63e1aa06d8ff33877cd95a9"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/guest.elf",
+          "bytes": 8192,
+          "sha256": "add99e44f442a58a079192ed1bc4db45d43ab2a064e8b2161551899511472bde"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/source.bin",
+          "bytes": 23,
+          "sha256": "06aa61c30eea2cf3f4f26a96f396fe0ff436411c27e48acc1dcfa70533596d0c"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/source.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/source.trace",
+          "bytes": 969227,
+          "sha256": "ecfddb9e91c61a4ff49799f2be793e82a4ed652b18d5757dffe77b15bf13ff5d"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/target.bin",
+          "bytes": 22,
+          "sha256": "224c801ab4b5ebe937fc447fea078c6097adca605ca0872de7cc756f0583e8b6"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/target.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": ".venv-audit/native-worker/tcg-ram-event-v3-pending-irq/target.trace",
+          "bytes": 8412,
+          "sha256": "647ab3eb212df1b18d1f76351e0103d796fab3005bcf98de6b41acb0aeb6bd88"
+        }
+      ],
+      "seconds": 73.01678649099995,
+      "original_case_passed": true,
+      "original_trace_check": true,
+      "independent_A_B_passed": true,
+      "v2_projection_equal": true,
+      "exact_qmp_receipts": true,
+      "all_raw_CPU_and_events_equal": true,
+      "ram_bytes": 4312342528,
+      "ram_inventory": [
+        {
+          "id": "pc.ram",
+          "bytes": 4294967296,
+          "sha256_a": "6c02ba214b51005384b650c11cb468faa85b1dd3eee6cce9ab7200122223701f",
+          "sha256_b": "435805cbf45ca56d5f113adfcde1355f809bd948e63a25b039b75597f4885dba"
+        },
+        {
+          "id": "0000:00:02.0/vga.vram",
+          "bytes": 16777216,
+          "sha256_a": "8ea3d995871388c1f6b47f510c9f559d75de64faa6868b25a547335d9a7d2e2b",
+          "sha256_b": "8ea3d995871388c1f6b47f510c9f559d75de64faa6868b25a547335d9a7d2e2b"
+        },
+        {
+          "id": "/rom@etc/acpi/tables",
+          "bytes": 131072,
+          "sha256_a": "aed8762fc4794df0296fecaaa35f04cd380448edff085b77327d9af75946db1a",
+          "sha256_b": "aed8762fc4794df0296fecaaa35f04cd380448edff085b77327d9af75946db1a"
+        },
+        {
+          "id": "pc.bios",
+          "bytes": 262144,
+          "sha256_a": "ae6f6aa973aaccc143f57aa960fb035fd9de4daee4ad0cd713322f8c259e7650",
+          "sha256_b": "ae6f6aa973aaccc143f57aa960fb035fd9de4daee4ad0cd713322f8c259e7650"
+        },
+        {
+          "id": "pc.rom",
+          "bytes": 131072,
+          "sha256_a": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471",
+          "sha256_b": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471"
+        },
+        {
+          "id": "0000:00:02.0/vga.rom",
+          "bytes": 65536,
+          "sha256_a": "e6df1e238b0160969a544b77066c1c683801294558c6e08ef314cf0dd39a7d1b",
+          "sha256_b": "e6df1e238b0160969a544b77066c1c683801294558c6e08ef314cf0dd39a7d1b"
+        },
+        {
+          "id": "/rom@etc/table-loader",
+          "bytes": 4096,
+          "sha256_a": "ba070f97a6a4424dff7de796515cdc44dd3d5b9febeae0d789c066e5cc727917",
+          "sha256_b": "ba070f97a6a4424dff7de796515cdc44dd3d5b9febeae0d789c066e5cc727917"
+        },
+        {
+          "id": "/rom@etc/acpi/rsdp",
+          "bytes": 4096,
+          "sha256_a": "6081cb14e639ba8ff14de982aba798f9a2a21f919e2a60ce88188556a8ad15dd",
+          "sha256_b": "6081cb14e639ba8ff14de982aba798f9a2a21f919e2a60ce88188556a8ad15dd"
+        }
+      ],
+      "payloads": [
+        {
+          "offset": 10100812,
+          "version": 1,
+          "cpu_wire_order": 0,
+          "error_code": 0,
+          "exception_is_int": 1,
+          "exception_next_eip": "0x168",
+          "old_exception": -1
+        },
+        {
+          "offset": 10103067,
+          "version": 1,
+          "cpu_wire_order": 1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "exception_next_eip": "0x0",
+          "old_exception": -1
+        }
+      ],
+      "trace_entries": 85,
+      "trace_including_cflags_sha256": "c64cab91ffa9ef3272d6e83aef07a7b060ec2ac0d528959913f8a5b159d9b7ab",
+      "unique_trace_A_B": true,
+      "exit_suffix_equal": true,
+      "event_frames_source": [
+        "     0: v=20 e=0000 i=0 cpl=0 IP=0008:00000000001002f2 pc=00000000001002f2 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000453",
+        "     1: v=01 e=0000 i=0 cpl=0 IP=0008:0000000000100305 pc=0000000000100305 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000448"
+      ],
+      "event_frames_target": [
+        "     0: v=20 e=0000 i=0 cpl=0 IP=0008:00000000001002f2 pc=00000000001002f2 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000453",
+        "     1: v=01 e=0000 i=0 cpl=0 IP=0008:0000000000100305 pc=0000000000100305 SP=0010:0000000000104000 env->regs[R_EAX]=0000000000000448"
+      ],
+      "guest_db_stack_eip_cs_eflags_dr6": [
+        1049349,
+        8,
+        514,
+        4294905841
+      ],
+      "source_output_hex": "53514844050310000800000002020000f10fffff523145",
+      "target_output_hex": "514844050310000800000002020000f10fffff523145",
+      "prefix_bytes": 1,
+      "source_a_events": [
+        {
+          "cpu": 0,
+          "halted": 0,
+          "interrupt_request": 2,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 1,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000168"
+        },
+        {
+          "cpu": 1,
+          "halted": 1,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000000"
+        }
+      ],
+      "source_b_events": [
+        {
+          "cpu": 0,
+          "halted": 0,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000100305"
+        },
+        {
+          "cpu": 1,
+          "halted": 1,
+          "interrupt_request": 0,
+          "exception_index": -1,
+          "error_code": 0,
+          "exception_is_int": 0,
+          "old_exception": -1,
+          "hflags2": 257,
+          "exception_next_eip": "0000000000000000"
+        }
+      ]
+    }
+  ],
+  "short_RF": {
+    "report": {
+      "path": ".venv-audit/native-worker/tcg-rf-stop-v8/report.json",
+      "bytes": 26874,
+      "sha256": "062ea1ee5d4772109812757c942f18498fafd54582c7d8d112716ecfecfe188f"
+    },
+    "iret_frame": [
+      1049349,
+      8,
+      65542
+    ],
+    "actual_RF_flags": "0000000000010006",
+    "db_count": 1,
+    "exit_code": 33
+  },
+  "compatibility": {
+    "report": {
+      "path": ".venv-audit/native-worker/tcg-compatibility-v8b/report.json",
+      "bytes": 11050,
+      "sha256": "34b5d318f69c011644088c5843107d945311e5f05df69daf3ea6e64421321d1c"
+    },
+    "original_ELF": {
+      "path": ".venv-audit/native-worker/tcg-compatibility-v8b/guest.elf",
+      "bytes": 8192,
+      "sha256": "0631df8e1cab6c2cf090f7b6f7f7540086257236d9c0a3725b57c9dacd7a1eff"
+    },
+    "efer": "0000000000000500",
+    "cs": [
+      "0000000000000008",
+      "0000000000000000",
+      "00000000ffffffff",
+      "0000000000cf9b00"
+    ],
+    "r8": "123456789abcdef0",
+    "fs": [
+      "0000000000000010",
+      "0000000100000000",
+      "00000000ffffffff",
+      "0000000000cf9300"
+    ],
+    "fip": "000000010010039f",
+    "fdp": "0000000100100904",
+    "xmm15": [
+      "e0ac6824df9b5713",
+      "efcdab8967452301"
+    ],
+    "v2_refusal": "gpr[8]: unsigned 32-bit value required; no truncation",
+    "implication": "Actual CS.D=1/CS.L=0 while EFER.LMA=1 coexists with nonzero R8, high FS base, high FP pointers and XMM15. Existing ordinary32 adapter refuses this whole context; FIP/FDP width alone is already supported in v2."
+  },
+  "retained_failures": {
+    "initial_compat_report": {
+      "path": ".venv-audit/native-worker/tcg-compatibility-v8/report.json",
+      "bytes": 2647,
+      "sha256": "4e7c451aaa217ffa4643375c2bb2275d7949fbef76f8dcb8547692a1c5900fc6"
+    },
+    "initial_compat_ELF": {
+      "path": ".venv-audit/native-worker/tcg-compatibility-v8/guest.elf",
+      "bytes": 8193,
+      "sha256": "e959b0e2815daa9608d2badf570b7fe3b0730ad0da480464912b5e9f2ec1de19"
+    },
+    "compat_reason": "Original ELF8193 bytes instead of8192 shifts GDT; trace retains #GP then#DF. Corrected fixed-length image succeeds; old failure not re-signed.",
+    "original_full_case_false": {
+      "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/report.json",
+      "bytes": 131166,
+      "sha256": "a26b4a77ab0620c62b7ca34e75bbfffcb0a23b98ca78551f8eb29efb5c3974d2"
+    },
+    "new_endpoint_proof": {
+      "path": ".venv-audit/native-worker/tcg-ram-event-v2-before-call/endpoint-proof-v1.json",
+      "bytes": 14324,
+      "sha256": "9814388e5aadc8351a64f830b2ab22d2e1570bd673318372f31090a5885379a5"
+    },
+    "endpoint_resolution": "A100300 and B100320 are unique in both original traces. Exactly74 entries in [A,B), including cflags, match. Original entire-suffix check remains false. Extra target100327 is after B/debug-exit and followed by Stopped execution of TB chain; no HLT retirement claim."
+  },
+  "build": {
+    "manifest": {
+      "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8/manifest.json",
+      "bytes": 4811,
+      "sha256": "48ebadd7bb032a45e2a72c2226f72e61183cf3d82cb41aeba7ccfd685d1b7ecf"
+    },
+    "freshly_verified_entries": [
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/qapi/misc-i386.json",
+        "bytes": 11982,
+        "sha256": "b4aa7de744b33ad0b02366d6e9733a182ce02420e8b277da80d6e983b11b5d9f"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/cpu.h",
+        "bytes": 110615,
+        "sha256": "89fa08987d5633e56bc8dd0be30405cc78ab1e70d776bb3a7bed0740ea2f9afa"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/gdbstub.c",
+        "bytes": 17346,
+        "sha256": "2808a0f3360981bab291883f62512dcb8343956f9e75de80619d548d65787236"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/helper.h",
+        "bytes": 8099,
+        "sha256": "9aee32712a2bf7418fd623df610d949ffe994139df5ca3e6da7710876b0cd8f3"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/meson.build",
+        "bytes": 1247,
+        "sha256": "53c47b999f32783eb74c15f27cd700d2a595604328b7e58d6532c21e8487aef7"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/emit.c.inc",
+        "bytes": 153656,
+        "sha256": "9838fa6264d244b98155321834534e0aec7509524954ef2c743ea3cc65d385c2"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/fpu_helper.c",
+        "bytes": 118779,
+        "sha256": "d9390f148fbfe26bd9c3dde5e085a9f209524dcdc6e3f89b23573fbc2c4f827b"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/translate.c",
+        "bytes": 117240,
+        "sha256": "e37bd29c50246ab9e86105829d01f9be6e008853532c02a157fb857ac60b4328"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/terminal-state.c",
+        "bytes": 7188,
+        "sha256": "f03f1ed8905630fd443c5ef756d569b9470a5b32c9a5874f56eaf03ad101ca51"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/machine.c",
+        "bytes": 58385,
+        "sha256": "f9edca7ac30c8304fc7e99cfb4b1ee7e63159e0a1d85cfec6e478576cb67f451"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/migration/savevm.c",
+        "bytes": 111625,
+        "sha256": "0eab4ab2dd2a8e0416e38b8fcf8ae2855f1aa40754b6afd171a19b1ed1c3d71b"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/system/runstate.c",
+        "bytes": 31582,
+        "sha256": "bf10d58349027d7e3d68d389b1c9152db89fcd2b2e54ea55548b3fa95940874f"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/source/target/i386/tcg/system/bpt_helper.c",
+        "bytes": 9714,
+        "sha256": "477413665efbacb80d6bb1f049d6ecdd27f6d26a6bbd82f7f0d1822b4b2beb8a"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/config-host.mak",
+        "bytes": 709,
+        "sha256": "0cc03285b5ae34b390a243513f925c9f498f54bf52e463bf1066471b7009c3c3"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/config-host.h",
+        "bytes": 6815,
+        "sha256": "742d66a54768a3009c5d0f926a16bcf8d696ca9a73406fd578d13e01e7a3bda8"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/meson-info/intro-buildoptions.json",
+        "bytes": 54674,
+        "sha256": "5c559addc8855abc8b6251d730f73f6270d979808e52397bfd24c19eb9b8417f"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-build-v1/build/compile_commands.json",
+        "bytes": 5443983,
+        "sha256": "9153de024e68f203b250c2dedd1a4e7eede8c789c3b08dee2b2a0664fdba0330"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8/qemu-system-x86_64",
+        "bytes": 29734864,
+        "sha256": "ce3d2c519c775ec70f02bb7590555d4f717638130650257c9c20564eb3059eeb"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-checkpoint-build-v7/manifest.json",
+        "bytes": 4575,
+        "sha256": "b70af129e6021de7b79b1c70775ba472af4337ecac0db232883491230a8a49d9"
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-checkpoint-build-v8/source.diff",
+        "bytes": 36507,
+        "sha256": "e5bd2017e94fbfcbdd841faf4dc41c0c9df4f9a355b9cd62f1812e029670562f"
+      },
+      {
+        "path": "devtools/patches/terminal-tcg-rf-observer-v8.patch",
+        "bytes": 810,
+        "sha256": "0945a8addc87bd12ba4063b7ec3cc8c1e35a33d776fb66db69478167e084fe77"
+      }
+    ],
+    "limit": "Source/configuration/current binary identities verified; no independent reproducible build or complete migration-format parser. Parent compiler/library hash chain retained, not rehashed here."
+  },
+  "adaptation": {
+    "contract_v1": {
+      "path": "analysis/terminal-wait-tcg-canonical57-contract-v1-20261111.json",
+      "bytes": 11534,
+      "sha256": "d0b42850d81a7321e7f84b46516bbcc647785a65f15585064ed32f4e67673383"
+    },
+    "contract_v2": {
+      "path": "analysis/terminal-wait-tcg-canonical57-contract-v2-20261111.json",
+      "bytes": 3412,
+      "sha256": "2b035f0f357b0b60a7e0f6639362e5b0338a4086ffc320c1d0267b4f08664772"
+    },
+    "contract": "New architectural57 v2 uses DR4/5 DE0 aliases and full64 FIP/FDP. Frozen old raw Unicorn57 remains unchanged and incompatible. v1 pointer-width restriction was explicitly corrected, not attributed to missing Unicorn capability."
+  },
+  "remaining_gates": [
+    "A versioned compatibility32 projection must preserve full64 GPR/extended registers, high segment bases, FP pointers, XMM8..15 and the necessary MSR/control/event envelope. No masking extra values to fit the old57 dictionary. Actual compatibility fixture is a refusal/origin case, not a successful compatibility restore/replay.",
+    "This validates one hardware IRQ0/PIC/PIT delivery and one execution #DB/IRETD RF path. Other exceptions, NMIs, simultaneous events, active second-VP scheduling and nested faults remain unqualified. All sampled synchronous exception_index values are-1; stale payload preservation is not a queued synchronous exception delivery test.",
+    "RAMBlock payload equality covers all eight observed blocks, not all possible MMIO topology, DMA engines, disks, networks or external resources. RAM hashes were observed in QEMU; reviewer verified original hashes/stream identity/subsection bytes, not independently decoded every RAM page from the entire migration stream.",
+    "Only BSP executes the tested path; both VP snapshots match but this is not two concurrently running CPU validation. Trace entries alone are not retirement proofs; guest event frames/counters/output and boundary states provide the limited path evidence.",
+    "Current x87 fixes and six hardware division cases do not establish all arithmetic, unmasked/post-computation exceptions or arbitrary Unicorn replay correctness.",
+    "Windows/WOW64 boot and context/ABI/graphics/input isolation, original-game compatibility, two fresh original native lifetimes, real kernel resource ownership, complete independent replay and existing acceptance checks still remain. These three owned microguest cases are not substitute original-game cases."
+  ],
+  "storage": {
+    "no_prior_evidence_modified": true,
+    "no_VM_started_by_reviewer": true,
+    "no_commit_or_push": true
+  }
+}
