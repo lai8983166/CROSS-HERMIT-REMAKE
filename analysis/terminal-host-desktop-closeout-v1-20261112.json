@@ -1,0 +1,74 @@
+{
+  "scope": "Host desktop recovery and cleanup checks only",
+  "game_started": false,
+  "recovery_action": "Restart current-session Explorer after Win+T did not restore taskbar",
+  "before_observed": {
+    "explorer_pid": 10888,
+    "auto_hide": false,
+    "primary_taskbar_rect": [
+      0,
+      1727,
+      3072,
+      1728
+    ]
+  },
+  "after_verified": {
+    "explorer_pid": 29076,
+    "taskbar_rects": [
+      [
+        0,
+        1688,
+        3072,
+        1728
+      ],
+      [
+        -3072,
+        1400,
+        -512,
+        1440
+      ]
+    ],
+    "display_modes": [
+      {
+        "width": 3840,
+        "height": 2160,
+        "bpp": 32,
+        "frequency": 60,
+        "x": 0,
+        "y": 0,
+        "orientation": 0,
+        "fixed": 0
+      },
+      {
+        "width": 3840,
+        "height": 2160,
+        "bpp": 32,
+        "frequency": 60,
+        "x": -3840,
+        "y": 0,
+        "orientation": 0,
+        "fixed": 0
+      }
+    ]
+  },
+  "current_desktop_healthy_and_stable": true,
+  "pre_game_exact_display_baseline_available": false,
+  "new_entry": "devtools.terminal_host_menu_preflight_v2",
+  "tests_passed": 73,
+  "frozen_implementations_sha_verified": 10,
+  "source": {
+    "path": "analysis/terminal-host-desktop-restored-v2-20261112.json",
+    "bytes": 7342,
+    "sha256": "5a484e5d86e12583dc670d914694523edf4d22600ef2d67405b041430ebb73ef"
+  },
+  "retired_new_temporary_evidence": [
+    {
+      "path": "analysis/terminal-host-desktop-restored-v1-20261112.json",
+      "bytes": 7252,
+      "sha256": "40bb2eb3954514fcad7da243f2fcbe0afe985b47d4887638c43ea8053aa8a419",
+      "reason": "Replaced by v2 real read-only verification with final observer SHA; no independent recovery value"
+    }
+  ],
+  "formal_reverse_progress": "2/8",
+  "full_reverse_acceptance": false
+}
