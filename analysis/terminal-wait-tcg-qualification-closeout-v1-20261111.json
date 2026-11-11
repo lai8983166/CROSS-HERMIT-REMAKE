@@ -1,0 +1,367 @@
+{
+  "schema": "terminal-tcg-qualification-closeout-v1",
+  "accepted": false,
+  "formal_completed_tasks": 2,
+  "formal_total_tasks": 8,
+  "input_isolation_verified": false,
+  "graphics_verified": false,
+  "guest_probe_started": false,
+  "original_game_started": false,
+  "wait_return_connected": false,
+  "result_consumption_connected": false,
+  "cases": [
+    {
+      "case": "tcg-wait-native-v10",
+      "seconds": 819.26149376,
+      "vm_errors": [],
+      "process_exited": true,
+      "sidecar_exited": true,
+      "sidecar_job_active_after": 0,
+      "parent_size_mtime_unchanged": true,
+      "original_overlay": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-wait-native-v10/disk.qcow2",
+        "bytes": 87359488,
+        "sha256": "5b0b7c52167ba6004a1bbc9e0b98f143a2e2ede786bc5ddf65bd9321b90651a1"
+      },
+      "raw_disk_available": true
+    },
+    {
+      "case": "tcg-wait-native-v11",
+      "seconds": 885.357957984,
+      "vm_errors": [],
+      "process_exited": true,
+      "sidecar_exited": true,
+      "sidecar_job_active_after": 0,
+      "parent_size_mtime_unchanged": true,
+      "original_overlay": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-wait-native-v11/disk.qcow2",
+        "bytes": 98893824,
+        "sha256": "0459fd6d2bbbdafcb039d20940ea685130686168e5b98c76a2148978ccc7fcfe"
+      },
+      "raw_disk_available": false
+    },
+    {
+      "case": "tcg-wait-native-v12",
+      "seconds": 797.24475119,
+      "vm_errors": [
+        "900s/96MiB budget",
+        "ConnectionRefusedError: [Errno 111] Connection refused"
+      ],
+      "process_exited": true,
+      "sidecar_exited": true,
+      "sidecar_job_active_after": 0,
+      "parent_size_mtime_unchanged": true,
+      "original_overlay": {
+        "path": "/mnt/f/project/chaomofa/.venv-audit/native-worker/tcg-wait-native-v12/disk.qcow2",
+        "bytes": 100728832,
+        "sha256": "1f56e613668d4ed545ab44529fe3191ec3191534e65d44c794923d7aadfbd42f"
+      },
+      "raw_disk_available": false
+    }
+  ],
+  "actual_findings": [
+    {
+      "kind": "control_shell_creation",
+      "seconds": 47.172,
+      "observed": true
+    },
+    {
+      "kind": "large_stdin_send",
+      "outcome": "WinRMOperationTimeoutError; remote effect unknown; not resent"
+    },
+    {
+      "kind": "short_CIM_inventory",
+      "outcome": "no complete output in 100-second budget; owned command cancellation observed; cannot attribute to CIM alone"
+    },
+    {
+      "kind": "direct_compressed_payload",
+      "exit_code": 1,
+      "stderr": "The command line is too long.\r\n",
+      "guest_payload_executed": false
+    }
+  ],
+  "restrictions": [
+    "No same-boot interactive input or D3D8 evidence; earlier VMware qualification cannot be reused.",
+    "No host input injections; no input observer challenge was started.",
+    "VM/sidecar exit is confirmed; scheduled-task removal and one-logon credential clearing are not proven.",
+    "v11/v12 raw disk and PPM paths are compressed losslessly; restore and verify original SHA before using historical references."
+  ],
+  "next_gate": [
+    "Before another full lifetime, bound a native cmd echo and a minimal PowerShell entered/finished receipt separately.",
+    "Prepare offset-and-hash-checked small transfer blocks below the observed command-line ceiling; confirm each block without resending unknown mutation.",
+    "Use WINRS_CONSOLEMODE_STDIN=False for a separate tiny stdin qualification before any large stdin route.",
+    "Only after deployed executable/source hashes, actual current boot/console and credential cleanup are proven, run the existing guest probe with passive host observation.",
+    "Input and both original D3D8 HAL modes must pass before original game startup."
+  ],
+  "validation": {
+    "probe_tests": "4 passed including 20 mutation cases",
+    "preservation": {
+      "checked_utc": "2026-11-11T09:53:44.808222+00:00",
+      "small_fresh_SHA_count": 832,
+      "large_size_only_count": 13,
+      "large_fresh_SHA": false,
+      "mismatches": []
+    },
+    "openspec_strict": true,
+    "openspec_runtime": "Windows Node; WSL Node18 incompatible and not a validation result"
+  },
+  "capsule": {
+    "path": "analysis/terminal-wait-tcg-qualification-source-v1-20261111.zip",
+    "bytes": 148499,
+    "sha256": "4b5adf416124ef70008a716ba53f62c9d4d1e6e377dffffdf6670032916c9a13"
+  },
+  "source_retirement": {
+    "capsule": "analysis/terminal-wait-tcg-qualification-source-v1-20261111.zip",
+    "sources": [
+      {
+        "path": "devtools/terminal_tcg_qualification_build_v1.py",
+        "bytes": 1114,
+        "sha256": "b2c41866713ebdbedcfed567034d9a90e23cda228d24648cff8cecf643487a38",
+        "live": true
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_channel_v1.py",
+        "bytes": 3846,
+        "sha256": "0eadb6d78945c5d6931455049ffc0222114e9a30cc70f548f4cb7fc6e5779d89",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_channel_v2.py",
+        "bytes": 4219,
+        "sha256": "a755295a0a3df9006f2b2fd4c234eb4528b5df3e7e76ee15ce0bcc98f8728cec",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_channel_v3.py",
+        "bytes": 4184,
+        "sha256": "a45ad9d143b26bc3a19e10c40a60cf80753e0f0c34c773dfff690e4c871a574b",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_channel_v4.py",
+        "bytes": 4626,
+        "sha256": "5d19dad6141e75e542e6bfdc551a65156470c94c43ab1c349f17dfae0cc73094",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_console_v1.py",
+        "bytes": 1611,
+        "sha256": "17bad276a515fbceca7b2c406b3dd23e8eac1ab94377922b077a4ecd1810cacd",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_control_v1.py",
+        "bytes": 2760,
+        "sha256": "c239fffc5552af107324edc0b43d7541a5de02fefbace94ef19656beed928d7a",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_control_v2.py",
+        "bytes": 2885,
+        "sha256": "c1a3f1feae6bdaeec7586be482c976a9e30470c0ca9143b5842bf9b31eddc6f7",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_deploy_v1.py",
+        "bytes": 1327,
+        "sha256": "312a29fed5843d061c9593d50952e91598db6fc966175835ad14f94b3abf5e57",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_direct_v1.py",
+        "bytes": 1849,
+        "sha256": "642999bbecb035920914e930c58b077d05adaefd731d8f69c576d9f4f9b178f9",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_direct_v2.py",
+        "bytes": 1849,
+        "sha256": "5ab60e602ee6aff451a6cf422d86cee3310a5b7fbf13d0445729b652ddd6cc61",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_fast_v2.py",
+        "bytes": 1622,
+        "sha256": "4c2848ce7ebf59980c2c148ef025b7bf105bfc19b1afb6c351dbaa944b90b38d",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_fast_v3.py",
+        "bytes": 1809,
+        "sha256": "7211474e5a336cfe4564c0b962111030f2031da52f5d734007dd388930f68663",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_fast_v4.py",
+        "bytes": 2057,
+        "sha256": "684f71366d62c710001ecf7b02722bb5baed412e56404ca8ee72a84a75555622",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_fast_v5.py",
+        "bytes": 2182,
+        "sha256": "70985bdb410edc5bf41e3c5b57a94e8a234c6e848f3bde990410066dee2dd4b2",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_inventory_v1.py",
+        "bytes": 1321,
+        "sha256": "cfc03e41bbfc3ea912fe0282ffb0c553743d898efd6a0e903b59d2c618029c24",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_logon_v1.py",
+        "bytes": 3906,
+        "sha256": "9cdb5f3dfea8e0b24acff9e00aea5a021703eba96b6ceb310e3343ca676b09a9",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_logon_v2.py",
+        "bytes": 3590,
+        "sha256": "d6c0a6b05950957a409ada9e527ac9a151f00f0530aca330776fbe42e34bc115",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_logon_v3.py",
+        "bytes": 3590,
+        "sha256": "97a331b13a065f40d11e555011cfedbb0fda487d68b0e6d0bff5806baea41938",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_logon_v4.py",
+        "bytes": 3715,
+        "sha256": "639ad9e50b6a12b0db899646243c79a7df7faf7e12cbe4b7aebb78bc9f48c4ed",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_pipeline_v1.py",
+        "bytes": 4207,
+        "sha256": "0cde5ae45f0f2774ef239824b3dc1fbc20808c09a5b113e34919e30d42c26ce2",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_probe_v1.cs",
+        "bytes": 17445,
+        "sha256": "490dd9ea43e5c0f73434bdba21d5ad1e8cee3587c829f6a27cdf7d332730839f",
+        "live": true
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_read_v1.py",
+        "bytes": 3056,
+        "sha256": "63ace9c2d8e3c8de7b52778531b4da5efa2d6d47599b59a3e4e290fb8b123a08",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_read_v2.py",
+        "bytes": 3056,
+        "sha256": "a684496cc712996dc352ddfae22bd1655402edd9d115e3c6ba00a59e9a765b54",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_read_v3.py",
+        "bytes": 3070,
+        "sha256": "223b39a6ea705ff5311b584087396e9099205ebdaddfd0672bf50277b9bbdf3f",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_request_v1.py",
+        "bytes": 899,
+        "sha256": "18c1e11cfa55cfd2af6cc9950025e7a49ad5304460562487d2be893c3662a040",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_run_v1.py",
+        "bytes": 3174,
+        "sha256": "2f3113b6a278ea2ca07694571d82b90f696c8e32a406d8f56794cd5ce72da793",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_run_v2.py",
+        "bytes": 3174,
+        "sha256": "eef1667815e8186bce1920165687dc68b56ea87ba467453e1e5d17b281ef4e81",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_shells_v1.py",
+        "bytes": 1580,
+        "sha256": "956e7de4e730bc76b9fa3b6b6969c6680c8c3302dd0404c154ae35d5dc13bcfd",
+        "live": false
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_verify_v1.py",
+        "bytes": 7013,
+        "sha256": "7dbb8777c2b3d52336d95f03c16d463d167aea9881f80b51bc9a067355f19853",
+        "live": true
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_vm_v1.py",
+        "bytes": 5458,
+        "sha256": "d7cd54ec7e3f5419e5f7b7ad1a185b7a3ca035f9e3926b2d37365d373f1346f0",
+        "live": false
+      }
+    ],
+    "reason": "Frozen diagnostic iterations retained byte-for-byte in capsule; not supported live retry entry points"
+  },
+  "lossless_packing": [
+    {
+      "original": ".venv-audit/native-worker/tcg-wait-native-v10/boot.ppm",
+      "original_bytes": 2359312,
+      "original_sha256": "90254db3548de94b5fbbc9b995b911395f0f0b1f4ab5376e0ab8ce6afea93f3b",
+      "compressed": ".venv-audit/native-worker/tcg-wait-native-v10/boot.ppm.gz",
+      "compressed_bytes": 922714,
+      "compressed_sha256": "0419fab7262c7890285b2f2279669a308807ad90d0a0df35841eea1ccee8e208",
+      "raw_available": false,
+      "restorable_exactly": true
+    },
+    {
+      "original": ".venv-audit/native-worker/tcg-wait-native-v11/boot.ppm",
+      "original_bytes": 2359312,
+      "original_sha256": "e1c0824d00caffd3ab0dc0cf1718e29a3911141adaac34a74727fb3342a79872",
+      "compressed": ".venv-audit/native-worker/tcg-wait-native-v11/boot.ppm.gz",
+      "compressed_bytes": 840039,
+      "compressed_sha256": "0c421d7e731ccdc386a73f7bc449c33a2054ae61d61197126baefa16138f2af6",
+      "raw_available": false,
+      "restorable_exactly": true
+    },
+    {
+      "original": ".venv-audit/native-worker/tcg-wait-native-v11/console-progress.ppm",
+      "original_bytes": 2359312,
+      "original_sha256": "672e2569f6ad3a139130b9be20067b60f5558b18eabdeeeacefde3e6e6c878db",
+      "compressed": ".venv-audit/native-worker/tcg-wait-native-v11/console-progress.ppm.gz",
+      "compressed_bytes": 340369,
+      "compressed_sha256": "4832500089e8e589db6a177711262fb36bf50e5fe4cc97aa0bb8d8dd494cf6fb",
+      "raw_available": false,
+      "restorable_exactly": true
+    },
+    {
+      "original": ".venv-audit/native-worker/tcg-wait-native-v11/disk.qcow2",
+      "original_bytes": 98893824,
+      "original_sha256": "0459fd6d2bbbdafcb039d20940ea685130686168e5b98c76a2148978ccc7fcfe",
+      "compressed": ".venv-audit/native-worker/tcg-wait-native-v11/disk.qcow2.gz",
+      "compressed_bytes": 21642822,
+      "compressed_sha256": "ee9e0199ad611e56fb927674730fef568efcfa2cb0d8547f5b44bc4f7950a4d7",
+      "raw_available": false,
+      "restorable_exactly": true
+    },
+    {
+      "original": ".venv-audit/native-worker/tcg-wait-native-v12/boot.ppm",
+      "original_bytes": 2359312,
+      "original_sha256": "fa9147ec88034e31a3d21b511866668049da673d1c8326b55e5663a5df0de4e9",
+      "compressed": ".venv-audit/native-worker/tcg-wait-native-v12/boot.ppm.gz",
+      "compressed_bytes": 838984,
+      "compressed_sha256": "ee65e1ffd2635c137e9453a5f93b268138bfe3669e3145964fc975b7a921214e",
+      "raw_available": false,
+      "restorable_exactly": true
+    },
+    {
+      "original": ".venv-audit/native-worker/tcg-wait-native-v12/disk.qcow2",
+      "original_bytes": 100728832,
+      "original_sha256": "1f56e613668d4ed545ab44529fe3191ec3191534e65d44c794923d7aadfbd42f",
+      "compressed": ".venv-audit/native-worker/tcg-wait-native-v12/disk.qcow2.gz",
+      "compressed_bytes": 22019648,
+      "compressed_sha256": "d2bea1cb7d34b5436177983a810e8fda065949a5fb68b7736cecb1c5e3deb6df",
+      "raw_available": false,
+      "restorable_exactly": true
+    }
+  ]
+}

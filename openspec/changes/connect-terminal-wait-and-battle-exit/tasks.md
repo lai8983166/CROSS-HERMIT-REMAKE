@@ -358,3 +358,12 @@ CPU0 完整导出端点、首条实际 PUSHFD/PUSHAD/FXSAVE32 结果记录及助
 原游戏三握手或实际阻塞时长。TCG 原游戏准入仍缺同 boot 的交互输入/D3D8 资格，
 不能复用 VMware 专属资格。先完成该有界平台关口，再接原等待/453CB5消费。
 详见 docs/terminal_wait.md 同日 context 节与 context proof/review/game-admission 报告。
+
+
+### 2026-11-11 TCG 交互资格预检阻塞（仍2/8）
+
+QEMU专用输入/D3D8助手已构建、离线验证；实际未启动。客体登录和47.172秒命令壳
+创建有回执；大stdin未知，压缩直接命令被真实命令行长度限制拒绝。v12触发96MiB
+预算后停止，全部VM/sidecar退出；不把停止算任务或资源/PTD清理验收。
+先拆最小命令回执与小块部署，再取同boot输入/D3D8资格；不重试上述失败大载荷，
+未通过前不接原游戏。详见qualification closeout/review和docs/terminal_wait.md。

@@ -982,3 +982,27 @@ R9 写入前后完整 CPU0 导出字段逐项匹配。MOV SS 的实际前驱证�
 来源及证明：terminal-wait-tcg-context-source-v1-20261111.zip、proof-v3、consumption-v1、
 review-v1 和 game-admission-v1。原始 observation 以 gzip 无损保留，已替代的本轮
 命名拒绝 overlay 退役清单为 context-retirement-v1；旧 v5/v8、原存档和历史资料不动。
+
+
+### 2026-11-11 TCG 同 boot 输入/D3D8 资格：部署预检未通过
+
+保留正式 2/8，不增加三关完成项。新增独立 QEMU 客体探针要求实际 UUID、2核/4GiB、
+当前控制台 Default 输入桌面；五次客体 SendInput 均核对上下文，窗口/全屏均只试原
+D3D8 HAL，记录真实返回和释放，不走 REF/WARP。该助手已编译及离线变异验证，**未在客体启动**。
+
+本轮三个有界寿命 v10/v11/v12 均已结束。v11实际登录控制台会话1；v12确认无既存
+命令壳后，WINRS_NOPROFILE 创建壳实际47.172秒，证明此前短超时不足，但不证明所有
+控制失败均由配置文件加载导致。大标准输入递送超时仍为未知；没有重发。直接压缩
+命令取得原字节 stderr `The command line is too long.` 与 exit1；载荷未执行。
+v12在797.245秒触发96MiB差分盘上限，VM与sidecar退出，父镜像大小/mtime未变。
+计划任务删除和一次登录凭据清除未获得确认，不能用VM退出代替这些结论。
+
+不再重复大stdin、长命令行、未分阶段的CIM部署。下一步先用短原生命令与最小
+PowerShell进入/结束回执分辨启动和查询阻塞；准备小于已观察命令行上限的分块传输，
+每块核对偏移/哈希，未知变更不得重发。任何 stdin 新方案先用小样本验证关闭控制台
+输入模式后的行为。部署、实际boot/控制台及清理确认后才运行完整输入/D3D8资格，
+通过后才接原游戏等待返回/453CB5消费。不能把本轮工具测试或控制台登录算成资格。
+
+诊断实现和回执原字节封存于 `analysis/terminal-wait-tcg-qualification-source-v1-20261111.zip`；
+无效历史入口移出devtools，非删除证据。v11/v12叶盘与本轮PPM已无损gzip并校验原SHA，
+原路径不再声称可用，恢复清单见qualification closeout；v10作为必要父来源保留。
