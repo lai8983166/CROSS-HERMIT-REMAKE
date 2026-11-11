@@ -1,0 +1,127 @@
+{
+  "accepted": false,
+  "source": {
+    "path": ".venv-audit/native-worker/tcg-wait-native-v8/observation.json",
+    "bytes": 347342,
+    "sha256": "ce6808131362295bf9fd9c97e3f0aee1198f21e5e2358904bab50e3467e42269"
+  },
+  "cr2_continuity": {
+    "accepted": false,
+    "full_state_verified": false,
+    "windows_admitted": false,
+    "cr2_chain_verified": true,
+    "errors": [],
+    "event_count": 61,
+    "end_cr2": [
+      "0000000000c07008",
+      "fffff8033ccf4000"
+    ]
+  },
+  "event_counts": {
+    "0": 56,
+    "1": 5
+  },
+  "reasons": [
+    "pf"
+  ],
+  "address_spaces_per_cpu": {
+    "0": [
+      "000000002aaf1000",
+      "000000010db9b000",
+      "0000000120d99000",
+      "00000001284fd000"
+    ],
+    "1": [
+      "00000001284fd000",
+      "000000012d1ef000"
+    ]
+  },
+  "endpoint_cr2": {
+    "0": [
+      "00000000733a0920",
+      "0000000000c07008"
+    ],
+    "1": [
+      "00007ffff782c2b8",
+      "fffff8033ccf4000"
+    ]
+  },
+  "last_event": {
+    "0": {
+      "cpu": 0,
+      "seq": 56,
+      "window": 1,
+      "reason": "pf",
+      "old": "00007ffff6923618",
+      "new": "0000000000c07008",
+      "cr3": "000000002aaf1000",
+      "cs": "0000000000000023",
+      "cpl": 3,
+      "pc": "0000000077c3cfe1",
+      "source": "0000000000000000",
+      "fault_address": "0000000000c07008",
+      "vector": 14,
+      "error_code": 4,
+      "access_type": 0,
+      "mmu_idx": 3,
+      "stage2": false,
+      "intercepted": false
+    },
+    "1": {
+      "cpu": 1,
+      "seq": 5,
+      "window": 1,
+      "reason": "pf",
+      "old": "fffff8033cd06800",
+      "new": "fffff8033ccf4000",
+      "cr3": "000000012d1ef000",
+      "cs": "0000000000000010",
+      "cpl": 0,
+      "pc": "fffff8033f6299d2",
+      "source": "0000000000000000",
+      "fault_address": "fffff8033ccf4000",
+      "vector": 14,
+      "error_code": 0,
+      "access_type": 0,
+      "mmu_idx": 4,
+      "stage2": false,
+      "intercepted": false
+    }
+  },
+  "exact_ret12_to_first_consumer": true,
+  "all_other_exported_cpu0_fields_unchanged_on_ret": true,
+  "call_to_ret_changed_fields": [
+    "gpr",
+    "eip",
+    "cr0_cr2_cr3_cr4",
+    "xmm_low64_high64"
+  ],
+  "remaining_semantics": [
+    "R9 write path and six XMM clears on this actual blocking wait lack instruction-level witnesses; prior zero-timeout proof not substituted",
+    "No full Windows state restore/replay equivalence",
+    "No original-game three handshakes or resource/PTD lifetime"
+  ],
+  "helper": {
+    "returns": [
+      0,
+      0,
+      0,
+      258
+    ],
+    "signals": 3,
+    "go_received": true,
+    "fixture_completed": true,
+    "process_exited": true,
+    "workers_stopped": true,
+    "handles_closed": true,
+    "buffers_released": true,
+    "main_affinity_restored": true,
+    "watchdog_disarmed": true,
+    "cleanup_errors": [],
+    "error": null
+  },
+  "remote_control": "Lost initial prepare/launch/go Receive not reissued; durable files and actual trace establish effects, not closure of initial WSMan shells. VM lifetime has ended.",
+  "original_game_started": false,
+  "formal_tasks_complete": 2,
+  "formal_tasks_total": 8
+}

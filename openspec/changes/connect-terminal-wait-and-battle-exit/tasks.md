@@ -337,3 +337,13 @@ MOV R9d 载入保存的返回地址。严格原报告因额外 hflags bit3 清�
 独立复核修正字段缺失、CPU 身份、重复标签与类型别名拒绝。CR2 连续事件来源
 仍缺，未启动原游戏；先补有界事件账本，不增加 ABI 豁免、不重跑全局断点失败。
 仍 2/8，三关未通过。详见 docs/terminal_wait.md 和本日 wow64 closeout。
+
+### 2026-11-11 CR2 连续账本（未增加原验收项）
+
+固定 v4 TCG 后端通过真实 MOV/#PF、同值写入、完整微例端点等价和容量/管理写入
+拒绝。实际 Windows 新助手的首次阻塞等待取得 CALL→RET12→post；2.018408 秒
+窗口包含 61 次双 CPU 缺页事件，序号、old/new、摘要与完整边界一致，CPU0 的
+RET→post 仅 EIP/ESP 改变。四次助手等待及清理、外部退出已确认；它不是游戏握手。
+当前剩余问题是本次阻塞等待 R9/XMM0–5 写入路径的逐条认证，不套用旧零超时证明。
+完整 Windows 状态与原游戏等待/结果链仍未验收，三关未通过、仍 2/8。参见本日
+CR2 windows proof/review/closeout 和 docs/terminal_wait.md。
