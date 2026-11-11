@@ -1,0 +1,143 @@
+{
+  "schema": "terminal-tcg-compat-context-contract-v1",
+  "date": "2026-11-11",
+  "scope": "Offline lossless compatibility32 envelope; no VM/native execution by this reviewer",
+  "source": {
+    "path": ".venv-audit/native-worker/tcg-compatibility-v8b/report.json",
+    "bytes": 11050,
+    "sha256": "34b5d318f69c011644088c5843107d945311e5f05df69daf3ea6e64421321d1c"
+  },
+  "external_record_anchor": {
+    "expected_cpu": 0,
+    "expected_vcpus": 2,
+    "expected_source_sha256": "2accf37d20b9306173016f5578d438238787cdb08da4143b2c44f16786e02830"
+  },
+  "files": [
+    {
+      "path": "devtools/terminal_tcg_compat_context.py",
+      "bytes": 9640,
+      "sha256": "d8f427d970fdb8f8cea2b6478a23cb309ad7bc2edc06c7668efaaf90c71c0bac"
+    },
+    {
+      "path": "devtools/tests/test_terminal_tcg_compat_context.py",
+      "bytes": 8141,
+      "sha256": "1da4fee7b01e351a94cfb441b965342bdd99f2b619bf5c5e43f38bacf073217c"
+    },
+    {
+      "path": "devtools/terminal_tcg_canonical57_v2.py",
+      "bytes": 12066,
+      "sha256": "8a0a46643545458bae5d67f97ce7c29eab53d5c0cb3b0a6bdd4ef93561fccbaa"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-context-v1/frozen-before-execution.sha256",
+      "bytes": 223,
+      "sha256": "1f901f129a29ed1df495e24cb0ef9596784cedc077fe8cbf82772b2876956cb5"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-context-v1/tests-normal.log",
+      "bytes": 1761,
+      "sha256": "86a2591688c484bad363b115805f186a698e0a91400a57053a24eb08c8f06e81"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-context-v1/tests-optimized.log",
+      "bytes": 1761,
+      "sha256": "3ab40862dd523d061c4a1164cfa210c7310943b5ffed456bd9f04a65bff57823"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-context-v1/actual-envelope.json",
+      "bytes": 8511,
+      "sha256": "deefe0501e86e984433419ccc58f693888c23c59aff20b03911565bf5e2681db"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-context-v1/async-stream-boundary.json",
+      "bytes": 1010,
+      "sha256": "685777201cac25b1e22174a169315ab852eff0de35d369c391f41e1d5f36202f"
+    }
+  ],
+  "schemas": {
+    "envelope": "x86-compat-context-v1",
+    "view": "x86-compat32-visible57-v1"
+  },
+  "actual_capture_roundtrip": {
+    "exact_original_dictionary": true,
+    "original_json_whitespace_preserved": false,
+    "cpu": 0,
+    "stopped_vcpus": 2,
+    "names": 57,
+    "retained_high_r8": "123456789abcdef0",
+    "retained_high_fs_base": "0000000100000000",
+    "retained_fip": "000000010010039f",
+    "retained_fdp": "0000000100100904",
+    "retained_xmm15": [
+      "e0ac6824df9b5713",
+      "efcdab8967452301"
+    ]
+  },
+  "contracts": [
+    "raw64 is a detached exact copy of every tcg-state-v1 field; unknown/missing source fields reject rather than disappear.",
+    "view32 has exactly the existing 57 register NAMES with its own versioned semantics. GPRs EAX..EDI expose low32 only; raw64 and retained_context keep upper32, R8..15 and XMM8..15.",
+    "Control/debug registers and descriptor bases stay full64; visible segment selectors stay16 while every hidden cache remains original in raw64 and the retained_context.",
+    "Physical FP0..7 are not TOP-rotated; FPTAG derives physical emptiness plus FP80 classification. Logical ST(i) is physical R((TOP+i)&7). FIP/FDP retain64 independently of current CS mode.",
+    "CR4.DE=0 aliases DR4/5 to DR6/7, not old Unicorn raw API padding. DE=1 is losslessly capturable but view entries explicitly mark unreadable/#UD; no numeric zero is invented.",
+    "pack requires stopped64 target, active PE/PG/PAE/LME/LMA, present32 compatibility CS.L0/D1, consistent mode/cache hflags, exact topology/width/type/TOP.",
+    "unpack uses an externally pinned canonical source digest then re-derives the entire view, metadata and qualification fields with strict type equality. A changed raw record cannot be authorized by changing only its internal digest.",
+    "Caller must authenticate artifact/build/capture before deriving expected_source_sha256. The envelope is not a signature and the hash alone does not establish an actual capture.",
+    "All legacy-Unicorn32-format, Unicorn32-replay, full-machine and Windows-admission flags remain false. There is no engine loader or restore setter."
+  ],
+  "regression": {
+    "normal_passed": 10,
+    "optimized_passed": 10,
+    "includes": [
+      "actual fixed capture reconstruction",
+      "JSON roundtrip",
+      "detached ownership",
+      "synthetic highGPR/control/MMR width retention explicitly distinct from real capture",
+      "DE1 unreadable semantics",
+      "DR alias distinction",
+      "external-anchor mismatch",
+      "derived view/qualification tamper",
+      "mode/cache/topology rejection",
+      "strict types and widths"
+    ]
+  },
+  "current_async_restore_failure": {
+    "report": {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v2/report.json",
+      "bytes": 106504,
+      "sha256": "e289a640ed23eb2269ab0bb53a179ad1a1360c7940cc8ed7685a2b3212094931"
+    },
+    "decoded_cpu_common": [
+      {
+        "name_offset": 10127513,
+        "section_id": 3,
+        "instance": 0,
+        "version": 1,
+        "halted": 0,
+        "interrupt_request": 2,
+        "framed_bytes_hex": "04000000030a6370755f636f6d6d6f6e000000000000000100000000000000027e00000003"
+      },
+      {
+        "name_offset": 10129768,
+        "section_id": 7,
+        "instance": 1,
+        "version": 1,
+        "halted": 1,
+        "interrupt_request": 0,
+        "framed_bytes_hex": "04000000070a6370755f636f6d6d6f6e000000010000000100000001000000007e00000007"
+      }
+    ],
+    "conclusion": "CPU0 HARD2 is already in saved stream, whereas earlier source A observed0. Do not waive this event mismatch because CPU/RAM/consumer values match.",
+    "source_reference": "e470268ff446ec56728215a987ed166d5ed8fb64 hw/core/cpu-system.c:259 UINT32 halted, UINT32 interrupt_request; post_load clears only obsolete EXIT0x01.",
+    "next_condition": "Same stopped boundary capture/save plus pre/post event check, and actual restored all-events equality; BQL alone does not certify device postload or asynchronous I/O quiescence."
+  },
+  "remaining_gates": [
+    "This module admits one compatibility-mode CPU record only. Other VP modes require their own appropriate view; do not relabel a long-mode B record as compatibility32.",
+    "tcg-state-v1 is a selected source export, not every possible x86 machine/MSR/XSAVE field. Lossless here means no loss of that original record.",
+    "Full-machine memory/devices/events/build identity and execution behavior need independent evidence; current asynchronous compat restore event mismatch remains rejected.",
+    "UC_MODE32 cannot faithfully restore these high hidden bases/extended registers. No new Unicorn replay adapter is claimed.",
+    "No actual Windows/WOW64 call boundary, original game lifetime/resource/ABI replay or final acceptance has been established."
+  ],
+  "native_runs_by_reviewer": 0,
+  "windows_admitted": false,
+  "full_machine_accepted": false
+}

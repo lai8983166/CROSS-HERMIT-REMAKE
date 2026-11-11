@@ -1,0 +1,712 @@
+{
+  "schema": "terminal-tcg-compat-restore-independent-review-v1",
+  "date": "2026-11-11",
+  "source_report": {
+    "path": ".venv-audit/native-worker/tcg-compat-restore-v3/report.json",
+    "bytes": 117298,
+    "sha256": "6592d377f43570317ae870107a79febb0c2d03d69a1c136f674b65765f355523"
+  },
+  "build_manifest": {
+    "path": ".venv-audit/native-worker/tcg-checkpoint-build-v11b/manifest.json",
+    "bytes": 5049,
+    "sha256": "1f7aee960ebd064b887e4c452dc588111757ade563a370947459861b9155c07d"
+  },
+  "binary": {
+    "path": ".venv-audit/native-worker/tcg-checkpoint-build-v11b/qemu-system-x86_64",
+    "bytes": 29736144,
+    "sha256": "4312fc723f248c029864333df5597258bb6e28f6be154bba66da98c8235269b7"
+  },
+  "raw_files": [
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/checkpoint.bin",
+      "bytes": 10251915,
+      "sha256": "dbf578a814c8517591187a1a170ec45edf5720cb2029895a65e1e1276a8014b3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/guest.elf",
+      "bytes": 8192,
+      "sha256": "34c2d2bd8caff04c86e44f398efd8f1db0fdc799c7517b87356b7c57726591a3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/source.bin",
+      "bytes": 552,
+      "sha256": "30f1a21ceda7daea9b67349c2d76503d90cf54aebdad2bb302a427f9e519e443"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/source.trace",
+      "bytes": 423984,
+      "sha256": "73352ff712fbd53616d8c6e4d6913b605e9180b87a9d5100348fe00f7516890b"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/target.bin",
+      "bytes": 552,
+      "sha256": "30f1a21ceda7daea9b67349c2d76503d90cf54aebdad2bb302a427f9e519e443"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/target.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v3/target.trace",
+      "bytes": 123256,
+      "sha256": "9f13f5480a4494826ecb905dd8495fedbf290e993c7e85558fd2dea675059cdd"
+    }
+  ],
+  "manifest_entries_verified": 22,
+  "bounded_case_passed": true,
+  "windows_admitted": false,
+  "full_machine_acceptance": false,
+  "capture_lossless_verified": true,
+  "unicorn32_replay_admitted": false,
+  "independent_checks": {
+    "same_command_before_after": true,
+    "restored_a_all_cpu_events_ram": true,
+    "restored_b_all_cpu_events_ram": true,
+    "all_ram_blocks": 8,
+    "total_ramblock_bytes": 4312342528,
+    "actual_ram_change": true,
+    "actual_source_target_output_equal": true,
+    "exit_codes": [
+      33,
+      33
+    ],
+    "qmp_raw_receipts_match_summary": true,
+    "original_elf_header_consumer_bytes": true,
+    "compatibility_envelope_exact_raw_reconstruction": true,
+    "long64_b_rejected_by_compat_adapter": true
+  },
+  "stream_cpu_common": [
+    {
+      "offset": 10127484,
+      "instance": 0,
+      "version": 1,
+      "halted": 0,
+      "interrupt_request": 0,
+      "bytes_hex": "04000000030a6370755f636f6d6d6f6e000000000000000100000000000000007e00000003"
+    },
+    {
+      "offset": 10129739,
+      "instance": 1,
+      "version": 1,
+      "halted": 1,
+      "interrupt_request": 0,
+      "bytes_hex": "04000000070a6370755f636f6d6d6f6e000000010000000100000001000000007e00000007"
+    }
+  ],
+  "stream_event_context": [
+    {
+      "offset": 10129470,
+      "version": 1,
+      "error_code": 0,
+      "exception_is_int": 1,
+      "exception_next_eip": "0000000000000168",
+      "old_exception": -1
+    },
+    {
+      "offset": 10131725,
+      "version": 1,
+      "error_code": 0,
+      "exception_is_int": 0,
+      "exception_next_eip": "0000000000000000",
+      "old_exception": -1
+    }
+  ],
+  "actual_consumer": {
+    "r8": "123456789abcdef0",
+    "fs_load_value": "13579bdf2468ace0",
+    "low_decoy": "fedcba9876543210",
+    "fs_base": "0000000100000000",
+    "xmm15_bytes": "13579bdf2468ace00123456789abcdef",
+    "fip": "000000010010039f",
+    "fdp": "0000000100100904",
+    "instruction_sites": {
+      "R8_store": "100700",
+      "FS_high_address_load": "100708",
+      "XMM15_store": "100719",
+      "FS_BASE_RDMSR": "100728",
+      "FXSAVE64": "100739"
+    },
+    "compatibility_a_cs": "0008",
+    "long64_b_cs": "0018"
+  },
+  "trace": {
+    "interval": "[A=0x100600,B=0x100780)",
+    "entries": 74,
+    "fields": "VP,CSbase,PC,hflags,cflags; host TB pointer excluded",
+    "equal": true,
+    "rows": [
+      [
+        0,
+        0,
+        1050112,
+        4211376,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050113,
+        4211376,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050368,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050376,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050385,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050393,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050403,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050408,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050410,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050414,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050417,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050425,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050434,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050435,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050436,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050437,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050438,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050439,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050440,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050441,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050442,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050443,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050444,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050445,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050446,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050447,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050448,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050449,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050450,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050451,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050452,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050453,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050454,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050455,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050456,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050457,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050458,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050459,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050460,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050461,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050462,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050463,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050464,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050465,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050466,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050467,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050468,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050469,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050470,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050471,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050472,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050473,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050474,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050475,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050476,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050477,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050478,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050479,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050480,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050481,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050482,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050483,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050484,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050485,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050486,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050487,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050488,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050489,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050490,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050491,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050492,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050493,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050494,
+        4244144,
+        4278592001
+      ],
+      [
+        0,
+        0,
+        1050495,
+        4244144,
+        4278592001
+      ]
+    ],
+    "exit_suffix_equal": true,
+    "limits": "TB entry log is not retirement. VP0 executed; 2VP configured/stopped is not SMP handshake. Post-B teardown is outside interval."
+  },
+  "adapter": {
+    "source": {
+      "path": "devtools/terminal_tcg_compat_context.py",
+      "bytes": 9640,
+      "sha256": "d8f427d970fdb8f8cea2b6478a23cb309ad7bc2edc06c7668efaaf90c71c0bac"
+    },
+    "tests": {
+      "path": "devtools/tests/test_terminal_tcg_compat_context.py",
+      "bytes": 8141,
+      "sha256": "1da4fee7b01e351a94cfb441b965342bdd99f2b619bf5c5e43f38bacf073217c"
+    },
+    "contract": {
+      "path": "analysis/terminal-wait-tcg-compat-context-contract-v1-20261111.json",
+      "bytes": 7051,
+      "sha256": "242070427f5674ad068d6d6a3bde9b3b580dc63c60147960df79c09eb772146c"
+    },
+    "record_anchor": {
+      "expected_cpu": 0,
+      "expected_vcpus": 2,
+      "expected_source_sha256": "4ceffa6fb85077e88f8f6b8b03c231d88006ace77a28ab1021bd39de3d2f5df0"
+    },
+    "normal_tests": 10,
+    "optimized_tests": 10
+  },
+  "lifecycle_review": [
+    "Same QMP command captures before, synchronously saves a full stream with global_state_store, captures after. No guest register/RAM/IRQ writes added.",
+    "O_EXCL refuses overwrite; QIO reference is released after QEMUFile takes it; qemu_fclose runs after save, including save failure. Failed partial streams are not accepted.",
+    "Entry capture requires stopped TCG and every VP stopped. Attached BlockBackend storage, network clients and user IOThread objects are rejected.",
+    "qmp_query_iothreads only enumerates object_get_objects_root; internal-root IOThreads are not excluded by this guard. Current fixed diskless PC topology only; no general device-quiescence claim.",
+    "ram_save_setup releases BQL around multifd synchronization even with multifd disabled. Same-command does not mean BQL continuously held. Observed pre/post and independently restored events match this actual case.",
+    "save_snapshot generic migration/replay blockers and block drain are not reproduced by this project helper. It explicitly refuses attached disks and must not be used as a Windows disk checkpoint API."
+  ],
+  "prior_failures": [
+    "compat_restore_v1 lacked identity second2MiB mapping; fixture page fault before target, not a TCG CPU defect.",
+    "compat_restore_v2 asynchronous save serialized CPU0 HARD2 although earlier A sampled0; source/target consumer and RAM equality did not waive failed event equality.",
+    "v9 build used nonexistent system/bql.h. v10 needed query_iothreads declaration from qapi-commands-misc.h. Those builds were not accepted native sources; final actual source is v11b."
+  ],
+  "remaining_gates": [
+    "Lossless envelope covers all original tcg-state-v1 fields, not all possible x86 MSRs/XSAVE or whole-machine state.",
+    "No compatible Unicorn32 loader exists for high hidden bases/extended registers. The new57-name view is not the frozen raw API format.",
+    "Actual compatibility-to-long64 microguest is not Windows/WOW64 ABI, kernel resource lifetime or original-game acceptance.",
+    "No Windows boot was performed in this reviewed evidence; disks/network/asynchronous devices and active two-VP execution remain unqualified.",
+    "RAM SHA comparison uses original observer outputs and fresh restore; this reviewer does not independently decode every compressed migration RAM page.",
+    "Original game still requires complete state/ABI/resources, independent replay, tamper rejection and two fresh native lifetimes under unchanged acceptance rules."
+  ],
+  "native_runs_by_reviewer": 0
+}

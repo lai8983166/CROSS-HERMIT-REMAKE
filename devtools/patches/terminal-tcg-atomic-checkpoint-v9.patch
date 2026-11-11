@@ -1,0 +1,133 @@
+diff --git a/target/i386/terminal-state.c b/target/i386/terminal-state.c
+--- a/target/i386/terminal-state.c
++++ b/target/i386/terminal-state.c
+@@ -180,3 +180,60 @@
+     result->state = g_string_free(s, false);
+     return result;
+ }
++
++/* Project bounded synchronous checkpoint and same-command observations.
++ * GPL-2.0-or-later. No injected guest register, RAM or IRQ values.
++ */
++#include "migration/savevm.h"
++#include "system/bql.h"
++
++static char *terminal_capture_checkpoint(Error **errp)
++{
++    TcgStateJson *observation, *cpu;
++    CPUState *cs;
++    GString *s;
++    int i = 0;
++    observation = qmp_x_query_tcg_checkpoint(errp);
++    if (!observation) {
++        return NULL;
++    }
++    s = g_string_new("{\"observation\":");
++    g_string_append(s, observation->state);
++    qapi_free_TcgStateJson(observation);
++    g_string_append(s, ",\"states\":[");
++    CPU_FOREACH(cs) {
++        cpu = qmp_x_query_tcg_state(cs->cpu_index, errp);
++        if (!cpu) {
++            g_string_free(s, true);
++            return NULL;
++        }
++        if (i++) { g_string_append_c(s, ','); }
++        g_string_append(s, cpu->state);
++        qapi_free_TcgStateJson(cpu);
++    }
++    g_string_append(s, "]}");
++    return g_string_free(s, false);
++}
++
++TcgStateJson *qmp_x_save_tcg_checkpoint(const char *filename, Error **errp)
++{
++    g_autofree char *before = NULL;
++    g_autofree char *after = NULL;
++    TcgStateJson *result;
++    if (!bql_locked()) {
++        error_setg(errp, "checkpoint requires BQL");
++        return NULL;
++    }
++    before = terminal_capture_checkpoint(errp);
++    if (!before || !terminal_save_checkpoint_file(filename, errp)) {
++        return NULL;
++    }
++    after = terminal_capture_checkpoint(errp);
++    if (!after) {
++        return NULL;
++    }
++    result = g_new0(TcgStateJson, 1);
++    result->state = g_strdup_printf("{\"before\":%s,\"after\":%s}",
++                                    before, after);
++    return result;
++}
+diff --git a/migration/savevm.h b/migration/savevm.h
+--- a/migration/savevm.h
++++ b/migration/savevm.h
+@@ -15,6 +15,8 @@
+ #define MIGRATION_SAVEVM_H
+ 
+ #include "migration/register.h"
++
++bool terminal_save_checkpoint_file(const char *filename, Error **errp);
+ 
+ #define QEMU_VM_FILE_MAGIC           0x5145564d
+ #define QEMU_VM_FILE_VERSION_COMPAT  0x00000002
+diff --git a/migration/savevm.c b/migration/savevm.c
+--- a/migration/savevm.c
++++ b/migration/savevm.c
+@@ -1945,6 +1945,32 @@
+     return ret;
+ }
+ 
++/* Project same-command stopped full-RAM file checkpoint. */
++bool terminal_save_checkpoint_file(const char *filename, Error **errp)
++{
++    QIOChannelFile *ioc;
++    QEMUFile *f;
++    int ret, close_ret;
++    if (runstate_is_running()) {
++        error_setg(errp, "checkpoint requires stopped machine");
++        return false;
++    }
++    ioc = qio_channel_file_new_path(filename, O_WRONLY | O_CREAT | O_EXCL,
++                                   0600, errp);
++    if (!ioc) {
++        return false;
++    }
++    global_state_store();
++    f = qemu_file_new_output(QIO_CHANNEL(ioc));
++    object_unref(OBJECT(ioc));
++    ret = qemu_savevm_state(f, errp);
++    close_ret = qemu_fclose(f);
++    if (ret >= 0 && close_ret < 0) {
++        error_setg_errno(errp, -close_ret, "checkpoint close failed");
++    }
++    return ret >= 0 && close_ret >= 0;
++}
++
+ /* Is a save state entry iterable (e.g. RAM)? */
+ static bool qemu_savevm_se_iterable(SaveStateEntry *se)
+ {
+diff --git a/qapi/misc-i386.json b/qapi/misc-i386.json
+--- a/qapi/misc-i386.json
++++ b/qapi/misc-i386.json
+@@ -507,3 +507,17 @@
+ # Since: 11.1
+ ##
+ { 'command': 'x-query-tcg-checkpoint', 'returns': 'TcgStateJson' }
++
++##
++# @x-save-tcg-checkpoint:
++#
++# Save a stopped complete stream with same-command observations.
++#
++# @filename: New output file; existing paths are refused.
++#
++# Returns: Before/after JSON for bounded project validation.
++#
++# Since: 11.1
++##
++{ 'command': 'x-save-tcg-checkpoint', 'data': { 'filename': 'str' },
++  'returns': 'TcgStateJson' }

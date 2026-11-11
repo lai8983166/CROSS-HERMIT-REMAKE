@@ -1,0 +1,175 @@
+{
+  "schema": "tcg-compat-restore-review-v12-addendum-v1",
+  "date": "2026-11-11",
+  "parent_review": {
+    "path": "analysis/terminal-wait-tcg-compat-restore-review-v1-20261111.json",
+    "bytes": 15045,
+    "sha256": "d1d44b88fdc2267adf70175d66c27a6b03813928faeb37a533f30297de34da71"
+  },
+  "source_report": {
+    "path": ".venv-audit/native-worker/tcg-compat-restore-v4/report.json",
+    "bytes": 117301,
+    "sha256": "5cbe7e01ff70387ffe1bcbe4f1c56f79eecd33c34d78a3d4fe6c1901696c3c3c"
+  },
+  "build_manifest": {
+    "path": ".venv-audit/native-worker/tcg-checkpoint-build-v12/manifest.json",
+    "bytes": 5446,
+    "sha256": "63eec02cd230cb3c62751ab4fea3fc80af795ae4cf16d3364876a1b4dad05d56"
+  },
+  "builder": {
+    "path": "devtools/terminal_tcg_vmdk_build.py",
+    "bytes": 2357,
+    "sha256": "022bf7c8a4a26b1eddaa121ad8fed06f55fbd6e424514af6b74466a70af43977"
+  },
+  "binary": {
+    "path": ".venv-audit/native-worker/tcg-checkpoint-build-v12/qemu-system-x86_64",
+    "bytes": 29772640,
+    "sha256": "f4c6aa60808051ae7395a549cbe4302cc1d2945ffa425c76f173b0a801448cef"
+  },
+  "build_delta": {
+    "cpu_checkpoint_source_entries_unchanged": 14,
+    "source_delta_unchanged": true,
+    "exact_upstream_commit": "e470268ff446ec56728215a987ed166d5ed8fb64",
+    "original_source_blobs": [
+      {
+        "path": "block/vmdk.c",
+        "bytes": 101099,
+        "sha256": "75dd58a247840b6fcf8be25e548bef67688317fb59c04b31f646f5af51101af3"
+      },
+      {
+        "path": "block/meson.build",
+        "bytes": 4473,
+        "sha256": "f8ad9e16250481631221da81581b229df264abefa07423a5464c1b9452a8669a"
+      }
+    ],
+    "current_config_verified": true,
+    "vmdk": "enabled",
+    "compile_commands_contains_vmdk": true,
+    "identities_rehashed": 24,
+    "limitation": "This enables the original complete VMDK driver, including write support. Read-only use is a separate per-launch block configuration, not a property of this build."
+  },
+  "evidence_files": [
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/checkpoint.bin",
+      "bytes": 10251915,
+      "sha256": "8b949c29ef4392c74bf32a520eb51d2f117b3aa0929a1f0218acfd1cd9905581"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/guest.elf",
+      "bytes": 8192,
+      "sha256": "34c2d2bd8caff04c86e44f398efd8f1db0fdc799c7517b87356b7c57726591a3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/source.bin",
+      "bytes": 552,
+      "sha256": "30f1a21ceda7daea9b67349c2d76503d90cf54aebdad2bb302a427f9e519e443"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/source.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/source.trace",
+      "bytes": 423984,
+      "sha256": "a5e436d47aeafe74e3f9fce8cbbd95420b00b4ce66ab01e528e353eed1e031ef"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/target.bin",
+      "bytes": 552,
+      "sha256": "30f1a21ceda7daea9b67349c2d76503d90cf54aebdad2bb302a427f9e519e443"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/target.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-compat-restore-v4/target.trace",
+      "bytes": 123399,
+      "sha256": "9f7cf1461f9db25250cd481fe0d6637579ec24536a30d97e2c1a5ff48911712b"
+    }
+  ],
+  "stream_cpu_common": [
+    {
+      "offset": 10127484,
+      "instance": 0,
+      "version": 1,
+      "halted": 0,
+      "interrupt_request": 0,
+      "bytes_hex": "04000000030a6370755f636f6d6d6f6e000000000000000100000000000000007e00000003"
+    },
+    {
+      "offset": 10129739,
+      "instance": 1,
+      "version": 1,
+      "halted": 1,
+      "interrupt_request": 0,
+      "bytes_hex": "04000000070a6370755f636f6d6d6f6e000000010000000100000001000000007e00000007"
+    }
+  ],
+  "stream_event_context": [
+    {
+      "offset": 10129470,
+      "version": 1,
+      "error_code": 0,
+      "exception_is_int": 1,
+      "exception_next_eip": "0000000000000168",
+      "old_exception": -1
+    },
+    {
+      "offset": 10131725,
+      "version": 1,
+      "error_code": 0,
+      "exception_is_int": 0,
+      "exception_next_eip": "0000000000000000",
+      "old_exception": -1
+    }
+  ],
+  "independently_verified": {
+    "native_seconds": 89.84132311799999,
+    "same_command_before_after": true,
+    "source_target_a_and_b_all_raw_cpu_events_ram": true,
+    "ram_blocks": 8,
+    "total_ramblock_bytes": 4312342528,
+    "ram_really_changed": true,
+    "original_qmp_receipts_match": true,
+    "lossless_compat_envelope_roundtrip": true,
+    "original_elf_equal_reviewed_v3": true,
+    "consumer_bytes": 552,
+    "real_r8_high_fs_distinct_page_xmm15_fsbase_fip_fdp": true,
+    "source_target_output_equal": true,
+    "natural_exit_codes": [
+      33,
+      33
+    ],
+    "a_to_b_trace_entries": 74,
+    "all_trace_fields_equal": true,
+    "trace_fields": [
+      "VP",
+      "CSbase",
+      "PC",
+      "hflags",
+      "cflags"
+    ],
+    "exit_suffix_equal": false
+  },
+  "record_anchor": {
+    "expected_cpu": 0,
+    "expected_vcpus": 2,
+    "expected_source_sha256": "4ceffa6fb85077e88f8f6b8b03c231d88006ace77a28ab1021bd39de3d2f5df0"
+  },
+  "bounded_case_passed": true,
+  "windows_admitted": false,
+  "unicorn32_replay_admitted": false,
+  "full_machine_acceptance": false,
+  "limitations": [
+    "All restrictions of the parent review remain: fixed diskless PC fixture only, no arbitrary storage/network/device checkpoint acceptance.",
+    "The helper still rejects attached block storage. Enabling VMDK does not extend that checkpoint contract to a Windows disk.",
+    "IOThread guard covers user objects, not internal-root objects. RAM save releases BQL internally; only observed same-command/restore equality is certified.",
+    "74 equal TB entries are execution-block entry evidence, not an independent retirement trace; VP0 only, not an active SMP handshake.",
+    "This addendum does not inspect or operate the separate Windows attempt. No Windows/WOW64 or original-game acceptance follows from this microguest.",
+    "RAM evidence is rechecked original observer outputs and fresh restore, not independent decompression of every migration RAM page."
+  ],
+  "native_runs_by_reviewer": 0
+}
