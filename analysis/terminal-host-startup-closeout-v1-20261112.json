@@ -1,0 +1,112 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "route": "host_native_private_runtime",
+  "authorization": "One explicit exclusive desktop window, at most ten minutes; user selected host route",
+  "authorization_observed_utc": "2026-11-11T18:35:16Z",
+  "desktop_released_before_utc": "2026-11-11T18:41:00Z",
+  "source": {
+    "path": "analysis/terminal-host-startup-v1-20261112.json.gz",
+    "bytes": 30127,
+    "sha256": "befd4fb360cda34eab160c7826830fae74fce8ee7e7d5943397a1c9ace769e4b"
+  },
+  "command": "python -B -X utf8 -m devtools.terminal_startup_handoff --out analysis/terminal-host-startup-v1-20261112.json.gz --seconds 45",
+  "command_exit_code": 1,
+  "command_exit_reason": "Natural startup handoff not observed within bounded probe",
+  "native_lifetime_seconds": 51.157,
+  "samples": 42,
+  "last_startup_counter": 2751,
+  "probe_error": null,
+  "lifecycle_error": null,
+  "lifetime": {
+    "parent_pid": 35952,
+    "membership": [
+      {
+        "elapsed": 0.046999999991385266,
+        "pids": [
+          35952
+        ]
+      },
+      {
+        "elapsed": 0.09400000001187436,
+        "pids": [
+          35952,
+          29708
+        ]
+      },
+      {
+        "elapsed": 51.01600000000326,
+        "pids": [
+          29708
+        ]
+      },
+      {
+        "elapsed": 51.094000000011874,
+        "pids": []
+      }
+    ],
+    "members_before_cleanup": [],
+    "forced_termination": false,
+    "exits": {
+      "35952": {
+        "signaled": true,
+        "code": 0
+      },
+      "29708": {
+        "signaled": true,
+        "code": 3221226324
+      }
+    },
+    "members_after_cleanup": [],
+    "child_status_is_not_WinMain_return": true
+  },
+  "mutable_files": [
+    {
+      "path": ".venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/OPTION.BIN",
+      "bytes": 2361400,
+      "sha256": "e16ab51b9499588a8c592561f0fae080028886f4d4f7f9f2adf5b1d79ec61058",
+      "changed_during_probe": false,
+      "restored_exact": true
+    },
+    {
+      "path": ".venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/OPTION.BIN",
+      "bytes": 40,
+      "sha256": "37afcfb7c0eb51004162e9a6ca6b12b3f2efe0021061dfcd681ce049ea26950d",
+      "changed_during_probe": false,
+      "restored_exact": true
+    },
+    {
+      "path": ".venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/SAVEDATA/_DEFSAVEFILE.TXT",
+      "bytes": 21,
+      "sha256": "4817375165ed330d4197b84f49b0f3b12a12ef158521722c8cc15b8fd4b351ca",
+      "changed_during_probe": false,
+      "restored_exact": true
+    },
+    {
+      "path": ".venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/SAVEDATA/ATWIKI_ALL_CHARACTERS.SAV",
+      "bytes": 198356,
+      "sha256": "d97cdbcb6e76ad8f285f8733c6a63561e0dab102ad5e3c2457a3750ccf0336e4",
+      "changed_during_probe": false,
+      "restored_exact": true
+    }
+  ],
+  "immutable_asset_bytes": 1541607697,
+  "immutable_asset_reference": {
+    "path": "analysis/terminal-scene-preflight-v3-20261107.json.gz",
+    "sha256": "3a028556e6e0141746df00573766332ee91ec34bb7a6c19ba4e182724ff4d7ff",
+    "rows": 8105,
+    "freshly_hashed_this_lifetime": true
+  },
+  "screenshot": "FrameArrived timed out; no usable image",
+  "ui_actions": [
+    "Activated uniquely enumerated private game window"
+  ],
+  "keyboard_mouse_input_sent": false,
+  "exit_interpretation": "Child 0xC0000354 matches prior protected-child observations in docs/school_startup_lifetime.md; not proof of normal WinMain/CRT return or new host-only failure",
+  "full_graphics_qualification": false,
+  "menu_handoff": false,
+  "wait_return_consumption_proved": false,
+  "resource_PTD_proved": false,
+  "next_gate": "Offline preparation, then visual observation and legitimate menu handoff in a separately authorized desktop window; no failed observer recipe retries",
+  "cleanup": "No VM or runtime copy created; retain compressed source and small receipts, no backups or raw dumps; historical files unchanged"
+}
