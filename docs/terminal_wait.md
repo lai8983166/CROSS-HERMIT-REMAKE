@@ -1006,3 +1006,31 @@ PowerShell进入/结束回执分辨启动和查询阻塞；准备小于已观察
 诊断实现和回执原字节封存于 `analysis/terminal-wait-tcg-qualification-source-v1-20261111.zip`；
 无效历史入口移出devtools，非删除证据。v11/v12叶盘与本轮PPM已无损gzip并校验原SHA，
 原路径不再声称可用，恢复清单见qualification closeout；v10作为必要父来源保留。
+
+
+### 2026-11-11 最小返回已证，当前TCG/WinRM交互控制路线停止
+
+本轮实际只完成了“最小原生命令返回＋该命令清理”，未完成客体小块部署、探针运行、
+输入隔离或D3D8资格；没有原游戏采集，正式仍2/8。Windows宿主F盘的块解析、坏偏移
+拒绝与任务XML只读解析只是准备检查，不能冒充客体执行。没有宿主输入注入或接管。
+
+v15原生命令12.047秒取得准确nonce和exit0，含cleanup共12.594秒；v17分别45.406和
+47.578秒。两者控制参数不同，不作为等价性能比较，不把差异归因TCG。v15的最小
+PowerShell没有在60秒内取回完成/固定输出。v17原生WMIC身份查询虽返回正确UUID，
+40秒内仅有done=false、exit=-1的中间回执，没有完成/cleanup，因此拒绝后续部署。
+
+前几次失败须单独归因：v13为本地bytes/JSON记录错误；v14完成后的cleanup与执行
+共用预算；v16为Receive的5秒OperationTimeout误用于Command创建。它们是实现问题，
+不能当硬件、TCG架构或D3D8不兼容证据。修正后的v17仍未闭合必要控制链。
+
+决策：当前TCG客体＋WinRM控制通道组合未获本项目有界交互采集准入，停止继续拿它
+跑原游戏，不再重复大stdin、长命令行、最小PowerShell或仅延长同一路径预算。须先
+更换或独立认证客体控制通道，再要求同boot下小块部署、探针执行、输入/D3D8资格。
+此前无UI完整状态探针结论不变；本轮没有测到D3D8，不能宣布图形不兼容。
+
+五轮VM、sidecar和宿主Job均已结束；它们的退出不能代替缺失的远端命令、游戏资源
+或PTD清理。旧v10父盘完整SHA复核不变，832项原字节SHA及13项大文件大小检查通过。
+来源为analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip；各失败实现按原字节
+封存，不留可误重跑的live入口。v13/v14/v15/v16新叶盘已按清单退役，v17仅保留一份
+本地无损gzip失败叶盘；旧来源、原游戏资料及存档不动。详情见delivery gates/review/
+closeout报告与当前可用性、体积清单，不能把历史report中的已退役路径称为仍可读取。

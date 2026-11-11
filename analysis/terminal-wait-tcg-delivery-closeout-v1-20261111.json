@@ -1,0 +1,287 @@
+{
+  "schema": "terminal-tcg-delivery-closeout-v1",
+  "accepted": false,
+  "formal_progress": "2/8",
+  "functional_result": "Minimal native command return and command cleanup observed; guest block deployment, probe execution, input and D3D8 qualification not performed.",
+  "decision": "Stop original-game interactive collection through the current TCG/WinRM control stack; no general TCG architecture or D3D8 incompatibility conclusion.",
+  "gates": {
+    "path": "analysis/terminal-wait-tcg-delivery-gates-v1-20261111.json",
+    "bytes": 6181,
+    "sha256": "62b0d06df2a0e4c84784226d07caab4c56cf57c2917c85e42270f55bcfaaab09"
+  },
+  "independent_review": {
+    "path": "analysis/terminal-wait-tcg-delivery-review-v1-20261111.md",
+    "bytes": 7631,
+    "sha256": "36832b60a89329e6f3367bd3e438760d43096958bed59fd82f4f3a1126a9dc44"
+  },
+  "source_capsule": {
+    "path": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+    "bytes": 87363,
+    "sha256": "898fcf95e9316e2d64be147de8965d7824767bdf9d3e99342a14b413b7cf053c"
+  },
+  "source_retirement": {
+    "capsule": {
+      "path": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+      "bytes": 87363,
+      "sha256": "898fcf95e9316e2d64be147de8965d7824767bdf9d3e99342a14b413b7cf053c"
+    },
+    "sources": [
+      {
+        "path": "devtools/terminal_tcg_qualification_delivery_v1.py",
+        "bytes": 13376,
+        "sha256": "f0ae9ba0d74b7d562eaf82667ba69c78aa90527509014eaa95d2af4f47760490"
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_delivery_v2.py",
+        "bytes": 13624,
+        "sha256": "db135f11f4ed20eb251e97850d53d5f2d52ada4c4ebd12fce03e6d21d63ae681"
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_delivery_v3.py",
+        "bytes": 13849,
+        "sha256": "96eca9d697df9d6bb6e677fed262492f4a0ed6323f258730c81e32f8a54e3ad0"
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_delivery_v4.py",
+        "bytes": 13793,
+        "sha256": "758af9f1221c4cd04042626f57ae83334aa9a30b6f389d0a1a43eac4e72b7ba7"
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_delivery_v5.py",
+        "bytes": 14181,
+        "sha256": "6f470eebc9eaffaaedb796c235e13576b96dff8f7d91e2d87ee38f946225eec2"
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_supervise_v1.py",
+        "bytes": 3987,
+        "sha256": "6878927a7c7d4035fd00405d701efa39dbc021216dfccb0c28d90aa1420ff82d"
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_vm_v2.py",
+        "bytes": 5460,
+        "sha256": "c251e0f1b0e8208a7260e0937a04c448fd05ebb01300c90434768cfbb9c858a0"
+      },
+      {
+        "path": "devtools/terminal_tcg_qualification_vm_v3.py",
+        "bytes": 5460,
+        "sha256": "aa56c2feb86d75aba6b64b2b4d828e7e5d1d0d3a9c84b553ec771d1c33b78bf5"
+      }
+    ],
+    "reason": "Control candidate rejected; retain exact reproduction source without live obsolete retry entry points",
+    "derived_retired": [
+      {
+        "path": "devtools/__pycache__/terminal_tcg_qualification_delivery_v1.cpython-310.pyc",
+        "bytes": 13865,
+        "sha256": "8bdaee959f97af0613f5b062f724d4f9cebd0ffb703ca971de3da4f491d9ee31",
+        "reason": "Derived bytecode cache for archived diagnostic source",
+        "replacement": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+        "available": false
+      },
+      {
+        "path": "devtools/__pycache__/terminal_tcg_qualification_delivery_v3.cpython-310.pyc",
+        "bytes": 14393,
+        "sha256": "e8d5848bd923791e460a5fabf641d7dd73baf0441dfa95ac5f77a975943548fe",
+        "reason": "Derived bytecode cache for archived diagnostic source",
+        "replacement": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+        "available": false
+      },
+      {
+        "path": "devtools/__pycache__/terminal_tcg_qualification_delivery_v4.cpython-310.pyc",
+        "bytes": 14655,
+        "sha256": "002d1a993e2136d172973a2c55c93e0e896f92ae28d299955d23b6d887edeccf",
+        "reason": "Derived bytecode cache for archived diagnostic source",
+        "replacement": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+        "available": false
+      },
+      {
+        "path": "devtools/__pycache__/terminal_tcg_qualification_delivery_v5.cpython-310.pyc",
+        "bytes": 14774,
+        "sha256": "a865e1e98ee3196ce0f46e094c752a065ae03d47a59581c487be956eafb9ddc9",
+        "reason": "Derived bytecode cache for archived diagnostic source",
+        "replacement": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+        "available": false
+      },
+      {
+        "path": "devtools/__pycache__/terminal_tcg_qualification_supervise_v1.cpython-310.pyc",
+        "bytes": 3469,
+        "sha256": "1b738e2c39530857876a568b797313c623e0e8d7cbe59199ca0f18008cccfe01",
+        "reason": "Derived bytecode cache for archived diagnostic source",
+        "replacement": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+        "available": false
+      },
+      {
+        "path": "devtools/__pycache__/terminal_tcg_qualification_vm_v2.cpython-310.pyc",
+        "bytes": 5961,
+        "sha256": "ede8d257b5084910e8c1501495ac043f6de88e18b330fae0090f01c61d2e9314",
+        "reason": "Derived bytecode cache for archived diagnostic source",
+        "replacement": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+        "available": false
+      },
+      {
+        "path": "devtools/__pycache__/terminal_tcg_qualification_vm_v3.cpython-310.pyc",
+        "bytes": 5961,
+        "sha256": "c33c13440c028717ab03c16582729adae785e00999a7b2c4dff801c397c7acf9",
+        "reason": "Derived bytecode cache for archived diagnostic source",
+        "replacement": "analysis/terminal-wait-tcg-delivery-source-v1-20261111.zip",
+        "available": false
+      }
+    ]
+  },
+  "retirement": {
+    "retired": [
+      {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v15/disk.qcow2",
+        "bytes": 78905344,
+        "sha256": "3f7aefa248df68535dcfb808cda17deadf243c8687305247188ab5cc95db4d65",
+        "reason": "Rejected PowerShell control candidate; no deployment/game occurred; preserve its fixed command, timeout and VM receipts",
+        "replacement": "Fixed v10 parent plus archived delivery_v3 source and v15 receipts",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v16/disk.qcow2.gz",
+        "bytes": 14815884,
+        "sha256": "3ba60c89b5f20e78ff85b0d3016381e457367ee83f98de0bfef7fc8b47cfaf71",
+        "reason": "Superseded command-timeout configuration; no deployed payload; native command lifecycle completed with corrected settings in v17",
+        "replacement": "v17/minimal-native-result.json; old raw and compressed hashes remain in v16-packing.json",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v13/boot.ppm",
+        "bytes": 2359312,
+        "sha256": "f21b59cebc665d311cacc8069eb75d9e3262ac7aaa90298c9201cdafc44f8aee",
+        "reason": "Unconsumed boot image from a superseded control candidate; textual startup/exit receipts retained",
+        "replacement": "v17 boot screenshot and case VM receipts",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v14/boot.ppm",
+        "bytes": 2359312,
+        "sha256": "a397ab927ff3274f638f472f987f66f51191fd105cab450f1dd08229a7e25c92",
+        "reason": "Unconsumed boot image from a superseded control candidate; textual startup/exit receipts retained",
+        "replacement": "v17 boot screenshot and case VM receipts",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v15/boot.ppm",
+        "bytes": 2359312,
+        "sha256": "a397ab927ff3274f638f472f987f66f51191fd105cab450f1dd08229a7e25c92",
+        "reason": "Unconsumed boot image from a superseded control candidate; textual startup/exit receipts retained",
+        "replacement": "v17 boot screenshot and case VM receipts",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v16/boot.ppm",
+        "bytes": 2359312,
+        "sha256": "a397ab927ff3274f638f472f987f66f51191fd105cab450f1dd08229a7e25c92",
+        "reason": "Unconsumed boot image from a superseded control candidate; textual startup/exit receipts retained",
+        "replacement": "v17 boot screenshot and case VM receipts",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v17/boot.ppm",
+        "bytes": 2359312,
+        "sha256": "a397ab927ff3274f638f472f987f66f51191fd105cab450f1dd08229a7e25c92",
+        "reason": "Lossless packing of final bounded boot image",
+        "replacement": ".venv-audit/native-worker/tcg-wait-native-v17/boot.ppm.gz",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-qualification-closeout-v2/block-parser.b64",
+        "bytes": 18066,
+        "sha256": "051dab2a3ac8e2d335dafa03bc328c3d0aeafc85d848373b6c59f1775354984c",
+        "reason": "Derived local parser fixture; original helper and generator retained",
+        "replacement": "block parser proof plus old frozen helper executable",
+        "available": false
+      },
+      {
+        "path": ".venv-audit/native-worker/tcg-qualification-closeout-v2/plain-block-parser.b64",
+        "bytes": 43714,
+        "sha256": "3a15beba8d086f5b2a7da0ce779827ff25ffc7ba64abfd65aa6aeb1eb732061c",
+        "reason": "Derived local parser fixture; original helper and generator retained",
+        "replacement": "block parser proof plus old frozen helper executable",
+        "available": false
+      }
+    ],
+    "final_failure_leaf": {
+      "original": {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v17/disk.qcow2",
+        "bytes": 76218368,
+        "sha256": "8db8c8d5a2f68df77047ce2002214d0d328d127f688c003c55b8fadbb9719b0e"
+      },
+      "compressed": {
+        "path": ".venv-audit/native-worker/tcg-wait-native-v17/disk.qcow2.gz",
+        "bytes": 16158704,
+        "sha256": "a3d498549852879f4987ca3f0627b4ff68b0515697037cd4b4ee129f9b9057c3"
+      },
+      "raw_available": false,
+      "restorable_exactly": true,
+      "retention": "One current bounded failure leaf for control-channel diagnosis; no native handles survive VM exit."
+    },
+    "earlier_retirement_records": [
+      "v13-disk-retirement.json",
+      "v14-disk-retirement.json",
+      "v16-packing.json"
+    ],
+    "current_leaf_availability": {
+      "v13": false,
+      "v14": false,
+      "v15": false,
+      "v16": false,
+      "v17": "disk.qcow2.gz"
+    },
+    "old_v10_parent_unchanged": true
+  },
+  "prior_this_turn_retirement": [
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v13/disk.qcow2",
+      "bytes": 74579968,
+      "sha256": "bf4a5353ed4a0f6913e6762331c2b3a83f208f748b889d0199e8a389b8258f1b",
+      "reason": "Resolved local bytes-to-JSON failure; source and failure receipts retained; corrected service receipt is v14/service-ready.json; no native command issued in v13",
+      "replacement": ".venv-audit/native-worker/tcg-wait-native-v14/service-ready.json"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v14/disk.qcow2",
+      "bytes": 72613888,
+      "sha256": "92a0c4c54d4a368e70999f3dee3c7b8b563612a486f765b30445d6a938aa7865",
+      "reason": "Minimal native return plus cleanup proven in v15; retain v14 raw stream receipts and original source; this disk is not a backing parent",
+      "replacement": ".venv-audit/native-worker/tcg-wait-native-v15/minimal-native-result.json"
+    },
+    {
+      "original": ".venv-audit/native-worker/tcg-wait-native-v16/disk.qcow2",
+      "original_bytes": 71041024,
+      "original_sha256": "4e844be6e4ad9d32c4249f7e43fcdd8944b13b5c31af64d695caa9a5a618e40e",
+      "compressed": ".venv-audit/native-worker/tcg-wait-native-v16/disk.qcow2.gz",
+      "compressed_bytes": 14815884,
+      "compressed_sha256": "3ba60c89b5f20e78ff85b0d3016381e457367ee83f98de0bfef7fc8b47cfaf71",
+      "raw_available": false,
+      "restorable_exactly": true
+    }
+  ],
+  "availability_note": "Current leaf availability in retirement-final overrides the historical intermediate v16 packing receipt. Only v17 disk.qcow2.gz is retained from these five new VM leaves.",
+  "preservation": {
+    "checked_utc": "2026-11-11T11:41:26.894606+00:00",
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "fixed_parent_preservation": {
+    "path": ".venv-audit/native-worker/tcg-wait-native-v10/disk.qcow2",
+    "bytes": 87359488,
+    "sha256": "5b0b7c52167ba6004a1bbc9e0b98f143a2e2ede786bc5ddf65bd9321b90651a1",
+    "matched": true
+  },
+  "probe_verifier_regression": {
+    "passed": true,
+    "test_count": 4,
+    "native_execution_proved": false,
+    "log": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.009s\n\nOK\n"
+  },
+  "openspec_strict": {
+    "passed": true,
+    "log": "Change 'connect-terminal-wait-and-battle-exit' is valid\nℹ [INFO] file: skip_specs is set in .openspec.yaml: change declares no spec-level behavior changes, zero deltas accepted\n"
+  },
+  "no_original_game_run": true,
+  "no_host_input_injected": true,
+  "no_continuous_host_performance_claim": true
+}

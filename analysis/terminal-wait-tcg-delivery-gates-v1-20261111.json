@@ -1,0 +1,193 @@
+{
+  "schema": "terminal-tcg-delivery-gates-v1",
+  "accepted": false,
+  "formal_tasks": {
+    "complete": 2,
+    "total": 8
+  },
+  "minimal_native_return_and_cleanup": true,
+  "guest_block_deployment": false,
+  "guest_probe_execution": false,
+  "input_isolation_status": "not tested",
+  "d3d8_status": "not tested",
+  "original_game_started": false,
+  "cases": [
+    {
+      "case": "tcg-wait-native-v13",
+      "vm_seconds": 281.63553806,
+      "vm_errors": [],
+      "vm_exited": true,
+      "sidecar_exited": true,
+      "sidecar_errors": [],
+      "sidecar_job_active_after": 0,
+      "control_job_active_after": 0,
+      "control_exit_code": 124,
+      "control_completion": "unknown",
+      "parent_size_mtime_unchanged": true
+    },
+    {
+      "case": "tcg-wait-native-v14",
+      "vm_seconds": 243.81183651699996,
+      "vm_errors": [],
+      "vm_exited": true,
+      "sidecar_exited": true,
+      "sidecar_errors": [],
+      "sidecar_job_active_after": 0,
+      "control_job_active_after": 0,
+      "control_exit_code": 124,
+      "control_completion": "unknown",
+      "parent_size_mtime_unchanged": true
+    },
+    {
+      "case": "tcg-wait-native-v15",
+      "vm_seconds": 351.336825785,
+      "vm_errors": [],
+      "vm_exited": true,
+      "sidecar_exited": true,
+      "sidecar_errors": [],
+      "sidecar_job_active_after": 0,
+      "control_job_active_after": 0,
+      "control_exit_code": 124,
+      "control_completion": "unknown",
+      "parent_size_mtime_unchanged": true
+    },
+    {
+      "case": "tcg-wait-native-v16",
+      "vm_seconds": 297.958439004,
+      "vm_errors": [],
+      "vm_exited": true,
+      "sidecar_exited": true,
+      "sidecar_errors": [],
+      "sidecar_job_active_after": 0,
+      "control_job_active_after": 0,
+      "control_exit_code": 0,
+      "control_completion": "observed",
+      "parent_size_mtime_unchanged": true
+    },
+    {
+      "case": "tcg-wait-native-v17",
+      "vm_seconds": 370.296081719,
+      "vm_errors": [],
+      "vm_exited": true,
+      "sidecar_exited": true,
+      "sidecar_errors": [],
+      "sidecar_job_active_after": 0,
+      "control_job_active_after": 0,
+      "control_exit_code": 124,
+      "control_completion": "unknown",
+      "parent_size_mtime_unchanged": true
+    }
+  ],
+  "minimal_successes": [
+    {
+      "case": "tcg-wait-native-v15",
+      "return_seconds": 12.047000000020489,
+      "return_and_cleanup_seconds": 12.594000000011874,
+      "stdout_sha256": "bda58d549af2bca0b8800b7eeed2dbabbfcbffe926180af06800c6eed497fd37",
+      "actual_stdout": "TCG-Q15-4f39edc4\r\n",
+      "exit_code": 0,
+      "command_cleaned": true
+    },
+    {
+      "case": "tcg-wait-native-v17",
+      "return_seconds": 45.405999999988126,
+      "return_and_cleanup_seconds": 47.57799999997951,
+      "stdout_sha256": "dc81885b47cfe82f92b38effafedce4c586558f27ee43057fcff78455a23f40b",
+      "actual_stdout": "TCG-Q17-4f39edc6\r\n",
+      "exit_code": 0,
+      "command_cleaned": true
+    }
+  ],
+  "blocking_boundary": {
+    "case": "tcg-wait-native-v17",
+    "operation": "wmic.exe csproduct get UUID /value",
+    "correct_uuid_text_observed": true,
+    "command_done_observed": false,
+    "exit_code_observed": false,
+    "command_cleanup_observed": false,
+    "deadline_seconds": 40,
+    "raw_stdout_sha256": "22b75c1f3bb8312bfc1b1feca82570cf97228726d6c8a68302f31a0b9fa35633"
+  },
+  "decision": {
+    "current_tcg_winrm_control_stack": "Not admitted for original-game interactive collection; stop this route under the current bounded control requirements.",
+    "guest_powershell_route": "Not admitted: no minimal fixed-output completion within 60 seconds in v15.",
+    "tcg_architecture_generally_unsupported": false,
+    "d3d8_incompatible_proved": false,
+    "previous_non_ui_state_proofs": "Unchanged; not expanded into interactive/game qualification.",
+    "next_condition": "Replace or independently qualify the guest control channel before any guest block deployment, input/D3D qualification or game collection; no repetition of the failed recipes."
+  },
+  "interpretation_limits": [
+    "v15 and v17 used different control timeout settings; timings are not an equivalent performance comparison or a TCG performance measurement.",
+    "v13 JSON serialization, v14 completion/cleanup deadline coupling, and v16 timeout leakage were implementation defects, not hardware or graphics failures.",
+    "Host-local block parsing/hash roundtrip and in-memory task XML parsing are not guest deployment or probe execution.",
+    "VM/sidecar/host Job exit does not prove unobserved remote command cleanup or task/resource/PTD cleanup."
+  ],
+  "host_local_checks": {
+    "block_parser": {
+      "blocks": [
+        {
+          "index": 0,
+          "bytes": 4002
+        },
+        {
+          "index": 1,
+          "bytes": 8004
+        },
+        {
+          "index": 2,
+          "bytes": 12006
+        },
+        {
+          "index": 3,
+          "bytes": 16008
+        },
+        {
+          "index": 4,
+          "bytes": 20010
+        },
+        {
+          "index": 5,
+          "bytes": 24012
+        },
+        {
+          "index": 6,
+          "bytes": 28014
+        },
+        {
+          "index": 7,
+          "bytes": 32016
+        },
+        {
+          "index": 8,
+          "bytes": 36018
+        },
+        {
+          "index": 9,
+          "bytes": 40020
+        },
+        {
+          "index": 10,
+          "bytes": 43714
+        }
+      ],
+      "sha256": "3a15beba8d086f5b2a7da0ce779827ff25ffc7ba64abfd65aa6aeb1eb732061c",
+      "bad_offset_rejected": true,
+      "original_executable_roundtrip": true,
+      "host_input_actions": 0
+    },
+    "task_xml": {
+      "actual": {
+        "parsed": true,
+        "registered": false,
+        "logon_type": 3,
+        "limit": "PT120S",
+        "action_count": 1,
+        "trigger_count": 0,
+        "action": "C:\\ChaomofaWorker\\tcg-qualification-v16\\probe.exe"
+      },
+      "stdout_sha256": "27150a55a68ed52942940926fa2e395aca365bbcaec97753ea9d512873809127",
+      "host_task_registered": false,
+      "initial_assertion_format_error": "PT2M expected by initial test; actual PT120S is the requested identical 120-second limit"
+    }
+  }
+}
