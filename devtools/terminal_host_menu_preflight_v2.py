@@ -10,9 +10,17 @@ from pathlib import Path
 from devtools import terminal_host_desktop as desktop
 
 
+def require_capture_qualification():
+    # The original callbacks route WM_PRINTCLIENT to DefWindowProc, which does
+    # not draw client content. A longer startup wait cannot qualify this path.
+    # No CLI override: a different capture implementation needs its own proof.
+    raise RuntimeError('PrintWindow capture is unqualified; native menu test disabled before desktop access')
+
+
 def run(out, deadline_utc, capture_override):
     if capture_override is not True:
         raise PermissionError('native screenshot override required before desktop work')
+    require_capture_qualification()
     from devtools import terminal_host_menu_preflight as prior
     # Reject expired windows before even taking the desktop baseline.
     import time
@@ -34,6 +42,7 @@ if __name__ == '__main__':
     a = p.parse_args()
     if not a.execute:
         print(json.dumps(dict(mode='plan_only', desktop_actions=False, accepted=False,
+            execution_enabled=False, blocked_by='PrintWindow client drawing is not implemented by original callbacks',
             checks=['healthy baseline before game', 'resolution and monitor topology',
                     'taskbar visibility/geometry/auto-hide', 'desktop work area',
                     'input desktop and foreground restoration', 'no remaining game window',
