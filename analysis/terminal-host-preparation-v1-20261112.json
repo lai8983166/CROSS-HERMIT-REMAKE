@@ -1,0 +1,65 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "native_game_launched": false,
+  "screenshots_taken": 0,
+  "desktop_input_sent": false,
+  "tests": {
+    "count": 64,
+    "passed": true,
+    "modules": [
+      "devtools.tests.test_terminal_host_preflight",
+      "devtools.tests.test_terminal_menu_input",
+      "devtools.tests.test_terminal_menu_handoff_verification"
+    ]
+  },
+  "strict_openspec": true,
+  "frozen_implementations_verified": [
+    {
+      "path": "devtools/terminal_startup_handoff.py",
+      "bytes": 11996,
+      "sha256": "179fa74b62e74f36e0de1918190f5bc759bc329a3be28bbbf6209c062bab3da4"
+    },
+    {
+      "path": "devtools/terminal_scene_owner.py",
+      "bytes": 27413,
+      "sha256": "7ecdcac1599d674bcb24a40b2a52cd824173bc99ff9fe1c0cc4d6f3200a721f5"
+    },
+    {
+      "path": "devtools/terminal_scene_resources.py",
+      "bytes": 19764,
+      "sha256": "dfbbbe7281a48cb36b215e9990e6448269665dcd74953e3efd2babfe7bcdcfa5"
+    }
+  ],
+  "identities": [
+    {
+      "path": "devtools/terminal_host_capture.py",
+      "bytes": 7124,
+      "sha256": "23e80088816c6192016d7914bb90ffbe734a077d2e273443f7574b1ef88b8296"
+    },
+    {
+      "path": "devtools/terminal_host_menu_preflight.py",
+      "bytes": 9948,
+      "sha256": "efc1fce4cfe42e0388e146ba94e312e8f690c08325749036531b165696d721bc"
+    },
+    {
+      "path": "devtools/tests/test_terminal_host_preflight.py",
+      "bytes": 3156,
+      "sha256": "7ce802a8f8af70f50c2d465b547ffb8a9f43719b72af85b9c16c7ee2cec7466f"
+    },
+    {
+      "path": "analysis/terminal-host-menu-contract-v1-20261112.json",
+      "bytes": 16941,
+      "sha256": "2bcde3bec2ffcaa190629e40e33e5619eff7618b7eccabbcd7971cbacdb17b9e"
+    }
+  ],
+  "pending": [
+    "explicit native screenshot authorization",
+    "fresh desktop window",
+    "actual capture and menu handoff",
+    "independent native evidence verification"
+  ],
+  "cleanup": "Synthetic test temporary files under F removed; no environment, runtime copy, images or backups created",
+  "evidence_budget_bytes": 262144,
+  "candidate_status": "Offline checks only, PrintWindow compatibility unproved"
+}
