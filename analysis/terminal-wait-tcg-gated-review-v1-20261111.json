@@ -1,0 +1,33 @@
+{
+  "accepted": false,
+  "reviewer": "gated_fixture",
+  "independent_recalculation": true,
+  "scope": "self-owned WOW64 wait -> RET12 -> fixture consumer only",
+  "target_stops": 12,
+  "returns": [
+    0,
+    0,
+    0,
+    258
+  ],
+  "raw_ret_post_equal_except_exact_eip_esp": true,
+  "frame_and_fx_differences": 0,
+  "eflags_all": "0x246",
+  "rf_nonzero_case_observed": false,
+  "cr3": "0x3d473000",
+  "signals": 3,
+  "cleanup_fields_all_true": true,
+  "external_process_exited": true,
+  "call_ret_unexplained": [
+    "CR2 changed in first three rounds",
+    "R9 equals actual return stub PC in all four rounds",
+    "XMM0..5 cleared in all four rounds"
+  ],
+  "next": "Authenticate live WOW64 bridge/return code, trace exact R9/XMM writes and branches, attribute CR2 to page faults/scheduling. Do not broaden allowed differences by assumption.",
+  "limitations": [
+    "Not a game handshake or game consumption proof",
+    "No Windows restore/independent replay/new-lifetime pair",
+    "Full call-to-return ABI rejected",
+    "RF was zero; no nonzero RF equivalence demonstrated"
+  ]
+}

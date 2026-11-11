@@ -1,0 +1,600 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "original_game": false,
+  "vm_lifetimes": 1,
+  "fixture_lifetimes": 2,
+  "vm_seconds": 871.4180372870001,
+  "scope": "Development preflight: observed self-owned real waits, natural return, and actual fixture consumption; complete ABI/Windows restore/game acceptance remain blocked.",
+  "recovery": {
+    "source_report": {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/report.json",
+      "bytes": 2727,
+      "sha256": "80aea89634c0c7852a641cdfa01a21cc4f1c53784114bfc35410f1933f60b2a9"
+    },
+    "prior_fixture_reached_ready": true,
+    "prior_gate_expired_without_go": true,
+    "prior_signals": 0,
+    "prior_cleanup_fields_true": true
+  },
+  "control": {
+    "launch_v2_seconds": 47.547,
+    "read_ready_powershell_deadline": 55,
+    "read_ready_cmd_v2_seconds": 7.016,
+    "read_ready_cmd_v3_seconds": 2.703,
+    "result_cmd_seconds": 2.469,
+    "prepare_v3_seconds": 37.234,
+    "launch_v3_seconds": 16.297,
+    "durable_receive_used": true,
+    "fast_reads_require_authenticated_launch_same_owned_boot": true,
+    "go_ack": "ReadTimeout during debugger stops; go_received and actual target execution confirmed independently; not claimed canceled"
+  },
+  "observation": {
+    "stops": 12,
+    "seconds": 38.844866813,
+    "foreign_hits": 3,
+    "returns": [
+      0,
+      0,
+      0,
+      258
+    ],
+    "signals": 3,
+    "ret_post_raw64_exact_except_eip_esp": true,
+    "frame_fx_checks_pass": true,
+    "fixture_observation_passed": false,
+    "failed_checks": [
+      "round0.call-ret.raw64",
+      "round1.call-ret.raw64",
+      "round2.call-ret.raw64",
+      "round3.call-ret.raw64"
+    ],
+    "full_ram_bytes_saved": false,
+    "first_ret_ram_hash_and_pending_events": true,
+    "process_exited": true
+  },
+  "failure_v2": "CALL reached but complete data read failed on unresident private pages; resumed first wait timed out, returned258/signals1; own cleanup passed. Replaced by pretouched v3 with explicitly declared30s self-owned wait budget, original214B instructions unchanged.",
+  "remaining": [
+    "Explain actual CR2/R9/XMM0..5 call-ret changes using authenticated WOW64 instructions/events",
+    "Windows restoration and independent complete replay",
+    "Original game waits/consumption/handshakes and resource/PTD evidence"
+  ],
+  "sources": {
+    "parent_current": {
+      "path": ".venv-audit/native-worker/tcg-windows-current-v1/disk.qcow2",
+      "bytes": 119341056,
+      "sha256": "4793ea281b842ddc8efcdc0616ade3b33ee5b83bc9cf6970ab5c564a856db138"
+    },
+    "new_overlay": {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/disk.qcow2",
+      "bytes": 90570752,
+      "sha256": "cf97c7bc63d559e40dbf69e0950fa6b0aca3d09fa06d89ee283336f32661c16d"
+    },
+    "capsule": {
+      "path": "analysis/terminal-wait-tcg-gated-source-v1-20261111.zip",
+      "bytes": 171967,
+      "sha256": "43b1cc4399f3b209096995d549898bf5e543f68ed41e120c83a833e9d289a9b1"
+    }
+  },
+  "preserved": {
+    "checked_utc": "2026-11-11T04:11:37.835810+00:00",
+    "small_fresh_SHA_count": 832,
+    "large_size_only_count": 13,
+    "large_fresh_SHA": false,
+    "mismatches": []
+  },
+  "cleanup": {
+    "vm_exited": true,
+    "parent_size_mtime_unchanged": true,
+    "qemu_processes_after": 0,
+    "backup_bytes": 0,
+    "retirement_manifest": {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/retirement.json",
+      "bytes": 3013,
+      "sha256": "3ba2bef4ddcadc2ba000f08a19ea8f06b1fa7596bf1ab2e004fe8413a4aaf7f3"
+    }
+  },
+  "local_files": [
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/fixture.bin",
+      "bytes": 214,
+      "sha256": "671774f8ea30c622791f1bae1cd5f005936f6c2e2389e0e4ef3f26c9732cc99a"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/fixture.exe",
+      "bytes": 17920,
+      "sha256": "5669895a2fea6c8827eff627722f7268a674896b23908addad7fedd615727504"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/manifest.json",
+      "bytes": 7330,
+      "sha256": "2d88cf434d80a2a3a41a0a52498512fce3682175bd68972f4a80aa8a8531c8f1"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/ready.json",
+      "bytes": 980,
+      "sha256": "96c18abad89548fa137088e8956fa7414bee5e86765fcf910b03036ca7f79186"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/report.json",
+      "bytes": 2727,
+      "sha256": "80aea89634c0c7852a641cdfa01a21cc4f1c53784114bfc35410f1933f60b2a9"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/result.json.gz",
+      "bytes": 1212,
+      "sha256": "028755b6af64d2a195610328faa3c7349e06bc4b2fd3b3f91bba47e62c06a131"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-recovery-v1/terminal_tcg_wait_fixture.cs",
+      "bytes": 12076,
+      "sha256": "c24e0fe06452c22e8635f196ef87c27250e6090f28525aaa707403cc291c543c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v2/fixture.bin",
+      "bytes": 214,
+      "sha256": "671774f8ea30c622791f1bae1cd5f005936f6c2e2389e0e4ef3f26c9732cc99a"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v2/fixture.exe",
+      "bytes": 18944,
+      "sha256": "97c2fa4f83425dd91f83dd9241eca949da6c0926fa7be12930b7642bd04cbdaa"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v2/manifest.json",
+      "bytes": 7446,
+      "sha256": "b315fd3d90b52fd12ede64fc658e10a960b96ce95487cd99cf4349a05b1e2d7c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v2/terminal_tcg_wait_fixture_v2.cs",
+      "bytes": 12915,
+      "sha256": "5829e37debe57a123168f2372d38ad993fed986083ae84ae8e646caacb6cc187"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v3/fixture.bin",
+      "bytes": 214,
+      "sha256": "671774f8ea30c622791f1bae1cd5f005936f6c2e2389e0e4ef3f26c9732cc99a"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v3/fixture.exe",
+      "bytes": 18944,
+      "sha256": "f1da463712d38388f3f16bdc5c1c8cc3521b1199863eec017c71f0f57d7f5065"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v3/manifest.json",
+      "bytes": 7602,
+      "sha256": "be0c0dfc5f97aa15b0f62995df27e9e3db017c0e3ff66a8adf708632708e4211"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-fixture-v3/terminal_tcg_wait_fixture_v3.cs",
+      "bytes": 13127,
+      "sha256": "cd6fdbbb24e795ec986c41f5f5ddabab3578c51b2e141f1fb3392f320fcc82dd"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/boot.ppm.gz",
+      "bytes": 828303,
+      "sha256": "7e2997682fd5eef988d552890854e20358e9cbb3399c6dd79f8216fe18cb682c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/check-preservation.py",
+      "bytes": 1013,
+      "sha256": "faf966ce063a53de308cf1c16dc50252b68a973d783a57fedb873e8a127c06c2"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/disk.qcow2",
+      "bytes": 90570752,
+      "sha256": "cf97c7bc63d559e40dbf69e0950fa6b0aca3d09fa06d89ee283336f32661c16d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/fixture-inputs.json",
+      "bytes": 829,
+      "sha256": "9f934bb04448dc9ba10ea48dd6825c4a4475787c685154791b071a08e8541cd8"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/go-response.json",
+      "bytes": 422,
+      "sha256": "1b347ba751abe6d47cce27e96d83009c8b46675dbe056d7f8a4955560637168b"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/go-v3.ps1",
+      "bytes": 190,
+      "sha256": "9c95a2b57bd46717a0a7f83fa271b9657c0051e48812f77e7d339562d7a0fa54"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/go.ps1",
+      "bytes": 200,
+      "sha256": "8f0409a3e2b62d2b096b43781bcd0e5ceea2d3af63c5f368fb28ac1382931352"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/launch-response.json",
+      "bytes": 442,
+      "sha256": "c49ccbbc038ba951137c2365b6d75077ee52961065a6cc718087b484f64f06f9"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/launch-v3.ps1",
+      "bytes": 576,
+      "sha256": "02bc5400388afcbd35a3b0c3e7618f6031e5c9ad24de364f8860c5d980ef5bf7"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/launch.ps1",
+      "bytes": 586,
+      "sha256": "df347a84c789c61255a71f9007df56320b543dee0f39a1aa412cfa2293b0a7d1"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/observation.json.gz",
+      "bytes": 2038,
+      "sha256": "0672de3765f5e9fa8f07816935189f72c66f47593aae8000aedc548c17f40aba"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/observer-armed.json",
+      "bytes": 105,
+      "sha256": "f5eacf1f48213ef1a31abb611c733cc9798a4c49f8ccfc11cc30454b4d636062"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/phase-go-26828.json",
+      "bytes": 448,
+      "sha256": "5bbfc6d87329fadf68e308944c9028ea1027fed11b5334228b36e9cb2e70a019"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/phase-launch-34476.json",
+      "bytes": 447,
+      "sha256": "4e72080e6487161caa9dfdf776dab2c8d76fba154ca72ce3820657d98b04eb4d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/phase-launch-v3-24604.json",
+      "bytes": 449,
+      "sha256": "7022294ad93fbf83bb1b0d5b75d72c3c21bdec74dbc595e2d6b17b48cbd3bb90"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/phase-prepare-18608.json",
+      "bytes": 290,
+      "sha256": "9de1b9ec559997023787e0e16d297088d405f7f9f53fdabbb204d3ef72f822bc"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/phase-prepare-v3-13932.json",
+      "bytes": 523,
+      "sha256": "6f0c8d3f9f5b9f17936330ae39040faa25141d6a37a5634340b285ef77ca2b86"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/phase-read-ready-36548.json",
+      "bytes": 292,
+      "sha256": "89972431a32c591f58f3464b743d8e6ab5d4bdd7be85364031f739c886d40396"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/phase-result-v3-21756.json",
+      "bytes": 446,
+      "sha256": "e3c3389f407c15f3ed28e2910d7c861149eb40fdd1bb5f6c46275f465da7b57d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/prepare-ready-response.json",
+      "bytes": 378,
+      "sha256": "9970391901acf46d9674b3260ee3702be25ab34c4fc95bb67df4cc6c437b9733"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/prepare-response.json",
+      "bytes": 363,
+      "sha256": "3feed65fcaf4dd93197964552fff4cdeabad89553b2ac06e0f60970fc3230e31"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/prepare-resume-response.json",
+      "bytes": 482,
+      "sha256": "b220f0f57a1360979ffb1f10f214c1dfdc9dcbb824354f4fc498966372e65eb8"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/prepare-v3.ps1",
+      "bytes": 54451,
+      "sha256": "3bc2388dd3d5aeace243474c1f74aa38a8de8e221b723d23aa991784dcefd9fc"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/prepare.ps1",
+      "bytes": 53969,
+      "sha256": "e599ea3f4383d5062fd451302b3f28ca56937390996744f9eb63cb7c5a647b7d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/preservation.json",
+      "bytes": 172,
+      "sha256": "4c12c66974058db1ecb8c206b42afe8ccbf49c77184b58abda57d133f135f205"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/consume.json",
+      "bytes": 26361,
+      "sha256": "c075f2f9386c8cf5a9e9351f5f543d979a4ec7bb2a5aaa2564bb5fcb49c9469c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/fixture-inputs.json",
+      "bytes": 819,
+      "sha256": "1dc6d2cc43bd0b98f451f0308cfb8bf1bfd82bdbd9e8cc20aed8952a87cbc512"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/go-response.json",
+      "bytes": 313,
+      "sha256": "07a06a91cfe691fde9233a67d8e3ddf9a26680c5a56e4da409995ce1fc972399"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/go.ps1",
+      "bytes": 190,
+      "sha256": "9c95a2b57bd46717a0a7f83fa271b9657c0051e48812f77e7d339562d7a0fa54"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/launch-response.json",
+      "bytes": 442,
+      "sha256": "95a65be080fbdc240268da3cf27826d63aeef7882120662d3abde4eecd38e058"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/launch.ps1",
+      "bytes": 576,
+      "sha256": "02bc5400388afcbd35a3b0c3e7618f6031e5c9ad24de364f8860c5d980ef5bf7"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/observation.json.gz",
+      "bytes": 47515,
+      "sha256": "b4f922ad5e263d737060c1a2d6431c6c1088abf19ad4bb68a0f127b1a98667aa"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/observer-armed.json",
+      "bytes": 105,
+      "sha256": "2097c8db05aaef53525e042357ae28f3004e9fbe604742ec30c7289aaffd4eaa"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/prepare-response.json",
+      "bytes": 471,
+      "sha256": "19395bccea97910fc6f085f5f3030f297098eadc0c6f8f93118a6dfd245132b1"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/prepare.ps1",
+      "bytes": 54451,
+      "sha256": "3bc2388dd3d5aeace243474c1f74aa38a8de8e221b723d23aa991784dcefd9fc"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/read-ready-response.json",
+      "bytes": 1541,
+      "sha256": "0ffe356ba1fe0492f305d77805630fbc4f07018c2603928b4f23375ef804a3a8"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/read-ready.ps1",
+      "bytes": 309,
+      "sha256": "461ec5f66337510a3eba185d3b37e40a6a1d11b7198319cb2015ca58787919ea"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/ready.json",
+      "bytes": 1212,
+      "sha256": "30fafff9a90aada37b62a9614886987c9abc0917accf28fcb029ff8388576687"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/result-exit-response.json",
+      "bytes": 35717,
+      "sha256": "a07ff19ea53ae33765510062854bbef0408627ba9f28d1781b0440df907eb289"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/result-response.json",
+      "bytes": 35660,
+      "sha256": "ef63560ab378a3ffba5c2920269e783bbdb7b2064382815d02f32cb510b0acea"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/result.json.gz",
+      "bytes": 1407,
+      "sha256": "2b3413ed8df6e9d965763d29805846c8f60b90a0a1571ae6595b58f727ac7c6b"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/result.ps1",
+      "bytes": 329,
+      "sha256": "2e137a78c27997639cf654ec6c6bf8da9d450acb73b865522a9792a0014db684"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/probe-v3/vm-ready.json",
+      "bytes": 122,
+      "sha256": "1c451d37e1a16dd5ccfaa81b7070147d098f6ec4a7beb31960183550ef62bba1"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/read-prepared.ps1",
+      "bytes": 687,
+      "sha256": "fc747109fe6076d7775ac2eb924546a4412121f4b3219e7cb49d4a0ce4c271ad"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/read-ready-cmd-response.json",
+      "bytes": 1466,
+      "sha256": "802e7fab4a2b3799ecb830f9aee12f2fe268e032ee9971ea2381406e7f9ce96a"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/read-ready-response.json",
+      "bytes": 263,
+      "sha256": "c1f1a0fd6575ca34e8ad8c396dc9d2cdeb2eaffa1c025202e6d4c3c25400c186"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/read-ready.ps1",
+      "bytes": 319,
+      "sha256": "db0dfbaa20a60736a6fcf22fb244da006cd616934445b39a1c0543a5efee86a0"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/ready.json",
+      "bytes": 1138,
+      "sha256": "76a2828a071053a447774951ec792a9c5d00635b061def7aa48ba5145c68a778"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-057d16e3-859a-404d-8258-6dacce6312ec-000000.json",
+      "bytes": 171,
+      "sha256": "242e185311ecd2e12dc42f5982fb4dd68f20e861ab50be3da7e70fe8dd33806b"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-057d16e3-859a-404d-8258-6dacce6312ec-000001.json",
+      "bytes": 259,
+      "sha256": "2c22a03d4a57457fcc51d28dc9c408504612c14efc2c26cb90d2113303514aba"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-057d16e3-859a-404d-8258-6dacce6312ec-000002.json",
+      "bytes": 1261,
+      "sha256": "e05294dce3ef2163700bd62287b807f784117a4990f0bbbf9100b144a9e893d0"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-1013e514-10c4-4f9a-807f-13b26e47cbc4-000000.json",
+      "bytes": 171,
+      "sha256": "a8825a4f1d211b6bfa43ce5a5be0f254169a78ea18c70bc445afc3f424398775"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-1013e514-10c4-4f9a-807f-13b26e47cbc4-000001.json",
+      "bytes": 1419,
+      "sha256": "6102f5835391b93bcb58cf63a402228dba7085b42f722b3be3e20a478036c70f"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-1013e514-10c4-4f9a-807f-13b26e47cbc4-000002.json",
+      "bytes": 153,
+      "sha256": "ed9476911f1f424e27bb8861269a419afd6b3c67ce13ce02a49cbd01ecc639d4"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-2410739e-6e36-4422-804e-691d6f9494b3-pending",
+      "bytes": 112,
+      "sha256": "3f31038d9793f2dde3d5f050d4489f1d42d205e95f7170db43aa33f08ca6aceb"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-342e902f-e9a2-464a-b7e3-30f6dfa3cc4f-000000.json",
+      "bytes": 171,
+      "sha256": "10f3a0e8b226bfc7030458ec44eb2ef0303a33844911cbaff9888adea073deec"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-342e902f-e9a2-464a-b7e3-30f6dfa3cc4f-000001.json",
+      "bytes": 259,
+      "sha256": "82e1a5fe82c724fb11b705720ffe3ff07042e9028e55717dd11840577785e4fb"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-342e902f-e9a2-464a-b7e3-30f6dfa3cc4f-000002.json",
+      "bytes": 1263,
+      "sha256": "4aba90c21dde7e6f270c91eb9c6f602e4a182ec249d2e5842479703cbdcc544c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-342e902f-e9a2-464a-b7e3-30f6dfa3cc4f-000003.json",
+      "bytes": 153,
+      "sha256": "82d8915b52df4c733034154bf254ddc04f2360cce8087767df2c43cb6996300f"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-6bbd893d-acab-4ced-bc35-20a7d1682243-000000.json",
+      "bytes": 46621,
+      "sha256": "8269a17d4c4d76a5a8c22c1f242d4e4155791e3203bf89871299f6a87b26c8fa"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-6fb380a2-30c2-4383-bf1c-b3df6ebda6d2-000000.json",
+      "bytes": 1705,
+      "sha256": "e28c7fd2a1d9344e42081bba373fbc31550f155be7dad755f501f3983364b2d8"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-77b44eab-10c7-4183-872f-ecf52b096958-000000.json",
+      "bytes": 171,
+      "sha256": "17feb0232f68e7cf25b4458785415c94cbd55b1154763bffd81331b5f7fd728a"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-77b44eab-10c7-4183-872f-ecf52b096958-000001.json",
+      "bytes": 1341,
+      "sha256": "16167e0690a2818e82aa2141b4c10f582e86ec183614a4a331779b9d431f97b8"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-8c897c15-282a-402f-86ad-5350e8389085-000000.json",
+      "bytes": 47117,
+      "sha256": "c241699923bf8615a9f044aec3d7493c4601658d5aab2fec24a0f059ea7c323f"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-8ebc2e15-1c4d-4a33-9fef-ef352b43d9e4-000000.json",
+      "bytes": 1613,
+      "sha256": "3e9456990685e03fc0100573b0ec46d07b066057aa166c5138a6b278b4fbe80d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-9e9ee10b-6ca2-4ba1-8c8c-4a77bfb6e1eb-000000.json",
+      "bytes": 171,
+      "sha256": "a9557648e99450115a186b0bf6302a5ab66ba18cdd0b4bfc102362c3897952ab"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-9e9ee10b-6ca2-4ba1-8c8c-4a77bfb6e1eb-000001.json",
+      "bytes": 1405,
+      "sha256": "7aaf3597cff50ad2bc17871854d372bd5530484ff65f9c36aa792a6338586b43"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-a8c31057-c44a-4dae-94e7-02da93c2b7b4-000000.json",
+      "bytes": 171,
+      "sha256": "aecc35cfeac9c5477b39b50959d66e328203c18db765019109c5be507927c41c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-a8c31057-c44a-4dae-94e7-02da93c2b7b4-000001.json",
+      "bytes": 48257,
+      "sha256": "e3be28e54b51193cf1f40d99ac66540ac4f533002f419b4d7b067cc145d209f4"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-b75f5a2b-209e-42fa-8159-e69f263da36d-000000.json",
+      "bytes": 171,
+      "sha256": "ba5ee608c4d8953d3fd2ce0939aadebc827f23de0d4bf32cd9635d2a582fb2fd"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/receive-b75f5a2b-209e-42fa-8159-e69f263da36d-pending",
+      "bytes": 112,
+      "sha256": "5b8e554fa6a7d2b659d7ae3bc9817cf90c6c1c9cce8b52af1674370002ba1a0f"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/report.json",
+      "bytes": 2663,
+      "sha256": "466681e66455f66c9c4d2a9dfae5f8503c5743356a9be5bc246e99af1059cf87"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/result-cmd-response.json",
+      "bytes": 35278,
+      "sha256": "40d7507520a28bc2f889af6e68a5be6affb2e68ddc6caa5b0882148bd7d53a3c"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/result-v3.ps1",
+      "bytes": 329,
+      "sha256": "2e137a78c27997639cf654ec6c6bf8da9d450acb73b865522a9792a0014db684"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/result.json.gz",
+      "bytes": 1430,
+      "sha256": "4b943efd2cff7d06101b93a5675f8e7cd07fbac2a5b6a0dbd94509cf853e1871"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/result.ps1",
+      "bytes": 339,
+      "sha256": "14660667bf5a4a0136eb31563ff160f1c1a0f4bf1aa75db9423990bed2012025"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/retirement.json",
+      "bytes": 3013,
+      "sha256": "3ba2bef4ddcadc2ba000f08a19ea8f06b1fa7596bf1ab2e004fe8413a4aaf7f3"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/sidecar-ready.json",
+      "bytes": 1863,
+      "sha256": "a840bad145a9ec2a2da9a95afb6d3f8f61e65d6719aad9efaf11b4730140cb99"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/sidecar.json",
+      "bytes": 1981,
+      "sha256": "9a8be6ddb7b33b9c18939ab87d9828dd4c5be51a34ee50d77606ab43653862a9"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/sidecar.stderr",
+      "bytes": 119,
+      "sha256": "ea5b22c24293f4411bf3151ebd822c31c1a4e0b2df5316905c957eeaf949fe1d"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/sidecar.stop",
+      "bytes": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/verification.json",
+      "bytes": 180,
+      "sha256": "437e9b39013df4d5a21566ce8cad8397f27be48b55acfe7fb05463db6f759942"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/vm-ready.json",
+      "bytes": 122,
+      "sha256": "1c451d37e1a16dd5ccfaa81b7070147d098f6ec4a7beb31960183550ef62bba1"
+    },
+    {
+      "path": ".venv-audit/native-worker/tcg-wait-native-v2/vm-stop",
+      "bytes": 26,
+      "sha256": "e4731607ec588f0d1630c7ed9827170bee8aa8d3fc3ffe3d3a35c709a175f594"
+    }
+  ],
+  "local_evidence_bytes": 92053038
+}
