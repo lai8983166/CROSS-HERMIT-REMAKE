@@ -788,3 +788,34 @@ CPU上下文恢复、原游戏ABI/等待返回或原生资源清理。Windows时
 相同；原worker.vmdk只做size/mtime检查，未重新全盘哈希。原盘、上轮基线、旧验收均未改。
 证据入口为`analysis/terminal-wait-tcg-windows-control-proof-v1-20261111.json`、对应
 evidence/capsule/retirement和三份独立复核；raw认证网络片段仅留F盘，Git只含头部摘要。
+# 2026-11-11 无 UI 等待探针控制通道预检
+
+来源为 `analysis/terminal-wait-tcg-native-control-closeout-v1-20261111.json`，
+小现场在同前缀的 `terminal-wait-tcg-native-control-v1-20261111.zip`。
+沿用已认证 v12 TCG 和 current-v1 磁盘，新增一次 2 CPU / 4 GiB 客体，
+838.128 秒内结束。无宿主输入，没有执行 go 或观察器，目标等待停点为 0。
+
+真实进展：WinRM 标准输入上传的探针四文件已通过 SHA 校验；发送超时后，
+原 command 的续查取得 prepared=true，命令和 shell 关闭。长 EncodedCommand
+版本在 run_command 失败，保留为失败来源，不再复用此上传方式。
+启动命令两次 55 秒接收期限后最终出现 JSONDecodeError；随后只读查询在
+open_shell 阶段超时。旧库可能在客户端退出前消费但未保存输出，现有证据
+不能判定具体丢失位置，更不能把空输出当作探针失败或成功。
+
+后续入口为 `terminal_tcg_wait_control_v5`：使用标准输入传输，并调用
+`terminal_winrm_output_v2` 在 Receive 前持久化 pending，逐片保存输出；
+存在未完成 Receive 时拒绝续收为完整证据，转读客体持久结果。已运行版本
+保留原字节。修正版只有离线正反例和独立复核，未通过真实 WinRM 恢复验证。
+
+复核还发现：探针在 go 前启动两条忙循环，同时启动 300 秒 watchdog；
+该时序与慢控制通道存在预算竞争。双 CPU 诊断都在 64 位内核态，单快照
+不能证明忙循环是此次失联根因。下一轮先复用失败 overlay 读取客体持久
+ready/result，调整新版本的计数器放行时序，再做有界预检；不得重复本配方。
+未执行的观察器草案仍缺最终消费帧/FX/完整 ABI 核对，不能作为验收器使用。
+
+原任务维持 2/8；完整目标状态、等待返回、首次消费、三握手、资源/PTD、
+Windows 状态恢复和两例新鲜游戏重放均未新增验收。VM/侧车已退出；这不能
+代替探针自身资源清理证据。保留一份 83.06 MiB 失败 overlay，待恢复独特
+现场并解决原因后退役；屏幕原字节 gzip 保留，没有备份。832 SHA / 13 size
+保全通过，原 current-v1 SHA 不变。早期接收器离线测试曾使用默认临时目录
+并自动清除，最终测试已改为显式 F 盘；新 VM/镜像/日志/持久证据均在 F 盘。
