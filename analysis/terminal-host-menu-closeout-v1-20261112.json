@@ -1,0 +1,72 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "authorization": "User explicitly approved current ten-minute host window and scoped native screenshot fallback",
+  "authorization_observed_utc": "2026-11-11T18:53:00Z",
+  "deadline_utc": "2026-11-11T19:02:50Z",
+  "desktop_released_by_utc": "2026-11-11T18:53:45Z",
+  "source": {
+    "path": "analysis/terminal-host-menu-native-v1-20261112.json.gz",
+    "bytes": 16789,
+    "sha256": "e9d178a7dee62d1b30c7d2722058c906ae12c4f5753f8363e5614e446511fd08"
+  },
+  "native_lifetime_seconds": 5.422,
+  "result": "early_capture_rejected_uniform_or_untouched_pixels",
+  "capture_timeout": false,
+  "diagnostic_limit": "Worker rejected uniform RGB. No pixel buffer or extrema/sentinel comparison was retained; actual solid startup frame versus unsupported rendering remains unresolved. No visual success claim.",
+  "game_retries": 0,
+  "menu_clicks": 0,
+  "successor_observed": false,
+  "full_graphics_qualification": false,
+  "lifetime": {
+    "parent_pid": 33008,
+    "membership": [
+      {
+        "elapsed": 0.0,
+        "pids": [
+          33008
+        ]
+      },
+      {
+        "elapsed": 0.046999999991385266,
+        "pids": [
+          33008,
+          26712
+        ]
+      },
+      {
+        "elapsed": 5.280999999988126,
+        "pids": [
+          26712
+        ]
+      },
+      {
+        "elapsed": 5.35899999999674,
+        "pids": []
+      }
+    ],
+    "members_before_cleanup": [],
+    "forced_termination": false,
+    "exits": {
+      "33008": {
+        "signaled": true,
+        "code": 0
+      },
+      "26712": {
+        "signaled": true,
+        "code": 3221226324
+      }
+    },
+    "members_after_cleanup": [],
+    "child_status_is_not_WinMain_return": true
+  },
+  "window_after": {
+    "is_window": false,
+    "property": 0
+  },
+  "mutable_files_unchanged": true,
+  "implementation_hashes_verified": 10,
+  "verification": "Source SHA, implementation hashes, owned Job empty, no forced termination, private mutable bytes unchanged, no mouse actions; external process inventory found no game/capture/preflight process",
+  "next_step": "Offline inspect original startup render phase and a capture diagnostic that distinguishes untouched bytes from an actual solid frame; do not repeat this early PrintWindow recipe or restart desktop testing without a new window. The WGC timeout remains unresolved.",
+  "cleanup": "Only compressed source, small progress receipt and closeout retained. No PNG, runtime copy, VM, backup or raw memory dump created; no historical deletion."
+}
