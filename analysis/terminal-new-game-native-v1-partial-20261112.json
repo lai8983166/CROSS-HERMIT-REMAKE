@@ -1,0 +1,202 @@
+{
+  "status": "partial_menu_observation",
+  "accepted": false,
+  "startup_native_handoff_observed": true,
+  "samples": 28,
+  "TLS_samples": 26,
+  "startup_gate_contract": "original_startup_retired_v1",
+  "startup_retirement_trigger_proved": false,
+  "startup_activation_observations": [
+    {
+      "elapsed": 0.32900000002700835,
+      "hwnd": 1249326,
+      "before": 1249326,
+      "operations": [],
+      "after": 1249326
+    }
+  ],
+  "input": {
+    "attempted": true,
+    "index": 0,
+    "input_edges_observed": true,
+    "movement_mode": "absolute_virtual_desktop_feedback",
+    "press_samples": [
+      48,
+      49
+    ],
+    "held_samples": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
+    ],
+    "release_samples": [
+      58
+    ],
+    "asynchronous_incoherent_samples": [],
+    "input_after_elapsed": 282.5470000000205,
+    "down_to_up_ms": 213.152,
+    "feedback_corrections": [],
+    "button_edges_independently_verified": true,
+    "minimum_selector_iterations": 3521
+  },
+  "menu_worker_exit": {
+    "code": 0,
+    "wait_status": 0,
+    "elapsed": 284.61000000004424,
+    "before_WM_CLOSE": true
+  },
+  "successor_observations": [
+    {
+      "index": 26,
+      "elapsed": 284.64100000000326,
+      "vtable": 6041708,
+      "node": 80389688,
+      "TLS_verified": true,
+      "thread_id": 11008
+    },
+    {
+      "index": 27,
+      "elapsed": 284.6570000000065,
+      "vtable": 6041708,
+      "node": 80389688,
+      "TLS_verified": true,
+      "thread_id": 11008
+    }
+  ],
+  "menu_ready_one_second_independently_sampled": true,
+  "menu_ready_retained_snapshot_span_seconds": 1.0,
+  "story_confirmations": [],
+  "VM_dispatch_order_source": [],
+  "story_budget_stop": null,
+  "chapter_completion_proved": false,
+  "pending_successor_event_observations": [
+    {
+      "source": "menu_snapshot",
+      "elapsed": 284.61000000004424,
+      "event": 7
+    }
+  ],
+  "native_menu_handoff_observed": false,
+  "original_constructor_full_trace_proved": false,
+  "ADV_exit0_observations": [],
+  "ADV_exit0_and_workroom_observed": false,
+  "workroom_stable_observed_seconds": 0,
+  "workroom_callback_code_live_authenticated": false,
+  "collector_workroom_input_executed": false,
+  "workroom_exit_observed": false,
+  "full_native_instruction_trace": false,
+  "normal_PTD_cleanup_proved": false,
+  "full_resource_lifetime_proved": false,
+  "full_battle_exit_accepted": false,
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "formal_terminal_boundary_advanced": false,
+  "continuously_proved_no_overlap": false,
+  "WinMain_normal_return_proved": false,
+  "cleanup_process_exits": {
+    "24956": {
+      "signaled": true,
+      "code": 0
+    },
+    "18740": {
+      "signaled": true,
+      "code": 3221226324
+    }
+  },
+  "limitations": [
+    "Snapshots and retained worker query results are not a complete causal instruction/API trace.",
+    "Unsuspended raw input reads can intersect a producer update; incoherent samples do not establish edges.",
+    "Original vtable, graph, PTD and successor observations do not individually trace every constructor instruction.",
+    "No claim of successful OS wait return, battle result consumption, resource cleanup trace, or complete battle acceptance."
+  ],
+  "targeted_capture": {
+    "polls": 205,
+    "retained_samples": 28,
+    "pause_seconds": 0.07900000002700835,
+    "whole_process_atomic": false,
+    "accepted": false
+  },
+  "source_report": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-new-game-native-v1-20261112.json.gz",
+    "bytes": 88195,
+    "sha256": "9813d6dea1dd2e41db73eebddc80b7a5f9bedfb5fd2e8bb475806d25fe2a1c2e"
+  },
+  "verifier_sha256": "2936eb51f81d878188f3d03ec1de9602abd7b8bf9c8e0d462033de9119421240",
+  "native_dependency_attestation_complete": false,
+  "mouse_authorization": {
+    "path": "analysis/terminal-menu-mouse-authorization-v1-20261107.json",
+    "bytes": 647,
+    "sha256": "711cf7ec337b7d41b9f079a2e3f67ca0c181abb6593eaf602cbe5867ae50e809",
+    "historical_backend_archive": {
+      "path": "analysis/terminal-menu-implementations-v4-20261107.zip",
+      "bytes": 10367,
+      "sha256": "6548365506f4e96ff745b28c571dfbd40ca083b5de92193452a1b7deecda265f"
+    },
+    "current_backend": {
+      "path": "devtools/terminal_menu_input.py",
+      "bytes": 9418,
+      "sha256": "e88b55c3c60b96c6ee338e7cb392e53f54734463978d37fa6f562cdcc76c827f"
+    },
+    "scope": "Same two private owned menu targets, original readiness guards, no game writes; current movement bugfix authenticated separately"
+  },
+  "implementation_archive_used": null,
+  "current_verification_dependencies": [
+    {
+      "path": "devtools/terminal_scene_owner_verification.py",
+      "bytes": 23238,
+      "sha256": "f5283d5d6fedfa873add0d8aa50f8052833686228c2ff1966b2ff13314a65c7d"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_verification.py",
+      "bytes": 22479,
+      "sha256": "37f7a5e7f404918c81ec3578fe5c4dbfb8e9845441d211cada96b91540ea3aeb"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_contract.py",
+      "bytes": 13030,
+      "sha256": "4e3fd6fe81535c2abcab1f7c4b689560a035ac22c2553a3bd208bebc89970e35"
+    },
+    {
+      "path": "devtools/terminal_menu_transition_contract.py",
+      "bytes": 15943,
+      "sha256": "6143612badc97bf59610ddcccc6e8c772a67b9193a1bd2c53cf8f6f5e1d20eb2"
+    }
+  ],
+  "desktop": {
+    "restored": true,
+    "recovery_used": true,
+    "checks": [
+      [],
+      []
+    ]
+  },
+  "strict_host_handoff_verification_passed": false,
+  "scope": "Independent authenticated components only; missing NEW_GAME is not accepted or inferred",
+  "desktop_source": {
+    "path": "analysis/terminal-new-game-native-v1-20261112.json.gz.desktop.json",
+    "sha256": "fbf0a47d8c0c8458727e25da3fb1fb95b4e8eb38f1b02829c90f1171e02027c6"
+  },
+  "recovery_source": {
+    "path": "analysis/terminal-new-game-native-v1-recovery-20261112.json",
+    "sha256": "6d7c25be7b2e9705ad984623d9435f3637f034443b9661940f566f7782cf631c"
+  },
+  "component_verifiers": [
+    {
+      "path": "devtools/terminal_new_game_verification.py",
+      "bytes": 8835,
+      "sha256": "3947bca05c8ff2c1a25f3c5c0e4f3d16e2373407ebdffa4af3f1b67fc08c7aca"
+    },
+    {
+      "path": "devtools/terminal_host_menu_verification.py",
+      "bytes": 14805,
+      "sha256": "b8f2c5bd691ebc5c5dedf0c272f0e132a85c591dcbb50388f4e595a38719aea9"
+    }
+  ]
+}

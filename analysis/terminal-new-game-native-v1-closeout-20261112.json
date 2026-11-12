@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "kind": "single_native_new_game_observation_closeout",
+  "date": "2026-11-12",
+  "source": {
+    "path": "analysis/terminal-new-game-native-v1-20261112.json.gz",
+    "bytes": 88195,
+    "sha256": "9813d6dea1dd2e41db73eebddc80b7a5f9bedfb5fd2e8bb475806d25fe2a1c2e"
+  },
+  "files": [
+    {
+      "path": "analysis/terminal-new-game-native-v1-20261112.json.gz",
+      "bytes": 88195,
+      "sha256": "9813d6dea1dd2e41db73eebddc80b7a5f9bedfb5fd2e8bb475806d25fe2a1c2e"
+    },
+    {
+      "path": "analysis/terminal-new-game-native-v1-20261112.json.gz.desktop.json",
+      "bytes": 5336,
+      "sha256": "fbf0a47d8c0c8458727e25da3fb1fb95b4e8eb38f1b02829c90f1171e02027c6"
+    },
+    {
+      "path": "analysis/terminal-new-game-native-v1-20261112.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "analysis/terminal-new-game-native-v1-20261112.json.gz.stop.json",
+      "bytes": 13,
+      "sha256": "4eec88892aaea47180553a8d767a9ecee0b8806f2510c8a5ae4092973388ec98"
+    },
+    {
+      "path": "analysis/terminal-new-game-native-v1-partial-20261112.json",
+      "bytes": 6611,
+      "sha256": "4301435e18569707ca11b44a898cf8cfbcb49e31e378c84a28e286b100ee478b"
+    },
+    {
+      "path": "analysis/terminal-new-game-native-v1-recovery-20261112.json",
+      "bytes": 8842,
+      "sha256": "6d7c25be7b2e9705ad984623d9435f3637f034443b9661940f566f7782cf631c"
+    },
+    {
+      "path": "analysis/terminal-new-game-native-v1-verification-20261112.json",
+      "bytes": 2038,
+      "sha256": "82c4467f369fe8306937dcafffcf45174957ba3ec8de8b2822bdd11fc60f46dc"
+    }
+  ],
+  "recorded_implementations_unchanged": 14,
+  "authorization": {
+    "user_requested_single_host_test": true,
+    "advance_desktop_notice": true,
+    "desktop_before": "2026-11-12T13:12:18.272571+08:00",
+    "fixed_deadline": "2026-11-12T13:22:00+08:00",
+    "restored_final": "2026-11-12T13:18:04.591063+08:00",
+    "native_launches": 1,
+    "extra_launches": 0
+  },
+  "native": {
+    "pid": 18740,
+    "parent_pid": 24956,
+    "probe_error": null,
+    "lifecycle_error": null,
+    "budget_events": [],
+    "input_attempts": 1,
+    "input_edges_verified": true,
+    "press_samples": [
+      48,
+      49
+    ],
+    "held_samples": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
+    ],
+    "release_samples": [
+      58
+    ],
+    "down_to_up_ms": 213.152,
+    "minimum_selector_iterations": 3521,
+    "menu_thread": 19816,
+    "menu_exit0_elapsed": 284.61000000004424,
+    "ADV_thread": 11008,
+    "ADV_TLS_sample_indices": [
+      26,
+      27
+    ],
+    "NEW_GAME_worker_observed": false,
+    "NEW_GAME_TLS_observed": false,
+    "NEW_GAME_exit_observed": false,
+    "full_handoff_verified": false
+  },
+  "capture": {
+    "polls": 205,
+    "saved_samples": 28,
+    "post_input_polls": 135,
+    "recorded_poll_gap_seconds": [
+      0.015,
+      0.016
+    ],
+    "reads": 10432,
+    "read_bytes": 894648,
+    "recorded_total_pause_seconds": 0.07900000002700835,
+    "zero_duration_polls": 200,
+    "target_audit_passed": true,
+    "handles_closed": true,
+    "precise_pause_performance_proved": false
+  },
+  "clock_diagnostic": {
+    "scope": "Post-run query in the same existing audit Python; not a retroactive target timestamp",
+    "monotonic": {
+      "implementation": "GetTickCount64()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 0.015625
+    },
+    "perf_counter": {
+      "implementation": "QueryPerformanceCounter()",
+      "monotonic": true,
+      "adjustable": false,
+      "resolution": 1e-07
+    }
+  },
+  "boundary": [
+    {
+      "sample_index": 24,
+      "poll_index": 201,
+      "elapsed": 284.61000000004424,
+      "MAIN_event_hex": "0100000007000000",
+      "task_vtables": []
+    },
+    {
+      "sample_index": 25,
+      "poll_index": 202,
+      "elapsed": 284.625,
+      "MAIN_event_hex": "0100000006000000",
+      "task_vtables": []
+    },
+    {
+      "sample_index": 26,
+      "poll_index": 203,
+      "elapsed": 284.64100000000326,
+      "MAIN_event_hex": "0000000006000000",
+      "task_vtables": [
+        "0x5c306c"
+      ]
+    },
+    {
+      "sample_index": 27,
+      "poll_index": 204,
+      "elapsed": 284.6570000000065,
+      "MAIN_event_hex": "0000000006000000",
+      "task_vtables": [
+        "0x5c306c"
+      ]
+    }
+  ],
+  "interpretation": {
+    "periodic_polling_insufficient_for_required_intermediate_lifetime": true,
+    "events_do_not_replace_thread_TLS_exit": true,
+    "NEW_GAME_actual_duration_not_proved": true,
+    "do_not_repeat_same_sleep_recipe": true,
+    "do_not_reuse_failed_debug_relay": true,
+    "deterministic_replacement_observer_already_qualified": false
+  },
+  "verification": {
+    "strict_passed": false,
+    "strict_error": "independent input and menu retirement to NEW_GAME required",
+    "independent_components_passed": true,
+    "independent_review_passed": true,
+    "independent_review_scope": "Source identity, all polls, missing intermediate lifetime, clock limits and desktop chronology",
+    "openspec_strict_passed": true,
+    "acceptance_standard_changed": false
+  },
+  "desktop": {
+    "initial_checks": [
+      [
+        "taskbar_geometry_changed"
+      ],
+      [
+        "monitors_changed",
+        "taskbar_geometry_changed"
+      ]
+    ],
+    "natural_settling_only": true,
+    "Explorer_restarted": false,
+    "desktop_writes": [],
+    "original_baseline_preserved": true,
+    "initial_followup_checks": [
+      [],
+      []
+    ],
+    "final_checks": [
+      [],
+      []
+    ],
+    "restored": true,
+    "independently_verified": true,
+    "display_mode": {
+      "width": 3840,
+      "height": 2160,
+      "bpp": 32,
+      "frequency": 60,
+      "x": 0,
+      "y": 0,
+      "orientation": 0,
+      "fixed": 0
+    }
+  },
+  "cleanup": {
+    "owned_job_empty": true,
+    "forced_termination": false,
+    "private_mutable_runtime_restored_and_verified": true,
+    "child_exit_not_WinMain_proof": true
+  },
+  "next_gate": [
+    "Offline qualification of event-associated lifetime observation on an owned no-UI short-lived probe",
+    "QPC timestamps and bounded automatic failure/cleanup",
+    "Actual initialized TLS, retained current worker handle and normal exit; event counts alone insufficient",
+    "Unchanged original code/registers; independent verification before any new authorized game run"
+  ],
+  "accepted": false,
+  "formal_progress": {
+    "complete": 2,
+    "total": 8
+  },
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "resource_PTD_cleanup_proved": false,
+  "retention": {
+    "new_environment_bytes": 0,
+    "new_backup_bytes": 0,
+    "new_persistent_files": 8,
+    "new_local_evidence_bytes_including_backups": 118254,
+    "new_uncompressed_full_dumps": 0,
+    "cleanup": "In-memory decode only; owned process/handles closed and private mutable runtime restored; no historical files deleted",
+    "retained_failure_reason": "Unique pending7/pending6 empty-graph boundary and calibrated polling limitation; single compressed source"
+  }
+}

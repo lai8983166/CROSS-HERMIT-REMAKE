@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "error": "ValueError('independent input and menu retirement to NEW_GAME required')",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 8, in <module>\n  File \"F:\\project\\chaomofa\\devtools\\terminal_new_game_verification.py\", line 126, in verify_file\n    result = old.bind(old.verify_file, verify_host_envelope=verify_host_envelope,\n  File \"F:\\project\\chaomofa\\devtools\\terminal_host_menu_verification.py\", line 225, in verify_file\n    result=bind(menu.verify_file,verify_report=verify_report)(path,digest)\n  File \"F:\\project\\chaomofa\\devtools\\terminal_menu_handoff_verification.py\", line 881, in verify_file\n    result=verify_report(report,raw)\n  File \"F:\\project\\chaomofa\\devtools\\terminal_new_game_verification.py\", line 120, in verify_report\n    result = old.bind(old.verify_report, verify_host_envelope=verify_host_envelope)(report,raw,check_disk)\n  File \"F:\\project\\chaomofa\\devtools\\terminal_host_menu_verification.py\", line 171, in verify_report\n    return verify_outcome(report,result)\n  File \"F:\\project\\chaomofa\\devtools\\terminal_host_menu_verification.py\", line 145, in verify_outcome\n    need(result['native_menu_handoff_observed'] is True\n  File \"F:\\project\\chaomofa\\devtools\\terminal_scene_owner_verification.py\", line 43, in need\n    raise ValueError(message)\nValueError: independent input and menu retirement to NEW_GAME required\n",
+  "accepted": false,
+  "source": {
+    "path": "analysis/terminal-new-game-native-v1-20261112.json.gz",
+    "bytes": 88195,
+    "sha256": "9813d6dea1dd2e41db73eebddc80b7a5f9bedfb5fd2e8bb475806d25fe2a1c2e"
+  },
+  "desktop_sha256": "fbf0a47d8c0c8458727e25da3fb1fb95b4e8eb38f1b02829c90f1171e02027c6",
+  "recovery_sha256": "6d7c25be7b2e9705ad984623d9435f3637f034443b9661940f566f7782cf631c",
+  "verifier": {
+    "path": "devtools/terminal_new_game_verification.py",
+    "bytes": 8835,
+    "sha256": "3947bca05c8ff2c1a25f3c5c0e4f3d16e2373407ebdffa4af3f1b67fc08c7aca"
+  }
+}
