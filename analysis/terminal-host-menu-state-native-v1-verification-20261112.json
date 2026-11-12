@@ -1,0 +1,11 @@
+{
+  "accepted": false,
+  "verification_passed": false,
+  "error": "ValueError('independent input and menu retirement to NEW_GAME required')",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 8, in <module>\n  File \"F:\\project\\chaomofa\\devtools\\terminal_host_menu_verification.py\", line 225, in verify_file\n    result=bind(menu.verify_file,verify_report=verify_report)(path,digest)\n  File \"F:\\project\\chaomofa\\devtools\\terminal_menu_handoff_verification.py\", line 881, in verify_file\n    result=verify_report(report,raw)\n  File \"F:\\project\\chaomofa\\devtools\\terminal_host_menu_verification.py\", line 171, in verify_report\n    return verify_outcome(report,result)\n  File \"F:\\project\\chaomofa\\devtools\\terminal_host_menu_verification.py\", line 145, in verify_outcome\n    need(result['native_menu_handoff_observed'] is True\n  File \"F:\\project\\chaomofa\\devtools\\terminal_scene_owner_verification.py\", line 43, in need\n    raise ValueError(message)\nValueError: independent input and menu retirement to NEW_GAME required\n",
+  "source": {
+    "path": "analysis\\terminal-host-menu-state-native-v1-20261112.json.gz",
+    "bytes": 125072,
+    "sha256": "92fc2084af0e9208e53afb087c84d063a284e61a0e765cd4aeb7a324b9bf11e8"
+  }
+}

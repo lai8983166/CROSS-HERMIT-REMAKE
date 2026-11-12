@@ -1,0 +1,162 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "native_runs": 1,
+  "repeated_native_runs": 0,
+  "authorized_window": {
+    "start_utc": "2026-11-12T04:14:49Z",
+    "fixed_deadline_utc": "2026-11-12T04:24:34Z",
+    "maximum_seconds": 600
+  },
+  "implementation_bytes_unchanged": true,
+  "screenshots_taken": 0,
+  "manual_game_operations_requested": 0,
+  "actual_input_verified": {
+    "attempted": true,
+    "index": 0,
+    "input_edges_observed": true,
+    "movement_mode": "absolute_virtual_desktop_feedback",
+    "press_samples": [
+      46
+    ],
+    "held_samples": [
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+    ],
+    "release_samples": [
+      55
+    ],
+    "asynchronous_incoherent_samples": [],
+    "input_after_elapsed": 282.35899999999674,
+    "down_to_up_ms": 205.9992,
+    "feedback_corrections": [],
+    "button_edges_independently_verified": true,
+    "minimum_selector_iterations": 3521
+  },
+  "strict_host_menu_handoff_passed": false,
+  "failure": "NEW_GAME original instance, worker/TLS and exit absent from current samples and retained workers",
+  "main_menu_exit0_observed": true,
+  "ADV_with_TLS_observed": true,
+  "source_observation_limit": "Snapshots and input samples do not prove complete causal instruction/API flow",
+  "native_cleanup": {
+    "parent_pid": 31840,
+    "membership": [
+      {
+        "elapsed": 0.015000000013969839,
+        "pids": [
+          31840
+        ]
+      },
+      {
+        "elapsed": 0.0470000000204891,
+        "pids": [
+          31840,
+          15300
+        ]
+      },
+      {
+        "elapsed": 285.40600000001723,
+        "pids": [
+          15300
+        ]
+      },
+      {
+        "elapsed": 285.4679999999935,
+        "pids": []
+      }
+    ],
+    "members_before_cleanup": [],
+    "forced_termination": false,
+    "exits": {
+      "31840": {
+        "signaled": true,
+        "code": 0
+      },
+      "15300": {
+        "signaled": true,
+        "code": 3221226324
+      }
+    },
+    "members_after_cleanup": [],
+    "child_status_is_not_WinMain_return": true
+  },
+  "desktop_restored": true,
+  "desktop_final_checks": [
+    [],
+    []
+  ],
+  "desktop_restored_at_ns": 1794457262778348200,
+  "desktop_independent_verification": {
+    "restored": true,
+    "recovery_used": true,
+    "checks": [
+      [],
+      []
+    ]
+  },
+  "independent_review": {
+    "agent": "review_menu_native_gate",
+    "input_and_restoration_confirmed": true,
+    "strict_failure_confirmed": true
+  },
+  "validation": {
+    "strict_openspec": true,
+    "code_changes": 0,
+    "new_unit_test_runs": 0,
+    "previous_regression_tests": 176
+  },
+  "next_step": "Offline bounded capture and handle retention for intermediate NEW_GAME lifetime; no retry or verifier weakening",
+  "new_local_evidence": [
+    {
+      "path": "analysis/terminal-host-menu-state-native-v1-20261112.json.gz",
+      "bytes": 125072,
+      "sha256": "92fc2084af0e9208e53afb087c84d063a284e61a0e765cd4aeb7a324b9bf11e8"
+    },
+    {
+      "path": "analysis/terminal-host-menu-state-native-v1-20261112.json.gz.desktop.json",
+      "bytes": 5336,
+      "sha256": "11f9f93f205db770b1c3e84a094fc4e3252eb5765c626b057ef83084037eadf3"
+    },
+    {
+      "path": "analysis/terminal-host-menu-state-native-v1-20261112.json.gz.progress.json",
+      "bytes": 91,
+      "sha256": "8f9b1d29985a1316eb4165b568be59020a71a2c9aa538b2c639ffffb521d27a7"
+    },
+    {
+      "path": "analysis/terminal-host-menu-state-native-v1-20261112.json.gz.stop.json",
+      "bytes": 13,
+      "sha256": "4eec88892aaea47180553a8d767a9ecee0b8806f2510c8a5ae4092973388ec98"
+    },
+    {
+      "path": "analysis/terminal-host-menu-state-native-v1-partial-20261112.json",
+      "bytes": 9793,
+      "sha256": "61782d696d2ea9e3c778505454da49d82c5a9f1c368dfb39fcb2fdb0f0a69e41"
+    },
+    {
+      "path": "analysis/terminal-host-menu-state-native-v1-recovery-20261112.json",
+      "bytes": 8865,
+      "sha256": "51cfe13b0936c81fc370dc30fbf6173556ba6b1f936f57d467f27df1d15a6e70"
+    },
+    {
+      "path": "analysis/terminal-host-menu-state-native-v1-verification-20261112.json",
+      "bytes": 1294,
+      "sha256": "1863fa5af08b2ed60a292ae7e89ad037cb65802825799317639b75edf99abf6e"
+    }
+  ],
+  "new_backup_bytes": 0,
+  "new_local_evidence_bytes_including_closeout": 155048,
+  "cleanup": {
+    "game_and_capture_helpers_absent": true,
+    "no_forced_game_termination": true,
+    "original_assets_and_saves_unchanged": true,
+    "original_failed_desktop_receipt_preserved": true,
+    "new_temporary_files_remaining": 0,
+    "historical_evidence_deleted": false
+  }
+}

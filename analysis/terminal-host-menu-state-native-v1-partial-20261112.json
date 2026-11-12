@@ -1,0 +1,329 @@
+{
+  "status": "partial_menu_observation",
+  "accepted": false,
+  "startup_native_handoff_observed": true,
+  "samples": 9,
+  "TLS_samples": 9,
+  "startup_gate_contract": "original_startup_retired_v1",
+  "startup_retirement_trigger_proved": false,
+  "startup_activation_observations": [
+    {
+      "elapsed": 0.31200000003445894,
+      "hwnd": 459284,
+      "before": 459284,
+      "operations": [],
+      "after": 459284
+    }
+  ],
+  "input": {
+    "attempted": true,
+    "index": 0,
+    "input_edges_observed": true,
+    "movement_mode": "absolute_virtual_desktop_feedback",
+    "press_samples": [
+      46
+    ],
+    "held_samples": [
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+    ],
+    "release_samples": [
+      55
+    ],
+    "asynchronous_incoherent_samples": [],
+    "input_after_elapsed": 282.35899999999674,
+    "down_to_up_ms": 205.9992,
+    "feedback_corrections": [],
+    "button_edges_independently_verified": true,
+    "minimum_selector_iterations": 3521
+  },
+  "menu_worker_exit": {
+    "code": 0,
+    "wait_status": 0,
+    "elapsed": 284.51500000001397,
+    "before_WM_CLOSE": true
+  },
+  "successor_observations": [
+    {
+      "index": 7,
+      "elapsed": 284.51500000001397,
+      "vtable": 6041708,
+      "node": 80651832,
+      "TLS_verified": true,
+      "thread_id": 17108
+    },
+    {
+      "index": 8,
+      "elapsed": 284.625,
+      "vtable": 6041708,
+      "node": 80651832,
+      "TLS_verified": true,
+      "thread_id": 17108
+    }
+  ],
+  "menu_ready_one_second_independently_sampled": true,
+  "menu_ready_retained_snapshot_span_seconds": 1.0,
+  "story_confirmations": [],
+  "VM_dispatch_order_source": [],
+  "story_budget_stop": null,
+  "chapter_completion_proved": false,
+  "pending_successor_event_observations": [],
+  "native_menu_handoff_observed": false,
+  "original_constructor_full_trace_proved": false,
+  "ADV_exit0_observations": [],
+  "ADV_exit0_and_workroom_observed": false,
+  "workroom_stable_observed_seconds": 0,
+  "workroom_callback_code_live_authenticated": false,
+  "collector_workroom_input_executed": false,
+  "workroom_exit_observed": false,
+  "full_native_instruction_trace": false,
+  "normal_PTD_cleanup_proved": false,
+  "full_resource_lifetime_proved": false,
+  "full_battle_exit_accepted": false,
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "formal_terminal_boundary_advanced": false,
+  "continuously_proved_no_overlap": false,
+  "WinMain_normal_return_proved": false,
+  "cleanup_process_exits": {
+    "31840": {
+      "signaled": true,
+      "code": 0
+    },
+    "15300": {
+      "signaled": true,
+      "code": 3221226324
+    }
+  },
+  "limitations": [
+    "Snapshots and retained worker query results are not a complete causal instruction/API trace.",
+    "Unsuspended raw input reads can intersect a producer update; incoherent samples do not establish edges.",
+    "Original vtable, graph, PTD and successor observations do not individually trace every constructor instruction.",
+    "No claim of successful OS wait return, battle result consumption, resource cleanup trace, or complete battle acceptance."
+  ],
+  "source_report": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-host-menu-state-native-v1-20261112.json.gz",
+    "bytes": 125072,
+    "sha256": "92fc2084af0e9208e53afb087c84d063a284e61a0e765cd4aeb7a324b9bf11e8"
+  },
+  "verifier_sha256": "2936eb51f81d878188f3d03ec1de9602abd7b8bf9c8e0d462033de9119421240",
+  "native_dependency_attestation_complete": false,
+  "mouse_authorization": {
+    "path": "analysis/terminal-menu-mouse-authorization-v1-20261107.json",
+    "bytes": 647,
+    "sha256": "711cf7ec337b7d41b9f079a2e3f67ca0c181abb6593eaf602cbe5867ae50e809",
+    "historical_backend_archive": {
+      "path": "analysis/terminal-menu-implementations-v4-20261107.zip",
+      "bytes": 10367,
+      "sha256": "6548365506f4e96ff745b28c571dfbd40ca083b5de92193452a1b7deecda265f"
+    },
+    "current_backend": {
+      "path": "devtools/terminal_menu_input.py",
+      "bytes": 9418,
+      "sha256": "e88b55c3c60b96c6ee338e7cb392e53f54734463978d37fa6f562cdcc76c827f"
+    },
+    "scope": "Same two private owned menu targets, original readiness guards, no game writes; current movement bugfix authenticated separately"
+  },
+  "implementation_archive_used": null,
+  "current_verification_dependencies": [
+    {
+      "path": "devtools/terminal_scene_owner_verification.py",
+      "bytes": 23238,
+      "sha256": "f5283d5d6fedfa873add0d8aa50f8052833686228c2ff1966b2ff13314a65c7d"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_verification.py",
+      "bytes": 22479,
+      "sha256": "37f7a5e7f404918c81ec3578fe5c4dbfb8e9845441d211cada96b91540ea3aeb"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_contract.py",
+      "bytes": 13030,
+      "sha256": "4e3fd6fe81535c2abcab1f7c4b689560a035ac22c2553a3bd208bebc89970e35"
+    },
+    {
+      "path": "devtools/terminal_menu_transition_contract.py",
+      "bytes": 15943,
+      "sha256": "6143612badc97bf59610ddcccc6e8c772a67b9193a1bd2c53cf8f6f5e1d20eb2"
+    }
+  ],
+  "desktop": {
+    "restored": true,
+    "recovery_used": true,
+    "checks": [
+      [],
+      []
+    ]
+  },
+  "strict_host_handoff_verification_passed": false,
+  "host_menu_observation_verified": false,
+  "classification": "authenticated_partial_observation_not_handoff_acceptance",
+  "derivation": "Frozen menu.verify_file with private verify_report binding to frozen menu.verify_report plus host.verify_input; host envelope checked. Required host verify_outcome remains failed; not bypassed for acceptance.",
+  "missing": [
+    "NEW_GAME original instance and registered task",
+    "NEW_GAME current worker/TLS and exit",
+    "complete MENU to NEW_GAME to ADV observation"
+  ],
+  "newgame_vtable": "0x5A0824",
+  "newgame_worker_observed": false,
+  "timeline": [
+    {
+      "index": 0,
+      "elapsed": 276.60899999999674,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 37200,
+          "vtable": "0x59b060",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000001000000"
+    },
+    {
+      "index": 1,
+      "elapsed": 277.7179999999935,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 37200,
+          "vtable": "0x59b060",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000001000000"
+    },
+    {
+      "index": 2,
+      "elapsed": 278.7179999999935,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 37200,
+          "vtable": "0x59b060",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000001000000"
+    },
+    {
+      "index": 3,
+      "elapsed": 279.76500000001397,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 37200,
+          "vtable": "0x59b060",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000001000000"
+    },
+    {
+      "index": 4,
+      "elapsed": 280.76500000001397,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 37200,
+          "vtable": "0x59b060",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000001000000"
+    },
+    {
+      "index": 5,
+      "elapsed": 282.4679999999935,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 37200,
+          "vtable": "0x59b060",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000001000000"
+    },
+    {
+      "index": 6,
+      "elapsed": 283.5780000000377,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 37200,
+          "vtable": "0x59b060",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000001000000"
+    },
+    {
+      "index": 7,
+      "elapsed": 284.51500000001397,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 17108,
+          "vtable": "0x5c306c",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000006000000"
+    },
+    {
+      "index": 8,
+      "elapsed": 284.625,
+      "tasks": [
+        {
+          "pointer": 80651832,
+          "tid": 17108,
+          "vtable": "0x5c306c",
+          "TLS_present": true
+        }
+      ],
+      "MAIN_event_hex": "0000000006000000"
+    }
+  ],
+  "additional_dependencies": [
+    {
+      "path": "devtools/terminal_host_menu_verification.py",
+      "bytes": 14805,
+      "sha256": "b8f2c5bd691ebc5c5dedf0c272f0e132a85c591dcbb50388f4e595a38719aea9"
+    },
+    {
+      "path": "devtools/terminal_school_handoff_verification.py",
+      "bytes": 80810,
+      "sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288"
+    },
+    {
+      "path": "devtools/terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    }
+  ],
+  "desktop_sources": [
+    {
+      "path": "analysis\\terminal-host-menu-state-native-v1-20261112.json.gz.desktop.json",
+      "bytes": 5336,
+      "sha256": "11f9f93f205db770b1c3e84a094fc4e3252eb5765c626b057ef83084037eadf3"
+    },
+    {
+      "path": "analysis\\terminal-host-menu-state-native-v1-recovery-20261112.json",
+      "bytes": 8865,
+      "sha256": "51cfe13b0936c81fc370dc30fbf6173556ba6b1f936f57d467f27df1d15a6e70"
+    }
+  ],
+  "independent_review": {
+    "agent": "review_menu_native_gate",
+    "agrees": true,
+    "original_source_unchanged": true,
+    "native_retrial_performed": false
+  }
+}
