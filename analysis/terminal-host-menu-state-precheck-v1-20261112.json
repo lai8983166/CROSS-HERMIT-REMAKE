@@ -1,0 +1,61 @@
+{
+  "accepted": false,
+  "offline_precheck_passed": true,
+  "game_started": false,
+  "desktop_accessed": false,
+  "input_submitted": false,
+  "formal_progress": "2/8",
+  "source": {
+    "path": "analysis/terminal-host-menu-dxgi-v2-20261112.json.gz",
+    "bytes": 618702,
+    "sha256": "0598bf575f20a86daee78fd81c2e9044686955e40d325eeda36e7f99f538f663"
+  },
+  "original_source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "recorded_implementations_unchanged": true,
+  "hypothetical_input_eligibility": {
+    "sample": 5,
+    "elapsed": 281.89000000001397,
+    "owner": [
+      80258688,
+      21380,
+      3436,
+      3332,
+      39976380
+    ]
+  },
+  "observed_menu_retired": {
+    "sample": 63,
+    "elapsed": 341.64000000001397,
+    "vtables": [
+      "0x5caa48"
+    ]
+  },
+  "observed_margin_seconds": 59.75,
+  "original_blocks": {
+    "hit_test": {
+      "stop": "0x45f8f1",
+      "instructions": 89,
+      "selection": 0
+    },
+    "held": {
+      "stop": "0x45f02c",
+      "instructions": 9,
+      "accepted": false
+    },
+    "release": {
+      "stop": "0x45f020",
+      "instructions": 9,
+      "accepted": true
+    },
+    "dispatch": {
+      "stop": "0x45ed02",
+      "instructions": 7
+    }
+  },
+  "limitations": [
+    "Recorded row timing is not a new native click or handoff",
+    "Live ownership, coordinates and countdown require a fresh authorized run",
+    "New input receipt semantics require independent verification; old verifier stays strict",
+    "No full graphics, wait/result, resource/PTD or battle-exit acceptance"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "native_runs": 0,
+  "desktop_actions": false,
+  "inputs_sent": 0,
+  "result": "Native-state menu input implemented; offline scheduling and rejection checks passed; new receipt verifier integration still required before next native test",
+  "implementations": [
+    {
+      "path": "devtools/terminal_host_menu_input.py",
+      "bytes": 5026,
+      "sha256": "d6a826c11499ac8e8472a3ffedcea73488b4f3d87407302f3c0f5333c871b14b"
+    },
+    {
+      "path": "devtools/terminal_host_menu_preflight_v5.py",
+      "bytes": 9572,
+      "sha256": "b6f86f1ff2bf107adf06c8a88ca2bd4babb541bb6b065e90c714f4584a4899d8"
+    },
+    {
+      "path": "devtools/terminal_menu_state_gate.py",
+      "bytes": 2766,
+      "sha256": "b101f4887f1a60c90d53e3e1c100a14c8b26f1232554212de4464ac5f13d0dc9"
+    },
+    {
+      "path": "devtools/terminal_host_menu_state_precheck.py",
+      "bytes": 3406,
+      "sha256": "05144fdde65d51c6309c9e59cd7cfb2e18e90a83765cebdb1b256f7698e2e863"
+    },
+    {
+      "path": "devtools/tests/test_terminal_host_menu_state.py",
+      "bytes": 6828,
+      "sha256": "a0b14116d97cf3881a38adbdf9f8f0c4677416d815f51caf62fbc63f05fdb897"
+    }
+  ],
+  "new_local_evidence": [
+    {
+      "path": "analysis/terminal-host-menu-state-precheck-v1-20261112.json",
+      "bytes": 1639,
+      "sha256": "114805e2cf14f603a7c6a1528b1303ad4ccac5b9fdc83336429b635d58829093"
+    }
+  ],
+  "backup_bytes": 0,
+  "tests": {
+    "count": 99,
+    "seconds": 10.183,
+    "passed": true,
+    "timeout_seconds": 120,
+    "strict_openspec": true
+  },
+  "independent_review": {
+    "agent": "review_menu_native_gate",
+    "scope": "offline preparation only",
+    "passed": true,
+    "checked": [
+      "original coordinate and release-edge semantics",
+      "same-call UP cleanup after guard failure",
+      "closed timer race",
+      "slow guard deadline rejection",
+      "actual cloned controller/runtime injection with inert substitutes"
+    ],
+    "required_next": "Versioned independent validation of feedback movement and button_edge_checks; never weaken historical verifier"
+  },
+  "failed_precheck": {
+    "kind": "sandbox offline unittest exceeded budget near temporary-file tests",
+    "root_cause": "not fully diagnosed",
+    "action": "Terminated only confirmed own unittest PIDs 31424 and 7568; reran with normal file access and 120-second faulthandler exit",
+    "original_success_claimed": false
+  },
+  "cleanup": {
+    "originals_modified": false,
+    "historical_evidence_removed": false,
+    "new_backups": 0,
+    "game_or_capture_helpers_started": false,
+    "new_temporary_directories_remaining": 0,
+    "temporary_test_files": "Normal successful tests removed own TemporaryDirectory contents; no new tmp directories found"
+  },
+  "new_local_evidence_bytes_including_manifest": 4471
+}
