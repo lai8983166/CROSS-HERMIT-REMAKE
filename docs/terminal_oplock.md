@@ -1,5 +1,38 @@
 # 保留原调试所有权的 NEW_GAME 文件事件观察
 
+## 2026-11-12 首次原游戏窗口：NEW_GAME → ADV 已取得
+
+本次仅运行一次已提交v7，无截图、无剧情确认或战斗输入。原菜单输入、MENU线程17028
+exit0、NEW_GAME线程34360的当前CRT TLS/116字节PTD、保留句柄exit0，以及后继ADV线程
+12784的当前TLS已由独立验证器核验。原调试父16932、游戏子13960及debug port在门控前、
+门控中、原worker退出后保持一致，原CH001文件7112字节的SHA前后相同。
+
+实际栈中的 `42ABF3 → 4CE2E8 → 4CE23F → 49F53E → 421F8A → 56E183` 对应原文件打开、
+NEW_GAME回调和CRT线程链。原NtCreateFile参数及栈内OA/Unicode指针命名被锁的CH001；
+TLS index43、TEB3547136、PTD81307192属于该线程。锁从申请到关闭3.4658596秒；实际
+break观察至放行1.2197毫秒，采集区间1.1448毫秒。放行后0.3594毫秒查询到原线程exit0，
+再过约17.3449毫秒采到ADV。该结果是文件I/O时序被有界延长的原生观察，不是零扰动重放。
+
+桌面窗口固定截止16:01:25。游戏在15:58:40前结束，初始sidecar因任务栏几何及工作区的
+退出过渡严格报错，保持原样。随后未写桌面状态、未重启Explorer，桌面自然恢复；
+15:59:54完成第二组复核：3840×2160/60Hz、任务栏、工作区、输入桌面与原前台均一致。
+原sidecar、同基线recovery及两组后续采样共同通过独立桌面验证，提前释放桌面。
+
+本轮只推进原生菜单交接证据。原游戏进程清理码仍为`0xC0000354`，不是正常WinMain返回；
+不能由NEW_GAME的exit0推定PTD已独立观察到释放。原构造全指令、等待返回、结果消费、
+三握手和完整战斗资源寿命仍未验收，正式仍2/8。生命周期`close_request.elapsed`在包装
+post执行长probe前求值，不能当作实际WM_CLOSE发送时刻；原代码顺序是probe返回后才发送。
+
+- 来源：`analysis/terminal-new-game-oplock-native-v1-20261112.json.gz`，87042字节，SHA
+  `9de681d2a2296e94592f5d764139437456553ebebd8b053d6fea0ec93d14d8ad`。
+- 完整原菜单/事件/ADV/桌面证明：`analysis/terminal-new-game-oplock-native-v1-proof-20261112.json`。
+- 独立复核：`analysis/terminal-new-game-oplock-native-v1-review-20261112.json`。
+- 桌面恢复：`analysis/terminal-new-game-oplock-native-v1-recovery-20261112.json`。
+- 本次新增8项真实来源回归及2项原时钟回归通过，错误TLS/调试者/文件/退出/ADV/桌面均拒绝。
+- 精确实现、容量及本轮临时控制文件清理：`analysis/terminal-new-game-oplock-native-v1-closeout-20261112.json`。
+
+以下为前一轮机制预检和接线准备记录，保留其当时边界。
+
 2026-11-12：**RW oplock 已在无窗口原生案例取得活体 TLS 和正常返回/退出；原游戏尚未运行，正式仍 2/8。** 本轮没有重试轮询、截图、保护父调试 relay 或主动 OutputDebugString 通知。
 
 ## 实际取得的链条

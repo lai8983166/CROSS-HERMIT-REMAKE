@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "kind": "independent_original_game_oplock_evidence_review",
+  "accepted": false,
+  "review_passed": true,
+  "scope": "One original native lifetime: event-bound NEW_GAME observation, retained worker exit0, later ADV and desktop recovery. Not formal complete game acceptance.",
+  "sources": {
+    "native": {
+      "path": "analysis/terminal-new-game-oplock-native-v1-20261112.json.gz",
+      "bytes": 87042,
+      "sha256": "9de681d2a2296e94592f5d764139437456553ebebd8b053d6fea0ec93d14d8ad"
+    },
+    "desktop": {
+      "path": "analysis/terminal-new-game-oplock-native-v1-20261112.json.gz.desktop.json",
+      "bytes": 5339,
+      "sha256": "c21f0ac554a2509a3e2ccbcdff2e25e16e95a662b300f50ef2a69b8f8de752de"
+    },
+    "recovery": {
+      "path": "analysis/terminal-new-game-oplock-native-v1-recovery-20261112.json",
+      "bytes": 8872,
+      "sha256": "7d7778e8bcc694687c0e9394c2780245367c1587a9748369a0515462c955a233"
+    }
+  },
+  "method": "Offline original JSON/raw-byte re-decoding without importing collectors or production verification functions; compared all captured EBP links and NEW_GAME ancestry memory against the actual recorded stack.",
+  "findings": {
+    "source_and_frozen_implementation_identities_match": true,
+    "original_wrapper_and_CreateFileA_instruction_match": true,
+    "actual_NtCreateFile_arguments_and_private_CH001_name_match": true,
+    "actual_stack_bytes": 1328,
+    "all_raw_EBP_links_match": 13,
+    "full_PTD_bytes_retained": 116,
+    "PTD_sha256": "962c5d40d6f3a91e8a03fbbfc5ec5be7e1ab1aa95edbd7a79bab488db9670ed9",
+    "same_current_TLS_thread_and_node": true,
+    "retained_original_worker_exit0": true,
+    "later_ADV_TLS_observations": 2,
+    "sampled_original_parent_and_debug_port_unchanged": true,
+    "forced_termination": false,
+    "owned_job_empty": true,
+    "no_game_or_thread_memory_writes": true,
+    "native_API_module_file_fully_authenticated": false,
+    "full_game_acceptance": false
+  },
+  "owners": {
+    "parent_pid": 16932,
+    "child_pid": 13960,
+    "NEW_GAME_tid": 34360,
+    "NEW_GAME_node": 81276296,
+    "NEW_GAME_TLS_index": 43,
+    "NEW_GAME_PTD": 81307192,
+    "ADV_tid": 12784,
+    "parent_exit": 0,
+    "child_cleanup_exit_hex": "0xc0000354",
+    "child_status_is_not_WinMain_return": true
+  },
+  "timing": {
+    "lock_arm_to_close_seconds": 3.4658596,
+    "observed_break_to_release_ms": 1.2197,
+    "snapshot_ms": 1.1448,
+    "release_to_retained_exit_query_ms": 0.3594,
+    "first_ADV_after_retained_exit_query_ms": 17.34489999944344
+  },
+  "desktop": {
+    "original_check_passed": false,
+    "original_failures": [
+      [
+        "taskbar_geometry_changed"
+      ],
+      [
+        "monitors_changed",
+        "taskbar_geometry_changed"
+      ]
+    ],
+    "recovery_passed": true,
+    "recovery_operations": [],
+    "final_observation": "2026-11-12T15:59:54.700159+08:00",
+    "deadline": "2026-11-12T16:01:25+08:00",
+    "seconds_before_deadline": 90.299840768,
+    "all_four_recovery_observations_equal_baseline_except_timestamp": true
+  },
+  "limitations": [
+    "Single native lifetime, sampled contexts and retained exit queries do not establish full independent replay or final acceptance.",
+    "PTD clear/free, full constructor execution, complete resource cleanup and continuous ownership are not independently traced.",
+    "Oplock changes I/O timing; the observed break timestamp is notification observation, not exact kernel break initiation.",
+    "The protected child cleanup status 0xc0000354 is recorded; parent exit0 and worker exit0 do not establish successful WinMain return.",
+    "Original desktop checks remain failed; later unmodified recovery records establish restoration within the authorized window.",
+    "lifecycle.close_request.elapsed is evaluated before wrapped post() executes the probe, so it is not actual WM_CLOSE dispatch time; the authenticated wrapper dispatches original.post only after probe return."
+  ],
+  "blocking_evidence_gaps_found": [],
+  "production_verifier_false_rejection_found": false
+}
