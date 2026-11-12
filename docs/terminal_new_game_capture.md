@@ -114,3 +114,55 @@ Explorer；13:17:43 的只读复查已经与原基线一致，13:18:04 完成两
 本次只保留一份有新定位价值的小型压缩失败来源、组件/恢复报告和校验清单；没有
 新环境或备份，没有删除历史证据。完整清单与体积见
 `analysis/terminal-new-game-native-v1-closeout-20261112.json`。
+
+## 无 UI 同步事件正反对照（2026-11-12）
+
+本轮未启动游戏、轮询、截图或输入。只用系统已有 C# 编译器在 F 盘构建 PE32/x86
+GUI-subsystem helper，并在两个新建、无窗口的自有 Job 中执行 notified / silent 对照。
+使用 Windows 调试事件作为同步停止点，不附加已有进程、不安装断点、不调用
+SetThreadContext / WriteProcessMemory。只处理系统正常的初始 loader 断点，其它异常
+按原策略传递；没有使用已禁用的原游戏保护父 debug relay。
+
+| 对照 | 已认证的原生结果 | 实际能力范围 |
+| --- | --- | --- |
+| notified | PID32136 / worker38464，create48→live49→clear50→exit51；保留句柄最终 signaled、exit0 | 主动 OutputDebugString 通知时，实际 FS/TEB→TLS slot9→116B 数据、随后 slot0 均读到；读取前后完整返回的 WOW64 context 原字节一致 |
+| silent | PID19704 / worker32300，create47→exit48；保留句柄 exit0 | 创建时 slot9 为0；worker记录执行段内整个进程没有任何调试事件，未捕获已初始化 TLS |
+
+两例整个 case 分别约 92.6 / 38.8 ms；worker 自报 QPC 执行段分别 864.5 / 358.4 µs。
+silent 中 ready→cleared 两个标记仅相隔1个10MHz QPC tick，不能将此称作完整 TLS
+真实寿命恰为0.1µs。notified 的通知会让系统暂停进程，正例可观察区间被合作机制延长；
+不作零扰动或与 silent 性能等价的声明。QPC 原计数与 perf_counter_ns 独立交叉核对，
+本次两次顺序读时钟偏差为0.8–3.5µs。
+
+这是 helper 自己分配的116字节 TLS 数据，不是原游戏 CRT PTD。没有循环值守、sleep
+或 ready/ack 等待来保活 worker，但主动通知本身仍是新增合作条件。
+[Windows 调试事件文档](https://learn.microsoft.com/en-us/windows/win32/debug/debugging-events)
+说明事件会暂停被调试进程，创建通知发生在新线程用户代码执行前；
+[ContinueDebugEvent 文档](https://learn.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-continuedebugevent)
+说明后续继续及系统事件句柄关闭规则。保留句柄来自实际创建事件的复制，正常退出
+同时核对原事件和保留句柄查询；不使用已关闭的系统事件句柄作退出证明。
+
+独立验证器为 `devtools.terminal_tls_event_verification`。固定4项采集依赖及实际 PE32
+身份，验证所有保留线程/进程的事件归属、两套 QPC 时间轴、MAIN config、原始 TLS
+数据、TLS清零、全部继续事件和桌面状态。24项离线篡改/桌面回归及独立复核通过；
+原始采集实现和来源保持原字节。正常清理均无强杀、Job为空、所有自有句柄关闭；
+桌面两次复核与原 baseline 一致，无桌面设置或输入操作。
+
+**原游戏准入仍失败，正式仍2/8。** 原 NEW_GAME 的已核直接调用链没有认证到相同的
+必经通知，保护父的调试所有权问题也未解决。创建/退出或 ETW 计数不能补成活体 TLS；
+本轮不会把合作正例接成游戏采集，也不再扩大此候选的原生实验。下一步先判断原路径
+是否存在 TLS 有效区间内、无新增通知/陷阱的真实可观察边界；没有证据前不启动游戏。
+
+此外 v1 运行器只证明本次正常清理，异常路径尚不合格：Job 查询异常可能跳过后续
+显式关闭，EXIT_PROCESS 的继续失败可能遗漏终止/drain，部分初始化在 try 范围外。
+来源未触发这些分支，正常结果仍有效，但不能作为可复用的合格控制器。后续如确有
+原游戏可迁移边界，必须另立版本修复及故障资格化；不得热改本次冻结实现。
+采集 DEPS 未包含桌面模块和编译器的采集时身份；最终验证独立重算桌面结果，并只把
+后续编译器哈希记录为事后诊断，不回填来源成完整构建/桌面模块时点证明。
+
+唯一长期来源：`analysis/terminal-tls-event-controls-v1-20261112.json.gz`，压缩SHA256
+`19d92d2f555e5882aad985678bfb43cb2aa092b692e7f31180502c2ba56f7ebf`；解压58597字节，
+SHA256 `ee4f87da13a783eb59bfada8fb7196d3be3d2176949f87a5cad3e88be7ac405a`。
+最终报告为 `terminal-tls-event-controls-verification-v2-20261112.json`；原始helper二进制
+仅在 F 盘本地保留，位置/哈希、派生副本清理和本轮总体积见
+`analysis/terminal-tls-event-controls-closeout-v1-20261112.json`。

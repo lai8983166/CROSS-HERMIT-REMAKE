@@ -1,0 +1,53 @@
+{
+  "controls_verified": true,
+  "fixture_capture_passed": true,
+  "without_notification_TLS_capture_passed": false,
+  "original_adaptation_eligible": false,
+  "accepted": false,
+  "cases": [
+    {
+      "mode": "notified",
+      "pid": 32136,
+      "tid": 38464,
+      "creation_TLS_zero": true,
+      "initialized_TLS_captured": true,
+      "TLS_clear_captured": true,
+      "retained_worker_exit0": true,
+      "marked_TLS_interval_ticks": 3105,
+      "qpc_frequency": 10000000,
+      "worker_body_seconds": 0.0008645,
+      "cooperative_notification_required": true,
+      "original_adaptation_eligible": false,
+      "accepted": false
+    },
+    {
+      "mode": "silent",
+      "pid": 19704,
+      "tid": 32300,
+      "creation_TLS_zero": true,
+      "initialized_TLS_captured": false,
+      "TLS_clear_captured": false,
+      "retained_worker_exit0": true,
+      "marked_TLS_interval_ticks": 1,
+      "qpc_frequency": 10000000,
+      "worker_body_seconds": 0.0003584,
+      "cooperative_notification_required": false,
+      "original_adaptation_eligible": false,
+      "accepted": false
+    }
+  ],
+  "desktop_restored": true,
+  "fault_cleanup_qualified": false,
+  "limitations": [
+    "The positive control adds OutputDebugString at initialized TLS; no equivalent mandatory game boundary or protected-parent ownership bridge is proved.",
+    "Only the observed normal cleanup paths passed. v1 has unqualified exception cleanup paths; do not reuse it as a qualified controller.",
+    "This is a helper-owned 116-byte TLS block, not the original CRT PTD or complete architectural state.",
+    "The desktop checks are independently recomputed; the original collector DEPS did not bind the desktop module or compiler at collection time."
+  ],
+  "source": {
+    "path": "analysis/terminal-tls-event-controls-v1-20261112.json.gz",
+    "sha256": "19d92d2f555e5882aad985678bfb43cb2aa092b692e7f31180502c2ba56f7ebf"
+  },
+  "verifier_sha256": "622f9f791b10323728fe16682082827bfd5e8fcd665f32c3cd613614b9c06fd1",
+  "desktop_verifier_sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+}

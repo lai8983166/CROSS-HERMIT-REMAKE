@@ -1,0 +1,203 @@
+{
+  "kind": "owned_no_UI_TLS_event_controls_closeout",
+  "date": "2026-11-12",
+  "accepted": false,
+  "source": {
+    "path": "analysis/terminal-tls-event-controls-v1-20261112.json.gz",
+    "bytes": 5280,
+    "sha256": "19d92d2f555e5882aad985678bfb43cb2aa092b692e7f31180502c2ba56f7ebf"
+  },
+  "files": [
+    {
+      "path": "analysis/terminal-tls-event-controls-v1-20261112.json.gz",
+      "bytes": 5280,
+      "sha256": "19d92d2f555e5882aad985678bfb43cb2aa092b692e7f31180502c2ba56f7ebf"
+    },
+    {
+      "path": "analysis/terminal-tls-event-controls-verification-v2-20261112.json",
+      "bytes": 2155,
+      "sha256": "563034ea66b4cc3298edac25d11ec910af08ca08eea0bfab31e641b47c071bd6"
+    },
+    {
+      "path": "analysis/terminal-tls-event-controls-retirement-v1-20261112.json",
+      "bytes": 1078,
+      "sha256": "1380ecda2a43f42546b4a726ed82311e396f0471575a2cf41f2866ac11b317d5"
+    },
+    {
+      "path": ".venv-audit/tls-event-probe-v1-20261112/tls-event-fixture.exe",
+      "bytes": 6656,
+      "sha256": "56b27c4c84bf7e26f7c51fee83e16feac3cc23969e2c03477fb5cbe7c7f53df8"
+    }
+  ],
+  "implementation_manifest": [
+    {
+      "path": "devtools/terminal_tls_event_probe.py",
+      "bytes": 14304,
+      "sha256": "17dab1b6a553315fe45113f060b82bd8542f5a232b6c654fb8cee1ab20b39360"
+    },
+    {
+      "path": "devtools/terminal_tls_event_fixture.cs",
+      "bytes": 3880,
+      "sha256": "a5ccc8051867cdb9597be8f2766c07034613b6605a7827693392ef760830297a"
+    },
+    {
+      "path": "devtools/terminal_tls_event_verification.py",
+      "bytes": 13554,
+      "sha256": "622f9f791b10323728fe16682082827bfd5e8fcd665f32c3cd613614b9c06fd1"
+    },
+    {
+      "path": "devtools/tests/test_terminal_tls_event_verification.py",
+      "bytes": 5383,
+      "sha256": "cc4c6980fd353c699e4d0b85546fc3991c54772ce833aec40d293cf0a3e4327e"
+    }
+  ],
+  "native_runs": {
+    "count": 2,
+    "notified_process_seconds": 0.09263470000587404,
+    "silent_process_seconds": 0.038753599976189435,
+    "new_game_runs": 0,
+    "old_polling_runs": 0,
+    "screenshots": 0,
+    "desktop_inputs": 0,
+    "register_writes": 0,
+    "memory_writes": 0
+  },
+  "results": {
+    "controls_verified": true,
+    "fixture_capture_passed": true,
+    "without_notification_TLS_capture_passed": false,
+    "original_adaptation_eligible": false,
+    "accepted": false,
+    "cases": [
+      {
+        "mode": "notified",
+        "pid": 32136,
+        "tid": 38464,
+        "creation_TLS_zero": true,
+        "initialized_TLS_captured": true,
+        "TLS_clear_captured": true,
+        "retained_worker_exit0": true,
+        "marked_TLS_interval_ticks": 3105,
+        "qpc_frequency": 10000000,
+        "worker_body_seconds": 0.0008645,
+        "cooperative_notification_required": true,
+        "original_adaptation_eligible": false,
+        "accepted": false
+      },
+      {
+        "mode": "silent",
+        "pid": 19704,
+        "tid": 32300,
+        "creation_TLS_zero": true,
+        "initialized_TLS_captured": false,
+        "TLS_clear_captured": false,
+        "retained_worker_exit0": true,
+        "marked_TLS_interval_ticks": 1,
+        "qpc_frequency": 10000000,
+        "worker_body_seconds": 0.0003584,
+        "cooperative_notification_required": false,
+        "original_adaptation_eligible": false,
+        "accepted": false
+      }
+    ],
+    "desktop_restored": true,
+    "fault_cleanup_qualified": false,
+    "limitations": [
+      "The positive control adds OutputDebugString at initialized TLS; no equivalent mandatory game boundary or protected-parent ownership bridge is proved.",
+      "Only the observed normal cleanup paths passed. v1 has unqualified exception cleanup paths; do not reuse it as a qualified controller.",
+      "This is a helper-owned 116-byte TLS block, not the original CRT PTD or complete architectural state.",
+      "The desktop checks are independently recomputed; the original collector DEPS did not bind the desktop module or compiler at collection time."
+    ]
+  },
+  "capture_and_full_qualification_are_distinct": true,
+  "normal_cleanup": {
+    "all_jobs_empty": true,
+    "all_retained_handles_closed": true,
+    "processes_signaled": true,
+    "forced_termination": false
+  },
+  "disqualified_fault_cleanup_paths": [
+    "v1 job-query exception before explicit CloseHandle cleanup",
+    "v1 EXIT_PROCESS continuation failure can bypass termination/drain",
+    "some v1 initialization is outside try/finally"
+  ],
+  "desktop": {
+    "checks": [
+      [],
+      []
+    ],
+    "restored": true,
+    "verifier_implementation": {
+      "path": "devtools/terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    },
+    "collector_time_desktop_module_identity_not_attested": true
+  },
+  "build": {
+    "post_run_compiler_snapshot": {
+      "path": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\csc.exe",
+      "bytes": 2154992,
+      "sha256": "bf26bfa321f45db027fdde1084d058e3f6f280d18da2bf1abb319dbc55bf453b"
+    },
+    "compiler_identity_at_capture_not_attested": true,
+    "source_and_binary_identities_matched": true,
+    "helper_PE32_x86_GUI_subsystem": true,
+    "new_environment_installed": false
+  },
+  "independent_review": {
+    "passed": true,
+    "source_and_TEB_TLS_payload_checked": true,
+    "six_counterexamples_now_rejected": [
+      "missing dependency set",
+      "process event exit mismatch",
+      "non-target retained thread still active",
+      "QPC epoch shift",
+      "config TLS-index mismatch",
+      "other-thread event in silent body"
+    ]
+  },
+  "validation": {
+    "targeted_tests": 24,
+    "seconds": 0.067,
+    "passed": true,
+    "openspec_strict": true
+  },
+  "original_boundary": {
+    "original_source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "directly_checked_callback": "0x49F4E0..0x49F55E",
+    "direct_calls": [
+      "0x4D3510",
+      "0x4DB230",
+      "0x4DB270",
+      "0x422360",
+      "0x4DB120",
+      "0x4CE210",
+      "0x439E30",
+      "0x56CE80"
+    ],
+    "equivalent_mandatory_synchronous_notification_proved": false,
+    "protected_parent_observation_ownership_proved": false,
+    "game_adaptation_eligible": false,
+    "failed_debug_relay_stays_disabled": true
+  },
+  "next_gate": "First prove an existing game boundary while TLS is initialized and lawful observer ownership; do not rerun this control or the game merely to increase event/sample counts. A reusable controller additionally needs separately versioned fault-cleanup qualification.",
+  "formal_progress": {
+    "complete": 2,
+    "total": 8
+  },
+  "retention": {
+    "persistent_evidence_files": 5,
+    "new_local_evidence_bytes_including_backups": 22397,
+    "new_backup_bytes": 0,
+    "new_environment_bytes": 0,
+    "removed_this_turn_transient_bytes": 60752,
+    "retired_paths": [
+      ".venv-audit/tls-event-probe-v1-20261112/report.json",
+      "analysis/terminal-tls-event-controls-verification-v1-20261112.json"
+    ],
+    "historical_files_deleted": [],
+    "binary_kept_local_only": ".venv-audit/tls-event-probe-v1-20261112/tls-event-fixture.exe",
+    "raw_source_retained_losslessly_in": "analysis/terminal-tls-event-controls-v1-20261112.json.gz"
+  }
+}
