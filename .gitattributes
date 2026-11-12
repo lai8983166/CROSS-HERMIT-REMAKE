@@ -1,4 +1,9 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# Bounded NEW_GAME capture binds exact implementation and offline receipt bytes.
+devtools/terminal_host_menu_preflight_v6.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_new_game_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_new_game_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-new-game-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 devtools/terminal_result_tail_replay.py -text
 devtools/tests/test_terminal_result_tail_replay.py -text
 analysis/terminal-result-tail-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "kind": "offline_new_game_capture_preparation",
+  "date": "2026-11-12",
+  "source": {
+    "path": "analysis/terminal-host-menu-state-native-v1-20261112.json.gz",
+    "bytes": 125072,
+    "sha256": "92fc2084af0e9208e53afb087c84d063a284e61a0e765cd4aeb7a324b9bf11e8"
+  },
+  "parent_implementations_unchanged": 13,
+  "implementations": [
+    {
+      "path": "devtools/terminal_new_game_capture.py",
+      "bytes": 16738,
+      "sha256": "554c5a33eaf5f64b4046f6def7f9142a0bd4f348104e21434328027c32558c11"
+    },
+    {
+      "path": "devtools/terminal_host_menu_preflight_v6.py",
+      "bytes": 9969,
+      "sha256": "102df3aaa65890cf4bb55d2c3822daf209ec0ea6cccf0079d04de3ea8415078e"
+    },
+    {
+      "path": "devtools/terminal_new_game_verification.py",
+      "bytes": 8835,
+      "sha256": "3947bca05c8ff2c1a25f3c5c0e4f3d16e2373407ebdffa4af3f1b67fc08c7aca"
+    },
+    {
+      "path": "devtools/tests/test_terminal_new_game_capture.py",
+      "bytes": 11681,
+      "sha256": "bed2ef392e4c65a078a804ddeaae6225abaec1c4e3d07bdaa95e52047cff69b6"
+    }
+  ],
+  "diagnosis": {
+    "last_MENU_elapsed": 283.5780000000377,
+    "first_ADV_elapsed": 284.51500000001397,
+    "retained_gap_seconds": 0.9369999999762513,
+    "MENU_threads_per_saved_sample": 19,
+    "ADV_threads_per_saved_sample": 17,
+    "new_thread_scope": "MAIN plus current registered workers only",
+    "missing_NEW_GAME_in_samples_and_retained_workers": true,
+    "actual_NEW_GAME_lifetime_unknown": true
+  },
+  "validation": {
+    "related_suite": {
+      "tests": 189,
+      "seconds": 19.914,
+      "passed": true
+    },
+    "final_targeted_after_exit_order_fix": {
+      "tests": 13,
+      "seconds": 1.428,
+      "passed": true
+    },
+    "openspec_strict": true,
+    "diff_check": true,
+    "independent_review": {
+      "passed": true,
+      "scope": "implementation, private v6 wiring, source preservation and offline tamper rejection",
+      "resolved": [
+        "unsaved generation substitution",
+        "unsaved missing active worker suspension",
+        "unsaved terminated-worker resurrection",
+        "close retry of already closed handles"
+      ]
+    },
+    "real_parent_strict_handoff_still_rejected": true,
+    "reason": "independent input and menu retirement to NEW_GAME required"
+  },
+  "limits": {
+    "post_input_seconds": 20,
+    "observer_seconds": 40,
+    "polls": 2048,
+    "raw_samples": 512,
+    "read_calls": 200000,
+    "read_bytes": 16777216,
+    "per_pause_seconds": 0.25,
+    "total_pause_seconds": 5,
+    "native_report_compressed_bytes": 6291456
+  },
+  "new_game_launched": false,
+  "desktop_actions": false,
+  "screenshots": false,
+  "native_NEW_GAME_captured": false,
+  "native_performance_measured": false,
+  "wait_return_proved": false,
+  "result_consumption_proved": false,
+  "resource_PTD_cleanup_proved": false,
+  "full_battle_exit_accepted": false,
+  "accepted": false,
+  "formal_progress": {
+    "complete": 2,
+    "total": 8
+  },
+  "next_gate": "Fresh authorized bounded host v6 menu observation; one attempt, no story or battle; strict NEW_GAME/TLS/exit then ADV and desktop restoration",
+  "evidence_retention": {
+    "new_persistent_evidence_files": 1,
+    "new_backup_bytes": 0,
+    "new_raw_dump_bytes": 0,
+    "deleted_historical_files": [],
+    "temporary_test_artifacts": "TemporaryDirectory cases cleaned; no new native runtime or environment",
+    "new_local_evidence_bytes_including_backups": 3446
+  }
+}
