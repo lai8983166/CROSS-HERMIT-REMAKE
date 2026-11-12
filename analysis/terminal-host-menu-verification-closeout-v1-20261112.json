@@ -1,0 +1,75 @@
+{
+  "accepted": false,
+  "formal_progress": "2/8",
+  "game_started": false,
+  "desktop_actions": false,
+  "implementation": [
+    {
+      "path": "devtools/terminal_host_menu_verification.py",
+      "bytes": 14805,
+      "sha256": "b8f2c5bd691ebc5c5dedf0c272f0e132a85c591dcbb50388f4e595a38719aea9"
+    },
+    {
+      "path": "devtools/tests/test_terminal_host_menu_verification.py",
+      "bytes": 12682,
+      "sha256": "b6e9698e6af38ef0ccf1763249886193a53170253163900b61d21723ff505094"
+    }
+  ],
+  "frozen_previous_implementations_unchanged": true,
+  "dependencies": [
+    {
+      "path": "devtools/terminal_menu_handoff_verification.py",
+      "bytes": 62883,
+      "sha256": "2936eb51f81d878188f3d03ec1de9602abd7b8bf9c8e0d462033de9119421240"
+    },
+    {
+      "path": "devtools/terminal_school_handoff_verification.py",
+      "bytes": 80810,
+      "sha256": "1d269d8496159b40d873db4b2e18459b4ee18159f22e4bab6b694cd7c5cf8288"
+    },
+    {
+      "path": "devtools/terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    }
+  ],
+  "old_failed_source": {
+    "path": "analysis/terminal-host-menu-dxgi-v2-20261112.json.gz",
+    "bytes": 618702,
+    "sha256": "0598bf575f20a86daee78fd81c2e9044686955e40d325eeda36e7f99f538f663",
+    "rejected": true,
+    "reason": "exact host v5 implementation manifest"
+  },
+  "tests": {
+    "related_tests": 176,
+    "elapsed_seconds": 18.005,
+    "passed": true,
+    "budget_seconds": 120,
+    "final_new_suite": 16,
+    "strict_openspec": true
+  },
+  "independent_review": {
+    "agent": "review_menu_native_gate",
+    "passed": true,
+    "scope": "offline implementation only",
+    "fixed_findings": [
+      "original/recovery/final desktop timestamp and baseline checks",
+      "all cursor evidence bracketed by raw input and whole-sequence clock agreement",
+      "first observed MENU readiness budget"
+    ]
+  },
+  "result": "Host v5 receipts have an independent consumer; no fresh native source has passed it yet",
+  "next_step": "A newly authorized at-most-ten-minute host window: one new-game click through actual ADV; no story/battle input; desktop restoration required",
+  "limitations": [
+    "Synthetic positive fixtures are not native evidence",
+    "Snapshots do not prove complete causal instruction/API trace",
+    "No wait/result/resource/PTD/battle acceptance"
+  ],
+  "evidence_storage": {
+    "new_native_captures": 0,
+    "new_backups": 0,
+    "new_temp_files_remaining": 0,
+    "old_evidence_removed": false,
+    "new_local_evidence_bytes": 2586
+  }
+}

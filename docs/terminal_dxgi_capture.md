@@ -113,7 +113,27 @@ v3的30秒限期；未进入菜单。v4只修正早期复核预算至最多90秒
 在记录第5样本281.890秒得到反事实就绪判断；记录菜单341.640秒退役，间隔59.750秒。
 这不是新点击，也不恢复旧原生句柄。新入口尚未启动游戏，验收仍2/8。
 
-**下一项实际缺口**：原菜单独立验证器尚不接受新的反馈模式及button_edge_checks；
-先新增版本化独立消费者验证坐标反馈、两端guard、余量/代次以及原输入边沿与真实后继，
-不能放宽旧验证器、忽略新增字段或以ADV布尔值宣告通过。接入并完成离线拒绝测试后，
-才安排新的有界宿主机窗口，并提前取得当前桌面时段授权。
+后续已新增`terminal_host_menu_verification.py`作为v5的独立消费者，旧验证器不改字节。
+实际反馈修正及坐标稳定先独立核对，仅在私有内存视图中归一化旧几何字段，再由冻结
+菜单验证器核对原guard与真实press/held/release；不改写来源、不添加虚构input_window。
+
+新增验证覆盖两端按钮检查恰为DOWN/UP、完整线程/Event/selector代次、倒计时至少
+300且非增、整个坐标序列位于本次输入观测内及跨段双时钟一致。完整输入观测跨度
+必须不超过3秒；这是从真实before/after观测字段给出的更严格成功门，不声称回执
+记录了输入器内部deadline起始值。按住上限仍沿用旧验证器的250ms要求。
+还须在首次MENU出现15秒内输入，原菜单exit0和NEW_GAME原生TLS后继通过，继而
+NEW_GAME退出后20秒范围内取得真实ADV/TLS；仅SendInput成功或采集器successor布尔
+都不能通过。该结果仍是有限观察，不升级为完整因果轨迹或战斗退出验收。
+
+桌面sidecar要求精确同名文件及显式SHA；重新计算显示模式、任务栏、工作区和前台
+差异。可选恢复回执另给路径/SHA，必须绑定本次原始baseline；原始after、初次恢复
+after、final_after三阶段均重算状态并核对时间先后及授权截止，不能以新baseline
+掩盖原失败。恢复格式必须明确保留初次及最终两次采样，不沿用缺字段旧记录。
+
+```text
+.venv-audit/Scripts/python.exe -B -X utf8 -m devtools.terminal_host_menu_verification --report FRESH.json.gz --sha256 SOURCE_SHA --desktop-sha256 DESKTOP_SHA --out analysis/FRESH-verification.json
+```
+若实际需要恢复，追加`--recovery RECOVERY.json --recovery-sha256 RECOVERY_SHA`。
+176项相关离线回归、独立复核及严格规格检查通过；合成正例只测验证合同，未保存为
+原生通过来源，旧失败来源仍拒绝。下一步可安排一次新的有界宿主菜单窗口；必须先
+取得当前桌面时段授权，只到ADV、不输入剧情或战斗，失败即收尾、不反复启动。
