@@ -7,6 +7,7 @@ analysis/terminal-tls-event-*.json -text whitespace=blank-at-eol,blank-at-eof,sp
 analysis/terminal-tls-event-*.json.gz binary
 # Bounded NEW_GAME capture binds exact implementation and offline receipt bytes.
 devtools/terminal_host_menu_preflight_v6.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/terminal_host_menu_preflight_v7.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 devtools/terminal_new_game_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 devtools/tests/test_terminal_new_game_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 analysis/terminal-new-game-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
@@ -1249,6 +1250,10 @@ devtools/tests/test_terminal_cr2_*.py -text whitespace=blank-at-eol,blank-at-eof
 analysis/terminal-wait-tcg-cr2-*.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 
 # Preserve byte-identified context-filter microguest sources and review.
+devtools/terminal_oplock* -text
+devtools/tests/test_terminal_oplock* -text
+analysis/terminal-oplock-* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/terminal_oplock.md -text
 devtools/terminal_tcg_context_*.S -text
 devtools/terminal_tcg_context_*.ld -text
 analysis/terminal-wait-tcg-context-*.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

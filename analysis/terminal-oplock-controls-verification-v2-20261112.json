@@ -1,0 +1,104 @@
+{
+  "schema_version": 2,
+  "kind": "independent_owned_RW_oplock_verification",
+  "accepted": false,
+  "fixture_capture_passed": true,
+  "original_game_adaptation_eligible": false,
+  "full_game_acceptance": false,
+  "fault_cleanup_qualified": false,
+  "native_api_module_file_authenticated": false,
+  "recorded_QPC_frequency": 10000000,
+  "disk_identity_checked": true,
+  "cases": [
+    {
+      "pid": 16676,
+      "tid": 29424,
+      "parent_pid": 20580,
+      "frequency": 10000000,
+      "worker_create_qpc": 2831487878453,
+      "worker_exit_qpc": 2831488288315,
+      "open_ticks": 2547,
+      "debug_events": 79
+    },
+    {
+      "pid": 31376,
+      "tid": 22852,
+      "parent_pid": 21808,
+      "frequency": 10000000,
+      "worker_create_qpc": 2831489352535,
+      "worker_exit_qpc": 2831489822562,
+      "open_ticks": 72888,
+      "debug_events": 79
+    }
+  ],
+  "capture": {
+    "filename": "\\??\\F:\\project\\chaomofa\\.venv-audit\\oplock-preflight-v2-20261112\\oplocked\\payload.bin",
+    "EIP": 1996502844,
+    "nt_create_file": 1996502832,
+    "TLS_bytes": 116,
+    "hold_ticks": 69467,
+    "suspend_ns": 447100
+  },
+  "limits": [
+    "Self-owned 116-byte TLS payload is not game CRT PTD.",
+    "TLS clear/free is helper-reported and followed by original debug exit and retained-handle exit0.",
+    "Current ntdll export bytes are recorded; complete ntdll image/file identity was not collected.",
+    "Normal cleanup and the three named fault prechecks passed; other faults and the game adapter remain separate."
+  ],
+  "faults": {
+    "schema_version": 1,
+    "kind": "independent_RW_oplock_fault_prechecks",
+    "accepted": false,
+    "fault_prechecks_passed": true,
+    "all_fault_paths_qualified": false,
+    "original_game_adaptation_eligible": false,
+    "disk_identity_checked": true,
+    "cases": [
+      {
+        "name": "no_opener_cancel",
+        "lock_lifetime_ns": 63297200,
+        "normal_worker_exit_proved": false,
+        "pending_close_completed": true
+      },
+      {
+        "name": "watchdog_close",
+        "lock_lifetime_ns": 214123400,
+        "normal_worker_exit_proved": false,
+        "pending_close_completed": true
+      },
+      {
+        "name": "capture_failure",
+        "lock_lifetime_ns": 132989600,
+        "normal_worker_exit_proved": false,
+        "parent_pid": 36304,
+        "child_pid": 30480,
+        "forced_job_containment_verified": true,
+        "failure_before_target_suspend": true
+      }
+    ],
+    "limits": [
+      "Close/event completion is recorded; no-opener final NTSTATUS bytes were not collected.",
+      "capture_failure is pre-suspend injected failure with forced Job containment, not natural exit.",
+      "Suspended-thread failures, failed OS cleanup APIs and original-game behavior remain outside these three cases."
+    ],
+    "source": {
+      "path": ".venv-audit\\oplock-faults-v1-20261112\\report.json",
+      "bytes": 11065,
+      "sha256": "f0404cb75858477e71f512fd3c10bb144d42fbaf10855a8e4cdf846d9b03ce1f",
+      "uncompressed_bytes": 11065,
+      "uncompressed_sha256": "f0404cb75858477e71f512fd3c10bb144d42fbaf10855a8e4cdf846d9b03ce1f"
+    }
+  },
+  "source": {
+    "path": ".venv-audit\\oplock-preflight-v2-20261112\\report.json",
+    "bytes": 56372,
+    "sha256": "ed36127a535be8f9f51f5b7b727a520f054d8537edd4d4af0867985154e251e4",
+    "uncompressed_bytes": 56372,
+    "uncompressed_sha256": "ed36127a535be8f9f51f5b7b727a520f054d8537edd4d4af0867985154e251e4"
+  },
+  "verifier": {
+    "path": "F:\\project\\chaomofa\\devtools\\terminal_oplock_verification.py",
+    "bytes": 28053,
+    "sha256": "8c32a03f17071820584b545f89e2383599e68e421cd7d936aada1afa3481a368"
+  }
+}

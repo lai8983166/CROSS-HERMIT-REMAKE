@@ -427,3 +427,12 @@ native v3。命令完整返回、小块部署、原探针、输入和 D3D8 均�
 5 个 VM、2 个宿主 Job 已结束，但没有客体 hello/bye 清理证明。全程无宿主输入，
 正式验收不降级；下一步须先定位前脚本停点或认证替代引导/后端，再闭合控制链。
 详见 docs/terminal_wait.md 与 terminal-wait-tcg-serial closeout/review/storage。
+
+
+### 2026-11-12 RW文件事件同步观察（正式仍2/8）
+
+自有无UI案例已取得原调试所有权不变的普通CreateFile阻塞、真实TLS、实际文件参数及
+释放后原exit0；v1缺filename保持拒绝，v2补齐，三项限定故障和独立复核通过。
+v7已准备将同一机制接到私有CH001，在一次事件内采NEW_GAME、立即放行再等原退出，
+不重复短寿命轮询/截图。尚未启动原游戏，未取得新的游戏线程/TLS/退出证据；需要新的
+宿主桌面时段授权，不能用helper通过勾选任务。完整范围见docs/terminal_oplock.md。
