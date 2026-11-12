@@ -1,0 +1,293 @@
+{
+  "kind": "offline_NEW_GAME_boundary_closeout",
+  "date": "2026-11-12",
+  "accepted": false,
+  "report": {
+    "path": "analysis/terminal-new-game-boundary-v1-20261112.json",
+    "bytes": 38834,
+    "sha256": "5277dc3480362ac0d9b8d902b08c35ca30bb3bf2358081d39aa3ddd1ac12eabf"
+  },
+  "implementations": [
+    {
+      "path": "devtools/terminal_new_game_boundary_contract.py",
+      "bytes": 14778,
+      "sha256": "dbb0f56a7a373980753359632da14cf6983ec40fc9eb2fd375a8b9a6628b5930"
+    },
+    {
+      "path": "devtools/tests/test_terminal_new_game_boundary_contract.py",
+      "bytes": 2587,
+      "sha256": "22bd0bfa21f0709a53b734a42657089276cd6d4d429f381ee1590796cbc9fd3e"
+    }
+  ],
+  "sources_preserved": {
+    "image": {
+      "path": "analysis/hermit_game.exe",
+      "bytes": 5980160,
+      "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+    },
+    "menu": {
+      "path": "analysis/terminal-new-game-native-v1-20261112.json.gz",
+      "bytes": 88195,
+      "sha256": "9813d6dea1dd2e41db73eebddc80b7a5f9bedfb5fd2e8bb475806d25fe2a1c2e"
+    },
+    "crt": {
+      "path": "analysis/school-crt-init-probe-v2-20261022.json.gz",
+      "bytes": 7115235,
+      "sha256": "850b684f76c67e674bc1ba4a79b398bcb18f8b6abb01cda1e4d8908830c07a82"
+    },
+    "relay_review": {
+      "path": "analysis/terminal-wait-relay-review-v1-20261109.json",
+      "bytes": 7670,
+      "sha256": "140ed4a996d28b053b75ced259ee54018523c1a7890c9a0d86cd9549dea65e1d"
+    }
+  },
+  "source_bytes_rechecked_at_closeout": true,
+  "bounded_precheck": {
+    "instruction_checks": 50,
+    "cases": 3,
+    "instruction_callbacks": [
+      311,
+      320,
+      406
+    ],
+    "write_callbacks": [
+      175,
+      175,
+      211
+    ],
+    "seconds": 0.630940799950622,
+    "platform_leaves_executed": 0,
+    "substituted_returns": 0
+  },
+  "optional_CRT_hooks": {
+    "scope": "Static fixed image only; current native pointers and absence of indirect writers not proved.",
+    "pointers": [
+      {
+        "pointer": "0x76197c",
+        "hex": "50cf5600",
+        "value": "0x56cf50"
+      },
+      {
+        "pointer": "0x761980",
+        "hex": "50cf5600",
+        "value": "0x56cf50"
+      }
+    ],
+    "body": {
+      "va": "0x56cf50",
+      "hex": "558bec5dc3"
+    }
+  },
+  "independent_review": {
+    "passed": true,
+    "separate_emulator_and_trace_comparison": true,
+    "all_PC_write_and_audio_digests_matched": true,
+    "source_and_implementation_hashes_matched": true,
+    "NT_records_independently_checked": 16,
+    "optional_hook_bytes_reviewed": true
+  },
+  "validation": {
+    "targeted_tests": 5,
+    "passed": true,
+    "openspec_strict": true
+  },
+  "admission": {
+    "boundary_semantics_precheck_passed": true,
+    "mandatory_initialized_TLS_notification_proved": false,
+    "ownership_preserving_synchronous_observer_proved": false,
+    "original_game_preflight_allowed": false,
+    "real_NEW_GAME_thread_TLS_exit_added": false,
+    "parent_live_code_authenticated": false,
+    "old_polling_repeated": false,
+    "old_relay_repeated": false,
+    "helper_controls_repeated": false
+  },
+  "desktop": {
+    "scope": "Two post-offline read-only health samples; no pre-run desktop baseline and no restoration action claimed.",
+    "samples": [
+      {
+        "time_ns": 1794466061487844900,
+        "monitors": [
+          {
+            "device": "\\\\.\\DISPLAY1",
+            "screen": [
+              0,
+              0,
+              3072,
+              1728
+            ],
+            "work": [
+              0,
+              0,
+              3072,
+              1688
+            ],
+            "primary": true,
+            "mode": {
+              "width": 3840,
+              "height": 2160,
+              "bpp": 32,
+              "frequency": 60,
+              "x": 0,
+              "y": 0,
+              "orientation": 0,
+              "fixed": 0
+            }
+          }
+        ],
+        "taskbars": [
+          {
+            "hwnd": 328144,
+            "pid": 38204,
+            "visible": true,
+            "rect": [
+              0,
+              1688,
+              3072,
+              1728
+            ],
+            "hung": false
+          }
+        ],
+        "appbar_state": 0,
+        "auto_hide": false,
+        "metrics": {
+          "0": 3072,
+          "1": 1728,
+          "76": 0,
+          "77": 0,
+          "78": 3072,
+          "79": 1728,
+          "80": 1
+        },
+        "input_desktop": {
+          "schema_version": 1,
+          "ready": true,
+          "reason": "ready",
+          "input_desktop": "Default",
+          "observer_desktop": "Default",
+          "open_input_desktop_error": 0,
+          "foreground_hwnd": 198434,
+          "foreground_pid": 30508,
+          "foreground_image": "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1103.7773.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+          "desktop_or_window_state_written": false,
+          "input_submitted": false
+        },
+        "shell_window": 394118,
+        "game_window": 0,
+        "desktop_state_written": false
+      },
+      {
+        "time_ns": 1794466062502077000,
+        "monitors": [
+          {
+            "device": "\\\\.\\DISPLAY1",
+            "screen": [
+              0,
+              0,
+              3072,
+              1728
+            ],
+            "work": [
+              0,
+              0,
+              3072,
+              1688
+            ],
+            "primary": true,
+            "mode": {
+              "width": 3840,
+              "height": 2160,
+              "bpp": 32,
+              "frequency": 60,
+              "x": 0,
+              "y": 0,
+              "orientation": 0,
+              "fixed": 0
+            }
+          }
+        ],
+        "taskbars": [
+          {
+            "hwnd": 328144,
+            "pid": 38204,
+            "visible": true,
+            "rect": [
+              0,
+              1688,
+              3072,
+              1728
+            ],
+            "hung": false
+          }
+        ],
+        "appbar_state": 0,
+        "auto_hide": false,
+        "metrics": {
+          "0": 3072,
+          "1": 1728,
+          "76": 0,
+          "77": 0,
+          "78": 3072,
+          "79": 1728,
+          "80": 1
+        },
+        "input_desktop": {
+          "schema_version": 1,
+          "ready": true,
+          "reason": "ready",
+          "input_desktop": "Default",
+          "observer_desktop": "Default",
+          "open_input_desktop_error": 0,
+          "foreground_hwnd": 198434,
+          "foreground_pid": 30508,
+          "foreground_image": "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1103.7773.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe",
+          "desktop_or_window_state_written": false,
+          "input_submitted": false
+        },
+        "shell_window": 394118,
+        "game_window": 0,
+        "desktop_state_written": false
+      }
+    ],
+    "health_checks": [
+      [],
+      []
+    ],
+    "final_samples_differences": [],
+    "observer": {
+      "path": "devtools/terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    },
+    "desktop_status": {
+      "path": "tools/school_native_dialogue_desktop.py",
+      "bytes": 2420,
+      "sha256": "962ab2a19dc40482778b74d60099464c1b0be3181b30d28f4a2ee4e72568c7ee"
+    },
+    "state_written": false
+  },
+  "native_activity": {
+    "game_launches": 0,
+    "helper_launches": 0,
+    "VM_launches": 0,
+    "desktop_inputs": 0,
+    "screenshots": 0,
+    "restoration_actions": 0
+  },
+  "next_gate": "A concrete alternative must prove an initialized-TLS stop plus preserved original debug ownership and continuation. The current lifecycle/parent-buffer candidate is not qualified for another menu run.",
+  "formal_progress": {
+    "complete": 2,
+    "total": 8
+  },
+  "retention": {
+    "persistent_evidence_files": 2,
+    "new_local_evidence_bytes_including_backups": 46945,
+    "new_backup_bytes": 0,
+    "new_environment_bytes": 0,
+    "temporary_evidence_bytes": 0,
+    "removed_bytes": 0,
+    "historical_files_deleted": [],
+    "full_parent_history_copied": false
+  }
+}

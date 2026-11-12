@@ -166,3 +166,63 @@ SHA256 `ee4f87da13a783eb59bfada8fb7196d3be3d2176949f87a5cad3e88be7ac405a`。
 最终报告为 `terminal-tls-event-controls-verification-v2-20261112.json`；原始helper二进制
 仅在 F 盘本地保留，位置/哈希、派生副本清理和本轮总体积见
 `analysis/terminal-tls-event-controls-closeout-v1-20261112.json`。
+
+## 原同步边界与观察入口的离线判定（2026-11-12）
+
+本轮没有新原生执行。`terminal_new_game_boundary_contract.py` 固定原镜像、v6菜单
+来源、旧CRT调试来源和relay失败复核的大小/SHA，核对50条关键原指令，并在有界
+Unicorn内执行原 `49F507` 淡出尾段。它是隔离的原指令语义预检，输入栈/对象地址
+明确为合成值；没有执行此前周结算、原线程创建或任何系统/COM调用，不是原生接续。
+
+**第一个具体结论：90帧参数不保证NEW_GAME发生一次等待。** `4DB230→41E720`
+检查音频对象 `+20/+22`，任一为零就清理淡出计数；`4DB270→41E7F0`在同类条件
+直接返回1。原 `49F518/49F51A` 随即跳过 `49F521→422360`。三例预检结果：
+
+| 声明输入 | 实际原指令结果 | 不能推导的结论 |
+| --- | --- | --- |
+| v6早期ready的632B音频字段投影 | 311条执行回调，ready=1，停在49F528，未调用等待 | ready时刻约2.063秒，距缺失交接282秒以上，不能认定当时NEW_GAME也走此分支 |
+| 合成 `+20=1,+22=0` 分支输入 | 320条，第二个guard返回1，同样跳过等待 | 仅证明另一合法代码分支，不是新历史现场 |
+| 合成活动音频及可读接口地址 | 406条，原代码设90计数；停在41DAED的COM调用之前 | 未调用真实音频设备、未取得ready返回，不能补写返回或声称已经走到等待 |
+
+原字节还确定了几个容易混淆的同步点：
+
+- 原CRT在 `56E141` 设置TLS、`56E15E` 写线程ID后，经原正常调用链进入worker
+  及虚回调。其间 `56E169` 还有可选初始化钩子；固定镜像的`[76197C]`及退出钩子
+  `[761980]`均指向`56CF50`的5字节空函数（`55 8B EC 5D C3`）。这不是当前原生
+  指针认证，也未建立必经的“TLS就绪后等待观察器”步骤。
+- MAIN原调度先创建挂起线程，再在 `421A44` 设置node事件、`421A5A`恢复线程，
+  自己在 `421A8E`等待manager事件。MAIN的等待不等于worker仍在可观察的等待中。
+- `439E30`在临界区内写MAIN的id/pending；这不是调试通知。普通无竞争锁和文件
+  API调用也不保证停住线程等待观察器。
+- worker的 `421FED` 完成信号早于 `_endthreadex`；`57554F`清TLS又早于
+  `56E21B ExitThread`。等待原auto-reset事件会竞争原调度信号，且不能钉住TLS寿命，
+  因此不能把复制事件句柄当成无副作用的采集订阅。
+
+**第二个具体结论：已定位父调试循环，但没有取得合格的第三方同步入口。**
+固定镜像 `.text1` 中 `8396E7` 调用WaitForDebugEvent，返回 `8396ED`；缓冲区在
+`[EBP-A28]`，指针在`[EBP-A2C]`，原回复在`[EBP-A30]`；`83BE27/83BE48`继续
+原事件。只读父栈仍需捕捉瞬间并处理缓冲覆盖，不能保证TLS活着。此处只认证静态
+镜像，不将旧游戏`.text`认证扩大为当前父`.text1`原生身份。
+[WaitForDebugEvent](https://learn.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-waitfordebugevent)
+与[ContinueDebugEvent](https://learn.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-continuedebugevent)
+属于原调试者的接收/续行协议；将其用作第三方订阅没有本轮可行证据。
+[Windows调试事件](https://learn.microsoft.com/en-us/windows/win32/debug/debugging-events)
+的创建通知发生在用户线程代码之前，不能当作初始化后的TLS停点。
+
+复用八例旧CRT原始来源，每例确有两条 `0x40010006` 调试字符串异常；因此不能
+笼统声称“游戏没有原生调试字符串”。但它们均在旧启动采证范围，不是NEW_GAME
+TLS区间的必经事件。原记录是96B的NT状态：此异常为NT state6；NT state8是
+single-step，不能混作Win32的OUTPUT_DEBUG_STRING_EVENT=8。旧来源依赖DR观察，
+并明确强制结束，不能包装为本轮无陷阱、正常清理的来源。relay-v5的原回复及失败
+结论保持不变，没有重新执行或替换回复。
+
+关口判定：原指令语义预检通过，原游戏采集准入失败；本轮没有新增NEW_GAME真实
+线程/TLS/exit证据，正式仍2/8。停止当前“创建/退出通知或父缓冲只读即可补齐TLS”
+候选，不延长时间或增加轮询密度。下一候选必须具体证明TLS有效区间内的同步停点、
+原调试所有权和恢复语义，再谈新的有界原生窗口；本轮结论不宣称所有其它观察机制
+都不可能，也不缩减最终验收。
+
+复现：`python -B -X utf8 -m devtools.terminal_new_game_boundary_contract --out analysis/<新名称>.json`。
+每例限2048条回调/2秒，报告限128KiB，所有平台叶调用前停止；原报告不可覆盖。
+结果与精确来源见 `analysis/terminal-new-game-boundary-v1-20261112.json`；独立复核、
+只读桌面检查及本轮体积见 `analysis/terminal-new-game-boundary-closeout-v1-20261112.json`。
