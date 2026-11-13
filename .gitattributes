@@ -1,4 +1,10 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# Bounded child-VEH observation binds exact executed source and native reports.
+devtools/terminal_wait_child_veh_* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+devtools/tests/test_terminal_wait_child_veh.py -text
+analysis/terminal-wait-child-veh-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-child-veh-*.py.gz binary
+docs/terminal_wait_child_veh.md -text
 # Offline ADV preparation binds source, implementation and review bytes exactly.
 devtools/terminal_adv_battle_preparation.py -text
 devtools/tests/test_terminal_adv_battle_preparation.py -text

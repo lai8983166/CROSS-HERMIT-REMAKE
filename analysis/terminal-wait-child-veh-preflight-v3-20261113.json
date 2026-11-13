@@ -1,0 +1,582 @@
+{
+  "kind": "owned_child_only_execution_breakpoint_VEH_preflight",
+  "accepted": false,
+  "implementations": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_child_veh_fixture.cpp",
+      "bytes": 19138,
+      "sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_child_veh_preflight.py",
+      "bytes": 17151,
+      "sha256": "007e98ddaee0cc5aff402f28c4e7446377f1998d17b52dacc49989911bc302cc"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_oplock_probe.py",
+      "bytes": 18446,
+      "sha256": "cbea3861e6a94a883ad42177ca3d79855272667efbd52cf2328bdfc51bd9f778"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_oplock.py",
+      "bytes": 7991,
+      "sha256": "b7b834d038522993deccb3a8684c7a7361f208aa32f2e6de4323b38456d66ada"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    }
+  ],
+  "cases": [
+    {
+      "name": "baseline",
+      "error": null,
+      "natural_job_drain": {
+        "observed_members": [],
+        "final_members": [],
+        "maximum_seconds": 0.5
+      },
+      "owner": {
+        "parent_pid": 29452,
+        "forced": false,
+        "exits": {
+          "29452": {
+            "wait": 0,
+            "code": 0
+          }
+        },
+        "handles_closed": true,
+        "job_empty": true,
+        "errors": []
+      },
+      "sources": [
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\baseline\\child.bin",
+          "bytes": 14904,
+          "sha256": "164324c1f030f3fb03149ffc9ed34d274235e61bea1bae634c1862a417aafccc"
+        },
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\baseline\\debugger.json",
+          "bytes": 1570,
+          "sha256": "0c7521ad3687533c0b4d1b9d3d62d3bd39bf7bf272ea7cb438a9194820c33086"
+        }
+      ],
+      "verification": {
+        "pid": 10052,
+        "tid": 10280,
+        "gated": false,
+        "actual_returns": [
+          0,
+          0,
+          0,
+          258
+        ],
+        "exact_preconsumer_stops": 0,
+        "parent_debug_registers_modified": false,
+        "supplied_context_unchanged_except_own_DR": null,
+        "RF_modified": false,
+        "records": [
+          {
+            "index": 0,
+            "raw_offset": 280,
+            "thread_id": 10280,
+            "TEB": 10444800,
+            "TLS_index": 1,
+            "TLS_value": 13303388,
+            "native_return": 0,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": null,
+            "exception_EFLAGS": null,
+            "exception_ContextFlags": null,
+            "resumed_EFLAGS": null
+          },
+          {
+            "index": 1,
+            "raw_offset": 3936,
+            "thread_id": 10280,
+            "TEB": 10444800,
+            "TLS_index": 1,
+            "TLS_value": 13303388,
+            "native_return": 0,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": null,
+            "exception_EFLAGS": null,
+            "exception_ContextFlags": null,
+            "resumed_EFLAGS": null
+          },
+          {
+            "index": 2,
+            "raw_offset": 7592,
+            "thread_id": 10280,
+            "TEB": 10444800,
+            "TLS_index": 1,
+            "TLS_value": 13303388,
+            "native_return": 0,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": null,
+            "exception_EFLAGS": null,
+            "exception_ContextFlags": null,
+            "resumed_EFLAGS": null
+          },
+          {
+            "index": 3,
+            "raw_offset": 11248,
+            "thread_id": 10280,
+            "TEB": 10444800,
+            "TLS_index": 1,
+            "TLS_value": 13303388,
+            "native_return": 258,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": null,
+            "exception_EFLAGS": null,
+            "exception_ContextFlags": null,
+            "resumed_EFLAGS": null
+          }
+        ],
+        "code_hex": "558bec538b5d0cff75106a00ff7508b800320077ffd08b13895304894308ff430c5b5dc20c00",
+        "nt_wait": 1996501504,
+        "nt_hex": "b804000d00baf0910177ffd2c20c0090b805000000baf0910177ffd2c20c0090",
+        "full57": false,
+        "original_game_observed": false,
+        "game_acquisition_allowed": false
+      },
+      "native_wait_source": {
+        "file": {
+          "path": "C:\\Windows\\SysWOW64\\ntdll.dll",
+          "bytes": 1700440,
+          "sha256": "baeb10cd5b9a00a47f6fc53cf088f6cf708d18a499fbb66457f8dd82f641b368"
+        },
+        "base": 1996029952,
+        "RVA": 471552,
+        "live_entry_matches_relocated_file": true
+      }
+    },
+    {
+      "name": "gated",
+      "error": null,
+      "natural_job_drain": {
+        "observed_members": [],
+        "final_members": [],
+        "maximum_seconds": 0.5
+      },
+      "owner": {
+        "parent_pid": 36512,
+        "forced": false,
+        "exits": {
+          "36512": {
+            "wait": 0,
+            "code": 0
+          }
+        },
+        "handles_closed": true,
+        "job_empty": true,
+        "errors": []
+      },
+      "sources": [
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\gated\\child.bin",
+          "bytes": 14904,
+          "sha256": "e47326ac57d3d6429f40662f84a96267822cea5b588fd69ab52c728c7960393f"
+        },
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\gated\\debugger.json",
+          "bytes": 1992,
+          "sha256": "47fb2a206cb754d35a43d7c5cd7235fba8087b8b666a6933470838f519dbe51e"
+        }
+      ],
+      "verification": {
+        "pid": 20108,
+        "tid": 24636,
+        "gated": true,
+        "actual_returns": [
+          0,
+          0,
+          0,
+          258
+        ],
+        "exact_preconsumer_stops": 4,
+        "parent_debug_registers_modified": false,
+        "supplied_context_unchanged_except_own_DR": true,
+        "RF_modified": false,
+        "records": [
+          {
+            "index": 0,
+            "raw_offset": 280,
+            "thread_id": 24636,
+            "TEB": 16633856,
+            "TLS_index": 1,
+            "TLS_value": 21757556,
+            "native_return": 0,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": 14417942,
+            "exception_EFLAGS": 582,
+            "exception_ContextFlags": 65663,
+            "resumed_EFLAGS": 582
+          },
+          {
+            "index": 1,
+            "raw_offset": 3936,
+            "thread_id": 24636,
+            "TEB": 16633856,
+            "TLS_index": 1,
+            "TLS_value": 21757556,
+            "native_return": 0,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": 14417942,
+            "exception_EFLAGS": 582,
+            "exception_ContextFlags": 65663,
+            "resumed_EFLAGS": 582
+          },
+          {
+            "index": 2,
+            "raw_offset": 7592,
+            "thread_id": 24636,
+            "TEB": 16633856,
+            "TLS_index": 1,
+            "TLS_value": 21757556,
+            "native_return": 0,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": 14417942,
+            "exception_EFLAGS": 582,
+            "exception_ContextFlags": 65663,
+            "resumed_EFLAGS": 582
+          },
+          {
+            "index": 3,
+            "raw_offset": 11248,
+            "thread_id": 24636,
+            "TEB": 16633856,
+            "TLS_index": 1,
+            "TLS_value": 21757556,
+            "native_return": 258,
+            "post_count": 1,
+            "pending_EIP": 1996501516,
+            "fault_EIP": 14417942,
+            "exception_EFLAGS": 582,
+            "exception_ContextFlags": 65663,
+            "resumed_EFLAGS": 582
+          }
+        ],
+        "code_hex": "558bec538b5d0cff75106a00ff7508b800320077ffd08b13895304894308ff430c5b5dc20c00",
+        "nt_wait": 1996501504,
+        "nt_hex": "b804000d00baf0910177ffd2c20c0090b805000000baf0910177ffd2c20c0090",
+        "full57": false,
+        "original_game_observed": false,
+        "game_acquisition_allowed": false
+      },
+      "native_wait_source": {
+        "file": {
+          "path": "C:\\Windows\\SysWOW64\\ntdll.dll",
+          "bytes": 1700440,
+          "sha256": "baeb10cd5b9a00a47f6fc53cf088f6cf708d18a499fbb66457f8dd82f641b368"
+        },
+        "base": 1996029952,
+        "RVA": 471552,
+        "live_entry_matches_relocated_file": true
+      }
+    }
+  ],
+  "error": null,
+  "game_started": false,
+  "screenshots": false,
+  "host_input": false,
+  "full57": false,
+  "game_acquisition_allowed": false,
+  "backups_created": 0,
+  "desktop_before": {
+    "time_ns": 1794541200068703200,
+    "monitors": [
+      {
+        "device": "\\\\.\\DISPLAY1",
+        "screen": [
+          0,
+          0,
+          3072,
+          1728
+        ],
+        "work": [
+          0,
+          0,
+          3072,
+          1688
+        ],
+        "primary": true,
+        "mode": {
+          "width": 3840,
+          "height": 2160,
+          "bpp": 32,
+          "frequency": 60,
+          "x": 0,
+          "y": 0,
+          "orientation": 0,
+          "fixed": 0
+        }
+      }
+    ],
+    "taskbars": [
+      {
+        "hwnd": 328144,
+        "pid": 38204,
+        "visible": true,
+        "rect": [
+          0,
+          1688,
+          3072,
+          1728
+        ],
+        "hung": false
+      }
+    ],
+    "appbar_state": 0,
+    "auto_hide": false,
+    "metrics": {
+      "0": 3072,
+      "1": 1728,
+      "76": 0,
+      "77": 0,
+      "78": 3072,
+      "79": 1728,
+      "80": 1
+    },
+    "input_desktop": {
+      "schema_version": 1,
+      "ready": true,
+      "reason": "ready",
+      "input_desktop": "Default",
+      "observer_desktop": "Default",
+      "open_input_desktop_error": 0,
+      "foreground_hwnd": 134432,
+      "foreground_pid": 9568,
+      "foreground_image": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "desktop_or_window_state_written": false,
+      "input_submitted": false
+    },
+    "shell_window": 394118,
+    "game_window": 0,
+    "desktop_state_written": false
+  },
+  "compiler": {
+    "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x86\\cl.exe",
+    "bytes": 677776,
+    "sha256": "7e970b6b42e87a5b4b4e4ee41034cf20f3573d948a4a92055d1b1bbe5e473cb1"
+  },
+  "build": {
+    "returncode": 0,
+    "stdout": "terminal_wait_child_veh_fixture.cpp\r\nF:\\project\\chaomofa\\devtools\\terminal_wait_child_veh_fixture.cpp(188): warning C4389: ��!=��: �з���/�޷��Ų�ƥ��\r\n",
+    "stderr": "",
+    "command": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "build.cmd"
+    ]
+  },
+  "binary": {
+    "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\wait-child-veh.exe",
+    "bytes": 129024,
+    "sha256": "1965aabaf52f169b8999c8f82ebeee52f32e09f8755a9f3fb7c840123d8f9f98"
+  },
+  "synchronous_entry_preflight_passed": true,
+  "desktop_after": [
+    {
+      "time_ns": 1794541203542605100,
+      "monitors": [
+        {
+          "device": "\\\\.\\DISPLAY1",
+          "screen": [
+            0,
+            0,
+            3072,
+            1728
+          ],
+          "work": [
+            0,
+            0,
+            3072,
+            1688
+          ],
+          "primary": true,
+          "mode": {
+            "width": 3840,
+            "height": 2160,
+            "bpp": 32,
+            "frequency": 60,
+            "x": 0,
+            "y": 0,
+            "orientation": 0,
+            "fixed": 0
+          }
+        }
+      ],
+      "taskbars": [
+        {
+          "hwnd": 328144,
+          "pid": 38204,
+          "visible": true,
+          "rect": [
+            0,
+            1688,
+            3072,
+            1728
+          ],
+          "hung": false
+        }
+      ],
+      "appbar_state": 0,
+      "auto_hide": false,
+      "metrics": {
+        "0": 3072,
+        "1": 1728,
+        "76": 0,
+        "77": 0,
+        "78": 3072,
+        "79": 1728,
+        "80": 1
+      },
+      "input_desktop": {
+        "schema_version": 1,
+        "ready": true,
+        "reason": "ready",
+        "input_desktop": "Default",
+        "observer_desktop": "Default",
+        "open_input_desktop_error": 0,
+        "foreground_hwnd": 134432,
+        "foreground_pid": 9568,
+        "foreground_image": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "desktop_or_window_state_written": false,
+        "input_submitted": false
+      },
+      "shell_window": 394118,
+      "game_window": 0,
+      "desktop_state_written": false
+    },
+    {
+      "time_ns": 1794541203808848300,
+      "monitors": [
+        {
+          "device": "\\\\.\\DISPLAY1",
+          "screen": [
+            0,
+            0,
+            3072,
+            1728
+          ],
+          "work": [
+            0,
+            0,
+            3072,
+            1688
+          ],
+          "primary": true,
+          "mode": {
+            "width": 3840,
+            "height": 2160,
+            "bpp": 32,
+            "frequency": 60,
+            "x": 0,
+            "y": 0,
+            "orientation": 0,
+            "fixed": 0
+          }
+        }
+      ],
+      "taskbars": [
+        {
+          "hwnd": 328144,
+          "pid": 38204,
+          "visible": true,
+          "rect": [
+            0,
+            1688,
+            3072,
+            1728
+          ],
+          "hung": false
+        }
+      ],
+      "appbar_state": 0,
+      "auto_hide": false,
+      "metrics": {
+        "0": 3072,
+        "1": 1728,
+        "76": 0,
+        "77": 0,
+        "78": 3072,
+        "79": 1728,
+        "80": 1
+      },
+      "input_desktop": {
+        "schema_version": 1,
+        "ready": true,
+        "reason": "ready",
+        "input_desktop": "Default",
+        "observer_desktop": "Default",
+        "open_input_desktop_error": 0,
+        "foreground_hwnd": 134432,
+        "foreground_pid": 9568,
+        "foreground_image": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "desktop_or_window_state_written": false,
+        "input_submitted": false
+      },
+      "shell_window": 394118,
+      "game_window": 0,
+      "desktop_state_written": false
+    }
+  ],
+  "desktop_differences": [
+    [],
+    []
+  ],
+  "implementations_unchanged": true,
+  "elapsed_seconds": 3.7489657000405714,
+  "retained_files": [
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\baseline\\child.bin",
+      "bytes": 14904,
+      "sha256": "164324c1f030f3fb03149ffc9ed34d274235e61bea1bae634c1862a417aafccc"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\baseline\\debugger.json",
+      "bytes": 1570,
+      "sha256": "0c7521ad3687533c0b4d1b9d3d62d3bd39bf7bf272ea7cb438a9194820c33086"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\build.cmd",
+      "bytes": 605,
+      "sha256": "74f9b6bd669ad04825507083e6965045fabe923471e61b9561d6998581da9e47"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\fixture.obj",
+      "bytes": 21610,
+      "sha256": "dcdca25176f9d251e9acfe0759ab660820eaaa69394c1e243b52b18c5887f170"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\gated\\child.bin",
+      "bytes": 14904,
+      "sha256": "e47326ac57d3d6429f40662f84a96267822cea5b588fd69ab52c728c7960393f"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\gated\\debugger.json",
+      "bytes": 1992,
+      "sha256": "47fb2a206cb754d35a43d7c5cd7235fba8087b8b666a6933470838f519dbe51e"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\gated\\gated",
+      "bytes": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\wait-child-veh.exe",
+      "bytes": 129024,
+      "sha256": "1965aabaf52f169b8999c8f82ebeee52f32e09f8755a9f3fb7c840123d8f9f98"
+    }
+  ]
+}

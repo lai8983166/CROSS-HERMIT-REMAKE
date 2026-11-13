@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "kind": "independent_owned_child_VEH_preflight_review",
+  "date": "2026-11-13",
+  "review_passed": true,
+  "synchronous_entry_capability_confirmed": true,
+  "accepted": false,
+  "full57": false,
+  "original_game_observed": false,
+  "game_acquisition_allowed": false,
+  "native_UI_or_VM_started_by_reviewer": false,
+  "production_decoder_imported": false,
+  "source_report": {
+    "path": "F:\\project\\chaomofa\\analysis\\terminal-wait-child-veh-preflight-v3-20261113.json",
+    "bytes": 16439,
+    "sha256": "d9b5a5a2aaf5798bc6b16ba9e20ae5be42e82eb627005323700fe8775f619169"
+  },
+  "implementation_pins": [
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_child_veh_fixture.cpp",
+      "bytes": 19138,
+      "sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_wait_child_veh_preflight.py",
+      "bytes": 17151,
+      "sha256": "007e98ddaee0cc5aff402f28c4e7446377f1998d17b52dacc49989911bc302cc"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_oplock_probe.py",
+      "bytes": 18446,
+      "sha256": "cbea3861e6a94a883ad42177ca3d79855272667efbd52cf2328bdfc51bd9f778"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_oplock.py",
+      "bytes": 7991,
+      "sha256": "b7b834d038522993deccb3a8684c7a7361f208aa32f2e6de4323b38456d66ada"
+    },
+    {
+      "path": "F:\\project\\chaomofa\\devtools\\terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    }
+  ],
+  "method": "Direct struct unpacking, independent minimal PE32 export/section/HIGHLOW relocation parsing, Capstone wrapper disassembly, raw context comparison, chronological debugger-event matching and raw desktop comparison. No production decoder or observer import.",
+  "checks": {
+    "context_records": 40,
+    "bytes_per_context": 716,
+    "wrapper_bytes_each": 38,
+    "real_wait_stubs_compared": 2,
+    "actual_DR_restorations": 8,
+    "first_read_faults": 4,
+    "returns_each": [
+      0,
+      0,
+      0,
+      258
+    ],
+    "original_NtWait_RVA": "0x73200",
+    "desktop_equal_except_timestamps": true,
+    "elapsed_seconds": 3.7489657000405714
+  },
+  "cases": [
+    {
+      "name": "baseline",
+      "parent_pid": 29452,
+      "child_pid": 10052,
+      "worker_tid": 10280,
+      "sources": [
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\baseline\\child.bin",
+          "bytes": 14904,
+          "sha256": "164324c1f030f3fb03149ffc9ed34d274235e61bea1bae634c1862a417aafccc"
+        },
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\baseline\\debugger.json",
+          "bytes": 1570,
+          "sha256": "0c7521ad3687533c0b4d1b9d3d62d3bd39bf7bf272ea7cb438a9194820c33086"
+        }
+      ],
+      "first_read_stops": 0,
+      "native_wait_RVA": "0x73200",
+      "native_wait_base": "0x76f90000",
+      "HIGHLOW_relocations_independently_applied": [
+        {
+          "RVA": "0x73206",
+          "file": "0x4b3091f0",
+          "relocated": "0x770191f0"
+        },
+        {
+          "RVA": "0x73216",
+          "file": "0x4b3091f0",
+          "relocated": "0x770191f0"
+        }
+      ],
+      "wrapper38_hex": "558bec538b5d0cff75106a00ff7508b800320077ffd08b13895304894308ff430c5b5dc20c00",
+      "rows": [
+        {
+          "index": 0,
+          "raw_offset": 280,
+          "status": 0,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": null,
+          "trap_and_resume_ContextFlags": null,
+          "trap_and_resume_EFLAGS": null,
+          "all5_contexts_sha256": "a4a641d797f89fa7d6f882e5e00505da4eacbd8cd2655bcce80bad4a6fb97646",
+          "actual_after_DR_restored": true
+        },
+        {
+          "index": 1,
+          "raw_offset": 3936,
+          "status": 0,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": null,
+          "trap_and_resume_ContextFlags": null,
+          "trap_and_resume_EFLAGS": null,
+          "all5_contexts_sha256": "655982f8faafe604d24908928f0aee01637f25e89c08f57204757eaeea43b34a",
+          "actual_after_DR_restored": true
+        },
+        {
+          "index": 2,
+          "raw_offset": 7592,
+          "status": 0,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": null,
+          "trap_and_resume_ContextFlags": null,
+          "trap_and_resume_EFLAGS": null,
+          "all5_contexts_sha256": "3b94ab27235304ae8e8df6a186f724e166da85d37223e779dad6544433fb0506",
+          "actual_after_DR_restored": true
+        },
+        {
+          "index": 3,
+          "raw_offset": 11248,
+          "status": 258,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": null,
+          "trap_and_resume_ContextFlags": null,
+          "trap_and_resume_EFLAGS": null,
+          "all5_contexts_sha256": "3579d71a7d9125237707d444f155cd88adda03943577470c698d639384edae14",
+          "actual_after_DR_restored": true
+        }
+      ],
+      "normal_parent_child_exit0": true,
+      "Job_empty_without_forced_cleanup": true
+    },
+    {
+      "name": "gated",
+      "parent_pid": 36512,
+      "child_pid": 20108,
+      "worker_tid": 24636,
+      "sources": [
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\gated\\child.bin",
+          "bytes": 14904,
+          "sha256": "e47326ac57d3d6429f40662f84a96267822cea5b588fd69ab52c728c7960393f"
+        },
+        {
+          "path": "F:\\project\\chaomofa\\.venv-audit\\wait-child-veh-v3-20261113\\gated\\debugger.json",
+          "bytes": 1992,
+          "sha256": "47fb2a206cb754d35a43d7c5cd7235fba8087b8b666a6933470838f519dbe51e"
+        }
+      ],
+      "first_read_stops": 4,
+      "native_wait_RVA": "0x73200",
+      "native_wait_base": "0x76f90000",
+      "HIGHLOW_relocations_independently_applied": [
+        {
+          "RVA": "0x73206",
+          "file": "0x4b3091f0",
+          "relocated": "0x770191f0"
+        },
+        {
+          "RVA": "0x73216",
+          "file": "0x4b3091f0",
+          "relocated": "0x770191f0"
+        }
+      ],
+      "wrapper38_hex": "558bec538b5d0cff75106a00ff7508b800320077ffd08b13895304894308ff430c5b5dc20c00",
+      "rows": [
+        {
+          "index": 0,
+          "raw_offset": 280,
+          "status": 0,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": "0xdc0016",
+          "trap_and_resume_ContextFlags": "0x1007f",
+          "trap_and_resume_EFLAGS": "0x246",
+          "all5_contexts_sha256": "82195073de100e9bc8dfbc69139a8b49de76bf7812fc3397b3fb92bfac87da65",
+          "actual_after_DR_restored": true
+        },
+        {
+          "index": 1,
+          "raw_offset": 3936,
+          "status": 0,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": "0xdc0016",
+          "trap_and_resume_ContextFlags": "0x1007f",
+          "trap_and_resume_EFLAGS": "0x246",
+          "all5_contexts_sha256": "9c9444dfd56ac92bf08ef9dcd79044e26dc02999d537fa3407ec0dea882fbdb7",
+          "actual_after_DR_restored": true
+        },
+        {
+          "index": 2,
+          "raw_offset": 7592,
+          "status": 0,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": "0xdc0016",
+          "trap_and_resume_ContextFlags": "0x1007f",
+          "trap_and_resume_EFLAGS": "0x246",
+          "all5_contexts_sha256": "8ec0821b838a8f3c1c08329e085ac98b0fadc0533d683b47f92e5d802906052c",
+          "actual_after_DR_restored": true
+        },
+        {
+          "index": 3,
+          "raw_offset": 11248,
+          "status": 258,
+          "pre_count": 0,
+          "post_count": 1,
+          "pending_EIP": "0x7700320c",
+          "fault_EIP": "0xdc0016",
+          "trap_and_resume_ContextFlags": "0x1007f",
+          "trap_and_resume_EFLAGS": "0x246",
+          "all5_contexts_sha256": "7a8200a99d6287ba7a79ebb834d49a331651fb8c677ee599cd83d6ff7152056d",
+          "actual_after_DR_restored": true
+        }
+      ],
+      "normal_parent_child_exit0": true,
+      "Job_empty_without_forced_cleanup": true
+    }
+  ],
+  "earlier_attempts": [
+    {
+      "version": 1,
+      "sha256": "db86db5586b9b127fc9c35b35b191f46722fc375f81656c401dd54104da29215",
+      "error": "ValueError('bounded x86 native build')",
+      "gated_executed": false,
+      "scope": "Build-command quoting failed before compilation/native fixture."
+    },
+    {
+      "version": 2,
+      "sha256": "4b2ac9b3831f6499b5761588e92d44175db1d86857cff44f3001fce63d1ae329",
+      "error": "ValueError('own parent exit0, Job and handles clean')",
+      "gated_executed": false,
+      "scope": "Only baseline ran. It completed4 waits and parent/childexit0; unknown-image Job PID852 was force-contained, so whole run rejected. conhost remains a hypothesis."
+    }
+  ],
+  "limitations": [
+    {
+      "id": "716B_only_XSTATE_missing",
+      "detail": "All4 gated exception ContextFlags are0x1007F, includingCONTEXT_XSTATE(0x10040). Only fixed716-byte x86CONTEXT is retained. Its non-DR bytes, including RF, are unchanged between trapped and resumed. Extended XState beyond that structure was not captured or compared. The source writes onlyDR fields, but that is not raw proof of missing extension bytes.",
+      "references": [
+        "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-initializecontext",
+        "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-locatexstatefeature"
+      ]
+    },
+    {
+      "id": "canonical57_and_original_game_not_admitted",
+      "detail": "UserCONTEXT lacksCR0/2/3/4, complete descriptor/segment caches andDR4/5 semantics required by the existing57 contract. No default privileged values may fill this gap. Complete RAM/permissions/instruction/write trace, original game deployment/parent.text1 identity, original result path andtwo original lifetimes remain unproved."
+    },
+    {
+      "id": "controlled_fixture",
+      "detail": "The sole parent debugger is a controlled fixture with declaredNOT_HANDLED policy. The child cooperatively registersVEH. This does not prove compatibility or deployment in the original protected game."
+    },
+    {
+      "id": "boundary_specific_comparison",
+      "detail": "Only blocked/armed non-DR equality, trapped/resumed non-DR equality within716B, and later actualDR restoration are asserted. LaterGPR/flags may naturally differ from earlier boundaries. No genericRF transparency claim."
+    },
+    {
+      "id": "self_recorded_witnesses",
+      "detail": "Counter, ACK, TEB andTLS witnesses are fixture records bound to source and event order, not an independent full game memory/TLS snapshot."
+    },
+    {
+      "id": "review_independence",
+      "detail": "Reviewer correctedCPP before execution; root independently reviewed and executed frozen code. Post-run struct/PE/event audit is independent of production decode but reviewer is not wholly separate from fixture implementation."
+    }
+  ],
+  "preservation": {
+    "old_sources_unchanged": true,
+    "new_small_report_only": true,
+    "backups": 0,
+    "deletions": 0
+  }
+}

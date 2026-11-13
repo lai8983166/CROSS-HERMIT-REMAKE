@@ -1,0 +1,616 @@
+{
+  "schema_version": 1,
+  "kind": "bounded_static_child_VEH_candidate_research",
+  "date": "2026-11-13",
+  "recommended_candidate": "Only-child hardware execution breakpoint with child-owned VEH; original debug parent remains sole debugger and retains its exception reply policy.",
+  "native_precheck_run": false,
+  "game_started": false,
+  "UI_or_desktop_operations": false,
+  "VM_started": false,
+  "original_files_modified": false,
+  "new_test_claim": false,
+  "accepted": false,
+  "full_57_state_available": false,
+  "game_collection_admitted": false,
+  "sources": {
+    "image": {
+      "path": "analysis/hermit_game.exe",
+      "bytes": 5980160,
+      "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+    },
+    "relay": {
+      "path": "analysis/terminal-wait-native-probe-relay-v5-20261109.json.gz",
+      "bytes": 20257,
+      "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf"
+    },
+    "frozen_relay": {
+      "archive": "analysis/terminal-wait-relay-implementation-v5-20261109.zip",
+      "archive_bytes": 5752,
+      "archive_sha256": "2f01494e149311fb34f6ed5cfffa1ae7899749ad2bf3b453d4e49c7364ca8d7f",
+      "entry": "devtools/terminal_debug_relay.py",
+      "bytes": 17721,
+      "sha256": "dd55c8bd8edf533ab384a406c360d98f1add64b33731870e58d0d3278c754264"
+    }
+  },
+  "source_byte_excerpts": [
+    {
+      "va": "0x837fd2",
+      "end_exclusive": "0x837ff1",
+      "purpose": "runtime guard-policy flag may be set",
+      "hex": "a1c8e386003305d8e386003305ace3860083e00485c07407c605e153870001",
+      "instructions": [
+        {
+          "va": "0x837fd2",
+          "hex": "a1c8e38600",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [0x86e3c8]"
+        },
+        {
+          "va": "0x837fd7",
+          "hex": "3305d8e38600",
+          "mnemonic": "xor",
+          "operands": "eax, dword ptr [0x86e3d8]"
+        },
+        {
+          "va": "0x837fdd",
+          "hex": "3305ace38600",
+          "mnemonic": "xor",
+          "operands": "eax, dword ptr [0x86e3ac]"
+        },
+        {
+          "va": "0x837fe3",
+          "hex": "83e004",
+          "mnemonic": "and",
+          "operands": "eax, 4"
+        },
+        {
+          "va": "0x837fe6",
+          "hex": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "va": "0x837fe8",
+          "hex": "7407",
+          "mnemonic": "je",
+          "operands": "0x837ff1"
+        },
+        {
+          "va": "0x837fea",
+          "hex": "c605e153870001",
+          "mnemonic": "mov",
+          "operands": "byte ptr [0x8753e1], 1"
+        }
+      ]
+    },
+    {
+      "va": "0x8397ee",
+      "end_exclusive": "0x8397f8",
+      "purpose": "default reply",
+      "hex": "c785d0f5ffff01000180",
+      "instructions": [
+        {
+          "va": "0x8397ee",
+          "hex": "c785d0f5ffff01000180",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0xa30], 0x80010001"
+        }
+      ]
+    },
+    {
+      "va": "0x83981e",
+      "end_exclusive": "0x83982d",
+      "purpose": "exception-debug-event type gate",
+      "hex": "8b8dd4f5ffff8339010f8510180000",
+      "instructions": [
+        {
+          "va": "0x83981e",
+          "hex": "8b8dd4f5ffff",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 0xa2c]"
+        },
+        {
+          "va": "0x839824",
+          "hex": "833901",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ecx], 1"
+        },
+        {
+          "va": "0x839827",
+          "hex": "0f8510180000",
+          "mnemonic": "jne",
+          "operands": "0x83b03d"
+        }
+      ]
+    },
+    {
+      "va": "0x839838",
+      "end_exclusive": "0x839875",
+      "purpose": "exception code/key and optional guard branch",
+      "hex": "8b95d4f5ffff8b420c3305f0e386008985ccf5ffff33c98a0de153870085c90f84ce0600008b15f0e3860081f2010000803995ccf5ffff0f85b6060000",
+      "instructions": [
+        {
+          "va": "0x839838",
+          "hex": "8b95d4f5ffff",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp - 0xa2c]"
+        },
+        {
+          "va": "0x83983e",
+          "hex": "8b420c",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [edx + 0xc]"
+        },
+        {
+          "va": "0x839841",
+          "hex": "3305f0e38600",
+          "mnemonic": "xor",
+          "operands": "eax, dword ptr [0x86e3f0]"
+        },
+        {
+          "va": "0x839847",
+          "hex": "8985ccf5ffff",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0xa34], eax"
+        },
+        {
+          "va": "0x83984d",
+          "hex": "33c9",
+          "mnemonic": "xor",
+          "operands": "ecx, ecx"
+        },
+        {
+          "va": "0x83984f",
+          "hex": "8a0de1538700",
+          "mnemonic": "mov",
+          "operands": "cl, byte ptr [0x8753e1]"
+        },
+        {
+          "va": "0x839855",
+          "hex": "85c9",
+          "mnemonic": "test",
+          "operands": "ecx, ecx"
+        },
+        {
+          "va": "0x839857",
+          "hex": "0f84ce060000",
+          "mnemonic": "je",
+          "operands": "0x839f2b"
+        },
+        {
+          "va": "0x83985d",
+          "hex": "8b15f0e38600",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [0x86e3f0]"
+        },
+        {
+          "va": "0x839863",
+          "hex": "81f201000080",
+          "mnemonic": "xor",
+          "operands": "edx, 0x80000001"
+        },
+        {
+          "va": "0x839869",
+          "hex": "3995ccf5ffff",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0xa34], edx"
+        },
+        {
+          "va": "0x83986f",
+          "hex": "0f85b6060000",
+          "mnemonic": "jne",
+          "operands": "0x839f2b"
+        }
+      ]
+    },
+    {
+      "va": "0x839f1c",
+      "end_exclusive": "0x839f2b",
+      "purpose": "guard branch handles exception",
+      "hex": "c785d0f5ffff02000100e90d110000",
+      "instructions": [
+        {
+          "va": "0x839f1c",
+          "hex": "c785d0f5ffff02000100",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0xa30], 0x10002"
+        },
+        {
+          "va": "0x839f26",
+          "hex": "e90d110000",
+          "mnemonic": "jmp",
+          "operands": "0x83b038"
+        }
+      ]
+    },
+    {
+      "va": "0x839f2b",
+      "end_exclusive": "0x839f43",
+      "purpose": "access violation comparison",
+      "hex": "8b0df0e3860081f1050000c0398dccf5ffff0f8592040000",
+      "instructions": [
+        {
+          "va": "0x839f2b",
+          "hex": "8b0df0e38600",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [0x86e3f0]"
+        },
+        {
+          "va": "0x839f31",
+          "hex": "81f1050000c0",
+          "mnemonic": "xor",
+          "operands": "ecx, 0xc0000005"
+        },
+        {
+          "va": "0x839f37",
+          "hex": "398dccf5ffff",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0xa34], ecx"
+        },
+        {
+          "va": "0x839f3d",
+          "hex": "0f8592040000",
+          "mnemonic": "jne",
+          "operands": "0x83a3d5"
+        }
+      ]
+    },
+    {
+      "va": "0x83a3d5",
+      "end_exclusive": "0x83a3ed",
+      "purpose": "breakpoint comparison",
+      "hex": "8b15f0e3860081f2030000803995ccf5ffff0f85f50b0000",
+      "instructions": [
+        {
+          "va": "0x83a3d5",
+          "hex": "8b15f0e38600",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [0x86e3f0]"
+        },
+        {
+          "va": "0x83a3db",
+          "hex": "81f203000080",
+          "mnemonic": "xor",
+          "operands": "edx, 0x80000003"
+        },
+        {
+          "va": "0x83a3e1",
+          "hex": "3995ccf5ffff",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0xa34], edx"
+        },
+        {
+          "va": "0x83a3e7",
+          "hex": "0f85f50b0000",
+          "mnemonic": "jne",
+          "operands": "0x83afe2"
+        }
+      ]
+    },
+    {
+      "va": "0x83afed",
+      "end_exclusive": "0x83b03d",
+      "purpose": "remaining special exception codes and reply",
+      "hex": "8b8dd4f5ffff8b510c899550ebffff8b8550ebffff898504e5ffff81bd04e5ffff080000c0741a81bd04e5fffffd0000c0740e81bd04e5ffff350200c07402eb0ac785d0f5ffff02000100e9cf0d0000",
+      "instructions": [
+        {
+          "va": "0x83afed",
+          "hex": "8b8dd4f5ffff",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 0xa2c]"
+        },
+        {
+          "va": "0x83aff3",
+          "hex": "8b510c",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ecx + 0xc]"
+        },
+        {
+          "va": "0x83aff6",
+          "hex": "899550ebffff",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x14b0], edx"
+        },
+        {
+          "va": "0x83affc",
+          "hex": "8b8550ebffff",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 0x14b0]"
+        },
+        {
+          "va": "0x83b002",
+          "hex": "898504e5ffff",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x1afc], eax"
+        },
+        {
+          "va": "0x83b008",
+          "hex": "81bd04e5ffff080000c0",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0x1afc], 0xc0000008"
+        },
+        {
+          "va": "0x83b012",
+          "hex": "741a",
+          "mnemonic": "je",
+          "operands": "0x83b02e"
+        },
+        {
+          "va": "0x83b014",
+          "hex": "81bd04e5fffffd0000c0",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0x1afc], 0xc00000fd"
+        },
+        {
+          "va": "0x83b01e",
+          "hex": "740e",
+          "mnemonic": "je",
+          "operands": "0x83b02e"
+        },
+        {
+          "va": "0x83b020",
+          "hex": "81bd04e5ffff350200c0",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 0x1afc], 0xc0000235"
+        },
+        {
+          "va": "0x83b02a",
+          "hex": "7402",
+          "mnemonic": "je",
+          "operands": "0x83b02e"
+        },
+        {
+          "va": "0x83b02c",
+          "hex": "eb0a",
+          "mnemonic": "jmp",
+          "operands": "0x83b038"
+        },
+        {
+          "va": "0x83b02e",
+          "hex": "c785d0f5ffff02000100",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0xa30], 0x10002"
+        },
+        {
+          "va": "0x83b038",
+          "hex": "e9cf0d0000",
+          "mnemonic": "jmp",
+          "operands": "0x83be0c"
+        }
+      ]
+    },
+    {
+      "va": "0x83be0c",
+      "end_exclusive": "0x83be2f",
+      "purpose": "original ContinueDebugEvent call",
+      "hex": "8b8dd0f5ffff518b95d4f5ffff8b4208508b8dd4f5ffff8b510452ff15d8e08600eb1f",
+      "instructions": [
+        {
+          "va": "0x83be0c",
+          "hex": "8b8dd0f5ffff",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 0xa30]"
+        },
+        {
+          "va": "0x83be12",
+          "hex": "51",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "va": "0x83be13",
+          "hex": "8b95d4f5ffff",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp - 0xa2c]"
+        },
+        {
+          "va": "0x83be19",
+          "hex": "8b4208",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [edx + 8]"
+        },
+        {
+          "va": "0x83be1c",
+          "hex": "50",
+          "mnemonic": "push",
+          "operands": "eax"
+        },
+        {
+          "va": "0x83be1d",
+          "hex": "8b8dd4f5ffff",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 0xa2c]"
+        },
+        {
+          "va": "0x83be23",
+          "hex": "8b5104",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ecx + 4]"
+        },
+        {
+          "va": "0x83be26",
+          "hex": "52",
+          "mnemonic": "push",
+          "operands": "edx"
+        },
+        {
+          "va": "0x83be27",
+          "hex": "ff15d8e08600",
+          "mnemonic": "call",
+          "operands": "dword ptr [0x86e0d8]"
+        },
+        {
+          "va": "0x83be2d",
+          "hex": "eb1f",
+          "mnemonic": "jmp",
+          "operands": "0x83be4e"
+        }
+      ]
+    }
+  ],
+  "original_parent_static_dispatch": {
+    "scope": "Fixed unpacked image .text1. These selected original dispatch comparisons support a conditional policy; no current live parent .text1 identity or entire protected-program control-flow proof is asserted.",
+    "event_layout": "DEBUG_EVENT.code at event+0, ExceptionCode at event+0x0c; event pointer [EBP-0xA2C], reply [EBP-0xA30].",
+    "default_reply": "0x80010001 DBG_EXCEPTION_NOT_HANDLED at8397EE",
+    "single_step_codes": [
+      "0x80000004",
+      "0x4000001e"
+    ],
+    "single_step_static_route": "Neither matches guarded80000001, C0000005,80000003, or final C0000008/C00000FD/C0000235 comparisons. Selected exception route reaches83B02C->83B038->83BE0C->83BE27 with default reply.",
+    "guard_counterexample": "When byte[8753E1] is nonzero and ExceptionCode=80000001, the guard-specific branch eventually sets10002 at839F1C and reaches83BE27. DBG_CONTINUE suppresses VEH dispatch. This is why PAGE_GUARD is not the recommended precheck.",
+    "guard_flag_file_byte": 0,
+    "guard_flag_runtime_setter": "837FD2..837FEA tests ([86E3C8] XOR [86E3D8] XOR [86E3AC])&4 and may set8753E1=1; file zero is not runtime zero.",
+    "current_original_parent_compatibility_proved": false
+  },
+  "old_relay_reinterpretation": {
+    "preserved_actual_failure": "ValueError('parent exited before observation completed')",
+    "parent_exit": "0x4000001e",
+    "instrumentation_rows": 13,
+    "original_child_reply": "0x80010001",
+    "successful_original_NtDebugContinue_return_receipts": [
+      {
+        "json_pointer": "/probe/relay/instrumentation/8/before_context_hex",
+        "pid": 5196,
+        "tid": 884,
+        "context_bytes": 716,
+        "sha256": "322ba54f90a1f81b998c633feca3352d42dbc4a00c33577c7346bc89a3cdd2d6",
+        "EIP": "0x772b1a7c",
+        "EAX": 0,
+        "DR6": "0xffff0ff1",
+        "EFLAGS": "0x202"
+      },
+      {
+        "json_pointer": "/probe/relay/instrumentation/10/before_context_hex",
+        "pid": 5196,
+        "tid": 884,
+        "context_bytes": 716,
+        "sha256": "322ba54f90a1f81b998c633feca3352d42dbc4a00c33577c7346bc89a3cdd2d6",
+        "EIP": "0x772b1a7c",
+        "EAX": 0,
+        "DR6": "0xffff0ff1",
+        "EFLAGS": "0x202"
+      },
+      {
+        "json_pointer": "/probe/relay/instrumentation/12/before_context_hex",
+        "pid": 5196,
+        "tid": 884,
+        "context_bytes": 716,
+        "sha256": "1a90d5fe5d28bd59e0ab78fcff89c9e1008fbea28e608e7be0dc01506f0b950d",
+        "EIP": "0x772b1a7c",
+        "EAX": 0,
+        "DR6": "0xffff0ff1",
+        "EFLAGS": "0x202"
+      }
+    ],
+    "frozen_code_excerpts": [
+      {
+        "start_line": 175,
+        "end_line": 179,
+        "text": "                elif ex in (0x80000004,0x4000001E):\n                    context = debug.context(h); ip = word(context,184)\n                    targets,mask,actual_targets,actual_mask=masks[key]\n                    need(own_hardware_stop(context,actual_targets,actual_mask),'only our enabled parent hardware stop')\n                    status = 0x10002"
+      },
+      {
+        "start_line": 210,
+        "end_line": 216,
+        "text": "                    else:\n                        need(ip == targets[1] and mask == 4 and word(context,20)&(1 if key in null_slots else 2),\n                             'only original parent continuation entry/return breakpoints')\n                        need(word(context,176)==0,'original NtDebugContinue returned STATUS_SUCCESS')\n                        if last_continuation==(key,ip):\n                            result['last_original_continue_return_context_hex']=context.hex()\n                            continuation_returned=True"
+      },
+      {
+        "start_line": 233,
+        "end_line": 242,
+        "text": "            elif e.code == 5:\n                result['parent_exit_during_scope']=int(e.u.exit_code)\n                for own in (*threads.values(),*processes.values()):win.close(own)\n                threads.clear();originals.clear();processes.clear();parent_modified.clear()\n                borrowed.clear()\n            win.check(debug.continue_event(*pending,status), 'continue unmodified owned parent event')\n            pending = None\n            if wanted is None and continuation_returned:\n                result['scope_completed']=True;break\n            need(e.code != 5, 'parent exited before observation completed')"
+      }
+    ],
+    "not_a_missing_WOW64_code_case": "Frozen line175 already handles both80000004 and4000001E. The actual error is parent-exit, not own_hardware_stop rejection.",
+    "not_zero_successful_continue_returns": "Raw before-contexts at indices8/10/12 and frozen line213 show three STATUS_SUCCESS returns. cleanup.last_original_continue_return_observed=false concerns final requested scope continuation, not all continuation calls.",
+    "remaining_uncertainty": [
+      "Full parent debug-event ledger was not saved on this error path.",
+      "No child VEH registration/dispatch-chain evidence exists in this failed relay.",
+      "Parent DR was modified, including an originally enabled null-address slot; behavioral equivalence was not proved.",
+      "Recorded parent exit is real; exact causal chain and child-exit timing relative to forced cleanup remain unresolved."
+    ],
+    "scope": "This explains why new only-child-DR/child-VEH is not already falsified; it does not reclassify the old run as successful or prove the new route."
+  },
+  "bounded_precheck_contract": {
+    "runtime": "One fresh owned no-window x86/WOW64 fixture under its own debug parent; no extra debugger attaches to parent, no parent DR writes. <=20 seconds externally enforced.",
+    "construction": "Fixture registers an independent VEH before creating/entering the wait path, preallocates and touches shared records, and calls the real unchanged NtWaitForSingleObject with non-alertable wait. First consumer instruction is a fixed authenticated fixture address.",
+    "arm": "Only when owned worker is demonstrably blocked on its owned unsignaled event, temporarily suspend it and save original raw user-context/DR. Require an actually unused DR slot by enable bits, not just address zero. Reject RF=1/TF=1 or preexisting debug state that invalidates ownership. Arm one execution slot, preserve unrelated slots and all non-debug state, read back, resume.",
+    "release": "Owned peer legitimately signals the owned event. Never write the wait result, consumer state, game fields, code or IAT.",
+    "parent": "Original fixture debug parent records exact code/first-chance/TID/IP and passes its predeclared DBG_EXCEPTION_NOT_HANDLED unchanged. Normal initial debugger breakpoint handled under fixture policy. No second debug layer.",
+    "VEH_filter": "Accept only expected thread, execution IP, owned DR slot/status and compatible single-step code; all unrelated exceptions return CONTINUE_SEARCH. Capture raw EXCEPTION_RECORD and OS-supplied CONTEXT.",
+    "VEH_gate": "Use only preallocated/pretouched shared memory and bounded atomic ACK spin/YieldProcessor. No heap allocation, CRT logging or synchronization-object wait in handler. External parent observes entered=1 and consumer=0 before ACK.",
+    "restore": "Restore original owned DR address/status/control baseline in supplied context, preserving all other context bytes including EIP/EAX/GPR/EFLAGS/RF/x87/XMM. Save before/after context bytes and an explicit allowed-byte delta. Return EXCEPTION_CONTINUE_EXECUTION to original same instruction; do not skip or manufacture return values.",
+    "required_evidence": [
+      "Current process/thread handles and same sole debug owner throughout.",
+      "Real wait is blocked before arm and returns actual success after legitimate SetEvent.",
+      "First-chance record precedes VEH entry; exact first consumer has not executed while ACK gate is held.",
+      "Exactly one natural consumer execution after ACK and original result preserved.",
+      "No parent DR instrumentation or code/IAT edits; exact implementation/build/host module identities.",
+      "Baseline/readback/exception/restore raw user-context and allowed delta; actual post-return DR receipt, not just requested restoration.",
+      "Bounded normal cleanup, VEH unregister, handle closure and zero surviving owned processes; forced timeout is failure."
+    ],
+    "claim_if_success": "Synchronous first-consumption entry capability in an owned WOW64 process with a NOT_HANDLED sole-debug-parent policy. Does not prove deployment/compatibility with original protector or complete native acceptance.",
+    "game_admission_still_missing": [
+      "Live original parent .text1 authentication and policy/ownership confirmation.",
+      "Legitimate deployment/lifetime/removal of child observer without original code/IAT/business-state writes or unaccounted business effects.",
+      "Actual original thread free DR-slot/state and exact first-consumer binding without short-life polling assumptions.",
+      "Complete required57 CPU states including CR0/2/3/4,GDTR/IDTR/LDTR/TR,DR4/5 and64-bit/segment-cache envelope; user CONTEXT cannot silently substitute.",
+      "Full memory/permission/instruction/write/ABI trace, two fresh original lifetimes, independent replay, resource/PTD cleanup, tamper rejection and preservation."
+    ]
+  },
+  "special_APC_prerequisite_research": {
+    "official_WOW64_limit": "QueueUserAPC2 documentation explicitly limits special user-mode APCs to native architectures, not WoW; do not run a helper expecting supported special APC delivery in this WOW64 target.",
+    "host_version_nuance": "Win32 QueueUserAPC2 minimum client22000 excludes host19045, but NtQueueApcThreadEx special APC existed fromRS5. This version table alone does not prove native API absence on19045.",
+    "ordinary_native64_APC_to_WOW64": "Original-author example exists for alertable wait only; it does not establish special non-alertable delivery to WOW64.",
+    "guest_failure_scope": "Prior Server2022 instrumentation-callback refusal/turbo bypass is not generalized to all host builds. Host local bytes/qualification are root-agent work."
+  },
+  "primary_references": [
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/debug/vectored-exception-handling",
+      "supports": "VEH follows debugger first chance and precedes stack unwind."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/debugapi/nf-debugapi-continuedebugevent",
+      "supports": "NOT_HANDLED first chance dispatches handlers; CONTINUE terminates exception processing."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winnt/nc-winnt-pvectored_exception_handler",
+      "supports": "CONTINUE_EXECUTION resumes exception point; handler should avoid allocation/synchronization-object acquisition."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/debug/exception-dispatching",
+      "supports": "OS saves thread machine context and exception record for resumable dispatch."
+    },
+    {
+      "url": "https://cdrdv2-public.intel.com/843857/253669-sdm-vol-3b-dec-24.pdf",
+      "section": "19.3.1.1",
+      "supports": "Instruction execution breakpoint is a fault before target instruction; RF suppresses instruction breakpoints. No blanket claim that CPU sets RF on instruction breakpoint."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/creating-guard-pages",
+      "supports": "Guard is one-shot and cleared by OS; system-service guard access can fail service."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-queueuserapc2",
+      "supports": "Special APC after blocked system service/wait finishes, currently native-only/notWoW; Win32 client minimum22000."
+    },
+    {
+      "url": "https://repnz.github.io/posts/apc/user-apc/",
+      "supports": "Original author implementation analysis of RS5 NtQueueApcThreadEx special APC interface; not official supported-WOW64 assurance."
+    },
+    {
+      "url": "https://repnz.github.io/posts/apc/wow64-user-apc/",
+      "supports": "Original author native64 ordinary APC example in WOW64 requires alertable wait; no special-APC inference."
+    }
+  ],
+  "verification_performed": [
+    "Pinned two original file sizes/hashes; pinned frozen relay ZIP entry hash.",
+    "Decoded9 bounded .text1 ranges directly from original file; every retained range decoded exactly.",
+    "Read three original relay raw before-contexts directly and verified EIP/EAX; read frozen handler/error branches.",
+    "Read primary Microsoft/Intel documents; no native experiment or synthetic test pass added."
+  ],
+  "preservation": {
+    "old_files_unchanged": true,
+    "new_persistent_files": 1,
+    "backups_created": 0,
+    "deletions": 0
+  }
+}
