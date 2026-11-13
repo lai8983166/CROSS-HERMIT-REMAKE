@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "kind": "independent_failed_component_record_review_not_replay",
+  "review_passed": true,
+  "accepted": false,
+  "formal_acceptance": false,
+  "independent_full_replay": false,
+  "scene_or_wait_accepted": false,
+  "no_native_execution_by_reviewer": true,
+  "no_collector_or_project_module_imports": true,
+  "source": {
+    "path": "analysis/terminal-scene-owner-preflight-v1-20261113.json.gz",
+    "bytes": 77905,
+    "sha256": "40607955c18e3b7a4e641acf1a0cffa84d633c2ca7f801aae2e86572d9ffe0c1"
+  },
+  "reviewer": {
+    "path": "devtools/terminal_scene_review.py",
+    "bytes": 19826,
+    "sha256": "fae39408bb7b034e22059c4d125c0a6737ad744f9f30b9128b22bed938f052f9"
+  },
+  "verified_file_pins": 294,
+  "checks": {
+    "original_instruction_count": 169671,
+    "original_instruction_sites": 4622,
+    "original_API_calls": 72,
+    "CPU57_snapshots": 156,
+    "PTD_readbacks": 61,
+    "native_requests": 344,
+    "owner_pid": 29264,
+    "native_MAIN_tid": 8184,
+    "native_MAIN_teb": 4104192,
+    "native_reader_tid": 12556,
+    "DC": {
+      "GetDC_request": 272,
+      "DeleteDC_request": 296,
+      "DeleteDC_result": 1,
+      "ReleaseDC_request": 344,
+      "ReleaseDC_result": 0,
+      "handle": 3053532935,
+      "liveness_after_DeleteDC": "unresolved",
+      "leak_established": false,
+      "release_established": false
+    },
+    "GAME_allocation_native_free_request": 340,
+    "original_GAME_constructed": true,
+    "original_GAME_destructor_completed": true,
+    "original_MAIN_destructor_completed": false,
+    "original_CRT_teardown_completed": false,
+    "remaining_tracked_resources_before_forced_exit": {
+      "heaps": 1,
+      "allocations": 4,
+      "virtual_allocations": 8,
+      "criticals": 8,
+      "handles": 1,
+      "TLS_slots": 1,
+      "live_TLS_values": 1
+    },
+    "cleanup": {
+      "parent_pid": 29264,
+      "forced": true,
+      "exits": {
+        "29264": {
+          "wait": 0,
+          "code": 94
+        }
+      },
+      "handles_closed": true,
+      "job_empty": true,
+      "errors": [],
+      "deadline_fired": false,
+      "wall_seconds": 3.6410000000032596
+    }
+  },
+  "tamper_rejections": [
+    {
+      "case": "original_instruction_byte_changed",
+      "rejected": true,
+      "reason": "source instruction bytes 0x409900"
+    },
+    {
+      "case": "native_DeleteDC_result_changed",
+      "rejected": true,
+      "reason": "observed DeleteDC1 then ReleaseDC0; ledger not silently cleared"
+    }
+  ],
+  "limitations": [
+    "Instruction site bytes/totals, CPU57 shape, original ABI, PTD bytes and native receipts were checked; ordered instructions and cumulative memory/write digests were not independently replayed or recomputed.",
+    "Native API authenticity is supported by pinned implementation/build identities and same-owner receipts, not an independent kernel observer.",
+    "GAME constructor and scalar deleting destructor completed. MAIN/CRT cleanup did not complete; process exit94 was forced and Job emptiness is not normal resource lifetime evidence.",
+    "DeleteDC1 followed by ReleaseDC0 has no independent HDC liveness observation. Neither a DC leak nor successful DC release is established.",
+    "GetDC(0) acquires a screen DC handle; no pixel reading, window creation, desktop input or device initialization is demonstrated.",
+    "WinMain and GAME factory remain suspended in distinct preserved guest stacks; the separate destructor root is supplemental cleanup, not normal WinMain termination.",
+    "Initial parent pipe CloseHandle BOOL values were not recorded by the inherited owner implementation; handles_closed is a separate bounded cleanup receipt.",
+    "No GAME publication, scene constructor, worker, cooperative wait, battle result consumption or two-case formal acceptance is established."
+  ]
+}

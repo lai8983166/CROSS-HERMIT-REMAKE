@@ -1,5 +1,12 @@
 # Tasks
 
+2026-11-13 GAME依赖接续：一次3.641秒无窗口原生运行已完成MAIN发布、原412C70内
+完整412E30构造、原412DD0析构/free；补充DC清理实际ReleaseDC=0（此前原DeleteDC=1），
+当前观察合同拒绝，未补造释放证据。Job终止exit94/空，非正常MAIN/PTD清理。
+GAME尚未发布，451170及422360/453CB5未执行，2.1–4.2不勾选，仍2/8。
+本轮一次额度已用完；禁止重跑，下一步离线修正DC观察及GAME发布依赖。
+详情 docs/terminal_scene_owner.md；原验收标准保持。
+
 2026-11-13 同owner原生接续：约31分钟离线准备后，仅一次1.391秒无UI预检，原基类
 worker的真实CreateThread/Resume、当前TLS/PTD、完成事件及MAIN等待返回已接通；
 原清理、worker/helper exit0及Job为空有回执。没有游戏、截图或桌面操作。
