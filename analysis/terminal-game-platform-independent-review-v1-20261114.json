@@ -1,0 +1,565 @@
+{
+  "kind": "independent_read_only_original_GAME_pregraphics_model_and_protocol_review",
+  "accepted_for_offline_component_review": true,
+  "formal_acceptance": false,
+  "formal_terminal_units": "2/8 unchanged",
+  "ready_for_native": false,
+  "native_executed_by_reviewer": false,
+  "desktop_used": false,
+  "scope": "Independent source/ABI/identity and saved symbolic-record checks. The native extension was implemented and built by this reviewer; the parent independently reviewed its C++. This is not an independent complete instruction replay or native lifetime qualification.",
+  "identities": [
+    {
+      "path": ".venv-audit/terminal-game-platform-model-v5-20261114.json.gz",
+      "bytes": 129614,
+      "sha256": "a01303ea6bbf235823480a033004097f309dc8cbb29c3b08b8cfd89c87de28aa"
+    },
+    {
+      "path": "devtools/terminal_game_platform.py",
+      "bytes": 19740,
+      "sha256": "a90bbcafea95b617515c43d78355a72ddfd77dceaf25bf5aa1dc581519e1c366"
+    },
+    {
+      "path": "devtools/terminal_game_platform_model.py",
+      "bytes": 11389,
+      "sha256": "dc339c1788f045d315454041690382f514c5d7174e1bb08e1d1f82772c336fff"
+    },
+    {
+      "path": "devtools/terminal_game_native.py",
+      "bytes": 11151,
+      "sha256": "8490e81e84be1e02ff0fb37e93f737a546f53f7f73a431dc958a659aee7322e1"
+    },
+    {
+      "path": "devtools/terminal_game_native.inc",
+      "bytes": 17653,
+      "sha256": "3d7227944852f57643465990ba5b717fde0d385ff3d47a31d5487bf1c32f1184"
+    },
+    {
+      "path": ".venv-audit/terminal-game-owner-build-v1-20261114/static-report.json",
+      "bytes": 19197,
+      "sha256": "65788090145a95a24ed202a6f12b2dd10d1dbc7e1dac129a64f4b47f390ccefb"
+    },
+    {
+      "path": ".venv-audit/terminal-game-owner-build-v1-20261114/terminal-game-owner.cpp",
+      "bytes": 90182,
+      "sha256": "c82b9445c8eb1a2a8e6d5d02e353b35acd1b9148977c559a05c3d2d433760f1c"
+    },
+    {
+      "path": ".venv-audit/terminal-game-owner-build-v1-20261114/terminal-game-owner.exe",
+      "bytes": 279040,
+      "sha256": "6f768b8c669217b26eb2be9ca6006636e43c41f78218132c1203a0e33d324fca"
+    },
+    {
+      "path": "devtools/terminal_window_native_v3.py",
+      "bytes": 6735,
+      "sha256": "af9168cc96d0184d3e2e06ffe4f6f1565880b2035707555786df57f7cf811706"
+    },
+    {
+      "path": "analysis/hermit_game.exe",
+      "bytes": 5980160,
+      "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+    }
+  ],
+  "source_checks": {
+    "all_reported_instruction_site_bytes_match_fixed_EXE": true,
+    "site_count": 7018,
+    "recorded_hook_instruction_count": 222146,
+    "original_code_sites": [
+      {
+        "va": "0x49dd70",
+        "count": 1
+      },
+      {
+        "va": "0x450350",
+        "count": 1
+      },
+      {
+        "va": "0x450570",
+        "count": 1
+      },
+      {
+        "va": "0x412e30",
+        "count": 1
+      },
+      {
+        "va": "0x4500b0",
+        "count": 1
+      },
+      {
+        "va": "0x4135d0",
+        "count": 1
+      },
+      {
+        "va": "0x40c340",
+        "count": 1
+      },
+      {
+        "va": "0x413630",
+        "count": 1
+      },
+      {
+        "va": "0x41d210",
+        "count": 1
+      },
+      {
+        "va": "0x41d5d0",
+        "count": 2
+      },
+      {
+        "va": "0x412dd0",
+        "count": 1
+      },
+      {
+        "va": "0x44fe60",
+        "count": 1
+      },
+      {
+        "va": "0x575450",
+        "count": 1
+      },
+      {
+        "va": "0x575360",
+        "count": 1
+      },
+      {
+        "va": "0x57ba60",
+        "count": 1
+      }
+    ],
+    "stopped_before": "0x413450",
+    "graphics_entry_executed": false,
+    "GAME_published": false,
+    "source_byte_rewriting_of_original_IAT": false,
+    "continuity": "Code declares only heap/TLS/WinMain startup roots; resumes the existing WinMain CPU/stack at49DE23 and4504E1. Original factory/audio/video calls are reached by original instructions. Site-count records alone do not independently prove full ordered execution.",
+    "roots": [
+      {
+        "label": "original_heap_init",
+        "entry": "0x57b9d0",
+        "lane": 0
+      },
+      {
+        "label": "original_MAIN_TLS_init",
+        "entry": "0x5752d0",
+        "lane": 0
+      },
+      {
+        "label": "original_WinMain_continuous",
+        "entry": "0x49dd70",
+        "lane": 0
+      },
+      {
+        "label": "supplemental_original_GAME_destructor_and_free",
+        "entry": "0x412dd0",
+        "lane": 0
+      },
+      {
+        "label": "supplemental_original_MAIN_destructor",
+        "entry": "0x44fe60",
+        "lane": 0
+      },
+      {
+        "label": "supplemental_original_MAIN_free",
+        "entry": "0x428ad0",
+        "lane": 0
+      },
+      {
+        "label": "supplemental_original_MAIN_PTD_free_TLS_clear",
+        "entry": "0x575450",
+        "lane": 0
+      },
+      {
+        "label": "supplemental_original_TLS_and_lock_teardown",
+        "entry": "0x575360",
+        "lane": 0
+      },
+      {
+        "label": "supplemental_original_heap_teardown",
+        "entry": "0x57ba60",
+        "lane": 0
+      }
+    ],
+    "pending_stack": "Executor asserts the original64KiB WinMain/factory stack unchanged after six supplemental cleanup roots and stores SHA256; complete original stack bytes are not in this small report and were not independently replayed.",
+    "pending_stack_sha256": "6f63a85b6422c59ac6ae9983c890c85509a41949fc9336f6527e6a92c0e131f7",
+    "WinMain_natural_return": false,
+    "count_limit": "222146 is the saved collector hook count. Earlier v4 count222144 is not treated as cross-model full trajectory equivalence; no REP exemption or formal acceptance relaxation is introduced."
+  },
+  "ABI_checks": {
+    "API_records": 216,
+    "reviewed_new_platform_and_COM_ABI_records": 48,
+    "callback_records": 20,
+    "all_new_API_CPU57_preserved_except_EAX_ESP_EIP": true,
+    "all_new_API_stdcall_return_and_result_match": true,
+    "all_callback_CPU57_suspended_restored_equal": true,
+    "all_typed_wire_argument_counts_match_native": true,
+    "MAIN_lane": 0,
+    "model_tid": 101,
+    "model_teb": 4096,
+    "model_values_are_actual_host_identity": false,
+    "per_new_API_PTD_readback_bytes": 116,
+    "temporary_buffers_recorded_released": true,
+    "projection": "Guest interface pages/vtables are separate from native COM objects. GUID guest VA selects an exact verified native GUID constant; opaque movie this is passed only as notification payload. Output native pointers are read from current owned4-byte buffers, cross-checked with native metadata, then projected into guest memory.",
+    "alias": "Current Python merges matching native object/vtable/group identities and checks overlapping method ABI plus owned_refs/remaining_owned_refs. Synthetic GraphBuilder/Seeking alias regression is recorded; no real COM alias has been exercised.",
+    "HRESULT": "Production adapters preserve native uint32 HRESULT/ULONG and use signed HRESULT success interpretation for pointer outputs. The saved model deliberately returns declared success values, which are not native observations."
+  },
+  "lifecycle_checks": {
+    "symbolic_created_references": 15,
+    "symbolic_released_references": 15,
+    "all_symbolic_refs_zero": true,
+    "release_order": [
+      {
+        "request": 593,
+        "kind": 8,
+        "group": 807350272
+      },
+      {
+        "request": 596,
+        "kind": 9,
+        "group": 807350272
+      },
+      {
+        "request": 599,
+        "kind": 7,
+        "group": 807350272
+      },
+      {
+        "request": 602,
+        "kind": 6,
+        "group": 807350272
+      },
+      {
+        "request": 605,
+        "kind": 5,
+        "group": 807350272
+      },
+      {
+        "request": 608,
+        "kind": 4,
+        "group": 807350272
+      },
+      {
+        "request": 617,
+        "kind": 8,
+        "group": 807534592
+      },
+      {
+        "request": 620,
+        "kind": 9,
+        "group": 807534592
+      },
+      {
+        "request": 623,
+        "kind": 7,
+        "group": 807534592
+      },
+      {
+        "request": 626,
+        "kind": 6,
+        "group": 807534592
+      },
+      {
+        "request": 629,
+        "kind": 5,
+        "group": 807534592
+      },
+      {
+        "request": 632,
+        "kind": 4,
+        "group": 807534592
+      },
+      {
+        "request": 638,
+        "kind": 2,
+        "group": 807161856
+      },
+      {
+        "request": 641,
+        "kind": 3,
+        "group": 807092224
+      },
+      {
+        "request": 650,
+        "kind": 1,
+        "group": 807092224
+      }
+    ],
+    "cleanup_request_order": [
+      {
+        "id": 23,
+        "op": "TlsSetValue"
+      },
+      {
+        "id": 366,
+        "op": "GAME_GATE"
+      },
+      {
+        "id": 539,
+        "op": "DS_SET_NOTIFY"
+      },
+      {
+        "id": 584,
+        "op": "DS_SET_NOTIFY"
+      },
+      {
+        "id": 587,
+        "op": "DS_STOP"
+      },
+      {
+        "id": 590,
+        "op": "DS_SET_NOTIFY"
+      },
+      {
+        "id": 593,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 596,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 599,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 602,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 605,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 608,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 611,
+        "op": "DS_STOP"
+      },
+      {
+        "id": 614,
+        "op": "DS_SET_NOTIFY"
+      },
+      {
+        "id": 617,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 620,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 623,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 626,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 629,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 632,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 635,
+        "op": "DeleteDC"
+      },
+      {
+        "id": 638,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 641,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 644,
+        "op": "DM_STOP"
+      },
+      {
+        "id": 647,
+        "op": "DM_CLOSE_DOWN"
+      },
+      {
+        "id": 650,
+        "op": "COM_RELEASE"
+      },
+      {
+        "id": 694,
+        "op": "HeapFree"
+      },
+      {
+        "id": 698,
+        "op": "DC_INFO"
+      },
+      {
+        "id": 699,
+        "op": "WINDOW_CLOSE"
+      },
+      {
+        "id": 711,
+        "op": "UnregisterClassA"
+      },
+      {
+        "id": 712,
+        "op": "WINDOW_MODULE_CLOSE"
+      },
+      {
+        "id": 713,
+        "op": "CoUninitialize"
+      },
+      {
+        "id": 714,
+        "op": "GAME_GATE"
+      },
+      {
+        "id": 763,
+        "op": "HeapFree"
+      },
+      {
+        "id": 788,
+        "op": "HeapFree"
+      },
+      {
+        "id": 790,
+        "op": "TlsSetValue"
+      },
+      {
+        "id": 803,
+        "op": "HeapFree"
+      },
+      {
+        "id": 815,
+        "op": "HeapFree"
+      },
+      {
+        "id": 825,
+        "op": "TlsFree"
+      },
+      {
+        "id": 826,
+        "op": "HeapDestroy"
+      },
+      {
+        "id": 828,
+        "op": "Shutdown"
+      }
+    ],
+    "status_zero_fields": [
+      "ui_gate",
+      "game_gate",
+      "com_balance",
+      "com_interfaces",
+      "com_refs",
+      "com_groups",
+      "audio_initialized",
+      "audio_pending_close",
+      "graph_notifications",
+      "game_call_active",
+      "window_modules",
+      "window_classes",
+      "windows",
+      "allocations",
+      "memory_bytes",
+      "heaps",
+      "handles",
+      "criticals",
+      "tls_slots",
+      "fonts",
+      "dcs"
+    ],
+    "symbolic_Shutdown_request": 828,
+    "native_exit_or_Job_cleanup_observed": false,
+    "audio": "Loader and default AudioPath Release precede Performance Stop(all zero), CloseDown and final Release. Native ledger refuses final Performance release while an audio-close obligation remains.",
+    "movies": "Each original movie cleanup executes Control Stop, EventEx SetNotifyWindow(0,0,0), then six interface Releases. Native EventEx release refuses a tracked live notification.",
+    "DC": "v5 declares a successful DeleteDC/retirement model and later DC_INFO invalid state. These fields are symbolic; no prior failed sample was rewritten or treated as the current runtime.",
+    "termination": "Unpublished GAME is destroyed via a supplemental412DD0 root on WORK_STACK; window/class/module and COM apartment then close, followed by supplemental MAIN/PTD/TLS/heap roots. The pending WinMain/factory is abandoned and cannot resume after cleanup."
+  },
+  "native_static_review": {
+    "strict_x86_build": true,
+    "W4_WX": true,
+    "subsystem": "Windows",
+    "default_GAME_gate_closed": true,
+    "launcher_added": false,
+    "no_arbitrary_COM_pointer_or_slot_call": true,
+    "whitelisted_class_pairs": 3,
+    "whitelisted_GUIDs": 13,
+    "synchronous_call_locking": "GameCallScope releases stateMutex and retains parent_request on MAIN for COM/common-controls callbacks; callback nested queue retains the frozen CB-only whitelist; worker writes are rejected while a game call is active.",
+    "same_MAIN_and_outside_callback_required": true,
+    "LastError": "Actual leaf LastError is captured before relocking/metadata; reply preserves it.",
+    "resource_gates": "CoUninitialize requires balanced current MAIN apartment and no owned interface/group; GAME_GATE0 and Shutdown require empty game ownership. Original window/CRT gates remain inherited.",
+    "imports_added": {
+      "ole32.dll": [
+        "CoCreateInstance",
+        "CoInitialize",
+        "CoUninitialize"
+      ],
+      "comctl32.dll": [
+        "InitCommonControlsEx"
+      ],
+      "kernel32.dll": [
+        "MultiByteToWideChar"
+      ]
+    },
+    "inherited_USER32_GDI32_SHLWAPI_imports_unchanged": true,
+    "SDK_validation": "COM/GUID/INITCOMMONCONTROLSEX sizes and DirectShow Stop/SetNotifyWindow vtable offsets have compile-time checks. DirectMusic slots use original instruction ABI and explicitly typed fixed calls; no absent dmusici.h validation is claimed."
+  },
+  "resolved_review_findings": [
+    "InitCommonControlsEx now appears in Python synchronous callback parent whitelist.",
+    "Final symbolic status explicitly checks com_groups/audio_pending_close/game_call_active and sends Shutdown.",
+    "Python native COM alias handling and native refcount receipt checks are present."
+  ],
+  "recorded_regressions": {
+    "wire_argument_counts_match_native": true,
+    "COM_alias_identity_preserved": true,
+    "common_controls_callback_transport": true,
+    "rejections": [
+      {
+        "case": "changed_vtable",
+        "rejected": true,
+        "reason": "stable retained COM identity"
+      },
+      {
+        "case": "wrong_reference_count",
+        "rejected": true,
+        "reason": "current native owned COM reference count"
+      },
+      {
+        "case": "wrong_callback_TID",
+        "rejected": true,
+        "reason": "same actual MAIN callback identity"
+      },
+      {
+        "case": "wrong_callback_TEB",
+        "rejected": true,
+        "reason": "same actual MAIN callback identity"
+      },
+      {
+        "case": "wrong_callback_parent",
+        "rejected": true,
+        "reason": "exact pending post-window MAIN operation"
+      },
+      {
+        "case": "wrong_callback_depth",
+        "rejected": true,
+        "reason": "bounded exact callback ancestry"
+      }
+    ],
+    "limits": "Synthetic interface/envelope regression only. No native COM aliases, reentrancy or UI exercised."
+  },
+  "regressions_rerun_by_reviewer": false,
+  "limitations": [
+    "No native helper, COM activation, audio device, DirectShow graph, ShowWindow callback behavior, or desktop restoration ran this round.",
+    "Graphics413450, D3D/device/font/cache/queue/gamma, DirectInput/global cursor, full GAME publication, worker and wait consumption remain unimplemented or unqualified.",
+    "COM DLL identity, real HRESULT failure branches, live interface aliasing, reentrant callbacks and audio shutdown remain runtime qualification work.",
+    "Resource cwd remains unresolved. Original4297A0 uses PathAddBackslashA, not SetCurrentDirectoryA; no cwd mutation was added.",
+    "Full native admission/recovery is not ready. Future audio/graphics/input platform use requires separate bounded host authorization and complete recovery readiness."
+  ],
+  "new_native_build_volume": {
+    "total_bytes": 1521837,
+    "regenerable_obj_bytes": 1132650,
+    "cleanup_performed_by_reviewer": false
+  }
+}
