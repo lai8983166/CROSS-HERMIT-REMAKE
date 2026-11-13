@@ -1,5 +1,11 @@
 # Tasks
 
+2026-11-13正常清理组件：修正版一次4.656秒新寿命实际完成后DC_INFO、原GAME/MAIN
+析构free、PTD释放/TLS0实读、锁/TLS/heap清理，资源账本0且自然exit0/Job空；独立复核
+与7篡改拒绝通过。未执行GAME发布/worker/等待/结果消费，2.1–4.2仍不勾选，正式2/8。
+下一步复用旧原窗口同步回调与gamma恢复合同，合入同一MAIN所有者；静态准备通过后才
+安排宿主桌面时段。详见 docs/terminal_scene_dc.md 及 terminal-game-owner-readiness-v1。
+
 2026-11-13 DC真实状态：单次3.625秒已观察原DeleteDC后类型3→0、字体非零→0、
 GDI数1→0；Python OBJ_DC=1常量错误导致组件拒绝，新增v2按SDK3修正，真实回执与9项
 拒绝重验通过，未重复原生。MAIN/PTD正常清理仍未执行，2.1–4.2不勾选。

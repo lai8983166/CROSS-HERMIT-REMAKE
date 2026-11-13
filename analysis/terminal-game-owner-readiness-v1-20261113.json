@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "kind": "same_owner_GAME_publication_preparation_after_normal_cleanup",
+  "native_executed": false,
+  "ready_for_desktop_test": false,
+  "parent_route": {
+    "path": "analysis/terminal-game-publication-route-v1-20261113.json",
+    "bytes": 14857,
+    "sha256": "9cd0f39b7204cbea99b32234fd0242b09ed74f43cdfb22b769d0cafd09e42dca"
+  },
+  "cleanup_source": {
+    "path": "analysis/terminal-scene-dc-preflight-v2-20261113.json.gz",
+    "bytes": 94363,
+    "sha256": "b269e87c7786d7280699a8f093a7ac8526163eeb3c4d77f0a5d1bbe7a0238631"
+  },
+  "verified_reusable_sources": [
+    {
+      "path": "devtools/terminal_native_owner.cpp",
+      "bytes": 28898,
+      "sha256": "a77132eae20424f1e6fc5eb6e792de5c41b018e787cedbcda6cb975b2435be43"
+    },
+    {
+      "path": "devtools/terminal_native_owner_probe.py",
+      "bytes": 28708,
+      "sha256": "dc1cf061f806ebdb034d0108589cf4c65788ba833e94864a5bd9f02ab2c8f38e"
+    },
+    {
+      "path": "devtools/terminal_scene_construction.py",
+      "bytes": 19837,
+      "sha256": "910f5dcb1f6bfc16865f0907a55b475f0e32881cdd32edd979925817ce82c6d1"
+    },
+    {
+      "path": "tools/school_window_startup_platform.cs",
+      "bytes": 33495,
+      "sha256": "848973bfc879438f35a2894a26e82a96346ca6073646b1d999838486ea050d44"
+    },
+    {
+      "path": "tools/school_window_startup.py",
+      "bytes": 11595,
+      "sha256": "39445b6e2b3d45f6de7368e6c058a9f13649886edbc0454d994d597f68f420af"
+    },
+    {
+      "path": "tools/school_window_startup_verification.py",
+      "bytes": 21242,
+      "sha256": "788e2078b3ecb91ec105aabd1345292c27aca22e2d713df814746f3fcac8fa6d"
+    },
+    {
+      "path": "tools/school_startup_return_device.cs",
+      "bytes": 43551,
+      "sha256": "da1816976ae0606561fa61714f159a9bd241c83e07f424d75c98878c1fa0b5e9"
+    },
+    {
+      "path": "devtools/terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    }
+  ],
+  "next_original_boundary": {
+    "current": "WinMain49DE23 remains pending before window setup",
+    "target": "Original450350 preparation, CreateWindowExA pending call, actual424980 callbacks, original4504D5 return and4504E1 boundary",
+    "not_yet_reached": true
+  },
+  "reusable_capabilities": [
+    {
+      "source": "tools/school_window_startup_platform.cs:Callback",
+      "available": "Bounded actual native window callback IDs/depth/lParam buffers, synchronous callback_return and nested native requests; original424980 declaration."
+    },
+    {
+      "source": "tools/school_window_startup.py:StartupEmulator.callback",
+      "available": "Retains guest caller context and outer stack/shadow buffers across actual nested callbacks; independently reviewed in school_window_startup_verification.py. Must port to current CPU57/memory-digest engine; prior helpers are not current owners."
+    },
+    {
+      "source": "tools/school_startup_return_device.cs:RestoreGamma",
+      "available": "Device and desktop gamma snapshots, conditional restoration, readback and DC balance; belongs to separate legacy device helper, not yet integrated."
+    },
+    {
+      "source": "devtools/terminal_host_desktop.py",
+      "available": "Display mode/work area/taskbar/foreground snapshots and restoration verification; does not itself contain gamma/cursor/input-device lifetime handling."
+    }
+  ],
+  "concrete_integration_gaps": [
+    {
+      "issue": "Current stateMutex held during normal dispatch",
+      "required": "Any callback-producing window API must pin owned arguments then release shared state lock while synchronously entering Windows; nested same-lane dispatch must not deadlock or permit foreign HWND/owner access."
+    },
+    {
+      "issue": "Current SceneEngine drive waits only for an API response",
+      "required": "Handle actual callback notifications while original API remains pending, execute original424980 with CPU57 context/ABI and original callback parent IDs, return actual result, then restore caller. No guessed return ancestors."
+    },
+    {
+      "issue": "Legacy C# platform uses its own independent ownership and console request loop",
+      "required": "Reuse contracts/leaf code, not its process handles or a second helper. Route HWND, COM, D3D and DirectInput operations through the current native MAIN lane."
+    },
+    {
+      "issue": "Desktop recovery components not unified",
+      "required": "Combine original window/device/input cleanup with actual baseline/readback of display modes,gamma,taskbars,work area,foreground and cursor. Preserve current host work and refuse UI until restoration admission is concrete."
+    }
+  ],
+  "gates": [
+    "Original window preparation/callback port and offline recorded-ABI/reentrancy verification; no new native/window in this unit.",
+    "Original COM/audio/D3D8/DirectInput ownership adapters and no leaked resources across failures, all on current MAIN lane.",
+    "Prepare bounded automatic desktop recovery and disclose visible/fullscreen/cursor/foreground effects before requesting a host test slot.",
+    "Only then execute original450570 publication and original event16->451080->worker->wait; retain two fresh full replay and formal acceptance requirements."
+  ],
+  "prohibited_shortcuts": [
+    "No hidden-HWND substitution for the original fullscreen/foreground contract",
+    "No manually published7A49FC or forced active/input/result fields",
+    "No reuse of expired legacy native handles",
+    "No new VM requirement",
+    "No screenshots or manual user game operation"
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "kind": "independent_successful_DC_component_record_review_not_replay",
+  "review_passed": true,
+  "component_accepted": true,
+  "formal_acceptance": false,
+  "independent_full_replay": false,
+  "scene_or_wait_accepted": false,
+  "no_native_execution_by_reviewer": true,
+  "no_collector_or_project_module_imports": true,
+  "source": {
+    "path": "analysis/terminal-scene-dc-preflight-v2-20261113.json.gz",
+    "bytes": 94363,
+    "sha256": "b269e87c7786d7280699a8f093a7ac8526163eeb3c4d77f0a5d1bbe7a0238631"
+  },
+  "reviewer": {
+    "path": "devtools/terminal_scene_dc_success_review.py",
+    "bytes": 26523,
+    "sha256": "a7d8deeeafead4b0aa10e83dd944a47e59de6a7778c999c9052fd52fbf2c5823"
+  },
+  "verified_file_pins": 302,
+  "SDK_OBJ_DC_definition": {
+    "path": "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/wingdi.h",
+    "bytes": 244023,
+    "sha256": "96f3528cabc7e5fe30e2f2c51daa01c018dd6cedb3768121202434758629b8a2"
+  },
+  "checks": {
+    "original_instruction_count": 175031,
+    "original_instruction_sites": 5315,
+    "original_API_calls": 114,
+    "CPU57_snapshots": 250,
+    "PTD_readbacks": 81,
+    "native_requests": 457,
+    "owner_pid": 34708,
+    "native_MAIN_tid": 8880,
+    "native_MAIN_teb": 16207872,
+    "native_reader_tid": 34360,
+    "DC": {
+      "GetDC_request": 272,
+      "DeleteDC_request": 296,
+      "DeleteDC_result": 1,
+      "ReleaseDC_executed": false,
+      "handle": 1543584292,
+      "live_type": 3,
+      "after_type": 0,
+      "before_GDI_count": 1,
+      "baseline_and_after_GDI_count": 0,
+      "original_DeleteDC_resource_retirement_observed": true,
+      "independent_followup_DC_INFO_executed": true,
+      "DC_INFO_request": 344
+    },
+    "original_PTD_poison": [
+      {
+        "api_index": 91,
+        "native": 51774936,
+        "guest": 1342181408
+      }
+    ],
+    "PTD_free_request": 417,
+    "TLS_clear_request": 419,
+    "actual_zero_TLS_readback_request": 420,
+    "parent_CloseHandle_receipts": [
+      {
+        "handle": 380,
+        "result": 1,
+        "before_resume": true
+      },
+      {
+        "handle": 1156,
+        "result": 1,
+        "before_resume": true
+      },
+      {
+        "handle": 356,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 1160,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 1168,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 1148,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 1152,
+        "result": 1,
+        "before_resume": false
+      }
+    ],
+    "GAME_allocation_native_free_request": 340,
+    "original_GAME_constructed": true,
+    "original_GAME_destructor_completed": true,
+    "original_MAIN_destructor_completed": true,
+    "original_CRT_teardown_completed": true,
+    "remaining_tracked_resources_before_normal_exit": {
+      "heaps": 0,
+      "allocations": 0,
+      "virtual_allocations": 0,
+      "criticals": 0,
+      "handles": 0,
+      "TLS_slots": 0,
+      "live_TLS_values": 0
+    },
+    "cleanup": {
+      "parent_pid": 34708,
+      "forced": false,
+      "exits": {
+        "34708": {
+          "wait": 0,
+          "code": 0
+        }
+      },
+      "handles_closed": true,
+      "job_empty": true,
+      "errors": [],
+      "deadline_fired": false,
+      "wall_seconds": 4.6560000000172295
+    }
+  },
+  "tamper_rejections": [
+    {
+      "case": "original_instruction_byte_changed",
+      "rejected": true,
+      "reason": "source instruction bytes 0x409900"
+    },
+    {
+      "case": "live_DC_after_cleanup",
+      "rejected": true,
+      "reason": "follow-up after original GAME free still proves invalid DC and baseline count"
+    },
+    {
+      "case": "wrong_actual_TLS_zero_readback",
+      "rejected": true,
+      "reason": "same-thread actual TLS readback"
+    },
+    {
+      "case": "PTD_HeapFree_failed",
+      "rejected": true,
+      "reason": "actual original HeapFree"
+    },
+    {
+      "case": "DeleteDC_real_return_changed",
+      "rejected": true,
+      "reason": "actual original DeleteDC success with lost handle validity and process GDI baseline restored"
+    },
+    {
+      "case": "original_PTD_free_omitted",
+      "rejected": true,
+      "reason": "source PTD freed before original TLS clear"
+    },
+    {
+      "case": "nonzero_native_process_exit",
+      "rejected": true,
+      "reason": "real normal exit0 with empty Job and no forced termination"
+    }
+  ],
+  "limitations": [
+    "This is an independent record/source/build/ABI/resource audit, not an independent complete instruction replay; instruction order and cumulative memory/write digests were not recomputed.",
+    "Actual API and metadata observations are supported by pinned helper code/build and same-owner TID/TEB receipts; no independent kernel observer was used.",
+    "The original MAIN prefix and complete GAME constructor ran on separate declared guest roots. GAME remained unpublished and413450 was never executed.",
+    "Original destructors/CRT cleanup ran as supplementary roots while the WinMain and factory guest stacks remained pending. This is not natural WinMain return or complete factory return.",
+    "One fresh no-window component lifetime passed. Two-case formal acceptance, GAME publication, scene worker/cooperative wait and first-result consumption remain unproved.",
+    "The source instruction count175031 is the actual record; prior symbolic model175028 is not substituted for the observed count."
+  ]
+}

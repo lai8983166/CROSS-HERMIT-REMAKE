@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "kind": "successful_original_MAIN_GAME_cleanup_component_closeout",
+  "component_accepted": true,
+  "formal_acceptance": false,
+  "formal_progress": {
+    "completed": 2,
+    "total": 8
+  },
+  "execution": {
+    "offline_start_utc": "2026-11-13T15:08:46Z",
+    "offline_budget_seconds": 3600,
+    "offline_seconds_to_native": 168.1158423423767,
+    "native_attempts": 1,
+    "native_budget_seconds": 30,
+    "native_seconds": 4.6560000000172295,
+    "helper_exit_code": 0,
+    "outer_exit_code": 0,
+    "forced_cleanup": false,
+    "deadline_fired": false,
+    "job_empty": true,
+    "window_created": false,
+    "pixels_read": false,
+    "host_input_sent": false
+  },
+  "result": {
+    "original_MAIN_and_GAME_constructed": true,
+    "GAME_allocation_free": true,
+    "DC_deleted_and_later_invalid": true,
+    "MAIN_destructor_and_free": true,
+    "PTD_free_then_TLS_zero_readback": true,
+    "lock_TLS_and_heap_teardown": true,
+    "native_resource_ledgers_zero": true,
+    "parent_CloseHandle_results": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "GAME_published": false,
+    "scene_worker": false,
+    "wait_return": false,
+    "result_consumption": false,
+    "independent_full_replay": false
+  },
+  "review": {
+    "independent_record_review_passed": true,
+    "identity_pins": 302,
+    "tamper_rejections": 7,
+    "actual_instructions": 175031,
+    "API_calls": 114,
+    "native_requests": 457,
+    "PTD_readbacks": 81
+  },
+  "reuse": {
+    "recompiled": false,
+    "binary": {
+      "path": ".venv-audit/terminal-scene-dc-run-v2-20261113/terminal-scene-dc-owner.exe",
+      "bytes": 218624,
+      "sha256": "36b3ff1b096759a1eb9161709304078aeebe5f2adf7b4e78f3c509611ed3d9ca"
+    },
+    "original_binary": {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/terminal-scene-dc-owner.exe",
+      "bytes": 218624,
+      "sha256": "36b3ff1b096759a1eb9161709304078aeebe5f2adf7b4e78f3c509611ed3d9ca"
+    },
+    "same_file_verified": true,
+    "binary_hard_link_logical_bytes": 218624,
+    "binary_additional_content_bytes": 0,
+    "old_sources_and_once_markers_preserved": true,
+    "old_runtime_handles_reused": false
+  },
+  "exact_preserved_local_artifacts": [
+    {
+      "path": ".venv-audit/terminal-scene-dc-run-v2-20261113/native-attempt.once",
+      "bytes": 219,
+      "sha256": "973db258a6101cadbf6a70fc252da0f7836e51f691fa44e010511942afc619e1"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-run-v2-20261113/offline-route.json",
+      "bytes": 1004,
+      "sha256": "c0427447dd0aaa2e2f4779b1c5270f656d0a246ab7a2024050df0c8c9b19c211"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-run-v2-20261113/reuse.json",
+      "bytes": 983,
+      "sha256": "6be00e0e8acfe6c5f629cb44c9d484422f920fb08e670504f41d4e6559c2b3c5"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-run-v2-20261113/static-report.json",
+      "bytes": 7986,
+      "sha256": "c488f29715aa250fbf3f322e28f4e022ac9769c69b06aa8b508c588a6daf0c00"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-run-v2-20261113/terminal-scene-dc-owner.exe",
+      "bytes": 218624,
+      "sha256": "36b3ff1b096759a1eb9161709304078aeebe5f2adf7b4e78f3c509611ed3d9ca"
+    }
+  ],
+  "tracked_evidence": [
+    {
+      "path": "analysis/terminal-scene-dc-preflight-v2-20261113.json.gz",
+      "bytes": 94363,
+      "sha256": "b269e87c7786d7280699a8f093a7ac8526163eeb3c4d77f0a5d1bbe7a0238631"
+    },
+    {
+      "path": "analysis/terminal-scene-dc-independent-review-v2-20261113.json",
+      "bytes": 5553,
+      "sha256": "e8fdc4de68c6576625ef662b6900d2e57ae0fd3436fa630bde9cdc76a42a9b7e"
+    },
+    {
+      "path": "analysis/terminal-game-owner-readiness-v1-20261113.json",
+      "bytes": 5556,
+      "sha256": "2dca60fd4e23d74276ccb36066f9d7688b4e9040ad1f0bd6674ccde91368ea68"
+    }
+  ],
+  "retained_local_logical_bytes_excluding_this_closeout": 334288,
+  "new_unique_content_bytes_excluding_this_closeout": 115664,
+  "new_backup_bytes": 0,
+  "retired_files": [],
+  "retired_bytes": 0,
+  "cleanup_note": "No new compiler intermediates were generated; no old evidence deleted. Shared binary bytes referenced by NTFS hard link are included in logical totals but not counted as newly copied content.",
+  "evidence_budget_bytes": 268435456,
+  "git_volume": "Measured after commit in current run-folder git-closeout.json; final response reports Git objects and all new evidence including receipt.",
+  "next_gate": "Port reusable original window callback protocol into this same owner/MAIN lane with CPU57, nested request/lock lifecycle and restoration. Complete COM/graphics/input preparation before requesting a desktop slot; no new native test in this unit.",
+  "limitations": [
+    "This is an independent record/source/build/ABI/resource audit, not an independent complete instruction replay; instruction order and cumulative memory/write digests were not recomputed.",
+    "Actual API and metadata observations are supported by pinned helper code/build and same-owner TID/TEB receipts; no independent kernel observer was used.",
+    "The original MAIN prefix and complete GAME constructor ran on separate declared guest roots. GAME remained unpublished and413450 was never executed.",
+    "Original destructors/CRT cleanup ran as supplementary roots while the WinMain and factory guest stacks remained pending. This is not natural WinMain return or complete factory return.",
+    "One fresh no-window component lifetime passed. Two-case formal acceptance, GAME publication, scene worker/cooperative wait and first-result consumption remain unproved.",
+    "The source instruction count175031 is the actual record; prior symbolic model175028 is not substituted for the observed count."
+  ]
+}
