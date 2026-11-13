@@ -1,0 +1,94 @@
+{
+  "kind": "corrected_DC_decision_against_actual_frozen_receipt",
+  "native_executed": false,
+  "formal_acceptance": false,
+  "component_accepted": false,
+  "DeleteDC_retirement_supported": true,
+  "MAIN_PTD_cleanup_proven": false,
+  "source": {
+    "path": "analysis/terminal-scene-dc-preflight-v1-20261113.json.gz",
+    "bytes": 78100,
+    "sha256": "f5b053cce1937c3d40e3c5f8335d4efa13cd98c98c8267a23ef2d937aab0cdec"
+  },
+  "corrected_collector": {
+    "path": "devtools/terminal_scene_dc_probe_v2.py",
+    "bytes": 1434,
+    "sha256": "f4d6301a5450bb6a4fe08cc314e9ecb5b066486b33f4a668b96147e8cbb32853"
+  },
+  "frozen_collector": {
+    "path": "devtools/terminal_scene_dc_probe.py",
+    "bytes": 10086,
+    "sha256": "994d5ab7877c10bb3de9cc72ef00eaba9f57732ee646372d03c45d991258fed9"
+  },
+  "sdk_header": {
+    "path": "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/wingdi.h",
+    "bytes": 244023,
+    "sha256": "96f3528cabc7e5fe30e2f2c51daa01c018dd6cedb3768121202434758629b8a2"
+  },
+  "SDK_OBJ_DC": 3,
+  "native_receipt": {
+    "id": 296,
+    "lane": 0,
+    "tid": 39168,
+    "last_error": 0,
+    "ok": 1,
+    "result": 1,
+    "teb": 4726784,
+    "dc_retired": 1,
+    "baseline_gdi_count": 0,
+    "baseline_gdi_error": 0,
+    "before_flush": 1,
+    "before_type": 3,
+    "before_type_error": 0,
+    "before_font": 160040319,
+    "before_font_error": 0,
+    "before_gdi_count": 1,
+    "before_gdi_error": 0,
+    "after_flush": 1,
+    "after_type": 0,
+    "after_type_error": 0,
+    "after_font": 0,
+    "after_font_error": 0,
+    "after_gdi_count": 0,
+    "after_gdi_error": 0
+  },
+  "negative_cases": [
+    {
+      "changed": "result",
+      "rejected": true
+    },
+    {
+      "changed": "dc_retired",
+      "rejected": true
+    },
+    {
+      "changed": "before_type",
+      "rejected": true
+    },
+    {
+      "changed": "before_font",
+      "rejected": true
+    },
+    {
+      "changed": "after_type",
+      "rejected": true
+    },
+    {
+      "changed": "after_font",
+      "rejected": true
+    },
+    {
+      "changed": "after_gdi_count",
+      "rejected": true
+    },
+    {
+      "changed": "after_gdi_error",
+      "rejected": true
+    },
+    {
+      "changed": "after_flush",
+      "rejected": true
+    }
+  ],
+  "boundary": "Only the recorded deletion decision is re-evaluated. No post-failure native API, normal cleanup or fresh execution is inferred."
+}

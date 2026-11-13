@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "kind": "independent_failed_DC_component_record_review_not_replay",
+  "review_passed": true,
+  "accepted": false,
+  "formal_acceptance": false,
+  "independent_full_replay": false,
+  "scene_or_wait_accepted": false,
+  "no_native_execution_by_reviewer": true,
+  "no_collector_or_project_module_imports": true,
+  "source": {
+    "path": "analysis/terminal-scene-dc-preflight-v1-20261113.json.gz",
+    "bytes": 78100,
+    "sha256": "f5b053cce1937c3d40e3c5f8335d4efa13cd98c98c8267a23ef2d937aab0cdec"
+  },
+  "reviewer": {
+    "path": "devtools/terminal_scene_dc_review.py",
+    "bytes": 21588,
+    "sha256": "acdfc59f407ce173f704d7fb460e1575d2a15277d9bf06591a1ee3897b47ddda"
+  },
+  "verified_file_pins": 299,
+  "SDK_OBJ_DC_definition": {
+    "path": "C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um/wingdi.h",
+    "bytes": 244023,
+    "sha256": "96f3528cabc7e5fe30e2f2c51daa01c018dd6cedb3768121202434758629b8a2"
+  },
+  "checks": {
+    "original_instruction_count": 169671,
+    "original_instruction_sites": 4622,
+    "original_API_calls": 72,
+    "CPU57_snapshots": 156,
+    "PTD_readbacks": 61,
+    "native_requests": 343,
+    "owner_pid": 38916,
+    "native_MAIN_tid": 39168,
+    "native_MAIN_teb": 4726784,
+    "native_reader_tid": 16008,
+    "DC": {
+      "GetDC_request": 272,
+      "DeleteDC_request": 296,
+      "DeleteDC_result": 1,
+      "ReleaseDC_executed": false,
+      "handle": 1644233346,
+      "live_type": 3,
+      "after_type": 0,
+      "before_GDI_count": 1,
+      "baseline_and_after_GDI_count": 0,
+      "original_DeleteDC_resource_retirement_observed": true,
+      "independent_followup_DC_INFO_executed": false
+    },
+    "collector_rejection": "Python compares OBJ_DC to1; pinned Windows SDK defines OBJ_DC3",
+    "parent_CloseHandle_receipts": [
+      {
+        "handle": 784,
+        "result": 1,
+        "before_resume": true
+      },
+      {
+        "handle": 1188,
+        "result": 1,
+        "before_resume": true
+      },
+      {
+        "handle": 628,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 428,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 436,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 1108,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 812,
+        "result": 1,
+        "before_resume": false
+      },
+      {
+        "handle": 412,
+        "result": 1,
+        "before_resume": false
+      }
+    ],
+    "GAME_allocation_native_free_request": 340,
+    "original_GAME_constructed": true,
+    "original_GAME_destructor_completed": true,
+    "original_MAIN_destructor_completed": false,
+    "original_CRT_teardown_completed": false,
+    "remaining_tracked_resources_before_forced_exit": {
+      "heaps": 1,
+      "allocations": 4,
+      "virtual_allocations": 8,
+      "criticals": 8,
+      "handles": 1,
+      "TLS_slots": 1,
+      "live_TLS_values": 1
+    },
+    "cleanup": {
+      "parent_pid": 38916,
+      "forced": true,
+      "exits": {
+        "38916": {
+          "wait": 0,
+          "code": 94
+        }
+      },
+      "handles_closed": true,
+      "job_empty": true,
+      "errors": [],
+      "deadline_fired": false,
+      "wall_seconds": 3.625
+    }
+  },
+  "tamper_rejections": [
+    {
+      "case": "original_instruction_byte_changed",
+      "rejected": true,
+      "reason": "source instruction bytes 0x409900"
+    },
+    {
+      "case": "native_DeleteDC_result_changed",
+      "rejected": true,
+      "reason": "actual original DeleteDC success with lost handle validity and process GDI baseline restored"
+    },
+    {
+      "case": "native_DeleteDC_liveness_changed",
+      "rejected": true,
+      "reason": "actual original DeleteDC success with lost handle validity and process GDI baseline restored"
+    }
+  ],
+  "limitations": [
+    "Instruction site bytes/totals, CPU57 shape, original ABI, PTD bytes and native receipts were checked; ordered instructions and cumulative memory/write digests were not independently replayed or recomputed.",
+    "Native API authenticity is supported by pinned implementation/build identities and same-owner receipts, not an independent kernel observer.",
+    "GAME constructor and scalar deleting destructor completed. MAIN/CRT cleanup did not complete; process exit94 was forced and Job emptiness is not normal resource lifetime evidence.",
+    "Original DeleteDC1 is accompanied by real same-lane metadata observations: type3 to0, selected font nonzero to0 and process GDI count1 to baseline0. This supports DC retirement in this execution; planned later DC_INFO did not run.",
+    "GetDC(0) acquires a screen DC handle; no pixel reading, window creation, desktop input or device initialization is demonstrated.",
+    "WinMain and GAME factory remain suspended in distinct preserved guest stacks; the separate destructor root is supplemental cleanup, not normal WinMain termination.",
+    "All eight actual parent CloseHandle BOOL values were recorded and equal1, including the two initial pipe ends and the retained Job-member handle used on forced cleanup. Object roles were reconstructed from the pinned implementation, not separately tagged in receipts.",
+    "No GAME publication, scene constructor, worker, cooperative wait, battle result consumption or two-case formal acceptance is established."
+  ]
+}

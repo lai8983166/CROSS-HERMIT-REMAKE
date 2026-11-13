@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "kind": "offline_original_GAME_publication_route_decision",
+  "native_executed": false,
+  "window_created": false,
+  "source": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+  },
+  "decision": "Original450570 cannot publish GAME in the background under the current no-desktop-impact constraint: its fullscreen, cursor, foreground-input and gamma operations remain real. The user-selected route is the host. Future bounded exclusive host execution can be considered only after the exact effects are disclosed, a desktop time slot is explicitly authorized, and complete desktop/display/gamma/input recovery and cleanup are ready. This report adds no VM requirement.",
+  "original_route": [
+    "49DD70 WinMain -> MAIN allocation/44FBB0 -> publication 49DE01 -> buckets421660",
+    "49DEC6 ->450350 creates visible popup and executes ShowWindow/UpdateWindow",
+    "49DEF5 CoInitialize(0);49DF5B InitCommonControlsEx",
+    "49DF85 ->450570(hwnd,&7A49FC,width,height)",
+    "450570 ->428A40(BA20) ->412E30 ->4500B0 data path ->4135D0 audio ->413630 DirectShow ->413450(hwnd,0,1,width,height) ->413560 input ->4506E9 *out=GAME",
+    "49DFCC ->49E1B0 initial world/config/audio/task request; main loop49E053 ->49E2B0 ->49E540 ->4217C0"
+  ],
+  "constraints": [
+    {
+      "name": "visible_window",
+      "proof": [
+        "49DEA1 literal style90000000 = WS_POPUP|WS_VISIBLE",
+        "4504FE ShowWindow and450513 UpdateWindow"
+      ],
+      "consequence": "nCmdShow=0 alone does not remove the original CreateWindow visibility style; substituting a hidden HWND is a declared independent root, not unchanged WinMain."
+    },
+    {
+      "name": "fullscreen",
+      "proof": [
+        "45066F push1;450671 push0;45067A call413450",
+        "41386D cmp mode,1;windowed41387A versus fullscreen413888",
+        "413B7E sets presentation Windowed=0"
+      ],
+      "consequence": "A hidden HWND does not change the original fullscreen flag. Width/height/out parameters cannot select windowed mode."
+    },
+    {
+      "name": "system_cursor",
+      "proof": [
+        "413560 ->410E90 ->411090",
+        "4110E3 ClientToScreen;4110FA IAT592358"
+      ],
+      "consequence": "The actual resolved IAT map labels592358 USER32!SetPhysicalCursorPos. The source uses a global cursor setter; do not execute it on the host. Historical import spelling is not established by the resolved-IAT map."
+    },
+    {
+      "name": "foreground_directinput",
+      "proof": [
+        "410F90 keyboard and411090 mouse call SetCooperativeLevel(hwnd,6)",
+        "local Windows SDK dinput.h defines NONEXCLUSIVE=2 FOREGROUND=4; then Acquire"
+      ],
+      "consequence": "Hidden nonforeground HWND cannot be assumed to satisfy the original successful input initialization path."
+    },
+    {
+      "name": "gamma_even_in_windowed",
+      "proof": [
+        "413450 ->416C40 identity ramp ->416CC0",
+        "416CFA calls actual device vtable+48 SetGammaRamp(flags1,1536-byte ramp)"
+      ],
+      "consequence": "Complete independent windowed413450 still invokes gamma API. Existing experiments explicitly preserve/restore desktop and device gamma; no claim of zero desktop effect follows."
+    },
+    {
+      "name": "failure_UI",
+      "proof": [
+        "450570 audio/DirectShow failures call MessageBox and continue; device/input failure calls MessageBox and cleans up"
+      ],
+      "consequence": "An anticipated COM failure is not a no-UI fallback route."
+    },
+    {
+      "name": "main_loop_gate",
+      "proof": [
+        "49E04A tests MAIN+8D0;49E053 calls49E2B0 only when nonzero;otherwise49E080 WaitMessage"
+      ],
+      "consequence": "Hidden HWND plus GAME pointer is not proof of natural dispatch. Do not force active state or fabricate input/activation."
+    }
+  ],
+  "minimum_dependencies": [
+    {
+      "stage": "window_and_apartment",
+      "resources": "Owned native HWND/HINSTANCE and original window procedure association; CoInitialize on the same real MAIN lane; original message lifecycle."
+    },
+    {
+      "stage": "audio_4135D0",
+      "resources": "DirectMusicPerformance8 and DirectMusicLoader8 CoCreateInstance; Performance InitAudio/GetDefaultAudioPath; Loader SetSearchDirectory using MAIN+BF4 and data path. No explicit segment playback in this init alone."
+    },
+    {
+      "stage": "movie_413630",
+      "resources": "Two FilterGraph instances (CLSID e436ebb3); IGraphBuilder, IMediaControl, IMediaSeeking, IMediaPosition, IMediaEventEx, IBasicAudio; IMediaEventEx SetNotifyWindow(ownedHWND,0x464,this)."
+    },
+    {
+      "stage": "graphics_413450",
+      "resources": "Direct3DCreate8(SDK220), IDirect3D8, IDirect3DDevice8 with actual mode/caps/format/backbuffer/viewport checks; two original font objects, D3DX font and process cache with texture/vertex/GDI DIB resources; manager binding and 0x8000 plus0x100000 command queues; mandatory gamma call."
+    },
+    {
+      "stage": "input_413560",
+      "resources": "IDirectInput8A(HINSTANCE,version0x800); SysKeyboard and SysMouse devices, data formats, cooperative level6, Acquire; mouse axis property/caps plus system cursor move."
+    }
+  ],
+  "independent_windowed_route": {
+    "entry": "412C70",
+    "actual_args_to_413450": "hwnd,1,1,width,height",
+    "original_output_store": "412D1C",
+    "limits": "This is a distinct original factory. It omits audio/movie/input initialization, is not called by this WinMain and does not itself target7A49FC. Passing &7A49FC as a new caller-declared output would not establish original450570 ancestry or fully initialized GAME prerequisites."
+  },
+  "reusable_evidence": [
+    {
+      "reference": "docs/school_owner_startup.md",
+      "value": "A5/CC complete412E30 followed by fresh windowed device initialization and initial font call; identities/code/contracts can guide implementation, native handles cannot be revived."
+    },
+    {
+      "reference": "docs/school_startup_return.md",
+      "value": "Two fresh independent windowed413450 natural returns with fonts/queues/gamma and cleanup; not original450570."
+    },
+    {
+      "reference": "docs/school_startup_lifetime.md",
+      "value": "Actual original49DF85->450570 parent stack, fullscreen1024x768 and final GAME/cache publication plus original shutdown observations; not full ordered replay."
+    },
+    {
+      "reference": "docs/school_native_scene.md",
+      "value": "Actual49E2B0 event16->451080; managerMAIN+64;49E540->4217C0->_beginthreadex->421F50->451670; world4E1B60 and source4DA860 scene76/77 precede439E30(MAIN+10,16). Original resources/scripts and callback ancestors are available, current handles/state are not reusable."
+    }
+  ],
+  "scene_parent_contract": {
+    "dispatch_entry": "49E2B0 cdecl no arguments; pending record MAIN+2C mustflag1/type16",
+    "original_event_writer": "439E30(this=MAIN+10,16)",
+    "factory_call": "49E39E ->451080",
+    "pending_consumption": "49E4B2 clears pending flag then49E4B8 ->49E540",
+    "manager": "MAIN+64 with original buckets",
+    "limits": "Do not replace the event parent with direct451080 and claim original dispatch. Current cold constructor probe has not executed these steps."
+  },
+  "exact_source_instructions": [
+    {
+      "va": "0x49dea1",
+      "hex": "c745cc00000090",
+      "mnemonic": "mov",
+      "operands": "dword ptr [ebp - 0x34], 0x90000000"
+    },
+    {
+      "va": "0x49dec6",
+      "hex": "e88524fbff",
+      "mnemonic": "call",
+      "operands": "0x450350"
+    },
+    {
+      "va": "0x4504fe",
+      "hex": "ff1510245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592410]"
+    },
+    {
+      "va": "0x450513",
+      "hex": "ff1514245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592414]"
+    },
+    {
+      "va": "0x49def5",
+      "hex": "ff1578245900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592478]"
+    },
+    {
+      "va": "0x49df5b",
+      "hex": "ff1524205900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592024]"
+    },
+    {
+      "va": "0x49df73",
+      "hex": "68fc497a00",
+      "mnemonic": "push",
+      "operands": "0x7a49fc"
+    },
+    {
+      "va": "0x49df85",
+      "hex": "e8e625fbff",
+      "mnemonic": "call",
+      "operands": "0x450570"
+    },
+    {
+      "va": "0x450601",
+      "hex": "e8aafaffff",
+      "mnemonic": "call",
+      "operands": "0x4500b0"
+    },
+    {
+      "va": "0x45060a",
+      "hex": "e8c12ffcff",
+      "mnemonic": "call",
+      "operands": "0x4135d0"
+    },
+    {
+      "va": "0x45063a",
+      "hex": "e8f12ffcff",
+      "mnemonic": "call",
+      "operands": "0x413630"
+    },
+    {
+      "va": "0x45066f",
+      "hex": "6a01",
+      "mnemonic": "push",
+      "operands": "1"
+    },
+    {
+      "va": "0x450671",
+      "hex": "6a00",
+      "mnemonic": "push",
+      "operands": "0"
+    },
+    {
+      "va": "0x45067a",
+      "hex": "e8d12dfcff",
+      "mnemonic": "call",
+      "operands": "0x413450"
+    },
+    {
+      "va": "0x4506ac",
+      "hex": "e8af2efcff",
+      "mnemonic": "call",
+      "operands": "0x413560"
+    },
+    {
+      "va": "0x4506e9",
+      "hex": "8908",
+      "mnemonic": "mov",
+      "operands": "dword ptr [eax], ecx"
+    },
+    {
+      "va": "0x41386d",
+      "hex": "837d0c01",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp + 0xc], 1"
+    },
+    {
+      "va": "0x41387a",
+      "hex": "e821000000",
+      "mnemonic": "call",
+      "operands": "0x4138a0"
+    },
+    {
+      "va": "0x413888",
+      "hex": "e883020000",
+      "mnemonic": "call",
+      "operands": "0x413b10"
+    },
+    {
+      "va": "0x413b7e",
+      "hex": "c78050b2000000000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [eax + 0xb250], 0"
+    },
+    {
+      "va": "0x416cfa",
+      "hex": "ff5048",
+      "mnemonic": "call",
+      "operands": "dword ptr [eax + 0x48]"
+    },
+    {
+      "va": "0x4110e3",
+      "hex": "ff155c235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x59235c]"
+    },
+    {
+      "va": "0x4110fa",
+      "hex": "ff1558235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592358]"
+    },
+    {
+      "va": "0x412cf6",
+      "hex": "6a01",
+      "mnemonic": "push",
+      "operands": "1"
+    },
+    {
+      "va": "0x412cf8",
+      "hex": "6a01",
+      "mnemonic": "push",
+      "operands": "1"
+    },
+    {
+      "va": "0x412d01",
+      "hex": "e84a070000",
+      "mnemonic": "call",
+      "operands": "0x413450"
+    },
+    {
+      "va": "0x412d1c",
+      "hex": "8902",
+      "mnemonic": "mov",
+      "operands": "dword ptr [edx], eax"
+    },
+    {
+      "va": "0x49e04a",
+      "hex": "83b9d008000000",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ecx + 0x8d0], 0"
+    },
+    {
+      "va": "0x49e053",
+      "hex": "e858020000",
+      "mnemonic": "call",
+      "operands": "0x49e2b0"
+    },
+    {
+      "va": "0x49e080",
+      "hex": "ff1588235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592388]"
+    },
+    {
+      "va": "0x49e39e",
+      "hex": "e8dd2cfbff",
+      "mnemonic": "call",
+      "operands": "0x451080"
+    },
+    {
+      "va": "0x49e4b2",
+      "hex": "c70200000000",
+      "mnemonic": "mov",
+      "operands": "dword ptr [edx], 0"
+    },
+    {
+      "va": "0x49e4b8",
+      "hex": "e883000000",
+      "mnemonic": "call",
+      "operands": "0x49e540"
+    }
+  ],
+  "references": [
+    {
+      "path": "docs/school_owner_startup.md",
+      "bytes": 4906,
+      "sha256": "787de2cc80f4e58fbea1352b24d2694c923a7c416cf0ec187263940ef0e58fe4"
+    },
+    {
+      "path": "docs/school_upstream_factory.md",
+      "bytes": 5448,
+      "sha256": "4e5afd767dfa5a264d5c043ec8611f70050d06013f6db96a7ff41d4ca3962ff6"
+    },
+    {
+      "path": "docs/school_device_init.md",
+      "bytes": 4610,
+      "sha256": "90c661d3ee97aa0f78b3524b2f4e8ad5359c42d071eb715d4ae78467269bdbe1"
+    },
+    {
+      "path": "docs/school_startup_return.md",
+      "bytes": 5329,
+      "sha256": "b49757cff189e3f31aa9fcc80f099331dde4da9f3d382c01e2d5ba9e9d1b271d"
+    },
+    {
+      "path": "docs/school_startup_lifetime.md",
+      "bytes": 8631,
+      "sha256": "1a77abc7a012f1f87f1e195633ca765cc6d560a46a05fe137ba9a62e2b24f348"
+    },
+    {
+      "path": "docs/school_main_context.md",
+      "bytes": 5931,
+      "sha256": "3ee41aede49689ed4f0d8eb77a191b20365f66f004443ff5b6a0ad4aa1a3f4db"
+    },
+    {
+      "path": "docs/school_native_scene.md",
+      "bytes": 6080,
+      "sha256": "53b2fcfce919f2abd23db10c4353b531c2ae0c0e42507bf7a96036389c72eb3b"
+    },
+    {
+      "path": "tools/school_upstream_factory.py",
+      "bytes": 4690,
+      "sha256": "d470f1d1e4927634c5a4981a7141865857865f4f1bd43357edc422df11dd8e12"
+    },
+    {
+      "path": "tools/school_startup_lifetime_verification.py",
+      "bytes": 17551,
+      "sha256": "851ad35268196a6f5f520d355c548dd988f0dbef9a828316e440220213e21394"
+    },
+    {
+      "path": "analysis/hermit_real_iat.json",
+      "bytes": 9182,
+      "sha256": "ef6cd4c88dee6cc233ef514d64e0a544ddc9f59332cd43a88763f46070dffa85"
+    }
+  ],
+  "scope": "Offline fixed source and prior evidence review only, not native execution, independent full replay, resource liveness, scene/wait/battle acceptance.",
+  "next_admission_gates": [
+    {
+      "order": 1,
+      "gate": "corrected_collector_normal_cleanup",
+      "required": "Use the corrected OBJ_DC3 decision in one newly authorized bounded same-owner lifetime, retain later DC_INFO and complete original MAIN/PTD/TLS/heap teardown plus explicit resource-zero/normal shutdown. Current actual source remains failed and unchanged; the corrected offline model is not evidence of native cleanup."
+    },
+    {
+      "order": 2,
+      "gate": "same_owner_platform_admission_preparation",
+      "required": "Prepare exact original graphics/audio/input/COM adapters and ownership on the same real MAIN lane, with source-preserved full factory arguments and failures. Establish complete HWND/device/font/cache/queue/COM/input/display/gamma lifecycle and recovery checks before any desktop-affecting call."
+    },
+    {
+      "order": 3,
+      "gate": "bounded_host_desktop_time_slot",
+      "required": "When implementation and recovery gates are concrete and reviewable, explicitly disclose expected fullscreen/display, cursor, foreground input and gamma effects and obtain a bounded exclusive host desktop slot. Do not require a VM or silently replace the original factory with412C70/windowed inputs."
+    },
+    {
+      "order": 4,
+      "gate": "unchanged_formal_acceptance",
+      "required": "Only after legal original GAME publication proceed through original event parent/scene construction/worker wait and first-result consumption. Full independent replay, two fresh lifetimes, ABI/state/digests, tamper rejection and normal cleanup requirements remain unchanged."
+    }
+  ]
+}

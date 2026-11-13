@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "kind": "bounded_DC_state_and_correction_closeout",
+  "formal_progress": {
+    "completed": 2,
+    "total": 8
+  },
+  "accepted": false,
+  "result": {
+    "actual_DeleteDC_retirement_observed": true,
+    "original_GAME_HeapFree_complete": true,
+    "corrected_Python_decision_on_actual_receipt": true,
+    "correction_AST_only_two_1_to_3_constants": true,
+    "correction_negative_cases": 9,
+    "corrected_symbolic_route_closed": true,
+    "MAIN_PTD_native_normal_cleanup": false,
+    "GAME_published": false,
+    "wait_return": false,
+    "result_consumption": false
+  },
+  "execution": {
+    "offline_start_utc": "2026-11-13T14:01:38Z",
+    "offline_budget_seconds": 3600,
+    "offline_seconds_to_native": 495.45881390571594,
+    "native_attempts": 1,
+    "native_budget_seconds": 30,
+    "native_seconds": 3.625,
+    "outer_seconds": 9.1649957,
+    "outer_exit_code": 1,
+    "helper_exit_code": 94,
+    "forced_cleanup": true,
+    "job_empty": true,
+    "window_created": false,
+    "pixels_read": false,
+    "host_input_sent": false
+  },
+  "review": {
+    "independent_record_review_passed": true,
+    "independent_full_replay": false,
+    "source_tamper_rejections": 3,
+    "source_pins_verified": 299,
+    "collector_defect": "Python mistakenly used OBJ_DC1 instead of SDK3; frozen v1 retained, v2 only corrects those two comparisons"
+  },
+  "exact_preserved_local_artifacts": [
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/build.cmd",
+      "bytes": 722,
+      "sha256": "a875e067ebd855415e9c7d03f3174e9def2b6278b1869ceffea2aa013c632224"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/build.log",
+      "bytes": 29,
+      "sha256": "a5592561ed1095e0ab915cee7c8f7c58d9214ef6d92325a119fa7e3109e5fe2a"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/native-attempt.once",
+      "bytes": 220,
+      "sha256": "3dfab6439de48282989931f44972cdb22af3c86efe7e5507de53e861951dadbc"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/offline-route-v2.json",
+      "bytes": 1004,
+      "sha256": "c0427447dd0aaa2e2f4779b1c5270f656d0a246ab7a2024050df0c8c9b19c211"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/offline-route.json",
+      "bytes": 1002,
+      "sha256": "10e32369f012365487cb04b1144ea6976b5c2e84b49352f33e26e79499448865"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/offline_model.py",
+      "bytes": 2325,
+      "sha256": "e2fcfe78556c9ac29988cdd5404628d3162fe8c01281d22b50b6c2ba2aecf202"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/offline_model_v2.py",
+      "bytes": 2334,
+      "sha256": "e15e36e5d9720f679ae0c2c974a405e1631ba57af8a3008c0fa8026087e899ef"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/static-report.json",
+      "bytes": 7422,
+      "sha256": "e54e9aa548aaca1d7371d55d28e9236c79a8d0e8726bb761a098496b5b78547e"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/terminal-scene-dc-owner.cpp",
+      "bytes": 40905,
+      "sha256": "b5aa9f823723d335deec0a2d2afb4849101f790dcaad389a1527957d8c318f13"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-dc-build-v1-20261113/terminal-scene-dc-owner.exe",
+      "bytes": 218624,
+      "sha256": "36b3ff1b096759a1eb9161709304078aeebe5f2adf7b4e78f3c509611ed3d9ca"
+    }
+  ],
+  "tracked_evidence": [
+    {
+      "path": "analysis/terminal-scene-dc-preflight-v1-20261113.json.gz",
+      "bytes": 78100,
+      "sha256": "f5b053cce1937c3d40e3c5f8335d4efa13cd98c98c8267a23ef2d937aab0cdec"
+    },
+    {
+      "path": "analysis/terminal-scene-dc-independent-review-v1-20261113.json",
+      "bytes": 5414,
+      "sha256": "7cad803c2bed409dccf40859920e6e006fe3c869d44463d1f00bedea9f3cb4c4"
+    },
+    {
+      "path": "analysis/terminal-scene-dc-correction-v1-20261113.json",
+      "bytes": 2480,
+      "sha256": "0b719a6a22634b44c76b26b8de74c68cae79516dc806ba1c0a4d93e88933652e"
+    },
+    {
+      "path": "analysis/terminal-scene-dc-retirement-v1-20261113.json",
+      "bytes": 415,
+      "sha256": "24056a261b4c4ddbdc69e318f021997627ed3dd114f52d57fd1fdcb8eb52542a"
+    },
+    {
+      "path": "analysis/terminal-game-publication-route-v1-20261113.json",
+      "bytes": 14857,
+      "sha256": "9cd0f39b7204cbea99b32234fd0242b09ed74f43cdfb22b769d0cafd09e42dca"
+    }
+  ],
+  "preservation": {
+    "previous_sources_modified": false,
+    "previous_evidence_removed": false,
+    "new_backup_bytes": 0
+  },
+  "evidence_budget_bytes": 268435456,
+  "retired_files": 1,
+  "retired_bytes": 823478,
+  "preserved_build_bytes": 274587,
+  "evidence_bytes_excluding_this_closeout": 375853,
+  "git_volume": "Exact reachable new Git object sizes and all new local evidence including commit receipt are recorded after commit in the build-folder git-closeout.json and final response.",
+  "next_gate": "No second native attempt this unit. Fresh bounded unit must validate corrected normal cleanup; prepare same-owner graphics/audio/input and desktop/gamma restoration before requesting a host desktop window. No VM requirement.",
+  "limitations": [
+    "Instruction site bytes/totals, CPU57 shape, original ABI, PTD bytes and native receipts were checked; ordered instructions and cumulative memory/write digests were not independently replayed or recomputed.",
+    "Native API authenticity is supported by pinned implementation/build identities and same-owner receipts, not an independent kernel observer.",
+    "GAME constructor and scalar deleting destructor completed. MAIN/CRT cleanup did not complete; process exit94 was forced and Job emptiness is not normal resource lifetime evidence.",
+    "Original DeleteDC1 is accompanied by real same-lane metadata observations: type3 to0, selected font nonzero to0 and process GDI count1 to baseline0. This supports DC retirement in this execution; planned later DC_INFO did not run.",
+    "GetDC(0) acquires a screen DC handle; no pixel reading, window creation, desktop input or device initialization is demonstrated.",
+    "WinMain and GAME factory remain suspended in distinct preserved guest stacks; the separate destructor root is supplemental cleanup, not normal WinMain termination.",
+    "All eight actual parent CloseHandle BOOL values were recorded and equal1, including the two initial pipe ends and the retained Job-member handle used on forced cleanup. Object roles were reconstructed from the pinned implementation, not separately tagged in receipts.",
+    "No GAME publication, scene constructor, worker, cooperative wait, battle result consumption or two-case formal acceptance is established."
+  ]
+}
