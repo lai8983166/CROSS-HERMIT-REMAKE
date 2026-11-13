@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "kind": "bounded_same_owner_component_closeout",
+  "formal_tasks_complete": 2,
+  "formal_tasks_total": 8,
+  "formal_acceptance": false,
+  "scene_first_yield": false,
+  "first_result_consumption": false,
+  "three_scene_handshakes": false,
+  "independent_full_replay": false,
+  "source": {
+    "path": "analysis/terminal-native-owner-preflight-v1-20261113.json.gz",
+    "bytes": 49203,
+    "sha256": "8f08f32605b1a46f9e72bda687b83f9328d35899a55e2ac0be4f8eb31177d460"
+  },
+  "independent_review": {
+    "path": "analysis/terminal-native-owner-independent-review-v1-20261113.json",
+    "bytes": 5679,
+    "sha256": "547eda2793f1df4aeffedbdc8d8fbd31c9d2396a579020537ac3705f657a9332"
+  },
+  "execution": {
+    "offline_start_utc": "2026-11-13T08:08:40Z",
+    "offline_budget_seconds": 3600,
+    "native_attempt_utc": "2026-11-13T08:39:50.148143+00:00",
+    "offline_seconds_to_one_shot_marker": 1870.148143,
+    "native_attempts": 1,
+    "native_budget_seconds": 30,
+    "owner_seconds": 1.3910000000032596,
+    "outer_tool_process_exit_code": 0,
+    "outer_tool_wall_seconds": 6.8334656,
+    "deadline_fired": false,
+    "forced_cleanup": false,
+    "desktop_used": false,
+    "screenshots": false,
+    "game_started": false,
+    "VM_started": false
+  },
+  "result": {
+    "component_passed": true,
+    "actual_source_instructions": 8558,
+    "original_api_calls": 71,
+    "same_native_PID": 29136,
+    "MAIN_TID": 28080,
+    "worker_TID": 8012,
+    "native_requests": 207,
+    "worker_exit_code": 0,
+    "helper_exit_code": 0,
+    "helper_resources_zero": true,
+    "job_empty": true
+  },
+  "validation": {
+    "native_compile": "/W4 /WX passed",
+    "original_byte_and_ABI_review": "passed, 1803 sites and 71 original calls",
+    "executor_CPU57_snapshot_review": 169,
+    "live_PTD_mirror_records": 48,
+    "implementation_pins_unchanged": 274,
+    "independent_resource_ledger": "empty",
+    "openspec_strict": "passed",
+    "git_diff_check": "passed",
+    "offline_route_model": "symbolic platform returns only; no native qualification",
+    "offline_FS_context_isolation": "own Unicorn instructions; no native process"
+  },
+  "build": {
+    "static_report": {
+      "path": ".venv-audit/terminal-native-owner-build-v1-20261113/static-report.json",
+      "bytes": 5278,
+      "sha256": "e06f42ed5ab738387188d7fa9c086374fcd44c1da50913b96347fe5858adb573"
+    },
+    "recipe": "@echo off\ncall \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\" x86 -vcvars_ver=14.44 >nul\nif errorlevel 1 exit /b %errorlevel%\n\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x86\\cl.exe\" /nologo /O2 /W4 /WX /MT /EHsc /std:c++17 /Fe:\"F:\\project\\chaomofa\\.venv-audit\\terminal-native-owner-build-v1-20261113\\terminal-native-owner.exe\" /Fo:\"F:\\project\\chaomofa\\.venv-audit\\terminal-native-owner-build-v1-20261113\\owner.obj\" \"F:\\project\\chaomofa\\devtools\\terminal_native_owner.cpp\" /link /SUBSYSTEM:WINDOWS /ENTRY:wmainCRTStartup\nexit /b %errorlevel%\n",
+    "native_executable": {
+      "path": ".venv-audit/terminal-native-owner-build-v1-20261113/terminal-native-owner.exe",
+      "bytes": 202752,
+      "sha256": "3b36e9a6179040deefe3fed62fd776c1f5087757997c534bb8a608d505e52d13"
+    },
+    "source": {
+      "path": "devtools/terminal_native_owner.cpp",
+      "bytes": 28898,
+      "sha256": "a77132eae20424f1e6fc5eb6e792de5c41b018e787cedbcda6cb975b2435be43"
+    },
+    "historical_build_manifest_note": "static-report lists files at build time; retired entries below are no longer available"
+  },
+  "limits": [
+    "Only original base callback422330. No scene451670/422360/453CB5 coverage or game admission.",
+    "One actual owner lifetime; final two fresh native cases and independent full replay remain required.",
+    "Per-boundary guest CPU57 and memory/trace digests are recorded; independent review did not replay or recompute full memory/trace digests.",
+    "Wire order does not prove MAIN entered a kernel blocked state before WORKER SetEvent.",
+    "Initial parent child-pipe CloseHandle BOOL not recorded. Outer Python exit0 is separately observed; no per-handle success claim."
+  ],
+  "next_work": "Offline original GAME/derived-scene construction and lawful ancestor chain, then first cooperative wait; no second native run authorized by this unit.",
+  "evidence_storage": {
+    "persistent_limit_bytes": 16777216,
+    "retained_files": [
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/build.cmd",
+        "bytes": 637,
+        "sha256": "bdc501ac1bc276b5fb3e76c9424acc5b1d4612a59d5747b0acc247946792a71c"
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/build.log",
+        "bytes": 27,
+        "sha256": "d9163e9f48d71023bb2725a8e40956864d5b86cb246fe19d591e6cd7918e0fca"
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/native-attempt.once",
+        "bytes": 222,
+        "sha256": "886031f3d37470049d6a3a1662f1283cc9b146cc4449567a9d94e735276a8fa9"
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/offline-route-result.json",
+        "bytes": 782,
+        "sha256": "d11848755777d4cf30c25a1a43147c3316c07986c4e54e7ade86328d68e3e75c"
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/offline_route.py",
+        "bytes": 4700,
+        "sha256": "6717b2ee45378c87480c1e874be41f962671f5416d1fe1be10889285ba10bb4d"
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/retirement.json",
+        "bytes": 1099,
+        "sha256": "d758b0be1da366f5defd68edcb623d8e2dcec24e75c7a29849bb5a1b9efb73c8"
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/static-report.json",
+        "bytes": 5278,
+        "sha256": "e06f42ed5ab738387188d7fa9c086374fcd44c1da50913b96347fe5858adb573"
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/terminal-native-owner.exe",
+        "bytes": 202752,
+        "sha256": "3b36e9a6179040deefe3fed62fd776c1f5087757997c534bb8a608d505e52d13"
+      },
+      {
+        "path": "analysis/terminal-native-owner-independent-review-v1-20261113.json",
+        "bytes": 5679,
+        "sha256": "547eda2793f1df4aeffedbdc8d8fbd31c9d2396a579020537ac3705f657a9332"
+      },
+      {
+        "path": "analysis/terminal-native-owner-preflight-v1-20261113.json.gz",
+        "bytes": 49203,
+        "sha256": "8f08f32605b1a46f9e72bda687b83f9328d35899a55e2ac0be4f8eb31177d460"
+      }
+    ],
+    "self_path": "analysis/terminal-native-owner-closeout-v1-20261113.json",
+    "self_bytes": 8410,
+    "retained_evidence_and_build_bytes_including_self": 278789,
+    "backup_bytes": 0,
+    "retired_files": [
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/owner.obj",
+        "bytes": 628716,
+        "sha256": "01e4dd4e77f8e7e8b340d5557d7a65ebce1a3e80e24c463cf39685d2cb9b944f",
+        "reason": "This turn only: rebuildable object or superseded offline initial-state report; native source/executable/report retained",
+        "exists_after": false
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/offline-prepare-v1.json.gz",
+        "bytes": 1876,
+        "sha256": "59acd635ecc664323aadee605b669788c7c8a67ab94614326e4ef576f275917f",
+        "reason": "This turn only: rebuildable object or superseded offline initial-state report; native source/executable/report retained",
+        "exists_after": false
+      },
+      {
+        "path": ".venv-audit/terminal-native-owner-build-v1-20261113/offline-final.json.gz",
+        "bytes": 16163,
+        "sha256": "e816502a15a46d7a7933e9382d0ee46f1335e180bea69ec713161e2d08129930",
+        "reason": "This turn only: rebuildable object or superseded offline initial-state report; native source/executable/report retained",
+        "exists_after": false
+      }
+    ],
+    "retired_bytes": 646755,
+    "historical_evidence_removed": false,
+    "raw_full_memory_dumps_added": 0
+  },
+  "git": {
+    "branch": "main",
+    "upstream": "origin/main",
+    "baseline": "7b39fa63f82e0e60a1233d7f5eca8d866788461e",
+    "scope": "only this unit; unrelated user skills remain untracked",
+    "new_object_sizes": "measured after commit and reported to user; no file over50MiB"
+  }
+}

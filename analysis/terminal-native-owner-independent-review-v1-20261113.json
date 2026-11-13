@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "kind": "independent_record_review_not_replay",
+  "mechanism_record_checks_passed": true,
+  "formal_acceptance": false,
+  "game_acquisition_allowed": false,
+  "first_cooperative_yield_verified": false,
+  "independent_full_replay": false,
+  "source": {
+    "path": "analysis/terminal-native-owner-preflight-v1-20261113.json.gz",
+    "bytes": 49203,
+    "sha256": "8f08f32605b1a46f9e72bda687b83f9328d35899a55e2ac0be4f8eb31177d460"
+  },
+  "reviewer": {
+    "path": "devtools/terminal_native_owner_review.py",
+    "bytes": 22832,
+    "sha256": "8ede8eef8a283e2b22d51f960730f060bf56ccf793f791da12c335500517c12c"
+  },
+  "verified_implementation_pins": 274,
+  "original_instruction_sites": 1803,
+  "original_instruction_count": 8558,
+  "original_api_calls": 71,
+  "original_root_records": 13,
+  "executor_CPU57_snapshots": 169,
+  "native_requests": 207,
+  "native_responses": 207,
+  "owner_pid": 29136,
+  "native_lane_tids": {
+    "0": 28080,
+    "1": 8012
+  },
+  "native_lane_tebs": {
+    "0": 8880128,
+    "1": 8904704
+  },
+  "native_TLS_slot": 1,
+  "complete_PTD_mirrors": {
+    "0": 35,
+    "1": 13
+  },
+  "original_debug_free_PTD_poison": [
+    {
+      "lane": 1,
+      "native": 13371008,
+      "bytes": 116,
+      "fill": 221
+    },
+    {
+      "lane": 0,
+      "native": 13370840,
+      "bytes": 116,
+      "fill": 221
+    }
+  ],
+  "current_worker_native_PTD": 13371008,
+  "wait_signal_sequence": {
+    "wait_request_id": 73,
+    "worker_signal_request_id": 84,
+    "trace_indices": [
+      146,
+      167,
+      168,
+      169
+    ],
+    "actual_Win32_leaf_calls_verified_from_pinned_implementation_and_receipts": true,
+    "pre_signal_kernel_blocked_state_independently_observed": false
+  },
+  "worker_exit": {
+    "PTD_free_request": 142,
+    "TLS_clear_request": 145,
+    "zero_read_request": 147,
+    "ExitThread_request": 151,
+    "termination_wait_request": 160,
+    "exit_code_query": 161,
+    "handle_close": 162,
+    "exit_code": 0
+  },
+  "resources": {
+    "independent_ledger_empty": true,
+    "reported_status": {
+      "id": 206,
+      "lane": 0,
+      "tid": 28080,
+      "last_error": 0,
+      "ok": 1,
+      "result": 0,
+      "teb": 8880128,
+      "allocations": 0,
+      "memory_bytes": 0,
+      "heaps": 0,
+      "handles": 0,
+      "criticals": 0,
+      "tls_slots": 0,
+      "worker_created": 1,
+      "worker_resumed": 1,
+      "exit_requested": 1,
+      "termination_observed": 1,
+      "worker_handle_closed": 1,
+      "worker_exit_code": 0
+    },
+    "operation_counts": {
+      "HeapCreate": 1,
+      "MEM_ALLOC": 6,
+      "MEM_WRITE": 60,
+      "GetVersionExA": 1,
+      "MEM_READ": 51,
+      "MEM_FREE": 6,
+      "InitializeCriticalSection": 5,
+      "TlsAlloc": 1,
+      "EnterCriticalSection": 6,
+      "HeapAlloc": 2,
+      "LeaveCriticalSection": 6,
+      "TlsSetValue": 4,
+      "TlsGetValue": 6,
+      "SetLastError": 5,
+      "GetCurrentThreadId": 2,
+      "CreateEventA": 2,
+      "CreateThread": 1,
+      "ResetEvent": 2,
+      "SetEvent": 2,
+      "ResumeThread": 1,
+      "WaitForSingleObject": 2,
+      "Sleep": 6,
+      "GetLastError": 1,
+      "GetExitCodeThread": 7,
+      "IsBadReadPtr": 2,
+      "IsBadWritePtr": 2,
+      "HeapValidate": 2,
+      "HeapFree": 2,
+      "ExitThread": 1,
+      "CloseHandle": 3,
+      "DeleteCriticalSection": 5,
+      "TlsFree": 1,
+      "HeapDestroy": 1,
+      "STATUS": 1,
+      "Shutdown": 1
+    }
+  },
+  "helper_cleanup": {
+    "parent_pid": 29136,
+    "forced": false,
+    "exits": {
+      "29136": {
+        "wait": 0,
+        "code": 0
+      }
+    },
+    "handles_closed": true,
+    "job_empty": true,
+    "errors": [],
+    "deadline_fired": false,
+    "wall_seconds": 1.3910000000032596
+  },
+  "reviewed_native_owner_wall_seconds": 1.3910000000032596,
+  "no_new_native_execution_by_reviewer": true,
+  "no_collector_or_project_validator_imports": true,
+  "limitations": [
+    "This review checks instruction totals/site bytes and did not execute an independent full replay. The compact report does not provide a complete ordered transaction stream directly consumable by the existing replayer; retained cold inputs and implementation remain available for future adapters.",
+    "CPU57 values and ABI snapshots are executor records, not imported native CPU/TEB/hidden segment state. Native volatile-register clobbers are not measured by this return-value bridge.",
+    "This review shape-checks recorded memory and cumulative instruction/write digests but did not independently recompute them or establish full state equivalence.",
+    "MAIN INFINITE request precedes WORKER SetEvent and wait reply follows it. No wait-entry notification, concurrent live context, or kernel wait-state observation proves MAIN had already blocked in the kernel before SetEvent.",
+    "Critical-section bytes are actual post-leaf snapshots, not cross-thread atomic snapshots.",
+    "Initial CloseHandle BOOL values for parent Python copies of childin/childout were not recorded and are not independently proved; helper tracked resources and parent process/job handles are a separate scope. The reported outer Python exit0 is controller evidence, not a claim of individually observed successful closes.",
+    "One native owner lifetime only; no second fresh native case, tamper qualification or independent full replay is established here.",
+    "No original 422360 cooperative yield, 453CB5 first result consumption, scene callback 451670, battle chain, game process, screenshot or desktop input is demonstrated."
+  ]
+}
