@@ -1,0 +1,386 @@
+{
+  "schema_version": 1,
+  "kind": "independent_original_window_lifetime_static_and_recorded_model_review",
+  "review_passed": true,
+  "formal_acceptance": false,
+  "actual_native_qualification_passed": false,
+  "independent_complete_replay": false,
+  "reviewer_executed_native": false,
+  "reviewer_executed_collector": false,
+  "reviewer_executed_model": false,
+  "reviewer_executed_tests": false,
+  "desktop_observed_or_modified": false,
+  "scope": "Independent source/ABI/lifetime/control-flow review, exact original-byte checks and recorded symbolic-gate inspection. No new native run, complete replay, desktop snapshot or recovery execution.",
+  "current_boundary": {
+    "native_hard_limit_seconds": 20,
+    "total_desktop_authorization_max_seconds": 60,
+    "launch_minimum_remaining_seconds": 45,
+    "initial_authorization_remaining_seconds": [
+      55,
+      60
+    ],
+    "fresh_user_desktop_authorization_required": true,
+    "visible_window": true,
+    "native_lifetime_attempts_allowed": 1,
+    "original_WinMain_paused_at": "0x4504E1",
+    "original_WinMain_natural_return": false,
+    "GAME_published": false,
+    "worker_started": false
+  },
+  "source_report": {
+    "path": "analysis/terminal-window-lifetime-gate-v1-20261114.json",
+    "bytes": 5795,
+    "sha256": "e1ae4592be21340811cac8fd4eb3407e264abfc7c0a15d52746a1b15c39afa74"
+  },
+  "source_model_record": {
+    "instructions": 17766,
+    "API_calls": 147,
+    "callbacks": 20,
+    "CPU57_restored": true,
+    "instruction_sha256": "a21a7029919dd8479958e00ee4b8b607ac2e20a62f35699f38cd10431572ef39",
+    "write_sha256": "2dce705bb3f2eb6f23af1c442103ed8630012656006c6378f4105e4b078b51e2",
+    "symbolic_resource_zero_fields": [
+      "ui_gate",
+      "window_modules",
+      "window_classes",
+      "windows",
+      "callback_depth",
+      "allocations",
+      "memory_bytes",
+      "heaps",
+      "handles",
+      "criticals",
+      "tls_slots",
+      "fonts",
+      "dcs"
+    ],
+    "rejections": [
+      {
+        "case": "is_window_after",
+        "rejected": true,
+        "reason": "native complete close lifetime observations"
+      },
+      {
+        "case": "ncdestroy_observed",
+        "rejected": true,
+        "reason": "native complete close lifetime observations"
+      },
+      {
+        "case": "quit_posted",
+        "rejected": true,
+        "reason": "native complete close lifetime observations"
+      },
+      {
+        "case": "property_removed",
+        "rejected": true,
+        "reason": "native complete close lifetime observations"
+      },
+      {
+        "case": "wrong_MAIN_thread",
+        "rejected": true,
+        "reason": "destruction callback real MAIN identity"
+      },
+      {
+        "case": "wrong_MAIN_TEB",
+        "rejected": true,
+        "reason": "destruction callback real MAIN identity"
+      },
+      {
+        "case": "wrong_close_message",
+        "rejected": true,
+        "reason": "owned close request enters original WM_CLOSE only"
+      },
+      {
+        "case": "wrong_close_parent",
+        "rejected": true,
+        "reason": "exact pending MAIN destruction request"
+      },
+      {
+        "case": "wrong_callback_depth",
+        "rejected": true,
+        "reason": "bounded destruction callback ancestry"
+      },
+      {
+        "case": "wrong_callback_lane",
+        "rejected": true,
+        "reason": "exact pending MAIN destruction request"
+      },
+      {
+        "case": "watchdog20_before_timer_creation",
+        "passed": true,
+        "native_executed": false
+      }
+    ],
+    "reported_seconds": 2.937999999965541
+  },
+  "original": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+  },
+  "original_instruction_checks": [
+    {
+      "va": "0x450f6e",
+      "hex": "ff1598235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x592398]"
+    },
+    {
+      "va": "0x450f84",
+      "hex": "ff159c235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x59239c]"
+    },
+    {
+      "va": "0x424a30",
+      "hex": "e8abfeffff",
+      "mnemonic": "call",
+      "operands": "0x4248e0"
+    },
+    {
+      "va": "0x424958",
+      "hex": "ff15e4235900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x5923e4]"
+    },
+    {
+      "va": "0x424914",
+      "hex": "7434",
+      "mnemonic": "je",
+      "operands": "0x42494a"
+    },
+    {
+      "va": "0x44fea5",
+      "hex": "e8f6000000",
+      "mnemonic": "call",
+      "operands": "0x44ffa0"
+    },
+    {
+      "va": "0x44ff56",
+      "hex": "e86547fdff",
+      "mnemonic": "call",
+      "operands": "0x4246c0"
+    },
+    {
+      "va": "0x4246e9",
+      "hex": "e812000000",
+      "mnemonic": "call",
+      "operands": "0x424700"
+    },
+    {
+      "va": "0x42471d",
+      "hex": "33c0",
+      "mnemonic": "xor",
+      "operands": "eax, eax"
+    },
+    {
+      "va": "0x424725",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    }
+  ],
+  "original_destruction_conclusion": {
+    "route": "WINDOW_CLOSE real SendMessageA(WM_CLOSE) ->original424980/450D30 ->450F6E original DestroyWindow ->WM_DESTROY PostQuitMessage(0)/4248E0 RemovePropA ->WM_NCDESTROY default path",
+    "stale_HWND": "Original4248E0 does not clear MAIN+4 or7A0BB4. Preserve original bytes. Pending WinMain becomes non-resumable after supplemental MAIN free.",
+    "MAIN_destructor": "44FE60 calls44FFA0 for member cleanup.44FF56 calls4246C0, whose4246E9 calls424700.424700 is an empty success-return body without HWND access or Win32 call. This cold MAIN cleanup therefore does not re-destroy/remove the stale HWND.",
+    "required_state": "Current original-class route has MAIN+8==0, empty scheduler buckets and no GAME/worker. Nonzero MAIN+8 requires original SetWindowLongA restoration and is outside this admitted route.",
+    "cleanup_root_order": [
+      "44FE60 MAIN destructor",
+      "428AD0 MAIN free",
+      "575450 original PTD debug free then TLS0",
+      "575360 critical/TlsFree teardown",
+      "57BA60 heap teardown"
+    ],
+    "cleanup_roots_are_supplemental": true
+  },
+  "code_review_checks": [
+    "HINSTANCE is acquired before original49DD70 WinMain input. Original MAIN publication49DE23 continues through window preparation to4504E1.",
+    "WINDOW_CLOSE and CB_DESTROY_WINDOW target only the current owned HWND and active WM_CLOSE. Actual native SendMessage/DestroyWindow results remain unchanged; SendMessage LRESULT0 is not a boolean failure.",
+    "Callback-capable Win32 calls release stateMutex through WindowCallScope. Same MAIN queue checks parent request, callback identity/depth, TID/TEB, HWND and parameters. Reader/worker sources remain frozen.",
+    "Callback stacks/payload shadows are independent and guarded. Original stdcall/callee-saved ABI, outer stack and code are checked; fullCPU57 context restores. Live callbacks require actual tracked TLS and116-byte PTD equality.",
+    "Original PostQuitMessage and RemovePropA call sites450F84/424958 are required. Actual removed property must equal MAIN and read back absent. NCDESTROY acknowledgement plus IsWindow false precede class/module retirement.",
+    "Normal success requires STATUS resource zeros, Shutdown, exit0, no forced termination/deadline/errors, Job empty and all seven observed parent CloseHandle BOOLs true.",
+    "Fresh once marker plus helper/generated-source/build/gate identities constrain this admitted lifetime. Unknown native callback messages/APIs fail instead of fabricating continuation.",
+    "The20second deadline override runs before the inherited Timer constructor; inherited checks and waits use the same shortened deadline.",
+    "Desktop writes require actual returned Job-empty receipt, unchanged input tick, same unlocked desktop/shell and current target lifetime. Guards repeat before writes. No input injection, AttachThreadInput, shell restart, registry update or screenshot.",
+    "Each desktop operation is a hidden child with5second limit. After-action read, optional repair and two verification reads plus0.5second interval need20.5seconds.20+3+20.5=43.5 fits45second startup reserve.",
+    "Display restoration uses no registry flag. Taskbar SetWindowPos uses no-activate/no-zorder and rejects auto-hide override. Unforced foreground restoration is accepted only after matching later observations.",
+    "Failure, partial repair, newer input, stale taskbar ownership or query timeout cannot count as normal cleanup/restoration."
+  ],
+  "findings": [
+    {
+      "id": "admission_generator_name",
+      "status": "resolved",
+      "detail": "Final collector calls source(); generated_source() did not exist."
+    },
+    {
+      "id": "desktop_deadline_reserve",
+      "status": "resolved",
+      "detail": "Actual20second watchdog and45second launch reserve replace insufficient30second/40second scheme."
+    }
+  ],
+  "unresolved_static_blockers": [],
+  "tests_review": {
+    "source_files": [
+      {
+        "path": "devtools/tests/test_terminal_window_desktop.py",
+        "bytes": 5185,
+        "sha256": "7ac6beaed23c6704b104e14bc06f5c356f3d2779646df0996addb39bf389f223"
+      },
+      {
+        "path": "devtools/tests/test_terminal_host_desktop.py",
+        "bytes": 3884,
+        "sha256": "5615e61bef677ec1ab6797f9d28a0a67ba0b9ff8febadef2c25efbb16211291c"
+      }
+    ],
+    "new_semantic_cases": 9,
+    "parent_reported_total_cases_passed": 18,
+    "execution_by_reviewer": false,
+    "method": "Read test bodies and recorded model rejection records; did not rerun."
+  },
+  "build_manifest": {
+    "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/static-report.json",
+    "bytes": 9143,
+    "sha256": "8e23646b200488e01ccecc95a6e67f49e26ea0e65f57076c2e7f58033949545c"
+  },
+  "build_critical_inputs": {
+    "generator": {
+      "path": "devtools/terminal_window_native_v2.py",
+      "bytes": 7482,
+      "sha256": "eaf079888f8543b27efccbde2caae702111e255a19a5fbcf2db3d9bd275ccd2f"
+    },
+    "parent_generator": {
+      "path": "devtools/terminal_window_native.py",
+      "bytes": 11512,
+      "sha256": "e55a84b45831a5b28ee27e958654e63513e8c78f4ddf5fb1d837d23c2f9fe83a"
+    },
+    "parent_include": {
+      "path": "devtools/terminal_window_native.inc",
+      "bytes": 20831,
+      "sha256": "8eaf3c751f879f0f92b7505cc033c2d1d1e408f43a92626e575205fc4354f9c9"
+    },
+    "resource": {
+      "path": ".venv-audit/school-window-icons-v1.dll",
+      "bytes": 3072,
+      "sha256": "1c2efa226cb52e97696477964d85bb6f0b94f727c8c3c550ef57da41beb009d7"
+    },
+    "generated_source": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/terminal-window-destruction-owner.cpp",
+      "bytes": 70273,
+      "sha256": "ba3d21709c1c7fecfb9eb08c2eddd686129d779db03fa907865b8a227c1a6f4a"
+    },
+    "helper": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/terminal-window-destruction-owner.exe",
+      "bytes": 254464,
+      "sha256": "6cf590abea5d0684a6c750f9b42732a98bb50ee6a1c2c9ed6c7414c8d619ee98"
+    }
+  },
+  "implementation_pins": [
+    {
+      "path": "devtools/terminal_window_lifetime.py",
+      "bytes": 11192,
+      "sha256": "3cb4f2f5eaa9dbfc4c86eb9c6ca3c51d649c30e8009933684cb61142f1dd6b57"
+    },
+    {
+      "path": "devtools/terminal_window_desktop.py",
+      "bytes": 14238,
+      "sha256": "8a8a0f9583bd9df18cd4a4656dc4ae3bd569654df44c32655ea0df71ab80d52b"
+    },
+    {
+      "path": "devtools/terminal_window_destruction.py",
+      "bytes": 15364,
+      "sha256": "38a11740f46652c9a6dfbb091498198417111bded27833238722bf56685d4cc9"
+    },
+    {
+      "path": "devtools/terminal_window_native_v2.py",
+      "bytes": 7482,
+      "sha256": "eaf079888f8543b27efccbde2caae702111e255a19a5fbcf2db3d9bd275ccd2f"
+    },
+    {
+      "path": "devtools/terminal_window_callbacks.py",
+      "bytes": 19871,
+      "sha256": "0fe16272b777a4f2e6475a940f7603b1ca02a40e4cd50545cab235dfc30b83c8"
+    },
+    {
+      "path": "devtools/terminal_window_preparation.py",
+      "bytes": 7014,
+      "sha256": "1eb8fb9cbac45e4a1caf7981efd995674b06e61d6a0010c93aaa39552a6372f8"
+    },
+    {
+      "path": "devtools/terminal_window_native.py",
+      "bytes": 11512,
+      "sha256": "e55a84b45831a5b28ee27e958654e63513e8c78f4ddf5fb1d837d23c2f9fe83a"
+    },
+    {
+      "path": "devtools/terminal_window_native.inc",
+      "bytes": 20831,
+      "sha256": "8eaf3c751f879f0f92b7505cc033c2d1d1e408f43a92626e575205fc4354f9c9"
+    },
+    {
+      "path": "devtools/terminal_window_lifetime_model.py",
+      "bytes": 14376,
+      "sha256": "9249c2677977f39a0b0ee09c4505826be0bc7e562c24d592879bc86bcece0845"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/terminal-window-destruction-owner.exe",
+      "bytes": 254464,
+      "sha256": "6cf590abea5d0684a6c750f9b42732a98bb50ee6a1c2c9ed6c7414c8d619ee98"
+    },
+    {
+      "path": "analysis/school-window-startup-trajectory-v3-20261020.json",
+      "bytes": 3190142,
+      "sha256": "a5f30898f2add507e70277617838ad51e5328b56915c227460e3bc43f2afcd48"
+    },
+    {
+      "path": ".venv-audit/terminal-native-owner-build-v1-20261113/offline_route.py",
+      "bytes": 4700,
+      "sha256": "6717b2ee45378c87480c1e874be41f962671f5416d1fe1be10889285ba10bb4d"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-owner-build-v1-20261113/offline_model.py",
+      "bytes": 3454,
+      "sha256": "1a7688e10abc40196c29f28e54fee5441e9084f60a293a20ee3de30e5cd32128"
+    }
+  ],
+  "inherited_source_pins": [
+    {
+      "path": "devtools/terminal_native_owner_probe.py",
+      "bytes": 28708,
+      "sha256": "dc1cf061f806ebdb034d0108589cf4c65788ba833e94864a5bd9f02ab2c8f38e"
+    },
+    {
+      "path": "devtools/terminal_oplock_probe_v2.py",
+      "bytes": 19525,
+      "sha256": "e84369233125cfbad3ba0d3dc8a380eb9ddc1168d0a4d726c72423e9db1794c9"
+    },
+    {
+      "path": "devtools/terminal_scene_construction.py",
+      "bytes": 19837,
+      "sha256": "910f5dcb1f6bfc16865f0907a55b475f0e32881cdd32edd979925817ce82c6d1"
+    },
+    {
+      "path": "devtools/terminal_scene_dc_probe.py",
+      "bytes": 10086,
+      "sha256": "994d5ab7877c10bb3de9cc72ef00eaba9f57732ee646372d03c45d991258fed9"
+    },
+    {
+      "path": "devtools/terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    },
+    {
+      "path": "tools/school_native_dialogue_desktop.py",
+      "bytes": 2420,
+      "sha256": "962ab2a19dc40482778b74d60099464c1b0be3181b30d28f4a2ee4e72568c7ee"
+    }
+  ],
+  "limits": [
+    "Full-route model projects symbolic current owner/handles/PTD onto17 old creation message shapes plus3 declared destruction messages. It does not replay actual native destruction or prove a new native lifetime.",
+    "Actual DestroyWindow may deliver more messages or unadmitted APIs. Those must stop the run; the3-message model cannot replace observations.",
+    "Style0x90000000 contains WS_VISIBLE. Creation before explicit ShowWindow can still display/activate a window; this is not hidden or desktop-free.",
+    "Desktop restored covers monitored mode/geometry, taskbar, work area, foreground lifetime and desktop identity only. No pixel/gamma/cursor-shape readback is claimed.",
+    "No current native callback, normal native HWND/class/module cleanup, desktop repair, GAME publication, worker wait/result consumption or formal battle qualification passed in this review.",
+    "Supports preparation for only a freshly authorized single20second visible-window component probe within60seconds. This report is not execution authorization."
+  ]
+}

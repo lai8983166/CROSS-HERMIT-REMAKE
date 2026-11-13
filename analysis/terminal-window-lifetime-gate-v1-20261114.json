@@ -1,0 +1,195 @@
+{
+  "route_closed": true,
+  "native_executed": false,
+  "symbolic_only": true,
+  "formal_acceptance": false,
+  "collector": {
+    "path": "devtools/terminal_window_lifetime.py",
+    "bytes": 11192,
+    "sha256": "3cb4f2f5eaa9dbfc4c86eb9c6ca3c51d649c30e8009933684cb61142f1dd6b57"
+  },
+  "model": {
+    "path": "devtools/terminal_window_lifetime_model.py",
+    "bytes": 14376,
+    "sha256": "9249c2677977f39a0b0ee09c4505826be0bc7e562c24d592879bc86bcece0845"
+  },
+  "native_helper": {
+    "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/terminal-window-destruction-owner.exe",
+    "bytes": 254464,
+    "sha256": "6cf590abea5d0684a6c750f9b42732a98bb50ee6a1c2c9ed6c7414c8d619ee98"
+  },
+  "primitive_models": [
+    {
+      "path": ".venv-audit/terminal-native-owner-build-v1-20261113/offline_route.py",
+      "bytes": 4700,
+      "sha256": "6717b2ee45378c87480c1e874be41f962671f5416d1fe1be10889285ba10bb4d"
+    },
+    {
+      "path": ".venv-audit/terminal-scene-owner-build-v1-20261113/offline_model.py",
+      "bytes": 3454,
+      "sha256": "1a7688e10abc40196c29f28e54fee5441e9084f60a293a20ee3de30e5cd32128"
+    }
+  ],
+  "source_message_shape_template": {
+    "path": "analysis/school-window-startup-trajectory-v3-20261020.json",
+    "bytes": 3190142,
+    "sha256": "a5f30898f2add507e70277617838ad51e5328b56915c227460e3bc43f2afcd48"
+  },
+  "pins": [
+    {
+      "path": "devtools/terminal_window_lifetime.py",
+      "bytes": 11192,
+      "sha256": "3cb4f2f5eaa9dbfc4c86eb9c6ca3c51d649c30e8009933684cb61142f1dd6b57"
+    },
+    {
+      "path": "devtools/terminal_window_desktop.py",
+      "bytes": 14238,
+      "sha256": "8a8a0f9583bd9df18cd4a4656dc4ae3bd569654df44c32655ea0df71ab80d52b"
+    },
+    {
+      "path": "devtools/terminal_window_destruction.py",
+      "bytes": 15364,
+      "sha256": "38a11740f46652c9a6dfbb091498198417111bded27833238722bf56685d4cc9"
+    },
+    {
+      "path": "devtools/terminal_window_native_v2.py",
+      "bytes": 7482,
+      "sha256": "eaf079888f8543b27efccbde2caae702111e255a19a5fbcf2db3d9bd275ccd2f"
+    },
+    {
+      "path": "devtools/terminal_window_callbacks.py",
+      "bytes": 19871,
+      "sha256": "0fe16272b777a4f2e6475a940f7603b1ca02a40e4cd50545cab235dfc30b83c8"
+    },
+    {
+      "path": "devtools/terminal_window_preparation.py",
+      "bytes": 7014,
+      "sha256": "1eb8fb9cbac45e4a1caf7981efd995674b06e61d6a0010c93aaa39552a6372f8"
+    },
+    {
+      "path": "devtools/terminal_window_native.py",
+      "bytes": 11512,
+      "sha256": "e55a84b45831a5b28ee27e958654e63513e8c78f4ddf5fb1d837d23c2f9fe83a"
+    },
+    {
+      "path": "devtools/terminal_window_native.inc",
+      "bytes": 20831,
+      "sha256": "8eaf3c751f879f0f92b7505cc033c2d1d1e408f43a92626e575205fc4354f9c9"
+    }
+  ],
+  "actual_native_cleanup_proven": false,
+  "outcome": {
+    "close": {
+      "id": 366,
+      "lane": 0,
+      "tid": 101,
+      "last_error": 0,
+      "ok": 1,
+      "result": 0,
+      "is_window_after": 0,
+      "ncdestroy_observed": 1,
+      "quit_posted": 1,
+      "property_removed": 1,
+      "teb": 4096
+    },
+    "status": {
+      "id": 492,
+      "lane": 0,
+      "tid": 101,
+      "last_error": 0,
+      "ok": 1,
+      "result": 0,
+      "ui_gate": 0,
+      "window_modules": 0,
+      "window_classes": 0,
+      "windows": 0,
+      "callback_depth": 0,
+      "allocations": 0,
+      "memory_bytes": 0,
+      "heaps": 0,
+      "handles": 0,
+      "criticals": 0,
+      "tls_slots": 0,
+      "fonts": 0,
+      "dcs": 0,
+      "teb": 4096
+    },
+    "pending_WinMain_stack_sha256": "b111d1c87eb307628d0d018a24ca03954a7a69af49aa8d0a156bffc69df67450",
+    "WinMain_completed": false,
+    "pending_WinMain_resumable_after_cleanup": false
+  },
+  "rejections": [
+    {
+      "case": "is_window_after",
+      "rejected": true,
+      "reason": "native complete close lifetime observations"
+    },
+    {
+      "case": "ncdestroy_observed",
+      "rejected": true,
+      "reason": "native complete close lifetime observations"
+    },
+    {
+      "case": "quit_posted",
+      "rejected": true,
+      "reason": "native complete close lifetime observations"
+    },
+    {
+      "case": "property_removed",
+      "rejected": true,
+      "reason": "native complete close lifetime observations"
+    },
+    {
+      "case": "wrong_MAIN_thread",
+      "rejected": true,
+      "reason": "destruction callback real MAIN identity"
+    },
+    {
+      "case": "wrong_MAIN_TEB",
+      "rejected": true,
+      "reason": "destruction callback real MAIN identity"
+    },
+    {
+      "case": "wrong_close_message",
+      "rejected": true,
+      "reason": "owned close request enters original WM_CLOSE only"
+    },
+    {
+      "case": "wrong_close_parent",
+      "rejected": true,
+      "reason": "exact pending MAIN destruction request"
+    },
+    {
+      "case": "wrong_callback_depth",
+      "rejected": true,
+      "reason": "bounded destruction callback ancestry"
+    },
+    {
+      "case": "wrong_callback_lane",
+      "rejected": true,
+      "reason": "exact pending MAIN destruction request"
+    },
+    {
+      "case": "watchdog20_before_timer_creation",
+      "passed": true,
+      "native_executed": false
+    }
+  ],
+  "seconds": 2.937999999965541,
+  "instructions": 17766,
+  "API_calls": 147,
+  "callbacks": 20,
+  "roots": [
+    "original_heap_init",
+    "original_MAIN_TLS_init",
+    "original_WinMain_to_MAIN_publication",
+    "supplemental_original_MAIN_destructor",
+    "supplemental_original_MAIN_free",
+    "supplemental_original_MAIN_PTD_free_TLS_clear",
+    "supplemental_original_lock_TLS_teardown",
+    "supplemental_original_heap_teardown"
+  ],
+  "CPU57_restored": true,
+  "instruction_sha256": "a21a7029919dd8479958e00ee4b8b607ac2e20a62f35699f38cd10431572ef39",
+  "write_sha256": "2dce705bb3f2eb6f23af1c442103ed8630012656006c6378f4105e4b078b51e2"
+}

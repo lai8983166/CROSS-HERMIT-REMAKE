@@ -1,5 +1,13 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
 # Same-owner window adapters and offline reviews bind exact source bytes.
+devtools/terminal_window_desktop.py -text
+devtools/terminal_window_destruction.py -text
+devtools/terminal_window_lifetime.py -text
+devtools/terminal_window_lifetime_model.py -text
+devtools/terminal_window_native_v2.py -text
+devtools/tests/test_terminal_window_desktop.py -text
+analysis/terminal-window-lifetime-*.json -text
+analysis/terminal-window-destruction-*.json.gz binary
 devtools/terminal_window_callbacks.py -text
 devtools/terminal_window_preparation.py -text
 devtools/terminal_window_callback_replay.py -text

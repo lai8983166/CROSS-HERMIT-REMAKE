@@ -1,0 +1,52 @@
+{
+  "kind": "window_lifetime_offline_validation",
+  "native_executed": false,
+  "desktop_read_or_written": false,
+  "current_build_admission": true,
+  "plan_only_default": true,
+  "gate": {
+    "path": "analysis/terminal-window-lifetime-gate-v1-20261114.json",
+    "bytes": 5795,
+    "sha256": "e1ae4592be21340811cac8fd4eb3407e264abfc7c0a15d52746a1b15c39afa74"
+  },
+  "build": {
+    "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/static-report.json",
+    "bytes": 9143,
+    "sha256": "8e23646b200488e01ccecc95a6e67f49e26ea0e65f57076c2e7f58033949545c"
+  },
+  "desktop_regression": {
+    "command": ".venv-audit/Scripts/python.exe -B -X utf8 -m unittest devtools.tests.test_terminal_window_desktop devtools.tests.test_terminal_host_desktop -v",
+    "exit_code": 0,
+    "tests": 18,
+    "observed_run_seconds": 0.125,
+    "all_passed": true,
+    "actual_desktop_calls": false
+  },
+  "pinned_test_inputs": [
+    {
+      "path": "devtools/terminal_window_desktop.py",
+      "bytes": 14238,
+      "sha256": "8a8a0f9583bd9df18cd4a4656dc4ae3bd569654df44c32655ea0df71ab80d52b"
+    },
+    {
+      "path": "devtools/tests/test_terminal_window_desktop.py",
+      "bytes": 5185,
+      "sha256": "7ac6beaed23c6704b104e14bc06f5c356f3d2779646df0996addb39bf389f223"
+    },
+    {
+      "path": "devtools/terminal_host_desktop.py",
+      "bytes": 8215,
+      "sha256": "c2e5781af633e83db4d93e507971ef7a04ddf3601b0313f54698360110d24b76"
+    },
+    {
+      "path": "devtools/tests/test_terminal_host_desktop.py",
+      "bytes": 3884,
+      "sha256": "5615e61bef677ec1ab6797f9d28a0a67ba0b9ff8febadef2c25efbb16211291c"
+    }
+  ],
+  "limits": [
+    "The test backends are scripted; no actual desktop restoration has run",
+    "No current native HWND/TLS/clean exit proof yet",
+    "Requires fresh visible-window authorization before execution"
+  ]
+}
