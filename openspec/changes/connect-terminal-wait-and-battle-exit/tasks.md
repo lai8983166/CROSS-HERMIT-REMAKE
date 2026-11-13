@@ -1,5 +1,13 @@
 # Tasks
 
+2026-11-14窗口正常清理：修正版获新授权后一次3.343秒原生寿命通过，原关闭及
+29回调后完成类注销/module释放、原MAIN析构free、PTD free/TLS0实读、锁/TLS/heap
+清理；独立资源账本0、自然exit0、Job空、7父close成功。桌面两次恢复一致，无恢复
+写操作/截图/全局输入。9篡改拒绝与独立复核通过。初始sandbox baseline失败未启动
+助手，宿主通道才是唯一native。补充根不是WinMain自然返回；GAME/worker/等待/结果
+消费未运行，2.1–4.2不勾选，正式2/8。下一步仅离线准备GAME合法发布平台与恢复，
+新原生运行须新有界授权。详见 docs/terminal_window_lifetime.md。
+
 2026-11-14窗口实测：仅一次2.625秒新鲜原生寿命，29同步回调，真实原关闭代码完成
 DestroyWindow/WM_NCDESTROY、quit和正确owner属性移除。辅助GetProp返回NULL/error2被
 旧台账误拒绝，类/module/MAIN/PTD/CRT正常清理未执行；Job终止94/空不冒充自然退出。

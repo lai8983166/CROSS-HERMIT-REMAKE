@@ -1,0 +1,83 @@
+{
+  "kind": "window_lifetime_resource_validation",
+  "source": {
+    "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/native-window-case-v2-host.json.gz",
+    "bytes": 99272,
+    "sha256": "00f48951f7781697207bcfab046cd62b1f69325942ef3eefb436505a791e35c5"
+  },
+  "desktop_receipt": {
+    "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/native-window-case-v2-host.json.gz.desktop.json",
+    "bytes": 16744,
+    "sha256": "1918eaf2f43cdc237b33569163455f6eb629d4c8f5aa124d32baff16aced9cb1"
+  },
+  "verifier": {
+    "path": "devtools/terminal_window_lifetime_verify.py",
+    "bytes": 13553,
+    "sha256": "0bf1c969acdf2c66ed20698c51afd1f529a422392601a761464a0a57dd0db7cb"
+  },
+  "native_executed_by_verifier": false,
+  "formal_acceptance": false,
+  "implementation_pins_checked": 288,
+  "checks": {
+    "native_requests": 519,
+    "MAIN_free": 454,
+    "PTD_free": 479,
+    "TLS_clear": 481,
+    "TLS_zero_readback": 482,
+    "class_unregister": 404,
+    "module_free": 405,
+    "TLS_slot_free": 516,
+    "heap_destroy": 517,
+    "resource_ledgers_empty": true,
+    "natural_owner_exit0": true,
+    "desktop_restored": true
+  },
+  "rejections": [
+    {
+      "case": "MAIN_free_failed",
+      "reason": "successful matching HeapFree",
+      "rejected": true
+    },
+    {
+      "case": "wrong_MAIN_identity",
+      "reason": "fixed real MAIN identity",
+      "rejected": true
+    },
+    {
+      "case": "PTD_free_failed",
+      "reason": "successful matching HeapFree",
+      "rejected": true
+    },
+    {
+      "case": "TLS_still_live",
+      "reason": "actual TLS matches tracked value",
+      "rejected": true
+    },
+    {
+      "case": "class_unregister_failed",
+      "reason": "class unregistered after actual HWND death",
+      "rejected": true
+    },
+    {
+      "case": "module_free_failed",
+      "reason": "module freed after class",
+      "rejected": true
+    },
+    {
+      "case": "remaining_resource",
+      "reason": "native and independently rebuilt resources empty",
+      "rejected": true
+    },
+    {
+      "case": "forced_exit",
+      "reason": "normal bounded cleanup, not containment",
+      "rejected": true
+    },
+    {
+      "case": "desktop_geometry_changed",
+      "reason": "desktop baseline restored: monitors",
+      "rejected": true
+    }
+  ],
+  "limitations": "Resource/receipt audit, not independent instruction/memory/digest replay. Original WinMain remains incomplete; no GAME, worker, wait, result consumption or battle acceptance."
+}

@@ -1,0 +1,566 @@
+{
+  "schema_version": 1,
+  "kind": "independent_successful_native_window_lifetime_record_review",
+  "review_passed": true,
+  "source_case_accepted": true,
+  "component_scope_success_supported": true,
+  "formal_acceptance": false,
+  "formal_progress": "2/8 unchanged",
+  "independent_complete_replay": false,
+  "original_WinMain_natural_return": false,
+  "reviewer_native_runs": 0,
+  "reviewer_UI_operations": 0,
+  "reviewer_builds": 0,
+  "reviewer_collector_imports_or_executions": 0,
+  "reviewer_validator_runs": 0,
+  "method": "Read-only independent inspection of fixed source records, exact original instruction bytes, callback nesting, CPU57/ABI, native resource lifetimes and recorded desktop state. No new native lifetime, UI action, source replay or full memory/digest recomputation.",
+  "evidence": {
+    "success": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/native-window-case-v2-host.json.gz",
+      "bytes": 99272,
+      "sha256": "00f48951f7781697207bcfab046cd62b1f69325942ef3eefb436505a791e35c5"
+    },
+    "desktop": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/native-window-case-v2-host.json.gz.desktop.json",
+      "bytes": 16744,
+      "sha256": "1918eaf2f43cdc237b33569163455f6eb629d4c8f5aa124d32baff16aced9cb1"
+    },
+    "once_marker": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/native-attempt.once",
+      "bytes": 265,
+      "sha256": "62dab616030c1f9f921232a77301c363db45da5983fd3522cc0e7a4be385e9cc"
+    },
+    "sandbox_baseline_failure": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/native-window-case-v2.json.gz",
+      "bytes": 201,
+      "sha256": "8eaaf5a8ea9dbdcac97fe7191487063436e7752ac56bfbde610dfa1648c782eb"
+    }
+  },
+  "identities": {
+    "collector": {
+      "path": "devtools/terminal_window_lifetime.py",
+      "bytes": 11192,
+      "sha256": "3cb4f2f5eaa9dbfc4c86eb9c6ca3c51d649c30e8009933684cb61142f1dd6b57"
+    },
+    "versioned_entrypoint": {
+      "path": "devtools/terminal_window_lifetime_v2.py",
+      "bytes": 6217,
+      "sha256": "08bf62f555c6c2bfe249ad33564bbb0a050e11e31b8919fb26b50105da0d3259"
+    },
+    "original": {
+      "path": "analysis/hermit_game.exe",
+      "bytes": 5980160,
+      "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+    },
+    "build_generator": {
+      "path": "devtools/terminal_window_native_v3.py",
+      "bytes": 6735,
+      "sha256": "af9168cc96d0184d3e2e06ffe4f6f1565880b2035707555786df57f7cf811706"
+    },
+    "generated_cpp": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.cpp",
+      "bytes": 71105,
+      "sha256": "9b4f9eb7c0e400623e0aa6e86872e99be060ce1c9d910f52c85d92c054f2c361"
+    },
+    "helper": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.exe",
+      "bytes": 254464,
+      "sha256": "ebbebccad3a4328d2d58ebc49b03f523a02aac857024b28238a6af43c6e05c64"
+    },
+    "all_recorded_implementation_pins_matched": true,
+    "implementation_pins": 288,
+    "build_and_admission_pins_matched": true
+  },
+  "observed": {
+    "pid": 38280,
+    "MAIN_tid": 13648,
+    "MAIN_teb": 12713984,
+    "reader_tid": 26184,
+    "guest_MAIN": 1348472864,
+    "native_HINSTANCE": 16842752,
+    "HWND": 7409164,
+    "wall_seconds": 3.3429999999934807,
+    "native_hard_limit_seconds": 20,
+    "requests": 519,
+    "responses": 519,
+    "callbacks": 29,
+    "creation_callbacks": 17,
+    "close_callbacks": 12,
+    "max_callback_depth": 3,
+    "API_ABI_records_checked": 164,
+    "CPU57_callback_restorations_checked": 29,
+    "source_instruction_sites_checked": 3199,
+    "source_instructions": 20376,
+    "callback_instructions": 8206,
+    "original_roots": 8,
+    "actual_callback_PTD": {
+      "tls_slot": 3,
+      "native_pointer": 49153496,
+      "bytes": 116,
+      "sha256": "83a757cd5b353b972cd6e0a1aecdf42b916594dab4e1a8ac283ca8b5ac1d3252",
+      "same_all_callbacks": true,
+      "actual_native_TLS_install_readback_request": 24,
+      "actual_precreation_PTD_readback_request": 313
+    }
+  },
+  "independent_checks": [
+    "All519 sequential MAIN requests have one successful real reply.29 callback notifications match retained frames and READY TID/TEB. Parent requests, active callback ancestry/depth and CB_RETURN results close without unmatched frames.",
+    "All29 live callback TLS/PTD values equal the installed/read-back native slot and the precreation116-byte native PTD readback. The PTD thread id matches the actual MAIN thread.",
+    "All29 declared guest CPU57 caller states restore exactly. Every callback has original424980 entry, stdcall ESP+20 return, matching EAX and preserved EBP/EBX/ESI/EDI. These are guest executor states, not native register captures.",
+    "Every retained API boundary has original return EIP, argument-count stack cleanup, EAX result and unchanged other54 declared CPU fields. Retained native leaf objects match their exact wire replies.",
+    "Every retained original instruction site matches the fixed executable bytes. Site counts total20376, callback run counts total8206 and callback addresses reference checked sites. Recorded instruction/write digests are retained, not independently recomputed by re-execution.",
+    "All8 original roots have expected entries and return/stop ABI. Supplemental cleanup roots use0x6530F000 stack. WinMain remains paused at4504E1; after MAIN free that saved stack is explicitly non-resumable.",
+    "Native HeapCreate/HeapAlloc/HeapFree/HeapDestroy and virtual MEM_ALLOC/MEM_FREE receipts independently reconcile to empty. All memory transfers are inside live tracked blocks. Lock Enter/Leave depths balance before all8 deletions; event and TLS lifetimes also reconcile to empty.",
+    "Successful WINDOW_CLOSE follows original DestroyWindow/WM_DESTROY PostQuit/RemoveProp/WM_NCDESTROY. Class and module release then gate0 occur before supplemental MAIN/CRT cleanup.",
+    "Both final desktop samples match baseline mode bytes/geometry, taskbars/lifetimes, work area, metrics, shell, foreground lifetime, input tick and complete desktop identity. No game window remains; all4 observer children were read-only and exited0 within5seconds."
+  ],
+  "original_cleanup_bytes": [
+    {
+      "va": "0x56f7b5",
+      "hex": "83c024",
+      "recorded_count": 4
+    },
+    {
+      "va": "0x56f7c6",
+      "hex": "e8f5d6ffff",
+      "recorded_count": 4
+    },
+    {
+      "va": "0x57553e",
+      "hex": "e86d9effff",
+      "recorded_count": 1
+    },
+    {
+      "va": "0x57554f",
+      "hex": "ff15a8215900",
+      "recorded_count": 1
+    },
+    {
+      "va": "0x57890f",
+      "hex": "ff1558225900",
+      "recorded_count": 4
+    },
+    {
+      "va": "0x575377",
+      "hex": "ff155c215900",
+      "recorded_count": 1
+    },
+    {
+      "va": "0x57bb3e",
+      "hex": "ff1574215900",
+      "recorded_count": 1
+    }
+  ],
+  "MAIN_release": {
+    "original_destructor_root": "44FE60",
+    "original_free_root": "428AD0",
+    "guest_raw": 1348472832,
+    "guest_object": 1348472864,
+    "native_raw": 49153776,
+    "raw_bytes": 4416,
+    "native_HeapFree_request": 454,
+    "result": 1
+  },
+  "PTD_release": {
+    "original_root": "575450",
+    "original_free_call": "57553E ->56F3B0",
+    "original_debug_fill_call": "56F7C6 ->56CEC0",
+    "guest_raw": 1342181376,
+    "guest_PTD": 1342181408,
+    "native_raw": 49153464,
+    "native_PTD": 49153496,
+    "raw_bytes": 160,
+    "original_debug_fill_bytes": 152,
+    "untouched_allocation_slack_bytes": 8,
+    "explanation": "Original56F7B5 adds0x24 to116-byte user data:32-byte header +116-byte PTD +4-byte guard are DD; trailing8 allocation bytes remain0.",
+    "actual_DD_readback_request": 477,
+    "actual_DD_readback_bytes": 116,
+    "actual_DD_readback_sha256": "4aca260e9c8a320991ad3903a3b53f347a009441ee19a2d4a69bfd8976b5a1e1",
+    "HeapFree_request": 479,
+    "TLS_reference_pending_clear": 1,
+    "TLS_clear_request": 481,
+    "TLS_zero_readback_request": 482,
+    "TLS_zero_value": 0,
+    "original_LastError_restored_request": 483,
+    "TLS_slot_free_request": 516
+  },
+  "teardown_order": [
+    {
+      "request": 366,
+      "operation": "WINDOW_CLOSE",
+      "arguments": [
+        7409164
+      ],
+      "result": 0,
+      "last_error": 1413,
+      "details": {
+        "is_window_after": 0,
+        "ncdestroy_observed": 1,
+        "quit_posted": 1,
+        "property_removed": 1
+      }
+    },
+    {
+      "request": 368,
+      "operation": "CB_DESTROY_WINDOW",
+      "arguments": [
+        18,
+        7409164
+      ],
+      "result": 1,
+      "last_error": 1413,
+      "details": {
+        "is_window_after": 0,
+        "ncdestroy_observed": 1,
+        "callback_id": 18,
+        "parent_request": 366,
+        "depth": 1
+      }
+    },
+    {
+      "request": 396,
+      "operation": "CB_POST_QUIT",
+      "arguments": [
+        28,
+        0
+      ],
+      "result": 0,
+      "last_error": 0,
+      "details": {
+        "void": 1,
+        "quit_posted": 1,
+        "callback_id": 28,
+        "parent_request": 368,
+        "depth": 2
+      }
+    },
+    {
+      "request": 397,
+      "operation": "CB_REMOVE_PROP",
+      "arguments": [
+        28,
+        7409164
+      ],
+      "result": 1348472864,
+      "last_error": 0,
+      "details": {
+        "observed_property": 0,
+        "observed_property_error": 2,
+        "auxiliary_readback": 1,
+        "callback_id": 28,
+        "parent_request": 368,
+        "depth": 2
+      }
+    },
+    {
+      "request": 404,
+      "operation": "UnregisterClassA",
+      "arguments": [
+        49699,
+        16842752
+      ],
+      "result": 1,
+      "last_error": 1413,
+      "details": {}
+    },
+    {
+      "request": 405,
+      "operation": "WINDOW_MODULE_CLOSE",
+      "arguments": [
+        16842752
+      ],
+      "result": 1,
+      "last_error": 1413,
+      "details": {}
+    },
+    {
+      "request": 406,
+      "operation": "WINDOW_GATE",
+      "arguments": [
+        0
+      ],
+      "result": 1,
+      "last_error": 1413,
+      "details": {
+        "infrastructure": 1,
+        "ui_gate": 0
+      }
+    },
+    {
+      "request": 454,
+      "operation": "HeapFree",
+      "arguments": [
+        49152000,
+        0,
+        49153776
+      ],
+      "result": 1,
+      "last_error": 1413,
+      "details": {}
+    },
+    {
+      "request": 479,
+      "operation": "HeapFree",
+      "arguments": [
+        49152000,
+        0,
+        49153464
+      ],
+      "result": 1,
+      "last_error": 0,
+      "details": {
+        "tls_reference_pending_clear": 1
+      }
+    },
+    {
+      "request": 481,
+      "operation": "TlsSetValue",
+      "arguments": [
+        3,
+        0
+      ],
+      "result": 1,
+      "last_error": 0,
+      "details": {}
+    },
+    {
+      "request": 482,
+      "operation": "TlsGetValue",
+      "arguments": [
+        3
+      ],
+      "result": 0,
+      "last_error": 0,
+      "details": {
+        "tracked_value": 0
+      }
+    },
+    {
+      "request": 483,
+      "operation": "SetLastError",
+      "arguments": [
+        0
+      ],
+      "result": 0,
+      "last_error": 0,
+      "details": {
+        "void": 1
+      }
+    },
+    {
+      "request": 516,
+      "operation": "TlsFree",
+      "arguments": [
+        3
+      ],
+      "result": 1,
+      "last_error": 0,
+      "details": {}
+    },
+    {
+      "request": 517,
+      "operation": "HeapDestroy",
+      "arguments": [
+        49152000
+      ],
+      "result": 1,
+      "last_error": 0,
+      "details": {}
+    },
+    {
+      "request": 518,
+      "operation": "STATUS",
+      "arguments": [],
+      "result": 0,
+      "last_error": 0,
+      "details": {
+        "ui_gate": 0,
+        "window_modules": 0,
+        "window_classes": 0,
+        "windows": 0,
+        "callback_depth": 0,
+        "callback_count": 29,
+        "allocations": 0,
+        "memory_bytes": 0,
+        "dcs": 0,
+        "fonts": 0,
+        "retired_fonts": 0,
+        "heaps": 0,
+        "handles": 0,
+        "criticals": 0,
+        "tls_slots": 0,
+        "worker_created": 0,
+        "worker_resumed": 0,
+        "exit_requested": 0,
+        "termination_observed": 0,
+        "worker_handle_closed": 0,
+        "worker_exit_code": 259
+      }
+    },
+    {
+      "request": 519,
+      "operation": "Shutdown",
+      "arguments": [],
+      "result": 1,
+      "last_error": 0,
+      "details": {
+        "ui_gate": 0,
+        "window_modules": 0,
+        "window_classes": 0,
+        "windows": 0,
+        "callback_depth": 0,
+        "callback_count": 29,
+        "allocations": 0,
+        "memory_bytes": 0,
+        "dcs": 0,
+        "fonts": 0,
+        "retired_fonts": 0,
+        "heaps": 0,
+        "handles": 0,
+        "criticals": 0,
+        "tls_slots": 0,
+        "worker_created": 0,
+        "worker_resumed": 0,
+        "exit_requested": 0,
+        "termination_observed": 0,
+        "worker_handle_closed": 0,
+        "worker_exit_code": 259
+      }
+    }
+  ],
+  "independently_reconciled_resource_counts": {
+    "MEM_ALLOC": 44,
+    "MEM_FREE": 44,
+    "HeapAlloc": 4,
+    "HeapFree": 4,
+    "InitializeCriticalSection": 8,
+    "DeleteCriticalSection": 8,
+    "CreateEventA": 1,
+    "CloseHandle": 1,
+    "TlsAlloc": 1,
+    "TlsFree": 1,
+    "HeapCreate": 1,
+    "HeapDestroy": 1
+  },
+  "final_resource_zero_fields": [
+    "ui_gate",
+    "window_modules",
+    "window_classes",
+    "windows",
+    "callback_depth",
+    "allocations",
+    "memory_bytes",
+    "dcs",
+    "fonts",
+    "retired_fonts",
+    "heaps",
+    "handles",
+    "criticals",
+    "tls_slots",
+    "worker_created",
+    "worker_resumed"
+  ],
+  "cleanup": {
+    "parent_pid": 38280,
+    "forced": false,
+    "exits": {
+      "38280": {
+        "wait": 0,
+        "code": 0
+      }
+    },
+    "handles_closed": true,
+    "job_empty": true,
+    "errors": [],
+    "deadline_fired": false,
+    "wall_seconds": 3.3429999999934807
+  },
+  "parent_CloseHandle_count": 7,
+  "parent_CloseHandle_all_TRUE": true,
+  "desktop": {
+    "restored": true,
+    "observer_and_input_desktop": "Default",
+    "final_matching_samples": 2,
+    "read_only_child_samples": 4,
+    "automatic_recovery_attempted": false,
+    "repair_actions": [],
+    "repair_path_exercised": false
+  },
+  "single_native_attempt": {
+    "conclusion": "The preceding sandbox baseline failure and this successful host case are not two native attempts.",
+    "fixed_sandbox_record": "201-byte report contains only accepted=false, desktop_restored=false, nonzero-saved-window baseline error and authorization deadline. It contains no helper events/trace/cleanup and has no paired desktop receipt.",
+    "control_flow": "Frozen desktop guarded_run obtains baseline before calling action. That baseline exception occurs before run_native creates its once marker or initializes/resumes Owner. The later single marker identifies the successful host helper lifetime.",
+    "sandbox_desktop_names": "Parent Agent reported observer=CodexSandboxDesktop/input=Default from a separate read-only tool observation. That observation has no fixed file; names are attributed to the parent and are not independently byte-authenticated here.",
+    "no_new_desktop_read_by_reviewer": true
+  },
+  "separate_validator_review": {
+    "source": {
+      "path": "devtools/terminal_window_lifetime_verify.py",
+      "bytes": 13553,
+      "sha256": "0bf1c969acdf2c66ed20698c51afd1f529a422392601a761464a0a57dd0db7cb"
+    },
+    "report": {
+      "path": "analysis/terminal-window-lifetime-validation-v3-20261114.json",
+      "bytes": 2504,
+      "sha256": "cdb709e6ca52bd7715d90c978a82e17b5a854c4ba67eec7f6350e95d99e06acc"
+    },
+    "source_and_report_identities_matched": true,
+    "read_only_code_review": true,
+    "executed_by_reviewer": false,
+    "recorded_tamper_rejections": [
+      {
+        "case": "MAIN_free_failed",
+        "reason": "successful matching HeapFree",
+        "rejected": true
+      },
+      {
+        "case": "wrong_MAIN_identity",
+        "reason": "fixed real MAIN identity",
+        "rejected": true
+      },
+      {
+        "case": "PTD_free_failed",
+        "reason": "successful matching HeapFree",
+        "rejected": true
+      },
+      {
+        "case": "TLS_still_live",
+        "reason": "actual TLS matches tracked value",
+        "rejected": true
+      },
+      {
+        "case": "class_unregister_failed",
+        "reason": "class unregistered after actual HWND death",
+        "rejected": true
+      },
+      {
+        "case": "module_free_failed",
+        "reason": "module freed after class",
+        "rejected": true
+      },
+      {
+        "case": "remaining_resource",
+        "reason": "native and independently rebuilt resources empty",
+        "rejected": true
+      },
+      {
+        "case": "forced_exit",
+        "reason": "normal bounded cleanup, not containment",
+        "rejected": true
+      },
+      {
+        "case": "desktop_geometry_changed",
+        "reason": "desktop baseline restored: monitors",
+        "rejected": true
+      }
+    ],
+    "scope": "Resource/receipt audit with9 targeted mutations. It does not verify original instruction execution, CPU57 or callback ancestry, full PTD bytes or lock recursion depth; this independent record review separately checked those available fields. Neither component is complete replay.",
+    "unresolved_static_findings": []
+  },
+  "limitations": [
+    "This supports one real same-owner window creation/destruction and supplemental original MAIN/PTD/CRT cleanup component. It is not natural original WinMain completion.",
+    "GAME, worker creation/wait/result consumption, scene/battle endpoints, two fresh full native cases and full independent replay remain unproven; formal status remains2/8.",
+    "Desktop result covers recorded mode/taskbar/work-area/foreground/desktop fields. Pixels, gamma and cursor shape were not recorded; no repair path was exercised.",
+    "The earlier81KB failed native source remains failed and must remain available while the v3 generator self_check pins its original bytes. The successful source does not replace that dependency."
+  ]
+}
