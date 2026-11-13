@@ -1,0 +1,263 @@
+{
+  "schema": "terminal-graphics-platform-independent-review-v1",
+  "review_kind": "read_only_code_and_recorded_symbolic_evidence_inspection",
+  "accepted_for_offline_component_review": true,
+  "native_executed": false,
+  "desktop_used": false,
+  "native_admission": false,
+  "formal_acceptance": false,
+  "formal_terminal_progress": "2/8 unchanged",
+  "independent_complete_replay": false,
+  "evidence": [
+    {
+      "path": ".venv-audit/terminal-graphics-model-v6-20261114.json.gz",
+      "bytes": 452281,
+      "sha256": "60f4ab083519c29fbe0907a413e92a42429affafc61b2a1ccc8f69e8b459241f"
+    },
+    {
+      "path": "analysis/hermit_game.exe",
+      "bytes": 5980160,
+      "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+    },
+    {
+      "path": "devtools/terminal_graphics_platform.py",
+      "bytes": 23508,
+      "sha256": "b29f606faaf80f472914235c2e9f4bc403c5a1614cf329cd7ef44cdd66f430cc"
+    },
+    {
+      "path": "devtools/terminal_graphics_model.py",
+      "bytes": 17734,
+      "sha256": "c744704e8ac41fd017231e96b8db74648cc61a27741a2350ba88b308750522d9"
+    },
+    {
+      "path": "devtools/terminal_graphics_native.py",
+      "bytes": 10651,
+      "sha256": "98c77b4cdd4416db114e0bc74a285a5657a3e6722ab1c450af924ea715656b62"
+    },
+    {
+      "path": "devtools/terminal_graphics_native.inc",
+      "bytes": 35815,
+      "sha256": "cbb5cb623f80d6b84a43624a0a33b5ab47c11e939c802c47378b52bbdba2e99d"
+    },
+    {
+      "path": ".venv-audit/terminal-graphics-owner-build-v3-20261114/static-report.json",
+      "bytes": 43062,
+      "sha256": "40a4754da416c3c2778b8bcf180c33f8c62dcfb837f6d7bfc0f633142a08ef51"
+    },
+    {
+      "path": ".venv-audit/terminal-graphics-owner-build-v3-20261114/terminal-graphics-owner.cpp",
+      "bytes": 126513,
+      "sha256": "5a3af5e88538b98f2296f39a6e3896e834b6aaebb2438a7d4e9e5cbf26681706"
+    },
+    {
+      "path": ".venv-audit/terminal-graphics-owner-build-v3-20261114/terminal-graphics-owner.exe",
+      "bytes": 332288,
+      "sha256": "13ee451fadd7330663bd58e0369ac66cf2ef66aec2b6ee169dfcc9c59c655a87"
+    }
+  ],
+  "source_checks": {
+    "original_sites": 10297,
+    "recorded_instruction_hooks": 4493961,
+    "all_recorded_sites_match_original_bytes": true,
+    "not_independently_recomputed_cumulative_trajectory": true,
+    "continuous_recorded_checkpoints": [
+      "49DD70 WinMain root",
+      "4504E1",
+      "413450",
+      "413560 before DirectInput"
+    ],
+    "supplemental_cleanup_roots": [
+      "412DD0",
+      "44FE60",
+      "428AD0",
+      "575450",
+      "575360",
+      "57BA60"
+    ],
+    "GAME_global_remains_zero": true,
+    "WinMain_returned": false,
+    "pending_stack_preservation": "Executor compares all 65536 bytes; report keeps the hash only, so this review checks code and recorded assertion, not an independent byte replay."
+  },
+  "ABI_checks": {
+    "recorded_API_calls": 923,
+    "graphics_API_calls": 606,
+    "wire_requests": 6156,
+    "responses": 6156,
+    "same_symbolic_MAIN_tid": 101,
+    "same_symbolic_MAIN_teb": 4096,
+    "graphics_CPU57_except_declared_EAX_ESP_EIP_preserved": true,
+    "stdcall_and_debug_cdecl_returns_checked": true,
+    "graphics_PTD116_checked": 606,
+    "callbacks": 20,
+    "max_callback_depth": 3,
+    "callback_CPU57_restorations_checked": 20,
+    "callback_model_coverage": "17 reused creation packets plus 3 symbolic close packets; no actual D3D-triggered OS callback observed.",
+    "temporary_graphics_buffers_released": 700,
+    "nonzero_output_prebytes_retained": 4
+  },
+  "semantic_guard_review": {
+    "mode_enumeration": "Adapter0; four declared1024x768 modes formats22..25; PP chooses an enumerated format.",
+    "presentation52": "1024,768,25,1,0,1,currentHWND,0,0,0,0,0,0; first fallback device1 flags68; original fullscreen retained.",
+    "format_queries": "All5 observed usage/type pairs match native (1,1) or (512,3), device type1, allowed formats.",
+    "texture_and_VB": "One64x16 cache usage512 format21 pool0; two256x256 atlases format26 pool1; two8400-byte VBs usage520.",
+    "state_blocks": "All120 observed steps equal four30-step native font plans, including56 render and52 stage operations.",
+    "GDI": "All3 DIB headers exactly40B 256x-256 32bpp BI_RGB; MulDiv8/12*96/72; LOGFONT bounded;190 extent+190 text operations ASCII32..126, x/y<256 and ETO_OPAQUE2.",
+    "locks": "Two level0 full writable atlas locks; bounded32768 transfers; receipt lock_bytes agrees with output pitch; no reads after unlock.",
+    "gamma": "Original flag1 identity ramp i<<8 for3 channels follows120 state steps; supplemental private save/restore readback precedes final device Release.",
+    "mute": "v6 source path calls normalDLL1,0,1,0. Native v3 corrected per-module limit4 and total8, allowing both original DLLs two pairs; compiler evaluates positive and third-pair/repeat/nonBOOL rejection assertions.",
+    "outputs": "Full original pre-call bytes forwarded; CCCCCCCC backbuffer and CD/CC DIB outputs are not zeroed. Failed nonzero COM output is conservatively unqualified by Python."
+  },
+  "resource_review": {
+    "graphics_acquired_references": 11,
+    "graphics_symbolic_refs_locks_blocks_gamma_zero": true,
+    "final_graphics_releases": [
+      {
+        "request": 5953,
+        "kind": 11,
+        "result": 0
+      },
+      {
+        "request": 5957,
+        "kind": 10,
+        "result": 0
+      }
+    ],
+    "gamma_save": [
+      635
+    ],
+    "gamma_set": [
+      5331
+    ],
+    "gamma_restore": [
+      5951
+    ],
+    "runtime_close": [
+      6024
+    ],
+    "window_close": [
+      6027
+    ],
+    "tls_clear": 6118,
+    "tls_free": 6153,
+    "heap_destroy": 6154,
+    "status": 6155,
+    "shutdown": 6156,
+    "declared_zero_fields": [
+      "ui_gate",
+      "game_gate",
+      "com_balance",
+      "com_interfaces",
+      "com_refs",
+      "com_groups",
+      "audio_initialized",
+      "audio_pending_close",
+      "graph_notifications",
+      "game_call_active",
+      "window_modules",
+      "window_classes",
+      "windows",
+      "allocations",
+      "memory_bytes",
+      "heaps",
+      "handles",
+      "criticals",
+      "tls_slots",
+      "fonts",
+      "dcs",
+      "gfx_gate",
+      "gfx_baseline",
+      "gfx_modules",
+      "gfx_interfaces",
+      "gfx_refs",
+      "gfx_locks",
+      "gfx_blocks",
+      "gfx_recording",
+      "gfx_gamma_dirty",
+      "gfx_dcs",
+      "gfx_bitmaps",
+      "gfx_fonts",
+      "gfx_mute",
+      "gfx_unresolved_refs"
+    ],
+    "GDI": "Native defers selected-object retirement until GdiFlush plus GetObjectType/GetObjectA prove invalid; projection keeps pending obligations. This model takes immediate-retirement success; its separate deferred/foreign/flush regressions are recorded, not rerun here."
+  },
+  "findings": [
+    {
+      "id": "dual_DLL_two_pair_bound",
+      "status": "fixed_in_unexecuted_native_v3",
+      "detail": "Original path contains two mute pairs per module; old global4 cap would reject valid second DLL. No runtime was used to discover or fix it."
+    },
+    {
+      "id": "symbolic_module_ref_limit",
+      "status": "explicit_limit",
+      "detail": "Model MODULE_LOAD does not dynamically count extra LoadLibrary references; remaining_load_refs0 is declared. Native separately tracks every successful load and real FreeLibrary BOOL. Model0 is not evidence that a runtime module was released."
+    }
+  ],
+  "limitations": [
+    "Review does not execute collector, model, native helper, Windows or desktop APIs. No65-second rerun was performed.",
+    "Native generator/include were authored by this reviewer; their independent C++ review belongs to the parent agent. This report independently reviews Python projection/model and cross-checks their interface contract.",
+    "Symbolic modes, HRESULTs, glyph metrics9x16, blank raster, object IDs, gamma values and return bits are model inputs; native GPU/audio/GDI results are unobserved.",
+    "Texture upload is read back only through the same locked mapping. Unlock-to-readonly-relock persistent texture contents remain unqualified.",
+    "Device gamma restoration before Release is not final desktop gamma restoration after display mode changes. Baseline token is registration only, not recovery evidence.",
+    "No DirectInput, GAME publication/store4506E9, worker or wait-consumption executed. Pending WinMain did not return naturally; supplemental teardown destroys resumability.",
+    "The+2 v5/v6 instruction-hook difference is not a complete cross-model trajectory equivalence result and introduces no REP exemption.",
+    "Recorded10 rejection results were inspected; no independent full replay or formal native acceptance is claimed."
+  ],
+  "recorded_regressions": {
+    "native_wire_ABI_matches": true,
+    "deferred_GDI_receipts_required": true,
+    "rejections": [
+      {
+        "case": "changed_vtable",
+        "rejected": true,
+        "reason": "stable graphics alias type/table/parent"
+      },
+      {
+        "case": "changed_parent",
+        "rejected": true,
+        "reason": "stable graphics alias type/table/parent"
+      },
+      {
+        "case": "wrong_kind",
+        "rejected": true,
+        "reason": "current typed graphics interface"
+      },
+      {
+        "case": "wrong_reference_count",
+        "rejected": true,
+        "reason": "native graphics reference receipt"
+      },
+      {
+        "case": "flush_failed",
+        "rejected": true,
+        "reason": "real GDI flush before retirement census"
+      },
+      {
+        "case": "foreign_retirement",
+        "rejected": true,
+        "reason": "retired font belongs to current generation"
+      },
+      {
+        "case": "callback_wrong_thread",
+        "rejected": true,
+        "reason": "same graphics MAIN TID/TEB"
+      },
+      {
+        "case": "callback_wrong_TEB",
+        "rejected": true,
+        "reason": "same graphics MAIN TID/TEB"
+      },
+      {
+        "case": "callback_wrong_parent",
+        "rejected": true,
+        "reason": "current graphics MAIN parent"
+      },
+      {
+        "case": "callback_wrong_depth",
+        "rejected": true,
+        "reason": "graphics callback ancestry"
+      }
+    ],
+    "limitations": "Synthetic identity/callback/retirement checks; no native OS result or device qualification."
+  }
+}

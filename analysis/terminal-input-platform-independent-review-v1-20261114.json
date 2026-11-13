@@ -1,0 +1,150 @@
+{
+  "kind": "independent_input_platform_offline_review",
+  "accepted_within_model_scope": true,
+  "native_executed": false,
+  "desktop_used": false,
+  "native_admission": false,
+  "model": {
+    "path": ".venv-audit/terminal-input-model-v2-20261114.json.gz",
+    "bytes": 462131,
+    "sha256": "35177f9713b4b94c0ec76cc2392a3bde0cbc411320b65847e59b79922404b26b"
+  },
+  "reviewer": {
+    "path": "devtools/review_terminal_input_platform.py",
+    "bytes": 9384,
+    "sha256": "914a9643b244180781107a0fe0a1e3fb4cdd2a0dbc30978113601a6e40a4d462"
+  },
+  "implementation": [
+    {
+      "path": "devtools/terminal_input_model.py",
+      "bytes": 8607,
+      "sha256": "21b74a2cf23a15b37e17ca4924ba6405d9328198c7342861b69baff38104ac5a"
+    },
+    {
+      "path": "devtools/terminal_input_platform.py",
+      "bytes": 13866,
+      "sha256": "9e7b7b1555839057d547fb06889c615d07a01a2f8e39631c0c4cec97cb297c3f"
+    },
+    {
+      "path": "devtools/terminal_graphics_model.py",
+      "bytes": 17734,
+      "sha256": "c744704e8ac41fd017231e96b8db74648cc61a27741a2350ba88b308750522d9"
+    },
+    {
+      "path": "devtools/terminal_graphics_platform.py",
+      "bytes": 23508,
+      "sha256": "b29f606faaf80f472914235c2e9f4bc403c5a1614cf329cd7ef44cdd66f430cc"
+    },
+    {
+      "path": "devtools/terminal_input_native.py",
+      "bytes": 12723,
+      "sha256": "5b1976099e39749b61470e0727f42133ca47699892cf2bdff9eb62aaea2c5430"
+    },
+    {
+      "path": "devtools/terminal_input_native.inc",
+      "bytes": 16619,
+      "sha256": "d5929062e27df9e00b75ea4a73c1375242f4cb8f285685cf0c44235ccb4a0fe2"
+    }
+  ],
+  "checks": {
+    "original_instruction_sites": 10943,
+    "original_instruction_hooks": 4495637,
+    "input_API_count": 23,
+    "callbacks_CPU57": 20,
+    "dataformat_bytes": [
+      4120,
+      200
+    ],
+    "source_descriptors": [
+      {
+        "descriptor_rva": 2086368,
+        "descriptor_hex": "38da1f00000000000000000086e21f002c231900",
+        "slot": 5841752,
+        "index": 11,
+        "name_rva": 2088574,
+        "name": "SetCursorPos"
+      },
+      {
+        "descriptor_rva": 2086548,
+        "descriptor_hex": "5cd71f0000000000000000005ee71f0050201900",
+        "slot": 5840976,
+        "index": 0,
+        "name_rva": 2090824,
+        "name": "DirectInput8Create"
+      }
+    ],
+    "original_input_release_order": true,
+    "cursor_restore_before_graphics_window": true,
+    "all_final_model_resources_zero": true,
+    "publication_va": "0x4506e9",
+    "publication_checkpoint": "0x4506eb",
+    "reported_seconds": 61.141
+  },
+  "tamper_rejections": [
+    {
+      "format_va": 6073404,
+      "mutation": "header_final_byte",
+      "changed_va": 6073427,
+      "rejected": true,
+      "reason": "complete original dataformat header unchanged"
+    },
+    {
+      "format_va": 6073404,
+      "mutation": "final_object_final_byte",
+      "changed_va": 5401487,
+      "rejected": true,
+      "reason": "complete original dataformat table unchanged"
+    },
+    {
+      "format_va": 6073404,
+      "mutation": "referenced_GUID_final_byte",
+      "changed_va": 6078619,
+      "rejected": true,
+      "reason": "original dataformat GUID unchanged"
+    },
+    {
+      "format_va": 6073924,
+      "mutation": "header_final_byte",
+      "changed_va": 6073947,
+      "rejected": true,
+      "reason": "complete original dataformat header unchanged"
+    },
+    {
+      "format_va": 6073924,
+      "mutation": "final_object_final_byte",
+      "changed_va": 5401663,
+      "rejected": true,
+      "reason": "complete original dataformat table unchanged"
+    },
+    {
+      "format_va": 6073924,
+      "mutation": "referenced_GUID_final_byte",
+      "changed_va": 6078747,
+      "rejected": true,
+      "reason": "original dataformat GUID unchanged"
+    },
+    {
+      "mutation": "publication_site_removed",
+      "rejected": true,
+      "reason": "required original input/publication/cleanup instruction 0x4506e9"
+    },
+    {
+      "mutation": "input_CPU57_omitted",
+      "rejected": true,
+      "reason": "complete CPU57 input envelope"
+    },
+    {
+      "mutation": "live_input_resource",
+      "rejected": true,
+      "reason": "actual model final resource ledger zero"
+    }
+  ],
+  "native_source_review": "Input native implementation was authored by this reviewer; its independent review belongs to the main agent, not this report.",
+  "limits": [
+    "Successful Windows/DirectInput/glyph/cursor/mode results are explicit model assumptions.",
+    "No native lifetime, actual desktop gamma final readback, full independent replay, worker/wait/first-result acceptance.",
+    "The source byte/site and recorded CPU57 checks validate the evidence envelope; this reviewer did not independently re-execute every instruction.",
+    "Input ShowCursor/failed HRESULT paths are implemented but absent from this successful publication trajectory.",
+    "Original GAME global is an abandoned pending-state artifact after supplemental destructor/free; do not resume it."
+  ]
+}

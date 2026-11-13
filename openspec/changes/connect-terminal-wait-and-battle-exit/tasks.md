@@ -1,5 +1,7 @@
 # Tasks
 
+2026-11-14 当前MAIN图形/输入离线接续：D3D8、字体/DIB/纹理、两套字体和原输入接口已实现并严格编译；连续原指令模型走到4506E9原GAME发布，再执行补充原析构及MAIN/PTD/TLS/heap清理。未补写GAME字段。gamma/光标/桌面恢复已实现且32项离线回归通过，但原生准入仍关闭，尚需真实恢复回执认证、外部硬超时和设备资格。本轮无原生、窗口、截图或桌面读写；真实GAME/等待/消费未完成，正式仍2/8。见 docs/terminal_graphics_platform.md 和对应preflight/independent-review/closeout，旧来源保持原字节。
+
 2026-11-14 GAME平台离线接续：同MAIN COM/音频/两组影片适配已实现并严格编译；
 原WinMain→450570→构造/音频/影片模型7.625秒连续到413450之前，补充原清理释放
 15份模型COM引用及窗口/MAIN/PTD/TLS/heap，216API/20回调CPU57恢复、6拒绝及
