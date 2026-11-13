@@ -1,4 +1,13 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# Same-owner window adapters and offline reviews bind exact source bytes.
+devtools/terminal_window_callbacks.py -text
+devtools/terminal_window_preparation.py -text
+devtools/terminal_window_callback_replay.py -text
+devtools/terminal_window_native.py -text
+devtools/terminal_window_native.inc -text
+analysis/terminal-window-owner-*.json -text
+analysis/terminal-window-callback-*.json.gz binary
+docs/terminal_window_owner.md -text
 # Same-owner native preflight binds exact executed sources and receipts.
 devtools/terminal_native_owner* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 analysis/terminal-native-owner-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

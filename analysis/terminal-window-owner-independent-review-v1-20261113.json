@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "kind": "independent_Python_adapter_protocol_and_record_review_not_full_replay",
+  "review_passed": true,
+  "native_executed_by_reviewer": false,
+  "window_created_by_reviewer": false,
+  "formal_acceptance": false,
+  "independent_full_replay": false,
+  "new_native_lifetime_verified": false,
+  "reviewer_scope": "Independent of the Python collector/replayer; native extension was implemented by this reviewer and separately inspected by the main agent. This is not an independent replay of native window execution.",
+  "offline_report": {
+    "path": "analysis/terminal-window-callback-offline-v1-20261113.json.gz",
+    "bytes": 36910,
+    "sha256": "4b78815c57014040fd3e2c965e212bf79d2b6d0e2c12bfb4f18a20688fab58f8"
+  },
+  "frozen_parent": {
+    "path": "analysis/school-window-startup-trajectory-v3-20261020.json",
+    "bytes": 3190142,
+    "sha256": "a5f30898f2add507e70277617838ad51e5328b56915c227460e3bc43f2afcd48"
+  },
+  "original": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+  },
+  "pinned_Python_sources": [
+    {
+      "path": "devtools/terminal_window_callback_replay.py",
+      "bytes": 20856,
+      "sha256": "45229bd4fbf9bf49db03710ca2c13b3b8de8e0a9e5deab9d979db8915e7706b3"
+    },
+    {
+      "path": "devtools/terminal_window_callbacks.py",
+      "bytes": 19871,
+      "sha256": "0fe16272b777a4f2e6475a940f7603b1ca02a40e4cd50545cab235dfc30b83c8"
+    },
+    {
+      "path": "devtools/terminal_window_preparation.py",
+      "bytes": 7014,
+      "sha256": "1eb8fb9cbac45e4a1caf7981efd995674b06e61d6a0010c93aaa39552a6372f8"
+    }
+  ],
+  "pinned_native_sources": [
+    {
+      "path": "devtools/terminal_window_native.py",
+      "bytes": 11512,
+      "sha256": "e55a84b45831a5b28ee27e958654e63513e8c78f4ddf5fb1d837d23c2f9fe83a"
+    },
+    {
+      "path": "devtools/terminal_window_native.inc",
+      "bytes": 20831,
+      "sha256": "8eaf3c751f879f0f92b7505cc033c2d1d1e408f43a92626e575205fc4354f9c9"
+    }
+  ],
+  "pinned_native_build_report": {
+    "path": ".venv-audit/terminal-window-owner-build-v2-20261113/static-report.json",
+    "bytes": 9503,
+    "sha256": "c0dfba250d18ebe7486ba51e38b3f48fc30e7ca16023d094ee86190af4ebfe19"
+  },
+  "pinned_native_source": {
+    "path": ".venv-audit/terminal-window-owner-build-v2-20261113/terminal-window-owner.cpp",
+    "bytes": 68489,
+    "sha256": "7b48b3319d60ab6a8326ffd5ddefed1830142530cab2d922557460d210a8a740"
+  },
+  "pinned_native_helper": {
+    "path": ".venv-audit/terminal-window-owner-build-v2-20261113/terminal-window-owner.exe",
+    "bytes": 252928,
+    "sha256": "8c82b9708ffa7204a8036837b867ec24000db17592566682542710a4c21ffc1d"
+  },
+  "checks": {
+    "source_and_implementation_pins_verified": 10,
+    "cases": 2,
+    "continuous_declared_prefix": [
+      "0x49de2c",
+      "0x4504e1"
+    ],
+    "original_instructions_per_case": 5273,
+    "preparation_instructions_per_case": 300,
+    "callbacks_per_case": 17,
+    "callback_max_depth": 3,
+    "callback_instruction_records_compared_to_frozen_source": 9946,
+    "callback_records_checked": 34,
+    "CPU57_restored_callback_records": 34,
+    "original_import_ABI_records_checked": 88,
+    "temporary_buffer_releases_recorded": 10,
+    "offline_negative_cases": 12,
+    "protocol_negative_cases": 6,
+    "fixed_resource_module_bytes": 3072,
+    "default_UI_gate_closed": true,
+    "x86_Windows_subsystem": true,
+    "exact_build_imports": true,
+    "Reader_and_worker_byte_preservation_report_checked": true
+  },
+  "code_review": [
+    "Synchronous C/R nesting uses exact parent request/callback IDs, MAIN TID/TEB and bounded128 callbacks/depth8. CB_RETURN ack1 is separate from the actual callback_result.",
+    "Native WindowCallScope releases stateMutex before callback-capable Win32 calls. Callback entry/frame mutation uses a short lock; callbackTls takes a separate short lock. No recursive stateMutex hold spans transport.",
+    "Native callbacks expose actual tracked TLS lookup and owned116B PTD bytes with LastError restored. Current offline records explicitly have model TID123/TEB456 and absentTLS; they do not prove fresh ownership.",
+    "Guest callback uses an independent stack/shadow per depth, enforces original stdcall/callee-saved return, restores the full saved CPU57 context and scratch, and rejects untransported lParam writes.",
+    "CreateWindow class/title retain guest7A2628 with explicit native read-only class-string projection. CREATESTRUCT lpCreateParams preserves opaque original guestMAIN. GetWindowLong(-4) reverse projection is explicit.",
+    "Preparation uses owned13B name/16B RECT/48B class buffers and records every temporary release on success. Failure before release remains explicitly pending and requires Job containment; it is not normal resource cleanup.",
+    "Native class/window/module ownership prevents freeing resources while in use; shutdown rejects live window resources. DestroyWindow requires actual success,IsWindowfalse and WM_NCDESTROY before class/module release."
+  ],
+  "limitations": [
+    "No helper, window, desktop, input, screenshot or game execution was performed by this work. The new executable is compiled but unexecuted.",
+    "The reviewer compared recorded callback sequences, source import bytes, result/ABI and CPU restoration snapshots. It did not rerun the collector or independently recompute full instruction/memory/write digests.",
+    "MAIN-byte equivalence and temporary model emptiness are supported by the retained source and reviewed replay assertions, not fresh native evidence.",
+    "The offline fixture resumes an existing MAIN state at49DE2C; it is not cold WinMain entry or complete original startup.",
+    "ShowWindow/UpdateWindow and full WM_PAINT/input/device/audio routes remain outside current Python callback admission. Native window cleanup, desktop restoration, GAME publication, cooperative wait and result consumption remain unproved.",
+    "Two recorded A5/CC cases are not two new native lifetimes; all existing formal acceptance requirements remain unchanged."
+  ]
+}
