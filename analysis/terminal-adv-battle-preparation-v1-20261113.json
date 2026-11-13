@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "kind": "offline_ADV_battle_route_preparation",
+  "accepted": false,
+  "sources": [
+    {
+      "path": "analysis/terminal-school-handoff-guest-v5-20261109.json.gz",
+      "bytes": 8717855,
+      "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+    },
+    {
+      "path": "analysis/terminal-wait-host-boundary-audit-v1-20261113.json",
+      "bytes": 36760,
+      "sha256": "3021021e64c630df5a1e76d644af5fa2b8eb5149da13f60553a13e0fb1463f19"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-modules-guest-v5-20261109.json",
+      "bytes": 902,
+      "sha256": "2410df0edea153fc684ca5e00f0768ea445d584992cbb7261df8005fb6c099d5"
+    }
+  ],
+  "implementation": {
+    "path": "devtools/terminal_adv_battle_preparation.py",
+    "bytes": 10270,
+    "sha256": "92a6aeb5cb0572fb0943d169eddca03c6e394efc711b3bf2b2f8a92e39c99812"
+  },
+  "predicate_implementations": [
+    {
+      "path": "devtools/terminal_story_input.py",
+      "bytes": 4598,
+      "sha256": "1a6aa67a9303c86e76429551518675c1aee1de5b6bf75a4fd7d73edda96766bb"
+    },
+    {
+      "path": "devtools/terminal_workroom_input.py",
+      "bytes": 6523,
+      "sha256": "5d975c139ed7c3159fb054768406a8fbc8c5c1fe3809998cab9c717d22eb62f6"
+    },
+    {
+      "path": "devtools/terminal_school_input.py",
+      "bytes": 9350,
+      "sha256": "3bcbf77322f4f326b6980f271405e044cd32119c5a5b9e9f117582f736b824ed"
+    },
+    {
+      "path": "devtools/terminal_battle_input.py",
+      "bytes": 6051,
+      "sha256": "f10ed139a69af8b6e355ee862bf5d95943ee56dacedfb792cfa72604d738a8aa"
+    },
+    {
+      "path": "devtools/terminal_battle_notice.py",
+      "bytes": 8679,
+      "sha256": "8c5c12d28fe0ed15bf615512de3c852f8060e0061c763ddcf56ee1227205a2f9"
+    },
+    {
+      "path": "devtools/terminal_scene_resources.py",
+      "bytes": 19764,
+      "sha256": "dfbbbe7281a48cb36b215e9990e6448269665dcd74953e3efd2babfe7bcdcfa5"
+    }
+  ],
+  "independent_source_revalidation": {
+    "status": "partial_original_school_battle_observation",
+    "samples": 1352,
+    "TLS_observations": 1370,
+    "school_UI_to_battle_owner_observed": true,
+    "wait_return_proved": false,
+    "result_consumption_proved": false,
+    "full_battle_exit_accepted": false
+  },
+  "verification_dependencies": [
+    {
+      "path": "devtools/terminal_menu_handoff_verification.py",
+      "bytes": 62883,
+      "sha256": "2936eb51f81d878188f3d03ec1de9602abd7b8bf9c8e0d462033de9119421240"
+    },
+    {
+      "path": "devtools/terminal_scene_owner_verification.py",
+      "bytes": 23238,
+      "sha256": "f5283d5d6fedfa873add0d8aa50f8052833686228c2ff1966b2ff13314a65c7d"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_verification.py",
+      "bytes": 22479,
+      "sha256": "37f7a5e7f404918c81ec3578fe5c4dbfb8e9845441d211cada96b91540ea3aeb"
+    },
+    {
+      "path": "devtools/terminal_menu_transition_contract.py",
+      "bytes": 15943,
+      "sha256": "6143612badc97bf59610ddcccc6e8c772a67b9193a1bd2c53cf8f6f5e1d20eb2"
+    },
+    {
+      "path": "devtools/terminal_school_preparation_contract.py",
+      "bytes": 11077,
+      "sha256": "a4662290bf058069658cf84f2129b074037527f888000cd781bba61afd079f73"
+    },
+    {
+      "path": "devtools/terminal_workroom_contract.py",
+      "bytes": 4472,
+      "sha256": "c8ff5820412cf47f6e91242811b43931e0946334cb5e581c1227fe9c8af51177"
+    },
+    {
+      "path": "devtools/terminal_story_dispatch_verification.py",
+      "bytes": 4400,
+      "sha256": "4fc5757acb12abd6e4621ac91db2950c84818d1a9c7d9b1e99ac368d4cc1b287"
+    },
+    {
+      "path": "tools/school_native_dialogue_verification.py",
+      "bytes": 11466,
+      "sha256": "a7c912ec34dafffd3239737c86761caf87af8e53d9e5c8b8d08079e5b4ff5d33"
+    },
+    {
+      "path": "tools/school_native_scene_verification.py",
+      "bytes": 13250,
+      "sha256": "e8474c460b514bb5680276cdd80a551a6cd0d8ac971e5d0a22c3cc1a0d8154a0"
+    }
+  ],
+  "route": {
+    "stages": [
+      {
+        "stage": "opening_ADV",
+        "input_count": 178,
+        "maximum": 192,
+        "start": 310.03100000000006,
+        "end": 648.156
+      },
+      {
+        "stage": "workroom_exit",
+        "input_count": 1,
+        "maximum": 1,
+        "start": 653.844,
+        "end": 658.0620000000001
+      },
+      {
+        "stage": "after_workroom_ADV",
+        "input_count": 141,
+        "maximum": 192,
+        "start": 662.469,
+        "end": 912.3120000000001
+      },
+      {
+        "stage": "school_departure",
+        "input_count": 1,
+        "maximum": 1,
+        "start": 916.625,
+        "end": 920.75
+      },
+      {
+        "stage": "school_confirmation",
+        "input_count": 1,
+        "maximum": 1,
+        "start": 921.844,
+        "end": 925.969
+      },
+      {
+        "stage": "battle_dialogue",
+        "input_count": 25,
+        "maximum": 64,
+        "start": 944.156,
+        "end": 1013.8120000000001
+      },
+      {
+        "stage": "opening_notice",
+        "input_count": 1,
+        "maximum": 1,
+        "start": 1017.25,
+        "end": 1021.6400000000001
+      },
+      {
+        "stage": "retreat_request",
+        "input_count": 1,
+        "maximum": 1,
+        "start": 1025.515,
+        "end": 1029.969
+      },
+      {
+        "stage": "retreat_confirmation",
+        "input_count": 1,
+        "maximum": 1,
+        "start": 1031.047,
+        "end": 1035.4370000000001
+      }
+    ],
+    "observed_owners": [
+      {
+        "vtable": "0x59b060",
+        "pointer": 71699832,
+        "thread_id": 4900,
+        "first": 283.922,
+        "first_TLS_sample": 0,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 293.4530000000001,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x5c306c",
+        "pointer": 71699832,
+        "thread_id": 4644,
+        "first": 293.437,
+        "first_TLS_sample": 6,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 652.2650000000001,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x5a0904",
+        "pointer": 70600776,
+        "thread_id": 5712,
+        "first": 652.2650000000001,
+        "first_TLS_sample": 673,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 658.469,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x5c306c",
+        "pointer": 71699832,
+        "thread_id": 4616,
+        "first": 658.469,
+        "first_TLS_sample": 680,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 914.875,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x5a0a40",
+        "pointer": 70600776,
+        "thread_id": 7080,
+        "first": 914.9370000000001,
+        "first_TLS_sample": 1157,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 927.8590000000002,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x5a0c18",
+        "pointer": 70683152,
+        "thread_id": 4632,
+        "first": 914.9370000000001,
+        "first_TLS_sample": 1158,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 926.375,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x5a0c38",
+        "pointer": 71700136,
+        "thread_id": 4868,
+        "first": 927.8590000000002,
+        "first_TLS_sample": 1177,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 928.047,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x59a430",
+        "pointer": 153305152,
+        "thread_id": 2776,
+        "first": 928.047,
+        "first_TLS_sample": 1178,
+        "exit": {
+          "code": 0,
+          "wait_status": 0,
+          "elapsed": 1036.515,
+          "before_WM_CLOSE": true
+        }
+      },
+      {
+        "vtable": "0x59b060",
+        "pointer": 70999520,
+        "thread_id": 1752,
+        "first": 1036.5620000000001,
+        "first_TLS_sample": 1350,
+        "exit": null
+      }
+    ],
+    "input_predicates_replayed": 356,
+    "post_ADV_input_actions": 350,
+    "total_mouse_actions_including_title": 7,
+    "battle_first_observed_seconds": 928.047,
+    "retreat_confirmation_finished_seconds": 1035.4370000000001,
+    "ten_minute_window_covers_retained_route": false,
+    "timing_scope": "one guest lifetime; no host speed prediction or desktop authorization"
+  },
+  "wait_observer_qualified": false,
+  "game_acquisition_allowed": false,
+  "host_continuation_qualified": false,
+  "fresh_desktop_window_authorized": false,
+  "desktop_touched": false,
+  "screenshots_taken": false,
+  "native_processes_started": 0,
+  "limitations": [
+    "Guest route and separate host NEW_GAME evidence are not one continuous lifetime.",
+    "Retained predicates/owners do not authorize reuse of native handles or input receipts.",
+    "Existing school input driver requires a qualified guest; do not remove that guard.",
+    "Host input must stop on foreground loss and use a fresh bounded desktop window.",
+    "A future host run must include asset checks, input release, Job cleanup and desktop recovery in its deadline.",
+    "The retained route exceeds 600 seconds before battle; do not skip story waits to fit an old menu budget.",
+    "No precise post-wait full-state observer is qualified; no new game capture until that precheck passes.",
+    "No result consumption, resource/PTD cleanup, three handshakes or formal task completion added."
+  ]
+}

@@ -1,4 +1,10 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# Offline ADV preparation binds source, implementation and review bytes exactly.
+devtools/terminal_adv_battle_preparation.py -text
+devtools/tests/test_terminal_adv_battle_preparation.py -text
+analysis/terminal-adv-battle-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-wait-host-boundary-audit-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/terminal_adv_battle_preparation.md -text
 # Exact owned TLS event fixture and its recorded control evidence.
 devtools/terminal_tls_event_*.py -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 devtools/terminal_tls_event_*.cs -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

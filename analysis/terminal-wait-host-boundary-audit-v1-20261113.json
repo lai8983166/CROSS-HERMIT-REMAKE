@@ -1,0 +1,1238 @@
+{
+  "schema_version": 1,
+  "kind": "offline_host_wait_observation_boundary_audit",
+  "accepted": false,
+  "scope": "CH001 RW-oplock migration and the named reviewed wait-observation candidates only; no exhaustive claim that every mechanism is impossible.",
+  "method": "Read/hash fixed sources; independently decode bounded original image excerpts and compare all bytes with the retained battle-v6 original_code; read every original gate byte/current EIP/TLS owner. Static control-flow reasoning is conditional on balanced ABI and nonzero scene result; no native or emulated instructions executed.",
+  "sources": [
+    {
+      "path": "analysis/hermit_game.exe",
+      "bytes": 5980160,
+      "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+    },
+    {
+      "path": ".venv-audit/native-worker/terminal-battle-wait-window-battle-v6-20261109.json.gz",
+      "bytes": 92900,
+      "sha256": "9874fb2e589aafb1b3190c9a2a5aac7c7ee0e0a3179923cd10d463bee3fd680e"
+    },
+    {
+      "path": "analysis/terminal-wait-static-contract-v2-20261106.json",
+      "bytes": 357743,
+      "sha256": "63e4f4f058958a75b9df5602161a834b4b873ad33617060c8a7d75a71be55f9d"
+    },
+    {
+      "path": "analysis/terminal-battle-wait-result-inventory-v1-20261109.json",
+      "bytes": 2628,
+      "sha256": "dea18d513adcd1bdb6cc96d44d1fbaba5de9d8615aee5552ce6392318062ef5a"
+    },
+    {
+      "path": "analysis/terminal-wait-return-callback-failure-v1-20261109.json",
+      "bytes": 23136,
+      "sha256": "56a222304c0c4d9ed5518ba2e31e4bbb021cbf3212dfd258a9c566ee265b2ec1"
+    },
+    {
+      "path": "analysis/terminal-wait-return-kernel-refusal-v2-20261109.json",
+      "bytes": 31029,
+      "sha256": "df1813728a610988d795864ba837172eafbffbc904f96301a028ea4cb09972ce"
+    },
+    {
+      "path": "analysis/terminal-wait-native-probe-relay-v5-20261109.json.gz",
+      "bytes": 20257,
+      "sha256": "6ee170b32160801bcb0bf28dc73044a235985c23421f92287d1e1c3ff99d7aaf"
+    },
+    {
+      "path": "analysis/terminal-new-game-oplock-native-v1-20261112.json.gz",
+      "bytes": 87042,
+      "sha256": "9de681d2a2296e94592f5d764139437456553ebebd8b053d6fea0ec93d14d8ad"
+    },
+    {
+      "path": "analysis/terminal-new-game-oplock-native-v1-review-20261112.json",
+      "bytes": 4049,
+      "sha256": "b115266c91a6f3218345dd0e0dfb3dd275534bb09196b7f355f9d7860670dadd"
+    },
+    {
+      "path": "analysis/terminal-new-game-oplock-native-v1-proof-20261112.json",
+      "bytes": 8138,
+      "sha256": "3a3437732174afcb3db5b2b798578289d9eb4629beb689ffabfbecc46dbbbb81"
+    },
+    {
+      "path": "analysis/terminal-wait-whp-proof-v2-20261110.json",
+      "bytes": 1864,
+      "sha256": "d691947e3d32018a04b037ebe1116bb7a1ba98b395c647d1592c15e0c951cb28"
+    }
+  ],
+  "captured_game_code_bytes_compared": 2986,
+  "exact_boundary_checks": 19,
+  "excerpts": [
+    {
+      "name": "wait_return_tail",
+      "start": "0x42240d",
+      "end_exclusive": "0x422434",
+      "bytes": 39,
+      "sha256": "b98fdd3824e70700a30f774c1503573225bfe6002857ec82427d626efaec785a",
+      "old_native_bytes_match": true,
+      "instructions": [
+        {
+          "PC": "0x42240d",
+          "hex": "3bf4",
+          "mnemonic": "cmp",
+          "operands": "esi, esp"
+        },
+        {
+          "PC": "0x42240f",
+          "hex": "e86caa1400",
+          "mnemonic": "call",
+          "operands": "0x56ce80"
+        },
+        {
+          "PC": "0x422414",
+          "hex": "6800000100",
+          "mnemonic": "push",
+          "operands": "0x10000"
+        },
+        {
+          "PC": "0x422419",
+          "hex": "8b4dfc",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x42241c",
+          "hex": "e87f010000",
+          "mnemonic": "call",
+          "operands": "0x4225a0"
+        },
+        {
+          "PC": "0x422421",
+          "hex": "5f",
+          "mnemonic": "pop",
+          "operands": "edi"
+        },
+        {
+          "PC": "0x422422",
+          "hex": "5e",
+          "mnemonic": "pop",
+          "operands": "esi"
+        },
+        {
+          "PC": "0x422423",
+          "hex": "5b",
+          "mnemonic": "pop",
+          "operands": "ebx"
+        },
+        {
+          "PC": "0x422424",
+          "hex": "83c448",
+          "mnemonic": "add",
+          "operands": "esp, 0x48"
+        },
+        {
+          "PC": "0x422427",
+          "hex": "3bec",
+          "mnemonic": "cmp",
+          "operands": "ebp, esp"
+        },
+        {
+          "PC": "0x422429",
+          "hex": "e852aa1400",
+          "mnemonic": "call",
+          "operands": "0x56ce80"
+        },
+        {
+          "PC": "0x42242e",
+          "hex": "8be5",
+          "mnemonic": "mov",
+          "operands": "esp, ebp"
+        },
+        {
+          "PC": "0x422430",
+          "hex": "5d",
+          "mnemonic": "pop",
+          "operands": "ebp"
+        },
+        {
+          "PC": "0x422431",
+          "hex": "c20400",
+          "mnemonic": "ret",
+          "operands": "4"
+        }
+      ]
+    },
+    {
+      "name": "flag_clear",
+      "start": "0x4225a0",
+      "end_exclusive": "0x4225da",
+      "bytes": 58,
+      "sha256": "5039cb1dc6623b86e39af0871154f46cea9f032c6b5f68a106087537d6c5f549",
+      "old_native_bytes_match": true,
+      "instructions": [
+        {
+          "PC": "0x4225a0",
+          "hex": "55",
+          "mnemonic": "push",
+          "operands": "ebp"
+        },
+        {
+          "PC": "0x4225a1",
+          "hex": "8bec",
+          "mnemonic": "mov",
+          "operands": "ebp, esp"
+        },
+        {
+          "PC": "0x4225a3",
+          "hex": "83ec44",
+          "mnemonic": "sub",
+          "operands": "esp, 0x44"
+        },
+        {
+          "PC": "0x4225a6",
+          "hex": "53",
+          "mnemonic": "push",
+          "operands": "ebx"
+        },
+        {
+          "PC": "0x4225a7",
+          "hex": "56",
+          "mnemonic": "push",
+          "operands": "esi"
+        },
+        {
+          "PC": "0x4225a8",
+          "hex": "57",
+          "mnemonic": "push",
+          "operands": "edi"
+        },
+        {
+          "PC": "0x4225a9",
+          "hex": "51",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x4225aa",
+          "hex": "8d7dbc",
+          "mnemonic": "lea",
+          "operands": "edi, [ebp - 0x44]"
+        },
+        {
+          "PC": "0x4225ad",
+          "hex": "b911000000",
+          "mnemonic": "mov",
+          "operands": "ecx, 0x11"
+        },
+        {
+          "PC": "0x4225b2",
+          "hex": "b8cccccccc",
+          "mnemonic": "mov",
+          "operands": "eax, 0xcccccccc"
+        },
+        {
+          "PC": "0x4225b7",
+          "hex": "f3ab",
+          "mnemonic": "rep stosd",
+          "operands": "dword ptr es:[edi], eax"
+        },
+        {
+          "PC": "0x4225b9",
+          "hex": "59",
+          "mnemonic": "pop",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x4225ba",
+          "hex": "894dfc",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 4], ecx"
+        },
+        {
+          "PC": "0x4225bd",
+          "hex": "8b4508",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp + 8]"
+        },
+        {
+          "PC": "0x4225c0",
+          "hex": "83f0ff",
+          "mnemonic": "xor",
+          "operands": "eax, 0xffffffff"
+        },
+        {
+          "PC": "0x4225c3",
+          "hex": "8b4dfc",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x4225c6",
+          "hex": "8b5104",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ecx + 4]"
+        },
+        {
+          "PC": "0x4225c9",
+          "hex": "23d0",
+          "mnemonic": "and",
+          "operands": "edx, eax"
+        },
+        {
+          "PC": "0x4225cb",
+          "hex": "8b45fc",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x4225ce",
+          "hex": "895004",
+          "mnemonic": "mov",
+          "operands": "dword ptr [eax + 4], edx"
+        },
+        {
+          "PC": "0x4225d1",
+          "hex": "5f",
+          "mnemonic": "pop",
+          "operands": "edi"
+        },
+        {
+          "PC": "0x4225d2",
+          "hex": "5e",
+          "mnemonic": "pop",
+          "operands": "esi"
+        },
+        {
+          "PC": "0x4225d3",
+          "hex": "5b",
+          "mnemonic": "pop",
+          "operands": "ebx"
+        },
+        {
+          "PC": "0x4225d4",
+          "hex": "8be5",
+          "mnemonic": "mov",
+          "operands": "esp, ebp"
+        },
+        {
+          "PC": "0x4225d6",
+          "hex": "5d",
+          "mnemonic": "pop",
+          "operands": "ebp"
+        },
+        {
+          "PC": "0x4225d7",
+          "hex": "c20400",
+          "mnemonic": "ret",
+          "operands": "4"
+        }
+      ]
+    },
+    {
+      "name": "balanced_stack_check",
+      "start": "0x56ce80",
+      "end_exclusive": "0x56ce83",
+      "bytes": 3,
+      "sha256": "a0e9013b57f1dba58b4fe0834a7167e8876e4722479bb510b60875643d737d9c",
+      "old_native_bytes_match": true,
+      "instructions": [
+        {
+          "PC": "0x56ce80",
+          "hex": "7501",
+          "mnemonic": "jne",
+          "operands": "0x56ce83"
+        },
+        {
+          "PC": "0x56ce82",
+          "hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    },
+    {
+      "name": "first_consumer_and_next_wait",
+      "start": "0x453cb5",
+      "end_exclusive": "0x453cd3",
+      "bytes": 30,
+      "sha256": "134ba69fd34f28a572d2148cda61fb0443977b8af31aa4c73b9a59cd43adf6c3",
+      "old_native_bytes_match": true,
+      "instructions": [
+        {
+          "PC": "0x453cb5",
+          "hex": "837df800",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 8], 0"
+        },
+        {
+          "PC": "0x453cb9",
+          "hex": "7429",
+          "mnemonic": "je",
+          "operands": "0x453ce4"
+        },
+        {
+          "PC": "0x453cbb",
+          "hex": "8b4dfc",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x453cbe",
+          "hex": "81c190010000",
+          "mnemonic": "add",
+          "operands": "ecx, 0x190"
+        },
+        {
+          "PC": "0x453cc4",
+          "hex": "e8e72a0400",
+          "mnemonic": "call",
+          "operands": "0x4967b0"
+        },
+        {
+          "PC": "0x453cc9",
+          "hex": "6a00",
+          "mnemonic": "push",
+          "operands": "0"
+        },
+        {
+          "PC": "0x453ccb",
+          "hex": "8b4dfc",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x453cce",
+          "hex": "e88de6fcff",
+          "mnemonic": "call",
+          "operands": "0x422360"
+        }
+      ]
+    },
+    {
+      "name": "recording_gate",
+      "start": "0x496410",
+      "end_exclusive": "0x49644c",
+      "bytes": 60,
+      "sha256": "122673c1633a9c516c21adabe1cd531cd1ec89dde99e6fd159a11f9ba0249fe7",
+      "old_native_bytes_match": true,
+      "instructions": [
+        {
+          "PC": "0x496410",
+          "hex": "55",
+          "mnemonic": "push",
+          "operands": "ebp"
+        },
+        {
+          "PC": "0x496411",
+          "hex": "8bec",
+          "mnemonic": "mov",
+          "operands": "ebp, esp"
+        },
+        {
+          "PC": "0x496413",
+          "hex": "83ec44",
+          "mnemonic": "sub",
+          "operands": "esp, 0x44"
+        },
+        {
+          "PC": "0x496416",
+          "hex": "53",
+          "mnemonic": "push",
+          "operands": "ebx"
+        },
+        {
+          "PC": "0x496417",
+          "hex": "56",
+          "mnemonic": "push",
+          "operands": "esi"
+        },
+        {
+          "PC": "0x496418",
+          "hex": "57",
+          "mnemonic": "push",
+          "operands": "edi"
+        },
+        {
+          "PC": "0x496419",
+          "hex": "51",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x49641a",
+          "hex": "8d7dbc",
+          "mnemonic": "lea",
+          "operands": "edi, [ebp - 0x44]"
+        },
+        {
+          "PC": "0x49641d",
+          "hex": "b911000000",
+          "mnemonic": "mov",
+          "operands": "ecx, 0x11"
+        },
+        {
+          "PC": "0x496422",
+          "hex": "b8cccccccc",
+          "mnemonic": "mov",
+          "operands": "eax, 0xcccccccc"
+        },
+        {
+          "PC": "0x496427",
+          "hex": "f3ab",
+          "mnemonic": "rep stosd",
+          "operands": "dword ptr es:[edi], eax"
+        },
+        {
+          "PC": "0x496429",
+          "hex": "59",
+          "mnemonic": "pop",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x49642a",
+          "hex": "894dfc",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 4], ecx"
+        },
+        {
+          "PC": "0x49642d",
+          "hex": "8b45fc",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x496430",
+          "hex": "0fbe883c7c1100",
+          "mnemonic": "movsx",
+          "operands": "ecx, byte ptr [eax + 0x117c3c]"
+        },
+        {
+          "PC": "0x496437",
+          "hex": "83f901",
+          "mnemonic": "cmp",
+          "operands": "ecx, 1"
+        },
+        {
+          "PC": "0x49643a",
+          "hex": "7507",
+          "mnemonic": "jne",
+          "operands": "0x496443"
+        },
+        {
+          "PC": "0x49643c",
+          "hex": "b801000000",
+          "mnemonic": "mov",
+          "operands": "eax, 1"
+        },
+        {
+          "PC": "0x496441",
+          "hex": "eb02",
+          "mnemonic": "jmp",
+          "operands": "0x496445"
+        },
+        {
+          "PC": "0x496443",
+          "hex": "33c0",
+          "mnemonic": "xor",
+          "operands": "eax, eax"
+        },
+        {
+          "PC": "0x496445",
+          "hex": "5f",
+          "mnemonic": "pop",
+          "operands": "edi"
+        },
+        {
+          "PC": "0x496446",
+          "hex": "5e",
+          "mnemonic": "pop",
+          "operands": "esi"
+        },
+        {
+          "PC": "0x496447",
+          "hex": "5b",
+          "mnemonic": "pop",
+          "operands": "ebx"
+        },
+        {
+          "PC": "0x496448",
+          "hex": "8be5",
+          "mnemonic": "mov",
+          "operands": "esp, ebp"
+        },
+        {
+          "PC": "0x49644a",
+          "hex": "5d",
+          "mnemonic": "pop",
+          "operands": "ebp"
+        },
+        {
+          "PC": "0x49644b",
+          "hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    },
+    {
+      "name": "recording_optional_file_path",
+      "start": "0x4967b0",
+      "end_exclusive": "0x4968a9",
+      "bytes": 249,
+      "sha256": "64d8be6fb0061fc7da046a1db739e0a92a91ae964c55143eadf3af18f7d75c17",
+      "old_native_bytes_match": true,
+      "instructions": [
+        {
+          "PC": "0x4967b0",
+          "hex": "55",
+          "mnemonic": "push",
+          "operands": "ebp"
+        },
+        {
+          "PC": "0x4967b1",
+          "hex": "8bec",
+          "mnemonic": "mov",
+          "operands": "ebp, esp"
+        },
+        {
+          "PC": "0x4967b3",
+          "hex": "83ec6c",
+          "mnemonic": "sub",
+          "operands": "esp, 0x6c"
+        },
+        {
+          "PC": "0x4967b6",
+          "hex": "53",
+          "mnemonic": "push",
+          "operands": "ebx"
+        },
+        {
+          "PC": "0x4967b7",
+          "hex": "56",
+          "mnemonic": "push",
+          "operands": "esi"
+        },
+        {
+          "PC": "0x4967b8",
+          "hex": "57",
+          "mnemonic": "push",
+          "operands": "edi"
+        },
+        {
+          "PC": "0x4967b9",
+          "hex": "51",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x4967ba",
+          "hex": "8d7d94",
+          "mnemonic": "lea",
+          "operands": "edi, [ebp - 0x6c]"
+        },
+        {
+          "PC": "0x4967bd",
+          "hex": "b91b000000",
+          "mnemonic": "mov",
+          "operands": "ecx, 0x1b"
+        },
+        {
+          "PC": "0x4967c2",
+          "hex": "b8cccccccc",
+          "mnemonic": "mov",
+          "operands": "eax, 0xcccccccc"
+        },
+        {
+          "PC": "0x4967c7",
+          "hex": "f3ab",
+          "mnemonic": "rep stosd",
+          "operands": "dword ptr es:[edi], eax"
+        },
+        {
+          "PC": "0x4967c9",
+          "hex": "59",
+          "mnemonic": "pop",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x4967ca",
+          "hex": "894dfc",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 4], ecx"
+        },
+        {
+          "PC": "0x4967cd",
+          "hex": "8b4dfc",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x4967d0",
+          "hex": "e83bfcffff",
+          "mnemonic": "call",
+          "operands": "0x496410"
+        },
+        {
+          "PC": "0x4967d5",
+          "hex": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "PC": "0x4967d7",
+          "hex": "7507",
+          "mnemonic": "jne",
+          "operands": "0x4967e0"
+        },
+        {
+          "PC": "0x4967d9",
+          "hex": "33c0",
+          "mnemonic": "xor",
+          "operands": "eax, eax"
+        },
+        {
+          "PC": "0x4967db",
+          "hex": "e9b8000000",
+          "mnemonic": "jmp",
+          "operands": "0x496898"
+        },
+        {
+          "PC": "0x4967e0",
+          "hex": "c745d4ffffff7f",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x2c], 0x7fffffff"
+        },
+        {
+          "PC": "0x4967e7",
+          "hex": "8b45fc",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x4967ea",
+          "hex": "8b880ce70200",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [eax + 0x2e70c]"
+        },
+        {
+          "PC": "0x4967f0",
+          "hex": "894dd8",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x28], ecx"
+        },
+        {
+          "PC": "0x4967f3",
+          "hex": "8b55fc",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp - 4]"
+        },
+        {
+          "PC": "0x4967f6",
+          "hex": "8b8210e70200",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [edx + 0x2e710]"
+        },
+        {
+          "PC": "0x4967fc",
+          "hex": "8945dc",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x24], eax"
+        },
+        {
+          "PC": "0x4967ff",
+          "hex": "c745f01c000000",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0x10], 0x1c"
+        },
+        {
+          "PC": "0x496806",
+          "hex": "6884e75900",
+          "mnemonic": "push",
+          "operands": "0x59e784"
+        },
+        {
+          "PC": "0x49680b",
+          "hex": "682ce75900",
+          "mnemonic": "push",
+          "operands": "0x59e72c"
+        },
+        {
+          "PC": "0x496810",
+          "hex": "e8ab7f0d00",
+          "mnemonic": "call",
+          "operands": "0x56e7c0"
+        },
+        {
+          "PC": "0x496815",
+          "hex": "83c408",
+          "mnemonic": "add",
+          "operands": "esp, 8"
+        },
+        {
+          "PC": "0x496818",
+          "hex": "8945f8",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 8], eax"
+        },
+        {
+          "PC": "0x49681b",
+          "hex": "837df800",
+          "mnemonic": "cmp",
+          "operands": "dword ptr [ebp - 8], 0"
+        },
+        {
+          "PC": "0x49681f",
+          "hex": "7524",
+          "mnemonic": "jne",
+          "operands": "0x496845"
+        },
+        {
+          "PC": "0x496821",
+          "hex": "6a00",
+          "mnemonic": "push",
+          "operands": "0"
+        },
+        {
+          "PC": "0x496823",
+          "hex": "0fbf0d709f6100",
+          "mnemonic": "movsx",
+          "operands": "ecx, word ptr [0x619f70]"
+        },
+        {
+          "PC": "0x49682a",
+          "hex": "83c111",
+          "mnemonic": "add",
+          "operands": "ecx, 0x11"
+        },
+        {
+          "PC": "0x49682d",
+          "hex": "51",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x49682e",
+          "hex": "6844e75900",
+          "mnemonic": "push",
+          "operands": "0x59e744"
+        },
+        {
+          "PC": "0x496833",
+          "hex": "6824e75900",
+          "mnemonic": "push",
+          "operands": "0x59e724"
+        },
+        {
+          "PC": "0x496838",
+          "hex": "e843e7f8ff",
+          "mnemonic": "call",
+          "operands": "0x424f80"
+        },
+        {
+          "PC": "0x49683d",
+          "hex": "83c410",
+          "mnemonic": "add",
+          "operands": "esp, 0x10"
+        },
+        {
+          "PC": "0x496840",
+          "hex": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "PC": "0x496842",
+          "hex": "7401",
+          "mnemonic": "je",
+          "operands": "0x496845"
+        },
+        {
+          "PC": "0x496844",
+          "hex": "cc",
+          "mnemonic": "int3",
+          "operands": ""
+        },
+        {
+          "PC": "0x496845",
+          "hex": "8b55f8",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp - 8]"
+        },
+        {
+          "PC": "0x496848",
+          "hex": "52",
+          "mnemonic": "push",
+          "operands": "edx"
+        },
+        {
+          "PC": "0x496849",
+          "hex": "8b45f0",
+          "mnemonic": "mov",
+          "operands": "eax, dword ptr [ebp - 0x10]"
+        },
+        {
+          "PC": "0x49684c",
+          "hex": "50",
+          "mnemonic": "push",
+          "operands": "eax"
+        },
+        {
+          "PC": "0x49684d",
+          "hex": "6a01",
+          "mnemonic": "push",
+          "operands": "1"
+        },
+        {
+          "PC": "0x49684f",
+          "hex": "8d4dd4",
+          "mnemonic": "lea",
+          "operands": "ecx, [ebp - 0x2c]"
+        },
+        {
+          "PC": "0x496852",
+          "hex": "51",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x496853",
+          "hex": "e818a50d00",
+          "mnemonic": "call",
+          "operands": "0x570d70"
+        },
+        {
+          "PC": "0x496858",
+          "hex": "83c410",
+          "mnemonic": "add",
+          "operands": "esp, 0x10"
+        },
+        {
+          "PC": "0x49685b",
+          "hex": "8945f4",
+          "mnemonic": "mov",
+          "operands": "dword ptr [ebp - 0xc], eax"
+        },
+        {
+          "PC": "0x49685e",
+          "hex": "8b55f4",
+          "mnemonic": "mov",
+          "operands": "edx, dword ptr [ebp - 0xc]"
+        },
+        {
+          "PC": "0x496861",
+          "hex": "3b55f0",
+          "mnemonic": "cmp",
+          "operands": "edx, dword ptr [ebp - 0x10]"
+        },
+        {
+          "PC": "0x496864",
+          "hex": "7424",
+          "mnemonic": "je",
+          "operands": "0x49688a"
+        },
+        {
+          "PC": "0x496866",
+          "hex": "6a00",
+          "mnemonic": "push",
+          "operands": "0"
+        },
+        {
+          "PC": "0x496868",
+          "hex": "0fbf05709f6100",
+          "mnemonic": "movsx",
+          "operands": "eax, word ptr [0x619f70]"
+        },
+        {
+          "PC": "0x49686f",
+          "hex": "83c013",
+          "mnemonic": "add",
+          "operands": "eax, 0x13"
+        },
+        {
+          "PC": "0x496872",
+          "hex": "50",
+          "mnemonic": "push",
+          "operands": "eax"
+        },
+        {
+          "PC": "0x496873",
+          "hex": "6844e75900",
+          "mnemonic": "push",
+          "operands": "0x59e744"
+        },
+        {
+          "PC": "0x496878",
+          "hex": "6878e75900",
+          "mnemonic": "push",
+          "operands": "0x59e778"
+        },
+        {
+          "PC": "0x49687d",
+          "hex": "e8fee6f8ff",
+          "mnemonic": "call",
+          "operands": "0x424f80"
+        },
+        {
+          "PC": "0x496882",
+          "hex": "83c410",
+          "mnemonic": "add",
+          "operands": "esp, 0x10"
+        },
+        {
+          "PC": "0x496885",
+          "hex": "85c0",
+          "mnemonic": "test",
+          "operands": "eax, eax"
+        },
+        {
+          "PC": "0x496887",
+          "hex": "7401",
+          "mnemonic": "je",
+          "operands": "0x49688a"
+        },
+        {
+          "PC": "0x496889",
+          "hex": "cc",
+          "mnemonic": "int3",
+          "operands": ""
+        },
+        {
+          "PC": "0x49688a",
+          "hex": "8b4df8",
+          "mnemonic": "mov",
+          "operands": "ecx, dword ptr [ebp - 8]"
+        },
+        {
+          "PC": "0x49688d",
+          "hex": "51",
+          "mnemonic": "push",
+          "operands": "ecx"
+        },
+        {
+          "PC": "0x49688e",
+          "hex": "e80d7c0d00",
+          "mnemonic": "call",
+          "operands": "0x56e4a0"
+        },
+        {
+          "PC": "0x496893",
+          "hex": "83c404",
+          "mnemonic": "add",
+          "operands": "esp, 4"
+        },
+        {
+          "PC": "0x496896",
+          "hex": "33c0",
+          "mnemonic": "xor",
+          "operands": "eax, eax"
+        },
+        {
+          "PC": "0x496898",
+          "hex": "5f",
+          "mnemonic": "pop",
+          "operands": "edi"
+        },
+        {
+          "PC": "0x496899",
+          "hex": "5e",
+          "mnemonic": "pop",
+          "operands": "esi"
+        },
+        {
+          "PC": "0x49689a",
+          "hex": "5b",
+          "mnemonic": "pop",
+          "operands": "ebx"
+        },
+        {
+          "PC": "0x49689b",
+          "hex": "83c46c",
+          "mnemonic": "add",
+          "operands": "esp, 0x6c"
+        },
+        {
+          "PC": "0x49689e",
+          "hex": "3bec",
+          "mnemonic": "cmp",
+          "operands": "ebp, esp"
+        },
+        {
+          "PC": "0x4968a0",
+          "hex": "e8db650d00",
+          "mnemonic": "call",
+          "operands": "0x56ce80"
+        },
+        {
+          "PC": "0x4968a5",
+          "hex": "8be5",
+          "mnemonic": "mov",
+          "operands": "esp, ebp"
+        },
+        {
+          "PC": "0x4968a7",
+          "hex": "5d",
+          "mnemonic": "pop",
+          "operands": "ebp"
+        },
+        {
+          "PC": "0x4968a8",
+          "hex": "c3",
+          "mnemonic": "ret",
+          "operands": ""
+        }
+      ]
+    }
+  ],
+  "original_window": {
+    "subject": {
+      "pid": 6096,
+      "tid": 5168,
+      "main_tid": 4336,
+      "main": 70998160,
+      "node": 153481280
+    },
+    "snapshots": 423,
+    "recording_gate_byte_counts": {
+      "00": 423
+    },
+    "actual_EIP_counts": {
+      "0x77d13bfc": 423
+    },
+    "saved_return_sites": {
+      "0x453cb5": 14,
+      "0x453cd3": 1,
+      "0x453cdd": 1
+    },
+    "native_NtWait_export": {
+      "name": "NtWaitForSingleObject",
+      "slot": null,
+      "IAT_hex": null,
+      "entry_hex": "b804000d00ba1067d377ffd2c20c0090b805000000ba1067d377ffd2c20c0090b806001a00ba1067d377ffd2c2240090b807001b00ba1067d377ffd2c2280090",
+      "module": "ntdll.dll",
+      "symbol": "NtWaitForSingleObject",
+      "base": 2009726976,
+      "module_path": "C:\\Windows\\SysWOW64\\ntdll.dll",
+      "module_sha256": "2761f133cac12188ed380666104527884b2f89dab918bc5082692ca1b7f341e6",
+      "RVA": 474096,
+      "target": 2010201072
+    },
+    "gate_values_are_samples_not_execution_trace": true,
+    "pending_context_is_post_syscall_evidence": false
+  },
+  "control_flow_findings": [
+    {
+      "boundary": "42240D -> 422431 -> 453CB5",
+      "finding": "On the balanced-stack ABI path, the only calls in the original game tail are 56CE80 (JNE not taken, RET) and 4225A0 (ordinary memory/flag operations, RET4). No file operation or externally subscribable call is present before the first result read at 453CB5.",
+      "conditions": [
+        "The real OS wait has already returned to42240D; this audit does not prove that return.",
+        "Both original stack comparisons are equal. The diagnostic branch at56CE83 is excluded and is not a valid substitute observer.",
+        "The actual saved return address is453CB5; other wait callers are distinct."
+      ]
+    },
+    {
+      "boundary": "453CB5 -> 453CC4 -> 4967B0",
+      "finding": "453CB5 reads [EBP-8] before any4967B0 call. For nonzero result the CALL is at453CC4; zero result goes453CE4. An eventual file-I/O stop is after the requested first consumer."
+    },
+    {
+      "boundary": "4967D0 -> 496410 -> 4967D7",
+      "finding": "The original signed byte CTRL+117C3C must equal1 to enter the optional record/file branch. All423 retained samples contain00. These are sampled branch inputs only; no claim that4967B0 executed is added."
+    },
+    {
+      "boundary": "496810 -> 56E7C0",
+      "finding": "The first explicit CRT file-open call in4967B0 is optional and downstream of first consumption. Placing an oplock on ReplayData.rep cannot guarantee a pre-consumer stop. Setting the gate to1 would change original business state and is not performed."
+    }
+  ],
+  "candidate_dispositions": [
+    {
+      "candidate": "Reuse CH001 RW-oplock as a generic post-wait trap",
+      "qualified": false,
+      "reason": "A successful CH001 NtCreateFile stall preserves parent ownership only at that specific original file call. This audit identifies no mandatory file call between the normal game wait tail and first consumer. The successful source does not establish full57-state capture or a post-WaitForSingleObject stop.",
+      "source": "analysis/terminal-new-game-oplock-native-v1-review-20261112.json"
+    },
+    {
+      "candidate": "RegisterWaitForSingleObject on node/manager auto-reset event",
+      "qualified": false,
+      "reason": "A thread-pool wait adds a competing waiter; auto-reset wakes one waiter and does not promise FIFO. This can consume the original handshake signal and its callback is not the target worker postreturn. No such registration is performed."
+    },
+    {
+      "candidate": "Suspend/GetThreadContext polling or ETW-triggered sampling",
+      "qualified": false,
+      "reason": "Suspension enables context reading but provides no instruction-address trigger. ETW returns/saved contexts do not prove the target was stopped before453CB5; old423 pending contexts are not upgraded. No tighter polling or new ETW run is performed."
+    },
+    {
+      "candidate": "Original parent hardware-debug relay",
+      "qualified": false,
+      "reason": "Pinned failure has only422360 hit and parent exit4000001E. No rerun or changed parent reply."
+    },
+    {
+      "candidate": "Old WOW64 instrumentation callback",
+      "qualified": false,
+      "reason": "Pinned guest helper returned[0,0,0,258] with zero callback records; guest kernel branch evidence is version-specific. This is not proof that the current host rejects every callback variant. No new host PIC route has been demonstrated to retain original full state/ownership without installing target state, and no installation is attempted."
+    },
+    {
+      "candidate": "Previously explored WHP/TCG external monitoring",
+      "qualified": false,
+      "reason": "WHP RF transparency and the TCG game-input/control admission remain unqualified in their existing reports. Neither is revived or silently promoted by this host-only audit."
+    }
+  ],
+  "official_interface_references": [
+    {
+      "title": "FSCTL_REQUEST_OPLOCK",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_request_oplock",
+      "used_fact": "File oplock break completes the associated OVERLAPPED event; this API is not an arbitrary wait-return callback."
+    },
+    {
+      "title": "Event Objects",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/sync/event-objects",
+      "used_fact": "Auto-reset event releases one waiter and order is not guaranteed FIFO."
+    },
+    {
+      "title": "RegisterWaitForSingleObject",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-registerwaitforsingleobject",
+      "used_fact": "Adds a thread-pool wait and queues/runs a callback on its wait/worker thread; it can modify synchronization-object state."
+    },
+    {
+      "title": "GetThreadContext",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getthreadcontext",
+      "used_fact": "A running thread does not provide a valid context through this API; suspension is needed and requested ContextFlags select captured state."
+    }
+  ],
+  "next_candidate_admission_conditions": [
+    "Identify a concrete mandatory boundary on the original current WOW64 wait-return path and establish that the worker cannot execute453CB5 until observation is complete; a saved return address or later file event is insufficient.",
+    "Before original game collection, use a bounded owned noninteractive fixture whose actually blocking wait returns through the unchanged native path; authenticate thread, same-owner events, caller stack, API arguments and successful status, plus a real timeout negative control.",
+    "Retain original debugger ownership/replies, no target code/data/register/selector/callback substitution, and no extra wait consuming the auto-reset handshake; explicitly account for timing perturbation.",
+    "Capture and authenticate the required complete original CPU/ABI/memory/permission state and subsequent instruction/write/leaf continuity, including WOW64 transition state, original RF/DR/debug behavior and any uncaptured fields; omitted state cannot be filled from defaults or assumed away.",
+    "Show bounded continuation and cleanup without repeating/skipping first consumption, with pre/post original code identities and failure cleanup; helper success is only mechanism qualification, not game acceptance.",
+    "Only after that independent mechanism review passes, prepare a newly notified/authorized host window and one bounded original-game probe. If the mechanism fails, retain one bounded first difference and do not replay the full battle prefix.",
+    "Formal two-case fresh native lifetimes, independent full replay/state/ABI/cumulative traces, actual resource/PTD cleanup and tamper rejection remain unchanged."
+  ],
+  "reproduction": {
+    "existing_static_contract_command": ".venv-audit/Scripts/python.exe -B -X utf8 -m devtools.terminal_wait_static_contract --out analysis/NEW_UNIQUE_STATIC_REPORT.json",
+    "existing_retained_inventory_command": ".venv-audit/Scripts/python.exe -B -X utf8 -m devtools.terminal_battle_result_inventory --out analysis/NEW_UNIQUE_INVENTORY_REPORT.json",
+    "inventory_exit_note": "Existing inventory intentionally exits2; it is a diagnostic with accepted=false. Do not treat that as a new native failure or rerun the game.",
+    "independent_check": "Hash all sources to the listed identities; decode each excerpt at VA-0x400000 and compare with old original_code. For all423 window_snapshots, check recording_gate.pointer=node+0x190+0x117c3c, byte00, raw716-byte context EIP at offset184=NtWait export+12, and recorded TLS ownership."
+  },
+  "admission": {
+    "boundary_audit_completed": true,
+    "qualified_new_host_wait_return_mechanism": false,
+    "original_game_wait_probe_allowed": false,
+    "original_game_first_consumption_capture_allowed": false,
+    "original_wait_return_newly_observed": false,
+    "first_consumption_newly_observed": false,
+    "fullstate": false,
+    "fullABI": false,
+    "formal_tasks_completed": 2,
+    "formal_tasks_total": 8
+  },
+  "activity": {
+    "native_helpers_started": 0,
+    "original_games_started": 0,
+    "VMs_started": 0,
+    "desktop_inputs": 0,
+    "screenshots": 0,
+    "target_memory_or_register_writes": 0,
+    "OS_configuration_changes": 0,
+    "old_failed_routes_rerun": 0,
+    "old_evidence_modified": false,
+    "new_local_evidence_backup_copies": 0,
+    "deleted_files": []
+  },
+  "conclusion": "CH001 RW-oplock cannot be directly migrated into a generic pre-consumer wait-return observer. The named reviewed candidates have not supplied an acceptable host-native mechanism. This is a bounded rejection/admission report, not an exhaustive impossibility result and not a passed native precheck.",
+  "source_identities_rechecked_after": true
+}

@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "kind": "independent_offline_ADV_battle_preparation_review",
+  "review_passed": true,
+  "accepted": false,
+  "issues": [],
+  "review_method": "Read new implementation/tests; independently parse original guest-v5 gzip and raw header/TEB/TLS/PTD/context/input bytes without importing terminal_adv_battle_preparation or its predicates/verifier. Compare independently derived owners/stages with report. Root separately reran the existing full school verifier; this review does not claim to rerun it.",
+  "identities": [
+    {
+      "path": "analysis/terminal-school-handoff-guest-v5-20261109.json.gz",
+      "bytes": 8717855,
+      "sha256": "64976ca051fa42ae2e1e97561cc998ec85bacd11526810c8ec9f01fc7ac08ce6"
+    },
+    {
+      "path": "analysis/terminal-adv-battle-preparation-v1-20261113.json",
+      "bytes": 9566,
+      "sha256": "94b1304712ecda6a6e4678c2e22a2f9d98c37534f524dd780802287c672ccb6f"
+    },
+    {
+      "path": "devtools/terminal_adv_battle_preparation.py",
+      "bytes": 10270,
+      "sha256": "92a6aeb5cb0572fb0943d169eddca03c6e394efc711b3bf2b2f8a92e39c99812"
+    },
+    {
+      "path": "devtools/tests/test_terminal_adv_battle_preparation.py",
+      "bytes": 3324,
+      "sha256": "8cff3764ba366afd613585bb7701648a67c12f3c161eb534ef415871fb37f7ee"
+    },
+    {
+      "path": "analysis/hermit_game.exe",
+      "bytes": 5980160,
+      "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+    },
+    {
+      "path": "analysis/terminal-wait-host-boundary-audit-v1-20261113.json",
+      "bytes": 36760,
+      "sha256": "3021021e64c630df5a1e76d644af5fa2b8eb5149da13f60553a13e0fb1463f19"
+    },
+    {
+      "path": ".venv-audit/native-worker/guest-system-modules-guest-v5-20261109.json",
+      "bytes": 902,
+      "sha256": "2410df0edea153fc684ca5e00f0768ea445d584992cbb7261df8005fb6c099d5"
+    },
+    {
+      "path": "devtools/terminal_story_input.py",
+      "bytes": 4598,
+      "sha256": "1a6aa67a9303c86e76429551518675c1aee1de5b6bf75a4fd7d73edda96766bb"
+    },
+    {
+      "path": "devtools/terminal_workroom_input.py",
+      "bytes": 6523,
+      "sha256": "5d975c139ed7c3159fb054768406a8fbc8c5c1fe3809998cab9c717d22eb62f6"
+    },
+    {
+      "path": "devtools/terminal_school_input.py",
+      "bytes": 9350,
+      "sha256": "3bcbf77322f4f326b6980f271405e044cd32119c5a5b9e9f117582f736b824ed"
+    },
+    {
+      "path": "devtools/terminal_battle_input.py",
+      "bytes": 6051,
+      "sha256": "f10ed139a69af8b6e355ee862bf5d95943ee56dacedfb792cfa72604d738a8aa"
+    },
+    {
+      "path": "devtools/terminal_battle_notice.py",
+      "bytes": 8679,
+      "sha256": "8c5c12d28fe0ed15bf615512de3c852f8060e0061c763ddcf56ee1227205a2f9"
+    },
+    {
+      "path": "devtools/terminal_scene_resources.py",
+      "bytes": 19764,
+      "sha256": "dfbbbe7281a48cb36b215e9990e6448269665dcd74953e3efd2babfe7bcdcfa5"
+    },
+    {
+      "path": "devtools/terminal_menu_handoff_verification.py",
+      "bytes": 62883,
+      "sha256": "2936eb51f81d878188f3d03ec1de9602abd7b8bf9c8e0d462033de9119421240"
+    },
+    {
+      "path": "devtools/terminal_scene_owner_verification.py",
+      "bytes": 23238,
+      "sha256": "f5283d5d6fedfa873add0d8aa50f8052833686228c2ff1966b2ff13314a65c7d"
+    },
+    {
+      "path": "devtools/terminal_startup_handoff_verification.py",
+      "bytes": 22479,
+      "sha256": "37f7a5e7f404918c81ec3578fe5c4dbfb8e9845441d211cada96b91540ea3aeb"
+    },
+    {
+      "path": "devtools/terminal_menu_transition_contract.py",
+      "bytes": 15943,
+      "sha256": "6143612badc97bf59610ddcccc6e8c772a67b9193a1bd2c53cf8f6f5e1d20eb2"
+    },
+    {
+      "path": "devtools/terminal_school_preparation_contract.py",
+      "bytes": 11077,
+      "sha256": "a4662290bf058069658cf84f2129b074037527f888000cd781bba61afd079f73"
+    },
+    {
+      "path": "devtools/terminal_workroom_contract.py",
+      "bytes": 4472,
+      "sha256": "c8ff5820412cf47f6e91242811b43931e0946334cb5e581c1227fe9c8af51177"
+    },
+    {
+      "path": "devtools/terminal_story_dispatch_verification.py",
+      "bytes": 4400,
+      "sha256": "4fc5757acb12abd6e4621ac91db2950c84818d1a9c7d9b1e99ac368d4cc1b287"
+    },
+    {
+      "path": "tools/school_native_dialogue_verification.py",
+      "bytes": 11466,
+      "sha256": "a7c912ec34dafffd3239737c86761caf87af8e53d9e5c8b8d08079e5b4ff5d33"
+    },
+    {
+      "path": "tools/school_native_scene_verification.py",
+      "bytes": 13250,
+      "sha256": "e8474c460b514bb5680276cdd80a551a6cd0d8ac971e5d0a22c3cc1a0d8154a0"
+    }
+  ],
+  "source_identity_rechecked_after": true,
+  "original_guest_pid": 1712,
+  "raw_guest_source_expansion_bytes": 138039609,
+  "persisted_expanded_source": false,
+  "owner_checks": [
+    {
+      "vtable": "0x59b060",
+      "pointer": 71699832,
+      "thread_id": 4900,
+      "first": 283.922,
+      "first_TLS_sample": 0,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 293.4530000000001,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 3620864,
+      "PTD": 71700064,
+      "PTD_sha256": "7b859803f8eb509d9fe8e8daf33255daa82c57b9f0a426e9c1974a905eb167b2",
+      "context_sha256": "b93509533acfd7b2a94eecbebc75225e19cbec5840d1d0d380ac3d6c7ae26a9a",
+      "live_TLS_observations": 6
+    },
+    {
+      "vtable": "0x5c306c",
+      "pointer": 71699832,
+      "thread_id": 4644,
+      "first": 293.437,
+      "first_TLS_sample": 6,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 652.2650000000001,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 3686400,
+      "PTD": 71699936,
+      "PTD_sha256": "7381c3382d108b21e8cc6e16e91f4fe16e805d9faad820efafec6007c263bc27",
+      "context_sha256": "6c90798e20a4be4932ba26159497fb67f91ffcad93124ed5a12439e7407312c1",
+      "live_TLS_observations": 667
+    },
+    {
+      "vtable": "0x5a0904",
+      "pointer": 70600776,
+      "thread_id": 5712,
+      "first": 652.2650000000001,
+      "first_TLS_sample": 673,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 658.469,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 3850240,
+      "PTD": 71699832,
+      "PTD_sha256": "7b441bab710bf912752ab239be6fe29c59a59a8b1bddd5a597d036b28c7d8265",
+      "context_sha256": "59e02b44b32eedb12b7f2a41ac4fc76420eaaacd9c62a6e7b4e0026fc0c126d4",
+      "live_TLS_observations": 7
+    },
+    {
+      "vtable": "0x5c306c",
+      "pointer": 71699832,
+      "thread_id": 4616,
+      "first": 658.469,
+      "first_TLS_sample": 680,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 914.875,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 3899392,
+      "PTD": 71699936,
+      "PTD_sha256": "9680c31db81a1f4e24e1faa9687d6a4b8fcee4f73082987676e7b31a40f45f87",
+      "context_sha256": "23d48a7ff6b8e9c2c601befbe303ebe525fb53b55448ca530387e564ba6e25cb",
+      "live_TLS_observations": 476
+    },
+    {
+      "vtable": "0x5a0a40",
+      "pointer": 70600776,
+      "thread_id": 7080,
+      "first": 914.9370000000001,
+      "first_TLS_sample": 1157,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 927.8590000000002,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 4128768,
+      "PTD": 71699832,
+      "PTD_sha256": "ce5566aa40362c7e1134944809d5d01c30f889a1ab654b864405497a6f56311f",
+      "context_sha256": "6b73dfe3310fb2f1e8a8b1c466711820c0fff1ea9b1c647162f4d770e9bf0f12",
+      "live_TLS_observations": 19
+    },
+    {
+      "vtable": "0x5a0c18",
+      "pointer": 70683152,
+      "thread_id": 4632,
+      "first": 914.9370000000001,
+      "first_TLS_sample": 1158,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 926.375,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 4145152,
+      "PTD": 71730520,
+      "PTD_sha256": "360e61278d6c464e8847832af2327c9efe81e6c24b0b1b6d346a571feafa455a",
+      "context_sha256": "39817e4c7f160afc00aa424cf01fa1189aa4164d119728cd2c83887c15e7d3a1",
+      "live_TLS_observations": 16
+    },
+    {
+      "vtable": "0x5a0c38",
+      "pointer": 71700136,
+      "thread_id": 4868,
+      "first": 927.8590000000002,
+      "first_TLS_sample": 1177,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 928.047,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 2105344,
+      "PTD": 71699832,
+      "PTD_sha256": "7ab4a2109f5467f053daf76f94e7e807fb055384685e0c4869288c7004cf218f",
+      "context_sha256": "d782912591252dd5db81b125c88d4994cdf65f297917149af42c1e2743c46447",
+      "live_TLS_observations": 1
+    },
+    {
+      "vtable": "0x59a430",
+      "pointer": 153305152,
+      "thread_id": 2776,
+      "first": 928.047,
+      "first_TLS_sample": 1178,
+      "exit": {
+        "code": 0,
+        "wait_status": 0,
+        "elapsed": 1036.515,
+        "before_WM_CLOSE": true
+      },
+      "TEB": 2121728,
+      "PTD": 71699832,
+      "PTD_sha256": "d34240e2c7c51ffab5965efc3c10c4dd154d3fe1f3f58163b7c3cc6a34b8e1e2",
+      "context_sha256": "7d69c6b0f4ca3422f8bec179599dc39f4461e5cd7a6fcab41bde7f0cf9954066",
+      "live_TLS_observations": 170
+    },
+    {
+      "vtable": "0x59b060",
+      "pointer": 70999520,
+      "thread_id": 1752,
+      "first": 1036.5620000000001,
+      "first_TLS_sample": 1350,
+      "exit": null,
+      "TEB": 2170880,
+      "PTD": 71699832,
+      "PTD_sha256": "0d7d9acb8667ef56fae59ceeb4eb45166f479df20c15a70f817046e9b98037c2",
+      "context_sha256": "a5d444a0a774eba8051985a1bb34929774bb243974a4103de6b6bd2dc8bf3feb",
+      "live_TLS_observations": 2
+    }
+  ],
+  "preparation_owner": {
+    "vtable": "0x5a0c38",
+    "thread_id": 4868,
+    "node": 71700136,
+    "TLS_sample_index": 1177,
+    "observed_return_chain": [
+      "0x75a78182",
+      "0x42240d",
+      "0x4b90fe",
+      "0x421f8a",
+      "0x56e183",
+      "0x75f46709",
+      "0x77417ccd",
+      "0x77417c9b",
+      "0x0"
+    ],
+    "original_call_address": "0x4b90f9",
+    "original_call_hex": "e86292f6ff",
+    "target": "0x422360",
+    "retained_exit": {
+      "code": 0,
+      "wait_status": 0,
+      "elapsed": 928.047,
+      "before_WM_CLOSE": true
+    },
+    "source_code_fingerprints_match": true
+  },
+  "story_checks": [
+    {
+      "phase": "opening_ADV",
+      "raw_VM_keys_checked": 178,
+      "raw_press_release_and_VM_advance_checked": 178,
+      "keys_sha256": "0a5d48505ccd572fdee7948c3d22c27c628f6389167b464d7d2fc61b45245cf4"
+    },
+    {
+      "phase": "after_workroom_ADV",
+      "raw_VM_keys_checked": 141,
+      "raw_press_release_and_VM_advance_checked": 141,
+      "keys_sha256": "8ae0f7a66830dd3976931ac80c1b41547563482095804c5e537a77cc234372b0"
+    },
+    {
+      "phase": "battle_dialogue",
+      "raw_VM_keys_checked": 25,
+      "raw_press_release_and_VM_advance_checked": 25,
+      "keys_sha256": "831d330c8cbf1b7cec0e20392d2fb9d3d3e29be66d2eda5f20a4cad3fc3a0018"
+    }
+  ],
+  "mouse_checks": [
+    {
+      "stage": "workroom_exit",
+      "start": 653.844,
+      "end": 658.0620000000001,
+      "press_count": 3,
+      "held_count": 14,
+      "fast_release_count": 3,
+      "supplemental_releases": []
+    },
+    {
+      "stage": "school_departure",
+      "start": 916.625,
+      "end": 920.75,
+      "press_count": 3,
+      "held_count": 13,
+      "fast_release_count": 3,
+      "supplemental_releases": []
+    },
+    {
+      "stage": "school_confirmation",
+      "start": 921.844,
+      "end": 925.969,
+      "press_count": 3,
+      "held_count": 14,
+      "fast_release_count": 3,
+      "supplemental_releases": []
+    },
+    {
+      "stage": "opening_notice",
+      "start": 1017.25,
+      "end": 1021.6400000000001,
+      "press_count": 3,
+      "held_count": 13,
+      "fast_release_count": 2,
+      "supplemental_releases": []
+    },
+    {
+      "stage": "retreat_request",
+      "start": 1025.515,
+      "end": 1029.969,
+      "press_count": 3,
+      "held_count": 14,
+      "fast_release_count": 3,
+      "supplemental_releases": []
+    },
+    {
+      "stage": "retreat_confirmation",
+      "start": 1031.047,
+      "end": 1035.4370000000001,
+      "press_count": 3,
+      "held_count": 14,
+      "fast_release_count": 0,
+      "supplemental_releases": [
+        {
+          "post_release_index": 0,
+          "before_fast_index": 564,
+          "after_fast_index": 565,
+          "elapsed": 1035.328
+        }
+      ]
+    }
+  ],
+  "ordered_stage_names": [
+    "opening_ADV",
+    "workroom_exit",
+    "after_workroom_ADV",
+    "school_departure",
+    "school_confirmation",
+    "battle_dialogue",
+    "opening_notice",
+    "retreat_request",
+    "retreat_confirmation"
+  ],
+  "individual_input_actions_checked": 350,
+  "story_inputs": 344,
+  "post_title_mouse_inputs": 6,
+  "title_input_receipt_present": true,
+  "complete_route_matches_report": true,
+  "budget": {
+    "battle_seconds_from_original_lifetime_start": 928.047,
+    "battle_seconds_from_first_ADV_owner": 634.61,
+    "battle_seconds_from_first_story_input": 618.016,
+    "retreat_confirmation_seconds_from_first_ADV_owner": 742.0,
+    "each_battle_interval_exceeds600": true,
+    "host_runtime_prediction": false,
+    "cleanup_duration_budget_proved": false
+  },
+  "code_and_test_review": {
+    "fixed_compressed_source_SHA_checked_before_extraction": true,
+    "full_existing_source_verifier_called_before_extract": true,
+    "extract_route_is_offline_projection_only": true,
+    "no_native_execution_entry_added": true,
+    "native_guest_input_guards_removed": false,
+    "old_host_and_guest_lifetimes_concatenated": false,
+    "missing_short_preparation_owner_rejected": true,
+    "six_tests_inspected": true,
+    "tests_rerun_by_independent_reviewer": false,
+    "test_scope": "Real-source projection and rejection of omitted owner, different school date/dialogue key, premature retreat and missing wait ancestry; no claim of fresh native acceptance."
+  },
+  "limits": [
+    "Nine entries are owner instances, not nine distinct vtable classes or a proof all lifetimes are disjoint; the two school workers coexist and addresses are reused across different TIDs.",
+    "4B90FE is a captured saved return ancestor with matching original CALL bytes. No current EIP at4B90FE, actual wait return, full instruction trace or PTD release is inferred.",
+    "The source stores decoded EBP links and separate raw ancestry argument words; this review verifies that representation and raw argument addresses, not unrecorded entire stack memory.",
+    "The sixth mouse release has no fast release row; its actual raw edge is the preserved frozen post-release snapshot bracketed by fast rows. No fast sample is invented.",
+    "The final successor menu has no retained exit0; the whole game exit/WinMain and resource/PTD lifetime remain unproved.",
+    "The guest route is a fixed legitimate input example, not a transferable host-native receipt or authorization. Host performance, fresh desktop window and cleanup allowance are unknown.",
+    "No new wait observer was tested and no game collection was authorized. The current host menu source and guest route remain separate native lifetimes."
+  ],
+  "activity": {
+    "native_helpers_started": 0,
+    "game_processes_started": 0,
+    "VMs_started": 0,
+    "desktop_inputs": 0,
+    "screenshots": 0,
+    "old_evidence_modified": false,
+    "new_backups": 0,
+    "deleted_files": []
+  },
+  "conclusion": "The new preparation faithfully preserves the fixed guest route and its limits. No blocking issue found in this offline scope; all native acceptance/admission fields remain false."
+}
