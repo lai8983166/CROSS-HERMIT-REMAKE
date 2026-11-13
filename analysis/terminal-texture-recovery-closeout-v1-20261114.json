@@ -1,0 +1,3685 @@
+{
+  "schema_version": 1,
+  "kind": "external_recovery_texture_component_closeout",
+  "baseline_commit": "53eeda70207104a803da22ff01ddd1b390699116",
+  "accepted_for_bounded_preparation": true,
+  "formal_acceptance": false,
+  "formal_progress": "2/8",
+  "native_GAME_runs": 0,
+  "native_D3D_helper_runs": 0,
+  "native_recovery_writes": 0,
+  "screenshots": 0,
+  "global_input_sent": false,
+  "preflight": {
+    "path": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+    "bytes": 4738,
+    "sha256": "b7fdef83c5bfe668bd92455878ca55a012c29e273ca9272e7c674aa00ae2c7cd"
+  },
+  "final_sources": [
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v6-20261114.json",
+      "bytes": 21771,
+      "sha256": "9273933050b15b7e7660ab3ce76579cdc3d748eea97bd137340bcd1b2b5c352b"
+    },
+    {
+      "path": "analysis/terminal-recovery-observer-preflight-v2-20261114.json",
+      "bytes": 4339,
+      "sha256": "e98169916386ddea963faea1877ed86c8967fc169f20dc8f0a68a4df3868ce6d"
+    },
+    {
+      "path": "analysis/terminal-texture-recovery-independent-review-v2-20261114.json",
+      "bytes": 17721,
+      "sha256": "651c8484694161a8c8484929f3f84352d5ea5ace1912451f0491c8278e862347"
+    }
+  ],
+  "retirements": [
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/armed-1.json",
+      "bytes": 242,
+      "sha256": "c20729ad2457396ef4aba6d339849cd042bec20d23c82ba331ac35c98c86b682",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/cancel.json",
+      "bytes": 77,
+      "sha256": "a8b996a94a35e57a186170919d2f7503cae2cd79fffdc6a43825de9816bf7ba3",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/config.json",
+      "bytes": 291,
+      "sha256": "253210391cc83253fe4ddeb28eca49421b15b24b02d699ffccb112845a08291e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/operations.jsonl",
+      "bytes": 176,
+      "sha256": "8dc598b40dab4abe93538a548172270dbb9cc01b3b07c8404c84b0875510a642",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/request-1.json",
+      "bytes": 148,
+      "sha256": "39b2bc1cbb353341f4d90ca75bc011b54569e08d6b6d3fc0811c32fd5237ed82",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/response-1.json",
+      "bytes": 4693,
+      "sha256": "b3420a03d59f5f2ec8d6dcf45ab90634833106c97bdebbda52762ad1e20d2ab7",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/supervisor-result.json",
+      "bytes": 799,
+      "sha256": "35274092324e856d398f0685d8d0123595f348308c1b6aaa2cb8ce53e573f5f0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/block_baseline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "cee5bffbbc8f31ea46ab8ba63c1ebe84b637aa7bc796a7ed9ce71fe7497962d6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "dcad4049351c5efbec55b79700e5a88dbf22fa3a471dc31c5cf85d37d9c55363",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "5f6a9712a1707fb47868d629dc2f9d9e179d052cb79897db9b2600cd3801aa49",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/config.json",
+      "bytes": 291,
+      "sha256": "e508c8d4e3b2cf8e8bccb523637b21533e4f9ca70595717e1a18203868f2ac0e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "efab518548c674c9b2fae37387bd4aa67deea9d6e0022a7ff1ec154d060137e8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "9626285e26cd66df360003735304b83ae4a7fc469a084004bfec983a660100be",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "0338b86bb024efbbcac09490ce9310fbb2e65634db8ca7ec425065e209816005",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "a854ce0717193f321dc6a39ed800bd675fb247485f3a65e302b9b12785433ed5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/response-1.json",
+      "bytes": 4694,
+      "sha256": "e9a6dbf5279cc8c66bb93a18dedf3e7dab3c40403be74803f8e40983ad8b1ad6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/response-2.json",
+      "bytes": 23874,
+      "sha256": "bc4ba63fb1e1dd9e6cd046c5d6a01d54cabca320f8e9844a5af8d73c9d70817d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/response-3.json",
+      "bytes": 296,
+      "sha256": "1d15fc0d302cf7666cf879cab5dc55e9d2d203de5d3e5efeb9c1578d420ebcfd",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/supervisor-result.json",
+      "bytes": 1314,
+      "sha256": "be9363c587514589423be398ff98ac5c4351a24d2ab641dc9c360b685f0c7e8d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v1-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_baseline/armed-1.json",
+      "bytes": 242,
+      "sha256": "833540ab3bfda0184e995e0804ebc4a5317586f42c690363d255e69924d0f198",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_baseline/config.json",
+      "bytes": 299,
+      "sha256": "0e8daf6b014317a720be39b6f5a9f49d18500498e91fff2b4809996261e56b64",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_baseline/operations.jsonl",
+      "bytes": 90,
+      "sha256": "d5025da00182b131d337598730c8bc8157cfd95b111be4e35eca7fa140522a67",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_baseline/request-1.json",
+      "bytes": 148,
+      "sha256": "80e9c1391971eb5246f70a20b780dd4682bd96bfc2f1ad54a4ecd5d36ff5e2d4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_baseline/supervisor-result.json",
+      "bytes": 681,
+      "sha256": "4dd65e95cfe3173a48f69897597f3b2f0fb210fc7dc9a022d876022d96941659",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_baseline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "bebd50c2f5fd1f7e6fc2dca083dc8039256558694c09bba4009b31bb8778598b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "cf253eed17a80483a71147d1bdf34cb0aefb2f67df2de69e413a070a2e851fba",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/config.json",
+      "bytes": 302,
+      "sha256": "df2362a85df65a2c311c0f707320c1cd1eabed9f32b91a24d0e34a8d2444b179",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "49b5b535d8436480d18e61c5544aad421ab94099d609e3bd9cb1e38cb1314676",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/request-1.json",
+      "bytes": 148,
+      "sha256": "27d41a829e95142b0e4d2bd6afb95ddc5c6e33cc77be6266d9f1d7484d953d32",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/request-2.json",
+      "bytes": 147,
+      "sha256": "ede2c902c3c72e069f713f3b8eab4aad2564211c9fc0e3b498044a99cb3a50fb",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/response-1.json",
+      "bytes": 4694,
+      "sha256": "637118bd5fcd5e41f6ed63f3de014c8163f8de6c0cd73211c176c701c37e7d9a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/supervisor-result.json",
+      "bytes": 963,
+      "sha256": "69367dde18fd83fb6ff70829897c36f7d7908a7abe85a005202d98d2d1f407f5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/armed-1.json",
+      "bytes": 242,
+      "sha256": "cbd14a84f0b41f2da29e766c3fa0c881e82c0535ffcaa9fd36931ca1a89696d8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/armed-2.json",
+      "bytes": 241,
+      "sha256": "79d0ce03ed98aad22468460c104d1c56f321d1c88ad91317f0dc8ace87ea85d8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/config.json",
+      "bytes": 304,
+      "sha256": "79f26f52061daad83887ca0f77118d819d019fc85e547fe277b5b068e4e9436c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/operations.jsonl",
+      "bytes": 265,
+      "sha256": "5195aa0c5f64420cc947d45091773a8a76921e838493f8c0c78acb6101ce72db",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/request-1.json",
+      "bytes": 148,
+      "sha256": "c320597be8021e7da6ae38a27dcd10f9246025c1866fb3f2c4521f5195d2235e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/request-2.json",
+      "bytes": 147,
+      "sha256": "f70edc22b3a71a7e58b687de218b03a4b50b9804e7cf53c414bd4723c9fe9ea5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/response-1.json",
+      "bytes": 4693,
+      "sha256": "b83e0dfa6edb8ed047979c7b2c3b75a17d76a2a9f9558db362e4931789e4fb6f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/supervisor-result.json",
+      "bytes": 961,
+      "sha256": "639e24360b5c9d0911d1c7c06668c75b505cb7dcf31b781149a194695fb2493e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/block_recovery_read/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/armed-1.json",
+      "bytes": 242,
+      "sha256": "3e0e787e4f36b208ea550e76fddf25ee1324b7bb4a41bdf7bb5a1d2a0a7ca417",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/armed-2.json",
+      "bytes": 241,
+      "sha256": "d176a92aa0141633ab811002fac80f9772ee419652b570bc0e3d663266f1c7a5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/config.json",
+      "bytes": 302,
+      "sha256": "a9198e11fbb1407a2dff7a1cd685bdf2d392a43cf46c3e6800f9a01dbc6ea600",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "fe2f35088bbaf72c45882b9b647fde35c765b697d3c1c24669e3638806779458",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/request-1.json",
+      "bytes": 148,
+      "sha256": "11bc2ef081d58bc3b3e4773dd67c4f0f2b4b6dbe3d0730c7c555477d64e9b8aa",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/request-2.json",
+      "bytes": 147,
+      "sha256": "3c11e33d8c26e257d2e63e01a57a62dabfd16a3e708090e7dedd88e775e88c66",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/response-1.json",
+      "bytes": 4694,
+      "sha256": "032f48496c8b82a8c9b379679892f9aaefa7782cc6b532db4e149de2d5ace7c5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/supervisor-result.json",
+      "bytes": 964,
+      "sha256": "137b42f7e0040a8ec05607e2e2f612f40856cf89b94c43d6510dbe8ec246dc42",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/controller_exited/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "d056a49f573aa2c0f95afc86941159f0b55c760259889c55c29fc74517f962ec",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "b757fb1875c4639addb7463b9026ef52a585ddf5b73a84151dfa66833cf0e80f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/config.json",
+      "bytes": 302,
+      "sha256": "9c90e0d54157cf53ffb318a935715afd766d26d369d1b4de7b4201ce191c7f64",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "b867d25eaec102427eefdfc3a80ecd7a7a4f771f856feeba20bca8f0259c743f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/request-1.json",
+      "bytes": 148,
+      "sha256": "97238eba25dd3a2c7fe5be310d346fd4bc63c5d815d25fd42798695172f097f6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/request-2.json",
+      "bytes": 147,
+      "sha256": "4c7f2a219e4c1333f364ca4110d155909c9009ca22e932f9d347adee9a1540a5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/response-1.json",
+      "bytes": 4694,
+      "sha256": "32d7cc2ae31f8a64e47757f8347493e5a7822958ab98f215675e2ffa08fe901a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/supervisor-result.json",
+      "bytes": 923,
+      "sha256": "6a949e50875677313007ffa8a00f81de3bfc66b66aa1303aa3ef4903a09f5166",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/exit_during_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "0a1b51b8eec3f4cd4d2bd39c90b21d344bdbbf1c76c9a3b45b3644731ae62a18",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "e6fecc0e6c53beb3642edca2af7d041b7f1df3dde173a5140d66c51637244bca",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "279d61b586d41aaaaf1460b65a045e9f73c19ff688073130d8edbc8e025abcf7",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/config.json",
+      "bytes": 291,
+      "sha256": "d26f942b055db521b18e03eb1e63a43ca84a15cf637d6a7713f25da3f6a22042",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "eb3115b44964f7d6cba0e19afb9f4fab52d6111ad61da789d908453fb5f6794f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "9f9302a6792b8d2566ce2bc16f535064b3997f39ce95708a5331d4642228b2b9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "5948d63d75b32d2fc352f6ee115adda1c7b1e729d86d4406e0011890b92214a8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "f668adbe14b29c06944516b0109e5981106cd9abfd45fe5abe2704066b5c4b56",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/response-1.json",
+      "bytes": 4694,
+      "sha256": "9863d7b741b9b2f327c284c1a76d5438fa074414e950a78f8df9ea9dc1b56ad7",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/response-2.json",
+      "bytes": 23874,
+      "sha256": "375ad1be56aee26dfe60c9dd2b00fdd9163e730f4ec11f15a8dc168d86a0b5e1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/response-3.json",
+      "bytes": 296,
+      "sha256": "38a1dac72d95988444455b250d97f9e37ae2d0531df18d504f8d6bdca4f997b2",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/supervisor-result.json",
+      "bytes": 1318,
+      "sha256": "abfb0451331346ea028e8bb9c69f33c8053228b961252b60d858b90e4e1324b4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/session_deadline/armed-1.json",
+      "bytes": 242,
+      "sha256": "dd5a791d96ef7f7e0e6802ef3f8b02e772117d4d49fb3adf978d12cbec384472",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/session_deadline/config.json",
+      "bytes": 290,
+      "sha256": "0725c9bdb377773ce71c571bded208ec11a51ee56ec6f60ba415cfe329008cea",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/session_deadline/operations.jsonl",
+      "bytes": 178,
+      "sha256": "b5f1c7d2d75db570182a45838794f5d21ed35db35d9d5e63fbf73c71a6530ad0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/session_deadline/request-1.json",
+      "bytes": 148,
+      "sha256": "a19a9c3be93c251273edeb8f6b4050a02e88f39046993164f4c2f1aec97d3f12",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/session_deadline/response-1.json",
+      "bytes": 4694,
+      "sha256": "e5459ca74dd37efffb42c041feb4155e876f96e4a92dfe49d76086f11c26b8f8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/session_deadline/supervisor-result.json",
+      "bytes": 795,
+      "sha256": "153173b04a7baf7991a5115d0bd2a8db3deb4de776fdee18556b764d854f27f4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v2-20261114/session_deadline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_baseline/armed-1.json",
+      "bytes": 242,
+      "sha256": "827d50147cca46da18dcb3974f019a9d1524b3cc595c4ec5e1ac84faa670cb83",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_baseline/config.json",
+      "bytes": 299,
+      "sha256": "77665fcdd7317c37d25f2f8d4ae252b6854b56d0a2ae8f05f363d5db101358c1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_baseline/operations.jsonl",
+      "bytes": 90,
+      "sha256": "c13c931e4244a9c02e16bcaeac23f6f032a92a5f806cd697bb9b4dc01fa717f6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_baseline/request-1.json",
+      "bytes": 148,
+      "sha256": "7ea14928769dd4878311ae51a8878729baaa1c2c00b255e7950fcf424897eb01",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_baseline/supervisor-result.json",
+      "bytes": 701,
+      "sha256": "ff86d925c0f97af4d3e9a74b0f8ce18ef4f30f84aad5249ec5d3b7c1f69e7ed0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_baseline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "ad5b4e12ca1efe570edadfa86fa2ffa089064edff83fac1db23209fb645fe643",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "5a9234285cff94a0080c99ba222a8a00927f8b9744228c1abf21ab78a557db2f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/config.json",
+      "bytes": 302,
+      "sha256": "4d20561187e1e471bede0d6b37dd1f38a6940a7a94d1681b34c062e44db87970",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "8733a768d4331545e05a60e6b0b836b49d00221725200dbb95aeb7cb18d73725",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/request-1.json",
+      "bytes": 148,
+      "sha256": "fcb326ae6e5993312498b58c2df9698f8a650aaa66c40e022af3c0cb56d88233",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/request-2.json",
+      "bytes": 147,
+      "sha256": "476389d0cb35c603280889e8fa45ac6fb7c243c1aa331db8ad9e18c9ca49a5dd",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/response-1.json",
+      "bytes": 4694,
+      "sha256": "206708880be3b7f403b6ef3bf171764e14c442f24a74621a84e38fefa6fb4513",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/supervisor-result.json",
+      "bytes": 994,
+      "sha256": "46405ef06671d1bb437b55951f8222e6fbf4e9b07687f0dd68ebed5b46d03507",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/armed-1.json",
+      "bytes": 242,
+      "sha256": "342046bb6c457966eb483cd1442f8c3d229ea3ca4187145158d80b9783131d44",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/armed-2.json",
+      "bytes": 241,
+      "sha256": "65d25e258d37ffe23f67636ead5f20ce570d727e647b054c7927087c793cb364",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/config.json",
+      "bytes": 304,
+      "sha256": "bc889578e9af9645864aec38701cd0d7ac2574d89952b79a351a9eeb57a77d5c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/operations.jsonl",
+      "bytes": 268,
+      "sha256": "71ae9308d020f249c1a6a45df38b46811f98af9bd8ce2d8e61cb062ae6087b78",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/request-1.json",
+      "bytes": 148,
+      "sha256": "3a88414086e7a89287d735b1390119f0d746b1e86265d667390975d94e5a90f2",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/request-2.json",
+      "bytes": 147,
+      "sha256": "5c64825a2efc789715f3b941897f7bbf877da15661aede5c44d76054b8f2ac26",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/response-1.json",
+      "bytes": 4694,
+      "sha256": "55ec35a02b97af2b33ef93f497e896d6d16bf7e1e551ed513745fae0db73ce74",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/supervisor-result.json",
+      "bytes": 993,
+      "sha256": "f367f004b0d4016e2f6219876920683e46c0f554ada11682633b04b3ab8db8ef",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/block_recovery_read/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/armed-1.json",
+      "bytes": 242,
+      "sha256": "d69017d350eac09e3cff22785d5cb2a00b979308ffcfb6d14b69e881121ac60c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/armed-2.json",
+      "bytes": 241,
+      "sha256": "0a0551fc2bf816f9f60cab6a3be9f79cda6d58ba5fa1624143f71ce313fa9146",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/config.json",
+      "bytes": 302,
+      "sha256": "c9308b80f37e702c09488450285149d33984b3afa418b69f7d03296de2ba446f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "3f4814507cbdf1d9d08dfc6e72790be62d3386d66cf8f2ae0448c27c7da880ea",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/request-1.json",
+      "bytes": 148,
+      "sha256": "61d9a17b61614afdbe46718e09d19d2f6c327b3733b3a85e5f9cc26795339e13",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/request-2.json",
+      "bytes": 147,
+      "sha256": "3f50177bce1c690da074810de1a8ed411e704e3585c5a68c1886630f1a93a349",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/response-1.json",
+      "bytes": 4694,
+      "sha256": "2eb562cedf4617e13b42a7c7b659984a4194c5822e9c79ab87f760a3695f23c9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/supervisor-result.json",
+      "bytes": 994,
+      "sha256": "ec5bb78b81fd6a1f5997c4d4c7c0efe3949da35982e105b9a732c8a93dfe592f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/controller_exited/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "25e9a79f655cea6600e9cd6a435a95caac843e5d01128e73178b1960fbfc64af",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "f05cfd36dc5412ee26c391359b5195982be98d3d6aa31657d12c84d798d9c54a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/config.json",
+      "bytes": 302,
+      "sha256": "caf0dd3a1edccf25d126b649240ab70e047e68ebc1232a7563ce7b18f1890983",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "198a90bcafd41e75265d5a18c21e6ef7b56e2a27a05919565a53068678f7b8a1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/request-1.json",
+      "bytes": 148,
+      "sha256": "722a8ef6c7449bd108339c3af81604dcf89aa554d5c63685a9f545a158cfb816",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/request-2.json",
+      "bytes": 147,
+      "sha256": "104442c7ff485e06783f3b29457825c92a82e1a12ab9b9d138a340e24d02d42d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/response-1.json",
+      "bytes": 4694,
+      "sha256": "63e355fbd730864c7942cc73057487a7d0715857bf49d43d4f10c9c297fbf66b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/supervisor-result.json",
+      "bytes": 954,
+      "sha256": "ea1b07cefde4de616316629a68511601b3cc14ab37d7601a3ca4a34218602ca9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/exit_during_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "900aae2b77769a51cfb324bc8131119cc10630dfd14aa6bdd28730357918e4b9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "13d54f269f99f3be0986f5a116e6aad54fb1e5e4ca338d36f9bc36cb7b362f4c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "94e3031b7c6e96ec5685ef693fcd04fd367f359412c567445ecaa7b195c5cd41",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/config.json",
+      "bytes": 291,
+      "sha256": "c9af148a0f9c2f399014c767a2e1091015cd64b3e945071c8552d51a7c463b11",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "19d1fbb3f6f54c16a9510a2b16656c9db5293c51c8fe7d4fac5c12bd58366cd7",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "972e2d2cdd20800b5f74ceeb0404585214b91f129fa1273964e22702b9f950ca",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "d75d7e7b9c20fd7392ea775a9c1afd55cfc3f3ce2fe35d8a63caf96dc3c893ce",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "01ae17a0b8e55fa066812a41d8c650e401419732acede05e9ffc55a9f9545cc6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/response-1.json",
+      "bytes": 4694,
+      "sha256": "4d88e08dceed6a219e4c0ad432dfe8f2cd9a37ad5fe18af52bf3acb7afeb3310",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/response-2.json",
+      "bytes": 23874,
+      "sha256": "9dd7b82b34bf0b7c2761c2cce4a469f71526aca6fc3579ea143c536eba712520",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/response-3.json",
+      "bytes": 296,
+      "sha256": "10a5c2581b2fe45019760fab660cae38015dc136b94a30420d92280978d0ab07",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/supervisor-result.json",
+      "bytes": 1393,
+      "sha256": "55d9e463bbdf277fe00a882f8941bfe6a78c443dfe15ef2098fde0e8536070d5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/session_deadline/armed-1.json",
+      "bytes": 242,
+      "sha256": "f2d173ec78c46f09c92a5a3d21c6149bc10181dd8a4d152128e3aa60e0a072cd",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/session_deadline/config.json",
+      "bytes": 290,
+      "sha256": "444906bc8067b495b13890a287f68ca05014b8a7a2bd45fc7c34a0dfca2d9872",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/session_deadline/operations.jsonl",
+      "bytes": 178,
+      "sha256": "1bf2d05e19fdd464f8367c60aafe1c68f43e6ef035d654e51e560789d23ddcca",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/session_deadline/request-1.json",
+      "bytes": 148,
+      "sha256": "2a7023c59d6f83ee6a2deba5e5af52ac1c2134b284867acbca5afb4a350f0b42",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/session_deadline/response-1.json",
+      "bytes": 4694,
+      "sha256": "f862b7bdb3cccbf1b00b2dfbdc0437a256f781392b2f1d24f80a9f436d02cb95",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/session_deadline/supervisor-result.json",
+      "bytes": 825,
+      "sha256": "b3c7fbc45700d97fa98079cf31f0a32f35b91415afc5afec0e8f605da8b61c67",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v3-20261114/session_deadline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_baseline/armed-1.json",
+      "bytes": 242,
+      "sha256": "d699e3c6369a8a856bfb28dcec7cee2af9c4b920b9a83b1ed7a2e3c7ee0dc5c1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_baseline/config.json",
+      "bytes": 298,
+      "sha256": "185d45c9cda1c128ff1b679303c88aeb70b63f32521251e8371e992af4cf336b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_baseline/operations.jsonl",
+      "bytes": 90,
+      "sha256": "23cf1a89cb8783ff574aee4b529b627f9d42a74ffdb95a3b436003a6e367b974",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_baseline/request-1.json",
+      "bytes": 148,
+      "sha256": "9ab1a78f52eef9ec89ad7b167df6372ee4c3ad84a922c8265aa51116e436350e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_baseline/supervisor-result.json",
+      "bytes": 701,
+      "sha256": "e95aa46ca6c8bfe136838db2c2f83f4c75181919909b72f08254805bac032269",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_baseline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "f75cac381b43ff044f50bac65a6b8c0084b872e2c4732b002dee0547f153cbd1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "30664d38abd8f1c0b87f1b7a5d85212c174708111683ba96c28acd88aa2a4cb6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/config.json",
+      "bytes": 301,
+      "sha256": "8f9c21a1ac03d403da0ea63a94b6ce84ab2178b7d3efe1c0f8300ea65d3be14b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "fcdb7dde5e6d18dca41c8886d6306a7204a7b348192677617629149ca0d79bc0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/request-1.json",
+      "bytes": 148,
+      "sha256": "68c4cc8c84e8ef353fd7c3717405c0ff103f66782f84b478ea5bc7ba593839a1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/request-2.json",
+      "bytes": 147,
+      "sha256": "0b4436e848f2e6191f41050a8ef6e9ff678f9a04f8105011ced68cc025451cf6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/response-1.json",
+      "bytes": 4694,
+      "sha256": "c622b13fd1cce246b7766711617d4dd18a7cf905ed19e4f7e9fbe01ea2804b69",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/supervisor-result.json",
+      "bytes": 993,
+      "sha256": "720bf422fadd22933973728a12e9c82c22b969879774dd0392bca37730f2072e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/armed-1.json",
+      "bytes": 242,
+      "sha256": "9bdaaf2b703544198a2384dabaff03e090f89fd7a0567643881b580c1b0ff198",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/armed-2.json",
+      "bytes": 241,
+      "sha256": "37847aaa200b6df994937004819f569e63405302459611c52a239ff5f059f862",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/config.json",
+      "bytes": 303,
+      "sha256": "37f5abbe8d04c8b4960a28de20e994346cccb5cd7fab42b6c00579a6dd9a5cad",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/operations.jsonl",
+      "bytes": 268,
+      "sha256": "2f8f85156d5ab74ab9567138c7ba1da8094d9ce80e338f69af214811e92688f2",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/request-1.json",
+      "bytes": 148,
+      "sha256": "aa34917ab8a47e483633dba10390b8fe22c7f4f749bf3459aebfec96cd605d81",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/request-2.json",
+      "bytes": 147,
+      "sha256": "270de687a4636987d4bc42cc8fd6fbe31de4f145d28089f9ff441493327d178c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/response-1.json",
+      "bytes": 4694,
+      "sha256": "c5332268edcdea42a9a7871d79e70170ebd16e29999757df55958bcd25879b23",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/supervisor-result.json",
+      "bytes": 993,
+      "sha256": "ace90555d174cd781b7088e4db7e2a31df6a658ea8e6be5ac00cb4c06ff11134",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/block_recovery_read/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/armed-1.json",
+      "bytes": 242,
+      "sha256": "4b58e5e7f4e12f673cbdba48b610430197d42fe050dafd810e0092119d6f4dfc",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/armed-2.json",
+      "bytes": 241,
+      "sha256": "7d3d9c99d82518a081071de783ce3190f14fd56297fd9d4cacbf3258ffecf482",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/config.json",
+      "bytes": 302,
+      "sha256": "cabc219dc06c3b9210d4b8acb9f612adecf1499f71838db9ccfd9426c838e1f3",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "a8138717d5a51ec945d9fcae88bde0e9b968099109e6a99789abc870f68d3b6e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/request-1.json",
+      "bytes": 148,
+      "sha256": "2eb522a4fc562d47a94a6486b7689b3e5a63bccde5c6d4ac89d106c8677f09f6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/request-2.json",
+      "bytes": 147,
+      "sha256": "ef1ac1c719c694816dabe026f11e30d5dd8c6ed578028eb5864f08c002ba045c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/response-1.json",
+      "bytes": 4694,
+      "sha256": "46033ce21075445c0ebd1af94cc83c8c13cf8322f68c156731bc5320986f9968",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/supervisor-result.json",
+      "bytes": 994,
+      "sha256": "0942013f670488bcf3015f10919707c98ce6ae9187f65e159a30627759827418",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/controller_exited/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "2d8bdec77576791c19dfde2710ee1b1382a41be800fdd4a0c0b96ee45a37995a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "d4018a7a85dbcdc239e8013d093fa440cd20a12fb3666e8509551235bf2aae30",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/config.json",
+      "bytes": 301,
+      "sha256": "750113350d0ad6f5693a2d448983c06f68c8f7c18b399aa04b0fed1df6cff7d6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "00682e67c3576558b2ca14a4402832f702f1387e58ae9c21d771a2489df0ec1a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/request-1.json",
+      "bytes": 148,
+      "sha256": "e23ce4685a5ffa5279ffe825b1ca5c524dabe8c2a3d2439a799705da56a69a37",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/request-2.json",
+      "bytes": 147,
+      "sha256": "d6b9fc34966c57097e4adbd50bb7e2c3f66904cd67c8c12d50e6585b1a51c257",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/response-1.json",
+      "bytes": 4694,
+      "sha256": "edaa5b9a7cd925be06fc32d09fe736f1ab39162e81538e98253939c0e1390eda",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/supervisor-result.json",
+      "bytes": 970,
+      "sha256": "d9f03ae36eb872c04f2edc4a30352be313192d8a1cd3ab024a84f165f9545ac4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/exit_during_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "6f9d8bcc9cb3117dc05d3e8ed1d1822f8154cfff9e453c775cebe00ee1346073",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "c5ff005d0a3a84cb31ac3cc533a54a6693b24d56a0c6bdf1d426a09908c5088d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "b25716ce4159c7d9f9fff8f30807c06ef307cf6eb8b8ff283160bcbe865479bd",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/config.json",
+      "bytes": 290,
+      "sha256": "1dc23381d7f8a897b57d9cc2b42820c12ed45f3caacaa1206b2d12fe9897cd67",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "db8c58dbc4b161e5d5eac2cf40c8cb5c92d27e26b9b7dbc4f3ac1ef43dc40c1a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "7a673a13c43b4723058ac782ea624365d09e0fcf635a8044f69462f4e854d811",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "5146f8181180bd15a5854eebd5c8cd555197c2eca55bc90357f68cac4d37afd5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "2f8636ee42441abd86e6d57fb3e4b6460a6593d984ef90ef7e4144643b1aba8a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/response-1.json",
+      "bytes": 4694,
+      "sha256": "90c09816d21c700b69782c87dfab96a846ef58de970895619fba712a97ff027a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/response-2.json",
+      "bytes": 23874,
+      "sha256": "7a49015f7a60dd7b25b59e302f5f825d7b566de3aede988985a254a5e692ccdf",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/response-3.json",
+      "bytes": 296,
+      "sha256": "b9ff6948758a1262e9281f5e317b47be9711d9d5a96854e094ac702e5781242b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/supervisor-result.json",
+      "bytes": 1392,
+      "sha256": "86600c6ab886c837fa306618e43e6cd43a909b464160f3acf78c7c34c6133284",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/session_deadline/armed-1.json",
+      "bytes": 242,
+      "sha256": "cf1526a69cdc6affd359188e7549fa5c2a7988c07c8f3a9595fdcfa10481f2e4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/session_deadline/config.json",
+      "bytes": 290,
+      "sha256": "b9f2edef59c7bc17de2526e9fd11587415eaf457ac1a8193ca22eddb0a033203",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/session_deadline/operations.jsonl",
+      "bytes": 178,
+      "sha256": "b1ee42068f72df10fc0d9a5a4db07545a7f1be3a95076b695f98018541821b7e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/session_deadline/request-1.json",
+      "bytes": 148,
+      "sha256": "ade5f124c1e3fde8a1318604f744148efbea02a21b43dbd4d1bb67f7579277af",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/session_deadline/response-1.json",
+      "bytes": 4694,
+      "sha256": "aa410d0fc08af478a3a8a726408e18801560766ac092d1839331d33f30a45908",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/session_deadline/supervisor-result.json",
+      "bytes": 826,
+      "sha256": "326f0d7a234fdc75372f02626b5806af27510759f27604b8b28e46c81b3e079a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v4-20261114/session_deadline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_baseline/armed-1.json",
+      "bytes": 242,
+      "sha256": "458382d834a5bcdc720ae909722ab9a24af3699ef70b609760c5839369e98d3b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_baseline/config.json",
+      "bytes": 299,
+      "sha256": "411ed310abdde572a8aff829c46915b7e60914259abd107394c0f7a8ecb65980",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_baseline/operations.jsonl",
+      "bytes": 90,
+      "sha256": "4fdbb3191737f0b0cc60c0a9e90541150f623dca2ed76afbadbcb9c30eb44470",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_baseline/request-1.json",
+      "bytes": 148,
+      "sha256": "547bf99d5472215cf10bfe21022e7aeabbd61e7a3c0b269d986257db6f739636",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_baseline/supervisor-result.json",
+      "bytes": 780,
+      "sha256": "157eb249c832430b43eda9062e37014bd6fd34395e4f361c52339f843260b582",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_baseline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "bd90aa9bfd67be275cd50bd8fda1d32caed3bb401d3c0c6abbe2bbfa21704ebb",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "d4e213892816fdb2736d82b0c11c329dffdb9b7a48e3044d16a20668c46be111",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/config.json",
+      "bytes": 302,
+      "sha256": "4bdae19417efd336c57afd73bf1b7804410fd98e2c4e0fa7688e26a23b6340ed",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "4a956ff79b7347a3ee119b05f2fe1a66aeb78e6dd34d599451afe0c5914899c0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/request-1.json",
+      "bytes": 148,
+      "sha256": "0a6aacfe2fbf2e9337aef9acddfcc419d140d31b4ddd357a4bf10d5b26c880bb",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/request-2.json",
+      "bytes": 147,
+      "sha256": "0632ee5b63d1e3f320b4bc7eb0c96399fbe665e8eae15b45f2e677fd53ce80d8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "d2ca0845a104ccb297a1a8d41da232e6f11f7dcf7e05cf9bbd07a7d1b71f2a3f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/supervisor-result.json",
+      "bytes": 1073,
+      "sha256": "3ec4d17c4bdf09e2d5a0bf46cea5beb167269541cc20594871369e9aedabb9e0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/armed-1.json",
+      "bytes": 242,
+      "sha256": "161df936b86154e4e8ecdc7daed4e53512777105b986c7749ad2142f6bf5b8ca",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/armed-2.json",
+      "bytes": 241,
+      "sha256": "363317f6f7fb972171dab3c6fa7c11255940d10e631cdf70509282bf934fd4a3",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/config.json",
+      "bytes": 304,
+      "sha256": "e56d9bfb1c071ad28e4f5980499e854d60efea813af277724bff3ac4f3de9434",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/operations.jsonl",
+      "bytes": 268,
+      "sha256": "e9d0d207d53f01231b90e7f1a56f938f19f5a62510af81a3bdfc438eaf35f22d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/request-1.json",
+      "bytes": 148,
+      "sha256": "73ab3c6dc95d3fc6a99e62b37d5bea87ec188da6048b6b8a53e27ff4c943be4f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/request-2.json",
+      "bytes": 147,
+      "sha256": "c75e8fa95936b6b8aaa82e28fcdf83cbea9ceadd504470dcafc1487e9822f630",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/response-1.json",
+      "bytes": 4713,
+      "sha256": "428259cf6da8464100f22d5f493fc174cd3788b8223be7be5d6d84f88e78cb67",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/supervisor-result.json",
+      "bytes": 1073,
+      "sha256": "729541c72eef2b25b83fab281137fd905fedfa452415b135e9732882cff84099",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/block_recovery_read/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/armed-1.json",
+      "bytes": 242,
+      "sha256": "6d36a1b70888e890998ada65a820c5ab1cd8eaa335c70dc09dbff0a803d05811",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/armed-2.json",
+      "bytes": 241,
+      "sha256": "4ba3db64cc8def4f0a546e236fa7ec332635414220c96f80ada279fdc0a5897f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/config.json",
+      "bytes": 302,
+      "sha256": "14fe57a41714e2a9a0546b7b5313f39c8ba58ddee4b299b110ea6651cf2436d1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "8a5dd2ffe45efec772886a244d08f17aaa886404c519b6701764b8e699aee164",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/request-1.json",
+      "bytes": 148,
+      "sha256": "56374e26bdd2a4a961e05bc75b1bf515795a70cde8f6ea72289f1d5fbe04dd27",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/request-2.json",
+      "bytes": 147,
+      "sha256": "0dd10bb267414bae189aa1453d391a91c4e3c3d8d1ba20f6a0d4321c5cbfa124",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/response-1.json",
+      "bytes": 4713,
+      "sha256": "16f3608d4121d356881f5b63dd5347968462bfd23c45df1827f9007e3e5639d4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/supervisor-result.json",
+      "bytes": 1074,
+      "sha256": "2d68b531e1b169b13cb11866643d1ae1e76d4bb679289ab8aded18a5f3574957",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/controller_exited/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "fdebb06750b3c4db1a00c163c75046e790c4c455e40df894efb94fcf68f2f3ed",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "484d61fd4c8038e4e0f71b99663e45a5ff81d631277ca4a23dacc03f406406c1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/config.json",
+      "bytes": 302,
+      "sha256": "30de52393c6eada4282763ed8350b5f0af5164d87dc0150cc56f96650d344827",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "8967840033997be93ada7ba83b5c23f739e4498b7c95d6c4d5989b5e6c0f7161",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/request-1.json",
+      "bytes": 148,
+      "sha256": "ace8cfbf31e891871e0207ec80b9762ff4dfcf04e921d43661c4e599c5bb2127",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/request-2.json",
+      "bytes": 147,
+      "sha256": "41623862fc70f61d68db44ca9ab3f39d53942f39e64342bee5af752444b0763c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "423b9f60982678aca47d1db372c5a336f507854216b12e67db612f94416c7c02",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/supervisor-result.json",
+      "bytes": 1030,
+      "sha256": "f6bd22a4052fa8006932b46b0653f245e79f872c3c2f33ed250cf4d8bb316a03",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/exit_during_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "b662da6b2811554e79353ed2b8238089a07b04ff0002ff2981dd8cf0bcc3068d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "66028c7323100ad4c95f2b5e207e81a9ae2a7afb7b5915809c88dc9a35cb38cc",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "c58afa9ba30e5e157964fb35b492690cba17a8851d0ebd1fd076526401edc9a1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/config.json",
+      "bytes": 291,
+      "sha256": "5182ee75bc313bbf214c77c98caa70f4c1c1aef211d44abbf40ee81a77b29a32",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "59ba87d6125d69c33fb3af2033c2d4215a8b8e0b6d5936b3b5a5f04cf6d7a4f7",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "fa71198be772c9ada4b8976fd27a697b20a3ee5ef695b6a16cb6d3fa75089871",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "449617b3d0127d06a63eacf77c280919fc28883269e28798b57a249fafe0dcbc",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "f5b49f623dd3d7e4b1c4f5e049fa46076c694cd396e2921d4391ec1c213ac84d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/response-1.json",
+      "bytes": 4713,
+      "sha256": "dbbeb44afde0d9976752951f59fcfa8ca86cd566fc7d69638c22345739f13c9b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/response-2.json",
+      "bytes": 23893,
+      "sha256": "d933fef757fc8c495dd8f8fa7a10accbf0f62a9e9294e3d438c962da39b11b33",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/response-3.json",
+      "bytes": 315,
+      "sha256": "13a9b3d66a90f7028e967d7707dc5659cf0539eb344146a1287a08996194288d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/supervisor-result.json",
+      "bytes": 1473,
+      "sha256": "200adc625f7e6baa1bcef18d5c80783aab82d978e9cf1018ba89e2fb1a6ac337",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/session_deadline/armed-1.json",
+      "bytes": 242,
+      "sha256": "ca53a2221aee69535d7d7c797fecd07f380a0a00ce9afaf5d592d229f6e40b26",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/session_deadline/config.json",
+      "bytes": 290,
+      "sha256": "03654edaa636061b1028a7bd4812d929192c31c06231f5370b26a9f46c959ab9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/session_deadline/operations.jsonl",
+      "bytes": 178,
+      "sha256": "88712c6fe1b3234b3b5bb4cddb658ce5eee01fcd40d089632f001b67415da1be",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/session_deadline/request-1.json",
+      "bytes": 148,
+      "sha256": "a23563ba6f1651a2877c02ea4f3fab9529292b9ac6ca20dae24d84f0df358607",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/session_deadline/response-1.json",
+      "bytes": 4713,
+      "sha256": "2847257d5e4166a04530070a3ab95b0b4083f37fe1d8acd85156780e03b36a15",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/session_deadline/supervisor-result.json",
+      "bytes": 905,
+      "sha256": "263932a638063fd6bf337ba8aec884c7b7e05baf4647e53b8abb72778d6ecad5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v5-20261114/session_deadline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "821c544aa1a6ab5f5bcea202f5d7e94ace67d853ad0921fd474a2f6e6f6c9fd3",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "6104758a4fed4e97c085b6b2f9b5ff6842f52684254331ec081828eda01beb3e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "d0f97ed581ae6bb79e489762e8031f1c35a2c6f775a2f0c032939239385f73f9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/config.json",
+      "bytes": 1866,
+      "sha256": "38f002433074df5d0d3b7bfb44c968314368dcc3a32d411569deb5e0784757ca",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "8f8e6edfbc160583526341254687a98467389ca5f688a167b0cf17859ec2c572",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "55a4e2a63fe58d837dab6b35fbd05139deb68f6d7bb65b3eb608c6b847991ccc",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "ad1493d88b892a2e785a086b2aea8a75550b39d03d7a7cc72e41df164488e498",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "0eabe48a48d0e0b372d48db8fbca97bebac3b62de68f54153080640c28d6d2cb",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/response-1.json",
+      "bytes": 4713,
+      "sha256": "34d57cebbae2ebda6888c8e221ab9dbae3eaa5417c12542640766356a1f47cde",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/response-2.json",
+      "bytes": 23893,
+      "sha256": "5534b1ca894c467356ac04902c9c6ecb58cde032a588be86a9db75873cd72ec0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/response-3.json",
+      "bytes": 315,
+      "sha256": "7fa9e68e71d7c96db9d1e09d001ccc99ec9175bf13602d83c0fef5bd8fe74252",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/supervisor-result.json",
+      "bytes": 1492,
+      "sha256": "7e41ef7b5ca65eec85050a38d168f57f6415bd72c4de4b7b337989d5adacb4ae",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v6-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_baseline/armed-1.json",
+      "bytes": 242,
+      "sha256": "d9b4d8170ccd9cf86a1faf330ca70fd596ab7d6b0afeddc29571ab9259388b7d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_baseline/config.json",
+      "bytes": 1874,
+      "sha256": "8537548396ebc6cd79d62c5164db44cf0e3d5711443064d18d1e35df7cec22b6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_baseline/operations.jsonl",
+      "bytes": 90,
+      "sha256": "e32c321460846dc184fd973974940aa72bced139e8f91f694aee2e028bb2d01a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_baseline/request-1.json",
+      "bytes": 148,
+      "sha256": "cbd7f990d7149a725ac92e786693886025a87693cd03d23df95aef279fdef436",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_baseline/supervisor-result.json",
+      "bytes": 780,
+      "sha256": "926fb38377aa9f7bbdde3be5276320ec8d0e63014a3241abbb31749ad66e5626",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_baseline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "085f00711fee82277c8f4c42b7332de47b75ecd5b5fdcd182681590b828d9856",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "9c997ee7d09e38838e6ebb567548ad0d9ff1379f93237fadb7dffc9419356d55",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/config.json",
+      "bytes": 1877,
+      "sha256": "5e7d36b8865c8db19c3000eb0a300e0ec0f48738b4df89b9c18c13063160af66",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/operations.jsonl",
+      "bytes": 1168,
+      "sha256": "1f6a40a541d2456c4602273da36a826b8184a198c83478534af9450445cf3ef4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/request-1.json",
+      "bytes": 148,
+      "sha256": "be2d3847f9dfba6f430d04aeda01a23a0b9f130aece36c11a40df45c6fa7d7c4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/request-2.json",
+      "bytes": 147,
+      "sha256": "811f5869f343a5f428ec95757b882c2430a6349029295d5936a839356bd275fe",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/response-1.json",
+      "bytes": 4712,
+      "sha256": "75dd08e303fbd90bfc14d0a1feba4f10a614e015d45404ad5979191ef51cd515",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/supervisor-result.json",
+      "bytes": 1072,
+      "sha256": "62f7a3cc08cbfaec507adaa3d284f856a5a57ad2701e6bf57a48876e1c97e15c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/armed-1.json",
+      "bytes": 242,
+      "sha256": "f0f4f97be46876c0c826ea1e2f7d9f56383b71120b47ccaa09685fe01e99af15",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/armed-2.json",
+      "bytes": 241,
+      "sha256": "9849641065ef263aed2c413af44dee76e2bb8a46f29e5570601e3c7cde23842e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/config.json",
+      "bytes": 1879,
+      "sha256": "8907100bd0838d60f48cdc3f3205f1b1e353b06efc336e253bfc6ce8c1c454cc",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/operations.jsonl",
+      "bytes": 268,
+      "sha256": "6fcbbbafda2bca4457196a8d2cd0adbd5b0838713fd38b2a6e2e9ff21f9adee0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/request-1.json",
+      "bytes": 148,
+      "sha256": "5bfb8264f132beeb038bc6073179ba11ee7b7b7a25327e82607847739f87559f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/request-2.json",
+      "bytes": 147,
+      "sha256": "3a4b04d9e933ac4d6f4806613d1f2a6f79ce202f8125ccd919c2b539a9d078c9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/response-1.json",
+      "bytes": 4713,
+      "sha256": "d6eeaa3eaf63f4d3d6b2ddc9403d7708e8283d6d1e6d2e05b8620635f0461c11",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/supervisor-result.json",
+      "bytes": 1073,
+      "sha256": "a5336969f7e54785b526aaeedd6a33a5cfbe4d7cc1a4b812866f392b2b2902b9",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/block_recovery_read/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/armed-1.json",
+      "bytes": 242,
+      "sha256": "c1e23428eaf6a88e122289bf536b1ed890e604a896a5c18552abae8ce9381abd",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/armed-2.json",
+      "bytes": 241,
+      "sha256": "5f8004303ed79a2ece8e8971310c3b2df0ab9883876c2869c99c304347a45678",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/config.json",
+      "bytes": 1877,
+      "sha256": "a3341a5bcd30169353ad7d2882023ed43e1ff89c1198880e9fe57bc0f4dd1231",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "2cdee2a2f6ed83d98dfc2d3e146d74f9ba37d8891195d357cd0095343e4fa195",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/request-1.json",
+      "bytes": 148,
+      "sha256": "576d9653284659f616b676d25f389e6069feb3b5d72fd23e5ed4927d9501cc7a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/request-2.json",
+      "bytes": 147,
+      "sha256": "20f6b0a52f33463ed8c1ac81988a24753459811a53e29a65af08a52c1a88d186",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/response-1.json",
+      "bytes": 4713,
+      "sha256": "12ee583a684b3459749af83b78a7732a594aeed2058166c3e2b26e88b5f8411f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/supervisor-result.json",
+      "bytes": 1074,
+      "sha256": "815d2eac4930af1d204d345aa6306215eea5bd3551c9685f90ee713c9b51753a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/controller_exited/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "2151fe16297479360ed7e874d4209278cbf59ceb87bd2aaac31359c7ba4e75e8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "88ef587a8e5f3ffb9d688586f1732f6d70afb17ad4dd055ed1acfa55d1be99c1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/config.json",
+      "bytes": 1877,
+      "sha256": "46b7511d8490e5ff2f2e1a79972f7a1a867671fcfdce50977803473f4b7d28df",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "213556fe6a6615bcb4630a49e0a3090b0211b19dc62a91eafff6e54c7656f7a1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/request-1.json",
+      "bytes": 148,
+      "sha256": "bd0f4d092ec9a44d131c3d342b2ea3593b968515e6886a41c46d65c7aba98fab",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/request-2.json",
+      "bytes": 147,
+      "sha256": "70cf0ddc82d7f662e81891ddc2f8875a28ec93258cf8640c737d07b5ec3b4a74",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "105fe5d17d483ddb1dd635ee1bb738fe4713ee69377384e1cf72a57c96819b2e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/supervisor-result.json",
+      "bytes": 1051,
+      "sha256": "d5bce1b831e0cb4e6aa50d6bd9d746a859fb3af7dd94fe224d3182f69f0704d8",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/exit_during_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "751d9f37cf638fab955787b71250dd4393f9f9a1a52d105ff333eb8392113d6d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "f5b37fa0aa6dcca422582a2e1357e88e0fb3e21fa696cb491daba3e8d87abbee",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "b8dd216ecb608447cd2d46784dfc53dbaa7ef77871df27d59aaca86cab840bc0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/config.json",
+      "bytes": 1866,
+      "sha256": "64cd7d6413817360198335f54231e2092cd9f6c42d3e0b775db3d25a01ecd2e4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "b3781849638d07f63738356c9958b3c4c788f33d1f3a94772901721ea75e0263",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "e23a365a6d0ad5f1d616ce414dd62cc147156217057c10a7cd35deadd5689b52",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "61f7c971e8ed965ee36c3a93250c657889d7457656f5069bfced07b868ff1a2c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "a44a8e58133b462024e45a7fb26b04890839d8ce482f43178fb946e6441aa45f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/response-1.json",
+      "bytes": 4713,
+      "sha256": "3bb3f5ad16e9c52113b57f4328ac17493fc9429d0e903c4a0ee50596328620e3",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/response-2.json",
+      "bytes": 23893,
+      "sha256": "5918d856de55a10985db8c4a4ec97c238f55a5b66f0d8c106a0b7aab1bc482d4",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/response-3.json",
+      "bytes": 315,
+      "sha256": "de734a1497278396f22150842613b0dff1613ed6ac20c9b2bfd751043b085f5d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/supervisor-result.json",
+      "bytes": 1603,
+      "sha256": "935a50f93c52bbf3229528c8bb9310adfb62ee7f797af905b3e8ed6b1b92a1d0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/session_deadline/armed-1.json",
+      "bytes": 242,
+      "sha256": "5189459c31fa75d8eb88531198ee7d62808f9c7ce4d28e8d255f213045e567db",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/session_deadline/config.json",
+      "bytes": 1865,
+      "sha256": "9e74cb877e2918fcb36fce3b7e585047852f5fc530846f93aef300df6d39c45f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/session_deadline/operations.jsonl",
+      "bytes": 178,
+      "sha256": "6d90375e6ab1933a9d3684d111ec6be443ae3af681d040ff1a2c95afde8a5842",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/session_deadline/request-1.json",
+      "bytes": 148,
+      "sha256": "09bd36380998f2db3abf2cee7367097d9ee0ea7e4ac17a3d38cf564c33519ea2",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/session_deadline/response-1.json",
+      "bytes": 4713,
+      "sha256": "7526427cfdcdaca32d0cd33bfa39411959f594fbcf644764423e7c12e98c1b7d",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/session_deadline/supervisor-result.json",
+      "bytes": 905,
+      "sha256": "1e1eabefef88228d7d57e62303bc16b1499af2adcca3121aef028e74bbae9d8b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v7-20261114/session_deadline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/armed-1.json",
+      "bytes": 242,
+      "sha256": "c61176abc68dd37f22a586555a9d43ea89bf420c27b8eda4e430d5dc926b1028",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/armed-2.json",
+      "bytes": 241,
+      "sha256": "12de6904c596759106aa2ec3fc78a93d14a454ad3a733339cc3b8a14cd14570a",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/armed-3.json",
+      "bytes": 239,
+      "sha256": "0d385f19c766b6a1bb19969c50bce33b95ac23acb70fbcd8d45d51f3a9838b14",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/config.json",
+      "bytes": 291,
+      "sha256": "1969bae72775e520694f5c20db9f7fb95ed95890c71c91ee9651ca62a7542d72",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "46aea4111ff5f67481faf06b5dde803d37713c48b0771be3854ce0495643621b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/request-1.json",
+      "bytes": 148,
+      "sha256": "9a505af37bc9c81e9903e4c59a823930e7323c208f4b8d20895152dfb7921adc",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/request-2.json",
+      "bytes": 147,
+      "sha256": "e02008c83d21d10f330df324d09e9cf039f8246dcd554691b6771c12d0a94759",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/request-3.json",
+      "bytes": 145,
+      "sha256": "29e367d64a2ffa3187d8c4d8e8e565d717ac508cf311cb678afbc0f081bdaaed",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/response-1.json",
+      "bytes": 4694,
+      "sha256": "b02fd5aa384ff66ee13635e9e2d2b64df44a1e6a82f54ff9b7f0a1fd9955b9bc",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/response-2.json",
+      "bytes": 23874,
+      "sha256": "ec28c98e5c0ebcb740a4c0ef9bfab6dee6228595bcac116b567fa4d4f48bf9bb",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/response-3.json",
+      "bytes": 296,
+      "sha256": "7a499111ced70c4d52e83db208b474796df1c80da250b7a04e36aa41248752f7",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/supervisor-result.json",
+      "bytes": 1317,
+      "sha256": "4dac1f919fa2f7d4b0c6364f6eb8c5de02837676d897a7eb3f94e9caa2865c6e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-normal-v1-20261114/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/armed-1.json",
+      "bytes": 242,
+      "sha256": "b627f632c38aaec0caa096a709ecb7fd48f03f85ca849c6ecbbfc15cf673f139",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/armed-2.json",
+      "bytes": 239,
+      "sha256": "d08850a2c3e99b9d8ccca720210a2cba8417bde6371a816d63dc9285935c59a6",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/config.json",
+      "bytes": 300,
+      "sha256": "3e34b5697ba1bdd1babb31560df5f77ee7bfc1ad68f3301dd0824ad4b6c9d1e1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/observer-report.json",
+      "bytes": 1662,
+      "sha256": "49410d1ca7664469cddca4222db836a69c6ca8480923fcf4743f5f9be25ae23c",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/operations.jsonl",
+      "bytes": 106,
+      "sha256": "6a0467c4ef2e138af7f78962745e2bfc613dda2f300046b4ab9a0a67a8fa55a1",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/request-1.json",
+      "bytes": 148,
+      "sha256": "573d5ab2157a850aad7c72db4beedbb755250a9349ccbeac5158b176c959474f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/request-2.json",
+      "bytes": 145,
+      "sha256": "8caf8c4a18cdbbc57252641dc0ca5984940efd8e39580063804df006f4bf104f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/response-1.json",
+      "bytes": 352,
+      "sha256": "e694ecfb0d1a675a152ef1e68a2a2eef44b19600c57ed9d063344b2cff2c9de0",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/response-2.json",
+      "bytes": 325,
+      "sha256": "10f803d8f3d946abd22716c8160fbc378608137efc54b995d474baf13d287ceb",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/supervisor-result.json",
+      "bytes": 1195,
+      "sha256": "f8af4ba89985517c88c61c9f34bb33f263271def273c7d74779ad449a4d7aec3",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v1-20261114/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/armed-1.json",
+      "bytes": 242,
+      "sha256": "bf0588c710a3aae5f7a2a90e2a7a061bfc6aff5c8dfe846e4e794de76615f26b",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/armed-2.json",
+      "bytes": 242,
+      "sha256": "a34744bbe7260ad8ccd4c3cb7b2b449f560915481c46872e6c522e54e6728be5",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/armed-3.json",
+      "bytes": 239,
+      "sha256": "a4062d2d8330cb54dc483bd061f26648c52af56f15a08de528d506465f07e530",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/config.json",
+      "bytes": 300,
+      "sha256": "c2c9b5178d5949ee7141cfff4376b0d3304b8dbe5f6fbcd71fe1b3172c86e886",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/observer-report.json",
+      "bytes": 14091,
+      "sha256": "55d0449b7b31afbf9cb3b392aa956eaf19fbd0b2aad6e04222c16acf11e1fc55",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/operations.jsonl",
+      "bytes": 420,
+      "sha256": "9fd54fc6723ea2c0f9efe254d09767bf66d0326d1d3935510a522b5cdb465f47",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/request-1.json",
+      "bytes": 148,
+      "sha256": "5eabf58d366cc38d1b34fa2ac565203d31d45fb7000a0a44dc4929db8eeaad4f",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/request-2.json",
+      "bytes": 148,
+      "sha256": "8fd3c6dc0ce5e816b28d3f6f7871960e32db9b6e1e6f6f325874b411eb14513e",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/request-3.json",
+      "bytes": 145,
+      "sha256": "ff9bc3cd4f37fbb0f0b6c04fdebf2381e46ca58a5eec201a4ab51057a2b6d281",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/response-1.json",
+      "bytes": 6239,
+      "sha256": "1a4be2ffe86f818b3399907f552417359856463f35e24efad6026efc44d5e480",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/response-2.json",
+      "bytes": 6239,
+      "sha256": "2f1f4aa8e8c96b2826d348e3f367a1ae23073afd42fe35f7c1d41d4232ca6436",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/response-3.json",
+      "bytes": 325,
+      "sha256": "71cb56caac556548aae2cdbe7e7e92f5e97f955382171cdb6a2ea08fda0cb977",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/supervisor-result.json",
+      "bytes": 1487,
+      "sha256": "630c978ff0337f1eda2bc72d984a74e1ebd07e61d16d3c80ba08299b3f9f5695",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v2-host-20261114/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "replaced current-unit recovery draft; final v8 watchdog and v3-host readonly sources retained",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v1-20261114.json",
+      "bytes": 20769,
+      "sha256": "87700eb95f416d54d0dfb2b2189c09be434f4685769d6620efecba8c0dc18090",
+      "reason": "superseded current-unit small report; never a previous committed acceptance",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v2-20261114.json",
+      "bytes": 21019,
+      "sha256": "4c2d77f0a5a405fbb6b660a6a83fb62a01846800f9e56554a7bf45bacca71638",
+      "reason": "superseded current-unit small report; never a previous committed acceptance",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v3-20261114.json",
+      "bytes": 21180,
+      "sha256": "b32a5c2d04d2345cdf99a724a0072c08e4a39550c012b60bd962f756147d3b70",
+      "reason": "superseded current-unit small report; never a previous committed acceptance",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v4-20261114.json",
+      "bytes": 21578,
+      "sha256": "664fc0253b2ce774b2a35a632aacaaae37bd45894fe03897ad04cc78f8ecec74",
+      "reason": "superseded current-unit small report; never a previous committed acceptance",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v5-20261114.json",
+      "bytes": 21734,
+      "sha256": "6c0ab2ca11941f0955fdd427206877936a429e6ca0f5337217167df6cf55fa4f",
+      "reason": "superseded current-unit small report; never a previous committed acceptance",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-observer-preflight-v1-20261114.json",
+      "bytes": 4339,
+      "sha256": "210b51bf02643874b81750d1eaba9fd02b8261f878e32e49d36674fe4ccd6f82",
+      "reason": "superseded current-unit small report; never a previous committed acceptance",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-texture-recovery-independent-review-v1-20261114.json",
+      "bytes": 11307,
+      "sha256": "3233f7e7d2d999538fc477346d304e66ac7d014361a140b85a806607f44057a9",
+      "reason": "superseded current-unit small report; never a previous committed acceptance",
+      "replacement": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/owner.obj",
+      "bytes": 1773875,
+      "sha256": "4fa3c0f6e59a90c0275ef2913c4aff031f7506c05f1f2334094d9d526d6a4bfd",
+      "reason": "rebuildable intermediate; exact generated C++/EXE/recipe/log retained",
+      "replacement": ".venv-audit/terminal-texture-owner-build-v1-20261114/static-report.json",
+      "status": "retired"
+    }
+  ],
+  "backup_bytes": 0,
+  "cleanup_completed": true,
+  "retirement_scope": "Only enumerated new artifacts from this unit. Prior committed success/acceptance, game assets, original saves and user skill directories remain unchanged. Superseded report hashes are historical identities, not available sources after retirement.",
+  "resolved_drafts": [
+    {
+      "case": "watchdog probe v1",
+      "finding": "Probe omitted scenario argument; apparent missing timeout report was a normal read, not a supervisor hang",
+      "resolution": "Pass exact scenario; preserve refused conclusion, no desktop call"
+    },
+    {
+      "case": "watchdog return/constructor review",
+      "finding": "Unexpected worker exit could yield supervisor exit0; constructor failure cleanup receipt could be lost",
+      "resolution": "Require close acknowledgement, natural root exit0, empty Job, closed handles and no force/error; preserve constructor receipt"
+    },
+    {
+      "case": "close response race",
+      "finding": "Worker could close between arm and next loop before acknowledgement was consumed",
+      "resolution": "Reuse exact response authentication on signalled worker exit"
+    },
+    {
+      "case": "watchdog v4 validator",
+      "finding": "Already retained child wait0 entries do not necessarily contain an exit-code field",
+      "resolution": "Require actual recorded root37 with get; authenticate/reuse completed cases without inventing child exit codes"
+    },
+    {
+      "case": "readonly inherited repair",
+      "finding": "Fixed wire could not reach it, but original readonly class inherited a legacy repair writer",
+      "resolution": "Retain original class, add v2 hard rejection and three offline gate checks"
+    },
+    {
+      "case": "watchdog v6 natural exit accounting",
+      "finding": "Root wait0/code0 and close ack observed while signalled child was momentarily still listed; frozen finish labelled containment forced",
+      "resolution": "Bounded natural Job drain only after legitimate close/root0; retain controller/cancel/deadline guards and reject late drain; never rewrite old forced result"
+    },
+    {
+      "case": "texture build metadata",
+      "finding": "Strict compile and PE checks passed; report identity helper rejected compiler paths outside repository",
+      "resolution": "Use existing external-path identity helper; seal same generated code/executable without recompiling"
+    },
+    {
+      "case": "readonly sandbox context",
+      "finding": "Known unsuitable isolated desktop context was used once and rejected foreground HWND0",
+      "resolution": "No game/desktop mutation; subsequent probes use the established host execution channel. Not classified as D3D failure."
+    },
+    {
+      "case": "readonly validator closure",
+      "finding": "Embedded supervisor and independent receipt equality/close ancestry not initially checked by reusable validator",
+      "resolution": "Offline validate-only recheck against same actual source; no additional desktop run"
+    }
+  ],
+  "validation": {
+    "final_watchdog_cases": 7,
+    "final_host_readonly_commands": 2,
+    "original_texture_full_models": 1,
+    "original_texture_full_model_seconds": 60.656,
+    "local_regressions": 41,
+    "independent_component_review": true,
+    "strict_OpenSpec": true,
+    "prior_native_source_pins_exact": 288,
+    "independent_complete_replay": false
+  },
+  "limits": {
+    "offline_minutes": 60,
+    "persistent_change_target_bytes": 268435456
+  },
+  "remaining": [
+    "Native recovery writes need authentic current release/mutation provenance.",
+    "D3D adapter/display mapping and original asset cwd must be bound before an interactive GAME test.",
+    "Real GAME publication/wait/result consumption and full original acceptance remain incomplete."
+  ],
+  "retired_bytes": 2412833,
+  "retired_file_count": 390,
+  "cleanup_utc": "2026-11-13T19:14:35.140879+00:00",
+  "retained_evidence": [
+    {
+      "path": ".venv-audit/terminal-texture-model-v1-20261114.json.gz",
+      "bytes": 467182,
+      "sha256": "f02840d2fe0275b21c29fc4b16e79e4afc5bccbf53762b2faaae72cfd4142d52"
+    },
+    {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/build.cmd",
+      "bytes": 758,
+      "sha256": "6ac4f7733ee0e48e6c73f299f6978f60431b4b412cbb668491ade738d4e6abc9"
+    },
+    {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/build.log",
+      "bytes": 28,
+      "sha256": "826d448e9c54377eca13b97696f8095bddd65385f99a7dea4acf6a982f7bd570"
+    },
+    {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/static-report.json",
+      "bytes": 9444,
+      "sha256": "03788602914170e07b2d21d46065bb09de23cce4dcfac58e3196c2654d0c5a40"
+    },
+    {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/terminal-texture-owner.cpp",
+      "bytes": 161471,
+      "sha256": "3e38f5b02408bb19704d1880f5616231e54f03d1682ff1707819f4ce64e83e5d"
+    },
+    {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/terminal-texture-owner.exe",
+      "bytes": 375808,
+      "sha256": "e5751c0b8a8970c86985b51ca36c6a2f0b31c20f0d0622b8511b20b9dbdacf9b"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_baseline/armed-1.json",
+      "bytes": 242,
+      "sha256": "d2262722f0477b1fc9504d1086d056509a788be351838b701d89bb353f7200db"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_baseline/config.json",
+      "bytes": 1874,
+      "sha256": "5054a07ada91b2b64520f68e45ea5c05311b190eecfbcc2fcd18855c7ad38d11"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_baseline/operations.jsonl",
+      "bytes": 90,
+      "sha256": "a992d225f1e4da02f644c492ef15b97b26d57009da51bb8c376c4ddc7fa3c003"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_baseline/request-1.json",
+      "bytes": 148,
+      "sha256": "2d444770cd194ac7a7d8c416a28721d48f8c4d55aebde4e844818c1dde5112a4"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_baseline/supervisor-result.json",
+      "bytes": 781,
+      "sha256": "6653a2163e3922ff96dbcc137166017aee44d6fe163ef809bc0b9799d9028d1b"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_baseline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "b5c0b7dd050d6ebf69907dc1f6f9ed8dcb15eaaa93352740c6f1934d9e24c3d3"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "d5511eb61bb821431476673238981a888b8198947e6c830c76e600c7336867e0"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/config.json",
+      "bytes": 1877,
+      "sha256": "1cf1ddc56434a2dab0262db5c499ee46fedf3d5f50c9b198abb70c4379203c13"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "a3c2c9c4047dd9f3365a3c966e1145a981ca8236efa1a53a85e3f86898c66bcf"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/request-1.json",
+      "bytes": 148,
+      "sha256": "ed253def5bade4e596a33a548313356c75ad63fd92ced230dc6c8f8a7a6e183f"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/request-2.json",
+      "bytes": 147,
+      "sha256": "c4fcfa95a1db8b825646aa56d883b44febe0bbca73c2ca302725d553b8e1cded"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "95731d5fa4b995390771954d4fe481dce4769abe28fbc4bf849bc42416ee72d8"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/supervisor-result.json",
+      "bytes": 1073,
+      "sha256": "822fa77e9e9b6ae2cccaf495108d177543761dc6ceda1cb6bd6bbeb1162019bf"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/armed-1.json",
+      "bytes": 242,
+      "sha256": "aa3e27e32755d79964d224d0156e8db333260ea0d2c19b978d1b2642b042f10b"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/armed-2.json",
+      "bytes": 241,
+      "sha256": "c035343fbd1d1ed2d530ed252490f5e76b6088682a9269e243584af2a9dd2078"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/config.json",
+      "bytes": 1879,
+      "sha256": "279ecfe27bc5f3c3bdc48d7c40e8203e7e9e488471acc9ab0dc6ac5827018e78"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/operations.jsonl",
+      "bytes": 265,
+      "sha256": "11fc4149959a535c7713f380fafc062702d16e4676a77baf593dea9b5e02517f"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/request-1.json",
+      "bytes": 148,
+      "sha256": "245b5f49f203349df6e0c2781771952cd99c5eb48d6bcff926be21db3ee8c23f"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/request-2.json",
+      "bytes": 147,
+      "sha256": "157ed14a6e5d516dd5ab1c40d13af85c6ea10dc12b8eb69e4e1140e0872e1ec0"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/response-1.json",
+      "bytes": 4712,
+      "sha256": "04a37c1cbf5a7924c073e699c7f5a38797613534004c83edb55a184264e86f48"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/supervisor-result.json",
+      "bytes": 1072,
+      "sha256": "51ba05e06e412f894b6dba86ac41fe1a44ab4472f8c734311f47579e4c677f9a"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/block_recovery_read/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/armed-1.json",
+      "bytes": 242,
+      "sha256": "abc098932d452b04e07a3d7cc0bd93a7ede48d7ef5326e37016469dabb037f04"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/armed-2.json",
+      "bytes": 241,
+      "sha256": "1ade47c387af29570d23e356e7bc47870ec00ceee0fa8bd28e0b2ab786ef8dc4"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/config.json",
+      "bytes": 1877,
+      "sha256": "a3dd603c8ce53a22ad985f4be6b5358b4cec857441720ea9017229d7430e60fd"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "f5559d67cce89f736f59c90e582fbff7d74ef314be0e5efbbb9655a94dada6fc"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/request-1.json",
+      "bytes": 148,
+      "sha256": "f40558d1a914c042646cfdab0893f2bc4eb8fc6da39bb7e7a690dd58dcb4556f"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/request-2.json",
+      "bytes": 147,
+      "sha256": "08fbc450ee7cea53b740ce4af542b67f207cd25d2c2d4012e62875318a3abef6"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/response-1.json",
+      "bytes": 4713,
+      "sha256": "68ad7c8b59520c0794187a7721e46542753ce3b79b801dc25430b6c57dd6a198"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/supervisor-result.json",
+      "bytes": 1074,
+      "sha256": "e9313199b23415914ebaf4c528c3df6846f282d86e08feca60ec66e1a9f50f53"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/controller_exited/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "710fb26d1672aa16ed8d3217f85ae10234db54b4a160b9a5c91533bca0caf067"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "4bacc65b5682fbef1fb7de225a394338c991b84c63d3163ff5211643d2510aba"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/config.json",
+      "bytes": 1877,
+      "sha256": "f161997bac55c84ae8d295eab2ebfb9b2f277d075a5a80409614e3900b6158db"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "ea302e2e430e0b43502c966aa23c76f6a111ac01b9b36e915a47ecfeeb2717ca"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/request-1.json",
+      "bytes": 148,
+      "sha256": "32971434d675a3952693ca3e46b49a10edb7a1b7c8b7c4eeffe862e895136e00"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/request-2.json",
+      "bytes": 147,
+      "sha256": "b411e4e55dec0dfe351bce9733cb418efba3cd0ff8881f74e9db7c2c9bd39ca2"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "bb4877e459d8bcc34db04c65de281f966219dd4f4dcc57948635fd1b206f7cee"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/supervisor-result.json",
+      "bytes": 1051,
+      "sha256": "ddf16e29bf9b93b10cf5bc8201c5db0754a712aa7a47e8606d8cfc3dfb3e3397"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/exit_during_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "d619342649a8ea2313378caf4bb773322843895d08cece82c9afdb971002269a"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "be76e0a46cc465d37e5ec29232381d874b828bdc5576fe380c0701deb6c9a1b2"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "bf460a4e6b34f9e64f4c517b71973a99ccf675c279adc787ad01bcb5100fb8a6"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/config.json",
+      "bytes": 1866,
+      "sha256": "722c4427ec0bd9391618c68c9b91cc9115c56442d3052de312a010a48c2c5387"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/operations.jsonl",
+      "bytes": 1777,
+      "sha256": "3f8f3a8edd785ad1fa27251a4041103963c210034b8ad8a65b5dc3b994b7e7fb"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/request-1.json",
+      "bytes": 148,
+      "sha256": "e1d4258acae2f9212e2088e4761688ba0b4b36e6af68c14ae9837c9d5360ec61"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/request-2.json",
+      "bytes": 147,
+      "sha256": "e19a38637b0a2498b220f93aca955fb9da08282e887e801b9eae94c76d1c8907"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/request-3.json",
+      "bytes": 145,
+      "sha256": "07ead788dbb2ff53df4d9fca9ccb69c66d8c07690521c952a52da58c7bbafb35"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/response-1.json",
+      "bytes": 4711,
+      "sha256": "9e3c7b1e146d70ba189a536a3ec37f2b74ffa89320831730b76f599b14b199c0"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/response-2.json",
+      "bytes": 23891,
+      "sha256": "f5255a77c80506e5c7c482bb94030d22599ee214a6a06151b77318ac95544cec"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/response-3.json",
+      "bytes": 313,
+      "sha256": "8bb6aeb0b08c7051537ee73129a6439763a923b62e624fa4fbeb31683c49469b"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/supervisor-result.json",
+      "bytes": 1641,
+      "sha256": "666ec946dc1f9728172d7014592bd6580d1f11f680fcf02e3a7fb32970773259"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/session_deadline/armed-1.json",
+      "bytes": 242,
+      "sha256": "d54ec64187b83d022545208a28840747e2cb64e807f8746807c1fa8b3234d8a3"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/session_deadline/config.json",
+      "bytes": 1865,
+      "sha256": "48ce3c4c7e68b0bee530b8dd4778c907c552f95ee66a17a257660ddfa19cbbf5"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/session_deadline/operations.jsonl",
+      "bytes": 178,
+      "sha256": "4d70fe8692a8e66d8f2265d9960bf1b627a423ef11cb5285f24a8296bb2cb040"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/session_deadline/request-1.json",
+      "bytes": 148,
+      "sha256": "d7befad9896584c91adc010b3618e107660ac94a980a4a2fa572642d9351c7b6"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/session_deadline/response-1.json",
+      "bytes": 4713,
+      "sha256": "1460ef593aea3e3dd38166199b35547574e2ec963c41ea8d5af1f51d8b8bdf65"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/session_deadline/supervisor-result.json",
+      "bytes": 905,
+      "sha256": "743dc70543867d58dd44f1e90a25819220df2eb52545832c8a894157196c0032"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-watchdog-v8-20261114/session_deadline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/armed-1.json",
+      "bytes": 242,
+      "sha256": "4bf3cbd1b263fee5ebcb18c7781a883446db8df6a30fbf2a9dc1f04f38234ffd"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/armed-2.json",
+      "bytes": 242,
+      "sha256": "885881372678f6e8016ec7a0644b696734b169cd5d452a780628ce149a243e68"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/armed-3.json",
+      "bytes": 239,
+      "sha256": "6f56a5e54adee721e9b0d2b981c8c5aa570fcf1dd80ab57a1140932fc221d42e"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/config.json",
+      "bytes": 1875,
+      "sha256": "e261ad73f99cc04946421c98f2d14a1ae58b0176b87aaf3a1b3d76c87447a4bf"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/observer-report.json",
+      "bytes": 14262,
+      "sha256": "1a62b1c0930317d19ec10bfaf77515e3451d8a8e6de4e9851a5914755c98d152"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/operations.jsonl",
+      "bytes": 420,
+      "sha256": "5d0afe6774ced72c215f9ce960f9070bb1a9cc61bf8519ba2e4a27bed038eb68"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/request-1.json",
+      "bytes": 148,
+      "sha256": "3c5b719f237e19179a6a5ea95f3ac72126f660468aad49270eff21ac8e15b4ad"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/request-2.json",
+      "bytes": 148,
+      "sha256": "b683c2267fe2fda80013677a7c6cbb4dee0e0559134ab32766508691009339eb"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/request-3.json",
+      "bytes": 145,
+      "sha256": "2760c4dcdd02bca067a193055fbf3a56c8dafa15d6137b3964ff4e91135ce554"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/response-1.json",
+      "bytes": 6239,
+      "sha256": "5f6acf7e93380c75f0a1b9f1c7e884e453ee8a48c265f920dcee599cb7ed65da"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/response-2.json",
+      "bytes": 6239,
+      "sha256": "6b234e838e04ba2feee32c31c52df6d581a0adb1f0cedb7f67fac657649dd473"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/response-3.json",
+      "bytes": 325,
+      "sha256": "9ba6e8d296b913d70b7754ee84a80648f1276a578384e83ea5b7995e2c65b2ff"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/supervisor-result.json",
+      "bytes": 1658,
+      "sha256": "f5e30271f89d25770e5c706dd5cb019c23bf1e6e8b4b78099a4a0ed6581eefa9"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/terminal-texture-recovery-preflight-v1-20261114.json",
+      "bytes": 4738,
+      "sha256": "b7fdef83c5bfe668bd92455878ca55a012c29e273ca9272e7c674aa00ae2c7cd"
+    },
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v6-20261114.json",
+      "bytes": 21771,
+      "sha256": "9273933050b15b7e7660ab3ce76579cdc3d748eea97bd137340bcd1b2b5c352b"
+    },
+    {
+      "path": "analysis/terminal-recovery-observer-preflight-v2-20261114.json",
+      "bytes": 4339,
+      "sha256": "e98169916386ddea963faea1877ed86c8967fc169f20dc8f0a68a4df3868ce6d"
+    },
+    {
+      "path": "analysis/terminal-texture-recovery-independent-review-v2-20261114.json",
+      "bytes": 17721,
+      "sha256": "651c8484694161a8c8484929f3f84352d5ea5ace1912451f0491c8278e862347"
+    }
+  ],
+  "capacity_accounting": {
+    "scope": "All new retained generated artifacts and reports for this unit, including this manifest; no backups. Source code and documentation counted separately as staged Git blobs. No complete prior history copied.",
+    "retained_excluding_this_manifest_bytes": 1179540,
+    "backup_bytes": 0,
+    "retired_bytes": 2412833,
+    "all_new_before_cleanup_bytes": 3787842,
+    "retained_including_this_manifest_bytes": 1375009
+  },
+  "git_payload": {
+    "definition": "Sum of complete staged blob byte lengths, not compressed pack size or line delta. Includes this manifest.",
+    "staged_paths": 22,
+    "bytes": 472126,
+    "max_blob_bytes": 195469,
+    "exceeds_50_MiB": false,
+    "exceeds_100_MiB": false,
+    "byte_identity": "All 21 other staged files match working bytes; .gitattributes has intentional Git LF normalization."
+  },
+  "offline_preparation": {
+    "start_utc": "2026-11-13T18:32:04+00:00",
+    "validation_and_cleanup_end_utc": "2026-11-13T19:15:14.270504+00:00",
+    "budget_seconds": 3600,
+    "budget_met": true
+  }
+}

@@ -1,0 +1,409 @@
+{
+  "schema": "terminal-texture-recovery-independent-review-v2",
+  "scope": "Read-only source, build identity and recorded evidence inspection; no independent complete instruction replay.",
+  "accepted_for_component_preparation": true,
+  "formal_acceptance": false,
+  "formal_progress": "2/8 unchanged",
+  "independence": "Reviewer authored texture extension and its local tests; parent independently reviewed that C++/projection. This review independently inspects parent wrapper, produced model/build records and recovery process implementation/evidence. It does not claim independent authorship review of its own texture implementation.",
+  "evidence": [
+    {
+      "path": ".venv-audit/terminal-texture-model-v1-20261114.json.gz",
+      "bytes": 467182,
+      "sha256": "f02840d2fe0275b21c29fc4b16e79e4afc5bccbf53762b2faaae72cfd4142d52"
+    },
+    {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/static-report.json",
+      "bytes": 9444,
+      "sha256": "03788602914170e07b2d21d46065bb09de23cce4dcfac58e3196c2654d0c5a40"
+    },
+    {
+      "path": "devtools/prove_terminal_texture.py",
+      "bytes": 7315,
+      "sha256": "777684317f9d9eb7257c148007d98504fbfdd99c8c84c0ce3cf61b2dde986641"
+    },
+    {
+      "path": "devtools/terminal_texture_native.py",
+      "bytes": 3294,
+      "sha256": "96439bf36446a0d61bd197cd7958dca6014398a45130b67b7134accf031e2cde"
+    },
+    {
+      "path": "devtools/terminal_texture_native.inc",
+      "bytes": 5170,
+      "sha256": "e56d91be68516be5084757c71ed500c2d9adfec64aa7d136e389fcc5160499b6"
+    },
+    {
+      "path": "devtools/terminal_texture_platform.py",
+      "bytes": 7738,
+      "sha256": "e7bd7f97209d9d61a1af4bf482bc94e58c678f0e8ead90b2e21e9243218fac21"
+    },
+    {
+      "path": "devtools/terminal_texture_model.py",
+      "bytes": 3345,
+      "sha256": "5a38942b0e2b034f182ebd0d7723f7f95b898c7d1a5154f387567217fc2681ea"
+    },
+    {
+      "path": "devtools/tests/test_terminal_texture_platform.py",
+      "bytes": 3244,
+      "sha256": "03bda22537e59703466b1a3a5dbcf93191d07f82cdbaadaf75f6b675411ca7a6"
+    },
+    {
+      "path": "devtools/terminal_graphics_recovery.py",
+      "bytes": 19632,
+      "sha256": "4b8dab2856786b972d617aa54e7f745b594c6200123b06decfd05a8db27ad35c"
+    },
+    {
+      "path": "devtools/prove_terminal_graphics_recovery.py",
+      "bytes": 10121,
+      "sha256": "80745807a106da768d9fdc52a816c3de4f0ca6c65d184eee4d643a5454681cde"
+    },
+    {
+      "path": "devtools/terminal_graphics_desktop.py",
+      "bytes": 21401,
+      "sha256": "7841707ae1ef31a84abeb7a60003dae180a90e2ded7134cebcef675487fb1407"
+    },
+    {
+      "path": "devtools/terminal_oplock.py",
+      "bytes": 7991,
+      "sha256": "b7b834d038522993deccb3a8684c7a7361f208aa32f2e6de4323b38456d66ada"
+    },
+    {
+      "path": "devtools/terminal_oplock_probe_v2.py",
+      "bytes": 19525,
+      "sha256": "e84369233125cfbad3ba0d3dc8a380eb9ddc1168d0a4d726c72423e9db1794c9"
+    },
+    {
+      "path": "analysis/terminal-recovery-watchdog-preflight-v6-20261114.json",
+      "bytes": 21771,
+      "sha256": "9273933050b15b7e7660ab3ce76579cdc3d748eea97bd137340bcd1b2b5c352b"
+    },
+    {
+      "path": "analysis/terminal-recovery-observer-preflight-v2-20261114.json",
+      "bytes": 4339,
+      "sha256": "e98169916386ddea963faea1877ed86c8967fc169f20dc8f0a68a4df3868ce6d"
+    },
+    {
+      "path": "devtools/prove_terminal_graphics_observer.py",
+      "bytes": 5664,
+      "sha256": "3cb85bc632e4159a196ae6c1b838884695632a269df2304a4afb28a381cf38e1"
+    },
+    {
+      "path": "devtools/terminal_graphics_recovery_observer.py",
+      "bytes": 1153,
+      "sha256": "77932d3f3ff767e7fc9fa6943b69a6af731e28698bf642ee99671543d992d03d"
+    },
+    {
+      "path": "devtools/terminal_graphics_recovery_observer_v2.py",
+      "bytes": 342,
+      "sha256": "6a97ba581ae65efa15f6a05d66d649cc663de2fef2be4790fdb742bddb86ae22"
+    }
+  ],
+  "recovery": {
+    "real_kernel_process_tests": true,
+    "desktop_values": "The seven fault/normal watchdog cases use ModelBackend. A separately authenticated latest host source additionally contains two genuine readonly metadata observations; no native restoration writes.",
+    "all67_source_and_evidence_pins_verified": true,
+    "private_request_arm_response_token_digest_sequence_and_time_verified": true,
+    "cases": [
+      {
+        "case": "normal_persistent_observer",
+        "observed_reason": "worker_exited",
+        "normal_close": true,
+        "forced": false,
+        "launch_exit": {
+          "wait": 0,
+          "code": 0
+        },
+        "elapsed_seconds": 0.859,
+        "job_empty": true,
+        "handles_closed": true,
+        "reused_completed_case": false
+      },
+      {
+        "case": "block_baseline",
+        "observed_reason": "command_deadline",
+        "normal_close": false,
+        "forced": true,
+        "launch_exit": {
+          "wait": 0,
+          "code": 94
+        },
+        "elapsed_seconds": 0.875,
+        "job_empty": true,
+        "handles_closed": true,
+        "reused_completed_case": false
+      },
+      {
+        "case": "block_recovery_read",
+        "observed_reason": "command_deadline",
+        "normal_close": false,
+        "forced": true,
+        "launch_exit": {
+          "wait": 0,
+          "code": 94
+        },
+        "elapsed_seconds": 1.265,
+        "job_empty": true,
+        "handles_closed": true,
+        "reused_completed_case": false
+      },
+      {
+        "case": "block_gamma_write",
+        "observed_reason": "command_deadline",
+        "normal_close": false,
+        "forced": true,
+        "launch_exit": {
+          "wait": 0,
+          "code": 94
+        },
+        "elapsed_seconds": 1.218,
+        "job_empty": true,
+        "handles_closed": true,
+        "reused_completed_case": false
+      },
+      {
+        "case": "exit_during_write",
+        "observed_reason": "worker_exited",
+        "normal_close": false,
+        "forced": true,
+        "launch_exit": {
+          "wait": 0,
+          "code": 37
+        },
+        "elapsed_seconds": 0.281,
+        "job_empty": true,
+        "handles_closed": true,
+        "reused_completed_case": false
+      },
+      {
+        "case": "session_deadline",
+        "observed_reason": "session_deadline",
+        "normal_close": false,
+        "forced": true,
+        "launch_exit": {
+          "wait": 0,
+          "code": 94
+        },
+        "elapsed_seconds": 1.0,
+        "job_empty": true,
+        "handles_closed": true,
+        "reused_completed_case": false
+      },
+      {
+        "case": "controller_exited",
+        "observed_reason": "controller_exited",
+        "normal_close": false,
+        "forced": true,
+        "launch_exit": {
+          "wait": 0,
+          "code": 94
+        },
+        "elapsed_seconds": 0.297,
+        "job_empty": true,
+        "handles_closed": true,
+        "reused_completed_case": false
+      }
+    ],
+    "persistent_observer": "Normal baseline and recover responses name one worker PID. Supervisor retains the exact controller creation-time handle; launched venv process and descendants are in the kill-on-close Job before ResumeThread.",
+    "normal_completion": "Authenticated timely close ACK, retained launch exit0, accepted bounded Job drain within the existing close/session deadline, empty Job, handles closed, no forced termination/errors and controller handle closed.",
+    "failure_completion": "Command/session timeout, parent death and exit37 remain failure; journals retain last begun read/write; process containment is never reported as desktop restoration.",
+    "deadline": "External command arm bounds5s baseline/close,20s recovery,<=120s total; observed blocked Sleep cases contained within1s of armed deadline. This is not proof of driver killability or hard real-time scheduling.",
+    "fixed_findings": [
+      {
+        "issue": "Abnormal worker exit could produce supervisor exit0",
+        "resolution": "normal_close requires close ACK plus exit0 and complete resource receipts",
+        "evidence": "exit_during_write launch exit37 is normal_closefalse"
+      },
+      {
+        "issue": "Constructor failure cleanup receipt lost",
+        "resolution": "Owner allocated before __init__; failed constructor receipt retained",
+        "evidence": "Code inspection only; no new constructor-failure fault run claimed"
+      },
+      {
+        "issue": "Close ACK could race worker exit",
+        "resolution": "Shared complete(command) validates pending response before worker-exit branch",
+        "evidence": "Code inspection plus completed current-source cases; no deterministic forced race reproduction claimed"
+      },
+      {
+        "issue": "Inherited Desktop.repair bypassed readonly write override",
+        "resolution": "New GuardedReadOnlyWindowsBackend overrides repair with unconditional refusal; original observer source preserved.",
+        "evidence": "Final host source uses observer_v2 and authenticates all11 implementation pins; read path itself is unchanged."
+      },
+      {
+        "issue": "Job bookkeeping may briefly list already-signalled children",
+        "resolution": "Bounded, cancellation/deadline-aware readonly drain precedes frozen Owned.finish; accepted drain required for normal close.",
+        "evidence": "Final current-source seven-case watchdog suite and current-source host observer close cleanly."
+      },
+      {
+        "issue": "Readonly validator trusted only embedded supervisor",
+        "resolution": "Validator now requires independent supervisor file equality, exact third close packet, accepted empty drain and retained root wait0/code0.",
+        "evidence": "Offline validate-only produced final preflight-v2; no additional desktop reading was required for this validation fix."
+      }
+    ],
+    "natural_job_drain": {
+      "maximum_ns": 250000000,
+      "deadline": "minimum of existing close deadline, session deadline, and entry+250ms",
+      "admission": "Only authenticated close ACK plus signalled retained root exit0.",
+      "checks": "Controller/cancellation checked each iteration; monotonic deadline checked before and after each membership query; accepted required by normal_close; no forced termination relabelled.",
+      "observed_final_case": {
+        "initial_members": [],
+        "final_members": [],
+        "queries": 1,
+        "accepted": true,
+        "abort": null,
+        "elapsed_ns": 0,
+        "maximum_ns": 250000000,
+        "deadline_ns": 411878671000000
+      },
+      "limit": "Final successful case had an empty initial membership census. Nonempty-to-empty convergence is code-reviewed; this is not an actual driver teardown test."
+    }
+  },
+  "texture": {
+    "build": "Strict x86 /W4 /WX /MT Windows subsystem; original helper never launched.",
+    "helper": {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/terminal-texture-owner.exe",
+      "bytes": 375808,
+      "sha256": "e5751c0b8a8970c86985b51ca36c6a2f0b31c20f0d0622b8511b20b9dbdacf9b"
+    },
+    "generated_cpp": {
+      "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/terminal-texture-owner.cpp",
+      "bytes": 161471,
+      "sha256": "3e38f5b02408bb19704d1880f5616231e54f03d1682ff1707819f4ce64e83e5d"
+    },
+    "only_added_import": "KERNEL32.ReadProcessMemory",
+    "model_seconds": 60.656,
+    "recorded_hooks": 4495636,
+    "original_sites_verified": 10943,
+    "wire_pairs": 6280,
+    "original_API_calls": 946,
+    "callback_CPU57_restorations_checked": 20,
+    "checks": [
+      {
+        "original_unlock_request": 2901,
+        "supplemental_request": 2912,
+        "source_generation": 1,
+        "readonly_generation": 2,
+        "logical_bytes": 131072,
+        "source_pitch": 512,
+        "new_pitch": 512,
+        "logical_sha256": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471",
+        "CPU57_equal": true,
+        "PTD116_equal": true,
+        "LastError_equal": true,
+        "output_freed": true
+      },
+      {
+        "original_unlock_request": 5077,
+        "supplemental_request": 5088,
+        "source_generation": 3,
+        "readonly_generation": 4,
+        "logical_bytes": 131072,
+        "source_pitch": 512,
+        "new_pitch": 512,
+        "logical_sha256": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471",
+        "CPU57_equal": true,
+        "PTD116_equal": true,
+        "LastError_equal": true,
+        "output_freed": true
+      }
+    ],
+    "new_pending_and_failed_ledgers_zero": true,
+    "original_store": {
+      "va": "0x4506E9",
+      "hex": "8908",
+      "count": 1,
+      "stop_before": "0x4506EB",
+      "GAME": 1350570016
+    },
+    "cleanup": "Same recorded supplemental original GAME/MAIN/PTD/TLS/heap roots; pending WinMain did not return naturally.",
+    "padding": "Compare512 logical bytes per256 rows, excluding padding. Native accepts a fresh pitch512..1024 and reads each fresh row through ReadProcessMemory; failed read still reaches actual readonly Unlock.",
+    "local_validation": "6 pure tests passed before main build, including pitch/padding and negative receipts; no actual GPU fault injection.",
+    "actual_persistent_GPU_bytes_proven": false,
+    "symbolic_pixel_limit": "Both model logical digests are fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471 under the explicitly blank-raster model. Nonzero logical-row/padding local tests establish comparison behavior only, not actual glyph or GPU texture persistence."
+  },
+  "boundaries": [
+    "Reviewer performed file/code/evidence checks only; parent performed the separately recorded kernel/process cases and latest genuine readonly observer run.",
+    "The readonly observer proves actual unchanged metadata from one persistent process, including1536 original gamma bytes; no desktop mutation occurred, so restoration after a mutation is not proved.",
+    "Native writer admission remains false. Authentic same-owner release/mutation receipts and D3D adapter-to-display association are still required before any separately authorized GAME/graphics run.",
+    "Mode3840x2160 and screen rectangle2560x1440 are retained as distinct raw observations; no physical/logical coordinate or D3D adapter equivalence is inferred.",
+    "Texture data, HRESULTs, modes, input and glyphs in the complete GAME model remain symbolic; no actual D3D helper, persistent GPU texture, actual GAME publication, worker, wait return or consumption was tested.",
+    "Original source-site identities, model CPU/ABI/bytes and resource receipts were checked as recorded; this is not independent complete instruction or memory replay.",
+    "Formal acceptance remains2/8. Readonly observation and process containment do not qualify real original platform lifetimes or writable restoration."
+  ],
+  "supersedes_draft": {
+    "path": "analysis/terminal-texture-recovery-independent-review-v1-20261114.json",
+    "bytes": 11307,
+    "sha256": "3233f7e7d2d999538fc477346d304e66ac7d014361a140b85a806607f44057a9",
+    "status": "replaced draft; not a required source for this final review"
+  },
+  "native_GAME_or_D3D_helper_executed": false,
+  "native_metadata_observer_commands": 2,
+  "native_desktop_write_admission": false,
+  "native_GAME_admission": false,
+  "reviewer_executed_native_or_desktop_APIs": false,
+  "readonly_observer": {
+    "accepted_within_readonly_scope": true,
+    "source_report": {
+      "path": ".venv-audit/terminal-recovery-readonly-v3-host-20261114/observer-report.json",
+      "bytes": 14262,
+      "sha256": "1a62b1c0930317d19ec10bfaf77515e3451d8a8e6de4e9851a5914755c98d152"
+    },
+    "implementation_pins_checked": 11,
+    "request_response_commands": [
+      "baseline",
+      "readback",
+      "close"
+    ],
+    "actual_observation_commands": 2,
+    "observer_pid": 40428,
+    "elapsed_seconds": 0.329,
+    "same_process_creation_session_last_input": true,
+    "input_and_observer_desktop": "Default",
+    "only_allowed_wire_operations": [
+      "baseline",
+      "readback",
+      "close"
+    ],
+    "forbidden_native_write_operations": [
+      "recover",
+      "write",
+      "repair",
+      "_gamma(value)"
+    ],
+    "native_write_gate_remains_false": true,
+    "call_chain_review": "Desktop/host snapshot and desktop_status enumerate/query windows, monitor/device identity, mode, work area, input tick and current foreground; GetCursorInfo/GetClipCursor read cursor metadata; CreateDCW/GetDeviceGammaRamp/DeleteDC only read gamma with checked owned DC cleanup. No screenshot/pixel-read, SetCursorPos/ShowCursor, display/gamma write, window mutation or input injection is reachable through the readonly command route.",
+    "normal_close": true,
+    "job_empty": true,
+    "handles_closed": true,
+    "forced": false,
+    "actual_unchanged_fields": [
+      "monitors and modes",
+      "taskbars and work area",
+      "foreground and shell lifetimes",
+      "display identities",
+      "cursor flags/position/clip",
+      "gamma1536"
+    ],
+    "gamma_sha256": "3432e90b96d6a0ac86e6989ffcf60cfd73415e57666fff3253d187eba5601edf",
+    "display_target": "\\\\.\\DISPLAY2",
+    "mode": {
+      "width": 3840,
+      "height": 2160,
+      "bpp": 32,
+      "frequency": 60,
+      "x": 0,
+      "y": 0,
+      "orientation": 0,
+      "fixed": 0
+    },
+    "screen_rect": [
+      0,
+      0,
+      2560,
+      1440
+    ],
+    "D3D_adapter_mapping_proven": false,
+    "write_recovery_qualified": false,
+    "actual_GAME_executed": false,
+    "actual_persistent_GPU_texture_proven": false,
+    "historical_scope": "Earlier sandbox baseline refusal and superseded host source are separate earlier observer lifetimes; they are not silently counted as this final current-source successful run. No GAME ran in any of these observer cases."
+  }
+}

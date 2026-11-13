@@ -1,0 +1,128 @@
+{
+  "kind": "external_recovery_and_post_unlock_texture_component",
+  "baseline_commit": "53eeda70207104a803da22ff01ddd1b390699116",
+  "accepted_for_bounded_preparation": true,
+  "formal_acceptance": false,
+  "formal_progress": "2/8",
+  "native_GAME_runs": 0,
+  "native_D3D_helper_runs": 0,
+  "screenshots": 0,
+  "desktop_writes": 0,
+  "global_input_sent": false,
+  "native_recovery_write_admission": false,
+  "native_GAME_admission": false,
+  "parent_source": {
+    "path": "analysis/terminal-graphics-platform-preflight-v1-20261114.json",
+    "bytes": 7597,
+    "sha256": "886a445e99b167486a9ee620565c7dc9344412c39012abf9e546f3a80d28184e"
+  },
+  "prior_native_implementation_pins_exact": 288,
+  "texture_model": {
+    "source": {
+      "path": ".venv-audit/terminal-texture-model-v1-20261114.json.gz",
+      "bytes": 467182,
+      "sha256": "f02840d2fe0275b21c29fc4b16e79e4afc5bccbf53762b2faaae72cfd4142d52"
+    },
+    "seconds": 60.656,
+    "instruction_hooks": 4495636,
+    "sites": 10943,
+    "API": 946,
+    "callbacks_CPU57": 20,
+    "wire_pairs": 6280,
+    "verified_uploads": 2,
+    "logical_bytes_per_upload": 131072,
+    "original_GAME_store": "4506E9",
+    "new_ledger_empty": true,
+    "symbolic_blank_raster": true,
+    "actual_GPU_persistence": false
+  },
+  "build": {
+    "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/static-report.json",
+    "bytes": 9444,
+    "sha256": "03788602914170e07b2d21d46065bb09de23cce4dcfac58e3196c2654d0c5a40"
+  },
+  "helper": {
+    "path": ".venv-audit/terminal-texture-owner-build-v1-20261114/terminal-texture-owner.exe",
+    "bytes": 375808,
+    "sha256": "e5751c0b8a8970c86985b51ca36c6a2f0b31c20f0d0622b8511b20b9dbdacf9b"
+  },
+  "watchdog": {
+    "path": "analysis/terminal-recovery-watchdog-preflight-v6-20261114.json",
+    "bytes": 21771,
+    "sha256": "9273933050b15b7e7660ab3ce76579cdc3d748eea97bd137340bcd1b2b5c352b"
+  },
+  "readonly": {
+    "path": "analysis/terminal-recovery-observer-preflight-v2-20261114.json",
+    "bytes": 4339,
+    "sha256": "e98169916386ddea963faea1877ed86c8967fc169f20dc8f0a68a4df3868ce6d"
+  },
+  "readonly_result": {
+    "accepted_within_readonly_scope": true,
+    "native_game_runs": 0,
+    "desktop_writes": 0,
+    "screenshots": 0,
+    "actual_readonly_observations": 2,
+    "same_observer_pid": 40428,
+    "normal_close": true,
+    "job_empty": true,
+    "elapsed_seconds": 0.329,
+    "differences": [],
+    "gamma_bytes": 1536,
+    "gamma_sha256": "3432e90b96d6a0ac86e6989ffcf60cfd73415e57666fff3253d187eba5601edf",
+    "modes": [
+      {
+        "width": 3840,
+        "height": 2160,
+        "bpp": 32,
+        "frequency": 60,
+        "x": 0,
+        "y": 0,
+        "orientation": 0,
+        "fixed": 0
+      }
+    ],
+    "taskbars_visible": [
+      true
+    ],
+    "target": "\\\\.\\DISPLAY2",
+    "D3D_adapter_mapping_proven": false,
+    "write_recovery_qualified": false
+  },
+  "independent_review": {
+    "path": "analysis/terminal-texture-recovery-independent-review-v2-20261114.json",
+    "bytes": 17721,
+    "sha256": "651c8484694161a8c8484929f3f84352d5ea5ace1912451f0491c8278e862347"
+  },
+  "regressions": {
+    "local_tests": 41,
+    "strict_OpenSpec": true,
+    "git_diff_check": true
+  },
+  "current_unit_execution_inventory": {
+    "all_finished_supervisor_sessions": 49,
+    "real_readonly_sessions": 3,
+    "final_watchdog_cases": 7,
+    "final_real_observation_commands": 2,
+    "all_recorded_Jobs_empty": true,
+    "all_recorded_handles_closed": true,
+    "scope": "Includes all resolved development drafts, not just final seven watchdog cases. No original GAME or D3D helper was launched."
+  },
+  "limits": {
+    "offline_minutes": 60,
+    "model_seconds": 90,
+    "model_hook_limit": 6000000,
+    "compressed_model_bytes": 8388608,
+    "readonly_session_seconds": 5
+  },
+  "actual_next_gate": [
+    "Authenticate current owner wire/Job release and mutation receipts before native restoration writes.",
+    "Bind real D3D adapter to Win32 display/gamma target and original asset cwd.",
+    "Prepare bounded native GAME publication/cleanup runner and notify user before any interactive desktop use."
+  ],
+  "limitations": [
+    "Hard timeout uses separate real process/Job and kernel Sleep(INFINITE) faults; no actual stuck GPU driver was induced.",
+    "Readonly gamma/desktop metadata succeeds on current host channel; no desktop mutation or recovery write was tested.",
+    "Supplemental texture locks and full original GAME publication run only against explicit symbolic OS values; blank model raster is not real GPU/glyph evidence.",
+    "Supplemental cleanup abandons original WinMain state; no real scene worker, wait return, result consumption, complete independent replay or two fresh GAME lifetimes."
+  ]
+}
