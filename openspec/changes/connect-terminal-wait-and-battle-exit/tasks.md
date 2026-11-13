@@ -1,5 +1,12 @@
 # Tasks
 
+2026-11-14窗口实测：仅一次2.625秒新鲜原生寿命，29同步回调，真实原关闭代码完成
+DestroyWindow/WM_NCDESTROY、quit和正确owner属性移除。辅助GetProp返回NULL/error2被
+旧台账误拒绝，类/module/MAIN/PTD/CRT正常清理未执行；Job终止94/空不冒充自然退出。
+两次桌面检查恢复一致，无恢复写操作，无截图/全局输入/战斗。v3按返回语义窄修正并
+严格编译，v2入口复用冻结执行/恢复路径；没有第二次native。新授权单次验证正常清理后
+才推进GAME发布。2.1–4.2保持未完成，正式2/8，详见 docs/terminal_window_lifetime.md。
+
 2026-11-14窗口寿命准备：原WM_CLOSE/DestroyWindow/quit/property清理已接入，完整
 MAIN→创建→关闭→补充MAIN/PTD/TLS/heap清理模型17766原指令/147API/20回调通过；
 18桌面回归、10拒绝与20秒硬watchdog回归通过。尚无新native/window运行，非真实资源

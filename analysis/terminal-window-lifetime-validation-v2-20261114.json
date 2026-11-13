@@ -1,0 +1,88 @@
+{
+  "kind": "window_property_fix_offline_validation",
+  "native_executed": false,
+  "desktop_used": false,
+  "formal_acceptance": false,
+  "correction_build": {
+    "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/static-report.json",
+    "bytes": 10548,
+    "sha256": "b2ed111071559da43cb32f15ebf26a014155cf60e31dfb2c1860180a8ed437c5"
+  },
+  "collector": {
+    "path": "devtools/terminal_window_lifetime_v2.py",
+    "bytes": 6217,
+    "sha256": "08bf62f555c6c2bfe249ad33564bbb0a050e11e31b8919fb26b50105da0d3259"
+  },
+  "generator": {
+    "path": "devtools/terminal_window_native_v3.py",
+    "bytes": 6735,
+    "sha256": "af9168cc96d0184d3e2e06ffe4f6f1565880b2035707555786df57f7cf811706"
+  },
+  "exact_gate_admission": true,
+  "gate": {
+    "path": "analysis/terminal-window-lifetime-gate-v2-20261114.json",
+    "bytes": 6164,
+    "sha256": "19006759184a0843b706c6f837bbbfc90476b815515f6baf7325ead0319b16ee"
+  },
+  "negative_admission_checks": [
+    {
+      "case": "wrong_collector",
+      "rejected": true,
+      "reason": "exact corrected offline gate"
+    },
+    {
+      "case": "wrong_helper",
+      "rejected": true,
+      "reason": "exact corrected offline gate"
+    },
+    {
+      "case": "changed_parent_gate",
+      "rejected": true,
+      "reason": "exact corrected offline gate"
+    },
+    {
+      "case": "altered_recorded_receipt",
+      "rejected": true,
+      "reason": "recorded regression and exact source delta unchanged"
+    },
+    {
+      "case": "changed_pin",
+      "rejected": true,
+      "reason": "unchanged versioned admission devtools/terminal_window_lifetime.py"
+    },
+    {
+      "case": "used_attempt_marker",
+      "rejected": true,
+      "reason": "single new native attempt only",
+      "simulated_existence_only": true
+    }
+  ],
+  "compiled_predicate_assertions": 6,
+  "prior_complete_route_reused_by_fixed_hash": true,
+  "parent_preservation": {
+    "implementation_pins": 286,
+    "all_exact": true,
+    "failed_source": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/native-window-case-v1.json.gz",
+      "bytes": 81230,
+      "sha256": "b0ca313f94e737821eac86dae289a5b4cedc80afdc015079c81977fbd1cb5175"
+    }
+  },
+  "independent_review": {
+    "path": "analysis/terminal-window-native-case-review-v1-20261114.json",
+    "bytes": 16021,
+    "sha256": "928e74df9fc8ec3870fb97475f7bb31bf414d311aa7fc10a4e141cd9a9f02774"
+  },
+  "original_failed_case_accepted": false,
+  "strict_OpenSpec": true,
+  "whitespace_check_passed": true,
+  "seconds": 0.282,
+  "commands": [
+    "python -B -X utf8 -m devtools.terminal_window_native_v3 --build-dir .venv-audit/terminal-window-destruction-build-v2-20261114",
+    "python -B -X utf8 -m devtools.terminal_window_lifetime_v2 --prepare-gate --helper .venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.exe --gate analysis/terminal-window-lifetime-gate-v2-20261114.json",
+    "python -B -X utf8 -m devtools.terminal_window_lifetime_v2",
+    "openspec validate connect-terminal-wait-and-battle-exit --strict",
+    "git diff --check"
+  ],
+  "limits": "No corrected native run; no normal class/module/MAIN/PTD cleanup or GAME/wait/result acceptance."
+}

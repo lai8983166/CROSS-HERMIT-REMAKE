@@ -1,0 +1,119 @@
+{
+  "kind": "single_native_window_attempt_and_property_fix_closeout",
+  "baseline_commit": "2f155458a90ac2bf3b321842936493d38e57e157",
+  "native_runs": 1,
+  "corrected_helper_native_runs": 0,
+  "formal_acceptance": false,
+  "formal_progress": "2/8",
+  "actual_result": {
+    "accepted": false,
+    "native_seconds": 2.625,
+    "callbacks": 29,
+    "original_DestroyWindow": true,
+    "HWND_invalid": true,
+    "quit_posted": true,
+    "owned_property_removed": true,
+    "observer_false_rejection": "auxiliary GetProp returned NULL/error2; old flag required error0",
+    "normal_class_module_MAIN_PTD_CRT_cleanup": false,
+    "forced_exit": 94,
+    "job_empty": true,
+    "parent_CloseHandle_count": 8,
+    "parent_CloseHandle_all_succeeded": true
+  },
+  "desktop": {
+    "restored": true,
+    "stable_checks": 2,
+    "repair_operations": 0,
+    "screenshots": false,
+    "global_input": false
+  },
+  "correction": {
+    "narrow_generated_source_delta": true,
+    "strict_x86_build": true,
+    "compiled_assertions": 6,
+    "gate_rejections": 6,
+    "old_executor_and_desktop_unchanged": true,
+    "independent_review": true,
+    "full_independent_replay": false,
+    "normal_native_cleanup_proven": false
+  },
+  "parent_preservation": {
+    "implementation_pins": 286,
+    "all_exact": true,
+    "old_sources_builds_reports_and_attempt_marker_unchanged": true
+  },
+  "retained_evidence": [
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/native-window-case-v1.json.gz",
+      "bytes": 81230,
+      "sha256": "b0ca313f94e737821eac86dae289a5b4cedc80afdc015079c81977fbd1cb5175"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/native-window-case-v1.json.gz.desktop.json",
+      "bytes": 16574,
+      "sha256": "e8867cb3d8827962cbf426bc18fc43a4b36891fe664335414b25b5f5870219fa"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/native-attempt.once",
+      "bytes": 265,
+      "sha256": "98fad5bc6f739a74365a40530744ef1fba4a893ff2d23bdbfbbd717ed49304c9"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/build.cmd",
+      "bytes": 772,
+      "sha256": "2772c86a70543222f958902cffc9660bd047115eb29c52b10c93939a74182063"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/build.log",
+      "bytes": 39,
+      "sha256": "442018add54faf2705c4123c6dd9fd3723dee8e207a2dd9fce4c7c662f577f5b"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/static-report.json",
+      "bytes": 10548,
+      "sha256": "b2ed111071559da43cb32f15ebf26a014155cf60e31dfb2c1860180a8ed437c5"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.cpp",
+      "bytes": 71105,
+      "sha256": "9b4f9eb7c0e400623e0aa6e86872e99be060ce1c9d910f52c85d92c054f2c361"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.exe",
+      "bytes": 254464,
+      "sha256": "ebbebccad3a4328d2d58ebc49b03f523a02aac857024b28238a6af43c6e05c64"
+    },
+    {
+      "path": "analysis/terminal-window-native-case-review-v1-20261114.json",
+      "bytes": 16021,
+      "sha256": "928e74df9fc8ec3870fb97475f7bb31bf414d311aa7fc10a4e141cd9a9f02774"
+    },
+    {
+      "path": "analysis/terminal-window-lifetime-gate-v2-20261114.json",
+      "bytes": 6164,
+      "sha256": "19006759184a0843b706c6f837bbbfc90476b815515f6baf7325ead0319b16ee"
+    },
+    {
+      "path": "analysis/terminal-window-lifetime-validation-v2-20261114.json",
+      "bytes": 3208,
+      "sha256": "c12662b9e869ef3fa29a85f81d8d704f9a7661392112ab892a37718cac46fe47"
+    }
+  ],
+  "retired": [
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/owner.obj",
+      "bytes": 946892,
+      "sha256": "5f426761d8c182236b5c89d08cc2a29b38f6fe67d085ae479d90c46250453895",
+      "reason": "Current-unit compiler intermediate; exact generated C++ and compiled EXE retained, no native execution",
+      "deleted": true
+    }
+  ],
+  "retired_bytes": 946892,
+  "backup_copies": 0,
+  "evidence_policy": "One exact failed source and its desktop receipt stay at their original F paths, not copied into Git. Keep until superseded after actual normal-cleanup qualification; preserve unique necessary bytes and failure conclusion. Old historical evidence is not retired.",
+  "git_payload": "Only source, documentation, small gate/validation/review/closeout reports. Runtime source, desktop receipt, build and marker remain local; identities and locations above.",
+  "git_large_generated_artifacts_added": false,
+  "all_new_local_evidence_bytes": 465296,
+  "manifest_included_in_total": true,
+  "next_step": "New explicit60second desktop authorization; one corrected20second native lifetime; verify normal cleanup and desktop before GAME publication."
+}

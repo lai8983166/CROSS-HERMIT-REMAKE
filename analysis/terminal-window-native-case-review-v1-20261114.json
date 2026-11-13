@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "kind": "independent_failed_native_window_case_record_review",
+  "review_completed": true,
+  "accepted": false,
+  "formal_acceptance": false,
+  "formal_progress": "2/8 unchanged",
+  "native_component_qualified": false,
+  "independent_complete_replay": false,
+  "reviewer_native_runs": 0,
+  "reviewer_UI_operations": 0,
+  "reviewer_builds": 0,
+  "reviewer_test_runs": 0,
+  "method": "Read-only independent validation of frozen evidence, exact source bytes, request/callback/reply nesting, ABI/state records, identity pins and recorded desktop comparisons. No collector import, execution, replay, native launch or desktop operation.",
+  "evidence": {
+    "native_case": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/native-window-case-v1.json.gz",
+      "bytes": 81230,
+      "sha256": "b0ca313f94e737821eac86dae289a5b4cedc80afdc015079c81977fbd1cb5175"
+    },
+    "desktop_receipt": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/native-window-case-v1.json.gz.desktop.json",
+      "bytes": 16574,
+      "sha256": "e8867cb3d8827962cbf426bc18fc43a4b36891fe664335414b25b5f5870219fa"
+    }
+  },
+  "implementation": {
+    "path": "devtools/terminal_window_lifetime.py",
+    "bytes": 11192,
+    "sha256": "3cb4f2f5eaa9dbfc4c86eb9c6ca3c51d649c30e8009933684cb61142f1dd6b57"
+  },
+  "original": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+  },
+  "build_critical_inputs": {
+    "generator": {
+      "path": "devtools/terminal_window_native_v2.py",
+      "bytes": 7482,
+      "sha256": "eaf079888f8543b27efccbde2caae702111e255a19a5fbcf2db3d9bd275ccd2f"
+    },
+    "parent_generator": {
+      "path": "devtools/terminal_window_native.py",
+      "bytes": 11512,
+      "sha256": "e55a84b45831a5b28ee27e958654e63513e8c78f4ddf5fb1d837d23c2f9fe83a"
+    },
+    "parent_include": {
+      "path": "devtools/terminal_window_native.inc",
+      "bytes": 20831,
+      "sha256": "8eaf3c751f879f0f92b7505cc033c2d1d1e408f43a92626e575205fc4354f9c9"
+    },
+    "resource": {
+      "path": ".venv-audit/school-window-icons-v1.dll",
+      "bytes": 3072,
+      "sha256": "1c2efa226cb52e97696477964d85bb6f0b94f727c8c3c550ef57da41beb009d7"
+    },
+    "generated_source": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/terminal-window-destruction-owner.cpp",
+      "bytes": 70273,
+      "sha256": "ba3d21709c1c7fecfb9eb08c2eddd686129d779db03fa907865b8a227c1a6f4a"
+    },
+    "helper": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/terminal-window-destruction-owner.exe",
+      "bytes": 254464,
+      "sha256": "6cf590abea5d0684a6c750f9b42732a98bb50ee6a1c2c9ed6c7414c8d619ee98"
+    }
+  },
+  "implementation_pin_count": 286,
+  "all_implementation_pins_matched": true,
+  "observed": {
+    "pid": 10628,
+    "MAIN_tid": 21016,
+    "MAIN_teb": 16171008,
+    "HWND": 7015948,
+    "guest_MAIN": 1348472864,
+    "native_HINSTANCE": 19595264,
+    "native_executed": true,
+    "wall_seconds": 2.625,
+    "hard_deadline_seconds": 20,
+    "deadline_fired": false,
+    "requests": 403,
+    "responses": 403,
+    "callbacks": 29,
+    "creation_callbacks": 17,
+    "close_callbacks": 12,
+    "max_depth": 3,
+    "API_ABI_records_checked": 122,
+    "callback_CPU57_restorations_checked": 29,
+    "original_instruction_sites_checked": 2101,
+    "original_instructions": 15019,
+    "callback_instructions": 8206,
+    "callback_PTD": {
+      "tls_slot": 3,
+      "native_pointer": 52299224,
+      "bytes": 116,
+      "sha256": "837a1b180a0b1d1023a053a45bf27641a0cb6c6e6f4500ace42d645c292b79c0",
+      "same_in_all_29_callbacks": true,
+      "actual_TLS_readback_request": 24,
+      "actual_PTD_readback_before_creation_request": 313
+    }
+  },
+  "verified_checks": [
+    "All403 request IDs have exactly one response; all responses and29 callback notifications have the actual READY MAIN TID/TEB. Callback IDs1..29, active ancestry, parent request association and CB_RETURN results close without unmatched frames.",
+    "Every callback packet matches its retained executor frame. TLS slot3 values equal the actually installed/read-back native PTD pointer. All29 retained116-byte PTDs match the real MEM_READ preceding CreateWindowExA and begin with the actual MAIN TID.",
+    "All29 declared guest CPU57 caller states restore exactly. Each original424980 callback returns with stdcall ESP+20, recorded EAX result and preserved EBP/EBX/ESI/EDI. These are guest executor records, not native CPU register captures.",
+    "All122 retained API boundaries have correct argument-count stack cleanup, original return EIP, EAX value and unchanged other54 declared CPU fields. Native leaf records match their exact wire replies.",
+    "All2101 retained source instruction sites match frozen hermit_game.exe bytes; cumulative site counts total15019. Callback run counts total8206 and reference checked original sites. This validates recorded bytes/structure, not an independent instruction replay.",
+    "Original CreateWindowExA returned the callback HWND; original HWND publication reached4504E1. GAME and scene remained0 at both retained checkpoints.",
+    "Actual close callbacks included12 messages rather than only the3-message offline model. DestroyWindow, WM_DESTROY PostQuitMessage, correct property removal and WM_NCDESTROY all completed before final parent rejection."
+  ],
+  "close_observations": {
+    "CreateWindowExA": {
+      "original_return_va": "0x4504d5",
+      "arguments": [
+        0,
+        8005160,
+        8005160,
+        2415919104,
+        16,
+        16,
+        1024,
+        768,
+        0,
+        0,
+        19595264,
+        1348472864
+      ],
+      "native_leaf": {
+        "id": 314,
+        "lane": 0,
+        "tid": 21016,
+        "last_error": 0,
+        "ok": 1,
+        "result": 7015948,
+        "teb": 16171008,
+        "callbacks": 17,
+        "guest_owner": 1348472864,
+        "guest_class": 8005160,
+        "native_class": 4316028,
+        "guest_title": 8005160,
+        "native_title": 4316028
+      }
+    },
+    "DestroyWindow": {
+      "original_return_va": "0x450f74",
+      "arguments": [
+        7015948
+      ],
+      "native_leaf": {
+        "id": 368,
+        "lane": 0,
+        "tid": 21016,
+        "last_error": 1413,
+        "ok": 1,
+        "result": 1,
+        "teb": 16171008,
+        "is_window_after": 0,
+        "ncdestroy_observed": 1,
+        "callback_id": 18,
+        "parent_request": 366,
+        "depth": 1
+      }
+    },
+    "PostQuitMessage": {
+      "original_return_va": "0x450f8a",
+      "arguments": [
+        0
+      ],
+      "native_leaf": {
+        "id": 396,
+        "lane": 0,
+        "tid": 21016,
+        "last_error": 0,
+        "ok": 1,
+        "result": 0,
+        "teb": 16171008,
+        "void": 1,
+        "quit_posted": 1,
+        "callback_id": 28,
+        "parent_request": 368,
+        "depth": 2
+      }
+    },
+    "RemovePropA": {
+      "original_return_va": "0x42495e",
+      "arguments": [
+        7015948,
+        5851828
+      ],
+      "native_leaf": {
+        "id": 397,
+        "lane": 0,
+        "tid": 21016,
+        "last_error": 0,
+        "ok": 1,
+        "result": 1348472864,
+        "teb": 16171008,
+        "observed_property": 0,
+        "observed_property_error": 2,
+        "auxiliary_readback": 1,
+        "callback_id": 28,
+        "parent_request": 368,
+        "depth": 2
+      }
+    }
+  },
+  "close_callback_messages": [
+    {
+      "callback_id": 18,
+      "message": 16,
+      "depth": 1,
+      "parent_callback_id": 0
+    },
+    {
+      "callback_id": 19,
+      "message": 144,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 20,
+      "message": 70,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 21,
+      "message": 71,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 22,
+      "message": 134,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 23,
+      "message": 6,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 24,
+      "message": 28,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 25,
+      "message": 8,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 26,
+      "message": 641,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 27,
+      "message": 642,
+      "depth": 3,
+      "parent_callback_id": 26
+    },
+    {
+      "callback_id": 28,
+      "message": 2,
+      "depth": 2,
+      "parent_callback_id": 18
+    },
+    {
+      "callback_id": 29,
+      "message": 130,
+      "depth": 2,
+      "parent_callback_id": 18
+    }
+  ],
+  "failure": {
+    "request_id": 366,
+    "operation": "WINDOW_CLOSE",
+    "recorded_reply": {
+      "direction": "response",
+      "id": 366,
+      "lane": 0,
+      "tid": 21016,
+      "last_error": 87,
+      "ok": 0,
+      "result": 0,
+      "teb": 16171008,
+      "reason": "ORIGINAL_CLOSE_LIFETIME_INCOMPLETE"
+    },
+    "recorded_exception": "ValueError(\"native rejection: {'id': 366, 'lane': 0, 'tid': 21016, 'last_error': 87, 'ok': 0, 'result': 0, 'teb': 16171008, 'reason': 'ORIGINAL_CLOSE_LIFETIME_INCOMPLETE'}\")",
+    "cause": "Frozen helper requires r.value==windowGuestOwner && !observed && !error before recording property retirement. RemovePropA returned the correct nonzero owner; the auxiliary GetPropA returned NULL with LastError2, so that condition left windowPropertyRemoved false.",
+    "cause_basis": "Inference from exact frozen generated source and actual replies397/396/368. Final reject reply omits normal close extras, so the internal property flag was not directly returned.",
+    "error_separation": "RemovePropA original leaf LastError was0 and was restored after auxiliary readback. Auxiliary GetPropA LastError was2. Final reply LastError87 belongs to helper rejection; it is not a new Win32 property failure.",
+    "documented_contract": "GetPropA documents NULL when the property is absent and does not require LastError0. RemovePropA returns the previously stored application data handle. Requiring zero auxiliary LastError for absent property is an unsupported additional acceptance condition.",
+    "correction_boundary": "A future separately pinned version may require nonzero owned MAIN, removed==owner and observed_property==0, while retaining the actual auxiliary error and original leaf LastError. Do not whitelist error2 or relax ownership, callback, quit, HWND invalidation, resource-zero or normal-exit checks."
+  },
+  "documentation": [
+    {
+      "title": "Microsoft GetPropA return contract",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getpropa",
+      "finding": "NULL denotes no associated property; page does not specify that this case resets LastError to0."
+    },
+    {
+      "title": "Microsoft RemovePropA return contract",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-removepropa",
+      "finding": "Returns the application hData of the removed association, or NULL if absent; removing the association does not itself free application data."
+    }
+  ],
+  "not_executed": [
+    "UnregisterClassA",
+    "WINDOW_MODULE_CLOSE",
+    "WINDOW_GATE0",
+    "supplemental original44FE60 MAIN destructor",
+    "428AD0 MAIN free",
+    "575450 PTD free/TLS0",
+    "575360 locks/TlsFree",
+    "57BA60 heap teardown",
+    "resource-zero STATUS",
+    "Shutdown",
+    "normal helper exit0"
+  ],
+  "failure_cleanup": {
+    "receipt": {
+      "parent_pid": 10628,
+      "forced": true,
+      "exits": {
+        "10628": {
+          "wait": 0,
+          "code": 94
+        }
+      },
+      "handles_closed": true,
+      "job_empty": true,
+      "errors": [],
+      "deadline_fired": false,
+      "wall_seconds": 2.625
+    },
+    "parent_CloseHandle_count": 8,
+    "parent_CloseHandle_all_TRUE": true,
+    "normal_cleanup": false,
+    "interpretation": "Job containment forced exit94 after the collector rejected WINDOW_CLOSE. Empty Job and closed parent handles prove containment, not orderly class/module/MAIN/PTD/CRT release."
+  },
+  "desktop": {
+    "receipt_restored": true,
+    "independently_compared_recorded_fields": true,
+    "read_only_samples": 4,
+    "all_child_reads_exit0": true,
+    "repair_attempted": false,
+    "repair_actions": [],
+    "final_comparisons": [
+      [],
+      []
+    ],
+    "scope": "Both retained final samples match baseline display mode/monitor geometry, work area, taskbar geometry/lifetime, foreground lifetime, shell and desktop identity; no Cross Hermit window remains. No new observer or repair was executed by reviewer.",
+    "limits": "No actual repair path was exercised. Pixels, gamma and cursor shape were not captured or compared."
+  },
+  "outcome": "Preserve accepted=false and formal2/8. Current native evidence proves bounded same-MAIN creation and original close/destruction callbacks, but does not prove normal complete window-owner/MAIN/PTD/class/module cleanup or any GAME/worker/battle endpoint.",
+  "unexecuted_correction_static_review": {
+    "source_pins": [
+      {
+        "path": "devtools/terminal_window_native_v3.py",
+        "bytes": 6735,
+        "sha256": "af9168cc96d0184d3e2e06ffe4f6f1565880b2035707555786df57f7cf811706"
+      },
+      {
+        "path": "devtools/terminal_window_lifetime_v2.py",
+        "bytes": 6217,
+        "sha256": "08bf62f555c6c2bfe249ad33564bbb0a050e11e31b8919fb26b50105da0d3259"
+      }
+    ],
+    "build_manifest": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/static-report.json",
+      "bytes": 10548,
+      "sha256": "b2ed111071559da43cb32f15ebf26a014155cf60e31dfb2c1860180a8ed437c5"
+    },
+    "helper": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.exe",
+      "bytes": 254464,
+      "sha256": "ebbebccad3a4328d2d58ebc49b03f523a02aac857024b28238a6af43c6e05c64"
+    },
+    "generated_source": {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.cpp",
+      "bytes": 71105,
+      "sha256": "9b4f9eb7c0e400623e0aa6e86872e99be060ce1c9d910f52c85d92c054f2c361"
+    },
+    "native_executed": false,
+    "native_attempt_marker_absent_at_review": true,
+    "reviewer_called_generator_or_self_check": false,
+    "reviewer_built_or_tested": false,
+    "exact_generated_source_reverse_comparison": true,
+    "all_DLL_imports_unchanged": true,
+    "compile_time_assertions_recorded": 6,
+    "findings": [
+      "Read generated v3 CPP directly and remove only the added predicate/assertion block while reversing its one use: resulting70273 bytes equal the previously executed v2 CPP exactly.",
+      "Predicate requires nonzero windowGuestOwner, RemoveProp result equal to that owner, and auxiliary GetProp result0. It neither accepts foreign/live property nor whitelists LastError2.",
+      "Original leaf LastError restoration, auxiliary error recording, callback/lane/ownership guards, DestroyWindow/NCDESTROY/PostQuit checks, resource ledgers and Shutdown guards are byte-identical to executed v2.",
+      "Versioned Python entry validates current generator/CPP/helper/build inputs, fixed prior symbolic gate and every parent implementation pin. New helper needs its own fresh once marker and exact new admission gate.",
+      "Versioned entry reuses unchanged original executor,20second watchdog, normal-exit/cleanup validation and bounded desktop code. It requires a fresh55..60second authorization deadline and45second startup reserve; old authorization is not reused.",
+      "The source delta fixes the documented predicate defect but cannot convert the failed retained case to accepted or prove subsequent normal class/module/MAIN/PTD/heap cleanup. New helper remains unexecuted."
+    ],
+    "unresolved_static_findings": []
+  }
+}

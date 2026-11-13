@@ -1,0 +1,181 @@
+{
+  "kind": "window_property_fix_admission",
+  "native_executed": false,
+  "formal_acceptance": false,
+  "collector": {
+    "path": "devtools/terminal_window_lifetime_v2.py",
+    "bytes": 6217,
+    "sha256": "08bf62f555c6c2bfe249ad33564bbb0a050e11e31b8919fb26b50105da0d3259"
+  },
+  "native_helper": {
+    "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/terminal-window-destruction-owner.exe",
+    "bytes": 254464,
+    "sha256": "ebbebccad3a4328d2d58ebc49b03f523a02aac857024b28238a6af43c6e05c64"
+  },
+  "parent_symbolic_gate": {
+    "path": "analysis/terminal-window-lifetime-gate-v1-20261114.json",
+    "bytes": 5795,
+    "sha256": "e1ae4592be21340811cac8fd4eb3407e264abfc7c0a15d52746a1b15c39afa74"
+  },
+  "route_model_reused_without_native_claim": true,
+  "correction": {
+    "native_executed": false,
+    "parent_checks": {
+      "native_executed": false,
+      "parent_protocol": {
+        "native_executed": false,
+        "window_created": false,
+        "ui_gate_enabled": false,
+        "source_bytes": 68489,
+        "source_sha256": "7b48b3319d60ab6a8326ffd5ddefed1830142530cab2d922557460d210a8a740",
+        "Reader_unchanged": true,
+        "worker_unchanged": true,
+        "callback_depth_model": 3,
+        "protocol_negative_cases": [
+          "wrong_id",
+          "wrong_hwnd",
+          "wrong_lparam",
+          "shutdown_in_callback",
+          "wrong_arity",
+          "create_in_callback"
+        ],
+        "callback_operations": {
+          "CB_GET_PROP": 2,
+          "CB_SET_PROP": 3,
+          "CB_GET_LONG": 3,
+          "CB_DEFAULT": 5,
+          "CB_RETURN": 2,
+          "CB_REMOVE_PROP": 2,
+          "CB_POST_QUIT": 2
+        },
+        "main_operations": {
+          "WINDOW_GATE": 1,
+          "WINDOW_MODULE": 0,
+          "WINDOW_MODULE_CLOSE": 1,
+          "FindWindowA": 2,
+          "SetRect": 5,
+          "AdjustWindowRect": 3,
+          "LoadIconA": 2,
+          "LoadCursorA": 2,
+          "GetStockObject": 1,
+          "RegisterClassExA": 1,
+          "CreateWindowExA": 12,
+          "ShowWindow": 2,
+          "UpdateWindow": 1,
+          "GetClientRect": 2,
+          "GetWindowRect": 2,
+          "GetWindowLongA": 2,
+          "SetWindowLongA": 3,
+          "DestroyWindow": 1,
+          "UnregisterClassA": 2,
+          "CB_GET_PROP": 2,
+          "CB_SET_PROP": 3,
+          "CB_GET_LONG": 3,
+          "CB_DEFAULT": 5,
+          "CB_RETURN": 2,
+          "CB_REMOVE_PROP": 2,
+          "CB_POST_QUIT": 2
+        },
+        "scope": "Offline source/protocol checks only. No actual mutex reentrancy, HWND callback, API return or lifecycle acceptance."
+      },
+      "source_sha256": "ba3d21709c1c7fecfb9eb08c2eddd686129d779db03fa907865b8a227c1a6f4a",
+      "new_operations": {
+        "WINDOW_CLOSE": 1,
+        "CB_DESTROY_WINDOW": 2
+      },
+      "expected_message": 16,
+      "unchanged_Reader_and_worker": true,
+      "normal_destruction_observed": false
+    },
+    "regression_source": {
+      "path": ".venv-audit/terminal-window-destruction-build-v1-20261114/native-window-case-v1.json.gz",
+      "bytes": 81230,
+      "sha256": "b0ca313f94e737821eac86dae289a5b4cedc80afdc015079c81977fbd1cb5175"
+    },
+    "recorded_remove_receipt": {
+      "id": 397,
+      "lane": 0,
+      "tid": 21016,
+      "last_error": 0,
+      "ok": 1,
+      "result": 1348472864,
+      "teb": 16171008,
+      "observed_property": 0,
+      "observed_property_error": 2,
+      "auxiliary_readback": 1,
+      "callback_id": 28,
+      "parent_request": 368,
+      "depth": 2
+    },
+    "compiled_assertions": 6,
+    "exact_two_source_edits": true,
+    "source_sha256": "9b4f9eb7c0e400623e0aa6e86872e99be060ce1c9d910f52c85d92c054f2c361",
+    "original_last_error_and_aux_error_preserved": true,
+    "all_other_native_ownership_and_cleanup_guards_unchanged": true,
+    "failed_case_reclassified": false,
+    "normal_native_cleanup_proven": false,
+    "contract_references": [
+      "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getpropa",
+      "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-removepropa"
+    ]
+  },
+  "pins": [
+    {
+      "path": "devtools/terminal_window_lifetime.py",
+      "bytes": 11192,
+      "sha256": "3cb4f2f5eaa9dbfc4c86eb9c6ca3c51d649c30e8009933684cb61142f1dd6b57"
+    },
+    {
+      "path": "devtools/terminal_window_desktop.py",
+      "bytes": 14238,
+      "sha256": "8a8a0f9583bd9df18cd4a4656dc4ae3bd569654df44c32655ea0df71ab80d52b"
+    },
+    {
+      "path": "devtools/terminal_window_destruction.py",
+      "bytes": 15364,
+      "sha256": "38a11740f46652c9a6dfbb091498198417111bded27833238722bf56685d4cc9"
+    },
+    {
+      "path": "devtools/terminal_window_native_v2.py",
+      "bytes": 7482,
+      "sha256": "eaf079888f8543b27efccbde2caae702111e255a19a5fbcf2db3d9bd275ccd2f"
+    },
+    {
+      "path": "devtools/terminal_window_callbacks.py",
+      "bytes": 19871,
+      "sha256": "0fe16272b777a4f2e6475a940f7603b1ca02a40e4cd50545cab235dfc30b83c8"
+    },
+    {
+      "path": "devtools/terminal_window_preparation.py",
+      "bytes": 7014,
+      "sha256": "1eb8fb9cbac45e4a1caf7981efd995674b06e61d6a0010c93aaa39552a6372f8"
+    },
+    {
+      "path": "devtools/terminal_window_native.py",
+      "bytes": 11512,
+      "sha256": "e55a84b45831a5b28ee27e958654e63513e8c78f4ddf5fb1d837d23c2f9fe83a"
+    },
+    {
+      "path": "devtools/terminal_window_native.inc",
+      "bytes": 20831,
+      "sha256": "8eaf3c751f879f0f92b7505cc033c2d1d1e408f43a92626e575205fc4354f9c9"
+    },
+    {
+      "path": "devtools/terminal_window_lifetime_v2.py",
+      "bytes": 6217,
+      "sha256": "08bf62f555c6c2bfe249ad33564bbb0a050e11e31b8919fb26b50105da0d3259"
+    },
+    {
+      "path": "devtools/terminal_window_native_v3.py",
+      "bytes": 6735,
+      "sha256": "af9168cc96d0184d3e2e06ffe4f6f1565880b2035707555786df57f7cf811706"
+    },
+    {
+      "path": ".venv-audit/terminal-window-destruction-build-v2-20261114/static-report.json",
+      "bytes": 10548,
+      "sha256": "b2ed111071559da43cb32f15ebf26a014155cf60e31dfb2c1860180a8ed437c5"
+    }
+  ],
+  "original_execution_and_desktop_unchanged": true,
+  "normal_native_cleanup_proven": false
+}

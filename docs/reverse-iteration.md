@@ -1,5 +1,12 @@
 # 逆向开发与最终验收的分层执行
 
+最新窗口实测（2026-11-14）：一次获授权的原生寿命2.625秒，原窗口创建与关闭共29回调，
+DestroyWindow=1/IsWindow=0、quit及正确MAIN属性移除已实际观察。观察器额外要求辅助
+GetProp的LastError=0，实际NULL/error2导致误拒绝；Job终止94，不算正常MAIN/PTD清理。
+两次桌面读回与基线一致，无恢复写操作，无截图/全局输入/战斗。v3窄修正已严格编译，
+新v2入口复用冻结执行/恢复代码与固定父模型；未重跑窗口。后续须新60秒授权验证正常
+清理，成功后才推进GAME发布；正式2/8不变。见[实际记录与修正](terminal_window_lifetime.md)。
+
 最新窗口寿命准备（2026-11-14）：原WM_CLOSE→DestroyWindow→PostQuit/RemoveProp接通，
 完整冷启动到窗口关闭及补充MAIN/PTD/TLS/heap清理的有界模型通过17766原指令/147API/
 20回调；模型不是新原生证据。18桌面回归、10拒绝与20秒watchdog回归通过。实际窗口
