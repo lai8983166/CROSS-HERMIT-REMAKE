@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-13",
+  "review_kind": "independent offline REA output and original-byte cross-check",
+  "method": "No main-agent reviewer or project execution module imported. Standard-library JSON/hash plus independent Capstone x86 decoding of immutable source. No REA rerun, game, VM or native test.",
+  "source": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+  },
+  "REA_run": {
+    "queries": 31,
+    "elapsed_seconds": 150.562,
+    "completed": true,
+    "closed": true,
+    "server_exit_code": 0,
+    "target_unchanged": true,
+    "accepted_flag_left_false": true
+  },
+  "source_byte_checks": [
+    {
+      "address": "0x422360",
+      "bytes": 212,
+      "sha256": "ab2bd87de9126e049e5ceb1c2266bf1d213ac8a27bc4ff1c43e537fb20010540",
+      "equal_original": true
+    },
+    {
+      "address": "0x4225a0",
+      "bytes": 58,
+      "sha256": "5039cb1dc6623b86e39af0871154f46cea9f032c6b5f68a106087537d6c5f549",
+      "equal_original": true
+    },
+    {
+      "address": "0x453c80",
+      "bytes": 128,
+      "sha256": "59a5d4aa4906dc184a13b10ca8118956821d125b142b3c116053ece66204f4d9",
+      "equal_original": true
+    },
+    {
+      "address": "0x4967b0",
+      "bytes": 256,
+      "sha256": "29004dfdfb78cb26af0db9a746d44a3832bc733ea14bdd4b55ab695186d531ec",
+      "equal_original": true
+    }
+  ],
+  "assembly_checks": [
+    {
+      "entry": "0x422360",
+      "end_exclusive": "0x422434",
+      "bytes": 212,
+      "sha256": "ab2bd87de9126e049e5ceb1c2266bf1d213ac8a27bc4ff1c43e537fb20010540",
+      "instructions": 70,
+      "direct_flow_targets_checked": 8,
+      "address_and_mnemonic_sequences_equal": true
+    },
+    {
+      "entry": "0x4225a0",
+      "end_exclusive": "0x4225da",
+      "bytes": 58,
+      "sha256": "5039cb1dc6623b86e39af0871154f46cea9f032c6b5f68a106087537d6c5f549",
+      "instructions": 26,
+      "direct_flow_targets_checked": 0,
+      "address_and_mnemonic_sequences_equal": true
+    },
+    {
+      "entry": "0x4539b0",
+      "end_exclusive": "0x453cfc",
+      "bytes": 844,
+      "sha256": "3242a1b864629b1b0b1f25efea500026689d9f98a787981a14e162d968fa34cf",
+      "instructions": 225,
+      "direct_flow_targets_checked": 66,
+      "address_and_mnemonic_sequences_equal": true
+    },
+    {
+      "entry": "0x496410",
+      "end_exclusive": "0x49644c",
+      "bytes": 60,
+      "sha256": "122673c1633a9c516c21adabe1cd531cd1ec89dde99e6fd159a11f9ba0249fe7",
+      "instructions": 26,
+      "direct_flow_targets_checked": 2,
+      "address_and_mnemonic_sequences_equal": true
+    },
+    {
+      "entry": "0x4967b0",
+      "end_exclusive": "0x4968a9",
+      "bytes": 249,
+      "sha256": "64d8be6fb0061fc7da046a1db739e0a92a91ae964c55143eadf3af18f7d75c17",
+      "instructions": 83,
+      "direct_flow_targets_checked": 13,
+      "address_and_mnemonic_sequences_equal": true
+    },
+    {
+      "entry": "0x56ce80",
+      "end_exclusive": "0x56ceb8",
+      "bytes": 56,
+      "sha256": "50c539acd86c681d0d0aee54469e4113c3fce28731e42a5dc2c86cf02facb1af",
+      "instructions": 28,
+      "direct_flow_targets_checked": 3,
+      "address_and_mnemonic_sequences_equal": true
+    }
+  ],
+  "key_original_instructions": [
+    {
+      "address": "0x422407",
+      "hex": "ff156c225900",
+      "mnemonic": "call",
+      "operands": "dword ptr [0x59226c]"
+    },
+    {
+      "address": "0x42240d",
+      "hex": "3bf4",
+      "mnemonic": "cmp",
+      "operands": "esi, esp"
+    },
+    {
+      "address": "0x42241c",
+      "hex": "e87f010000",
+      "mnemonic": "call",
+      "operands": "0x4225a0"
+    },
+    {
+      "address": "0x422431",
+      "hex": "c20400",
+      "mnemonic": "ret",
+      "operands": "4"
+    },
+    {
+      "address": "0x453cb0",
+      "hex": "e8abe6fcff",
+      "mnemonic": "call",
+      "operands": "0x422360"
+    },
+    {
+      "address": "0x453cb5",
+      "hex": "837df800",
+      "mnemonic": "cmp",
+      "operands": "dword ptr [ebp - 8], 0"
+    },
+    {
+      "address": "0x453cb9",
+      "hex": "7429",
+      "mnemonic": "je",
+      "operands": "0x453ce4"
+    },
+    {
+      "address": "0x453cc4",
+      "hex": "e8e72a0400",
+      "mnemonic": "call",
+      "operands": "0x4967b0"
+    },
+    {
+      "address": "0x453cce",
+      "hex": "e88de6fcff",
+      "mnemonic": "call",
+      "operands": "0x422360"
+    },
+    {
+      "address": "0x453cd8",
+      "hex": "e883e6fcff",
+      "mnemonic": "call",
+      "operands": "0x422360"
+    },
+    {
+      "address": "0x453cdd",
+      "hex": "b801000000",
+      "mnemonic": "mov",
+      "operands": "eax, 1"
+    },
+    {
+      "address": "0x453ce4",
+      "hex": "e9e4fcffff",
+      "mnemonic": "jmp",
+      "operands": "0x4539cd"
+    },
+    {
+      "address": "0x453cfb",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    },
+    {
+      "address": "0x496430",
+      "hex": "0fbe883c7c1100",
+      "mnemonic": "movsx",
+      "operands": "ecx, byte ptr [eax + 0x117c3c]"
+    },
+    {
+      "address": "0x4967d0",
+      "hex": "e83bfcffff",
+      "mnemonic": "call",
+      "operands": "0x496410"
+    },
+    {
+      "address": "0x4967d7",
+      "hex": "7507",
+      "mnemonic": "jne",
+      "operands": "0x4967e0"
+    },
+    {
+      "address": "0x4967db",
+      "hex": "e9b8000000",
+      "mnemonic": "jmp",
+      "operands": "0x496898"
+    },
+    {
+      "address": "0x4968a8",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    },
+    {
+      "address": "0x56ce80",
+      "hex": "7501",
+      "mnemonic": "jne",
+      "operands": "0x56ce83"
+    },
+    {
+      "address": "0x56ce82",
+      "hex": "c3",
+      "mnemonic": "ret",
+      "operands": ""
+    }
+  ],
+  "findings": [
+    "422407 calls the real wait import with node+1C and INFINITE. 42240D compares ESI with ESP, not EAX with WAIT_OBJECT_0; 56CE80 is a stack-balance check. Successful OS return must be separately proved; natural RET alone does not prove wait success.",
+    "42241C executes original4225A0, which clears flags with flags &= ~argument; argument here is 0x10000. The wait body returns with RET4 at422431.",
+    "453CB5 is the first caller-local result read after453CB0 wait: CMP [EBP-8],0. It consumes the scene result stored earlier at453A00 or453C34, not the OS wait return EAX. Zero branches via453CE4 to4539CD.",
+    "For nonzero result, ECX becomes scene+0x190;453CC4 calls4967B0, then453CCE and453CD8 call422360 with delay0, then453CDD sets EAX=1 and453CFB returns. This is a static path, not evidence that all three real handshakes ran.",
+    "4967B0 calls496410; the latter returns1 iff the signed byte at receiver+0x117C3C equals1. Thus the field is scene+0x117DCC for this callsite. False skips file I/O and returns0. True goes through ReplayData.rep CRT open/write/close plus assertions before returning0. Both normal paths return at4968A8; the caller ignores its EAX.",
+    "REA xrefs at453CB5 is empty because a CALL normally references the callee, not the fallthrough return address; it is not evidence that453CB5 is unreachable. The4967B0 xref at453CC4 agrees with original CALL bytes.",
+    "Ghidra pseudocode uses inferred void signatures and misleading local names/this recovery in these debug-build routines; conclusions here use assembly and original bytes. Seeded function entries and214 labels are prior caller assertions, not new independent Ghidra discoveries."
+  ],
+  "limitations": [
+    "Static source/flow verification only: no runtime wait return, live ownership, concurrency, full-state import, resources/PTD or complete replay was proved.",
+    "The direct-flow/address/mnemonic comparisons do not claim semantic equivalence of every operand or dynamic path. Key operands are independently asserted above.",
+    "REA Ghidra12.1.3 differs from bridge-tested12.1.4; observed version and seed limitations remain unchanged."
+  ],
+  "reviewed_artifacts": [
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-procedure_assembly.json",
+      "bytes": 18295,
+      "sha256": "86c8882f21dba7043d1bbb0d1c3a16e442b350bbb24337f5876d296f41435daa"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4225a0-procedure_assembly.json",
+      "bytes": 12843,
+      "sha256": "f098755c98aeaf23970fb506770290680a55c1e7af705a71e303affee61ea3c7"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4539b0-procedure_assembly.json",
+      "bytes": 39213,
+      "sha256": "7281d163c231069d794b41224d8e64b7157c400c29fdfc0c0cabf19b866dd8dc"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/496410-procedure_assembly.json",
+      "bytes": 12619,
+      "sha256": "40f8aa018457c7ca17215d99fcfc7649f7265fc8ae17621cd3c6f8d3a2aaea1a"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-procedure_assembly.json",
+      "bytes": 20491,
+      "sha256": "db47ddf93f6c59b8e000c36634100b5692cdb7f59ee263592a38336a155ca51f"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/56ce80-procedure_assembly.json",
+      "bytes": 12839,
+      "sha256": "fa0622aa05ee7a16c44377491cbac643f56dd9eff24185e37d0cc6a3e914c10c"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-bytes.json",
+      "bytes": 12196,
+      "sha256": "4db8bed48ae22c82be07abd17c9772452d3a573f4887e985278aaa2b377458e8"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4225a0-bytes.json",
+      "bytes": 10954,
+      "sha256": "ab990847151e3172aa1b15502c6326a04bc24aebe7c4b0462adccffc3a6bfe87"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/453c80-bytes.json",
+      "bytes": 11524,
+      "sha256": "de3b3307298e9810a7b5bf04765326c43c32271c3b1785bdb9dc89a98d2b2e27"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-bytes.json",
+      "bytes": 12548,
+      "sha256": "cb1b48c69b498c6e1232378ddb29667bd38f99b85e741f902b2c49b2d910ca13"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/453cb5-xrefs.json",
+      "bytes": 10193,
+      "sha256": "c06e4a6d1103ed212b2c5127af502cfd6b5c8054daea036feaac0e761f1c96b5"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-xrefs.json",
+      "bytes": 10265,
+      "sha256": "5b8395e8b6bcc4cf8dcaf13070091b64829d14168d2c449d0be8504dcc5fdfab"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/close.json",
+      "bytes": 151,
+      "sha256": "5b71f15425a2ded97f7dca6f927ba1d7bb6fcd2fa187ec6aba4de105006cf849"
+    }
+  ],
+  "result": "pass for stated static byte/chain review; native admission and formal completion remain false",
+  "formal_tasks_changed": false
+}

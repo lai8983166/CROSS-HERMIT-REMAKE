@@ -1,4 +1,9 @@
 # Audit report hashes include exact UTF-8 bytes; keep these reports as LF text.
+# REA session/route audit binds exact executed source and review report bytes.
+tools/rea_wait_chain*.py -text
+analysis/terminal-rea-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+analysis/terminal-rea-*.zip binary
+docs/terminal_rea_wait_route.md -text
 # Bounded child-VEH observation binds exact executed source and native reports.
 devtools/terminal_wait_child_veh_* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 devtools/tests/test_terminal_wait_child_veh.py -text

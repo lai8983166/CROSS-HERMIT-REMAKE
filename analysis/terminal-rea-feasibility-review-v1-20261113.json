@@ -1,0 +1,500 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-13",
+  "review_scope": "Independent read-only feasibility review of existing evidence, code, specifications and official documentation. No game, VM, native fixture, collector, input, installation or host change was run. REA call-chain work belongs to the main agent and is not claimed here.",
+  "formal_tasks_changed": false,
+  "full_acceptance": false,
+  "decisions": {
+    "child_only_VEH_as_complete_original_machine_capture": "no-go",
+    "child_only_VEH_as_bounded_synchronous_entry": "conditional-go: owned fixture already demonstrates this narrower ability; original-game deployment and current parent policy remain unqualified",
+    "VEH_deployment_with_existing_private_buffer_bridge": "unknown: mechanism exists, but actual game installation/removal, handler lifetime, current parent behavior and interference are technically unqualified; this is not a finding that session authorization is absent",
+    "original_instruction_engine_with_fresh_same_owner_native_leaves": "conditional-go for a bounded ownership feasibility gate; not yet implemented or admitted for complete replay",
+    "complete_game_acceptance_now": "no-go"
+  },
+  "contract_distinction": {
+    "finding": "The inherited 57-register contract measures the complete CPU of the original-instruction execution engine. It is not, by itself, a demand to capture every privileged register of the host running the original game. The subsequent raw64 compatibility envelope is necessary for the chosen route importing/restoring an actual WOW64 machine context, not automatically for every valid implementation route.",
+    "evidence": [
+      "openspec/specs/reverse-engineering/completion/spec.md:129-143 requires source identity, true interfaces, relevant state, actual ownership/lifetime, no fabricated objects/results or stale handles; it does not prescribe native hardware CR capture",
+      "openspec/changes/connect-terminal-wait-and-battle-exit/proposal.md:25 says no requirement change and skip_specs=true",
+      "openspec/changes/connect-terminal-wait-and-battle-exit/design.md:13-24 requires original construction/registration/wrappers/current owner, complete CPU/memory/permissions/ABI/traces, and forbids a new post-wait execution root",
+      "tools/terminal_unit_frontends_trace.py:1-18 defines 57 guest architectural register names and cumulative guest instruction/write hashes",
+      "tools/terminal_unit_frontends_trace.py:118 captures machine.cpu(); lines 325-340 restore and compare those registers in an independent Unicorn engine; lines 376-384 compare full guest CPU before and after a platform boundary",
+      "devtools/terminal_wait_registration_probe.py:63-68 reads each CPU field with uc.reg_read; lines 162-168 record real platform replies and apply declared ABI output to guest EAX/ESP/EIP",
+      "devtools/terminal_tcg_compat_context.py:1-7 explicitly describes a lossless compatibility record, says it is not a legacy Unicorn32 load format, and disclaims capture/build/memory/event authentication"
+    ],
+    "implication": "Retain every inherited 57 field and all independent replay checks. Do not fill missing native fields with old guest defaults when claiming native-context import. Equally, do not require native CR/hidden-cache acquisition merely to execute the already declared guest engine against correctly owned real platform leaves. These are different source contracts."
+  },
+  "child_VEH_limits": [
+    {
+      "state": "XSTATE beyond the fixed base CONTEXT",
+      "classification": "implementation gap, not principled impossibility",
+      "reason": "The fixture copies CONTEXT by value into fixed records (716 bytes), despite an exception flag indicating XSTATE. Windows provides size/alignment-aware allocation, CopyContext, feature masks and LocateXStateFeature. Validity and INIT semantics must be recorded. A later context read of a thread already executing VEH is not automatically the saved fault context.",
+      "local": "devtools/terminal_wait_child_veh_fixture.cpp:17,64,78,121; docs/terminal_wait_child_veh.md:52-63",
+      "official": [
+        "https://learn.microsoft.com/en-us/windows/win32/debug/working-with-xstate-context",
+        "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getxstatefeaturesmask",
+        "https://learn.microsoft.com/en-us/windows/win32/debug/avx-functions"
+      ]
+    },
+    {
+      "state": "CR0/CR2/CR3/CR4 and DR4/DR5 semantics",
+      "classification": "not supplied by this user-mode context API; direct privileged-register access cannot be added as ordinary CPL3 instructions",
+      "reason": "WOW64_CONTEXT has no CR fields. DR4/5 are not independent universally readable values; semantics depend on CR4.DE. A separate authorized privileged/virtualization source would be needed for a complete actual-machine claim. This finding does not apply to existing guest-engine registers, whose source is the engine itself.",
+      "local": "tools/terminal_unit_frontends_trace.py:13; devtools/terminal_tcg_compat_context.py:132-139; docs/terminal_wait_child_veh.md:60-63",
+      "official": [
+        "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-wow64_context",
+        "https://cdrdv2-public.intel.com/671110/325383-sdm-vol-2abcd.pdf",
+        "https://www.intel.co.uk/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-3b-part-2-manual.pdf"
+      ]
+    },
+    {
+      "state": "Descriptor tables, selectors and hidden segment caches",
+      "classification": "must distinguish readable descriptor-table entries from cached hardware state",
+      "reason": "Wow64GetThreadSelectorEntry can retrieve a table entry, so claiming all segment information is inherently unreadable is false. It does not certify the loaded hidden cache. Intel documents that cached descriptors can differ from memory-resident descriptors. Some descriptor-table store instructions are conditionally available in user mode; they still cannot supply this entire original fault-time envelope or guarantee same CPU/instant.",
+      "local": "devtools/terminal_scene_owner.py:159-170 uses the selector-entry API in capture_tls for bounded TEB provenance; docs/terminal_wait_child_veh.md:60-63",
+      "official": [
+        "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-wow64getthreadselectorentry",
+        "https://cdrdv2-public.intel.com/868137/325462-089-sdm-vol-1-2abcd-3abcd-4.pdf"
+      ]
+    },
+    {
+      "state": "Upper GPR halves, R8-R15, XMM8-XMM15 and original compatibility-mode envelope",
+      "classification": "unimplemented and unqualified in the x86 VEH route; not proven universally impossible",
+      "reason": "WOW64_CONTEXT omits these fields. Native x64 CONTEXT exposes additional register fields, but simply requesting that context while the target is executing VEH/WOW64 exception machinery does not authenticate the original stopped compatibility-mode instant. No bridge in this review proves the required correspondence.",
+      "official": [
+        "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-wow64_context",
+        "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-context"
+      ]
+    },
+    {
+      "state": "Observer transparency and continuous execution",
+      "classification": "unqualified even if missing context fields are added",
+      "reason": "A successful first-consumer stop and one consumption prove a synchronous boundary, not full pre-exception equivalence or continuous original instruction/write/ABI history. VEH executes code, writes a stack/records and changes scheduling. The fixture restores debug registers and preserves supplied base-context bytes, not an independently known full pre-exception state.",
+      "local": "devtools/terminal_wait_child_veh_fixture.cpp:53-81,167-198; docs/terminal_wait_child_veh.md:41-67",
+      "official": [
+        "https://learn.microsoft.com/en-us/windows/win32/debug/vectored-exception-handling"
+      ]
+    }
+  ],
+  "deployment_review": {
+    "existing_mechanism": "tools/school_scheduler_lifetime.py:34-84 contains an owned-process private-buffer bridge: VirtualAllocEx, writes restricted to fresh allocations, RW-to-RX protection/cache flush, CreateRemoteThread, bounded entry/ABI checks, wait/exit verification and no freeing active code. docs/school_scheduler_lifetime.md:13-17 and 30-51 record historical isolated-object native success with original code/IAT preserved.",
+    "not_a_ready_VEH_installer": "The bridge whitelist does not include AddVectoredExceptionHandler. Its historical technical scope was isolated private scheduler objects; it does not establish current game exception-chain equivalence or safe registration/removal. The fixture registers its handler only in its own purpose-built Child (devtools/terminal_wait_child_veh_fixture.cpp:145), not in the game. No dormant original startup stub or preinstalled original-game VEH was identified in the reviewed implementation. Existing session authorization is a separate question and is not assumed absent here.",
+    "risk": "Even writing only new private buffers is a process mutation. Registration changes exception handling; a new thread changes timing/layout and invokes DLL notifications. Installing with First=1 changes handler ordering. Removal and quiescence must precede code deallocation. Startup CREATE_SUSPENDED is not automatically safe: remote threads may not begin until DLL initialization finishes.",
+    "official": [
+      "https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread",
+      "https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-addvectoredexceptionhandler"
+    ],
+    "decision": "Do not claim deployment impossible merely because no current installer exists. The decisive blockers are technical qualification of the current parent/handler chain, safe teardown, and the insufficient actual-machine state/trajectory source. Current full-state no-go makes deploying this candidate a poor next step for complete acceptance, regardless of permission."
+  },
+  "preferred_route_review": {
+    "route": "Return to the existing original-instruction engine and close its current-owner/platform boundary, preserving its full CPU/ABI/memory/trace checks. Native game observation remains corroborating evidence unless a complete native import is independently qualified.",
+    "actual_first_dependencies": [
+      "docs/terminal_wait.md:7-14: the retained TASK first 0x30 bytes and MAIN scheduler region are zero; 4223A8 would pass 0x100 to EnterCriticalSection. An observer cannot turn that into a valid owner.",
+      "docs/terminal_wait.md:24: the retained 4539B0 root returns to a sentinel and lacks actual 451AB7/451711/421F88 ancestors. The next fresh source must generate those ancestors naturally; restoring the old tail cannot manufacture them.",
+      "devtools/terminal_wait_registration_probe.py:78-84,210-225,288-300: original construction reaches 56E0BE with [0,0,56E110,current PTD,4,node+24] and exact 116-byte PTD, but heap/PTD and scheduler events are in two helper processes. No CreateThread executes.",
+      "tools/school_retained_scheduler_platform.cs:26-34 serves leaves on one serial command thread, has no worker support and bounds wait to 1000 ms. It cannot supply concurrent original MAIN/worker semantics by merely removing a guard or returning success.",
+      "tools/school_crt_init_platform.cs:40-56 likewise serves heap/critical leaves on its single command thread. Real lock ownership, TLS, thread identity and blocked waits need per-source-thread routing in one current owner."
+    ],
+    "why_not_disproved": "The inherited proof already permits explicit real OS-leaf ABI translation while retaining guest architecture. Windows CreateThread requires code/parameter in its owning process; it does not require copying privileged host registers into an emulator. The project already proved original CRT/scheduler native lifetimes for private objects. The missing integration is concrete ownership/execution routing, not a known Windows prohibition.",
+    "why_not_already_go": "Unifying the two helper binaries alone is insufficient. The start address 56E110 is a guest code address, PTD/node/MAIN pointers have guest ownership, and thread-local operations/critical sections must execute on the corresponding real worker. A generic event-only helper or a fabricated callback return violates the contract. No reviewed implementation currently supplies the complete bridge and independent trace.",
+    "bounded_next_step": [
+      "Read/derive the exact original 56E110 -> TLS installation -> 421F50 -> virtual callback chain, with native leaf operations and logical/native pointer roles; select one fresh owned address space and explicit per-thread routing before changing code.",
+      "Implement only the smallest same-owner creation/resume/first-yield path after that mapping is reviewable: a real suspended OS thread must cause original wrapper and callback instructions to execute, with their full guest CPU and writes recorded. If execution is interpreter-driven, its trampoline must dispatch original instructions, never replace the callback with a waiting stub. This is a candidate platform architecture and needs explicit independent acceptance, not a claimed existing feature.",
+      "The gate ends after the original manager/node handshake returns successfully, with real PID/TID/TLS/PTD/lock ownership and normal cleanup. Reject wrong owner, failed wait, missing original wrapper/callback execution, or unexplained memory/state projection. Do not run the long battle prefix before this gate passes.",
+      "Then create a fresh source from original 451170/451080 construction and real ancestors; reconstruct the two retained logical cases through their current native resource lifetimes. Continue naturally through 422360 and 453CB5/4967B0 without a new consumer root. Preserve both independent complete replays, cumulative hashes, all state and cleanup requirements."
+    ],
+    "proposed_first_gate_budget": {
+      "execution_authorized_by_this_report": false,
+      "scope": "one fresh owner, one real suspended worker, original wrapper/TLS/callback execution through the first original cooperative yield and its matching scheduler signal; no battle prefix or UI",
+      "max_new_native_attempts_before_diagnosis": 1,
+      "outer_process_deadline_seconds": 30,
+      "original_wait_arguments_unchanged": true,
+      "persistent_evidence_cap_MiB": 16,
+      "budget_behavior": "The outer deadline does not replace INFINITE in the original WaitForSingleObject ABI. A deadline or forced cleanup is a rejected feasibility attempt, never normal original cleanup or a reason to extend/repeat the same recipe.",
+      "first_stop_loss": "Before ResumeThread require the fresh owner, real worker handle/TID, original 56E110 execution entry, exact current PTD allocation/parameter and thread-specific leaf routing; otherwise reject. TLS is not required to exist before its original installation: after resumption, the original wrapper must execute its actual TlsSetValue and subsequent current-thread lookup on that worker, with its lock ownership and live-object identity verified. Reject at the first missing original instruction/leaf/ownership witness; do not move the gate to a later successful event."
+    },
+    "same_owner_bridge_status": "conditional-go for bounded design/implementation investigation; compatibility with strict original-thread semantics and full retained-resource integration remains unknown until actual evidence exists",
+    "official": [
+      "https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread"
+    ]
+  },
+  "excluded_retries": [
+    "No repeated post-wait polling/ETW/suspended-context sampling as a substitute for full synchronous state or instruction history (docs/terminal_battle_wait_window.md:269-284).",
+    "No original parent-debugger relay retry or PAGE_GUARD assumption (docs/terminal_wait_child_veh.md:15-22).",
+    "No reused WOW64 instrumentation callback selector-13 path already measured at zero callbacks (docs/terminal_wait.md:255-286).",
+    "No VMware ULM hidden-breakpoint/suspend-resume retry after debugReg.c:287 panic/high-IRQL failure (docs/terminal_wait.md:301-304).",
+    "No generic RF clearing or return-address-only proof for WHP (docs/terminal_wait.md:440-511).",
+    "No TCG/WinRM large-payload or serial/WinPE boot retry; current control/input/D3D8 admission remains failed/unknown. A new VM build is not the proposed next step.",
+    "No old school_scene_bootstrap.py isolated yield as formal handshake: it seeds node+1C and explicitly releases an experiment-owned event; its original_CRT_callback=false and experimental_release=true declarations must remain visible."
+  ],
+  "review_limitations": [
+    "No native equivalence or new test result is asserted. Official documentation describes interface/architecture contracts, not target-specific success.",
+    "This report corrects an overbroad inference that incomplete native hardware capture makes every compliant route impossible. It does not relax the existing acceptance conditions or qualify a new backend.",
+    "Current user authorization and desktop/isolation constraints must be resolved by the main agent from the actual session before any future native operation. This review grants no new memory-write or desktop authorization.",
+    "No existing source, failure, frozen helper, task checkbox or historical acceptance was changed. Only this small JSON report was added."
+  ],
+  "line_reference_audit": {
+    "method": "Explicit line ranges and semantic spans reviewed against pre-change checkout at baseline commit07ccd623. Every recorded checkout SHA is independently matched to that Git blob, allowing only recorded LF/CRLF checkout conversion. New route edits in design/tasks/reverse-iteration do not change this review baseline.",
+    "references": [
+      {
+        "path": "openspec/specs/reverse-engineering/completion/spec.md",
+        "first_line": 129,
+        "last_line": 143,
+        "file_lines": 255,
+        "sha256": "9019da2adc8ce5c5316128ce9dbbf1817607ff89583a1a9c3d813ba44c0d8fec",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "9019da2adc8ce5c5316128ce9dbbf1817607ff89583a1a9c3d813ba44c0d8fec",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "openspec/changes/connect-terminal-wait-and-battle-exit/proposal.md",
+        "first_line": 25,
+        "last_line": 25,
+        "file_lines": 29,
+        "sha256": "93eadf2dc4d9159aead8e4d1eafb3f07ca77adc16a87026e470a4f00779a36ce",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "93eadf2dc4d9159aead8e4d1eafb3f07ca77adc16a87026e470a4f00779a36ce",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "openspec/changes/connect-terminal-wait-and-battle-exit/design.md",
+        "first_line": 13,
+        "last_line": 24,
+        "file_lines": 35,
+        "sha256": "e6d3d4d5dc34c343f733991c9a3a1fc8f712d6cdc5aa987f39b9114cf2b514b1",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "e6d3d4d5dc34c343f733991c9a3a1fc8f712d6cdc5aa987f39b9114cf2b514b1",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "tools/terminal_unit_frontends_trace.py",
+        "first_line": 1,
+        "last_line": 18,
+        "file_lines": 447,
+        "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "tools/terminal_unit_frontends_trace.py",
+        "first_line": 118,
+        "last_line": 118,
+        "file_lines": 447,
+        "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_wait_registration_probe.py",
+        "first_line": 63,
+        "last_line": 68,
+        "file_lines": 391,
+        "sha256": "da81eb22264f2d2cb3b422491379b621daebedd83e6e912e81459a9744f2ee8e",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "da81eb22264f2d2cb3b422491379b621daebedd83e6e912e81459a9744f2ee8e",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_tcg_compat_context.py",
+        "first_line": 1,
+        "last_line": 7,
+        "file_lines": 196,
+        "sha256": "d8f427d970fdb8f8cea2b6478a23cb309ad7bc2edc06c7668efaaf90c71c0bac",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "d8f427d970fdb8f8cea2b6478a23cb309ad7bc2edc06c7668efaaf90c71c0bac",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_wait_child_veh_fixture.cpp",
+        "first_line": 17,
+        "last_line": 17,
+        "file_lines": 305,
+        "sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait_child_veh.md",
+        "first_line": 52,
+        "last_line": 63,
+        "file_lines": 86,
+        "sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "tools/terminal_unit_frontends_trace.py",
+        "first_line": 13,
+        "last_line": 13,
+        "file_lines": 447,
+        "sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "9bc20b24416d7702aecd3ffd768e6f6c5664419278c2c7120733d3fe7b3e9920",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_tcg_compat_context.py",
+        "first_line": 132,
+        "last_line": 139,
+        "file_lines": 196,
+        "sha256": "d8f427d970fdb8f8cea2b6478a23cb309ad7bc2edc06c7668efaaf90c71c0bac",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "d8f427d970fdb8f8cea2b6478a23cb309ad7bc2edc06c7668efaaf90c71c0bac",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait_child_veh.md",
+        "first_line": 60,
+        "last_line": 63,
+        "file_lines": 86,
+        "sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_scene_owner.py",
+        "first_line": 159,
+        "last_line": 170,
+        "file_lines": 510,
+        "sha256": "7ecdcac1599d674bcb24a40b2a52cd824173bc99ff9fe1c0cc4d6f3200a721f5",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "7ecdcac1599d674bcb24a40b2a52cd824173bc99ff9fe1c0cc4d6f3200a721f5",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait_child_veh.md",
+        "first_line": 60,
+        "last_line": 63,
+        "file_lines": 86,
+        "sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_wait_child_veh_fixture.cpp",
+        "first_line": 53,
+        "last_line": 81,
+        "file_lines": 305,
+        "sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait_child_veh.md",
+        "first_line": 41,
+        "last_line": 67,
+        "file_lines": 86,
+        "sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "tools/school_scheduler_lifetime.py",
+        "first_line": 34,
+        "last_line": 84,
+        "file_lines": 165,
+        "sha256": "4159af0d980064daac431da540c0b83641a1276a2b388bf5f01477fc114e94d9",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "4159af0d980064daac431da540c0b83641a1276a2b388bf5f01477fc114e94d9",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/school_scheduler_lifetime.md",
+        "first_line": 13,
+        "last_line": 17,
+        "file_lines": 55,
+        "sha256": "0b2355715d343772aba3bebf41d79882e7a2c511edb7d0559272582cc3031f34",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "0b2355715d343772aba3bebf41d79882e7a2c511edb7d0559272582cc3031f34",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_wait_child_veh_fixture.cpp",
+        "first_line": 145,
+        "last_line": 145,
+        "file_lines": 305,
+        "sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "be6f79cd616320be7a41a70bdc2e9d26d5f15409ac820fcf45a87c5d8ea99c70",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait.md",
+        "first_line": 7,
+        "last_line": 14,
+        "file_lines": 1076,
+        "sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait.md",
+        "first_line": 24,
+        "last_line": 24,
+        "file_lines": 1076,
+        "sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "devtools/terminal_wait_registration_probe.py",
+        "first_line": 78,
+        "last_line": 84,
+        "file_lines": 391,
+        "sha256": "da81eb22264f2d2cb3b422491379b621daebedd83e6e912e81459a9744f2ee8e",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "da81eb22264f2d2cb3b422491379b621daebedd83e6e912e81459a9744f2ee8e",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "tools/school_retained_scheduler_platform.cs",
+        "first_line": 26,
+        "last_line": 34,
+        "file_lines": 35,
+        "sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "3468242149fd973c9c4e6987575b30c4ba54c706457ad45d85011a1946413e81",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "tools/school_crt_init_platform.cs",
+        "first_line": 40,
+        "last_line": 56,
+        "file_lines": 57,
+        "sha256": "cb25ac0088513f488baaf240d9b67bcd5966a700a94795e37d9525e193e5647b",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "cb25ac0088513f488baaf240d9b67bcd5966a700a94795e37d9525e193e5647b",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_battle_wait_window.md",
+        "first_line": 269,
+        "last_line": 284,
+        "file_lines": 357,
+        "sha256": "0ec89066e33ae9c6743e1c9aaa29b02c1fd2fbed36d50930311fb8b8bab6a134",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "0ec89066e33ae9c6743e1c9aaa29b02c1fd2fbed36d50930311fb8b8bab6a134",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait_child_veh.md",
+        "first_line": 15,
+        "last_line": 22,
+        "file_lines": 86,
+        "sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "d728f54b6a2b810e653fea620adb1580c5b2b809813fd40333bab24913c5f98f",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait.md",
+        "first_line": 255,
+        "last_line": 286,
+        "file_lines": 1076,
+        "sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait.md",
+        "first_line": 301,
+        "last_line": 304,
+        "file_lines": 1076,
+        "sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      },
+      {
+        "path": "docs/terminal_wait.md",
+        "first_line": 440,
+        "last_line": 511,
+        "file_lines": 1076,
+        "sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "git_blob_sha256": "85263c0b38482d93a9c8a2c262d7c1ee6563c9bb0a95a66224265ca72396e2ea",
+        "observed_checkout_eol": "exact_git_blob",
+        "sha256_scope": "reviewed pre-change checkout bytes from baseline_commit, not current working-tree bytes"
+      }
+    ],
+    "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+    "planning_files_changed_after_initial_review": [
+      {
+        "path": "openspec/changes/connect-terminal-wait-and-battle-exit/design.md",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "baseline_git_blob_sha256": "e6d3d4d5dc34c343f733991c9a3a1fc8f712d6cdc5aa987f39b9114cf2b514b1",
+        "current_file_differs": true,
+        "current_bytes_not_substituted_for_baseline": true
+      },
+      {
+        "path": "openspec/changes/connect-terminal-wait-and-battle-exit/tasks.md",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "baseline_git_blob_sha256": "0e79b0159c0bff720a13d30f98b80f322220b4d885c4a33b94ab31b95d6a8e30",
+        "current_file_differs": true,
+        "current_bytes_not_substituted_for_baseline": true
+      },
+      {
+        "path": "docs/reverse-iteration.md",
+        "baseline_commit": "07ccd62362a026f0667abc13ed841a3e3b19d962",
+        "baseline_git_blob_sha256": "8310171a7d327eb27dddf5b5e79b895fa459df2a0a1c00bdb9c0d023f20e761b",
+        "current_file_differs": true,
+        "current_bytes_not_substituted_for_baseline": true
+      }
+    ]
+  },
+  "final_route_document_review": {
+    "files": [
+      "docs/terminal_rea_wait_route.md",
+      "docs/reverse-iteration.md",
+      "openspec/changes/connect-terminal-wait-and-battle-exit/tasks.md",
+      "openspec/changes/connect-terminal-wait-and-battle-exit/design.md"
+    ],
+    "result": "pass within static review scope",
+    "acceptance_preserved": true,
+    "findings": [
+      "The new route distinguishes guest57 from actual-machine raw64 without waiving either within its applicable source claim.",
+      "Real per-thread OS ownership, original wrapper/callback instructions, fresh ancestors, two complete fresh lifetimes, independent replay, cumulative state/traces, resources/PTD and tamper checks remain required.",
+      "No new native admission or completion claim; 60-minute offline and one30-second native capability gate retain explicit failure stop."
+    ],
+    "limitation": "This is documentation consistency review, not implementation feasibility acceptance. Later artifact packaging/cleanup remains the main agent responsibility."
+  }
+}

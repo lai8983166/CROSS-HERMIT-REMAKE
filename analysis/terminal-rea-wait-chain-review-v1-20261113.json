@@ -1,0 +1,437 @@
+{
+  "kind": "rea-wait-chain-source-review",
+  "review_passed": true,
+  "accepted": false,
+  "original_game_observed": false,
+  "formal_progress": "2/8",
+  "session": {
+    "path": ".venv-audit/rea-wait-20261113/run-v1/run.json",
+    "bytes": 9096,
+    "sha256": "2fed4be21bf89f0594cb8bf0f323588a370bdd806a8f7c9d902c8a68fb9f5f08"
+  },
+  "source": {
+    "path": "analysis/hermit_game.exe",
+    "bytes": 5980160,
+    "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+  },
+  "reviewer": {
+    "path": "tools/rea_wait_chain_review.py",
+    "bytes": 8377,
+    "sha256": "11c2afb14811c5a377642e0706ba33ba5ce7b1938a1af15b0a248546a9421446"
+  },
+  "tool_calls": 31,
+  "session_seconds": 150.562,
+  "raw_byte_queries": [
+    {
+      "va": 4334432,
+      "bytes": 212,
+      "sha256": "ab2bd87de9126e049e5ceb1c2266bf1d213ac8a27bc4ff1c43e537fb20010540"
+    },
+    {
+      "va": 4537472,
+      "bytes": 128,
+      "sha256": "59a5d4aa4906dc184a13b10ca8118956821d125b142b3c116053ece66204f4d9"
+    },
+    {
+      "va": 4810672,
+      "bytes": 256,
+      "sha256": "29004dfdfb78cb26af0db9a746d44a3832bc733ea14bdd4b55ab695186d531ec"
+    },
+    {
+      "va": 4335008,
+      "bytes": 58,
+      "sha256": "5039cb1dc6623b86e39af0871154f46cea9f032c6b5f68a106087537d6c5f549"
+    }
+  ],
+  "independently_decoded_listing_sites": 743,
+  "functions": [
+    {
+      "entry": "0x422360",
+      "instruction_sites": 70,
+      "last_instruction": "0x422431: RET 0x4",
+      "function_limitations": []
+    },
+    {
+      "entry": "0x4225a0",
+      "instruction_sites": 26,
+      "last_instruction": "0x4225d7: RET 0x4",
+      "function_limitations": []
+    },
+    {
+      "entry": "0x4539b0",
+      "instruction_sites": 225,
+      "last_instruction": "0x453cfb: RET",
+      "function_limitations": []
+    },
+    {
+      "entry": "0x496410",
+      "instruction_sites": 26,
+      "last_instruction": "0x49644b: RET",
+      "function_limitations": []
+    },
+    {
+      "entry": "0x4967b0",
+      "instruction_sites": 83,
+      "last_instruction": "0x4968a8: RET",
+      "function_limitations": [
+        "Ghidra Listing reports a terminal call at 0x496844 with no resolved callee; its no-return basis is unknown.",
+        "Ghidra Listing reports a terminal call at 0x496889 with no resolved callee; its no-return basis is unknown."
+      ]
+    },
+    {
+      "entry": "0x56ce80",
+      "instruction_sites": 28,
+      "last_instruction": "0x56ceb7: RET",
+      "function_limitations": [
+        "Ghidra Listing reports a terminal call at 0x56ceae with no resolved callee; its no-return basis is unknown."
+      ]
+    },
+    {
+      "entry": "0x421850",
+      "instruction_sites": 285,
+      "last_instruction": "0x421be0: RET 0x4",
+      "function_limitations": [
+        "Ghidra Listing reports a terminal call at 0x42199c with no resolved callee; its no-return basis is unknown.",
+        "Ghidra Listing reports a terminal call at 0x4219f5 with no resolved callee; its no-return basis is unknown.",
+        "Ghidra Listing reports a terminal call at 0x421b1b with no resolved callee; its no-return basis is unknown.",
+        "Ghidra Listing reports a terminal call at 0x421b85 with no resolved callee; its no-return basis is unknown."
+      ]
+    }
+  ],
+  "key_instructions": [
+    {
+      "va": "0x422407",
+      "hex": "ff156c225900",
+      "independent": "call dword ptr [0x59226c]",
+      "REA_listing": "0x422407: CALL dword ptr [0x0059226c]"
+    },
+    {
+      "va": "0x42240d",
+      "hex": "3bf4",
+      "independent": "cmp esi, esp",
+      "REA_listing": "0x42240d: CMP ESI, ESP"
+    },
+    {
+      "va": "0x42241c",
+      "hex": "e87f010000",
+      "independent": "call 0x4225a0",
+      "REA_listing": "0x42241c: CALL 0x004225a0"
+    },
+    {
+      "va": "0x422431",
+      "hex": "c20400",
+      "independent": "ret 4",
+      "REA_listing": "0x422431: RET 0x4"
+    },
+    {
+      "va": "0x4225ce",
+      "hex": "895004",
+      "independent": "mov dword ptr [eax + 4], edx",
+      "REA_listing": "0x4225ce: MOV dword ptr [EAX + 0x4], EDX"
+    },
+    {
+      "va": "0x4539fb",
+      "hex": "e810050000",
+      "independent": "call 0x453f10",
+      "REA_listing": "0x4539fb: CALL 0x00453f10"
+    },
+    {
+      "va": "0x453a00",
+      "hex": "8945f8",
+      "independent": "mov dword ptr [ebp - 8], eax",
+      "REA_listing": "0x453a00: MOV dword ptr [EBP + -0x8], EAX"
+    },
+    {
+      "va": "0x453cb0",
+      "hex": "e8abe6fcff",
+      "independent": "call 0x422360",
+      "REA_listing": "0x453cb0: CALL 0x00422360"
+    },
+    {
+      "va": "0x453cb5",
+      "hex": "837df800",
+      "independent": "cmp dword ptr [ebp - 8], 0",
+      "REA_listing": "0x453cb5: CMP dword ptr [EBP + -0x8], 0x0"
+    },
+    {
+      "va": "0x453cb9",
+      "hex": "7429",
+      "independent": "je 0x453ce4",
+      "REA_listing": "0x453cb9: JZ 0x00453ce4"
+    },
+    {
+      "va": "0x453cc4",
+      "hex": "e8e72a0400",
+      "independent": "call 0x4967b0",
+      "REA_listing": "0x453cc4: CALL 0x004967b0"
+    },
+    {
+      "va": "0x453cce",
+      "hex": "e88de6fcff",
+      "independent": "call 0x422360",
+      "REA_listing": "0x453cce: CALL 0x00422360"
+    },
+    {
+      "va": "0x453cd8",
+      "hex": "e883e6fcff",
+      "independent": "call 0x422360",
+      "REA_listing": "0x453cd8: CALL 0x00422360"
+    },
+    {
+      "va": "0x453cdd",
+      "hex": "b801000000",
+      "independent": "mov eax, 1",
+      "REA_listing": "0x453cdd: MOV EAX, 0x1"
+    },
+    {
+      "va": "0x453ce4",
+      "hex": "e9e4fcffff",
+      "independent": "jmp 0x4539cd",
+      "REA_listing": "0x453ce4: JMP 0x004539cd"
+    },
+    {
+      "va": "0x453cfb",
+      "hex": "c3",
+      "independent": "ret ",
+      "REA_listing": "0x453cfb: RET"
+    },
+    {
+      "va": "0x4967d0",
+      "hex": "e83bfcffff",
+      "independent": "call 0x496410",
+      "REA_listing": "0x4967d0: CALL 0x00496410"
+    },
+    {
+      "va": "0x4967db",
+      "hex": "e9b8000000",
+      "independent": "jmp 0x496898",
+      "REA_listing": "0x4967db: JMP 0x00496898"
+    },
+    {
+      "va": "0x496430",
+      "hex": "0fbe883c7c1100",
+      "independent": "movsx ecx, byte ptr [eax + 0x117c3c]",
+      "REA_listing": "0x496430: MOVSX ECX, byte ptr [EAX + 0x117c3c]"
+    },
+    {
+      "va": "0x496437",
+      "hex": "83f901",
+      "independent": "cmp ecx, 1",
+      "REA_listing": "0x496437: CMP ECX, 0x1"
+    },
+    {
+      "va": "0x496810",
+      "hex": "e8ab7f0d00",
+      "independent": "call 0x56e7c0",
+      "REA_listing": "0x496810: CALL 0x0056e7c0"
+    },
+    {
+      "va": "0x4968a8",
+      "hex": "c3",
+      "independent": "ret ",
+      "REA_listing": "0x4968a8: RET"
+    }
+  ],
+  "interpretation": [
+    "4539FB obtains the scene result and 453A00 stores it in the caller frame. 453CB5 tests this retained result after 422360 returns; it does not test a wait API EAX result.",
+    "422407 calls the original wait import. On a balanced-stack normal path, the tail checks ESP, clears flag 0x10000 through 4225A0 and RET 4 at 422431. No new compulsory OS/file boundary appears before 453CB5.",
+    "Nonzero scene result calls 4967B0 with this+0x190, then two more original waits at 453CCE and 453CD8, and only then MOV EAX,1 and the original return. Zero scene result loops to 4539CD.",
+    "4967B0 only opens ReplayData.rep when byte[this+117C3C] equals 1. Its file event is optional and after the first result read. This cannot substitute for that earlier boundary.",
+    "Actual wait success and real peer signaling remain external proof obligations because 422360 does not branch on wait status. No live handshake is inferred from static flow."
+  ],
+  "REA_limitations": [
+    "Seven entries and 214 IAT names were supplied as prior analyst hints; these are not independent discoveries.",
+    "Callers(4539B0) is empty despite raw 451AB7 calling it. Unseeded/indirect callers are not exhaustively discovered; empty xrefs at an interior return site do not disprove the return edge.",
+    "Decompiler still folds old imported API pointer values and loses thiscall/signatures. Stack-check helper is sometimes printed as the apparent source of an API result. Use original listing/bytes/ABI instead of copying pseudocode.",
+    "Per-function terminal-call warnings in assert/INT3 branches are preserved. Normal tail reasoning is conditional on original balanced ABI and excludes assertion failure paths.",
+    "All listing mnemonics were independently decoded; only the enumerated key operands were asserted. This is not complete semantic equivalence or dynamic execution."
+  ],
+  "caller_coverage_counterexample": {
+    "REA_callers": [],
+    "original_call_va": "0x451ab7",
+    "hex": "e8f41e0000",
+    "target": "0x4539b0"
+  },
+  "files": [
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/421850-procedure_assembly.json",
+      "bytes": 45867,
+      "sha256": "ad33bf8ac91af57f0feccaa785668ba74298b66600548d932ceb15eb7021fbed"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/421850-procedure_pseudo_code.json",
+      "bytes": 28449,
+      "sha256": "7b37959d3f9f462c5d20e216665c647f3cfb90005a8299cddc5c1b18713d4f8d"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-bytes.json",
+      "bytes": 12196,
+      "sha256": "4db8bed48ae22c82be07abd17c9772452d3a573f4887e985278aaa2b377458e8"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-procedure_assembly.json",
+      "bytes": 18295,
+      "sha256": "86c8882f21dba7043d1bbb0d1c3a16e442b350bbb24337f5876d296f41435daa"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-procedure_callees.json",
+      "bytes": 10211,
+      "sha256": "b7b34f60ba061229f64b4eea18ea88173527002fb84966f68dc92ad2b0d41aeb"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-procedure_callers.json",
+      "bytes": 10083,
+      "sha256": "cf8df13f4201c25d6b901d9d230585105fbeb190a93a1caa78effa074c2a4a73"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-procedure_pseudo_code.json",
+      "bytes": 14479,
+      "sha256": "e1d751605f58c33ef2698d9d394251d796c7ae0909f20ec069151d9e1c8fb59f"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/422360-xrefs.json",
+      "bytes": 10393,
+      "sha256": "d879a923ab922e94d9e44bce2ee8a1e057ea316576a821b892728a32b622a17d"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4225a0-bytes.json",
+      "bytes": 10954,
+      "sha256": "ab990847151e3172aa1b15502c6326a04bc24aebe7c4b0462adccffc3a6bfe87"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4225a0-procedure_assembly.json",
+      "bytes": 12843,
+      "sha256": "f098755c98aeaf23970fb506770290680a55c1e7af705a71e303affee61ea3c7"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4225a0-procedure_pseudo_code.json",
+      "bytes": 11863,
+      "sha256": "836507055160b26e58cf6537f81a58ea7c191dc5161036c26a845bc60cb13f16"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4539b0-procedure_assembly.json",
+      "bytes": 39213,
+      "sha256": "7281d163c231069d794b41224d8e64b7157c400c29fdfc0c0cabf19b866dd8dc"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4539b0-procedure_callees.json",
+      "bytes": 12067,
+      "sha256": "d16e957d927bbf5965e4462ab34d4e814feb52cea3c2349354e3cdd1680bd38c"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4539b0-procedure_callers.json",
+      "bytes": 10011,
+      "sha256": "0393c0331c7d5104ab7eb2dc7632c695647d25c22f299830e4f2662ef3a1f1b4"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4539b0-procedure_pseudo_code.json",
+      "bytes": 24423,
+      "sha256": "6be177ecfd830128faaf4bdfe7ed1ec3029aacd46e2a8fcca7a5a93cd28b8c2a"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/453c80-bytes.json",
+      "bytes": 11524,
+      "sha256": "de3b3307298e9810a7b5bf04765326c43c32271c3b1785bdb9dc89a98d2b2e27"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/453cb5-xrefs.json",
+      "bytes": 10193,
+      "sha256": "c06e4a6d1103ed212b2c5127af502cfd6b5c8054daea036feaac0e761f1c96b5"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/496410-procedure_assembly.json",
+      "bytes": 12619,
+      "sha256": "40f8aa018457c7ca17215d99fcfc7649f7265fc8ae17621cd3c6f8d3a2aaea1a"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/496410-procedure_pseudo_code.json",
+      "bytes": 11683,
+      "sha256": "7f2b7edb82b1fa760b7796edabca310415859da52c0d3bc7b4e0b009ab6a5951"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-bytes.json",
+      "bytes": 12548,
+      "sha256": "cb1b48c69b498c6e1232378ddb29667bd38f99b85e741f902b2c49b2d910ca13"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-procedure_assembly.json",
+      "bytes": 20491,
+      "sha256": "db47ddf93f6c59b8e000c36634100b5692cdb7f59ee263592a38336a155ca51f"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-procedure_callees.json",
+      "bytes": 10403,
+      "sha256": "0c665c788b3c9be647b16bf900cf58ac76f25e999603fb151e768b8ea988536e"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-procedure_callers.json",
+      "bytes": 10083,
+      "sha256": "157010090022e8d731ee51757b4c80836ef5e44473b1ba5d611c59554244fe9d"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-procedure_pseudo_code.json",
+      "bytes": 17377,
+      "sha256": "8be0c5fd40ea89c618ac1aea783a78114b8c493dbc56f02eb18c87c7e7838fe6"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/4967b0-xrefs.json",
+      "bytes": 10265,
+      "sha256": "5b8395e8b6bcc4cf8dcaf13070091b64829d14168d2c449d0be8504dcc5fdfab"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/56ce80-procedure_assembly.json",
+      "bytes": 12839,
+      "sha256": "fa0622aa05ee7a16c44377491cbac643f56dd9eff24185e37d0cc6a3e914c10c"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/56ce80-procedure_pseudo_code.json",
+      "bytes": 13567,
+      "sha256": "70fe514f4686cf4317f250c80d0a0e74cbbf41e815dd750fcc6ffa9d1c994e53"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/close.json",
+      "bytes": 151,
+      "sha256": "5b71f15425a2ded97f7dca6f927ba1d7bb6fcd2fa187ec6aba4de105006cf849"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/live-schemas.json",
+      "bytes": 159694,
+      "sha256": "8910de18f6338495e2d43d31732109fde1f909ab4576cfa62c409cb5da9e51f4"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/notifications.json",
+      "bytes": 13685,
+      "sha256": "07da2b61669324da43a1893fd5237bd57e7a6e0acb0e2bb11663085f71ae16e9"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/open.json",
+      "bytes": 602,
+      "sha256": "2ad2a1ddfca9896071fd325cf555b17d32aa4d1b429b9d197ac8e4018a6969a0"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/overview.json",
+      "bytes": 9775,
+      "sha256": "845ae74cb2c67d4c7829199a9cf7fe6cb03fadef706de5bee485a251f4bf3456"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/run.json",
+      "bytes": 9096,
+      "sha256": "2fed4be21bf89f0594cb8bf0f323588a370bdd806a8f7c9d902c8a68fb9f5f08"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/seeds.tsv",
+      "bytes": 10367,
+      "sha256": "7dd10adc1e4faa7748b421500bf3f674362be2d86cd57eb34e90a0585228b716"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/server-stderr.log",
+      "bytes": 5370,
+      "sha256": "4838238f311a5ac79984956260c72f887911d038d62bace4af2e13e38742cd7d"
+    },
+    {
+      "path": ".venv-audit/rea-wait-20261113/run-v1/session.json",
+      "bytes": 782699,
+      "sha256": "8ec03f5488a5a82b33426f4ff9cefc24bcd897566573273e6a05a6d8a58d9d8e"
+    }
+  ]
+}
