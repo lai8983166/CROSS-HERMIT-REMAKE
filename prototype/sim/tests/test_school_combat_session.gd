@@ -136,7 +136,8 @@ func test_death_cancels_phases_and_completion_has_no_school_authority() -> void:
 			session._hit(session.find_unit(3),enemy)
 		assert_eq(enemy["limits"]["hp"],0); assert_false(session.phases.has(enemy["instance_id"]))
 		assert_false(session._blocked(3).has(enemy["cell"]),"dead trial actor releases collision")
-	session.tick(); assert_true(session.trial_complete); assert_true(session.enemies().is_empty())
+	session.tick(); assert_false(session.trial_complete); assert_true(session.enemies().is_empty())
+	assert_eq(session.ending_snapshot()["phase"],"active","initial clear does not imply mission completion")
 	assert_eq(model.state(),state); assert_eq(model.export_save(),save)
 	assert_eq(model.fifth_session.read_snapshot()["adventure_gate"],1)
 	session.close(); assert_true(session.units.is_empty()); assert_true(session.phases.is_empty()); assert_true(session.events.is_empty())
@@ -153,6 +154,136 @@ func test_invalid_reopen_and_waiting_squad_preserve_owned_state() -> void:
 	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
 	assert_eq(session.units.size(),13); assert_true(session.find_unit(9).is_empty()); assert_eq(session.enemies().size(),7)
 	assert_eq(model.export_save(),save)
+
+
+func _capture_and_read_event(session) -> void:
+	# Local near-event fixture: clear guards and place a living pupil near the
+	# source spring. Ownership still changes through the actual session stages.
+	for enemy in session.enemies(): enemy["limits"]["hp"] = 0
+	_declared_nearby_geometry(session,1247)
+	for index in range(80):
+		session.tick()
+		if session.ending_snapshot()["phase"] == "event20": break
+	assert_eq(session.ending_snapshot()["phase"],"event20")
+	assert_true(session.progression_snapshot()["spring_owned"])
+	assert_true(session.find_unit(1239).is_empty(),"boss request follows dialogue")
+	var units: Array = session.read_units(); var frame: int = session.frame
+	var time: int = session.remaining_ticks
+	session.advance(10); session.tick()
+	assert_eq(session.read_units(),units); assert_eq(session.frame,frame); assert_eq(session.remaining_ticks,time)
+	var pages: int = session.progression_snapshot()["event_pages"]
+	for index in pages: assert_true(session.advance_event())
+	assert_false(session.advance_event(),"cannot issue event twice")
+	assert_eq(session.ending_snapshot()["phase"],"active")
+
+
+func test_capture_event_spawns_source_groups_boss_and_allied_fana() -> void:
+	var model = _school(); var save: Dictionary = model.export_save(); var session = _combat(model)
+	assert_false(session.progression_snapshot()["spring_owned"])
+	assert_false(session.command_move(3,session.find_unit(1247)["cell"]),"clicking the occupied spring does not capture it")
+	_capture_and_read_event(session)
+	assert_eq(session.enemies().size(),16,"five three-unit groups plus boss; summon reserves stay inactive")
+	assert_eq(session.find_unit(1239)["character_id"],452)
+	assert_eq(session.controlled_units().size(),4)
+	assert_eq(session.find_unit(1249)["character_id"],5); assert_eq(session.find_unit(1249)["side"],0)
+	assert_true(session.catalog["skins"]["scene_4_v5"]["actions"].has("attack"))
+	var cells := {}
+	for unit in session.units:
+		if unit["limits"]["hp"]<=0: continue
+		assert_false(cells.has(unit["cell"]),"source placement reserves every chosen cell")
+		cells[unit["cell"]] = true
+		assert_true(session.walkable(unit["cell"],unit["movement_type"]))
+	assert_eq(model.export_save(),save,"event has no persistent roster effect")
+
+
+func test_boss_actual_hit_waits_for_removal_then_consumes_selected_result() -> void:
+	var model = _school(); var save: Dictionary = model.export_save(); var session = _combat(model)
+	_capture_and_read_event(session)
+	# Keep other reinforcements alive: success does not require full enemy clear.
+	_declared_nearby_geometry(session,1239)
+	var boss: Dictionary = session.find_unit(1239); boss["limits"]["hp"] = 1
+	assert_true(session.command_attack(3,1239))
+	for index in range(300):
+		session.tick()
+		if boss["limits"]["hp"]==0: break
+	assert_eq(boss["limits"]["hp"],0); assert_eq(session.ending_snapshot()["phase"],"active")
+	assert_true(session.events.any(func(e): return e["target"]==1239 and e["after_hp"]==0))
+	for index in range(32):
+		session.tick()
+		if session.ending_snapshot()["phase"] != "active": break
+	assert_eq(boss["source_state"],4)
+	assert_eq(session.ending_snapshot()["outcome"],"mission_objectives_met")
+	assert_true(session.enemies().size()>0)
+	assert_eq(session.ending_snapshot()["summary"]["terminal_choice"]["tactical_result_selector"],1)
+	assert_false(session.ending_snapshot()["consumer"]["result_consumed"])
+	for index in range(4): session.advance_exit()
+	assert_eq(session.ending_snapshot()["phase"],"summary")
+	assert_eq(session.take_handoff()["outcome"],"mission_objectives_met")
+	assert_eq(model.export_save(),save)
+
+
+func test_summon_capacity_animation_gate_and_last_rebirth() -> void:
+	var session = _combat(_school()); _capture_and_read_event(session)
+	var boss: Dictionary = session.find_unit(1239)
+	# Direct local AI opportunities keep the source interval distinct from ticks.
+	for index in range(149): session._update_summoning()
+	assert_eq(boss["summon_phase"],"")
+	session._update_summoning(); assert_eq(boss["summon_phase"],"prepare")
+	for index in range(180): session._update_summoning()
+	assert_eq(boss["summon_phase"],"animation")
+	assert_eq(session.enemies().size(),16)
+	for index in range(boss["summon_remaining"]): session._update_summoning()
+	assert_eq(session.enemies().size(),24)
+	var summoned: Array = session.units.filter(func(u): return u.get("group",0)==1 and u.get("life_kind",0)==3)
+	assert_eq(summoned.size(),8)
+	var unit: Dictionary = summoned[0]; var identity: int = session.unit_key(unit)
+	unit["lives"] = 1; unit["limits"]["hp"] = 0; unit["dead_at"] = session.frame-30
+	session._update_removal()
+	assert_eq(unit["source_state"],2); assert_eq(unit["lives"],0,"last decremented life still returns to reserve")
+	assert_true(session._activate(identity,boss["cell"],8))
+	unit["limits"]["hp"] = 0; unit["dead_at"] = session.frame-30
+	session._update_removal(); assert_eq(unit["source_state"],4)
+	assert_false(session._activate(identity,boss["cell"],8),"exhausted source record cannot return")
+
+
+func test_pending_appearance_retry_and_summon_animation_survive_movement_tick() -> void:
+	var session = _combat(_school()); _capture_and_read_event(session)
+	var reserve_id := -1
+	var blocker: Dictionary = session.find_unit(3)
+	var center: Vector2i = blocker["cell"]
+	for identity in session.reserves:
+		if session._source_status(identity)["state"]==0 and session.walkable(center,session.reserves[identity]["movement_type"]):
+			reserve_id=identity; break
+	assert_true(reserve_id>=0)
+	if reserve_id<0: return
+	# Radius0 is deliberately occupied; no fallback spawn or silent lost request.
+	session._pending_activations.append({"identity":reserve_id,"center":center,"radius":0})
+	session._attempt_activations(); assert_eq(session.progression_snapshot()["pending_activations"],1)
+	var boss: Dictionary = session.find_unit(1239)
+	for delta in [Vector2i.UP,Vector2i.DOWN,Vector2i.LEFT,Vector2i.RIGHT]:
+		if session.walkable(center+delta,blocker["movement_type"]) and not session._blocked(3).has(center+delta):
+			blocker["cell"] = center+delta; blocker["from_cell"] = blocker["cell"]; break
+	session._attempt_activations(); assert_eq(session.progression_snapshot()["pending_activations"],0)
+	assert_eq(session.find_unit(reserve_id).get("cell"),center)
+	boss["summon_clock"] = 149; session.tick()
+	assert_eq(boss["summon_phase"],"prepare")
+	assert_eq(boss["visual"],"summon_prepare","parent movement cannot replace summon with idle")
+
+
+func test_allied_fana_participates_in_unavailable_check_and_can_attack() -> void:
+	var session = _combat(_school()); _capture_and_read_event(session)
+	for student in session.controlled_units():
+		if session.unit_key(student)!=1249: student["limits"]["hp"] = 0
+	session.tick()
+	assert_eq(session.ending_snapshot()["phase"],"active","living allied ID5 prevents all-playable-unavailable")
+	assert_true(session.select(1249)); assert_true(session.command_attack(1249,1239))
+	var ally: Dictionary = session.find_unit(1249); var boss: Dictionary = session.find_unit(1239)
+	ally["cell"] = boss["cell"]+Vector2i.DOWN; ally["from_cell"] = ally["cell"]
+	session.tick(); assert_true(session.phases.has(1249),"original ally attack art/action is usable")
+	ally["limits"]["hp"] = 0; session.tick()
+	assert_eq(session.ending_snapshot()["outcome"],"squad_defeated")
+	assert_eq(session.ending_snapshot()["summary"]["terminal_choice"]["selector_arg"],14)
+	assert_eq(session.ending_snapshot()["summary"]["terminal_choice"]["script_sub"],8)
 
 
 func test_requested_exit_consumes_results_in_order_without_damage_or_school_writes() -> void:
@@ -194,7 +325,7 @@ func test_requested_exit_consumes_results_in_order_without_damage_or_school_writ
 	_finish_opening(session)
 
 
-func test_last_actual_trial_hit_starts_the_end_flow() -> void:
+func test_last_initial_hit_keeps_mission_open_until_explicit_exit() -> void:
 	var model = _school(); var save: Dictionary = model.export_save(); var session = _combat(model)
 	# Explicit local near-terminal fixture. The last HP change comes from the
 	# actual remake attack scheduler, not a fabricated completion/consumer flag.
@@ -206,7 +337,9 @@ func test_last_actual_trial_hit_starts_the_end_flow() -> void:
 		if session.ending_snapshot()["phase"] != "active": break
 	assert_eq(session.find_unit(1243)["limits"]["hp"],0)
 	assert_true(session.events.any(func(event): return event["target"] == 1243 and event["after_hp"] == 0))
-	assert_true(session.trial_complete); assert_eq(session.ending_snapshot()["outcome"],"initial_enemies_cleared")
+	assert_false(session.trial_complete); assert_eq(session.ending_snapshot()["phase"],"active")
+	assert_true(session.request_return())
+	assert_eq(session.ending_snapshot()["outcome"],"player_exit")
 	assert_false(session.ending_snapshot()["consumer"]["result_consumed"])
 	for index in range(4): session.advance_exit()
 	var summary: Dictionary = session.ending_snapshot()["summary"]

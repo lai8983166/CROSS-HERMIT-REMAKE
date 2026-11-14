@@ -49,6 +49,10 @@ var opening_panel: VBoxContainer
 var opening_stage: OpeningStage
 var opening_progress: Label
 var opening_next_button: Button
+var objective_button: Button
+var event_panel: PanelContainer
+var event_text: Label
+var event_next: Button
 
 
 func _new_session(): return Combat.new()
@@ -66,9 +70,11 @@ func _ready() -> void:
 	enemy_button = _button("查看敌人",_focus_enemy)
 	center_button.get_parent().add_child(enemy_button)
 	center_button.get_parent().move_child(enemy_button,3)
+	objective_button = _button("查看目标",_focus_objective)
+	center_button.get_parent().add_child(objective_button)
 	target_info = Label.new(); target_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.get_parent().add_child(target_info); info.get_parent().move_child(target_info,info.get_index()+1)
-	help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n仅试验初始队伍与敌人，不推进正式冒险或发放奖励。"
+	help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。试玩不写入奖励或日期。"
 	help_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	result_panel = PanelContainer.new()
 	var result_margin := MarginContainer.new()
@@ -103,6 +109,14 @@ func _ready() -> void:
 	opening_next_button = _button("显示完整",_advance_opening)
 	opening_footer.add_child(opening_next_button)
 	opening_panel.hide()
+	event_panel = PanelContainer.new()
+	var event_column := VBoxContainer.new()
+	event_column.add_theme_constant_override("separation",16)
+	event_text = Label.new(); event_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	event_text.custom_minimum_size = Vector2(500,150)
+	event_column.add_child(event_text)
+	event_next = _button("继续",_advance_event); event_column.add_child(event_next)
+	event_panel.add_child(event_column); canvas.get_parent().add_child(event_panel); event_panel.hide()
 	visibility_changed.connect(func():
 		if not visible: _release_opening())
 	canvas.chosen.connect(func(identity): inspected_id = identity; canvas.inspected_id = identity; _refresh())
@@ -188,6 +202,13 @@ func _release_opening() -> void:
 func _refresh() -> void:
 	super._refresh()
 	if target_info == null or not session.ready or not session is Combat: return
+	for unit in session.units:
+		var identity: int = session.unit_key(unit)
+		if not _names.has(identity): _names[identity] = "首领" if identity == 1239 else "增援 %d" % (1250-identity)
+	canvas.labels = _names.duplicate(true)
+	for unit in session.controlled_units():
+		if member_buttons.has(unit["character_id"]):
+			member_buttons[unit["character_id"]].set_pressed_no_signal(session.unit_key(unit)==session.selected_id)
 	var selected: Dictionary = session.find_unit(session.selected_id)
 	if not selected.is_empty():
 		var state := "已倒下" if selected["limits"]["hp"] <= 0 else "施法中" if selected["visual"] == "cast" \
@@ -196,13 +217,40 @@ func _refresh() -> void:
 		info.text = "%s · 格 %d,%d · %s    |    班级领队：%s" % [_names.get(session.selected_id,str(session.selected_id)),
 			selected["cell"].x,selected["cell"].y,"已暂停" if session.paused else state,_names.get(101,"101")]
 	var target: Dictionary = session.find_unit(inspected_id)
-	target_info.text = "初始敌人 · 剩余 %d / 7" % session.enemies().size()
+	var progress: Dictionary = session.progression_snapshot()
+	target_info.text = "敌人 %d · 泉%s · 石碑%s · 首领%s" % [session.enemies().size(),
+		"已占领" if progress["spring_owned"] else "未占领", "己方" if progress["stone_owned"] else "失守",
+		"已移除" if progress["boss_state"]==4 else "尚未出场" if progress["boss_state"]==0 else "仍在场"]
 	if not target.is_empty():
 		target_info.text += "    |    %s · HP %d/%d · %s" % [_names.get(inspected_id,"对象"),target["limits"]["hp"],target["limits"]["hp_max"],
 			"已清除" if target["limits"]["hp"] <= 0 else "可攻击" if target["category"] == 5 else "场景对象"]
 	stop_button.disabled = selected.is_empty() or selected["limits"]["hp"] <= 0
 	_refresh_ending()
 	canvas.queue_redraw()
+
+
+func _focus_objective() -> void:
+	if not session.ready or session.ending_snapshot()["phase"] != "active": return
+	var progress: Dictionary = session.progression_snapshot()
+	var identity := 1247 if not progress["spring_owned"] else 1248 if not progress["stone_owned"] else 1239
+	var unit: Dictionary = session.find_unit(identity)
+	if unit.is_empty(): return
+	inspected_id = identity; canvas.inspected_id = identity
+	canvas.zoom = 1.25; canvas.fit_mode = false
+	canvas.origin = canvas.size*0.5-session.position(unit)*canvas.zoom; canvas.clamp_origin(); _refresh()
+
+
+func _advance_event() -> void:
+	if not visible or not session is Combat: return
+	if session.advance_event():
+		if session.ending_snapshot()["phase"] == "active":
+			_names[1249] = "法娜"; _names[5] = "法娜"
+			var button := _button("",func(): session.select(1249); _refresh())
+			button.toggle_mode = true; button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.custom_minimum_size.y = 54; roster.add_child(button)
+			member_buttons[5] = button
+			canvas.focus_units(); close_button.grab_focus()
+		_refresh()
 
 
 func _focus_enemy() -> void:
@@ -223,19 +271,27 @@ func _refresh_ending() -> void:
 	var active: bool = ending["phase"] == "active"
 	canvas.controls_enabled = active
 	if not active: canvas.dragging = false
-	for button in [pause_button,center_button,fit_button,terrain_button,zoom_in_button,zoom_out_button,enemy_button]:
+	for button in [pause_button,center_button,fit_button,terrain_button,zoom_in_button,zoom_out_button,enemy_button,objective_button]:
 		button.disabled = not active
 	for button in member_buttons.values(): button.disabled = not active
 	if not active: stop_button.disabled = true
 	close_button.disabled = ending["phase"] == "consuming"
-	close_button.text = "结束试验" if active or ending["phase"] == "opening" else "正在结束…" if ending["phase"] == "consuming" else "返回学校准备"
+	close_button.text = "结束试验" if active or ending["phase"] in ["opening","event20"] else "正在结束…" if ending["phase"] == "consuming" else "返回学校准备"
+	var first_event := not event_panel.visible
+	event_panel.visible = ending["phase"] == "event20"
+	if event_panel.visible:
+		var progress: Dictionary = session.progression_snapshot()
+		event_text.text = "\n".join(progress["text"])
+		event_next.text = "继续 · %d / %d" % [progress["event_page"]+1,progress["event_pages"]]
+		status.text = "泉已占领，正在阅读事件对白。"
+		if first_event: event_next.grab_focus()
 	if ending["phase"] == "opening":
 		var opening: Dictionary = session.opening_snapshot()
 		opening_progress.text = "开场对白 · %d / %d" % [opening["page_index"]+1,opening["page_count"]]
 		if opening_stage != null:
 			opening_next_button.text = "显示完整" if not opening_stage.display_ready() or not opening["awaiting_confirmation"] else "开始操作" if opening["page_index"] == opening["page_count"]-1 else "继续"
 		status.text = "阅读开场对白后开始操作；此时战斗尚未推进。"
-		help_label.text = "空格 / Enter确认 · Esc结束试验\n仅试验初始队伍与敌人，不推进正式冒险或发放奖励。"
+		help_label.text = "空格 / Enter确认 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。试玩不写入奖励或日期。"
 	elif ending["phase"] == "consuming":
 		_release_opening()
 		status.text = "试验已停止，正在整理本次结果…"
@@ -243,13 +299,13 @@ func _refresh_ending() -> void:
 		_release_opening()
 		var first_summary := not result_panel.visible
 		var summary: Dictionary = ending["summary"]
-		result_title.text = {"initial_enemies_cleared":"初始敌人已清除", "squad_defeated":"当前学生已全部倒下", "player_exit":"本次试验已结束"}.get(ending["outcome"],"本次试验已结束")
-		result_details.text = "已清除敌人：%d / %d　　剩余敌人：%d\n仍可行动的学生：%d / %d" % [summary["defeated_enemies"],summary["initial_enemies"],summary["remaining_enemies"],summary["surviving_students"],summary["total_students"]]
+		result_title.text = {"mission_objectives_met":"本场目标已达成", "time_expired":"本场时间已用完", "squad_defeated":"当前学生已全部倒下", "player_exit":"本次试验已结束"}.get(ending["outcome"],"本次试验已结束")
+		result_details.text = "已击倒敌人：%d　　剩余敌人：%d\n仍可行动的学生：%d / %d" % [summary["defeated_enemies"],summary["remaining_enemies"],summary["surviving_students"],summary["total_students"]]
 		status.text = "结果已整理，可返回学校调整队伍后再次试验。"
 		result_panel.show(); canvas.hide()
 		if first_summary: return_button.grab_focus()
 	if active:
-		help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n仅试验初始队伍与敌人，不推进正式冒险或发放奖励。"
+		help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。试玩不写入奖励或日期。"
 
 
 func toggle_pause() -> void:
@@ -260,7 +316,7 @@ func toggle_pause() -> void:
 func close_trial() -> void:
 	if not visible or not session is Combat or not session.ready: return
 	var phase: String = session.ending_snapshot()["phase"]
-	if phase in ["opening","active"]:
+	if phase in ["opening","event20","active"]:
 		session.request_return()
 		_refresh()
 	elif phase == "summary":
@@ -282,6 +338,7 @@ func _return_to_school() -> void:
 	_sprites.clear(); _names.clear(); member_buttons.clear()
 	for child in roster.get_children(): child.free()
 	result_panel.hide(); result_title.text = ""; result_details.text = ""
+	event_panel.hide(); event_text.text = ""
 	info.text = ""; target_info.text = ""; status.text = ""
 	hide()
 	closed.emit()
@@ -293,6 +350,9 @@ func _input(event: InputEvent) -> void:
 		close_trial()
 	elif session.ending_snapshot()["phase"] == "opening":
 		if event.keycode in [KEY_SPACE,KEY_ENTER,KEY_KP_ENTER]: _advance_opening()
+		else: return
+	elif session.ending_snapshot()["phase"] == "event20":
+		if event.keycode in [KEY_SPACE,KEY_ENTER,KEY_KP_ENTER]: _advance_event()
 		else: return
 	elif session.ending_snapshot()["phase"] == "active":
 		if event.keycode == KEY_SPACE: toggle_pause()

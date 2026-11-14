@@ -52,5 +52,42 @@ class CombatExportTests(unittest.TestCase):
                     with Image.open(p) as image:self.assertEqual(digest(image.tobytes()),frame['rgba_sha256'])
         self.assertFalse(checked['trial_policy']['victory_or_reward_authority'])
 
+    def test_reinforcements_reuse_source_records_art_dialogue_and_mask(self):
+        from tools.ybc32_disasm import parse, load_pool
+        from tools.school_map_common_emulation import map_common_resource
+        target=ROOT/'prototype/assets/school_reinforcements'
+        checked=json.loads((target/'catalog.json').read_text('utf-8'))
+        with tempfile.TemporaryDirectory() as directory:
+            result=export(Path(directory),reinforcements=True)
+            self.assertEqual(result,checked)
+            for skin in result['skins'].values():
+                for frame in skin['frames'].values():
+                    rel=frame['file'].removeprefix('res://assets/school_reinforcements/')
+                    self.assertEqual((target/rel).read_bytes(),(Path(directory)/rel).read_bytes())
+                    with Image.open(target/rel) as image:
+                        self.assertEqual(digest(image.tobytes()),frame['rgba_sha256'])
+        records=[bytes.fromhex(a['record_hex']) for a in checked['actors']]
+        self.assertEqual(len(records),24)
+        self.assertTrue(all(r[15]==0 for r in records))
+        self.assertEqual([sum(r[0x98]==g for r in records) for g in range(1,7)],[9,3,3,3,3,3])
+        boss=next(a for a in checked['actors'] if a['work_index']==239)
+        self.assertEqual(boss['character_id'],452)
+        initial=json.loads((OUTPUT/'catalog.json').read_text('utf-8'))['skins']['scene_4_v5']
+        self.assertEqual(checked['skins']['scene_4_v5']['source'],initial['source'])
+        self.assertEqual(checked['skins']['scene_4_v5']['palette_variant'],5)
+        script=(ROOT/'CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/SCRIPT/T0005.BIN').read_bytes()
+        pool=next(r[3] for r in parse(script) if r[:2]==(0,20))
+        strings=load_pool(script,pool)
+        texts=[p for page in checked['event20_dialogue'] for p in page]
+        self.assertEqual([p['text_index'] for p in texts],list(range(58)))
+        for page in texts:
+            self.assertEqual(page['text'],strings[page['text_index']][2])
+            self.assertEqual(struct.unpack_from('<3H',script,page['source_offset']),(17,6,page['text_index']))
+        mask=checked['capture_mask'];common,identity=map_common_resource()
+        self.assertEqual(mask['source'],identity)
+        self.assertEqual(common[344:344+121].hex(),mask['hex'])
+        exe=(ROOT/'analysis/hermit_game.exe').read_bytes()
+        self.assertEqual(list(exe[0x19558c+10:0x19558c+12]),[mask['width'],mask['height']])
+
 
 if __name__=='__main__':unittest.main()

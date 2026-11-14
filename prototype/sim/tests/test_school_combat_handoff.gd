@@ -135,21 +135,24 @@ func test_paused_exit_returns_to_same_school_and_reopens_fresh_trial() -> void:
 func test_declared_enemy_and_student_endpoints_show_distinct_summaries() -> void:
 	var ui = _school_ui()
 	var state: Dictionary = ui.model.state(); var save: Dictionary = ui.model.export_save()
-	for outcome in ["initial_enemies_cleared","squad_defeated"]:
+	for outcome in ["player_exit","squad_defeated"]:
 		ui._open_combat_trial()
 		var trial = ui.combat_trial
 		_complete_opening(trial)
 		# Explicit UI-boundary fixtures; combat/damage causality is tested separately.
-		var affected: Array = trial.session.enemies() if outcome == "initial_enemies_cleared" else trial.session.controlled_units()
+		var affected: Array = trial.session.enemies() if outcome == "player_exit" else trial.session.controlled_units()
 		for unit in affected: unit["limits"]["hp"] = 0
 		trial._process(1.0/30.0)
+		if outcome == "player_exit":
+			assert_eq(trial.session.ending_snapshot()["phase"],"active","initial enemies are not full mission")
+			trial.close_button.pressed.emit()
 		assert_eq(trial.session.ending_snapshot()["outcome"],outcome)
 		_consume_through_ui(trial)
 		var summary: Dictionary = trial.session.ending_snapshot()["summary"]
 		assert_false(summary["rewards_applied"]); assert_false(summary["campaign_advanced"])
-		if outcome == "initial_enemies_cleared":
+		if outcome == "player_exit":
 			assert_eq(summary["defeated_enemies"],7); assert_eq(summary["remaining_enemies"],0)
-			assert_eq(trial.result_title.text,"初始敌人已清除")
+			assert_eq(trial.result_title.text,"本次试验已结束")
 		else:
 			assert_eq(summary["surviving_students"],0)
 			assert_eq(trial.result_title.text,"当前学生已全部倒下")
@@ -157,6 +160,44 @@ func test_declared_enemy_and_student_endpoints_show_distinct_summaries() -> void
 		trial.return_button.pressed.emit()
 		assert_eq(ui.page,"adventure"); assert_false(trial.visible)
 		assert_eq(ui.model.state(),state); assert_eq(ui.model.export_save(),save)
+	ui.free()
+
+
+func test_event_dialogue_controls_new_ally_and_objective_summary_return() -> void:
+	var ui = _school_ui(); var save: Dictionary = ui.model.export_save()
+	ui._open_combat_trial(); var trial = ui.combat_trial; _complete_opening(trial)
+	for enemy in trial.session.enemies(): enemy["limits"]["hp"] = 0
+	# Declared local near-event placement; session still performs the ownership change.
+	var pupil: Dictionary = trial.session.find_unit(3)
+	pupil["cell"] = trial.session.find_unit(1247)["cell"]+Vector2i(-1,-1)
+	pupil["from_cell"] = pupil["cell"]
+	for index in range(80):
+		trial._process(1.0/30.0)
+		if trial.session.ending_snapshot()["phase"]=="event20": break
+	assert_true(trial.event_panel.visible); assert_true(trial.event_next.has_focus())
+	assert_false(trial.canvas.controls_enabled)
+	var frame: int = trial.session.frame
+	var pages: int = trial.session.progression_snapshot()["event_pages"]
+	for index in pages:
+		assert_false(trial.event_text.text.is_empty())
+		trial.event_next.pressed.emit()
+		assert_eq(trial.session.frame,frame,"dialogue confirmation does not advance combat")
+	assert_false(trial.event_panel.visible); assert_true(trial.canvas.controls_enabled)
+	assert_true(trial.member_buttons.has(5))
+	trial.member_buttons[5].pressed.emit()
+	assert_eq(trial.session.selected_id,1249); assert_true(trial.member_buttons[5].button_pressed)
+	assert_true(trial.member_buttons[5].text.begins_with("法娜"))
+	trial.objective_button.pressed.emit(); assert_eq(trial.inspected_id,1239)
+	# UI-only terminal boundary; actual scheduler last hit is covered in session tests.
+	var boss: Dictionary = trial.session.find_unit(1239)
+	boss["limits"]["hp"] = 0; boss["source_state"] = 4
+	trial._process(1.0/30.0)
+	_consume_through_ui(trial)
+	assert_eq(trial.result_title.text,"本场目标已达成")
+	trial.return_button.pressed.emit()
+	assert_false(trial.visible); assert_true(trial.session.reserves.is_empty())
+	assert_false(trial.event_panel.visible); assert_true(trial.event_text.text.is_empty())
+	assert_eq(ui.model.export_save(),save); assert_true(ui.panel.visible)
 	ui.free()
 
 
