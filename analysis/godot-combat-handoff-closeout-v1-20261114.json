@@ -1,0 +1,186 @@
+{
+  "schema": "godot-combat-handoff-closeout-v1",
+  "created_utc": "2026-11-14T04:46:04.733314+00:00",
+  "base_commit": "0d4d817e75ea965e895cbfe510ffaa7aa13c68da",
+  "scope": "Playable source-initial-actor trial: end detection, existing result consumer, result panel, one-shot handoff to school preparation",
+  "formal_native_acceptance": false,
+  "formal_native_progress": "2/8",
+  "native_route_status": "STOPPED_SCOPE_GUARD unchanged",
+  "implementation": [
+    {
+      "path": "prototype/sim/school_combat_session.gd",
+      "lf_normalized_bytes": 14665,
+      "sha256_lf_normalized": "9041c2d50cb255dbb3c8deb971b07f201416f969aed6807917f43655817de4ca"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_combat_session.gd",
+      "lf_normalized_bytes": 13029,
+      "sha256_lf_normalized": "b9b11b84b65586d4f5701f11bf5b6235fa8a6ee4f5f88fbe5e2ab41d5eff2f13"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_combat_handoff.gd",
+      "lf_normalized_bytes": 7143,
+      "sha256_lf_normalized": "8fe6a29d0fe1cc131f4b58ff1d58558dc7940c22f7cb066e3c615e41ccbf657f"
+    },
+    {
+      "path": "prototype/sim/tests/test_runner.gd",
+      "lf_normalized_bytes": 1163,
+      "sha256_lf_normalized": "24f97013b9a679703ae43b31102adf50d5cec3827389756d9cbaa73aae605d91"
+    },
+    {
+      "path": "prototype/ui/school_combat_trial.gd",
+      "lf_normalized_bytes": 10331,
+      "sha256_lf_normalized": "4791eb3b5075e637f7339fc79ee602edd4b691db205694fa0d4d61b5041aee39"
+    },
+    {
+      "path": "prototype/ui/school_playground.gd",
+      "lf_normalized_bytes": 45740,
+      "sha256_lf_normalized": "8e57d9526589b52408b21f8c7c0f527812d716fd36f0f5a6f05ea1c1276a6f40"
+    }
+  ],
+  "fixed_parent": {
+    "path": "analysis/terminal-logic-remake-closeout-v1-20261114.json",
+    "bytes": 6430,
+    "sha256": "5060af0923e9cb6ddbd337f46ed77449343ebe7eb1b045fc5857fda8c0e90cdd"
+  },
+  "source_checks": {
+    "all_seven_fixed_parent_sources_match": true,
+    "result_consumer_transition_and_original_consumer_tests_unchanged": true,
+    "old_visual_test_unchanged": true,
+    "original_eight_task_lines_unchanged": true,
+    "project_cache_changed_files": 0,
+    "new_asset_or_save_files": 0
+  },
+  "behavior": {
+    "ends": [
+      "initial_enemies_cleared",
+      "squad_defeated",
+      "player_exit"
+    ],
+    "active_to_consuming": "detect local endpoint then freeze attacks/moves; paused explicit return supported",
+    "consumer_actions": [
+      "wait1: first completion read",
+      "disabled optional replay call boundary",
+      "wait2",
+      "wait3: returned"
+    ],
+    "summary": "explicit return only; counts initial enemies and surviving current students",
+    "handoff": "once, restore existing adventure preparation page and focus; detach transient session/map/sprites/roster/drag",
+    "persistent_authority": false,
+    "rewards_applied": false,
+    "campaign_advanced": false,
+    "replay_recording_enabled": false
+  },
+  "validation": {
+    "godot_version": "4.7.2-stable_mono",
+    "runner": "res://sim/tests/test_runner.gd",
+    "suites": 67,
+    "tests": 437,
+    "new_tests": 6,
+    "failures": 0,
+    "script_errors": 0,
+    "exit_code": 0,
+    "elapsed_seconds": 45.422,
+    "reason": "exited",
+    "success_log": {
+      "path": ".venv-audit/godot-combat-handoff-20261114/headless-attempt2.log",
+      "bytes": 3486,
+      "sha256": "41931b91a1a628546134f3eef8b318df3c7642f19024f234cffc6524d27d5019"
+    },
+    "strict_openspec": true,
+    "ui_test_scope": "actual headless SceneTree Control state, signal, focus and visibility; no pixel/layout certification",
+    "fixtures": "UI all-dead/all-cleared endpoints explicitly seeded; separate last-hit test uses actual remake attack scheduling from declared near-terminal local fixture, not native evidence"
+  },
+  "initial_attempt": {
+    "exit_code": 1,
+    "elapsed_seconds": 16.375,
+    "reason": "script-error",
+    "failure": "Engine.get_main_loop() null: existing test runner executed suites during SceneTree._init",
+    "fix": "existing runner defers start once until real SceneTree initialized; original synchronous discovery/assertions/exit policy unchanged",
+    "assertions_not_weakened": true
+  },
+  "independent_review": {
+    "reviewer": "/root/scene_construction",
+    "scope": "main session ending, action scheduling, pause, atomic reopen, no persistence authority, minimal runner timing change",
+    "blocking_findings": 0,
+    "main_review": "independently checked delegated UI control gating, modal school panel, one-shot signals, parent handoff and reference release",
+    "independent_native_replay": false
+  },
+  "limits": [
+    "Initial actors only; deferred waves and original mission completion remain unimplemented.",
+    "Trial endings are explicit remake policy, not inferred original win/retreat selector.",
+    "Three source-derived wait boundaries use Godot scheduling; they do not certify native waits, OS handles, worker TLS or PTD release.",
+    "School UI return is not original scene5 dispatch or original outer cleanup; original ten waits and completion gate remain separate.",
+    "Formal adventure start remains gated; no rewards, calendar, school-state or save writes.",
+    "Prior visual screenshots do not certify the modified result screen. Final two fresh native lifetimes, independent complete replay, full state/ABI/digests/resource cleanup/tamper rejection are retained."
+  ],
+  "actual_execution": {
+    "headless_attempts": 2,
+    "visible_windows": 0,
+    "screenshots": 0,
+    "original_game": 0,
+    "native_helpers": 0,
+    "desktop_mutations": 0,
+    "global_input": 0,
+    "environment_installs": 0
+  },
+  "retirement": [
+    {
+      "path": ".venv-audit/godot-combat-handoff-20261114/cache-baseline.json",
+      "bytes": 802330,
+      "sha256": "fb9e23e69af55d542bd63479c86f8c3cf7665e2a1dede3f6dfda52ee7b6c422e",
+      "reason": "Resolved initial SceneTree timing failure, duplicate engine log, or completed cache/run accounting; relevant result embedded in this closeout",
+      "replacement": "analysis/godot-combat-handoff-closeout-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-handoff-20261114/engine-attempt1.log",
+      "bytes": 4676,
+      "sha256": "6c87fc91c8e123b52dfabc801e8265782426f0c4431bc7618611dccc6c50217a",
+      "reason": "Resolved initial SceneTree timing failure, duplicate engine log, or completed cache/run accounting; relevant result embedded in this closeout",
+      "replacement": "analysis/godot-combat-handoff-closeout-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-handoff-20261114/engine-attempt2.log",
+      "bytes": 3416,
+      "sha256": "15b2c09c7d37a467685b6ee6e5aa888298cc05a6c21f6b4f5d3568ee60266d9e",
+      "reason": "Resolved initial SceneTree timing failure, duplicate engine log, or completed cache/run accounting; relevant result embedded in this closeout",
+      "replacement": "analysis/godot-combat-handoff-closeout-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-handoff-20261114/headless-attempt1.log",
+      "bytes": 4749,
+      "sha256": "6cc0afe991299407f36daca52524f37ecd62afe76427f8c0d9ec1592f21a2b4b",
+      "reason": "Resolved initial SceneTree timing failure, duplicate engine log, or completed cache/run accounting; relevant result embedded in this closeout",
+      "replacement": "analysis/godot-combat-handoff-closeout-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-handoff-20261114/run-attempt1.json",
+      "bytes": 81,
+      "sha256": "bb10497107ccc5f45f9fa8ce0342a8d874e2cfee48d006e8b53df34fb13a6343",
+      "reason": "Resolved initial SceneTree timing failure, duplicate engine log, or completed cache/run accounting; relevant result embedded in this closeout",
+      "replacement": "analysis/godot-combat-handoff-closeout-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-handoff-20261114/run-attempt2.json",
+      "bytes": 75,
+      "sha256": "a4e261e2cb847bc667a7d42eb2e9c0e7fde32d2ea8e757aa5b0acca7cf15a257",
+      "reason": "Resolved initial SceneTree timing failure, duplicate engine log, or completed cache/run accounting; relevant result embedded in this closeout",
+      "replacement": "analysis/godot-combat-handoff-closeout-v1-20261114.json",
+      "status": "retired"
+    }
+  ],
+  "cleanup_completed": true,
+  "capacity": {
+    "generated_local_bytes_before_cleanup": 818813,
+    "retired_bytes": 815327,
+    "new_backup_bytes": 0,
+    "new_project_cache_bytes": 0,
+    "retained_local_log_bytes": 3486,
+    "all_new_local_evidence_bytes_including_manifest": 12216
+  }
+}

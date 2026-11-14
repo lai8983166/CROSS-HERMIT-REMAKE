@@ -239,6 +239,10 @@ func _ready() -> void:
 	combat_trial = CombatTrial.new()
 	add_child(combat_trial)
 	combat_trial.closed.connect(func():
+		page = "adventure"
+		_message = "已返回学校准备。队伍与进度保持原样，可调整编班或再次试验。"
+		panel.show()
+		refresh()
 		if is_instance_valid(adventure_combat_button): adventure_combat_button.grab_focus())
 	var started := model.start()
 	if not started["supported"]:
@@ -839,6 +843,9 @@ func _open_combat_trial() -> void:
 	if not combat_trial.open_trial(model.adventure_preparation(),model.adventure_combat_limits(),names):
 		_message = "战斗操作试验暂时无法开启，请保留当前编班。"
 		refresh()
+	else:
+		# The trial is modal: hidden school controls cannot receive keyboard focus.
+		panel.hide()
 
 
 func _refresh_detail() -> void:

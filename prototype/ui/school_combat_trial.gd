@@ -5,6 +5,10 @@ const FieldTrial := preload("res://ui/school_field_trial.gd")
 class CombatCanvas extends FieldTrial.FieldCanvas:
 	var labels: Dictionary = {}
 	var inspected_id := -1
+	var controls_enabled := true
+
+	func _gui_input(event: InputEvent) -> void:
+		if controls_enabled: super._gui_input(event)
 
 	func _draw() -> void:
 		super._draw()
@@ -35,6 +39,11 @@ var enemy_button: Button
 var target_info: Label
 var inspected_id := -1
 var _last_event := -1
+var result_panel: PanelContainer
+var result_title: Label
+var result_details: Label
+var return_button: Button
+var _handoff_emitted := false
 
 
 func _new_session(): return Combat.new()
@@ -51,8 +60,28 @@ func _ready() -> void:
 	center_button.get_parent().move_child(enemy_button,3)
 	target_info = Label.new(); target_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.get_parent().add_child(target_info); info.get_parent().move_child(target_info,info.get_index()+1)
-	help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc返回\n战斗试验 · 暂无正式通关与奖励"
+	help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n仅试验初始队伍与敌人，不推进正式冒险或发放奖励。"
 	help_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	result_panel = PanelContainer.new()
+	var result_margin := MarginContainer.new()
+	for side in ["left","right","top","bottom"]: result_margin.add_theme_constant_override("margin_"+side,20)
+	result_panel.add_child(result_margin)
+	var result_column := VBoxContainer.new()
+	result_column.add_theme_constant_override("separation",12)
+	result_margin.add_child(result_column)
+	result_title = Label.new(); result_title.add_theme_font_size_override("font_size",24)
+	result_column.add_child(result_title)
+	result_details = Label.new(); result_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	result_column.add_child(result_details)
+	var scope := Label.new()
+	scope.text = "本次仅结束战斗操作试验，不计正式通关、不发放奖励，也不推进日期。学校编班保持原样。"
+	scope.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	result_column.add_child(scope)
+	return_button = _button("返回学校准备",_return_to_school)
+	result_column.add_child(return_button)
+	canvas.get_parent().add_child(result_panel)
+	canvas.get_parent().move_child(result_panel,canvas.get_index()+1)
+	result_panel.hide()
 	canvas.chosen.connect(func(identity): inspected_id = identity; canvas.inspected_id = identity; _refresh())
 	canvas.commanded.connect(func(_cell):
 		var selected: Dictionary = session.find_unit(session.selected_id)
@@ -72,6 +101,8 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 			else "泉" if unit["job"] == 393 else "宝箱" if unit["job"] == 406 else "场景角色"
 		if unit["category"] == 5: index += 1
 	canvas.labels = _names.duplicate(true); inspected_id = -1; canvas.inspected_id = -1; _last_event = -1
+	_handoff_emitted = false
+	result_panel.hide(); canvas.show(); canvas.controls_enabled = true
 	status.text = "右键敌人下达攻击指令；「查看敌人」可定位最近目标。"
 	_refresh()
 	return true
@@ -92,13 +123,13 @@ func _refresh() -> void:
 	if not target.is_empty():
 		target_info.text += "    |    %s · HP %d/%d · %s" % [_names.get(inspected_id,"对象"),target["limits"]["hp"],target["limits"]["hp_max"],
 			"已清除" if target["limits"]["hp"] <= 0 else "可攻击" if target["category"] == 5 else "场景对象"]
-	if session.trial_complete: status.text = "初始敌人已清除 · 试验完成，可返回学校；正式冒险尚未结束。"
 	stop_button.disabled = selected.is_empty() or selected["limits"]["hp"] <= 0
+	_refresh_ending()
 	canvas.queue_redraw()
 
 
 func _focus_enemy() -> void:
-	if not session.ready or session.enemies().is_empty(): return
+	if not session.ready or session.ending_snapshot()["phase"] != "active" or session.enemies().is_empty(): return
 	var candidates: Array = session.enemies().duplicate()
 	var selected: Dictionary = session.find_unit(session.selected_id)
 	candidates.sort_custom(func(a,b): return session._distance(selected,a) < session._distance(selected,b))
@@ -107,3 +138,73 @@ func _focus_enemy() -> void:
 	canvas.zoom = 1.25; canvas.fit_mode = false
 	canvas.origin = canvas.size*0.5-session.position(unit)*canvas.zoom; canvas.clamp_origin()
 	_refresh()
+
+
+func _refresh_ending() -> void:
+	if result_panel == null: return
+	var ending: Dictionary = session.ending_snapshot()
+	var active: bool = ending["phase"] == "active"
+	canvas.controls_enabled = active
+	if not active: canvas.dragging = false
+	for button in [pause_button,center_button,fit_button,terrain_button,zoom_in_button,zoom_out_button,enemy_button]:
+		button.disabled = not active
+	for button in member_buttons.values(): button.disabled = not active
+	if not active: stop_button.disabled = true
+	close_button.disabled = ending["phase"] == "consuming"
+	close_button.text = "结束试验" if active else "正在结束…" if ending["phase"] == "consuming" else "返回学校准备"
+	if ending["phase"] == "consuming":
+		status.text = "试验已停止，正在整理本次结果…"
+	elif ending["phase"] == "summary":
+		var first_summary := not result_panel.visible
+		var summary: Dictionary = ending["summary"]
+		result_title.text = {"initial_enemies_cleared":"初始敌人已清除", "squad_defeated":"当前学生已全部倒下", "player_exit":"本次试验已结束"}.get(ending["outcome"],"本次试验已结束")
+		result_details.text = "已清除敌人：%d / %d　　剩余敌人：%d\n仍可行动的学生：%d / %d" % [summary["defeated_enemies"],summary["initial_enemies"],summary["remaining_enemies"],summary["surviving_students"],summary["total_students"]]
+		status.text = "结果已整理，可返回学校调整队伍后再次试验。"
+		result_panel.show(); canvas.hide()
+		if first_summary: return_button.grab_focus()
+
+
+func toggle_pause() -> void:
+	if not session is Combat or session.ending_snapshot()["phase"] != "active": return
+	super.toggle_pause()
+
+
+func close_trial() -> void:
+	if not visible or not session is Combat or not session.ready: return
+	var phase: String = session.ending_snapshot()["phase"]
+	if phase == "active":
+		session.request_return()
+		_refresh()
+	elif phase == "summary":
+		_return_to_school()
+
+
+func _return_to_school() -> void:
+	if _handoff_emitted or not visible or not session is Combat: return
+	var handoff: Dictionary = session.take_handoff()
+	if handoff.is_empty() or handoff.get("successor","") != "school_adventure_preparation": return
+	_handoff_emitted = true
+	session.close()
+	canvas.session = null; canvas.texture = null; canvas.sprites.clear(); canvas.labels.clear()
+	canvas.controls_enabled = false; canvas.dragging = false; canvas.hover = Vector2i(-1,-1)
+	canvas.show_terrain = false; canvas.origin = Vector2.ZERO; canvas.zoom = 1.0; canvas.fit_mode = true
+	canvas.inspected_id = -1; inspected_id = -1
+	_last_event = -1
+	_sprites.clear(); _names.clear(); member_buttons.clear()
+	for child in roster.get_children(): child.free()
+	result_panel.hide(); result_title.text = ""; result_details.text = ""
+	info.text = ""; target_info.text = ""; status.text = ""
+	hide()
+	closed.emit()
+
+
+func _input(event: InputEvent) -> void:
+	if not visible or not event is InputEventKey or not event.pressed or event.echo: return
+	if event.keycode == KEY_ESCAPE:
+		close_trial()
+	elif session.ending_snapshot()["phase"] == "active":
+		if event.keycode == KEY_SPACE: toggle_pause()
+		elif event.keycode == KEY_S: session.stop(session.selected_id); _refresh()
+		else: return
+	else: return
+	get_viewport().set_input_as_handled()

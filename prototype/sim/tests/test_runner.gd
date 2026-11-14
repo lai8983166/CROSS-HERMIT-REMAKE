@@ -6,6 +6,11 @@ const BASE := preload("res://sim/tests/test_base.gd")
 
 
 func _init() -> void:
+	# Control integration needs the real SceneTree before synchronous suites run.
+	call_deferred("_run_suites")
+
+
+func _run_suites() -> void:
 	var dir := DirAccess.open("res://sim/tests")
 	var files: Array[String] = []
 	dir.list_dir_begin()

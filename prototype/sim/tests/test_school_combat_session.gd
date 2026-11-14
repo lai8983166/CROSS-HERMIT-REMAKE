@@ -146,3 +146,79 @@ func test_invalid_reopen_and_waiting_squad_preserve_owned_state() -> void:
 	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
 	assert_eq(session.units.size(),13); assert_true(session.find_unit(9).is_empty()); assert_eq(session.enemies().size(),7)
 	assert_eq(model.export_save(),save)
+
+
+func test_requested_exit_consumes_results_in_order_without_damage_or_school_writes() -> void:
+	var model = _school(); var school: Dictionary = model.state(); var save: Dictionary = model.export_save()
+	var session = _combat(model)
+	assert_true(session.command_attack(3,1243)); session.paused = true
+	assert_true(session.request_return(), "return works while combat is paused")
+	var started: Dictionary = session.ending_snapshot()
+	assert_eq(started["phase"],"consuming"); assert_eq(started["outcome"],"player_exit")
+	assert_false(started["consumer"]["result_consumed"], "end trigger does not skip the first wait")
+	assert_false(session.request_return(), "duplicate exit cannot replace the pending frame")
+	assert_true(session.take_handoff().is_empty(), "cannot leave before result consumption")
+	var units: Array = session.read_units(); var events: Array = session.events.duplicate(true)
+	assert_false(session.command_attack(3,1243)); assert_false(session.command_move(3,Vector2i(1,1)))
+	assert_false(session.stop(3)); assert_false(session.select(4))
+	session.advance(1.0/240.0)
+	assert_eq(session.ending_snapshot()["consumer"]["action"],"call_replay_record")
+	assert_true(session.take_handoff().is_empty())
+	session.advance(10.0)
+	assert_eq(session.ending_snapshot()["consumer"]["wait_ordinal"],2)
+	session.tick()
+	assert_eq(session.ending_snapshot()["consumer"]["wait_ordinal"],3)
+	assert_eq(session.ending_snapshot()["phase"],"consuming")
+	session.advance_exit()
+	assert_eq(session.ending_snapshot()["phase"],"summary")
+	assert_eq(session.ending_snapshot()["replay_record_calls"],1)
+	assert_eq(session.read_units(),units); assert_eq(session.events,events)
+	var handoff: Dictionary = session.take_handoff()
+	assert_eq(handoff["successor"],"school_adventure_preparation")
+	assert_false(handoff["authorizes_persistent_write"]); assert_false(handoff["native_equivalence_verified"])
+	assert_false(handoff["summary"]["rewards_applied"]); assert_false(handoff["summary"]["campaign_advanced"])
+	assert_true(session.take_handoff().is_empty(), "one handoff only")
+	assert_eq(model.state(),school); assert_eq(model.export_save(),save)
+	session.close()
+	assert_true(session.units.is_empty()); assert_true(session.phases.is_empty()); assert_true(session.events.is_empty())
+	assert_eq(session.ending_snapshot()["phase"],"closed")
+	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
+	assert_eq(session.ending_snapshot()["phase"],"active"); assert_eq(session.enemies().size(),7)
+
+
+func test_last_actual_trial_hit_starts_the_end_flow() -> void:
+	var model = _school(); var save: Dictionary = model.export_save(); var session = _combat(model)
+	# Explicit local near-terminal fixture. The last HP change comes from the
+	# actual remake attack scheduler, not a fabricated completion/consumer flag.
+	for enemy in session.enemies(): enemy["limits"]["hp"] = 1 if enemy["instance_id"] == 1243 else 0
+	_declared_nearby_geometry(session)
+	assert_true(session.command_attack(3,1243))
+	for index in range(600):
+		session.tick()
+		if session.ending_snapshot()["phase"] != "active": break
+	assert_eq(session.find_unit(1243)["limits"]["hp"],0)
+	assert_true(session.events.any(func(event): return event["target"] == 1243 and event["after_hp"] == 0))
+	assert_true(session.trial_complete); assert_eq(session.ending_snapshot()["outcome"],"initial_enemies_cleared")
+	assert_false(session.ending_snapshot()["consumer"]["result_consumed"])
+	for index in range(4): session.advance_exit()
+	var summary: Dictionary = session.ending_snapshot()["summary"]
+	assert_eq(summary["remaining_enemies"],0); assert_eq(summary["defeated_enemies"],7)
+	assert_eq(session.ending_snapshot()["phase"],"summary")
+	assert_eq(model.export_save(),save, "clearing initial enemies is not formal adventure completion")
+
+
+func test_squad_down_and_invalid_reopen_preserve_the_pending_end() -> void:
+	var model = _school(); var session = _combat(model)
+	for student in session.controlled_units(): student["limits"]["hp"] = 0
+	session.tick()
+	assert_eq(session.ending_snapshot()["outcome"],"squad_defeated")
+	assert_false(session.trial_complete)
+	var pending: Dictionary = session.ending_snapshot(); var units: Array = session.read_units()
+	assert_false(session.open({},model.adventure_combat_limits()))
+	assert_eq(session.ending_snapshot(),pending); assert_eq(session.read_units(),units)
+	pending["summary"]["outcome"] = "changed externally"
+	assert_eq(session.ending_snapshot()["summary"]["outcome"],"squad_defeated")
+	for index in range(4): session.advance_exit()
+	assert_eq(session.ending_snapshot()["phase"],"summary")
+	assert_eq(session.ending_snapshot()["summary"]["surviving_students"],0)
+	assert_eq(session.ending_snapshot()["summary"]["remaining_enemies"],7)
