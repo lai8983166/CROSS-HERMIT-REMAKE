@@ -208,6 +208,8 @@ func test_boss_actual_hit_waits_for_removal_then_consumes_selected_result() -> v
 		if boss["limits"]["hp"]==0: break
 	assert_eq(boss["limits"]["hp"],0); assert_eq(session.ending_snapshot()["phase"],"active")
 	assert_true(session.events.any(func(e): return e["target"]==1239 and e["after_hp"]==0))
+	assert_eq(session._battle_stats[3]["count_field_aa"],1)
+	assert_eq(session._battle_stats[3]["contribution_field_ac"],15,"boss source record+A8, not HP damage")
 	for index in range(32):
 		session.tick()
 		if session.ending_snapshot()["phase"] != "active": break
@@ -215,9 +217,17 @@ func test_boss_actual_hit_waits_for_removal_then_consumes_selected_result() -> v
 	assert_eq(session.ending_snapshot()["outcome"],"mission_objectives_met")
 	assert_true(session.enemies().size()>0)
 	assert_eq(session.ending_snapshot()["summary"]["terminal_choice"]["tactical_result_selector"],1)
+	session.events.clear()
+	assert_eq(session.result_inputs()["units"][0]["contribution_field_ac"],15,"display event retention never owns score")
+	assert_eq(session.result_inputs()["units"].map(func(u): return u["character_id"]),[3,4,9],"temporary Fana is excluded")
 	assert_false(session.ending_snapshot()["consumer"]["result_consumed"])
 	for index in range(4): session.advance_exit()
 	assert_eq(session.ending_snapshot()["phase"],"summary")
+	assert_eq(session.ending_snapshot()["settlement_error"],"")
+	assert_eq(session.ending_snapshot()["settlement"]["phase"],"round_result")
+	assert_true(session.take_handoff().is_empty(),"confirmation cannot be bypassed")
+	assert_eq(session.confirm_result()["phase"],"total_result")
+	assert_eq(session.confirm_result()["phase"],"adv_pending")
 	assert_eq(session.take_handoff()["outcome"],"mission_objectives_met")
 	assert_eq(model.export_save(),save)
 

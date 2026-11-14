@@ -304,7 +304,26 @@ func adventure_combat_limits() -> Dictionary:
 		if not projected["supported"]:
 			return projected
 		output["students"].append({"input":input,"limits":projected["limits"]})
+	output["result_context"] = adventure_result_context()
 	return output
+
+
+func adventure_result_context() -> Dictionary:
+	var prepared := adventure_preparation()
+	if not prepared.get("ready",false): return {}
+	var growth := session.read_growth_records()
+	var records := session.read_confirmation_records()
+	# Carry the actual post-week skills/progress, not the old course result copy.
+	for role in _school_entry["after"]["participants"]:
+		for row in growth:
+			if row["character_id"] == role["character_id"]:
+				row["skill_statuses"] = role["skill_statuses"].duplicate()
+		for row in records:
+			if row["character_id"] == role["character_id"]:
+				for i in range(31): row["job_progress"][i] = role["job_progress"][i]
+	return {"origin":"current_new_game_first_scene5","school":fifth_session.read_snapshot(),
+		"preparation":prepared["prepared"].duplicate(true),"growth":growth,"records":records,
+		"counts":session.read_mvp_counts(),"clock_seed":4660,"growth_seed":4660}
 
 
 func read_work_page() -> Dictionary:

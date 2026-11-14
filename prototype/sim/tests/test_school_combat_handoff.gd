@@ -48,10 +48,24 @@ func _consume_through_ui(trial) -> void:
 	assert_false(trial.canvas.visible)
 	assert_true(trial.return_button.is_visible_in_tree())
 	assert_false(trial.return_button.disabled)
-	assert_eq(trial.return_button.text,"返回学校准备")
+	assert_eq(trial.return_button.text,"确认本轮战果" if trial.session.ending_snapshot()["settlement"].get("phase")=="round_result" else "返回学校准备")
 	assert_true(trial.return_button.has_focus(),"summary has an explicit keyboard-accessible return")
 	trial._process(1.0)
 	assert_eq(trial.session.ending_snapshot()["phase"],"summary","no automatic summary dismissal")
+
+
+func _confirm_through_ui(trial) -> void:
+	if trial.session.ending_snapshot()["settlement"].get("phase") != "round_result": return
+	trial.return_button.pressed.emit()
+	assert_true(trial.visible); assert_eq(trial.return_button.text,"确认总战果")
+	assert_eq(trial.session.ending_snapshot()["settlement"]["phase"],"total_result")
+	assert_true(trial.result_details.text.contains("成长点")); assert_true(trial.result_details.text.contains("本轮最佳"))
+	trial.return_button.pressed.emit()
+	assert_true(trial.visible); assert_eq(trial.return_button.text,"结束本次试玩")
+	var result: Dictionary = trial.session.ending_snapshot()["settlement"]
+	assert_eq(result["phase"],"adv_pending"); assert_eq(result["adv_request"]["next_task"],7)
+	trial.session.confirm_result()
+	assert_eq(trial.session.ending_snapshot()["settlement"],result,"duplicate confirmation does not award again")
 
 
 func _complete_opening(trial) -> void:
@@ -157,6 +171,7 @@ func test_declared_enemy_and_student_endpoints_show_distinct_summaries() -> void
 			assert_eq(summary["surviving_students"],0)
 			assert_eq(trial.result_title.text,"当前学生已全部倒下")
 		assert_true(trial.result_details.text.contains("仍可行动的学生"))
+		_confirm_through_ui(trial)
 		trial.return_button.pressed.emit()
 		assert_eq(ui.page,"adventure"); assert_false(trial.visible)
 		assert_eq(ui.model.state(),state); assert_eq(ui.model.export_save(),save)
@@ -194,7 +209,10 @@ func test_event_dialogue_controls_new_ally_and_objective_summary_return() -> voi
 	trial._process(1.0/30.0)
 	_consume_through_ui(trial)
 	assert_eq(trial.result_title.text,"本场目标已达成")
+	_confirm_through_ui(trial)
 	trial.return_button.pressed.emit()
+	assert_eq(ui.last_battle_handoff["successor"],"adv_ch003_pending")
+	assert_eq(ui.last_battle_handoff["settlement"]["confirmation"]["after"]["week"],5)
 	assert_false(trial.visible); assert_true(trial.session.reserves.is_empty())
 	assert_false(trial.event_panel.visible); assert_true(trial.event_text.text.is_empty())
 	assert_eq(ui.model.export_save(),save); assert_true(ui.panel.visible)

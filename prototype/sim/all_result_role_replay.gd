@@ -84,13 +84,35 @@ func finish(instance_id: String, confirmed: bool, mvp_ready: bool) -> Dictionary
 
 static func project_growth(before: Dictionary, ordered_ids: Array, seed: int, rules: Dictionary) -> Dictionary:
 	var reason := _validate_snapshot(before)
-	if reason.is_empty():
-		reason = _validate_rules(rules)
+	if not reason.is_empty():
+		return _unsupported(reason)
+	return _apply_growth(_normalized_snapshot(before), ordered_ids, seed, rules)
+
+
+static func project_growth_records(input: Array, ordered_ids: Array, seed: int, rules: Dictionary) -> Dictionary:
+	# Growth itself does not read the date, relation directory or teacher slots.
+	# Keep the historical full-snapshot/context validators unchanged.
+	var seen := {}
+	if input.is_empty() or input.size() > 3: return _unsupported("invalid_growth_records")
+	for record in input:
+		if not record is Dictionary or not _bounded(record.get("character_id"),1,12) \
+				or seen.has(record["character_id"]): return _unsupported("invalid_growth_identity")
+		seen[record["character_id"]] = true
+		for bounds in [["job",1,30],["level_50",1,50],["staged_total",0,0x7fffffff]]:
+			if not _bounded(record.get(bounds[0]),bounds[1],bounds[2]): return _unsupported("invalid_growth_scalar")
+		for bounds in [["attributes",7,1,135],["growth_pools",7,0,0x7fffffff],
+				["skill_statuses",84,0,6],["staged_package",8,0,0x7fffffff],["job_progress",31,-128,127]]:
+			if not _vector(record.get(bounds[0]),bounds[1],bounds[2],bounds[3]): return _unsupported("invalid_growth_vector")
+	return _apply_growth({"characters":_integers(input)},ordered_ids,seed,rules)
+
+
+static func _apply_growth(before: Dictionary, ordered_ids: Array, seed: int, rules: Dictionary) -> Dictionary:
+	var reason := _validate_rules(rules)
 	if not reason.is_empty():
 		return _unsupported(reason)
 	if seed < 0 or seed > 0xffffffff:
 		return _unsupported("invalid_seed")
-	var records := _records(_normalized_snapshot(before))
+	var records := _records(before)
 	var seen := {}
 	var ids := []
 	# Validate ALL participating pools before copying/applying any role.
@@ -108,7 +130,7 @@ static func project_growth(before: Dictionary, ordered_ids: Array, seed: int, ru
 			var pool: int = records[id]["growth_pools"][k] + records[id]["staged_package"][k]
 			if pool < 0 or pool >= maximum_pool:
 				return _unsupported("pool_walk_outside_source_table")
-	var after: Dictionary = _normalized_snapshot(before)
+	var after: Dictionary = before.duplicate(true)
 	records = _records(after)
 	var normalized_rules: Dictionary = _integers(rules)
 	var state := seed

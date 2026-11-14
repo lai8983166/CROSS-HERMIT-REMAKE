@@ -2,6 +2,7 @@ extends "res://ui/school_field_trial.gd"
 const Combat := preload("res://sim/school_combat_session.gd")
 const FieldTrial := preload("res://ui/school_field_trial.gd")
 const OpeningStage := preload("res://ui/school_opening_stage.gd")
+signal result_handoff(receipt: Dictionary)
 
 class CombatCanvas extends FieldTrial.FieldCanvas:
 	var labels: Dictionary = {}
@@ -43,6 +44,7 @@ var _last_event := -1
 var result_panel: PanelContainer
 var result_title: Label
 var result_details: Label
+var result_scope: Label
 var return_button: Button
 var _handoff_emitted := false
 var opening_panel: VBoxContainer
@@ -87,10 +89,10 @@ func _ready() -> void:
 	result_column.add_child(result_title)
 	result_details = Label.new(); result_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	result_column.add_child(result_details)
-	var scope := Label.new()
-	scope.text = "本次仅结束战斗操作试验，不计正式通关、不发放奖励，也不推进日期。学校编班保持原样。"
-	scope.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	result_column.add_child(scope)
+	result_scope = Label.new()
+	result_scope.text = "战果保留在本次试玩中。战后剧情与存档接续尚未完成，日期暂不推进。"
+	result_scope.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	result_column.add_child(result_scope)
 	return_button = _button("返回学校准备",_return_to_school)
 	result_column.add_child(return_button)
 	canvas.get_parent().add_child(result_panel)
@@ -302,6 +304,34 @@ func _refresh_ending() -> void:
 		result_title.text = {"mission_objectives_met":"本场目标已达成", "time_expired":"本场时间已用完", "squad_defeated":"当前学生已全部倒下", "player_exit":"本次试验已结束"}.get(ending["outcome"],"本次试验已结束")
 		result_details.text = "已击倒敌人：%d　　剩余敌人：%d\n仍可行动的学生：%d / %d" % [summary["defeated_enemies"],summary["remaining_enemies"],summary["surviving_students"],summary["total_students"]]
 		status.text = "结果已整理，可返回学校调整队伍后再次试验。"
+		return_button.text = "返回学校准备"
+		var settlement: Dictionary = ending["settlement"]
+		var phase: String = settlement.get("phase","")
+		if phase in ["round_result","total_result","adv_pending"]:
+			var lines := []
+			for row in settlement["score"]["characters"]:
+				lines.append("%s：成长点 +%d" % [_names.get(row["character_id"],str(row["character_id"])),row["staged_total"]])
+			result_details.text += "\n\n"+"\n".join(lines)+"\n总战果 +%d" % settlement["score"]["total_delta"]
+			var items := []
+			for group in settlement["loot_groups"]:
+				for id in group:
+					if id>0: items.append(str(id))
+			result_details.text += "\n获得道具编号："+", ".join(items)
+			if phase == "round_result":
+				return_button.text = "确认本轮战果"
+				status.text = "本轮战果已计算；确认后查看成长和总战果。"
+			else:
+				result_title.text = "总战果" if phase=="total_result" else "战果已确认"
+				for row in settlement["growth"]["display_request"]:
+					result_details.text += "\n%s：Lv.%d → %d" % [_names.get(row["character_id"],str(row["character_id"])),row["level_before"],row["level_after"]]
+				result_details.text += "\n本轮最佳："+str(_names.get(settlement["recipient"],settlement["recipient"]))
+				return_button.text = "确认总战果" if phase=="total_result" else "结束本次试玩"
+				status.text = "确认后进入战后剧情交接。" if phase=="total_result" else "下一场景是战后剧情；当前试玩在此保留交接结果。"
+			result_scope.text = "战果、成长和确认结果保留在本次试玩中。战后剧情与存档接续尚未完成，日期暂不推进。"
+		elif not ending["settlement_error"].is_empty():
+			result_scope.text = "本次战果计算未完成，未提交成长或日期。可返回学校准备。"
+		else:
+			result_scope.text = "主动结束试玩不提交正式战果。学校与日期保持当前状态。"
 		result_panel.show(); canvas.hide()
 		if first_summary: return_button.grab_focus()
 	if active:
@@ -325,9 +355,13 @@ func close_trial() -> void:
 
 func _return_to_school() -> void:
 	if _handoff_emitted or not visible or not session is Combat: return
+	var settled: Dictionary = session.ending_snapshot()["settlement"]
+	if settled.get("phase") in ["round_result","total_result"]:
+		session.confirm_result(); _refresh(); return
 	var handoff: Dictionary = session.take_handoff()
-	if handoff.is_empty() or handoff.get("successor","") != "school_adventure_preparation": return
+	if handoff.is_empty() or handoff.get("successor","") not in ["school_adventure_preparation","adv_ch003_pending"]: return
 	_handoff_emitted = true
+	result_handoff.emit(handoff.duplicate(true))
 	_release_opening()
 	session.close()
 	canvas.session = null; canvas.texture = null; canvas.sprites.clear(); canvas.labels.clear()

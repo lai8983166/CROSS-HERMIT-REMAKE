@@ -3,6 +3,7 @@ extends "res://sim/school_field_session.gd"
 const Inputs := preload("res://sim/school_attack_inputs.gd")
 const ResultConsumer := preload("res://sim/tactics_result_consumer.gd")
 const Progression := preload("res://sim/school_scene5_progression.gd")
+const Settlement := preload("res://sim/school_battle_settlement.gd")
 const REINFORCEMENTS_PATH := "res://assets/school_reinforcements/catalog.json"
 const REINFORCEMENTS_SHA := "4e444e53669255b9b5d926642a535962d9ea50397815b2ac0a1a7e9e8deebbe7"
 const COMBAT_CATALOG := "res://assets/school_combat/catalog.json"
@@ -38,6 +39,10 @@ var _terminal_choice: Dictionary = {}
 var remaining_ticks := -1
 var _capture_mask := PackedByteArray()
 var _pending_activations: Array[Dictionary] = []
+var _battle_stats: Dictionary = {}
+var _participant_ids: Array = []
+var _settlement: Settlement
+var _settlement_error := ""
 
 
 func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
@@ -56,6 +61,11 @@ func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
 	# Build the base projection separately so every refusal preserves this session.
 	var base = load("res://sim/school_field_session.gd").new()
 	if not base.open(preparation,combat,raw): return false
+	var settlement: Settlement
+	if combat.has("result_context"):
+		if not combat["result_context"] is Dictionary or combat["result_context"].get("preparation") != preparation.get("prepared"): return false
+		settlement = Settlement.new()
+		if not settlement.initialize(combat["result_context"]): return false
 	var next_units: Array[Dictionary] = base.units.duplicate(true)
 	for unit in next_units:
 		var row: Dictionary = combat["students"].filter(func(r): return r["input"]["character_id"] == unit["character_id"])[0]
@@ -91,6 +101,10 @@ func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
 	_capture_mask = String(waves["capture_mask"]["hex"]).hex_decode()
 	_pending_activations.clear()
 	_placement_rotation = (int(catalog["initial_rotation"])+controlled_units().size())%5
+	_settlement = settlement; _settlement_error = ""; _battle_stats.clear()
+	_participant_ids = preparation["prepared"]["rounds"][0]["student_ids"].duplicate()
+	for id in _participant_ids:
+		_battle_stats[id] = {"character_id":id,"count_field_aa":0,"contribution_field_ac":0,"status_field_ae":0}
 	return true
 
 
@@ -248,8 +262,47 @@ func _hit(unit: Dictionary, target: Dictionary) -> void:
 		"before_hp":before,"after_hp":target["limits"]["hp"]})
 	if events.size() > 64: events.pop_front()
 	if target["limits"]["hp"] <= 0:
+		if before > 0: _record_defeat(unit,target)
 		phases.erase(unit_key(target)); target["path"] = []; target["target"] = -1
 		target["destination"] = Vector2i(-1,-1); target["dead_at"] = frame
+
+
+func _record_defeat(attacker: Dictionary, target: Dictionary) -> void:
+	# 4799C0 mode2 entry: signed AA/AC add only when the new value is greater;
+	# AE saturates at127. Credit uses the defeated record+A8, not damage dealt.
+	var victim := unit_key(target)
+	if _battle_stats.has(victim):
+		_battle_stats[victim]["status_field_ae"] = mini(127,_battle_stats[victim]["status_field_ae"]+1)
+	var id := unit_key(attacker)
+	if not _battle_stats.has(id): return # Temporary Fana slot249 is not a settled role.
+	var actor: Dictionary = source_actors.get(victim,reserves.get(victim,{}))
+	if actor.is_empty(): return
+	var raw := String(actor["record_hex"]).hex_decode()
+	var points := int(raw[0xa8])+256*int(raw[0xa9])
+	if points >= 32768: points -= 65536
+	var row: Dictionary = _battle_stats[id]
+	if row["count_field_aa"] < 32767: row["count_field_aa"] += 1
+	var next: int = row["contribution_field_ac"]+points
+	if next > row["contribution_field_ac"] and next <= 32767: row["contribution_field_ac"] = next
+
+
+func result_inputs() -> Dictionary:
+	if _terminal_choice.is_empty(): return {}
+	var no_hostile := true
+	# This remake's state3 is the local death-display interval before removal,
+	# mapped to the original displayed list; original record state3 is not tested.
+	for unit in units:
+		if unit["category"]==5 and unit["side"]!=0 and unit["source_state"] in [1,3]: no_hostile = false
+	for id in reserves:
+		var raw := String(reserves[id]["record_hex"]).hex_decode()
+		if raw[0x96]!=3 and _source_status(id)["state"]==0: no_hostile = false
+	var objectives := []; objectives.resize(16); objectives.fill(0)
+	objectives[0] = 1 if find_unit(1217)["side"]==0 else 0 # Config slot33 -> work217.
+	var elapsed := 108000-remaining_ticks
+	return {"result_selector":_terminal_choice["tactical_result_selector"],
+		"time_key":1 if elapsed<=18000 else 2 if elapsed<=36000 else 3,
+		"unit_condition_key":2 if no_hostile else 1,"objective_slots":objectives,
+		"units":_participant_ids.map(func(id): return _battle_stats[id].duplicate(true))}
 
 
 func _visual(unit: Dictionary, action: String) -> void:
@@ -526,22 +579,38 @@ func advance_exit() -> void:
 			return
 	if next["supported"] and next["function_returned"]:
 		_ending_phase = "summary"; reason = "trial_summary"
+		if _settlement != null and not _terminal_choice.is_empty():
+			var result := _settlement.prepare(result_inputs())
+			if not result["supported"]: _settlement_error = result["reason"]
 
 
 func ending_snapshot() -> Dictionary:
 	return {"phase": _ending_phase, "outcome": _ending_outcome,
 		"consumer": _result_consumer.snapshot() if _result_consumer != null else {},
 		"summary": _ending_summary.duplicate(true), "replay_record_calls": _record_calls,
+		"settlement":{} if _settlement == null else _settlement.snapshot(),"settlement_error":_settlement_error,
 		"replay_recording_enabled": false, "native_equivalence_verified": false}
 
 
 func take_handoff() -> Dictionary:
 	if not ready or _ending_phase != "summary": return {}
+	if _settlement != null and _settlement.snapshot()["phase"] in ["round_result","total_result"]: return {}
 	_ending_phase = "handoff_taken"
-	return {"successor": "school_adventure_preparation", "outcome": _ending_outcome,
+	var settled := {} if _settlement==null else _settlement.snapshot()
+	return {"successor": "adv_ch003_pending" if settled.get("phase")=="adv_pending" else "school_adventure_preparation", "outcome": _ending_outcome,
+		"settlement":settled,
 		"summary": _ending_summary.duplicate(true), "consumer": _result_consumer.snapshot(),
 		"evidence_kind": "remake_trial_lifecycle", "native_equivalence_verified": false,
 		"authorizes_persistent_write": false}
+
+
+func confirm_result() -> Dictionary:
+	if not ready or _ending_phase!="summary" or _settlement==null: return {}
+	match _settlement.snapshot()["phase"]:
+		"round_result": return _settlement.confirm_round()
+		"total_result": return _settlement.confirm_total(true)
+		"adv_pending": return _settlement.snapshot()
+	return {}
 
 
 func close() -> void:
@@ -551,3 +620,4 @@ func close() -> void:
 	_opening_pages.clear(); _opening_index = -1
 	reserves.clear(); _event_pages.clear(); _event_index = -1; event20_seen = false
 	_terminal_choice.clear(); _own_casualties = 0; remaining_ticks = -1; _capture_mask.clear(); _pending_activations.clear()
+	_battle_stats.clear(); _participant_ids.clear(); _settlement = null; _settlement_error = ""

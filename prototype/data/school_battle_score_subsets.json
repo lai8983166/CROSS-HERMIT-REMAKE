@@ -1,0 +1,143 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "function": "0x4bbd40",
+  "scope": "isolated original instructions; declared template/stat inputs, not a native battle lifetime",
+  "cases": [
+    {
+      "inputs": {
+        "task_id": 5,
+        "mode": 0,
+        "cap_mode": 0,
+        "result_selector": 1,
+        "time_key": 1,
+        "unit_key": 2,
+        "initial_grade": 5,
+        "initial_total": 1000,
+        "characters": [
+          {
+            "character_id": 3,
+            "rate_class": 5,
+            "growth_pools": [
+              13500,
+              9700,
+              55900,
+              109000,
+              487200,
+              67000,
+              632100
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 10,
+            "contribution_field_ac": 40,
+            "status_field_ae": 0
+          }
+        ]
+      },
+      "expected": {
+        "total_delta": 110157,
+        "total_after": 111157,
+        "characters": [
+          {
+            "character_id": 3,
+            "staged_package": [
+              3304,
+              3304,
+              6609,
+              3304,
+              38556,
+              16524,
+              38556,
+              0
+            ],
+            "staged_total": 110157
+          }
+        ]
+      }
+    },
+    {
+      "inputs": {
+        "task_id": 5,
+        "mode": 0,
+        "cap_mode": 0,
+        "result_selector": 1,
+        "time_key": 1,
+        "unit_key": 2,
+        "initial_grade": 5,
+        "initial_total": 1000,
+        "characters": [
+          {
+            "character_id": 3,
+            "rate_class": 5,
+            "growth_pools": [
+              13500,
+              9700,
+              55900,
+              109000,
+              487200,
+              67000,
+              632100
+            ],
+            "skill_points": 80000,
+            "group_bonus": 10,
+            "count_field_aa": 10,
+            "contribution_field_ac": 40,
+            "status_field_ae": 0
+          },
+          {
+            "character_id": 4,
+            "rate_class": 3,
+            "growth_pools": [
+              600,
+              33400,
+              93400,
+              13500,
+              3600,
+              4500,
+              9700
+            ],
+            "skill_points": 64000,
+            "group_bonus": 10,
+            "count_field_aa": 20,
+            "contribution_field_ac": 60,
+            "status_field_ae": 1
+          }
+        ]
+      },
+      "expected": {
+        "total_delta": 88206,
+        "total_after": 89206,
+        "characters": [
+          {
+            "character_id": 3,
+            "staged_package": [
+              2818,
+              2818,
+              5637,
+              2818,
+              32886,
+              14094,
+              32886,
+              0
+            ],
+            "staged_total": 93957
+          },
+          {
+            "character_id": 4,
+            "staged_package": [
+              3061,
+              6123,
+              35721,
+              3061,
+              3061,
+              25515,
+              25515,
+              0
+            ],
+            "staged_total": 102057
+          }
+        ]
+      }
+    }
+  ]
+}

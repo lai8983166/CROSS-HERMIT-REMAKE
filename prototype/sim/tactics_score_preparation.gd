@@ -26,8 +26,8 @@ static func calculate(inputs: Dictionary, rules: Dictionary) -> Dictionary:
 	if selector < 1 or selector > 5 or time_key < 0 or time_key > 3 or unit_key < 1 or unit_key > 2:
 		return _unsupported("outside_audited_result_keys")
 	var units: Variant = inputs["characters"]
-	if not units is Array or units.size() != 3:
-		return _unsupported("outside_three_unit_subset")
+	if not units is Array or units.is_empty() or units.size() > 3:
+		return _unsupported("outside_one_to_three_unit_subset")
 	var seen := {}
 	var contribution_sum := 0
 	var status_sum := 0
@@ -75,6 +75,7 @@ static func calculate(inputs: Dictionary, rules: Dictionary) -> Dictionary:
 		bonus += int(rules["time_bonuses"][time_display])
 		bonus_count += 1
 	bonus_count += 1
+	# 4BBD40: clamp(participant_count-1,1,20)/4. All admitted counts use 0.
 	bonus += int(rules["count_bonuses"][0]) - bonus_count * 100
 	var base_points := int(rules["base_points"][grade_index])
 	var base_gain := base_points + _div(base_points * bonus, 100)

@@ -40,6 +40,7 @@ var restart_button: Button
 var battle_button: Button
 var restart_dialog: ConfirmationDialog
 var result_cards: Dictionary = {}
+var last_battle_handoff: Dictionary = {}
 var mvp_label: Label
 var _groups: VBoxContainer
 var _courses: VBoxContainer
@@ -238,9 +239,11 @@ func _ready() -> void:
 		if is_instance_valid(adventure_trial_button): adventure_trial_button.grab_focus())
 	combat_trial = CombatTrial.new()
 	add_child(combat_trial)
+	combat_trial.result_handoff.connect(func(receipt): last_battle_handoff = receipt.duplicate(true))
 	combat_trial.closed.connect(func():
 		page = "adventure"
-		_message = "已返回学校准备。队伍与进度保持原样，可调整编班或再次试验。"
+		_message = "本次战果已确认，下一场景为战后剧情。交接结果保留在本次试玩中；学校存档仍为出发前状态。" \
+			if last_battle_handoff.get("successor")=="adv_ch003_pending" else "已返回学校准备。队伍与进度保持原样，可调整编班或再次试验。"
 		panel.show()
 		refresh()
 		if is_instance_valid(adventure_combat_button): adventure_combat_button.grab_focus())
@@ -844,6 +847,7 @@ func _open_combat_trial() -> void:
 		_message = "战斗操作试验暂时无法开启，请保留当前编班。"
 		refresh()
 	else:
+		last_battle_handoff.clear()
 		# The trial is modal: hidden school controls cannot receive keyboard focus.
 		panel.hide()
 

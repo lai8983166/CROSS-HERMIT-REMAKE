@@ -1,6 +1,7 @@
 """Native task-five calculation invariants and stable byte-level evidence."""
 import hashlib
 import importlib.util
+import json
 import struct
 import unittest
 
@@ -16,6 +17,37 @@ class BattlePreparationTests(unittest.TestCase):
     def setUpClass(cls):
         cls.report = report()
         cls.cases = {c['name']: c for c in cls.report['cases']}
+
+    def test_one_and_two_participants_reexecute_original_score(self):
+        from unicorn.x86_const import UC_X86_REG_EIP, UC_X86_REG_ESP, UC_X86_REG_ECX
+        from tools.scene5_task_emulation import RESULT_TASK
+        from tools.tactics_exit_emulation import STACK, RETURN
+        fixture = json.loads((ROOT/'prototype/data/school_battle_score_subsets.json').read_text('utf-8'))
+        for case in fixture['cases']:
+            e = PreparationEmulator()
+            inputs = case['inputs']
+            count = len(inputs['characters'])
+            self.assertIn(count, (1, 2))
+            e.write(0x7A52F8, count, 'h')
+            for address, key in [(0x7F450C, 'result_selector'), (0x7F450E, 'time_key'), (0x7F4510, 'unit_key')]:
+                e.write(address, inputs[key], 'h')
+            for i, row in enumerate(inputs['characters']):
+                for offset, key, fmt in [(0xAA, 'count_field_aa', 'h'), (0xAC, 'contribution_field_ac', 'h'), (0xAE, 'status_field_ae', 'b')]:
+                    e.write(0x7F4518+176*i+offset, row[key], fmt)
+            sp = STACK+0xff00
+            e.write(sp, RETURN)
+            e.uc.reg_write(UC_X86_REG_ESP, sp)
+            e.uc.reg_write(UC_X86_REG_ECX, RESULT_TASK)
+            # Existing helper's 1s deadline was insufficient for two rows;
+            # same original body, local bounded CPU only, no live owner/UI.
+            e.uc.emu_start(0x4BBD40, RETURN, timeout=5_000_000, count=500_000)
+            self.assertEqual(e.uc.reg_read(UC_X86_REG_EIP), RETURN)
+            self.assertEqual(e.uc.reg_read(UC_X86_REG_ESP), sp+4)
+            actual = {'total_delta': e.read(RESULT_TASK+0x40, 'i'),
+                      'total_after': e.read(RESULT_TASK+0x3C, 'i'),
+                      'characters': [{k: r[k] for k in ('character_id', 'staged_package', 'staged_total')}
+                                     for r in e.preparation_snapshot()['characters'][:count]]}
+            self.assertEqual(actual, case['expected'])
 
     def test_native_input_and_three_preparation_bodies_execute_in_order(self):
         for case in self.report['cases']:

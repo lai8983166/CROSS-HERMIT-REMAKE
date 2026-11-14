@@ -26,6 +26,16 @@ func test_packages_and_summary_match_native_execution() -> void:
 		assert_false(actual["authorizes_persistent_write"], "准备计算不授权持久写入")
 
 
+func test_one_and_two_participants_match_original_score_body() -> void:
+	var subset: Dictionary = preload("res://sim/all_result_role_replay.gd")._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_battle_score_subsets.json")))
+	for example in subset["cases"]:
+		var actual := Preparation.calculate(example["inputs"],_fixture()["rules"])
+		assert_true(actual["supported"])
+		assert_eq(actual["total_delta"],int(example["expected"]["total_delta"]))
+		assert_eq(actual["total_after"],int(example["expected"]["total_after"]))
+		assert_eq(actual["characters"],example["expected"]["characters"])
+
+
 func test_missing_duplicate_and_unknown_inputs_stay_unresolved() -> void:
 	var fixture := _fixture()
 	var inputs: Dictionary = fixture["cases"][0]["inputs"].duplicate(true)
