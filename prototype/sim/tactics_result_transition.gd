@@ -3,6 +3,31 @@ extends RefCounted
 ## Scene-5 subset of 451670 -> 439E30 -> 49E2B0, after local task exit.
 ## Explicit isolated replay context; no live evidence or persistent authority.
 
+const ResultConsumer := preload("res://sim/tactics_result_consumer.gd")
+
+
+static func after_waits(exit_frame: Dictionary, context: Dictionary,
+		consumer: ResultConsumer) -> Dictionary:
+	# Predict the existing isolated scene-5 dispatch subset only. The original
+	# outer callback still has tail waits, cleanup and a completion gate. This
+	# method neither executes them nor enqueues a live successor request.
+	if consumer == null:
+		return _unsupported("missing_result_consumer")
+	var consumed := consumer.snapshot()
+	if not consumed["function_returned"]:
+		return _unsupported("result_consumption_not_complete")
+	# This adapter covers the existing post-VM scene-5 subset only. Other branches
+	# can also set [EBP-8]; do not infer their frame/dispatch fields from completion.
+	if int(consumed["completion_value"]) != 1 \
+			or int(exit_frame.get("transition_function_return", 0)) != 1:
+		return _unsupported("outside_post_vm_completion_subset")
+	var output := step(exit_frame, context)
+	if output["supported"]:
+		output["result_consumption"] = consumed
+		output["projection_only"] = true
+		output["outer_callback_teardown_executed"] = false
+	return output
+
 
 static func step(exit_frame: Dictionary, context: Dictionary) -> Dictionary:
 	for key in ["transition_function_return", "transition_phase", "script_phase",
