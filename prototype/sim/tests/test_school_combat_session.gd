@@ -15,7 +15,14 @@ func _school():
 func _combat(model):
 	var session := Combat.new()
 	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
+	_finish_opening(session)
 	return session
+
+
+func _finish_opening(session) -> void:
+	for index in range(10):
+		assert_true(session.advance_opening(session.opening_snapshot()["awaiting_confirmation"]))
+	assert_eq(session.ending_snapshot()["phase"],"active")
 
 
 func _declared_nearby_geometry(session, enemy_id := 1243) -> void:
@@ -183,7 +190,8 @@ func test_requested_exit_consumes_results_in_order_without_damage_or_school_writ
 	assert_true(session.units.is_empty()); assert_true(session.phases.is_empty()); assert_true(session.events.is_empty())
 	assert_eq(session.ending_snapshot()["phase"],"closed")
 	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
-	assert_eq(session.ending_snapshot()["phase"],"active"); assert_eq(session.enemies().size(),7)
+	assert_eq(session.ending_snapshot()["phase"],"opening"); assert_eq(session.enemies().size(),7)
+	_finish_opening(session)
 
 
 func test_last_actual_trial_hit_starts_the_end_flow() -> void:
@@ -222,3 +230,58 @@ func test_squad_down_and_invalid_reopen_preserve_the_pending_end() -> void:
 	assert_eq(session.ending_snapshot()["phase"],"summary")
 	assert_eq(session.ending_snapshot()["summary"]["surviving_students"],0)
 	assert_eq(session.ending_snapshot()["summary"]["remaining_enemies"],7)
+
+
+func test_opening_confirmation_groups_freeze_combat_until_final_handoff() -> void:
+	var model = _school(); var session := Combat.new(); var save: Dictionary = model.export_save()
+	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
+	var units: Array = session.read_units(); var random_state: int = session.rng.state
+	var expected: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(Combat.OPENING_PATH))
+	var confirmations := 0
+	for index in range(10):
+		var opening: Dictionary = session.opening_snapshot()
+		assert_eq(opening["page_index"],index); assert_eq(opening["page"],expected["pages"][index])
+		assert_eq(session.ending_snapshot()["phase"],"opening")
+		assert_false(session.select(4)); assert_false(session.command_move(3,Vector2i(10,20)))
+		assert_false(session.command_attack(3,1243)); assert_false(session.stop(3))
+		session.tick(); session.advance(100.0)
+		assert_eq(session.frame,0); assert_eq(session.read_units(),units)
+		assert_eq(session.rng.state,random_state); assert_true(session.events.is_empty())
+		var confirmation: bool = index in [1,2,6,9]
+		assert_eq(opening["awaiting_confirmation"],confirmation)
+		assert_false(session.advance_opening(not confirmation),"automatic text cannot bypass a confirmation")
+		assert_eq(session.opening_snapshot(),opening)
+		assert_true(session.advance_opening(confirmation))
+		if confirmation: confirmations += 1
+	assert_eq(confirmations,4)
+	assert_eq(session.ending_snapshot()["phase"],"active")
+	assert_true(session.opening_snapshot()["completed"])
+	assert_false(session.opening_snapshot()["original_vm_executed"])
+	assert_false(session.advance_opening(true)); assert_false(session.advance_opening())
+	assert_eq(session.frame,0,"dialogue time must not become overdue combat ticks")
+	assert_true(session.command_attack(3,1243)); session.advance(1.0/30.0)
+	assert_eq(session.frame,1)
+	assert_eq(model.export_save(),save)
+
+
+func test_opening_abort_and_failed_reopen_preserve_page_and_school() -> void:
+	var model = _school(); var session := Combat.new(); var state: Dictionary = model.state()
+	var save: Dictionary = model.export_save()
+	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
+	assert_true(session.advance_opening())
+	var opening: Dictionary = session.opening_snapshot(); var units: Array = session.read_units()
+	assert_false(session.open({},model.adventure_combat_limits()))
+	assert_eq(session.opening_snapshot(),opening); assert_eq(session.read_units(),units)
+	opening["page"]["text"] = "external change"
+	assert_false(session.opening_snapshot()["page"]["text"] == "external change")
+	assert_true(session.request_return()); assert_false(session.request_return())
+	assert_false(session.advance_opening(true)); assert_false(session.opening_snapshot()["completed"])
+	for index in range(4): session.advance_exit()
+	assert_eq(session.ending_snapshot()["phase"],"summary")
+	assert_eq(session.ending_snapshot()["outcome"],"player_exit")
+	assert_eq(session.ending_snapshot()["summary"]["battle_frames"],0)
+	assert_false(session.take_handoff().is_empty())
+	assert_eq(model.state(),state); assert_eq(model.export_save(),save)
+	session.close(); assert_eq(session.opening_snapshot()["page_count"],0)
+	assert_true(session.open(model.adventure_preparation(),model.adventure_combat_limits()))
+	assert_eq(session.opening_snapshot()["page_index"],0); assert_eq(session.frame,0)

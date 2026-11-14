@@ -1,0 +1,247 @@
+{
+  "schema": "godot-combat-opening-closeout-v1",
+  "created_utc": "2026-11-14T11:32:47.400673+00:00",
+  "base_commit": "9081e980bd0754e0464645690ce5725ef35e0b31",
+  "scope": "Existing source dialogue and graphical presentation integrated before playable trial, followed by established result consumption and school return",
+  "formal_native_acceptance": false,
+  "formal_native_progress": "2/8",
+  "stopped_native_route": "STOPPED_SCOPE_GUARD unchanged",
+  "parent_closeout": {
+    "path": "analysis/godot-combat-handoff-closeout-v1-20261114.json",
+    "bytes": 8730,
+    "sha256": "1124cd41ddb52cb5dc9ce04d4d0429de804a6343132b9d6aee281e156b3679f6"
+  },
+  "implementation": [
+    {
+      "path": "prototype/sim/school_combat_session.gd",
+      "lf_normalized_bytes": 16473,
+      "sha256_lf_normalized": "32212e90feb307ca80b07809d5b8ef336f542ac76befd7c579f2ce078c858019"
+    },
+    {
+      "path": "prototype/ui/school_combat_trial.gd",
+      "lf_normalized_bytes": 14171,
+      "sha256_lf_normalized": "d8c234e90e51de43705a83a7a790c26eb23442cb736eaed4320446cafb667ab9"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_combat_session.gd",
+      "lf_normalized_bytes": 16712,
+      "sha256_lf_normalized": "a0e49b28d755c232ff6410f1a46fe0f0582cb4ab1f9319aa4140fa72c62495a5"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_combat_handoff.gd",
+      "lf_normalized_bytes": 13750,
+      "sha256_lf_normalized": "6f9f30b18dc6f952a83fc20d5cea051be4b7f9b48601e47062447faafd3cf06b"
+    }
+  ],
+  "source_check": {
+    "source_script_sha256": "44ca546b5ea90ec23a4bc7d8dffeac6547a44bfd035383c91983f7c13ae72a52",
+    "confirmation_groups": [
+      {
+        "after_text_index": 1,
+        "wait_file_offset": 696,
+        "confirm_file_offset": 700,
+        "source_hex": "3200040033000400"
+      },
+      {
+        "after_text_index": 2,
+        "wait_file_offset": 738,
+        "confirm_file_offset": 742,
+        "source_hex": "3200040033000400"
+      },
+      {
+        "after_text_index": 6,
+        "wait_file_offset": 810,
+        "confirm_file_offset": 814,
+        "source_hex": "3200040033000400"
+      },
+      {
+        "after_text_index": 9,
+        "wait_file_offset": 860,
+        "confirm_file_offset": 864,
+        "source_hex": "3200040033000400"
+      }
+    ],
+    "existing_presentation_matches_source_projection": true,
+    "frozen_files": [
+      {
+        "path": "prototype/data/school_opening_dialogue.json",
+        "bytes": 1057,
+        "sha256": "645cf3b69aecc6806886b79080dc66eac583527d74dac6dc90e93431c35a7a10"
+      },
+      {
+        "path": "prototype/assets/school_opening/catalog.json",
+        "bytes": 9199,
+        "sha256": "9d19edc6ceb0ba650ef5f60c21112f6bbff8bec58d4492d9862f12b830768d4d"
+      },
+      {
+        "path": "prototype/ui/school_opening_stage.gd",
+        "bytes": 7689,
+        "sha256": "a58ae6f7bc983a5b93891eafb21e8f6533f6045d57f95b6d285935eb4e3ae5cf"
+      },
+      {
+        "path": "prototype/ui/school_scene_map_preview.gd",
+        "bytes": 11549,
+        "sha256": "25628e58f7eb5291d2044bc3140f2e4defdb941a234cf4966aec7f5df0a899b7"
+      },
+      {
+        "path": "tools/school_opening_presentation_export.py",
+        "bytes": 6165,
+        "sha256": "6d44729df4c9ba561fc50571433e0f1865f636addd7023e930d7636452d150ac"
+      },
+      {
+        "path": "docs/school_retained_opening.md",
+        "bytes": 7980,
+        "sha256": "ad9403e9c7db107a9a935c60bb51d81c81576c6f939f1e75cf5cb37f5f39e7a3"
+      },
+      {
+        "path": "analysis/school-retained-opening-acceptance-v1-20261023.json",
+        "bytes": 18847,
+        "sha256": "70549e1455aebf1c7415576d98ad5cc03d4dee287b5f267be4d114f680df4035"
+      },
+      {
+        "path": "analysis/hermit_game.exe",
+        "bytes": 5980160,
+        "sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
+      }
+    ],
+    "native_started": false
+  },
+  "behavior": {
+    "source_text_segments": 10,
+    "source_confirmation_after_indices": [
+      1,
+      2,
+      6,
+      9
+    ],
+    "ordinary_segments": "advance automatically only after existing presentation display_ready",
+    "confirmation": "reveal first, then explicit confirm; final confirmation hands control to local trial",
+    "combat_during_opening": "no ticks, commands, RNG changes or accumulated overdue simulation time",
+    "cancel": "existing four-step result consumer, summary and school preparation return",
+    "reopen_failure": "prevalidate presentation resources before committing a new session; old page/session/school preserved",
+    "cleanup": "free presentation node and its layers/texture references on completion, exit or hide",
+    "school_or_save_writes": false,
+    "original_vm_executed": false
+  },
+  "route_selection": {
+    "wave_candidate_rejected": "school_world_spawn concerns animation nodes, not enemy wave activation; inactive templates have no established trigger after clearing initial enemies",
+    "known_original_opening_end": "retained proof ends PC492, wait0 and both VM activity bytes0; not VM code end496",
+    "actual_implementation": "source dialogue playback with original text/confirmation grouping; does not execute original VM, opcode21 world resume, retirement timing, AI or waves"
+  },
+  "validation": {
+    "godot_version": "4.7.2-stable_mono",
+    "suites": 67,
+    "tests": 442,
+    "new_tests": 5,
+    "failures": 0,
+    "script_errors": 0,
+    "engine_errors": 0,
+    "exit_code": 0,
+    "elapsed_seconds": 48.375,
+    "reason": "exited",
+    "successful_log": {
+      "path": ".venv-audit/godot-combat-opening-20261114/headless-v1.log.gz",
+      "bytes": 1569,
+      "sha256": "636f0df40001ee615c965c565995e76e0aa1236111afde7f396471500d6191b8"
+    },
+    "uncompressed_log_bytes": 29349,
+    "uncompressed_log_sha256": "eb75d62c50210291260384c572e8a45dc5d0403dabbc63f24287f6b94685eb6c",
+    "strict_openspec": true,
+    "original_eight_task_lines_unchanged": true,
+    "result_consumer_runner_school_parent_and_old_visual_test_unchanged": true,
+    "existing_raw_image_export_warning_count": 36,
+    "existing_export_warning_types": [
+      "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/school_opening/gybc_00.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+      "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/school_opening/sc004.png'. Instead, import the image file as an Image resource and load it normally as a resource.",
+      "WARNING: Loaded resource as image file, this will not work on export: 'res://assets/school_opening/sc009.png'. Instead, import the image file as an Image resource and load it normally as a resource."
+    ],
+    "source_tree_execution_only": true,
+    "pixel_or_export_certification": false
+  },
+  "independent_review": {
+    "agent": "/root/scene_construction",
+    "read_only_initial_source_investigation": true,
+    "core_review": "atomic open, four confirmation groups, no simulation/RNG in opening, final single transition, abort/close/no persistence; no blocking issues",
+    "main_review": "independently checked delegated UI prevalidation, progressive display/confirmation, input controls, focus, release and preserved prior handoff tests",
+    "independent_native_replay": false
+  },
+  "preservation": {
+    "eight_pinned_source_files_match": true,
+    "old_assets_original_saves_native_reports_untouched": true,
+    "project_cache_before_and_after": {
+      "sha256": "e603823a2e2a0eea7a60469f5a97f8e1364b330947c7e47252970073782afd04",
+      "bytes": 16827668,
+      "files": 4555
+    },
+    "project_cache_changed": false
+  },
+  "limits": [
+    "Only initial actors are playable; world AI, deferred templates, later waves and original mission completion remain unverified.",
+    "Four source confirmation groups are preserved, but this is Godot presentation and local trial handoff, not original VM timing or renderer equivalence.",
+    "Old three Image.load_from_file export warnings remain (36 occurrences across repeated openings); executable export not verified.",
+    "No new visible-window visual acceptance. Existing source assets/presenter are reused unchanged.",
+    "Final two fresh native lifetimes, independent full replay, complete state/ABI/digests/resource/PTD cleanup/tamper rejection and preservation remain required."
+  ],
+  "actual_execution": {
+    "headless_runs": 1,
+    "native_game": 0,
+    "new_native_helpers": 0,
+    "visible_windows": 0,
+    "screenshots": 0,
+    "desktop_mutations": 0,
+    "global_input": 0,
+    "new_environment_installs": 0,
+    "new_toolchain_components": 0
+  },
+  "retirement": [
+    {
+      "path": ".venv-audit/godot-combat-opening-20261114/cache-before.json",
+      "bytes": 112,
+      "sha256": "b372a8523fb9c7ae71deb228ae19d79aed706f11272b40b0e38916dfb1747531",
+      "reason": "Duplicate engine output or metadata incorporated in closeout; successful raw log preserved losslessly as gzip",
+      "replacement": "analysis/godot-combat-opening-closeout-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-opening-20261114/engine-v1.log",
+      "bytes": 28967,
+      "sha256": "6a0cf753bd2bb16b3f03fd017c29b6ce23650eda0a371389474faab3caf0151e",
+      "reason": "Duplicate engine output or metadata incorporated in closeout; successful raw log preserved losslessly as gzip",
+      "replacement": ".venv-audit/godot-combat-opening-20261114/headless-v1.log.gz",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-opening-20261114/headless-v1.log",
+      "bytes": 29349,
+      "sha256": "eb75d62c50210291260384c572e8a45dc5d0403dabbc63f24287f6b94685eb6c",
+      "reason": "Duplicate engine output or metadata incorporated in closeout; successful raw log preserved losslessly as gzip",
+      "replacement": ".venv-audit/godot-combat-opening-20261114/headless-v1.log.gz",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-opening-20261114/run-v1.json",
+      "bytes": 75,
+      "sha256": "a2ecc5f42005371142267ebb829fc9fd790295b1d90785a5b69330d19580048a",
+      "reason": "Duplicate engine output or metadata incorporated in closeout; successful raw log preserved losslessly as gzip",
+      "replacement": "analysis/godot-combat-opening-closeout-v1-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/godot-combat-opening-20261114/source-check.json",
+      "bytes": 2228,
+      "sha256": "c4fe266f68ad4555cd475338717158eb7862f817bc179dc34e41cd881748d7d7",
+      "reason": "Duplicate engine output or metadata incorporated in closeout; successful raw log preserved losslessly as gzip",
+      "replacement": "analysis/godot-combat-opening-closeout-v1-20261114.json",
+      "status": "retired"
+    }
+  ],
+  "cleanup_completed": true,
+  "capacity": {
+    "case_generated_bytes_before_cleanup": 62300,
+    "retired_bytes": 60731,
+    "retained_log_bytes": 1569,
+    "new_backup_bytes": 0,
+    "new_project_cache_bytes": 0,
+    "all_new_local_evidence_bytes_including_manifest": 12672
+  }
+}

@@ -1,6 +1,7 @@
 extends "res://ui/school_field_trial.gd"
 const Combat := preload("res://sim/school_combat_session.gd")
 const FieldTrial := preload("res://ui/school_field_trial.gd")
+const OpeningStage := preload("res://ui/school_opening_stage.gd")
 
 class CombatCanvas extends FieldTrial.FieldCanvas:
 	var labels: Dictionary = {}
@@ -44,12 +45,19 @@ var result_title: Label
 var result_details: Label
 var return_button: Button
 var _handoff_emitted := false
+var opening_panel: VBoxContainer
+var opening_stage: OpeningStage
+var opening_progress: Label
+var opening_next_button: Button
 
 
 func _new_session(): return Combat.new()
 
 
 func _new_canvas() -> FieldCanvas: return CombatCanvas.new()
+
+
+func _new_opening_stage(): return OpeningStage.new()
 
 
 func _ready() -> void:
@@ -82,6 +90,21 @@ func _ready() -> void:
 	canvas.get_parent().add_child(result_panel)
 	canvas.get_parent().move_child(result_panel,canvas.get_index()+1)
 	result_panel.hide()
+	opening_panel = VBoxContainer.new()
+	opening_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	opening_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	canvas.add_child(opening_panel)
+	var opening_footer := HBoxContainer.new()
+	opening_footer.add_theme_constant_override("separation",12)
+	opening_panel.add_child(opening_footer)
+	opening_progress = Label.new()
+	opening_progress.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	opening_footer.add_child(opening_progress)
+	opening_next_button = _button("显示完整",_advance_opening)
+	opening_footer.add_child(opening_next_button)
+	opening_panel.hide()
+	visibility_changed.connect(func():
+		if not visible: _release_opening())
 	canvas.chosen.connect(func(identity): inspected_id = identity; canvas.inspected_id = identity; _refresh())
 	canvas.commanded.connect(func(_cell):
 		var selected: Dictionary = session.find_unit(session.selected_id)
@@ -92,7 +115,21 @@ func _ready() -> void:
 
 
 func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
-	if not super.open_trial(preparation,combat,names): return false
+	# Validate every opening asset before replacing an already valid session.
+	var next_stage = _new_opening_stage()
+	if not next_stage.load_presentation():
+		next_stage.free()
+		return false
+	if not super.open_trial(preparation,combat,names):
+		next_stage.free()
+		return false
+	_release_opening()
+	opening_stage = next_stage
+	opening_stage.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	opening_panel.add_child(opening_stage)
+	opening_panel.move_child(opening_stage,0)
+	opening_stage.show_page(0)
+	opening_panel.show()
 	var index := 1
 	for unit in session.units:
 		if unit["controllable"]: continue
@@ -102,10 +139,50 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 		if unit["category"] == 5: index += 1
 	canvas.labels = _names.duplicate(true); inspected_id = -1; canvas.inspected_id = -1; _last_event = -1
 	_handoff_emitted = false
-	result_panel.hide(); canvas.show(); canvas.controls_enabled = true
-	status.text = "右键敌人下达攻击指令；「查看敌人」可定位最近目标。"
+	result_panel.hide(); canvas.show(); canvas.controls_enabled = false
 	_refresh()
+	opening_next_button.grab_focus()
 	return true
+
+
+func _advance_opening() -> void:
+	if not visible or not session is Combat or session.ending_snapshot()["phase"] != "opening" or opening_stage == null: return
+	if not opening_stage.display_ready():
+		opening_stage.finish_display()
+	elif session.opening_snapshot()["awaiting_confirmation"]:
+		_step_opening(true)
+	_refresh()
+
+
+func _step_opening(confirmed: bool) -> void:
+	if session.advance_opening(confirmed):
+		var opening: Dictionary = session.opening_snapshot()
+		if opening["completed"]:
+			_release_opening()
+			canvas.focus_units()
+			status.text = "右键敌人下达攻击指令；「查看敌人」可定位最近目标。"
+			close_button.grab_focus()
+		else:
+			opening_stage.show_page(opening["page_index"])
+		_refresh()
+
+
+func _process(delta: float) -> void:
+	super._process(delta)
+	if visible and session is Combat and session.ending_snapshot()["phase"] == "opening" \
+			and opening_stage != null and opening_stage.display_ready() \
+			and not session.opening_snapshot()["awaiting_confirmation"]:
+		_step_opening(false)
+
+
+func _release_opening() -> void:
+	if opening_stage != null:
+		opening_stage.current_text = null
+		opening_stage.layers.clear(); opening_stage.textures.clear(); opening_stage.catalog.clear()
+		opening_stage.free()
+		opening_stage = null
+	if opening_panel != null: opening_panel.hide()
+	if opening_progress != null: opening_progress.text = ""
 
 
 func _refresh() -> void:
@@ -151,10 +228,19 @@ func _refresh_ending() -> void:
 	for button in member_buttons.values(): button.disabled = not active
 	if not active: stop_button.disabled = true
 	close_button.disabled = ending["phase"] == "consuming"
-	close_button.text = "结束试验" if active else "正在结束…" if ending["phase"] == "consuming" else "返回学校准备"
-	if ending["phase"] == "consuming":
+	close_button.text = "结束试验" if active or ending["phase"] == "opening" else "正在结束…" if ending["phase"] == "consuming" else "返回学校准备"
+	if ending["phase"] == "opening":
+		var opening: Dictionary = session.opening_snapshot()
+		opening_progress.text = "开场对白 · %d / %d" % [opening["page_index"]+1,opening["page_count"]]
+		if opening_stage != null:
+			opening_next_button.text = "显示完整" if not opening_stage.display_ready() or not opening["awaiting_confirmation"] else "开始操作" if opening["page_index"] == opening["page_count"]-1 else "继续"
+		status.text = "阅读开场对白后开始操作；此时战斗尚未推进。"
+		help_label.text = "空格 / Enter确认 · Esc结束试验\n仅试验初始队伍与敌人，不推进正式冒险或发放奖励。"
+	elif ending["phase"] == "consuming":
+		_release_opening()
 		status.text = "试验已停止，正在整理本次结果…"
 	elif ending["phase"] == "summary":
+		_release_opening()
 		var first_summary := not result_panel.visible
 		var summary: Dictionary = ending["summary"]
 		result_title.text = {"initial_enemies_cleared":"初始敌人已清除", "squad_defeated":"当前学生已全部倒下", "player_exit":"本次试验已结束"}.get(ending["outcome"],"本次试验已结束")
@@ -162,6 +248,8 @@ func _refresh_ending() -> void:
 		status.text = "结果已整理，可返回学校调整队伍后再次试验。"
 		result_panel.show(); canvas.hide()
 		if first_summary: return_button.grab_focus()
+	if active:
+		help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n仅试验初始队伍与敌人，不推进正式冒险或发放奖励。"
 
 
 func toggle_pause() -> void:
@@ -172,7 +260,7 @@ func toggle_pause() -> void:
 func close_trial() -> void:
 	if not visible or not session is Combat or not session.ready: return
 	var phase: String = session.ending_snapshot()["phase"]
-	if phase == "active":
+	if phase in ["opening","active"]:
 		session.request_return()
 		_refresh()
 	elif phase == "summary":
@@ -184,6 +272,7 @@ func _return_to_school() -> void:
 	var handoff: Dictionary = session.take_handoff()
 	if handoff.is_empty() or handoff.get("successor","") != "school_adventure_preparation": return
 	_handoff_emitted = true
+	_release_opening()
 	session.close()
 	canvas.session = null; canvas.texture = null; canvas.sprites.clear(); canvas.labels.clear()
 	canvas.controls_enabled = false; canvas.dragging = false; canvas.hover = Vector2i(-1,-1)
@@ -202,6 +291,9 @@ func _input(event: InputEvent) -> void:
 	if not visible or not event is InputEventKey or not event.pressed or event.echo: return
 	if event.keycode == KEY_ESCAPE:
 		close_trial()
+	elif session.ending_snapshot()["phase"] == "opening":
+		if event.keycode in [KEY_SPACE,KEY_ENTER,KEY_KP_ENTER]: _advance_opening()
+		else: return
 	elif session.ending_snapshot()["phase"] == "active":
 		if event.keycode == KEY_SPACE: toggle_pause()
 		elif event.keycode == KEY_S: session.stop(session.selected_id); _refresh()

@@ -4,6 +4,11 @@ const Inputs := preload("res://sim/school_attack_inputs.gd")
 const ResultConsumer := preload("res://sim/tactics_result_consumer.gd")
 const COMBAT_CATALOG := "res://assets/school_combat/catalog.json"
 const COMBAT_SHA := "4d7d3e4beed860a7163bb4c4c3cd772185fc45c775425eefafb8b75f059dc70b"
+const OPENING_PATH := "res://data/school_opening_dialogue.json"
+const OPENING_SHA := "645cf3b69aecc6806886b79080dc66eac583527d74dac6dc90e93431c35a7a10"
+# T0005 op50/51 follows text indices 1, 2, 6, 9 (file offsets 696..864).
+# The remaining text advances when the Godot presentation is ready.
+const OPENING_CONFIRMATIONS := [1,2,6,9]
 
 var combat_rules: Dictionary = {}
 var phases: Dictionary = {}
@@ -17,9 +22,15 @@ var _result_consumer: ResultConsumer
 var _ending_summary: Dictionary = {}
 var _initial_enemies := 0
 var _record_calls := 0
+var _opening_pages: Array = []
+var _opening_index := -1
 
 
 func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
+	if not FileAccess.file_exists(OPENING_PATH): return false
+	var opening_raw := FileAccess.get_file_as_string(OPENING_PATH).replace("\r\n","\n")
+	if opening_raw.sha256_text() != OPENING_SHA: return false
+	var opening: Dictionary = JSON.parse_string(opening_raw)
 	var source_raw := FileAccess.get_file_as_string(COMBAT_CATALOG)
 	if source_raw.replace("\r\n","\n").sha256_text() != COMBAT_SHA: return false
 	var source: Dictionary = Limits._source_numbers(JSON.parse_string(source_raw))
@@ -50,8 +61,29 @@ func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
 	combat_rules = rules; source_actors = new_actors; phases.clear(); events.clear()
 	frame = 0; paused = false; ready = true; selected_id = units[0]["character_id"]; reason = "ready"
 	rng.seed = source["trial_policy"]["seed"]; trial_complete = false
-	_ending_phase = "active"; _ending_outcome = ""; _ending_summary = {}
+	_ending_phase = "opening"; _ending_outcome = ""; _ending_summary = {}
 	_result_consumer = null; _initial_enemies = enemies().size(); _record_calls = 0
+	_opening_pages = opening["pages"].duplicate(true); _opening_index = 0; reason = "opening"
+	return true
+
+
+func opening_snapshot() -> Dictionary:
+	var showing := ready and _ending_phase == "opening"
+	return {"page_index": _opening_index, "page_count": _opening_pages.size(),
+		"page": _opening_pages[_opening_index].duplicate(true) if showing else {},
+		"awaiting_confirmation": showing and _opening_index in OPENING_CONFIRMATIONS,
+		"completed": not _opening_pages.is_empty() and _opening_index == _opening_pages.size(),
+		"original_vm_executed": false}
+
+
+func advance_opening(confirmed := false) -> bool:
+	if not ready or _ending_phase != "opening": return false
+	if confirmed != (_opening_index in OPENING_CONFIRMATIONS): return false
+	_opening_index += 1
+	if _opening_index == _opening_pages.size():
+		# This hands source-derived dialogue to the existing local combat trial.
+		# It is not an original opcode21/world/AI resume or mission-unlock claim.
+		_ending_phase = "active"; reason = "ready"; _accumulator = 0.0
 	return true
 
 
@@ -249,7 +281,9 @@ func _detect_trial_end() -> bool:
 
 
 func request_return() -> bool:
-	if not ready or _ending_phase != "active": return false
+	if not ready or _ending_phase not in ["opening","active"]: return false
+	if _ending_phase == "opening":
+		_begin_ending("player_exit"); return true
 	# Respect an already reached trial endpoint even if the UI requests a return
 	# before the next combat tick. Otherwise this is the player's explicit exit.
 	if not _detect_trial_end(): _begin_ending("player_exit")
@@ -315,3 +349,4 @@ func close() -> void:
 	super.close(); combat_rules.clear(); phases.clear(); events.clear(); source_actors.clear(); trial_complete = false
 	_ending_phase = "closed"; _ending_outcome = ""; _ending_summary.clear()
 	_result_consumer = null; _initial_enemies = 0; _record_calls = 0
+	_opening_pages.clear(); _opening_index = -1
