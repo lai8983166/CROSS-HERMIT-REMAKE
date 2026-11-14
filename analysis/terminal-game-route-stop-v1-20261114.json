@@ -1,0 +1,188 @@
+{
+  "schema": "terminal-game-route-stop-v1",
+  "route_id": "same-owner-cold-WinMain-to-scene-consumption",
+  "base_commit": "2efc6bdaa0895d7ac132c242110efba4c86934d1",
+  "status": "STOPPED_SCOPE_GUARD",
+  "formal_acceptance": false,
+  "formal_progress": "2/8",
+  "budget": {
+    "started_utc": "2026-11-14T03:30:59+00:00",
+    "absolute_deadline_utc": "2026-11-14T04:30:59+00:00",
+    "maximum_elapsed_seconds": 3600,
+    "dependency_assessment_max_seconds": 600,
+    "native_attempts_max": 1,
+    "native_run_max_seconds": 90,
+    "desktop_total_max_seconds": 120,
+    "includes": [
+      "analysis",
+      "all agent work in the same wall-clock window",
+      "implementation",
+      "approval waiting",
+      "native run",
+      "failure analysis",
+      "cleanup",
+      "commit and push"
+    ],
+    "budget_does_not_reset_on": [
+      "follow-up continue message",
+      "new output directory",
+      "new preparation subproblem",
+      "renamed probe",
+      "subagent handoff"
+    ],
+    "stop_conditions": [
+      "Existing target chain requires a new execution/observation integration rather than a narrow repair.",
+      "No safe runnable entry by the dependency/implementation deadline.",
+      "Native attempt fails without a direct evidence-backed narrow correction; no second native attempt in this route budget.",
+      "Missing required native target evidence at overall deadline.",
+      "Desktop restoration or ownership validation fails; stop and contain, never relax acceptance."
+    ]
+  },
+  "decision": {
+    "stopped_utc": "2026-11-14T03:35:49+00:00",
+    "elapsed_to_decision_seconds": 290.0,
+    "time_budget_exhausted": false,
+    "trigger": "Existing window executor and two-lane worker executor are separate; connecting real scene ownership/wait requires executor integration. Current native entry also remains unsafe before DISPLAY_BIND. Do not expand either area under this route.",
+    "interpretation": "This is a bounded feasibility judgment for the current route and constraints, not proof that reverse engineering is impossible.",
+    "automatic_resume_allowed": false,
+    "next_action": "No further recovery/platform/executor preparation or alternative backend work under this stopped route. A materially different explicitly scoped route/budget is required before reopening; ordinary continue does not reset it."
+  },
+  "targets": {
+    "real_GAME_publication": {
+      "new_evidence": false,
+      "prior_evidence": "Original-instruction symbolic model only; no current native GPU/GAME qualification"
+    },
+    "wait_return_422360": {
+      "new_evidence": false
+    },
+    "first_result_read_453CB5": {
+      "new_evidence": false
+    }
+  },
+  "findings": [
+    {
+      "id": "publication-only-runner",
+      "file": "devtools/terminal_game_bound.py",
+      "line": 55,
+      "evidence": "stop=0x4506eb; capture_display(1) then cleanup_after_publication; worker_created/wait_return/result_consumed remain false at line77",
+      "impact": "The current runner does not continue to scene scheduling."
+    },
+    {
+      "id": "single-lane-window-executor",
+      "file": "devtools/terminal_window_callbacks.py",
+      "line": 187,
+      "evidence": "drive requires no pending/frames, fixes lane=0 and dispatches API generators through synchronous owner.call",
+      "impact": "It cannot simply substitute the asynchronous two-lane worker scheduler."
+    },
+    {
+      "id": "worker-API-explicitly-rejected",
+      "file": "devtools/terminal_scene_construction.py",
+      "line": 68,
+      "evidence": "Construction preflight rejects CreateThread, ResumeThread, WaitForSingleObject and ExitThread",
+      "impact": "Removing only a stop address would hit explicit ownership/execution guards."
+    },
+    {
+      "id": "probe-node-bound-worker",
+      "file": "devtools/terminal_native_owner_probe.py",
+      "line": 317,
+      "evidence": "validate_thread_request receives fixed NODE=0x65002000; validation at terminal_wait_registration_probe.py:77 binds thread output/receiver and complete PTD116 to that node",
+      "impact": "The prior successful base worker probe is not a direct real heap scene handoff."
+    },
+    {
+      "id": "prebinding-desktop-failure",
+      "file": "devtools/terminal_game_bound_native.py",
+      "line": 12,
+      "evidence": "NATIVE_WINDOW_ADMISSION=False gates check_gate and run; prebinding failure only checks desktop unchanged",
+      "impact": "Native GAME cannot be launched by toggling readiness or bypassing the guard."
+    }
+  ],
+  "independent_static_review": {
+    "agent": "/root/scene_construction",
+    "scope": "Existing scene/worker execution continuation only; read-only, no implementation or native run",
+    "conclusion": "Cannot directly continue to target wait/consumption; requires executor integration rather than narrow API repair. Stop per scope guard.",
+    "main_agent_verification": "Independently read the decisive code blocks and compared all eight implementation files to committed bytes. No final native/full-replay acceptance is claimed."
+  },
+  "actual_execution": {
+    "new_source_files": 0,
+    "implementation_edits": 0,
+    "new_tests": 0,
+    "full_models": 0,
+    "native_helpers": 0,
+    "native_game_attempts": 0,
+    "GPU_calls": 0,
+    "desktop_calls": 0,
+    "screenshots": 0,
+    "global_input": 0,
+    "desktop_restoration_needed": false,
+    "new_backups": 0
+  },
+  "sources": [
+    {
+      "path": "devtools/terminal_game_bound.py",
+      "bytes": 9400,
+      "sha256": "4aea46c900876ee9dc62b94af6c43a1b5ffebe867c9f4934a7efb61507e087a3"
+    },
+    {
+      "path": "devtools/terminal_game_bound_native.py",
+      "bytes": 8739,
+      "sha256": "fab8136eda964a7ac6807965d6012ffc290f84ea9a135c90448c91d3d0f4c4fa"
+    },
+    {
+      "path": "devtools/terminal_window_callbacks.py",
+      "bytes": 19871,
+      "sha256": "0fe16272b777a4f2e6475a940f7603b1ca02a40e4cd50545cab235dfc30b83c8"
+    },
+    {
+      "path": "devtools/terminal_scene_construction.py",
+      "bytes": 19837,
+      "sha256": "910f5dcb1f6bfc16865f0907a55b475f0e32881cdd32edd979925817ce82c6d1"
+    },
+    {
+      "path": "devtools/terminal_native_owner_probe.py",
+      "bytes": 28708,
+      "sha256": "dc1cf061f806ebdb034d0108589cf4c65788ba833e94864a5bd9f02ab2c8f38e"
+    },
+    {
+      "path": "devtools/terminal_wait_registration_probe.py",
+      "bytes": 21170,
+      "sha256": "da81eb22264f2d2cb3b422491379b621daebedd83e6e912e81459a9744f2ee8e"
+    },
+    {
+      "path": "devtools/terminal_recovery_session.py",
+      "bytes": 13630,
+      "sha256": "3cf0063b429a5c656caf3c3a5f80b46c5c39d2272d5732822ccbd877251ca894"
+    },
+    {
+      "path": "devtools/terminal_recovery_containment.py",
+      "bytes": 6946,
+      "sha256": "1a1a8d4164433517d60e4949c66733851d4a4451aa9c5e97d8f57b62de7afa49"
+    },
+    {
+      "path": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "bytes": 109549,
+      "sha256": "d13c37dfe09c90f73b23d1f85e75794d401a6efc63001e22f60429ccaafe0d06"
+    },
+    {
+      "path": "analysis/terminal-recovery-binding-independent-review-v1-20261114.json",
+      "bytes": 16577,
+      "sha256": "954f01d808833def16f7b5515307e6bfafc3a2a446f75139f753466f83363db2"
+    }
+  ],
+  "preservation": {
+    "implementation_original_bytes_unchanged": true,
+    "historical_evidence_copied": false,
+    "existing_untracked_skill_directories_untouched": true,
+    "new_files_retired": 0,
+    "historical_files_deleted": 0
+  },
+  "capacity": {
+    "new_local_evidence_files": 1,
+    "new_local_evidence_bytes_including_this_file": 7795,
+    "new_backup_bytes": 0,
+    "retired_bytes": 0
+  },
+  "validation": {
+    "strict_openspec": "passed",
+    "changed_scope": "Documentation and one small route decision report only; no implementation change requiring runtime regression."
+  }
+}
