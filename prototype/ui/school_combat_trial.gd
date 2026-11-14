@@ -76,7 +76,7 @@ func _ready() -> void:
 	center_button.get_parent().add_child(objective_button)
 	target_info = Label.new(); target_info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	info.get_parent().add_child(target_info); info.get_parent().move_child(target_info,info.get_index()+1)
-	help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。试玩不写入奖励或日期。"
+	help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。战果确认后可继续战后剧情。"
 	help_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	result_panel = PanelContainer.new()
 	var result_margin := MarginContainer.new()
@@ -90,7 +90,7 @@ func _ready() -> void:
 	result_details = Label.new(); result_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	result_column.add_child(result_details)
 	result_scope = Label.new()
-	result_scope.text = "战果保留在本次试玩中。战后剧情与存档接续尚未完成，日期暂不推进。"
+	result_scope.text = "确认战果后继续战后剧情，保留成长与入队进度；剧情结束后进入下一周。"
 	result_scope.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	result_column.add_child(result_scope)
 	return_button = _button("返回学校准备",_return_to_school)
@@ -293,7 +293,7 @@ func _refresh_ending() -> void:
 		if opening_stage != null:
 			opening_next_button.text = "显示完整" if not opening_stage.display_ready() or not opening["awaiting_confirmation"] else "开始操作" if opening["page_index"] == opening["page_count"]-1 else "继续"
 		status.text = "阅读开场对白后开始操作；此时战斗尚未推进。"
-		help_label.text = "空格 / Enter确认 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。试玩不写入奖励或日期。"
+		help_label.text = "空格 / Enter确认 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。战果确认后可继续战后剧情。"
 	elif ending["phase"] == "consuming":
 		_release_opening()
 		status.text = "试验已停止，正在整理本次结果…"
@@ -325,9 +325,9 @@ func _refresh_ending() -> void:
 				for row in settlement["growth"]["display_request"]:
 					result_details.text += "\n%s：Lv.%d → %d" % [_names.get(row["character_id"],str(row["character_id"])),row["level_before"],row["level_after"]]
 				result_details.text += "\n本轮最佳："+str(_names.get(settlement["recipient"],settlement["recipient"]))
-				return_button.text = "确认总战果" if phase=="total_result" else "结束本次试玩"
-				status.text = "确认后进入战后剧情交接。" if phase=="total_result" else "下一场景是战后剧情；当前试玩在此保留交接结果。"
-			result_scope.text = "战果、成长和确认结果保留在本次试玩中。战后剧情与存档接续尚未完成，日期暂不推进。"
+				return_button.text = "确认总战果" if phase=="total_result" else "继续战后剧情"
+				status.text = "确认后进入战后剧情交接。" if phase=="total_result" else "继续阅读战后剧情，随后返回下一周学校。"
+			result_scope.text = "继续后保留本场战果与成长；完成战后剧情再推进下一周。可在剧情中保存进度。"
 		elif not ending["settlement_error"].is_empty():
 			result_scope.text = "本次战果计算未完成，未提交成长或日期。可返回学校准备。"
 		else:
@@ -335,7 +335,7 @@ func _refresh_ending() -> void:
 		result_panel.show(); canvas.hide()
 		if first_summary: return_button.grab_focus()
 	if active:
-		help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。试玩不写入奖励或日期。"
+		help_label.text = "左键选人/查看对象 · 右键移动/攻击敌人 · 中键拖图 · 空格暂停 · S停止 · Esc结束试验\n靠近泉等待占领，守住泉与石碑，击倒后续首领。战果确认后可继续战后剧情。"
 
 
 func toggle_pause() -> void:

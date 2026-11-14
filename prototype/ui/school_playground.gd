@@ -41,6 +41,7 @@ var battle_button: Button
 var restart_dialog: ConfirmationDialog
 var result_cards: Dictionary = {}
 var last_battle_handoff: Dictionary = {}
+var postbattle_panel: Control
 var mvp_label: Label
 var _groups: VBoxContainer
 var _courses: VBoxContainer
@@ -239,14 +240,17 @@ func _ready() -> void:
 		if is_instance_valid(adventure_trial_button): adventure_trial_button.grab_focus())
 	combat_trial = CombatTrial.new()
 	add_child(combat_trial)
-	combat_trial.result_handoff.connect(func(receipt): last_battle_handoff = receipt.duplicate(true))
+	postbattle_panel=load("res://ui/school_postbattle_panel.gd").new();add_child(postbattle_panel)
+	postbattle_panel.command.connect(func(value):_act(value);refresh())
+	postbattle_panel.save_requested.connect(_manual_save)
+	postbattle_panel.load_requested.connect(_load)
+	combat_trial.result_handoff.connect(_accept_battle_handoff)
 	combat_trial.closed.connect(func():
 		page = "adventure"
-		_message = "本次战果已确认，下一场景为战后剧情。交接结果保留在本次试玩中；学校存档仍为出发前状态。" \
-			if last_battle_handoff.get("successor")=="adv_ch003_pending" else "已返回学校准备。队伍与进度保持原样，可调整编班或再次试验。"
+		if model.read_postbattle().is_empty() and _message.is_empty(): _message="已返回学校准备。队伍与进度保持原样，可调整编班或再次试验。"
 		panel.show()
 		refresh()
-		if is_instance_valid(adventure_combat_button): adventure_combat_button.grab_focus())
+		if model.read_postbattle().is_empty() and is_instance_valid(adventure_combat_button): adventure_combat_button.grab_focus())
 	var started := model.start()
 	if not started["supported"]:
 		_status.text = "试玩初始化失败"
@@ -574,6 +578,14 @@ func _close_story() -> void:
 func refresh() -> void:
 	if model.session == null:
 		return
+	var post := model.read_postbattle()
+	if not post.is_empty():
+		panel.hide();story_reader.hide();arrival.hide();workroom.hide()
+		var names := {}
+		for id in [3,4,9,5,101]: names[id]=_name(id)
+		postbattle_panel.show_state(post,names,_save_message+" "+_message)
+		return
+	postbattle_panel.hide();panel.show()
 	var stage := model.stage()
 	var snapshot := model.planning_session().read_snapshot()
 	var fifth_planning: bool = stage == "fifth_planning"
@@ -852,6 +864,17 @@ func _open_combat_trial() -> void:
 		panel.hide()
 
 
+func _accept_battle_handoff(receipt: Dictionary) -> void:
+	last_battle_handoff=receipt.duplicate(true)
+	if receipt.get("successor")!="adv_ch003_pending": return
+	var accepted := model.execute({"op":"battle_finish","trace":receipt.get("battle_trace",{})})
+	if not accepted["supported"]:
+		_message="战斗记录未通过重放校验，当前学校与存档保持原样。"
+		return
+	_message="法娜已正式入队。可阅读战后剧情，或保存后稍后继续。"
+	_save()
+
+
 func _refresh_detail() -> void:
 	_clear(_detail)
 	var profile := {}
@@ -1064,6 +1087,8 @@ static func _clear(container: Node) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if postbattle_panel!=null and postbattle_panel.visible and event is InputEventKey and event.pressed and not event.echo:
+		postbattle_panel.key(event);return
 	if story_reader.visible and event is InputEventKey and event.pressed and not event.echo \
 			and not story_reader.skip_dialog.visible:
 		var prefix := "work" if page == "work_story" else "fifth" if page == "fifth_story" else "story"
@@ -1080,6 +1105,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	if postbattle_panel!=null and postbattle_panel.visible:return
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		_cancel()
 		get_viewport().set_input_as_handled()

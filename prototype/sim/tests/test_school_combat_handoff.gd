@@ -61,7 +61,7 @@ func _confirm_through_ui(trial) -> void:
 	assert_eq(trial.session.ending_snapshot()["settlement"]["phase"],"total_result")
 	assert_true(trial.result_details.text.contains("成长点")); assert_true(trial.result_details.text.contains("本轮最佳"))
 	trial.return_button.pressed.emit()
-	assert_true(trial.visible); assert_eq(trial.return_button.text,"结束本次试玩")
+	assert_true(trial.visible); assert_eq(trial.return_button.text,"继续战后剧情")
 	var result: Dictionary = trial.session.ending_snapshot()["settlement"]
 	assert_eq(result["phase"],"adv_pending"); assert_eq(result["adv_request"]["next_task"],7)
 	trial.session.confirm_result()

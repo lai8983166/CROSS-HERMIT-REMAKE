@@ -7,6 +7,8 @@ const Week := preload("res://sim/week_settlement_replay.gd")
 const AdventureHandoff := preload("res://sim/school_adventure_handoff.gd")
 const AdventurePreparation := preload("res://sim/school_adventure_preparation.gd")
 const CombatLimits := preload("res://sim/school_combat_limits.gd")
+const BattleRecord := preload("res://sim/school_battle_record.gd")
+const Postbattle := preload("res://sim/school_postbattle_flow.gd")
 const RULE_PATHS := {
 	"school":"res://data/new_game_school_rules.json",
 	"growth":"res://data/school_course_settlement_rules.json",
@@ -29,6 +31,8 @@ const SCHOOL_OPS := ["move","mode","course","grow","confirm","complete"]
 const SAVE_PATH := "user://school_playground.json"
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
+const POST_MAX_BYTES := 1048576
+const POST_MAX_COMMANDS := 2048
 
 var session: Session
 var _commands: Array = []
@@ -46,6 +50,7 @@ var _workroom: Dictionary = {}
 var _work_pages: Array = []
 var _work_cursor := -1
 var _school_entry: Dictionary = {}
+var _postbattle: Postbattle
 
 
 func _init() -> void:
@@ -91,6 +96,7 @@ func start() -> Dictionary:
 	_workroom = {}
 	_work_cursor = -1
 	_school_entry = {}
+	_postbattle = null
 	return {"supported":true,"status":"started"}
 
 
@@ -120,6 +126,7 @@ func _valid_fifth_art() -> bool:
 func stage() -> String:
 	if session == null:
 		return "uninitialized"
+	if _postbattle!=null: return _postbattle.phase
 	if fifth_session != null:
 		return "fifth_planning"
 	if _work_cursor == _work_pages.size():
@@ -154,8 +161,10 @@ func execute(command: Variant) -> Dictionary:
 		return _failure("not_started")
 	if not command is Dictionary or not _valid_command(command):
 		return _failure("invalid_command")
-	if _commands.size() >= MAX_COMMANDS:
+	if _commands.size() >= (MAX_COMMANDS if _postbattle==null else POST_MAX_COMMANDS):
 		return _failure("save_command_limit")
+	if _postbattle!=null and command["op"] not in ["post_next","post_prev","post_skip","post_school","return_move"]:
+		return _failure("postbattle_locks_departure")
 	if _story_cursor >= 0 and command["op"] in SCHOOL_OPS:
 		return _failure("story_locks_school")
 	var previous := revision()
@@ -167,6 +176,17 @@ func execute(command: Variant) -> Dictionary:
 
 func _dispatch(command: Dictionary) -> Dictionary:
 	match command["op"]:
+		"battle_finish":
+			if stage()!="fifth_planning": return _failure("battle_requires_fifth_school")
+			var context := adventure_result_context()
+			var replayed := BattleRecord.replay(adventure_preparation(),adventure_combat_limits(),command["trace"])
+			if not replayed["supported"]: return replayed
+			var next := Postbattle.new()
+			var begun := next.begin(context,replayed["receipt"],_school_entry["after"]["participants"],_school_entry["after"]["flags"])
+			if not begun["supported"]: return begun
+			_postbattle=next;return {"supported":true,"status":"battle_committed_once"}
+		"post_next","post_prev","post_skip","post_school","return_move":
+			return _failure("postbattle_not_started") if _postbattle==null else _postbattle.execute(command)
 		"move":
 			var input := command.duplicate(true)
 			input.erase("op")
@@ -207,7 +227,7 @@ func _dispatch(command: Dictionary) -> Dictionary:
 static func _valid_command(command: Dictionary) -> bool:
 	var keys: Array
 	match command.get("op"):
-		"move","plan_move":
+		"move","plan_move","return_move":
 			keys = ["op","kind","member_id","target_group","target_slot"]
 			if command.get("kind") not in ["student","teacher"] or not _integer(command.get("member_id"),1,118) \
 					or not _integer(command.get("target_group"),-1,4) or not _integer(command.get("target_slot"),-1,3):
@@ -224,6 +244,11 @@ static func _valid_command(command: Dictionary) -> bool:
 		"fifth_start","fifth_next","fifth_prev","fifth_skip","fifth_finish",\
 		"workroom_open","work_start","work_next","work_prev","work_skip","school_enter":
 			keys = ["op"]
+		"post_next","post_prev","post_skip","post_school":
+			keys=["op"]
+		"battle_finish":
+			keys=["op","trace"]
+			if not BattleRecord.valid_trace(command.get("trace")): return false
 		_:
 			return false
 	return command.size() == keys.size() and keys.all(func(key): return command.has(key))
@@ -234,7 +259,7 @@ static func _integer(value: Variant, low: int, high: int) -> bool:
 
 
 func revision() -> int:
-	return 0 if session == null else session.revision()+_continuation_revision+(0 if fifth_session == null else fifth_session.revision())
+	return 0 if session == null else session.revision()+_continuation_revision+(0 if fifth_session == null else fifth_session.revision())+(0 if _postbattle==null else _postbattle.revision)
 
 
 func planning_session() -> Session:
@@ -545,6 +570,12 @@ func _version3_state() -> Dictionary:
 
 
 func state() -> Dictionary:
+	var result := _version4_state()
+	if _postbattle!=null: result["postbattle"]=_postbattle.snapshot()
+	return result
+
+
+func _version4_state() -> Dictionary:
 	var result := _version3_state()
 	if not result.is_empty():
 		result["workroom"] = _workroom.duplicate(true)
@@ -558,8 +589,21 @@ func state() -> Dictionary:
 func export_save() -> Dictionary:
 	if session == null:
 		return {}
-	return {"version":4,"context":"school_playground_fifth_planning_4_5","rules":_fingerprints.duplicate(true),
+	return {"version":4 if _postbattle==null else 5,"context":"school_playground_fifth_planning_4_5" if _postbattle==null else "school_playground_return_5_1","rules":_save_fingerprints(_postbattle!=null),
 		"commands":_commands.duplicate(true),"state_sha256":JSON.stringify(state(),"",true).sha256_text()}
+
+
+func _save_fingerprints(post: bool) -> Dictionary:
+	var result := _fingerprints.duplicate(true)
+	if post:
+		result["postbattle_story"]=Postbattle.STORY_SHA
+		result["postbattle_return"]=Postbattle.Return.SOURCES["candidate"][1]
+		result["battle_record"]="1"
+	return result
+
+
+func read_postbattle() -> Dictionary:
+	return {} if _postbattle==null else _postbattle.snapshot()
 
 
 func restore(payload: Variant) -> Dictionary:
@@ -569,10 +613,10 @@ func restore(payload: Variant) -> Dictionary:
 	var legacy: bool = payload["version"] == 1
 	var version2: bool = payload["version"] == 2
 	var version3: bool = payload["version"] == 3
-	var contexts := {1:"school_playground_4_4",2:"school_playground_story_4_4",3:"school_playground_fifth_4_5",4:"school_playground_fifth_planning_4_5"}
-	if not _integer(payload["version"],1,4) or payload["context"] != contexts[payload["version"]]:
+	var contexts := {1:"school_playground_4_4",2:"school_playground_story_4_4",3:"school_playground_fifth_4_5",4:"school_playground_fifth_planning_4_5",5:"school_playground_return_5_1"}
+	if not _integer(payload["version"],1,5) or payload["context"] != contexts[payload["version"]]:
 		return _failure("unsupported_save_version")
-	var fingerprints: Dictionary = _fingerprints.duplicate(true)
+	var fingerprints: Dictionary = _save_fingerprints(payload["version"]==5)
 	if legacy or version2 or version3:
 		fingerprints = {}
 		for key in LEGACY_KEYS if legacy else VERSION2_KEYS if version2 else VERSION3_KEYS:
@@ -584,7 +628,7 @@ func restore(payload: Variant) -> Dictionary:
 		previous_line_endings["story"] = LEGACY_STORY_CRLF_SHA
 	if payload["rules"] != fingerprints and payload["rules"] != previous_line_endings:
 		return _failure("save_rules_changed")
-	if not payload["commands"] is Array or payload["commands"].size() > MAX_COMMANDS \
+	if not payload["commands"] is Array or payload["commands"].size() > (POST_MAX_COMMANDS if payload["version"]==5 else MAX_COMMANDS) \
 			or not payload["state_sha256"] is String or payload["state_sha256"].length() != 64:
 		return _failure("invalid_save")
 	var candidate = get_script().new()
@@ -592,6 +636,8 @@ func restore(payload: Variant) -> Dictionary:
 	if not begun["supported"]:
 		return begun
 	for command in payload["commands"]:
+		if payload["version"]<5 and command is Dictionary and command.get("op") in ["battle_finish","post_next","post_prev","post_skip","post_school","return_move"]:
+			return _failure("save_command_rejected")
 		if legacy and (not command is Dictionary or command.get("op") not in SCHOOL_OPS):
 			return _failure("save_command_rejected")
 		if (version2 or version3) and (not command is Dictionary or command.get("op") not in SCHOOL_OPS+(VERSION2_OPS if version2 else VERSION3_OPS)):
@@ -600,7 +646,8 @@ func restore(payload: Variant) -> Dictionary:
 		var result: Dictionary = candidate.execute(command)
 		if not result["supported"] or candidate.revision() == previous:
 			return _failure("save_command_rejected")
-	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate._version2_state() if version2 else candidate._version3_state() if version3 else candidate.state()
+	if payload["version"]==5 and candidate._postbattle==null: return _failure("save_missing_battle")
+	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate._version2_state() if version2 else candidate._version3_state() if version3 else candidate._version4_state() if payload["version"]==4 else candidate.state()
 	if JSON.stringify(candidate_state,"",true).sha256_text() != payload["state_sha256"]:
 		return _failure("save_state_mismatch")
 	session = candidate.session
@@ -614,15 +661,18 @@ func restore(payload: Variant) -> Dictionary:
 	_workroom = candidate._workroom.duplicate(true)
 	_work_cursor = candidate._work_cursor
 	_school_entry = candidate._school_entry.duplicate(true)
+	_postbattle=candidate._postbattle
 	return {"supported":true,"status":"restored"}
 
 
 func restore_text(content: String) -> Dictionary:
-	if content.to_utf8_buffer().size() > MAX_BYTES:
+	if content.to_utf8_buffer().size() > POST_MAX_BYTES:
 		return _failure("save_too_large")
 	var json := JSON.new()
 	if json.parse(content) != OK:
 		return _failure("invalid_save_json")
+	if json.data is Dictionary and json.data.get("version")!=5 and content.to_utf8_buffer().size()>MAX_BYTES:
+		return _failure("save_too_large")
 	return restore(Roles._integers(json.data))
 
 
@@ -632,7 +682,7 @@ func _read(path: String) -> Dictionary:
 	var file := FileAccess.open(path,FileAccess.READ)
 	if file == null:
 		return _failure("save_read_failed")
-	if file.get_length() > MAX_BYTES:
+	if file.get_length() > POST_MAX_BYTES:
 		return _failure("save_too_large")
 	return restore_text(file.get_as_text())
 
@@ -652,7 +702,7 @@ func save_file(path := SAVE_PATH) -> Dictionary:
 	if payload.is_empty():
 		return _failure("not_started")
 	var content := JSON.stringify(payload,"  ",true)+"\n"
-	if content.to_utf8_buffer().size() > MAX_BYTES:
+	if content.to_utf8_buffer().size() > (POST_MAX_BYTES if _postbattle!=null else MAX_BYTES):
 		return _failure("save_too_large")
 	var temporary := path+".tmp"
 	var file := FileAccess.open(temporary,FileAccess.WRITE)

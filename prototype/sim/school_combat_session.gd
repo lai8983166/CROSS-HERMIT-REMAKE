@@ -43,6 +43,9 @@ var _battle_stats: Dictionary = {}
 var _participant_ids: Array = []
 var _settlement: Settlement
 var _settlement_error := ""
+var _trace: Array = []
+var _trace_clock := 0
+var _trace_overflow := false
 
 
 func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
@@ -102,6 +105,7 @@ func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
 	_pending_activations.clear()
 	_placement_rotation = (int(catalog["initial_rotation"])+controlled_units().size())%5
 	_settlement = settlement; _settlement_error = ""; _battle_stats.clear()
+	_trace.clear(); _trace_clock = 0; _trace_overflow = false
 	_participant_ids = preparation["prepared"]["rounds"][0]["student_ids"].duplicate()
 	for id in _participant_ids:
 		_battle_stats[id] = {"character_id":id,"count_field_aa":0,"contribution_field_ac":0,"status_field_ae":0}
@@ -129,6 +133,7 @@ func opening_snapshot() -> Dictionary:
 func advance_opening(confirmed := false) -> bool:
 	if not ready or _ending_phase != "opening": return false
 	if confirmed != (_opening_index in OPENING_CONFIRMATIONS): return false
+	_record_command([1,1 if confirmed else 0])
 	_opening_index += 1
 	if _opening_index == _opening_pages.size():
 		# This hands source-derived dialogue to the existing local combat trial.
@@ -169,12 +174,15 @@ func command_move(identity: int, destination: Vector2i) -> bool:
 	if not ready or _ending_phase != "active": return false
 	var unit := find_unit(identity)
 	if unit.is_empty() or not unit["controllable"] or unit["limits"]["hp"] <= 0: return false
+	# Base command_move calls the virtual stop for this case. Record it once.
+	if destination==unit["cell"]: return stop(identity)
 	var target := at_cell(destination)
 	if not target.is_empty() and target["category"] == 5:
 		return command_attack(identity,unit_key(target))
 	var accepted := super.command_move(identity,destination)
 	if accepted:
 		unit["target"] = -1; phases.erase(identity); _visual(unit,"idle")
+		_record_command([3,identity,destination.x,destination.y])
 	return accepted
 
 
@@ -189,6 +197,7 @@ func command_attack(identity: int, target_id: int) -> bool:
 	if not ready or unit.is_empty() or not unit["controllable"] or not _admitted(unit,target): return false
 	unit["target"] = target_id; phases.erase(identity); unit["path"] = []
 	unit["destination"] = Vector2i(-1,-1); reason = "attack_order"
+	_record_command([4,identity,target_id])
 	return true
 
 
@@ -197,7 +206,9 @@ func stop(identity: int) -> bool:
 	var unit := find_unit(identity)
 	if unit.is_empty() or not unit["controllable"] or unit["limits"]["hp"] <= 0: return false
 	phases.erase(identity); unit["target"] = -1
-	return super.stop(identity)
+	var accepted := super.stop(identity)
+	if accepted: _record_command([5,identity])
+	return accepted
 
 
 func _distance(a: Dictionary, b: Dictionary) -> int:
@@ -315,6 +326,7 @@ func tick() -> void:
 		advance_exit(); return
 	if _ending_phase != "active": return
 	if not ready or paused: return
+	_trace_clock += 1
 	_update_removal()
 	if _detect_trial_end(): return
 	_update_captures()
@@ -404,6 +416,7 @@ func progression_snapshot() -> Dictionary:
 
 func advance_event() -> bool:
 	if not ready or _ending_phase != "event20": return false
+	_record_command([2])
 	_event_index += 1
 	if _event_index == _event_pages.size():
 		# Source command order; the renderer/VM timing remains a remake schedule.
@@ -534,6 +547,7 @@ func _update_summoning() -> void:
 
 func request_return() -> bool:
 	if not ready or _ending_phase not in ["opening","event20","active"]: return false
+	_record_command([6])
 	if _ending_phase in ["opening","event20"]:
 		_begin_ending("player_exit"); return true
 	# Respect an already reached trial endpoint even if the UI requests a return
@@ -598,7 +612,7 @@ func take_handoff() -> Dictionary:
 	_ending_phase = "handoff_taken"
 	var settled := {} if _settlement==null else _settlement.snapshot()
 	return {"successor": "adv_ch003_pending" if settled.get("phase")=="adv_pending" else "school_adventure_preparation", "outcome": _ending_outcome,
-		"settlement":settled,
+		"settlement":settled,"battle_trace":battle_trace(),
 		"summary": _ending_summary.duplicate(true), "consumer": _result_consumer.snapshot(),
 		"evidence_kind": "remake_trial_lifecycle", "native_equivalence_verified": false,
 		"authorizes_persistent_write": false}
@@ -613,6 +627,15 @@ func confirm_result() -> Dictionary:
 	return {}
 
 
+func _record_command(values: Array) -> void:
+	if _trace.size() >= 4096: _trace_overflow = true; return
+	_trace.append([_trace_clock]+values)
+
+
+func battle_trace() -> Dictionary:
+	return {"version":1,"ticks":_trace_clock,"commands":_trace.duplicate(true),"overflow":_trace_overflow}
+
+
 func close() -> void:
 	super.close(); combat_rules.clear(); phases.clear(); events.clear(); source_actors.clear(); trial_complete = false
 	_ending_phase = "closed"; _ending_outcome = ""; _ending_summary.clear()
@@ -621,3 +644,4 @@ func close() -> void:
 	reserves.clear(); _event_pages.clear(); _event_index = -1; event20_seen = false
 	_terminal_choice.clear(); _own_casualties = 0; remaining_ticks = -1; _capture_mask.clear(); _pending_activations.clear()
 	_battle_stats.clear(); _participant_ids.clear(); _settlement = null; _settlement_error = ""
+	_trace.clear();_trace_clock=0;_trace_overflow=false

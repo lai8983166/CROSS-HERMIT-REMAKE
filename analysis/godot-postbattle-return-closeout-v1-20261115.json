@@ -1,0 +1,616 @@
+{
+  "schema_version": 1,
+  "parent_commit": "9bf0be73e1466a2a85020fa442bfbbb3d7f34706",
+  "change": "connect-terminal-wait-and-battle-exit",
+  "result": "Godot confirmed battle -> CH003 text -> permanent Fana join -> one week settlement -> CH022/208 workroom -> CH002 school return -> four-student assignments and v5 save/load",
+  "boundaries": {
+    "date_after": {
+      "month": 5,
+      "week": 1
+    },
+    "source_text_pages": 411,
+    "automatic_record": {
+      "ticks": 9227,
+      "commands": 114,
+      "outcome": "squad_defeated",
+      "scope": "actual local commands, independently replayed; no HP/result injection"
+    },
+    "victory_successor": "declared-result boundary test only; not an automatic victory claim",
+    "presentation": "source text only; original movie/camera/audio not implemented",
+    "next_adventure_catalog_complete": false,
+    "next_course_settlement_available": false,
+    "original_save_written": false,
+    "native_game_launched": false,
+    "desktop_used": false,
+    "screenshots": false,
+    "new_observation_backend": false,
+    "native_route": "STOPPED_SCOPE_GUARD",
+    "native_acceptance": "2/8 unchanged"
+  },
+  "validation": {
+    "godot": {
+      "suites": 72,
+      "tests": 474,
+      "failures": 0,
+      "seconds": 92.61,
+      "exit_code": 0,
+      "warning_count": 39,
+      "warnings": "existing Image.load_from_file export warnings, unchanged from parent",
+      "suite_results": [
+        [
+          "test_adv_week_handoff.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_all_result_recipient.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_all_result_role_replay.gd",
+          "16",
+          "0"
+        ],
+        [
+          "test_attack_effects.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_battle.gd",
+          "9",
+          "0"
+        ],
+        [
+          "test_battle_campaign_replay.gd",
+          "2",
+          "0"
+        ],
+        [
+          "test_battle_math.gd",
+          "9",
+          "0"
+        ],
+        [
+          "test_battle_return.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_battle_return_result_replay.gd",
+          "9",
+          "0"
+        ],
+        [
+          "test_battle_round_gate.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_campaign_preparation.gd",
+          "10",
+          "0"
+        ],
+        [
+          "test_campaign_result_state.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_campaign_return_demo.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_campaign_return_panel.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_campaign_scene5.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_campaign_school_boot.gd",
+          "8",
+          "0"
+        ],
+        [
+          "test_campaign_school_layout.gd",
+          "8",
+          "0"
+        ],
+        [
+          "test_campaign_school_probes.gd",
+          "8",
+          "0"
+        ],
+        [
+          "test_engage.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_fx_placement.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_map_data.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_new_game_school_commands.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_new_game_school_movement.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_new_game_school_origin.gd",
+          "8",
+          "0"
+        ],
+        [
+          "test_pathfinding.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_result_transaction_replay.gd",
+          "12",
+          "0"
+        ],
+        [
+          "test_roster_join_replay.gd",
+          "11",
+          "0"
+        ],
+        [
+          "test_school_adventure_handoff.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_school_adventure_preparation.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_school_attack_inputs.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_school_battle_confirmation.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_school_battle_settlement.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_school_boot_replay.gd",
+          "8",
+          "0"
+        ],
+        [
+          "test_school_combat_handoff.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_combat_limits.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_school_combat_session.gd",
+          "18",
+          "0"
+        ],
+        [
+          "test_school_course_commands.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_school_course_confirmation.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_school_course_confirmation_commands.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_school_course_planning.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_school_course_result_commands.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_school_course_result_handoff.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_school_course_settlement.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_school_course_settlement_commands.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_school_course_unlocking.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_entry_replay.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_school_field_session.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_school_fifth_planning.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_fifth_story.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_playground.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_school_postbattle_flow.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_school_postbattle_return.gd",
+          "3",
+          "0"
+        ],
+        [
+          "test_school_return_continuation.gd",
+          "9",
+          "0"
+        ],
+        [
+          "test_school_scene5_progression.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_story_continuation.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_school_student_movement.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_teacher_group_replay.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_teacher_movement.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_school_waitlist_sort.gd",
+          "8",
+          "0"
+        ],
+        [
+          "test_skill_casting.gd",
+          "33",
+          "0"
+        ],
+        [
+          "test_smoke.gd",
+          "2",
+          "0"
+        ],
+        [
+          "test_tables.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_tactics_exit_handshake.gd",
+          "4",
+          "0"
+        ],
+        [
+          "test_tactics_result_consumer.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_tactics_result_transition.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_tactics_score_preparation.gd",
+          "6",
+          "0"
+        ],
+        [
+          "test_unit_derive.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_unit_recolor.gd",
+          "5",
+          "0"
+        ],
+        [
+          "test_unit_sprites.gd",
+          "12",
+          "0"
+        ],
+        [
+          "test_week_settlement_replay.gd",
+          "9",
+          "0"
+        ],
+        [
+          "test_week_start_replay.gd",
+          "7",
+          "0"
+        ],
+        [
+          "test_workroom_return_replay.gd",
+          "7",
+          "0"
+        ]
+      ]
+    },
+    "focused": {
+      "suites": 3,
+      "tests": 15,
+      "failures": 0,
+      "seconds": 43.64
+    },
+    "python": {
+      "tests": 3,
+      "failures": 0,
+      "seconds": 0.036,
+      "command": "python -B -X utf8 -m unittest tools.tests.test_school_postbattle_story_export -v"
+    },
+    "strict_openspec": "passed",
+    "original_source_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "source_template_and_fields": "independently re-read by root; job, attributes, growth pools, equipment, skills, initial history and eight relations match",
+    "original_eight_tasks": "unchanged; 2/8",
+    "old_replay_modules": "unchanged",
+    "independent_review": {
+      "agent": "/root/postbattle_return",
+      "findings_fixed": [
+        "warm cache now performs fresh Combat.open source/context admission; late-rule SHA in key",
+        "same-cell move records only stop"
+      ],
+      "reviewed": [
+        "v1-v4 compatibility",
+        "candidate restore atomicity",
+        "v5 rejects saved reward snapshots",
+        "departure locks after transition",
+        "source identity and current teacher/waiting student retention"
+      ],
+      "final": "no further blocking finding"
+    }
+  },
+  "git_source_manifest_excluding_this_report": {
+    "files": [
+      {
+        "path": ".gitattributes",
+        "git_blob": "30928a53cc63fe0b74858d85d262c187f55cfe03",
+        "bytes": 73591,
+        "sha256": "176b54d38ed090d60ba914f94e53486ae3912166c23b9e69e6c55a0c13b8aa75"
+      },
+      {
+        "path": "docs/reverse-iteration.md",
+        "git_blob": "091a7494c9e378ffad003f7c9afb1ea9b4bb50af",
+        "bytes": 32199,
+        "sha256": "cf22e4fce86052b862a0168ef7ce83adf3972fdf27ac32296493c3de737592e0"
+      },
+      {
+        "path": "docs/school_battle_settlement.md",
+        "git_blob": "8755f2e5d94161cd25043b6a8718e4731dccf59d",
+        "bytes": 6976,
+        "sha256": "2baef247493a453929a216c4d78189f6ebdb03b681e4aee8112c8ba542a0fba0"
+      },
+      {
+        "path": "docs/school_combat_trial.md",
+        "git_blob": "baecc4cc2fcd631b9be8a61c9507a6b8d8b4e3d0",
+        "bytes": 9289,
+        "sha256": "42a7eec3d1580383f3fc5769cef310d189c913b9e96e517ce220bdb2bcc45661"
+      },
+      {
+        "path": "docs/school_postbattle_return.md",
+        "git_blob": "40359125fae475ca5a1f55707412fd5fd585b586",
+        "bytes": 6178,
+        "sha256": "fc10b4cdb9fdd1fc12696d4d60f0657ebe5764657619043a21aa50f370c2fb57"
+      },
+      {
+        "path": "docs/terminal_logic_reconstruction.md",
+        "git_blob": "56fc9fa9d81a8c830a5e734d33ede854c7391979",
+        "bytes": 10113,
+        "sha256": "0b6c4ac53010dae6ff9183050479a22ae0b5b79ed8d7ebd4419df29a68a8ea63"
+      },
+      {
+        "path": "openspec/changes/connect-terminal-wait-and-battle-exit/design.md",
+        "git_blob": "3666c0ad46ea31b021d5cc06a5799393282f308c",
+        "bytes": 7008,
+        "sha256": "55fed2eb831a13f5056e2b3f191869968e4a3adc77b64fb556eb97bb62ae8dd2"
+      },
+      {
+        "path": "openspec/changes/connect-terminal-wait-and-battle-exit/proposal.md",
+        "git_blob": "17caf30f952e3276193e5089ff25792e493a0cc9",
+        "bytes": 2442,
+        "sha256": "7b0815473388c18ee83cdeaa88c9b2eae24eace670e5c95964ba7ffb59f42fcb"
+      },
+      {
+        "path": "openspec/changes/connect-terminal-wait-and-battle-exit/tasks.md",
+        "git_blob": "ee3b769f9032b869d5628db95b80745e68eb87db",
+        "bytes": 51453,
+        "sha256": "6c80266b8ee8e5b67f23fe9afe013ed2135a15d2efd27fb251c69e4a95e90130"
+      },
+      {
+        "path": "prototype/data/school_postbattle_battle_record.json",
+        "git_blob": "dcbeefb24a79bb18e912e8424ed4cd1f50594d36",
+        "bytes": 7300,
+        "sha256": "f1d94e8db0d63a3f9f5c3d7d65899ad7c6d701a54129a87be2a7fffc418ca902"
+      },
+      {
+        "path": "prototype/data/school_postbattle_return_rules.json",
+        "git_blob": "54ef75c8238623c1b6f15e1ada1c10f92c093522",
+        "bytes": 4944,
+        "sha256": "1775635836be11e1c038437bb7043a2b2989bdccb880d8882fcda06d41fdb854"
+      },
+      {
+        "path": "prototype/data/school_postbattle_story.json",
+        "git_blob": "84ba405b5eb103e7b956f8f10982f9f3d3e45684",
+        "bytes": 113045,
+        "sha256": "7810a795b702e90cd439e3916e03ecaf824646c9f09db93c5ba6e1c7a5be1aaf"
+      },
+      {
+        "path": "prototype/sim/school_battle_record.gd",
+        "git_blob": "32ebb05ad4188967bdcab489ce7072694da541d1",
+        "bytes": 3788,
+        "sha256": "cd9035be80d869f44dd90b5a5da3507aeab9a4bf479d548642b118a7d167d2e0"
+      },
+      {
+        "path": "prototype/sim/school_combat_session.gd",
+        "git_blob": "96be4f5c3d91c3930677ac87acd2ea7ccfc97b98",
+        "bytes": 31793,
+        "sha256": "8cb364d5bee99872053847f764578472b0ad96f1c716cab78701118a61f7bb41"
+      },
+      {
+        "path": "prototype/sim/school_playground.gd",
+        "git_blob": "d5f98a29437c0ae930d1ae441a81fa5c9f182089",
+        "bytes": 31036,
+        "sha256": "1fd1b58142ab930fed52cab420988592012b389cf1fe857062cebb4bb858f2b8"
+      },
+      {
+        "path": "prototype/sim/school_postbattle_flow.gd",
+        "git_blob": "62e2a92385b872950cf5ba5760ba06a74b778391",
+        "bytes": 4244,
+        "sha256": "b14ac5faa0934d237a67fb0e60b1df7c92f4d513b116ed3a7b10517bb8473466"
+      },
+      {
+        "path": "prototype/sim/school_postbattle_return.gd",
+        "git_blob": "328f74e0d4bd1fb026ad4b33eff8d84c73f0c7a1",
+        "bytes": 15957,
+        "sha256": "6eb4c3051a6f8b03deb034f653260c66294fa2001fe35791b46d771beb25e173"
+      },
+      {
+        "path": "prototype/sim/tests/test_school_combat_handoff.gd",
+        "git_blob": "d9d496fe9251d4bccf2dc62b0117af4b1f07d965",
+        "bytes": 17164,
+        "sha256": "48ecdd4fcd54cb388e17985e424d8ec87baefaf177d727bf80d8baa824767fb1"
+      },
+      {
+        "path": "prototype/sim/tests/test_school_postbattle_flow.gd",
+        "git_blob": "2495dcee263edca7b9e691fb15207db623fb0ffe",
+        "bytes": 8486,
+        "sha256": "482878b2ceb0974929101b5d2af93733639242a0c52412d2f532a0868fcc9b21"
+      },
+      {
+        "path": "prototype/sim/tests/test_school_postbattle_return.gd",
+        "git_blob": "bbb18e28fe6fbd0608ce5211164377420fd1f8c8",
+        "bytes": 6145,
+        "sha256": "161fbf09adc6f74db7e27acdd15fccc01812c68b5efc6477373c9ecd324931f4"
+      },
+      {
+        "path": "prototype/ui/school_combat_trial.gd",
+        "git_blob": "1c216eaeb23a1d39d22c2755b795a355e1455280",
+        "bytes": 19663,
+        "sha256": "988c160786575af1c574a2e862a3a7dc4533c0be80ccf4b7f7beceb85d39600b"
+      },
+      {
+        "path": "prototype/ui/school_playground.gd",
+        "git_blob": "70a7997d6691d47dbbc87604dad405f9a0d328eb",
+        "bytes": 47280,
+        "sha256": "794e24654fa15a656d69af3a49cf1aeecadcb6041cfb8cf54977c749bed014c0"
+      },
+      {
+        "path": "prototype/ui/school_postbattle_panel.gd",
+        "git_blob": "88ac9dd4ebf0fd4bc3f73f3775dedbdb683eb555",
+        "bytes": 6957,
+        "sha256": "bbfa88521afa2cd50e8b44e1b5ebd7165c1b0afabe185e12cd8763ed6a32f186"
+      },
+      {
+        "path": "tools/school_postbattle_story_export.py",
+        "git_blob": "b5cc5094c89e0a2be6b531c3864d11c5e5d024ad",
+        "bytes": 4061,
+        "sha256": "eb3737eaec394206a9de56d573230a4d7a7799f8cf6b342643967239b6b678f3"
+      },
+      {
+        "path": "tools/tests/test_school_postbattle_story_export.py",
+        "git_blob": "c23b75fa31b463de4dd18ce08d726f0f6c8637fb",
+        "bytes": 2343,
+        "sha256": "37e1ce927adc2126daf3beacc23a7d851ad474d22b14d3357e69009dae20ce97"
+      }
+    ],
+    "bytes": 523455
+  },
+  "local_evidence": {
+    "files": [
+      {
+        "path": ".venv-audit/godot-postbattle-return-20261115/final-validation.json",
+        "bytes": 7342,
+        "sha256": "1ab12964bdc535374d12fcb9f01109555d69bb75f583b8482f3556661e400dc0"
+      },
+      {
+        "path": ".venv-audit/godot-postbattle-return-20261115/retirement.json",
+        "bytes": 3464,
+        "sha256": "2db3b11ba8a102582a8af8b17cbb6f8093da0e79b57a260e0b0152f6a634b73e"
+      },
+      {
+        "path": ".venv-audit/godot-postbattle-return-20261115/success.log.gz",
+        "bytes": 1665,
+        "sha256": "5e3efee75000a2f6b9d7b5f017440209a78d303400fd88caabb8022e091b9abc"
+      }
+    ],
+    "bytes_including_backups": 12471,
+    "backup_count": 0,
+    "retired_files": 11,
+    "retired_bytes": 139718,
+    "retirement_complete": true
+  },
+  "next_scope": "Recover complete next-week adventure availability/history and then enable the next playable assignment using existing source logic; no stopped native tool route restart",
+  "authorizes_native_acceptance": false
+}
