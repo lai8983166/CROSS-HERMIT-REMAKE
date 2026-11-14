@@ -1,0 +1,892 @@
+{
+  "schema": "terminal-recovery-binding-closeout-v1",
+  "base_commit": "e33cf5e858de39b6807e066a6d6f5db40cf45553",
+  "created_utc": "2026-11-14T03:25:25.176683+00:00",
+  "offline_component_preparation": true,
+  "native_window_admission": false,
+  "formal_progress": "2/8",
+  "scope": "Release/display binding and recovery implementation; no actual GPU, desktop writes, original GAME, wait-return or result consumption acceptance",
+  "execution_inventory": {
+    "full_original_instruction_model": 1,
+    "no_ui_native_helper_lifetimes": 4,
+    "external_supervisor_sessions": 7,
+    "actual_gpu": 0,
+    "desktop_writes": 0,
+    "screenshots": 0,
+    "global_input": 0,
+    "original_game": 0,
+    "new_backups": 0
+  },
+  "validation": {
+    "targeted_tests": 58,
+    "strict_openspec": true,
+    "independent_review": {
+      "path": "analysis/terminal-recovery-binding-independent-review-v1-20261114.json",
+      "bytes": 16577,
+      "sha256": "954f01d808833def16f7b5515307e6bfafc3a2a446f75139f753466f83363db2"
+    },
+    "final_preflight": {
+      "path": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "bytes": 109549,
+      "sha256": "d13c37dfe09c90f73b23d1f85e75794d401a6efc63001e22f60429ccaafe0d06"
+    },
+    "preflight_pins_rechecked": 644
+  },
+  "remaining_blockers": [
+    "Original visible CreateWindowExA precedes DISPLAY_BIND; prebinding failure has readback only, no qualified attributed foreground recovery. Both native entry points are hard-disabled.",
+    "Before enabling native entry, enforce complete independently expected gate pin set, not self-described ready/pins.",
+    "Actual GPU reads, GAME publication, wait-return/result consumption and final two fresh native lifetimes remain unverified."
+  ],
+  "resolved_draft_issues": [
+    "First /W4 /WX build rejected local r shadow (C4456/C2220); final v6 strict build accepted.",
+    "Model post-audit missing convenience token field fixed by authenticating existing MEM_READ4 raw bytes; original model unchanged and never recollected.",
+    "Observed 21654756 byte input required 32 MiB total budget instead of 16 MiB; per-transfer/line/command/worker limits unchanged.",
+    "Exact current build admission, actual MAIN BEGIN provenance, last-value-only mutation attribution and absolute deadline override added."
+  ],
+  "directory_date_note": "Draft build-v1/v2 directory suffix 20261115 is a naming typo; files created in this 2026-11-14 unit.",
+  "budget": {
+    "offline_minutes": 60,
+    "persistent_evidence_target_bytes": 268435456
+  },
+  "retirement_authority": "AGENTS.md: retire this unit generated, superseded development artifacts after component verification; no prior history, original assets or saved games touched.",
+  "retirement_allowed_directories": [
+    ".venv-audit/terminal-display-owner-build-v1-20261115",
+    ".venv-audit/terminal-display-owner-build-v2-20261115",
+    ".venv-audit/terminal-display-owner-build-v3-20261114",
+    ".venv-audit/terminal-display-owner-build-v4-20261114",
+    ".venv-audit/terminal-display-owner-build-v5-20261114",
+    ".venv-audit/terminal-recovery-retained-owner-v1-20261114",
+    ".venv-audit/terminal-recovery-binding-v1-20261114",
+    ".venv-audit/terminal-recovery-binding-v2-20261114"
+  ],
+  "retirement_allowed_files": [
+    ".venv-audit/terminal-display-owner-build-v6-20261114/owner.obj",
+    "analysis/terminal-recovery-binding-preflight-v1-20261114.json",
+    "analysis/terminal-recovery-binding-preflight-v2-20261114.json"
+  ],
+  "retirement": [
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v1-20261115/build.cmd",
+      "bytes": 758,
+      "sha256": "0abe9e99d15d457bd76e0f4319ef45d928812f5b6cbff872ff695b71ccb3776f",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v1-20261115/build.log",
+      "bytes": 453,
+      "sha256": "cac19179a94d2fd8ad13a81e86b2a31fb023e0ff52ff3c63ec4922e6b916324f",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v1-20261115/terminal-display-owner.cpp",
+      "bytes": 169175,
+      "sha256": "05d0630ffa7d69353d1e56bf7bc39af2db7d97b3681f4222edf41612bd5e8386",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v2-20261115/build.cmd",
+      "bytes": 758,
+      "sha256": "3fc3a1f048e6263c6baa93b7c093ee705c9de4f7c91c6f93d40aeb45c841620a",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v2-20261115/build.log",
+      "bytes": 28,
+      "sha256": "e0f26e769c593dbb1db7481c5847d612719aa16b3de9b501f2a2c0e82b30ef58",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v2-20261115/owner.obj",
+      "bytes": 1818945,
+      "sha256": "4aedf25bfd3f7e20b1ef81fd5f790b433327e4a65bf6d79a4f6702450a5daaf9",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v2-20261115/static-report.json",
+      "bytes": 9816,
+      "sha256": "78d9ffad36725615bf37d7de51b627fae6d5ebc99ec77f8552959ba3215e1942",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v2-20261115/terminal-display-owner.cpp",
+      "bytes": 169202,
+      "sha256": "518cf31badcf0da20e397a3b98fabaa34bb9c1e14459a8632ece92363730b76c",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v2-20261115/terminal-display-owner.exe",
+      "bytes": 390656,
+      "sha256": "f321b48fe8dcbcaf0e3eb80181dc945696161b54056db46672c07b59681f8c06",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v3-20261114/build.cmd",
+      "bytes": 758,
+      "sha256": "6fa272e9f5e6c26a9df7ce4ff4b21a7b2155462577bf8d21ca1ef9a13f322120",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v3-20261114/build.log",
+      "bytes": 28,
+      "sha256": "e0f26e769c593dbb1db7481c5847d612719aa16b3de9b501f2a2c0e82b30ef58",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v3-20261114/owner.obj",
+      "bytes": 1825414,
+      "sha256": "fe6456cc1415495b005d4072d446b93708a4c2e931fd00e686e6634e973d64e0",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v3-20261114/static-report.json",
+      "bytes": 9816,
+      "sha256": "9fbfb384e46031ad92b537bc6aa549bc9c62050c779becd8acc689e42eeac9bb",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v3-20261114/terminal-display-owner.cpp",
+      "bytes": 169890,
+      "sha256": "4eb312657dda6996340cf783541acf90272690e81bc7813cb262155969fe1d37",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v3-20261114/terminal-display-owner.exe",
+      "bytes": 392192,
+      "sha256": "e9b34183017f19cc787511514d615171b78176902e78930c23a77d2143817ef5",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v4-20261114/build.cmd",
+      "bytes": 758,
+      "sha256": "25626b99f8d76f3c213a1bb797cda1c1f672e3edc54d8ebb0d253ee3256dd06f",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v4-20261114/build.log",
+      "bytes": 28,
+      "sha256": "e0f26e769c593dbb1db7481c5847d612719aa16b3de9b501f2a2c0e82b30ef58",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v4-20261114/owner.obj",
+      "bytes": 1825421,
+      "sha256": "aa05666da8233bc6a30123119348c68c5e0dd579e2de853a35d335f602939e0f",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v4-20261114/static-report.json",
+      "bytes": 9816,
+      "sha256": "b65e8dda790820e8c526b5e61d38b106620a4326936ebdde6dfe1728df53eafc",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v4-20261114/terminal-display-owner.cpp",
+      "bytes": 169928,
+      "sha256": "542437d8b54c91d25bc60f90ce5540cfa62250af52b0cd8862b4686503c7224a",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v4-20261114/terminal-display-owner.exe",
+      "bytes": 392192,
+      "sha256": "41a6ac19f9ca18cf7767377ac2b0a0b1ae39bc45842d7c57d942de3be72edead",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v5-20261114/build.cmd",
+      "bytes": 758,
+      "sha256": "47b070144ace9bbd76d60deb37ff46871743b2b4c3adca96bc806aa5dca024a3",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v5-20261114/build.log",
+      "bytes": 28,
+      "sha256": "e0f26e769c593dbb1db7481c5847d612719aa16b3de9b501f2a2c0e82b30ef58",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v5-20261114/owner.obj",
+      "bytes": 1825421,
+      "sha256": "551f8753726a455a34a9128bb2b0925a6c3fec69ad04e66e5370c7653b830d49",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v5-20261114/static-report.json",
+      "bytes": 10071,
+      "sha256": "026b6c4b78c231d62153eccbe35c46bbe2f1a4273a10b972859ea83192b029ce",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v5-20261114/terminal-display-owner.cpp",
+      "bytes": 169928,
+      "sha256": "c0dbd9eb073b8b48cff5588718f9855ff318d83557d58ba25b7db13a463707c2",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v5-20261114/terminal-display-owner.exe",
+      "bytes": 392192,
+      "sha256": "264770d9c333b1737da0ba90c60f9b87f2cce9dcb59f76e6d05d715979bdbad1",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v6-20261114/owner.obj",
+      "bytes": 1907139,
+      "sha256": "18b5381faae33913e0a51f8402b2a3fdb98dc328709ff71e63742e8023b71e07",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/owner/report.json",
+      "bytes": 47561,
+      "sha256": "8513c38a42db05fd3604d966c826661ee2ba064350e4e5e97872f8167fc4f57f",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "c748a8ab9b9fa2db88532d514de4003e5a113300281b693f27fdd93fb25b7cc3",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "099d7fec321561a04973b76389b3d6af1debf364ced2c3adf4b3ef753ae35cc2",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/config.json",
+      "bytes": 2974,
+      "sha256": "81c904778beb1d0423c18010b4dc89d7c07295d69637c788d37276e5a886e295",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "637141ba8858cfd623a998175e6643fd4ca87fda54eb60a6fd417d54be77b510",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/request-1.json",
+      "bytes": 161,
+      "sha256": "8924aae0e462a3e5d06f5515b97ec6fc26219889979a4bea87ba071549d02351",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/request-2.json",
+      "bytes": 160,
+      "sha256": "69b634ba2074850c523ee101e68fb3fb106d3e38839eafe0aa27d38908dfc6ff",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "e4118d0d9b2cb26e6fe9bb491d5e4bd32203412d3f807cf7812ae61d3865cf33",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/supervisor-result.json",
+      "bytes": 1072,
+      "sha256": "d363e4942e15beaeff7d94bfc90276d9592239e89a07842a0fc0ce3e45be2990",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "0ee848c9de613de99400df24368d518c33e393bede89d7b157346146f17c9c81",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "e2c4d4301b25ecb7ead7532b08668531c82fda9af51732d34207dc6ab34f2001",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "5aa3dfb1b3ebbba99ef9b246ff00fb2a5cbcc89c93ac2e16368e6b1163ad36fc",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/config.json",
+      "bytes": 2963,
+      "sha256": "52e5d87d849325624feedeebbb430f5c4a4463d12fd6b7eca61710fe666d49b0",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "272f3f5ea7dd4567d90a92148e03a93c8b823b5ae852c3bde86c89ef8bcd3e2d",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/request-1.json",
+      "bytes": 161,
+      "sha256": "c77d1d463a535bcbeae3ae6f2fd356d3f7ee19a372026896b5ed7c0c5a3eb9c3",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/request-2.json",
+      "bytes": 160,
+      "sha256": "6dd80825da6eb78e010d926853554f9b6db4c769edddf27aee1868236974d702",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/request-3.json",
+      "bytes": 158,
+      "sha256": "f7dc4171a8cc6fc07d90e0341c5b9fa48805839d98cac0f5a3138d65bd0ba8c9",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/response-1.json",
+      "bytes": 4713,
+      "sha256": "642fc521e652960da98df24c6e3394c492363822fc6e2683541a1dc3932b05c3",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/response-2.json",
+      "bytes": 23893,
+      "sha256": "c4e783ac9abf84fd7a322858c32b04d2392b45a9bccda898f959ac1be78ad013",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/response-3.json",
+      "bytes": 315,
+      "sha256": "84ef71e8b4467e4f279958fd7c071461b64bb7c77f01cb69cd5294447c173f1f",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/supervisor-result.json",
+      "bytes": 1642,
+      "sha256": "ddbac7dc3953976dc24719a8c516c2a2214448a184d97c2e934d6a6bc7923b98",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v1-20261114/supervisor/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/owner/report.json",
+      "bytes": 47692,
+      "sha256": "786f3243921fbb05e218b5b86cdccc969e2f9687e6ca354742737a49c452c34a",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "23df22ccea3b650cdff3b9bc2cc533754e63c98f201c1d8712759a70e9e02338",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "ba293e3959edc21a37485b5d589b4b86ceb4bbd0c9bc885dd0fc7c525317903e",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/config.json",
+      "bytes": 3533,
+      "sha256": "cb5ff5bafb37f9a82c7ca89de4eacb547b9ee007a9163d706e07413e4af19523",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "1dc3fa01cd817662c096de59b6707c978a5c57f2812414b807cfdb14ab163d23",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/request-1.json",
+      "bytes": 161,
+      "sha256": "eac33d69fa2cafc4149c5cb228ed4610e11160f4a86439ecd866c805f02c688f",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/request-2.json",
+      "bytes": 160,
+      "sha256": "3fb1ead704b1ad995b8e400e361187cfa44ea901e4863d7a924de13c58295657",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "7bcad5da4d3af136a8a3685cfcc89f6044e3a6b9a9d2dbc74d8d2498d1c53118",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/supervisor-result.json",
+      "bytes": 1072,
+      "sha256": "3d4931be5917f61e14f9af9df1c98120f227db97da71f131a553dfd72cf9cb6c",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "edf0b2d96c6eee7879572f0a95f07e645dea20f229849ce7d384a525deceb39e",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "60f892214b6dcc62414b0e8e258e3f32480ba4da0580ed0d337f9469ac2d31a4",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "8ef96e7758730dfe9a39056b49906d367c9fccf602d8d9f7d7715bf159c8ace9",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/config.json",
+      "bytes": 3522,
+      "sha256": "190f4e0073e51042b8e1c8b5a05c39b426b877cff59c277817fc61b3d92dca42",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "1b6206734cfe86d5d9aec70c981086bde3f720220c9c41a9ed4d9e8f177dc4aa",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/request-1.json",
+      "bytes": 161,
+      "sha256": "d6e30b9b0cac30abece3d83bb5f125a64cd53399afed6acd18ab8190ac980d83",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/request-2.json",
+      "bytes": 160,
+      "sha256": "674feec05d9ba073660784d7803f30dd9d2c5c8360160c9bb186ab00eff8c431",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/request-3.json",
+      "bytes": 158,
+      "sha256": "4fed0d52d517e2bc8eba40ff7b3d51316f64d7f63a732e366b020113c95edc50",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/response-1.json",
+      "bytes": 4713,
+      "sha256": "d489e96036f48c23b276c3487e1cd4b47ae5e2d9fe3607696e12e666d9f9417c",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/response-2.json",
+      "bytes": 23893,
+      "sha256": "6bcd60f4fcda2a58ac03395f23e0daaed8b010976ce808f3c7b58a54a9e6afc0",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/response-3.json",
+      "bytes": 315,
+      "sha256": "ff252a873016a98086653fdae76c62516bb6eaa27b53ef6ca959ff9272b4dd68",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/supervisor-result.json",
+      "bytes": 1643,
+      "sha256": "32f32bc4073b8ae336b0ad20aa039bc9a24d4bc103870062fcfe8d3a35565c28",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v2-20261114/supervisor/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-retained-owner-v1-20261114/report.json",
+      "bytes": 6070,
+      "sha256": "9a53340a736643e7533f50a0d640cfa4168258d35e417671517c7eeb75b94830",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-binding-preflight-v1-20261114.json",
+      "bytes": 106973,
+      "sha256": "1aa79e07058fd612ce8022583a8585d7206ccba54fcf8a298421da74aa839da5",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    },
+    {
+      "path": "analysis/terminal-recovery-binding-preflight-v2-20261114.json",
+      "bytes": 107244,
+      "sha256": "61c1c9c54f36297c0e9cc7d5c7b7093a20233c4baba9cbd81ee249be14890a48",
+      "reason": "Superseded generated development artifact or reproducible object file",
+      "replacement": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "status": "retired"
+    }
+  ],
+  "retained_generated_evidence": [
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v6-20261114/build.cmd",
+      "bytes": 758,
+      "sha256": "a534441f4b39116ce81e6b89f8127c41fae521cde4328ec0c2828ee0b676005e"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v6-20261114/build.log",
+      "bytes": 28,
+      "sha256": "e0f26e769c593dbb1db7481c5847d612719aa16b3de9b501f2a2c0e82b30ef58"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v6-20261114/static-report.json",
+      "bytes": 9762,
+      "sha256": "53b3d744ea9e8ec9f6d11a8a68ef14b990d11edaa0df203b6b370c1873d0dafc"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v6-20261114/terminal-display-owner.cpp",
+      "bytes": 173070,
+      "sha256": "e226f8f9f50c4f6dfa5a21d500fba751c81a448676e1f11bc39bbe9a4467a9e5"
+    },
+    {
+      "path": ".venv-audit/terminal-display-owner-build-v6-20261114/terminal-display-owner.exe",
+      "bytes": 400896,
+      "sha256": "7ed02ce2c69a8aa00b6511f35b20a8118716998b534f2cb5bbc8f25afe6df1bc"
+    },
+    {
+      "path": ".venv-audit/terminal-game-bound-model-v1-20261114.json.gz",
+      "bytes": 498895,
+      "sha256": "8750713d1b730e275ba802c6c4fc326952ac4387adc466a78a66a7bc52871a08"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/owner/report.json",
+      "bytes": 47693,
+      "sha256": "bd61ba916e882e7ef815ddaeba3355bcbf92453d09c677e6589abdf975e93829"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/absolute_deadline/armed-1.json",
+      "bytes": 242,
+      "sha256": "bb6cb0d1ad55476fc02209c2ade4d54ee36aeb335144ea7c1929f6c2b5dd7109"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/absolute_deadline/config.json",
+      "bytes": 3561,
+      "sha256": "7b61f6a72f7cc6761d972c241c2d534eb050fd0ae474bff92c6daa734183c489"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/absolute_deadline/operations.jsonl",
+      "bytes": 178,
+      "sha256": "52cba4346fbc82d0a59da604c135c1cd5d9611511177fe421cdf19693662e02a"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/absolute_deadline/request-1.json",
+      "bytes": 160,
+      "sha256": "70dd8c6b438c9ccdb1645686dd179e833c946512b86d6374cfdd821d58e40b60"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/absolute_deadline/response-1.json",
+      "bytes": 4713,
+      "sha256": "ba71b32c1fdc6e46c6fba019d2225219caff5cde55f8cb0e300a7c2ecb14ad20"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/absolute_deadline/supervisor-result.json",
+      "bytes": 905,
+      "sha256": "30f42020f0d1dbb02952f9e7d5bc8341ddc4c2a3b3d7b2a9861314d9967f5511"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/absolute_deadline/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/armed-1.json",
+      "bytes": 242,
+      "sha256": "7c0daf1c0791ce594458ff1f7c5b8fbfe4c16fb16c33f372c2fcd723f3433566"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/armed-2.json",
+      "bytes": 241,
+      "sha256": "aa5e0090ecf92d2789c0af674ee773cfa3898f22f8ccba4af24f7bcef9567469"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/config.json",
+      "bytes": 3561,
+      "sha256": "d1cdd7cf7cf7c3da44952bd9db5a13906e18f77cbb32dd2a51c4e9f6a9eeb12d"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/operations.jsonl",
+      "bytes": 1181,
+      "sha256": "34ea1b7fc79541774b7e56428aabe644146e9e7562a73279140ff977caaca274"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/request-1.json",
+      "bytes": 161,
+      "sha256": "21cbf4576f85dbb83b5369f19634d8d86b4576f778402b48b6e9f3699f4f4d67"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/request-2.json",
+      "bytes": 160,
+      "sha256": "ead00a3acdcddd2cce76500a3456c6096f30e8ba72863d258e2bd9b393c3eca3"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/response-1.json",
+      "bytes": 4713,
+      "sha256": "a05797a788ab08161910ff1ecb103a51fe0ba5fb75ef8fda0418745bdf378de1"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/supervisor-result.json",
+      "bytes": 1073,
+      "sha256": "0213bbd6bae86c9281bd2fa15c442d0d8c22ae0612353981ff0ab9d3775ac94f"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/block_gamma_write/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/armed-1.json",
+      "bytes": 242,
+      "sha256": "e298206b6686b5e2ccfc00067548dd97782702f448dc22ed101e00f26a7cb5e5"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/armed-2.json",
+      "bytes": 241,
+      "sha256": "b784c928563fb7b28f11eb59c6c144786ffb8bb19c838e135525aa8fb077f6e8"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/armed-3.json",
+      "bytes": 239,
+      "sha256": "78ff132e7e7a28a27ab65a17b974e6a98b4cb54537bbc6c4c2dbe7dab39a1855"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/config.json",
+      "bytes": 3550,
+      "sha256": "a97cfb386bd6a94cd848cb477fc06d665df0c6db57629165bc43b7ede995ca1a"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/operations.jsonl",
+      "bytes": 1817,
+      "sha256": "7bb8285efc0833ea666338306e89891be94e5dd7211b169d05979467bbe408c1"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/request-1.json",
+      "bytes": 161,
+      "sha256": "64a35bfd70b6756fcf29cab7c7f0c071eca8f4d2e24827c24210c8e060968713"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/request-2.json",
+      "bytes": 160,
+      "sha256": "f80322d9d439e5af4fd153e0cb395aa17f85f0ec1bb25b1d5d958c155902a692"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/request-3.json",
+      "bytes": 158,
+      "sha256": "bca34c86fbc84c31d6552f2c6a7dd07fe26f447548458ad555a4f99ef2414a03"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/response-1.json",
+      "bytes": 4713,
+      "sha256": "4be17c1a52b95b39c4a4546a8d720ee3d1301891b9bccc7e32e8560533c7b0f9"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/response-2.json",
+      "bytes": 23893,
+      "sha256": "afbc77a62c9b207b1605d31fa5fe7220d65200c6f2018adb311f34ef7e850aaf"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/response-3.json",
+      "bytes": 315,
+      "sha256": "3c0228fadca2ea6590ed1a68472c2e812acf43c3b1a7a9eea62f2618c8320d91"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/supervisor-result.json",
+      "bytes": 1642,
+      "sha256": "0d8eda02bf30c702dc1988958e78ab17dccac2c39320a28d5e13f62a170746ba"
+    },
+    {
+      "path": ".venv-audit/terminal-recovery-binding-v3-20261114/supervisor/normal/supervisor.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/terminal-recovery-binding-independent-review-v1-20261114.json",
+      "bytes": 16577,
+      "sha256": "954f01d808833def16f7b5515307e6bfafc3a2a446f75139f753466f83363db2"
+    },
+    {
+      "path": "analysis/terminal-recovery-binding-preflight-v3-20261114.json",
+      "bytes": 109549,
+      "sha256": "d13c37dfe09c90f73b23d1f85e75794d401a6efc63001e22f60429ccaafe0d06"
+    }
+  ],
+  "cleanup_completed": true,
+  "capacity": {
+    "retired_bytes": 12072804,
+    "retained_evidence_bytes_excluding_this_manifest": 1315450,
+    "backup_bytes": 0,
+    "generated_peak_bytes_excluding_this_manifest": 13388254,
+    "retained_evidence_bytes_including_manifest": 1360212
+  },
+  "git_size_check": {
+    "staged_paths": 25,
+    "staged_full_blob_bytes": 454770,
+    "largest_other_staged_blob_bytes": 109549,
+    "threshold_50_mib_exceeded": false,
+    "note": "Sum of complete staged file blobs (including modified existing documents), not compressed pack size; commit/tree sizes checked after commit."
+  }
+}

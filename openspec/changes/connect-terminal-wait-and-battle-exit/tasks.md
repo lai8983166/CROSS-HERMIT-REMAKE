@@ -1,5 +1,7 @@
 # Tasks
 
+2026-11-14 释放/显示绑定：新增同MAIN的D3D adapter0→Win32显示身份三阶段原始观察、真实窗口代次、原始释放账本与纹理上传/读回字节认证；完整原发布模型一次64.718秒，后置token字段问题以已有MEM_READ纯文件接续通过。最终v6无窗口原生0.235秒核对当前helper/TEB/Job/exit0及全部句柄；统一绝对期限与58回归通过。真实GPU/GAME/桌面写恢复未运行：原窗口在DISPLAY_BIND前已可见，其失败分支的前台归因恢复尚未资格化，native入口代码级关闭；正式仍2/8，不新增勾选。见 docs/terminal_recovery_binding.md。
+
 2026-11-14 恢复期限与纹理接续：独立监督进程的真实短故障预检通过，保持同一观察者并对阻塞读取/写入阶段、控制端退出及总期限执行Job收容；正常退出须close回执/exit0/Job空，超时不算恢复。原Unlock后补充独立只读Lock/逐行读回/Unlock及CPU57/PTD/LastError恢复已实现，完整原发布模型一次60.656秒通过。最终宿主只读观察0.329秒，两次4K/任务栏/工作区/前台/gamma/光标一致；无游戏、截图、输入或桌面写入。真实GPU/写恢复/释放变更来源与adapter映射仍未准入，等待消费未执行，正式2/8不变。见 docs/terminal_graphics_recovery.md。
 
 2026-11-14 当前MAIN图形/输入离线接续：D3D8、字体/DIB/纹理、两套字体和原输入接口已实现并严格编译；连续原指令模型走到4506E9原GAME发布，再执行补充原析构及MAIN/PTD/TLS/heap清理。未补写GAME字段。gamma/光标/桌面恢复已实现且32项离线回归通过，但原生准入仍关闭，尚需真实恢复回执认证、外部硬超时和设备资格。本轮无原生、窗口、截图或桌面读写；真实GAME/等待/消费未完成，正式仍2/8。见 docs/terminal_graphics_platform.md 和对应preflight/independent-review/closeout，旧来源保持原字节。
