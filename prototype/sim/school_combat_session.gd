@@ -218,24 +218,24 @@ func _distance(a: Dictionary, b: Dictionary) -> int:
 func _attack_path(unit: Dictionary, target: Dictionary) -> Array[Vector2i]:
 	# Reach a free firing cell, including across water; enemy-adjacent tiles need not be walkable.
 	var blocked := _blocked(unit_key(unit)); var previous := PackedInt32Array()
-	previous.resize(6144); previous.fill(-1)
-	var start: int = unit["cell"].y*64+unit["cell"].x
+	previous.resize(field_width*field_height); previous.fill(-1)
+	var start: int = unit["cell"].y*field_width+unit["cell"].x
 	previous[start] = start
 	var queue := PackedInt32Array([start]); var head := 0; var goal := -1
 	while head < queue.size():
 		var index: int = queue[head]; head += 1
-		var cell := Vector2i(index%64,index/64)
+		var cell := Vector2i(index%field_width,index/field_width)
 		if absi(cell.x-target["cell"].x)+absi(cell.y-target["cell"].y) <= unit["combat"]["attack_range"]:
 			goal = index; break
 		for delta in SimPath.DIRS:
 			var next: Vector2i = cell+delta
 			if not walkable(next,unit["movement_type"]) or blocked.has(next): continue
-			var next_index: int = next.y*64+next.x
+			var next_index: int = next.y*field_width+next.x
 			if previous[next_index] >= 0: continue
 			previous[next_index] = index; queue.append(next_index)
 	var result: Array[Vector2i] = []
 	while goal >= 0 and goal != start:
-		result.append(Vector2i(goal%64,goal/64)); goal = previous[goal]
+		result.append(Vector2i(goal%field_width,goal/field_width)); goal = previous[goal]
 	result.reverse()
 	return result
 
@@ -260,7 +260,7 @@ func _start_attack(unit: Dictionary, target: Dictionary) -> void:
 
 
 func _packet(unit: Dictionary) -> Dictionary:
-	var terrain: int = catalog["cells"][unit["cell"].y*64+unit["cell"].x][0]
+	var terrain: int = catalog["cells"][unit["cell"].y*field_width+unit["cell"].x][0]
 	return Inputs.snapshot(unit["combat"],terrain,unit["movement_type"],combat_rules)
 
 

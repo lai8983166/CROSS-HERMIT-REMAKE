@@ -14,6 +14,12 @@ func _roundtrip(model) -> void:
 	var restored := Model.new()
 	assert_true(restored.restore_text(JSON.stringify(model.export_save()))["supported"])
 	assert_eq(restored.state(),model.state())
+	if restored.stage()=="sortie_pending":
+		var battle=load("res://sim/school_sortie_session.gd").new()
+		var before: Dictionary=restored.export_save()
+		assert_true(battle.open(restored.read_postbattle()["planning"]["handoff"]))
+		assert_eq(battle.controlled_units().map(func(u):return u["character_id"]),[3,4,9,5])
+		battle.close();assert_eq(restored.export_save(),before)
 
 
 func test_v6_current_plans_course_commit_and_old_v5_restore() -> void:
@@ -89,6 +95,15 @@ func test_controls_course_selection_and_both_explicit_commit_dialogs() -> void:
 	panel.find_child("depart",true,false).pressed.emit()
 	assert_eq(ui.model.stage(),"returned_school")
 	panel.commit_dialog.hide();panel.commit_dialog.confirmed.emit()
-	assert_eq(ui.model.stage(),"sortie_pending");assert_true(panel.dialogue.text.contains("尚未开放操作"))
+	assert_eq(ui.model.stage(),"sortie_pending");assert_true(panel.dialogue.text.contains("进入本次任务的战场"))
 	assert_false(panel.next.visible)
+	var before: Dictionary=ui.model.export_save()
+	panel.find_child("play_sortie",true,false).pressed.emit()
+	assert_true(ui.sortie_trial.visible);assert_false(panel.visible)
+	assert_eq(ui.sortie_trial.session.scene_id,17)
+	ui.sortie_trial.close_trial()
+	for i in range(4):ui.sortie_trial.session.advance_exit()
+	ui.sortie_trial._continue()
+	assert_false(ui.sortie_trial.visible);assert_true(panel.visible)
+	assert_eq(ui.model.export_save(),before)
 	ui.free()

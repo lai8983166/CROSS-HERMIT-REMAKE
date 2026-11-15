@@ -3,6 +3,7 @@ extends PanelContainer
 signal command(value: Dictionary)
 signal save_requested
 signal load_requested
+signal sortie_requested
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const Courses := preload("res://sim/school_return_courses.gd")
 const Adventures := preload("res://sim/school_return_adventures.gd")
@@ -126,15 +127,16 @@ func _show_plan(view: Dictionary) -> void:
 		var handoff: Dictionary=plan["handoff"];var prepared: Dictionary=handoff["prepared"]
 		heading.text="5月 · 第1周　｜　出击交接"
 		speaker.text="冒险%d · 出击交接完成" % prepared["adventure_id"]
-		dialogue.text="出击队伍与本周任务记录已保存。此战场尚未开放操作，将在下一轮接入。"
-		progress.text="未执行战斗、发放奖励或推进日期。"
+		dialogue.text="出击队伍与成长已保存，可以进入本次任务的战场。"
+		progress.text="战斗从已保存的出击队伍开始；新战果结算与战后周推进尚未接入。"
 		var label := _label(20)
 		label.text="场景%d　｜　带队：%s\n参战：%s\n待命：%s" % [prepared["rounds"][0]["scene_id"],_member_names(prepared["rounds"][0]["teacher_ids"]),_member_names(prepared["rounds"][0]["student_ids"]),_member_names(handoff["idle_student_ids"])]
 		plans.add_child(label)
+		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
-	progress.text="课程与出击准备均可存档；8号、17号可玩战场将在下一轮接入。"
+	progress.text="课程与出击准备均可存档；提交后可以进入8号或17号战场。"
 	for group in range(5):
 		if Groups._word(school["group_raw_bytes"],group*28)<0:continue
 		var row := HBoxContainer.new();plans.add_child(row)
@@ -169,7 +171,7 @@ func _show_plan(view: Dictionary) -> void:
 	settle.name="settle";row.add_child(settle)
 	var ratings := Groups.rate(school,Courses.Origin.group_rules())
 	settle.disabled=not ratings["supported"] or not ratings["ratings"].any(func(r):return r["state"]==4) or ratings["ratings"].any(func(r):return r["state"] not in [0,4])
-	var depart := _button("确认出击交接",func():_confirm("return_depart","确认后锁定本周出击队伍，更新冒险使用记录。此战场尚未开放操作；可保存交接进度，或读取出击前备份。"))
+	var depart := _button("确认出击交接",func():_confirm("return_depart","确认后锁定本周出击队伍并更新冒险使用记录，随后可进入战场。可以保存出击记录后稍后继续。"))
 	depart.name="depart";row.add_child(depart)
 	var prepared := Adventures.prepare(bundle,plan["ledger"])
 	depart.disabled=not prepared["supported"]

@@ -14,6 +14,12 @@ var reason := "closed"
 var _maps: Array[SimMapData] = []
 var _reserved: Dictionary = {}
 var _accumulator := 0.0
+var field_width := 64
+var field_height := 96
+
+
+func inside(cell: Vector2i) -> bool:
+	return cell.x >= 0 and cell.y >= 0 and cell.x < field_width and cell.y < field_height
 
 
 func open(preparation: Dictionary, combat: Dictionary, raw := "") -> bool:
@@ -133,8 +139,8 @@ func _blocked(identity: int) -> Dictionary:
 
 
 func walkable(cell: Vector2i, mode := 0) -> bool:
-	return ready and _inside(cell) and mode >= 0 and mode < 5 \
-		and catalog["passability"][mode][cell.y*64+cell.x] != 0
+	return ready and inside(cell) and mode >= 0 and mode < 5 \
+		and catalog["passability"][mode][cell.y*field_width+cell.x] != 0
 
 
 func command_move(identity: int, destination: Vector2i) -> bool:

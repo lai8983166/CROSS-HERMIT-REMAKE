@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "parent_commit": "04daff306788a9013e71fb21fad58024a5d7558e",
+  "result": "Godot scene8/17 playable from authenticated v6 sortie baseline with current squad and growth",
+  "native_acceptance": "2/8 unchanged",
+  "native_route": "STOPPED_SCOPE_GUARD",
+  "screenshots": false,
+  "desktop_used": false,
+  "native_game_launched": false,
+  "boundaries": [
+    "Existing declared remake pursuit, clock, movement and basic attack schedule; no original AI equivalence",
+    "AI requests retained as source_ai_request; native parameter execution not ported",
+    "New battle rewards/week advancement and mid-battle saves not implemented; old sortie baseline preserved"
+  ],
+  "validation": {
+    "full_godot": {
+      "exit": 0,
+      "seconds": 126.406,
+      "errors": 0,
+      "tests": 495
+    },
+    "final_focused_ui_both_maps": {
+      "exit": 0,
+      "seconds": 17.86,
+      "errors": 0
+    },
+    "python_source_tests": {
+      "tests": 13,
+      "failures": 0,
+      "seconds": 9.368
+    },
+    "openspec_strict": true,
+    "independent_review": {
+      "reviewer": "/root/adventure_rules",
+      "blocking_findings": 0,
+      "fixed": [
+        "capture mask authenticated before close",
+        "pending identity dedup and activation cleanup"
+      ],
+      "review_scope": "source mappings, Fana, current growth, map17, exit predicates and failures; no native approval"
+    },
+    "preservation": "EXE and all eight map resources plus both scripts matched fixed parent SHA; all referenced frames and both atlas files verified",
+    "full_vs_final": "Final field UI simplification and malformed map-catalog guard covered again by final focused two-map/UI/layout run; full 76-suite run prior to that mechanical cleanup"
+  },
+  "source_manifest": [
+    {
+      "path": ".gitattributes",
+      "bytes": 73887,
+      "sha256": "03f83b15d9eb049ff859305ae96e56019ace8830fd36024b99d613f10c8eeb10"
+    },
+    {
+      "path": "analysis/fana-current-record-local-v1-20261115.json",
+      "bytes": 1267,
+      "sha256": "d834f6acf1293665d4697e677afd69125e5ba74fc826ed93966fd3d65c223fed"
+    },
+    {
+      "path": "docs/reverse-iteration.md",
+      "bytes": 33428,
+      "sha256": "f03a255f18c8c3c555250bca7c59a20e7bc7974af2bb6718c3f9bea76616bb0c"
+    },
+    {
+      "path": "docs/school_adventure_scene_rules.md",
+      "bytes": 7709,
+      "sha256": "677f65d912ee46f9ec80d50e05bd2591f759f4206809ece4e823faee70c3bf45"
+    },
+    {
+      "path": "docs/school_return_adventures.md",
+      "bytes": 4618,
+      "sha256": "3745ae030c60036a0300cd0758368a547249fd8160587ba4ec13e9cc1708cd1d"
+    },
+    {
+      "path": "docs/school_sortie_battles.md",
+      "bytes": 4452,
+      "sha256": "615d571d80afb45e7a8d474a703fb8ec929dcd306fb0400098b2152805702319"
+    },
+    {
+      "path": "openspec/changes/connect-terminal-wait-and-battle-exit/design.md",
+      "bytes": 8018,
+      "sha256": "e8d42c783ec9c32f5211e64626c270f0c3edc0d5fd8526caf02cd3d30e5b7f16"
+    },
+    {
+      "path": "openspec/changes/connect-terminal-wait-and-battle-exit/proposal.md",
+      "bytes": 3009,
+      "sha256": "f435275b5237275b435be044a4756d40e94c6afb6d345049c85ccca3fbd447bd"
+    },
+    {
+      "path": "openspec/changes/connect-terminal-wait-and-battle-exit/tasks.md",
+      "bytes": 52240,
+      "sha256": "c92b5df851447db48a344f26dcd1c88dacac1cb3b1f4d0fc035723ecf9158b44"
+    },
+    {
+      "path": "prototype/assets/school_sorties/catalog.json",
+      "bytes": 2694040,
+      "sha256": "d272b6ad0da5a0da30676b8ae6ca4273dc045794b6470af419c7f44a14c4d376"
+    },
+    {
+      "path": "prototype/data/school_adventure_scene_rules.json",
+      "bytes": 67740,
+      "sha256": "c87a1ddcda957cc5b235dd35ef95bcd5385bf91c59aecea0fcb26cfb0d90266c"
+    },
+    {
+      "path": "prototype/sim/school_combat_session.gd",
+      "bytes": 31876,
+      "sha256": "55f13a45c9ab6ebd1fbfd51dcc8b0a9e5a00de68140df2c7edb563cc2b7d86d9"
+    },
+    {
+      "path": "prototype/sim/school_field_session.gd",
+      "bytes": 8644,
+      "sha256": "f58bd8be8c585dc00a9da58ad205a17836536522c562943f9998855cb6197d3b"
+    },
+    {
+      "path": "prototype/sim/school_sortie_session.gd",
+      "bytes": 14813,
+      "sha256": "5361fd2bda6a9fb20b2be9eaf743293dba44a9d871df0793f860c5eace0575c7"
+    },
+    {
+      "path": "prototype/sim/school_sortie_units.gd",
+      "bytes": 3010,
+      "sha256": "b41046bb33068fb0a93d4f055097fcaebed83abfdac9f9a9676e336ff19f7b8f"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_return_planning.gd",
+      "bytes": 5942,
+      "sha256": "6ebec34b076389dcb4cc2731bc1dcc2f45eb06d1fff9015a4f0f42216291a532"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_sortie_session.gd",
+      "bytes": 8387,
+      "sha256": "7b4b88bf3897f592dc15785b62d39acedba4a2851f07cd77ddea19f0d2cc1600"
+    },
+    {
+      "path": "prototype/ui/school_field_trial.gd",
+      "bytes": 12514,
+      "sha256": "7d33e5a75fb5ab869226dcc6e3f02834093bed3d55ca95211802079645f49b8c"
+    },
+    {
+      "path": "prototype/ui/school_playground.gd",
+      "bytes": 47855,
+      "sha256": "584842ac6efbd6f80dbe9e972eba88db3f9871ec740cc0e7831d96cceb59b3ed"
+    },
+    {
+      "path": "prototype/ui/school_postbattle_panel.gd",
+      "bytes": 13503,
+      "sha256": "7f548916203e5eab2b1acb10ae372302237ea93844b1e871a95450241984d5c8"
+    },
+    {
+      "path": "prototype/ui/school_sortie_trial.gd",
+      "bytes": 5686,
+      "sha256": "f36127599810e3d9b5cde2a17acb332e00ca3ac72f39a7c6be97ccdbba6f374d"
+    },
+    {
+      "path": "tools/school_adventure_scene_rules.py",
+      "bytes": 3821,
+      "sha256": "dd6ff6d2e6675dda4321f7c5c2ba340cf3df2009aa7a25b25ba29bde498000cd"
+    },
+    {
+      "path": "tools/school_sortie_export.py",
+      "bytes": 8190,
+      "sha256": "20a842a879a6b901b6b97baf09a6fd8c53a4b0f5b856c91b6bc53bdfb6144f7c"
+    },
+    {
+      "path": "tools/tests/test_school_adventure_scene_rules.py",
+      "bytes": 2890,
+      "sha256": "003ab49be7504ab31d01879965c439296247a1b7c1d0c76dd9fcb6c118448f17"
+    }
+  ],
+  "runtime_art": {
+    "new_png_count": 641,
+    "new_png_bytes": 12757614,
+    "parent_frames_reused": 468,
+    "new_frames_deduplicated": 102,
+    "duplicate_bytes_removed": 1185955
+  },
+  "local_evidence": {
+    "files": [
+      {
+        "path": ".venv-audit/sorties-20261115/art-dedup.json.gz",
+        "bytes": 24584,
+        "sha256": "d0833cf875f9e3a2af2fdff5348a4ac7810d7e0664da7589c6b03e92742824ad"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/closeout.py",
+        "bytes": 5785,
+        "sha256": "2f7af8dfec665898b5b88a281c5cb799a6484336d71390c988c597828ad1996e"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/focused-result.json",
+        "bytes": 219,
+        "sha256": "30c32549a2959b525a70fac548d1c1065fa8d80c897184d317387632e1d8e759"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/focused.gd",
+        "bytes": 948,
+        "sha256": "92ec73039820980c0680ded51d282dd419eb2f8f202143ae062fc62d06a8329e"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/focused.log.gz",
+        "bytes": 145,
+        "sha256": "dc6d5a50476376394c2df4bf0bf497d1dd29d824b50c3e1043f9ae137e50097e"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/full-result.json",
+        "bytes": 2114,
+        "sha256": "57f4bbf4c106b51346d41875dadca0f1ff895687b4f77098db3f6c6f9be1495e"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/full.log.gz",
+        "bytes": 1689,
+        "sha256": "8e6cf63a5bc35f9cc607a1fa83c814ef865e71c1cfee69d1702b2db5828a5cd1"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/openspec.log",
+        "bytes": 179,
+        "sha256": "e9e414728cea58587346d686744c71e1dd77f289c79485e99ea06872add6239b"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/run.py",
+        "bytes": 1316,
+        "sha256": "dcf792c0f9bc632bfbc69eee80822d5ccdc6ce16c8299e41364ac8ee1aa96934"
+      }
+    ],
+    "retained_bytes": 36979,
+    "backups_created": 0,
+    "raw_logs_retired": [
+      {
+        "path": ".venv-audit/sorties-20261115/full.log",
+        "bytes": 32032,
+        "sha256": "28a20589f03cbd07270f908ef3acbc1a3b4405627d57f593baf1b4ff1bcb2510",
+        "reason": "Exact gzip retained; redundant raw removed"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/focused.log",
+        "bytes": 148,
+        "sha256": "9c4844979af51bfdde5aff17e850ca082c9909ccb92cd44b34611d379516ac81",
+        "reason": "Exact gzip retained; redundant raw removed"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/art-dedup.json",
+        "bytes": 98797,
+        "sha256": "85611d3a4c94dd2872d693f67752fce53f7de49024e3c55a30ed7cc37df9b349",
+        "reason": "Exact gzip retained; redundant raw removed"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/full-engine.log",
+        "bytes": 31614,
+        "sha256": "cab2a776da28143257027bb69d73dcfbcae89e7a6c87426b867a2b52eff99947",
+        "reason": "Duplicate engine log; successful stdout retained"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/focused-engine.log",
+        "bytes": 144,
+        "sha256": "b6d7c987535394b30ffe53a779f0ea51a8337dc3b6e88937753e6d449b1bccb3",
+        "reason": "Duplicate engine log; successful stdout retained"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/focused.log",
+        "bytes": 148,
+        "sha256": "9c4844979af51bfdde5aff17e850ca082c9909ccb92cd44b34611d379516ac81",
+        "reason": "Exact gzip retained; redundant raw removed"
+      },
+      {
+        "path": ".venv-audit/sorties-20261115/focused-engine.log",
+        "bytes": 144,
+        "sha256": "b6d7c987535394b30ffe53a779f0ea51a8337dc3b6e88937753e6d449b1bccb3",
+        "reason": "Duplicate engine log; successful stdout retained"
+      },
+      {
+        "path": ".venv-audit/adventure-apply.json",
+        "bytes": 5330,
+        "sha256": "2454721baba18acda34b3f1234f5cb2f083c4986633c4a3ef607fe700d3f5d57",
+        "reason": "Transient OpenSpec instructions output; no independent evidence value"
+      }
+    ],
+    "historical_evidence_deleted": false,
+    "art_retirement_manifest": ".venv-audit/sorties-20261115/art-dedup.json.gz"
+  },
+  "development_failures": [
+    "GDScript reserved member script renamed before successful run",
+    "Windows-generated JSON normalized to LF before authenticated load",
+    "Congested source spawn test corrected to require six active-or-pending actors; placement never bypassed"
+  ],
+  "storage": {
+    "staged_file_bytes_excluding_report": 15875153,
+    "new_generated_outputs_including_runtime_art_and_local_evidence_bytes": 15557640,
+    "budget_bytes": 268435456,
+    "new_unique_git_blob_bytes_before_final_report_revision": 15846463,
+    "new_unique_git_blob_count": 646
+  },
+  "execution_deviation": "Two existing Python export regressions used TemporaryDirectory under host C:/Users/lai/AppData/Local/Temp instead of F:. Both context managers completed cleanup with the passing tests. No retained C: evidence; all new runtime assets, Godot temporary paths and retained reports are on F:."
+}

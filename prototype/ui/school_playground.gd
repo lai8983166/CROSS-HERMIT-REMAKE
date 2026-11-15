@@ -72,6 +72,7 @@ var adventure_map_button: Button
 var adventure_trial_button: Button
 var field_trial: FieldTrial
 var combat_trial: CombatTrial
+var sortie_trial: Control
 var adventure_combat_button: Button
 
 
@@ -244,6 +245,9 @@ func _ready() -> void:
 	postbattle_panel.command.connect(func(value):_act(value);refresh())
 	postbattle_panel.save_requested.connect(_manual_save)
 	postbattle_panel.load_requested.connect(_load)
+	sortie_trial=load("res://ui/school_sortie_trial.gd").new();add_child(sortie_trial)
+	postbattle_panel.sortie_requested.connect(_open_sortie)
+	sortie_trial.closed.connect(refresh)
 	combat_trial.result_handoff.connect(_accept_battle_handoff)
 	combat_trial.closed.connect(func():
 		page = "adventure"
@@ -862,6 +866,15 @@ func _open_combat_trial() -> void:
 		last_battle_handoff.clear()
 		# The trial is modal: hidden school controls cannot receive keyboard focus.
 		panel.hide()
+
+
+func _open_sortie() -> void:
+	var post := model.read_postbattle()
+	if post.get("phase")!="sortie_pending":return
+	var names := {}
+	for id in [3,4,9,5,101]:names[id]=_name(id)
+	if sortie_trial.open_trial(post["planning"]["handoff"],{},names):postbattle_panel.hide()
+	else:_message="战场加载或队伍校验失败，已保存的出击记录保持不变。";refresh()
 
 
 func _accept_battle_handoff(receipt: Dictionary) -> void:

@@ -57,8 +57,8 @@ class FieldCanvas extends MapPreview.MapCanvas:
 		super._draw()
 		if session == null or not session.ready: return
 		if show_terrain:
-			for y in range(96):
-				for x in range(64):
+			for y in range(session.field_height):
+				for x in range(session.field_width):
 					var cell := Vector2i(x,y)
 					if not session.walkable(cell) or session._reserved.has(cell):
 						draw_rect(Rect2(origin+Vector2(x*32,y*16)*zoom,Vector2(32,16)*zoom),Color(0.8,0.15,0.1,0.3))
@@ -69,7 +69,7 @@ class FieldCanvas extends MapPreview.MapCanvas:
 			if points.size() > 1: draw_polyline(points,Color("e7d288"),2.0,true)
 			if selected["destination"].x >= 0:
 				draw_rect(Rect2(point(selected["destination"])-Vector2(16,8)*zoom,Vector2(32,16)*zoom),Color("e7d288"),false,2.0)
-		if Field._inside(hover):
+		if session.inside(hover):
 			draw_rect(Rect2(point(hover)-Vector2(16,8)*zoom,Vector2(32,16)*zoom),Color(1,1,1,0.4),false)
 		var ordered: Array = session.units.duplicate()
 		ordered.sort_custom(func(a,b): return session.position(a).y < session.position(b).y)
@@ -177,20 +177,22 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 	var next = _new_session()
 	if not next.open(preparation,combat): return false
 	var map_catalog = JSON.parse_string(FileAccess.get_file_as_string(MapPreview.CATALOG))
-	if not map_catalog is Dictionary or FileAccess.get_sha256(MapPreview.ATLAS) != map_catalog.get("atlas_file_sha256"):
+	if not map_catalog is Dictionary:return false
+	var atlas: String = next.catalog.get("atlas",MapPreview.ATLAS)
+	var atlas_sha: String = next.catalog.get("atlas_sha256",map_catalog.get("atlas_file_sha256",""))
+	if FileAccess.get_sha256(atlas) != atlas_sha:
 		return false
-	var map_image := Image.load_from_file(MapPreview.ATLAS)
-	if map_image == null or map_image.get_size() != Vector2i(2048,1536): return false
-	if _sprites.is_empty():
-		var images := {}
-		for skin in next.catalog["skins"].values():
-			for frame_data in skin["frames"].values():
-				var path: String = frame_data["file"] if String(frame_data["file"]).begins_with("res://") else ART+frame_data["file"]
-				if FileAccess.get_sha256(path) != frame_data["file_sha256"]: return false
-				var image := Image.load_from_file(path)
-				if image == null or image.get_size() != Vector2i(frame_data["w"],frame_data["h"]): return false
-				images[frame_data["file"]] = ImageTexture.create_from_image(image)
-		_sprites = images
+	var map_image := Image.load_from_file(atlas)
+	if map_image == null or map_image.get_size() != Vector2i(next.field_width*32,next.field_height*16): return false
+	var images := {}
+	for skin in next.catalog["skins"].values():
+		for frame_data in skin["frames"].values():
+			var path: String = frame_data["file"] if String(frame_data["file"]).begins_with("res://") else ART+frame_data["file"]
+			if FileAccess.get_sha256(path) != frame_data["file_sha256"]: return false
+			var image := Image.load_from_file(path)
+			if image == null or image.get_size() != Vector2i(frame_data["w"],frame_data["h"]): return false
+			images[frame_data["file"]] = ImageTexture.create_from_image(image)
+	_sprites = images
 	session = next; canvas.session = next; canvas.sprites = _sprites
 	canvas.texture = ImageTexture.create_from_image(map_image)
 	canvas.dragging = false; canvas.show_terrain = false; canvas.hover = Vector2i(-1,-1)
