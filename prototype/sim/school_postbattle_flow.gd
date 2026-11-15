@@ -1,6 +1,9 @@
 extends RefCounted
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
+const Adventures := preload("res://sim/school_return_adventures.gd")
+const Courses := preload("res://sim/school_return_courses.gd")
+const PLAN_OPS := ["return_plan","return_mode","return_course","return_select","return_settle","return_depart"]
 const STORY_PATH := "res://data/school_postbattle_story.json"
 const STORY_SHA := "7810a795b702e90cd439e3916e03ecaf824646c9f09db93c5ba6e1c7a5be1aaf"
 var bundle: Dictionary = {}
@@ -11,6 +14,7 @@ var _post_pages: Array = []
 var _week_pages: Array = []
 var revision := 0
 var result_summary: Dictionary = {}
+var planning: Dictionary = {}
 
 
 func begin(context: Dictionary, receipt: Dictionary, participants: Array, flags: Dictionary) -> Dictionary:
@@ -42,6 +46,7 @@ func begin(context: Dictionary, receipt: Dictionary, participants: Array, flags:
 
 func execute(command: Dictionary) -> Dictionary:
 	var op: String = command["op"]
+	if op in PLAN_OPS:return _plan(command)
 	if op=="return_move":
 		if phase!="returned_school": return _failure("school_not_returned")
 		var request := command.duplicate(true); request.erase("op")
@@ -77,9 +82,42 @@ func execute(command: Dictionary) -> Dictionary:
 
 
 func snapshot() -> Dictionary:
-	return {"phase":phase,"cursor":cursor,"total":pages.size(),"bundle":bundle.duplicate(true),
+	var result := {"phase":phase,"cursor":cursor,"total":pages.size(),"bundle":bundle.duplicate(true),
 		"page":pages[cursor].duplicate(true) if phase in ["post_story","new_week_story"] else {},
 		"result_summary":result_summary.duplicate(true),"revision":revision}
+	# Older v5 snapshots retain their exact shape until an explicit new command.
+	if not planning.is_empty():result["planning"]=planning.duplicate(true)
+	return result
+
+
+func _plan(command: Dictionary) -> Dictionary:
+	if phase!="returned_school":return _failure("return_plan_already_committed")
+	var op: String=command["op"]
+	if op=="return_plan":
+		if not planning.is_empty():return {"supported":true,"status":"duplicate"}
+		var ledger := Adventures.initial()
+		if ledger.is_empty():return _failure("adventure_sources_changed")
+		planning={"ledger":ledger,"adventure_catalog_complete":true};revision+=1
+		return {"supported":true}
+	if planning.is_empty():return _failure("return_plan_not_open")
+	var result: Dictionary
+	match op:
+		"return_mode":result=Courses.set_mode(bundle,command["group"],command["teaching"])
+		"return_course":result=Courses.assign_course(bundle,command["group"],command["course"])
+		"return_select":result=Adventures.select(bundle,planning["ledger"],command["adventure"])
+		"return_settle":result=Courses.settle(bundle)
+		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
+	if not result["supported"]:return result
+	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
+	bundle=result["after"]
+	if op=="return_settle":
+		planning["ledger"]=Adventures.advance(planning["ledger"],0)
+		planning["course_summary"]=result["summary"];phase="course_result"
+	elif op=="return_depart":
+		planning["ledger"]=result["ledger_after"]
+		planning["handoff"]=result["handoff"];phase="sortie_pending"
+	revision+=1
+	return {"supported":true}
 
 
 static func _failure(reason: String) -> Dictionary:

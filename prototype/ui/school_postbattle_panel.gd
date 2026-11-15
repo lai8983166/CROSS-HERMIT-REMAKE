@@ -4,6 +4,9 @@ signal command(value: Dictionary)
 signal save_requested
 signal load_requested
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
+const Courses := preload("res://sim/school_return_courses.gd")
+const Adventures := preload("res://sim/school_return_adventures.gd")
+const COURSE_NAMES := {1:"力量训练",2:"敏捷训练",3:"感知训练",4:"道德训练",5:"智力训练",10:"全面训练",11:"综合研习",12:"身心锻炼"}
 var heading: Label
 var speaker: Label
 var dialogue: Label
@@ -15,6 +18,9 @@ var skip: Button
 var skip_dialog: ConfirmationDialog
 var roster: HBoxContainer
 var assignments: VBoxContainer
+var plans: VBoxContainer
+var commit_dialog: ConfirmationDialog
+var _pending: Dictionary = {}
 var status: Label
 var _view: Dictionary = {}
 var _names: Dictionary = {}
@@ -38,6 +44,7 @@ func _ready() -> void:
 	details=_label(17);body.add_child(details)
 	roster=HBoxContainer.new();body.add_child(roster)
 	assignments=VBoxContainer.new();body.add_child(assignments)
+	plans=VBoxContainer.new();plans.add_theme_constant_override("separation",12);body.add_child(plans)
 	var nav := HBoxContainer.new();column.add_child(nav)
 	previous=_button("上一页",func():command.emit({"op":"post_prev"}));nav.add_child(previous)
 	progress=_label(16);progress.size_flags_horizontal=Control.SIZE_EXPAND_FILL;nav.add_child(progress)
@@ -48,6 +55,13 @@ func _ready() -> void:
 	skip_dialog.dialog_text="跳过本段剩余对白。入队、成长和周结算仍会按顺序保留。"
 	skip_dialog.ok_button_text="跳过";skip_dialog.cancel_button_text="继续阅读"
 	skip_dialog.confirmed.connect(func():command.emit({"op":"post_skip"}));add_child(skip_dialog)
+	commit_dialog=ConfirmationDialog.new();commit_dialog.title="确认本周安排"
+	commit_dialog.ok_button_text="确认";commit_dialog.cancel_button_text="继续调整"
+	commit_dialog.confirmed.connect(func():
+		var pending := _pending.duplicate();_pending.clear()
+		if not pending.is_empty():command.emit(pending))
+	commit_dialog.canceled.connect(func():_pending.clear())
+	add_child(commit_dialog)
 	hide()
 
 
@@ -62,12 +76,12 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	dialogue.custom_minimum_size.y=220 if reading else 60
 	progress.text="%d / %d · Enter / Space 下一页" % [view["cursor"]+1,view["total"]] if reading else "战果、入队和周结算各执行一次"
 	previous.visible=reading;previous.disabled=view["cursor"]==0
-	skip.visible=reading;next.visible=not returned
+	skip.visible=reading;next.visible=reading or phase=="post_workroom"
 	next.text="下一页" if reading and view["cursor"]+1<view["total"] else "进入下一周" if phase=="post_story" else "前往职务室" if phase=="new_week_story" else "返回学校"
 	var inventory: Array=view["bundle"]["item_flags"]
 	details.text="教师：%s　学生：%d人　累计战果：%d　已持有道具：%d" % [names.get(101,"老师"),school["student_count"],school["global_total_511c"],inventory.filter(func(v):return (v&1)!=0).size()]
 	roster.visible=returned;assignments.visible=returned
-	for container in [roster,assignments]:
+	for container in [roster,assignments,plans]:
 		for child in container.get_children():
 			container.remove_child(child);child.queue_free()
 	if returned:
@@ -86,8 +100,90 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 		var waiting := _label(17);waiting.text="待命："+", ".join(school["idle_student_ids"].map(func(id):return names.get(id,str(id))))
 		assignments.add_child(waiting)
 		assignments.add_child(_button("移到待命",func():_move(-1,-1,_selected==101)))
-		var note := _label(15);note.text="本段已开放成员查看、编班和存档；下一场冒险及授课结算尚未开放。";assignments.add_child(note)
+		if not view.has("planning"):
+			var button := _button("继续安排本周",func():command.emit({"op":"return_plan"}))
+			button.name="plan_start";plans.add_child(button)
+	if view.has("planning"):_show_plan(view)
 	show()
+
+
+func _show_plan(view: Dictionary) -> void:
+	var phase: String=view["phase"];var bundle: Dictionary=view["bundle"]
+	var plan: Dictionary=view["planning"];var school: Dictionary=bundle["school"]
+	if phase=="course_result":
+		heading.text="5月 · 第1周　｜　授课结算"
+		speaker.text="本周授课已结算"
+		dialogue.text="成长、技能与本周记录已保存。当前停在课后剧情交接，下一周尚未开始。"
+		progress.text="本周不能再次授课或出击；可保存结果，或读取提交前的备份。"
+		var summary: Dictionary=plan["course_summary"]
+		var best := _label(21);best.text="本周最佳：%s　·　新增总战果：%d" % [_names.get(summary["recipient"],""),summary["bonus"]];plans.add_child(best)
+		for row in summary["students"]:
+			var label := _label(18)
+			label.text="%s　%s　Lv.%d → %d\n能力：%s → %s　·　新技能：%d项" % [_names.get(row["character_id"],""),COURSE_NAMES[row["work_id"]],row["before_level"],row["level"],str(row["before_attributes"]),str(row["attributes"]),row["new_skill_ids"].size()]
+			plans.add_child(label)
+		return
+	if phase=="sortie_pending":
+		var handoff: Dictionary=plan["handoff"];var prepared: Dictionary=handoff["prepared"]
+		heading.text="5月 · 第1周　｜　出击交接"
+		speaker.text="冒险%d · 出击交接完成" % prepared["adventure_id"]
+		dialogue.text="出击队伍与本周任务记录已保存。此战场尚未开放操作，将在下一轮接入。"
+		progress.text="未执行战斗、发放奖励或推进日期。"
+		var label := _label(20)
+		label.text="场景%d　｜　带队：%s\n参战：%s\n待命：%s" % [prepared["rounds"][0]["scene_id"],_member_names(prepared["rounds"][0]["teacher_ids"]),_member_names(prepared["rounds"][0]["student_ids"]),_member_names(handoff["idle_student_ids"])]
+		plans.add_child(label)
+		return
+	if phase!="returned_school":return
+	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
+	progress.text="课程与出击准备均可存档；8号、17号可玩战场将在下一轮接入。"
+	for group in range(5):
+		if Groups._word(school["group_raw_bytes"],group*28)<0:continue
+		var row := HBoxContainer.new();plans.add_child(row)
+		var caption := _label(17);caption.text="%d班安排" % (group+1);row.add_child(caption)
+		for teaching in [true,false]:
+			var button := _button("授课" if teaching else "冒险",func():command.emit({"op":"return_mode","group":group,"teaching":teaching}))
+			button.name="mode_%d_%d" % [group,int(teaching)];button.toggle_mode=true
+			button.button_pressed=bool(school["group_raw_bytes"][group*28+3])==teaching;row.add_child(button)
+		var options := OptionButton.new();options.name="courses_%d" % group;options.custom_minimum_size=Vector2(180,40)
+		options.add_item("选择课程",-1)
+		var list := Courses.list_courses(bundle,group)
+		if list["supported"]:
+			for category in list["courses"]:
+				for course in category:
+					options.add_item(COURSE_NAMES.get(course[1],"课程%d" % course[1]),course[1])
+					if Groups._word(school["group_raw_bytes"],group*28+10)==course[1]:options.select(options.item_count-1)
+		options.disabled=school["group_raw_bytes"][group*28+3]!=1
+		options.item_selected.connect(func(index):
+			var id := options.get_item_id(index)
+			if id>0:command.emit({"op":"return_course","group":group,"course":id}))
+		row.add_child(options)
+	var caption := _label(19);caption.text="本周可选冒险";plans.add_child(caption)
+	for adventure in Adventures.available(plan["ledger"]):
+		var id: int=adventure["id"]
+		var label := "守城 · 冒险8" if id==8 else "自由训练 · 冒险17"
+		label+="　剩余%d周" % adventure["remaining"] if adventure["remaining"]>0 else "　无期限"
+		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
+		button.name="adventure_%d" % id;button.toggle_mode=true
+		button.button_pressed=school["lecture_active"]==1 and school["lecture_work_fields"][2]==id;plans.add_child(button)
+	var row := HBoxContainer.new();plans.add_child(row)
+	var settle := _button("确认本周授课",func():_confirm("return_settle","确认后结算本周授课，保留成长、技能与成员记录。本周不能再出击。"))
+	settle.name="settle";row.add_child(settle)
+	var ratings := Groups.rate(school,Courses.Origin.group_rules())
+	settle.disabled=not ratings["supported"] or not ratings["ratings"].any(func(r):return r["state"]==4) or ratings["ratings"].any(func(r):return r["state"] not in [0,4])
+	var depart := _button("确认出击交接",func():_confirm("return_depart","确认后锁定本周出击队伍，更新冒险使用记录。此战场尚未开放操作；可保存交接进度，或读取出击前备份。"))
+	depart.name="depart";row.add_child(depart)
+	var prepared := Adventures.prepare(bundle,plan["ledger"])
+	depart.disabled=not prepared["supported"]
+	var ready := _label(16)
+	ready.text="出击队伍："+_member_names(prepared["prepared"]["rounds"][0]["student_ids"]) if prepared["supported"] else "出击前请选择冒险，并将有学生的教师班设为冒险。"
+	plans.add_child(ready)
+
+
+func _confirm(op: String, message: String) -> void:
+	_pending={"op":op};commit_dialog.dialog_text=message;commit_dialog.popup_centered(Vector2i(520,190))
+
+
+func _member_names(ids: Array) -> String:
+	return "、".join(ids.map(func(id):return _names.get(id,str(id)))) if not ids.is_empty() else "无"
 
 
 func _move(group: int, slot: int, teacher: bool) -> void:

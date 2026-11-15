@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "parent_commit": "c2edbe4ba520b501ae9cb960174598dae558f5ed",
+  "change": "connect-terminal-wait-and-battle-exit",
+  "result": "Godot current 5/1 course settlement and legal adventure departure handoff implemented; no native acceptance claimed",
+  "user_scope": "Legal departure only this turn; playable scene8/17 next turn",
+  "boundaries": {
+    "source_executable_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+    "current_owned_date": [
+      5,
+      1
+    ],
+    "current_complete_adventure_ids": [
+      8,
+      17
+    ],
+    "available_course_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      10,
+      11,
+      12
+    ],
+    "students": [
+      3,
+      4,
+      9,
+      5
+    ],
+    "teacher": 101,
+    "sortie_states_requested": [
+      10,
+      16
+    ],
+    "scene_playable": false,
+    "combat_units_constructed": false,
+    "post_course_ch003_executed": false,
+    "next_week_advanced": false,
+    "old_save_versions_compatible": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "new_save_version": 6,
+    "native_game_launched": false,
+    "desktop_used": false,
+    "screenshots": false,
+    "new_observation_backend": false,
+    "native_route": "STOPPED_SCOPE_GUARD",
+    "native_acceptance": "2/8 unchanged"
+  },
+  "validation": {
+    "godot_full": {
+      "exit": 0,
+      "elapsed": 115.532,
+      "script_errors": 0,
+      "errors": 0,
+      "warnings": 39,
+      "skips": 0,
+      "tests": 487,
+      "result": [
+        "=== 75 suites, 0 failures ==="
+      ]
+    },
+    "godot_focused": {
+      "exit": 0,
+      "elapsed": 46.717,
+      "script_errors": 0,
+      "errors": 0
+    },
+    "original_ledger_tests": {
+      "tests": 3,
+      "failures": 0,
+      "seconds": 0.409,
+      "scope": "Original ledger functions in existing bounded emulator; class rating declared, not whole native lineage"
+    },
+    "courses": {
+      "old_original_cases": 8,
+      "new_original_cases": 5,
+      "scope": "Existing emulator with declared 5/1 sequential local probes, not a valid repeated-week campaign"
+    },
+    "parent_v5": {
+      "exact_export": true,
+      "parent": "c2edbe4ba520b501ae9cb960174598dae558f5ed",
+      "state_sha256": "38e6ac062c037c68b2a40cecd6c7853cebf3356d37805ebadeb55abb5eaf1cdc",
+      "supported": true,
+      "version": 5
+    },
+    "parent_v5_reproduction": "git show parent:prototype/sim/{school_playground,school_postbattle_flow}.gd into local unit; only substitute model preload to old Flow. Restore legacy_v3 cases[1], workroom_open/work_start/work_skip/school_enter, battle_finish with existing recorded trace, post_skip/post_skip/post_school, export old v5 then current restore_text and exact re-export. Fixed parent digest is asserted in test_school_return_planning.",
+    "openspec_strict": true,
+    "independent_review": {
+      "reviewer": "/root/nextweek_courses",
+      "scope": "Read-only source review of adventure ledger/Flow/v6/UI: source order, TTL/reuse, current members, once-only commit, mutual exclusion, v5 shape and no game startup",
+      "blocking_findings": 0,
+      "root_review": "Course growth/confirmation/current-state preservation and integration diffs inspected; final full tests independently executed."
+    },
+    "resolved_development_failures": [
+      "First integrated harness reached passing parent-v5 compatibility then hit three inferred Dictionary declarations in test_school_return_adventures; test declarations fixed, all 13 focused and 487 full tests passed. Failed own process explicitly stopped at 108.198 seconds.",
+      "Course probe collector list alias fixed and original outputs recaptured; no formula/source changes. See course documentation."
+    ]
+  },
+  "git_source_manifest_excluding_this_report": [
+    {
+      "path": ".gitattributes",
+      "bytes": 73708,
+      "sha256": "ffae07382ee057ff65aa381ed731598b9466343f392bbfb0b53520432fdc5f5d"
+    },
+    {
+      "path": "docs/reverse-iteration.md",
+      "bytes": 32854,
+      "sha256": "3ee4485d10722f2948efe0e5b0c2a01dd5a479e6f7f692e23b0ce4ee440b9fc1"
+    },
+    {
+      "path": "docs/school_postbattle_return.md",
+      "bytes": 6844,
+      "sha256": "f1ef5e5c93c0692567838aad320dc197be0da19250fe04c54d5e426218969a62"
+    },
+    {
+      "path": "docs/school_return_adventures.md",
+      "bytes": 4261,
+      "sha256": "409fa65dfa1eb4ada71d923c17304f72b93c62dff369ff4186c4bbc916abdd74"
+    },
+    {
+      "path": "docs/school_return_courses.md",
+      "bytes": 6757,
+      "sha256": "d2b1e1f3deafa06d914ffcb14748e2cc5e329e89788a3a42e5dac21fcf1a0256"
+    },
+    {
+      "path": "openspec/changes/connect-terminal-wait-and-battle-exit/design.md",
+      "bytes": 7450,
+      "sha256": "efdb80d712231f88b8fa6af9658f1f9dd1efad36b6b5f8cf6f7aebc0d071ca70"
+    },
+    {
+      "path": "openspec/changes/connect-terminal-wait-and-battle-exit/proposal.md",
+      "bytes": 2592,
+      "sha256": "a1f6fe6f9703fd111218760e2e6ddd400631af06e1a42b4c82ee7edca943db65"
+    },
+    {
+      "path": "openspec/changes/connect-terminal-wait-and-battle-exit/tasks.md",
+      "bytes": 51788,
+      "sha256": "028710df638cd4d233c8086d0f1d73f5edba65f99f2706783ee4ee6e1289f4a1"
+    },
+    {
+      "path": "prototype/data/school_return_adventures.json",
+      "bytes": 33814,
+      "sha256": "8ab8d1183a0a1594bfde53b508b1f1aa8974c9cd5788546abee7b9904760d0cb"
+    },
+    {
+      "path": "prototype/data/school_return_courses_source.json",
+      "bytes": 14066,
+      "sha256": "6a390c7edb26a87c504cb3d27ee72d823be48264c332aea1457bb4876f6fa595"
+    },
+    {
+      "path": "prototype/sim/school_playground.gd",
+      "bytes": 32058,
+      "sha256": "ed4cdec7ba48cc53ec12f30e48e8782d29a32bc4719251f674dc7816c2a33ece"
+    },
+    {
+      "path": "prototype/sim/school_postbattle_flow.gd",
+      "bytes": 6149,
+      "sha256": "9e4e1a459a4dd979d0e51e550b2f89925a513b79556385f74af28d32e9259e2e"
+    },
+    {
+      "path": "prototype/sim/school_return_adventures.gd",
+      "bytes": 6266,
+      "sha256": "49c370f60f87c915ad1ca475cf84769a9e11241e8852ef97c61ecd8374bc409a"
+    },
+    {
+      "path": "prototype/sim/school_return_courses.gd",
+      "bytes": 14130,
+      "sha256": "5fdb07aca72c770c86f2f6e5f303b53d7ece5e73126d5eeac93d3d640fde3572"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_return_adventures.gd",
+      "bytes": 4049,
+      "sha256": "aa1163d637d86d1c189d1e1607966947ac05e9bab4d109d65dc680b6ec493a0a"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_return_courses.gd",
+      "bytes": 9894,
+      "sha256": "eac4d138e5404ecf91bee5ca2296b235d202c556346d442001fab694d5d26ab7"
+    },
+    {
+      "path": "prototype/sim/tests/test_school_return_planning.gd",
+      "bytes": 5114,
+      "sha256": "43e511d15261f35892dd0b980cfabe471ba3d7d02174ee9e2b3234a3f0cb242e"
+    },
+    {
+      "path": "prototype/ui/school_postbattle_panel.gd",
+      "bytes": 13373,
+      "sha256": "d583236b350179306b53f5ef39625c63f5948de1df2c784899b1506b646a9297"
+    },
+    {
+      "path": "tools/school_return_adventures_catalog.py",
+      "bytes": 2321,
+      "sha256": "93f831cbb98ae6d8e7c36b8ea4e063af94404b96e8aad07d6a77249bba199255"
+    },
+    {
+      "path": "tools/tests/test_school_return_adventures.py",
+      "bytes": 4131,
+      "sha256": "e2d8d2c2f881a2e421a019a4e631d222f56203abab0a9fceeeb39a0df6120670"
+    }
+  ],
+  "local_evidence": {
+    "retained_files": [
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/focused-result.json",
+        "bytes": 63,
+        "sha256": "1d6d01e77704f432d6e9e849858391d7d223e7461c068c22b49981f3ffc66fed"
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/focused-v2.gd",
+        "bytes": 408,
+        "sha256": "113bb0a55ba69693ff5ec11d7c37e5f10e0d16d4cfb71fecbe5564572b45fd5c"
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/focused-v2.log",
+        "bytes": 251,
+        "sha256": "2976ad8cabf305e4c15dc3f436be411a5e64732f171705f46b8cf99494bb8dab"
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/full-result.json",
+        "bytes": 190,
+        "sha256": "e75ff8e4f3a714cfe4697fb9e654f37db400451d7a11a62e600e1c8e8ed8c5d1"
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/full.log.gz",
+        "bytes": 1681,
+        "sha256": "0f8b5d0ff69367180b5c702018df8fb61b15adcb6c272b795d26fdbeae69a444"
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/openspec.log",
+        "bytes": 179,
+        "sha256": "e9e414728cea58587346d686744c71e1dd77f289c79485e99ea06872add6239b"
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/source-ledger.log",
+        "bytes": 505,
+        "sha256": "67fdcb7b357749fa05bba1433c9b839ff30ac265ce344b6d3c91e9d4de775d41"
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/v5-compatibility.json",
+        "bytes": 206,
+        "sha256": "a76b80e50901362db9b1a79c7d3a8dc297f55aa3f90d2800fe6ebaa04a705f18"
+      },
+      {
+        "path": ".venv-audit/return-courses-check/result.log",
+        "bytes": 129,
+        "sha256": "bca07abc8598abcf22535bc5712ae95f7f1da17d14d7bd43ca550d7575442ebf"
+      },
+      {
+        "path": ".venv-audit/return-courses-check/runner.gd",
+        "bytes": 185,
+        "sha256": "19a3dc089f48042a9502075d564e8757139f632f366c5bf2ad696c0f90a326d6"
+      },
+      {
+        "path": ".venv-audit/return_courses_source_probe.py",
+        "bytes": 1787,
+        "sha256": "e7ec2050f05b508b63b62cb462437e84549d479036b4d360b46e0f9827d0feb0"
+      }
+    ],
+    "retained_bytes": 5584,
+    "backups_created": 0,
+    "retired_current_unit_files": [
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/focused.gd",
+        "bytes": 1750,
+        "sha256": "e2d40fa0267ac27d7b882dab1d5a15b4ea26bcdb6add02bc6ba49fe3b9dd4ec7",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/focused.log",
+        "bytes": 1916,
+        "sha256": "0aa0a84f2c59d6a202d31d078e9a0972a7a0fed7f369018538e72de8846e0a7a",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/godot-focused.log",
+        "bytes": 1893,
+        "sha256": "809500f2402e6c5e8ded23a62793a8bc75375f43a7a558f144d2c5c0757fd16a",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/godot-focused-v2.log",
+        "bytes": 245,
+        "sha256": "9f485e91e7392623fbf94bee6112f05e6e7afdc349631d844461ad9011db2299",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/godot-full.log",
+        "bytes": 31566,
+        "sha256": "8bf55801b004dbf62945250ce412292ae1f80f482163d3cf4733d6a7299cfec7",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/school_playground.gd",
+        "bytes": 31089,
+        "sha256": "5c86b5bacefe39a679dda74447872a0c23364c3320ac92b2cba59e6da21f7b59",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/school_postbattle_flow.gd",
+        "bytes": 4244,
+        "sha256": "b14ac5faa0934d237a67fb0e60b1df7c92f4d513b116ed3a7b10517bb8473466",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      },
+      {
+        "path": ".venv-audit/godot-return-planning-20261115/full.log",
+        "bytes": 31983,
+        "sha256": "f37b660b15fe65b8b0d273913c14387dd7acb03183ee342e6fe96bcc0ebd850f",
+        "reason": "Resolved test parse failure, duplicate log, or reproducible parent checkout; final success retained."
+      }
+    ],
+    "retired_current_unit_bytes": 104686,
+    "agent_cleanup": "Six own obsolete drafts/duplicate logs removed; final local course probe + runner + successful log retained, 2101 bytes.",
+    "historical_evidence_deleted": false,
+    "full_log_storage": "One gzip success log; decompression exactly compared before deleting raw/duplicate logs"
+  },
+  "storage": {
+    "generated_git_source_json_bytes": 47880,
+    "generated_evidence_all_local_bytes_including_this_report_and_git_data": 66337,
+    "report_bytes": 12873,
+    "budget_bytes": 268435456
+  },
+  "authorizes_native_acceptance": false
+}
