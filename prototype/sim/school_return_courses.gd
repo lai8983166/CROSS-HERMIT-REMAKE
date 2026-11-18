@@ -1,5 +1,5 @@
 extends RefCounted
-## Current returned 5/1 roster adapter. Original 4/4 fixture gates stay intact.
+## Current returned 5/1 and 5/2 roster adapter. Original 4/4 fixture gates stay intact.
 ## Pure commands; the owning replay commits one result and advances the story/week.
 const Origin := preload("res://sim/new_game_school_origin.gd")
 const Return := preload("res://sim/school_postbattle_return.gd")
@@ -76,6 +76,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	if not Courses._integer(seed,0,0x7fffffff): return Origin.failure("invalid_declared_clock_seed")
 	var reason := _guard(before,rules,true)
 	if not reason.is_empty(): return Origin.failure(reason)
+	if before["school"]["week"]!=1: return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -199,7 +200,7 @@ static func _grow(records: Array, plan: Array, rules: Dictionary, difficulty: in
 	return {"records":after,"packets":packets,"learning_draws":draws,"rand_state":state,"bonus":bonus,"skill_display_needed":skill_display}
 
 
-static func _confirm(after: Dictionary, classes: Array, categories: Array) -> Dictionary:
+static func _confirm(after: Dictionary, classes: Array, categories: Array, activity := 1) -> Dictionary:
 	var assigned := []
 	for item in classes: assigned.append_array(item["students"])
 	var waiting := IDS.filter(func(id):return id not in assigned)
@@ -212,7 +213,7 @@ static func _confirm(after: Dictionary, classes: Array, categories: Array) -> Di
 		row["week_records"][history_index*3]=3
 		for item in classes:
 			if row["character_id"] in item["students"]:
-				row["week_records"][history_index*3]=1
+				row["week_records"][history_index*3]=activity
 				row["week_records"][history_index*3+1]=item["work_fields"][0]&255
 				row["week_records"][history_index*3+2]=item["work_fields"][1]&255
 		for k in range(5):
@@ -239,16 +240,20 @@ static func _confirm(after: Dictionary, classes: Array, categories: Array) -> Di
 		for a in item["students"]:
 			calls.append({"from":a,"to":item["teacher"],"delta":1})
 			calls.append({"from":item["teacher"],"to":a,"delta":1})
+	_apply_relationships(after, calls)
+	return {"relationship_calls":calls}
+
+
+static func _apply_relationships(after: Dictionary, calls: Array) -> void:
 	for call in calls:
 		for row in after["school"]["relationships"]:
 			if row["from"]==call["from"] and row["to"]==call["to"]:
 				row["value"]=clampi(row["value"]+call["delta"],1,100)
-	return {"relationship_calls":calls}
 
 
 static func _guard(before: Dictionary, rules: Dictionary, allow_completed := false) -> String:
 	if rules.is_empty(): return "invalid_return_course_sources"
-	var reason := Return._validate(before,IDS,5,1,rules)
+	var reason := Return.validate_planning_roster(before,rules)
 	if not reason.is_empty(): return reason
 	if before.get("phase")!="school_returned" and not (allow_completed and before.get("phase")=="courses_confirmed"):
 		return "return_course_requires_current_school"

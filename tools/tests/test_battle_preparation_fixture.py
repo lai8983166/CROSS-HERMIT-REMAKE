@@ -28,6 +28,21 @@ class PreparationFixtureTests(unittest.TestCase):
         self.assertEqual(rules['growth_limit'], 8500000)
         self.assertEqual([c['rate_class'] for c in data['cases'][0]['inputs']['characters']], [5, 3, 4])
 
+    def test_sortie_8_17_task_specific_reward_tables_match_original(self):
+        catalogs = json.loads((ROOT / 'prototype/data/school_sortie_reward_rules.json').read_bytes())
+        image = SOURCE.read_bytes()
+        for task_id in (8, 17):
+            def values(va, count, fmt='h'):
+                return list(struct.unpack_from('<' + fmt * count, image, va + 256 * task_id - 0x400000))
+
+            self.assertEqual(catalogs[str(task_id)], {
+                'task_id': task_id, 'base_points': values(0x73BEF4, 5, 'i'),
+                'unit_bonus': values(0x73BF08, 1)[0], 'time_bonuses': values(0x73BF0A, 3),
+                'count_bonuses': values(0x73BF10, 6),
+                'loot_quotas': [values(0x73BF1A + 14 * grade, 7) for grade in range(5)],
+                'fixed_items': values(0x73BF60, 8),
+                'objective_rewards': [values(0x73BF70 + 6 * slot, 3) for slot in range(16)]})
+
     def test_native_expectations_include_cap_probe_and_no_authority(self):
         native = json.loads(REPORT.read_bytes())
         for case, original in zip(fixture()['cases'], native['cases']):

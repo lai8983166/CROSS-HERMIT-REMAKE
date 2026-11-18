@@ -1,6 +1,6 @@
 class_name TacticsScorePreparation
 extends RefCounted
-## Isolated task5/mode0 score preparation; produces staged packages only.
+## Source mode0 score preparation; produces staged packages only.
 ## Source rules and native expectation are exported separately from original EXE.
 
 
@@ -18,16 +18,16 @@ static func calculate(inputs: Dictionary, rules: Dictionary) -> Dictionary:
 	for key in ["task_id", "mode", "cap_mode", "result_selector", "time_key", "unit_key", "initial_grade", "initial_total"]:
 		if not _integer(inputs[key]):
 			return _unsupported("invalid_" + key)
-	if int(inputs["task_id"]) != 5 or int(inputs["mode"]) != 0 or int(inputs["cap_mode"]) != 0:
-		return _unsupported("outside_task5_mode0_cap100")
+	if int(inputs["task_id"]) != int(rules["task_id"]) or int(inputs["mode"]) != 0 or int(inputs["cap_mode"]) != 0:
+		return _unsupported("outside_task_mode0_cap100")
 	var selector := int(inputs["result_selector"])
 	var time_key := int(inputs["time_key"])
 	var unit_key := int(inputs["unit_key"])
 	if selector < 1 or selector > 5 or time_key < 0 or time_key > 3 or unit_key < 1 or unit_key > 2:
 		return _unsupported("outside_audited_result_keys")
 	var units: Variant = inputs["characters"]
-	if not units is Array or units.is_empty() or units.size() > 3:
-		return _unsupported("outside_one_to_three_unit_subset")
+	if not units is Array or units.is_empty() or units.size() > (3 if int(inputs["task_id"]) == 5 else 4):
+		return _unsupported("outside_current_party_size")
 	var seen := {}
 	var contribution_sum := 0
 	var status_sum := 0
@@ -46,7 +46,7 @@ static func calculate(inputs: Dictionary, rules: Dictionary) -> Dictionary:
 			return _unsupported("missing_or_duplicate_character_id")
 		seen[character] = true
 		if int(unit["rate_class"]) > 5 or int(unit["group_bonus"]) > 1000 \
-				or int(unit["contribution_field_ac"]) > 1000 or int(unit["count_field_aa"]) > 1000 \
+				or int(unit["contribution_field_ac"]) > 32767 or int(unit["count_field_aa"]) > 32767 \
 				or int(unit["status_field_ae"]) > 127 or int(unit["skill_points"]) > 8500000:
 			return _unsupported("outside_audit_unit_bounds")
 		if not unit["growth_pools"] is Array or unit["growth_pools"].size() != 7:
@@ -59,6 +59,8 @@ static func calculate(inputs: Dictionary, rules: Dictionary) -> Dictionary:
 	if int(inputs["initial_total"]) < 0 or int(inputs["initial_total"]) > 999999999 \
 			or int(inputs["initial_grade"]) < 1 or int(inputs["initial_grade"]) > 5:
 		return _unsupported("invalid_initial_grade_or_total")
+	# 4BBD40 accumulates AC in a signed short before clamping the denominator.
+	contribution_sum = maxi(((contribution_sum + 32768) & 65535) - 32768, 0)
 	var grade_index := selector - 1
 	var time_display := 3 if time_key == 0 or grade_index > 2 else time_key - 1
 	if rules["time_bonuses"].all(func(value): return int(value) == 0):
@@ -87,6 +89,7 @@ static func calculate(inputs: Dictionary, rules: Dictionary) -> Dictionary:
 	var overflow_compensation := 0
 	for unit in units:
 		var ratio := 0 if contribution_sum == 0 else _div(int(unit["contribution_field_ac"]) * 100, contribution_sum)
+		ratio = ((ratio + 32768) & 65535) - 32768
 		var rate_index := 0
 		while rate_index < 10 and int(rules["contribution_thresholds"][rate_index]) - 1 < ratio:
 			rate_index += 1
@@ -137,7 +140,7 @@ static func _integer(value: Variant) -> bool:
 
 
 static func _rules_valid(rules: Dictionary) -> bool:
-	if not _integer(rules["task_id"]) or int(rules["task_id"]) != 5 \
+	if not _integer(rules["task_id"]) or int(rules["task_id"]) not in [5,8,17] \
 			or not _integer(rules["unit_bonus"]) or int(rules["unit_bonus"]) < 0 \
 			or int(rules["unit_bonus"]) > 1000 or not _integer(rules["growth_limit"]) \
 			or int(rules["growth_limit"]) != 8500000:
