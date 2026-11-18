@@ -1,5 +1,6 @@
 extends "res://sim/school_combat_session.gd"
 ## Source scenes and predicates on the existing explicit remake combat scheduler.
+const AttackPaths := preload("res://sim/school_sortie_paths.gd")
 const PlayerUnits := preload("res://sim/school_sortie_units.gd")
 const SOURCE_PATH := "res://assets/school_sorties/catalog.json"
 const SOURCE_SHA := "d272b6ad0da5a0da30676b8ae6ca4273dc045794b6470af419c7f44a14c4d376"
@@ -13,6 +14,7 @@ var timers: Array = []
 var ambushed: Array = []
 var spawn_points: Array = []
 var ending_sub := -1
+var attack_paths: AttackPaths
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
@@ -73,6 +75,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	close()
 	scene_id=sid;field_width=width;field_height=height;catalog=next_catalog
 	catalog["skins"]=source["skins"];combat_rules=source["attack_rules"]
+	attack_paths=AttackPaths.new(width,height,catalog["passability"])
 	units=candidates;departure=handoff.duplicate(true);_participant_ids=ids.duplicate()
 	for actor in catalog["actors"]:
 		reserves[actor["instance_id"]]=actor.duplicate(true)
@@ -97,6 +100,10 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 		for at in [36000,39600,43200,46800]:timers.append({"at":at,"repeat":true})
 		for row in [[10800,5,5],[21600,4,7],[25200,3,10]]:timers.append({"at":row[0],"group":row[1],"ai_parameter":row[2]})
 	return true
+
+
+func _attack_path(unit: Dictionary, target: Dictionary) -> Array[Vector2i]:
+	return attack_paths.route(unit["cell"],target["cell"],unit["combat"]["attack_range"],unit["movement_type"],units)
 
 
 func _actor_unit(actor: Dictionary, cell: Vector2i) -> Dictionary:
@@ -305,4 +312,4 @@ func ending_snapshot() -> Dictionary:
 
 
 func close() -> void:
-	super.close();scene_id=0;elapsed=0;departure.clear();scene_scripts.clear();timers.clear();ambushed.clear();spawn_points.clear();ending_sub=-1
+	super.close();attack_paths=null;scene_id=0;elapsed=0;departure.clear();scene_scripts.clear();timers.clear();ambushed.clear();spawn_points.clear();ending_sub=-1
