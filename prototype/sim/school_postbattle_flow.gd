@@ -3,6 +3,9 @@ const Return := preload("res://sim/school_postbattle_return.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
 const Adventures := preload("res://sim/school_return_adventures.gd")
 const Courses := preload("res://sim/school_return_courses.gd")
+const SortieRecord := preload("res://sim/school_sortie_record.gd")
+const SortieSettlement := preload("res://sim/school_sortie_settlement.gd")
+const SortieWeek := preload("res://sim/school_sortie_week.gd")
 const PLAN_OPS := ["return_plan","return_mode","return_course","return_select","return_settle","return_depart"]
 const STORY_PATH := "res://data/school_postbattle_story.json"
 const STORY_SHA := "7810a795b702e90cd439e3916e03ecaf824646c9f09db93c5ba6e1c7a5be1aaf"
@@ -44,8 +47,33 @@ func begin(context: Dictionary, receipt: Dictionary, participants: Array, flags:
 	return {"supported":true}
 
 
+func finish_sortie(trace: Dictionary) -> Dictionary:
+	if phase!="sortie_pending": return _failure("sortie_not_pending")
+	var replayed := SortieRecord.replay(planning["handoff"],trace)
+	if not replayed["supported"]: return replayed
+	var settled := SortieSettlement.apply(bundle,planning["handoff"],replayed["facts"])
+	if not settled["supported"]: return settled
+	var story := SortieWeek.story()
+	if not story["supported"]: return story
+	bundle=settled["after"]
+	planning.erase("handoff")
+	planning["sortie_summary"]=settled["summary"]
+	_post_pages=story["pre_week"]
+	_week_pages=story["week_start"]
+	pages=_post_pages
+	cursor=0
+	phase="sortie_result"
+	revision+=1
+	return {"supported":true}
+
+
 func execute(command: Dictionary) -> Dictionary:
 	var op: String = command["op"]
+	if op=="sortie_finish": return finish_sortie(command["trace"])
+	if phase=="sortie_result" and op=="post_next":
+		phase="post_story"
+		revision+=1
+		return {"supported":true}
 	if op in PLAN_OPS:return _plan(command)
 	if op=="return_move":
 		if phase!="returned_school": return _failure("school_not_returned")
@@ -57,8 +85,9 @@ func execute(command: Dictionary) -> Dictionary:
 	if op=="post_school":
 		if phase=="returned_school": return {"supported":true,"status":"duplicate"}
 		if phase!="post_workroom": return _failure("workroom_not_reached")
-		var returned := Return.school_return(bundle)
+		var returned := SortieWeek.school_return(bundle,planning["ledger"]) if planning.has("sortie_summary") else Return.school_return(bundle)
 		if not returned["supported"]: return returned
+		if returned.has("ledger_after"): planning["ledger"]=returned["ledger_after"]
 		bundle=returned["after"];phase="returned_school";revision+=1;return {"supported":true}
 	if op not in ["post_next","post_prev","post_skip"] or phase not in ["post_story","new_week_story"]:
 		return _failure("postbattle_story_not_active")
@@ -68,13 +97,18 @@ func execute(command: Dictionary) -> Dictionary:
 	var next := pages.size() if op=="post_skip" else cursor+1
 	if next==pages.size():
 		if phase=="post_story":
-			var week := Return.next_week(bundle)
+			var week := SortieWeek.next_week(bundle) if planning.has("sortie_summary") else Return.next_week(bundle)
 			if not week["supported"]: return week
 			bundle=week["after"];pages=_week_pages;phase="new_week_story";cursor=0
 		else:
-			# Chapter208 op151 [9,1], op91 [8,2], then END to workroom8.
-			bundle["flags"]["0x7a55f6"]=9;bundle["flags"]["0x7e11a0"]=1
-			bundle["adv_background"]=8
+			if planning.has("sortie_summary"):
+				var finished := SortieWeek.finish_story(bundle)
+				if not finished["supported"]: return finished
+				bundle=finished["after"]
+			else:
+				# Chapter208 op151 [9,1], op91 [8,2], then END to workroom8.
+				bundle["flags"]["0x7a55f6"]=9;bundle["flags"]["0x7e11a0"]=1
+				bundle["adv_background"]=8
 			phase="post_workroom";cursor=next
 	else: cursor=next
 	revision+=1

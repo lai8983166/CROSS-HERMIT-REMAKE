@@ -4,6 +4,7 @@ const Combat := preload("res://sim/school_combat_session.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
 const MAX_TICKS := 54064
 const MAX_COMMANDS := 4096
+const MAX_SORTIE_TICKS := 216000
 static var _cache: Dictionary = {}
 
 
@@ -65,7 +66,7 @@ static func _advance(session: Combat, target: int) -> bool:
 
 static func valid_trace(trace: Variant, sortie := false) -> bool:
 	if not trace is Dictionary or trace.size()!=4 or trace.get("version")!=1 or trace.get("overflow")!=false \
-			or not Roles._bounded(trace.get("ticks"),0,216000 if sortie else MAX_TICKS) or not trace.get("commands") is Array \
+			or not Roles._bounded(trace.get("ticks"),0,MAX_SORTIE_TICKS if sortie else MAX_TICKS) or not trace.get("commands") is Array \
 			or trace["commands"].size()>MAX_COMMANDS: return false
 	var previous := 0
 	for row in trace["commands"]:

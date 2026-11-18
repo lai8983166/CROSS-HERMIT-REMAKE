@@ -29,6 +29,15 @@ const STORY_LF_SHA := "e6d0c109295145c419a20f30d093c2bcb795ef010919f32f659419e8a
 const LEGACY_STORY_CRLF_SHA := "fb7a98f8bdf021f601a4001cc0b69efc021002f7e037cb4fb7b2faeef09430bf"
 const SCHOOL_OPS := ["move","mode","course","grow","confirm","complete"]
 const SAVE_PATH := "user://school_playground.json"
+const SAVE_CONTEXTS := {
+	1:"school_playground_4_4",
+	2:"school_playground_story_4_4",
+	3:"school_playground_fifth_4_5",
+	4:"school_playground_fifth_planning_4_5",
+	5:"school_playground_return_5_1",
+	6:"school_playground_return_plan_5_1",
+	7:"school_playground_sortie_week"
+}
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
 const POST_MAX_BYTES := 1048576
@@ -163,7 +172,7 @@ func execute(command: Variant) -> Dictionary:
 		return _failure("invalid_command")
 	if _commands.size() >= (MAX_COMMANDS if _postbattle==null else POST_MAX_COMMANDS):
 		return _failure("save_command_limit")
-	if _postbattle!=null and command["op"] not in ["post_next","post_prev","post_skip","post_school","return_move"]+Postbattle.PLAN_OPS:
+	if _postbattle!=null and command["op"] not in ["sortie_finish","post_next","post_prev","post_skip","post_school","return_move"]+Postbattle.PLAN_OPS:
 		return _failure("postbattle_locks_departure")
 	if _story_cursor >= 0 and command["op"] in SCHOOL_OPS:
 		return _failure("story_locks_school")
@@ -185,7 +194,7 @@ func _dispatch(command: Dictionary) -> Dictionary:
 			var begun := next.begin(context,replayed["receipt"],_school_entry["after"]["participants"],_school_entry["after"]["flags"])
 			if not begun["supported"]: return begun
 			_postbattle=next;return {"supported":true,"status":"battle_committed_once"}
-		"post_next","post_prev","post_skip","post_school","return_move",\
+		"sortie_finish","post_next","post_prev","post_skip","post_school","return_move",\
 		"return_plan","return_mode","return_course","return_select","return_settle","return_depart":
 			return _failure("postbattle_not_started") if _postbattle==null else _postbattle.execute(command)
 		"move":
@@ -253,6 +262,9 @@ static func _valid_command(command: Dictionary) -> bool:
 			keys = ["op"]
 		"post_next","post_prev","post_skip","post_school","return_plan","return_settle","return_depart":
 			keys=["op"]
+		"sortie_finish":
+			keys=["op","trace"]
+			if not BattleRecord.valid_trace(command.get("trace"),true): return false
 		"battle_finish":
 			keys=["op","trace"]
 			if not BattleRecord.valid_trace(command.get("trace")): return false
@@ -597,11 +609,16 @@ func export_save() -> Dictionary:
 	if session == null:
 		return {}
 	var plan: bool=_postbattle!=null and not _postbattle.planning.is_empty()
-	return {"version":4 if _postbattle==null else 6 if plan else 5,"context":"school_playground_fifth_planning_4_5" if _postbattle==null else "school_playground_return_plan_5_1" if plan else "school_playground_return_5_1","rules":_save_fingerprints(_postbattle!=null,plan),
+	var sortie: bool=plan and _postbattle.planning.has("sortie_summary")
+	var version := 4
+	if sortie: version=7
+	elif plan: version=6
+	elif _postbattle!=null: version=5
+	return {"version":version,"context":SAVE_CONTEXTS[version],"rules":_save_fingerprints(_postbattle!=null,plan,sortie),
 		"commands":_commands.duplicate(true),"state_sha256":JSON.stringify(state(),"",true).sha256_text()}
 
 
-func _save_fingerprints(post: bool, plan := false) -> Dictionary:
+func _save_fingerprints(post: bool, plan := false, sortie := false) -> Dictionary:
 	var result := _fingerprints.duplicate(true)
 	if post:
 		result["postbattle_story"]=Postbattle.STORY_SHA
@@ -610,6 +627,11 @@ func _save_fingerprints(post: bool, plan := false) -> Dictionary:
 	if plan:
 		result["return_adventures"]=Postbattle.Adventures.SHA
 		result["return_courses"]="1"
+	if sortie:
+		result["sortie_week"]=Postbattle.SortieWeek.SHA
+		result["sortie_rewards"]=Postbattle.SortieSettlement.TASK_SHA
+		result["sortie_units"]=Postbattle.SortieRecord.Sortie.SOURCE_SHA
+		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	return result
 
 
@@ -624,10 +646,9 @@ func restore(payload: Variant) -> Dictionary:
 	var legacy: bool = payload["version"] == 1
 	var version2: bool = payload["version"] == 2
 	var version3: bool = payload["version"] == 3
-	var contexts := {1:"school_playground_4_4",2:"school_playground_story_4_4",3:"school_playground_fifth_4_5",4:"school_playground_fifth_planning_4_5",5:"school_playground_return_5_1",6:"school_playground_return_plan_5_1"}
-	if not _integer(payload["version"],1,6) or payload["context"] != contexts[payload["version"]]:
+	if not _integer(payload["version"],1,7) or payload["context"] != SAVE_CONTEXTS[payload["version"]]:
 		return _failure("unsupported_save_version")
-	var fingerprints: Dictionary = _save_fingerprints(payload["version"]>=5,payload["version"]==6)
+	var fingerprints: Dictionary = _save_fingerprints(payload["version"]>=5,payload["version"]>=6,payload["version"]==7)
 	if legacy or version2 or version3:
 		fingerprints = {}
 		for key in LEGACY_KEYS if legacy else VERSION2_KEYS if version2 else VERSION3_KEYS:
@@ -647,6 +668,8 @@ func restore(payload: Variant) -> Dictionary:
 	if not begun["supported"]:
 		return begun
 	for command in payload["commands"]:
+		if payload["version"]<7 and command is Dictionary and command.get("op")=="sortie_finish":
+			return _failure("save_command_rejected")
 		if payload["version"]<6 and command is Dictionary and command.get("op") in Postbattle.PLAN_OPS:
 			return _failure("save_command_rejected")
 		if payload["version"]<5 and command is Dictionary and command.get("op") in ["battle_finish","post_next","post_prev","post_skip","post_school","return_move"]:
@@ -660,7 +683,8 @@ func restore(payload: Variant) -> Dictionary:
 		if not result["supported"] or candidate.revision() == previous:
 			return _failure("save_command_rejected")
 	if payload["version"]>=5 and candidate._postbattle==null: return _failure("save_missing_battle")
-	if payload["version"]==6 and candidate._postbattle.planning.is_empty():return _failure("save_missing_return_plan")
+	if payload["version"]==7 and not candidate._postbattle.planning.has("sortie_summary"): return _failure("save_missing_sortie_result")
+	if payload["version"]>=6 and candidate._postbattle.planning.is_empty():return _failure("save_missing_return_plan")
 	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate._version2_state() if version2 else candidate._version3_state() if version3 else candidate._version4_state() if payload["version"]==4 else candidate.state()
 	if JSON.stringify(candidate_state,"",true).sha256_text() != payload["state_sha256"]:
 		return _failure("save_state_mismatch")
@@ -685,7 +709,7 @@ func restore_text(content: String) -> Dictionary:
 	var json := JSON.new()
 	if json.parse(content) != OK:
 		return _failure("invalid_save_json")
-	if json.data is Dictionary and json.data.get("version") not in [5,6] and content.to_utf8_buffer().size()>MAX_BYTES:
+	if json.data is Dictionary and json.data.get("version") not in [5,6,7] and content.to_utf8_buffer().size()>MAX_BYTES:
 		return _failure("save_too_large")
 	return restore(Roles._integers(json.data))
 

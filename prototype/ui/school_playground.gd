@@ -248,6 +248,11 @@ func _ready() -> void:
 	sortie_trial=load("res://ui/school_sortie_trial.gd").new();add_child(sortie_trial)
 	postbattle_panel.sortie_requested.connect(_open_sortie)
 	sortie_trial.closed.connect(refresh)
+	sortie_trial.result_confirmed.connect(func(trace):
+		if _act({"op":"sortie_finish","trace":trace}):
+			sortie_trial._leave()
+		else:
+			sortie_trial.help_label.text="战斗记录未能通过结算校验。当前出击存档已保留。")
 	combat_trial.result_handoff.connect(_accept_battle_handoff)
 	combat_trial.closed.connect(func():
 		page = "adventure"

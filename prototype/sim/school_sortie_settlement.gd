@@ -24,7 +24,11 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary) ->
 	var round_data: Dictionary = prepared["rounds"][0]
 	var ids: Array = round_data["student_ids"]
 	var slots: Variant = facts.get("objective_slots")
-	if facts.get("scene_id") != scene_id or facts.get("time_key") != 0 			or not Roles._vector(slots,16,0,1) or slots.slice(2 if scene_id == 8 else 3).has(1) 			or not Roles._bounded(facts.get("clock_seed"),0,0x7fffffff) 			or not Roles._bounded(facts.get("growth_seed"),0,0x7fffffff) 			or not facts.get("units") is Array or facts["units"].size() != ids.size():
+	if (facts.get("scene_id") != scene_id or facts.get("time_key") != 0
+			or not Roles._vector(slots,16,0,1) or slots.slice(2 if scene_id == 8 else 3).has(1)
+			or not Roles._bounded(facts.get("clock_seed"),0,0x7fffffff)
+			or not Roles._bounded(facts.get("growth_seed"),0,0x7fffffff)
+			or not facts.get("units") is Array or facts["units"].size() != ids.size()):
 		return Origin.failure("invalid_sortie_result_facts")
 	var rules := _rules(scene_id)
 	if rules.is_empty(): return Origin.failure("invalid_sortie_result_rules")

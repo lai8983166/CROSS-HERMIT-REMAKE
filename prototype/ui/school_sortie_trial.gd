@@ -1,11 +1,13 @@
 extends "res://ui/school_field_trial.gd"
 const Sortie := preload("res://sim/school_sortie_session.gd")
+const Record := preload("res://sim/school_battle_record.gd")
 const CombatView := preload("res://ui/school_combat_trial.gd")
 var text_panel: PanelContainer
 var text_label: Label
 var continue_button: Button
 var targets: OptionButton
 var _finished := false
+signal result_confirmed(trace: Dictionary)
 
 
 func _new_session():return Sortie.new()
@@ -70,17 +72,29 @@ func _refresh() -> void:
 			for row in page:lines.append(row["text"])
 		text_label.text="\n".join(lines) if not lines.is_empty() else "本次战斗已结束。"
 		text_label.text+="\n\n任务评价：%s　·　击倒敌人：%d" % [str(ending["summary"]["terminal_choice"].get("tactical_result_selector","中止")),ending["summary"]["defeated_enemies"]]
-		continue_button.text="返回出击记录"
+		continue_button.text="确认战果" if session.ending_sub>=0 else "返回出击记录"
 	status.text="已进行 %02d:%02d　·　可行动 %d/%d　·　敌方 %d" % [session.elapsed/3600,(session.elapsed/60)%60,session.controlled_units().filter(func(u):return u["limits"]["hp"]>0).size(),session.controlled_units().size(),session.enemies().size()]
 	help_label.text="左键选人 · 右键移动/攻击 · 中键拖图 · 空格暂停 · S停止\n"+("坚守30分钟，保护3处己方基地；靠近基地可占领。" if session.scene_id==8 else "训练后前往东北撤离区；15分钟前撤离获得最低评价。塔、泉与宝箱靠近占领，障碍右键攻击。")
-	if phase=="summary":help_label.text="本次结果保留在结果页；新战果结算与战后周推进尚未接入。返回后可从已保存的出击队伍重新开始。"
+	if phase=="summary":
+		help_label.text="确认后保存奖励和成长，继续战后剧情。" if session.ending_sub>=0 else "已中止本场，可从保存的出击队伍重新开始。"
+	var commands_left: int=Record.MAX_COMMANDS-session._trace.size()
+	var ticks_left: int=Record.MAX_SORTIE_TICKS-session._trace_clock
+	var exceeded: bool=session._trace_overflow or ticks_left<0
+	if exceeded:
+		help_label.text="已超出单场存档记录上限。本场可以返回出击记录重开。"
+		if phase=="summary": continue_button.text="返回出击记录"
+	elif active and (commands_left<=128 or ticks_left<=18000):
+		help_label.text="接近存档记录上限：剩余 %d 条操作，%d 秒模拟时间。" % [commands_left,ceili(ticks_left/30.0)]
 	canvas.queue_redraw()
 
 
 func _continue() -> void:
 	if not session.ready:return
 	if session.ending_snapshot()["phase"]=="opening":session.advance_opening(true);_refresh()
-	elif session.ending_snapshot()["phase"]=="summary":_leave()
+	elif session.ending_snapshot()["phase"]=="summary":
+		if session.ending_sub>=0 and not session._trace_overflow and session._trace_clock<=Record.MAX_SORTIE_TICKS:
+			result_confirmed.emit(session.battle_trace())
+		else: _leave()
 
 
 func _leave() -> void:
