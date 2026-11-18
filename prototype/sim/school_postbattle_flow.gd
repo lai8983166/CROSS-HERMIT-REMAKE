@@ -51,9 +51,9 @@ func finish_sortie(trace: Dictionary) -> Dictionary:
 	if phase!="sortie_pending": return _failure("sortie_not_pending")
 	var replayed := SortieRecord.replay(planning["handoff"],trace)
 	if not replayed["supported"]: return replayed
-	var settled := SortieSettlement.apply(bundle,planning["handoff"],replayed["facts"])
+	var settled := SortieSettlement.apply(bundle,planning["handoff"],replayed["facts"],planning.get("opening_ledger",{}))
 	if not settled["supported"]: return settled
-	var story := SortieWeek.story()
+	var story := SortieWeek.story(bundle["school"]["week"])
 	if not story["supported"]: return story
 	bundle=settled["after"]
 	planning.erase("handoff")
@@ -80,7 +80,7 @@ func execute(command: Dictionary) -> Dictionary:
 	if op=="course_story":
 		if phase!="course_result" or bundle.get("phase")!="courses_confirmed":
 			return _failure("course_not_confirmed")
-		var story := SortieWeek.story()
+		var story := SortieWeek.story(bundle["school"]["week"])
 		if not story["supported"]: return story
 		_set_may_story(story)
 		phase="post_story"
@@ -102,7 +102,7 @@ func execute(command: Dictionary) -> Dictionary:
 	if op=="post_school":
 		if phase=="returned_school": return {"supported":true,"status":"duplicate"}
 		if phase!="post_workroom": return _failure("workroom_not_reached")
-		var returned := SortieWeek.school_return(bundle,planning["ledger"]) if planning.has("sortie_summary") or course_continued() else Return.school_return(bundle)
+		var returned := SortieWeek.school_return(bundle,planning["ledger"],planning.get("opening_ledger",{})) if planning.has("sortie_summary") or course_continued() else Return.school_return(bundle)
 		if not returned["supported"]: return returned
 		if returned.has("ledger_after"): planning["ledger"]=returned["ledger_after"]
 		bundle=returned["after"];phase="returned_school";revision+=1;return {"supported":true}
@@ -160,6 +160,11 @@ func _plan(command: Dictionary) -> Dictionary:
 		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
 	if not result["supported"]:return result
 	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
+	if bundle["school"]["week"]==2 and op in ["return_settle","return_depart"]:
+		# Replace last week's display summary only when the new work is committed.
+		# Keep its starting ledger for validating the battle and next school's entry.
+		var opening: Dictionary=planning["ledger"]
+		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
 	bundle=result["after"]
 	if op=="return_settle":
 		planning["ledger"]=Adventures.advance(planning["ledger"],0)

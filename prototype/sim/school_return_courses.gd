@@ -76,7 +76,8 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	if not Courses._integer(seed,0,0x7fffffff): return Origin.failure("invalid_declared_clock_seed")
 	var reason := _guard(before,rules,true)
 	if not reason.is_empty(): return Origin.failure(reason)
-	if before["school"]["week"]!=1: return Origin.failure("outside_supported_course_week")
+	var week: int=before["school"]["week"]
+	if week not in [1,2]: return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -121,10 +122,10 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 		changes.append({"character_id":id,"work_id":command["training_id"],
 			"before_attributes":old["attributes"].duplicate(),"attributes":current["attributes"].duplicate(),
 			"before_level":old["level_50"],"level":current["level_50"],"new_skill_ids":learned,"staged_total":current["staged_total"]})
-	var summary := {"date":[5,1],"declared_clock_seed":seed,"packets":growth["packets"],
+	var summary := {"date":[5,week],"declared_clock_seed":seed,"packets":growth["packets"],
 		"learning_draws":growth["learning_draws"],"rand_state":growth["rand_state"],"bonus":growth["bonus"],
 		"skill_display_needed":growth["skill_display_needed"],"recipient":recipient,"old_mvp_count":old_count,
-		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient,"history_index":5,
+		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient,"history_index":(before["school"]["month"]-4)*5+week-1,
 		"relationship_calls":confirmed["relationship_calls"],"students":changes,
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"chapter_completed":false,"week_advanced":false}}
 	after["course_result"] = summary

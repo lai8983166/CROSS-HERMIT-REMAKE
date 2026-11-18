@@ -31,7 +31,8 @@ func _ready() -> void:
 
 func open_trial(handoff: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
 	if not super.open_trial(handoff,combat,names):return false
-	_finished=false;title_label.text="5月第1周 · 冒险%d · %s" % [session.scene_id,"守城" if session.scene_id==8 else "自由训练"]
+	var date: Array=handoff["date"]
+	_finished=false;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"守城" if session.scene_id==8 else "自由训练"]
 	targets.clear();targets.add_item("定位任务对象",-1)
 	for unit in session.units:
 		var id: int=session.unit_key(unit)

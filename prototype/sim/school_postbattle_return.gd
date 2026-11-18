@@ -125,7 +125,7 @@ static func school_return(before: Dictionary) -> Dictionary:
 
 static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> String:
 	var school: Variant = bundle.get("school")
-	if not school is Dictionary or school.get("week") not in [1,2]:
+	if not school is Dictionary or school.get("week") not in [1,2,3]:
 		return "outside_current_return_week"
 	return _validate(bundle,[3,4,9,5],5,school["week"],rules)
 

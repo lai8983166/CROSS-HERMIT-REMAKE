@@ -81,3 +81,32 @@ func test_reject_stale_handoff_mismatched_roster_and_unconfigured_objective() ->
 	assert_false(Settlement.apply(departure["after"],departure["handoff"],facts)["supported"])
 	facts=_facts(departure); facts["objective_slots"][3]=1
 	assert_false(Settlement.apply(departure["after"],departure["handoff"],facts)["supported"])
+
+
+func test_second_training_uses_saved_best_grade_and_current_inventory() -> void:
+	var calendar := preload("res://sim/school_sortie_week.gd")
+	var first := _departure(17,true)
+	var first_result := Settlement.apply(first["after"],first["handoff"],_facts(first))
+	var week := calendar.next_week(first_result["after"])
+	var room := calendar.finish_story(week["after"])
+	var school := calendar.school_return(room["after"],first["ledger_after"])
+	var opening: Dictionary=school["ledger_after"]
+	var second := Adventures.submit(school["after"],opening)
+	assert_false(Settlement.apply({"phase":"sortie_committed"},second["handoff"],{})["supported"])
+	var bad: Dictionary=second["after"].duplicate(true)
+	bad["sortie_result"]=null
+	assert_false(Settlement.apply(bad,second["handoff"],{},opening)["supported"])
+	var facts := _facts(second)
+	facts["result_selector"]=5
+	assert_false(Settlement.apply(second["after"],second["handoff"],facts,Adventures.initial())["supported"])
+	var result := Settlement.apply(second["after"],second["handoff"],facts,opening)
+	assert_true(result["supported"],str(result.get("reason")))
+	if not result["supported"]:return
+	assert_eq(result["summary"]["result_selector"],5)
+	assert_eq(result["summary"]["task_grade"],1)
+	assert_eq(result["summary"]["history_index"],6)
+	for i in range(360):
+		if (school["after"]["item_flags"][i]&1)!=0:
+			assert_true((result["after"]["item_flags"][i]&1)!=0)
+	for i in range(4):
+		assert_eq(result["after"]["records"][i]["week_records"].slice(15,18),first_result["after"]["records"][i]["week_records"].slice(15,18))

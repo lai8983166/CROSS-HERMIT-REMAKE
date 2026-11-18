@@ -18,6 +18,7 @@ var attack_paths: AttackPaths
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
+	if handoff.get("date") not in [[5,1],[5,2]]: return false
 	if raw.is_empty():raw=FileAccess.get_file_as_string(SOURCE_PATH).replace("\r\n","\n")
 	if raw.sha256_text()!=SOURCE_SHA or not handoff.get("supported",false) or not handoff.get("ready",false):return false
 	if not handoff.get("prepared") is Dictionary or handoff.get("requested_states")!=[10,16] or handoff.get("round_cursor")!=1:return false

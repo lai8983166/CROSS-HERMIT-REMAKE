@@ -10,13 +10,25 @@ const TASK_PATH := "res://data/school_sortie_reward_rules.json"
 const TASK_SHA := "81020c8f0bba894d13c49e3e825d54f0c7597e67a17c597e4ca5e3373512c7de"
 
 
-static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary) -> Dictionary:
+static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, opening_ledger: Dictionary = {}) -> Dictionary:
 	if bundle.get("phase") != "sortie_committed":
 		return Origin.failure("settlement_requires_committed_sortie")
-	# This first optional sortie follows the reconstructed 5/1 ledger.
+	var school: Variant=bundle.get("school")
+	var previous: Variant=bundle.get("sortie_result",{})
+	if not school is Dictionary or school.get("week") not in [1,2] or not previous is Dictionary:
+		return Origin.failure("invalid_sortie_school")
+	var week: int=school["week"]
+	var ledger := Adventures.initial()
+	if week==2:
+		var previous_id: Variant=previous.get("scene_id",0)
+		if ledger.is_empty() or previous_id not in [0,8,17]:
+			return Origin.failure("invalid_previous_sortie")
+		ledger=Adventures.advance(ledger,previous_id)
+		Adventures._open(ledger,5,2,Adventures.rules())
+		if opening_ledger!=ledger: return Origin.failure("sortie_opening_ledger_mismatch")
 	var school_before := bundle.duplicate(true)
 	school_before["phase"] = "school_returned"
-	var expected := Adventures.submit(school_before, Adventures.initial())
+	var expected := Adventures.submit(school_before,ledger)
 	if not expected.get("supported",false) or expected["handoff"] != handoff:
 		return Origin.failure("sortie_departure_mismatch")
 	var prepared: Dictionary = handoff["prepared"]
@@ -52,9 +64,13 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary) ->
 		character["skill_points"] = skill_points
 		characters.append(character)
 		records.append(record)
+	var initial_grade := 5
+	if week==2 and previous.get("scene_id")==scene_id:
+		if not Roles._bounded(previous.get("task_grade"),1,5): return Origin.failure("invalid_previous_task_grade")
+		initial_grade=previous["task_grade"]
 	var score := Battle.Score.calculate({"task_id":scene_id,"mode":0,"cap_mode":0,
 		"result_selector":facts.get("result_selector"),"time_key":facts["time_key"],
-		"unit_key":facts.get("unit_condition_key"),"characters":characters,"initial_grade":5,
+		"unit_key":facts.get("unit_condition_key"),"characters":characters,"initial_grade":initial_grade,
 		"initial_total":bundle["school"]["global_total_511c"]},rules["score"])
 	if not score["supported"]: return score
 	var loot := Battle.Loot._loot(bundle["item_flags"],score["grade_index"],facts,rules)
@@ -109,12 +125,12 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary) ->
 	after["school"] = Courses.Session._canonical(rated["after"])
 	after["ratings"] = rated["ratings"]
 	after["rankings"] = Return._rankings(after["school"])
-	var summary := {"scene_id":scene_id,"date":[5,1],"result_selector":facts["result_selector"],
+	var summary := {"scene_id":scene_id,"date":[5,week],"result_selector":facts["result_selector"],
 		"task_grade":score["task_grade"],"score":score,"loot_groups":loot["loot_groups"],
 		"loot_draws":loot["draws"],"clock_seed":facts["clock_seed"],"growth_seed":facts["growth_seed"],
 		"learning_draws":growth["learning_draws"],"students":changes,"recipient":recipient,
 		"old_mvp_count":old_count,"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient,
-		"history_index":5,"relationship_calls":confirmation["relationship_calls"],
+		"history_index":(bundle["school"]["month"]-4)*5+week-1,"relationship_calls":confirmation["relationship_calls"],
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"week_advanced":false}}
 	after["sortie_result"] = summary.duplicate(true)
 	after["phase"] = "sortie_settled"

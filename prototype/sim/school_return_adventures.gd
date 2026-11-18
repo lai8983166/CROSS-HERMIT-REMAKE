@@ -108,12 +108,12 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 static func submit(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var ready := prepare(bundle,ledger)
 	if not ready["supported"]:return ready
-	if bundle["school"]["week"]!=1:return _failure("outside_supported_sortie_week")
+	if bundle["school"]["week"] not in [1,2]:return _failure("outside_supported_sortie_week")
 	var after := bundle.duplicate(true);after["phase"]="sortie_committed"
 	var handoff := ready.duplicate(true)
 	handoff["requested_states"]=[10,16];handoff["round_cursor"]=1
 	handoff["scene_playable"]=false;handoff["combat_units_constructed"]=false
-	handoff["date"]=[5,1]
+	handoff["date"]=[bundle["school"]["month"],bundle["school"]["week"]]
 	return {"supported":true,"after":after,"ledger_after":advance(ledger,ready["prepared"]["adventure_id"]),"handoff":handoff}
 
 

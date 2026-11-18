@@ -69,11 +69,12 @@ func _ready() -> void:
 func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	_view=view.duplicate(true);_names=names.duplicate();status.text=message
 	var phase: String=view["phase"];var school: Dictionary=view["bundle"]["school"]
+	var date := "%d月 · 第%d周" % [school["month"],school["week"]]
 	var reading := phase in ["post_story","new_week_story"]
 	var returned := phase=="returned_school"
 	heading.text="%d月 · 第%d周　｜　%s" % [school["month"],school["week"],"战后剧情" if phase=="post_story" else "新一周" if phase=="new_week_story" else "学校" if returned else "职务室"]
 	if phase=="post_story" and view.get("planning",{}).has("course_summary"):
-		heading.text="5月 · 第1周　｜　课后剧情"
+		heading.text=date+"　｜　课后剧情"
 	speaker.text=view["page"]["speaker"] if reading else "已返回学校" if returned else "准备返校"
 	dialogue.text=view["page"]["text"] if reading else "法娜已正式加入，可以调整四名学生的编班，并保存当前进度。" if returned else "新一周的剧情已结束。继续返回学校，保留本场战果、成长与法娜的入队记录。"
 	dialogue.custom_minimum_size.y=220 if reading else 60
@@ -106,9 +107,9 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 		if not view.has("planning"):
 			var button := _button("继续安排本周",func():command.emit({"op":"return_plan"}))
 			button.name="plan_start";plans.add_child(button)
-	if school["month"]==5 and school["week"]==2:
+	if school["month"]==5 and school["week"]>=2:
 		if phase=="post_workroom":
-			dialogue.text="第2周的剧情已结束。返回学校后可以查看队伍成长，并安排本周活动。"
+			dialogue.text="本周的剧情已结束。返回学校后可以查看队伍成长，并安排本周活动。"
 			progress.text="本周成长与换周记录已保留"
 		elif returned:
 			progress.text="当前编班和本周安排可随时保存"
@@ -119,9 +120,10 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 func _show_plan(view: Dictionary) -> void:
 	var phase: String=view["phase"];var bundle: Dictionary=view["bundle"]
 	var plan: Dictionary=view["planning"];var school: Dictionary=bundle["school"]
+	var date := "%d月 · 第%d周" % [school["month"],school["week"]]
 	if phase=="sortie_result":
 		var summary: Dictionary=plan["sortie_summary"]
-		heading.text="5月 · 第1周　｜　冒险%d战果" % summary["scene_id"]
+		heading.text=date+"　｜　冒险%d战果" % summary["scene_id"]
 		speaker.text="本场最佳："+_names.get(summary["recipient"],str(summary["recipient"]))
 		dialogue.text="新增战果 %d　｜　累计 %d" % [summary["score"]["total_delta"],summary["score"]["total_after"]]
 		var items := []
@@ -138,7 +140,7 @@ func _show_plan(view: Dictionary) -> void:
 		plans.add_child(proceed)
 		return
 	if phase=="course_result":
-		heading.text="5月 · 第1周　｜　授课结算"
+		heading.text=date+"　｜　授课结算"
 		speaker.text="本周授课已结算"
 		dialogue.text="成长、技能和本周最佳已记录。继续课后剧情即可进入下一周。"
 		progress.text="本周不能再次授课或出击；可保存结果，或读取提交前的备份。"
@@ -154,7 +156,7 @@ func _show_plan(view: Dictionary) -> void:
 		return
 	if phase=="sortie_pending":
 		var handoff: Dictionary=plan["handoff"];var prepared: Dictionary=handoff["prepared"]
-		heading.text="5月 · 第1周　｜　出击交接"
+		heading.text=date+"　｜　出击交接"
 		speaker.text="冒险%d · 出击交接完成" % prepared["adventure_id"]
 		dialogue.text="出击队伍与成长已保存，可以进入本次任务的战场。"
 		progress.text="完成目标后确认战果，即可继续剧情。单场存档支持 4096 条操作和 120 分钟模拟时间。"
@@ -164,10 +166,10 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var next_week: bool=school["week"]==2
+	var planning_only: bool=school["week"]>=3
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
-	progress.text="本周可调整编班、课程与冒险，并保存安排。" if next_week else "课程与出击准备均可存档；提交后可以进入8号或17号战场。"
-	if next_week:
+	progress.text="本周可调整编班、课程与冒险，并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
+	if planning_only:
 		dialogue.text="已完成换周。选择班级活动、课程或仍然开放的冒险。"
 	for group in range(5):
 		if Groups._word(school["group_raw_bytes"],group*28)<0:continue
@@ -198,7 +200,7 @@ func _show_plan(view: Dictionary) -> void:
 		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
 		button.name="adventure_%d" % id;button.toggle_mode=true
 		button.button_pressed=school["lecture_active"]==1 and school["lecture_work_fields"][2]==id;plans.add_child(button)
-	if next_week: return
+	if planning_only: return
 	var row := HBoxContainer.new();plans.add_child(row)
 	var settle := _button("确认本周授课",func():_confirm("return_settle","确认后结算本周授课，保留成长、技能与成员记录。本周不能再出击。"))
 	settle.name="settle";row.add_child(settle)

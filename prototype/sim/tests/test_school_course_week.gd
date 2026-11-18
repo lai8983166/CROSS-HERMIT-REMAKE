@@ -60,7 +60,7 @@ func test_choose_teach_read_story_replan_and_load_file() -> void:
 	assert_eq(loaded.state(),ui.model.state())
 	assert_eq(loaded.export_save(),ui.model.export_save())
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
-	for op in ["return_settle","course_story","post_skip"]:
+	for op in ["course_story","post_skip"]:
 		assert_false(loaded.execute({"op":op})["supported"])
 	var bad := reading.duplicate(true)
 	for key in ["version","context","rules"]:bad[key]=saved_result[key]

@@ -1,4 +1,4 @@
-"""Export the May 1/May 2 date routes and source dialogue from the shipped ADV."""
+"""Export the May week 1 through week 3 date routes and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -12,6 +12,7 @@ def date_route(router, month, week):
     variables = {}
     at = start
     visited = []
+    effects = []
     while start <= at < end and at not in visited:
         visited.append(at)
         opcode, size = struct.unpack_from('<HH', raw, at)
@@ -28,6 +29,9 @@ def date_route(router, month, week):
         elif opcode == 11:
             at = start + values[0]
             continue
+        elif opcode == 151:
+            assert all(v >> 28 == 2 for v in values)
+            effects.append(dict(offset=at, opcode=opcode, operands=[v & 0xfffffff for v in values]))
         elif opcode in (15, 19):
             target = None
             if opcode == 15:
@@ -36,7 +40,7 @@ def date_route(router, month, week):
                 target = raw[offset:offset+48].split(b'\0')[0].decode('ascii')
                 target = '/'.join(part for part in target.split(chr(92)) if part)
             return {'router': filename, 'sha256': hashlib.sha256(raw).hexdigest(),
-                    'date': [month, week], 'offsets': visited, 'target': target}
+                    'date': [month, week], 'offsets': visited, 'target': target, **({'effects': effects} if effects else {})}
         else:
             raise ValueError((filename, at, opcode))
         at += size
@@ -56,6 +60,30 @@ def build():
     return data
 
 
+def build_week3():
+    data = catalog({25: 55, 26: 132, 27: 316})
+    routes = [date_route('CH003', 5, 2), date_route('CH001', 5, 3), date_route('CH002', 5, 3)]
+    assert [r['target'] for r in routes] == [
+        'data/adv/dat/Chapter025.ybc', 'data/adv/dat/Chapter026.ybc', None]
+    assert routes[2]['effects'] == [{'offset': 0x52c, 'opcode': 151, 'operands': [11, 1]}]
+    pre_week, beginning, continuation = data['scenes']
+    assert pre_week['effects'] == []
+    assert beginning['effects'] == [{'offset': 0xd2c, 'opcode': 15, 'string_index': 1}]
+    raw = (GAME / 'DAT/CHAPTER026.YBC').read_bytes()
+    _, _, end, pool, _ = struct.unpack_from('<5I', raw)
+    assert pool == end + 96
+    target = raw[end+48:pool].split(b'\0')[0].decode('ascii')
+    target = '/'.join(part for part in target.split(chr(92)) if part)
+    assert target == 'data/adv/dat/Chapter027.ybc'
+    beginning['effects'][0]['target'] = target
+    assert continuation['effects'] == [
+        {'offset': 0x1d40, 'opcode': 151, 'operands': [11, 0]},
+        {'offset': 0x1d4c, 'opcode': 91, 'operands': [8, 2]}]
+    data['routes'] = routes
+    return data
+
+
 if __name__ == '__main__':
-    target = ROOT/'prototype/data/school_sortie_week_story.json'
-    target.write_text(json.dumps(build(),ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
+    for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3)]:
+        target = ROOT / f'prototype/data/{name}.json'
+        target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
