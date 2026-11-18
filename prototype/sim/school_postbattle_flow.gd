@@ -58,17 +58,34 @@ func finish_sortie(trace: Dictionary) -> Dictionary:
 	bundle=settled["after"]
 	planning.erase("handoff")
 	planning["sortie_summary"]=settled["summary"]
-	_post_pages=story["pre_week"]
-	_week_pages=story["week_start"]
-	pages=_post_pages
-	cursor=0
+	_set_may_story(story)
 	phase="sortie_result"
 	revision+=1
 	return {"supported":true}
 
 
+func _set_may_story(story: Dictionary) -> void:
+	_post_pages=story["pre_week"]
+	_week_pages=story["week_start"]
+	pages=_post_pages
+	cursor=0
+
+
+func course_continued() -> bool:
+	return planning.has("course_summary") and phase!="course_result"
+
+
 func execute(command: Dictionary) -> Dictionary:
 	var op: String = command["op"]
+	if op=="course_story":
+		if phase!="course_result" or bundle.get("phase")!="courses_confirmed":
+			return _failure("course_not_confirmed")
+		var story := SortieWeek.story()
+		if not story["supported"]: return story
+		_set_may_story(story)
+		phase="post_story"
+		revision+=1
+		return {"supported":true}
 	if op=="sortie_finish": return finish_sortie(command["trace"])
 	if phase=="sortie_result" and op=="post_next":
 		phase="post_story"
@@ -85,7 +102,7 @@ func execute(command: Dictionary) -> Dictionary:
 	if op=="post_school":
 		if phase=="returned_school": return {"supported":true,"status":"duplicate"}
 		if phase!="post_workroom": return _failure("workroom_not_reached")
-		var returned := SortieWeek.school_return(bundle,planning["ledger"]) if planning.has("sortie_summary") else Return.school_return(bundle)
+		var returned := SortieWeek.school_return(bundle,planning["ledger"]) if planning.has("sortie_summary") or course_continued() else Return.school_return(bundle)
 		if not returned["supported"]: return returned
 		if returned.has("ledger_after"): planning["ledger"]=returned["ledger_after"]
 		bundle=returned["after"];phase="returned_school";revision+=1;return {"supported":true}
@@ -97,11 +114,11 @@ func execute(command: Dictionary) -> Dictionary:
 	var next := pages.size() if op=="post_skip" else cursor+1
 	if next==pages.size():
 		if phase=="post_story":
-			var week := SortieWeek.next_week(bundle) if planning.has("sortie_summary") else Return.next_week(bundle)
+			var week := SortieWeek.next_week(bundle) if planning.has("sortie_summary") or course_continued() else Return.next_week(bundle)
 			if not week["supported"]: return week
 			bundle=week["after"];pages=_week_pages;phase="new_week_story";cursor=0
 		else:
-			if planning.has("sortie_summary"):
+			if planning.has("sortie_summary") or course_continued():
 				var finished := SortieWeek.finish_story(bundle)
 				if not finished["supported"]: return finished
 				bundle=finished["after"]

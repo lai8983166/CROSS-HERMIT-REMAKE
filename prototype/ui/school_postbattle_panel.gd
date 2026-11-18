@@ -72,6 +72,8 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	var reading := phase in ["post_story","new_week_story"]
 	var returned := phase=="returned_school"
 	heading.text="%d月 · 第%d周　｜　%s" % [school["month"],school["week"],"战后剧情" if phase=="post_story" else "新一周" if phase=="new_week_story" else "学校" if returned else "职务室"]
+	if phase=="post_story" and view.get("planning",{}).has("course_summary"):
+		heading.text="5月 · 第1周　｜　课后剧情"
 	speaker.text=view["page"]["speaker"] if reading else "已返回学校" if returned else "准备返校"
 	dialogue.text=view["page"]["text"] if reading else "法娜已正式加入，可以调整四名学生的编班，并保存当前进度。" if returned else "新一周的剧情已结束。继续返回学校，保留本场战果、成长与法娜的入队记录。"
 	dialogue.custom_minimum_size.y=220 if reading else 60
@@ -104,10 +106,10 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 		if not view.has("planning"):
 			var button := _button("继续安排本周",func():command.emit({"op":"return_plan"}))
 			button.name="plan_start";plans.add_child(button)
-	if view.get("planning",{}).has("sortie_summary"):
+	if school["month"]==5 and school["week"]==2:
 		if phase=="post_workroom":
 			dialogue.text="第2周的剧情已结束。返回学校后可以查看队伍成长，并安排本周活动。"
-			progress.text="本周战果与换周记录已保留"
+			progress.text="本周成长与换周记录已保留"
 		elif returned:
 			progress.text="当前编班和本周安排可随时保存"
 	if view.has("planning"):_show_plan(view)
@@ -138,7 +140,7 @@ func _show_plan(view: Dictionary) -> void:
 	if phase=="course_result":
 		heading.text="5月 · 第1周　｜　授课结算"
 		speaker.text="本周授课已结算"
-		dialogue.text="成长、技能与本周记录已保存。当前停在课后剧情交接，下一周尚未开始。"
+		dialogue.text="成长、技能和本周最佳已记录。继续课后剧情即可进入下一周。"
 		progress.text="本周不能再次授课或出击；可保存结果，或读取提交前的备份。"
 		var summary: Dictionary=plan["course_summary"]
 		var best := _label(21);best.text="本周最佳：%s　·　新增总战果：%d" % [_names.get(summary["recipient"],""),summary["bonus"]];plans.add_child(best)
@@ -146,6 +148,9 @@ func _show_plan(view: Dictionary) -> void:
 			var label := _label(18)
 			label.text="%s　%s　Lv.%d → %d\n能力：%s → %s　·　新技能：%d项" % [_names.get(row["character_id"],""),COURSE_NAMES[row["work_id"]],row["before_level"],row["level"],str(row["before_attributes"]),str(row["attributes"]),row["new_skill_ids"].size()]
 			plans.add_child(label)
+		var proceed := _button("继续课后剧情",func():command.emit({"op":"course_story"}))
+		proceed.name="continue_course_story"
+		plans.add_child(proceed)
 		return
 	if phase=="sortie_pending":
 		var handoff: Dictionary=plan["handoff"];var prepared: Dictionary=handoff["prepared"]

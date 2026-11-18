@@ -1,5 +1,5 @@
 extends RefCounted
-## May 1 post-sortie CH003, state 7, CH001, workroom and school boot.
+## May 1 course or sortie result, CH003, state 7, CH001, workroom and school boot.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
@@ -20,7 +20,8 @@ static func story() -> Dictionary:
 
 static func next_week(before: Dictionary) -> Dictionary:
 	var rules := Return._rules()
-	var reason := _guard(before,1,"sortie_settled",rules)
+	var course: bool = before.get("phase")=="courses_confirmed"
+	var reason := _guard(before,1,"courses_confirmed" if course else "sortie_settled",rules)
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	var result := Week.project(Return._week_input(before),rules["week"])
 	if not result["supported"]: return result
@@ -33,29 +34,31 @@ static func next_week(before: Dictionary) -> Dictionary:
 		var participant := Return._find(after["participants"],row["character_id"])
 		for key in Return.GROWTH_KEYS:
 			row[key] = participant[key].duplicate(true) if participant[key] is Array else participant[key]
-	after["phase"] = "sortie_week_advanced"
-	return Return._result(after,"sortie_week_advanced",{"date":[5,2],"week_executed":true})
+	after["phase"] = "course_week_advanced" if course else "sortie_week_advanced"
+	return Return._result(after,after["phase"],{"date":[5,2],"week_executed":true})
 
 
 static func finish_story(before: Dictionary) -> Dictionary:
-	var reason := _guard(before,2,"sortie_week_advanced",Return._rules())
+	var course: bool = before.get("phase")=="course_week_advanced"
+	var reason := _guard(before,2,"course_week_advanced" if course else "sortie_week_advanced",Return._rules())
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	var after := before.duplicate(true)
 	# Chapter024 ends with op151 [16,1], op91 [8,2] and END to task8.
 	after["flags"]["0x7a55f6"] = 16
 	after["flags"]["0x7e11a0"] = 1
 	after["adv_background"] = 8
-	after["phase"] = "sortie_workroom"
-	return Return._result(after,"sortie_workroom")
+	after["phase"] = "course_workroom" if course else "sortie_workroom"
+	return Return._result(after,after["phase"])
 
 
 static func school_return(before: Dictionary, ledger: Dictionary) -> Dictionary:
 	var rules := Return._rules()
-	var reason := _guard(before,2,"sortie_workroom",rules)
+	var course: bool = before.get("phase")=="course_workroom"
+	var reason := _guard(before,2,"course_workroom" if course else "sortie_workroom",rules)
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	var id: int = before["school"]["lecture_work_fields"][2]
 	var initial := Adventures.initial()
-	if initial.is_empty() or id not in [8,17] or ledger!=Adventures.advance(initial,id):
+	if initial.is_empty() or (not course and id not in [8,17]) or ledger!=Adventures.advance(initial,0 if course else id):
 		return {"supported":false,"reason":"invalid_sortie_week_ledger"}
 	var opened := ledger.duplicate(true)
 	Adventures._open(opened,5,2,Adventures.rules())
