@@ -15,19 +15,8 @@ static func replay(preparation: Dictionary, combat: Dictionary, trace: Variant) 
 	# These additional rules are read later, during result confirmation.
 	var key := _cache_key(preparation,combat,trace)
 	if _cache.has(key): return _cache[key].duplicate(true)
-	for row in trace["commands"]:
-		if not _advance(session,row[0]): return _failure("battle_trace_timing_rejected")
-		var accepted := false
-		match row[1]:
-			1: accepted = session.advance_opening(row[2]==1)
-			2: accepted = session.advance_event()
-			3: accepted = session.command_move(row[2],Vector2i(row[3],row[4]))
-			4: accepted = session.command_attack(row[2],row[3])
-			5: accepted = session.stop(row[2])
-			6: accepted = session.request_return()
-		if not accepted: return _failure("battle_trace_command_rejected")
-	if not _advance(session,trace["ticks"]): return _failure("battle_trace_terminal_rejected")
-	for i in range(4): session.advance_exit()
+	var run := run_trace(session,trace)
+	if not run["supported"]: return run
 	var ending := session.ending_snapshot()
 	if ending["phase"]!="summary" or ending["settlement"].get("phase")!="round_result":
 		return _failure("battle_result_not_reached")
@@ -41,6 +30,23 @@ static func replay(preparation: Dictionary, combat: Dictionary, trace: Variant) 
 	if _cache.size()>=4: _cache.erase(_cache.keys()[0])
 	_cache[key] = result.duplicate(true)
 	return result
+
+
+static func run_trace(session: Combat, trace: Dictionary) -> Dictionary:
+	for row in trace["commands"]:
+		if not _advance(session,row[0]): return _failure("battle_trace_timing_rejected")
+		var accepted := false
+		match row[1]:
+			1: accepted = session.advance_opening(row[2]==1)
+			2: accepted = session.advance_event()
+			3: accepted = session.command_move(row[2],Vector2i(row[3],row[4]))
+			4: accepted = session.command_attack(row[2],row[3])
+			5: accepted = session.stop(row[2])
+			6: accepted = session.request_return()
+		if not accepted: return _failure("battle_trace_command_rejected")
+	if not _advance(session,trace["ticks"]): return _failure("battle_trace_terminal_rejected")
+	for i in range(4): session.advance_exit()
+	return {"supported":true}
 
 
 static func _cache_key(preparation: Dictionary, combat: Dictionary, trace: Dictionary) -> String:
@@ -57,9 +63,9 @@ static func _advance(session: Combat, target: int) -> bool:
 	return session._trace_clock==target
 
 
-static func valid_trace(trace: Variant) -> bool:
+static func valid_trace(trace: Variant, sortie := false) -> bool:
 	if not trace is Dictionary or trace.size()!=4 or trace.get("version")!=1 or trace.get("overflow")!=false \
-			or not Roles._bounded(trace.get("ticks"),0,MAX_TICKS) or not trace.get("commands") is Array \
+			or not Roles._bounded(trace.get("ticks"),0,216000 if sortie else MAX_TICKS) or not trace.get("commands") is Array \
 			or trace["commands"].size()>MAX_COMMANDS: return false
 	var previous := 0
 	for row in trace["commands"]:
@@ -70,8 +76,9 @@ static func valid_trace(trace: Variant) -> bool:
 		for value in row:
 			if not value is int: return false
 		if row[1]==1 and row[2] not in [0,1]: return false
-		if row[1] in [3,4,5] and row[2] not in [3,4,9,1249]: return false
-		if row[1]==3 and (row[3]<0 or row[3]>63 or row[4]<0 or row[4]>95): return false
+		if sortie and row[1]==2: return false
+		if row[1] in [3,4,5] and row[2] not in ([3,4,5,9] if sortie else [3,4,9,1249]): return false
+		if row[1]==3 and (row[3]<0 or row[3]>(95 if sortie else 63) or row[4]<0 or row[4]>(143 if sortie else 95)): return false
 		if row[1]==4 and not Roles._bounded(row[3],1000,1249): return false
 	return true
 

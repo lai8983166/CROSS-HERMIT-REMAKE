@@ -272,7 +272,30 @@ func _at_exit() -> bool:
 	return false
 
 
-func result_inputs() -> Dictionary:return {}
+func result_inputs() -> Dictionary:
+	if _ending_phase!="summary" or _terminal_choice.is_empty(): return {}
+	var config := String(departure["scene"]["configuration_hex"]).hex_decode()
+	var slots := []
+	for index in range(16):
+		var number := int(config[26+index])
+		var unit := find_unit(1250-number) if number>0 else {}
+		slots.append(int(unit.get("side",-1)==0))
+	var no_hostile := true
+	for unit in units:
+		if unit["category"]==5 and unit["side"]!=0 and unit["source_state"] in [1,3]:
+			no_hostile=false
+			break
+	if no_hostile:
+		for identity in reserves:
+			var raw := String(reserves[identity]["record_hex"]).hex_decode()
+			if raw[0x96]!=3 and _source_status(identity)["state"]==0:
+				no_hostile=false
+				break
+	# Both source configurations disable the two time bonuses.
+	return {"scene_id":scene_id,"result_selector":_terminal_choice["tactical_result_selector"],
+		"time_key":0,"objective_slots":slots,"unit_condition_key":2 if no_hostile else 1,
+		"units":_participant_ids.map(func(id):return _battle_stats[id].duplicate(true)),
+		"clock_seed":4660,"growth_seed":4660}
 
 
 func ending_snapshot() -> Dictionary:
