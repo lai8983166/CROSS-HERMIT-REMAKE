@@ -13,6 +13,7 @@ const Student := preload("res://sim/school_student_movement.gd")
 const Teacher := preload("res://sim/school_teacher_movement.gd")
 const Sort := preload("res://sim/school_waitlist_sort.gd")
 const Session := preload("res://sim/new_game_school_session.gd")
+const WEEK_FOUR := ["res://data/school_may_week4_story.json","9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3fc80a"]
 const SOURCES := {
 	"candidate":["res://data/school_postbattle_return_rules.json","1775635836be11e1c038437bb7043a2b2989bdccb880d8882fcda06d41fdb854"],
 	"week":["res://data/week_settlement_evidence.json","5bdb406c2125c610c75942a9e589a9b427cdbcd5d97b0cbf35c014b1d793aedf"],
@@ -20,6 +21,24 @@ const SOURCES := {
 	"school":["res://data/new_game_school_rules.json","ac4faffab74cb73b7f39c0c1a28a05a96f20f426aa1c5124eec58e1541bbef97"],
 	"boot":["res://data/school_boot_evidence.json","066ac6af7eb1f8b4b5a8b7d363cff5fcb62760652065b06fc9cf77cb8546301e"]}
 const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_statuses","job_sums","staged_total"]
+
+
+static func group_rules(school: Dictionary) -> Dictionary:
+	var rules := Origin.group_rules()
+	if school.get("month")==5 and school.get("week")==4:
+		rules["teacher_scope"]="chapter029"
+		rules["chapter_sha256"]=Groups.CHAPTER029_SHA
+	return rules
+
+
+static func work_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
+	var work: Dictionary = rules["school"]["work_rules"]
+	if school.get("month")==5 and school.get("week")==4:
+		work=work.duplicate(true)
+		var teacher: Dictionary=school["member_profiles"][-1]
+		work["teacher_profiles"].append({"teacher_id":teacher["member_id"],"job":teacher["job"],
+			"level_50":teacher["level_50"],"attributes":teacher["attributes"]})
+	return work
 
 
 static func join(before: Dictionary) -> Dictionary:
@@ -34,7 +53,36 @@ static func join(before: Dictionary) -> Dictionary:
 		return Origin.failure("invalid_postbattle_growth")
 	var after := before.duplicate(true)
 	_sync_participants(after)
-	var candidate: Dictionary = rules["candidate"]["candidate"].duplicate(true)
+	_append_student(after,rules["candidate"],rules)
+	after["school"]["relationships"].append_array(rules["candidate"]["relationships"].duplicate(true))
+	after["phase"] = "chapter020_joined"
+	return _result(after,"joined",{"join_source":"Chapter020.ybc:0x14/opcode144","joined_id":5})
+
+
+static func join_week_four(before: Dictionary, rules: Dictionary) -> Dictionary:
+	if before.get("phase") not in ["course_week_advanced","sortie_week_advanced"]:
+		return Origin.failure("chapter029_requires_new_week")
+	var reason := _validate(before,[3,4,9,5],5,4,rules)
+	if not reason.is_empty(): return Origin.failure(reason)
+	var after := before.duplicate(true)
+	var encoded := FileAccess.get_file_as_string(WEEK_FOUR[0]).replace("\r\n","\n")
+	if encoded.sha256_text()!=WEEK_FOUR[1]: return Origin.failure("invalid_chapter029_source")
+	var source: Dictionary = Roles._integers(JSON.parse_string(encoded))
+	_append_student(after,source,rules)
+	var school: Dictionary = after["school"]
+	school["teacher_ids"][1]=110
+	school["raw_teacher_ids"][1]=110
+	school["teacher_count"]=2
+	school["availability"][110]=1
+	school["member_profiles"].append(source["join_profiles"][1].duplicate(true))
+	school["relationships"].append_array(source["join_relationships"].duplicate(true))
+	return _result(after,"chapter029_joined",{"joined_ids":[8,110]})
+
+
+static func _append_student(after: Dictionary, source: Dictionary, rules: Dictionary) -> void:
+	var school: Dictionary = after["school"]
+	var candidate: Dictionary = source["candidate"].duplicate(true)
+	var identity: int = candidate["character_id"]
 	candidate["unlock_flags"].fill(0)
 	candidate["unlock_reserved_bytes"].fill(0)
 	candidate["unlock_flags"][candidate["job"]-1] = 1
@@ -43,29 +91,26 @@ static func join(before: Dictionary) -> Dictionary:
 		if item > 0:
 			var flags: int = after["item_flags"][item-1]
 			if flags & 1: candidate["equipped_items"][slot] = 0
-			else: after["item_flags"][item-1] = ((flags | 1) & 0xf001) | 0x300 | (5 << 1)
+			else: after["item_flags"][item-1] = ((flags | 1) & 0xf001) | 0x300 | (identity << 1)
 		var skill: int = candidate["equipped_skills"][slot]
 		if skill > 0:
 			# Native4D3E90 keeps skills at BOTH difficulty0 and1.
 			if after["school"]["difficulty"] in [0,1]: candidate["skill_statuses"][skill-1] = 6
 			else: candidate["equipped_skills"][slot] = 0
 	candidate["level_50"] = Growth._level(Growth._total(candidate,rules["role"]),rules["role"]["level_thresholds"])
-	Week.apply_unlocks(candidate,4,5,rules["week"])
+	Week.apply_unlocks(candidate,school["month"],school["week"],rules["week"])
 	after["participants"].append(candidate)
 	after["growth"].append(Origin.field_subset(candidate,["character_id"]+GROWTH_KEYS))
-	after["records"].append(rules["candidate"]["history"].duplicate(true))
-	after["counts"].append({"character_id":5,"count":0})
-	var school: Dictionary = after["school"]
-	school["student_count"] = 4
-	school["student_ids"][3] = 5
-	school["raw_student_ids"][3] = 5
-	school["availability"][5] = 1
-	school["relationships"].append_array(rules["candidate"]["relationships"].duplicate(true))
-	school["member_profiles"].append({"member_id":5,"job":candidate["job"],"level_50":candidate["level_50"],
+	after["records"].append(source["history"].duplicate(true))
+	after["counts"].append({"character_id":identity,"count":0})
+	var index: int=school["student_count"]
+	school["student_ids"][index] = identity
+	school["raw_student_ids"][index] = identity
+	school["student_count"] += 1
+	school["availability"][identity] = 1
+	school["member_profiles"].append({"member_id":identity,"job":candidate["job"],"level_50":candidate["level_50"],
 		"attributes":candidate["attributes"].duplicate(),"storage_kind":"student_record",
-		"template_sha256":rules["candidate"]["template_sha256"]})
-	after["phase"] = "chapter020_joined"
-	return _result(after,"joined",{"join_source":"Chapter020.ybc:0x14/opcode144","joined_id":5})
+		"template_sha256":source["join_profiles"][0]["template_sha256"] if source.has("join_profiles") else source["template_sha256"]})
 
 
 static func next_week(before: Dictionary) -> Dictionary:
@@ -125,9 +170,9 @@ static func school_return(before: Dictionary) -> Dictionary:
 
 static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> String:
 	var school: Variant = bundle.get("school")
-	if not school is Dictionary or school.get("week") not in [1,2,3]:
+	if not school is Dictionary or school.get("week") not in [1,2,3,4]:
 		return "outside_current_return_week"
-	return _validate(bundle,[3,4,9,5],5,school["week"],rules)
+	return _validate(bundle,[3,4,9,5,8] if school["week"]==4 else [3,4,9,5],5,school["week"],rules)
 
 
 static func move_member(before: Dictionary, command: Dictionary) -> Dictionary:
@@ -142,8 +187,13 @@ static func move_member(before: Dictionary, command: Dictionary) -> Dictionary:
 	var id: Variant = command.get("member_id")
 	var target: Variant = command.get("target_group")
 	var slot: Variant = command.get("target_slot",-1)
-	if kind not in ["student","teacher"] or not Week._bounded(target,-1,4) or not Week._bounded(slot,-1,3) 		or (kind=="teacher" and (id!=101 or slot!=-1)) or (kind=="student" and (id not in [3,4,9,5] 		or (target==-1 and slot!=-1) or (target>=0 and slot<0))): return Origin.failure("invalid_move_target")
 	var school: Dictionary = before["school"]
+	if kind not in ["student","teacher"] or not Week._bounded(target,-1,4) or not Week._bounded(slot,-1,3):
+		return Origin.failure("invalid_move_target")
+	if id not in school[kind+"_ids"].slice(0,school[kind+"_count"]):
+		return Origin.failure("invalid_move_target")
+	if (kind=="teacher" and slot!=-1) or (kind=="student" and ((target==-1 and slot!=-1) or (target>=0 and slot<0))):
+		return Origin.failure("invalid_move_target")
 	var source := {}
 	for group in range(5):
 		if kind=="teacher" and Groups._word(school["group_raw_bytes"],group*28)==id: source={"group":group,"slot":-1}
@@ -153,7 +203,7 @@ static func move_member(before: Dictionary, command: Dictionary) -> Dictionary:
 	var waiting: Array = school["idle_student_ids" if kind=="student" else "idle_teacher_ids"]
 	if waiting.has(id): source={"group":-1,"slot":waiting.find(id)}
 	if source.is_empty(): return Origin.failure("missing_current_member")
-	var rated := Groups.rate(school,Origin.group_rules())
+	var rated := Groups.rate(school,group_rules(school))
 	if not rated["supported"]: return rated
 	var working := Session._working(school)
 	working.merge({"drag_kind":1 if kind=="teacher" else 0,"drag_origin":0 if source["group"]==-1 else 1,
@@ -164,9 +214,9 @@ static func move_member(before: Dictionary, command: Dictionary) -> Dictionary:
 	var moved: Dictionary
 	if kind=="student":
 		request["target_slot"]=slot
-		moved=Student.move_student(working,request,Session._student_profiles(school),Origin.group_rules(),rules["school"]["sort_rules"])
+		moved=Student.move_student(working,request,Session._student_profiles(school),group_rules(school),rules["school"]["sort_rules"])
 	else:
-		moved=Teacher.move_teacher(working,request,Session._student_profiles(school),Origin.group_rules(),rules["school"]["sort_rules"],rules["school"]["work_rules"])
+		moved=Teacher.move_teacher(working,request,Session._student_profiles(school),group_rules(school),rules["school"]["sort_rules"],work_rules(school,rules))
 	if not moved["supported"]: return moved
 	var prepared := _prepare(Session._canonical(moved["after"]),rules)
 	if not prepared["supported"]: return prepared
@@ -177,12 +227,12 @@ static func move_member(before: Dictionary, command: Dictionary) -> Dictionary:
 
 
 static func _prepare(school: Dictionary, rules: Dictionary) -> Dictionary:
-	var clean := Teacher.reconcile(Session._working(school),Origin.group_rules(),rules["school"]["work_rules"])
+	var clean := Teacher.reconcile(Session._working(school),group_rules(school),work_rules(school,rules))
 	if not clean["supported"]: return clean
 	var sorted := Sort.order(Session._student_profiles(school),clean["after"]["idle_student_ids"],0,rules["school"]["sort_rules"])
 	if not sorted["supported"]: return sorted
 	clean["after"]["idle_student_ids"] = sorted["idle_student_ids"]
-	var rated := Groups.rate(clean["after"],Origin.group_rules())
+	var rated := Groups.rate(clean["after"],group_rules(school))
 	if not rated["supported"]: return rated
 	return {"supported":true,"after":Session._canonical(rated["after"]),"ratings":rated["ratings"]}
 
@@ -230,14 +280,26 @@ static func _week_input(bundle: Dictionary) -> Dictionary:
 static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rules: Dictionary) -> String:
 	if not bundle.get("school") is Dictionary or not bundle.get("participants") is Array 		or not bundle.get("growth") is Array or not bundle.get("records") is Array or not bundle.get("counts") is Array 		or not bundle.get("flags") is Dictionary or not Week._vector(bundle.get("item_flags"),360,0,65535): return "invalid_postbattle_bundle"
 	var school: Dictionary = bundle["school"]
-	var reason := Groups._validate(school,Origin.group_rules())
+	var teachers := [101,110] if ids.has(8) else [101]
+	var reason := Groups._validate(school,group_rules(school))
 	if not reason.is_empty(): return reason
 	if school.get("month")!=month or school.get("week")!=week or school["student_ids"].slice(0,school["student_count"])!=ids \
-		or school["teacher_ids"].slice(0,school["teacher_count"])!=[101] \
+		or school["teacher_ids"].slice(0,school["teacher_count"])!=teachers \
 		or not Week._bounded(school.get("difficulty"),0,2) or not Week._bounded(school.get("global_total_511c"),0,999999999) \
 		or not Week._vector(school.get("raw_student_ids"),40,0,44) \
-		or not school.get("member_profiles") is Array or school["member_profiles"].size()!=ids.size()+1: return "outside_current_return_roster"
-	var members := [101]+ids
+		or not school.get("member_profiles") is Array or school["member_profiles"].size()!=ids.size()+teachers.size(): return "outside_current_return_roster"
+	if teachers.has(110):
+		if (not Week._vector(school.get("raw_teacher_ids"),20,0,120)
+				or school["raw_teacher_ids"].slice(0,2)!=teachers
+				or school["raw_student_ids"].slice(0,ids.size())!=ids):
+			return "invalid_chapter029_roster"
+		var teacher: Variant=school["member_profiles"][-1]
+		if (not teacher is Dictionary or teacher.get("member_id")!=110 or teacher.get("job")!=1
+				or teacher.get("level_50")!=0 or not Week._vector(teacher.get("attributes"),7,0,0)
+				or teacher.get("storage_kind")!="static_teacher_template"
+				or teacher.get("template_sha256")!="bc3a30a04ca4e32a3d40c50f9beb18d65354006d9246e43858049bd9cd84cabc"):
+			return "invalid_chapter029_teacher_profile"
+	var members := teachers+ids
 	if school["relationships"].size()!=members.size()*(members.size()-1): return "incomplete_return_relationships"
 	for a in members:
 		for b in members:

@@ -7,7 +7,7 @@ signal sortie_requested
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const Courses := preload("res://sim/school_return_courses.gd")
 const Adventures := preload("res://sim/school_return_adventures.gd")
-const COURSE_NAMES := {1:"力量训练",2:"敏捷训练",3:"感知训练",4:"道德训练",5:"智力训练",10:"全面训练",11:"综合研习",12:"身心锻炼"}
+const COURSE_NAMES := {1:"力量训练",2:"敏捷训练",3:"感知训练",4:"道德训练",5:"智力训练",6:"奉献活动",7:"魔法基础",10:"全面训练",11:"综合研习",12:"身心锻炼"}
 var heading: Label
 var speaker: Label
 var dialogue: Label
@@ -17,7 +17,7 @@ var previous: Button
 var next: Button
 var skip: Button
 var skip_dialog: ConfirmationDialog
-var roster: HBoxContainer
+var roster: HFlowContainer
 var assignments: VBoxContainer
 var plans: VBoxContainer
 var commit_dialog: ConfirmationDialog
@@ -43,14 +43,14 @@ func _ready() -> void:
 	speaker=_label(23);body.add_child(speaker)
 	dialogue=_label(22);dialogue.custom_minimum_size.y=220;body.add_child(dialogue)
 	details=_label(17);body.add_child(details)
-	roster=HBoxContainer.new();body.add_child(roster)
+	roster=HFlowContainer.new();body.add_child(roster)
 	assignments=VBoxContainer.new();body.add_child(assignments)
 	plans=VBoxContainer.new();plans.add_theme_constant_override("separation",12);body.add_child(plans)
 	var nav := HBoxContainer.new();column.add_child(nav)
 	previous=_button("上一页",func():command.emit({"op":"post_prev"}));nav.add_child(previous)
 	progress=_label(16);progress.size_flags_horizontal=Control.SIZE_EXPAND_FILL;nav.add_child(progress)
 	skip=_button("跳过本段剧情",func():skip_dialog.popup_centered(Vector2i(460,170)));nav.add_child(skip)
-	next=_button("下一页",func():command.emit({"op":"post_next" if _view["phase"] in ["post_story","new_week_story"] else "post_school"}));nav.add_child(next)
+	next=_button("下一页",func():command.emit({"op":"post_next" if _view["phase"] in ["post_story","new_week_story","school_entry_story"] else "post_school"}));nav.add_child(next)
 	status=_label(15);column.add_child(status)
 	skip_dialog=ConfirmationDialog.new();skip_dialog.title="跳过剩余剧情"
 	skip_dialog.dialog_text="跳过本段剩余对白，继续后续剧情与学校流程。"
@@ -70,9 +70,9 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	_view=view.duplicate(true);_names=names.duplicate();status.text=message
 	var phase: String=view["phase"];var school: Dictionary=view["bundle"]["school"]
 	var date := "%d月 · 第%d周" % [school["month"],school["week"]]
-	var reading := phase in ["post_story","new_week_story"]
+	var reading := phase in ["post_story","new_week_story","school_entry_story"]
 	var returned := phase=="returned_school"
-	heading.text="%d月 · 第%d周　｜　%s" % [school["month"],school["week"],"战后剧情" if phase=="post_story" else "新一周" if phase=="new_week_story" else "学校" if returned else "职务室"]
+	heading.text="%d月 · 第%d周　｜　%s" % [school["month"],school["week"],"战后剧情" if phase=="post_story" else "新一周" if phase=="new_week_story" else "返校剧情" if phase=="school_entry_story" else "学校" if returned else "职务室"]
 	if phase=="post_story" and view.get("planning",{}).has("course_summary"):
 		heading.text=date+"　｜　课后剧情"
 	speaker.text=view["page"]["speaker"] if reading else "已返回学校" if returned else "准备返校"
@@ -83,7 +83,7 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	skip.visible=reading;next.visible=reading or phase=="post_workroom"
 	next.text="下一页" if reading and view["cursor"]+1<view["total"] else "进入下一周" if phase=="post_story" else "前往职务室" if phase=="new_week_story" else "返回学校"
 	var inventory: Array=view["bundle"]["item_flags"]
-	details.text="教师：%s　学生：%d人　累计战果：%d　已持有道具：%d" % [names.get(101,"老师"),school["student_count"],school["global_total_511c"],inventory.filter(func(v):return (v&1)!=0).size()]
+	details.text="教师：%s　学生：%d人　累计战果：%d　已持有道具：%d" % [_member_names(school["teacher_ids"].slice(0,school["teacher_count"])),school["student_count"],school["global_total_511c"],inventory.filter(func(v):return (v&1)!=0).size()]
 	roster.visible=returned;assignments.visible=returned
 	for container in [roster,assignments,plans]:
 		for child in container.get_children():
@@ -91,8 +91,8 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	if returned:
 		for profile in school["member_profiles"]:
 			var id: int=profile["member_id"]
-			var button := _button("%s%s" % [names.get(id,str(id))," · 教师" if id==101 else " · Lv.%d" % profile["level_50"]],func():_selected=id;show_state(_view,_names,status.text))
-			button.toggle_mode=true;button.button_pressed=id==_selected;roster.add_child(button)
+			var button := _button("%s%s" % [names.get(id,str(id))," · 教师" if _is_teacher(id) else " · Lv.%d" % profile["level_50"]],func():_selected=id;show_state(_view,_names,status.text))
+			button.name="member_%d" % id;button.toggle_mode=true;button.button_pressed=id==_selected;roster.add_child(button)
 		for group in range(5):
 			var row := HBoxContainer.new();assignments.add_child(row)
 			var caption := _label(17);caption.text="%d班" % (group+1);row.add_child(caption)
@@ -101,9 +101,9 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 			for slot in range(4):
 				var id := Groups._word(school["group_raw_bytes"],group*28+16+slot*2)
 				row.add_child(_button(names.get(id,"空位"),func():_move(group,slot,false)))
-		var waiting := _label(17);waiting.text="待命："+", ".join(school["idle_student_ids"].map(func(id):return names.get(id,str(id))))
+		var waiting := _label(17);waiting.text="待命："+", ".join((school["idle_teacher_ids"]+school["idle_student_ids"]).map(func(id):return names.get(id,str(id))))
 		assignments.add_child(waiting)
-		assignments.add_child(_button("移到待命",func():_move(-1,-1,_selected==101)))
+		assignments.add_child(_button("移到待命",func():_move(-1,-1,_is_teacher(_selected))))
 		if not view.has("planning"):
 			var button := _button("继续安排本周",func():command.emit({"op":"return_plan"}))
 			button.name="plan_start";plans.add_child(button)
@@ -111,6 +111,7 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 		if phase=="post_workroom":
 			dialogue.text="本周的剧情已结束。返回学校后可以查看队伍成长，并安排本周活动。"
 			progress.text="本周成长与换周记录已保留"
+			if school["week"]==4: next.text="继续返校剧情"
 		elif returned:
 			progress.text="当前编班和本周安排可随时保存"
 	if view.has("planning"):_show_plan(view)
@@ -145,10 +146,10 @@ func _show_plan(view: Dictionary) -> void:
 		dialogue.text="成长、技能和本周最佳已记录。继续课后剧情即可进入下一周。"
 		progress.text="本周不能再次授课或出击；可保存结果，或读取提交前的备份。"
 		var summary: Dictionary=plan["course_summary"]
-		var best := _label(21);best.text="本周最佳：%s　·　新增总战果：%d" % [_names.get(summary["recipient"],""),summary["bonus"]];plans.add_child(best)
+		var best := _label(21);best.text="本周最佳：%s　·　新增总战果：%d" % [_names.get(summary["recipient"],"无"),summary["bonus"]];plans.add_child(best)
 		for row in summary["students"]:
 			var label := _label(18)
-			label.text="%s　%s　Lv.%d → %d\n能力：%s → %s　·　新技能：%d项" % [_names.get(row["character_id"],""),COURSE_NAMES[row["work_id"]],row["before_level"],row["level"],str(row["before_attributes"]),str(row["attributes"]),row["new_skill_ids"].size()]
+			label.text="%s　%s　Lv.%d → %d\n能力：%s → %s　·　新技能：%d项" % [_names.get(row["character_id"],""),COURSE_NAMES.get(row["work_id"],"课程%d" % row["work_id"]),row["before_level"],row["level"],str(row["before_attributes"]),str(row["attributes"]),row["new_skill_ids"].size()]
 			plans.add_child(label)
 		var proceed := _button("继续课后剧情",func():command.emit({"op":"course_story"}))
 		proceed.name="continue_course_story"
@@ -166,11 +167,11 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=school["week"]>=3
+	var planning_only: bool=school["week"]>=4
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
-	progress.text="本周可调整编班、课程与冒险，并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
+	progress.text="可调整出击班级并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="已完成换周。选择班级活动、课程或仍然开放的冒险。"
+		dialogue.text="奎丝忒和帕佩修已加入。第4周为必修冒险7，请调整带队教师和学生。"
 	for group in range(5):
 		if Groups._word(school["group_raw_bytes"],group*28)<0:continue
 		var row := HBoxContainer.new();plans.add_child(row)
@@ -178,6 +179,7 @@ func _show_plan(view: Dictionary) -> void:
 		for teaching in [true,false]:
 			var button := _button("授课" if teaching else "冒险",func():command.emit({"op":"return_mode","group":group,"teaching":teaching}))
 			button.name="mode_%d_%d" % [group,int(teaching)];button.toggle_mode=true
+			button.disabled=planning_only
 			button.button_pressed=bool(school["group_raw_bytes"][group*28+3])==teaching;row.add_child(button)
 		var options := OptionButton.new();options.name="courses_%d" % group;options.custom_minimum_size=Vector2(180,40)
 		options.add_item("选择课程",-1)
@@ -192,13 +194,15 @@ func _show_plan(view: Dictionary) -> void:
 			var id := options.get_item_id(index)
 			if id>0:command.emit({"op":"return_course","group":group,"course":id}))
 		row.add_child(options)
-	var caption := _label(19);caption.text="本周可选冒险";plans.add_child(caption)
+	var caption := _label(19);caption.text="本周必修冒险" if planning_only else "本周可选冒险";plans.add_child(caption)
 	for adventure in Adventures.available(plan["ledger"]):
 		var id: int=adventure["id"]
-		var label := "守城 · 冒险8" if id==8 else "自由训练 · 冒险17"
+		if planning_only and id!=school["lecture_work_fields"][2]: continue
+		var label: String={7:"必修 · 冒险7",8:"守城 · 冒险8",17:"自由训练 · 冒险17"}.get(id,"冒险%d" % id)
 		label+="　剩余%d周" % adventure["remaining"] if adventure["remaining"]>0 else "　无期限"
 		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
 		button.name="adventure_%d" % id;button.toggle_mode=true
+		button.disabled=planning_only
 		button.button_pressed=school["lecture_active"]==1 and school["lecture_work_fields"][2]==id;plans.add_child(button)
 	if planning_only: return
 	var row := HBoxContainer.new();plans.add_child(row)
@@ -223,13 +227,18 @@ func _member_names(ids: Array) -> String:
 	return "、".join(ids.map(func(id):return _names.get(id,str(id)))) if not ids.is_empty() else "无"
 
 
+func _is_teacher(id: int) -> bool:
+	var school: Dictionary=_view["bundle"]["school"]
+	return school["teacher_ids"].slice(0,school["teacher_count"]).has(id)
+
+
 func _move(group: int, slot: int, teacher: bool) -> void:
-	if _selected<0 or (_selected==101)!=teacher: return
+	if _selected<0 or (_is_teacher(_selected))!=teacher: return
 	command.emit({"op":"return_move","kind":"teacher" if teacher else "student","member_id":_selected,"target_group":group,"target_slot":slot})
 
 
 func key(event: InputEventKey) -> void:
-	if not visible or skip_dialog.visible or _view["phase"] not in ["post_story","new_week_story"]:return
+	if not visible or skip_dialog.visible or _view["phase"] not in ["post_story","new_week_story","school_entry_story"]:return
 	if event.keycode in [KEY_ENTER,KEY_SPACE,KEY_RIGHT]:command.emit({"op":"post_next"})
 	elif event.keycode==KEY_LEFT:command.emit({"op":"post_prev"})
 	else:return

@@ -107,3 +107,45 @@ func test_malformed_bundle_and_wrong_phase_refuse_without_changes() -> void:
 		assert_eq(bad,original)
 	assert_false(Return.next_week(before)["supported"])
 	assert_false(Return.school_return(before)["supported"])
+
+
+func test_chapter029_registers_two_waiting_members_without_overwriting_the_active_class() -> void:
+	var calendar := preload("res://sim/school_sortie_week.gd")
+	var adventures := preload("res://sim/school_return_adventures.gd")
+	var joined := Return.join(_bundle())
+	var bundle: Dictionary = Return.school_return(Return.next_week(joined["after"])["after"])["after"]
+	var ledger := adventures.initial()
+	for start_week in [1,2,3]:
+		bundle["phase"]="courses_confirmed"
+		var advanced := calendar.next_week(bundle)
+		assert_true(advanced["supported"],str(advanced.get("reason")))
+		if not advanced["supported"]: return
+		if start_week==3:
+			var current: Dictionary=advanced["after"]
+			assert_false(Return.join_week_four(current,Return._rules())["supported"])
+			assert_eq(current["records"].slice(0,4),bundle["records"])
+			assert_eq(current["school"]["group_raw_bytes"],bundle["school"]["group_raw_bytes"])
+			assert_eq(current["school"]["relationships"].size(),42)
+			assert_eq(current["growth"][-1]["attributes"],[1,1,1,1,1,1,1])
+			assert_eq(current["participants"][-1]["equipped_items"],[0,0,0,0,0,0,0,0])
+			assert_eq(current["counts"][-1],{"character_id":8,"count":0})
+		var room := calendar.finish_story(advanced["after"])
+		var opening := calendar.school_return(room["after"],adventures.advance(ledger,0),ledger)
+		assert_true(opening["supported"],str(opening.get("reason")))
+		if not opening["supported"]: return
+		bundle=opening["after"]
+		ledger=opening["ledger_after"]
+	var stale: Dictionary=bundle.duplicate(true)
+	stale["school"]["member_profiles"][-1].erase("attributes")
+	assert_eq(Return.validate_planning_roster(stale,Return._rules()),"invalid_chapter029_teacher_profile")
+	assert_eq(bundle["school"]["idle_teacher_ids"],[110])
+	assert_true(bundle["school"]["idle_student_ids"].has(8))
+	var teacher := Return.move_member(bundle,{"kind":"teacher","member_id":110,"target_group":1})
+	assert_true(teacher["supported"],str(teacher.get("reason")))
+	if not teacher["supported"]: return
+	var student := Return.move_member(teacher["after"],{"kind":"student","member_id":8,"target_group":1,"target_slot":0})
+	assert_true(student["supported"],str(student.get("reason")))
+	if not student["supported"]: return
+	assert_eq(student["after"]["school"]["derived_teacher_ids"][1],110)
+	assert_eq(student["after"]["school"]["derived_student_ids"][1],[8,-1,-1,-1])
+	assert_eq(student["after"]["ratings"][1]["work_fields"],[3,6,7,0])

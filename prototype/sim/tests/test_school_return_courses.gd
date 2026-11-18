@@ -181,3 +181,65 @@ func test_relocated_class_has_same_course_growth_and_slot_order_mvp() -> void:
 	if not first["supported"] or not second["supported"]: return
 	for key in ["growth","records","counts","participants"]: assert_eq(first["after"][key],second["after"][key],key)
 	assert_eq(first["summary"],second["summary"])
+
+
+func test_third_week_new_courses_preserve_history_and_bonus_only_recipient() -> void:
+	var calendar := preload("res://sim/school_sortie_week.gd")
+	var adventures := preload("res://sim/school_return_adventures.gd")
+	var course := Courses.settle(_planned())
+	var ledger := adventures.initial()
+	var school: Dictionary
+	for week in [1,2]:
+		var opening := ledger
+		ledger=adventures.advance(ledger,0)
+		var room := calendar.finish_story(calendar.next_week(course["after"])["after"])
+		school=calendar.school_return(room["after"],ledger,opening)["after"]
+		if week==1:course=Courses.settle(school)
+	for work in [6,7]:
+		var assigned := Courses.assign_course(school,0,work)
+		assert_true(assigned["supported"],str(assigned.get("reason")))
+		if not assigned["supported"]:continue
+		var result := Courses.settle(assigned["after"])
+		assert_true(result["supported"],str(result.get("reason")))
+		if not result["supported"]:continue
+		var after: Dictionary=result["after"]
+		var summary: Dictionary=result["summary"]
+		assert_eq(summary["date"],[5,3])
+		assert_eq(summary["history_index"],7)
+		assert_true(not summary["learning_draws"].is_empty())
+		assert_eq(after["item_flags"],school["item_flags"])
+		for i in range(4):
+			assert_eq(after["records"][i]["week_records"].slice(0,21),school["records"][i]["week_records"].slice(0,21))
+			assert_eq(after["records"][i]["week_records"][21],1)
+			assert_eq(after["records"][i]["week_records"].slice(24),school["records"][i]["week_records"].slice(24))
+		if work==6:
+			assert_true(summary["bonus"]>0)
+			assert_eq(summary["recipient"],-1)
+			assert_eq(summary["mvp_script"],"")
+			assert_eq(after["counts"],school["counts"])
+			for i in range(4):
+				assert_eq(after["growth"][i]["growth_pools"],school["growth"][i]["growth_pools"])
+		else:
+			assert_true(summary["recipient"] in [3,4,9,5])
+			assert_eq(summary["bonus"],0)
+			for packet in summary["packets"]:
+				assert_true(packet["packet"][4]>0 and packet["packet"][6]>0)
+
+
+func test_third_week_original_instruction_packets_and_draws() -> void:
+	# Declared 5/3, initial students 3/4/9, seed 4660. Original 4C0400
+	# runs both assignments in sequence on the same growth records.
+	var fixture: Dictionary = Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_settlement_evidence_v1.json")))
+	var records: Array = fixture["cases"][0]["before_records"]
+	var rules: Dictionary = Courses._rules()["growth"]
+	for work in [6,7]:
+		var plan := []
+		for id in [3,4,9]:
+			plan.append({"character_id":id,"training_id":work,"coefficient":65})
+		var growth := Courses._grow(records,plan,rules,fixture["cases"][0]["before"]["difficulty"],4660)
+		for event in growth["packets"]:
+			assert_eq(event["packet"],[0,0,0,0,0,0,0,23000] if work==6 else [0,0,0,0,6900,0,3450,0])
+		assert_eq(growth["bonus"],69000 if work==6 else 0)
+		assert_eq(growth["learning_draws"].size(),22)
+		assert_eq(growth["rand_state"],1174792322)
+		records=growth["records"]

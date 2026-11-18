@@ -58,8 +58,10 @@ static func move_teacher(before: Dictionary, command: Dictionary, profiles: Vari
 		if not sorted["supported"]:
 			return sorted
 		after["idle_student_ids"] = sorted["idle_student_ids"]
-	# Legacy117/118 have identical keys; the origin domain has only101.
-	# Both domains retain append/removal order in every teacher sort mode.
+	# 4A8BF0 sorts by descending total in mode 2. Only 101 and 110
+	# differ on this key (7 and 0); their levels and job categories tie.
+	if before["teacher_sort_mode"]==2 and after["idle_teacher_ids"]==[110,101]:
+		after["idle_teacher_ids"]=[101,110]
 	for key in ["drag_kind", "drag_origin", "drag_group", "drag_slot", "drag_id"]:
 		after[key] = -1
 	after["task_command"] = 0
@@ -144,7 +146,7 @@ static func _basic(before: Dictionary, group_rules: Dictionary, rules: Dictionar
 	if not reason.is_empty():
 		return reason
 	var domain := Group._teacher_rule_domain(group_rules)
-	var origin := domain == [101]
+	var origin := domain.has(101)
 	if rules.get("source_image_sha256") != Group.SOURCE_SHA \
 			or rules.get("template_fields_sha256") != TEMPLATE_HASH or not rules.get("templates") is Array \
 			or not rules.get("teacher_profiles") is Array or rules["teacher_profiles"].size() != domain.size():
@@ -162,7 +164,7 @@ static func _basic(before: Dictionary, group_rules: Dictionary, rules: Dictionar
 	for index in range(domain.size()):
 		var row: Variant = rules["teacher_profiles"][index]
 		var identity: int = domain[index]
-		var attribute := 1 if origin else 0
+		var attribute := 1 if identity==101 else 0
 		if not row is Dictionary or not Week._bounded(row.get("teacher_id"),identity,identity) \
 				or not Week._bounded(row.get("job"),1,1) or not Week._bounded(row.get("level_50"),0,0) \
 				or not Week._vector(row.get("attributes"),7,attribute,attribute):

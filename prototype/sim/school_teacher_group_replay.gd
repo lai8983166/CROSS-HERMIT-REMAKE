@@ -5,6 +5,7 @@ extends RefCounted
 const Week = preload("res://sim/week_settlement_replay.gd")
 const SOURCE_SHA := "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005"
 const CHAPTER_SHA := "dfbdb1dc1f197f2d198a9d6b71e68c12d8f8f7fb72d1b2a4328f8f164affd5cf"
+const CHAPTER029_SHA := "9c6eb47adb70624b2f6b7f921bdf2aa8fa217959452430906252e5ef8715a344"
 const TEACHERS := [117, 118]
 const ORIGIN_SHA := "d06bdeb2e5951237481a121d0ccec4b46db3e3f9c5509622d19a5b9444a08f76"
 
@@ -236,6 +237,8 @@ static func _teacher_rule_domain(rules: Dictionary) -> Array:
 	if rules.get("source_image_sha256") != SOURCE_SHA or rules.get("relationship_thresholds") != [16,31,46,61,76,91]:
 		return []
 	if rules.has("teacher_scope"):
+		if rules["teacher_scope"] == "chapter029" and rules.get("chapter_sha256")==CHAPTER029_SHA and rules.get("origin_fields_sha256")==ORIGIN_SHA:
+			return [101,110]
 		if rules["teacher_scope"] == "new_game_initializer" and rules.get("initializer_va") is int \
 				and rules["initializer_va"] == 0x49E930 and rules.get("origin_fields_sha256") == ORIGIN_SHA:
 			return [101]

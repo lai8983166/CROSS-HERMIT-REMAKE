@@ -534,9 +534,11 @@ static func _working(snapshot: Dictionary) -> Dictionary:
 	for key in CONTROLS:
 		result[key] = -1
 	result.merge({"idle_sort_mode":0,"teacher_sort_mode":0,"drag_source_rank":0,
-		"task_drag_state":1,"task_command":14,"teacher_work_records":{"101":[]}},true)
-	for row in snapshot["course_buffers"][0]:
-		result["teacher_work_records"]["101"].append({"slot":row[0],"enabled":row[1],"blocked":row[2],"work_id":row[3]})
+		"task_drag_state":1,"task_command":14,"teacher_work_records":{}},true)
+	for identity in snapshot["teacher_ids"].slice(0,snapshot["teacher_count"]):
+		result["teacher_work_records"][str(identity)]=[]
+		for row in snapshot["course_buffers"][identity-101]:
+			result["teacher_work_records"][str(identity)].append({"slot":row[0],"enabled":row[1],"blocked":row[2],"work_id":row[3]})
 	return result
 
 

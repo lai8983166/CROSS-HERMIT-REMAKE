@@ -12,7 +12,7 @@ from tools.tactics_exit_emulation import ROOT, SOURCE, SOURCE_SHA256
 
 CHAPTER_COUNTS = {20:378,21:91,22:90,208:22}
 CHAPTERS = tuple(CHAPTER_COUNTS)
-ALLOWED = {12,13,15,17,19,20,21,22,24,26,27,28,30,31,32,33,35,36,40,43,44,50,51,56,59,63,65,67,69,74,91,144,151,153}
+ALLOWED = {12,13,15,17,19,20,21,22,24,26,27,28,29,30,31,32,33,35,36,40,43,44,50,51,56,59,63,65,67,69,74,91,144,151,153}
 
 
 def catalog(chapter_counts=None):
@@ -52,7 +52,7 @@ def catalog(chapter_counts=None):
             op, size = struct.unpack_from('<2H',raw,at)
             assert op in ALLOWED and size>=4 and at+size<=end, (chapter,at,op,size)
             payload = raw[at+4:at+size]
-            if op in (22,27,30,33):
+            if op in (22,27,29,30,33):
                 flush(at); values = immediate(payload); boards[values[0]]=values[1]
             elif op == 26:
                 flush(at); values=immediate(payload); assert values==[3,6,101,0];boards[3]=101

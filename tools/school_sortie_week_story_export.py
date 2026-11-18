@@ -1,8 +1,8 @@
-"""Export the May week 1 through week 3 date routes and source dialogue from the shipped ADV."""
+"""Export the May week 1 through week 4 date routes and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
-from tools.school_postbattle_story_export import GAME, ROOT, catalog
+from tools.school_postbattle_story_export import GAME, ROOT, SOURCE, catalog
 
 
 def date_route(router, month, week):
@@ -83,7 +83,49 @@ def build_week3():
     return data
 
 
+def build_week4():
+    data = catalog({28: 93, 29: 202, 207: 33})
+    routes = [date_route('CH003', 5, 3), date_route('CH001', 5, 4), date_route('CH002', 5, 4)]
+    assert [r['target'] for r in routes] == [f'data/adv/dat/Chapter{i:03}.ybc' for i in (28, 29, 207)]
+    assert [s['effects'] for s in data['scenes']] == [[], [
+        {'offset': 0x14, 'opcode': 144, 'operands': [8]},
+        {'offset': 0x1c, 'opcode': 144, 'operands': [110]},
+        {'offset': 0x120c, 'opcode': 151, 'operands': [11, 0]},
+        {'offset': 0x1218, 'opcode': 91, 'operands': [6, 2]}],
+        [{'offset': 0x276, 'opcode': 151, 'operands': [11, 1]}]]
+    data['routes'] = routes
+    image = SOURCE.read_bytes()
+    profiles = []
+    for identity in (8, 110):
+        start = 0x6f5088 - 0x400000 + identity * 0x4a0
+        raw = image[start:start + 0x4a0]
+        profile = {'member_id': identity, 'job': struct.unpack_from('<h', raw, 6)[0],
+                   'level_50': raw[0x50], 'attributes': list(raw[0xc:0x44:8]),
+                   'storage_kind': 'student_record' if identity == 8 else 'static_teacher_template',
+                   'template_sha256': hashlib.sha256(raw).hexdigest()}
+        profiles.append(profile)
+        if identity == 8:
+            progress = [0] + [max(0, min(100, x)) for x in struct.unpack_from('<32h', image, 0x351242 + identity * 0x42)]
+            data['history'] = {'character_id': identity, 'job_progress': progress, 'week_records': [0] * 177}
+            data['candidate'] = {'character_id': identity, **{k: profile[k] for k in ('job', 'level_50', 'attributes')},
+                                 'growth_pools': [struct.unpack_from('<I', raw, 0x10 + k*8)[0] for k in range(7)],
+                                 'skill_statuses': list(raw[0xb8:0xb8 + 84*12:12]),
+                                 'equipped_skills': list(struct.unpack_from('<8h', raw, 0x52)),
+                                 'equipped_items': list(struct.unpack_from('<8h', raw, 0x62)),
+                                 'job_progress': progress[:31], 'unlock_flags': [0]*30, 'unlock_reserved_bytes': [0, 0],
+                                 'job_sums': [sum(progress[1 + 2*k + n] for n in (0,1,10,11,20,21)) for k in range(5)],
+                                 'staged_total': 0}
+    data['join_profiles'] = profiles
+    members = [101,3,4,9,5,8,110]
+    def row(identity):
+        return identity - 55 if identity > 100 else identity
+    data['join_relationships'] = [{'from': a, 'to': b, 'value': image[0x34e4b0 + row(a)*68 + 1 + row(b)]}
+                                  for a in members for b in members if a != b and (a in (8,110) or b in (8,110))]
+    return data
+
+
 if __name__ == '__main__':
-    for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3)]:
+    for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
+                       ('school_may_week4_story', build_week4)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')

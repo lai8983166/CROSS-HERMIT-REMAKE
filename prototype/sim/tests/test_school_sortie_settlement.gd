@@ -110,3 +110,37 @@ func test_second_training_uses_saved_best_grade_and_current_inventory() -> void:
 			assert_true((result["after"]["item_flags"][i]&1)!=0)
 	for i in range(4):
 		assert_eq(result["after"]["records"][i]["week_records"].slice(15,18),first_result["after"]["records"][i]["week_records"].slice(15,18))
+
+
+func test_third_week_repeated_training_uses_per_task_best_and_retained_ledger() -> void:
+	var calendar := preload("res://sim/school_sortie_week.gd")
+	var first := _departure(17,true)
+	var result := Settlement.apply(first["after"],first["handoff"],_facts(first))
+	var school := calendar.school_return(calendar.finish_story(calendar.next_week(result["after"])["after"])["after"],first["ledger_after"])
+	var second_opening: Dictionary = school["ledger_after"]
+	var chosen := Adventures.select(school["after"],second_opening,8)
+	var second := Adventures.submit(chosen["after"],second_opening)
+	result=Settlement.apply(second["after"],second["handoff"],_facts(second),second_opening)
+	school=calendar.school_return(calendar.finish_story(calendar.next_week(result["after"])["after"])["after"],second["ledger_after"],second_opening)
+	var opening: Dictionary=school["ledger_after"]
+	chosen=Adventures.select(school["after"],opening,17)
+	var third := Adventures.submit(chosen["after"],opening)
+	var facts := _facts(third)
+	facts["result_selector"]=5
+	assert_false(Settlement.apply(third["after"],third["handoff"],facts,second_opening,{17:1,8:1})["supported"])
+	assert_false(Settlement.apply(third["after"],third["handoff"],facts,opening,{17:6})["supported"])
+	result=Settlement.apply(third["after"],third["handoff"],facts,opening,{17:1,8:1})
+	assert_true(result["supported"],str(result.get("reason")))
+	if not result["supported"]:return
+	assert_eq(result["summary"]["task_grade"],1)
+	assert_eq(result["summary"]["history_index"],7)
+	assert_eq(result["summary"]["date"],[5,3])
+	for i in range(4):
+		var current: Array=result["after"]["records"][i]["week_records"]
+		var prior: Array=chosen["after"]["records"][i]["week_records"]
+		assert_eq(current.slice(0,21),prior.slice(0,21))
+		assert_eq(current[21],2)
+		assert_eq(current.slice(24),prior.slice(24))
+	for i in range(360):
+		if (chosen["after"]["item_flags"][i]&1)!=0:
+			assert_true((result["after"]["item_flags"][i]&1)!=0)

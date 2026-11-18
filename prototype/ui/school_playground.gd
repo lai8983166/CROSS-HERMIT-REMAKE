@@ -591,7 +591,9 @@ func refresh() -> void:
 	if not post.is_empty():
 		panel.hide();story_reader.hide();arrival.hide();workroom.hide()
 		var names := {}
-		for id in [3,4,9,5,101]: names[id]=_name(id)
+		for profile in post["bundle"]["school"]["member_profiles"]:
+			var id: int=profile["member_id"]
+			names[id]=_name(id)
 		postbattle_panel.show_state(post,names,_save_message+" "+_message)
 		return
 	postbattle_panel.hide();panel.show()
@@ -1047,7 +1049,8 @@ func _set_member(button: Button, identity: int, empty: String) -> void:
 
 
 func _name(identity: int) -> String:
-	return catalog["characters"].get(str(identity),{"name":"成员 #%d" % identity})["name"]
+	if catalog["characters"].has(str(identity)): return catalog["characters"][str(identity)]["name"]
+	return {5:"法娜",8:"奎丝忒",110:"帕佩修"}.get(identity,"成员 #%d" % identity)
 
 
 func _texture(filename: String) -> Texture2D:

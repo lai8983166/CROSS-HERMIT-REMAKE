@@ -1,5 +1,5 @@
 extends RefCounted
-## Current returned 5/1 and 5/2 roster adapter. Original 4/4 fixture gates stay intact.
+## Current returned May school roster adapter. Original 4/4 fixture gates stay intact.
 ## Pure commands; the owning replay commits one result and advances the story/week.
 const Origin := preload("res://sim/new_game_school_origin.gd")
 const Return := preload("res://sim/school_postbattle_return.gd")
@@ -22,7 +22,7 @@ static func list_courses(before: Dictionary, group: Variant) -> Dictionary:
 	var reason := _guard(before,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
 	if not Courses._integer(group,0,4): return Origin.failure("invalid_return_course_class")
-	var selected := Teacher.select_group(Session._working(before["school"]),group,Origin.group_rules(),rules["school"]["work_rules"])
+	var selected := Teacher.select_group(Session._working(before["school"]),group,Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 	if not selected["supported"]: return selected
 	var output := Origin.success("return_course_list")
 	output.merge({"group":group,"courses":selected["after"]["work_rows"].duplicate(true)})
@@ -33,7 +33,9 @@ static func set_mode(before: Dictionary, group: Variant, teaching: Variant) -> D
 	var rules := _rules()
 	var reason := _guard(before,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
-	var changed := Planning.set_mode(Session._working(before["school"]),group,teaching,Origin.group_rules(),rules["school"]["work_rules"])
+	if teaching == true and before["school"]["week"] == 4 and before["school"]["adventure_gate"] != 0:
+		return Origin.failure("mandatory_adventure_requires_sortie")
+	var changed := Planning.set_mode(Session._working(before["school"]),group,teaching,Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 	if not changed["supported"]: return changed
 	return _publish_plan(before,changed["after"])
 
@@ -44,7 +46,7 @@ static func assign_course(before: Dictionary, group: Variant, work_id: Variant) 
 	if not reason.is_empty(): return Origin.failure(reason)
 	if not Courses._integer(group,0,4) or not Courses._integer(work_id,1,15):
 		return Origin.failure("invalid_return_course_command")
-	var selected := Teacher.select_group(Session._working(before["school"]),group,Origin.group_rules(),rules["school"]["work_rules"])
+	var selected := Teacher.select_group(Session._working(before["school"]),group,Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 	if not selected["supported"]: return selected
 	var working: Dictionary = selected["after"]
 	for category in range(3):
@@ -56,14 +58,14 @@ static func assign_course(before: Dictionary, group: Variant, work_id: Variant) 
 			working["work_pages"][category] = page
 			working["detail_work_id"] = -1
 			working["detail_previous_work_id"] = -1
-			var chosen := Planning.select_course(working,{"group":group,"category":category,"row":ordinal-page*2,"page":page,"clicked":true},Origin.group_rules(),rules["school"]["work_rules"])
+			var chosen := Planning.select_course(working,{"group":group,"category":category,"row":ordinal-page*2,"page":page,"clicked":true},Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 			if not chosen["supported"]: return chosen
 			return _publish_plan(before,chosen["after"])
 	return Origin.failure("return_course_unavailable")
 
 
 static func _publish_plan(before: Dictionary, school: Dictionary) -> Dictionary:
-	var rated := Groups.rate(school,Origin.group_rules())
+	var rated := Groups.rate(school,Return.group_rules(school))
 	if not rated["supported"]: return rated
 	var after := before.duplicate(true)
 	after["school"] = Session._canonical(rated["after"])
@@ -77,7 +79,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var reason := _guard(before,rules,true)
 	if not reason.is_empty(): return Origin.failure(reason)
 	var week: int=before["school"]["week"]
-	if week not in [1,2]: return Origin.failure("outside_supported_course_week")
+	if week not in [1,2,3]: return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -100,11 +102,16 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 		var row := Return._find(after["growth"],command["character_id"])
 		if row["character_id"]<13 and row["staged_total"]>best:
 			best=row["staged_total"];recipient=row["character_id"]
-	if recipient<0: return Origin.failure("missing_positive_return_course_mvp")
+	# Course 6 puts its entire award in packet[7]. Original 4C00C0
+	# leaves the recipient at -1. Do not index counts with this sentinel.
+	var bonus_only: bool = week==3 and prepared["plan"].all(func(command):return command["training_id"]==6)
+	if recipient<0 and not bonus_only: return Origin.failure("missing_positive_return_course_mvp")
 	var confirmed := _confirm(after,prepared["classes"],rules["confirmation"]["job_categories"])
-	var counts := Return._find(after["counts"],recipient)
-	var old_count: int = counts["count"]
-	counts["count"] = clampi(old_count+1,0,5)
+	var old_count := 0
+	if recipient>=0:
+		var counts := Return._find(after["counts"],recipient)
+		old_count = counts["count"]
+		counts["count"] = clampi(old_count+1,0,5)
 	Return._sync_participants(after)
 	var rated := Groups.rate(after["school"],Origin.group_rules())
 	if not rated["supported"]: return rated
@@ -125,7 +132,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var summary := {"date":[5,week],"declared_clock_seed":seed,"packets":growth["packets"],
 		"learning_draws":growth["learning_draws"],"rand_state":growth["rand_state"],"bonus":growth["bonus"],
 		"skill_display_needed":growth["skill_display_needed"],"recipient":recipient,"old_mvp_count":old_count,
-		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient,"history_index":(before["school"]["month"]-4)*5+week-1,
+		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "","history_index":(before["school"]["month"]-4)*5+week-1,
 		"relationship_calls":confirmed["relationship_calls"],"students":changes,
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"chapter_completed":false,"week_advanced":false}}
 	after["course_result"] = summary
@@ -134,7 +141,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 
 
 static func _plan(school: Dictionary, rules: Dictionary) -> Dictionary:
-	var rated := Groups.rate(school,Origin.group_rules())
+	var rated := Groups.rate(school,Return.group_rules(school))
 	if not rated["supported"]: return rated
 	var plan := []
 	var classes := []
@@ -144,9 +151,9 @@ static func _plan(school: Dictionary, rules: Dictionary) -> Dictionary:
 		var rating: Dictionary = rated["ratings"][group]
 		if rating["state"]!=4: return Origin.failure("return_class_requires_assigned_course")
 		var fields: Array = rating["work_fields"]
-		if fields[0]<0 or fields[0]>2 or fields[2] not in [1,2,3,4,5,10,11,12]:
+		if fields[0]<0 or fields[0]>2 or fields[2] not in [1,2,3,4,5,6,7,10,11,12]:
 			return Origin.failure("outside_return_course_subset")
-		var selected := Teacher.select_group(Session._working(school),group,Origin.group_rules(),rules["school"]["work_rules"])
+		var selected := Teacher.select_group(Session._working(school),group,Return.group_rules(school),Return.work_rules(school,rules))
 		if not selected["supported"]: return selected
 		if not selected["after"]["work_rows"][fields[0]].has([fields[1],fields[2],fields[3]]):
 			return Origin.failure("stale_return_course_assignment")

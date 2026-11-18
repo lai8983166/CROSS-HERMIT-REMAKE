@@ -48,7 +48,7 @@ func test_waiting_member_rejected_data_and_atomic_reopen() -> void:
 	assert_false(session.open(bad));assert_eq(session.read_units(),before)
 	bad=source.duplicate(true);bad.erase("date")
 	assert_false(session.open(bad));assert_eq(session.read_units(),before)
-	bad=source.duplicate(true);bad["date"]=[5,3]
+	bad=source.duplicate(true);bad["date"]=[5,4]
 	assert_false(session.open(bad));assert_eq(session.read_units(),before)
 	bad=source.duplicate(true);bad["participants"][0]["attributes"][0]+=1
 	assert_false(session.open(bad));assert_eq(session.read_units(),before)

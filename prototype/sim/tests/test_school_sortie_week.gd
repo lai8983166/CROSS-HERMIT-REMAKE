@@ -83,7 +83,8 @@ func test_may_week3_chapter_chain_and_carried_planning_state() -> void:
 	assert_eq(story["week_start"][102]["chapter"],26)
 	assert_eq(story["week_start"][103]["chapter"],27)
 	assert_eq(story["school_entry"],[])
-	assert_false(Calendar.story(3)["supported"])
+	assert_true(Calendar.story(3)["supported"])
+	assert_false(Calendar.story(4)["supported"])
 
 	var initial := Adventures.initial()
 	var original := Helpers.new()._returned()
@@ -136,4 +137,4 @@ func test_may_week3_chapter_chain_and_carried_planning_state() -> void:
 			var teaching := Courses.set_mode(after,0,true)
 			var planned := Courses.assign_course(teaching["after"],0,7)
 			assert_true(planned["supported"])
-			if planned["supported"]: assert_false(Courses.settle(planned["after"])["supported"])
+			if planned["supported"]: assert_true(Courses.settle(planned["after"])["supported"])

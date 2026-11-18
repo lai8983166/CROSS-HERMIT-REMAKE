@@ -1,5 +1,5 @@
 extends RefCounted
-## Settle the current 5/1 departure using its command-replayed battle facts.
+## Settle the current May departure using its command-replayed battle facts.
 const Adventures := preload("res://sim/school_return_adventures.gd")
 const Courses := preload("res://sim/school_return_courses.gd")
 const Battle := preload("res://sim/school_battle_settlement.gd")
@@ -10,15 +10,15 @@ const TASK_PATH := "res://data/school_sortie_reward_rules.json"
 const TASK_SHA := "81020c8f0bba894d13c49e3e825d54f0c7597e67a17c597e4ca5e3373512c7de"
 
 
-static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, opening_ledger: Dictionary = {}) -> Dictionary:
+static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, opening_ledger: Dictionary = {}, task_grades: Dictionary = {}) -> Dictionary:
 	if bundle.get("phase") != "sortie_committed":
 		return Origin.failure("settlement_requires_committed_sortie")
 	var school: Variant=bundle.get("school")
 	var previous: Variant=bundle.get("sortie_result",{})
-	if not school is Dictionary or school.get("week") not in [1,2] or not previous is Dictionary:
+	if not school is Dictionary or school.get("week") not in [1,2,3] or not previous is Dictionary:
 		return Origin.failure("invalid_sortie_school")
 	var week: int=school["week"]
-	var ledger := Adventures.initial()
+	var ledger := opening_ledger if week==3 else Adventures.initial()
 	if week==2:
 		var previous_id: Variant=previous.get("scene_id",0)
 		if ledger.is_empty() or previous_id not in [0,8,17]:
@@ -68,6 +68,11 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	if week==2 and previous.get("scene_id")==scene_id:
 		if not Roles._bounded(previous.get("task_grade"),1,5): return Origin.failure("invalid_previous_task_grade")
 		initial_grade=previous["task_grade"]
+	if week==3:
+		for task in task_grades:
+			if task not in [8,17] or not Roles._bounded(task_grades[task],1,5):
+				return Origin.failure("invalid_previous_task_grade")
+		initial_grade=task_grades.get(scene_id,5)
 	var score := Battle.Score.calculate({"task_id":scene_id,"mode":0,"cap_mode":0,
 		"result_selector":facts.get("result_selector"),"time_key":facts["time_key"],
 		"unit_key":facts.get("unit_condition_key"),"characters":characters,"initial_grade":initial_grade,

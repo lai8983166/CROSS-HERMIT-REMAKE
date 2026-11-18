@@ -2,7 +2,6 @@ extends RefCounted
 ## Current first-game school ledger and legal departure; scene8/17 play is separate.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
-const Origin := preload("res://sim/new_game_school_origin.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
 const PATH := "res://data/school_return_adventures.json"
 const SHA := "8ab8d1183a0a1594bfde53b508b1f1aa8974c9cd5788546abee7b9904760d0cb"
@@ -63,10 +62,35 @@ static func available(ledger: Dictionary) -> Array:
 	return result
 
 
+## A departure ledger can be reconstructed from the legal earlier submissions.
+static func valid_opening(ledger: Dictionary, week: int) -> bool:
+	if week not in [1,2,3]: return false
+	var source := rules()
+	var first := initial()
+	if source.is_empty() or first.is_empty(): return false
+	var candidates := [first]
+	for date in range(2,week+1):
+		var next := []
+		for candidate in candidates:
+			var selections := [0]
+			for row in available(candidate):
+				selections.append(row["id"])
+			for id in selections:
+				var advanced := advance(candidate,id)
+				_open(advanced,5,date,source)
+				if not next.has(advanced): next.append(advanced)
+		candidates = next
+	return candidates.has(ledger)
+
+
 static func select(bundle: Dictionary, ledger: Dictionary, id: int) -> Dictionary:
 	if not _valid_bundle(bundle):return _failure("outside_returned_school")
 	if rules().is_empty():return _failure("adventure_sources_changed")
-	if id not in [8,17] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
+	if id == 7 and bundle["school"]["week"] != 4:
+		return _failure("adventure_not_available")
+	if bundle["school"]["adventure_gate"] != 0 and id != 7:
+		return _failure("mandatory_adventure_required")
+	if id not in [7,8,17] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
 	var row: Dictionary=ledger["entries"].filter(func(r):return r["id"]==id)[0]
 	var index := available(ledger).filter(func(r):return r["category"]==row["metadata"][2]).find(available(ledger).filter(func(r):return r["id"]==id)[0])
 	var after := bundle.duplicate(true)
@@ -82,7 +106,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var school: Dictionary=bundle["school"]
 	var id: int=school["lecture_work_fields"][2]
 	if school["lecture_active"]!=1 or id not in [8,17] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("select_available_adventure")
-	var rated := Groups.rate(school,Origin.group_rules())
+	var rated := Groups.rate(school,Return.group_rules(school))
 	if not rated["supported"]:return rated
 	var teachers := [];var students := [];var groups := []
 	for group in range(5):
@@ -106,9 +130,11 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 
 
 static func submit(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
+	if bundle.get("school") is Dictionary and bundle["school"].get("week") == 3 and not valid_opening(ledger,3):
+		return _failure("sortie_opening_ledger_mismatch")
 	var ready := prepare(bundle,ledger)
 	if not ready["supported"]:return ready
-	if bundle["school"]["week"] not in [1,2]:return _failure("outside_supported_sortie_week")
+	if bundle["school"]["week"] not in [1,2,3]:return _failure("outside_supported_sortie_week")
 	var after := bundle.duplicate(true);after["phase"]="sortie_committed"
 	var handoff := ready.duplicate(true)
 	handoff["requested_states"]=[10,16];handoff["round_cursor"]=1

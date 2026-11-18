@@ -36,8 +36,8 @@ func _check_week_three(ui, opening: Dictionary, used: int) -> void:
 	assert_eq(view["bundle"]["school"]["week"],3)
 	assert_eq(view["planning"]["ledger"],Plans.advance(opening,used))
 	assert_true(ui.postbattle_panel.heading.text.contains("第3周"))
-	assert_true(ui.postbattle_panel.find_child("settle",true,false)==null)
-	assert_true(ui.postbattle_panel.find_child("depart",true,false)==null)
+	assert_true(ui.postbattle_panel.find_child("settle",true,false)!=null)
+	assert_true(ui.postbattle_panel.find_child("depart",true,false)!=null)
 	ui.postbattle_panel.find_child("mode_0_1",true,false).pressed.emit()
 	var courses=ui.postbattle_panel.find_child("courses_0",true,false)
 	for id in [6,7]: assert_true(courses.get_item_index(id)>=0)
@@ -51,7 +51,7 @@ func _check_week_three(ui, opening: Dictionary, used: int) -> void:
 	assert_eq(loaded.state(),ui.model.state())
 	assert_eq(loaded.export_save(),ui.model.export_save())
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
-	for op in ["return_settle","return_depart","post_skip"]:
+	for op in ["return_depart","post_skip"]:
 		assert_false(loaded.execute({"op":op})["supported"])
 
 
