@@ -10,26 +10,33 @@ from pathlib import Path
 from tools.school_story_export import GAME, immediate, source_string
 from tools.tactics_exit_emulation import ROOT, SOURCE, SOURCE_SHA256
 
-CHAPTERS = (20, 21, 22, 208)
+CHAPTER_COUNTS = {20:378,21:91,22:90,208:22}
+CHAPTERS = tuple(CHAPTER_COUNTS)
 ALLOWED = {12,13,15,17,19,20,21,22,24,26,27,28,30,31,32,33,35,36,40,43,44,50,51,56,59,63,65,67,69,74,91,144,151,153}
 
 
-def catalog():
+def catalog(chapter_counts=None):
+    if chapter_counts is None:
+        chapter_counts = CHAPTER_COUNTS
     image = SOURCE.read_bytes()
     assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
     scenes = []
-    for chapter in CHAPTERS:
+    for chapter in chapter_counts:
         raw = (GAME/f'DAT/CHAPTER{chapter:03}.YBC').read_bytes()
         assert raw == (GAME/f'DAT/BIG5/CHAPTER{chapter:03}.YBC').read_bytes()
         header, at, end, pool, _ = struct.unpack_from('<5I', raw)
         assert header == 4 and at == 20 and at < end <= pool < len(raw)
         count = struct.unpack_from('<I', raw, pool)[0]
-        assert count == {20:378,21:91,22:90,208:22}[chapter]
+        assert count == chapter_counts[chapter]
         texts = []
         for i in range(count):
             offset, parameter = struct.unpack_from('<2H', raw, pool+4+4*i)
             assert offset >= 4+4*count and pool+offset<len(raw)
             data = raw[pool+offset:raw.index(0,pool+offset)]
+            if chapter == 23 and i == 157:
+                # Big5 period followed by its Shift-JIS twin in this one source line.
+                assert data.endswith(bytes.fromhex("a1438142"))
+                data = data[:-2] + bytes.fromhex("a143")
             text = data.replace(b'\x81\x40',b'\xa1\x40').decode('cp950',errors='strict')
             texts.append(text)
         pages, effects, boards, lines, indices = [], [], {}, [], []

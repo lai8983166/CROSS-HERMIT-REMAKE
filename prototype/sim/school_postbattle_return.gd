@@ -123,10 +123,17 @@ static func school_return(before: Dictionary) -> Dictionary:
 		"planning_scope":"four_students_teacher101_movement_and_course_availability"})
 
 
+static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> String:
+	var school: Variant = bundle.get("school")
+	if not school is Dictionary or school.get("week") not in [1,2]:
+		return "outside_current_return_week"
+	return _validate(bundle,[3,4,9,5],5,school["week"],rules)
+
+
 static func move_member(before: Dictionary, command: Dictionary) -> Dictionary:
 	var rules := _rules()
 	if rules.is_empty(): return Origin.failure("invalid_postbattle_source_rules")
-	var reason := _validate(before,[3,4,9,5],5,1,rules)
+	var reason := validate_planning_roster(before,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
 	if before.get("phase") != "school_returned": return Origin.failure("movement_requires_school_return")
 	for key in command:

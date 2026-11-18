@@ -108,6 +108,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 static func submit(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var ready := prepare(bundle,ledger)
 	if not ready["supported"]:return ready
+	if bundle["school"]["week"]!=1:return _failure("outside_supported_sortie_week")
 	var after := bundle.duplicate(true);after["phase"]="sortie_committed"
 	var handoff := ready.duplicate(true)
 	handoff["requested_states"]=[10,16];handoff["round_cursor"]=1
@@ -118,7 +119,7 @@ static func submit(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 
 static func _valid_bundle(bundle: Dictionary) -> bool:
 	var source := Return._rules()
-	return not source.is_empty() and bundle.get("phase")=="school_returned" and Return._validate(bundle,[3,4,9,5],5,1,source).is_empty()
+	return not source.is_empty() and bundle.get("phase")=="school_returned" and Return.validate_planning_roster(bundle,source).is_empty()
 
 
 static func _failure(reason: String) -> Dictionary:
