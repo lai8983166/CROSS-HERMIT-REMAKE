@@ -36,18 +36,23 @@ def catalog(scene_ids=(8,17)):
         'scope':'Complete catalog for the owned first-game 4/4 course -> 4/5 adventure5 -> 5/1 return. No imported arbitrary history or playable scene8/17 authority.'}
 
 
-def mandatory_seven():
+def mandatory_adventure(task_id):
+    assert task_id in (4, 7)
     image = SOURCE.read_bytes()
     assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
     def values(address, count, fmt='h'):
-        return list(struct.unpack_from('<'+fmt*count, image, address+7*256-0x400000))
-    rewards = {'task_id': 7, 'base_points': values(0x73BEF4,5,'i'),
+        return list(struct.unpack_from('<'+fmt*count, image, address+task_id*256-0x400000))
+    rewards = {'task_id': task_id, 'base_points': values(0x73BEF4,5,'i'),
                'unit_bonus': values(0x73BF08,1)[0], 'time_bonuses': values(0x73BF0A,3),
                'count_bonuses': values(0x73BF10,6),
                'loot_quotas': [values(0x73BF1A+14*i,7) for i in range(5)],
                'fixed_items': values(0x73BF60,8),
                'objective_rewards': [values(0x73BF70+6*i,3) for i in range(16)]}
-    return {'source_image_sha256': SOURCE_SHA256, 'scene':catalog((7,))['scenes']['7'], 'rewards':rewards}
+    return {'source_image_sha256': SOURCE_SHA256, 'scene':catalog((task_id,))['scenes'][str(task_id)], 'rewards':rewards}
+
+
+def mandatory_seven():
+    return mandatory_adventure(7)
 
 
 if __name__=='__main__':

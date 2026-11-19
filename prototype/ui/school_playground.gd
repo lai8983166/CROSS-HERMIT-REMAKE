@@ -1052,7 +1052,7 @@ func _set_member(button: Button, identity: int, empty: String) -> void:
 
 func _name(identity: int) -> String:
 	if catalog["characters"].has(str(identity)): return catalog["characters"][str(identity)]["name"]
-	return {1:"凯洛特",5:"法娜",6:"艾尔雪",8:"奎丝忒",110:"帕佩修",115:"薛莉尔"}.get(identity,"成员 #%d" % identity)
+	return {1:"凯洛特",2:"夏胧",5:"法娜",6:"艾尔雪",8:"奎丝忒",110:"帕佩修",115:"薛莉尔"}.get(identity,"成员 #%d" % identity)
 
 
 func _texture(filename: String) -> Texture2D:

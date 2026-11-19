@@ -16,6 +16,7 @@ var pages: Array = []
 var _post_pages: Array = []
 var _week_pages: Array = []
 var _school_pages: Array = []
+var _pre_week_join_page := -1
 var revision := 0
 var result_summary: Dictionary = {}
 var planning: Dictionary = {}
@@ -56,19 +57,20 @@ func finish_sortie(trace: Dictionary) -> Dictionary:
 	if not replayed["supported"]: return replayed
 	var settled := SortieSettlement.apply(bundle,planning["handoff"],replayed["facts"],planning.get("opening_ledger",{}),_task_grades)
 	if not settled["supported"]: return settled
-	var story := SortieWeek.story(bundle["school"]["week"])
+	var story := SortieWeek.story(bundle["school"]["week"],bundle["school"]["month"])
 	if not story["supported"]: return story
 	bundle=settled["after"]
 	planning.erase("handoff")
 	planning["sortie_summary"]=settled["summary"]
 	_task_grades[settled["summary"]["scene_id"]]=settled["summary"]["task_grade"]
-	_set_may_story(story)
+	_set_dated_story(story)
 	phase="sortie_result"
 	revision+=1
 	return {"supported":true}
 
 
-func _set_may_story(story: Dictionary) -> void:
+func _set_dated_story(story: Dictionary) -> void:
+	_pre_week_join_page=story.get("pre_week_join_page",-1)
 	_post_pages=story["pre_week"]
 	_week_pages=story["week_start"]
 	_school_pages=story.get("school_entry",[])
@@ -85,9 +87,9 @@ func execute(command: Dictionary) -> Dictionary:
 	if op=="course_story":
 		if phase!="course_result" or bundle.get("phase")!="courses_confirmed":
 			return _failure("course_not_confirmed")
-		var story := SortieWeek.story(bundle["school"]["week"])
+		var story := SortieWeek.story(bundle["school"]["week"],bundle["school"]["month"])
 		if not story["supported"]: return story
-		_set_may_story(story)
+		_set_dated_story(story)
 		phase="post_story"
 		revision+=1
 		return {"supported":true}
@@ -120,6 +122,10 @@ func execute(command: Dictionary) -> Dictionary:
 		if cursor==0: return {"supported":true,"status":"duplicate"}
 		cursor-=1;revision+=1;return {"supported":true}
 	var next := pages.size() if op=="post_skip" else cursor+1
+	if phase=="post_story" and _pre_week_join_page>=0 and next>=_pre_week_join_page and bundle["phase"]=="sortie_settled":
+		var joined := SortieWeek.begin_story(bundle)
+		if not joined["supported"]:return joined
+		bundle=joined["after"]
 	if next==pages.size():
 		if phase=="school_entry_story": return _return_to_school()
 		if phase=="post_story":
@@ -178,12 +184,14 @@ func _plan(command: Dictionary) -> Dictionary:
 		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
 	if not result["supported"]:return result
 	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
-	if bundle["school"]["week"] in [2,3,4,5] and op in ["return_settle","return_depart"]:
+	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"]==6) and op in ["return_settle","return_depart"]:
 		# Replace last week's display summary only when the new work is committed.
 		# Keep its starting ledger for validating the battle and next school's entry.
 		var opening: Dictionary=planning["ledger"]
 		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
-		if bundle["school"]["week"]>=3:
+		if bundle["school"]["month"]==6:
+			planning["committed_date"]=[6,1]
+		elif bundle["school"]["week"]>=3:
 			planning["committed_week"]=bundle["school"]["week"]
 	bundle=result["after"]
 	if op=="return_settle":

@@ -16,6 +16,7 @@ const Session := preload("res://sim/new_game_school_session.gd")
 const WEEK_FOUR := ["res://data/school_may_week4_story.json","9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3fc80a"]
 const WEEK_FIVE := ["res://data/school_may_week5_story.json","1d74ded43259f2145b716d742433c738b412f0b40279fe8387acf81ae2391542"]
 const JUNE_ONE := ["res://data/school_june_week1_story.json","59bb89bf67f2ec0321ec07f46efc0a02ac8c9108db420429c119a47499a9dcca"]
+const JUNE_TWO := ["res://data/school_june_week2_story.json","6f4d9e85a6999e7f93bacb5c60b46a46052fecd3dd76601f9bf83beba83c061a"]
 const SOURCES := {
 	"candidate":["res://data/school_postbattle_return_rules.json","1775635836be11e1c038437bb7043a2b2989bdccb880d8882fcda06d41fdb854"],
 	"week":["res://data/week_settlement_evidence.json","5bdb406c2125c610c75942a9e589a9b427cdbcd5d97b0cbf35c014b1d793aedf"],
@@ -37,7 +38,7 @@ static func group_rules(school: Dictionary) -> Dictionary:
 
 
 static func _has_later_teachers(school: Dictionary) -> bool:
-	return (school.get("month")==5 and school.get("week") in [4,5]) or (school.get("month")==6 and school.get("week")==1)
+	return (school.get("month")==5 and school.get("week") in [4,5]) or (school.get("month")==6 and school.get("week") in [1,2])
 
 
 static func work_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
@@ -82,13 +83,26 @@ static func join_chapter033(before: Dictionary, rules: Dictionary) -> Dictionary
 		return Origin.failure("chapter033_requires_new_week")
 	var reason := _validate(before,[3,4,9,5,8,6],6,1,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
-	var encoded := FileAccess.get_file_as_string(JUNE_ONE[0]).replace("\r\n","\n")
-	if encoded.sha256_text()!=JUNE_ONE[1]: return Origin.failure("invalid_join_source")
+	return _join_student(before,rules,JUNE_ONE,"chapter033_joined")
+
+
+static func join_chapter036(before: Dictionary, rules: Dictionary) -> Dictionary:
+	if before.get("phase")!="sortie_settled": return Origin.failure("chapter036_requires_settled_sortie")
+	var reason := _validate(before,[3,4,9,5,8,6,1],6,1,rules)
+	if not reason.is_empty(): return Origin.failure(reason)
+	if before["school"]["lecture_work_fields"][2]!=4: return Origin.failure("chapter036_requires_adventure4")
+	return _join_student(before,rules,JUNE_TWO,"chapter036_joined")
+
+
+static func _join_student(before: Dictionary, rules: Dictionary, resource: Array, status: String) -> Dictionary:
+	var encoded := FileAccess.get_file_as_string(resource[0]).replace("\r\n","\n")
+	if encoded.sha256_text()!=resource[1]: return Origin.failure("invalid_join_source")
 	var source: Dictionary = Roles._integers(JSON.parse_string(encoded))
 	var after := before.duplicate(true)
 	_append_student(after,source,rules)
 	after["school"]["relationships"].append_array(source["join_relationships"].duplicate(true))
-	return _result(after,"chapter033_joined",{"joined_ids":[1]})
+	if status=="chapter036_joined": after["phase"]=status
+	return _result(after,status,{"joined_ids":[source["candidate"]["character_id"]]})
 
 
 static func join_chapter030b(before: Dictionary, rules: Dictionary) -> Dictionary:
@@ -212,6 +226,8 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
+	if school.get("month")==6 and school["week"]==2:
+		return _validate(bundle,[3,4,9,5,8,6,1,2],6,2,rules)
 	if school.get("month")==6 and school["week"]==1:
 		return _validate(bundle,[3,4,9,5,8,6,1],6,1,rules)
 	var ids := [3,4,9,5]

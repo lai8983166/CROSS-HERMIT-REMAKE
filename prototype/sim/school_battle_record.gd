@@ -44,6 +44,7 @@ static func run_trace(session: Combat, trace: Dictionary) -> Dictionary:
 			4: accepted = session.command_attack(row[2],row[3])
 			5: accepted = session.stop(row[2])
 			6: accepted = session.request_return()
+			7,8: accepted = session.call("cast_field_spell",row[2],Vector2i(row[3],row[4]),59 if row[1]==7 else 57)
 		if not accepted: return _failure("battle_trace_command_rejected")
 	if not _advance(session,trace["ticks"]): return _failure("battle_trace_terminal_rejected")
 	for i in range(4): session.advance_exit()
@@ -64,23 +65,25 @@ static func _advance(session: Combat, target: int) -> bool:
 	return session._trace_clock==target
 
 
-static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false) -> bool:
+static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false) -> bool:
 	if not trace is Dictionary or trace.size()!=4 or trace.get("version")!=1 or trace.get("overflow")!=false \
 			or not Roles._bounded(trace.get("ticks"),0,MAX_SORTIE_TICKS if sortie else MAX_TICKS) or not trace.get("commands") is Array \
 			or trace["commands"].size()>MAX_COMMANDS: return false
 	var previous := 0
 	for row in trace["commands"]:
 		if not row is Array or row.size()<2 or not Roles._bounded(row[0],previous,trace["ticks"]) \
-				or not Roles._bounded(row[1],1,6): return false
+				or not Roles._bounded(row[1],1,8 if june_one else 6): return false
 		previous = row[0]
-		if row.size()!=[0,3,2,5,4,3,2][row[1]]: return false
+		if row.size()!=[0,3,2,5,4,3,2,5,5][row[1]]: return false
 		for value in row:
 			if not value is int: return false
 		if row[1]==1 and row[2] not in [0,1]: return false
 		if sortie and not seven and row[1]==2: return false
-		if row[1] in [3,4,5] and row[2] not in ([3,4,5,8,9,1247,1248] if seven else [3,4,5,6,8,9] if may_five else [3,4,5,9] if sortie else [3,4,9,1249]): return false
+		if row[1] in [3,4,5] and row[2] not in ([1,3,4,5,6,8,9] if june_one else [3,4,5,8,9,1247,1248] if seven else [3,4,5,6,8,9] if may_five else [3,4,5,9] if sortie else [3,4,9,1249]): return false
+		if row[1] in [7,8] and (row[2]!=3 or not Roles._bounded(row[3],0,63) or not Roles._bounded(row[4],0,95)):return false
 		if row[1]==3 and (row[3]<0 or row[3]>(95 if sortie else 63) or row[4]<0 or row[4]>(143 if sortie else 95)): return false
-		if row[1]==4 and not Roles._bounded(row[3],1000,1249): return false
+		if row[1]==4 and not Roles._bounded(row[3],1000,1249):
+			if not june_one or row[2]!=8 or row[3] not in [1,3,4,5,6,8,9]:return false
 	return true
 
 

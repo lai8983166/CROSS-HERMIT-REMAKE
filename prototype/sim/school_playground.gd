@@ -41,7 +41,8 @@ const SAVE_CONTEXTS := {
 	9:"school_playground_may_week_three",
 	10:"school_playground_may_week_four",
 	11:"school_playground_mandatory_seven",
-	12:"school_playground_may_five_work"
+	12:"school_playground_may_five_work",
+	13:"school_playground_mandatory_four"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -270,7 +271,7 @@ static func _valid_command(command: Dictionary, departure_date: Array = []) -> b
 			keys=["op"]
 		"sortie_finish":
 			keys=["op","trace"]
-			if not BattleRecord.valid_trace(command.get("trace"),true,departure_date==[5,4],departure_date==[5,5]): return false
+			if not BattleRecord.valid_trace(command.get("trace"),true,departure_date==[5,4],departure_date==[5,5],departure_date==[6,1]): return false
 		"battle_finish":
 			keys=["op","trace"]
 			if not BattleRecord.valid_trace(command.get("trace")): return false
@@ -621,6 +622,7 @@ func export_save() -> Dictionary:
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	if _postbattle.planning.get("committed_date")==[6,1]: return 13
 	if _postbattle.planning.get("committed_week")==5: return 12
 	if _postbattle.planning.get("committed_week")==4: return 11
 	if _postbattle.planning.get("committed_week")==3: return 10
@@ -640,16 +642,20 @@ func _save_fingerprints(version: int) -> Dictionary:
 	if version>=6:
 		result["return_adventures"]=Postbattle.Adventures.SHA
 		result["return_courses"]="1"
-	if version in [8,9,10,11,12]:
+	if version in [8,9,10,11,12,13]:
 		result["course_week"]=Postbattle.SortieWeek.SHA
-	if version in [7,9,10,11,12]:
+	if version in [7,9,10,11,12,13]:
 		result["sortie_week"]=Postbattle.SortieWeek.SHA
 		result["sortie_rewards"]=Postbattle.SortieSettlement.TASK_SHA
 		result["sortie_units"]=Postbattle.SortieRecord.Sortie.SOURCE_SHA
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
-	if version==12:
+	if version==13:
+		result["mandatory_four"]=Postbattle.Adventures.FOUR_SHA
+		result["four_battle"]=Postbattle.SortieRecord.Sortie.FOUR_SHA
+		result["june_two_story"]=Postbattle.SortieWeek.JUNE_TWO_SHA
+	if version>=12:
 		result["may_five_courses"]=Postbattle.Courses.MAY_FIVE_SHA
 		result["may_five_sortie_job"]=Postbattle.SortieRecord.Sortie.MAY_FIVE_JOB_SHA
 		result["june_story"]=Postbattle.SortieWeek.JUNE_SHA
@@ -673,7 +679,7 @@ func restore(payload: Variant) -> Dictionary:
 	var legacy: bool = payload["version"] == 1
 	var version2: bool = payload["version"] == 2
 	var version3: bool = payload["version"] == 3
-	if not _integer(payload["version"],1,12) or payload["context"] != SAVE_CONTEXTS[payload["version"]]:
+	if not _integer(payload["version"],1,13) or payload["context"] != SAVE_CONTEXTS[payload["version"]]:
 		return _failure("unsupported_save_version")
 	var fingerprints: Dictionary = _save_fingerprints(payload["version"])
 	if legacy or version2 or version3:
@@ -695,7 +701,7 @@ func restore(payload: Variant) -> Dictionary:
 	if not begun["supported"]:
 		return begun
 	for command in payload["commands"]:
-		if payload["version"] not in [8,9,10,11,12] and command is Dictionary and command.get("op")=="course_story":
+		if payload["version"] not in [8,9,10,11,12,13] and command is Dictionary and command.get("op")=="course_story":
 			return _failure("save_command_rejected")
 		if payload["version"]<7 and command is Dictionary and command.get("op")=="sortie_finish":
 			return _failure("save_command_rejected")
@@ -737,7 +743,7 @@ func restore_text(content: String) -> Dictionary:
 	var json := JSON.new()
 	if json.parse(content) != OK:
 		return _failure("invalid_save_json")
-	if json.data is Dictionary and json.data.get("version") not in [5,6,7,8,9,10,11,12] and content.to_utf8_buffer().size()>MAX_BYTES:
+	if json.data is Dictionary and json.data.get("version") not in [5,6,7,8,9,10,11,12,13] and content.to_utf8_buffer().size()>MAX_BYTES:
 		return _failure("save_too_large")
 	return restore(Roles._integers(json.data))
 

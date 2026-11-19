@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -78,3 +78,20 @@ class SortieWeekStoryTests(unittest.TestCase):
         existing = [101,3,4,9,5,8,110,6,115]
         self.assertCountEqual([(r['from'],r['to']) for r in data['join_relationships']],
                               [(1,i) for i in existing]+[(i,1) for i in existing])
+
+    def test_june_week2_chapter_chains_registration_and_workroom_entry(self):
+        data = build_june_week2()
+        actual = (ROOT / 'prototype/data/school_june_week2_story.json').read_bytes()
+        self.assertEqual((json.dumps(data, ensure_ascii=False, indent=2)+chr(10)).encode(), actual)
+        self.assertEqual([r['date'] for r in data['routes']], [[6,1],[6,2],[6,2]])
+        self.assertEqual([(s['chapter'], len(s['pages']), s['text_count']) for s in data['scenes']],
+                         [(35,81,108),(36,20,47),(37,79,119),(38,71,96),(39,128,163)])
+        pre, join, week, workroom, entry = data['scenes']
+        self.assertEqual(pre['effects'][0]['target'], 'data/adv/dat/Chapter036.ybc')
+        self.assertEqual(week['effects'][0]['target'], 'data/adv/dat/Chapter038.ybc')
+        self.assertLess(join['effects'][0]['offset'], join['pages'][0]['source_offset'])
+        self.assertEqual(data['candidate']['character_id'], 2)
+        self.assertEqual(data['candidate']['attributes'], [7,42,3,18,24,27,32])
+        self.assertEqual(len(data['join_relationships']), 20)
+        self.assertEqual([e['operands'] for e in workroom['effects']], [[6,1],[7,2]])
+        self.assertEqual(entry['effects'][0]['operands'], [11,0])

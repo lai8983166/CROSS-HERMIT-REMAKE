@@ -17,9 +17,9 @@ GAME = ROOT/'CROSS HERMIT/CROSS HERMIT'
 ACTIONS = [('idle',1),('move',3),('cast',11),('attack',5),('recover',14)]
 
 
-def parent_frames(include_sorties=False):
+def parent_frames(include_sorties=False, include_seven=False):
     result={}
-    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()):
+    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()):
         path=ROOT/'prototype/assets'/name/'catalog.json'
         for value in json.loads(path.read_text(encoding='utf8'))['skins'].values():
             for frame in value['frames'].values():
@@ -61,7 +61,7 @@ def record_rules(sid, image):
     return r
 
 
-def skin(role,job,image,existing,output):
+def skin(role,job,image,existing,output,actions=ACTIONS):
     pathptr,group,mode,variant=struct.unpack_from('<IhBb',image,6358328-BASE+job*8)
     path=GAME/image[pathptr-BASE:image.index(0,pathptr-BASE)].decode('ascii').replace('\\','/')
     if mode==2:
@@ -77,7 +77,7 @@ def skin(role,job,image,existing,output):
     rules={'source':{'local_file':path.relative_to(ROOT).as_posix(),'sha256':digest(raw)},
            'direction_map':[0,5,1,7,2,0,3,4,0,6],'action_rows':rows,
            'position_words':list(struct.unpack_from('<'+'H'*n,image,positions-BASE))}
-    value,pixels=skin_inputs(role,job,rules,actions=ACTIONS,variant=variant)
+    value,pixels=skin_inputs(role,job,rules,actions=actions,variant=variant)
     for frame in value['frames'].values():
         payload=BytesIO();pixels[frame['file']].save(payload,format='PNG');data=payload.getvalue();sha=digest(data)
         if sha in PARENT_FRAMES:
@@ -98,26 +98,28 @@ def player_job(image, role, job):
              'family':row[2]-1, 'weapon_type':image[0x6f5088-BASE+role*1184+0x72]}
 
 
-def export(seven=False):
+def export(seven=False, four=False):
     global PARENT_FRAMES
-    output=OUT.parent/'school_seven' if seven else OUT
-    PARENT_FRAMES=parent_frames(seven)
+    output=OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
+    PARENT_FRAMES=parent_frames(seven or four,four)
     image=SOURCE.read_bytes();assert digest(image)==SOURCE_SHA256
     output.mkdir(parents=True,exist_ok=True)
     old=formation();terrain=bytes.fromhex(old['terrain_hex'])
     grid=[list(v[:3]) for v in struct.iter_unpack('<bbHH',bytes.fromhex(old['grid_hex']))]
     skins={};scenes={}
-    for sid in ((7,) if seven else (8,17)):
+    for sid in ((4,) if four else (7,) if seven else (8,17)):
         r=record_rules(sid,image);actors=[]
         for ordinal,t in enumerate(r['templates']):
             value=expected_record(t,rules=r);raw=bytes.fromhex(value['record_hex']);job=value['job']
             j=bytes.fromhex(r['jobs'][str(job)]['row_hex']);aid=struct.unpack_from('<H',j,24)[0]
             attack=bytes.fromhex(r['archetypes'][str(aid)]['row_hex'])
+            actions=ACTIONS+[('summon_prepare',12),('summon',17)] if four and raw[0x96]==2 else ACTIONS
             actors.append({'instance_id':1249-ordinal,'work_index':249-ordinal,**value,
-                'character_id':value['identity'],'cell':value['coordinates'],'skin_key':skin(value['identity'],job,image,skins,output),
+                'character_id':value['identity'],'cell':value['coordinates'],'skin_key':skin(value['identity'],job,image,skins,output,actions),
                 'movement_type':raw[48], 'limits':{k:value[k] for k in ('hp_max','mp_max')},
                 'combat':{**from_record(raw),'attack_id':aid,'attack_class':attack[5],'target_filter':attack[25]}})
             actors[-1]['limits'].update(hp=value['hp_max'],mp=value['mp_max'])
+            if four and raw[0x96]==2:actors[-1]['summon_interval']=struct.unpack_from('<I',bytes.fromhex(t),52)[0]
             actors[-1].pop('profile_hex');actors[-1].pop('profile_pointer')
         logical=(GAME/f'DATA/TACTICS/MAP/MAP{sid:02}.BIN').read_bytes()
         graphics=(GAME/f'DATA/TACTICS/MAP/MAP{sid:02}.MAP').read_bytes()
@@ -131,18 +133,33 @@ def export(seven=False):
             'interaction':{'logic_hz':30,'move_interval':12,'delta_cap':0.2},'player_skins':{}}
         if sid==17:scenes[str(sid)]['exit_cells']=[i for i in range(len(layout['cells'])) if logical[18+i*6]==1]
     attack=source_rules()
-    for role,job in ((3,10),(4,6),(9,7),(5,4)) + (((8,8),) if seven else ()):
+    players=((3,10),(4,6),(9,7),(5,4))
+    if seven or four:players+=((8,8),)
+    if four:players+=((1,6),(6,2))
+    for role,job in players:
         key=skin(role,job,image,skins,output)
         for scene in scenes.values():scene['player_skins'][str(role)]=key
         attack['jobs'][str(job)]=player_job(image,role,job)
     result={'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,'skins':skins,'attack_rules':attack}
-    if seven:
+    if seven or four:
         from tools.school_adventure_scene_rules import catalog as scene_rules
-        rules=scene_rules((7,))['scenes']['7']
-        scene=scenes['7']
+        rules=scene_rules((sid,))['scenes'][str(sid)]
+        scene=scenes[str(sid)]
         scene['scripts']=rules['scripts']
         scene['script_sha256']=rules['script_sha256']
-        scene['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (1,2)}
+        if seven:scene['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (1,2)}
+    if four:
+        from tools.school_map_common_catalog import map_common_inputs
+        from tools.school_map_common_emulation import map_common_resource
+        common,_=map_common_resource()
+        entries=map_common_inputs(common)['first_section_entries']
+        masks={}
+        for radius in range(3,21):
+            size=(2*radius+1)**2
+            start=entries[radius]['file_offset']
+            masks[str(radius)]=common[start:start+size].hex()
+        scene['spells']={'rows':{str(i):image[0x6c2dc8-BASE+i*72:0x6c2dc8-BASE+(i+1)*72].hex() for i in (57,59)},'masks':masks}
+        scene['bow189_hex']=image[0x6d5118-BASE+189*56:0x6d5118-BASE+190*56].hex()
     target=output/'catalog.json';target.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf8',newline='\n')
     print(target.stat().st_size,digest(target.read_bytes()),'actors',[(s,len(v['actors'])) for s,v in scenes.items()])
 
@@ -160,7 +177,8 @@ if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser()
     parser.add_argument('--seven',action='store_true')
+    parser.add_argument('--four',action='store_true')
     parser.add_argument('--may-five',action='store_true')
     args=parser.parse_args()
     if args.may_five: export_may_five()
-    else: export(args.seven)
+    else: export(args.seven,args.four)

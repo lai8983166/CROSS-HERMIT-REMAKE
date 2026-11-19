@@ -157,8 +157,8 @@ func _ready() -> void:
 		if visible and session.ready: canvas.focus_units())
 	canvas.chosen.connect(func(identity): session.select(identity); _refresh())
 	canvas.commanded.connect(func(cell):
-		var accepted := session.command_move(session.selected_id,cell)
-		status.text = "目的格 %d,%d · %s" % [cell.x,cell.y,"已下达移动命令" if accepted else "目标被阻挡、占用或无法到达"]
+		var accepted := _command_cell(cell)
+		status.text = "目的格 %d,%d · %s" % [cell.x,cell.y,"已下达指令" if accepted else "当前无法对该目标下达指令"]
 		_refresh())
 	roster = HBoxContainer.new(); roster.add_theme_constant_override("separation",10); column.add_child(roster)
 	info = Label.new(); info.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -237,6 +237,10 @@ func _new_canvas() -> FieldCanvas:
 func _process(delta: float) -> void:
 	if visible and session.ready:
 		session.advance(delta); _refresh()
+
+
+func _command_cell(cell: Vector2i) -> bool:
+	return session.command_move(session.selected_id,cell)
 
 
 func toggle_pause() -> void:

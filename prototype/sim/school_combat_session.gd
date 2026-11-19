@@ -516,17 +516,22 @@ func _update_captures() -> void:
 func _update_summoning() -> void:
 	var boss := find_unit(1239)
 	if boss.is_empty() or boss["source_state"] != 1 or boss["limits"]["hp"] <= 0: return
+	_update_summoner(boss,1,8,150)
+
+
+func _update_summoner(boss: Dictionary, group: int, limit: int, interval: int) -> void:
+	var identity := unit_key(boss)
 	# Source thresholds, but explicitly local idle opportunities and animation clock.
 	# We do not claim that original AI calls once per Godot tick.
 	var phase: String = boss["summon_phase"]
 	if phase == "":
-		if phases.has(1239): return
+		if phases.has(identity): return
 		boss["summon_clock"] += 1
-		if boss["summon_clock"] < 150: return
+		if boss["summon_clock"] < interval: return
 		boss["summon_clock"] = 0
-		var active := units.filter(func(u): return u.get("group",0)==1 and u.get("life_kind",0)==3 and u["source_state"]==1).size()
-		var available := reserves.keys().filter(func(id): return id!=1239 and _source_status(id)["state"] in [0,2] and String(reserves[id]["record_hex"]).hex_decode()[0x98]==1)
-		if active >= 8 or available.is_empty(): return
+		var active := units.filter(func(u): return u.get("group",0)==group and u.get("life_kind",0)==3 and u["source_state"]==1).size()
+		var available := reserves.keys().filter(func(id): return id!=identity and _source_status(id)["state"] in [0,2] and String(reserves[id]["record_hex"]).hex_decode()[0x98]==group)
+		if active >= limit or available.is_empty(): return
 		boss["summon_phase"] = "prepare"; boss["summon_remaining"] = 180
 		boss["path"] = []; boss["destination"] = Vector2i(-1,-1); _visual(boss,"summon_prepare")
 		return
@@ -537,11 +542,11 @@ func _update_summoning() -> void:
 		var timeline: Dictionary = catalog["skins"][boss["skin_key"]]["actions"]["summon"][boss["facing"]]
 		boss["summon_remaining"] = maxi(1,ceili(AnimTimeline.total_ticks(timeline)/2.0))
 	else:
-		var count := units.filter(func(u): return u.get("group",0)==1 and u.get("life_kind",0)==3 and u["source_state"]==1).size()
-		for identity in reserves:
-			if count >= 8: break
-			var raw := String(reserves[identity]["record_hex"]).hex_decode()
-			if raw[0x98]==1 and raw[0x96]==3 and _activate(identity,boss["cell"],8): count += 1
+		var count := units.filter(func(u): return u.get("group",0)==group and u.get("life_kind",0)==3 and u["source_state"]==1).size()
+		for reserve_id in reserves:
+			if count >= limit: break
+			var raw := String(reserves[reserve_id]["record_hex"]).hex_decode()
+			if raw[0x98]==group and raw[0x96]==3 and _activate(reserve_id,boss["cell"],8): count += 1
 		boss["summon_phase"] = ""; _visual(boss,"idle")
 
 
