@@ -85,7 +85,8 @@ func test_may_week3_chapter_chain_and_carried_planning_state() -> void:
 	assert_eq(story["school_entry"],[])
 	assert_true(Calendar.story(3)["supported"])
 	assert_true(Calendar.story(4)["supported"])
-	assert_false(Calendar.story(5)["supported"])
+	assert_true(Calendar.story(5)["supported"])
+	assert_false(Calendar.story(6)["supported"])
 
 	var initial := Adventures.initial()
 	var original := Helpers.new()._returned()
@@ -212,3 +213,60 @@ func test_mandatory_seven_registers_both_members_before_week_settlement() -> voi
 	for category in courses["courses"]:
 		for row in category: ids.append(row[1])
 	assert_true(ids.has(23) and ids.has(27))
+
+func test_june_registration_and_compulsory_boot_after_each_may_week_five_result() -> void:
+	var story := Calendar.story(5)
+	assert_eq([story["pre_week"].size(),story["week_start"].size(),story["school_entry"]],[68,58,[]])
+	var may := Helpers.new()._returned()
+	var ledger := Adventures.initial()
+	for selection in [0,0,0,7]:
+		may["phase"]="courses_confirmed" if selection==0 else "sortie_settled"
+		if selection==7: may=Calendar.begin_story(may)["after"]
+		var advanced := Calendar.next_week(may)
+		var room := Calendar.finish_story(advanced["after"])
+		var returned := Calendar.school_return(room["after"],Adventures.advance(ledger,selection),ledger)
+		may=returned["after"]
+		ledger=returned["ledger_after"]
+	var permitted := [0]
+	for entry in Adventures.available(ledger): permitted.append(entry["id"])
+	assert_true(permitted.has(17))
+	for id in permitted:
+		var settled := may.duplicate(true)
+		if id!=0: settled=Adventures.select(settled,ledger,id)["after"]
+		settled["phase"]="courses_confirmed" if id==0 else "sortie_settled"
+		var advanced := Calendar.next_week(settled)
+		assert_true(advanced["supported"],str(advanced.get("reason")))
+		if not advanced["supported"]: continue
+		assert_eq(advanced["date"],[6,1])
+		var joined: Dictionary=advanced["after"]
+		var item_claimed: bool = settled["item_flags"][188] & 1 != 0
+		assert_eq(joined["participants"].back()["equipped_items"][0],0 if item_claimed else 189)
+		if not item_claimed: assert_eq(joined["item_flags"][188]&0xfff,0x303)
+		assert_eq(joined["records"].slice(0,6),settled["records"])
+		assert_eq(joined["counts"].slice(0,6),settled["counts"])
+		var school: Dictionary=joined["school"]
+		assert_eq(school["student_ids"].slice(0,7),[3,4,9,5,8,6,1])
+		assert_eq(school["teacher_ids"].slice(0,3),[101,110,115])
+		assert_eq(school["relationships"].size(),90)
+		assert_eq(joined["records"].back()["week_records"].count(0),177)
+		assert_eq(joined["counts"].back(),{"character_id":1,"count":0})
+		assert_false(Return.join_chapter033(joined,Return._rules())["supported"])
+		assert_false(Calendar.next_week(joined)["supported"])
+		var room := Calendar.finish_story(joined)
+		assert_true(room["supported"],str(room.get("reason")))
+		if not room["supported"]: continue
+		assert_eq([room["after"]["adv_background"],room["after"]["flags"]["0x7a55f6"],room["after"]["flags"]["0x7e11a0"]],[6,8,1])
+		var submitted := Adventures.advance(ledger,id)
+		assert_false(Calendar.school_return(room["after"],submitted)["supported"])
+		var returned := Calendar.school_return(room["after"],submitted,ledger)
+		assert_true(returned["supported"],str(returned.get("reason")))
+		if not returned["supported"]: continue
+		var after: Dictionary=returned["after"]
+		assert_eq([after["flags"]["0x7a55f6"],after["flags"]["0x7e11a0"]],[11,0])
+		assert_eq(after["newly_dated_adventures"].size(),1)
+		assert_eq(returned["unlocked_work_ids"],[])
+		assert_eq(after["school"]["lecture_work_fields"],[3,3,4,0])
+		assert_eq(after["school"]["adventure_gate"],1)
+		assert_true(after["school"]["idle_student_ids"].has(1))
+		assert_true(Return.move_member(after,{"kind":"student","member_id":1,"target_group":0,"target_slot":0})["supported"])
+		assert_false(Calendar.next_week(after)["supported"])

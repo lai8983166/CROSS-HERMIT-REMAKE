@@ -15,6 +15,7 @@ const Sort := preload("res://sim/school_waitlist_sort.gd")
 const Session := preload("res://sim/new_game_school_session.gd")
 const WEEK_FOUR := ["res://data/school_may_week4_story.json","9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3fc80a"]
 const WEEK_FIVE := ["res://data/school_may_week5_story.json","1d74ded43259f2145b716d742433c738b412f0b40279fe8387acf81ae2391542"]
+const JUNE_ONE := ["res://data/school_june_week1_story.json","59bb89bf67f2ec0321ec07f46efc0a02ac8c9108db420429c119a47499a9dcca"]
 const SOURCES := {
 	"candidate":["res://data/school_postbattle_return_rules.json","1775635836be11e1c038437bb7043a2b2989bdccb880d8882fcda06d41fdb854"],
 	"week":["res://data/week_settlement_evidence.json","5bdb406c2125c610c75942a9e589a9b427cdbcd5d97b0cbf35c014b1d793aedf"],
@@ -26,7 +27,7 @@ const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_status
 
 static func group_rules(school: Dictionary) -> Dictionary:
 	var rules := Origin.group_rules()
-	if school.get("month")==5 and school.get("week") in [4,5] and school.get("teacher_count")==3:
+	if _has_later_teachers(school) and school.get("teacher_count")==3:
 		rules["teacher_scope"]="chapter030b"
 		rules["chapter_sha256"]=Groups.CHAPTER030B_SHA
 	elif school.get("month")==5 and school.get("week")==4:
@@ -35,9 +36,13 @@ static func group_rules(school: Dictionary) -> Dictionary:
 	return rules
 
 
+static func _has_later_teachers(school: Dictionary) -> bool:
+	return (school.get("month")==5 and school.get("week") in [4,5]) or (school.get("month")==6 and school.get("week")==1)
+
+
 static func work_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
 	var work: Dictionary = rules["school"]["work_rules"]
-	if school.get("month")==5 and school.get("week") in [4,5]:
+	if _has_later_teachers(school):
 		work=work.duplicate(true)
 		for teacher in school["member_profiles"]:
 			if teacher["member_id"]<=101: continue
@@ -70,6 +75,20 @@ static func join_week_four(before: Dictionary, rules: Dictionary) -> Dictionary:
 	var reason := _validate(before,[3,4,9,5],5,4,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
 	return _join_pair(before,rules,WEEK_FOUR,"chapter029_joined",110)
+
+
+static func join_chapter033(before: Dictionary, rules: Dictionary) -> Dictionary:
+	if before.get("phase") not in ["course_week_advanced","sortie_week_advanced"]:
+		return Origin.failure("chapter033_requires_new_week")
+	var reason := _validate(before,[3,4,9,5,8,6],6,1,rules)
+	if not reason.is_empty(): return Origin.failure(reason)
+	var encoded := FileAccess.get_file_as_string(JUNE_ONE[0]).replace("\r\n","\n")
+	if encoded.sha256_text()!=JUNE_ONE[1]: return Origin.failure("invalid_join_source")
+	var source: Dictionary = Roles._integers(JSON.parse_string(encoded))
+	var after := before.duplicate(true)
+	_append_student(after,source,rules)
+	after["school"]["relationships"].append_array(source["join_relationships"].duplicate(true))
+	return _result(after,"chapter033_joined",{"joined_ids":[1]})
 
 
 static func join_chapter030b(before: Dictionary, rules: Dictionary) -> Dictionary:
@@ -193,6 +212,8 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
+	if school.get("month")==6 and school["week"]==1:
+		return _validate(bundle,[3,4,9,5,8,6,1],6,1,rules)
 	var ids := [3,4,9,5]
 	if school["week"]>=4: ids.append(8)
 	if school["week"]==5: ids.append(6)

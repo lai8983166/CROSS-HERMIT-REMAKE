@@ -11,6 +11,7 @@ const Growth := preload("res://sim/school_course_settlement.gd")
 const Confirmation := preload("res://sim/school_course_confirmation.gd")
 const Courses := preload("res://sim/school_course_unlocking.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
+const MAY_FIVE_SHA := "f1672fbbbae4b817bd3e1188c734493538411c73461f71b59880e9bb84d2fc04"
 const SOURCES := {
 	"growth":["res://data/school_course_settlement_rules.json","5f2738db67bdacf1677e6de1c823ac8dfa542e6b103cd913af9c51a2fe93c439"],
 	"confirmation":["res://data/school_course_confirmation_rules.json","2a75e6e4dd30ae8e99a5e014dc3ba87b646f65b73b3a04d03999d2ceaebaf6a6"]}
@@ -32,7 +33,7 @@ static func set_mode(before: Dictionary, group: Variant, teaching: Variant) -> D
 	var rules := _rules()
 	var reason := _guard(before,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
-	if teaching == true and before["school"]["week"] == 4 and before["school"]["adventure_gate"] != 0:
+	if teaching == true and (before["school"]["week"] == 4 or before["school"]["month"]==6) and before["school"]["adventure_gate"] != 0:
 		return Origin.failure("mandatory_adventure_requires_sortie")
 	var changed := Planning.set_mode(Session._working(before["school"]),group,teaching,Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 	if not changed["supported"]: return changed
@@ -78,7 +79,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var reason := _guard(before,rules,true)
 	if not reason.is_empty(): return Origin.failure(reason)
 	var week: int=before["school"]["week"]
-	if week not in [1,2,3]: return Origin.failure("outside_supported_course_week")
+	if before["school"]["month"]!=5 or week not in [1,2,3,5]: return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -86,14 +87,9 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var prepared := _plan(before["school"],rules)
 	if not prepared["supported"]: return prepared
 	var after := before.duplicate(true)
-	var growth := _grow(after["growth"],prepared["plan"],rules["growth"],before["school"]["difficulty"],seed)
-	after["growth"] = growth["records"]
-	after["school"]["global_total_511c"] = clampi(before["school"]["global_total_511c"]+growth["bonus"],0,999999999)
-	for row in after["growth"]:
-		for profile in after["school"]["member_profiles"]:
-			if profile["member_id"]==row["character_id"]:
-				profile["attributes"]=row["attributes"].duplicate()
-				profile["level_50"]=row["level_50"]
+	var growth_rules: Dictionary=lesson_rules() if week==5 else rules["growth"]
+	if growth_rules.is_empty():return Origin.failure("invalid_may_course_sources")
+	var growth := apply_lessons(after,prepared["plan"],growth_rules,seed)
 	# MVP is chosen from this result's assigned slots, never stale waiting totals.
 	var recipient := -1
 	var best := 0
@@ -103,7 +99,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 			best=row["staged_total"];recipient=row["character_id"]
 	# Course 6 puts its entire award in packet[7]. Original 4C00C0
 	# leaves the recipient at -1. Do not index counts with this sentinel.
-	var bonus_only: bool = week==3 and prepared["plan"].all(func(command):return command["training_id"]==6)
+	var bonus_only: bool = week in [3,5] and prepared["plan"].all(func(command):return command["training_id"]==6)
 	if recipient<0 and not bonus_only: return Origin.failure("missing_positive_return_course_mvp")
 	var confirmed := _confirm(after,prepared["classes"],rules["confirmation"]["job_categories"])
 	var old_count := 0
@@ -112,15 +108,48 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 		old_count = counts["count"]
 		counts["count"] = clampi(old_count+1,0,5)
 	Return._sync_participants(after)
-	var rated := Groups.rate(after["school"],Origin.group_rules())
+	var rated := Groups.rate(after["school"],Return.group_rules(after["school"]))
 	if not rated["supported"]: return rated
 	after["school"] = Session._canonical(rated["after"])
 	after["ratings"] = rated["ratings"]
 	after["rankings"] = Return._rankings(after["school"])
+	var summary := {"date":[5,week],"declared_clock_seed":seed,"packets":growth["packets"],
+		"learning_draws":growth["learning_draws"],"rand_state":growth["rand_state"],"bonus":growth["bonus"],
+		"skill_display_needed":growth["skill_display_needed"],"recipient":recipient,"old_mvp_count":old_count,
+		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "","history_index":(before["school"]["month"]-4)*5+week-1,
+		"relationship_calls":confirmed["relationship_calls"],"students":growth["students"],
+		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"chapter_completed":false,"week_advanced":false}}
+	after["course_result"] = summary
+	after["phase"] = "courses_confirmed"
+	return Return._result(after,"return_courses_confirmed",{"summary":summary.duplicate(true)})
+
+
+static func lesson_rules() -> Dictionary:
+	var raw := FileAccess.get_file_as_string("res://data/school_may_five_courses.json").replace("\r\n","\n")
+	if raw.sha256_text()!=MAY_FIVE_SHA:return {}
+	var source := _rules()
+	if source.is_empty():return {}
+	var growth: Dictionary=source["growth"]
+	var extra: Dictionary=Roles._integers(JSON.parse_string(raw))
+	growth["training"].resize(28)
+	for id in extra:growth["training"][int(id)]=extra[id]
+	return growth
+
+
+static func apply_lessons(after: Dictionary, plan: Array, rules: Dictionary, seed: int) -> Dictionary:
+	var previous: Array=after["growth"]
+	var growth := _grow(after["growth"],plan,rules,after["school"]["difficulty"],seed)
+	after["growth"] = growth["records"]
+	after["school"]["global_total_511c"] = clampi(after["school"]["global_total_511c"]+growth["bonus"],0,999999999)
+	for row in after["growth"]:
+		for profile in after["school"]["member_profiles"]:
+			if profile["member_id"]==row["character_id"]:
+				profile["attributes"]=row["attributes"].duplicate()
+				profile["level_50"]=row["level_50"]
 	var changes := []
-	for command in prepared["plan"]:
+	for command in plan:
 		var id: int = command["character_id"]
-		var old := Return._find(before["growth"],id)
+		var old := Return._find(previous,id)
 		var current := Return._find(after["growth"],id)
 		var learned := []
 		for sid in range(84):
@@ -128,37 +157,34 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 		changes.append({"character_id":id,"work_id":command["training_id"],
 			"before_attributes":old["attributes"].duplicate(),"attributes":current["attributes"].duplicate(),
 			"before_level":old["level_50"],"level":current["level_50"],"new_skill_ids":learned,"staged_total":current["staged_total"]})
-	var summary := {"date":[5,week],"declared_clock_seed":seed,"packets":growth["packets"],
-		"learning_draws":growth["learning_draws"],"rand_state":growth["rand_state"],"bonus":growth["bonus"],
-		"skill_display_needed":growth["skill_display_needed"],"recipient":recipient,"old_mvp_count":old_count,
-		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "","history_index":(before["school"]["month"]-4)*5+week-1,
-		"relationship_calls":confirmed["relationship_calls"],"students":changes,
-		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"chapter_completed":false,"week_advanced":false}}
-	after["course_result"] = summary
-	after["phase"] = "courses_confirmed"
-	return Return._result(after,"return_courses_confirmed",{"summary":summary.duplicate(true)})
+	growth["students"]=changes
+	return growth
 
 
-static func _plan(school: Dictionary, rules: Dictionary) -> Dictionary:
+static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dictionary:
 	var rated := Groups.rate(school,Return.group_rules(school))
 	if not rated["supported"]: return rated
 	var plan := []
 	var classes := []
 	for group in range(5):
-		var students: Array = rated["after"]["derived_student_ids"][group].filter(func(id):return id>=0)
-		if students.is_empty(): continue
 		var rating: Dictionary = rated["ratings"][group]
+		if rating["state"]==0:continue
+		var students: Array = rated["after"]["derived_student_ids"][group].filter(func(id):return id>=0)
+		if mixed and rating["state"]==2:
+			classes.append({"students":students,"teacher":Groups._word(school["group_raw_bytes"],28*group),
+				"work_fields":rating["work_fields"],"activity":2})
+			continue
 		if rating["state"]!=4: return Origin.failure("return_class_requires_assigned_course")
 		var fields: Array = rating["work_fields"]
-		if fields[0]<0 or fields[0]>2 or fields[2] not in [1,2,3,4,5,6,7,10,11,12]:
+		if fields[0]<0 or fields[0]>2 or fields[2] not in [1,2,3,4,5,6,7,10,11,12,17,18,23,27]:
 			return Origin.failure("outside_return_course_subset")
 		var selected := Teacher.select_group(Session._working(school),group,Return.group_rules(school),Return.work_rules(school,rules))
 		if not selected["supported"]: return selected
 		if not selected["after"]["work_rows"][fields[0]].has([fields[1],fields[2],fields[3]]):
 			return Origin.failure("stale_return_course_assignment")
-		classes.append({"students":students,"teacher":Groups._word(school["group_raw_bytes"],28*group),"work_fields":fields})
+		classes.append({"students":students,"teacher":Groups._word(school["group_raw_bytes"],28*group),"work_fields":fields,"activity":1})
 		for id in students: plan.append({"character_id":id,"training_id":fields[2],"coefficient":rating["relationship_mean"]})
-	if plan.is_empty(): return Origin.failure("no_return_course_students")
+	if plan.is_empty() and not mixed: return Origin.failure("no_return_course_students")
 	return {"supported":true,"plan":plan,"classes":classes}
 
 
@@ -217,10 +243,10 @@ static func _confirm(after: Dictionary, classes: Array, categories: Array, activ
 		var job: int = growth["job"]
 		var value: int = row["job_progress"][job]
 		if value!=100: row["job_progress"][job]=clampi(((value+1+128)&255)-128,0,99)
-		row["week_records"][history_index*3]=3
+		if waiting.has(row["character_id"]):row["week_records"][history_index*3]=3
 		for item in classes:
 			if row["character_id"] in item["students"]:
-				row["week_records"][history_index*3]=activity
+				row["week_records"][history_index*3]=item.get("activity",activity)
 				row["week_records"][history_index*3+1]=item["work_fields"][0]&255
 				row["week_records"][history_index*3+2]=item["work_fields"][1]&255
 		for k in range(5):

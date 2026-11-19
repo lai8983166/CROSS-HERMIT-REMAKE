@@ -1,4 +1,4 @@
-"""Export the May week 1 through week 4 date routes and source dialogue from the shipped ADV."""
+"""Export the May school date routes through June week 1 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -112,10 +112,23 @@ def build_week5():
     return join_data(data, 6, 115, [101,3,4,9,5,8,110,6,115])
 
 
+def build_june_week1():
+    data = catalog({32: 85, 33: 83})
+    routes = [date_route('CH003', 5, 5), date_route('CH001', 6, 1), date_route('CH002', 6, 1)]
+    assert [r['target'] for r in routes] == ['data/adv/dat/Chapter032.ybc', 'data/adv/dat/Chapter033.ybc', None]
+    assert [s['effects'] for s in data['scenes']] == [[], [
+        {'offset': 0x14, 'opcode': 144, 'operands': [1]},
+        {'offset': 0x75e, 'opcode': 151, 'operands': [8, 1]},
+        {'offset': 0x76a, 'opcode': 91, 'operands': [6, 2]}]]
+    assert routes[2]['effects'] == [{'offset': 0x554, 'opcode': 151, 'operands': [11, 0]}]
+    data['routes'] = routes
+    return join_data(data, 1, None, [101,3,4,9,5,8,110,6,115,1])
+
+
 def join_data(data, student, teacher, members):
     image = SOURCE.read_bytes()
     profiles = []
-    for identity in (student, teacher):
+    for identity in ([student] if teacher is None else [student, teacher]):
         start = 0x6f5088 - 0x400000 + identity * 0x4a0
         raw = image[start:start + 0x4a0]
         profile = {'member_id': identity, 'job': struct.unpack_from('<h', raw, 6)[0],
@@ -144,6 +157,7 @@ def join_data(data, student, teacher, members):
 
 if __name__ == '__main__':
     for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
-                       ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5)]:
+                       ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5),
+                       ('school_june_week1_story', build_june_week1)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')

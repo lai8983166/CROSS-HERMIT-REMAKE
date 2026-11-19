@@ -8,6 +8,7 @@ const SCENES_PATH := "res://data/school_adventure_scene_rules.json"
 const SCENES_SHA := "c87a1ddcda957cc5b235dd35ef95bcd5385bf91c59aecea0fcb26cfb0d90266c"
 const SEVEN_PATH := "res://assets/school_seven/catalog.json"
 const SEVEN_SHA := "1e7d03f2b4fdb7517f8e43cc8931121b02fc747e3b881f6f3fbf8b207f24873c"
+const MAY_FIVE_JOB_SHA := "bb97f131787378887731413a15b45dbbff92bc78198c918413c651f54d97c0b7"
 const Adventures := preload("res://sim/school_return_adventures.gd")
 var event_rng := RandomNumberGenerator.new()
 var recurring_events: Array = []
@@ -24,7 +25,8 @@ var attack_paths: AttackPaths
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
-	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4]]: return false
+	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5]]: return false
+	var may_five: bool=handoff["date"]==[5,5]
 	var seven: bool=handoff["date"]==[5,4]
 	if raw.is_empty():raw=FileAccess.get_file_as_string(SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
 	if raw.sha256_text()!=(SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
@@ -35,12 +37,17 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var round_data: Dictionary=prepared["rounds"][0]
 	var teachers=round_data.get("teacher_ids")
 	if round_data.get("scene_id")!=sid:return false
-	if teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
+	if may_five:
+		if not teachers is Array or teachers.is_empty() or teachers.size()>3:return false
+		for teacher in teachers:
+			if teacher not in [101,110,115] or teachers.count(teacher)!=1:return false
+	elif teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
 	var ids: Array=round_data.get("student_ids",[])
-	if ids.is_empty() or ids.size()>(5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
+	if ids.is_empty() or ids.size()>(6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
 	if ids.size()!=handoff["participants"].size() or ids.size()!=handoff["growth"].size():return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	var next_catalog: Dictionary=source["scenes"][str(sid)].duplicate(true)
+	if may_five and not _add_may_five_players(next_catalog,source):return false
 	var identity: Dictionary=Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
 	if identity.is_empty() or handoff.get("scene")!=identity:return false
 	var candidates: Array[Dictionary]=[];var seen := {}
@@ -112,6 +119,23 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	else:
 		for at in [36000,39600,43200,46800]:timers.append({"at":at,"repeat":true})
 		for row in [[10800,5,5],[21600,4,7],[25200,3,10]]:timers.append({"at":row[0],"group":row[1],"ai_parameter":row[2]})
+	return true
+
+
+static func _add_may_five_players(scene: Dictionary, source: Dictionary) -> bool:
+	var seven_raw := FileAccess.get_file_as_string(SEVEN_PATH).replace("\r\n","\n")
+	var job_raw := FileAccess.get_file_as_string("res://data/school_may_five_sortie_job.json").replace("\r\n","\n")
+	if seven_raw.sha256_text()!=SEVEN_SHA or job_raw.sha256_text()!=MAY_FIVE_JOB_SHA:return false
+	var seven: Dictionary=Limits._source_numbers(JSON.parse_string(seven_raw))
+	var escort: Dictionary=seven["scenes"]["7"]
+	var skin_keys := {"8":escort["player_skins"]["8"]}
+	for actor in escort["actors"]:
+		if actor["character_id"]==6:skin_keys["6"]=actor["skin_key"]
+	if not skin_keys.has("6"):return false
+	scene["player_skins"].merge(skin_keys)
+	for key in skin_keys.values():source["skins"][key]=seven["skins"][key]
+	source["attack_rules"]["jobs"]["2"]=Limits._source_numbers(JSON.parse_string(job_raw))
+	source["attack_rules"]["jobs"]["8"]=seven["attack_rules"]["jobs"]["8"]
 	return true
 
 

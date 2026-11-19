@@ -56,6 +56,19 @@ def source_rules():
         'settlement_fields_sha256':hashlib.sha256(signature.encode()).hexdigest(),**fields}
 
 
+def may_five_lessons():
+    """The four additional rows available to the current teachers by May week five."""
+    image = SOURCE.read_bytes()
+    if hashlib.sha256(image).hexdigest() != SOURCE_SHA256:
+        raise ValueError('source differs')
+    rows = {}
+    for course in (17,18,23,27):
+        start = 0x74BEDC + course*96 - 0x400000
+        rows[str(course)] = {'package':list(struct.unpack_from('<8i',image,start)),
+                             'learning_rates':list(image[start+0x42:start+0x4d])}
+    return rows
+
+
 def runtime_rules():
     rules = source_rules()
     image = SOURCE.read_bytes()

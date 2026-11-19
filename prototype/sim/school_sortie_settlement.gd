@@ -15,7 +15,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		return Origin.failure("settlement_requires_committed_sortie")
 	var school: Variant=bundle.get("school")
 	var previous: Variant=bundle.get("sortie_result",{})
-	if not school is Dictionary or school.get("week") not in [1,2,3,4] or not previous is Dictionary:
+	if not school is Dictionary or school.get("week") not in [1,2,3,4,5] or not previous is Dictionary:
 		return Origin.failure("invalid_sortie_school")
 	var week: int=school["week"]
 	var ledger := opening_ledger if week>=3 else Adventures.initial()
@@ -70,42 +70,19 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		initial_grade=previous["task_grade"]
 	if week>=3:
 		for task in task_grades:
-			if task not in [8,17] or not Roles._bounded(task_grades[task],1,5):
+			if (task not in [8,17] and not (week==5 and task==7)) or not Roles._bounded(task_grades[task],1,5):
 				return Origin.failure("invalid_previous_task_grade")
 		initial_grade=task_grades.get(scene_id,5)
 	var score := Battle.Score.calculate({"task_id":scene_id,"mode":0,"cap_mode":0,
 		"result_selector":facts.get("result_selector"),"time_key":facts["time_key"],
 		"unit_key":facts.get("unit_condition_key"),"characters":characters,"initial_grade":initial_grade,
-		"initial_total":bundle["school"]["global_total_511c"]},rules["score"])
+		"initial_total":bundle["school"]["global_total_511c"]},rules["score"],week==5)
 	if not score["supported"]: return score
 	var loot := Battle.Loot._loot(bundle["item_flags"],score["grade_index"],facts,rules)
 	for i in range(records.size()):
 		records[i].merge(score["characters"][i],true)
-	var growth := Roles.project_growth_records(records,ids,facts["growth_seed"],rules["role"])
-	if not growth["supported"]: return growth
 	var after := bundle.duplicate(true)
-	var best := 0
-	var recipient := -1
-	var changes := []
-	for row in growth["after"]["characters"]:
-		var id: int = row["character_id"]
-		var old := Return._find(bundle["growth"],id)
-		var current := Return._find(after["growth"],id)
-		current.merge(Origin.field_subset(row,Return.GROWTH_KEYS),true)
-		var learned := []
-		for sid in range(84):
-			if old["skill_statuses"][sid] != current["skill_statuses"][sid]: learned.append(sid+1)
-		changes.append({"character_id":id,"before_attributes":old["attributes"].duplicate(),
-			"attributes":current["attributes"].duplicate(),"before_level":old["level_50"],"level":current["level_50"],
-			"new_skill_ids":learned,"staged_total":current["staged_total"]})
-		for profile in after["school"]["member_profiles"]:
-			if profile["member_id"] == id:
-				profile["attributes"] = current["attributes"].duplicate()
-				profile["level_50"] = current["level_50"]
-		if current["staged_total"] > best:
-			best = current["staged_total"]
-			recipient = id
-	if recipient < 0: return Origin.failure("missing_positive_sortie_recipient")
+	after["school"]["global_total_511c"] = score["total_after"]
 	var classes := []
 	for group in range(5):
 		var members := []
@@ -113,7 +90,20 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 			if round_data["student_groups"][i]==group: members.append(ids[i])
 		if members.is_empty():continue
 		var teacher := Courses.Groups._word(school["group_raw_bytes"],group*28)
-		classes.append({"students":members,"teacher":teacher,"work_fields":prepared["class_ratings"][group]["work_fields"]})
+		classes.append({"students":members,"teacher":teacher,"work_fields":prepared["class_ratings"][group]["work_fields"],"activity":2})
+	var lessons := []
+	var lesson_rules := {}
+	if week==5:
+		var plan := Courses._plan(school,Courses._rules(),true)
+		if not plan["supported"]:return plan
+		classes=plan["classes"]
+		lessons=plan["plan"]
+		lesson_rules=Courses.lesson_rules()
+		if lesson_rules.is_empty():return Origin.failure("invalid_may_five_lessons")
+	var growth := _grow_classes(after,classes,records,lessons,lesson_rules,rules["role"],facts["growth_seed"])
+	if not growth["supported"]:return growth
+	var recipient: int=growth["recipient"]
+	if recipient < 0: return Origin.failure("missing_positive_sortie_recipient")
 	var confirmation := Courses._confirm(after,classes,rules["job_categories"],2)
 	var grade_calls := []
 	var delta: int = Battle.Confirmation.GRADE_DELTA[score["grade_index"]]
@@ -129,7 +119,6 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var count := Return._find(after["counts"],recipient)
 	var old_count: int = count["count"]
 	count["count"] = mini(old_count+1,5)
-	after["school"]["global_total_511c"] = score["total_after"]
 	after["item_flags"] = loot["item_flags"]
 	Return._sync_participants(after)
 	var rated := Courses.Groups.rate(after["school"],Return.group_rules(after["school"]))
@@ -140,13 +129,66 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var summary := {"scene_id":scene_id,"date":[5,week],"result_selector":facts["result_selector"],
 		"task_grade":score["task_grade"],"score":score,"loot_groups":loot["loot_groups"],
 		"loot_draws":loot["draws"],"clock_seed":facts["clock_seed"],"growth_seed":facts["growth_seed"],
-		"learning_draws":growth["learning_draws"],"students":changes,"recipient":recipient,
+		"learning_draws":growth["learning_draws"],"students":growth["students"],"recipient":recipient,
 		"old_mvp_count":old_count,"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient,
 		"history_index":(bundle["school"]["month"]-4)*5+week-1,"relationship_calls":confirmation["relationship_calls"],
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"week_advanced":false}}
+	if week==5:
+		summary["lessons"]=growth["lessons"]
+		summary["rand_state"]=growth["rand_state"]
 	after["sortie_result"] = summary.duplicate(true)
 	after["phase"] = "sortie_settled"
 	return Return._result(after,"sortie_settled",{"summary":summary})
+
+
+## 4C00C0 dispatches each student in class/slot order with one RNG and one MVP.
+static func _grow_classes(after: Dictionary, classes: Array, records: Array, lessons: Array,
+		lesson_rules: Dictionary, role_rules: Dictionary, seed: int) -> Dictionary:
+	var state := seed
+	var draws := []
+	var battle_changes := []
+	var teaching := {"students":[],"packets":[],"bonus":0,"learning_draws":[],"skill_display_needed":0}
+	var recipient := -1
+	var best := 0
+	for item in classes:
+		var changes := []
+		if item["activity"]==1:
+			var rows := lessons.filter(func(row):return row["character_id"] in item["students"])
+			var result := Courses.apply_lessons(after,rows,lesson_rules,state)
+			changes=result["students"]
+			for key in ["students","packets","learning_draws"]:teaching[key].append_array(result[key])
+			teaching["bonus"]+=result["bonus"]
+			teaching["skill_display_needed"]=maxi(teaching["skill_display_needed"],result["skill_display_needed"])
+			state=result["rand_state"]
+			draws.append_array(result["learning_draws"])
+		elif item["activity"]==2:
+			var members: Array=item["students"]
+			var inputs := records.filter(func(row):return row["character_id"] in members)
+			var result := Roles.project_growth_records(inputs,members,state,role_rules)
+			if not result["supported"]:return result
+			for row in result["after"]["characters"]:
+				var id: int=row["character_id"]
+				var current := Return._find(after["growth"],id)
+				var learned := []
+				for sid in range(84):
+					if current["skill_statuses"][sid]!=row["skill_statuses"][sid]:learned.append(sid+1)
+				changes.append({"character_id":id,"before_attributes":current["attributes"].duplicate(),
+					"attributes":row["attributes"].duplicate(),"before_level":current["level_50"],"level":row["level_50"],
+					"new_skill_ids":learned,"staged_total":row["staged_total"]})
+				current.merge(Origin.field_subset(row,Return.GROWTH_KEYS),true)
+				for profile in after["school"]["member_profiles"]:
+					if profile["member_id"]==id:
+						profile["attributes"]=current["attributes"].duplicate()
+						profile["level_50"]=current["level_50"]
+			battle_changes.append_array(changes)
+			state=result["rand_state"]
+			draws.append_array(result["learning_draws"])
+		for change in changes:
+			if change["staged_total"]>best:
+				best=change["staged_total"]
+				recipient=change["character_id"]
+	return {"supported":true,"students":battle_changes,"lessons":teaching,"learning_draws":draws,
+		"recipient":recipient,"rand_state":state}
 
 
 static func _rules(scene_id: int) -> Dictionary:

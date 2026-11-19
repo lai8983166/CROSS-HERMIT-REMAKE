@@ -1,5 +1,5 @@
 extends RefCounted
-## May weeks 1–4 course or sortie result, CH003, state 7, CH001, workroom and school boot.
+## May weeks 1–5 course or sortie result, CH003, state 7, CH001, workroom and school boot.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
@@ -15,11 +15,16 @@ const WEEK4_PATH := "res://data/school_may_week4_story.json"
 const WEEK4_SHA := "9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3fc80a"
 
 
+const JUNE_SHA := Return.JUNE_ONE[1]
+const STORIES := [[PATH,SHA],[WEEK3_PATH,WEEK3_SHA],[WEEK4_PATH,WEEK4_SHA],Return.WEEK_FIVE,Return.JUNE_ONE]
+
+
 static func story(start_week: int = 1) -> Dictionary:
-	if start_week not in [1,2,3,4]:
+	if start_week < 1 or start_week > STORIES.size():
 		return {"supported":false,"reason":"outside_sortie_story_week"}
-	var raw := FileAccess.get_file_as_string([PATH,WEEK3_PATH,WEEK4_PATH,Return.WEEK_FIVE[0]][start_week-1]).replace("\r\n","\n")
-	if raw.sha256_text()!=[SHA,WEEK3_SHA,WEEK4_SHA,Return.WEEK_FIVE[1]][start_week-1]:
+	var resource: Array = STORIES[start_week-1]
+	var raw := FileAccess.get_file_as_string(resource[0]).replace("\r\n","\n")
+	if raw.sha256_text()!=resource[1]:
 		return {"supported":false,"reason":"sortie_week_story_changed"}
 	var data: Dictionary = Roles._integers(JSON.parse_string(raw))
 	var week_start: Array = data["scenes"][1]["pages"]
@@ -57,6 +62,10 @@ static func next_week(before: Dictionary) -> Dictionary:
 		var joined := Return.join_week_four(after,rules)
 		if not joined["supported"]: return joined
 		after=joined["after"]
+	if advanced["month"]==6:
+		var joined := Return.join_chapter033(after,rules)
+		if not joined["supported"]: return joined
+		after=joined["after"]
 	return Return._result(after,after["phase"],{"date":[advanced["month"],advanced["week"]],"week_executed":true})
 
 
@@ -66,10 +75,11 @@ static func finish_story(before: Dictionary) -> Dictionary:
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	var after := before.duplicate(true)
 	var week: int = after["school"]["week"]
-	# Chapter024 and Chapter027 both restore background 8 before entering task8.
-	after["flags"]["0x7a55f6"] = 16 if week==2 else 11
-	after["flags"]["0x7e11a0"] = 1 if week==2 else 0
-	after["adv_background"] = 6 if week>=4 else 8
+	# These op151 and op91 values end the dated CH001 chapter.
+	var june: bool = after["school"]["month"]==6
+	after["flags"]["0x7a55f6"] = 8 if june else 16 if week==2 else 11
+	after["flags"]["0x7e11a0"] = int(june or week==2)
+	after["adv_background"] = 6 if june or week>=4 else 8
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -81,29 +91,32 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	var id: int = before["school"]["lecture_work_fields"][2]
 	var week: int = before["school"]["week"]
+	var month: int = before["school"]["month"]
+	var required_id := 4 if month==6 else 7 if week==4 else 0
 	var source := Adventures.rules()
 	var initial := Adventures.initial()
 	if initial.is_empty() or source.is_empty():
 		return {"supported":false,"reason":"invalid_sortie_week_sources"}
 	var departure := initial
-	if week>=3:
-		if not Adventures.valid_opening(departure_ledger,week-1): return {"supported":false,"reason":"invalid_departure_ledger"}
+	if week>=3 or month==6:
+		var prior_week := 5 if month==6 else week-1
+		if not Adventures.valid_opening(departure_ledger,prior_week): return {"supported":false,"reason":"invalid_departure_ledger"}
 		departure = departure_ledger
 	if not course and not Adventures.available(departure).any(func(row):return row["id"]==id):
 		return {"supported":false,"reason":"unavailable_departure_adventure"}
 	if ledger!=Adventures.advance(departure,0 if course else id):
 		return {"supported":false,"reason":"invalid_sortie_week_ledger"}
 	var opened := ledger.duplicate(true)
-	Adventures._open(opened,5,week,source)
+	Adventures._open(opened,month,week,source)
 	var unlocked := Courses.unlock_courses(before["school"],rules["school"]["course_rules"])
 	if not unlocked["supported"]: return unlocked
 	var after := before.duplicate(true)
 	after["phase"] = "school_returned"
 	after["school"] = unlocked["after"]
-	after["school"]["adventure_gate"] = int(week==4)
+	after["school"]["adventure_gate"] = int(required_id!=0)
 	# 4A5CE0 preserves the previous selection only while it remains available.
-	if week==4:
-		var mandatory := Adventures.select(after,opened,7)
+	if required_id!=0:
+		var mandatory := Adventures.select(after,opened,required_id)
 		if not mandatory["supported"]: return mandatory
 		after["school"]=mandatory["after"]["school"]
 		for group in range(5):
@@ -121,16 +134,19 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	after["school"] = prepared["after"]
 	after["ratings"] = prepared["ratings"]
 	after["rankings"] = Return._rankings(after["school"])
-	after["flags"]["0x7a55fa"] = int(week==4)
+	after["flags"]["0x7a55fa"] = int(required_id!=0)
 	after["flags"]["0x7a4e62"] = 1
 	# CH002(5/2) jumps to END. At 5/3 its op151 sets the music fields again.
 	if week>=3:
 		after["flags"]["0x7a55f6"] = 11
 		after["flags"]["0x7e11a0"] = 1
+	if month==6:
+		after["flags"]["0x7a55f6"] = 11
+		after["flags"]["0x7e11a0"] = 0
 	after["newly_dated_adventures"] = []
-	if week==4:
+	if required_id!=0:
 		for rule in rules["boot"]["adventures"]:
-			if rule["present"] and rule["gate"] and rule["kind"] and rule["month"]==5 and rule["week"]==week:
+			if rule["present"] and rule["gate"] and rule["kind"] and rule["month"]==month and rule["week"]==week:
 				after["newly_dated_adventures"].append(rule.duplicate(true))
 	return Return._result(after,"school_returned",{"ledger_after":opened,"unlocked_work_ids":unlocked["unlocked_work_ids"]})
 
@@ -139,7 +155,10 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	if rules.is_empty(): return "invalid_sortie_week_sources"
 	if before.get("phase")!=phase: return "unexpected_sortie_week_phase"
 	var school: Variant = before.get("school")
-	if not school is Dictionary or school.get("week") not in range(first_week,first_week+4):
+	if not school is Dictionary: return "outside_sortie_week"
+	var may: bool = school.get("month")==5 and school.get("week") in range(first_week,6)
+	var june: bool = first_week==2 and school.get("month")==6 and school.get("week")==1
+	if not may and not june:
 		return "outside_sortie_week"
 	if phase=="chapter030b_joined":
 		return Return._validate(before,[3,4,9,5,8,6],5,4,rules)

@@ -2,7 +2,7 @@ import hashlib
 import unittest
 
 from tools.school_course_settlement_emulation import (
-    report, fixture, source_rules, runtime_rules, CourseSettlementEmulator, CHAR, STRIDE)
+    report, fixture, source_rules, runtime_rules, may_five_lessons, CourseSettlementEmulator, CHAR, STRIDE)
 from tools.tactics_exit_emulation import ROOT, report_text
 
 
@@ -22,6 +22,13 @@ class CourseSettlementTests(unittest.TestCase):
             self.assertNotIn(key, runtime_rules())
         self.assertEqual(runtime_rules()['initial_job_sums'],[
             {'character_id':r['character_id'],'job_sums':r['job_sums']} for r in self.data['cases'][0]['before_records']])
+
+    def test_may_five_lessons_match_executable(self):
+        import json
+        source = may_five_lessons()
+        self.assertEqual(json.loads((ROOT/'prototype/data/school_may_five_courses.json').read_bytes()),source)
+        self.assertEqual(source['17']['package'],[2000]*8)
+        self.assertEqual(source['27']['package'],[0,0,0,50000,0,0,0,0])
 
     def test_native_packets_and_declared_seed(self):
         cases = self.data['cases']

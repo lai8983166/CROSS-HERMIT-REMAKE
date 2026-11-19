@@ -90,6 +90,14 @@ def skin(role,job,image,existing,output):
     return key
 
 
+def player_job(image, role, job):
+    row = image[0x6b2d88-BASE+job*64:0x6b2d88-BASE+(job+1)*64]
+    archetype = struct.unpack_from('<H', row, 24)[0]
+    attack = image[0x6c2dc8-BASE+archetype*72:0x6c2dc8-BASE+(archetype+1)*72]
+    return {'job':job, 'job_hex':row.hex(), 'archetype':archetype, 'attack_hex':attack.hex(),
+             'family':row[2]-1, 'weapon_type':image[0x6f5088-BASE+role*1184+0x72]}
+
+
 def export(seven=False):
     global PARENT_FRAMES
     output=OUT.parent/'school_seven' if seven else OUT
@@ -126,9 +134,7 @@ def export(seven=False):
     for role,job in ((3,10),(4,6),(9,7),(5,4)) + (((8,8),) if seven else ()):
         key=skin(role,job,image,skins,output)
         for scene in scenes.values():scene['player_skins'][str(role)]=key
-        j=image[0x6b2d88-BASE+job*64:0x6b2d88-BASE+(job+1)*64];aid=struct.unpack_from('<H',j,24)[0]
-        w=image[0x6c2dc8-BASE+aid*72:0x6c2dc8-BASE+(aid+1)*72]
-        attack['jobs'][str(job)]={'job':job,'job_hex':j.hex(),'archetype':aid,'attack_hex':w.hex(),'family':j[2]-1,'weapon_type':image[0x6f5088-BASE+role*1184+0x72]}
+        attack['jobs'][str(job)]=player_job(image,role,job)
     result={'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,'skins':skins,'attack_rules':attack}
     if seven:
         from tools.school_adventure_scene_rules import catalog as scene_rules
@@ -140,8 +146,21 @@ def export(seven=False):
     target=output/'catalog.json';target.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf8',newline='\n')
     print(target.stat().st_size,digest(target.read_bytes()),'actors',[(s,len(v['actors'])) for s,v in scenes.items()])
 
+def export_may_five():
+    """Only the new player's attack inputs. Both player skins already ship with scene 7."""
+    image = SOURCE.read_bytes()
+    assert digest(image) == SOURCE_SHA256
+    role, job = 6, 2
+    rules = player_job(image, role, job)
+    path = ROOT/'prototype/data/school_may_five_sortie_job.json'
+    path.write_bytes((json.dumps(rules, separators=(",", ":"))+'\n').encode("utf8"))
+
+
 if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser()
     parser.add_argument('--seven',action='store_true')
-    export(parser.parse_args().seven)
+    parser.add_argument('--may-five',action='store_true')
+    args=parser.parse_args()
+    if args.may_five: export_may_five()
+    else: export(args.seven)

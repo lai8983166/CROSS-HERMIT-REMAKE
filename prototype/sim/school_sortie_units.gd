@@ -5,14 +5,14 @@ const Limits := preload("res://sim/school_combat_limits.gd")
 
 static func project(participant: Dictionary, growth: Dictionary, rules: Dictionary) -> Dictionary:
 	var id = participant.get("character_id")
-	var jobs := {3:10,4:6,9:7,5:4,8:8}
+	var jobs := {3:10,4:6,9:7,5:4,8:8,6:2}
 	if id not in jobs or growth.get("character_id")!=id or participant.get("job")!=jobs[id] or growth.get("job")!=jobs[id]: return {}
 	if participant.get("attributes")!=growth.get("attributes") or participant.get("level_50")!=growth.get("level_50"):return {}
 	if not Limits._numbers(growth.get("attributes"),7,0,255) or not Limits._integer(growth.get("level_50"),0,99):return {}
 	if participant.get("equipped_items")!=[0,0,0,0,0,0,0,0] or not Limits._numbers(participant.get("equipped_skills"),8,0,65535):return {}
 	for skill in participant["equipped_skills"]:
-		if id!=8 and skill not in [0,11,20,29,31,57,59]:return {}
-		if id==8 and skill!=0:return {}
+		if id not in [6,8] and skill not in [0,11,20,29,31,57,59]:return {}
+		if id in [6,8] and skill!=0:return {}
 	var job: Dictionary=rules["jobs"][str(jobs[id])]
 	var j := String(job["job_hex"]).hex_decode();var w := String(job["attack_hex"]).hex_decode()
 	var attrs: Array=growth["attributes"].map(func(v):return clampi(v,1,135))
@@ -21,9 +21,9 @@ static func project(participant: Dictionary, growth: Dictionary, rules: Dictiona
 	var hp := clampi(Limits._signed16(int((body*3+a+b)*j.decode_u16(6)/100.0)),1,999)
 	var mp := clampi(Limits._signed16(int((spirit*3+intellect+vital)*j.decode_u16(10)/100.0)),1,999)
 	var family: int=job["family"]
-	var stat: int=b if family==1 else sense if family==2 else vital if family==3 else intellect
-	var reach := int(w[18]) if family==1 else int(w[18]+stat*(0.08 if family==2 else 0.1))
-	var accuracy := int(w[20]+b) if family==1 else int(w[20]+sense*0.2) if family==2 else 999
+	var stat: int=a if family==0 else b if family==1 else sense if family==2 else vital if family==3 else intellect
+	var reach := int(w[18]) if family in [0,1] else int(w[18]+stat*(0.08 if family==2 else 0.1))
+	var accuracy := int(w[20]+a*0.5) if family==0 else int(w[20]+b) if family==1 else int(w[20]+sense*0.2) if family==2 else 999
 	var variation := clampi(int(w.decode_s16(36)*stat/100),0,999)
 	return {"character_id":id,"job":jobs[id],"movement_type":0,
 		"limits":{"hp":hp,"hp_max":hp,"mp":mp,"mp_max":mp},
