@@ -58,10 +58,13 @@ static func move_teacher(before: Dictionary, command: Dictionary, profiles: Vari
 		if not sorted["supported"]:
 			return sorted
 		after["idle_student_ids"] = sorted["idle_student_ids"]
-	# 4A8BF0 sorts by descending total in mode 2. Only 101 and 110
-	# differ on this key (7 and 0); their levels and job categories tie.
-	if before["teacher_sort_mode"]==2 and after["idle_teacher_ids"]==[110,101]:
-		after["idle_teacher_ids"]=[101,110]
+	# 4A8BF0 uses strict pair swaps. Only 101 has a higher attribute sum
+	# in the verified teacher templates. Swap with the first waiting slot.
+	if before["teacher_sort_mode"]==2:
+		var best := waiting.find(101)
+		if best>0:
+			waiting[best]=waiting[0]
+			waiting[0]=101
 	for key in ["drag_kind", "drag_origin", "drag_group", "drag_slot", "drag_id"]:
 		after[key] = -1
 	after["task_command"] = 0

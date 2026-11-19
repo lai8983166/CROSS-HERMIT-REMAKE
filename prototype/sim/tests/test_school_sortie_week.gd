@@ -84,7 +84,8 @@ func test_may_week3_chapter_chain_and_carried_planning_state() -> void:
 	assert_eq(story["week_start"][103]["chapter"],27)
 	assert_eq(story["school_entry"],[])
 	assert_true(Calendar.story(3)["supported"])
-	assert_false(Calendar.story(4)["supported"])
+	assert_true(Calendar.story(4)["supported"])
+	assert_false(Calendar.story(5)["supported"])
 
 	var initial := Adventures.initial()
 	var original := Helpers.new()._returned()
@@ -138,3 +139,76 @@ func test_may_week3_chapter_chain_and_carried_planning_state() -> void:
 			var planned := Courses.assign_course(teaching["after"],0,7)
 			assert_true(planned["supported"])
 			if planned["supported"]: assert_true(Courses.settle(planned["after"])["supported"])
+
+
+func test_mandatory_seven_registers_both_members_before_week_settlement() -> void:
+	var story := Calendar.story(4)
+	assert_eq(story["pre_week"].size(),71)
+	assert_eq(story["pre_week"][0]["chapter"],"030B")
+	assert_eq(story["week_start"].size(),55)
+	assert_eq(story["week_start"][0]["chapter"],31)
+	assert_eq(story["school_entry"],[])
+	var bundle := Helpers.new()._returned()
+	var ledger := Adventures.initial()
+	for week in [1,2,3]:
+		bundle["phase"]="courses_confirmed"
+		var advanced := Calendar.next_week(bundle)
+		var room := Calendar.finish_story(advanced["after"])
+		var opening := Calendar.school_return(room["after"],Adventures.advance(ledger,0),ledger)
+		bundle=opening["after"]
+		ledger=opening["ledger_after"]
+	bundle["phase"]="sortie_settled"
+	var saved := bundle.duplicate(true)
+	assert_false(Calendar.next_week(bundle)["supported"])
+	var joined := Calendar.begin_story(bundle)
+	assert_true(joined["supported"],str(joined.get("reason")))
+	if not joined["supported"]: return
+	assert_eq(bundle,saved)
+	bundle=joined["after"]
+	assert_eq(bundle["school"]["week"],4)
+	assert_eq(bundle["school"]["student_ids"].slice(0,6),[3,4,9,5,8,6])
+	assert_eq(bundle["school"]["teacher_ids"].slice(0,3),[101,110,115])
+	assert_eq(bundle["school"]["relationships"].size(),72)
+	assert_false(Calendar.begin_story(bundle)["supported"])
+	var advanced := Calendar.next_week(bundle)
+	assert_true(advanced["supported"],str(advanced.get("reason")))
+	if not advanced["supported"]: return
+	assert_eq(advanced["date"],[5,5])
+	var room := Calendar.finish_story(advanced["after"])
+	assert_true(room["supported"],str(room.get("reason")))
+	if not room["supported"]: return
+	var opened := Calendar.school_return(room["after"],Adventures.advance(ledger,7),ledger)
+	assert_true(opened["supported"],str(opened.get("reason")))
+	if not opened["supported"]: return
+	assert_eq(opened["unlocked_work_ids"],[17,18,23,27])
+	bundle=opened["after"]
+	assert_eq(bundle["flags"]["0x7e11a0"],1)
+	assert_eq(bundle["adv_background"],6)
+	assert_eq(bundle["school"]["adventure_gate"],0)
+	assert_eq(bundle["school"]["lecture_active"],0)
+	assert_eq(bundle["school"]["idle_teacher_ids"],[110,115])
+	assert_true(bundle["school"]["idle_student_ids"].has(6))
+	var school: Dictionary=bundle["school"]
+	var working := Return.Session._working(school)
+	working.merge({"teacher_sort_mode":2,"drag_kind":1,"drag_origin":1,"drag_group":0,
+		"drag_slot":-1,"drag_id":101},true)
+	var rules := Return._rules()
+	var sorted := Return.Teacher.move_teacher(working,{"kind":"teacher","teacher_id":101,
+		"source_group":0,"source_slot":-1,"target_group":-1,"released":true},
+		Return.Session._student_profiles(school),Return.group_rules(school),
+		rules["school"]["sort_rules"],Return.work_rules(school,rules))
+	assert_true(sorted["supported"],str(sorted.get("reason")))
+	if sorted["supported"]: assert_eq(sorted["after"]["idle_teacher_ids"],[101,115,110])
+	var moved := Return.move_member(bundle,{"kind":"teacher","member_id":115,"target_group":2})
+	assert_true(moved["supported"],str(moved.get("reason")))
+	if not moved["supported"]: return
+	moved=Return.move_member(moved["after"],{"kind":"student","member_id":6,"target_group":2,"target_slot":0})
+	assert_true(moved["supported"],str(moved.get("reason")))
+	if not moved["supported"]: return
+	var courses := Courses.list_courses(moved["after"],2)
+	assert_true(courses["supported"],str(courses.get("reason")))
+	if not courses["supported"]: return
+	var ids := []
+	for category in courses["courses"]:
+		for row in category: ids.append(row[1])
+	assert_true(ids.has(23) and ids.has(27))

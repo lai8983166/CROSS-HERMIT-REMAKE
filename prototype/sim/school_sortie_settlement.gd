@@ -15,10 +15,10 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		return Origin.failure("settlement_requires_committed_sortie")
 	var school: Variant=bundle.get("school")
 	var previous: Variant=bundle.get("sortie_result",{})
-	if not school is Dictionary or school.get("week") not in [1,2,3] or not previous is Dictionary:
+	if not school is Dictionary or school.get("week") not in [1,2,3,4] or not previous is Dictionary:
 		return Origin.failure("invalid_sortie_school")
 	var week: int=school["week"]
-	var ledger := opening_ledger if week==3 else Adventures.initial()
+	var ledger := opening_ledger if week>=3 else Adventures.initial()
 	if week==2:
 		var previous_id: Variant=previous.get("scene_id",0)
 		if ledger.is_empty() or previous_id not in [0,8,17]:
@@ -36,8 +36,8 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var round_data: Dictionary = prepared["rounds"][0]
 	var ids: Array = round_data["student_ids"]
 	var slots: Variant = facts.get("objective_slots")
-	if (facts.get("scene_id") != scene_id or facts.get("time_key") != 0
-			or not Roles._vector(slots,16,0,1) or slots.slice(2 if scene_id == 8 else 3).has(1)
+	if (facts.get("scene_id") != scene_id or (scene_id!=7 and facts.get("time_key") != 0) or not Roles._bounded(facts.get("time_key"),1 if scene_id==7 else 0,3)
+			or not Roles._vector(slots,16,0,1) or slots.slice(1 if scene_id==7 else 2 if scene_id == 8 else 3).has(1)
 			or not Roles._bounded(facts.get("clock_seed"),0,0x7fffffff)
 			or not Roles._bounded(facts.get("growth_seed"),0,0x7fffffff)
 			or not facts.get("units") is Array or facts["units"].size() != ids.size()):
@@ -68,7 +68,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	if week==2 and previous.get("scene_id")==scene_id:
 		if not Roles._bounded(previous.get("task_grade"),1,5): return Origin.failure("invalid_previous_task_grade")
 		initial_grade=previous["task_grade"]
-	if week==3:
+	if week>=3:
 		for task in task_grades:
 			if task not in [8,17] or not Roles._bounded(task_grades[task],1,5):
 				return Origin.failure("invalid_previous_task_grade")
@@ -106,8 +106,14 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 			best = current["staged_total"]
 			recipient = id
 	if recipient < 0: return Origin.failure("missing_positive_sortie_recipient")
-	var rating: Dictionary = prepared["class_ratings"][round_data["student_groups"][0]]
-	var classes := [{"students":ids,"teacher":101,"work_fields":rating["work_fields"]}]
+	var classes := []
+	for group in range(5):
+		var members := []
+		for i in range(ids.size()):
+			if round_data["student_groups"][i]==group: members.append(ids[i])
+		if members.is_empty():continue
+		var teacher := Courses.Groups._word(school["group_raw_bytes"],group*28)
+		classes.append({"students":members,"teacher":teacher,"work_fields":prepared["class_ratings"][group]["work_fields"]})
 	var confirmation := Courses._confirm(after,classes,rules["job_categories"],2)
 	var grade_calls := []
 	var delta: int = Battle.Confirmation.GRADE_DELTA[score["grade_index"]]
@@ -115,8 +121,9 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		for b in ids:
 			if a != b: grade_calls.append({"from":a,"to":b,"delta":delta})
 	for id in ids:
-		grade_calls.append({"from":id,"to":101,"delta":delta})
-		grade_calls.append({"from":101,"to":id,"delta":delta})
+		for teacher in round_data["teacher_ids"]:
+			grade_calls.append({"from":id,"to":teacher,"delta":delta})
+			grade_calls.append({"from":teacher,"to":id,"delta":delta})
 	Courses._apply_relationships(after,grade_calls)
 	confirmation["relationship_calls"].append_array(grade_calls)
 	var count := Return._find(after["counts"],recipient)
@@ -125,7 +132,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	after["school"]["global_total_511c"] = score["total_after"]
 	after["item_flags"] = loot["item_flags"]
 	Return._sync_participants(after)
-	var rated := Courses.Groups.rate(after["school"],Origin.group_rules())
+	var rated := Courses.Groups.rate(after["school"],Return.group_rules(after["school"]))
 	if not rated["supported"]: return rated
 	after["school"] = Courses.Session._canonical(rated["after"])
 	after["ratings"] = rated["ratings"]
@@ -145,7 +152,13 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 static func _rules(scene_id: int) -> Dictionary:
 	var raw := FileAccess.get_file_as_string(TASK_PATH).replace("\r\n","\n")
 	if raw.sha256_text() != TASK_SHA: return {}
-	var task: Dictionary = Roles._integers(JSON.parse_string(raw)[str(scene_id)])
+	var task: Dictionary
+	if scene_id==7:
+		var seven := Adventures.seven_rules()
+		if seven.is_empty():return {}
+		task=seven["rewards"]
+	else:
+		task=Roles._integers(JSON.parse_string(raw)[str(scene_id)])
 	var base: Array = Battle.SOURCES["preparation"]
 	raw = FileAccess.get_file_as_string(base[0]).replace("\r\n","\n")
 	if raw.sha256_text() != base[1]: return {}

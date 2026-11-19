@@ -5,13 +5,14 @@ const Limits := preload("res://sim/school_combat_limits.gd")
 
 static func project(participant: Dictionary, growth: Dictionary, rules: Dictionary) -> Dictionary:
 	var id = participant.get("character_id")
-	var jobs := {3:10,4:6,9:7,5:4}
+	var jobs := {3:10,4:6,9:7,5:4,8:8}
 	if id not in jobs or growth.get("character_id")!=id or participant.get("job")!=jobs[id] or growth.get("job")!=jobs[id]: return {}
 	if participant.get("attributes")!=growth.get("attributes") or participant.get("level_50")!=growth.get("level_50"):return {}
 	if not Limits._numbers(growth.get("attributes"),7,0,255) or not Limits._integer(growth.get("level_50"),0,99):return {}
 	if participant.get("equipped_items")!=[0,0,0,0,0,0,0,0] or not Limits._numbers(participant.get("equipped_skills"),8,0,65535):return {}
 	for skill in participant["equipped_skills"]:
-		if skill not in [0,11,20,29,31,57,59]:return {}
+		if id!=8 and skill not in [0,11,20,29,31,57,59]:return {}
+		if id==8 and skill!=0:return {}
 	var job: Dictionary=rules["jobs"][str(jobs[id])]
 	var j := String(job["job_hex"]).hex_decode();var w := String(job["attack_hex"]).hex_decode()
 	var attrs: Array=growth["attributes"].map(func(v):return clampi(v,1,135))

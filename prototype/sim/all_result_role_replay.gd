@@ -93,7 +93,7 @@ static func project_growth_records(input: Array, ordered_ids: Array, seed: int, 
 	# Growth itself does not read the date, relation directory or teacher slots.
 	# Keep the historical full-snapshot/context validators unchanged.
 	var seen := {}
-	if input.is_empty() or input.size() > 4: return _unsupported("invalid_growth_records")
+	if input.is_empty() or input.size() > 5: return _unsupported("invalid_growth_records")
 	for record in input:
 		if not record is Dictionary or not _bounded(record.get("character_id"),1,12) \
 				or seen.has(record["character_id"]): return _unsupported("invalid_growth_identity")

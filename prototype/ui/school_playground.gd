@@ -879,7 +879,9 @@ func _open_sortie() -> void:
 	var post := model.read_postbattle()
 	if post.get("phase")!="sortie_pending":return
 	var names := {}
-	for id in [3,4,9,5,101]:names[id]=_name(id)
+	for profile in post["bundle"]["school"]["member_profiles"]:
+		var id: int=profile["member_id"]
+		names[id]=_name(id)
 	if sortie_trial.open_trial(post["planning"]["handoff"],{},names):postbattle_panel.hide()
 	else:_message="战场加载或队伍校验失败，已保存的出击记录保持不变。";refresh()
 
@@ -1050,7 +1052,7 @@ func _set_member(button: Button, identity: int, empty: String) -> void:
 
 func _name(identity: int) -> String:
 	if catalog["characters"].has(str(identity)): return catalog["characters"][str(identity)]["name"]
-	return {5:"法娜",8:"奎丝忒",110:"帕佩修"}.get(identity,"成员 #%d" % identity)
+	return {5:"法娜",6:"艾尔雪",8:"奎丝忒",110:"帕佩修",115:"薛莉尔"}.get(identity,"成员 #%d" % identity)
 
 
 func _texture(filename: String) -> Texture2D:

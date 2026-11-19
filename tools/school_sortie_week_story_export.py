@@ -94,17 +94,36 @@ def build_week4():
         {'offset': 0x1218, 'opcode': 91, 'operands': [6, 2]}],
         [{'offset': 0x276, 'opcode': 151, 'operands': [11, 1]}]]
     data['routes'] = routes
+    return join_data(data, 8, 110, [101,3,4,9,5,8,110])
+
+
+def build_week5():
+    data = catalog({'030B': 99, 31: 110})
+    routes = [date_route('CH003', 5, 4), date_route('CH001', 5, 5), date_route('CH002', 5, 5)]
+    assert [route['target'] for route in routes] == [
+        'data/adv/dat/Chapter030B.ybc', 'data/adv/dat/Chapter031.ybc', None]
+    assert routes[2]['effects'] == [{'offset': 0x540, 'opcode': 151, 'operands': [11, 1]}]
+    assert [scene['effects'] for scene in data['scenes']] == [[
+        {'offset': 0x14, 'opcode': 144, 'operands': [6]},
+        {'offset': 0x1c, 'opcode': 144, 'operands': [115]}], [
+        {'offset': 0x7fc, 'opcode': 151, 'operands': [11, 0]},
+        {'offset': 0x808, 'opcode': 91, 'operands': [6, 2]}]]
+    data['routes'] = routes
+    return join_data(data, 6, 115, [101,3,4,9,5,8,110,6,115])
+
+
+def join_data(data, student, teacher, members):
     image = SOURCE.read_bytes()
     profiles = []
-    for identity in (8, 110):
+    for identity in (student, teacher):
         start = 0x6f5088 - 0x400000 + identity * 0x4a0
         raw = image[start:start + 0x4a0]
         profile = {'member_id': identity, 'job': struct.unpack_from('<h', raw, 6)[0],
                    'level_50': raw[0x50], 'attributes': list(raw[0xc:0x44:8]),
-                   'storage_kind': 'student_record' if identity == 8 else 'static_teacher_template',
+                   'storage_kind': 'student_record' if identity == student else 'static_teacher_template',
                    'template_sha256': hashlib.sha256(raw).hexdigest()}
         profiles.append(profile)
-        if identity == 8:
+        if identity == student:
             progress = [0] + [max(0, min(100, x)) for x in struct.unpack_from('<32h', image, 0x351242 + identity * 0x42)]
             data['history'] = {'character_id': identity, 'job_progress': progress, 'week_records': [0] * 177}
             data['candidate'] = {'character_id': identity, **{k: profile[k] for k in ('job', 'level_50', 'attributes')},
@@ -116,16 +135,15 @@ def build_week4():
                                  'job_sums': [sum(progress[1 + 2*k + n] for n in (0,1,10,11,20,21)) for k in range(5)],
                                  'staged_total': 0}
     data['join_profiles'] = profiles
-    members = [101,3,4,9,5,8,110]
     def row(identity):
         return identity - 55 if identity > 100 else identity
     data['join_relationships'] = [{'from': a, 'to': b, 'value': image[0x34e4b0 + row(a)*68 + 1 + row(b)]}
-                                  for a in members for b in members if a != b and (a in (8,110) or b in (8,110))]
+                                  for a in members for b in members if a != b and (a in (student,teacher) or b in (student,teacher))]
     return data
 
 
 if __name__ == '__main__':
     for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
-                       ('school_may_week4_story', build_week4)]:
+                       ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')

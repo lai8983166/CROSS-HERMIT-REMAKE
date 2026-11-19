@@ -14,6 +14,7 @@ const Teacher := preload("res://sim/school_teacher_movement.gd")
 const Sort := preload("res://sim/school_waitlist_sort.gd")
 const Session := preload("res://sim/new_game_school_session.gd")
 const WEEK_FOUR := ["res://data/school_may_week4_story.json","9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3fc80a"]
+const WEEK_FIVE := ["res://data/school_may_week5_story.json","1d74ded43259f2145b716d742433c738b412f0b40279fe8387acf81ae2391542"]
 const SOURCES := {
 	"candidate":["res://data/school_postbattle_return_rules.json","1775635836be11e1c038437bb7043a2b2989bdccb880d8882fcda06d41fdb854"],
 	"week":["res://data/week_settlement_evidence.json","5bdb406c2125c610c75942a9e589a9b427cdbcd5d97b0cbf35c014b1d793aedf"],
@@ -25,7 +26,10 @@ const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_status
 
 static func group_rules(school: Dictionary) -> Dictionary:
 	var rules := Origin.group_rules()
-	if school.get("month")==5 and school.get("week")==4:
+	if school.get("month")==5 and school.get("week") in [4,5] and school.get("teacher_count")==3:
+		rules["teacher_scope"]="chapter030b"
+		rules["chapter_sha256"]=Groups.CHAPTER030B_SHA
+	elif school.get("month")==5 and school.get("week")==4:
 		rules["teacher_scope"]="chapter029"
 		rules["chapter_sha256"]=Groups.CHAPTER029_SHA
 	return rules
@@ -33,11 +37,12 @@ static func group_rules(school: Dictionary) -> Dictionary:
 
 static func work_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
 	var work: Dictionary = rules["school"]["work_rules"]
-	if school.get("month")==5 and school.get("week")==4:
+	if school.get("month")==5 and school.get("week") in [4,5]:
 		work=work.duplicate(true)
-		var teacher: Dictionary=school["member_profiles"][-1]
-		work["teacher_profiles"].append({"teacher_id":teacher["member_id"],"job":teacher["job"],
-			"level_50":teacher["level_50"],"attributes":teacher["attributes"]})
+		for teacher in school["member_profiles"]:
+			if teacher["member_id"]<=101: continue
+			work["teacher_profiles"].append({"teacher_id":teacher["member_id"],"job":teacher["job"],
+				"level_50":teacher["level_50"],"attributes":teacher["attributes"]})
 	return work
 
 
@@ -64,19 +69,35 @@ static func join_week_four(before: Dictionary, rules: Dictionary) -> Dictionary:
 		return Origin.failure("chapter029_requires_new_week")
 	var reason := _validate(before,[3,4,9,5],5,4,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
-	var after := before.duplicate(true)
-	var encoded := FileAccess.get_file_as_string(WEEK_FOUR[0]).replace("\r\n","\n")
-	if encoded.sha256_text()!=WEEK_FOUR[1]: return Origin.failure("invalid_chapter029_source")
+	return _join_pair(before,rules,WEEK_FOUR,"chapter029_joined",110)
+
+
+static func join_chapter030b(before: Dictionary, rules: Dictionary) -> Dictionary:
+	if before.get("phase")!="sortie_settled":
+		return Origin.failure("chapter030b_requires_settled_sortie")
+	var reason := _validate(before,[3,4,9,5,8],5,4,rules)
+	if not reason.is_empty(): return Origin.failure(reason)
+	if before["school"]["lecture_work_fields"][2]!=7:
+		return Origin.failure("chapter030b_requires_adventure7")
+	return _join_pair(before,rules,WEEK_FIVE,"chapter030b_joined",115)
+
+
+static func _join_pair(before: Dictionary, rules: Dictionary, resource: Array, status: String, teacher: int) -> Dictionary:
+	var encoded := FileAccess.get_file_as_string(resource[0]).replace("\r\n","\n")
+	if encoded.sha256_text()!=resource[1]: return Origin.failure("invalid_join_source")
 	var source: Dictionary = Roles._integers(JSON.parse_string(encoded))
+	var after := before.duplicate(true)
 	_append_student(after,source,rules)
 	var school: Dictionary = after["school"]
-	school["teacher_ids"][1]=110
-	school["raw_teacher_ids"][1]=110
-	school["teacher_count"]=2
-	school["availability"][110]=1
+	var index: int = school["teacher_count"]
+	school["teacher_ids"][index]=teacher
+	school["raw_teacher_ids"][index]=teacher
+	school["teacher_count"]+=1
+	school["availability"][teacher]=1
 	school["member_profiles"].append(source["join_profiles"][1].duplicate(true))
 	school["relationships"].append_array(source["join_relationships"].duplicate(true))
-	return _result(after,"chapter029_joined",{"joined_ids":[8,110]})
+	if teacher==115: after["phase"]=status
+	return _result(after,status,{"joined_ids":[source["candidate"]["character_id"],teacher]})
 
 
 static func _append_student(after: Dictionary, source: Dictionary, rules: Dictionary) -> void:
@@ -108,7 +129,7 @@ static func _append_student(after: Dictionary, source: Dictionary, rules: Dictio
 	school["raw_student_ids"][index] = identity
 	school["student_count"] += 1
 	school["availability"][identity] = 1
-	school["member_profiles"].append({"member_id":identity,"job":candidate["job"],"level_50":candidate["level_50"],
+	school["member_profiles"].insert(index+1,{"member_id":identity,"job":candidate["job"],"level_50":candidate["level_50"],
 		"attributes":candidate["attributes"].duplicate(),"storage_kind":"student_record",
 		"template_sha256":source["join_profiles"][0]["template_sha256"] if source.has("join_profiles") else source["template_sha256"]})
 
@@ -170,9 +191,12 @@ static func school_return(before: Dictionary) -> Dictionary:
 
 static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> String:
 	var school: Variant = bundle.get("school")
-	if not school is Dictionary or school.get("week") not in [1,2,3,4]:
+	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
-	return _validate(bundle,[3,4,9,5,8] if school["week"]==4 else [3,4,9,5],5,school["week"],rules)
+	var ids := [3,4,9,5]
+	if school["week"]>=4: ids.append(8)
+	if school["week"]==5: ids.append(6)
+	return _validate(bundle,ids,5,school["week"],rules)
 
 
 static func move_member(before: Dictionary, command: Dictionary) -> Dictionary:
@@ -280,7 +304,9 @@ static func _week_input(bundle: Dictionary) -> Dictionary:
 static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rules: Dictionary) -> String:
 	if not bundle.get("school") is Dictionary or not bundle.get("participants") is Array 		or not bundle.get("growth") is Array or not bundle.get("records") is Array or not bundle.get("counts") is Array 		or not bundle.get("flags") is Dictionary or not Week._vector(bundle.get("item_flags"),360,0,65535): return "invalid_postbattle_bundle"
 	var school: Dictionary = bundle["school"]
-	var teachers := [101,110] if ids.has(8) else [101]
+	var teachers := [101]
+	if ids.has(8): teachers.append(110)
+	if ids.has(6): teachers.append(115)
 	var reason := Groups._validate(school,group_rules(school))
 	if not reason.is_empty(): return reason
 	if school.get("month")!=month or school.get("week")!=week or school["student_ids"].slice(0,school["student_count"])!=ids \
@@ -290,15 +316,18 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 		or not school.get("member_profiles") is Array or school["member_profiles"].size()!=ids.size()+teachers.size(): return "outside_current_return_roster"
 	if teachers.has(110):
 		if (not Week._vector(school.get("raw_teacher_ids"),20,0,120)
-				or school["raw_teacher_ids"].slice(0,2)!=teachers
+				or school["raw_teacher_ids"].slice(0,teachers.size())!=teachers
 				or school["raw_student_ids"].slice(0,ids.size())!=ids):
 			return "invalid_chapter029_roster"
-		var teacher: Variant=school["member_profiles"][-1]
-		if (not teacher is Dictionary or teacher.get("member_id")!=110 or teacher.get("job")!=1
-				or teacher.get("level_50")!=0 or not Week._vector(teacher.get("attributes"),7,0,0)
-				or teacher.get("storage_kind")!="static_teacher_template"
-				or teacher.get("template_sha256")!="bc3a30a04ca4e32a3d40c50f9beb18d65354006d9246e43858049bd9cd84cabc"):
-			return "invalid_chapter029_teacher_profile"
+		for index in range(1,teachers.size()):
+			var teacher: Variant=school["member_profiles"][ids.size()+index]
+			var identity: int=teachers[index]
+			var expected_sha := "bc3a30a04ca4e32a3d40c50f9beb18d65354006d9246e43858049bd9cd84cabc" if identity==110 else "5bcf15751c390f22d43e7d3c7e88259f009e523cfdb93f937fb3a88e17a663c7"
+			if (not teacher is Dictionary or teacher.get("member_id")!=identity or teacher.get("job")!=1
+					or teacher.get("level_50")!=0 or not Week._vector(teacher.get("attributes"),7,0,0)
+					or teacher.get("storage_kind")!="static_teacher_template" or teacher.get("template_sha256")!=expected_sha):
+				return "invalid_chapter029_teacher_profile" if identity==110 else "invalid_chapter030b_teacher_profile"
+
 	var members := teachers+ids
 	if school["relationships"].size()!=members.size()*(members.size()-1): return "incomplete_return_relationships"
 	for a in members:

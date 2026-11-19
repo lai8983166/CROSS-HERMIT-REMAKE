@@ -44,6 +44,14 @@ class LedgerProbe(ExitEmulator):
 
 
 class SchoolReturnAdventuresTests(unittest.TestCase):
+    def test_mandatory_seven_scene_and_rewards_match_original(self):
+        from tools.school_return_adventures_catalog import mandatory_seven
+        data = mandatory_seven()
+        self.assertEqual(data, json.loads((ROOT/'prototype/data/school_mandatory_seven.json').read_bytes()))
+        self.assertEqual(data['rewards']['base_points'], [100000,90000,72000,54000,36000])
+        self.assertEqual(data['scene']['script'], 'T0007.BIN')
+        self.assertEqual(data['rewards']['objective_rewards'][0], [0,4,1])
+
     def test_catalog_identity_complete_date_filter_and_resources(self):
         data=catalog()
         self.assertEqual(data,json.loads((ROOT/'prototype/data/school_return_adventures.json').read_text(encoding='utf8')))

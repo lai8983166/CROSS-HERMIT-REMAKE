@@ -11,7 +11,6 @@ const Growth := preload("res://sim/school_course_settlement.gd")
 const Confirmation := preload("res://sim/school_course_confirmation.gd")
 const Courses := preload("res://sim/school_course_unlocking.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
-const IDS := [3,4,9,5]
 const SOURCES := {
 	"growth":["res://data/school_course_settlement_rules.json","5f2738db67bdacf1677e6de1c823ac8dfa542e6b103cd913af9c51a2fe93c439"],
 	"confirmation":["res://data/school_course_confirmation_rules.json","2a75e6e4dd30ae8e99a5e014dc3ba87b646f65b73b3a04d03999d2ceaebaf6a6"]}
@@ -44,7 +43,7 @@ static func assign_course(before: Dictionary, group: Variant, work_id: Variant) 
 	var rules := _rules()
 	var reason := _guard(before,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
-	if not Courses._integer(group,0,4) or not Courses._integer(work_id,1,15):
+	if not Courses._integer(group,0,4) or not Courses._integer(work_id,1,100):
 		return Origin.failure("invalid_return_course_command")
 	var selected := Teacher.select_group(Session._working(before["school"]),group,Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 	if not selected["supported"]: return selected
@@ -211,7 +210,7 @@ static func _grow(records: Array, plan: Array, rules: Dictionary, difficulty: in
 static func _confirm(after: Dictionary, classes: Array, categories: Array, activity := 1) -> Dictionary:
 	var assigned := []
 	for item in classes: assigned.append_array(item["students"])
-	var waiting := IDS.filter(func(id):return id not in assigned)
+	var waiting: Array = after["school"]["student_ids"].slice(0,after["school"]["student_count"]).filter(func(id):return id not in assigned)
 	var history_index: int = (after["school"]["month"]-4)*5+after["school"]["week"]-1
 	for row in after["records"]:
 		var growth := Return._find(after["growth"],row["character_id"])

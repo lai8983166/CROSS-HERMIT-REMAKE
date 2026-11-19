@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -50,3 +50,15 @@ class SortieWeekStoryTests(unittest.TestCase):
         members = [101, 3, 4, 9, 5, 8, 110]
         expected = {(a, b) for a in members for b in members if a != b and ({a, b} & {8, 110})}
         self.assertCountEqual([(row['from'], row['to']) for row in data['join_relationships']], expected)
+
+    def test_may_week5_uses_dated_030b_registers_two_members_and_returns(self):
+        data = build_week5()
+        expected = (ROOT / 'prototype/data/school_may_week5_story.json').read_bytes()
+        self.assertEqual((json.dumps(data, ensure_ascii=False, indent=2)+chr(10)).encode(), expected)
+        self.assertEqual([r['offsets'][-1] for r in data['routes']], [0x4d0, 0x668, 0x6d0])
+        self.assertEqual([(s['chapter'], len(s['pages'])) for s in data['scenes']], [('030B', 71), (31, 55)])
+        self.assertEqual([p['member_id'] for p in data['join_profiles']], [6, 115])
+        self.assertEqual(data['candidate']['attributes'], [64,14,7,25,2,55,18])
+        self.assertEqual(len(data['join_relationships']), 30)
+        for scene in data['scenes']:
+            self.assertEqual([i for p in scene['pages'] for i in p['text_indices']], list(range(scene['text_count'])))

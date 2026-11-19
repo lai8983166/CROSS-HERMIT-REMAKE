@@ -93,6 +93,10 @@ func execute(command: Dictionary) -> Dictionary:
 		return {"supported":true}
 	if op=="sortie_finish": return finish_sortie(command["trace"])
 	if phase=="sortie_result" and op=="post_next":
+		if bundle["school"]["week"]==4:
+			var started := SortieWeek.begin_story(bundle)
+			if not started["supported"]:return started
+			bundle=started["after"]
 		phase="post_story"
 		revision+=1
 		return {"supported":true}
@@ -174,13 +178,13 @@ func _plan(command: Dictionary) -> Dictionary:
 		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
 	if not result["supported"]:return result
 	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
-	if bundle["school"]["week"] in [2,3] and op in ["return_settle","return_depart"]:
+	if bundle["school"]["week"] in [2,3,4] and op in ["return_settle","return_depart"]:
 		# Replace last week's display summary only when the new work is committed.
 		# Keep its starting ledger for validating the battle and next school's entry.
 		var opening: Dictionary=planning["ledger"]
 		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
-		if bundle["school"]["week"]==3:
-			planning["committed_week"]=3
+		if bundle["school"]["week"]>=3:
+			planning["committed_week"]=bundle["school"]["week"]
 	bundle=result["after"]
 	if op=="return_settle":
 		planning["ledger"]=Adventures.advance(planning["ledger"],0)

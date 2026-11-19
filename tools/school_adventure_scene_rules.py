@@ -8,7 +8,7 @@ from tools.ybc32_disasm import parse, load_pool
 from tools.tactics_exit_emulation import SOURCE, SOURCE_SHA256, ROOT
 
 
-def catalog():
+def catalog(scene_ids=(8, 17)):
     image = SOURCE.read_bytes()
     assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
     def read(va, fmt):
@@ -19,7 +19,7 @@ def catalog():
     assert pointer_instruction.mnemonic == 'mov' and pointer_instruction.operands[1].type == X86_OP_MEM
     pointer_va = pointer_instruction.operands[1].mem.disp
     scenes = {}
-    for sid in (8, 17):
+    for sid in scene_ids:
         path = ROOT / f'CROSS HERMIT/CROSS HERMIT/DATA/TACTICS/SCRIPT/T{sid:04}.BIN'
         raw = path.read_bytes()
         scripts = []

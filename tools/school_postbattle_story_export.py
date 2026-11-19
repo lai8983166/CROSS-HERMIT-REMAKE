@@ -22,8 +22,9 @@ def catalog(chapter_counts=None):
     assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
     scenes = []
     for chapter in chapter_counts:
-        raw = (GAME/f'DAT/CHAPTER{chapter:03}.YBC').read_bytes()
-        assert raw == (GAME/f'DAT/BIG5/CHAPTER{chapter:03}.YBC').read_bytes()
+        label = f'{chapter:03}' if isinstance(chapter, int) else chapter
+        raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
+        assert raw == (GAME/f'DAT/BIG5/CHAPTER{label}.YBC').read_bytes()
         header, at, end, pool, _ = struct.unpack_from('<5I', raw)
         assert header == 4 and at == 20 and at < end <= pool < len(raw)
         count = struct.unpack_from('<I', raw, pool)[0]
@@ -72,7 +73,7 @@ def catalog(chapter_counts=None):
                 effects.append({'offset':at,'opcode':op,'string_index':index})
             at += size
         assert not lines and [i for p in pages for i in p['text_indices']]==list(range(count))
-        scenes.append({'chapter':chapter,'source':f'ADV/DAT/CHAPTER{chapter:03}.YBC',
+        scenes.append({'chapter':chapter,'source':f'ADV/DAT/CHAPTER{label}.YBC',
                        'sha256':hashlib.sha256(raw).hexdigest(),'text_count':count,'pages':pages,'effects':effects})
     return {'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,
             'scope':'All source text in original order and key-wait grouping; remake text presentation. No original movies/audio/fades or native execution.'}

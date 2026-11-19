@@ -167,11 +167,15 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=school["week"]>=4
+	var planning_only: bool=school["week"]==5
+	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整出击班级并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="奎丝忒和帕佩修已加入。第4周为必修冒险7，请调整带队教师和学生。"
+		dialogue.text="本周可重新编班、安排课程或预选开放的冒险，并保存进度。"
+		progress.text="选择成员和班级位置调整编班，再为教师班安排活动。"
+	elif mandatory:
+		dialogue.text="奎丝忒和帕佩修已加入。第4周为必修冒险7，确认已保存的出击编班后即可进入战场。"
 	for group in range(5):
 		if Groups._word(school["group_raw_bytes"],group*28)<0:continue
 		var row := HBoxContainer.new();plans.add_child(row)
@@ -179,7 +183,7 @@ func _show_plan(view: Dictionary) -> void:
 		for teaching in [true,false]:
 			var button := _button("授课" if teaching else "冒险",func():command.emit({"op":"return_mode","group":group,"teaching":teaching}))
 			button.name="mode_%d_%d" % [group,int(teaching)];button.toggle_mode=true
-			button.disabled=planning_only
+			button.disabled=mandatory
 			button.button_pressed=bool(school["group_raw_bytes"][group*28+3])==teaching;row.add_child(button)
 		var options := OptionButton.new();options.name="courses_%d" % group;options.custom_minimum_size=Vector2(180,40)
 		options.add_item("选择课程",-1)
@@ -194,21 +198,21 @@ func _show_plan(view: Dictionary) -> void:
 			var id := options.get_item_id(index)
 			if id>0:command.emit({"op":"return_course","group":group,"course":id}))
 		row.add_child(options)
-	var caption := _label(19);caption.text="本周必修冒险" if planning_only else "本周可选冒险";plans.add_child(caption)
+	var caption := _label(19);caption.text="本周必修冒险" if mandatory else "本周可选冒险";plans.add_child(caption)
 	for adventure in Adventures.available(plan["ledger"]):
 		var id: int=adventure["id"]
-		if planning_only and id!=school["lecture_work_fields"][2]: continue
+		if mandatory and id!=school["lecture_work_fields"][2]: continue
 		var label: String={7:"必修 · 冒险7",8:"守城 · 冒险8",17:"自由训练 · 冒险17"}.get(id,"冒险%d" % id)
 		label+="　剩余%d周" % adventure["remaining"] if adventure["remaining"]>0 else "　无期限"
 		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
 		button.name="adventure_%d" % id;button.toggle_mode=true
-		button.disabled=planning_only
+		button.disabled=mandatory
 		button.button_pressed=school["lecture_active"]==1 and school["lecture_work_fields"][2]==id;plans.add_child(button)
 	if planning_only: return
 	var row := HBoxContainer.new();plans.add_child(row)
 	var settle := _button("确认本周授课",func():_confirm("return_settle","确认后结算本周授课，保留成长、技能与成员记录。本周不能再出击。"))
-	settle.name="settle";row.add_child(settle)
-	var ratings := Groups.rate(school,Courses.Origin.group_rules())
+	settle.name="settle";row.add_child(settle);settle.visible=not mandatory
+	var ratings := Groups.rate(school,Courses.Return.group_rules(school))
 	settle.disabled=not ratings["supported"] or not ratings["ratings"].any(func(r):return r["state"]==4) or ratings["ratings"].any(func(r):return r["state"] not in [0,4])
 	var depart := _button("确认出击交接",func():_confirm("return_depart","确认后锁定本周出击队伍并更新冒险使用记录，随后可进入战场。可以保存出击记录后稍后继续。"))
 	depart.name="depart";row.add_child(depart)

@@ -7,7 +7,7 @@ from tools.school_boot_fixture import source_rules
 from tools.tactics_exit_emulation import ROOT, SOURCE, SOURCE_SHA256
 
 
-def catalog():
+def catalog(scene_ids=(8,17)):
     image=SOURCE.read_bytes()
     assert hashlib.sha256(image).hexdigest()==SOURCE_SHA256
     rows=source_rules()['adventures']
@@ -18,7 +18,7 @@ def catalog():
         row['rounds']=[dict(zip(('scene_id','selection_word'),struct.unpack_from('<HH',raw,16+k*4))) for k in range(raw[15])]
         row['sha256']=hashlib.sha256(raw).hexdigest()
     scenes={}
-    for sid in (8,17):
+    for sid in scene_ids:
         config=image[0x6ad1d0+sid*42-0x400000:0x6ad1d0+(sid+1)*42-0x400000]
         resources=[]
         for k in range(4):
@@ -34,6 +34,20 @@ def catalog():
     return {'schema_version':1,'source_image_sha256':SOURCE_SHA256,'adventures':rows,'scenes':scenes,
         'functions':{'open':'0x4a17b0','prepend':'0x4a9d90','submit':'0x4a1920','remove':'0x4aa0e0','list':'0x4a1c70','prepare':'0x4a6a10'},
         'scope':'Complete catalog for the owned first-game 4/4 course -> 4/5 adventure5 -> 5/1 return. No imported arbitrary history or playable scene8/17 authority.'}
+
+
+def mandatory_seven():
+    image = SOURCE.read_bytes()
+    assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
+    def values(address, count, fmt='h'):
+        return list(struct.unpack_from('<'+fmt*count, image, address+7*256-0x400000))
+    rewards = {'task_id': 7, 'base_points': values(0x73BEF4,5,'i'),
+               'unit_bonus': values(0x73BF08,1)[0], 'time_bonuses': values(0x73BF0A,3),
+               'count_bonuses': values(0x73BF10,6),
+               'loot_quotas': [values(0x73BF1A+14*i,7) for i in range(5)],
+               'fixed_items': values(0x73BF60,8),
+               'objective_rewards': [values(0x73BF70+6*i,3) for i in range(16)]}
+    return {'source_image_sha256': SOURCE_SHA256, 'scene':catalog((7,))['scenes']['7'], 'rewards':rewards}
 
 
 if __name__=='__main__':

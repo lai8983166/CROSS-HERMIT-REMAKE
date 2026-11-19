@@ -6,6 +6,12 @@ const SOURCE_PATH := "res://assets/school_sorties/catalog.json"
 const SOURCE_SHA := "d272b6ad0da5a0da30676b8ae6ca4273dc045794b6470af419c7f44a14c4d376"
 const SCENES_PATH := "res://data/school_adventure_scene_rules.json"
 const SCENES_SHA := "c87a1ddcda957cc5b235dd35ef95bcd5385bf91c59aecea0fcb26cfb0d90266c"
+const SEVEN_PATH := "res://assets/school_seven/catalog.json"
+const SEVEN_SHA := "1e7d03f2b4fdb7517f8e43cc8931121b02fc747e3b881f6f3fbf8b207f24873c"
+const Adventures := preload("res://sim/school_return_adventures.gd")
+var event_rng := RandomNumberGenerator.new()
+var recurring_events: Array = []
+var rendezvous := false
 var scene_id := 0
 var elapsed := 0
 var departure: Dictionary = {}
@@ -18,24 +24,28 @@ var attack_paths: AttackPaths
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
-	if handoff.get("date") not in [[5,1],[5,2],[5,3]]: return false
-	if raw.is_empty():raw=FileAccess.get_file_as_string(SOURCE_PATH).replace("\r\n","\n")
-	if raw.sha256_text()!=SOURCE_SHA or not handoff.get("supported",false) or not handoff.get("ready",false):return false
+	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4]]: return false
+	var seven: bool=handoff["date"]==[5,4]
+	if raw.is_empty():raw=FileAccess.get_file_as_string(SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
+	if raw.sha256_text()!=(SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
 	if not handoff.get("prepared") is Dictionary or handoff.get("requested_states")!=[10,16] or handoff.get("round_cursor")!=1:return false
 	var prepared: Dictionary=handoff["prepared"];var sid=prepared.get("adventure_id")
-	if sid not in [8,17] or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
+	if sid not in ([7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
 	if not prepared.get("rounds") is Array or prepared["rounds"].size()!=1:return false
 	var round_data: Dictionary=prepared["rounds"][0]
-	if round_data.get("scene_id")!=sid or round_data.get("teacher_ids")!=[101]:return false
+	var teachers=round_data.get("teacher_ids")
+	if round_data.get("scene_id")!=sid:return false
+	if teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
 	var ids: Array=round_data.get("student_ids",[])
-	if ids.is_empty() or ids.size()>4 or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
+	if ids.is_empty() or ids.size()>(5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
 	if ids.size()!=handoff["participants"].size() or ids.size()!=handoff["growth"].size():return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	var next_catalog: Dictionary=source["scenes"][str(sid)].duplicate(true)
-	var identity: Dictionary=preload("res://sim/school_return_adventures.gd").rules()["scenes"][str(sid)]
-	if handoff.get("scene")!=identity:return false
+	var identity: Dictionary=Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
+	if identity.is_empty() or handoff.get("scene")!=identity:return false
 	var candidates: Array[Dictionary]=[];var seen := {}
 	for id in ids:
+		if not next_catalog["player_skins"].has(str(id)):return false
 		if seen.has(id):return false
 		seen[id]=true
 		var p: Array=handoff["participants"].filter(func(v):return v.get("character_id")==id)
@@ -47,7 +57,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 			"side":0,"source_state":1,"death_counted":false,"facing":"N","path":[],"destination":Vector2i(-1,-1),
 			"move_started_frame":-100000,"visual":"idle","visual_started_frame":0,"target":-1,"dead_at":-1})
 		candidates.append(unit)
-	var width := 96 if sid==17 else 64;var height := 144 if sid==17 else 96
+	var width := 96 if sid in [7,17] else 64;var height := 144 if sid in [7,17] else 96
 	var blocked := {}
 	for actor in next_catalog["actors"]:
 		if actor["state"]==1:blocked[Vector2i(actor["cell"][0],actor["cell"][1])]=true
@@ -67,7 +77,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var rules_raw := FileAccess.get_file_as_string(SCENES_PATH).replace("\r\n","\n")
 	if rules_raw.sha256_text()!=SCENES_SHA:return false
 	var rules: Dictionary=Limits._source_numbers(JSON.parse_string(rules_raw))
-	if rules.get("source_image_sha256")!=Limits.SOURCE_SHA or rules["scenes"][str(sid)]["script_sha256"]!=identity["script_sha256"]:return false
+	if rules.get("source_image_sha256")!=Limits.SOURCE_SHA or (next_catalog if seven else rules["scenes"][str(sid)])["script_sha256"]!=identity["script_sha256"]:return false
 	var wave_raw := FileAccess.get_file_as_string(REINFORCEMENTS_PATH).replace("\r\n","\n")
 	if wave_raw.sha256_text()!=REINFORCEMENTS_SHA:return false
 	var wave: Dictionary=JSON.parse_string(wave_raw)
@@ -88,14 +98,16 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 		var zeros := [];zeros.resize(width*height);zeros.fill(0)
 		map._layers={"terrain":catalog["passability"][mode].duplicate(),"variant":zeros,"object":zeros};_maps.append(map)
 	_capture_mask=mask
-	scene_scripts=rules["scenes"][str(sid)]["scripts"].duplicate(true);spawn_points=rules["scene17_repeat_rows"]
+	scene_scripts=(next_catalog if seven else rules["scenes"][str(sid)])["scripts"].duplicate(true);spawn_points=rules["scene17_repeat_rows"]
 	_opening_pages=_pages(1);_opening_index=0;_ending_phase="opening"
 	ready=true;selected_id=ids[0];reason="opening";rng.seed=20261115+sid;_placement_rotation=rotation
 	remaining_ticks=108000 if sid==8 else -1;_initial_enemies=enemies().size()
 	for id in ids:_battle_stats[id]={"character_id":id,"count_field_aa":0,"contribution_field_ac":0,"status_field_ae":0}
-	if sid==8:
+	if seven:event_rng.seed=20261119+sid
+	if sid in [7,8]:
 		for cmd in scene_scripts[0]["commands"]:
 			var v: Array=cmd.get("values",[])
+			if seven and cmd["opcode"]==124 and v.size()==4 and v[2]==20:recurring_events.append({"at":v[3]})
 			if cmd["opcode"]==136 and v.size()==7 and v[0]==28:timers.append({"at":v[1],"slot":v[2],"group":v[3],"center":Vector2i(v[4],v[5]),"radius":v[6]})
 	else:
 		for at in [36000,39600,43200,46800]:timers.append({"at":at,"repeat":true})
@@ -121,9 +133,9 @@ func _actor_unit(actor: Dictionary, cell: Vector2i) -> Dictionary:
 static func _capture_role(role: int) -> bool:return role>=387 and role<=406
 
 
-func _pages(sub: int) -> Array:
+func _pages(sub: int, block := 0) -> Array:
 	for row in scene_scripts:
-		if row["block"]==0 and row["sub"]==sub:return row["pages"].duplicate(true)
+		if row["block"]==block and row["sub"]==sub:return row["pages"].duplicate(true)
 	return []
 
 
@@ -203,10 +215,20 @@ func _set_group_ai(group: int, parameter: int) -> void:
 func _update_summoning() -> void:
 	# Elapsed source units advance by two at the explicitly local 30Hz scheduler.
 	elapsed+=2
+	if scene_id==7:
+		for tower in [1246,1245]:
+			if find_unit(tower)["side"]!=0:continue
+			for timer in timers.duplicate():
+				if timer["slot"] in ([1,2,3] if tower==1246 else [4,5,6]):timers.erase(timer)
+		for event in recurring_events:
+			if event["at"]>elapsed:continue
+			_repeat_seven_group()
+			event["at"]=elapsed+event_rng.randi_range(3600,18000)
+			break
 	for timer in timers.duplicate():
 		if timer["at"]>elapsed:continue
 		timers.erase(timer)
-		if scene_id==8:_spawn_group(timer["group"],timer["center"],timer["radius"])
+		if scene_id in [7,8]:_spawn_group(timer["group"],timer["center"],timer["radius"])
 		elif timer.has("ai_parameter"):_set_group_ai(timer["group"],timer["ai_parameter"])
 		else:_repeat_group();timers.append({"at":elapsed+int(rng.randi()%16200)+1800,"repeat":true})
 		break # One timer delivery per local opportunity.
@@ -216,6 +238,24 @@ func _update_summoning() -> void:
 			if unit.is_empty() or unit["source_state"]!=4 or ambushed.has(number):continue
 			ambushed.append(number);var point: Array=spawn_points[rng.randi()%4]
 			_spawn_group(number-31,Vector2i(point[0],point[1]),point[2],point[3])
+
+
+func _repeat_seven_group() -> void:
+	# T0007 sub20 requests one eliminated group among the original groups 1..15.
+	var groups := range(1,16)
+	for i in groups.size():
+		var a := event_rng.randi_range(0,groups.size()-1)
+		var b := event_rng.randi_range(0,groups.size()-1)
+		var old: int=groups[a]
+		groups[a]=groups[b]
+		groups[b]=old
+	var east := event_rng.randi_range(0,1)==1
+	for group in groups:
+		if units.any(func(u):return u.get("group",0)==group and u["side"]==5 and u["source_state"]==1):continue
+		var parameters := [8,14,15] if east else [9,13,16,17]
+		var parameter: int=parameters[event_rng.randi_range(0,parameters.size()-1)]
+		_spawn_group(group,Vector2i(79,66) if east else Vector2i(12,82),10,parameter)
+		break
 
 
 func _repeat_group() -> void:
@@ -235,8 +275,21 @@ func _repeat_group() -> void:
 
 func _detect_trial_end() -> bool:
 	var sub := -1
-	var unavailable := controlled_units().all(func(u):return u["limits"]["hp"]<=0)
-	if scene_id==8:
+	var unavailable := controlled_units().filter(func(u):return u["character_id"]<=45).all(func(u):return u["limits"]["hp"]<=0)
+	if scene_id==7:
+		var escort := find_unit(1248)
+		if rendezvous and _on_region(escort,"2"):
+			var towers: bool=find_unit(1246)["side"]==0 and find_unit(1245)["side"]==0
+			sub=(2 if _own_casualties==0 else 5) if towers else 8
+		if unavailable:sub=11
+		elif escort["source_state"]==4:sub=14
+		if sub<0 and not rendezvous and controlled_units().any(func(u):return _on_region(u,"1")):
+			_event_pages=_pages(1,1)
+			_event_index=0
+			_ending_phase="event20"
+			_accumulator=0.0
+			return true
+	elif scene_id==8:
 		var owned := 0;var hostile := 0
 		for number in [3,4,5]:
 			var unit := find_unit(1250-number)
@@ -258,7 +311,34 @@ func _detect_trial_end() -> bool:
 	if sub<0:return false
 	ending_sub=sub
 	_terminal_choice={"tactical_result_selector":1 if sub==2 else 2 if sub==5 else 3 if sub==8 else 4 if sub==11 else 5,"script_sub":sub}
-	_begin_ending("squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "defense_completed")
+	_begin_ending("squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "escort_lost" if sub==14 else "mission_objectives_met" if scene_id==7 else "defense_completed")
+	return true
+
+
+func _on_region(unit: Dictionary, region: String) -> bool:
+	return unit["source_state"]==1 and unit["limits"]["hp"]>0 and catalog["regions"][region].has(unit["cell"].y*field_width+unit["cell"].x)
+
+
+func advance_event() -> bool:
+	if scene_id!=7 or _ending_phase!="event20":return false
+	_record_command([2])
+	_event_index+=1
+	if _event_index==_event_pages.size():
+		for identity in [1248,1247]:
+			var ally := find_unit(identity)
+			ally["side"]=0
+			ally["controllable"]=true
+		rendezvous=true
+		_ending_phase="active"
+		reason="escort_ready"
+	return true
+
+
+func _admitted(unit: Dictionary, target: Dictionary) -> bool:
+	if not super._admitted(unit,target):return false
+	if scene_id==7 and unit["category"]==5:
+		# Local guards engage nearby targets, respecting their original reach.
+		return _distance(unit,target)<=unit["combat"]["attack_range"]+2
 	return true
 
 
@@ -299,9 +379,10 @@ func result_inputs() -> Dictionary:
 			if raw[0x96]!=3 and _source_status(identity)["state"]==0:
 				no_hostile=false
 				break
-	# Both source configurations disable the two time bonuses.
+	var time_key := 0
+	if config[17]>0:time_key=1 if elapsed<=config[17]*3600 else 2 if elapsed<=config[18]*3600 else 3
 	return {"scene_id":scene_id,"result_selector":_terminal_choice["tactical_result_selector"],
-		"time_key":0,"objective_slots":slots,"unit_condition_key":2 if no_hostile else 1,
+		"time_key":time_key,"objective_slots":slots,"unit_condition_key":2 if no_hostile else 1,
 		"units":_participant_ids.map(func(id):return _battle_stats[id].duplicate(true)),
 		"clock_seed":4660,"growth_seed":4660}
 
@@ -313,4 +394,4 @@ func ending_snapshot() -> Dictionary:
 
 
 func close() -> void:
-	super.close();attack_paths=null;scene_id=0;elapsed=0;departure.clear();scene_scripts.clear();timers.clear();ambushed.clear();spawn_points.clear();ending_sub=-1
+	super.close();recurring_events.clear();rendezvous=false;attack_paths=null;scene_id=0;elapsed=0;departure.clear();scene_scripts.clear();timers.clear();ambushed.clear();spawn_points.clear();ending_sub=-1

@@ -1,5 +1,5 @@
 extends RefCounted
-## May weeks 1–3 course or sortie result, CH003, state 7, CH001, workroom and school boot.
+## May weeks 1–4 course or sortie result, CH003, state 7, CH001, workroom and school boot.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
@@ -16,10 +16,10 @@ const WEEK4_SHA := "9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3f
 
 
 static func story(start_week: int = 1) -> Dictionary:
-	if start_week not in [1,2,3]:
+	if start_week not in [1,2,3,4]:
 		return {"supported":false,"reason":"outside_sortie_story_week"}
-	var raw := FileAccess.get_file_as_string([PATH,WEEK3_PATH,WEEK4_PATH][start_week-1]).replace("\r\n","\n")
-	if raw.sha256_text()!=[SHA,WEEK3_SHA,WEEK4_SHA][start_week-1]:
+	var raw := FileAccess.get_file_as_string([PATH,WEEK3_PATH,WEEK4_PATH,Return.WEEK_FIVE[0]][start_week-1]).replace("\r\n","\n")
+	if raw.sha256_text()!=[SHA,WEEK3_SHA,WEEK4_SHA,Return.WEEK_FIVE[1]][start_week-1]:
 		return {"supported":false,"reason":"sortie_week_story_changed"}
 	var data: Dictionary = Roles._integers(JSON.parse_string(raw))
 	var week_start: Array = data["scenes"][1]["pages"]
@@ -28,10 +28,18 @@ static func story(start_week: int = 1) -> Dictionary:
 		"week_start":week_start,"school_entry":data["scenes"][2]["pages"] if start_week==3 else []}
 
 
+static func begin_story(before: Dictionary) -> Dictionary:
+	var rules := Return._rules()
+	if rules.is_empty(): return {"supported":false,"reason":"invalid_sortie_week_sources"}
+	return Return.join_chapter030b(before,rules)
+
+
 static func next_week(before: Dictionary) -> Dictionary:
 	var rules := Return._rules()
 	var course: bool = before.get("phase")=="courses_confirmed"
-	var reason := _guard(before,1,"courses_confirmed" if course else "sortie_settled",rules)
+	var phase := "courses_confirmed" if course else "sortie_settled"
+	if before.get("school") is Dictionary and before["school"].get("week")==4: phase="chapter030b_joined"
+	var reason := _guard(before,1,phase,rules)
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	var result := Week.project(Return._week_input(before),rules["week"])
 	if not result["supported"]: return result
@@ -61,7 +69,7 @@ static func finish_story(before: Dictionary) -> Dictionary:
 	# Chapter024 and Chapter027 both restore background 8 before entering task8.
 	after["flags"]["0x7a55f6"] = 16 if week==2 else 11
 	after["flags"]["0x7e11a0"] = 1 if week==2 else 0
-	after["adv_background"] = 6 if week==4 else 8
+	after["adv_background"] = 6 if week>=4 else 8
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -131,6 +139,8 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	if rules.is_empty(): return "invalid_sortie_week_sources"
 	if before.get("phase")!=phase: return "unexpected_sortie_week_phase"
 	var school: Variant = before.get("school")
-	if not school is Dictionary or school.get("week") not in [first_week,first_week+1,first_week+2]:
+	if not school is Dictionary or school.get("week") not in range(first_week,first_week+4):
 		return "outside_sortie_week"
-	return Return._validate(before,[3,4,9,5,8] if school["week"]==4 else [3,4,9,5],5,school["week"],rules)
+	if phase=="chapter030b_joined":
+		return Return._validate(before,[3,4,9,5,8,6],5,4,rules)
+	return Return.validate_planning_roster(before,rules)
