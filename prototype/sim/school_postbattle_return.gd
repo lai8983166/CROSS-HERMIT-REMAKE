@@ -38,7 +38,7 @@ static func group_rules(school: Dictionary) -> Dictionary:
 
 
 static func _has_later_teachers(school: Dictionary) -> bool:
-	return (school.get("month")==5 and school.get("week") in [4,5]) or (school.get("month")==6 and school.get("week") in [1,2])
+	return (school.get("month")==5 and school.get("week") in [4,5]) or (school.get("month")==6 and school.get("week") in [1,2,3])
 
 
 static func work_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
@@ -226,8 +226,8 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
-	if school.get("month")==6 and school["week"]==2:
-		return _validate(bundle,[3,4,9,5,8,6,1,2],6,2,rules)
+	if school.get("month")==6 and school["week"] in [2,3]:
+		return _validate(bundle,[3,4,9,5,8,6,1,2],6,school["week"],rules)
 	if school.get("month")==6 and school["week"]==1:
 		return _validate(bundle,[3,4,9,5,8,6,1],6,1,rules)
 	var ids := [3,4,9,5]

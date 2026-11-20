@@ -190,7 +190,7 @@ func _plan(command: Dictionary) -> Dictionary:
 		var opening: Dictionary=planning["ledger"]
 		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
 		if bundle["school"]["month"]==6:
-			planning["committed_date"]=[6,1]
+			planning["committed_date"]=[6,bundle["school"]["week"]]
 		elif bundle["school"]["week"]>=3:
 			planning["committed_week"]=bundle["school"]["week"]
 	bundle=result["after"]

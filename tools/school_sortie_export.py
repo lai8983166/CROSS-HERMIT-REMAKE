@@ -17,9 +17,9 @@ GAME = ROOT/'CROSS HERMIT/CROSS HERMIT'
 ACTIONS = [('idle',1),('move',3),('cast',11),('attack',5),('recover',14)]
 
 
-def parent_frames(include_sorties=False, include_seven=False):
+def parent_frames(include_sorties=False, include_seven=False, include_four=False):
     result={}
-    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()):
+    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()) + (('school_four',) if include_four else ()):
         path=ROOT/'prototype/assets'/name/'catalog.json'
         for value in json.loads(path.read_text(encoding='utf8'))['skins'].values():
             for frame in value['frames'].values():
@@ -98,16 +98,16 @@ def player_job(image, role, job):
              'family':row[2]-1, 'weapon_type':image[0x6f5088-BASE+role*1184+0x72]}
 
 
-def export(seven=False, four=False):
+def export(seven=False, four=False, six=False):
     global PARENT_FRAMES
-    output=OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
-    PARENT_FRAMES=parent_frames(seven or four,four)
+    output=OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
+    PARENT_FRAMES=parent_frames(seven or four or six,four or six,six)
     image=SOURCE.read_bytes();assert digest(image)==SOURCE_SHA256
     output.mkdir(parents=True,exist_ok=True)
     old=formation();terrain=bytes.fromhex(old['terrain_hex'])
     grid=[list(v[:3]) for v in struct.iter_unpack('<bbHH',bytes.fromhex(old['grid_hex']))]
     skins={};scenes={}
-    for sid in ((4,) if four else (7,) if seven else (8,17)):
+    for sid in ((6,) if six else (4,) if four else (7,) if seven else (8,17)):
         r=record_rules(sid,image);actors=[]
         for ordinal,t in enumerate(r['templates']):
             value=expected_record(t,rules=r);raw=bytes.fromhex(value['record_hex']);job=value['job']
@@ -134,21 +134,26 @@ def export(seven=False, four=False):
         if sid==17:scenes[str(sid)]['exit_cells']=[i for i in range(len(layout['cells'])) if logical[18+i*6]==1]
     attack=source_rules()
     players=((3,10),(4,6),(9,7),(5,4))
-    if seven or four:players+=((8,8),)
-    if four:players+=((1,6),(6,2))
+    if seven or four or six:players+=((8,8),)
+    if four or six:players+=((1,6),(6,2))
+    if six:players+=((2,4),)
     for role,job in players:
         key=skin(role,job,image,skins,output)
         for scene in scenes.values():scene['player_skins'][str(role)]=key
         attack['jobs'][str(job)]=player_job(image,role,job)
     result={'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,'skins':skins,'attack_rules':attack}
-    if seven or four:
+    if seven or four or six:
         from tools.school_adventure_scene_rules import catalog as scene_rules
         rules=scene_rules((sid,))['scenes'][str(sid)]
         scene=scenes[str(sid)]
         scene['scripts']=rules['scripts']
         scene['script_sha256']=rules['script_sha256']
         if seven:scene['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (1,2)}
-    if four:
+    if six:
+        objective_numbers=struct.unpack_from('<5h',image,0x5ff774-BASE)
+        assert objective_numbers[-1]==-1
+        scene['grade_objects']=list(objective_numbers[:-1])
+    if four or six:
         from tools.school_map_common_catalog import map_common_inputs
         from tools.school_map_common_emulation import map_common_resource
         common,_=map_common_resource()
@@ -178,7 +183,8 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--seven',action='store_true')
     parser.add_argument('--four',action='store_true')
+    parser.add_argument('--six',action='store_true')
     parser.add_argument('--may-five',action='store_true')
     args=parser.parse_args()
     if args.may_five: export_may_five()
-    else: export(args.seven,args.four)
+    else: export(args.seven,args.four,args.six)

@@ -8,6 +8,8 @@ const SCENES_PATH := "res://data/school_adventure_scene_rules.json"
 const SCENES_SHA := "c87a1ddcda957cc5b235dd35ef95bcd5385bf91c59aecea0fcb26cfb0d90266c"
 const SEVEN_PATH := "res://assets/school_seven/catalog.json"
 const SEVEN_SHA := "1e7d03f2b4fdb7517f8e43cc8931121b02fc747e3b881f6f3fbf8b207f24873c"
+const SIX_PATH := "res://assets/school_six/catalog.json"
+const SIX_SHA := "6950db913e532eed94b4e2f8522cdde8f928c84eb32d9785268ae4952d6fc5fd"
 const FOUR_PATH := "res://assets/school_four/catalog.json"
 const FOUR_SHA := "c22c94c6e20614b96da655537beba004d66c8704f553ec52bbcf4da5d32567d5"
 const MAY_FIVE_JOB_SHA := "bb97f131787378887731413a15b45dbbff92bc78198c918413c651f54d97c0b7"
@@ -28,32 +30,33 @@ var attack_paths: AttackPaths
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
-	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1]]: return false
+	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2]]: return false
+	var six: bool=handoff["date"]==[6,2]
 	var four: bool=handoff["date"]==[6,1]
 	var may_five: bool=handoff["date"]==[5,5]
 	var seven: bool=handoff["date"]==[5,4]
-	if raw.is_empty():raw=FileAccess.get_file_as_string(FOUR_PATH if four else SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
-	if raw.sha256_text()!=(FOUR_SHA if four else SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
+	if raw.is_empty():raw=FileAccess.get_file_as_string(SIX_PATH if six else FOUR_PATH if four else SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
+	if raw.sha256_text()!=(SIX_SHA if six else FOUR_SHA if four else SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
 	if not handoff.get("prepared") is Dictionary or handoff.get("requested_states")!=[10,16] or handoff.get("round_cursor")!=1:return false
 	var prepared: Dictionary=handoff["prepared"];var sid=prepared.get("adventure_id")
-	if sid not in ([4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
+	if sid not in ([6] if six else [4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
 	if not prepared.get("rounds") is Array or prepared["rounds"].size()!=1:return false
 	var round_data: Dictionary=prepared["rounds"][0]
 	var teachers=round_data.get("teacher_ids")
 	if round_data.get("scene_id")!=sid:return false
-	if may_five or four:
+	if may_five or four or six:
 		if not teachers is Array or teachers.is_empty() or teachers.size()>3:return false
 		for teacher in teachers:
 			if teacher not in [101,110,115] or teachers.count(teacher)!=1:return false
 	elif teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
 	var ids: Array=round_data.get("student_ids",[])
-	if ids.is_empty() or ids.size()>(7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
+	if ids.is_empty() or ids.size()>(8 if six else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
 	if ids.size()!=handoff["participants"].size() or ids.size()!=handoff["growth"].size():return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	var next_catalog: Dictionary=source["scenes"][str(sid)].duplicate(true)
-	if four:source["attack_rules"]["bow189_hex"]=next_catalog["bow189_hex"]
+	if four or six:source["attack_rules"]["bow189_hex"]=next_catalog["bow189_hex"]
 	if may_five and not _add_may_five_players(next_catalog,source):return false
-	var identity: Dictionary=Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
+	var identity: Dictionary=Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
 	if identity.is_empty() or handoff.get("scene")!=identity:return false
 	var candidates: Array[Dictionary]=[];var seen := {}
 	for id in ids:
@@ -68,7 +71,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 		unit.merge({"instance_id":id,"skin_key":next_catalog["player_skins"][str(id)],"controllable":true,"category":0,
 			"side":0,"source_state":1,"death_counted":false,"facing":"N","path":[],"destination":Vector2i(-1,-1),
 			"move_started_frame":-100000,"visual":"idle","visual_started_frame":0,"target":-1,"dead_at":-1})
-		if four:
+		if four or six:
 			var job := String(source["attack_rules"]["jobs"][str(unit["job"])]["job_hex"]).hex_decode()
 			var attr: Array=unit["input"]["attributes"]
 			unit["recovery"]=[clampi(int(job.decode_u16(8)-attr[5]-attr[0]*0.5),30,999),
@@ -95,7 +98,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var rules_raw := FileAccess.get_file_as_string(SCENES_PATH).replace("\r\n","\n")
 	if rules_raw.sha256_text()!=SCENES_SHA:return false
 	var rules: Dictionary=Limits._source_numbers(JSON.parse_string(rules_raw))
-	if rules.get("source_image_sha256")!=Limits.SOURCE_SHA or (next_catalog if (seven or four) else rules["scenes"][str(sid)])["script_sha256"]!=identity["script_sha256"]:return false
+	if rules.get("source_image_sha256")!=Limits.SOURCE_SHA or (next_catalog if (seven or four or six) else rules["scenes"][str(sid)])["script_sha256"]!=identity["script_sha256"]:return false
 	var wave_raw := FileAccess.get_file_as_string(REINFORCEMENTS_PATH).replace("\r\n","\n")
 	if wave_raw.sha256_text()!=REINFORCEMENTS_SHA:return false
 	var wave: Dictionary=JSON.parse_string(wave_raw)
@@ -116,7 +119,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 		var zeros := [];zeros.resize(width*height);zeros.fill(0)
 		map._layers={"terrain":catalog["passability"][mode].duplicate(),"variant":zeros,"object":zeros};_maps.append(map)
 	_capture_mask=mask
-	scene_scripts=(next_catalog if (seven or four) else rules["scenes"][str(sid)])["scripts"].duplicate(true);spawn_points=rules["scene17_repeat_rows"]
+	scene_scripts=(next_catalog if (seven or four or six) else rules["scenes"][str(sid)])["scripts"].duplicate(true);spawn_points=rules["scene17_repeat_rows"]
 	_opening_pages=_pages(1);_opening_index=0;_ending_phase="opening"
 	ready=true;selected_id=ids[0];reason="opening";rng.seed=20261115+sid;_placement_rotation=rotation
 	remaining_ticks=36000 if four else 108000 if sid==8 else -1;_initial_enemies=enemies().size()
@@ -161,7 +164,7 @@ func _actor_unit(actor: Dictionary, cell: Vector2i) -> Dictionary:
 		"cell":cell,"from_cell":cell,"facing":"S","path":[],"destination":Vector2i(-1,-1),"move_started_frame":-100000,
 		"visual":"idle","visual_started_frame":frame,"target":-1,"dead_at":-1}
 	_apply_record_fields(unit,actor)
-	if scene_id==4:
+	if scene_id in [4,6]:
 		var record := String(actor["record_hex"]).hex_decode()
 		unit["recovery"]=[record.decode_u16(24),record.decode_u16(30)]
 		unit["recovery_clock"]=[0,0]
@@ -257,9 +260,10 @@ func _set_group_ai(group: int, parameter: int) -> void:
 func _update_summoning() -> void:
 	# Elapsed source units advance by two at the explicitly local 30Hz scheduler.
 	elapsed+=2
-	if scene_id==4:
-		_four_recovery()
+	if scene_id in [4,6]:
+		_update_recovery()
 		_update_field_spell()
+		if scene_id==6:return
 		for identity in [1230,1223,1216,1209]:
 			var caster := find_unit(identity)
 			if caster["limits"]["hp"]>0:
@@ -291,7 +295,7 @@ func _update_summoning() -> void:
 
 
 
-func _four_recovery() -> void:
+func _update_recovery() -> void:
 	for unit in units:
 		if unit["limits"]["hp"]<=0:continue
 		for i in 2:
@@ -307,7 +311,7 @@ func _four_recovery() -> void:
 
 
 func can_cast_spell(id: int, skill: int) -> bool:
-	if not ready or scene_id!=4 or _ending_phase!="active" or not field_spell.is_empty():return false
+	if not ready or scene_id not in [4,6] or _ending_phase!="active" or not field_spell.is_empty():return false
 	if skill not in [57,59]:return false
 	var unit := find_unit(id)
 	var row := String(catalog["spells"]["rows"][str(skill)]).hex_decode()
@@ -372,7 +376,7 @@ func _update_field_spell() -> void:
 
 func command_move(id: int, cell: Vector2i) -> bool:
 	if field_spell.get("caster",-1)==id:return false
-	if scene_id==4 and id==8:
+	if scene_id in [4,6] and id==8:
 		var ally := at_cell(cell)
 		if ally.get("controllable",false) and ally["limits"]["hp"]<ally["limits"]["hp_max"]:
 			return command_attack(id,unit_key(ally))
@@ -431,6 +435,13 @@ func _detect_trial_end() -> bool:
 			sub=(2 if _own_casualties==0 else 5) if elapsed<=25200 else 8
 		elif remaining_ticks==0:sub=11
 		elif unavailable:sub=14
+	elif scene_id==6:
+		# 433970 tests permanent removal of template 5 before the all-down branch.
+		if find_unit(1245)["source_state"]==4:
+			var owned: bool=catalog["grade_objects"].all(func(n):return find_unit(1250-n)["side"]==0)
+			var clear := not units.any(func(u):return u["category"]==5 and u["side"]==5 and u["source_state"] in [1,3])
+			sub=(2 if _own_casualties==0 else 5) if owned and clear else 8
+		elif unavailable:sub=11
 	elif scene_id==7:
 		var escort := find_unit(1248)
 		if rendezvous and _on_region(escort,"2"):
@@ -466,7 +477,7 @@ func _detect_trial_end() -> bool:
 	if sub<0:return false
 	ending_sub=sub
 	_terminal_choice={"tactical_result_selector":1 if sub==2 else 2 if sub==5 else 3 if sub==8 else 4 if sub==11 else 5,"script_sub":sub}
-	_begin_ending("mission_objectives_met" if scene_id==4 and sub in [2,5,8] else "time_expired" if scene_id==4 and sub==11 else "squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "escort_lost" if sub==14 else "mission_objectives_met" if scene_id==7 else "defense_completed")
+	_begin_ending("mission_objectives_met" if scene_id in [4,6] and sub in [2,5,8] else "time_expired" if scene_id==4 and sub==11 else "squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "escort_lost" if sub==14 else "mission_objectives_met" if scene_id==7 else "defense_completed")
 	return true
 
 
@@ -490,10 +501,10 @@ func advance_event() -> bool:
 
 
 func _admitted(unit: Dictionary, target: Dictionary) -> bool:
-	if scene_id==4 and _ending_phase=="active" and unit.get("character_id")==8 and target.get("controllable",false):
+	if scene_id in [4,6] and _ending_phase=="active" and unit.get("character_id")==8 and target.get("controllable",false):
 		return unit["limits"]["hp"]>0 and target["limits"]["hp"]>0 and target["limits"]["hp"]<target["limits"]["hp_max"]
 	if not super._admitted(unit,target):return false
-	if scene_id in [4,7] and unit["category"]==5:
+	if scene_id in [4,6,7] and unit["category"]==5:
 		# Local guards engage nearby targets, respecting their original reach.
 		return _distance(unit,target)<=unit["combat"]["attack_range"]+2
 	return true
@@ -501,7 +512,7 @@ func _admitted(unit: Dictionary, target: Dictionary) -> bool:
 
 func _packet(unit: Dictionary) -> Dictionary:
 	var result := super._packet(unit)
-	if scene_id==4 and unit.get("barrier_until",0)>elapsed:
+	if scene_id in [4,6] and unit.get("barrier_until",0)>elapsed:
 		var row := String(catalog["spells"]["rows"]["57"]).hex_decode()
 		var intelligence: int=unit["input"]["attributes"][4]
 		# 4DF6F0 applies effect 50 to armor, body and evasion.
@@ -512,7 +523,7 @@ func _packet(unit: Dictionary) -> Dictionary:
 
 
 func _hit(unit: Dictionary, target: Dictionary) -> void:
-	if scene_id==4 and unit["character_id"]==8 and target.get("controllable",false):
+	if scene_id in [4,6] and unit["character_id"]==8 and target.get("controllable",false):
 		if not _admitted(unit,target) or _distance(unit,target)>unit["combat"]["attack_range"]:return
 		# 48AAE0 category 5 allied branch -> 48B1B0 -> 482810 (positive HP).
 		var amount: int=unit["combat"]["power"]

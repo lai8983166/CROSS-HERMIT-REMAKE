@@ -17,14 +17,16 @@ const WEEK4_SHA := "9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3f
 
 const JUNE_SHA := Return.JUNE_ONE[1]
 const JUNE_TWO_SHA := Return.JUNE_TWO[1]
+const JUNE_THREE_SHA := "9b9b721baa9ed42beb921da28a7a78b38ac211a60dbad569a80c237b1fe28588"
+const JUNE_STORIES := [Return.JUNE_TWO,["res://data/school_june_week3_story.json",JUNE_THREE_SHA]]
 const STORIES := [[PATH,SHA],[WEEK3_PATH,WEEK3_SHA],[WEEK4_PATH,WEEK4_SHA],Return.WEEK_FIVE,Return.JUNE_ONE]
 
 
 static func story(start_week: int = 1, month: int = 5) -> Dictionary:
-	var june := month==6 and start_week==1
+	var june := month==6 and start_week>=1 and start_week<=JUNE_STORIES.size()
 	if not june and (month!=5 or start_week < 1 or start_week > STORIES.size()):
 		return {"supported":false,"reason":"outside_sortie_story_week"}
-	var resource: Array = Return.JUNE_TWO if june else STORIES[start_week-1]
+	var resource: Array = (JUNE_STORIES if june else STORIES)[start_week-1]
 	var raw := FileAccess.get_file_as_string(resource[0]).replace("\r\n","\n")
 	if raw.sha256_text()!=resource[1]:
 		return {"supported":false,"reason":"sortie_week_story_changed"}
@@ -32,8 +34,12 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 	var scenes: Array = data["scenes"]
 	if june:
 		var post: Array = scenes[0]["pages"] + scenes[1]["pages"]
-		return {"supported":true,"pre_week":post,"pre_week_join_page":scenes[0]["pages"].size(),
-			"week_start":scenes[2]["pages"] + scenes[3]["pages"],"school_entry":scenes[4]["pages"]}
+		var result := {"supported":true,"pre_week":post,
+			"week_start":scenes[2]["pages"] + scenes[3]["pages"],"school_entry":[]}
+		if start_week==1:
+			result["pre_week_join_page"]=scenes[0]["pages"].size()
+			result["school_entry"]=scenes[4]["pages"]
+		return result
 	var week_start: Array = scenes[1]["pages"]
 	if start_week==2: week_start.append_array(data["scenes"][2]["pages"])
 	return {"supported":true,"pre_week":data["scenes"][0]["pages"],
@@ -53,7 +59,8 @@ static func next_week(before: Dictionary) -> Dictionary:
 	var course: bool = before.get("phase")=="courses_confirmed"
 	var phase := "courses_confirmed" if course else "sortie_settled"
 	if before.get("school") is Dictionary:
-		if before["school"].get("month")==6: phase="chapter036_joined"
+		if before["school"].get("month")==6:
+			phase="chapter036_joined" if before["school"].get("week")==1 else "sortie_settled"
 		elif before["school"].get("week")==4: phase="chapter030b_joined"
 	var reason := _guard(before,1,phase,rules)
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
@@ -88,9 +95,9 @@ static func finish_story(before: Dictionary) -> Dictionary:
 	var week: int = after["school"]["week"]
 	# These op151 and op91 values end the dated CH001 chapter.
 	var june: bool = after["school"]["month"]==6
-	after["flags"]["0x7a55f6"] = (8 if week==1 else 6) if june else (16 if week==2 else 11)
+	after["flags"]["0x7a55f6"] = [8,6,16][week-1] if june else (16 if week==2 else 11)
 	after["flags"]["0x7e11a0"] = int(june or week==2)
-	after["adv_background"] = (6 if week==1 else 7) if june else (6 if week>=4 else 8)
+	after["adv_background"] = (7 if week==2 else 6) if june else (6 if week>=4 else 8)
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -103,7 +110,7 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	var id: int = before["school"]["lecture_work_fields"][2]
 	var week: int = before["school"]["week"]
 	var month: int = before["school"]["month"]
-	var required_id := (4 if week==1 else 6) if month==6 else (7 if week==4 else 0)
+	var required_id: int = [4,6,10][week-1] if month==6 else (7 if week==4 else 0)
 	var source := Adventures.rules()
 	var initial := Adventures.initial()
 	if initial.is_empty() or source.is_empty():
@@ -149,10 +156,10 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	after["flags"]["0x7a55fa"] = int(required_id!=0)
 	after["flags"]["0x7a4e62"] = 1
 	# CH002(5/2) jumps to END. At 5/3 its op151 sets the music fields again.
-	if week>=3:
+	if month==5 and week>=3:
 		after["flags"]["0x7a55f6"] = 11
 		after["flags"]["0x7e11a0"] = 1
-	if month==6:
+	if month==6 and week<=2:
 		after["flags"]["0x7a55f6"] = 11
 		after["flags"]["0x7e11a0"] = 0
 	after["newly_dated_adventures"] = []
@@ -169,9 +176,13 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	var school: Variant = before.get("school")
 	if not school is Dictionary: return "outside_sortie_week"
 	var may: bool = school.get("month")==5 and school.get("week") in range(first_week,6)
-	var june: bool = school.get("month")==6 and school.get("week") in range(1,first_week+1)
-	if june and school.get("week")==2 and phase not in ["sortie_week_advanced","sortie_workroom"]:
-		return "outside_sortie_week"
+	var june: bool = school.get("month")==6 and school.get("week") in range(1,first_week+2)
+	if june and school.get("week") in [2,3]:
+		if phase=="sortie_settled":
+			if school.get("week")!=2 or school.get("lecture_work_fields")!=[3,5,6,0]:
+				return "outside_mandatory_six_return"
+		elif phase not in ["sortie_week_advanced","sortie_workroom"]:
+			return "outside_sortie_week"
 	if not may and not june:
 		return "outside_sortie_week"
 	if phase=="chapter036_joined":

@@ -26,7 +26,7 @@ static func calculate(inputs: Dictionary, rules: Dictionary, may_five := false) 
 	if selector < 1 or selector > 5 or time_key < 0 or time_key > 3 or unit_key < 1 or unit_key > 2:
 		return _unsupported("outside_audited_result_keys")
 	var units: Variant = inputs["characters"]
-	if not units is Array or units.is_empty() or units.size() > (7 if inputs["task_id"]==4 else 3 if int(inputs["task_id"]) == 5 else 5 if inputs["task_id"]==7 else 6 if may_five else 4):
+	if not units is Array or units.is_empty() or units.size() > (8 if inputs["task_id"]==6 else 7 if inputs["task_id"]==4 else 3 if int(inputs["task_id"]) == 5 else 5 if inputs["task_id"]==7 else 6 if may_five else 4):
 		return _unsupported("outside_current_party_size")
 	var seen := {}
 	var contribution_sum := 0
@@ -140,7 +140,7 @@ static func _integer(value: Variant) -> bool:
 
 
 static func _rules_valid(rules: Dictionary) -> bool:
-	if not _integer(rules["task_id"]) or int(rules["task_id"]) not in [4,5,7,8,17] \
+	if not _integer(rules["task_id"]) or int(rules["task_id"]) not in [4,5,6,7,8,17] \
 			or not _integer(rules["unit_bonus"]) or int(rules["unit_bonus"]) < 0 \
 			or int(rules["unit_bonus"]) > 1000 or not _integer(rules["growth_limit"]) \
 			or int(rules["growth_limit"]) != 8500000:

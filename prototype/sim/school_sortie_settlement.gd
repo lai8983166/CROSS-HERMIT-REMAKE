@@ -18,9 +18,9 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5] or not previous is Dictionary:
 		return Origin.failure("invalid_sortie_school")
 	var week: int=school["week"]
-	var june_one: bool=[school["month"],week]==[6,1]
-	var ledger := opening_ledger if june_one or week>=3 else Adventures.initial()
-	if week==2:
+	var june: bool=school["month"]==6
+	var ledger := opening_ledger if june or week>=3 else Adventures.initial()
+	if not june and week==2:
 		var previous_id: Variant=previous.get("scene_id",0)
 		if ledger.is_empty() or previous_id not in [0,8,17]:
 			return Origin.failure("invalid_previous_sortie")
@@ -37,8 +37,8 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var round_data: Dictionary = prepared["rounds"][0]
 	var ids: Array = round_data["student_ids"]
 	var slots: Variant = facts.get("objective_slots")
-	if (facts.get("scene_id") != scene_id or (scene_id not in [4,7] and facts.get("time_key") != 0) or not Roles._bounded(facts.get("time_key"),1 if scene_id in [4,7] else 0,3)
-			or not Roles._vector(slots,16,0,1) or slots.slice(1 if scene_id==7 else 2 if scene_id in [4,8] else 3).has(1)
+	if (facts.get("scene_id") != scene_id or (scene_id not in [4,6,7] and facts.get("time_key") != 0) or not Roles._bounded(facts.get("time_key"),1 if scene_id in [4,6,7] else 0,3)
+			or not Roles._vector(slots,16,0,1) or slots.slice(0 if scene_id==6 else 1 if scene_id==7 else 2 if scene_id in [4,8] else 3).has(1)
 			or not Roles._bounded(facts.get("clock_seed"),0,0x7fffffff)
 			or not Roles._bounded(facts.get("growth_seed"),0,0x7fffffff)
 			or not facts.get("units") is Array or facts["units"].size() != ids.size()):
@@ -66,12 +66,12 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		characters.append(character)
 		records.append(record)
 	var initial_grade := 5
-	if week==2 and previous.get("scene_id")==scene_id:
+	if not june and week==2 and previous.get("scene_id")==scene_id:
 		if not Roles._bounded(previous.get("task_grade"),1,5): return Origin.failure("invalid_previous_task_grade")
 		initial_grade=previous["task_grade"]
-	if june_one or week>=3:
+	if june or week>=3:
 		for task in task_grades:
-			if (task not in [8,17] and not ((week==5 or june_one) and task==7)) or not Roles._bounded(task_grades[task],1,5):
+			if (task not in [8,17] and not ((week==5 or june) and task==7) and not (june and week==2 and task==4)) or not Roles._bounded(task_grades[task],1,5):
 				return Origin.failure("invalid_previous_task_grade")
 		initial_grade=task_grades.get(scene_id,5)
 	var score := Battle.Score.calculate({"task_id":scene_id,"mode":0,"cap_mode":0,
@@ -196,8 +196,8 @@ static func _rules(scene_id: int) -> Dictionary:
 	var raw := FileAccess.get_file_as_string(TASK_PATH).replace("\r\n","\n")
 	if raw.sha256_text() != TASK_SHA: return {}
 	var task: Dictionary
-	if scene_id in [4,7]:
-		var mission := Adventures.four_rules() if scene_id==4 else Adventures.seven_rules()
+	if scene_id in [4,6,7]:
+		var mission := Adventures.six_rules() if scene_id==6 else Adventures.four_rules() if scene_id==4 else Adventures.seven_rules()
 		if mission.is_empty():return {}
 		task=mission["rewards"]
 	else:

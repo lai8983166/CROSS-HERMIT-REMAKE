@@ -1,0 +1,59 @@
+{
+  "parent": "a1618a60b6227a145f87d1593c9c2911c5e25f26b188911389af32a8636e1cd5",
+  "version": 13,
+  "context": "school_playground_mandatory_four",
+  "rules_added": {
+    "four_battle": "c22c94c6e20614b96da655537beba004d66c8704f553ec52bbcf4da5d32567d5",
+    "june_two_story": "6f4d9e85a6999e7f93bacb5c60b46a46052fecd3dd76601f9bf83beba83c061a",
+    "mandatory_four": "1945461b23001b3fedee7bc1dadd60d83879cfee7c7a8831d6ae18a44d89345b"
+  },
+  "after_battle": [
+    {
+      "repeat": 82,
+      "command": {
+        "op": "post_next"
+      }
+    },
+    {
+      "repeat": 1,
+      "command": {
+        "op": "post_prev"
+      }
+    },
+    {
+      "repeat": 1,
+      "command": {
+        "op": "post_next"
+      }
+    },
+    {
+      "repeat": 2,
+      "command": {
+        "op": "post_skip"
+      }
+    },
+    {
+      "repeat": 1,
+      "command": {
+        "op": "post_school"
+      }
+    },
+    {
+      "repeat": 1,
+      "command": {
+        "op": "post_skip"
+      }
+    },
+    {
+      "repeat": 1,
+      "command": {
+        "kind": "student",
+        "member_id": 2,
+        "op": "return_move",
+        "target_group": 2,
+        "target_slot": 2
+      }
+    }
+  ],
+  "state_sha256": "0a9701580dd801bd0abb5179814d7a723b2e6e80218713a33ea01a5791b4628b"
+}

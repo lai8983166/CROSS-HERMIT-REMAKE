@@ -1,4 +1,4 @@
-"""Export the May school date routes through June week 2 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through June week 3 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -136,18 +136,38 @@ def build_june_week2():
         [{'offset': 0x928, 'opcode': 151, 'operands': [6, 1]},
          {'offset': 0x934, 'opcode': 91, 'operands': [7, 2]}],
         [{'offset': 0xfe2, 'opcode': 151, 'operands': [11, 0]}]]
-    for scene, next_chapter in [(data['scenes'][0], 36), (data['scenes'][2], 38)]:
-        raw = (GAME/f'DAT/CHAPTER{scene["chapter"]:03}.YBC').read_bytes()
-        _, _, end, pool, _ = struct.unpack_from('<5I', raw)
-        effect = scene['effects'][0]
-        pos = end + 48 * effect['string_index']
-        assert end <= pos <= pool-48
-        target = raw[pos:pos+48].split(bytes(1))[0].decode('ascii')
-        target = '/'.join(part for part in target.split(chr(92)) if part)
-        assert target == f'data/adv/dat/Chapter{next_chapter:03}.ybc'
-        effect['target'] = target
+    _link_chapters(data['scenes'][0], '035', 36)
+    _link_chapters(data['scenes'][2], '037', 38)
     data['routes'] = routes
     return join_data(data, 2, None, [101,3,4,9,5,8,110,6,115,1,2])
+
+
+def build_june_week3():
+    data = catalog({'039A': 87, 40: 103, 41: 11, 210: 60})
+    routes = [date_route('CH003', 6, 2), date_route('CH001', 6, 3), date_route('CH002', 6, 3)]
+    assert [r['target'] for r in routes] == ['data/adv/dat/Chapter039A.ybc', 'data/adv/dat/Chapter041.ybc', None]
+    assert 'effects' not in routes[2]
+    assert [s['effects'] for s in data['scenes']] == [
+        [{'offset': 0xa3e, 'opcode': 15, 'string_index': 0}], [],
+        [{'offset': 0x19e, 'opcode': 15, 'string_index': 1}],
+        [{'offset': 0x408, 'opcode': 151, 'operands': [16, 1]},
+         {'offset': 0x414, 'opcode': 91, 'operands': [6, 2]}]]
+    _link_chapters(data['scenes'][0], '039A', 40)
+    _link_chapters(data['scenes'][2], '041', 210)
+    data['routes'] = routes
+    return data
+
+
+def _link_chapters(scene, label, next_chapter):
+    raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
+    _, _, end, pool, _ = struct.unpack_from('<5I', raw)
+    effect = scene['effects'][0]
+    pos = end + 48 * effect['string_index']
+    assert end <= pos <= pool-48
+    target = raw[pos:pos+48].split(bytes(1))[0].decode('ascii')
+    target = '/'.join(part for part in target.split(chr(92)) if part)
+    assert target == f'data/adv/dat/Chapter{next_chapter:03}.ybc'
+    effect['target'] = target
 
 
 def join_data(data, student, teacher, members):
@@ -183,6 +203,7 @@ def join_data(data, student, teacher, members):
 if __name__ == '__main__':
     for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
                        ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5),
-                       ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2)]:
+                       ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2),
+                       ('school_june_week3_story', build_june_week3)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
