@@ -1,4 +1,4 @@
-"""Export the May school date routes through June week 4 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through June week 5 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -29,7 +29,7 @@ def date_route(router, month, week):
         elif opcode == 11:
             at = start + values[0]
             continue
-        elif opcode in (145, 151):
+        elif opcode in (144, 145, 151):
             assert all(v >> 28 == 2 for v in values)
             effects.append(dict(offset=at, opcode=opcode, operands=[v & 0xfffffff for v in values]))
         elif opcode in (15, 19):
@@ -172,6 +172,20 @@ def build_june_week4():
     return data
 
 
+def build_june_week5():
+    data = catalog({42: 118, 302: 118})
+    routes = [date_route('CH003', 6, 4), date_route('CH001', 6, 5), date_route('CH002', 6, 5)]
+    assert [r['target'] for r in routes] == [None, 'data/adv/dat/Chapter042.ybc', None]
+    assert routes[0]['effects'] == [{'offset': 0x5c8, 'opcode': 144, 'operands': [118]}]
+    assert 'effects' not in routes[2]
+    _link_chapters(data['scenes'][0], '042', 302)
+    assert data['scenes'][1]['effects'] == [
+        {'offset': 0x8a4, 'opcode': 151, 'operands': [2, 1]},
+        {'offset': 0x8b0, 'opcode': 91, 'operands': [8, 2]}]
+    data['routes'] = routes
+    return join_data(data, None, 118, [101, 3, 4, 9, 5, 8, 110, 6, 115, 1, 2, 118])
+
+
 def _link_chapters(scene, label, next_chapter):
     raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
     _, _, end, pool, _ = struct.unpack_from('<5I', raw)
@@ -187,7 +201,7 @@ def _link_chapters(scene, label, next_chapter):
 def join_data(data, student, teacher, members):
     image = SOURCE.read_bytes()
     profiles = []
-    for identity in ([student] if teacher is None else [student, teacher]):
+    for identity in (n for n in (student, teacher) if n is not None):
         start = 0x6f5088 - 0x400000 + identity * 0x4a0
         raw = image[start:start + 0x4a0]
         profile = {'member_id': identity, 'job': struct.unpack_from('<h', raw, 6)[0],
@@ -218,6 +232,6 @@ if __name__ == '__main__':
     for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
                        ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5),
                        ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2),
-                       ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4)]:
+                       ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')

@@ -38,6 +38,10 @@ def catalog(chapter_counts=None):
                 # Big5 period followed by its Shift-JIS twin in this one source line.
                 assert data.endswith(bytes.fromhex("a1438142"))
                 data = data[:-2] + bytes.fromhex("a143")
+            if chapter == 42 and i == 12:
+                # The shipped title includes a Shift-JIS 代 immediately after its Big5 代理.
+                assert data.count(bytes.fromhex("91e3")) == 1
+                data = data.replace(bytes.fromhex("91e3"), "代".encode("cp950"))
             text = data.replace(b'\x81\x40',b'\xa1\x40').decode('cp950',errors='strict')
             texts.append(text)
         pages, effects, boards, lines, indices = [], [], {}, [], []

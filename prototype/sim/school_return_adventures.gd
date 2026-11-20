@@ -21,6 +21,14 @@ const SIX_SHA := "c36bf8780a7cac839f5d252553ce5c6cf1bbee9079cf2642bc4241f1c66ae2
 const TEN_SHA := "c7fd4cfc64a1db8ecac16f4b38a20659ff60eb58f859448d891ad0902c4daf07"
 
 
+const THIRTEEN_SHA := "89f0df1ec15347a5c01402a5f9accba74854dac155ce95f91a1be0b013ecd61d"
+
+
+static func thirteen_rules() -> Dictionary:
+	var raw := FileAccess.get_file_as_string("res://data/school_mandatory_thirteen.json").replace("\r\n","\n")
+	return {} if raw.sha256_text()!=THIRTEEN_SHA else Roles._integers(JSON.parse_string(raw))
+
+
 static func ten_rules() -> Dictionary:
 	var raw := FileAccess.get_file_as_string("res://data/school_mandatory_ten.json").replace("\r\n","\n")
 	return {} if raw.sha256_text()!=TEN_SHA else Roles._integers(JSON.parse_string(raw))
@@ -47,6 +55,7 @@ static func mandatory_rules(id: int) -> Dictionary:
 		6:return six_rules()
 		7:return seven_rules()
 		10:return ten_rules()
+		13:return thirteen_rules()
 	return {}
 
 
@@ -107,7 +116,7 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if not ((month==5 and week in range(1,6)) or (month==6 and week in [1,2,3])): return false
+	if not ((month==5 and week in range(1,6)) or (month==6 and week in [1,2,3,4])): return false
 	var last := week if month==5 else 5+week
 	var source := rules()
 	var first := initial()
@@ -116,7 +125,7 @@ static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
 	for date in range(2,last+1):
 		var next := []
 		for candidate in candidates:
-			var required := 7 if date==5 else 4 if date==7 else 6 if date==8 else 0
+			var required: int={5:7,7:4,8:6,9:10}.get(date,0)
 			var selections := [] if required else [0]
 			for row in available(candidate):
 				if not required or row["id"]==required: selections.append(row["id"])
@@ -154,7 +163,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var school: Dictionary=bundle["school"]
 	var id: int=school["lecture_work_fields"][2]
 	var june: bool=school["month"]==6
-	var required: int={1:4,2:6,3:10}.get(school["week"],0) if june else 7 if school["week"]==4 else 0
+	var required: int={1:4,2:6,3:10,4:13}.get(school["week"],0) if june else 7 if school["week"]==4 else 0
 	if (june and required==0) or school["month"] not in [5,6]:return _failure("outside_supported_sortie_week")
 	if (required and (id!=required or school["adventure_gate"]!=1)) or (id==7 and required!=7):
 		return _failure("mandatory_adventure_required")

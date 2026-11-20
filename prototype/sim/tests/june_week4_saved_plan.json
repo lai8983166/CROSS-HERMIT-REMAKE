@@ -1,0 +1,29 @@
+{
+  "parent": "b34615815f3311061f13c2cd5eb06b8d9302fe34bfea66e4998a01bb29e573b5",
+  "state_sha256": "ac39f0632299f411ddba46b3175ffd1f429a0a114e18c42b0190b492fb1f2de9",
+  "context": "school_playground_mandatory_ten",
+  "version": 15,
+  "rules_added": {
+    "june_four_story": "4e919ba9c4f5438502ef8c37ade19eb71234eddf09d15f9916f4e0c123e63df9",
+    "mandatory_ten": "c7fd4cfc64a1db8ecac16f4b38a20659ff60eb58f859448d891ad0902c4daf07",
+    "ten_battle": "c8e490dd15f511aae8ff4c46550d28da47034b8caba99594e12036df60d5aebf"
+  },
+  "after_battle": [
+    {
+      "op": "post_next"
+    },
+    {
+      "op": "post_skip"
+    },
+    {
+      "op": "post_school"
+    },
+    {
+      "kind": "student",
+      "member_id": 5,
+      "op": "return_move",
+      "target_group": 2,
+      "target_slot": 3
+    }
+  ]
+}

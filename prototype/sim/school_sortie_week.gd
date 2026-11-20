@@ -19,8 +19,9 @@ const JUNE_SHA := Return.JUNE_ONE[1]
 const JUNE_TWO_SHA := Return.JUNE_TWO[1]
 const JUNE_THREE_SHA := "9b9b721baa9ed42beb921da28a7a78b38ac211a60dbad569a80c237b1fe28588"
 const JUNE_FOUR_SHA := "4e919ba9c4f5438502ef8c37ade19eb71234eddf09d15f9916f4e0c123e63df9"
+const JUNE_FIVE_SHA := Return.JUNE_FIVE[1]
 const JUNE_STORIES := [Return.JUNE_TWO,["res://data/school_june_week3_story.json",JUNE_THREE_SHA],
-	["res://data/school_june_week4_story.json",JUNE_FOUR_SHA]]
+	["res://data/school_june_week4_story.json",JUNE_FOUR_SHA],Return.JUNE_FIVE]
 const STORIES := [[PATH,SHA],[WEEK3_PATH,WEEK3_SHA],[WEEK4_PATH,WEEK4_SHA],Return.WEEK_FIVE,Return.JUNE_ONE]
 
 
@@ -34,8 +35,10 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 		return {"supported":false,"reason":"sortie_week_story_changed"}
 	var data: Dictionary = Roles._integers(JSON.parse_string(raw))
 	var scenes: Array = data["scenes"]
-	if june and start_week==3:
-		return {"supported":true,"pre_week":[],"week_start":scenes[0]["pages"],"school_entry":[]}
+	if june and start_week in [3,4]:
+		var pages: Array=scenes[0]["pages"].duplicate()
+		if start_week==4:pages.append_array(scenes[1]["pages"])
+		return {"supported":true,"pre_week":[],"week_start":pages,"school_entry":[]}
 	if june:
 		var post: Array = scenes[0]["pages"] + scenes[1]["pages"]
 		var result := {"supported":true,"pre_week":post,
@@ -68,6 +71,10 @@ static func next_week(before: Dictionary) -> Dictionary:
 		elif before["school"].get("week")==4: phase="chapter030b_joined"
 	var reason := _guard(before,1,phase,rules)
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
+	if before["school"]["month"]==6 and before["school"]["week"]==4:
+		var joined := Return.join_ch003_teacher(before)
+		if not joined["supported"]:return joined
+		before=joined["after"]
 	var result := Week.project(Return._week_input(before),rules["week"])
 	if not result["supported"]: return result
 	var after := before.duplicate(true)
@@ -99,9 +106,9 @@ static func finish_story(before: Dictionary) -> Dictionary:
 	var week: int = after["school"]["week"]
 	# These op151 and op91 values end the dated CH001 chapter.
 	var june: bool = after["school"]["month"]==6
-	after["flags"]["0x7a55f6"] = [8,6,16,9][week-1] if june else (16 if week==2 else 11)
+	after["flags"]["0x7a55f6"] = [8,6,16,9,2][week-1] if june else (16 if week==2 else 11)
 	after["flags"]["0x7e11a0"] = int(june or week==2)
-	after["adv_background"] = [6,7,6,8][week-1] if june else (6 if week>=4 else 8)
+	after["adv_background"] = [6,7,6,8,8][week-1] if june else (6 if week>=4 else 8)
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -114,7 +121,7 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	var id: int = before["school"]["lecture_work_fields"][2]
 	var week: int = before["school"]["week"]
 	var month: int = before["school"]["month"]
-	var required_id: int = [4,6,10,13][week-1] if month==6 else (7 if week==4 else 0)
+	var required_id: int = [4,6,10,13,0][week-1] if month==6 else (7 if week==4 else 0)
 	var source := Adventures.rules()
 	var initial := Adventures.initial()
 	if initial.is_empty() or source.is_empty():
@@ -180,11 +187,11 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	var school: Variant = before.get("school")
 	if not school is Dictionary: return "outside_sortie_week"
 	var may: bool = school.get("month")==5 and school.get("week") in range(first_week,6)
-	var june: bool = school.get("month")==6 and school.get("week") in range(1,first_week+3)
-	if june and school.get("week") in [2,3,4]:
+	var june: bool = school.get("month")==6 and school.get("week") in range(1,first_week+4)
+	if june and school.get("week") in [2,3,4,5]:
 		if phase=="sortie_settled":
 			var week: int=school["week"]
-			var required := [3,5,6,0] if week==2 else [3,9,10,0]
+			var required: Array = {2:[3,5,6,0],3:[3,9,10,0],4:[3,12,13,0]}[week]
 			if school.get("lecture_work_fields")!=required: return "outside_mandatory_sortie_return"
 			# CH003 at 6/3 invokes 4D4250(117); 4D46E0 returns zero for this roster.
 			if week==3 and (not school.get("availability") is Array or school["availability"].size()<=117 or school["availability"][117]!=0):

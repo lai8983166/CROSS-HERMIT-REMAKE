@@ -325,6 +325,10 @@ func _visual(unit: Dictionary, action: String) -> void:
 	super._visual(unit,action)
 
 
+func _check_before_actions() -> bool:
+	return _detect_trial_end()
+
+
 func tick() -> void:
 	if ready and _ending_phase == "consuming":
 		advance_exit(); return
@@ -332,9 +336,9 @@ func tick() -> void:
 	if not ready or paused: return
 	_trace_clock += 1
 	_update_removal()
-	if _detect_trial_end(): return
+	if _check_before_actions(): return
 	_update_captures()
-	if _detect_trial_end(): return
+	if _check_before_actions(): return
 	_attempt_activations()
 	_update_summoning()
 	if remaining_ticks > 0: remaining_ticks = maxi(0,remaining_ticks-2)

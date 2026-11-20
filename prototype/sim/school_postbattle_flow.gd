@@ -96,7 +96,7 @@ func execute(command: Dictionary) -> Dictionary:
 	if op=="sortie_finish": return finish_sortie(command["trace"])
 	if phase=="sortie_result" and op=="post_next":
 		if pages.is_empty():
-			# CH003 at 6/3 performs its dated removal and ends without dialogue.
+			# CH003 applies the dated roster opcode at 6/3 and 6/4, then ends.
 			var advanced := SortieWeek.next_week(bundle)
 			if not advanced["supported"]:return advanced
 			bundle=advanced["after"];pages=_week_pages;phase="new_week_story";cursor=0
