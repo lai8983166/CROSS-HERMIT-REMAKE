@@ -1,4 +1,4 @@
-"""Export the May school date routes through June week 3 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through June week 4 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -29,7 +29,7 @@ def date_route(router, month, week):
         elif opcode == 11:
             at = start + values[0]
             continue
-        elif opcode == 151:
+        elif opcode in (145, 151):
             assert all(v >> 28 == 2 for v in values)
             effects.append(dict(offset=at, opcode=opcode, operands=[v & 0xfffffff for v in values]))
         elif opcode in (15, 19):
@@ -158,6 +158,20 @@ def build_june_week3():
     return data
 
 
+def build_june_week4():
+    data = catalog({213: 25})
+    routes = [date_route('CH003', 6, 3), date_route('CH001', 6, 4), date_route('CH002', 6, 4)]
+    assert [r['target'] for r in routes] == [None, 'data/adv/dat/Chapter213.ybc', None]
+    assert routes[0]['offsets'][-3:] == [0x5b8, 0x5c0, 0x5d0]
+    assert routes[0]['effects'] == [{'offset': 0x5b8, 'opcode': 145, 'operands': [117]}]
+    assert 'effects' not in routes[2]
+    assert data['scenes'][0]['effects'] == [
+        {'offset': 0x25a, 'opcode': 151, 'operands': [9, 1]},
+        {'offset': 0x266, 'opcode': 91, 'operands': [8, 2]}]
+    data['routes'] = routes
+    return data
+
+
 def _link_chapters(scene, label, next_chapter):
     raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
     _, _, end, pool, _ = struct.unpack_from('<5I', raw)
@@ -204,6 +218,6 @@ if __name__ == '__main__':
     for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
                        ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5),
                        ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2),
-                       ('school_june_week3_story', build_june_week3)]:
+                       ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')

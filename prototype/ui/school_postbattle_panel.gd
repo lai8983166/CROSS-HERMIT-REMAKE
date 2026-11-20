@@ -175,12 +175,12 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[6,3]
+	var planning_only: bool=[school["month"],school["week"]]==[6,4]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整出击班级并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="6 月第 3 周为必修冒险 10。可以调整带队教师和学生，并保存新的出击编班。"
+		dialogue.text="6 月第 4 周为必修冒险 13。可以调整带队教师和学生，并保存新的出击编班。"
 		progress.text="选择成员，再点击目标班级的对应空位。"
 	elif mandatory and school["month"]==6:
 		dialogue.text="6 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [school["week"],school["lecture_work_fields"][2]]
@@ -212,7 +212,7 @@ func _show_plan(view: Dictionary) -> void:
 	for adventure in Adventures.available(plan["ledger"]):
 		var id: int=adventure["id"]
 		if mandatory and id!=school["lecture_work_fields"][2]: continue
-		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",10:"必修 · 冒险10",17:"自由训练 · 冒险17"}.get(id,"冒险%d" % id)
+		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",10:"必修 · 冒险10",13:"必修 · 冒险13",17:"自由训练 · 冒险17"}.get(id,"冒险%d" % id)
 		label+="　剩余%d周" % adventure["remaining"] if adventure["remaining"]>0 else "　无期限"
 		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
 		button.name="adventure_%d" % id;button.toggle_mode=true

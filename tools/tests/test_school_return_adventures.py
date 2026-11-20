@@ -63,6 +63,18 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
         self.assertEqual([r['id'] for r in probe.submit(6)['entries']], [17])
         self.assertEqual([r['id'] for r in probe.open(6,3)['entries']], [10,17])
 
+        self.assertEqual([r['id'] for r in probe.submit(10)['entries']], [17])
+        self.assertEqual([r['id'] for r in probe.open(6,4)['entries']], [13,17])
+
+    def test_mandatory_ten_scene_and_rewards_match_original(self):
+        from tools.school_return_adventures_catalog import mandatory_adventure
+        data = mandatory_adventure(10)
+        self.assertEqual(data, json.loads((ROOT/'prototype/data/school_mandatory_ten.json').read_bytes()))
+        self.assertEqual(data['scene']['template_count'], 96)
+        self.assertEqual(data['scene']['script'], 'T0010.BIN')
+        self.assertEqual(data['rewards']['base_points'], [135000,120000,85000,65000,30000])
+        self.assertEqual(data['rewards']['objective_rewards'], [[0,0,0]] * 16)
+
     def test_mandatory_six_scene_and_rewards_match_original(self):
         from tools.school_return_adventures_catalog import mandatory_adventure
         data = mandatory_adventure(6)

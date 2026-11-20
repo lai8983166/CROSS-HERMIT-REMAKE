@@ -8,7 +8,7 @@ from tools.ybc32_disasm import parse, load_pool
 from tools.tactics_exit_emulation import SOURCE, SOURCE_SHA256, ROOT
 
 
-def catalog(scene_ids=(8, 17)):
+def catalog(scene_ids=(8, 17), extra_ops=()):
     image = SOURCE.read_bytes()
     assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
     def read(va, fmt):
@@ -34,7 +34,7 @@ def catalog(scene_ids=(8, 17)):
                     page.append({'offset': pc, 'text': texts[index][2]})
                 elif op == 51:
                     pages.append(page); page = []
-                elif op in (113, 124, 130, 133, 136, 163, 165):
+                elif op in (113, 124, 130, 133, 136, 163, 165) + extra_ops:
                     cells = list(struct.unpack_from('<' + 'I' * ((advance - 4)//4), raw, pc + 4))
                     commands.append({'offset': pc, 'opcode': op, 'cells': cells,
                         'values': [v & 0xfffffff for v in cells]})

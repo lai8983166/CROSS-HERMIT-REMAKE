@@ -48,7 +48,7 @@ func _ready() -> void:
 func open_trial(handoff: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
 	if not super.open_trial(handoff,combat,names):return false
 	var date: Array=handoff["date"]
-	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
+	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"法爾德長老護送" if session.scene_id==10 else "討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
 	targets.clear();targets.add_item("定位任务对象",-1)
 	for unit in session.units:
 		var id: int=session.unit_key(unit)
@@ -56,7 +56,10 @@ func open_trial(handoff: Dictionary, combat: Dictionary, names: Dictionary) -> b
 		_names[id]="%s #%d" % ["塔/泉" if unit["character_id"] in range(387,405) else "宝箱" if unit["character_id"] in [405,406] else "障碍" if unit["character_id"] in range(411,415) else "敌人",1250-id]
 		if session.scene_id==7 and id in [1248,1247]:_names[id]="薛莉尔" if id==1248 else "艾尔雪"
 		if session.scene_id==6 and id==1245:_names[id]="燈火的盾衛－班奇涅爾"
-		if (session.scene_id==6 and id==1245) or (session.scene_id==4 and unit["category"]==5) or Sortie._capture_role(unit["character_id"]) or (session.scene_id==7 and id in [1248,1247]):targets.add_item(_names[id],id)
+		if session.scene_id==10 and id==1249:_names[id]="法爾德長老"
+		if (session.scene_id==10 and id==1249) or (session.scene_id==6 and id==1245) or (session.scene_id==4 and unit["category"]==5) or Sortie._capture_role(unit["character_id"]) or (session.scene_id==7 and id in [1248,1247]):targets.add_item(_names[id],id)
+	if session.scene_id==10:
+		for n in range(1,7):targets.add_item("护送停靠区 %d" % n,n)
 	if session.scene_id==7:
 		targets.add_item("会合区域",1)
 		targets.add_item("护送终点",2)
@@ -76,7 +79,7 @@ func _command_cell(cell: Vector2i) -> bool:
 func _focus_target(id: int) -> void:
 	if not session.ready or id<0:return
 	var point := Vector2(91*32+16,17*16+8)
-	if session.scene_id==7 and id in [1,2]:
+	if (session.scene_id==7 and id in [1,2]) or (session.scene_id==10 and id in range(1,7)):
 		var cells: Array=session.catalog["regions"][str(id)]
 		var index: int=cells[cells.size()/2]
 		point=Vector2((index%session.field_width)*32+16,(index/session.field_width)*16+8)
@@ -101,7 +104,7 @@ func _refresh() -> void:
 			member_buttons[character]=button
 			_names[character]=_names.get(identity,str(character))
 	super._refresh()
-	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2]]):
+	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3]]):
 		var leaders: Array=session.departure["prepared"]["rounds"][0]["teacher_ids"]
 		info.text=info.text.get_slice("    |",0)+"    |    班级领队："+ "、".join(leaders.map(func(id):return str(_names.get(id,id))))
 		if session.rendezvous:
@@ -109,8 +112,8 @@ func _refresh() -> void:
 				member_buttons[session.find_unit(identity)["character_id"]].set_pressed_no_signal(session.selected_id==identity)
 	if text_panel==null or not session.ready:return
 	var ending: Dictionary=session.ending_snapshot();var phase: String=ending["phase"]
-	summary_navigation.visible=session.scene_id in [4,6,7] and phase=="summary" and ending["text"].size()>1
-	spell_choice.visible=session.scene_id in [4,6]
+	summary_navigation.visible=session.scene_id in [4,6,7,10] and phase=="summary" and ending["text"].size()>1
+	spell_choice.visible=session.scene_id in [4,6,10]
 	for option in [1,2]:
 		spell_choice.set_item_disabled(option,not session.can_cast_spell(session.selected_id,spell_choice.get_item_id(option)))
 	if spell_choice.is_item_disabled(spell_choice.selected):spell_choice.select(0)
@@ -130,7 +133,7 @@ func _refresh() -> void:
 	elif phase=="summary":
 		var lines := []
 		var pages: Array=ending["text"]
-		if session.scene_id in [4,6,7] and not pages.is_empty():
+		if session.scene_id in [4,6,7,10] and not pages.is_empty():
 			summary_page=clampi(summary_page,0,pages.size()-1)
 			previous_page.disabled=summary_page==0
 			next_page.disabled=summary_page+1==pages.size()
@@ -143,14 +146,20 @@ func _refresh() -> void:
 		text_label.text+="\n\n任务评价：%s　·　击倒敌人：%d" % [str(ending["summary"]["terminal_choice"].get("tactical_result_selector","中止")),ending["summary"]["defeated_enemies"]]
 		continue_button.text="确认战果" if session.ending_sub>=0 else "返回出击记录"
 	status.text="已进行 %02d:%02d　·　可行动 %d/%d　·　敌方 %d" % [session.elapsed/3600,(session.elapsed/60)%60,session.controlled_units().filter(func(u):return u["limits"]["hp"]>0).size(),session.controlled_units().size(),session.enemies().size()]
+	if session.scene_id==10:
+		var elder: Dictionary=session.find_unit(1249)
+		status.text+="　·　长老 HP %d/%d" % [elder.limits.hp,elder.limits.hp_max]
+		if session.escort_route.enabled_region>0:status.text+="　·　前往停靠区 %d" % session.escort_route.enabled_region
 	help_label.text="左键选人 · 右键移动/攻击 · 中键拖图 · 空格暂停 · S停止\n"+("坚守30分钟，保护3处己方基地；靠近基地可占领。" if session.scene_id==8 else "训练后前往东北撤离区；15分钟前撤离获得最低评价。塔、泉与宝箱靠近占领，障碍右键攻击。")
 	if session.scene_id==4:
 		help_label.text="十分钟内消灭全部敌人。优先击破召唤者，靠近宝箱可以占领。"
+	elif session.scene_id==10:
+		help_label.text="沿途保护法尔德长老前往六处停靠区。控制六处泉可提高评价。"
 	elif session.scene_id==6:
 		help_label.text="击败敌方首领班奇涅尔。控制四座塔和泉并歼灭其余敌人可提高评价。"
 	elif session.scene_id==7:
 		help_label.text="带学生到东北会合区域寻找薛莉尔。占领两座守卫塔可提高评价。" if not session.rendezvous else "选中薛莉尔，护送她到西南终点。"
-	if session.scene_id in [4,6] and session.selected_id==8:help_label.text="右键受伤的友军进行普通治疗，也可以指定敌人攻击。"
+	if session.scene_id in [4,6,10] and session.selected_id==8:help_label.text="右键受伤的友军进行普通治疗，也可以指定敌人攻击。"
 	if spell_choice.get_selected_id()==59:help_label.text="右键指定雷击中心。射程18格，消耗75 MP。"
 	elif spell_choice.get_selected_id()==57:help_label.text="右键指定障壁中心。射程10格，消耗15 MP。"
 	if phase=="summary":

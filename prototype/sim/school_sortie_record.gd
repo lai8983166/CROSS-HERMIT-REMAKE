@@ -6,7 +6,7 @@ static var _cache: Dictionary = {}
 
 
 static func replay(handoff: Dictionary, trace: Variant) -> Dictionary:
-	if not Record.valid_trace(trace,true,handoff.get("date")==[5,4],handoff.get("date")==[5,5],handoff.get("date")==[6,1],handoff.get("date")==[6,2]):
+	if not Record.valid_trace(trace,true,handoff.get("date")==[5,4],handoff.get("date")==[5,5],handoff.get("date")==[6,1],handoff.get("date")==[6,2],handoff.get("date")==[6,3]):
 		return {"supported":false,"reason":"invalid_sortie_trace"}
 	var session := Sortie.new()
 	if not session.open(handoff):

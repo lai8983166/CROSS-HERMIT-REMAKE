@@ -18,7 +18,9 @@ const WEEK4_SHA := "9000c19fd20f9d7433e93e5cf9480d429bf6a15ae9e60bf10a4e26421c3f
 const JUNE_SHA := Return.JUNE_ONE[1]
 const JUNE_TWO_SHA := Return.JUNE_TWO[1]
 const JUNE_THREE_SHA := "9b9b721baa9ed42beb921da28a7a78b38ac211a60dbad569a80c237b1fe28588"
-const JUNE_STORIES := [Return.JUNE_TWO,["res://data/school_june_week3_story.json",JUNE_THREE_SHA]]
+const JUNE_FOUR_SHA := "4e919ba9c4f5438502ef8c37ade19eb71234eddf09d15f9916f4e0c123e63df9"
+const JUNE_STORIES := [Return.JUNE_TWO,["res://data/school_june_week3_story.json",JUNE_THREE_SHA],
+	["res://data/school_june_week4_story.json",JUNE_FOUR_SHA]]
 const STORIES := [[PATH,SHA],[WEEK3_PATH,WEEK3_SHA],[WEEK4_PATH,WEEK4_SHA],Return.WEEK_FIVE,Return.JUNE_ONE]
 
 
@@ -32,6 +34,8 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 		return {"supported":false,"reason":"sortie_week_story_changed"}
 	var data: Dictionary = Roles._integers(JSON.parse_string(raw))
 	var scenes: Array = data["scenes"]
+	if june and start_week==3:
+		return {"supported":true,"pre_week":[],"week_start":scenes[0]["pages"],"school_entry":[]}
 	if june:
 		var post: Array = scenes[0]["pages"] + scenes[1]["pages"]
 		var result := {"supported":true,"pre_week":post,
@@ -76,7 +80,7 @@ static func next_week(before: Dictionary) -> Dictionary:
 		for key in Return.GROWTH_KEYS:
 			row[key] = participant[key].duplicate(true) if participant[key] is Array else participant[key]
 	after["phase"] = "course_week_advanced" if course else "sortie_week_advanced"
-	if advanced["week"]==4:
+	if advanced["month"]==5 and advanced["week"]==4:
 		var joined := Return.join_week_four(after,rules)
 		if not joined["supported"]: return joined
 		after=joined["after"]
@@ -95,9 +99,9 @@ static func finish_story(before: Dictionary) -> Dictionary:
 	var week: int = after["school"]["week"]
 	# These op151 and op91 values end the dated CH001 chapter.
 	var june: bool = after["school"]["month"]==6
-	after["flags"]["0x7a55f6"] = [8,6,16][week-1] if june else (16 if week==2 else 11)
+	after["flags"]["0x7a55f6"] = [8,6,16,9][week-1] if june else (16 if week==2 else 11)
 	after["flags"]["0x7e11a0"] = int(june or week==2)
-	after["adv_background"] = (7 if week==2 else 6) if june else (6 if week>=4 else 8)
+	after["adv_background"] = [6,7,6,8][week-1] if june else (6 if week>=4 else 8)
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -110,7 +114,7 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	var id: int = before["school"]["lecture_work_fields"][2]
 	var week: int = before["school"]["week"]
 	var month: int = before["school"]["month"]
-	var required_id: int = [4,6,10][week-1] if month==6 else (7 if week==4 else 0)
+	var required_id: int = [4,6,10,13][week-1] if month==6 else (7 if week==4 else 0)
 	var source := Adventures.rules()
 	var initial := Adventures.initial()
 	if initial.is_empty() or source.is_empty():
@@ -176,11 +180,15 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	var school: Variant = before.get("school")
 	if not school is Dictionary: return "outside_sortie_week"
 	var may: bool = school.get("month")==5 and school.get("week") in range(first_week,6)
-	var june: bool = school.get("month")==6 and school.get("week") in range(1,first_week+2)
-	if june and school.get("week") in [2,3]:
+	var june: bool = school.get("month")==6 and school.get("week") in range(1,first_week+3)
+	if june and school.get("week") in [2,3,4]:
 		if phase=="sortie_settled":
-			if school.get("week")!=2 or school.get("lecture_work_fields")!=[3,5,6,0]:
-				return "outside_mandatory_six_return"
+			var week: int=school["week"]
+			var required := [3,5,6,0] if week==2 else [3,9,10,0]
+			if school.get("lecture_work_fields")!=required: return "outside_mandatory_sortie_return"
+			# CH003 at 6/3 invokes 4D4250(117); 4D46E0 returns zero for this roster.
+			if week==3 and (not school.get("availability") is Array or school["availability"].size()<=117 or school["availability"][117]!=0):
+				return "outside_ch003_teacher_removal"
 		elif phase not in ["sortie_week_advanced","sortie_workroom"]:
 			return "outside_sortie_week"
 	if not may and not june:

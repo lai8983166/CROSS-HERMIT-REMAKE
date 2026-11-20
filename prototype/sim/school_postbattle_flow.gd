@@ -95,6 +95,13 @@ func execute(command: Dictionary) -> Dictionary:
 		return {"supported":true}
 	if op=="sortie_finish": return finish_sortie(command["trace"])
 	if phase=="sortie_result" and op=="post_next":
+		if pages.is_empty():
+			# CH003 at 6/3 performs its dated removal and ends without dialogue.
+			var advanced := SortieWeek.next_week(bundle)
+			if not advanced["supported"]:return advanced
+			bundle=advanced["after"];pages=_week_pages;phase="new_week_story";cursor=0
+			revision+=1
+			return {"supported":true}
 		if bundle["school"]["week"]==4:
 			var started := SortieWeek.begin_story(bundle)
 			if not started["supported"]:return started

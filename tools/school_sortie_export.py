@@ -17,9 +17,9 @@ GAME = ROOT/'CROSS HERMIT/CROSS HERMIT'
 ACTIONS = [('idle',1),('move',3),('cast',11),('attack',5),('recover',14)]
 
 
-def parent_frames(include_sorties=False, include_seven=False, include_four=False):
+def parent_frames(include_sorties=False, include_seven=False, include_four=False, include_six=False):
     result={}
-    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()) + (('school_four',) if include_four else ()):
+    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()) + (('school_four',) if include_four else ()) + (('school_six',) if include_six else ()):
         path=ROOT/'prototype/assets'/name/'catalog.json'
         for value in json.loads(path.read_text(encoding='utf8'))['skins'].values():
             for frame in value['frames'].values():
@@ -98,28 +98,28 @@ def player_job(image, role, job):
              'family':row[2]-1, 'weapon_type':image[0x6f5088-BASE+role*1184+0x72]}
 
 
-def export(seven=False, four=False, six=False):
+def export(seven=False, four=False, six=False, ten=False):
     global PARENT_FRAMES
-    output=OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
-    PARENT_FRAMES=parent_frames(seven or four or six,four or six,six)
+    output=OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
+    PARENT_FRAMES=parent_frames(seven or four or six or ten,four or six or ten,six or ten,ten)
     image=SOURCE.read_bytes();assert digest(image)==SOURCE_SHA256
     output.mkdir(parents=True,exist_ok=True)
     old=formation();terrain=bytes.fromhex(old['terrain_hex'])
     grid=[list(v[:3]) for v in struct.iter_unpack('<bbHH',bytes.fromhex(old['grid_hex']))]
     skins={};scenes={}
-    for sid in ((6,) if six else (4,) if four else (7,) if seven else (8,17)):
+    for sid in ((10,) if ten else (6,) if six else (4,) if four else (7,) if seven else (8,17)):
         r=record_rules(sid,image);actors=[]
         for ordinal,t in enumerate(r['templates']):
             value=expected_record(t,rules=r);raw=bytes.fromhex(value['record_hex']);job=value['job']
             j=bytes.fromhex(r['jobs'][str(job)]['row_hex']);aid=struct.unpack_from('<H',j,24)[0]
             attack=bytes.fromhex(r['archetypes'][str(aid)]['row_hex'])
-            actions=ACTIONS+[('summon_prepare',12),('summon',17)] if four and raw[0x96]==2 else ACTIONS
+            actions=ACTIONS+[('summon_prepare',12),('summon',17)] if (four or ten) and raw[0x96]==2 else ACTIONS
             actors.append({'instance_id':1249-ordinal,'work_index':249-ordinal,**value,
                 'character_id':value['identity'],'cell':value['coordinates'],'skin_key':skin(value['identity'],job,image,skins,output,actions),
                 'movement_type':raw[48], 'limits':{k:value[k] for k in ('hp_max','mp_max')},
                 'combat':{**from_record(raw),'attack_id':aid,'attack_class':attack[5],'target_filter':attack[25]}})
             actors[-1]['limits'].update(hp=value['hp_max'],mp=value['mp_max'])
-            if four and raw[0x96]==2:actors[-1]['summon_interval']=struct.unpack_from('<I',bytes.fromhex(t),52)[0]
+            if (four or ten) and raw[0x96]==2:actors[-1]['summon_interval']=struct.unpack_from('<I',bytes.fromhex(t),52)[0]
             actors[-1].pop('profile_hex');actors[-1].pop('profile_pointer')
         logical=(GAME/f'DATA/TACTICS/MAP/MAP{sid:02}.BIN').read_bytes()
         graphics=(GAME/f'DATA/TACTICS/MAP/MAP{sid:02}.MAP').read_bytes()
@@ -134,26 +134,38 @@ def export(seven=False, four=False, six=False):
         if sid==17:scenes[str(sid)]['exit_cells']=[i for i in range(len(layout['cells'])) if logical[18+i*6]==1]
     attack=source_rules()
     players=((3,10),(4,6),(9,7),(5,4))
-    if seven or four or six:players+=((8,8),)
-    if four or six:players+=((1,6),(6,2))
-    if six:players+=((2,4),)
+    if seven or four or six or ten:players+=((8,8),)
+    if four or six or ten:players+=((1,6),(6,2))
+    if six or ten:players+=((2,4),)
     for role,job in players:
         key=skin(role,job,image,skins,output)
         for scene in scenes.values():scene['player_skins'][str(role)]=key
         attack['jobs'][str(job)]=player_job(image,role,job)
     result={'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,'skins':skins,'attack_rules':attack}
-    if seven or four or six:
+    if seven or four or six or ten:
         from tools.school_adventure_scene_rules import catalog as scene_rules
-        rules=scene_rules((sid,))['scenes'][str(sid)]
+        rules=scene_rules((sid,),(112,146) if ten else ())['scenes'][str(sid)]
         scene=scenes[str(sid)]
         scene['scripts']=rules['scripts']
         scene['script_sha256']=rules['script_sha256']
-        if seven:scene['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (1,2)}
-    if six:
-        objective_numbers=struct.unpack_from('<5h',image,0x5ff774-BASE)
+        if seven or ten:scene['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (range(1,7) if ten else (1,2))}
+    if six or ten:
+        objective_numbers=struct.unpack_from('<7h' if ten else '<5h',image,(0x5ff79c if ten else 0x5ff774)-BASE)
         assert objective_numbers[-1]==-1
         scene['grade_objects']=list(objective_numbers[:-1])
-    if four or six:
+    if ten:
+        # 4DA7F0 -> 47A800 -> 47ED90/47F090. Field +8 links patrol lists.
+        routes=struct.unpack_from('<I',image,0x6acb88-BASE+sid*4)[0]
+        route=bytes.fromhex(actors[0]['record_hex'])[0xa2]
+        scene['elder_route']=[]
+        while route>0:
+            count,ptr=struct.unpack_from('<II',image,routes-BASE+route*8)
+            rows=[list(struct.unpack_from('<BB2xIb3x',image,ptr-BASE+i*12)) for i in range(count)]
+            assert len(scene['elder_route'])<100 and all(row[3]==0 for row in rows[:-1])
+            scene['elder_route'].extend(row[:3] for row in rows)
+            route=rows[-1][3]
+        assert route==-1
+    if four or six or ten:
         from tools.school_map_common_catalog import map_common_inputs
         from tools.school_map_common_emulation import map_common_resource
         common,_=map_common_resource()
@@ -183,8 +195,9 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--seven',action='store_true')
     parser.add_argument('--four',action='store_true')
+    parser.add_argument('--ten',action='store_true')
     parser.add_argument('--six',action='store_true')
     parser.add_argument('--may-five',action='store_true')
     args=parser.parse_args()
     if args.may_five: export_may_five()
-    else: export(args.seven,args.four,args.six)
+    else: export(args.seven,args.four,args.six,args.ten)

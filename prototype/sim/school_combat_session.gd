@@ -146,6 +146,10 @@ func controlled_units() -> Array:
 	return units.filter(func(u): return u["controllable"])
 
 
+func _allied_targets() -> Array:
+	return controlled_units()
+
+
 func enemies() -> Array:
 	return units.filter(func(u): return u["category"] == 5 and u["limits"]["hp"] > 0)
 
@@ -341,7 +345,7 @@ func tick() -> void:
 		var identity := unit_key(unit)
 		if phases.has(identity): continue
 		if unit["category"] == 5:
-			var candidates := controlled_units().filter(func(p): return p["limits"]["hp"] > 0)
+			var candidates := _allied_targets().filter(func(p): return p["limits"]["hp"] > 0)
 			candidates.sort_custom(func(a,b): return _distance(unit,a) < _distance(unit,b))
 			unit["target"] = unit_key(candidates[0]) if not candidates.is_empty() else -1
 		var target := find_unit(unit["target"])

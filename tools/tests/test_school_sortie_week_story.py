@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -110,3 +110,18 @@ class SortieWeekStoryTests(unittest.TestCase):
         self.assertNotIn('effects', data['routes'][2])
         self.assertIsNone(data['routes'][2]['target'])
         self.assertFalse(any(e['opcode']==144 for s in data['scenes'] for e in s['effects']))
+
+    def test_june_week4_empty_post_sortie_removal_and_school_music(self):
+        data = build_june_week4()
+        expected = (ROOT / 'prototype/data/school_june_week4_story.json').read_bytes()
+        self.assertEqual((json.dumps(data, ensure_ascii=False, indent=2)+chr(10)).encode(), expected)
+        post, start, school = data['routes']
+        self.assertEqual(post['date'], [6,3])
+        self.assertEqual(post['offsets'][-3:], [0x5b8,0x5c0,0x5d0])
+        self.assertNotIn(0x5c8, post['offsets'])
+        self.assertEqual(post['effects'], [{'offset':0x5b8,'opcode':145,'operands':[117]}])
+        self.assertIsNone(post['target'])
+        self.assertEqual(start['target'], 'data/adv/dat/Chapter213.ybc')
+        self.assertIsNone(school['target'])
+        self.assertNotIn('effects', school)
+        self.assertEqual([(s['chapter'], len(s['pages']), s['text_count']) for s in data['scenes']], [(213,13,25)])
