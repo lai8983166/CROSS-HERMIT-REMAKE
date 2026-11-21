@@ -78,6 +78,14 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
         self.assertEqual(data['rewards']['base_points'], [350000,300000,250000,200000,75000])
         self.assertEqual(data['rewards']['objective_rewards'], [[0,0,0]] * 16)
 
+    def test_mandatory_nine_scene_and_rewards_match_original(self):
+        from tools.school_return_adventures_catalog import mandatory_adventure
+        data = mandatory_adventure(9)
+        self.assertEqual(data, json.loads((ROOT/'prototype/data/school_mandatory_nine.json').read_bytes()))
+        self.assertEqual((data['scene']['template_count'], data['scene']['script']), (75, 'T0009.BIN'))
+        self.assertEqual(data['rewards']['base_points'], [120000,100000,70000,50000,30000])
+        self.assertEqual(data['rewards']['objective_rewards'], [[0,0,0]] * 16)
+
     def test_mandatory_ten_scene_and_rewards_match_original(self):
         from tools.school_return_adventures_catalog import mandatory_adventure
         data = mandatory_adventure(10)
@@ -145,6 +153,8 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
             self.assertEqual([r['id'] for r in probe.open(7,2)['entries']],[17])
             probe.submit(0)
             self.assertEqual([r['id'] for r in probe.open(7,3)['entries']],[9,17])
+            self.assertEqual([r['id'] for r in probe.submit(9)['entries']],[17])
+            self.assertEqual([r['id'] for r in probe.open(7,4)['entries']],[14,17])
 
     def test_original_timer_expiry_and_reusable17(self):
         probe=LedgerProbe();probe.open(4,4);probe.submit(0);probe.open(4,5);probe.submit(5);probe.open(5,1)

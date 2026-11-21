@@ -38,8 +38,8 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var round_data: Dictionary = prepared["rounds"][0]
 	var ids: Array = round_data["student_ids"]
 	var slots: Variant = facts.get("objective_slots")
-	if (facts.get("scene_id") != scene_id or (scene_id not in [4,6,7,13] and facts.get("time_key") != 0) or not Roles._bounded(facts.get("time_key"),1 if scene_id in [4,6,7,13] else 0,3)
-			or not Roles._vector(slots,16,0,1) or slots.slice(0 if scene_id in [6,10,13,18] else 1 if scene_id==7 else 2 if scene_id in [4,8] else 3).has(1)
+	if (facts.get("scene_id") != scene_id or (scene_id not in [4,6,7,9,13] and facts.get("time_key") != 0) or not Roles._bounded(facts.get("time_key"),1 if scene_id in [4,6,7,9,13] else 0,3)
+			or not Roles._vector(slots,16,0,1) or slots.slice(0 if scene_id in [6,9,10,13,18] else 1 if scene_id==7 else 2 if scene_id in [4,8] else 3).has(1)
 			or not Roles._bounded(facts.get("clock_seed"),0,0x7fffffff)
 			or not Roles._bounded(facts.get("growth_seed"),0,0x7fffffff)
 			or not facts.get("units") is Array or facts["units"].size() != ids.size()):
@@ -204,7 +204,7 @@ static func _rules(scene_id: int) -> Dictionary:
 	var raw := FileAccess.get_file_as_string(TASK_PATH).replace("\r\n","\n")
 	if raw.sha256_text() != TASK_SHA: return {}
 	var task: Dictionary
-	if scene_id in [4,6,7,10,13,18]:
+	if scene_id in [4,6,7,9,10,13,18]:
 		var mission := Adventures.eighteen_rules() if scene_id==18 else Adventures.mandatory_rules(scene_id)
 		if mission.is_empty():return {}
 		task=mission["rewards"]

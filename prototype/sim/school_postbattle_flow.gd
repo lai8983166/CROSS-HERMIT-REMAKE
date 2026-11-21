@@ -123,6 +123,12 @@ func execute(command: Dictionary) -> Dictionary:
 		return {"supported":true}
 	if op not in ["post_next","post_prev","post_skip"] or phase not in ["post_story","new_week_story","school_entry_story"]:
 		return _failure("postbattle_story_not_active")
+	if phase=="new_week_story" and not _date_card.is_empty() and not _week_pages.is_empty() and op=="post_next":
+		_date_card={}
+		pages=_week_pages
+		cursor=0
+		revision+=1
+		return {"supported":true}
 	if op=="post_prev":
 		if cursor==0: return {"supported":true,"status":"duplicate"}
 		cursor-=1;revision+=1;return {"supported":true}
@@ -136,7 +142,7 @@ func execute(command: Dictionary) -> Dictionary:
 		if phase=="post_story":
 			var week := SortieWeek.next_week(bundle) if planning.has("sortie_summary") or course_continued() else Return.next_week(bundle)
 			if not week["supported"]: return week
-			bundle=week["after"];pages=_week_pages;phase="new_week_story";cursor=0
+			bundle=week["after"];pages=_week_pages if _date_card.is_empty() else [];phase="new_week_story";cursor=0
 		else:
 			if planning.has("sortie_summary") or course_continued():
 				var finished := SortieWeek.finish_story(bundle)
@@ -155,7 +161,7 @@ func execute(command: Dictionary) -> Dictionary:
 func _advance_work_week() -> Dictionary:
 	var advanced := SortieWeek.next_week(bundle)
 	if not advanced["supported"]:return advanced
-	bundle=advanced["after"];pages=_week_pages;phase="new_week_story";cursor=0
+	bundle=advanced["after"];pages=_week_pages if _date_card.is_empty() else [];phase="new_week_story";cursor=0
 	revision+=1
 	return {"supported":true}
 
@@ -173,7 +179,9 @@ func snapshot() -> Dictionary:
 	var result := {"phase":phase,"cursor":cursor,"total":pages.size(),"bundle":bundle.duplicate(true),
 		"page":pages[cursor].duplicate(true) if not pages.is_empty() and phase in ["post_story","new_week_story","school_entry_story"] else {},
 		"result_summary":result_summary.duplicate(true),"revision":revision}
-	if phase=="new_week_story" and not _date_card.is_empty():result["date_card"]=_date_card.duplicate(true)
+	if phase=="new_week_story" and not _date_card.is_empty():
+		result["date_card"]=_date_card.duplicate(true)
+		if not _week_pages.is_empty():result["story_after_card"]=true
 	# Older v5 snapshots retain their exact shape until an explicit new command.
 	if not planning.is_empty():result["planning"]=planning.duplicate(true)
 	return result

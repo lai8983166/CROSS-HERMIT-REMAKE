@@ -277,7 +277,7 @@ func test_june_registration_and_compulsory_boot_after_each_may_week_five_result(
 func _june_week_two(june: Dictionary, ledger: Dictionary) -> void:
 	var story := Calendar.story(1,6)
 	assert_true(story["supported"])
-	assert_false(Calendar.story(3,7)["supported"])
+	assert_false(Calendar.story(4,7)["supported"])
 	assert_eq(story["pre_week_join_page"],81)
 	assert_eq([story["pre_week"][80]["chapter"],story["pre_week"][81]["chapter"]],[35,36])
 	assert_eq([story["week_start"][78]["chapter"],story["week_start"][79]["chapter"]],[37,38])
@@ -589,4 +589,64 @@ func _july_two_and_three(july: Dictionary, ledger: Dictionary) -> void:
 				assert_eq(bundle["school"]["adventure_gate"],1)
 				assert_eq(bundle["school"]["lecture_work_fields"],[3,8,9,0])
 				assert_eq(bundle["newly_dated_adventures"].map(func(r):return r["id"]),[9])
-				assert_false(Calendar.story(3,7)["supported"])
+				assert_false(Calendar.story(4,7)["supported"])
+				if selection==18:_july_week_four(bundle,opening)
+
+
+func _july_week_four(school: Dictionary, ledger: Dictionary) -> void:
+	var story:=Calendar.story(3,7)
+	assert_true(story["supported"])
+	if not story["supported"]:return
+	assert_eq([story["pre_week"],story["school_entry"]],[[],[]])
+	assert_eq(story["week_start"].size(),30)
+	assert_eq(story["date_card"]["source"],"data/adv/bin/tc0704.bin")
+	assert_eq(FileAccess.get_sha256(story["date_card"]["image"]),story["date_card"]["png_sha256"])
+	var settled:=school.duplicate(true)
+	settled["phase"]="courses_confirmed"
+	assert_false(Calendar.next_week(settled)["supported"])
+	settled["phase"]="sortie_settled"
+	var wrong:=settled.duplicate(true)
+	wrong["school"]["lecture_work_fields"]=[1,0,17,0]
+	assert_false(Calendar.next_week(wrong)["supported"])
+	var advanced:=Calendar.next_week(settled)
+	assert_true(advanced["supported"],str(advanced.get("reason")))
+	if not advanced["supported"]:return
+	var next: Dictionary=advanced["after"]
+	assert_eq([next["school"]["month"],next["school"]["week"]],[7,4])
+	for key in ["availability","member_profiles","teacher_ids","student_ids","relationships"]:
+		assert_eq(next["school"][key],settled["school"][key])
+	var room:=Calendar.finish_story(next)
+	assert_true(room["supported"],str(room.get("reason")))
+	if not room["supported"]:return
+	var work: Dictionary=room["after"]
+	assert_eq([work["flags"]["0x7a55f6"],work["flags"]["0x7e11a0"],work["adv_background"]],[10,1,8])
+	var boot:=Calendar.school_return(work,Adventures.advance(ledger,9),ledger)
+	assert_true(boot["supported"],str(boot.get("reason")))
+	if not boot["supported"]:return
+	var after: Dictionary=boot["after"]
+	assert_eq(Adventures.available(boot["ledger_after"]).map(func(r):return r["id"]),[14,17])
+	assert_eq(boot["unlocked_work_ids"],[])
+	assert_eq(after["newly_dated_adventures"].map(func(r):return r["id"]),[14])
+	assert_eq([after["school"]["lecture_active"],after["school"]["adventure_gate"],after["school"]["lecture_work_fields"]],[1,1,[3,13,14,0]])
+	assert_false(Adventures.select(after,boot["ledger_after"],17)["supported"])
+	assert_true(Return.move_member(after,{"kind":"teacher","member_id":118,"target_group":3,"target_slot":-1})["supported"])
+
+	var flow:=preload("res://sim/school_postbattle_flow.gd").new()
+	flow.bundle=settled.duplicate(true)
+	flow.phase="sortie_result"
+	flow.planning={"sortie_summary":{},"ledger":Adventures.advance(ledger,9),"opening_ledger":ledger}
+	flow._set_dated_story(story)
+	assert_true(flow.execute({"op":"post_next"})["supported"])
+	assert_eq(flow.phase,"new_week_story")
+	var card:=flow.snapshot()
+	assert_eq([card["total"],card["page"],card["date_card"]],[0,{},story["date_card"]])
+	assert_true(flow.execute({"op":"post_next"})["supported"])
+	for i in range(30):
+		var view:=flow.snapshot()
+		assert_eq(view["page"],story["week_start"][i])
+		assert_eq([view["total"],view["cursor"],view.has("date_card")],[30,i,false])
+		assert_true(flow.execute({"op":"post_next"})["supported"])
+	assert_eq(flow.phase,"post_workroom")
+	assert_true(flow.execute({"op":"post_school"})["supported"])
+	assert_eq(flow.phase,"returned_school")
+	assert_eq(flow.bundle,after)

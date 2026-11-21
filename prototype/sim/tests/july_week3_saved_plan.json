@@ -1,0 +1,77 @@
+{
+  "context": "school_playground_july_work",
+  "version": 18,
+  "state_sha256": "d05e07d3e3c13c1ddc0cd3a1907f513a1390ce5d082f76c924e9d9e66268e5eb",
+  "parent": "223d8e37e6d0a19bacb897a7e3b13d65919c23a9176d8e96d53b49e95ca6aa4f",
+  "rules_added": {
+    "adventure_eighteen": "09aa3f8c4beed7d571f067c7145eb06a4b9e6c54b96436a8bbfdc3875ee6d018",
+    "eighteen_battle": "f0786cc9fb448261a9b363914675bf2bbcf1c4485cf7e467729cfd970f131004",
+    "july_three_story": "b814ce752fb1f8eed446e8715cafcf34baa26ade393fc1d2d055be1b965ac48c",
+    "july_two_story": "1e5b476300d000b8f5c1863f21f6085e1e97e77851b4dc230d3f72411dc5a4cd"
+  },
+  "before_battle": [
+    {
+      "group": 0,
+      "op": "return_mode",
+      "teaching": false
+    },
+    {
+      "group": 1,
+      "op": "return_mode",
+      "teaching": false
+    },
+    {
+      "group": 2,
+      "op": "return_mode",
+      "teaching": false
+    },
+    {
+      "op": "return_depart"
+    }
+  ],
+  "after_battle": [
+    {
+      "op": "post_next"
+    },
+    {
+      "op": "post_next"
+    },
+    {
+      "op": "post_school"
+    },
+    {
+      "group": 0,
+      "op": "return_mode",
+      "teaching": true
+    },
+    {
+      "group": 1,
+      "op": "return_mode",
+      "teaching": true
+    },
+    {
+      "group": 2,
+      "op": "return_mode",
+      "teaching": true
+    },
+    {
+      "op": "return_settle"
+    },
+    {
+      "op": "course_story"
+    }
+  ],
+  "chapter209_pages": 52,
+  "after_chapter": [
+    {
+      "op": "post_school"
+    },
+    {
+      "kind": "student",
+      "member_id": 1,
+      "op": "return_move",
+      "target_group": 1,
+      "target_slot": 1
+    }
+  ]
+}
