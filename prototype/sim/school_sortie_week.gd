@@ -1,5 +1,5 @@
 extends RefCounted
-## May and June work results through August week 2, CH003, state 7, CH001, workroom and school boot.
+## May and June work results through August week 3, CH003, state 7, CH001, workroom and school boot.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
@@ -27,7 +27,9 @@ const JULY_FOUR_SHA := "51be1f6e71eb47b99bed1e2f27cacd7e97ad562d7639456757489acb
 const JULY_FIVE_SHA := Return.JULY_FIVE[1]
 const AUGUST_ONE_SHA := "4cbdcbbef3484723d4fb0ada0795d743f37a569cb288295905244b2ce27695bd"
 const AUGUST_TWO_SHA := "123be3bb046d9728c94c3de377d44b3c960ecc3aebdd143988b21e4b1967d1c6"
-const AUGUST_STORIES := [["res://data/school_august_week2_story.json",AUGUST_TWO_SHA]]
+const AUGUST_THREE_SHA := "e84464a033a1b6034cdda0179dca8665cde480f7a683f3c28faf983b35c7af34"
+const AUGUST_STORIES := [["res://data/school_august_week2_story.json",AUGUST_TWO_SHA],
+	["res://data/school_august_week3_story.json",AUGUST_THREE_SHA]]
 const JULY_STORIES := [["res://data/school_july_week2_story.json",JULY_TWO_SHA],
 	["res://data/school_july_week3_story.json",JULY_THREE_SHA],["res://data/school_july_week4_story.json",JULY_FOUR_SHA],Return.JULY_FIVE,
 	["res://data/school_august_week1_story.json",AUGUST_ONE_SHA]]
@@ -141,7 +143,7 @@ static func finish_story(before: Dictionary) -> Dictionary:
 		after["flags"]["0x7e11a0"]=0 if week==2 else 1
 		after["adv_background"]=2 if week==2 else 122 if week==5 else 8
 	if after["school"]["month"]==8:
-		after["flags"]["0x7a55f6"]=9 if week==1 else 5
+		after["flags"]["0x7a55f6"]=[9,5,12][week-1]
 		after["flags"]["0x7e11a0"]=0 if week==1 else 1
 		after["adv_background"]=122
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
@@ -251,9 +253,12 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 				return "outside_ch003_teacher_removal"
 		elif phase not in ["sortie_week_advanced","sortie_workroom"]:
 			return "outside_sortie_week"
-	var august: bool = school.get("month")==8 and school.get("week") in range(1,first_week+1)
-	if august and first_week==1 and (phase!="courses_confirmed" or school.get("adventure_gate")!=0):
-		return "outside_august_course_return"
+	var august: bool = school.get("month")==8 and school.get("week") in range(1,first_week+2)
+	if august and first_week==1:
+		if school["week"]==1 and (phase!="courses_confirmed" or school.get("adventure_gate")!=0):
+			return "outside_august_course_return"
+		if school["week"]==2 and (phase!="sortie_settled" or school.get("adventure_gate")!=1 or school.get("lecture_active")!=1 or school.get("lecture_work_fields")!=[3,19,20,0]):
+			return "outside_mandatory_sortie_return"
 	if not may and not june and not july and not august:
 		return "outside_sortie_week"
 	if phase=="chapter036_joined":

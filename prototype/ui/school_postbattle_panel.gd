@@ -217,17 +217,17 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[8,2]
+	var planning_only: bool=[school["month"],school["week"]]==[8,3]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="8 月第 2 周为必修冒险 20。可调整出击编班并保存。"
+		dialogue.text="8 月第 3 周为必修冒险 21。可调整出击编班并保存。"
 		progress.text="调整后可保存本周安排。"
 	elif school.month==8 and school.week==1:
 		dialogue.text="确认四个班的课程后，即可结算并进入下周剧情。"
 		progress.text="本周可重新排课并保存。"
-	elif mandatory and school["month"] in [6,7]:
+	elif mandatory and school["month"] in [6,7,8]:
 		dialogue.text="%d 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [school["month"],school["week"],school["lecture_work_fields"][2]]
 	elif mandatory:
 		dialogue.text="奎丝忒和帕佩修已加入。第4周为必修冒险7，确认已保存的出击编班后即可进入战场。"
@@ -257,7 +257,7 @@ func _show_plan(view: Dictionary) -> void:
 	for adventure in Adventures.available(plan["ledger"]):
 		var id: int=adventure["id"]
 		if mandatory and id!=school["lecture_work_fields"][2]: continue
-		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",9:"必修 · 冒险9",10:"必修 · 冒险10",13:"必修 · 冒险13",14:"必修 · 冒险14",17:"自由训练 · 冒险17",18:"限时 · 冒险18",20:"必修 · 冒险20"}.get(id,"冒险%d" % id)
+		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",9:"必修 · 冒险9",10:"必修 · 冒险10",13:"必修 · 冒险13",14:"必修 · 冒险14",17:"自由训练 · 冒险17",18:"限时 · 冒险18",20:"必修 · 冒险20",21:"必修 · 冒险21"}.get(id,"冒险%d" % id)
 		label+="　剩余%d周" % adventure["remaining"] if adventure["remaining"]>0 else "　无期限"
 		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
 		button.name="adventure_%d" % id;button.toggle_mode=true
@@ -272,7 +272,7 @@ func _show_plan(view: Dictionary) -> void:
 	if school["week"]==5 and ratings["supported"] and ratings["ratings"].any(func(r):return r["state"]==3):
 		progress.text="有班级设为冒险但尚未选择任务。要全校授课，请将该班切换为授课并确认课程；也可选择冒险，让其余班级照常上课。"
 
-	if school.month==8:return
+	if [school.month,school.week]==[8,1]:return
 	var depart := _button("确认出击交接",func():_confirm("return_depart","确认后锁定本周出击队伍并更新冒险使用记录，随后可进入战场。可以保存出击记录后稍后继续。"))
 	depart.name="depart";row.add_child(depart)
 	var prepared := Adventures.prepare(bundle,plan["ledger"])

@@ -47,7 +47,7 @@ func _depart(ui, saved: Dictionary, path: String) -> void:
 	var panel=ui.postbattle_panel
 	var mission := _mission()
 	var school: Dictionary=model.read_postbattle().bundle.school
-	assert_eq([school.month,school.week,school.lecture_work_fields,school.global_total_511c],[7,mission.week,[3,mission.scene-1,mission.scene,0],mission.opening_total])
+	assert_eq([school.month,school.week,school.lecture_work_fields,school.global_total_511c],[mission.get("month",7),mission.week,[3,mission.scene-1,mission.scene,0],mission.opening_total])
 	for rejected in [{"op":"return_select","adventure":17},{"op":"return_settle"},{"op":"return_mode","group":2,"teaching":true}]:
 		assert_false(model.execute(rejected).supported)
 	assert_eq(model.export_save(),saved)
@@ -71,7 +71,7 @@ func _depart(ui, saved: Dictionary, path: String) -> void:
 	if not session.ready:return
 	var fixture:=Fixtures.new()._fixture(mission.trace)
 	assert_eq(fixture.parent,saved.state_sha256)
-	var replay:=Model.BattleRecord.run_trace(session,fixture.trace)
+	var replay:=_run_battle(trial,fixture.trace)
 	assert_true(replay.supported,str(replay))
 	if not replay.supported:return
 	assert_eq(session.ending_sub,fixture.ending_sub)
@@ -84,7 +84,7 @@ func _depart(ui, saved: Dictionary, path: String) -> void:
 	if model.stage()!="sortie_result":return
 	var view: Dictionary=model.read_postbattle()
 	var result: Dictionary=view.planning.sortie_summary
-	assert_eq([result.scene_id,result.date,result.history_index,result.result_selector],[mission.scene,[7,mission.week],14+mission.week,facts.result_selector])
+	assert_eq([result.scene_id,result.date,result.history_index,result.result_selector],[mission.scene,[mission.get("month",7),mission.week],(mission.get("month",7)-4)*5+mission.week-1,facts.result_selector])
 	assert_eq(result.students.map(func(s):return s.character_id),party.student_ids)
 	assert_eq(view.bundle.school.global_total_511c,mission.opening_total+result.score.total_delta)
 	for id in party.student_ids:
@@ -92,6 +92,10 @@ func _depart(ui, saved: Dictionary, path: String) -> void:
 	assert_false(model.execute({"op":"sortie_finish","trace":fixture.trace}).supported)
 	panel.find_child("continue_sortie_story",true,false).pressed.emit()
 	_read_and_replan(ui,path)
+
+
+func _run_battle(trial, trace: Dictionary) -> Dictionary:
+	return Model.BattleRecord.run_trace(trial.session,trace)
 
 
 func _read_and_replan(ui, path: String) -> void:

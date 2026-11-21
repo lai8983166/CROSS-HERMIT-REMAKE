@@ -31,13 +31,14 @@ func _index(cell: Vector2i) -> int:
 	return (cell.y+1)*stride+cell.x+1
 
 
-func _field(target: Vector2i, reach: int, mode: int) -> PackedInt32Array:
+func _field(target: Vector2i, reach: int, mode: int, range_mask: PackedByteArray) -> PackedInt32Array:
 	var distance := terrain[mode].duplicate()
 	for index in occupied: distance[index] = -1
 	var tail := 0
 	for y in range(maxi(0,target.y-reach),mini(height,target.y+reach+1)):
-		var dx := reach-absi(y-target.y)
+		var dx := reach if not range_mask.is_empty() else reach-absi(y-target.y)
 		for x in range(maxi(0,target.x-dx),mini(width,target.x+dx+1)):
+			if not range_mask.is_empty() and range_mask[(y-target.y+reach)*(2*reach+1)+x-target.x+reach]==0:continue
 			var index := (y+1)*stride+x+1
 			if distance[index] != 0: continue
 			distance[index] = 1
@@ -57,17 +58,20 @@ func _field(target: Vector2i, reach: int, mode: int) -> PackedInt32Array:
 	return distance
 
 
-func route(start: Vector2i, target: Vector2i, reach: int, mode: int, units: Array) -> Array[Vector2i]:
+func route(start: Vector2i, target: Vector2i, reach: int, mode: int, units: Array, range_mask := PackedByteArray()) -> Array[Vector2i]:
 	var result: Array[Vector2i] = []
-	if absi(start.x-target.x)+absi(start.y-target.y) <= reach: return result
+	var delta := (start-target).abs()
+	if range_mask.is_empty():
+		if delta.x+delta.y<=reach:return result
+	elif delta.x<=reach and delta.y<=reach and range_mask[(delta.y+reach)*(2*reach+1)+delta.x+reach]!=0:return result
 	var current := PackedInt32Array()
 	for unit in units:
 		if unit["limits"]["hp"] > 0: current.append(_index(unit["cell"]))
 	if current != occupied:
 		occupied = current
 		fields.clear()
-	var key := Vector4i(target.x,target.y,reach,mode)
-	if not fields.has(key): fields[key] = _field(target,reach,mode)
+	var key := Vector4i(target.x,target.y,reach if range_mask.is_empty() else -reach-1,mode)
+	if not fields.has(key): fields[key] = _field(target,reach,mode,range_mask)
 	var distance: PackedInt32Array = fields[key]
 	var cursor := _index(start)
 	# Leaving the attacker's own occupied cell is always legal. No shortest

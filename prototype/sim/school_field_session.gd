@@ -166,6 +166,10 @@ func stop(identity: int) -> bool:
 	return true
 
 
+func _wait_for_occupant(_unit: Dictionary, _cell: Vector2i) -> bool:
+	return false
+
+
 func tick() -> void:
 	if not ready or paused: return
 	frame += 1
@@ -185,7 +189,7 @@ func tick() -> void:
 			_visual(unit,"idle"); continue
 		var next: Vector2i = unit["path"][0]
 		# Never skip occupied waypoints, teleport or silently approach another cell.
-		if blocked.has(next) or not walkable(next,unit["movement_type"]) \
+		if _wait_for_occupant(unit,next) or blocked.has(next) or not walkable(next,unit["movement_type"]) \
 				or absi(next.x-unit["cell"].x)+absi(next.y-unit["cell"].y) != 1: continue
 		unit["path"].remove_at(0)
 		var delta: Vector2i = next-unit["cell"]

@@ -35,7 +35,7 @@ static func set_mode(before: Dictionary, group: Variant, teaching: Variant) -> D
 	var reason := _guard(before,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
 	var school: Dictionary=before["school"]
-	if teaching==true and school["adventure_gate"]!=0 and (school["week"]==4 or school["month"]==6 or (school["month"]==7 and school["week"]==3) or [school.month,school.week]==[8,2]):
+	if teaching==true and school["adventure_gate"]!=0 and (school["week"]==4 or school["month"]==6 or (school["month"]==7 and school["week"]==3) or (school.month==8 and school.week in [2,3])):
 		return Origin.failure("mandatory_adventure_requires_sortie")
 	var changed := Planning.set_mode(Session._working(before["school"]),group,teaching,Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 	if not changed["supported"]: return changed

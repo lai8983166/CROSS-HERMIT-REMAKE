@@ -101,9 +101,9 @@ func _play(ui: Screen, saved: Dictionary, path: String) -> void:
 	var mission=panel.find_child("adventure_20",true,false)
 	assert_true(mission!=null and mission.disabled and mission.button_pressed)
 	assert_true(panel.find_child("adventure_17",true,false)==null)
-	assert_true(panel.find_child("depart",true,false)==null)
-	assert_true(panel.find_child("settle",true,false)==null)
-	for cmd in [{"op":"return_mode","group":2,"teaching":true},{"op":"return_select","adventure":17},{"op":"return_settle"},{"op":"return_depart"}]:
+	assert_false(panel.find_child("depart",true,false).disabled)
+	assert_false(panel.find_child("settle",true,false).visible)
+	for cmd in [{"op":"return_mode","group":2,"teaching":true},{"op":"return_select","adventure":17},{"op":"return_settle"}]:
 		assert_false(model.execute(cmd).supported)
 	panel.find_child("member_5",true,false).pressed.emit()
 	panel.assignments.get_child(2).get_child(3).pressed.emit()

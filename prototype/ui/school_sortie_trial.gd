@@ -48,16 +48,17 @@ func _ready() -> void:
 func open_trial(handoff: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
 	if not super.open_trial(handoff,combat,names):return false
 	var date: Array=handoff["date"]
-	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"地下城砦－貝倫" if session.scene_id==14 else "攸利亞守護塔" if session.scene_id==9 else "達雷西昂攻城演習" if session.scene_id==18 else "石碑與祈禱" if session.scene_id==13 else "法爾德長老護送" if session.scene_id==10 else "討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
+	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"古雷納汀的封印" if session.scene_id==20 else "地下城砦－貝倫" if session.scene_id==14 else "攸利亞守護塔" if session.scene_id==9 else "達雷西昂攻城演習" if session.scene_id==18 else "石碑與祈禱" if session.scene_id==13 else "法爾德長老護送" if session.scene_id==10 else "討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
 	targets.clear();targets.add_item("定位任务对象",-1)
 	for unit in session.units:
 		var id: int=session.unit_key(unit)
 		if unit["controllable"]:continue
 		_names[id]="%s #%d" % ["塔/泉" if unit["character_id"] in range(387,405) else "宝箱" if unit["character_id"] in [405,406] else "障碍" if unit["character_id"] in range(411,415) else "敌人",1250-id]
 		if session.scene_id==7 and id in [1248,1247]:_names[id]="薛莉尔" if id==1248 else "艾尔雪"
+		if session.scene_id==20 and id==1244:_names[id]="匍伏蔓延而來之物"
 		if session.scene_id==6 and id==1245:_names[id]="燈火的盾衛－班奇涅爾"
 		if session.scene_id==10 and id==1249:_names[id]="法爾德長老"
-		if (session.scene_id==10 and id==1249) or (session.scene_id==6 and id==1245) or (session.scene_id==4 and unit["category"]==5) or Sortie._capture_role(unit["character_id"]) or (session.scene_id==7 and id in [1248,1247]):targets.add_item(_names[id],id)
+		if (session.scene_id==20 and id in range(1244,1250)) or (session.scene_id==10 and id==1249) or (session.scene_id==6 and id==1245) or (session.scene_id==4 and unit["category"]==5) or Sortie._capture_role(unit["character_id"]) or (session.scene_id==7 and id in [1248,1247]):targets.add_item(_names[id],id)
 	if session.scene_id==13:
 		for n in range(1,10):targets.add_item("石碑 %d" % n if n<=3 else "祈祷点 %d" % n,n)
 	if session.scene_id==10:
@@ -107,7 +108,7 @@ func _refresh() -> void:
 			member_buttons[character]=button
 			_names[character]=_names.get(identity,str(character))
 	super._refresh()
-	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5]]):
+	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2]]):
 		var leaders: Array=session.departure["prepared"]["rounds"][0]["teacher_ids"]
 		info.text=info.text.get_slice("    |",0)+"    |    班级领队："+ "、".join(leaders.map(func(id):return str(_names.get(id,id))))
 		if session.rendezvous:
@@ -115,8 +116,8 @@ func _refresh() -> void:
 				member_buttons[session.find_unit(identity)["character_id"]].set_pressed_no_signal(session.selected_id==identity)
 	if text_panel==null or not session.ready:return
 	var ending: Dictionary=session.ending_snapshot();var phase: String=ending["phase"]
-	summary_navigation.visible=session.scene_id in [4,6,7,9,10,13,14,18] and phase=="summary" and ending["text"].size()>1
-	spell_choice.visible=session.scene_id in [4,6,9,10,13,14,18]
+	summary_navigation.visible=session.scene_id in [4,6,7,9,10,13,14,18,20] and phase=="summary" and ending["text"].size()>1
+	spell_choice.visible=session.scene_id in [4,6,9,10,13,14,18,20]
 	for option in [1,2]:
 		spell_choice.set_item_disabled(option,not session.can_cast_spell(session.selected_id,spell_choice.get_item_id(option)))
 	if spell_choice.is_item_disabled(spell_choice.selected):spell_choice.select(0)
@@ -136,7 +137,7 @@ func _refresh() -> void:
 	elif phase=="summary":
 		var lines := []
 		var pages: Array=ending["text"]
-		if session.scene_id in [4,6,7,9,10,13,14,18] and not pages.is_empty():
+		if session.scene_id in [4,6,7,9,10,13,14,18,20] and not pages.is_empty():
 			summary_page=clampi(summary_page,0,pages.size()-1)
 			previous_page.disabled=summary_page==0
 			next_page.disabled=summary_page+1==pages.size()
@@ -154,7 +155,11 @@ func _refresh() -> void:
 		status.text+="　·　长老 HP %d/%d" % [elder.limits.hp,elder.limits.hp_max]
 		if session.escort_route.enabled_region>0:status.text+="　·　前往停靠区 %d" % session.escort_route.enabled_region
 	help_label.text="左键选人 · 右键移动/攻击 · 中键拖图 · 空格暂停 · S停止\n"+("坚守30分钟，保护3处己方基地；靠近基地可占领。" if session.scene_id==8 else "训练后前往东北撤离区；15分钟前撤离获得最低评价。塔、泉与宝箱靠近占领，障碍右键攻击。")
-	if session.scene_id==14:
+	if session.scene_id==20:
+		var boss: Dictionary=session.find_unit(1244)
+		status.text+="　·　封印 HP %d/%d" % [boss.limits.hp,boss.limits.hp_max]
+		help_label.text="击倒中央的「匍伏蔓延而來之物」。守住两座塔、一处泉和两扇门，可提高评价。"
+	elif session.scene_id==14:
 		help_label.text="带任一学生进入西南出口。十分钟内撤出可提高评价，沿途可占领三个宝箱。"
 	elif session.scene_id==9:
 		if session.knight_released and targets.get_item_index(1203)<0:
