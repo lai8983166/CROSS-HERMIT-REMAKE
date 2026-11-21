@@ -81,7 +81,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	if not reason.is_empty(): return Origin.failure(reason)
 	var week: int=before["school"]["week"]
 	var month: int=before["school"]["month"]
-	if not ((month==5 and week in [1,2,3,5]) or (month==6 and week==5)): return Origin.failure("outside_supported_course_week")
+	if not ((month==5 and week in [1,2,3,5]) or (month==6 and week==5) or (month==7 and week in [1,2])): return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -89,7 +89,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var prepared := _plan(before["school"],rules)
 	if not prepared["supported"]: return prepared
 	var after := before.duplicate(true)
-	var growth_rules: Dictionary=lesson_rules(month) if week==5 else rules["growth"]
+	var growth_rules: Dictionary=lesson_rules(month) if week==5 or month==7 else rules["growth"]
 	if growth_rules.is_empty():return Origin.failure("invalid_return_course_sources")
 	var growth := apply_lessons(after,prepared["plan"],growth_rules,seed)
 	# MVP is chosen from this result's assigned slots, never stale waiting totals.
@@ -101,7 +101,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 			best=row["staged_total"];recipient=row["character_id"]
 	# Courses 6 and 26 put their entire award in packet[7]. Original 4C00C0
 	# leaves the recipient at -1. Do not index counts with this sentinel.
-	var bonus_only: bool = week in [3,5] and prepared["plan"].all(func(command):return command["training_id"] in [6,26])
+	var bonus_only: bool = (week in [3,5] or month==7) and prepared["plan"].all(func(command):return command["training_id"] in [6,26])
 	if recipient<0 and not bonus_only: return Origin.failure("missing_positive_return_course_mvp")
 	var confirmed := _confirm(after,prepared["classes"],rules["confirmation"]["job_categories"])
 	var old_count := 0
@@ -127,14 +127,14 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 
 
 static func lesson_rules(month := 5) -> Dictionary:
-	if month not in [5,6]:return {}
+	if month not in [5,6,7]:return {}
 	var source := _rules()
 	if source.is_empty():return {}
 	var growth: Dictionary=source["growth"]
 	var tables := [["res://data/school_may_five_courses.json",MAY_FIVE_SHA]]
-	if month==6:
+	if month>=6:
 		tables.append(["res://data/school_june_five_courses.json",JUNE_FIVE_SHA])
-	growth["training"].resize(30 if month==6 else 28)
+	growth["training"].resize(30 if month>=6 else 28)
 	for table in tables:
 		var raw := FileAccess.get_file_as_string(table[0]).replace("\r\n","\n")
 		if raw.sha256_text()!=table[1]:return {}
@@ -174,7 +174,7 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 	var plan := []
 	var classes := []
 	var available_courses := [1,2,3,4,5,6,7,10,11,12,17,18,23,27]
-	if school["month"]==6 and school["week"]==5:
+	if (school["month"]==6 and school["week"]==5) or school["month"]==7:
 		available_courses.append_array([8,19,20,26,28,29])
 	for group in range(5):
 		var rating: Dictionary = rated["ratings"][group]

@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, july_date_card, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -146,3 +146,18 @@ class SortieWeekStoryTests(unittest.TestCase):
         self.assertEqual([(s['chapter'], len(s['pages']), s['text_count']) for s in data['scenes']],
                          [(303,32,60),(218,19,25)])
         self.assertEqual(data['scenes'][0]['effects'][0]['target'], 'data/adv/dat/Chapter218.ybc')
+
+    def test_july_week2_direct_date_card_and_week3_chapter(self):
+        for week, data in ((2, build_july_week2()), (3, build_july_week3())):
+            raw = (ROOT/f'prototype/data/school_july_week{week}_story.json').read_bytes()
+            self.assertEqual(raw, (json.dumps(data, ensure_ascii=False, indent=2)+chr(10)).encode())
+            self.assertEqual([r['date'] for r in data['routes']], [[7,week-1],[7,week],[7,week]])
+            self.assertNotIn('effects', data['routes'][0])
+        card = build_july_week2()
+        self.assertEqual(card['scenes'], [])
+        self.assertEqual(card['date_card']['position'], [0,324])
+        self.assertEqual(card['date_card']['source_rect'], [0,0,1024,128])
+        self.assertEqual(card['date_card']['wait_ticks'], 600)
+        self.assertEqual((ROOT/'prototype/assets/school_story/tc0702.png').read_bytes(), july_date_card()[1])
+        chapter = build_july_week3()['scenes'][0]
+        self.assertEqual([chapter['chapter'],len(chapter['pages']),chapter['text_count']], [209,52,75])

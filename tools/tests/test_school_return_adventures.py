@@ -128,6 +128,24 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
         self.assertEqual(bytes(probe.uc.mem_read(0x7a55fd,100)).count(1),3)
         self.assertEqual([r['id'] for r in probe.submit(8)['entries']],[17])
 
+    def test_july_one_week_adventure_consumed_or_expired(self):
+        from tools.school_return_adventures_catalog import mandatory_adventure
+        mission = mandatory_adventure(18)
+        self.assertEqual(mission, json.loads((ROOT/'prototype/data/school_july_eighteen.json').read_bytes()))
+        for decision in (18, 0):
+            probe = LedgerProbe()
+            for month, week, activity in [(4,4,0),(4,5,5),(5,1,8),(5,2,17),(5,3,0),(5,4,7),
+                                          (5,5,0),(6,1,4),(6,2,6),(6,3,10),(6,4,13),(6,5,0)]:
+                probe.open(month,week)
+                probe.submit(activity)
+            entries = probe.open(7,1)['entries']
+            self.assertEqual([r['id'] for r in entries],[18,17])
+            self.assertEqual((entries[0]['limit'],entries[0]['duration']),(1,0))
+            self.assertEqual([r['id'] for r in probe.submit(decision)['entries']],[17])
+            self.assertEqual([r['id'] for r in probe.open(7,2)['entries']],[17])
+            probe.submit(0)
+            self.assertEqual([r['id'] for r in probe.open(7,3)['entries']],[9,17])
+
     def test_original_timer_expiry_and_reusable17(self):
         probe=LedgerProbe();probe.open(4,4);probe.submit(0);probe.open(4,5);probe.submit(5);probe.open(5,1)
         after=probe.submit(17)['entries']

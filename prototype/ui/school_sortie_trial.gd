@@ -48,7 +48,7 @@ func _ready() -> void:
 func open_trial(handoff: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
 	if not super.open_trial(handoff,combat,names):return false
 	var date: Array=handoff["date"]
-	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"石碑與祈禱" if session.scene_id==13 else "法爾德長老護送" if session.scene_id==10 else "討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
+	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"達雷西昂攻城演習" if session.scene_id==18 else "石碑與祈禱" if session.scene_id==13 else "法爾德長老護送" if session.scene_id==10 else "討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
 	targets.clear();targets.add_item("定位任务对象",-1)
 	for unit in session.units:
 		var id: int=session.unit_key(unit)
@@ -106,7 +106,7 @@ func _refresh() -> void:
 			member_buttons[character]=button
 			_names[character]=_names.get(identity,str(character))
 	super._refresh()
-	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5]]):
+	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2]]):
 		var leaders: Array=session.departure["prepared"]["rounds"][0]["teacher_ids"]
 		info.text=info.text.get_slice("    |",0)+"    |    班级领队："+ "、".join(leaders.map(func(id):return str(_names.get(id,id))))
 		if session.rendezvous:
@@ -114,8 +114,8 @@ func _refresh() -> void:
 				member_buttons[session.find_unit(identity)["character_id"]].set_pressed_no_signal(session.selected_id==identity)
 	if text_panel==null or not session.ready:return
 	var ending: Dictionary=session.ending_snapshot();var phase: String=ending["phase"]
-	summary_navigation.visible=session.scene_id in [4,6,7,10,13] and phase=="summary" and ending["text"].size()>1
-	spell_choice.visible=session.scene_id in [4,6,10,13]
+	summary_navigation.visible=session.scene_id in [4,6,7,10,13,18] and phase=="summary" and ending["text"].size()>1
+	spell_choice.visible=session.scene_id in [4,6,10,13,18]
 	for option in [1,2]:
 		spell_choice.set_item_disabled(option,not session.can_cast_spell(session.selected_id,spell_choice.get_item_id(option)))
 	if spell_choice.is_item_disabled(spell_choice.selected):spell_choice.select(0)
@@ -135,7 +135,7 @@ func _refresh() -> void:
 	elif phase=="summary":
 		var lines := []
 		var pages: Array=ending["text"]
-		if session.scene_id in [4,6,7,10,13] and not pages.is_empty():
+		if session.scene_id in [4,6,7,10,13,18] and not pages.is_empty():
 			summary_page=clampi(summary_page,0,pages.size()-1)
 			previous_page.disabled=summary_page==0
 			next_page.disabled=summary_page+1==pages.size()
@@ -153,7 +153,10 @@ func _refresh() -> void:
 		status.text+="　·　长老 HP %d/%d" % [elder.limits.hp,elder.limits.hp_max]
 		if session.escort_route.enabled_region>0:status.text+="　·　前往停靠区 %d" % session.escort_route.enabled_region
 	help_label.text="左键选人 · 右键移动/攻击 · 中键拖图 · 空格暂停 · S停止\n"+("坚守30分钟，保护3处己方基地；靠近基地可占领。" if session.scene_id==8 else "训练后前往东北撤离区；15分钟前撤离获得最低评价。塔、泉与宝箱靠近占领，障碍右键攻击。")
-	if session.scene_id==13:
+	if session.scene_id==18:
+		status.text+="　·　守护塔与圣者之泉 %d/3" % session.castle.owned(session)
+		help_label.text="靠近城内两座守护塔和圣者之泉，保持人数优势直至三处变蓝。摧毁城门可阻止部分增援。"
+	elif session.scene_id==13:
 		status.text+="　·　石碑 %d/3　就位 %d/6　祈祷 %d/300" % [session.prayer.discovered.size(),session.prayer.occupied,session.prayer.duration]
 		help_label.text="踏入三处石碑后同步站定六处祈祷点。4号需近战，5、6号需施法者，7至9号任意学生。限时二十分钟。"
 	elif session.scene_id==4:
@@ -164,7 +167,7 @@ func _refresh() -> void:
 		help_label.text="击败敌方首领班奇涅尔。控制四座塔和泉并歼灭其余敌人可提高评价。"
 	elif session.scene_id==7:
 		help_label.text="带学生到东北会合区域寻找薛莉尔。占领两座守卫塔可提高评价。" if not session.rendezvous else "选中薛莉尔，护送她到西南终点。"
-	if session.scene_id in [4,6,10,13] and session.selected_id==8:help_label.text="右键受伤的友军进行普通治疗，也可以指定敌人攻击。"
+	if session._normal_healer(session.find_unit(session.selected_id)):help_label.text="右键受伤的友军进行普通治疗，也可以指定敌人攻击。"
 	if spell_choice.get_selected_id()==59:help_label.text="右键指定雷击中心。射程18格，消耗75 MP。"
 	elif spell_choice.get_selected_id()==57:help_label.text="右键指定障壁中心。射程10格，消耗15 MP。"
 	if phase=="summary":

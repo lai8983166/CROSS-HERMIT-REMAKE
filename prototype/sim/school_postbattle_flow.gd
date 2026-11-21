@@ -15,6 +15,7 @@ var cursor := 0
 var pages: Array = []
 var _post_pages: Array = []
 var _week_pages: Array = []
+var _date_card: Dictionary = {}
 var _school_pages: Array = []
 var _pre_week_join_page := -1
 var revision := 0
@@ -73,6 +74,7 @@ func _set_dated_story(story: Dictionary) -> void:
 	_pre_week_join_page=story.get("pre_week_join_page",-1)
 	_post_pages=story["pre_week"]
 	_week_pages=story["week_start"]
+	_date_card=story.get("date_card",{})
 	_school_pages=story.get("school_entry",[])
 	pages=_post_pages
 	cursor=0
@@ -124,7 +126,7 @@ func execute(command: Dictionary) -> Dictionary:
 	if op=="post_prev":
 		if cursor==0: return {"supported":true,"status":"duplicate"}
 		cursor-=1;revision+=1;return {"supported":true}
-	var next := pages.size() if op=="post_skip" else cursor+1
+	var next := pages.size() if op=="post_skip" or pages.is_empty() else cursor+1
 	if phase=="post_story" and _pre_week_join_page>=0 and next>=_pre_week_join_page and bundle["phase"]=="sortie_settled":
 		var joined := SortieWeek.begin_story(bundle)
 		if not joined["supported"]:return joined
@@ -169,8 +171,9 @@ func _return_to_school() -> Dictionary:
 
 func snapshot() -> Dictionary:
 	var result := {"phase":phase,"cursor":cursor,"total":pages.size(),"bundle":bundle.duplicate(true),
-		"page":pages[cursor].duplicate(true) if phase in ["post_story","new_week_story","school_entry_story"] else {},
+		"page":pages[cursor].duplicate(true) if not pages.is_empty() and phase in ["post_story","new_week_story","school_entry_story"] else {},
 		"result_summary":result_summary.duplicate(true),"revision":revision}
+	if phase=="new_week_story" and not _date_card.is_empty():result["date_card"]=_date_card.duplicate(true)
 	# Older v5 snapshots retain their exact shape until an explicit new command.
 	if not planning.is_empty():result["planning"]=planning.duplicate(true)
 	return result
@@ -195,13 +198,13 @@ func _plan(command: Dictionary) -> Dictionary:
 		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
 	if not result["supported"]:return result
 	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
-	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"]==6) and op in ["return_settle","return_depart"]:
+	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"] in [6,7]) and op in ["return_settle","return_depart"]:
 		# Replace last week's display summary only when the new work is committed.
 		# Keep its starting ledger for validating the battle and next school's entry.
 		var opening: Dictionary=planning["ledger"]
 		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
-		if bundle["school"]["month"]==6:
-			planning["committed_date"]=[6,bundle["school"]["week"]]
+		if bundle["school"]["month"] in [6,7]:
+			planning["committed_date"]=[bundle["school"]["month"],bundle["school"]["week"]]
 		elif bundle["school"]["week"]>=3:
 			planning["committed_week"]=bundle["school"]["week"]
 	bundle=result["after"]

@@ -5,8 +5,16 @@ const Record := preload("res://sim/school_battle_record.gd")
 static var _cache: Dictionary = {}
 
 
+static func valid_trace(trace: Variant, date: Variant, scene_id: Variant) -> bool:
+	var july: bool=date in [[7,1],[7,2]]
+	if july and scene_id not in ([17,18] if date==[7,1] else [17]):return false
+	return Record.valid_trace(trace,true,date==[5,4],date==[5,5],date==[6,1],date==[6,2],
+		date==[6,3],date==[6,4],date==[6,5] or (july and scene_id==17),july and scene_id==18)
+
+
 static func replay(handoff: Dictionary, trace: Variant) -> Dictionary:
-	if not Record.valid_trace(trace,true,handoff.get("date")==[5,4],handoff.get("date")==[5,5],handoff.get("date")==[6,1],handoff.get("date")==[6,2],handoff.get("date")==[6,3],handoff.get("date")==[6,4],handoff.get("date")==[6,5]):
+	if not handoff.get("prepared") is Dictionary:return {"supported":false,"reason":"invalid_sortie_handoff"}
+	if not valid_trace(trace,handoff.get("date"),handoff["prepared"].get("adventure_id")):
 		return {"supported":false,"reason":"invalid_sortie_trace"}
 	var session := Sortie.new()
 	if not session.open(handoff):

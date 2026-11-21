@@ -1,4 +1,4 @@
-"""Export the May school date routes through July week 1 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through July week 3 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -13,6 +13,7 @@ def date_route(router, month, week):
     at = start
     visited = []
     effects = []
+    presentation = []
     while start <= at < end and at not in visited:
         visited.append(at)
         opcode, size = struct.unpack_from('<HH', raw, at)
@@ -29,7 +30,17 @@ def date_route(router, month, week):
         elif opcode == 11:
             at = start + values[0]
             continue
-        elif opcode in (144, 145, 151):
+        elif opcode in (12, 13, 56, 67, 69, 74):
+            item = {'offset': at, 'opcode': opcode}
+            if opcode == 67:
+                offset = end + values[0]*48
+                assert end <= offset <= pool-48
+                item['resource'] = '/'.join(part for part in raw[offset:offset+48].split(bytes(1))[0].decode('ascii').split(chr(92)) if part)
+            else:
+                assert all(v >> 28 == 2 for v in values)
+                item['operands'] = [v & 0xfffffff for v in values]
+            presentation.append(item)
+        elif opcode in (91, 144, 145, 151):
             assert all(v >> 28 == 2 for v in values)
             effects.append(dict(offset=at, opcode=opcode, operands=[v & 0xfffffff for v in values]))
         elif opcode in (15, 19):
@@ -40,7 +51,8 @@ def date_route(router, month, week):
                 target = raw[offset:offset+48].split(b'\0')[0].decode('ascii')
                 target = '/'.join(part for part in target.split(chr(92)) if part)
             return {'router': filename, 'sha256': hashlib.sha256(raw).hexdigest(),
-                    'date': [month, week], 'offsets': visited, 'target': target, **({'effects': effects} if effects else {})}
+                    'date': [month, week], 'offsets': visited, 'target': target, **({'effects': effects} if effects else {}),
+                    **({'presentation': presentation} if presentation else {})}
         else:
             raise ValueError((filename, at, opcode))
         at += size
@@ -199,6 +211,53 @@ def build_july_week1():
     return data
 
 
+def july_date_card():
+    from io import BytesIO
+    from tools.school_opening_presentation_export import dx_image
+
+    raw = (GAME/'BIN/TC0702.BIN').read_bytes()
+    image = dx_image(raw)
+    assert image.size == (1024, 128)
+    stream = BytesIO()
+    image.save(stream, format='PNG')
+    return raw, stream.getvalue()
+
+
+def build_july_week2():
+    data = catalog({})
+    routes = [date_route('CH003', 7, 1), date_route('CH001', 7, 2), date_route('CH002', 7, 2)]
+    assert [r['target'] for r in routes] == [None, None, None]
+    assert 'effects' not in routes[0]
+    movie = routes[1]['presentation']
+    assert [e['opcode'] for e in movie] == [56, 67, 69, 56, 13, 56, 74, 12]
+    assert movie[1]['resource'] == 'data/adv/bin/tc0702.bin'
+    draw = movie[2]['operands']
+    assert draw == [0, 0, 324, 0, 53, 0, 0, 1024, 128]
+    assert routes[1]['effects'] == [
+        {'offset':0xc94, 'opcode':151, 'operands':[3,0]},
+        {'offset':0xca0, 'opcode':91, 'operands':[2,2]}]
+    assert routes[2]['effects'] == [{'offset':0x568, 'opcode':151, 'operands':[3,1]}]
+    raw, png = july_date_card()
+    data['routes'] = routes
+    data['date_card'] = {'image':'res://assets/school_story/tc0702.png', 'source':movie[1]['resource'],
+                         'size':draw[7:9], 'position':draw[1:3], 'source_rect':draw[5:9],
+                         'canvas_size':[1024,768], 'wait_ticks':movie[4]['operands'][0],
+                         'source_sha256':hashlib.sha256(raw).hexdigest(), 'png_sha256':hashlib.sha256(png).hexdigest()}
+    return data
+
+
+def build_july_week3():
+    data = catalog({209: 75})
+    routes = [date_route('CH003', 7, 2), date_route('CH001', 7, 3), date_route('CH002', 7, 3)]
+    assert [r['target'] for r in routes] == [None, 'data/adv/dat/Chapter209.ybc', None]
+    assert not any('effects' in route for route in routes)
+    assert data['scenes'][0]['effects'] == [
+        {'offset':0x83e, 'opcode':151, 'operands':[17,1]},
+        {'offset':0x84a, 'opcode':91, 'operands':[8,2]}]
+    data['routes'] = routes
+    return data
+
+
 def _link_chapters(scene, label, next_chapter):
     raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
     _, _, end, pool, _ = struct.unpack_from('<5I', raw)
@@ -245,6 +304,8 @@ if __name__ == '__main__':
     for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
                        ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5),
                        ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2),
-                       ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1)]:
+                       ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1),
+                       ('school_july_week2_story', build_july_week2), ('school_july_week3_story', build_july_week3)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
+    (ROOT/'prototype/assets/school_story/tc0702.png').write_bytes(july_date_card()[1])

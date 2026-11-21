@@ -8,6 +8,9 @@ const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const Courses := preload("res://sim/school_return_courses.gd")
 const Adventures := preload("res://sim/school_return_adventures.gd")
 const COURSE_NAMES := {1:"力量训练",2:"敏捷训练",3:"感知训练",4:"道德训练",5:"智力训练",6:"奉献活动",7:"魔法基础",10:"全面训练",11:"综合研习",12:"身心锻炼"}
+var card_frame: AspectRatioContainer
+var card_image: TextureRect
+var card_wait := 0
 var heading: Label
 var speaker: Label
 var dialogue: Label
@@ -40,6 +43,17 @@ func _ready() -> void:
 	toolbar.add_child(_button("读取存档",func():load_requested.emit()))
 	var scroll := ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;column.add_child(scroll)
 	var body := VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",18);scroll.add_child(body)
+	card_frame=AspectRatioContainer.new()
+	card_frame.ratio=4.0/3.0
+	card_frame.custom_minimum_size.y=240
+	body.add_child(card_frame)
+	var backdrop := ColorRect.new()
+	backdrop.color=Color.BLACK
+	card_frame.add_child(backdrop)
+	card_image=TextureRect.new()
+	card_image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.add_child(card_image)
+	card_frame.hide()
 	speaker=_label(23);body.add_child(speaker)
 	dialogue=_label(22);dialogue.custom_minimum_size.y=220;body.add_child(dialogue)
 	details=_label(17);body.add_child(details)
@@ -70,7 +84,8 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	_view=view.duplicate(true);_names=names.duplicate();status.text=message
 	var phase: String=view["phase"];var school: Dictionary=view["bundle"]["school"]
 	var date := "%d月 · 第%d周" % [school["month"],school["week"]]
-	var reading := phase in ["post_story","new_week_story","school_entry_story"]
+	var date_card: Dictionary=view.get("date_card",{})
+	var reading := date_card.is_empty() and phase in ["post_story","new_week_story","school_entry_story"]
 	var returned := phase=="returned_school"
 	heading.text="%d月 · 第%d周　｜　%s" % [school["month"],school["week"],"战后剧情" if phase=="post_story" else "新一周" if phase=="new_week_story" else "返校剧情" if phase=="school_entry_story" else "学校" if returned else "职务室"]
 	if phase=="post_story" and view.get("planning",{}).has("course_summary"):
@@ -82,6 +97,27 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	previous.visible=reading;previous.disabled=view["cursor"]==0
 	skip.visible=reading;next.visible=reading or phase=="post_workroom"
 	next.text="下一页" if reading and view["cursor"]+1<view["total"] else "进入下一周" if phase=="post_story" else "前往职务室" if phase=="new_week_story" else "返回学校"
+	card_wait=int(date_card.get("wait_ticks",0))
+	set_process(card_wait>0)
+	card_frame.visible=not date_card.is_empty()
+	speaker.visible=date_card.is_empty()
+	dialogue.visible=date_card.is_empty()
+	if card_frame.visible:
+		var decoded := Image.new()
+		if decoded.load_png_from_buffer(FileAccess.get_file_as_bytes(date_card["image"]))==OK:
+			card_image.texture=ImageTexture.create_from_image(decoded)
+		var pos: Array=date_card["position"]
+		var size_px: Array=date_card["size"]
+		var canvas_px: Array=date_card["canvas_size"]
+		card_image.anchor_left=float(pos[0])/canvas_px[0]
+		card_image.anchor_top=float(pos[1])/canvas_px[1]
+		card_image.anchor_right=float(pos[0]+size_px[0])/canvas_px[0]
+		card_image.anchor_bottom=float(pos[1]+size_px[1])/canvas_px[1]
+		next.visible=true
+		next.text="前往职务室"
+		progress.text=""
+	else:
+		card_image.texture=null
 	var inventory: Array=view["bundle"]["item_flags"]
 	details.text="教师：%s　学生：%d人　累计战果：%d　已持有道具：%d" % [_member_names(school["teacher_ids"].slice(0,school["teacher_count"])),school["student_count"],school["global_total_511c"],inventory.filter(func(v):return (v&1)!=0).size()]
 	roster.visible=returned;assignments.visible=returned
@@ -117,6 +153,12 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 			progress.text="当前编班和本周安排可随时保存"
 	if view.has("planning"):_show_plan(view)
 	show()
+
+
+func _process(_delta: float) -> void:
+	if not is_visible_in_tree() or card_wait<=0:return
+	card_wait-=1
+	if card_wait==0:command.emit({"op":"post_next"})
 
 
 func _show_plan(view: Dictionary) -> void:
@@ -175,13 +217,13 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[7,1]
+	var planning_only: bool=[school["month"],school["week"]]==[7,3]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="7 月第 1 周可以重新安排授课和冒险。"
-		progress.text="选择班级活动和课程，或选择开放的冒险，然后保存安排。"
+		dialogue.text="7 月第 3 周为必修冒险 9，可调整出击编班并保存。"
+		progress.text="保存当前编班，即可从这里继续。"
 	elif mandatory and school["month"]==6:
 		dialogue.text="6 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [school["week"],school["lecture_work_fields"][2]]
 	elif mandatory:
@@ -212,7 +254,7 @@ func _show_plan(view: Dictionary) -> void:
 	for adventure in Adventures.available(plan["ledger"]):
 		var id: int=adventure["id"]
 		if mandatory and id!=school["lecture_work_fields"][2]: continue
-		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",10:"必修 · 冒险10",13:"必修 · 冒险13",17:"自由训练 · 冒险17"}.get(id,"冒险%d" % id)
+		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",9:"必修 · 冒险9",10:"必修 · 冒险10",13:"必修 · 冒险13",17:"自由训练 · 冒险17",18:"限时 · 冒险18"}.get(id,"冒险%d" % id)
 		label+="　剩余%d周" % adventure["remaining"] if adventure["remaining"]>0 else "　无期限"
 		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
 		button.name="adventure_%d" % id;button.toggle_mode=true
