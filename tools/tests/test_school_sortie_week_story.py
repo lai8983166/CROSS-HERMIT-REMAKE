@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, july_date_card, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, build_august_week4, july_date_card, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -215,3 +215,15 @@ class SortieWeekStoryTests(unittest.TestCase):
                          [3,4,9,5,6,8,1,2,16,17])
         self.assertLess(scene['presentation_prefix'][-1]['offset'],scene['pages'][0]['source_offset'])
         self.assertEqual((ROOT/'prototype/assets/school_story/tc0803.png').read_bytes(),july_date_card(3,8)[1])
+
+    def test_august_week4_rain_date_card_and_recruits(self):
+        data = build_august_week4()
+        self.assertEqual((ROOT/'prototype/data/school_august_week4_story.json').read_bytes(),
+                         (json.dumps(data,ensure_ascii=False,indent=2)+chr(10)).encode())
+        self.assertEqual([r['offsets'][-1] for r in data['routes']], [0x4f8,0x10b0,0x4c8])
+        self.assertEqual([(s['chapter'],len(s['pages']),s['text_count']) for s in data['scenes']],
+                         [('043A',40,78),(45,39,40),(306,38,60)])
+        self.assertEqual(data['scenes'][0]['effects'][0]['target'],'data/adv/dat/Chapter045.ybc')
+        self.assertEqual([p['member_id'] for p in data['join_profiles']],[13,116])
+        self.assertEqual(len(data['join_relationships']),58)
+        self.assertEqual((ROOT/'prototype/assets/school_story/tc0804.png').read_bytes(),july_date_card(4,8)[1])

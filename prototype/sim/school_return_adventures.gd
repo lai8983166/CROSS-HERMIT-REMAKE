@@ -21,6 +21,7 @@ const SIX_SHA := "c36bf8780a7cac839f5d252553ce5c6cf1bbee9079cf2642bc4241f1c66ae2
 const TEN_SHA := "c7fd4cfc64a1db8ecac16f4b38a20659ff60eb58f859448d891ad0902c4daf07"
 
 
+const TWENTY_ONE_SHA := "dba560bf13643b6a508aa78dc124e659daa65ffd242f0de28c36e0a17b7dd591"
 const TWENTY_SHA := "b9905930c50f7dba9e38e11ac3147dc44d435dd0b3702ee2a257fa88742fb111"
 const FOURTEEN_SHA := "5ec40375187a29298bc201e49d8609b2bcee485f7133d52be1e4f85dd47b20a6"
 
@@ -32,6 +33,11 @@ const EIGHTEEN_SHA := "09aa3f8c4beed7d571f067c7145eb06a4b9e6c54b96436a8bbfdc3875
 
 
 const THIRTEEN_SHA := "89f0df1ec15347a5c01402a5f9accba74854dac155ce95f91a1be0b013ecd61d"
+
+
+static func twenty_one_rules() -> Dictionary:
+	var raw := FileAccess.get_file_as_string("res://data/school_mandatory_twenty_one.json").replace("\r\n","\n")
+	return {} if raw.sha256_text()!=TWENTY_ONE_SHA else Roles._integers(JSON.parse_string(raw))
 
 
 static func twenty_rules() -> Dictionary:
@@ -90,6 +96,7 @@ static func mandatory_rules(id: int) -> Dictionary:
 		13:return thirteen_rules()
 		14:return fourteen_rules()
 		20:return twenty_rules()
+		21:return twenty_one_rules()
 	return {}
 
 
@@ -150,7 +157,7 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if not ((month in [5,6,7] and week in range(1,6)) or (month==8 and week in [1,2])): return false
+	if not ((month in [5,6,7] and week in range(1,6)) or (month==8 and week in [1,2,3,4])): return false
 	var last := (month-5)*5+week
 	var source := rules()
 	var first := initial()
@@ -210,7 +217,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var june: bool=school["month"]==6
 	var july: bool=school["month"]==7 and school["week"] in range(1,6)
 	var required := _mandatory_id(school["month"],school["week"])
-	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week]!=[8,2]):return _failure("outside_supported_sortie_week")
+	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week] not in [[8,2],[8,3]]):return _failure("outside_supported_sortie_week")
 	if (required and (id!=required or school["adventure_gate"]!=1)) or (id==7 and required!=7):
 		return _failure("mandatory_adventure_required")
 	var options := [required] if required else ([17,18] if july and school["week"]==1 else [17] if july or june else [8,17])

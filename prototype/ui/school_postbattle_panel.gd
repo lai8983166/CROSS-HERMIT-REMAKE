@@ -92,6 +92,8 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 		heading.text=date+"　｜　课后剧情"
 	speaker.text=view["page"]["speaker"] if reading else "已返回学校" if returned else "准备返校"
 	dialogue.text=view["page"]["text"] if reading else "法娜已正式加入，可以调整四名学生的编班，并保存当前进度。" if returned else "新一周的剧情已结束。继续返回学校，保留本场战果、成长与法娜的入队记录。"
+	if phase=="post_workroom" and [school.month,school.week]==[8,4]:
+		dialogue.text="前往学校，阅读本周的返校剧情。"
 	dialogue.custom_minimum_size.y=220 if reading else 60
 	progress.text="%d / %d · Enter / Space 下一页" % [view["cursor"]+1,view["total"]] if reading else "战果、入队和周结算各执行一次"
 	previous.visible=reading;previous.disabled=view["cursor"]==0
@@ -217,12 +219,12 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[8,3]
+	var planning_only: bool=[school["month"],school["week"]]==[8,4]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="8 月第 3 周为必修冒险 21。可调整出击编班并保存。"
+		dialogue.text="8 月第 4 周可安排授课或自由训练，调整编班后可保存本周安排。"
 		progress.text="调整后可保存本周安排。"
 	elif school.month==8 and school.week==1:
 		dialogue.text="确认四个班的课程后，即可结算并进入下周剧情。"

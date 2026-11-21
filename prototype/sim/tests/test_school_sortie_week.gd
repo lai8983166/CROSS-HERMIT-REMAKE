@@ -277,7 +277,7 @@ func test_june_registration_and_compulsory_boot_after_each_may_week_five_result(
 func _june_week_two(june: Dictionary, ledger: Dictionary) -> void:
 	var story := Calendar.story(1,6)
 	assert_true(story["supported"])
-	assert_false(Calendar.story(3,8)["supported"])
+	assert_false(Calendar.story(4,8)["supported"])
 	assert_eq(story["pre_week_join_page"],81)
 	assert_eq([story["pre_week"][80]["chapter"],story["pre_week"][81]["chapter"]],[35,36])
 	assert_eq([story["week_start"][78]["chapter"],story["week_start"][79]["chapter"]],[37,38])
@@ -589,7 +589,7 @@ func _july_two_and_three(july: Dictionary, ledger: Dictionary) -> void:
 				assert_eq(bundle["school"]["adventure_gate"],1)
 				assert_eq(bundle["school"]["lecture_work_fields"],[3,8,9,0])
 				assert_eq(bundle["newly_dated_adventures"].map(func(r):return r["id"]),[9])
-				assert_false(Calendar.story(3,8)["supported"])
+				assert_false(Calendar.story(4,8)["supported"])
 				if selection==18:_july_week_four(bundle,opening)
 
 
@@ -827,6 +827,57 @@ func _august_week_three(school: Dictionary,ledger: Dictionary) -> void:
 	for key in ["student_ids","teacher_ids","derived_student_ids","course_unlocked_flags","relationships"]:
 		assert_eq(result[key],school.school[key])
 	assert_true(Return.move_member(flow.bundle,{"kind":"student","member_id":17,"target_group":1,"target_slot":2}).supported)
-	var limit:=flow.bundle.duplicate(true)
-	limit.phase="sortie_settled"
-	assert_false(Calendar.next_week(limit).supported)
+	_august_week_four(flow.bundle,flow.planning.ledger)
+
+
+func _august_week_four(school: Dictionary, ledger: Dictionary) -> void:
+	var story:=Calendar.story(3,8)
+	assert_true(story.supported)
+	if not story.supported:return
+	assert_eq([story.pre_week.size(),story.week_start,story.school_entry.size()],[79,[],38])
+	assert_eq([story.pre_week[39].chapter,story.pre_week[40].chapter,story.school_entry[0].chapter],["043A",45,306])
+	assert_eq(story.date_card.source,"data/adv/bin/tc0804.bin")
+	var before:=school.duplicate(true)
+	before.phase="sortie_settled"
+	var wrong:=before.duplicate(true)
+	wrong.school.lecture_work_fields=[3,19,20,0]
+	assert_false(Calendar.next_week(wrong).supported)
+	var advanced:=Calendar.next_week(before)
+	assert_true(advanced.supported,str(advanced.get("reason")))
+	if not advanced.supported:return
+	assert_eq([advanced.after.school.month,advanced.after.school.week],[8,4])
+	var room:=Calendar.finish_story(advanced.after)
+	assert_true(room.supported,str(room.get("reason")))
+	if not room.supported:return
+	assert_eq([room.after.flags["0x7a55f6"],room.after.flags["0x7e11a0"],room.after.adv_background],[4,0,14])
+	var worn:=Adventures.advance(ledger,21)
+	assert_false(Calendar.school_return(room.after,worn,ledger).supported)
+	var entry:=Calendar.begin_school_entry(room.after)
+	assert_true(entry.supported,str(entry.get("reason")))
+	if not entry.supported:return
+	assert_eq(entry.joined_ids,[116,13])
+	assert_eq([entry.after.school.teacher_count,entry.after.school.student_count],[5,11])
+	assert_eq([entry.after.school.teacher_ids[4],entry.after.school.student_ids[10]],[116,13])
+	assert_eq(entry.after.school.relationships.size(),16*15)
+	assert_false(Calendar.begin_school_entry(entry.after).supported)
+	var boot:=Calendar.school_return(entry.after,worn,ledger)
+	assert_true(boot.supported,str(boot.get("reason")))
+	if not boot.supported:return
+	assert_eq(boot.unlocked_work_ids,[30,33])
+	var bundle: Dictionary=boot.after
+	assert_eq([bundle.school.lecture_active,bundle.school.adventure_gate,bundle.newly_dated_adventures],[0,0,[]])
+	assert_eq([bundle.flags["0x7a55f6"],bundle.flags["0x7e11a0"],bundle.adv_background],[4,1,14])
+	assert_eq(Adventures.available(boot.ledger_after).map(func(r):return r.id),[17])
+	assert_true(bundle.school.idle_teacher_ids.has(116) and bundle.school.idle_student_ids.has(13))
+	var moved:=Return.move_member(bundle,{"kind":"teacher","member_id":116,"target_group":4})
+	assert_true(moved.supported,str(moved.get("reason")))
+	if not moved.supported:return
+	moved=Return.move_member(moved.after,{"kind":"student","member_id":13,"target_group":4,"target_slot":0})
+	assert_true(moved.supported,str(moved.get("reason")))
+	if moved.supported:
+		assert_eq(moved.after.school.derived_student_ids[4][0],13)
+		var list:=Courses.list_courses(moved.after,4)
+		assert_true(list.supported,str(list.get("reason")))
+		if list.supported:assert_true(list.courses[0].any(func(row):return row[1]==33))
+	assert_false(Calendar.story(4,8).supported)
+	assert_false(Calendar.next_week(bundle).supported)

@@ -14,14 +14,14 @@ func _save() -> Dictionary:
 
 func _mission() -> Dictionary:
 	return {"scene":20,"month":8,"week":2,"opening_total":1380217,"students":[3,16,4,8,17,6,5,2,9,1],
-		"groups":[0,0,0,1,1,2,2,2,3,3],"version":23,"trace":"mandatory_twenty_victory_trace"}
+		"groups":[0,0,0,1,1,2,2,2,3,3],"opening_pages":2,"version":23,"trace":"mandatory_twenty_victory_trace"}
 
 
 func _run_battle(trial, trace: Dictionary) -> Dictionary:
 	var session=trial.session
 	var remaining:=trace.duplicate(true)
 	var opening: Array=session._pages(1)
-	assert_eq(opening.size(),2)
+	assert_eq(opening.size(),_mission().opening_pages)
 	for page in opening:
 		assert_eq(trial.text_label.text,"\n".join(page.map(func(line):return line.text)))
 		assert_eq(remaining.commands.pop_front(),[0,1,1])
@@ -31,10 +31,11 @@ func _run_battle(trial, trace: Dictionary) -> Dictionary:
 	trial._refresh()
 	var ending: Array=session._pages(session.ending_sub)
 	assert_false(ending.is_empty())
+	if _mission().has("ending_pages"):assert_eq(ending.size(),_mission().ending_pages)
 	for i in range(ending.size()):
 		assert_true(trial.text_label.text.begins_with("\n".join(ending[i].map(func(line):return line.text))))
 		if i+1<ending.size():trial.next_page.pressed.emit()
-	print("T0020 opening pages ",opening.size()," ending sub ",session.ending_sub," pages ",ending.size())
+	print("T%04d opening pages " % session.scene_id,opening.size()," ending sub ",session.ending_sub," pages ",ending.size())
 	return replay
 
 

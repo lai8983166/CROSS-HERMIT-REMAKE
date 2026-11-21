@@ -8,6 +8,7 @@ const CHAPTER_SHA := "dfbdb1dc1f197f2d198a9d6b71e68c12d8f8f7fb72d1b2a4328f8f164a
 const CHAPTER029_SHA := "9c6eb47adb70624b2f6b7f921bdf2aa8fa217959452430906252e5ef8715a344"
 const CHAPTER030B_SHA := "587758031aa9f3c040bf895a58072b2822bb1bb4f2f3f37b4a7ee8e0c4657ed0"
 const CH003_SHA := "5c24ef18116b91cf6b31601ce0e0e6389f01eb2befc2fb0eb9b8f2fd8a6c805b"
+const CHAPTER306_SHA := "dba0aad949845639934f4ae16f2b2b6af34d3fafc26a32e2e7d92ff6f6824df7"
 const TEACHERS := [117, 118]
 const ORIGIN_SHA := "d06bdeb2e5951237481a121d0ccec4b46db3e3f9c5509622d19a5b9444a08f76"
 
@@ -163,6 +164,7 @@ static func rate(before: Dictionary, rules: Dictionary) -> Dictionary:
 static func _validate(before: Dictionary, rules: Dictionary) -> String:
 	var teacher_domain := _teacher_rule_domain(rules)
 	var chapter304: bool=rules.get("chapter304_students",false)
+	var chapter306: bool=rules.get("chapter306_students",false)
 	if teacher_domain.is_empty():
 		return "invalid_teacher_group_rules"
 	if not Week._vector(before.get("availability"), 121, 0, 1) \
@@ -181,7 +183,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			if index >= int(before[prefix + "_count"]):
 				if int(identity) != -1:
 					return "invalid_school_roster_tail"
-			elif not (_scoped_teacher(identity,teacher_domain) if prefix == "teacher" else _student(identity,chapter304)) or present.has(int(identity)):
+			elif not (_scoped_teacher(identity,teacher_domain) if prefix == "teacher" else _student(identity,chapter304,chapter306)) or present.has(int(identity)):
 				return "unsupported_or_duplicate_school_identity"
 			else:
 				present[int(identity)] = true
@@ -201,7 +203,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 	if chapter304:
 		for row in before["derived_student_ids"]:
 			for id in row:
-				if id>12 and not _student(id,true):return "invalid_school_derived_buffers"
+				if id>12 and not _student(id,true,chapter306):return "invalid_school_derived_buffers"
 	for id in before["derived_teacher_ids"]:
 		if int(id) != -1 and not _scoped_teacher(id,teacher_domain):
 			return "invalid_derived_teacher"
@@ -209,7 +211,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		if not before.get(pair[0]) is Array or before[pair[0]].size() > 20:
 			return "invalid_school_waiting_buffer"
 		for identity in before[pair[0]]:
-			if not (_scoped_teacher(identity,teacher_domain) if pair[1] else _student(identity,chapter304)):
+			if not (_scoped_teacher(identity,teacher_domain) if pair[1] else _student(identity,chapter304,chapter306)):
 				return "invalid_school_waiting_identity"
 	var teachers := {}
 	for group in range(5):
@@ -224,13 +226,13 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			return "invalid_school_activity_mode"
 		for slot in range(4):
 			var identity := _word(raw, base + 16 + slot * 2)
-			if identity != -1 and not _student(identity,chapter304):
+			if identity != -1 and not _student(identity,chapter304,chapter306):
 				return "unsupported_group_student"
 	if not before.get("relationships") is Array:
 		return "missing_school_relationships"
 	var pairs := {}
 	for row in before["relationships"]:
-		if not row is Dictionary or not _scoped_identity(row.get("from"),teacher_domain,chapter304) or not _scoped_identity(row.get("to"),teacher_domain,chapter304) \
+		if not row is Dictionary or not _scoped_identity(row.get("from"),teacher_domain,chapter304,chapter306) or not _scoped_identity(row.get("to"),teacher_domain,chapter304,chapter306) \
 				or row["from"] == row["to"] or not Week._bounded(row.get("value"), 1, 100):
 			return "invalid_school_relationship"
 		var key := _pair(row["from"], row["to"])
@@ -244,6 +246,8 @@ static func _teacher_rule_domain(rules: Dictionary) -> Array:
 	if rules.get("source_image_sha256") != SOURCE_SHA or rules.get("relationship_thresholds") != [16,31,46,61,76,91]:
 		return []
 	if rules.has("teacher_scope"):
+		if rules["teacher_scope"] == "chapter306" and rules.get("chapter_sha256")==CHAPTER306_SHA and rules.get("origin_fields_sha256")==ORIGIN_SHA:
+			return [101,110,115,118,116]
 		if rules["teacher_scope"] == "ch003_week_four" and rules.get("chapter_sha256")==CH003_SHA and rules.get("origin_fields_sha256")==ORIGIN_SHA:
 			return [101,110,115,118]
 		if rules["teacher_scope"] == "chapter030b" and rules.get("chapter_sha256")==CHAPTER030B_SHA and rules.get("origin_fields_sha256")==ORIGIN_SHA:
@@ -264,12 +268,12 @@ static func _scoped_teacher(identity: Variant, domain: Array) -> bool:
 	return Week._integer(identity) and int(identity) in domain
 
 
-static func _student(identity: Variant, chapter304: bool) -> bool:
-	return _domain(identity,false) or (chapter304 and Week._integer(identity) and identity in [16,17])
+static func _student(identity: Variant, chapter304: bool, chapter306: bool=false) -> bool:
+	return _domain(identity,false) or (chapter304 and Week._integer(identity) and identity in [16,17]) or (chapter306 and Week._integer(identity) and identity==13)
 
 
-static func _scoped_identity(identity: Variant, domain: Array, chapter304: bool=false) -> bool:
-	return _student(identity,chapter304) or _scoped_teacher(identity,domain)
+static func _scoped_identity(identity: Variant, domain: Array, chapter304: bool=false, chapter306: bool=false) -> bool:
+	return _student(identity,chapter304,chapter306) or _scoped_teacher(identity,domain)
 
 
 static func _available(snapshot: Dictionary, identity: int) -> bool:

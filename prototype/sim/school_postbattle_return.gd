@@ -19,6 +19,7 @@ const JUNE_ONE := ["res://data/school_june_week1_story.json","59bb89bf67f2ec0321
 const JUNE_FIVE := ["res://data/school_june_week5_story.json","1ff332986c340d8221e8dd0ae5d0bc1db7d216ebdc54dbcde883610fcdf4dedb"]
 const JUNE_TWO := ["res://data/school_june_week2_story.json","6f4d9e85a6999e7f93bacb5c60b46a46052fecd3dd76601f9bf83beba83c061a"]
 const JULY_FIVE := ["res://data/school_july_week5_story.json","659ec34f5bc053cb8feb10c7e3e6fbaa2d91bb2d4327e64482a35bf76f3aaa99"]
+const AUGUST_FOUR := ["res://data/school_august_week4_story.json","ad68ccde061718a14e0c26ece14fb92af5a28738515b612984c2709b5703abff"]
 const SOURCES := {
 	"candidate":["res://data/school_postbattle_return_rules.json","1775635836be11e1c038437bb7043a2b2989bdccb880d8882fcda06d41fdb854"],
 	"week":["res://data/week_settlement_evidence.json","5bdb406c2125c610c75942a9e589a9b427cdbcd5d97b0cbf35c014b1d793aedf"],
@@ -31,7 +32,11 @@ const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_status
 static func group_rules(school: Dictionary) -> Dictionary:
 	var rules := Origin.group_rules()
 	if _has_chapter304(school):rules["chapter304_students"]=true
-	if _has_four_teachers(school):
+	if _has_chapter306(school):
+		rules["chapter306_students"]=true
+		rules["teacher_scope"]="chapter306"
+		rules["chapter_sha256"]=Groups.CHAPTER306_SHA
+	elif _has_four_teachers(school):
 		rules["teacher_scope"]="ch003_week_four"
 		rules["chapter_sha256"]=Groups.CH003_SHA
 	elif _has_later_teachers(school) and school.get("teacher_count")==3:
@@ -43,18 +48,23 @@ static func group_rules(school: Dictionary) -> Dictionary:
 	return rules
 
 
+static func _has_chapter306(school: Dictionary) -> bool:
+	return school.get("month")==8 and school.get("week")==4 and school.get("student_count")==11 and school.get("teacher_count")==5
+
+
 static func _has_chapter304(school: Dictionary) -> bool:
-	return ((school.get("month")==7 and school.get("week") in [4,5]) or (school.get("month")==8 and school.get("week") in [1,2,3])) and school.get("student_count")==10
+	return _has_chapter306(school) or ((school.get("month")==7 and school.get("week") in [4,5]) or (school.get("month")==8 and school.get("week") in [1,2,3,4])) and school.get("student_count")==10
 
 
 static func sort_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
 	var result: Dictionary=rules["school"]["sort_rules"].duplicate()
 	if _has_chapter304(school):result["chapter304_students"]=true
+	if _has_chapter306(school):result["chapter306_students"]=true
 	return result
 
 
 static func _has_four_teachers(school: Dictionary) -> bool:
-	return (school.get("month")==6 and school.get("week")==5) or (school.get("month")==7 and school.get("week") in [1,2,3,4,5]) or (school.get("month")==8 and school.get("week") in [1,2,3])
+	return (school.get("month")==6 and school.get("week")==5) or (school.get("month")==7 and school.get("week") in [1,2,3,4,5]) or (school.get("month")==8 and school.get("week") in [1,2,3,4])
 
 
 static func _has_later_teachers(school: Dictionary) -> bool:
@@ -121,12 +131,7 @@ static func join_ch003_teacher(before: Dictionary) -> Dictionary:
 	var after:=before.duplicate(true)
 	var school: Dictionary=after["school"]
 	if school["availability"][118]!=0:return Origin.failure("outside_ch003_teacher_join")
-	var index: int=school["teacher_count"]
-	school["teacher_ids"][index]=118
-	school["raw_teacher_ids"][index]=118
-	school["availability"][118]=1
-	school["teacher_count"]+=1
-	school["member_profiles"].append(source["join_profiles"][0].duplicate(true))
+	_append_teacher(school,source["join_profiles"][0])
 	school["relationships"].append_array(source["join_relationships"].duplicate(true))
 	return _result(after,"ch003_teacher_joined",{"joined_ids":[118]})
 
@@ -160,6 +165,23 @@ static func join_chapter304(before: Dictionary, rules: Dictionary) -> Dictionary
 	return _result(after,"chapter304_joined",{"joined_ids":[16,17]})
 
 
+static func join_chapter306(before: Dictionary, rules: Dictionary) -> Dictionary:
+	if rules.is_empty():return Origin.failure("invalid_join_source")
+	if before.get("phase")!="sortie_workroom":return Origin.failure("chapter306_requires_workroom")
+	var reason := _validate(before,[3,4,9,5,8,6,1,2,16,17],8,4,rules)
+	if not reason.is_empty():return Origin.failure(reason)
+	var raw := FileAccess.get_file_as_string(AUGUST_FOUR[0]).replace("\r\n","\n")
+	if raw.sha256_text()!=AUGUST_FOUR[1]:return Origin.failure("invalid_join_source")
+	var source: Dictionary=Roles._integers(JSON.parse_string(raw))
+	var after:=before.duplicate(true)
+	var school: Dictionary=after["school"]
+	_append_teacher(school,source["join_profiles"][1])
+	_append_student(after,source,rules)
+	school["relationships"].append_array(source["join_relationships"].duplicate(true))
+	after["phase"]="chapter306_joined"
+	return _result(after,"chapter306_joined",{"joined_ids":[116,13]})
+
+
 static func join_chapter030b(before: Dictionary, rules: Dictionary) -> Dictionary:
 	if before.get("phase")!="sortie_settled":
 		return Origin.failure("chapter030b_requires_settled_sortie")
@@ -177,15 +199,20 @@ static func _join_pair(before: Dictionary, rules: Dictionary, resource: Array, s
 	var after := before.duplicate(true)
 	_append_student(after,source,rules)
 	var school: Dictionary = after["school"]
-	var index: int = school["teacher_count"]
-	school["teacher_ids"][index]=teacher
-	school["raw_teacher_ids"][index]=teacher
-	school["teacher_count"]+=1
-	school["availability"][teacher]=1
-	school["member_profiles"].append(source["join_profiles"][1].duplicate(true))
+	_append_teacher(school,source["join_profiles"][1])
 	school["relationships"].append_array(source["join_relationships"].duplicate(true))
 	if teacher==115: after["phase"]=status
 	return _result(after,status,{"joined_ids":[source["candidate"]["character_id"],teacher]})
+
+
+static func _append_teacher(school: Dictionary, profile: Dictionary) -> void:
+	var id: int=profile["member_id"]
+	var index: int=school["teacher_count"]
+	school["teacher_ids"][index]=id
+	school["raw_teacher_ids"][index]=id
+	school["availability"][id]=1
+	school["teacher_count"]+=1
+	school["member_profiles"].append(profile.duplicate(true))
 
 
 static func _append_student(after: Dictionary, source: Dictionary, rules: Dictionary) -> void:
@@ -281,7 +308,9 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
-	if (school.get("month")==7 and school["week"]==5) or (school.get("month")==8 and school["week"] in [1,2,3]):
+	if school.get("month")==8 and school["week"]==4 and bundle.get("phase") not in ["sortie_week_advanced","sortie_workroom"]:
+		return _validate(bundle,[3,4,9,5,8,6,1,2,16,17,13],8,4,rules)
+	if (school.get("month")==7 and school["week"]==5) or (school.get("month")==8 and school["week"] in [1,2,3,4]):
 		return _validate(bundle,[3,4,9,5,8,6,1,2,16,17],school.month,school.week,rules)
 	if school.get("month")==7 and school["week"] in [1,2,3,4]:
 		return _validate(bundle,[3,4,9,5,8,6,1,2],7,school["week"],rules)
@@ -404,6 +433,7 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 	if ids.has(8): teachers.append(110)
 	if ids.has(6): teachers.append(115)
 	if _has_four_teachers(school): teachers.append(118)
+	if ids.has(13):teachers.append(116)
 	var reason := Groups._validate(school,group_rules(school))
 	if not reason.is_empty(): return reason
 	if school.get("month")!=month or school.get("week")!=week or school["student_ids"].slice(0,school["student_count"])!=ids \
@@ -421,6 +451,7 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 			var identity: int=teachers[index]
 			var expected_sha := "bc3a30a04ca4e32a3d40c50f9beb18d65354006d9246e43858049bd9cd84cabc" if identity==110 else "5bcf15751c390f22d43e7d3c7e88259f009e523cfdb93f937fb3a88e17a663c7"
 			if identity==118:expected_sha="2b6766966dc7f55df460999262331520e52be33433117109a2d8ff8aeffdcc04"
+			if identity==116:expected_sha="b986d2e72edf00de0185aa5422ccc526e113ebb4b7ebff67380320a289177eeb"
 			if (not teacher is Dictionary or teacher.get("member_id")!=identity or teacher.get("job")!=1
 					or teacher.get("level_50")!=0 or not Week._vector(teacher.get("attributes"),7,0,0)
 					or teacher.get("storage_kind")!="static_teacher_template" or teacher.get("template_sha256")!=expected_sha):

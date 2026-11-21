@@ -119,6 +119,10 @@ func execute(command: Dictionary) -> Dictionary:
 		if phase=="returned_school": return {"supported":true,"status":"duplicate"}
 		if phase!="post_workroom": return _failure("workroom_not_reached")
 		if _school_pages.is_empty(): return _return_to_school()
+		if [bundle.school.month,bundle.school.week]==[8,4]:
+			var joined := SortieWeek.begin_school_entry(bundle)
+			if not joined.supported:return joined
+			bundle=joined.after
 		pages=_school_pages;cursor=0;phase="school_entry_story";revision+=1
 		return {"supported":true}
 	if op not in ["post_next","post_prev","post_skip"] or phase not in ["post_story","new_week_story","school_entry_story"]:

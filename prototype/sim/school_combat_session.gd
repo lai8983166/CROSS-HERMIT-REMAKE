@@ -325,6 +325,12 @@ func _visual(unit: Dictionary, action: String) -> void:
 	super._visual(unit,action)
 
 
+func _guard_target(unit: Dictionary) -> int:
+	var candidates := _allied_targets().filter(func(p): return p["limits"]["hp"] > 0)
+	candidates.sort_custom(func(a,b): return _distance(unit,a) < _distance(unit,b))
+	return unit_key(candidates[0]) if not candidates.is_empty() else -1
+
+
 func _check_before_actions() -> bool:
 	return _detect_trial_end()
 
@@ -349,9 +355,7 @@ func tick() -> void:
 		var identity := unit_key(unit)
 		if phases.has(identity): continue
 		if unit["category"] == 5:
-			var candidates := _allied_targets().filter(func(p): return p["limits"]["hp"] > 0)
-			candidates.sort_custom(func(a,b): return _distance(unit,a) < _distance(unit,b))
-			unit["target"] = unit_key(candidates[0]) if not candidates.is_empty() else -1
+			unit["target"] = _guard_target(unit)
 		var target := find_unit(unit["target"])
 		if not _admitted(unit,target):
 			unit["target"] = -1; continue
