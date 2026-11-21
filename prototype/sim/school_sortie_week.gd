@@ -1,5 +1,5 @@
 extends RefCounted
-## May and June work results through August week 4, CH003, state 7, CH001, workroom and school boot.
+## May and June work results through August week 5, CH003, state 7, CH001, workroom and school boot.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
@@ -28,8 +28,10 @@ const JULY_FIVE_SHA := Return.JULY_FIVE[1]
 const AUGUST_ONE_SHA := "4cbdcbbef3484723d4fb0ada0795d743f37a569cb288295905244b2ce27695bd"
 const AUGUST_TWO_SHA := "123be3bb046d9728c94c3de377d44b3c960ecc3aebdd143988b21e4b1967d1c6"
 const AUGUST_THREE_SHA := "e84464a033a1b6034cdda0179dca8665cde480f7a683f3c28faf983b35c7af34"
+const AUGUST_FIVE_SHA := "5de7224184119f6e4732cfebebfb93cea933f768f50b958a25802f92342105c7"
 const AUGUST_STORIES := [["res://data/school_august_week2_story.json",AUGUST_TWO_SHA],
-	["res://data/school_august_week3_story.json",AUGUST_THREE_SHA],Return.AUGUST_FOUR]
+	["res://data/school_august_week3_story.json",AUGUST_THREE_SHA],Return.AUGUST_FOUR,
+	["res://data/school_august_week5_story.json",AUGUST_FIVE_SHA]]
 const JULY_STORIES := [["res://data/school_july_week2_story.json",JULY_TWO_SHA],
 	["res://data/school_july_week3_story.json",JULY_THREE_SHA],["res://data/school_july_week4_story.json",JULY_FOUR_SHA],Return.JULY_FIVE,
 	["res://data/school_august_week1_story.json",AUGUST_ONE_SHA]]
@@ -59,6 +61,9 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 			result["pre_week"]=scenes[0]["pages"]+scenes[1]["pages"]
 			result["week_start"]=[]
 			result["school_entry"]=scenes[2]["pages"]
+		if month==8 and start_week==4:
+			result["pre_week"]=scenes[0]["pages"]
+			result["week_start"]=scenes[1]["pages"]+scenes[2]["pages"]
 		if data.has("date_card"):
 			var card: Dictionary=data["date_card"]
 			if not FileAccess.file_exists(card["image"]) or FileAccess.get_sha256(card["image"])!=card["png_sha256"]:
@@ -147,9 +152,9 @@ static func finish_story(before: Dictionary) -> Dictionary:
 		after["flags"]["0x7e11a0"]=0 if week==2 else 1
 		after["adv_background"]=2 if week==2 else 122 if week==5 else 8
 	if after["school"]["month"]==8:
-		after["flags"]["0x7a55f6"]=[9,5,12,4][week-1]
+		after["flags"]["0x7a55f6"]=[9,5,12,4,3][week-1]
 		after["flags"]["0x7e11a0"]=0 if week in [1,4] else 1
-		after["adv_background"]=14 if week==4 else 122
+		after["adv_background"]=14 if week in [4,5] else 122
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -229,7 +234,7 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 		after["flags"]["0x7a55f6"]=4
 		after["flags"]["0x7e11a0"]=1
 	after["newly_dated_adventures"] = []
-	if required_id!=0 or month==7:
+	if required_id!=0 or month==7 or [month,week]==[8,5]:
 		for rule in rules["boot"]["adventures"]:
 			if rule["present"] and rule["gate"] and rule["kind"] and rule["month"]==month and rule["week"]==week:
 				after["newly_dated_adventures"].append(rule.duplicate(true))
@@ -268,10 +273,13 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 				return "outside_ch003_teacher_removal"
 		elif phase not in ["sortie_week_advanced","sortie_workroom"]:
 			return "outside_sortie_week"
-	var august: bool = school.get("month")==8 and school.get("week") in range(1,first_week+3)
+	var august: bool = school.get("month")==8 and school.get("week") in range(1,first_week+4)
 	if august and first_week==1:
 		if school["week"]==1 and (phase!="courses_confirmed" or school.get("adventure_gate")!=0):
 			return "outside_august_course_return"
+		if school.week==4:
+			if school.adventure_gate!=0 or (phase=="sortie_settled" and (school.lecture_active!=1 or school.lecture_work_fields!=[1,0,17,0])):
+				return "outside_august_four_work"
 		if school["week"] in [2,3]:
 			var id := 18+int(school["week"])
 			if phase!="sortie_settled" or school.get("adventure_gate")!=1 or school.get("lecture_active")!=1 or school.get("lecture_work_fields")!=[3,id-1,id,0]:

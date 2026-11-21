@@ -3,8 +3,9 @@ import json
 import unittest
 
 from tools.school_course_settlement_emulation import (
-    report, fixture, source_rules, runtime_rules, may_five_lessons, june_five_lessons, CourseSettlementEmulator, CHAR, STRIDE)
+    report, fixture, source_rules, runtime_rules, may_five_lessons, june_five_lessons, august_four_lessons, CourseSettlementEmulator, CHAR, STRIDE)
 from tools.tactics_exit_emulation import ROOT, report_text
+from tools.school_course_unlock_emulation import CourseUnlockEmulator
 
 
 class JuneCourseTableTests(unittest.TestCase):
@@ -20,6 +21,28 @@ class JuneCourseTableTests(unittest.TestCase):
         self.assertEqual(rows['26']['package'],[0]*7+[50000])
         self.assertEqual(rows['19']['package'],rows['20']['package'])
         self.assertNotEqual(rows['19']['learning_rates'],rows['20']['learning_rates'])
+
+
+class AugustCourseTableTests(unittest.TestCase):
+    def test_august_four_rows_match_original_teacher_masks_and_lesson_data(self):
+        rules = json.loads((ROOT/'prototype/data/new_game_school_rules.json').read_bytes())
+        dated = [(row['work_id'], [101+i for i,enabled in enumerate(row['teacher_mask']) if enabled])
+                 for row in rules['course_rules']['templates'] if (row['month'],row['week']) == (8,4)]
+        self.assertEqual([(work,teachers) for work,teachers in dated if set(teachers) & {101,110,115,118,116}],
+                         [(30,[118]),(33,[116])])
+        rows = json.loads((ROOT/'prototype/data/school_august_four_courses.json').read_bytes())
+        self.assertEqual(rows,august_four_lessons())
+
+    def test_week_four_adds_exact_original_rows_for_two_teachers(self):
+        original = CourseUnlockEmulator(8,3)
+        original.unlock()
+        prior = original.snapshot()['course_buffers']
+        original.write(0x7A5290,4,'h')
+        original.unlock()
+        current = original.snapshot()['course_buffers']
+        for teacher, earlier, unlocked in [(116,[],[33]), (118,[29,28],[30,29,28])]:
+            self.assertEqual([row[3] for row in prior[teacher-101]],earlier)
+            self.assertEqual([row[3] for row in current[teacher-101]],unlocked)
 
 
 class CourseSettlementTests(unittest.TestCase):

@@ -66,6 +66,11 @@ def june_five_lessons():
     return _lesson_rows((19,20,26,28,29))
 
 
+def august_four_lessons():
+    """New source rows for teachers 118 and 116 in August week four."""
+    return _lesson_rows((30,33))
+
+
 def _lesson_rows(course_ids):
     image = SOURCE.read_bytes()
     if hashlib.sha256(image).hexdigest() != SOURCE_SHA256:
@@ -92,6 +97,8 @@ def runtime_rules():
 
 
 class CourseSettlementEmulator(CoursePlanningEmulator):
+    participant_ids = IDS
+
     def __init__(self, *, seed=4660):
         super().__init__()
         if type(seed) is not int or not 0 <= seed <= 0x7fffffff:
@@ -115,7 +122,7 @@ class CourseSettlementEmulator(CoursePlanningEmulator):
             allowed = [(TLS,TLS+0x1000),(0x7E1180,0x7E11A0),(0x7A511C,0x7A5120),
                        (TASK+0x34,TASK+0x38),(TASK+0x38,TASK+0xC30),
                        (TASK+0x136E,TASK+0x1430)]
-            for identity in IDS:
+            for identity in self.participant_ids:
                 base = CHAR+identity*STRIDE
                 allowed += [(base+0x50,base+0x51),(PACKAGE_BASE+identity*PACKAGE_STRIDE+0x20,
                             PACKAGE_BASE+identity*PACKAGE_STRIDE+0x24)]
@@ -147,7 +154,7 @@ class CourseSettlementEmulator(CoursePlanningEmulator):
 
     def growth_records(self):
         records = []
-        for identity in IDS:
+        for identity in self.participant_ids:
             base,pkg = CHAR+identity*STRIDE,PACKAGE_BASE+identity*PACKAGE_STRIDE
             records.append({'character_id':identity,'job':self.read(base+6,'h'),
                 'attributes':[self.read(base+0xC+8*k,'B') for k in range(7)],

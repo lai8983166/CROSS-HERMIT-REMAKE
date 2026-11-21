@@ -120,7 +120,8 @@ func _refresh() -> void:
 				member_buttons[session.find_unit(identity)["character_id"]].set_pressed_no_signal(session.selected_id==identity)
 	if text_panel==null or not session.ready:return
 	var ending: Dictionary=session.ending_snapshot();var phase: String=ending["phase"]
-	summary_navigation.visible=session.scene_id in [4,6,7,9,10,13,14,18,20,21] and phase=="summary" and ending["text"].size()>1
+	var paged_summary: bool = session.scene_id in [4,6,7,9,10,13,14,17,18,20,21]
+	summary_navigation.visible=paged_summary and phase=="summary" and ending["text"].size()>1
 	spell_choice.visible=session.scene_id in [4,6,9,10,13,14,18,20,21]
 	for option in range(1,spell_choice.item_count):
 		spell_choice.set_item_disabled(option,not session.can_cast_spell(session.selected_id,spell_choice.get_item_id(option)))
@@ -141,7 +142,7 @@ func _refresh() -> void:
 	elif phase=="summary":
 		var lines := []
 		var pages: Array=ending["text"]
-		if session.scene_id in [4,6,7,9,10,13,14,18,20,21] and not pages.is_empty():
+		if paged_summary and not pages.is_empty():
 			summary_page=clampi(summary_page,0,pages.size()-1)
 			previous_page.disabled=summary_page==0
 			next_page.disabled=summary_page+1==pages.size()

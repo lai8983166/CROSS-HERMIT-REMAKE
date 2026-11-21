@@ -219,12 +219,12 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[8,4]
+	var planning_only: bool=[school["month"],school["week"]]==[8,5]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="8 月第 4 周可安排授课或自由训练，调整编班后可保存本周安排。"
+		dialogue.text="8 月第 5 周可重新排课，也可选择本周开放的冒险。"
 		progress.text="调整后可保存本周安排。"
 	elif school.month==8 and school.week==1:
 		dialogue.text="确认四个班的课程后，即可结算并进入下周剧情。"
@@ -281,6 +281,8 @@ func _show_plan(view: Dictionary) -> void:
 	depart.disabled=not prepared["supported"]
 	var ready := _label(16)
 	ready.text="出击队伍："+_member_names(prepared["prepared"]["rounds"][0]["student_ids"]) if prepared["supported"] else "出击前请选择冒险，并将有学生的教师班设为冒险。"
+	if prepared.get("reason")=="unsupported_training_student_13":
+		ready.text="攸莉目前可上课或待命。调整她的安排后即可出击训练。"
 	plans.add_child(ready)
 
 

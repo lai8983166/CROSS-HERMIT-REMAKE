@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, build_august_week4, july_date_card, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, build_august_week4, build_august_week5, july_date_card, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -227,3 +227,14 @@ class SortieWeekStoryTests(unittest.TestCase):
         self.assertEqual([p['member_id'] for p in data['join_profiles']],[13,116])
         self.assertEqual(len(data['join_relationships']),58)
         self.assertEqual((ROOT/'prototype/assets/school_story/tc0804.png').read_bytes(),july_date_card(4,8)[1])
+
+    def test_august_five_both_work_routes_and_chapter235(self):
+        data = build_august_week5()
+        self.assertEqual((ROOT/'prototype/data/school_august_week5_story.json').read_bytes(),
+                         (json.dumps(data,ensure_ascii=False,indent=2)+chr(10)).encode())
+        self.assertEqual([(s['chapter'],len(s['pages']),s['text_count']) for s in data['scenes']],
+                         [(46,26,45),(47,24,42),(235,16,28)])
+        self.assertEqual(data['scenes'][1]['effects'][0]['target'],'data/adv/dat/Chapter235.ybc')
+        for scene in data['scenes']:
+            self.assertEqual([i for p in scene['pages'] for i in p['text_indices']],list(range(scene['text_count'])))
+        self.assertEqual((ROOT/'prototype/assets/school_story/tc0805.png').read_bytes(),july_date_card(5,8)[1])

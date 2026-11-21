@@ -24,11 +24,6 @@ func _planned(work := 1, all_four := true) -> Dictionary:
 func test_june_five_lessons_match_original_growth_and_skill_draws() -> void:
 	# Original 4C0400, one independent call per new dated course. The common
 	# input is student 3 from the first existing settlement case, coefficient 60.
-	var data: Dictionary=Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_settlement_evidence_v1.json")))
-	var case: Dictionary=data["cases"][0]
-	var rules := Courses.lesson_rules(6)
-	assert_false(rules.is_empty())
-	if rules.is_empty():return
 	var cases := [
 		[8,[0,2750,0,0,2750,0,2750,0],[15,14,27,35,61,29,67],[]],
 		[19,[0,0,6600,0,0,1650,0,0],[15,13,28,35,61,29,67],[]],
@@ -36,6 +31,22 @@ func test_june_five_lessons_match_original_growth_and_skill_draws() -> void:
 		[26,[0,0,0,0,0,0,0,27500],[15,13,27,35,61,29,67],[8]],
 		[28,[1650,1650,1650,1650,1650,1650,1650,1650],[15,13,27,35,61,29,67],[8]],
 		[29,[0,0,0,0,30250,0,0,0],[15,13,27,35,62,29,67],[33]]]
+	_assert_original_lesson_vectors(Courses.lesson_rules(6),cases)
+
+
+func test_august_four_lessons_match_original_growth_and_skill_draws() -> void:
+	assert_eq(Courses.lesson_rules(8,3)["training"].size(),30)
+	var cases := [
+		[30,[0,0,0,0,8250,0,1650,0],[15,13,27,35,61,29,67],[64]],
+		[33,[1100,1100,1100,1100,1100,1100,1100,1100],[15,13,27,35,61,29,67],[8]]]
+	_assert_original_lesson_vectors(Courses.lesson_rules(8,4),cases)
+
+
+func _assert_original_lesson_vectors(rules: Dictionary, cases: Array) -> void:
+	var data: Dictionary=Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_settlement_evidence_v1.json")))
+	var case: Dictionary=data["cases"][0]
+	assert_false(rules.is_empty())
+	if rules.is_empty():return
 	for row in cases:
 		var bundle := {"growth":[case["before_records"][0]],"school":{"difficulty":case["before"]["difficulty"],"global_total_511c":0,"member_profiles":[]}}
 		var result := Courses.apply_lessons(bundle,[{"character_id":3,"training_id":row[0],"coefficient":60}],rules,4660)

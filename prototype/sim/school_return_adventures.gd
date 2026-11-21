@@ -157,7 +157,7 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if not ((month in [5,6,7] and week in range(1,6)) or (month==8 and week in [1,2,3,4])): return false
+	if not ((month in [5,6,7] and week in range(1,6)) or (month==8 and week in range(1,6))): return false
 	var last := (month-5)*5+week
 	var source := rules()
 	var first := initial()
@@ -198,8 +198,8 @@ static func select(bundle: Dictionary, ledger: Dictionary, id: int) -> Dictionar
 		return _failure("adventure_not_available")
 	if bundle["school"]["adventure_gate"] != 0 and id != mandatory:
 		return _failure("mandatory_adventure_required")
-	if id==18 and date!=[7,1]:return _failure("adventure_not_available")
-	if id not in [4,6,7,8,9,10,13,14,17,18,20,21] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
+	if (id==18 and date!=[7,1]) or (id==35 and date!=[8,5]):return _failure("adventure_not_available")
+	if id not in [4,6,7,8,9,10,13,14,17,18,20,21,35] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
 	var row: Dictionary=ledger["entries"].filter(func(r):return r["id"]==id)[0]
 	var index := available(ledger).filter(func(r):return r["category"]==row["metadata"][2]).find(available(ledger).filter(func(r):return r["id"]==id)[0])
 	var after := bundle.duplicate(true)
@@ -217,10 +217,10 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var june: bool=school["month"]==6
 	var july: bool=school["month"]==7 and school["week"] in range(1,6)
 	var required := _mandatory_id(school["month"],school["week"])
-	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week] not in [[8,2],[8,3]]):return _failure("outside_supported_sortie_week")
+	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week] not in [[8,2],[8,3],[8,4]]):return _failure("outside_supported_sortie_week")
 	if (required and (id!=required or school["adventure_gate"]!=1)) or (id==7 and required!=7):
 		return _failure("mandatory_adventure_required")
-	var options := [required] if required else ([17,18] if july and school["week"]==1 else [17] if july or june else [8,17])
+	var options := [required] if required else ([17,18] if july and school["week"]==1 else [17] if july or june or school.month==8 else [8,17])
 	if school["lecture_active"]!=1 or id not in options or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("select_available_adventure")
 	var rated := Groups.rate(school,Return.group_rules(school))
 	if not rated["supported"]:return rated
@@ -233,6 +233,8 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 		for slot in range(4):
 			var student := Groups._word(school["group_raw_bytes"],group*28+16+slot*2)
 			if student<0:continue
+			# Student 13 can attend class, but her field animations are not in the scene 17 catalog.
+			if school.month==8 and school.week==4 and student==13:return _failure("unsupported_training_student_13")
 			students.append(student);groups.append(group)
 	if students.is_empty():return _failure("no_adventure_class")
 	var specs: Array=source["adventures"][id-1]["rounds"]

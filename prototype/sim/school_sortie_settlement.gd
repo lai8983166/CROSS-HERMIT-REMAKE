@@ -20,7 +20,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var week: int=school["week"]
 	var june: bool=school["month"]==6
 	var july: bool=school["month"]==7
-	var august: bool=school.month==8 and week in [2,3]
+	var august: bool=school.month==8 and week in [2,3,4]
 	var ledger := opening_ledger if june or july or august or week>=3 else Adventures.initial()
 	if school["month"]==5 and week==2:
 		var previous_id: Variant=previous.get("scene_id",0)
@@ -81,7 +81,8 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		if august or (july and week>=2): previous_tasks.append(18)
 		if august or (july and week>=4): previous_tasks.append(9)
 		if august or (july and week==5): previous_tasks.append(14)
-		if august and week==3: previous_tasks.append(20)
+		if august and week>=3: previous_tasks.append(20)
+		if august and week==4: previous_tasks.append(21)
 		for task in task_grades:
 			if task not in previous_tasks or not Roles._bounded(task_grades[task],1,5):
 				return Origin.failure("invalid_previous_task_grade")
@@ -89,7 +90,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var score := Battle.Score.calculate({"task_id":scene_id,"mode":0,"cap_mode":0,
 		"result_selector":facts.get("result_selector"),"time_key":facts["time_key"],
 		"unit_key":facts.get("unit_condition_key"),"characters":characters,"initial_grade":initial_grade,
-		"initial_total":bundle["school"]["global_total_511c"]},rules["score"],week==5,july or (june and week==5),july and week==5)
+		"initial_total":bundle["school"]["global_total_511c"]},rules["score"],week==5,july or (june and week==5),(july and week==5) or (august and week==4))
 	if not score["supported"]: return score
 	var loot := Battle.Loot._loot(bundle["item_flags"],score["grade_index"],facts,rules)
 	for i in range(records.size()):
@@ -106,12 +107,12 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		classes.append({"students":members,"teacher":teacher,"work_fields":prepared["class_ratings"][group]["work_fields"],"activity":2})
 	var lessons := []
 	var lesson_rules := {}
-	if week==5 or july:
+	if week==5 or july or (august and week==4):
 		var plan := Courses._plan(school,Courses._rules(),true)
 		if not plan["supported"]:return plan
 		classes=plan["classes"]
 		lessons=plan["plan"]
-		lesson_rules=Courses.lesson_rules(school["month"])
+		lesson_rules=Courses.lesson_rules(school.month,school.week)
 		if lesson_rules.is_empty():return Origin.failure("invalid_week_five_lessons")
 	var growth := _grow_classes(after,classes,records,lessons,lesson_rules,rules["role"],facts["growth_seed"])
 	if not growth["supported"]:return growth
@@ -148,7 +149,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		"old_mvp_count":old_count,"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "allresult/dat/nomvp.ybc",
 		"history_index":(bundle["school"]["month"]-4)*5+week-1,"relationship_calls":confirmation["relationship_calls"],
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"week_advanced":false}}
-	if week==5 or july:
+	if week==5 or july or (august and week==4):
 		summary["lessons"]=growth["lessons"]
 		summary["rand_state"]=growth["rand_state"]
 	after["sortie_result"] = summary.duplicate(true)
@@ -180,7 +181,7 @@ static func _grow_classes(after: Dictionary, classes: Array, records: Array, les
 			var members: Array=item["students"]
 			var inputs := records.filter(func(row):return row["character_id"] in members)
 			var result := Roles.project_growth_records(inputs,members,state,role_rules,
-				[after.school.month,after.school.week] in [[7,5],[8,2],[8,3]])
+				[after.school.month,after.school.week] in [[7,5],[8,2],[8,3],[8,4]])
 			if not result["supported"]:return result
 			for row in result["after"]["characters"]:
 				var id: int=row["character_id"]

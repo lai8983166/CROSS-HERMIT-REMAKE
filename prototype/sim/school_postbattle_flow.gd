@@ -100,7 +100,7 @@ func execute(command: Dictionary) -> Dictionary:
 	if phase=="sortie_result" and op=="post_next":
 		if pages.is_empty():
 			return _advance_work_week()
-		if bundle["school"]["week"]==4:
+		if bundle.school.week==4 and bundle.school.month in [5,6,7]:
 			var started := SortieWeek.begin_story(bundle)
 			if not started["supported"]:return started
 			bundle=started["after"]

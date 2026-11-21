@@ -63,17 +63,18 @@ var weapon_distances := PackedByteArray()
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
-	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3]]: return false
+	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,4]]: return false
 	var twenty_one: bool=handoff["date"]==[8,3]
 	var august: bool=twenty_one or handoff["date"]==[8,2]
 	var twenty: bool=handoff["date"]==[8,2]
-	var july_five: bool=handoff["date"]==[7,5]
+	var august_training: bool=handoff["date"]==[8,4]
+	var expanded_training: bool=handoff["date"]==[7,5] or august_training
 	var july: bool=handoff["date"][0]==7
 	if not handoff.get("prepared") is Dictionary:return false
 	var fourteen: bool=handoff["date"]==[7,4]
 	var nine: bool=handoff["date"]==[7,3]
 	var eighteen: bool=handoff["date"]==[7,1] and handoff["prepared"].get("adventure_id")==18
-	var june_five: bool=handoff["date"]==[6,5] or (july and not eighteen and not nine and not fourteen)
+	var june_five: bool=handoff["date"] in [[6,5],[8,4]] or (july and not eighteen and not nine and not fourteen)
 	var thirteen: bool=handoff["date"]==[6,4]
 	var ten: bool=handoff["date"]==[6,3]
 	var six: bool=handoff["date"]==[6,2]
@@ -90,18 +91,18 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var teachers=round_data.get("teacher_ids")
 	if round_data.get("scene_id")!=sid:return false
 	if may_five or four or six or ten or thirteen or eighteen or nine or fourteen or august or june_five:
-		if not teachers is Array or teachers.is_empty() or teachers.size()>(4 if june_five or eighteen or nine or fourteen or august else 3):return false
+		if not teachers is Array or teachers.is_empty() or teachers.size()>(5 if august_training else 4 if june_five or eighteen or nine or fourteen or august else 3):return false
 		for teacher in teachers:
-			if teacher not in ([101,110,115,118] if june_five or eighteen or nine or fourteen or august else [101,110,115]) or teachers.count(teacher)!=1:return false
+			if teacher not in ([101,110,115,116,118] if august_training else [101,110,115,118] if june_five or eighteen or nine or fourteen or august else [101,110,115]) or teachers.count(teacher)!=1:return false
 	elif teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
 	var ids: Array=round_data.get("student_ids",[])
-	if ids.is_empty() or ids.size()>(10 if august or july_five else 8 if fourteen or nine or eighteen or june_five or six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
+	if ids.is_empty() or ids.size()>(10 if august or expanded_training else 8 if fourteen or nine or eighteen or june_five or six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
 	if ids.size()!=handoff["participants"].size() or ids.size()!=handoff["growth"].size():return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	var next_catalog: Dictionary=source["scenes"][str(sid)].duplicate(true)
 	if four or six or ten or thirteen or eighteen or nine or fourteen or august:source["attack_rules"]["bow189_hex"]=next_catalog["bow189_hex"]
 	if june_five and not _add_june_five_players(next_catalog,source):return false
-	if (july_five or august) and not _add_july_five_players(next_catalog,source):return false
+	if (expanded_training or august) and not _add_july_five_players(next_catalog,source):return false
 	if may_five and not _add_may_five_players(next_catalog,source):return false
 	var identity: Dictionary=Adventures.twenty_one_rules().get("scene",{}) if twenty_one else Adventures.twenty_rules().get("scene",{}) if twenty else Adventures.fourteen_rules().get("scene",{}) if fourteen else Adventures.nine_rules().get("scene",{}) if nine else Adventures.eighteen_rules().get("scene",{}) if eighteen else Adventures.thirteen_rules().get("scene",{}) if thirteen else Adventures.ten_rules().get("scene",{}) if ten else Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
 	if identity.is_empty() or handoff.get("scene")!=identity:return false
@@ -868,7 +869,7 @@ func _admitted(unit: Dictionary, target: Dictionary) -> bool:
 			return target.side in [0,5] and target.side!=unit.side and (target.controllable or target.category==5 or target.character_id==412)
 		if unit.side==5 and unit.category==5 and target.character_id==412:
 			return _ending_phase=="active" and unit.limits.hp>0 and target.limits.hp>0 and target.side==0 and _distance(unit,target)<=unit.combat.attack_range+2
-	if unit.get("character_id",-1) in range(411,415) and (scene_id in [14,20,21] or departure.get("date")==[7,5]):
+	if unit.get("character_id",-1) in range(411,415) and (scene_id in [14,20,21] or departure.get("date") in [[7,5],[8,4]]):
 		return false # These gates use attack 511 with no target or effect.
 	# Manual target packet 48DAB7/48DBBD/48DBD5 excludes chests via 46A050.
 	# The distinct automatic search at 47A9D0 requires the AI base flag.
@@ -937,7 +938,7 @@ func result_inputs() -> Dictionary:
 		slots.append(int(unit.get("side",-1)==0))
 	var no_hostile := true
 	for unit in units:
-		if (scene_id in [14,20,21] or departure.date==[7,5]) and unit.character_id in range(411,415):continue
+		if (scene_id in [14,20,21] or departure.date in [[7,5],[8,4]]) and unit.character_id in range(411,415):continue
 		if unit["category"]==5 and unit["side"]!=0 and unit["source_state"] in [1,3]:
 			no_hostile=false
 			break
