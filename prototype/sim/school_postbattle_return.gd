@@ -29,7 +29,7 @@ const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_status
 
 static func group_rules(school: Dictionary) -> Dictionary:
 	var rules := Origin.group_rules()
-	if school.get("month")==6 and school.get("week")==5:
+	if _has_four_teachers(school):
 		rules["teacher_scope"]="ch003_week_four"
 		rules["chapter_sha256"]=Groups.CH003_SHA
 	elif _has_later_teachers(school) and school.get("teacher_count")==3:
@@ -41,8 +41,12 @@ static func group_rules(school: Dictionary) -> Dictionary:
 	return rules
 
 
+static func _has_four_teachers(school: Dictionary) -> bool:
+	return (school.get("month")==6 and school.get("week")==5) or (school.get("month")==7 and school.get("week")==1)
+
+
 static func _has_later_teachers(school: Dictionary) -> bool:
-	return (school.get("month")==5 and school.get("week") in [4,5]) or (school.get("month")==6 and school.get("week") in [1,2,3,4,5])
+	return (school.get("month")==5 and school.get("week") in [4,5]) or (school.get("month")==6 and school.get("week") in [1,2,3,4,5]) or _has_four_teachers(school)
 
 
 static func work_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
@@ -247,6 +251,8 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
+	if school.get("month")==7 and school["week"]==1:
+		return _validate(bundle,[3,4,9,5,8,6,1,2],7,1,rules)
 	if school.get("month")==6 and school["week"] in [2,3,4,5]:
 		return _validate(bundle,[3,4,9,5,8,6,1,2],6,school["week"],rules)
 	if school.get("month")==6 and school["week"]==1:
@@ -365,7 +371,7 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 	var teachers := [101]
 	if ids.has(8): teachers.append(110)
 	if ids.has(6): teachers.append(115)
-	if month==6 and week==5: teachers.append(118)
+	if _has_four_teachers(school): teachers.append(118)
 	var reason := Groups._validate(school,group_rules(school))
 	if not reason.is_empty(): return reason
 	if school.get("month")!=month or school.get("week")!=week or school["student_ids"].slice(0,school["student_count"])!=ids \

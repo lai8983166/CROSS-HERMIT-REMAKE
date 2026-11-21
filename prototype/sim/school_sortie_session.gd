@@ -38,7 +38,8 @@ var attack_paths: AttackPaths
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
-	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4]]: return false
+	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5]]: return false
+	var june_five: bool=handoff["date"]==[6,5]
 	var thirteen: bool=handoff["date"]==[6,4]
 	var ten: bool=handoff["date"]==[6,3]
 	var six: bool=handoff["date"]==[6,2]
@@ -49,22 +50,23 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	if raw.sha256_text()!=(THIRTEEN_SHA if thirteen else TEN_SHA if ten else SIX_SHA if six else FOUR_SHA if four else SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
 	if not handoff.get("prepared") is Dictionary or handoff.get("requested_states")!=[10,16] or handoff.get("round_cursor")!=1:return false
 	var prepared: Dictionary=handoff["prepared"];var sid=prepared.get("adventure_id")
-	if sid not in ([13] if thirteen else [10] if ten else [6] if six else [4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
+	if sid not in ([17] if june_five else [13] if thirteen else [10] if ten else [6] if six else [4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
 	if not prepared.get("rounds") is Array or prepared["rounds"].size()!=1:return false
 	var round_data: Dictionary=prepared["rounds"][0]
 	var teachers=round_data.get("teacher_ids")
 	if round_data.get("scene_id")!=sid:return false
-	if may_five or four or six or ten or thirteen:
-		if not teachers is Array or teachers.is_empty() or teachers.size()>3:return false
+	if may_five or four or six or ten or thirteen or june_five:
+		if not teachers is Array or teachers.is_empty() or teachers.size()>(4 if june_five else 3):return false
 		for teacher in teachers:
-			if teacher not in [101,110,115] or teachers.count(teacher)!=1:return false
+			if teacher not in ([101,110,115,118] if june_five else [101,110,115]) or teachers.count(teacher)!=1:return false
 	elif teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
 	var ids: Array=round_data.get("student_ids",[])
-	if ids.is_empty() or ids.size()>(8 if six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
+	if ids.is_empty() or ids.size()>(8 if june_five or six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
 	if ids.size()!=handoff["participants"].size() or ids.size()!=handoff["growth"].size():return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	var next_catalog: Dictionary=source["scenes"][str(sid)].duplicate(true)
 	if four or six or ten or thirteen:source["attack_rules"]["bow189_hex"]=next_catalog["bow189_hex"]
+	if june_five and not _add_june_five_players(next_catalog,source):return false
 	if may_five and not _add_may_five_players(next_catalog,source):return false
 	var identity: Dictionary=Adventures.thirteen_rules().get("scene",{}) if thirteen else Adventures.ten_rules().get("scene",{}) if ten else Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
 	if identity.is_empty() or handoff.get("scene")!=identity:return false
@@ -150,6 +152,19 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	elif sid==17:
 		for at in [36000,39600,43200,46800]:timers.append({"at":at,"repeat":true})
 		for row in [[10800,5,5],[21600,4,7],[25200,3,10]]:timers.append({"at":row[0],"group":row[1],"ai_parameter":row[2]})
+	return true
+
+
+static func _add_june_five_players(scene: Dictionary, source: Dictionary) -> bool:
+	var raw := FileAccess.get_file_as_string(THIRTEEN_PATH).replace("\r\n","\n")
+	if raw.sha256_text()!=THIRTEEN_SHA:return false
+	var previous: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
+	var field: Dictionary=previous["scenes"]["13"]
+	scene["player_skins"].merge(field["player_skins"])
+	for key in field["player_skins"].values():
+		if not source["skins"].has(key):source["skins"][key]=previous["skins"][key]
+	source["attack_rules"]["jobs"].merge(previous["attack_rules"]["jobs"])
+	source["attack_rules"]["bow189_hex"]=field["bow189_hex"]
 	return true
 
 

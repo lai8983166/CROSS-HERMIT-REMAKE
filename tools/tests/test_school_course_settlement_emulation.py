@@ -1,9 +1,25 @@
 import hashlib
+import json
 import unittest
 
 from tools.school_course_settlement_emulation import (
-    report, fixture, source_rules, runtime_rules, may_five_lessons, CourseSettlementEmulator, CHAR, STRIDE)
+    report, fixture, source_rules, runtime_rules, may_five_lessons, june_five_lessons, CourseSettlementEmulator, CHAR, STRIDE)
 from tools.tactics_exit_emulation import ROOT, report_text
+
+
+class JuneCourseTableTests(unittest.TestCase):
+    def test_june_rows_match_executable_and_newly_unlocked_lessons(self):
+        rows = june_five_lessons()
+        raw = (ROOT/'prototype/data/school_june_five_courses.json').read_bytes()
+        self.assertEqual(json.loads(raw), rows)
+        templates = json.loads((ROOT/'prototype/data/new_game_school_rules.json').read_bytes())['course_rules']['templates']
+        dated = {row['work_id'] for row in templates if (row['month'],row['week']) == (6,5)
+                 and any(row['teacher_mask'][teacher-101] for teacher in (101,110,115,118))}
+        self.assertEqual(dated, {8,19,20,26,28,29})
+        self.assertEqual({int(key) for key in rows}, dated-set(range(len(source_rules()['training']))))
+        self.assertEqual(rows['26']['package'],[0]*7+[50000])
+        self.assertEqual(rows['19']['package'],rows['20']['package'])
+        self.assertNotEqual(rows['19']['learning_rates'],rows['20']['learning_rates'])
 
 
 class CourseSettlementTests(unittest.TestCase):

@@ -1,0 +1,71 @@
+{
+  "parent": "ac39f0632299f411ddba46b3175ffd1f429a0a114e18c42b0190b492fb1f2de9",
+  "state_sha256": "dab21513120f1edc035442a7d2c1c14fc5e64f19c1d576f2b4fb09536dccca05",
+  "version": 16,
+  "context": "school_playground_mandatory_thirteen",
+  "rules_added": {
+    "june_five_story": "1ff332986c340d8221e8dd0ae5d0bc1db7d216ebdc54dbcde883610fcdf4dedb",
+    "mandatory_thirteen": "89f0df1ec15347a5c01402a5f9accba74854dac155ce95f91a1be0b013ecd61d",
+    "thirteen_battle": "285c29f1c9f9272a4b9ff1cde3c3b2e65442d20e1a1f1c7c13f735b763f65b11"
+  },
+  "after_battle": [
+    {
+      "op": "post_next"
+    },
+    {
+      "op": "post_skip"
+    },
+    {
+      "op": "post_school"
+    },
+    {
+      "kind": "teacher",
+      "member_id": 118,
+      "op": "return_move",
+      "target_group": 3,
+      "target_slot": -1
+    },
+    {
+      "kind": "student",
+      "member_id": 9,
+      "op": "return_move",
+      "target_group": 3,
+      "target_slot": 0
+    },
+    {
+      "group": 0,
+      "op": "return_mode",
+      "teaching": true
+    },
+    {
+      "course": 8,
+      "group": 0,
+      "op": "return_course"
+    },
+    {
+      "group": 1,
+      "op": "return_mode",
+      "teaching": true
+    },
+    {
+      "course": 19,
+      "group": 1,
+      "op": "return_course"
+    },
+    {
+      "group": 2,
+      "op": "return_mode",
+      "teaching": true
+    },
+    {
+      "course": 26,
+      "group": 2,
+      "op": "return_course"
+    },
+    {
+      "course": 28,
+      "group": 3,
+      "op": "return_course"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -136,3 +136,13 @@ class SortieWeekStoryTests(unittest.TestCase):
         self.assertEqual(data['scenes'][0]['effects'][0]['target'], 'data/adv/dat/Chapter302.ybc')
         self.assertEqual([r['member_id'] for r in data['join_profiles']], [118])
         self.assertEqual(len(data['join_relationships']),22)
+
+    def test_july_week1_both_routes_no_roster_effects(self):
+        data = build_july_week1()
+        expected = (ROOT / 'prototype/data/school_july_week1_story.json').read_bytes()
+        self.assertEqual((json.dumps(data, ensure_ascii=False, indent=2)+chr(10)).encode(), expected)
+        self.assertEqual([r['date'] for r in data['routes']], [[6,5],[7,1],[7,1]])
+        self.assertEqual([r['offsets'][-1] for r in data['routes']], [0x5d0,0x698,0x6d0])
+        self.assertEqual([(s['chapter'], len(s['pages']), s['text_count']) for s in data['scenes']],
+                         [(303,32,60),(218,19,25)])
+        self.assertEqual(data['scenes'][0]['effects'][0]['target'], 'data/adv/dat/Chapter218.ybc')

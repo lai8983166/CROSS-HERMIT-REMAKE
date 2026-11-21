@@ -1,0 +1,266 @@
+{
+  "parent_commit": "159546b9e9d33637742a709e66ad10b4eaf42e3a",
+  "parent": {
+    "path": ".venv-audit/june-thirteen-20261120/june-week5.json",
+    "bytes": 46473,
+    "sha256": "8971b61a2b013c07923336776e016ab20f4ec84a71df795027e7e631eeec0421"
+  },
+  "parent_state": "dab21513120f1edc035442a7d2c1c14fc5e64f19c1d576f2b4fb09536dccca05",
+  "routes": {
+    "course": {
+      "courses": [
+        8,
+        19,
+        27,
+        28
+      ],
+      "date": [
+        7,
+        1
+      ],
+      "history_index": 14,
+      "lessons": [
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          8,
+          19
+        ],
+        [
+          6,
+          26
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          2,
+          26
+        ],
+        [
+          5,
+          26
+        ],
+        [
+          9,
+          28
+        ]
+      ],
+      "lessons_bonus": 106500,
+      "recipient": 9,
+      "selected": 18,
+      "state": "223d8e37e6d0a19bacb897a7e3b13d65919c23a9176d8e96d53b49e95ca6aa4f",
+      "total": 657436,
+      "version": 17
+    },
+    "sortie": {
+      "courses": [
+        8,
+        19,
+        27,
+        28
+      ],
+      "date": [
+        7,
+        1
+      ],
+      "grade": 5,
+      "history_index": 14,
+      "lessons": [
+        [
+          3,
+          8
+        ],
+        [
+          4,
+          8
+        ],
+        [
+          8,
+          19
+        ],
+        [
+          9,
+          28
+        ]
+      ],
+      "lessons_bonus": 1500,
+      "recipient": 9,
+      "selected": 18,
+      "sortie_points": 9900,
+      "state": "d91cef95e84641e4d7faca6784ec884a21fa6e76b319650df9410a366a9a3029",
+      "total": 562336,
+      "version": 17
+    }
+  },
+  "course_check": {
+    "coefficients": [
+      75,
+      61,
+      55,
+      50
+    ],
+    "staged_totals": [
+      9375,
+      9375,
+      8325,
+      0,
+      0,
+      0,
+      0,
+      10500
+    ],
+    "random_draws": 60,
+    "final_rng": 3453788336,
+    "comparison": "The eight saved students were projected individually onto the audited 4C0400 student slot, threading the original RNG. Compared packets, attributes, growth pools, level, skills and draws with Godot."
+  },
+  "training": {
+    "id": 17,
+    "teacher": 115,
+    "students": [
+      6,
+      1,
+      2,
+      5
+    ],
+    "trace": {
+      "path": "prototype/sim/tests/june_week5_training_trace.json",
+      "bytes": 123,
+      "sha256": "60fae50e76efdb856f1c8c05d58e58116bed0ffce5f92982c1f6df9404f17bca"
+    },
+    "ticks": 2568,
+    "exit_cell_reached": true,
+    "script_sub": 14,
+    "selector": 5,
+    "all_eight_four_teacher_handoff_checked": true
+  },
+  "calendar": {
+    "ch003": [
+      6,
+      5,
+      "end"
+    ],
+    "ch001": [
+      7,
+      1,
+      303,
+      218
+    ],
+    "chapter_pages": [
+      32,
+      19
+    ],
+    "text_lines": [
+      60,
+      25
+    ],
+    "ch002": "end",
+    "music": [
+      12,
+      1
+    ],
+    "background": 8,
+    "new_adventures": [
+      18
+    ],
+    "remaining_weeks": {
+      "18": 1,
+      "17": -1
+    },
+    "roster": [
+      4,
+      8
+    ]
+  },
+  "sources": [
+    {
+      "path": "prototype/data/school_june_five_courses.json",
+      "bytes": 1259,
+      "sha256": "34f20195975120edf92a77ad82ba106cfd481186c54a6e9e9fbfd5683ede6683"
+    },
+    {
+      "path": "prototype/data/school_july_week1_story.json",
+      "bytes": 16645,
+      "sha256": "f9306a20c7ce69d07bfbb8b5522cf91a97dd3a2e278e6082ab4adcdf19232434"
+    }
+  ],
+  "godot_headless": {
+    "full": {
+      "exit": 0,
+      "seconds": 2769.86,
+      "errors": 0,
+      "suites": 96,
+      "tests": 546,
+      "warnings": 39
+    },
+    "course": {
+      "exit": 0,
+      "seconds": 470.22,
+      "errors": 0
+    },
+    "sortie": {
+      "exit": 0,
+      "seconds": 508.27,
+      "errors": 0
+    },
+    "verify": {
+      "exit": 0,
+      "seconds": 436.72,
+      "errors": 0
+    },
+    "calendar": {
+      "exit": 0,
+      "seconds": 12.22,
+      "errors": 0
+    },
+    "bounds": {
+      "exit": 0,
+      "seconds": 2.92,
+      "errors": 0
+    },
+    "routes": {
+      "exit": 0,
+      "seconds": 30.67,
+      "errors": 0
+    },
+    "lesson-check": {
+      "exit": 0,
+      "seconds": 1.51,
+      "errors": 0
+    },
+    "parent": {
+      "exit": 0,
+      "seconds": 208.53,
+      "errors": 0
+    }
+  },
+  "python_tests": 25,
+  "openspec_strict": 32,
+  "independent_review": "Checked source chapter jumps, dates, roster limits, trace admission and mixed result. Fixed v17 large-file admission and catalog newline normalization. Fresh load verified with a padded real v17 save above 256 KiB.",
+  "scope": "Godot remake and local instruction comparison. Native game acceptance remains 2/8. July week 1 is open for planning and save/load.",
+  "retained_local_files": [
+    {
+      "path": ".venv-audit/june-five-20261121/july-course.json",
+      "bytes": 46808,
+      "sha256": "547326fbcb05f2410ab3a3ba0edf54f12da4d024da27009c335501919468dce4"
+    },
+    {
+      "path": ".venv-audit/june-five-20261121/july-sortie.json",
+      "bytes": 47092,
+      "sha256": "ecf34cc69f617ccd2412fb92680adb8acc20682f1996aa4fb47323c68f77821e"
+    },
+    {
+      "path": ".venv-audit/june-five-20261121/acceptance.log.gz",
+      "bytes": 2475,
+      "sha256": "79b628a937158ba32738ec9a6a3bf5d3dbb3fc4678a555abdbf4c11bb78f541e"
+    }
+  ],
+  "backups": 0
+}

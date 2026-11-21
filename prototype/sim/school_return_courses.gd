@@ -1,5 +1,5 @@
 extends RefCounted
-## Current returned May school roster adapter. Original 4/4 fixture gates stay intact.
+## Current returned school roster adapter. Original 4/4 fixture gates stay intact.
 ## Pure commands; the owning replay commits one result and advances the story/week.
 const Origin := preload("res://sim/new_game_school_origin.gd")
 const Return := preload("res://sim/school_postbattle_return.gd")
@@ -12,6 +12,7 @@ const Confirmation := preload("res://sim/school_course_confirmation.gd")
 const Courses := preload("res://sim/school_course_unlocking.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
 const MAY_FIVE_SHA := "f1672fbbbae4b817bd3e1188c734493538411c73461f71b59880e9bb84d2fc04"
+const JUNE_FIVE_SHA := "34f20195975120edf92a77ad82ba106cfd481186c54a6e9e9fbfd5683ede6683"
 const SOURCES := {
 	"growth":["res://data/school_course_settlement_rules.json","5f2738db67bdacf1677e6de1c823ac8dfa542e6b103cd913af9c51a2fe93c439"],
 	"confirmation":["res://data/school_course_confirmation_rules.json","2a75e6e4dd30ae8e99a5e014dc3ba87b646f65b73b3a04d03999d2ceaebaf6a6"]}
@@ -79,7 +80,8 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var reason := _guard(before,rules,true)
 	if not reason.is_empty(): return Origin.failure(reason)
 	var week: int=before["school"]["week"]
-	if before["school"]["month"]!=5 or week not in [1,2,3,5]: return Origin.failure("outside_supported_course_week")
+	var month: int=before["school"]["month"]
+	if not ((month==5 and week in [1,2,3,5]) or (month==6 and week==5)): return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -87,8 +89,8 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var prepared := _plan(before["school"],rules)
 	if not prepared["supported"]: return prepared
 	var after := before.duplicate(true)
-	var growth_rules: Dictionary=lesson_rules() if week==5 else rules["growth"]
-	if growth_rules.is_empty():return Origin.failure("invalid_may_course_sources")
+	var growth_rules: Dictionary=lesson_rules(month) if week==5 else rules["growth"]
+	if growth_rules.is_empty():return Origin.failure("invalid_return_course_sources")
 	var growth := apply_lessons(after,prepared["plan"],growth_rules,seed)
 	# MVP is chosen from this result's assigned slots, never stale waiting totals.
 	var recipient := -1
@@ -97,9 +99,9 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 		var row := Return._find(after["growth"],command["character_id"])
 		if row["character_id"]<13 and row["staged_total"]>best:
 			best=row["staged_total"];recipient=row["character_id"]
-	# Course 6 puts its entire award in packet[7]. Original 4C00C0
+	# Courses 6 and 26 put their entire award in packet[7]. Original 4C00C0
 	# leaves the recipient at -1. Do not index counts with this sentinel.
-	var bonus_only: bool = week in [3,5] and prepared["plan"].all(func(command):return command["training_id"]==6)
+	var bonus_only: bool = week in [3,5] and prepared["plan"].all(func(command):return command["training_id"] in [6,26])
 	if recipient<0 and not bonus_only: return Origin.failure("missing_positive_return_course_mvp")
 	var confirmed := _confirm(after,prepared["classes"],rules["confirmation"]["job_categories"])
 	var old_count := 0
@@ -113,7 +115,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	after["school"] = Session._canonical(rated["after"])
 	after["ratings"] = rated["ratings"]
 	after["rankings"] = Return._rankings(after["school"])
-	var summary := {"date":[5,week],"declared_clock_seed":seed,"packets":growth["packets"],
+	var summary := {"date":[month,week],"declared_clock_seed":seed,"packets":growth["packets"],
 		"learning_draws":growth["learning_draws"],"rand_state":growth["rand_state"],"bonus":growth["bonus"],
 		"skill_display_needed":growth["skill_display_needed"],"recipient":recipient,"old_mvp_count":old_count,
 		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "","history_index":(before["school"]["month"]-4)*5+week-1,
@@ -124,15 +126,20 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	return Return._result(after,"return_courses_confirmed",{"summary":summary.duplicate(true)})
 
 
-static func lesson_rules() -> Dictionary:
-	var raw := FileAccess.get_file_as_string("res://data/school_may_five_courses.json").replace("\r\n","\n")
-	if raw.sha256_text()!=MAY_FIVE_SHA:return {}
+static func lesson_rules(month := 5) -> Dictionary:
+	if month not in [5,6]:return {}
 	var source := _rules()
 	if source.is_empty():return {}
 	var growth: Dictionary=source["growth"]
-	var extra: Dictionary=Roles._integers(JSON.parse_string(raw))
-	growth["training"].resize(28)
-	for id in extra:growth["training"][int(id)]=extra[id]
+	var tables := [["res://data/school_may_five_courses.json",MAY_FIVE_SHA]]
+	if month==6:
+		tables.append(["res://data/school_june_five_courses.json",JUNE_FIVE_SHA])
+	growth["training"].resize(30 if month==6 else 28)
+	for table in tables:
+		var raw := FileAccess.get_file_as_string(table[0]).replace("\r\n","\n")
+		if raw.sha256_text()!=table[1]:return {}
+		var extra: Dictionary=Roles._integers(JSON.parse_string(raw))
+		for id in extra:growth["training"][int(id)]=extra[id]
 	return growth
 
 
@@ -166,6 +173,9 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 	if not rated["supported"]: return rated
 	var plan := []
 	var classes := []
+	var available_courses := [1,2,3,4,5,6,7,10,11,12,17,18,23,27]
+	if school["month"]==6 and school["week"]==5:
+		available_courses.append_array([8,19,20,26,28,29])
 	for group in range(5):
 		var rating: Dictionary = rated["ratings"][group]
 		if rating["state"]==0:continue
@@ -176,7 +186,7 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 			continue
 		if rating["state"]!=4: return Origin.failure("return_class_requires_assigned_course")
 		var fields: Array = rating["work_fields"]
-		if fields[0]<0 or fields[0]>2 or fields[2] not in [1,2,3,4,5,6,7,10,11,12,17,18,23,27]:
+		if fields[0]<0 or fields[0]>2 or fields[2] not in available_courses:
 			return Origin.failure("outside_return_course_subset")
 		var selected := Teacher.select_group(Session._working(school),group,Return.group_rules(school),Return.work_rules(school,rules))
 		if not selected["supported"]: return selected

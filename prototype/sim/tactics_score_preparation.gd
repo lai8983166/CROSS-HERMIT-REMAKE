@@ -4,7 +4,7 @@ extends RefCounted
 ## Source rules and native expectation are exported separately from original EXE.
 
 
-static func calculate(inputs: Dictionary, rules: Dictionary, may_five := false) -> Dictionary:
+static func calculate(inputs: Dictionary, rules: Dictionary, may_five := false, june_five := false) -> Dictionary:
 	for key in ["task_id", "mode", "cap_mode", "result_selector", "time_key", "unit_key",
 			"initial_grade", "initial_total", "characters"]:
 		if not inputs.has(key):
@@ -26,7 +26,7 @@ static func calculate(inputs: Dictionary, rules: Dictionary, may_five := false) 
 	if selector < 1 or selector > 5 or time_key < 0 or time_key > 3 or unit_key < 1 or unit_key > 2:
 		return _unsupported("outside_audited_result_keys")
 	var units: Variant = inputs["characters"]
-	if not units is Array or units.is_empty() or units.size() > (8 if inputs["task_id"] in [6,10,13] else 7 if inputs["task_id"]==4 else 3 if int(inputs["task_id"]) == 5 else 5 if inputs["task_id"]==7 else 6 if may_five else 4):
+	if not units is Array or units.is_empty() or units.size() > (8 if inputs["task_id"] in [6,10,13] or (june_five and inputs["task_id"]==17) else 7 if inputs["task_id"]==4 else 3 if int(inputs["task_id"]) == 5 else 5 if inputs["task_id"]==7 else 6 if may_five else 4):
 		return _unsupported("outside_current_party_size")
 	var seen := {}
 	var contribution_sum := 0

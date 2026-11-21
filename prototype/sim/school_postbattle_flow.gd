@@ -90,18 +90,14 @@ func execute(command: Dictionary) -> Dictionary:
 		var story := SortieWeek.story(bundle["school"]["week"],bundle["school"]["month"])
 		if not story["supported"]: return story
 		_set_dated_story(story)
+		if _post_pages.is_empty():return _advance_work_week()
 		phase="post_story"
 		revision+=1
 		return {"supported":true}
 	if op=="sortie_finish": return finish_sortie(command["trace"])
 	if phase=="sortie_result" and op=="post_next":
 		if pages.is_empty():
-			# CH003 applies the dated roster opcode at 6/3 and 6/4, then ends.
-			var advanced := SortieWeek.next_week(bundle)
-			if not advanced["supported"]:return advanced
-			bundle=advanced["after"];pages=_week_pages;phase="new_week_story";cursor=0
-			revision+=1
-			return {"supported":true}
+			return _advance_work_week()
 		if bundle["school"]["week"]==4:
 			var started := SortieWeek.begin_story(bundle)
 			if not started["supported"]:return started
@@ -150,6 +146,14 @@ func execute(command: Dictionary) -> Dictionary:
 				bundle["adv_background"]=8
 			phase="post_workroom";cursor=next
 	else: cursor=next
+	revision+=1
+	return {"supported":true}
+
+
+func _advance_work_week() -> Dictionary:
+	var advanced := SortieWeek.next_week(bundle)
+	if not advanced["supported"]:return advanced
+	bundle=advanced["after"];pages=_week_pages;phase="new_week_story";cursor=0
 	revision+=1
 	return {"supported":true}
 

@@ -75,6 +75,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		if june and week>=2: previous_tasks.append(4)
 		if june and week>=3: previous_tasks.append(6)
 		if june and week>=4: previous_tasks.append(10)
+		if june and week==5: previous_tasks.append(13)
 		for task in task_grades:
 			if task not in previous_tasks or not Roles._bounded(task_grades[task],1,5):
 				return Origin.failure("invalid_previous_task_grade")
@@ -82,7 +83,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var score := Battle.Score.calculate({"task_id":scene_id,"mode":0,"cap_mode":0,
 		"result_selector":facts.get("result_selector"),"time_key":facts["time_key"],
 		"unit_key":facts.get("unit_condition_key"),"characters":characters,"initial_grade":initial_grade,
-		"initial_total":bundle["school"]["global_total_511c"]},rules["score"],week==5)
+		"initial_total":bundle["school"]["global_total_511c"]},rules["score"],week==5,june and week==5)
 	if not score["supported"]: return score
 	var loot := Battle.Loot._loot(bundle["item_flags"],score["grade_index"],facts,rules)
 	for i in range(records.size()):
@@ -104,8 +105,8 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		if not plan["supported"]:return plan
 		classes=plan["classes"]
 		lessons=plan["plan"]
-		lesson_rules=Courses.lesson_rules()
-		if lesson_rules.is_empty():return Origin.failure("invalid_may_five_lessons")
+		lesson_rules=Courses.lesson_rules(school["month"])
+		if lesson_rules.is_empty():return Origin.failure("invalid_week_five_lessons")
 	var growth := _grow_classes(after,classes,records,lessons,lesson_rules,rules["role"],facts["growth_seed"])
 	if not growth["supported"]:return growth
 	var recipient: int=growth["recipient"]

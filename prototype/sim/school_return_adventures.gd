@@ -116,8 +116,8 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if not ((month==5 and week in range(1,6)) or (month==6 and week in [1,2,3,4])): return false
-	var last := week if month==5 else 5+week
+	if not ((month==5 and week in range(1,6)) or (month==6 and week in range(1,6)) or (month==7 and week==1)): return false
+	var last := (month-5)*5+week
 	var source := rules()
 	var first := initial()
 	if source.is_empty() or first.is_empty(): return false
@@ -125,13 +125,13 @@ static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
 	for date in range(2,last+1):
 		var next := []
 		for candidate in candidates:
-			var required: int={5:7,7:4,8:6,9:10}.get(date,0)
+			var required: int={5:7,7:4,8:6,9:10,10:13}.get(date,0)
 			var selections := [] if required else [0]
 			for row in available(candidate):
 				if not required or row["id"]==required: selections.append(row["id"])
 			for id in selections:
 				var advanced := advance(candidate,id)
-				_open(advanced,6 if date>=6 else 5,date-5 if date>=6 else date,source)
+				_open(advanced,5+int((date-1)/5),(date-1)%5+1,source)
 				if not next.has(advanced): next.append(advanced)
 		candidates = next
 	return candidates.has(ledger)
@@ -147,7 +147,8 @@ static func select(bundle: Dictionary, ledger: Dictionary, id: int) -> Dictionar
 		return _failure("adventure_not_available")
 	if bundle["school"]["adventure_gate"] != 0 and id != mandatory:
 		return _failure("mandatory_adventure_required")
-	if id not in [4,6,7,8,10,13,17] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
+	if id==18 and date!=[7,1]:return _failure("adventure_not_available")
+	if id not in [4,6,7,8,10,13,17,18] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
 	var row: Dictionary=ledger["entries"].filter(func(r):return r["id"]==id)[0]
 	var index := available(ledger).filter(func(r):return r["category"]==row["metadata"][2]).find(available(ledger).filter(func(r):return r["id"]==id)[0])
 	var after := bundle.duplicate(true)
@@ -164,10 +165,11 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var id: int=school["lecture_work_fields"][2]
 	var june: bool=school["month"]==6
 	var required: int={1:4,2:6,3:10,4:13}.get(school["week"],0) if june else 7 if school["week"]==4 else 0
-	if (june and required==0) or school["month"] not in [5,6]:return _failure("outside_supported_sortie_week")
+	if (june and required==0 and school["week"]!=5) or school["month"] not in [5,6]:return _failure("outside_supported_sortie_week")
 	if (required and (id!=required or school["adventure_gate"]!=1)) or (id==7 and required!=7):
 		return _failure("mandatory_adventure_required")
-	if school["lecture_active"]!=1 or id not in ([required] if required else [8,17]) or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("select_available_adventure")
+	var options := [required] if required else ([17] if june else [8,17])
+	if school["lecture_active"]!=1 or id not in options or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("select_available_adventure")
 	var rated := Groups.rate(school,Return.group_rules(school))
 	if not rated["supported"]:return rated
 	var teachers := [];var students := [];var groups := []

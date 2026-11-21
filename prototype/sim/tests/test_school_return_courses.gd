@@ -21,6 +21,30 @@ func _planned(work := 1, all_four := true) -> Dictionary:
 	return result.get("after",{})
 
 
+func test_june_five_lessons_match_original_growth_and_skill_draws() -> void:
+	# Original 4C0400, one independent call per new dated course. The common
+	# input is student 3 from the first existing settlement case, coefficient 60.
+	var data: Dictionary=Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_settlement_evidence_v1.json")))
+	var case: Dictionary=data["cases"][0]
+	var rules := Courses.lesson_rules(6)
+	assert_false(rules.is_empty())
+	if rules.is_empty():return
+	var cases := [
+		[8,[0,2750,0,0,2750,0,2750,0],[15,14,27,35,61,29,67],[]],
+		[19,[0,0,6600,0,0,1650,0,0],[15,13,28,35,61,29,67],[]],
+		[20,[0,0,6600,0,0,1650,0,0],[15,13,28,35,61,29,67],[17]],
+		[26,[0,0,0,0,0,0,0,27500],[15,13,27,35,61,29,67],[8]],
+		[28,[1650,1650,1650,1650,1650,1650,1650,1650],[15,13,27,35,61,29,67],[8]],
+		[29,[0,0,0,0,30250,0,0,0],[15,13,27,35,62,29,67],[33]]]
+	for row in cases:
+		var bundle := {"growth":[case["before_records"][0]],"school":{"difficulty":case["before"]["difficulty"],"global_total_511c":0,"member_profiles":[]}}
+		var result := Courses.apply_lessons(bundle,[{"character_id":3,"training_id":row[0],"coefficient":60}],rules,4660)
+		assert_eq(result["packets"][0]["packet"],row[1])
+		assert_eq(result["students"][0]["attributes"],row[2])
+		assert_eq(result["students"][0]["new_skill_ids"],row[3])
+		assert_eq([result["students"][0]["level"],result["learning_draws"].size(),result["rand_state"]],[31,7,1896039533])
+
+
 func test_new_and_existing_original_instruction_growth_oracles() -> void:
 	var rules := Courses._rules()
 	assert_false(rules.is_empty())

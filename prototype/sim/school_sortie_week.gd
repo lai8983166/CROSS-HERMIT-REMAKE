@@ -1,5 +1,5 @@
 extends RefCounted
-## May and June work results, CH003, state 7, CH001, workroom and school boot.
+## May and June work results through July week 1, CH003, state 7, CH001, workroom and school boot.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
@@ -20,8 +20,10 @@ const JUNE_TWO_SHA := Return.JUNE_TWO[1]
 const JUNE_THREE_SHA := "9b9b721baa9ed42beb921da28a7a78b38ac211a60dbad569a80c237b1fe28588"
 const JUNE_FOUR_SHA := "4e919ba9c4f5438502ef8c37ade19eb71234eddf09d15f9916f4e0c123e63df9"
 const JUNE_FIVE_SHA := Return.JUNE_FIVE[1]
+const JULY_ONE_SHA := "f9306a20c7ce69d07bfbb8b5522cf91a97dd3a2e278e6082ab4adcdf19232434"
 const JUNE_STORIES := [Return.JUNE_TWO,["res://data/school_june_week3_story.json",JUNE_THREE_SHA],
-	["res://data/school_june_week4_story.json",JUNE_FOUR_SHA],Return.JUNE_FIVE]
+	["res://data/school_june_week4_story.json",JUNE_FOUR_SHA],Return.JUNE_FIVE,
+	["res://data/school_july_week1_story.json",JULY_ONE_SHA]]
 const STORIES := [[PATH,SHA],[WEEK3_PATH,WEEK3_SHA],[WEEK4_PATH,WEEK4_SHA],Return.WEEK_FIVE,Return.JUNE_ONE]
 
 
@@ -35,9 +37,9 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 		return {"supported":false,"reason":"sortie_week_story_changed"}
 	var data: Dictionary = Roles._integers(JSON.parse_string(raw))
 	var scenes: Array = data["scenes"]
-	if june and start_week in [3,4]:
+	if june and start_week in [3,4,5]:
 		var pages: Array=scenes[0]["pages"].duplicate()
-		if start_week==4:pages.append_array(scenes[1]["pages"])
+		if start_week>=4:pages.append_array(scenes[1]["pages"])
 		return {"supported":true,"pre_week":[],"week_start":pages,"school_entry":[]}
 	if june:
 		var post: Array = scenes[0]["pages"] + scenes[1]["pages"]
@@ -66,9 +68,9 @@ static func next_week(before: Dictionary) -> Dictionary:
 	var course: bool = before.get("phase")=="courses_confirmed"
 	var phase := "courses_confirmed" if course else "sortie_settled"
 	if before.get("school") is Dictionary:
-		if before["school"].get("month")==6:
+		if before["school"].get("month")==6 and before["school"].get("week")!=5:
 			phase="chapter036_joined" if before["school"].get("week")==1 else "sortie_settled"
-		elif before["school"].get("week")==4: phase="chapter030b_joined"
+		elif before["school"].get("month")==5 and before["school"].get("week")==4: phase="chapter030b_joined"
 	var reason := _guard(before,1,phase,rules)
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	if before["school"]["month"]==6 and before["school"]["week"]==4:
@@ -109,6 +111,9 @@ static func finish_story(before: Dictionary) -> Dictionary:
 	after["flags"]["0x7a55f6"] = [8,6,16,9,2][week-1] if june else (16 if week==2 else 11)
 	after["flags"]["0x7e11a0"] = int(june or week==2)
 	after["adv_background"] = [6,7,6,8,8][week-1] if june else (6 if week>=4 else 8)
+	if after["school"]["month"]==7:
+		after["flags"]["0x7a55f6"]=12
+		after["flags"]["0x7e11a0"]=1
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -127,9 +132,9 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	if initial.is_empty() or source.is_empty():
 		return {"supported":false,"reason":"invalid_sortie_week_sources"}
 	var departure := initial
-	if week>=3 or month==6:
+	if week>=3 or month>=6:
 		var prior_week := 5 if week==1 else week-1
-		var prior_month := 5 if week==1 else month
+		var prior_month := month-1 if week==1 else month
 		if not Adventures.valid_opening(departure_ledger,prior_week,prior_month): return {"supported":false,"reason":"invalid_departure_ledger"}
 		departure = departure_ledger
 	if not course and not Adventures.available(departure).any(func(row):return row["id"]==id):
@@ -174,7 +179,7 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 		after["flags"]["0x7a55f6"] = 11
 		after["flags"]["0x7e11a0"] = 0
 	after["newly_dated_adventures"] = []
-	if required_id!=0:
+	if required_id!=0 or month==7:
 		for rule in rules["boot"]["adventures"]:
 			if rule["present"] and rule["gate"] and rule["kind"] and rule["month"]==month and rule["week"]==week:
 				after["newly_dated_adventures"].append(rule.duplicate(true))
@@ -187,8 +192,12 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	var school: Variant = before.get("school")
 	if not school is Dictionary: return "outside_sortie_week"
 	var may: bool = school.get("month")==5 and school.get("week") in range(first_week,6)
-	var june: bool = school.get("month")==6 and school.get("week") in range(1,first_week+4)
-	if june and school.get("week") in [2,3,4,5]:
+	var june: bool = school.get("month")==6 and school.get("week") in range(1,6)
+	var july: bool = first_week==2 and school.get("month")==7 and school.get("week")==1
+	if june and school.get("week")==5 and first_week==1:
+		if school.get("adventure_gate")!=0 or (phase=="sortie_settled" and school.get("lecture_work_fields")!=[1,0,17,0]):
+			return "outside_june_five_return"
+	elif june and school.get("week") in [2,3,4,5]:
 		if phase=="sortie_settled":
 			var week: int=school["week"]
 			var required: Array = {2:[3,5,6,0],3:[3,9,10,0],4:[3,12,13,0]}[week]
@@ -198,7 +207,7 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 				return "outside_ch003_teacher_removal"
 		elif phase not in ["sortie_week_advanced","sortie_workroom"]:
 			return "outside_sortie_week"
-	if not may and not june:
+	if not may and not june and not july:
 		return "outside_sortie_week"
 	if phase=="chapter036_joined":
 		return Return._validate(before,[3,4,9,5,8,6,1,2],6,1,rules)

@@ -58,11 +58,20 @@ def source_rules():
 
 def may_five_lessons():
     """The four additional rows available to the current teachers by May week five."""
+    return _lesson_rows((17,18,23,27))
+
+
+def june_five_lessons():
+    """June week five additions above the existing course 0–15 table."""
+    return _lesson_rows((19,20,26,28,29))
+
+
+def _lesson_rows(course_ids):
     image = SOURCE.read_bytes()
     if hashlib.sha256(image).hexdigest() != SOURCE_SHA256:
         raise ValueError('source differs')
     rows = {}
-    for course in (17,18,23,27):
+    for course in course_ids:
         start = 0x74BEDC + course*96 - 0x400000
         rows[str(course)] = {'package':list(struct.unpack_from('<8i',image,start)),
                              'learning_rates':list(image[start+0x42:start+0x4d])}

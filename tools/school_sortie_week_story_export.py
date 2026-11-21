@@ -1,4 +1,4 @@
-"""Export the May school date routes through June week 5 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through July week 1 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -186,6 +186,19 @@ def build_june_week5():
     return join_data(data, None, 118, [101, 3, 4, 9, 5, 8, 110, 6, 115, 1, 2, 118])
 
 
+def build_july_week1():
+    data = catalog({303: 60, 218: 25})
+    routes = [date_route('CH003', 6, 5), date_route('CH001', 7, 1), date_route('CH002', 7, 1)]
+    assert [r['target'] for r in routes] == [None, 'data/adv/dat/Chapter303.ybc', None]
+    assert not any('effects' in route for route in routes)
+    _link_chapters(data['scenes'][0], '303', 218)
+    assert data['scenes'][1]['effects'] == [
+        {'offset': 0x286, 'opcode': 151, 'operands': [12, 1]},
+        {'offset': 0x292, 'opcode': 91, 'operands': [8, 2]}]
+    data['routes'] = routes
+    return data
+
+
 def _link_chapters(scene, label, next_chapter):
     raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
     _, _, end, pool, _ = struct.unpack_from('<5I', raw)
@@ -232,6 +245,6 @@ if __name__ == '__main__':
     for name, make in [('school_sortie_week_story', build), ('school_may_week3_story', build_week3),
                        ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5),
                        ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2),
-                       ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5)]:
+                       ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
