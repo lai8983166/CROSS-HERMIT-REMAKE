@@ -1,4 +1,4 @@
-"""Export the May school date routes through July week 4 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through July week 5 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -270,9 +270,33 @@ def build_july_week4():
     assert data['scenes'][0]['effects'] == [
         {'offset':0x522, 'opcode':151, 'operands':[10,1]},
         {'offset':0x52e, 'opcode':91, 'operands':[8,2]}]
-    raw = (GAME/'DAT/CHAPTER214.YBC').read_bytes()
+    data['routes'] = routes
+    add_july_chapter_card(data,0,214,4)
+    return data
+
+
+def build_july_week5():
+    data = catalog({304:100,305:40})
+    routes = [date_route('CH003',7,4),date_route('CH001',7,5),date_route('CH002',7,5)]
+    assert [r['target'] for r in routes] == ['data/adv/dat/Chapter304.ybc','data/adv/dat/Chapter305.ybc',None]
+    assert not any('effects' in r for r in routes)
+    assert [s['effects'] for s in data['scenes']] == [
+        [{'offset':0x14,'opcode':144,'operands':[16]}, {'offset':0x1c,'opcode':144,'operands':[17]}],
+        [{'offset':0x3bc,'opcode':151,'operands':[9,1]}, {'offset':0x3c8,'opcode':91,'operands':[122,2]}]]
+    data['routes'] = routes
+    add_july_chapter_card(data,1,305,5)
+    members = [101,3,4,9,5,8,110,6,115,1,2,118]
+    data['joins'] = []
+    for identity in (16,17):
+        members.append(identity)
+        data['joins'].append(join_data({},identity,None,members))
+    return data
+
+
+def add_july_chapter_card(data,index,chapter,week):
+    raw = (GAME/f'DAT/CHAPTER{chapter}.YBC').read_bytes()
     _, start, end, pool, _ = struct.unpack_from('<5I',raw)
-    assert raw[end:pool].split(bytes(1))[0].replace(bytes([92,92]),b'/') == b'data/adv/bin/tc0704.bin'
+    assert raw[end:pool].split(bytes(1))[0].replace(bytes([92,92]),b'/') == f'data/adv/bin/tc07{week:02}.bin'.encode()
     ops = []
     at = start
     while at < 0x70:
@@ -284,10 +308,8 @@ def build_july_week4():
     assert [e['opcode'] for e in ops] == [56,67,69,56,13,56,74,12]
     assert ops[2]['operands'] == [0,0,324,0,53,0,0,1024,128]
     assert ops[4]['operands'] == [600] and ops[7]['operands'] == [30]
-    data['routes'] = routes
-    data['scenes'][0]['presentation_prefix'] = ops
-    data['date_card'] = _date_card_metadata(4,'data/adv/bin/tc0704.bin',ops[2]['operands'],ops[4]['operands'][0])
-    return data
+    data['scenes'][index]['presentation_prefix'] = ops
+    data['date_card'] = _date_card_metadata(week,f'data/adv/bin/tc07{week:02}.bin',ops[2]['operands'],ops[4]['operands'][0])
 
 
 def _link_chapters(scene, label, next_chapter):
@@ -337,8 +359,8 @@ if __name__ == '__main__':
                        ('school_may_week4_story', build_week4), ('school_may_week5_story', build_week5),
                        ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2),
                        ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1),
-                       ('school_july_week2_story', build_july_week2), ('school_july_week3_story', build_july_week3), ('school_july_week4_story', build_july_week4)]:
+                       ('school_july_week2_story', build_july_week2), ('school_july_week3_story', build_july_week3), ('school_july_week4_story', build_july_week4), ('school_july_week5_story', build_july_week5)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
-    for week in (2,4):
+    for week in (2,4,5):
         (ROOT/f'prototype/assets/school_story/tc07{week:02}.png').write_bytes(july_date_card(week)[1])

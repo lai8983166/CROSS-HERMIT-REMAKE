@@ -60,7 +60,13 @@ def catalog(chapter_counts=None):
             if op in (22,27,29,30,33):
                 flush(at); values = immediate(payload); boards[values[0]]=values[1]
             elif op == 26:
-                flush(at); values=immediate(payload); assert values==[3,6,101,0];boards[3]=101
+                flush(at); values=immediate(payload)
+                if chapter in (304,305):
+                    old, new, speaker, _ = values
+                    assert old in boards and [old,new] in ([4,9],[9,4])
+                    boards[new] = speaker
+                else:
+                    assert values==[3,6,101,0];boards[3]=101
             elif op == 43:
                 flush(at); active=immediate(payload)[0]
             elif op == 17:

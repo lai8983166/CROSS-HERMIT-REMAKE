@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, july_date_card, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, july_date_card, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -172,3 +172,15 @@ class SortieWeekStoryTests(unittest.TestCase):
         self.assertEqual((scene['chapter'],len(scene['pages']),scene['text_count']), (214,30,49))
         self.assertLess(scene['presentation_prefix'][-1]['offset'], scene['pages'][0]['source_offset'])
         self.assertEqual((ROOT/'prototype/assets/school_story/tc0704.png').read_bytes(),july_date_card(4)[1])
+
+    def test_july_week5_chapter304_double_join_and_chapter305_card(self):
+        data = build_july_week5()
+        actual = (ROOT/'prototype/data/school_july_week5_story.json').read_bytes()
+        self.assertEqual((json.dumps(data,ensure_ascii=False,indent=2)+chr(10)).encode(),actual)
+        self.assertEqual([r['date'] for r in data['routes']], [[7,4],[7,5],[7,5]])
+        self.assertEqual([r['offsets'][-1] for r in data['routes']], [0x4f0,0x6b0,0x6d0])
+        self.assertEqual([(s['chapter'],len(s['pages']),s['text_count']) for s in data['scenes']], [(304,70,100),(305,21,40)])
+        self.assertEqual([j['candidate']['character_id'] for j in data['joins']],[16,17])
+        self.assertEqual([len(j['join_relationships']) for j in data['joins']],[24,26])
+        self.assertLess(data['scenes'][0]['effects'][-1]['offset'],data['scenes'][0]['pages'][0]['source_offset'])
+        self.assertEqual((ROOT/'prototype/assets/school_story/tc0705.png').read_bytes(),july_date_card(5)[1])

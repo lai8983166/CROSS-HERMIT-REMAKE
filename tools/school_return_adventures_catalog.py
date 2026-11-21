@@ -37,7 +37,7 @@ def catalog(scene_ids=(8,17)):
 
 
 def mandatory_adventure(task_id):
-    assert task_id in (4, 6, 7, 9, 10, 13, 18)
+    assert task_id in (4, 6, 7, 9, 10, 13, 14, 18)
     image = SOURCE.read_bytes()
     assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
     def values(address, count, fmt='h'):

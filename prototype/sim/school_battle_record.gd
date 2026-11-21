@@ -65,11 +65,11 @@ static func _advance(session: Combat, target: int) -> bool:
 	return session._trace_clock==target
 
 
-static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false, june_two := false, june_three := false, june_four := false, june_five := false, july_eighteen := false, july_nine := false) -> bool:
+static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false, june_two := false, june_three := false, june_four := false, june_five := false, july_eighteen := false, july_nine := false, july_fourteen := false) -> bool:
 	if not trace is Dictionary or trace.size()!=4 or trace.get("version")!=1 or trace.get("overflow")!=false \
 			or not Roles._bounded(trace.get("ticks"),0,MAX_SORTIE_TICKS if sortie else MAX_TICKS) or not trace.get("commands") is Array \
 			or trace["commands"].size()>MAX_COMMANDS: return false
-	var july_battle := july_eighteen or july_nine
+	var july_battle := july_eighteen or july_nine or july_fourteen
 	var wide_june := june_three or june_four
 	var previous := 0
 	for row in trace["commands"]:
@@ -82,8 +82,8 @@ static func valid_trace(trace: Variant, sortie := false, seven := false, may_fiv
 		if row[1]==1 and row[2] not in [0,1]: return false
 		if sortie and not (seven or wide_june or july_nine) and row[1]==2: return false
 		if row[1] in [3,4,5] and row[2] not in ([1,2,3,4,5,6,8,9] if july_battle or june_two or wide_june or june_five else [1,3,4,5,6,8,9] if june_one else [3,4,5,8,9,1247,1248] if seven else [3,4,5,6,8,9] if may_five else [3,4,5,9] if sortie else [3,4,9,1249]): return false
-		if row[1] in [7,8] and (row[2]!=3 or not Roles._bounded(row[3],0,95 if wide_june else 63) or not Roles._bounded(row[4],0,143 if wide_june else 95)):return false
-		if row[1]==3 and (row[3]<0 or row[3]>(95 if sortie and not july_battle else 63) or row[4]<0 or row[4]>(143 if sortie and not july_battle else 95)): return false
+		if row[1] in [7,8] and (row[2]!=3 or not Roles._bounded(row[3],0,127 if july_fourteen else 95 if wide_june else 63) or not Roles._bounded(row[4],0,191 if july_fourteen else 143 if wide_june else 95)):return false
+		if row[1]==3 and (row[3]<0 or row[3]>(127 if july_fourteen else 95 if sortie and not july_battle else 63) or row[4]<0 or row[4]>(191 if july_fourteen else 143 if sortie and not july_battle else 95)): return false
 		if row[1]==4 and not Roles._bounded(row[3],1000,1249):
 			if not (july_battle or june_one or june_two or wide_june) or row[2] not in ([8,9] if july_battle else [8]) or row[3] not in ([1,2,3,4,5,6,8,9] if july_battle or june_two or wide_june else [1,3,4,5,6,8,9]):return false
 	return true

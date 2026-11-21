@@ -162,6 +162,7 @@ static func rate(before: Dictionary, rules: Dictionary) -> Dictionary:
 
 static func _validate(before: Dictionary, rules: Dictionary) -> String:
 	var teacher_domain := _teacher_rule_domain(rules)
+	var chapter304: bool=rules.get("chapter304_students",false)
 	if teacher_domain.is_empty():
 		return "invalid_teacher_group_rules"
 	if not Week._vector(before.get("availability"), 121, 0, 1) \
@@ -180,7 +181,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			if index >= int(before[prefix + "_count"]):
 				if int(identity) != -1:
 					return "invalid_school_roster_tail"
-			elif not (_scoped_teacher(identity,teacher_domain) if prefix == "teacher" else _domain(identity,false)) or present.has(int(identity)):
+			elif not (_scoped_teacher(identity,teacher_domain) if prefix == "teacher" else _student(identity,chapter304)) or present.has(int(identity)):
 				return "unsupported_or_duplicate_school_identity"
 			else:
 				present[int(identity)] = true
@@ -192,11 +193,15 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			return "invalid_school_group_control"
 	if not Week._vector(before.get("lecture_work_fields"), 4, -32768, 32767):
 		return "invalid_lecture_work_fields"
-	if not _matrix(before.get("derived_student_ids"), 5, 4, -1, 12) \
+	if not _matrix(before.get("derived_student_ids"), 5, 4, -1, 17 if chapter304 else 12) \
 			or not _matrix(before.get("derived_student_indices"), 5, 4, -1, 19) \
 			or not Week._vector(before.get("derived_teacher_ids"), 5, -1, 118) \
 			or not Week._vector(before.get("derived_teacher_indices"), 5, -1, 19):
 		return "invalid_school_derived_buffers"
+	if chapter304:
+		for row in before["derived_student_ids"]:
+			for id in row:
+				if id>12 and not _student(id,true):return "invalid_school_derived_buffers"
 	for id in before["derived_teacher_ids"]:
 		if int(id) != -1 and not _scoped_teacher(id,teacher_domain):
 			return "invalid_derived_teacher"
@@ -204,7 +209,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		if not before.get(pair[0]) is Array or before[pair[0]].size() > 20:
 			return "invalid_school_waiting_buffer"
 		for identity in before[pair[0]]:
-			if not (_scoped_teacher(identity,teacher_domain) if pair[1] else _domain(identity,false)):
+			if not (_scoped_teacher(identity,teacher_domain) if pair[1] else _student(identity,chapter304)):
 				return "invalid_school_waiting_identity"
 	var teachers := {}
 	for group in range(5):
@@ -219,13 +224,13 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			return "invalid_school_activity_mode"
 		for slot in range(4):
 			var identity := _word(raw, base + 16 + slot * 2)
-			if identity != -1 and not _domain(identity, false):
+			if identity != -1 and not _student(identity,chapter304):
 				return "unsupported_group_student"
 	if not before.get("relationships") is Array:
 		return "missing_school_relationships"
 	var pairs := {}
 	for row in before["relationships"]:
-		if not row is Dictionary or not _scoped_identity(row.get("from"),teacher_domain) or not _scoped_identity(row.get("to"),teacher_domain) \
+		if not row is Dictionary or not _scoped_identity(row.get("from"),teacher_domain,chapter304) or not _scoped_identity(row.get("to"),teacher_domain,chapter304) \
 				or row["from"] == row["to"] or not Week._bounded(row.get("value"), 1, 100):
 			return "invalid_school_relationship"
 		var key := _pair(row["from"], row["to"])
@@ -259,8 +264,12 @@ static func _scoped_teacher(identity: Variant, domain: Array) -> bool:
 	return Week._integer(identity) and int(identity) in domain
 
 
-static func _scoped_identity(identity: Variant, domain: Array) -> bool:
-	return _domain(identity,false) or _scoped_teacher(identity,domain)
+static func _student(identity: Variant, chapter304: bool) -> bool:
+	return _domain(identity,false) or (chapter304 and Week._integer(identity) and identity in [16,17])
+
+
+static func _scoped_identity(identity: Variant, domain: Array, chapter304: bool=false) -> bool:
+	return _student(identity,chapter304) or _scoped_teacher(identity,domain)
 
 
 static func _available(snapshot: Dictionary, identity: int) -> bool:

@@ -76,12 +76,12 @@ static func _validate(before: Dictionary, command: Dictionary, profiles: Variant
 	if not reason.is_empty():
 		return reason
 	for spec in [["idle_sort_mode",0,2], ["teacher_sort_mode",0,2], ["drag_kind",0,0],
-			["drag_origin",0,1], ["drag_group",-1,4], ["drag_slot",0,19], ["drag_id",1,12],
+			["drag_origin",0,1], ["drag_group",-1,4], ["drag_slot",0,19], ["drag_id",1,17 if group_rules.get("chapter304_students",false) else 12],
 			["drag_source_rank",0,7], ["task_drag_state",0,2], ["task_command",0,65535]]:
 		if not Week._bounded(before.get(spec[0]), spec[1], spec[2]):
 			return "invalid_student_drag_control"
 	if command.get("kind") != "student" or not command.get("released") is bool \
-			or not Week._bounded(command.get("student_id"),1,12) \
+			or not Group._student(command.get("student_id"),group_rules.get("chapter304_students",false)) \
 			or not Week._bounded(command.get("source_group"),-1,4) \
 			or not Week._bounded(command.get("source_slot"),0,19) \
 			or not Week._bounded(command.get("target_group"),-1,4) \

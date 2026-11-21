@@ -48,7 +48,8 @@ const SAVE_CONTEXTS := {
 	16:"school_playground_mandatory_thirteen",
 	17:"school_playground_june_five_work",
 	18:"school_playground_july_work",
-	19:"school_playground_mandatory_nine"
+	19:"school_playground_mandatory_nine",
+	20:"school_playground_mandatory_fourteen"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -629,6 +630,7 @@ func export_save() -> Dictionary:
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	if _postbattle.planning.get("committed_date")==[7,4]: return 20
 	if _postbattle.planning.get("committed_date")==[7,3]: return 19
 	if _postbattle.planning.get("committed_date") in [[7,1],[7,2]]: return 18
 	if _postbattle.planning.get("committed_date")==[6,5]: return 17
@@ -664,6 +666,10 @@ func _save_fingerprints(version: int) -> Dictionary:
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
+	if version>=20:
+		result["mandatory_fourteen"]=Postbattle.Adventures.FOURTEEN_SHA
+		result["fourteen_battle"]=Postbattle.SortieRecord.Sortie.FOURTEEN_SHA
+		result["july_five_story"]=Postbattle.SortieWeek.JULY_FIVE_SHA
 	if version>=19:
 		result["mandatory_nine"]=Postbattle.Adventures.NINE_SHA
 		result["nine_battle"]=Postbattle.SortieRecord.Sortie.NINE_SHA

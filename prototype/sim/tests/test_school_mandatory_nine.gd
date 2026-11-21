@@ -37,11 +37,17 @@ func _play(saved: Dictionary, path: String) -> void:
 	ui.free()
 
 
+func _mission() -> Dictionary:
+	return {"scene":9,"week":3,"opening_total":712166,"students":[3,4,8,1,6,2,5,9],
+		"groups":[0,0,1,1,2,2,2,3],"version":19,"trace":"mandatory_nine_victory_trace"}
+
+
 func _depart(ui, saved: Dictionary, path: String) -> void:
 	var model=ui.model
 	var panel=ui.postbattle_panel
+	var mission := _mission()
 	var school: Dictionary=model.read_postbattle().bundle.school
-	assert_eq([school.month,school.week,school.lecture_work_fields,school.global_total_511c],[7,3,[3,8,9,0],712166])
+	assert_eq([school.month,school.week,school.lecture_work_fields,school.global_total_511c],[7,mission.week,[3,mission.scene-1,mission.scene,0],mission.opening_total])
 	for rejected in [{"op":"return_select","adventure":17},{"op":"return_settle"},{"op":"return_mode","group":2,"teaching":true}]:
 		assert_false(model.execute(rejected).supported)
 	assert_eq(model.export_save(),saved)
@@ -55,15 +61,15 @@ func _depart(ui, saved: Dictionary, path: String) -> void:
 	if model.stage()!="sortie_pending":return
 	var hand: Dictionary=model.read_postbattle().planning.handoff
 	var party: Dictionary=hand.prepared.rounds[0]
-	assert_eq(party,{"scene_id":9,"teacher_ids":[101,110,115,118],"student_ids":[3,4,8,1,6,2,5,9],"student_groups":[0,0,1,1,2,2,2,3]})
-	assert_eq(model.export_save().version,19)
+	assert_eq(party,{"scene_id":mission.scene,"teacher_ids":[101,110,115,118],"student_ids":mission.students,"student_groups":mission.groups})
+	assert_eq(model.export_save().version,mission.version)
 	assert_eq(model.export_save().commands[-1],{"op":"return_depart"})
 	panel.find_child("play_sortie",true,false).pressed.emit()
 	var trial=ui.sortie_trial
 	var session=trial.session
 	assert_true(session.ready)
 	if not session.ready:return
-	var fixture:=Fixtures.new()._fixture("mandatory_nine_victory_trace")
+	var fixture:=Fixtures.new()._fixture(mission.trace)
 	assert_eq(fixture.parent,saved.state_sha256)
 	var replay:=Model.BattleRecord.run_trace(session,fixture.trace)
 	assert_true(replay.supported,str(replay))
@@ -78,11 +84,11 @@ func _depart(ui, saved: Dictionary, path: String) -> void:
 	if model.stage()!="sortie_result":return
 	var view: Dictionary=model.read_postbattle()
 	var result: Dictionary=view.planning.sortie_summary
-	assert_eq([result.scene_id,result.date,result.history_index,result.result_selector],[9,[7,3],17,facts.result_selector])
+	assert_eq([result.scene_id,result.date,result.history_index,result.result_selector],[mission.scene,[7,mission.week],14+mission.week,facts.result_selector])
 	assert_eq(result.students.map(func(s):return s.character_id),party.student_ids)
-	assert_eq(view.bundle.school.global_total_511c,712166+result.score.total_delta)
+	assert_eq(view.bundle.school.global_total_511c,mission.opening_total+result.score.total_delta)
 	for id in party.student_ids:
-		assert_eq(Model.Postbattle.Return._find(view.bundle.records,id).week_records[51],2)
+		assert_eq(Model.Postbattle.Return._find(view.bundle.records,id).week_records[3*result.history_index],2)
 	assert_false(model.execute({"op":"sortie_finish","trace":fixture.trace}).supported)
 	panel.find_child("continue_sortie_story",true,false).pressed.emit()
 	_read_and_replan(ui,path)
