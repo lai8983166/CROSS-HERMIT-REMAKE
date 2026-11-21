@@ -17,9 +17,9 @@ GAME = ROOT/'CROSS HERMIT/CROSS HERMIT'
 ACTIONS = [('idle',1),('move',3),('cast',11),('attack',5),('recover',14)]
 
 
-def parent_frames(include_sorties=False, include_seven=False, include_four=False, include_six=False, include_ten=False, include_thirteen=False, include_eighteen=False, include_nine=False):
+def parent_frames(include_sorties=False, include_seven=False, include_four=False, include_six=False, include_ten=False, include_thirteen=False, include_eighteen=False, include_nine=False, include_fourteen=False):
     result={}
-    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()) + (('school_four',) if include_four else ()) + (('school_six',) if include_six else ()) + (('school_ten',) if include_ten else ()) + (('school_thirteen',) if include_thirteen else ()) + (('school_eighteen',) if include_eighteen else ()) + (('school_nine',) if include_nine else ()):
+    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()) + (('school_four',) if include_four else ()) + (('school_six',) if include_six else ()) + (('school_ten',) if include_ten else ()) + (('school_thirteen',) if include_thirteen else ()) + (('school_eighteen',) if include_eighteen else ()) + (('school_nine',) if include_nine else ()) + (('school_fourteen',) if include_fourteen else ()):
         path=ROOT/'prototype/assets'/name/'catalog.json'
         for value in json.loads(path.read_text(encoding='utf8'))['skins'].values():
             for frame in value['frames'].values():
@@ -201,6 +201,24 @@ def export_may_five():
     path.write_bytes((json.dumps(rules, separators=(",", ":"))+'\n').encode("utf8"))
 
 
+def export_july_five():
+    """Add the two Chapter304 recruits to scene 17 without re-exporting the map."""
+    global PARENT_FRAMES
+    image=SOURCE.read_bytes()
+    assert digest(image)==SOURCE_SHA256
+    output=OUT.parent/'school_july_five'
+    output.mkdir(parents=True,exist_ok=True)
+    PARENT_FRAMES=parent_frames(True,True,True,True,True,True,True,True,True)
+    data={'source_image_sha256':SOURCE_SHA256,'player_skins':{},'skins':{},'jobs':{}}
+    for role in (16,17):
+        job=struct.unpack_from('<H',image,0x6f5088-BASE+role*1184+6)[0]
+        data['player_skins'][str(role)]=skin(role,job,image,data['skins'],output)
+        rules=player_job(image,role,job)
+        assert data['jobs'].get(str(job),rules)==rules
+        data['jobs'][str(job)]=rules
+    (output/'catalog.json').write_bytes((json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n').encode('utf8'))
+
+
 if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser()
@@ -213,6 +231,8 @@ if __name__=='__main__':
     parser.add_argument('--ten',action='store_true')
     parser.add_argument('--six',action='store_true')
     parser.add_argument('--may-five',action='store_true')
+    parser.add_argument('--july-five',action='store_true')
     args=parser.parse_args()
-    if args.may_five: export_may_five()
+    if args.july_five: export_july_five()
+    elif args.may_five: export_may_five()
     else: export(args.seven,args.four,args.six,args.ten,args.thirteen,args.eighteen,args.nine,args.fourteen)

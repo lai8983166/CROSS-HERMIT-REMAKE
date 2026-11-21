@@ -1,5 +1,5 @@
 extends RefCounted
-## May and June work results through July week 5, CH003, state 7, CH001, workroom and school boot.
+## May and June work results through August week 1, CH003, state 7, CH001, workroom and school boot.
 const Return := preload("res://sim/school_postbattle_return.gd")
 const Week := preload("res://sim/week_settlement_replay.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
@@ -25,8 +25,10 @@ const JULY_TWO_SHA := "1e5b476300d000b8f5c1863f21f6085e1e97e77851b4dc230d3f72411
 const JULY_THREE_SHA := "b814ce752fb1f8eed446e8715cafcf34baa26ade393fc1d2d055be1b965ac48c"
 const JULY_FOUR_SHA := "51be1f6e71eb47b99bed1e2f27cacd7e97ad562d7639456757489acb0de887b8"
 const JULY_FIVE_SHA := Return.JULY_FIVE[1]
+const AUGUST_ONE_SHA := "4cbdcbbef3484723d4fb0ada0795d743f37a569cb288295905244b2ce27695bd"
 const JULY_STORIES := [["res://data/school_july_week2_story.json",JULY_TWO_SHA],
-	["res://data/school_july_week3_story.json",JULY_THREE_SHA],["res://data/school_july_week4_story.json",JULY_FOUR_SHA],Return.JULY_FIVE]
+	["res://data/school_july_week3_story.json",JULY_THREE_SHA],["res://data/school_july_week4_story.json",JULY_FOUR_SHA],Return.JULY_FIVE,
+	["res://data/school_august_week1_story.json",AUGUST_ONE_SHA]]
 const JUNE_STORIES := [Return.JUNE_TWO,["res://data/school_june_week3_story.json",JUNE_THREE_SHA],
 	["res://data/school_june_week4_story.json",JUNE_FOUR_SHA],Return.JUNE_FIVE,
 	["res://data/school_july_week1_story.json",JULY_ONE_SHA]]
@@ -136,6 +138,10 @@ static func finish_story(before: Dictionary) -> Dictionary:
 		after["flags"]["0x7a55f6"]=[12,3,17,10,9][week-1]
 		after["flags"]["0x7e11a0"]=0 if week==2 else 1
 		after["adv_background"]=2 if week==2 else 122 if week==5 else 8
+	if after["school"]["month"]==8:
+		after["flags"]["0x7a55f6"]=9
+		after["flags"]["0x7e11a0"]=0
+		after["adv_background"]=122
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
@@ -200,8 +206,8 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	if month==6 and week<=2:
 		after["flags"]["0x7a55f6"] = 11
 		after["flags"]["0x7e11a0"] = 0
-	if month==7 and week==2:
-		after["flags"]["0x7a55f6"]=3
+	if (month==7 and week==2) or (month==8 and week==1):
+		after["flags"]["0x7a55f6"]=3 if month==7 else 9
 		after["flags"]["0x7e11a0"]=1
 	after["newly_dated_adventures"] = []
 	if required_id!=0 or month==7:
@@ -218,7 +224,7 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	if not school is Dictionary: return "outside_sortie_week"
 	var may: bool = school.get("month")==5 and school.get("week") in range(first_week,6)
 	var june: bool = school.get("month")==6 and school.get("week") in range(1,6)
-	var july: bool = school.get("month")==7 and school.get("week") in range(1,first_week+4)
+	var july: bool = school.get("month")==7 and school.get("week") in range(1,6)
 	if july and first_week==1 and school["week"]==4:
 		if phase!="chapter304_joined" or school.get("adventure_gate")!=1 or school.get("lecture_active")!=1 or school.get("lecture_work_fields")!=[3,13,14,0]:return "outside_mandatory_sortie_return"
 		return Return._validate(before,[3,4,9,5,8,6,1,2,16,17],7,4,rules)
@@ -243,7 +249,8 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 				return "outside_ch003_teacher_removal"
 		elif phase not in ["sortie_week_advanced","sortie_workroom"]:
 			return "outside_sortie_week"
-	if not may and not june and not july:
+	var august: bool = first_week==2 and school.get("month")==8 and school.get("week")==1
+	if not may and not june and not july and not august:
 		return "outside_sortie_week"
 	if phase=="chapter036_joined":
 		return Return._validate(before,[3,4,9,5,8,6,1,2],6,1,rules)

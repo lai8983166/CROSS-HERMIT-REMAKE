@@ -79,6 +79,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		if july or (june and week==5): previous_tasks.append(13)
 		if july and week>=2: previous_tasks.append(18)
 		if july and week>=4: previous_tasks.append(9)
+		if july and week==5: previous_tasks.append(14)
 		for task in task_grades:
 			if task not in previous_tasks or not Roles._bounded(task_grades[task],1,5):
 				return Origin.failure("invalid_previous_task_grade")
@@ -86,7 +87,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var score := Battle.Score.calculate({"task_id":scene_id,"mode":0,"cap_mode":0,
 		"result_selector":facts.get("result_selector"),"time_key":facts["time_key"],
 		"unit_key":facts.get("unit_condition_key"),"characters":characters,"initial_grade":initial_grade,
-		"initial_total":bundle["school"]["global_total_511c"]},rules["score"],week==5,july or (june and week==5))
+		"initial_total":bundle["school"]["global_total_511c"]},rules["score"],week==5,july or (june and week==5),july and week==5)
 	if not score["supported"]: return score
 	var loot := Battle.Loot._loot(bundle["item_flags"],score["grade_index"],facts,rules)
 	for i in range(records.size()):
@@ -113,7 +114,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var growth := _grow_classes(after,classes,records,lessons,lesson_rules,rules["role"],facts["growth_seed"])
 	if not growth["supported"]:return growth
 	var recipient: int=growth["recipient"]
-	if recipient < 0: return Origin.failure("missing_positive_sortie_recipient")
+	if recipient < 0 and not (july and week==5): return Origin.failure("missing_positive_sortie_recipient")
 	var confirmation := Courses._confirm(after,classes,rules["job_categories"],2)
 	var grade_calls := []
 	var delta: int = Battle.Confirmation.GRADE_DELTA[score["grade_index"]]
@@ -126,9 +127,11 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 			grade_calls.append({"from":teacher,"to":id,"delta":delta})
 	Courses._apply_relationships(after,grade_calls)
 	confirmation["relationship_calls"].append_array(grade_calls)
-	var count := Return._find(after["counts"],recipient)
-	var old_count: int = count["count"]
-	count["count"] = mini(old_count+1,5)
+	var old_count := 0
+	if recipient>=0:
+		var count := Return._find(after["counts"],recipient)
+		old_count=count["count"]
+		count["count"]=mini(old_count+1,5)
 	after["item_flags"] = loot["item_flags"]
 	Return._sync_participants(after)
 	var rated := Courses.Groups.rate(after["school"],Return.group_rules(after["school"]))
@@ -140,7 +143,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		"task_grade":score["task_grade"],"score":score,"loot_groups":loot["loot_groups"],
 		"loot_draws":loot["draws"],"clock_seed":facts["clock_seed"],"growth_seed":facts["growth_seed"],
 		"learning_draws":growth["learning_draws"],"students":growth["students"],"recipient":recipient,
-		"old_mvp_count":old_count,"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient,
+		"old_mvp_count":old_count,"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "allresult/dat/nomvp.ybc",
 		"history_index":(bundle["school"]["month"]-4)*5+week-1,"relationship_calls":confirmation["relationship_calls"],
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"week_advanced":false}}
 	if week==5 or july:
@@ -174,7 +177,8 @@ static func _grow_classes(after: Dictionary, classes: Array, records: Array, les
 		elif item["activity"]==2:
 			var members: Array=item["students"]
 			var inputs := records.filter(func(row):return row["character_id"] in members)
-			var result := Roles.project_growth_records(inputs,members,state,role_rules)
+			var result := Roles.project_growth_records(inputs,members,state,role_rules,
+				[after.school.month,after.school.week]==[7,5])
 			if not result["supported"]:return result
 			for row in result["after"]["characters"]:
 				var id: int=row["character_id"]
@@ -194,7 +198,7 @@ static func _grow_classes(after: Dictionary, classes: Array, records: Array, les
 			state=result["rand_state"]
 			draws.append_array(result["learning_draws"])
 		for change in changes:
-			if change["staged_total"]>best:
+			if change["character_id"]<13 and change["staged_total"]>best:
 				best=change["staged_total"]
 				recipient=change["character_id"]
 	return {"supported":true,"students":battle_changes,"lessons":teaching,"learning_draws":draws,

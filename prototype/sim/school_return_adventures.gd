@@ -200,7 +200,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var school: Dictionary=bundle["school"]
 	var id: int=school["lecture_work_fields"][2]
 	var june: bool=school["month"]==6
-	var july: bool=school["month"]==7 and school["week"] in [1,2,3,4]
+	var july: bool=school["month"]==7 and school["week"] in range(1,6)
 	var required := _mandatory_id(school["month"],school["week"])
 	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july):return _failure("outside_supported_sortie_week")
 	if (required and (id!=required or school["adventure_gate"]!=1)) or (id==7 and required!=7):

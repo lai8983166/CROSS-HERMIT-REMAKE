@@ -82,7 +82,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	if not reason.is_empty(): return Origin.failure(reason)
 	var week: int=before["school"]["week"]
 	var month: int=before["school"]["month"]
-	if not ((month==5 and week in [1,2,3,5]) or (month==6 and week==5) or (month==7 and week in [1,2])): return Origin.failure("outside_supported_course_week")
+	if not ((month==5 and week in [1,2,3,5]) or (month==6 and week==5) or (month==7 and week in [1,2,5])): return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -103,7 +103,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	# Courses 6 and 26 put their entire award in packet[7]. Original 4C00C0
 	# leaves the recipient at -1. Do not index counts with this sentinel.
 	var bonus_only: bool = (week in [3,5] or month==7) and prepared["plan"].all(func(command):return command["training_id"] in [6,26])
-	if recipient<0 and not bonus_only: return Origin.failure("missing_positive_return_course_mvp")
+	if recipient<0 and not bonus_only and [month,week]!=[7,5]: return Origin.failure("missing_positive_return_course_mvp")
 	var confirmed := _confirm(after,prepared["classes"],rules["confirmation"]["job_categories"])
 	var old_count := 0
 	if recipient>=0:
@@ -119,7 +119,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var summary := {"date":[month,week],"declared_clock_seed":seed,"packets":growth["packets"],
 		"learning_draws":growth["learning_draws"],"rand_state":growth["rand_state"],"bonus":growth["bonus"],
 		"skill_display_needed":growth["skill_display_needed"],"recipient":recipient,"old_mvp_count":old_count,
-		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "","history_index":(before["school"]["month"]-4)*5+week-1,
+		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "allresult/dat/nomvp.ybc" if [month,week]==[7,5] else "","history_index":(before["school"]["month"]-4)*5+week-1,
 		"relationship_calls":confirmed["relationship_calls"],"students":growth["students"],
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"chapter_completed":false,"week_advanced":false}}
 	after["course_result"] = summary

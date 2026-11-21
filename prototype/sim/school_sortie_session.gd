@@ -2,6 +2,8 @@ extends "res://sim/school_combat_session.gd"
 ## Source scenes and predicates on the existing explicit remake combat scheduler.
 const AttackPaths := preload("res://sim/school_sortie_paths.gd")
 const PlayerUnits := preload("res://sim/school_sortie_units.gd")
+const JULY_FIVE_PATH := "res://assets/school_july_five/catalog.json"
+const JULY_FIVE_SHA := "baaa436fa0a6892cdedb5d50237e0d17f83b86cad582776726622090233bc132"
 const SOURCE_PATH := "res://assets/school_sorties/catalog.json"
 const SOURCE_SHA := "d272b6ad0da5a0da30676b8ae6ca4273dc045794b6470af419c7f44a14c4d376"
 const SCENES_PATH := "res://data/school_adventure_scene_rules.json"
@@ -51,7 +53,8 @@ var attack_paths: AttackPaths
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
-	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4]]: return false
+	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5]]: return false
+	var july_five: bool=handoff["date"]==[7,5]
 	var july: bool=handoff["date"][0]==7
 	if not handoff.get("prepared") is Dictionary:return false
 	var fourteen: bool=handoff["date"]==[7,4]
@@ -79,12 +82,13 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 			if teacher not in ([101,110,115,118] if june_five or eighteen or nine or fourteen else [101,110,115]) or teachers.count(teacher)!=1:return false
 	elif teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
 	var ids: Array=round_data.get("student_ids",[])
-	if ids.is_empty() or ids.size()>(8 if fourteen or nine or eighteen or june_five or six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
+	if ids.is_empty() or ids.size()>(10 if july_five else 8 if fourteen or nine or eighteen or june_five or six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
 	if ids.size()!=handoff["participants"].size() or ids.size()!=handoff["growth"].size():return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	var next_catalog: Dictionary=source["scenes"][str(sid)].duplicate(true)
 	if four or six or ten or thirteen or eighteen or nine or fourteen:source["attack_rules"]["bow189_hex"]=next_catalog["bow189_hex"]
 	if june_five and not _add_june_five_players(next_catalog,source):return false
+	if july_five and not _add_july_five_players(next_catalog,source):return false
 	if may_five and not _add_may_five_players(next_catalog,source):return false
 	var identity: Dictionary=Adventures.fourteen_rules().get("scene",{}) if fourteen else Adventures.nine_rules().get("scene",{}) if nine else Adventures.eighteen_rules().get("scene",{}) if eighteen else Adventures.thirteen_rules().get("scene",{}) if thirteen else Adventures.ten_rules().get("scene",{}) if ten else Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
 	if identity.is_empty() or handoff.get("scene")!=identity:return false
@@ -192,6 +196,16 @@ static func _add_june_five_players(scene: Dictionary, source: Dictionary) -> boo
 		if not source["skins"].has(key):source["skins"][key]=previous["skins"][key]
 	source["attack_rules"]["jobs"].merge(previous["attack_rules"]["jobs"])
 	source["attack_rules"]["bow189_hex"]=field["bow189_hex"]
+	return true
+
+
+static func _add_july_five_players(scene: Dictionary, source: Dictionary) -> bool:
+	var raw := FileAccess.get_file_as_string(JULY_FIVE_PATH).replace("\r\n","\n")
+	if raw.sha256_text()!=JULY_FIVE_SHA:return false
+	var recruits: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
+	scene.player_skins.merge(recruits.player_skins)
+	source.skins.merge(recruits.skins)
+	source.attack_rules.jobs.merge(recruits.jobs)
 	return true
 
 
@@ -676,8 +690,8 @@ func _hostile_base(target: Dictionary) -> bool:
 
 
 func _admitted(unit: Dictionary, target: Dictionary) -> bool:
-	if scene_id==14 and unit.get("character_id",-1) in range(411,415):
-		return false # MAP14 gates use attack 511 with no target or effect.
+	if unit.get("character_id",-1) in range(411,415) and (scene_id==14 or departure.get("date")==[7,5]):
+		return false # These gates use attack 511 with no target or effect.
 	# Manual target packet 48DAB7/48DBBD/48DBD5 excludes chests via 46A050.
 	# The distinct automatic search at 47A9D0 requires the AI base flag.
 	if scene_id in [9,14] and unit.get("controllable",false) and _hostile_base(target):
@@ -745,7 +759,7 @@ func result_inputs() -> Dictionary:
 		slots.append(int(unit.get("side",-1)==0))
 	var no_hostile := true
 	for unit in units:
-		if scene_id==14 and unit.character_id in range(411,415):continue
+		if (scene_id==14 or departure.date==[7,5]) and unit.character_id in range(411,415):continue
 		if unit["category"]==5 and unit["side"]!=0 and unit["source_state"] in [1,3]:
 			no_hostile=false
 			break

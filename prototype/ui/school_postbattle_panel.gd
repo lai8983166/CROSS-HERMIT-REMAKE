@@ -217,12 +217,12 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[7,5]
+	var planning_only: bool=[school["month"],school["week"]]==[8,1]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="7 月第 5 周可将新生编入班级，选择本周课程或自由训练。"
+		dialogue.text="8 月第 1 周可重新编班，选择课程或自由训练。"
 		progress.text="调整后可保存本周安排。"
 	elif mandatory and school["month"] in [6,7]:
 		dialogue.text="%d 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [school["month"],school["week"],school["lecture_work_fields"][2]]
