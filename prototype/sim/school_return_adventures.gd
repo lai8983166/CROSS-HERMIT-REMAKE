@@ -143,7 +143,7 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if not ((month==5 and week in range(1,6)) or (month==6 and week in range(1,6)) or (month==7 and week in range(1,6))): return false
+	if not ((month in [5,6,7] and week in range(1,6)) or [month,week]==[8,1]): return false
 	var last := (month-5)*5+week
 	var source := rules()
 	var first := initial()
@@ -170,6 +170,7 @@ static func _mandatory_id(month: int, week: int) -> int:
 		5:return 7 if week==4 else 0
 		6:return {1:4,2:6,3:10,4:13}.get(week,0)
 		7:return {3:9,4:14}.get(week,0)
+		8:return 20 if week==2 else 0
 	return 0
 
 
@@ -179,12 +180,12 @@ static func select(bundle: Dictionary, ledger: Dictionary, id: int) -> Dictionar
 	var school: Dictionary=bundle["school"]
 	var date := [school["month"],school["week"]]
 	var mandatory := _mandatory_id(school["month"],school["week"])
-	if id in [4,6,7,9,10,13,14] and (school["adventure_gate"]!=1 or id!=mandatory):
+	if id in [4,6,7,9,10,13,14,20] and (school["adventure_gate"]!=1 or id!=mandatory):
 		return _failure("adventure_not_available")
 	if bundle["school"]["adventure_gate"] != 0 and id != mandatory:
 		return _failure("mandatory_adventure_required")
 	if id==18 and date!=[7,1]:return _failure("adventure_not_available")
-	if id not in [4,6,7,8,9,10,13,14,17,18] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
+	if id not in [4,6,7,8,9,10,13,14,17,18,20] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
 	var row: Dictionary=ledger["entries"].filter(func(r):return r["id"]==id)[0]
 	var index := available(ledger).filter(func(r):return r["category"]==row["metadata"][2]).find(available(ledger).filter(func(r):return r["id"]==id)[0])
 	var after := bundle.duplicate(true)

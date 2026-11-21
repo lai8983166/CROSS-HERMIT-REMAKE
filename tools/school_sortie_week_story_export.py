@@ -1,4 +1,4 @@
-"""Export the May school date routes through August week 1 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through August week 2 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -271,7 +271,7 @@ def build_july_week4():
         {'offset':0x522, 'opcode':151, 'operands':[10,1]},
         {'offset':0x52e, 'opcode':91, 'operands':[8,2]}]
     data['routes'] = routes
-    add_july_chapter_card(data,0,214,4)
+    add_chapter_card(data,0,214,4)
     return data
 
 
@@ -284,7 +284,7 @@ def build_july_week5():
         [{'offset':0x14,'opcode':144,'operands':[16]}, {'offset':0x1c,'opcode':144,'operands':[17]}],
         [{'offset':0x3bc,'opcode':151,'operands':[9,1]}, {'offset':0x3c8,'opcode':91,'operands':[122,2]}]]
     data['routes'] = routes
-    add_july_chapter_card(data,1,305,5)
+    add_chapter_card(data,1,305,5)
     members = [101,3,4,9,5,8,110,6,115,1,2,118]
     data['joins'] = []
     for identity in (16,17):
@@ -293,10 +293,10 @@ def build_july_week5():
     return data
 
 
-def add_july_chapter_card(data,index,chapter,week):
+def add_chapter_card(data,index,chapter,week,month=7):
     raw = (GAME/f'DAT/CHAPTER{chapter}.YBC').read_bytes()
     _, start, end, pool, _ = struct.unpack_from('<5I',raw)
-    assert raw[end:pool].split(bytes(1))[0].replace(bytes([92,92]),b'/') == f'data/adv/bin/tc07{week:02}.bin'.encode()
+    assert raw[end:pool].split(bytes(1))[0].replace(bytes([92,92]),b'/') == f'data/adv/bin/tc{month:02}{week:02}.bin'.encode()
     ops = []
     at = start
     while at < 0x70:
@@ -309,7 +309,7 @@ def add_july_chapter_card(data,index,chapter,week):
     assert ops[2]['operands'] == [0,0,324,0,53,0,0,1024,128]
     assert ops[4]['operands'] == [600] and ops[7]['operands'] == [30]
     data['scenes'][index]['presentation_prefix'] = ops
-    data['date_card'] = _date_card_metadata(week,f'data/adv/bin/tc07{week:02}.bin',ops[2]['operands'],ops[4]['operands'][0])
+    data['date_card'] = _date_card_metadata(week,f'data/adv/bin/tc{month:02}{week:02}.bin',ops[2]['operands'],ops[4]['operands'][0],month)
 
 
 def build_august_week1():
@@ -326,6 +326,18 @@ def build_august_week1():
     assert [movie[i]['operands'] for i in (0,3,4,5,7)] == [[0],[3],[600],[4],[30]]
     data['routes'] = routes
     data['date_card'] = _date_card_metadata(1,movie[1]['resource'],movie[2]['operands'],movie[4]['operands'][0],8)
+    return data
+
+
+def build_august_week2():
+    data = catalog({220:11})
+    routes = [date_route('CH003',8,1), date_route('CH001',8,2), date_route('CH002',8,2)]
+    assert [route['target'] for route in routes] == [None,'data/adv/dat/Chapter220.ybc',None]
+    assert not any('effects' in r for r in routes)
+    assert data['scenes'][0]['effects'] == [
+        {'offset':0x15a,'opcode':151,'operands':[5,1]}, {'offset':0x166,'opcode':91,'operands':[122,2]}]
+    data['routes'] = routes
+    add_chapter_card(data,0,220,2,8)
     return data
 
 
@@ -377,8 +389,8 @@ if __name__ == '__main__':
                        ('school_june_week1_story', build_june_week1), ('school_june_week2_story', build_june_week2),
                        ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1),
                        ('school_july_week2_story', build_july_week2), ('school_july_week3_story', build_july_week3), ('school_july_week4_story', build_july_week4), ('school_july_week5_story', build_july_week5),
-                       ('school_august_week1_story', build_august_week1)]:
+                       ('school_august_week1_story', build_august_week1), ('school_august_week2_story', build_august_week2)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
-    for month,week in ((7,2),(7,4),(7,5),(8,1)):
+    for month,week in ((7,2),(7,4),(7,5),(8,1),(8,2)):
         (ROOT/f'prototype/assets/school_story/tc{month:02}{week:02}.png').write_bytes(july_date_card(week,month)[1])

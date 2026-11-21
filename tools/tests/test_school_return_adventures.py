@@ -168,6 +168,11 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
             self.assertEqual([r['id'] for r in probe.open(7,5)['entries']],[17])
             probe.submit(17 if decision == 18 else 0)
             self.assertEqual([r['id'] for r in probe.open(8,1)['entries']],[17])
+            probe.submit(0)
+            opened = probe.open(8,2)
+            self.assertEqual([r['id'] for r in opened['entries']],[20,17])
+            self.assertEqual((opened['entries'][0]['limit'],opened['entries'][0]['duration']),(1,0))
+            self.assertEqual(probe.open(8,2),opened)
 
     def test_original_timer_expiry_and_reusable17(self):
         probe=LedgerProbe();probe.open(4,4);probe.submit(0);probe.open(4,5);probe.submit(5);probe.open(5,1)

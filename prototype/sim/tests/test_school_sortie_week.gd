@@ -277,7 +277,7 @@ func test_june_registration_and_compulsory_boot_after_each_may_week_five_result(
 func _june_week_two(june: Dictionary, ledger: Dictionary) -> void:
 	var story := Calendar.story(1,6)
 	assert_true(story["supported"])
-	assert_false(Calendar.story(1,8)["supported"])
+	assert_false(Calendar.story(2,8)["supported"])
 	assert_eq(story["pre_week_join_page"],81)
 	assert_eq([story["pre_week"][80]["chapter"],story["pre_week"][81]["chapter"]],[35,36])
 	assert_eq([story["week_start"][78]["chapter"],story["week_start"][79]["chapter"]],[37,38])
@@ -589,7 +589,7 @@ func _july_two_and_three(july: Dictionary, ledger: Dictionary) -> void:
 				assert_eq(bundle["school"]["adventure_gate"],1)
 				assert_eq(bundle["school"]["lecture_work_fields"],[3,8,9,0])
 				assert_eq(bundle["newly_dated_adventures"].map(func(r):return r["id"]),[9])
-				assert_false(Calendar.story(1,8)["supported"])
+				assert_false(Calendar.story(2,8)["supported"])
 				if selection==18:_july_week_four(bundle,opening)
 
 
@@ -748,3 +748,40 @@ func _august_week_one(school: Dictionary, ledger: Dictionary) -> void:
 		assert_eq(Adventures.available(flow.planning.ledger).map(func(r):return r.id),[17])
 		if not course:assert_eq([flow.bundle.school.lecture_active,flow.bundle.school.lecture_work_fields],[1,[1,0,17,0]])
 		assert_true(Return.move_member(flow.bundle,{"kind":"student","member_id":16,"target_group":0,"target_slot":3}).supported)
+
+		if course:_august_week_two(flow.bundle,flow.planning.ledger)
+
+
+func _august_week_two(school: Dictionary,ledger: Dictionary) -> void:
+	var story:=Calendar.story(1,8)
+	assert_true(story.supported)
+	if not story.supported:return
+	assert_eq([story.pre_week,story.school_entry,story.week_start.size()],[[],[],6])
+	assert_eq(story.date_card.source,"data/adv/bin/tc0802.bin")
+	var flow:=preload("res://sim/school_postbattle_flow.gd").new()
+	flow.bundle=school.duplicate(true)
+	flow.bundle.phase="courses_confirmed"
+	flow.phase="course_result"
+	flow.planning={"course_summary":{},"ledger":Adventures.advance(ledger,0),"opening_ledger":ledger}
+	var advanced: Dictionary=flow.execute({"op":"course_story"})
+	assert_true(advanced.supported,str(advanced))
+	if not advanced.supported:return
+	assert_eq([flow.bundle.school.month,flow.bundle.school.week,flow.phase],[8,2,"new_week_story"])
+	assert_eq(flow.snapshot().date_card,story.date_card)
+	assert_true(flow.execute({"op":"post_next"}).supported)
+	for page in story.week_start:
+		assert_eq(flow.snapshot().page,page)
+		assert_true(flow.execute({"op":"post_next"}).supported)
+	assert_eq([flow.phase,flow.bundle.flags["0x7a55f6"],flow.bundle.flags["0x7e11a0"],flow.bundle.adv_background],["post_workroom",5,1,122])
+	var boot: Dictionary=flow.execute({"op":"post_school"})
+	assert_true(boot.supported,str(boot))
+	if not boot.supported:return
+	var result: Dictionary=flow.bundle.school
+	assert_eq([result.lecture_work_fields,result.lecture_active,result.adventure_gate],[[3,19,20,0],1,1])
+	assert_eq(flow.bundle.newly_dated_adventures.map(func(r):return r.id),[20])
+	assert_eq(Adventures.available(flow.planning.ledger).map(func(r):return r.id),[20,17])
+	assert_false(Adventures.select(flow.bundle,flow.planning.ledger,17).supported)
+	for key in ["student_ids","teacher_ids","derived_student_ids","course_unlocked_flags","relationships"]:
+		assert_eq(result[key],school.school[key])
+	assert_true(Return.move_member(flow.bundle,{"kind":"student","member_id":17,"target_group":1,"target_slot":2}).supported)
+	assert_false(Calendar.next_week(flow.bundle).supported)
