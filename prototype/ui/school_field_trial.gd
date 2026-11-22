@@ -85,7 +85,10 @@ class FieldCanvas extends MapPreview.MapCanvas:
 
 	func _draw_student(unit: Dictionary, ground: Vector2) -> void:
 		var skin: Dictionary = session.catalog["skins"][unit.get("skin_key",str(unit["character_id"]))]
-		var timeline: Dictionary = skin["actions"][unit["visual"]][unit["facing"]]
+		var action: String=unit["visual"]
+		var specific: String=unit.get("presentation_skill","basic")+"_"+action
+		if skin.actions.has(specific):action=specific
+		var timeline: Dictionary = skin["actions"][action][unit["facing"]]
 		var picked := AnimTimeline.step_at(timeline,(session.frame-unit["visual_started_frame"])*2,true)
 		if picked.is_empty(): return
 		for layer in picked["step"]["layers"]:

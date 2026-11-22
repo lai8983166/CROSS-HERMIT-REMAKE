@@ -44,6 +44,19 @@ class AugustCourseTableTests(unittest.TestCase):
             self.assertEqual([row[3] for row in prior[teacher-101]],earlier)
             self.assertEqual([row[3] for row in current[teacher-101]],unlocked)
 
+    def test_september_first_week_opens_courses_24_and_36(self):
+        original = CourseUnlockEmulator(8,5)
+        original.unlock()
+        before = original.snapshot()
+        original.write(0x7A528E,9,'h')
+        original.write(0x7A5290,1,'h')
+        original.unlock()
+        after = original.snapshot()
+        added = [i for i,(old,new) in enumerate(zip(before['course_unlocked_flags'],after['course_unlocked_flags'])) if new and not old]
+        self.assertEqual(added,[24,36])
+        for teacher,work in [(115,24),(116,36)]:
+            self.assertIn(work,[row[3] for row in after['course_buffers'][teacher-101]])
+
 
 class CourseSettlementTests(unittest.TestCase):
     @classmethod

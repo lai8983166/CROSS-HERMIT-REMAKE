@@ -5,7 +5,7 @@ const Limits := preload("res://sim/school_combat_limits.gd")
 
 static func project(participant: Dictionary, growth: Dictionary, rules: Dictionary) -> Dictionary:
 	var id = participant.get("character_id")
-	var jobs := {1:6,2:4,3:10,4:6,9:7,5:4,8:8,6:2,16:1,17:1}
+	var jobs := {1:6,2:4,3:10,4:6,9:7,5:4,8:8,6:2,13:10,16:1,17:1}
 	if id not in jobs or growth.get("character_id")!=id or participant.get("job")!=jobs[id] or growth.get("job")!=jobs[id]: return {}
 	if participant.get("attributes")!=growth.get("attributes") or participant.get("level_50")!=growth.get("level_50"):return {}
 	if not Limits._numbers(growth.get("attributes"),7,0,255) or not Limits._integer(growth.get("level_50"),0,99):return {}

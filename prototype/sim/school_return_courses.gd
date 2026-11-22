@@ -137,7 +137,7 @@ static func lesson_rules(month := 5, week := 1) -> Dictionary:
 	if month>=6:
 		tables.append(["res://data/school_june_five_courses.json",JUNE_FIVE_SHA])
 	var size := 30 if month>=6 else 28
-	if [month,week]==[8,4]:
+	if month==8 and week in [4,5]:
 		tables.append(["res://data/school_august_four_courses.json",AUGUST_FOUR_SHA])
 		size=34
 	growth["training"].resize(size)
@@ -182,7 +182,7 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 	var available_courses := [1,2,3,4,5,6,7,10,11,12,17,18,23,27]
 	if (school["month"]==6 and school["week"]==5) or school["month"] in [7,8]:
 		available_courses.append_array([8,19,20,26,28,29])
-	if [school.month,school.week]==[8,4]:
+	if school.month==8 and school.week in [4,5]:
 		available_courses.append_array([30,33])
 	for group in range(5):
 		var rating: Dictionary = rated["ratings"][group]
@@ -198,7 +198,10 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 			return Origin.failure("outside_return_course_subset")
 		var selected := Teacher.select_group(Session._working(school),group,Return.group_rules(school),Return.work_rules(school,rules))
 		if not selected["supported"]: return selected
-		if not selected["after"]["work_rows"][fields[0]].has([fields[1],fields[2],fields[3]]):
+		# New unlocks can move a saved course down its menu. 4C0400 uses the
+		# assigned course ID at 7A52A4, independent of the prior display row.
+		var rows: Array = selected["after"]["work_rows"][fields[0]]
+		if not rows.any(func(row):return row[0]==fields[1] and row[1]==fields[2]):
 			return Origin.failure("stale_return_course_assignment")
 		classes.append({"students":students,"teacher":Groups._word(school["group_raw_bytes"],28*group),"work_fields":fields,"activity":1})
 		for id in students: plan.append({"character_id":id,"training_id":fields[2],"coefficient":rating["relationship_mean"]})

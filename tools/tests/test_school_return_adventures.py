@@ -138,6 +138,31 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
         self.assertEqual(data['scene']['script'], 'T0007.BIN')
         self.assertEqual(data['rewards']['objective_rewards'][0], [0,4,1])
 
+    def test_august_five_optional_adventure_and_september_ledger(self):
+        from tools.school_return_adventures_catalog import adventure_rules
+        rules = adventure_rules(35)
+        self.assertEqual(rules, json.loads((ROOT/'prototype/data/school_august_five_adventure.json').read_bytes()))
+        self.assertEqual((rules['scene']['template_count'], rules['scene']['script']), (36, 'T0035.BIN'))
+        rewards = rules['rewards']
+        self.assertEqual(rewards['base_points'], [150000,135000,100000,75000,50000])
+        self.assertEqual(rewards['unit_bonus'], 110)
+        self.assertEqual(rewards['time_bonuses'], [115,110,105])
+        self.assertEqual(rewards['fixed_items'], [0]*8)
+        self.assertEqual(rewards['objective_rewards'], [[0,0,0]]*16)
+        probe = LedgerProbe()
+        for month, weeks in [(4, [(4,0),(5,5)]), (5, enumerate([8,0,17,7,17],1)),
+                             (6, enumerate([4,6,10,13,17],1)), (7, enumerate([18,0,9,14,0],1)),
+                             (8, enumerate([0,20,21,0],1))]:
+            for week, selected in weeks:
+                probe.open(month,week)
+                probe.submit(selected)
+        first = probe.open(8,5)['entries']
+        self.assertEqual([row['id'] for row in first], [35,17])
+        self.assertEqual((first[0]['limit'], first[0]['duration']), (-1,1))
+        settled = probe.submit(35)['entries']
+        self.assertEqual([(r['id'],r['busy'],r['elapsed']) for r in settled], [(35,0,1),(17,0,22)])
+        self.assertEqual(probe.open(9,1)['entries'], settled)
+
     def test_catalog_identity_complete_date_filter_and_resources(self):
         data=catalog()
         self.assertEqual(data,json.loads((ROOT/'prototype/data/school_return_adventures.json').read_text(encoding='utf8')))

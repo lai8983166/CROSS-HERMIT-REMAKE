@@ -49,7 +49,7 @@ static func group_rules(school: Dictionary) -> Dictionary:
 
 
 static func _has_chapter306(school: Dictionary) -> bool:
-	return school.get("month")==8 and school.get("week") in [4,5] and school.get("student_count")==11 and school.get("teacher_count")==5
+	return [school.get("month"),school.get("week")] in [[8,4],[8,5],[9,1]] and school.get("student_count")==11 and school.get("teacher_count")==5
 
 
 static func _has_chapter304(school: Dictionary) -> bool:
@@ -308,8 +308,8 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
-	if school.get("month")==8 and (school.week==5 or (school.week==4 and bundle.get("phase") not in ["sortie_week_advanced","sortie_workroom"])):
-		return _validate(bundle,[3,4,9,5,8,6,1,2,16,17,13],8,school.week,rules)
+	if [school.get("month"),school.week] in [[8,5],[9,1]] or ([school.get("month"),school.week]==[8,4] and bundle.get("phase") not in ["sortie_week_advanced","sortie_workroom"]):
+		return _validate(bundle,[3,4,9,5,8,6,1,2,16,17,13],school.month,school.week,rules)
 	if (school.get("month")==7 and school["week"]==5) or (school.get("month")==8 and school["week"] in [1,2,3,4]):
 		return _validate(bundle,[3,4,9,5,8,6,1,2,16,17],school.month,school.week,rules)
 	if school.get("month")==7 and school["week"] in [1,2,3,4]:

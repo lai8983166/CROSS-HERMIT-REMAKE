@@ -17,9 +17,9 @@ GAME = ROOT/'CROSS HERMIT/CROSS HERMIT'
 ACTIONS = [('idle',1),('move',3),('cast',11),('attack',5),('recover',14)]
 
 
-def parent_frames(include_sorties=False, include_seven=False, include_four=False, include_six=False, include_ten=False, include_thirteen=False, include_eighteen=False, include_nine=False, include_fourteen=False, include_twenty=False):
+def parent_frames(include_sorties=False, include_seven=False, include_four=False, include_six=False, include_ten=False, include_thirteen=False, include_eighteen=False, include_nine=False, include_fourteen=False, include_twenty=False, include_late_roster=False):
     result={}
-    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()) + (('school_four',) if include_four else ()) + (('school_six',) if include_six else ()) + (('school_ten',) if include_ten else ()) + (('school_thirteen',) if include_thirteen else ()) + (('school_eighteen',) if include_eighteen else ()) + (('school_nine',) if include_nine else ()) + (('school_fourteen',) if include_fourteen else ()) + (('school_twenty',) if include_twenty else ()):
+    for name in ('school_field','school_combat','school_reinforcements') + (('school_sorties',) if include_sorties else ()) + (('school_seven',) if include_seven else ()) + (('school_four',) if include_four else ()) + (('school_six',) if include_six else ()) + (('school_ten',) if include_ten else ()) + (('school_thirteen',) if include_thirteen else ()) + (('school_eighteen',) if include_eighteen else ()) + (('school_nine',) if include_nine else ()) + (('school_fourteen',) if include_fourteen else ()) + (('school_twenty',) if include_twenty else ()) + (('school_twenty_one','school_july_five') if include_late_roster else ()):
         path=ROOT/'prototype/assets'/name/'catalog.json'
         for value in json.loads(path.read_text(encoding='utf8'))['skins'].values():
             for frame in value['frames'].values():
@@ -72,7 +72,7 @@ def skin(role,job,image,existing,output,actions=ACTIONS,extend_actions=False):
     raw=path.read_bytes();o=dx.parse_dxanim(raw)
     table=struct.unpack_from('<I',image,6350928-BASE+(group+8)*4)[0]
     positions=struct.unpack_from('<I',image,6353008-BASE+(group+8)*4)[0]
-    rows=[image[table-BASE+i*16:table-BASE+(i+1)*16].hex() for i in range(25)]
+    rows=[image[table-BASE+i*16:table-BASE+(i+1)*16].hex() for i in range(max(25,1+max(action for _,action in actions)))]
     n=max(bytes.fromhex(row)[i] for row in rows for i in range(0,16,2))+1
     rules={'source':{'local_file':path.relative_to(ROOT).as_posix(),'sha256':digest(raw)},
            'direction_map':[0,5,1,7,2,0,3,4,0,6],'action_rows':rows,
@@ -98,17 +98,17 @@ def player_job(image, role, job):
              'family':row[2]-1, 'weapon_type':image[0x6f5088-BASE+role*1184+0x72]}
 
 
-def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighteen=False, nine=False, fourteen=False, twenty=False, twenty_one=False):
+def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighteen=False, nine=False, fourteen=False, twenty=False, twenty_one=False, thirty_five=False):
     global PARENT_FRAMES
-    late=twenty or twenty_one
-    output=OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
-    PARENT_FRAMES=parent_frames(seven or four or six or ten or thirteen or eighteen or nine or fourteen or late,four or six or ten or thirteen or eighteen or nine or fourteen or late,six or ten or thirteen or eighteen or nine or fourteen or late,ten or thirteen or eighteen or nine or fourteen or late,thirteen or eighteen or nine or fourteen or late,eighteen or nine or fourteen or late,nine or fourteen or late,fourteen or late,late,twenty_one)
+    late=twenty or twenty_one or thirty_five
+    output=OUT.parent/'school_thirty_five' if thirty_five else OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
+    PARENT_FRAMES=parent_frames(seven or four or six or ten or thirteen or eighteen or nine or fourteen or late,four or six or ten or thirteen or eighteen or nine or fourteen or late,six or ten or thirteen or eighteen or nine or fourteen or late,ten or thirteen or eighteen or nine or fourteen or late,thirteen or eighteen or nine or fourteen or late,eighteen or nine or fourteen or late,nine or fourteen or late,fourteen or late,late,twenty_one or thirty_five,thirty_five)
     image=SOURCE.read_bytes();assert digest(image)==SOURCE_SHA256
     output.mkdir(parents=True,exist_ok=True)
     old=formation();terrain=bytes.fromhex(old['terrain_hex'])
     grid=[list(v[:3]) for v in struct.iter_unpack('<bbHH',bytes.fromhex(old['grid_hex']))]
     skins={};scenes={}
-    for sid in ((21,) if twenty_one else (20,) if twenty else (14,) if fourteen else (9,) if nine else (18,) if eighteen else (13,) if thirteen else (10,) if ten else (6,) if six else (4,) if four else (7,) if seven else (8,17)):
+    for sid in ((35,) if thirty_five else (21,) if twenty_one else (20,) if twenty else (14,) if fourteen else (9,) if nine else (18,) if eighteen else (13,) if thirteen else (10,) if ten else (6,) if six else (4,) if four else (7,) if seven else (8,17)):
         r=record_rules(sid,image);actors=[]
         for ordinal,t in enumerate(r['templates']):
             value=expected_record(t,rules=r);raw=bytes.fromhex(value['record_hex']);job=value['job']
@@ -138,8 +138,19 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
     if seven or four or six or ten or thirteen or eighteen or nine or fourteen or late:players+=((8,8),)
     if four or six or ten or thirteen or eighteen or nine or fourteen or late:players+=((1,6),(6,2))
     if six or ten or thirteen or eighteen or nine or fourteen or late:players+=((2,4),)
+    if thirty_five:
+        players+=tuple((role,struct.unpack_from('<H',image,0x6f5088-BASE+role*1184+6)[0]) for role in (13,16,17))
     for role,job in players:
-        key=skin(role,job,image,skins,output)
+        actions=ACTIONS
+        if thirty_five:
+            # 477980 selects cast/release/recovery from each skill's 611538 row.
+            basic=struct.unpack_from('<H',image,0x6b2d88-BASE+64*job+24)[0]
+            actions=list(ACTIONS)
+            for skill in [basic]+{3:[57,59],4:[20],5:[11],9:[31]}.get(role,[]):
+                row=image[0x611538-BASE+16*skill:0x611538-BASE+16*skill+3]
+                prefix='basic' if skill==basic else str(skill)
+                actions.extend((prefix+'_'+name,action) for name,action in zip(('cast','attack','recover'),row))
+        key=skin(role,job,image,skins,output,actions,extend_actions=thirty_five)
         for scene in scenes.values():scene['player_skins'][str(role)]=key
         attack['jobs'][str(job)]=player_job(image,role,job)
     result={'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,'skins':skins,'attack_rules':attack}
@@ -208,7 +219,7 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
             size=(2*radius+1)**2
             start=entries[radius]['file_offset']
             masks[str(radius)]=common[start:start+size].hex()
-        scene['spells']={'rows':{str(i):image[0x6c2dc8-BASE+i*72:0x6c2dc8-BASE+(i+1)*72].hex() for i in ((57,59,31) if twenty_one else (57,59))},'masks':masks}
+        scene['spells']={'rows':{str(i):image[0x6c2dc8-BASE+i*72:0x6c2dc8-BASE+(i+1)*72].hex() for i in ((57,59,31,11,20) if thirty_five else (57,59,31) if twenty_one else (57,59))},'masks':masks}
         scene['bow189_hex']=image[0x6d5118-BASE+189*56:0x6d5118-BASE+190*56].hex()
     target=output/'catalog.json';target.write_text(json.dumps(result,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf8',newline='\n')
     print(target.stat().st_size,digest(target.read_bytes()),'actors',[(s,len(v['actors'])) for s,v in scenes.items()])
@@ -246,6 +257,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--seven',action='store_true')
     parser.add_argument('--four',action='store_true')
+    parser.add_argument('--thirty-five',action='store_true')
     parser.add_argument('--twenty-one',action='store_true')
     parser.add_argument('--twenty',action='store_true')
     parser.add_argument('--fourteen',action='store_true')
@@ -259,4 +271,4 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.july_five: export_july_five()
     elif args.may_five: export_may_five()
-    else: export(args.seven,args.four,args.six,args.ten,args.thirteen,args.eighteen,args.nine,args.fourteen,args.twenty,args.twenty_one)
+    else: export(args.seven,args.four,args.six,args.ten,args.thirteen,args.eighteen,args.nine,args.fourteen,args.twenty,args.twenty_one,args.thirty_five)

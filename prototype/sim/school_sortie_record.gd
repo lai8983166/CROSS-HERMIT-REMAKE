@@ -6,6 +6,8 @@ static var _cache: Dictionary = {}
 
 
 static func valid_trace(trace: Variant, date: Variant, scene_id: Variant) -> bool:
+	var thirty_five: bool=date==[8,5] and scene_id==35
+	if (date==[8,5] or scene_id==35) and not thirty_five:return false
 	var twenty_one: bool=date==[8,3] and scene_id==21
 	if (date==[8,3] or scene_id==21) and not twenty_one:return false
 	var twenty: bool=date==[8,2] and scene_id==20
@@ -17,7 +19,7 @@ static func valid_trace(trace: Variant, date: Variant, scene_id: Variant) -> boo
 	var optional_week: bool=date in [[7,1],[7,2],[7,5],[8,4]]
 	if optional_week and scene_id not in ([17,18] if date==[7,1] else [17]):return false
 	return Record.valid_trace(trace,true,date==[5,4],date==[5,5],date==[6,1],date==[6,2],
-		date==[6,3],date==[6,4],date==[6,5] or (optional_week and scene_id==17),date==[7,1] and scene_id==18,nine,fourteen,date in [[7,5],[8,4]],twenty,twenty_one)
+		date==[6,3],date==[6,4],date==[6,5] or (optional_week and scene_id==17),date==[7,1] and scene_id==18,nine,fourteen,date in [[7,5],[8,4]],twenty,twenty_one,thirty_five)
 
 
 static func replay(handoff: Dictionary, trace: Variant) -> Dictionary:

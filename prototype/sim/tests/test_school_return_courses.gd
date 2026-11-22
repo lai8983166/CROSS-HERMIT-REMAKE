@@ -278,3 +278,17 @@ func test_third_week_original_instruction_packets_and_draws() -> void:
 		assert_eq(growth["learning_draws"].size(),22)
 		assert_eq(growth["rand_state"],1174792322)
 		records=growth["records"]
+
+
+func test_saved_course_keeps_its_identity_when_the_menu_row_moves() -> void:
+	var school: Dictionary = _planned(10).school
+	var rules := Courses._rules()
+	var original := Courses._plan(school,rules)
+	assert_true(original.supported)
+	Groups._put_word(school.group_raw_bytes,12,Groups._word(school.group_raw_bytes,12)+1)
+	var retained := Courses._plan(school,rules)
+	assert_true(retained.supported)
+	if retained.supported:
+		assert_eq(retained.plan,original.plan)
+	Groups._put_word(school.group_raw_bytes,8,99)
+	assert_false(Courses._plan(school,rules).supported)

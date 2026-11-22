@@ -219,13 +219,15 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[8,5]
+	var planning_only: bool=[school["month"],school["week"]]==[9,1]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="8 月第 5 周可重新排课，也可选择本周开放的冒险。"
+		dialogue.text="9 月第 1 周可重新排课，也可选择本周开放的冒险。"
 		progress.text="调整后可保存本周安排。"
+	elif [school.month,school.week]==[8,5]:
+		dialogue.text="选择冒险 35，把要出击的班设为冒险。其他班按课表授课。"
 	elif school.month==8 and school.week==1:
 		dialogue.text="确认四个班的课程后，即可结算并进入下周剧情。"
 		progress.text="本周可重新排课并保存。"
@@ -259,7 +261,7 @@ func _show_plan(view: Dictionary) -> void:
 	for adventure in Adventures.available(plan["ledger"]):
 		var id: int=adventure["id"]
 		if mandatory and id!=school["lecture_work_fields"][2]: continue
-		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",9:"必修 · 冒险9",10:"必修 · 冒险10",13:"必修 · 冒险13",14:"必修 · 冒险14",17:"自由训练 · 冒险17",18:"限时 · 冒险18",20:"必修 · 冒险20",21:"必修 · 冒险21"}.get(id,"冒险%d" % id)
+		var label: String={4:"必修 · 冒险4",6:"必修 · 冒险6",7:"必修 · 冒险7",8:"守城 · 冒险8",9:"必修 · 冒险9",10:"必修 · 冒险10",13:"必修 · 冒险13",14:"必修 · 冒险14",17:"自由训练 · 冒险17",18:"限时 · 冒险18",20:"必修 · 冒险20",21:"必修 · 冒险21",35:"石像训练 · 冒险35"}.get(id,"冒险%d" % id)
 		label+="　剩余%d周" % adventure["remaining"] if adventure["remaining"]>0 else "　无期限"
 		var button := _button(label,func():command.emit({"op":"return_select","adventure":id}))
 		button.name="adventure_%d" % id;button.toggle_mode=true
@@ -268,10 +270,10 @@ func _show_plan(view: Dictionary) -> void:
 	if planning_only: return
 	var row := HBoxContainer.new();plans.add_child(row)
 	var settle := _button("确认本周授课",func():_confirm("return_settle","确认后结算本周授课，保留成长、技能与成员记录。本周不能再出击。"))
-	settle.name="settle";row.add_child(settle);settle.visible=not mandatory
+	settle.name="settle";row.add_child(settle);settle.visible=not mandatory and [school.month,school.week]!=[8,5]
 	var ratings := Groups.rate(school,Courses.Return.group_rules(school))
 	settle.disabled=not ratings["supported"] or not ratings["ratings"].any(func(r):return r["state"]==4) or ratings["ratings"].any(func(r):return r["state"] not in [0,4])
-	if school["week"]==5 and ratings["supported"] and ratings["ratings"].any(func(r):return r["state"]==3):
+	if school["week"]==5 and school.month!=8 and ratings["supported"] and ratings["ratings"].any(func(r):return r["state"]==3):
 		progress.text="有班级设为冒险但尚未选择任务。要全校授课，请将该班切换为授课并确认课程；也可选择冒险，让其余班级照常上课。"
 
 	if [school.month,school.week]==[8,1]:return

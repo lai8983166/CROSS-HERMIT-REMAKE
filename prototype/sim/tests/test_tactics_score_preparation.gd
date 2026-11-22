@@ -96,3 +96,18 @@ func test_incomplete_source_rules_do_not_index_missing_data() -> void:
 	rules = fixture["rules"].duplicate(true)
 	rules["task_id"] = 37
 	assert_false(Preparation.calculate(inputs, rules)["supported"], "规则不是任务 5")
+
+
+func test_scene_35_party_uses_all_five_saved_classes() -> void:
+	var fixture := _fixture()
+	var inputs: Dictionary = fixture.cases[0].inputs.duplicate(true)
+	var rules: Dictionary = preload("res://sim/school_sortie_settlement.gd")._rules(35).score
+	inputs.task_id = 35
+	var character: Dictionary = inputs.characters[0]
+	inputs.characters = []
+	for id in range(1,22):
+		var member := character.duplicate(true)
+		member.character_id = id
+		inputs.characters.append(member)
+		if id in [1,11,20,21]:
+			assert_eq(Preparation.calculate(inputs,rules).supported, id<=20)

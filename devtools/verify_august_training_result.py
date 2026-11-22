@@ -1,7 +1,7 @@
-"""Compare a played August 4 training trace's terminal facts with original result code.
+"""Compare a played August training trace's terminal facts with original result code.
 
 From the repository root, export a new JSON file from the accepted save:
-  godot --headless --path prototype -s ../devtools/export_august_four_work.gd -- ABS_SAVE ABS_JSON mixed
+  godot --headless --path prototype -s ../devtools/export_august_four_work.gd -- ABS_SAVE ABS_JSON mixed|adventure35
   python -m devtools.verify_august_training_result ABS_JSON
 
 This only executes the three result preparation routines on declared inputs.
@@ -67,11 +67,12 @@ def verify(captured):
     bundle = captured['before']
     school = bundle['school']
     facts = captured['facts']
-    if [school['month'], school['week'], facts['scene_id']] != [8, 4, 17]:
-        raise ValueError('expected the August week 4 scene 17 departure')
+    scene_id = facts['scene_id']
+    if (school['month'], school['week'], scene_id) not in [(8, 4, 17), (8, 5, 35)]:
+        raise ValueError('expected scene 17 in August week 4 or scene 35 in week 5')
     cpu = PreparationEmulator(seed=facts['clock_seed'])
-    cpu.write(0x7a5294, 17, 'h')
-    cpu.write(0x7a54ca + 17, captured['grades'].get('17', 5), 'B')
+    cpu.write(0x7a5294, scene_id, 'h')
+    cpu.write(0x7a54ca + scene_id, captured['grades'].get(str(scene_id), 5), 'B')
     cpu.write(0x7a528e, school['month'], 'h')
     cpu.write(0x7a5290, school['week'], 'h')
     cpu.write(0x7a528c, school['difficulty'], 'h')
@@ -97,7 +98,7 @@ def verify(captured):
     flags = [cpu.read(0x7aacaa + 2*i, 'H') for i in range(1, 361)]
     result = captured['after']['sortie_result']
     for name, actual, expected in [
-        ('grade', cpu.read(0x7a54ca + 17, 'B'), result['task_grade']),
+        ('grade', cpu.read(0x7a54ca + scene_id, 'B'), result['task_grade']),
         ('score', cpu.read(RESULT_TASK + 0x40, 'i'), result['score']['total_delta']),
         ('total', cpu.read(0x7a511c, 'i'), result['score']['total_after']),
         ('packages', packages, result['score']['characters']), ('loot', loot, result['loot_groups']),

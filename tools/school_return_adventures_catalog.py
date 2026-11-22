@@ -36,8 +36,8 @@ def catalog(scene_ids=(8,17)):
         'scope':'Complete catalog for the owned first-game 4/4 course -> 4/5 adventure5 -> 5/1 return. No imported arbitrary history or playable scene8/17 authority.'}
 
 
-def mandatory_adventure(task_id):
-    assert task_id in (4, 6, 7, 9, 10, 13, 14, 18, 20, 21)
+def adventure_rules(task_id):
+    assert task_id in (4, 6, 7, 9, 10, 13, 14, 18, 20, 21, 35)
     image = SOURCE.read_bytes()
     assert hashlib.sha256(image).hexdigest() == SOURCE_SHA256
     def values(address, count, fmt='h'):
@@ -49,6 +49,10 @@ def mandatory_adventure(task_id):
                'fixed_items': values(0x73BF60,8),
                'objective_rewards': [values(0x73BF70+6*i,3) for i in range(16)]}
     return {'source_image_sha256': SOURCE_SHA256, 'scene':catalog((task_id,))['scenes'][str(task_id)], 'rewards':rewards}
+
+
+def mandatory_adventure(task_id):
+    return adventure_rules(task_id)
 
 
 def mandatory_seven():

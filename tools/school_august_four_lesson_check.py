@@ -1,11 +1,11 @@
-"""Check an August 4 Godot settlement against bounded original x86 calls.
+"""Check an August Godot settlement against bounded original x86 calls.
 
 From the project root, run the Godot console in headless mode with --path
 prototype -s ../devtools/export_august_four_work.gd -- PARENT OUT MODE
-using absolute paths and MODE course or mixed. Then run:
+using absolute paths and MODE course, mixed or adventure35. Then run:
 python -m tools.school_august_four_lesson_check OUT
-The exported round supplies the training membership. In a mixed round the battle RNG prefix is a
-declared handoff to the fifth class. The growth oracle covers teaching slots.
+In week 5 the original class dispatcher consumes the scored battle packages,
+then applies the saved lessons. Week 4 retains its declared battle RNG prefix.
 """
 import argparse
 import json
@@ -54,7 +54,9 @@ class LessonCheck(CourseConfirmationEmulator):
 
     def load_bundle(self, before, seed, ratings):
         school = before['school']
-        check('date', [school['month'], school['week']], [8,4])
+        if (school['month'], school['week']) not in [(8,4),(8,5)]:
+            raise ValueError('expected an August week 4 or 5 settlement')
+        history = ((school['month']-4)*5+school['week']-1)*3
         self.participant_ids = school['student_ids'][:school['student_count']]
         check('accepted roster', self.participant_ids, [3,4,9,5,8,6,1,2,16,17,13])
         self.uc.mem_write(TASK+0x34, bytes(0x1430-0x34))
@@ -64,7 +66,7 @@ class LessonCheck(CourseConfirmationEmulator):
         self.write(TLS+0x14, seed, 'I')
         self.write(0x7A528C, school['difficulty'], 'h')
         self.write(0x7A528E, 8, 'h')
-        self.write(0x7A5290, 4, 'h')
+        self.write(0x7A5290, school['week'], 'h')
         self.write(0x7A5260, len(self.participant_ids), 'h')
         for i, member in enumerate(self.participant_ids):
             self.write(0x7A5210+2*i, member, 'h')
@@ -90,7 +92,7 @@ class LessonCheck(CourseConfirmationEmulator):
                 self.write(base+0x10+8*k, growth['growth_pools'][k], 'I')
             for k, status in enumerate(growth['skill_statuses']):
                 self.write(base+0xB8+12*k, status, 'B')
-            self.confirm_ranges += [(pkg+0x24+69,pkg+0x24+72),(pkg+0xD7+growth['job'],pkg+0xD8+growth['job'])]
+            self.confirm_ranges += [(pkg+0x24+history,pkg+0x24+history+3),(pkg+0xD7+growth['job'],pkg+0xD8+growth['job'])]
         for relation in school['relationships']:
             addr = relationship_address(relation['from'],relation['to'])
             self.write(addr, relation['value'], 'B')
@@ -111,7 +113,8 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     lessons = summary['lessons'] if round_data else summary
     reported = {row['character_id']:row for row in after['growth']}
     seed = summary['growth_seed'] if round_data else summary['declared_clock_seed']
-    if round_data:
+    full_dispatch = not round_data or before['school']['week']==5
+    if round_data and not full_dispatch:
         prefix = len(summary['learning_draws'])-len(lessons['learning_draws'])
         for draw in summary['learning_draws'][:prefix]:
             seed = (seed*214013+2531011)&0xFFFFFFFF
@@ -119,6 +122,11 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     original = LessonCheck()
     ratings = submitted_ratings if round_data else before['ratings']
     original.load_bundle(before, seed, ratings)
+    if round_data and full_dispatch:
+        original._function_ranges += ((0x4C0C10,0x4C1350),)
+        for row in summary['score']['characters']:
+            pkg = PACKAGE_BASE+row['character_id']*PACKAGE_STRIDE
+            original.uc.mem_write(pkg, struct.pack('<9i', *row['staged_package'], row['staged_total']))
     original.clear_trace('course_settlement')
     attendees = []
     for g,rating in enumerate(ratings):
@@ -126,9 +134,9 @@ def verify(before, after, round_data=None, submitted_ratings=None):
             for member in before['school']['derived_student_ids'][g]:
                 if member>=0:
                     attendees.append(member)
-                    if round_data:
+                    if not full_dispatch:
                         original.invoke(0x4C0400, (member,g))
-    if not round_data:
+    if full_dispatch:
         original.write(0x7E1180, -1, 'h')
         original.write(0x7E1184, 0, 'i')
         original.invoke(0x4C00C0)
@@ -139,13 +147,14 @@ def verify(before, after, round_data=None, submitted_ratings=None):
             check('confirmed MVP count', current['count'], min(previous['count']+earned,5))
     packets = [{k:v for k,v in row.items() if k not in ('return_va','output_pointer')} for row in original.packet_events]
     check('growth packets', packets, lessons['packets'])
-    check('lesson draws', original.draws, lessons['learning_draws'])
+    check('learning draws', original.draws, summary['learning_draws'] if full_dispatch else lessons['learning_draws'])
     check('final RNG state', original.read(TLS+0x14), summary['rand_state'])
     check('bonus', original.read(TASK+0x34), lessons['bonus'])
-    check('skill display', original.read(TASK+0x142C,'h'), lessons['skill_display_needed'])
+    if not round_data or not full_dispatch:
+        check('skill display', original.read(TASK+0x142C,'h'), lessons['skill_display_needed'])
     for row in original.growth_records():
         member = row['character_id']
-        if member in attendees:
+        if member in attendees or (round_data and full_dispatch and member in round_data['student_ids']):
             for key in ('job','attributes','growth_pools','skill_statuses','staged_total','level_50'):
                 check((member,key), row[key], reported[member][key])
         else:
@@ -163,7 +172,7 @@ def verify(before, after, round_data=None, submitted_ratings=None):
         check('job sums', row['job_sums'], reported[row['character_id']]['job_sums'])
     for row in after['school']['relationships']:
         check('relationship', original.read(relationship_address(row['from'],row['to']),'B'), row['value'])
-    return {'attendees':attendees, 'packets':len(packets), 'lesson_draws':len(original.draws),
+    return {'attendees':attendees, 'packets':len(packets), 'lesson_draws':len(lessons['learning_draws']), 'verified_draws':len(original.draws),
             'bonus':lessons['bonus'], 'career_and_history_records':len(reported),
             'relationship_calls':len(original.relationship_calls), 'relationship_values':len(after['school']['relationships'])}
 

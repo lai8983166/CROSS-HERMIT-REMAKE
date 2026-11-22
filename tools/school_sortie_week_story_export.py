@@ -389,6 +389,20 @@ def build_august_week5():
     return data
 
 
+def build_september_week1():
+    data = catalog({49:264})
+    routes = [date_route('CH003',8,5), date_route('CH001',9,1), date_route('CH002',9,1)]
+    assert [r['target'] for r in routes] == [None,'data/adv/dat/Chapter049.ybc',None]
+    assert 'effects' not in routes[0] and 'effects' not in routes[1]
+    assert routes[2]['effects'] == [{'offset':0x590,'opcode':151,'operands':[11,1]}]
+    assert data['scenes'][0]['effects'] == [
+        {'offset':0xab0,'opcode':153,'operands':[1,6,0]},
+        {'offset':0x15a0,'opcode':151,'operands':[11,0]}, {'offset':0x15ac,'opcode':91,'operands':[14,2]}]
+    data['routes'] = routes
+    add_chapter_card(data,0,'049',1,9)
+    return data
+
+
 def _link_chapters(scene, label, next_chapter):
     raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
     _, _, end, pool, _ = struct.unpack_from('<5I', raw)
@@ -438,8 +452,8 @@ if __name__ == '__main__':
                        ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1),
                        ('school_july_week2_story', build_july_week2), ('school_july_week3_story', build_july_week3), ('school_july_week4_story', build_july_week4), ('school_july_week5_story', build_july_week5),
                        ('school_august_week1_story', build_august_week1), ('school_august_week2_story', build_august_week2),
-                       ('school_august_week3_story', build_august_week3), ('school_august_week4_story', build_august_week4), ('school_august_week5_story', build_august_week5)]:
+                       ('school_august_week3_story', build_august_week3), ('school_august_week4_story', build_august_week4), ('school_august_week5_story', build_august_week5), ('school_september_week1_story', build_september_week1)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
-    for month,week in ((7,2),(7,4),(7,5),(8,1),(8,2),(8,3),(8,4),(8,5)):
+    for month,week in ((7,2),(7,4),(7,5),(8,1),(8,2),(8,3),(8,4),(8,5),(9,1)):
         (ROOT/f'prototype/assets/school_story/tc{month:02}{week:02}.png').write_bytes(july_date_card(week,month)[1])
