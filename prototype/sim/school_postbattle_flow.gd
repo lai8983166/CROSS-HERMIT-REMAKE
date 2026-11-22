@@ -210,12 +210,12 @@ func _plan(command: Dictionary) -> Dictionary:
 		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
 	if not result["supported"]:return result
 	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
-	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"] in [6,7,8]) and op in ["return_settle","return_depart"]:
+	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"] in [6,7,8,9]) and op in ["return_settle","return_depart"]:
 		# Replace last week's display summary only when the new work is committed.
 		# Keep its starting ledger for validating the battle and next school's entry.
 		var opening: Dictionary=planning["ledger"]
 		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
-		if bundle["school"]["month"] in [6,7,8]:
+		if bundle["school"]["month"] in [6,7,8,9]:
 			planning["committed_date"]=[bundle["school"]["month"],bundle["school"]["week"]]
 		elif bundle["school"]["week"]>=3:
 			planning["committed_week"]=bundle["school"]["week"]

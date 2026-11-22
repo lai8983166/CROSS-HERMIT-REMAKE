@@ -14,6 +14,7 @@ const Roles := preload("res://sim/all_result_role_replay.gd")
 const MAY_FIVE_SHA := "f1672fbbbae4b817bd3e1188c734493538411c73461f71b59880e9bb84d2fc04"
 const JUNE_FIVE_SHA := "34f20195975120edf92a77ad82ba106cfd481186c54a6e9e9fbfd5683ede6683"
 const AUGUST_FOUR_SHA := "12b84b6c1b134f8fd0d9b459f8af68b6eb465b4c14e2e95c3515000799eade30"
+const SEPTEMBER_ONE_SHA := "d5d82913601e590e8a98e8e279e14e8edb2c5a27d88ab563e271090b2322bde3"
 const SOURCES := {
 	"growth":["res://data/school_course_settlement_rules.json","5f2738db67bdacf1677e6de1c823ac8dfa542e6b103cd913af9c51a2fe93c439"],
 	"confirmation":["res://data/school_course_confirmation_rules.json","2a75e6e4dd30ae8e99a5e014dc3ba87b646f65b73b3a04d03999d2ceaebaf6a6"]}
@@ -83,7 +84,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	if not reason.is_empty(): return Origin.failure(reason)
 	var week: int=before["school"]["week"]
 	var month: int=before["school"]["month"]
-	if not ((month==5 and week in [1,2,3,5]) or (month==6 and week==5) or (month==7 and week in [1,2,5]) or (month==8 and week in [1,4])): return Origin.failure("outside_supported_course_week")
+	if not ((month==5 and week in [1,2,3,5]) or (month==6 and week==5) or (month==7 and week in [1,2,5]) or (month==8 and week in [1,4]) or [month,week]==[9,1]): return Origin.failure("outside_supported_course_week")
 	if before.get("phase")=="courses_confirmed":
 		if not before.get("course_result") is Dictionary or before["course_result"].get("declared_clock_seed")!=seed:
 			return Origin.failure("return_course_result_conflict")
@@ -104,7 +105,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	# Courses 6 and 26 put their entire award in packet[7]. Original 4C00C0
 	# leaves the recipient at -1. Do not index counts with this sentinel.
 	var bonus_only: bool = (week in [3,5] or month==7) and prepared["plan"].all(func(command):return command["training_id"] in [6,26])
-	if recipient<0 and not bonus_only and [month,week] not in [[7,5],[8,1],[8,4]]: return Origin.failure("missing_positive_return_course_mvp")
+	if recipient<0 and not bonus_only and [month,week] not in [[7,5],[8,1],[8,4],[9,1]]: return Origin.failure("missing_positive_return_course_mvp")
 	var confirmed := _confirm(after,prepared["classes"],rules["confirmation"]["job_categories"])
 	var old_count := 0
 	if recipient>=0:
@@ -120,7 +121,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 	var summary := {"date":[month,week],"declared_clock_seed":seed,"packets":growth["packets"],
 		"learning_draws":growth["learning_draws"],"rand_state":growth["rand_state"],"bonus":growth["bonus"],
 		"skill_display_needed":growth["skill_display_needed"],"recipient":recipient,"old_mvp_count":old_count,
-		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "allresult/dat/nomvp.ybc" if [month,week] in [[7,5],[8,1],[8,4]] else "","history_index":(before["school"]["month"]-4)*5+week-1,
+		"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "allresult/dat/nomvp.ybc" if [month,week] in [[7,5],[8,1],[8,4],[9,1]] else "","history_index":(before["school"]["month"]-4)*5+week-1,
 		"relationship_calls":confirmed["relationship_calls"],"students":growth["students"],
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":7,"chapter_completed":false,"week_advanced":false}}
 	after["course_result"] = summary
@@ -129,7 +130,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 
 
 static func lesson_rules(month := 5, week := 1) -> Dictionary:
-	if month not in [5,6,7,8]:return {}
+	if month not in [5,6,7,8] and [month,week]!=[9,1]:return {}
 	var source := _rules()
 	if source.is_empty():return {}
 	var growth: Dictionary=source["growth"]
@@ -137,9 +138,12 @@ static func lesson_rules(month := 5, week := 1) -> Dictionary:
 	if month>=6:
 		tables.append(["res://data/school_june_five_courses.json",JUNE_FIVE_SHA])
 	var size := 30 if month>=6 else 28
-	if month==8 and week in [4,5]:
+	if (month==8 and week in [4,5]) or [month,week]==[9,1]:
 		tables.append(["res://data/school_august_four_courses.json",AUGUST_FOUR_SHA])
 		size=34
+	if [month,week]==[9,1]:
+		tables.append(["res://data/school_september_one_courses.json",SEPTEMBER_ONE_SHA])
+		size=37
 	growth["training"].resize(size)
 	for table in tables:
 		var raw := FileAccess.get_file_as_string(table[0]).replace("\r\n","\n")
@@ -180,10 +184,12 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 	var plan := []
 	var classes := []
 	var available_courses := [1,2,3,4,5,6,7,10,11,12,17,18,23,27]
-	if (school["month"]==6 and school["week"]==5) or school["month"] in [7,8]:
+	if (school["month"]==6 and school["week"]==5) or school["month"] in [7,8] or [school.month,school.week]==[9,1]:
 		available_courses.append_array([8,19,20,26,28,29])
-	if school.month==8 and school.week in [4,5]:
+	if (school.month==8 and school.week in [4,5]) or [school.month,school.week]==[9,1]:
 		available_courses.append_array([30,33])
+	if [school.month,school.week]==[9,1]:
+		available_courses.append_array([24,36])
 	for group in range(5):
 		var rating: Dictionary = rated["ratings"][group]
 		if rating["state"]==0:continue

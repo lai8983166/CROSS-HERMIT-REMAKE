@@ -1,8 +1,8 @@
-"""Check an August Godot settlement against bounded original x86 calls.
+"""Check an August or September Godot settlement against bounded original x86 calls.
 
 From the project root, run the Godot console in headless mode with --path
 prototype -s ../devtools/export_august_four_work.gd -- PARENT OUT MODE
-using absolute paths and MODE course, mixed or adventure35. Then run:
+using absolute paths and MODE course, mixed, adventure35 or september. Then run:
 python -m tools.school_august_four_lesson_check OUT
 In week 5 the original class dispatcher consumes the scored battle packages,
 then applies the saved lessons. Week 4 retains its declared battle RNG prefix.
@@ -31,6 +31,16 @@ def relationship_address(source, target):
 
 
 class LessonCheck(CourseConfirmationEmulator):
+    def __init__(self):
+        self.executed = {'course_settlement':0, 'course_confirmation':0}
+        super().__init__()
+
+    def _hook(self, uc, address, size, context):
+        super()._hook(uc, address, size, context)
+        stage = getattr(self, 'stage', None)
+        if stage in self.executed and address in self.visited:
+            self.executed[stage] += 1
+
     def _write_hook(self, uc, access, address, size, value, context):
         if self.stage == 'course_confirmation':
             if any(lo <= address and address+size <= hi for lo,hi in self.confirm_ranges):
@@ -54,8 +64,8 @@ class LessonCheck(CourseConfirmationEmulator):
 
     def load_bundle(self, before, seed, ratings):
         school = before['school']
-        if (school['month'], school['week']) not in [(8,4),(8,5)]:
-            raise ValueError('expected an August week 4 or 5 settlement')
+        if (school['month'], school['week']) not in [(8,4),(8,5),(9,1)]:
+            raise ValueError('expected an August week 4/5 or September week 1 settlement')
         history = ((school['month']-4)*5+school['week']-1)*3
         self.participant_ids = school['student_ids'][:school['student_count']]
         check('accepted roster', self.participant_ids, [3,4,9,5,8,6,1,2,16,17,13])
@@ -65,7 +75,7 @@ class LessonCheck(CourseConfirmationEmulator):
                 self.write(TASK+0x136E+2*(category+12*ordinal), skill, 'h')
         self.write(TLS+0x14, seed, 'I')
         self.write(0x7A528C, school['difficulty'], 'h')
-        self.write(0x7A528E, 8, 'h')
+        self.write(0x7A528E, school['month'], 'h')
         self.write(0x7A5290, school['week'], 'h')
         self.write(0x7A5260, len(self.participant_ids), 'h')
         for i, member in enumerate(self.participant_ids):
@@ -109,7 +119,16 @@ class LessonCheck(CourseConfirmationEmulator):
 
 
 def verify(before, after, round_data=None, submitted_ratings=None):
+    school = before['school']
+    date = [school['month'], school['week']]
     summary = after['sortie_result' if round_data else 'course_result']
+    roster = school['student_ids'][:school['student_count']]
+    for bundle in (before,after):
+        for key in ('growth','records','counts'):
+            check(f'{key} roster', [row['character_id'] for row in bundle[key]], roster)
+    check('confirmed date', [after['school']['month'],after['school']['week']], date)
+    relations = [(row['from'],row['to']) for row in school['relationships']]
+    check('relationship coverage', [(row['from'],row['to']) for row in after['school']['relationships']], relations)
     lessons = summary['lessons'] if round_data else summary
     reported = {row['character_id']:row for row in after['growth']}
     seed = summary['growth_seed'] if round_data else summary['declared_clock_seed']
@@ -150,6 +169,11 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     check('learning draws', original.draws, summary['learning_draws'] if full_dispatch else lessons['learning_draws'])
     check('final RNG state', original.read(TLS+0x14), summary['rand_state'])
     check('bonus', original.read(TASK+0x34), lessons['bonus'])
+    if not round_data:
+        check('course date', summary['date'], date)
+        check('course history slot', summary['history_index'], (date[0]-4)*5+date[1]-1)
+        check('confirmed total', after['school']['global_total_511c'],
+              min(school['global_total_511c']+original.read(TASK+0x34),999999999))
     if not round_data or not full_dispatch:
         check('skill display', original.read(TASK+0x142C,'h'), lessons['skill_display_needed'])
     for row in original.growth_records():
@@ -173,7 +197,7 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     for row in after['school']['relationships']:
         check('relationship', original.read(relationship_address(row['from'],row['to']),'B'), row['value'])
     return {'attendees':attendees, 'packets':len(packets), 'lesson_draws':len(lessons['learning_draws']), 'verified_draws':len(original.draws),
-            'bonus':lessons['bonus'], 'career_and_history_records':len(reported),
+            'original_instructions':original.executed, 'bonus':lessons['bonus'], 'career_and_history_records':len(reported),
             'relationship_calls':len(original.relationship_calls), 'relationship_values':len(after['school']['relationships'])}
 
 

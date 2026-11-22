@@ -42,6 +42,16 @@ func test_august_four_lessons_match_original_growth_and_skill_draws() -> void:
 	_assert_original_lesson_vectors(Courses.lesson_rules(8,4),cases)
 
 
+func test_september_one_lessons_match_original_growth_and_skill_draws() -> void:
+	var cases := [
+		[7,[0,0,0,0,6600,0,3300,0],[15,13,27,35,61,29,67],[]],
+		[19,[0,0,6600,0,0,1650,0,0],[15,13,28,35,61,29,67],[]],
+		[24,[0,0,0,6600,0,0,1650,0],[15,13,27,35,61,29,67],[]],
+		[30,[0,0,0,0,8250,0,1650,0],[15,13,27,35,61,29,67],[64]],
+		[36,[13750,0,0,0,0,0,0,0],[20,13,27,35,61,29,67],[8]]]
+	_assert_original_lesson_vectors(Courses.lesson_rules(9,1),cases)
+
+
 func _assert_original_lesson_vectors(rules: Dictionary, cases: Array) -> void:
 	var data: Dictionary=Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_settlement_evidence_v1.json")))
 	var case: Dictionary=data["cases"][0]

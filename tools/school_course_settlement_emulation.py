@@ -71,6 +71,11 @@ def august_four_lessons():
     return _lesson_rows((30,33))
 
 
+def september_one_lessons():
+    """New source rows for teachers 115 and 116 at September week one."""
+    return _lesson_rows((24,36))
+
+
 def _lesson_rows(course_ids):
     image = SOURCE.read_bytes()
     if hashlib.sha256(image).hexdigest() != SOURCE_SHA256:
