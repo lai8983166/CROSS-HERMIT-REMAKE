@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, build_august_week4, build_august_week5, build_september_week1, build_september_week2, build_september_week3, july_date_card, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, build_august_week4, build_august_week5, build_september_week1, build_september_week2, build_september_week3, build_september_week4, july_date_card, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -266,3 +266,13 @@ class SortieWeekStoryTests(unittest.TestCase):
         scene, = data['scenes']
         self.assertEqual((scene['chapter'],len(scene['pages']),scene['text_count']), (52,22,29))
         self.assertEqual((ROOT/'prototype/assets/school_story/tc0903.png').read_bytes(), july_date_card(3,9)[1])
+
+    def test_adventure22_postbattle_chain_and_week_four(self):
+        data = build_september_week4()
+        actual = ROOT/'prototype/data/school_september_week4_story.json'
+        self.assertEqual(actual.read_bytes(), (json.dumps(data, ensure_ascii=False, indent=2)+chr(10)).encode())
+        self.assertEqual([r['offsets'][-1] for r in data['routes']], [0x510, 0x6e8, 0x6d0])
+        self.assertEqual([(s['chapter'],len(s['pages']),s['text_count']) for s in data['scenes']],
+                         [(53,64,112),(308,43,90),(224,14,29)])
+        self.assertEqual(data['scenes'][0]['effects'][0]['target'],'data/adv/dat/Chapter308.ybc')
+        self.assertEqual((ROOT/'prototype/assets/school_story/tc0904.png').read_bytes(), july_date_card(4,9)[1])

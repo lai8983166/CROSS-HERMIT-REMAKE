@@ -67,29 +67,31 @@ static func _advance(session: Combat, target: int) -> bool:
 	return session._trace_clock==target
 
 
-static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false, june_two := false, june_three := false, june_four := false, june_five := false, july_eighteen := false, july_nine := false, july_fourteen := false, july_five := false, august_twenty := false, august_twenty_one := false, august_thirty_five := false) -> bool:
+static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false, june_two := false, june_three := false, june_four := false, june_five := false, july_eighteen := false, july_nine := false, july_fourteen := false, july_five := false, august_twenty := false, august_twenty_one := false, august_thirty_five := false, september_twenty_two := false) -> bool:
 	if not trace is Dictionary or trace.size()!=4 or trace.get("version")!=1 or trace.get("overflow")!=false \
 			or not Roles._bounded(trace.get("ticks"),0,MAX_SORTIE_TICKS if sortie else MAX_TICKS) or not trace.get("commands") is Array \
 			or trace["commands"].size()>MAX_COMMANDS: return false
-	var august := august_twenty or august_twenty_one or august_thirty_five
+	var full_roster := august_thirty_five or september_twenty_two
+	var august := august_twenty or august_twenty_one or full_roster
 	var july_battle := july_eighteen or july_nine or july_fourteen or august
 	var wide_june := june_three or june_four
 	var previous := 0
 	for row in trace["commands"]:
 		if not row is Array or row.size()<2 or not Roles._bounded(row[0],previous,trace["ticks"]) \
-				or not Roles._bounded(row[1],1,11 if august_thirty_five else 9 if august_twenty_one else 8 if july_battle or june_one or june_two or wide_june else 6): return false
+				or not Roles._bounded(row[1],1,11 if full_roster else 9 if august_twenty_one else 8 if july_battle or june_one or june_two or wide_june else 6): return false
 		previous = row[0]
 		if row.size()!=[0,3,2,5,4,3,2,5,5,5,4,4][row[1]]: return false
 		for value in row:
 			if not value is int: return false
 		if row[1] in [10,11] and (row[2]!=(5 if row[1]==10 else 4) or not Roles._bounded(row[3],1000,1249)):return false
+		if row[1]==1 and september_twenty_two and row[2]!=1:return false
 		if row[1]==1 and (august_twenty_one or august_thirty_five or row[2] not in [0,1]): return false
 		if sortie and not (seven or wide_june or july_nine) and row[1]==2: return false
-		if row[1] in [3,4,5] and row[2] not in ([1,2,3,4,5,6,8,9,13,16,17] if august_thirty_five else [1,2,3,4,5,6,8,9,16,17] if july_five or august else [1,2,3,4,5,6,8,9] if july_battle or june_two or wide_june or june_five else [1,3,4,5,6,8,9] if june_one else [3,4,5,8,9,1247,1248] if seven else [3,4,5,6,8,9] if may_five else [3,4,5,9] if sortie else [3,4,9,1249]): return false
+		if row[1] in [3,4,5] and row[2] not in ([1,2,3,4,5,6,8,9,13,16,17] if full_roster else [1,2,3,4,5,6,8,9,16,17] if july_five or august else [1,2,3,4,5,6,8,9] if july_battle or june_two or wide_june or june_five else [1,3,4,5,6,8,9] if june_one else [3,4,5,8,9,1247,1248] if seven else [3,4,5,6,8,9] if may_five else [3,4,5,9] if sortie else [3,4,9,1249]): return false
 		if row[1] in [7,8,9] and (row[2]!=(9 if row[1]==9 else 3) or not Roles._bounded(row[3],0,127 if july_fourteen or august_twenty_one else 95 if wide_june else 63) or not Roles._bounded(row[4],0,191 if july_fourteen or august_twenty_one else 143 if wide_june else 95)):return false
 		if row[1]==3 and (row[3]<0 or row[3]>(127 if july_fourteen or august_twenty_one else 95 if sortie and not july_battle else 63) or row[4]<0 or row[4]>(191 if july_fourteen or august_twenty_one else 143 if sortie and not july_battle else 95)): return false
 		if row[1]==4 and not Roles._bounded(row[3],1000,1249):
-			if not (july_battle or june_one or june_two or wide_june) or row[2] not in ([8,9] if july_battle else [8]) or row[3] not in ([1,2,3,4,5,6,8,9,13,16,17] if august_thirty_five else [1,2,3,4,5,6,8,9,16,17] if august else [1,2,3,4,5,6,8,9] if july_battle or june_two or wide_june else [1,3,4,5,6,8,9]):return false
+			if not (july_battle or june_one or june_two or wide_june) or row[2] not in ([8,9] if july_battle else [8]) or row[3] not in ([1,2,3,4,5,6,8,9,13,16,17] if full_roster else [1,2,3,4,5,6,8,9,16,17] if august else [1,2,3,4,5,6,8,9] if july_battle or june_two or wide_june else [1,3,4,5,6,8,9]):return false
 	return true
 
 

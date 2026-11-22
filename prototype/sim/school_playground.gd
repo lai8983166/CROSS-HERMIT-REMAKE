@@ -57,7 +57,8 @@ const SAVE_CONTEXTS := {
 	25:"school_playground_august_four_work",
 	26:"school_playground_adventure_thirty_five",
 	27:"school_playground_september_courses",
-	28:"school_playground_september_course_25"
+	28:"school_playground_september_course_25",
+	29:"school_playground_mandatory_twenty_two"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -638,6 +639,7 @@ func export_save() -> Dictionary:
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	if _postbattle.planning.get("committed_date")==[9,3]: return 29
 	if _postbattle.planning.get("committed_date")==[9,2]: return 28
 	if _postbattle.planning.get("committed_date")==[9,1]: return 27
 	if _postbattle.planning.get("committed_date")==[8,5]: return 26
@@ -682,6 +684,10 @@ func _save_fingerprints(version: int) -> Dictionary:
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
+	if version>=29:
+		result["september_four_story"]=Postbattle.SortieWeek.SEPTEMBER_FOUR_SHA
+		result["mandatory_twenty_two"]=Postbattle.Adventures.TWENTY_TWO_SHA
+		result["twenty_two_battle"]=Postbattle.SortieRecord.Sortie.TWENTY_TWO_SHA
 	if version>=28:
 		result["september_three_story"]=Postbattle.SortieWeek.SEPTEMBER_THREE_SHA
 		result["september_two_courses"]=Postbattle.Courses.SEPTEMBER_TWO_SHA

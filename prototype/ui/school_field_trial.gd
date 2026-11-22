@@ -10,6 +10,7 @@ class FieldCanvas extends MapPreview.MapCanvas:
 	signal commanded(cell: Vector2i)
 	var session: Field
 	var sprites: Dictionary = {}
+	var skin_overrides: Dictionary = {}
 	var show_terrain := false
 	var hover := Vector2i(-1,-1)
 
@@ -84,7 +85,8 @@ class FieldCanvas extends MapPreview.MapCanvas:
 			_draw_student(unit,ground)
 
 	func _draw_student(unit: Dictionary, ground: Vector2) -> void:
-		var skin: Dictionary = session.catalog["skins"][unit.get("skin_key",str(unit["character_id"]))]
+		var key: String = unit.get("skin_key",str(unit["character_id"]))
+		var skin: Dictionary = skin_overrides.get(key,session.catalog["skins"][key])
 		var action: String=unit["visual"]
 		var specific: String=unit.get("presentation_skill","basic")+"_"+action
 		if skin.actions.has(specific):action=specific
@@ -176,6 +178,10 @@ func _ready() -> void:
 	visible = false
 
 
+func _skin_overrides(_next: Field) -> Variant:
+	return {}
+
+
 func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
 	var next = _new_session()
 	if not next.open(preparation,combat): return false
@@ -187,8 +193,11 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 		return false
 	var map_image := Image.load_from_file(atlas)
 	if map_image == null or map_image.get_size() != Vector2i(next.field_width*32,next.field_height*16): return false
+	var overrides = _skin_overrides(next)
+	if not overrides is Dictionary:return false
 	var images := {}
-	for skin in next.catalog["skins"].values():
+	for key in next.catalog["skins"]:
+		var skin: Dictionary=overrides.get(key,next.catalog["skins"][key])
 		for frame_data in skin["frames"].values():
 			var path: String = frame_data["file"] if String(frame_data["file"]).begins_with("res://") else ART+frame_data["file"]
 			if FileAccess.get_sha256(path) != frame_data["file_sha256"]: return false
@@ -196,7 +205,7 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 			if image == null or image.get_size() != Vector2i(frame_data["w"],frame_data["h"]): return false
 			images[frame_data["file"]] = ImageTexture.create_from_image(image)
 	_sprites = images
-	session = next; canvas.session = next; canvas.sprites = _sprites
+	session = next; canvas.session = next; canvas.sprites = _sprites; canvas.skin_overrides = overrides
 	canvas.texture = ImageTexture.create_from_image(map_image)
 	canvas.dragging = false; canvas.show_terrain = false; canvas.hover = Vector2i(-1,-1)
 	_names = names.duplicate(true)

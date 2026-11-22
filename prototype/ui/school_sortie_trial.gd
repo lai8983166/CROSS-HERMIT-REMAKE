@@ -15,6 +15,20 @@ var _finished := false
 signal result_confirmed(trace: Dictionary)
 
 
+func _skin_overrides(next: Field) -> Variant:
+	if next.get("scene_id")!=22:return {}
+	var raw:=FileAccess.get_file_as_string("res://assets/school_twenty_two_actions/catalog.json").replace("\r\n","\n")
+	if raw.sha256_text()!="cf4a75758957a53121500e14428f96a4883b6f61228f86f4891ab6c721f67e20":return null
+	var delta: Dictionary=Sortie.Limits._source_numbers(JSON.parse_string(raw))
+	var result:={}
+	for key in delta:
+		var skin: Dictionary=next.catalog.skins[key].duplicate(true)
+		skin.actions.merge(delta[key].actions)
+		skin.frames.merge(delta[key].frames)
+		result[key]=skin
+	return result
+
+
 func _new_session():return Sortie.new()
 
 
@@ -47,14 +61,14 @@ func _ready() -> void:
 
 func open_trial(handoff: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
 	if not super.open_trial(handoff,combat,names):return false
-	if session.scene_id in [21,35] and spell_choice.get_item_index(31)<0:spell_choice.add_item("治愈 · 30 MP",31)
-	elif session.scene_id not in [21,35] and spell_choice.get_item_index(31)>=0:spell_choice.remove_item(spell_choice.get_item_index(31))
-	if session.scene_id==35 and spell_choice.get_item_index(11)<0:spell_choice.add_item("空壓斬 · 35 MP",11)
-	elif session.scene_id!=35 and spell_choice.get_item_index(11)>=0:spell_choice.remove_item(spell_choice.get_item_index(11))
-	if session.scene_id==35 and spell_choice.get_item_index(20)<0:spell_choice.add_item("毒箭 · 30 MP",20)
-	elif session.scene_id!=35 and spell_choice.get_item_index(20)>=0:spell_choice.remove_item(spell_choice.get_item_index(20))
+	if session.scene_id in [21,22,35] and spell_choice.get_item_index(31)<0:spell_choice.add_item("治愈 · 30 MP",31)
+	elif session.scene_id not in [21,22,35] and spell_choice.get_item_index(31)>=0:spell_choice.remove_item(spell_choice.get_item_index(31))
+	if session.scene_id in [22,35] and spell_choice.get_item_index(11)<0:spell_choice.add_item("空壓斬 · 35 MP",11)
+	elif session.scene_id not in [22,35] and spell_choice.get_item_index(11)>=0:spell_choice.remove_item(spell_choice.get_item_index(11))
+	if session.scene_id in [22,35] and spell_choice.get_item_index(20)<0:spell_choice.add_item("毒箭 · 30 MP",20)
+	elif session.scene_id not in [22,35] and spell_choice.get_item_index(20)>=0:spell_choice.remove_item(spell_choice.get_item_index(20))
 	var date: Array=handoff["date"]
-	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"计时训练" if session.scene_id==35 else "安蒂米昂守護塔與聖者之泉" if session.scene_id==21 else "古雷納汀的封印" if session.scene_id==20 else "地下城砦－貝倫" if session.scene_id==14 else "攸利亞守護塔" if session.scene_id==9 else "達雷西昂攻城演習" if session.scene_id==18 else "石碑與祈禱" if session.scene_id==13 else "法爾德長老護送" if session.scene_id==10 else "討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
+	_finished=false;summary_page=0;title_label.text="%d月第%d周 · 冒险%d · %s" % [date[0],date[1],session.scene_id,"中央守護塔爭奪戰" if session.scene_id==22 else "计时训练" if session.scene_id==35 else "安蒂米昂守護塔與聖者之泉" if session.scene_id==21 else "古雷納汀的封印" if session.scene_id==20 else "地下城砦－貝倫" if session.scene_id==14 else "攸利亞守護塔" if session.scene_id==9 else "達雷西昂攻城演習" if session.scene_id==18 else "石碑與祈禱" if session.scene_id==13 else "法爾德長老護送" if session.scene_id==10 else "討伐班奇涅爾" if session.scene_id==6 else "尤安瀑布殲滅戰" if session.scene_id==4 else "山地救援" if session.scene_id==7 else "守城" if session.scene_id==8 else "自由训练"]
 	targets.clear();targets.add_item("定位任务对象",-1)
 	for unit in session.units:
 		var id: int=session.unit_key(unit)
@@ -62,12 +76,12 @@ func open_trial(handoff: Dictionary, combat: Dictionary, names: Dictionary) -> b
 		_names[id]="%s #%d" % ["塔/泉" if unit["character_id"] in range(387,405) else "宝箱" if unit["character_id"] in [405,406] else "障碍" if unit["character_id"] in range(411,415) else "敌人",1250-id]
 		if session.scene_id==35:_names[id]="训练石像 #%d" % [1250-id]
 		if session.scene_id==7 and id in [1248,1247]:_names[id]="薛莉尔" if id==1248 else "艾尔雪"
-		if session.scene_id==21 and unit.character_id in [388,394]:
+		if session.scene_id in [21,22] and unit.character_id in [388,394]:
 			_names[id]=("%s #%d" % ["守護塔" if unit.character_id==388 else "聖者之泉",1250-id])
 		if session.scene_id==20 and id==1244:_names[id]="匍伏蔓延而來之物"
 		if session.scene_id==6 and id==1245:_names[id]="燈火的盾衛－班奇涅爾"
 		if session.scene_id==10 and id==1249:_names[id]="法爾德長老"
-		if (session.scene_id==20 and id in range(1244,1250)) or (session.scene_id==10 and id==1249) or (session.scene_id==6 and id==1245) or (session.scene_id in [4,35] and unit["category"]==5) or Sortie._capture_role(unit["character_id"]) or (session.scene_id==7 and id in [1248,1247]):targets.add_item(_names[id],id)
+		if (session.scene_id==20 and id in range(1244,1250)) or (session.scene_id==10 and id==1249) or (session.scene_id==6 and id==1245) or (session.scene_id in [4,22,35] and unit["category"]==5) or Sortie._capture_role(unit["character_id"]) or (session.scene_id==7 and id in [1248,1247]):targets.add_item(_names[id],id)
 	if session.scene_id==13:
 		for n in range(1,10):targets.add_item("石碑 %d" % n if n<=3 else "祈祷点 %d" % n,n)
 	if session.scene_id==10:
@@ -117,7 +131,7 @@ func _refresh() -> void:
 			member_buttons[character]=button
 			_names[character]=_names.get(identity,str(character))
 	super._refresh()
-	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,5]]):
+	if session.ready and (session.scene_id==7 or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,5],[9,3]]):
 		var leaders: Array=session.departure["prepared"]["rounds"][0]["teacher_ids"]
 		info.text=info.text.get_slice("    |",0)+"    |    班级领队："+ "、".join(leaders.map(func(id):return str(_names.get(id,id))))
 		if session.rendezvous:
@@ -125,9 +139,9 @@ func _refresh() -> void:
 				member_buttons[session.find_unit(identity)["character_id"]].set_pressed_no_signal(session.selected_id==identity)
 	if text_panel==null or not session.ready:return
 	var ending: Dictionary=session.ending_snapshot();var phase: String=ending["phase"]
-	var paged_summary: bool = session.scene_id in [4,6,7,9,10,13,14,17,18,20,21,35]
+	var paged_summary: bool = session.scene_id in [4,6,7,9,10,13,14,17,18,20,21,22,35]
 	summary_navigation.visible=paged_summary and phase=="summary" and ending["text"].size()>1
-	spell_choice.visible=session.scene_id in [4,6,9,10,13,14,18,20,21,35]
+	spell_choice.visible=session.scene_id in [4,6,9,10,13,14,18,20,21,22,35]
 	for option in range(1,spell_choice.item_count):
 		spell_choice.set_item_disabled(option,not session.can_cast_spell(session.selected_id,spell_choice.get_item_id(option)))
 	if spell_choice.is_item_disabled(spell_choice.selected):spell_choice.select(0)
@@ -167,6 +181,9 @@ func _refresh() -> void:
 	help_label.text="左键选人 · 右键移动/攻击 · 中键拖图 · 空格暂停 · S停止\n"+("坚守30分钟，保护3处己方基地；靠近基地可占领。" if session.scene_id==8 else "训练后前往东北撤离区；15分钟前撤离获得最低评价。塔、泉与宝箱靠近占领，障碍右键攻击。")
 	if session.scene_id==35:
 		help_label.text="击破全部36尊石像。石像不会反击，三、五、十分钟决定评价；超过十分钟仍可完成。"
+	elif session.scene_id==22:
+		status.text+="　·　中央守护塔："+("己方" if session.find_unit(1248).side==0 else "敌方" if session.find_unit(1248).side==5 else "中立")
+		help_label.text="十分钟结束时占有中央守护塔，或提前击倒五名对手。五分钟内全灭敌方可提高评价。"
 	elif session.scene_id==21:
 		status.text+="　·　塔 %d/4　泉 %d/13　·　连续守备 %02d:%02d / 15:00" % [session.siege.owned[0],session.siege.owned[1],session.siege.hold/3600,(session.siege.hold/60)%60]
 		help_label.text="占领至少两座塔和四处圣者之泉，连续守住十五分钟。留意桥上的增援，失守会重置计时。"
@@ -199,8 +216,8 @@ func _refresh() -> void:
 	elif session.scene_id==7:
 		help_label.text="带学生到东北会合区域寻找薛莉尔。占领两座守卫塔可提高评价。" if not session.rendezvous else "选中薛莉尔，护送她到西南终点。"
 	if session._normal_healer(session.find_unit(session.selected_id)):help_label.text="右键受伤的友军进行普通治疗，也可以指定敌人攻击。"
-	if spell_choice.get_selected_id()==20:help_label.text="右键指定射程内的石像。毒箭命中后可使目标持续损失体力。"
-	elif spell_choice.get_selected_id()==11:help_label.text="右键指定石像，以远距物理攻击造成伤害。消耗35 MP，射程随敏捷增加。"
+	if spell_choice.get_selected_id()==20:help_label.text="右键指定射程内的敌人。毒箭命中后可使目标持续损失体力。"
+	elif spell_choice.get_selected_id()==11:help_label.text="右键指定敌人，以远距物理攻击造成伤害。消耗35 MP，射程随敏捷增加。"
 	elif spell_choice.get_selected_id()==59:help_label.text="右键指定雷击中心。射程18格，消耗75 MP。"
 	elif spell_choice.get_selected_id()==31:help_label.text="右键指定治愈中心。射程8格，消耗30 MP，恢复范围内友方的体力。"
 	elif spell_choice.get_selected_id()==57:help_label.text="右键指定障壁中心。射程10格，消耗15 MP。"
@@ -229,7 +246,7 @@ func _continue() -> void:
 
 func _leave() -> void:
 	if _finished:return
-	_finished=true;session.close();canvas.session=null;canvas.texture=null;canvas.sprites.clear();canvas.labels.clear()
+	_finished=true;session.close();canvas.session=null;canvas.texture=null;canvas.sprites.clear();canvas.labels.clear();canvas.skin_overrides.clear()
 	_sprites.clear();_names.clear();member_buttons.clear()
 	for child in roster.get_children():child.free()
 	text_panel.hide();hide();closed.emit()

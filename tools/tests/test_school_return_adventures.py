@@ -95,6 +95,16 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
         self.assertEqual(data['rewards']['objective_rewards'], [[0,0,0]]*16)
         self.assertEqual(data['rewards']['unit_bonus'], 0)
 
+    def test_mandatory_twenty_two_scene_and_rewards_match_original(self):
+        from tools.school_return_adventures_catalog import mandatory_adventure
+        data = mandatory_adventure(22)
+        self.assertEqual(data, json.loads((ROOT/'prototype/data/school_mandatory_twenty_two.json').read_bytes()))
+        self.assertEqual((data['scene']['template_count'], data['scene']['script']), (12, 'T0022.BIN'))
+        self.assertEqual(data['rewards']['base_points'], [200000,180000,150000,100000,50000])
+        self.assertEqual(data['rewards']['objective_rewards'], [[0,6,1]] + [[0,0,0]]*15)
+        self.assertEqual(data['rewards']['time_bonuses'], [115,110,105])
+        self.assertEqual(data['rewards']['unit_bonus'], 110)
+
     def test_mandatory_fourteen_scene_and_rewards_match_original(self):
         from tools.school_return_adventures_catalog import mandatory_adventure
         data = mandatory_adventure(14)
@@ -230,6 +240,10 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
                 probe.submit(0)
             mandatory, *training = probe.open(9,3)['entries']
             self.assertEqual((mandatory['id'], mandatory['metadata'], mandatory['limit']), (22,[3,21,0],1))
+            self.assertEqual([r['id'] for r in training], [35,17])
+            self.assertEqual([r['id'] for r in probe.submit(22)['entries']], [35,17])
+            next_mandatory, *training = probe.open(9,4)['entries']
+            self.assertEqual((next_mandatory['id'], next_mandatory['metadata'], next_mandatory['limit']), (24,[3,22,0],1))
             self.assertEqual([r['id'] for r in training], [35,17])
 
     def test_original_timer_expiry_and_reusable17(self):

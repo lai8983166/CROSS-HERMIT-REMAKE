@@ -1,4 +1,4 @@
-"""Compare a played August training trace's terminal facts with original result code.
+"""Compare a played August or September sortie's terminal facts with original result code.
 
 From the repository root, export a new JSON file from the accepted save:
   godot --headless --path prototype -s ../devtools/export_august_four_work.gd -- ABS_SAVE ABS_JSON mixed|adventure35
@@ -68,8 +68,8 @@ def verify(captured):
     school = bundle['school']
     facts = captured['facts']
     scene_id = facts['scene_id']
-    if (school['month'], school['week'], scene_id) not in [(8, 4, 17), (8, 5, 35)]:
-        raise ValueError('expected scene 17 in August week 4 or scene 35 in week 5')
+    if (school['month'], school['week'], scene_id) not in [(8, 4, 17), (8, 5, 35), (9, 3, 22)]:
+        raise ValueError('expected scene 17 in August week 4, scene 35 in August week 5 or scene 22 in September week 3')
     cpu = PreparationEmulator(seed=facts['clock_seed'])
     cpu.write(0x7a5294, scene_id, 'h')
     cpu.write(0x7a54ca + scene_id, captured['grades'].get(str(scene_id), 5), 'B')
@@ -98,6 +98,11 @@ def verify(captured):
     flags = [cpu.read(0x7aacaa + 2*i, 'H') for i in range(1, 361)]
     result = captured['after']['sortie_result']
     for name, actual, expected in [
+        ('round grade', cpu.read(0x7a5306, 'h'), result['score']['grade_index']),
+        ('time display', cpu.read(RESULT_TASK + 0x36, 'h'), result['score']['time_display']),
+        ('unit display', cpu.read(RESULT_TASK + 0x38, 'h'), result['score']['unit_display']),
+        ('confirmed total', min(999999999, cpu.read(0x7a511c, 'i') + result.get('lessons', {}).get('bonus', 0)),
+         captured['after']['school']['global_total_511c']),
         ('grade', cpu.read(0x7a54ca + scene_id, 'B'), result['task_grade']),
         ('score', cpu.read(RESULT_TASK + 0x40, 'i'), result['score']['total_delta']),
         ('total', cpu.read(0x7a511c, 'i'), result['score']['total_after']),

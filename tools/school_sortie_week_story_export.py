@@ -1,4 +1,4 @@
-"""Export the May school date routes through September week 3 and source dialogue from the shipped ADV."""
+"""Export the May school date routes through September week 4 and source dialogue from the shipped ADV."""
 import hashlib
 import json
 import struct
@@ -430,6 +430,22 @@ def build_september_week3():
     return data
 
 
+def build_september_week4():
+    data = catalog({53: 112, 308: 90, 224: 29})
+    routes = [date_route('CH003', 9, 3), date_route('CH001', 9, 4), date_route('CH002', 9, 4)]
+    assert [r['target'] for r in routes] == [
+        'data/adv/dat/Chapter053.ybc', 'data/adv/dat/Chapter224.ybc', None]
+    assert not any('effects' in r for r in routes)
+    assert [s['effects'] for s in data['scenes']] == [
+        [{'offset': 0x940, 'opcode': 15, 'string_index': 0}], [],
+        [{'offset': 0x296, 'opcode': 151, 'operands': [9, 1]},
+         {'offset': 0x2a2, 'opcode': 91, 'operands': [10, 2]}]]
+    _link_chapters(data['scenes'][0], '053', 308)
+    data['routes'] = routes
+    add_chapter_card(data, 2, '224', 4, 9)
+    return data
+
+
 def _link_chapters(scene, label, next_chapter):
     raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
     _, _, end, pool, _ = struct.unpack_from('<5I', raw)
@@ -479,8 +495,8 @@ if __name__ == '__main__':
                        ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1),
                        ('school_july_week2_story', build_july_week2), ('school_july_week3_story', build_july_week3), ('school_july_week4_story', build_july_week4), ('school_july_week5_story', build_july_week5),
                        ('school_august_week1_story', build_august_week1), ('school_august_week2_story', build_august_week2),
-                       ('school_august_week3_story', build_august_week3), ('school_august_week4_story', build_august_week4), ('school_august_week5_story', build_august_week5), ('school_september_week1_story', build_september_week1), ('school_september_week2_story', build_september_week2), ('school_september_week3_story', build_september_week3)]:
+                       ('school_august_week3_story', build_august_week3), ('school_august_week4_story', build_august_week4), ('school_august_week5_story', build_august_week5), ('school_september_week1_story', build_september_week1), ('school_september_week2_story', build_september_week2), ('school_september_week3_story', build_september_week3), ('school_september_week4_story', build_september_week4)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
-    for month,week in ((7,2),(7,4),(7,5),(8,1),(8,2),(8,3),(8,4),(8,5),(9,1),(9,2),(9,3)):
+    for month,week in ((7,2),(7,4),(7,5),(8,1),(8,2),(8,3),(8,4),(8,5),(9,1),(9,2),(9,3),(9,4)):
         (ROOT/f'prototype/assets/school_story/tc{month:02}{week:02}.png').write_bytes(july_date_card(week,month)[1])

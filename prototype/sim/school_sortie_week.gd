@@ -32,8 +32,10 @@ const AUGUST_FIVE_SHA := "5de7224184119f6e4732cfebebfb93cea933f768f50b958a25802f
 const SEPTEMBER_ONE_SHA := "7d4d9bd3ce4ebe5adf871b67b0a705474685b07eba4c05b0e0eddc176b47b86a"
 const SEPTEMBER_TWO_SHA := "58fbd576337b91cd5b76d07dad0d1e60daf22948a26a3e83425b3754607b0f3a"
 const SEPTEMBER_THREE_SHA := "8c177184de59357ea446aa09603029955f70fbba49c53037a9e28f1807026395"
+const SEPTEMBER_FOUR_SHA := "505a554441ed424bd78e4423cc4edf9fdc476ac4fd82742ffe0a9fab61d22de1"
 const SEPTEMBER_STORIES := [["res://data/school_september_week2_story.json", SEPTEMBER_TWO_SHA],
-	["res://data/school_september_week3_story.json", SEPTEMBER_THREE_SHA]]
+	["res://data/school_september_week3_story.json", SEPTEMBER_THREE_SHA],
+	["res://data/school_september_week4_story.json", SEPTEMBER_FOUR_SHA]]
 const AUGUST_STORIES := [["res://data/school_august_week2_story.json",AUGUST_TWO_SHA],
 	["res://data/school_august_week3_story.json",AUGUST_THREE_SHA],Return.AUGUST_FOUR,
 	["res://data/school_august_week5_story.json",AUGUST_FIVE_SHA],
@@ -63,6 +65,9 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 		if month==9 and start_week==1:
 			result["pre_week"] = scenes[0]["pages"]
 			result["week_start"] = scenes[1]["pages"]
+		if month==9 and start_week==3:
+			result["pre_week"] = scenes[0]["pages"] + scenes[1]["pages"]
+			result["week_start"] = scenes[2]["pages"]
 		if month==7 and start_week==4:
 			result["pre_week"]=scenes[0]["pages"]
 			result["week_start"]=scenes[1]["pages"]
@@ -174,6 +179,10 @@ static func finish_story(before: Dictionary) -> Dictionary:
 		after.adv_background=13
 	if [after.school.month,week]==[9,3]:
 		after.flags["0x7a55f6"]=12
+		after.flags["0x7e11a0"]=1
+		after.adv_background=10
+	if [after.school.month,week]==[9,4]:
+		after.flags["0x7a55f6"]=9
 		after.flags["0x7e11a0"]=1
 		after.adv_background=10
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
@@ -311,9 +320,13 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 			var id := 18+int(school["week"])
 			if phase!="sortie_settled" or school.get("adventure_gate")!=1 or school.get("lecture_active")!=1 or school.get("lecture_work_fields")!=[3,id-1,id,0]:
 				return "outside_mandatory_sortie_return"
-	var september: bool = school.get("month")==9 and school.get("week") in [1,2,3]
-	if september and first_week==1 and (school.week not in [1,2] or phase!="courses_confirmed" or school.get("adventure_gate")!=0):
-		return "outside_september_course_return"
+	var september: bool = school.get("month")==9 and school.get("week") in [1,2,3,4]
+	if september and first_week==1:
+		if school.week==3:
+			if phase!="sortie_settled" or school.adventure_gate!=1 or school.lecture_active!=1 or school.lecture_work_fields!=[3,21,22,0]:
+				return "outside_mandatory_sortie_return"
+		elif school.week not in [1,2] or phase!="courses_confirmed" or school.get("adventure_gate")!=0:
+			return "outside_september_course_return"
 	if not may and not june and not july and not august and not september:
 		return "outside_sortie_week"
 	if phase=="chapter036_joined":

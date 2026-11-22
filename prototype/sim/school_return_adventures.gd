@@ -21,6 +21,7 @@ const SIX_SHA := "c36bf8780a7cac839f5d252553ce5c6cf1bbee9079cf2642bc4241f1c66ae2
 const TEN_SHA := "c7fd4cfc64a1db8ecac16f4b38a20659ff60eb58f859448d891ad0902c4daf07"
 
 
+const TWENTY_TWO_SHA := "ede5328228649d0f76fa957002cc6eeb40bb36bd98e412af0a24a927edd65cc0"
 const TWENTY_ONE_SHA := "dba560bf13643b6a508aa78dc124e659daa65ffd242f0de28c36e0a17b7dd591"
 const TWENTY_SHA := "b9905930c50f7dba9e38e11ac3147dc44d435dd0b3702ee2a257fa88742fb111"
 const FOURTEEN_SHA := "5ec40375187a29298bc201e49d8609b2bcee485f7133d52be1e4f85dd47b20a6"
@@ -41,6 +42,11 @@ const THIRTY_FIVE_SHA := "abf87c5439fcfb581484896c563dc6998ea87d7cf7e696dcdebe96
 static func thirty_five_rules() -> Dictionary:
 	var raw := FileAccess.get_file_as_string("res://data/school_august_five_adventure.json").replace("\r\n","\n")
 	return {} if raw.sha256_text()!=THIRTY_FIVE_SHA else Roles._integers(JSON.parse_string(raw))
+
+
+static func twenty_two_rules() -> Dictionary:
+	var raw := FileAccess.get_file_as_string("res://data/school_mandatory_twenty_two.json").replace("\r\n","\n")
+	return {} if raw.sha256_text()!=TWENTY_TWO_SHA else Roles._integers(JSON.parse_string(raw))
 
 
 static func twenty_one_rules() -> Dictionary:
@@ -106,6 +112,7 @@ static func mission_rules(id: int) -> Dictionary:
 		18:return eighteen_rules()
 		20:return twenty_rules()
 		21:return twenty_one_rules()
+		22:return twenty_two_rules()
 		35:return thirty_five_rules()
 	return {}
 
@@ -167,7 +174,7 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if not ((month in range(5,9) and week in range(1,6)) or (month==9 and week in [1,2,3])): return false
+	if not ((month in range(5,9) and week in range(1,6)) or (month==9 and week in [1,2,3,4])): return false
 	var last := (month-5)*5+week
 	var source := rules()
 	var first := initial()
@@ -195,7 +202,7 @@ static func _mandatory_id(month: int, week: int) -> int:
 		6:return {1:4,2:6,3:10,4:13}.get(week,0)
 		7:return {3:9,4:14}.get(week,0)
 		8:return {2:20,3:21}.get(week,0)
-		9:return 22 if week==3 else 0
+		9:return {3:22,4:24}.get(week,0)
 	return 0
 
 
@@ -205,12 +212,12 @@ static func select(bundle: Dictionary, ledger: Dictionary, id: int) -> Dictionar
 	var school: Dictionary=bundle["school"]
 	var date := [school["month"],school["week"]]
 	var mandatory := _mandatory_id(school["month"],school["week"])
-	if id in [4,6,7,9,10,13,14,20,21,22] and (school["adventure_gate"]!=1 or id!=mandatory):
+	if id in [4,6,7,9,10,13,14,20,21,22,24] and (school["adventure_gate"]!=1 or id!=mandatory):
 		return _failure("adventure_not_available")
 	if bundle["school"]["adventure_gate"] != 0 and id != mandatory:
 		return _failure("mandatory_adventure_required")
 	if (id==18 and date!=[7,1]) or (id==35 and date not in [[8,5],[9,1],[9,2]]):return _failure("adventure_not_available")
-	if id not in [4,6,7,8,9,10,13,14,17,18,20,21,22,35] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
+	if id not in [4,6,7,8,9,10,13,14,17,18,20,21,22,24,35] or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
 	var row: Dictionary=ledger["entries"].filter(func(r):return r["id"]==id)[0]
 	var index := available(ledger).filter(func(r):return r["category"]==row["metadata"][2]).find(available(ledger).filter(func(r):return r["id"]==id)[0])
 	var after := bundle.duplicate(true)
@@ -228,7 +235,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var june: bool=school["month"]==6
 	var july: bool=school["month"]==7 and school["week"] in range(1,6)
 	var required := _mandatory_id(school["month"],school["week"])
-	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week] not in [[8,2],[8,3],[8,4],[8,5]]):return _failure("outside_supported_sortie_week")
+	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week] not in [[8,2],[8,3],[8,4],[8,5],[9,3]]):return _failure("outside_supported_sortie_week")
 	if (required and (id!=required or school["adventure_gate"]!=1)) or (id==7 and required!=7):
 		return _failure("mandatory_adventure_required")
 	var options := [required] if required else ([17,18] if july and school["week"]==1 else [17] if july or june or school.month==8 else [8,17])
@@ -240,6 +247,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	for group in range(5):
 		var state: int=rated["ratings"][group]["state"]
 		if state not in [0,2,4]:return _failure("incomplete_class")
+		if id==22 and state==4:return _failure("mandatory_adventure_requires_sortie")
 		if state!=2:continue
 		teachers.append(Groups._word(school["group_raw_bytes"],group*28))
 		for slot in range(4):
