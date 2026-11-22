@@ -1,13 +1,13 @@
 extends SceneTree
-## --headless --path prototype -s ../devtools/export_august_four_work.gd -- PARENT RESULT_OUTPUT course|mixed|adventure35|september
+## --headless --path prototype -s ../devtools/export_august_four_work.gd -- PARENT RESULT_OUTPUT course|mixed|adventure35|september|september_two
 const Model := preload("res://sim/school_playground.gd")
 const TRAINING_TRACE := "res://sim/tests/august_week4_training_trace.json"
 
 
 func _init() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size()!=3 or args[2] not in ["course","mixed","adventure35","september"] or FileAccess.file_exists(args[1]):
-		printerr("Expected a parent save, a new JSON output and course, mixed, adventure35 or september.")
+	if args.size()!=3 or args[2] not in ["course","mixed","adventure35","september","september_two"] or FileAccess.file_exists(args[1]):
+		printerr("Expected a parent save, a new JSON output and course, mixed, adventure35, september or september_two.")
 		quit(1)
 		return
 	var model := Model.new()
@@ -18,18 +18,20 @@ func _init() -> void:
 		return
 	var opening := model.read_postbattle()
 	var week := 5 if args[2]=="adventure35" else 4
-	var date := [9,1] if args[2]=="september" else [8,week]
+	var date := [9,1] if args[2]=="september" else [9,2] if args[2]=="september_two" else [8,week]
 	if model.stage()!="returned_school" or [opening.bundle.school.month,opening.bundle.school.week]!=date:
 		printerr("Expected planning save for ",date,".")
 		quit(1)
 		return
 	var commands: Array = []
-	var lessons_only := args[2] in ["course","september"]
+	var lessons_only := args[2] in ["course","september","september_two"]
 	if args[2]=="course":
 		var courses := [8,19,26,30]
 		for group in range(courses.size()):
 			commands.append({"op":"return_mode","group":group,"teaching":true})
 			commands.append({"op":"return_course","group":group,"course":courses[group]})
+	elif args[2]=="september_two":
+		commands.append({"op":"return_course","group":2,"course":25})
 	elif args[2]=="adventure35":
 		for group in [0,2,3]:
 			commands.append({"op":"return_mode","group":group,"teaching":false})

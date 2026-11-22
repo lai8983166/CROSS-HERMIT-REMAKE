@@ -2,7 +2,7 @@
 
 From the project root, run the Godot console in headless mode with --path
 prototype -s ../devtools/export_august_four_work.gd -- PARENT OUT MODE
-using absolute paths and MODE course, mixed, adventure35 or september. Then run:
+using absolute paths and MODE course, mixed, adventure35, september or september_two. Then run:
 python -m tools.school_august_four_lesson_check OUT
 In week 5 the original class dispatcher consumes the scored battle packages,
 then applies the saved lessons. Week 4 retains its declared battle RNG prefix.
@@ -64,8 +64,8 @@ class LessonCheck(CourseConfirmationEmulator):
 
     def load_bundle(self, before, seed, ratings):
         school = before['school']
-        if (school['month'], school['week']) not in [(8,4),(8,5),(9,1)]:
-            raise ValueError('expected an August week 4/5 or September week 1 settlement')
+        if (school['month'], school['week']) not in [(8,4),(8,5),(9,1),(9,2)]:
+            raise ValueError('expected an August week 4/5 or September week 1/2 settlement')
         history = ((school['month']-4)*5+school['week']-1)*3
         self.participant_ids = school['student_ids'][:school['student_count']]
         check('accepted roster', self.participant_ids, [3,4,9,5,8,6,1,2,16,17,13])

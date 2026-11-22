@@ -3,7 +3,7 @@ import json
 import unittest
 
 from tools.school_course_settlement_emulation import (
-    report, fixture, source_rules, runtime_rules, may_five_lessons, june_five_lessons, august_four_lessons, september_one_lessons, CourseSettlementEmulator, CHAR, STRIDE)
+    report, fixture, source_rules, runtime_rules, may_five_lessons, june_five_lessons, august_four_lessons, september_one_lessons, september_two_lessons, CourseSettlementEmulator, CHAR, STRIDE)
 from tools.tactics_exit_emulation import ROOT, report_text
 from tools.school_course_unlock_emulation import CourseUnlockEmulator
 
@@ -59,6 +59,21 @@ class AugustCourseTableTests(unittest.TestCase):
         self.assertEqual(set(map(int,rows)),set(added))
         for teacher,work in [(115,24),(116,36)]:
             self.assertIn(work,[row[3] for row in after['course_buffers'][teacher-101]])
+
+
+    def test_september_second_week_adds_teacher_115_course_25(self):
+        original = CourseUnlockEmulator(9,1)
+        original.unlock()
+        before = original.snapshot()
+        original.write(0x7A5290,2,'h')
+        original.unlock()
+        after = original.snapshot()
+        added = [i for i,(old,new) in enumerate(zip(before['course_unlocked_flags'],after['course_unlocked_flags'])) if new and not old]
+        self.assertEqual(added,[25])
+        self.assertIn(25,[row[3] for row in after['course_buffers'][115-101]])
+        rows = json.loads((ROOT/'prototype/data/school_september_two_courses.json').read_bytes())
+        self.assertEqual(rows,september_two_lessons())
+        self.assertEqual(set(map(int,rows)),set(added))
 
 
 class CourseSettlementTests(unittest.TestCase):

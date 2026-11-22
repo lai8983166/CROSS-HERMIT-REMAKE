@@ -224,6 +224,13 @@ class SchoolReturnAdventuresTests(unittest.TestCase):
             self.assertEqual([r['id'] for r in opened['entries']], [35,17])
             self.assertEqual((opened['entries'][0]['limit'],opened['entries'][0]['duration']),(-1,1))
             self.assertEqual(probe.open(8,5),opened)
+            probe.submit(35)
+            for week in (1, 2):
+                self.assertEqual([r['id'] for r in probe.open(9,week)['entries']], [35,17])
+                probe.submit(0)
+            mandatory, *training = probe.open(9,3)['entries']
+            self.assertEqual((mandatory['id'], mandatory['metadata'], mandatory['limit']), (22,[3,21,0],1))
+            self.assertEqual([r['id'] for r in training], [35,17])
 
     def test_original_timer_expiry_and_reusable17(self):
         probe=LedgerProbe();probe.open(4,4);probe.submit(0);probe.open(4,5);probe.submit(5);probe.open(5,1)

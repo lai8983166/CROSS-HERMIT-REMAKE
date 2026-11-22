@@ -52,6 +52,16 @@ func test_september_one_lessons_match_original_growth_and_skill_draws() -> void:
 	_assert_original_lesson_vectors(Courses.lesson_rules(9,1),cases)
 
 
+func test_september_two_course_25_has_distinct_learning_rates() -> void:
+	var first := Courses.lesson_rules(9,1)
+	var second := Courses.lesson_rules(9,2)
+	assert_eq(first.training[25],null)
+	assert_eq(second.training[25].package,second.training[24].package)
+	assert_eq(second.training[25].learning_rates,[0,0,0,0,15,75,0,0,0,0,0])
+	assert_eq(second.training[24].learning_rates,[0,0,0,0,75,15,0,0,0,0,0])
+	assert_true(Courses.lesson_rules(9,3).is_empty())
+
+
 func _assert_original_lesson_vectors(rules: Dictionary, cases: Array) -> void:
 	var data: Dictionary=Roles._integers(JSON.parse_string(FileAccess.get_file_as_string("res://data/school_course_settlement_evidence_v1.json")))
 	var case: Dictionary=data["cases"][0]
