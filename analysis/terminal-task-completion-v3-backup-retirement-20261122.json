@@ -1,0 +1,34 @@
+{
+  "status": "retired_and_verified",
+  "verified_at": "2026-11-22T14:31:54.159108+08:00",
+  "scope": "Retire only the same-volume v3 backup. Its historical dual-copy catalog entry will report the missing backup.",
+  "catalog": "analysis/terminal-task-completion-local-evidence-v1-20261030.json",
+  "catalog_sha256": "08a46dc8ebe228abd8ed491d3034e36e67b4f969649144564002087691f18277",
+  "retired_backup": "F:/project/chaomofa-local-evidence/20261030-terminal-task-completion/terminal-task-completion-source-v3-20261030.json.gz",
+  "replacement": "F:/project/chaomofa/analysis/terminal-task-completion-source-v3-20261030.json.gz",
+  "reason": "Byte-identical workspace v3 failure evidence retained for downstream preservation.",
+  "verified_files_before": {
+    "v3": {
+      "original": "F:/project/chaomofa/analysis/terminal-task-completion-source-v3-20261030.json.gz",
+      "backup": "F:/project/chaomofa-local-evidence/20261030-terminal-task-completion/terminal-task-completion-source-v3-20261030.json.gz",
+      "bytes": 3544262873,
+      "sha256": "e15d4153656e02aa93ef0e095e1d69d7a1ca4f84c6a06831d58c0a05946da711"
+    },
+    "v4": {
+      "original": "F:/project/chaomofa/analysis/terminal-task-completion-source-v4-20261030.json.gz",
+      "backup": "F:/project/chaomofa-local-evidence/20261030-terminal-task-completion/terminal-task-completion-source-v4-20261030.json.gz",
+      "bytes": 3544248882,
+      "sha256": "795bc3e641ca3085991851ee71f0b2b7547b54fcf940e93f60f0b2abefec711b"
+    }
+  },
+  "allocated_bytes": 3544264704,
+  "finished_at": "2026-11-22T14:32:03.459385+08:00",
+  "v3_original_sha256_after": "e15d4153656e02aa93ef0e095e1d69d7a1ca4f84c6a06831d58c0a05946da711",
+  "v4_original_and_backup_file_identity_size_mtime_unchanged": true,
+  "only_requested_backup_removed": true,
+  "backup_directory_entries_before": 28,
+  "backup_directory_entries_after": 27,
+  "volume_free_bytes_before": 27559636992,
+  "volume_free_bytes_after": 31103901696,
+  "observed_volume_free_delta": 3544264704
+}
