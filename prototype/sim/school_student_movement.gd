@@ -81,7 +81,7 @@ static func _validate(before: Dictionary, command: Dictionary, profiles: Variant
 		if not Week._bounded(before.get(spec[0]), spec[1], spec[2]):
 			return "invalid_student_drag_control"
 	if command.get("kind") != "student" or not command.get("released") is bool \
-			or not Group._student(command.get("student_id"),group_rules.get("chapter304_students",false),group_rules.get("chapter306_students",false)) \
+			or not Group._student(command.get("student_id"),group_rules.get("chapter304_students",false),group_rules.get("chapter306_students",false),group_rules.get("chapter054_students",false)) \
 			or not Week._bounded(command.get("source_group"),-1,4) \
 			or not Week._bounded(command.get("source_slot"),0,19) \
 			or not Week._bounded(command.get("target_group"),-1,4) \

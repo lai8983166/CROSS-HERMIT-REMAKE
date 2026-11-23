@@ -33,7 +33,7 @@ static func calculate(inputs: Dictionary, rules: Dictionary, may_five := false, 
 		7: party_limit=5
 		6,9,10,13,14,18: party_limit=8
 		20,21: party_limit=10
-		22: party_limit=11
+		22,24: party_limit=11
 		35: party_limit=20
 		17:
 			if july_five: party_limit=10
@@ -152,7 +152,7 @@ static func _integer(value: Variant) -> bool:
 
 
 static func _rules_valid(rules: Dictionary) -> bool:
-	if not _integer(rules["task_id"]) or int(rules["task_id"]) not in [4,5,6,7,8,9,10,13,14,17,18,20,21,22,35] \
+	if not _integer(rules["task_id"]) or int(rules["task_id"]) not in [4,5,6,7,8,9,10,13,14,17,18,20,21,22,24,35] \
 			or not _integer(rules["unit_bonus"]) or int(rules["unit_bonus"]) < 0 \
 			or int(rules["unit_bonus"]) > 1000 or not _integer(rules["growth_limit"]) \
 			or int(rules["growth_limit"]) != 8500000:

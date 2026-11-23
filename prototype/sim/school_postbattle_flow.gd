@@ -100,7 +100,7 @@ func execute(command: Dictionary) -> Dictionary:
 	if phase=="sortie_result" and op=="post_next":
 		if pages.is_empty():
 			return _advance_work_week()
-		if bundle.school.week==4 and bundle.school.month in [5,6,7]:
+		if bundle.school.week==4 and bundle.school.month in [5,6,7,9]:
 			var started := SortieWeek.begin_story(bundle)
 			if not started["supported"]:return started
 			bundle=started["after"]
@@ -119,7 +119,7 @@ func execute(command: Dictionary) -> Dictionary:
 		if phase=="returned_school": return {"supported":true,"status":"duplicate"}
 		if phase!="post_workroom": return _failure("workroom_not_reached")
 		if _school_pages.is_empty(): return _return_to_school()
-		if [bundle.school.month,bundle.school.week]==[8,4]:
+		if [bundle.school.month,bundle.school.week] in [[8,4],[9,5]]:
 			var joined := SortieWeek.begin_school_entry(bundle)
 			if not joined.supported:return joined
 			bundle=joined.after

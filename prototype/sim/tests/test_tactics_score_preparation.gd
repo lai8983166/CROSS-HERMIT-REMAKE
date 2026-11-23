@@ -113,20 +113,21 @@ func test_scene_35_party_uses_all_five_saved_classes() -> void:
 			assert_eq(Preparation.calculate(inputs,rules).supported, id<=20)
 
 
-func test_scene_22_score_uses_september_roster_and_source_rewards() -> void:
-	var inputs: Dictionary = _fixture().cases[0].inputs.duplicate(true)
-	var rules: Dictionary = preload("res://sim/school_sortie_settlement.gd")._rules(22).score
-	inputs.task_id = 22
-	var template: Dictionary = inputs.characters[0]
-	inputs.characters = []
-	for id in [3,16,4,8,17,6,5,2,9,1,13]:
-		var member := template.duplicate(true)
-		member.character_id = id
-		inputs.characters.append(member)
-	var actual := Preparation.calculate(inputs,rules)
-	assert_true(actual.supported)
-	assert_eq(actual.characters.size(),11)
-	var extra := template.duplicate(true)
-	extra.character_id = 7
-	inputs.characters.append(extra)
-	assert_false(Preparation.calculate(inputs,rules).supported)
+func test_september_mandatory_scores_use_current_roster_and_source_rewards() -> void:
+	for task in [22,24]:
+		var inputs: Dictionary = _fixture().cases[0].inputs.duplicate(true)
+		var rules: Dictionary = preload("res://sim/school_sortie_settlement.gd")._rules(task).score
+		inputs.task_id = task
+		var template: Dictionary = inputs.characters[0]
+		inputs.characters = []
+		for id in [3,16,4,8,17,6,5,2,9,1,13]:
+			var member := template.duplicate(true)
+			member.character_id = id
+			inputs.characters.append(member)
+		var actual := Preparation.calculate(inputs,rules)
+		assert_true(actual.supported)
+		assert_eq(actual.characters.size(),11)
+		var extra := template.duplicate(true)
+		extra.character_id = 7
+		inputs.characters.append(extra)
+		assert_false(Preparation.calculate(inputs,rules).supported)

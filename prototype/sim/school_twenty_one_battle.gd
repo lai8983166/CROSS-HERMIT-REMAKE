@@ -110,6 +110,10 @@ func advance(s) -> void:
 				slots[next_slot]=s.elapsed+int(s.rng.randi()%(delay[1]-delay[0]+1))+delay[0]
 				break
 		break
+	_advance_units(s)
+
+
+func _advance_units(s) -> void:
 	for u in s.units:
 		if u.controllable or u.limits.hp<=0:continue
 		if u.life_kind==2:s._update_summoner(u,u.group,u.lives,s.reserves[u.instance_id].summon_interval)

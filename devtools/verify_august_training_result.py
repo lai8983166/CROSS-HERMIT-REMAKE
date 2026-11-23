@@ -4,7 +4,8 @@ From the repository root, export a new JSON file from the accepted save:
   godot --headless --path prototype -s ../devtools/export_august_four_work.gd -- ABS_SAVE ABS_JSON mixed|adventure35
   python -m devtools.verify_august_training_result ABS_JSON
 
-This only executes the three result preparation routines on declared inputs.
+For September, use the captured settlement JSON from the matching adventure UI check.
+This only executes the three result preparation routines on the exported inputs.
 """
 import argparse
 import json
@@ -68,8 +69,8 @@ def verify(captured):
     school = bundle['school']
     facts = captured['facts']
     scene_id = facts['scene_id']
-    if (school['month'], school['week'], scene_id) not in [(8, 4, 17), (8, 5, 35), (9, 3, 22)]:
-        raise ValueError('expected scene 17 in August week 4, scene 35 in August week 5 or scene 22 in September week 3')
+    if (school['month'], school['week'], scene_id) not in [(8, 4, 17), (8, 5, 35), (9, 3, 22), (9, 4, 24)]:
+        raise ValueError('expected scene 17 in August week 4, scene 35 in August week 5, scene 22 in September week 3 or scene 24 in September week 4')
     cpu = PreparationEmulator(seed=facts['clock_seed'])
     cpu.write(0x7a5294, scene_id, 'h')
     cpu.write(0x7a54ca + scene_id, captured['grades'].get(str(scene_id), 5), 'B')

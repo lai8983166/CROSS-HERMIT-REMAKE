@@ -277,7 +277,7 @@ func test_june_registration_and_compulsory_boot_after_each_may_week_five_result(
 func _june_week_two(june: Dictionary, ledger: Dictionary) -> void:
 	var story := Calendar.story(1,6)
 	assert_true(story["supported"])
-	assert_false(Calendar.story(4,9)["supported"])
+	assert_false(Calendar.story(5,9)["supported"])
 	assert_eq(story["pre_week_join_page"],81)
 	assert_eq([story["pre_week"][80]["chapter"],story["pre_week"][81]["chapter"]],[35,36])
 	assert_eq([story["week_start"][78]["chapter"],story["week_start"][79]["chapter"]],[37,38])
@@ -589,7 +589,7 @@ func _july_two_and_three(july: Dictionary, ledger: Dictionary) -> void:
 				assert_eq(bundle["school"]["adventure_gate"],1)
 				assert_eq(bundle["school"]["lecture_work_fields"],[3,8,9,0])
 				assert_eq(bundle["newly_dated_adventures"].map(func(r):return r["id"]),[9])
-				assert_false(Calendar.story(4,9)["supported"])
+				assert_false(Calendar.story(5,9)["supported"])
 				if selection==18:_july_week_four(bundle,opening)
 
 
@@ -879,7 +879,7 @@ func _august_week_four(school: Dictionary, ledger: Dictionary) -> void:
 		var list:=Courses.list_courses(moved.after,4)
 		assert_true(list.supported,str(list.get("reason")))
 		if list.supported:assert_true(list.courses[0].any(func(row):return row[1]==33))
-	assert_false(Calendar.story(4,9).supported)
+	assert_false(Calendar.story(5,9).supported)
 	assert_false(Calendar.next_week(bundle).supported)
 
 
@@ -915,3 +915,12 @@ func test_adventure_twenty_two_returns_through_three_chapters() -> void:
 	assert_eq([story.pre_week[63].chapter,story.pre_week[64].chapter,story.week_start[0].chapter],[53,308,224])
 	assert_eq(story.date_card.source,"data/adv/bin/tc0904.bin")
 	assert_eq(Adventures._mandatory_id(9,4),24)
+
+func test_adventure_twenty_four_returns_through_four_chapters() -> void:
+	var story:=Calendar.story(4,9)
+	assert_true(story.supported)
+	if not story.supported:return
+	assert_eq([story.pre_week.size(),story.week_start.size(),story.school_entry.size()],[26,59,54])
+	assert_eq([story.pre_week[0].chapter,story.week_start[44].chapter,story.week_start[45].chapter,story.school_entry[0].chapter],[54,55,211,56])
+	assert_eq(story.date_card.source,"data/adv/bin/tc0905.bin")
+	assert_eq(Adventures._mandatory_id(9,5),0)

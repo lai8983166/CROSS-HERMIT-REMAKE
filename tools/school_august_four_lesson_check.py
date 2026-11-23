@@ -64,8 +64,8 @@ class LessonCheck(CourseConfirmationEmulator):
 
     def load_bundle(self, before, seed, ratings):
         school = before['school']
-        if (school['month'], school['week']) not in [(8,4),(8,5),(9,1),(9,2),(9,3)]:
-            raise ValueError('expected an August week 4/5 or September week 1/2/3 settlement')
+        if (school['month'], school['week']) not in [(8,4),(8,5),(9,1),(9,2),(9,3),(9,4)]:
+            raise ValueError('expected an August week 4/5 or September weeks 1 through 4 settlement')
         history = ((school['month']-4)*5+school['week']-1)*3
         self.participant_ids = school['student_ids'][:school['student_count']]
         check('accepted roster', self.participant_ids, [3,4,9,5,8,6,1,2,16,17,13])
@@ -132,7 +132,7 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     lessons = summary['lessons'] if round_data else summary
     reported = {row['character_id']:row for row in after['growth']}
     seed = summary['growth_seed'] if round_data else summary['declared_clock_seed']
-    full_dispatch = not round_data or before['school']['week']==5 or date==[9,3]
+    full_dispatch = not round_data or before['school']['week']==5 or date in ([9,3],[9,4])
     if round_data and not full_dispatch:
         prefix = len(summary['learning_draws'])-len(lessons['learning_draws'])
         for draw in summary['learning_draws'][:prefix]:

@@ -1,6 +1,6 @@
 import json
 import unittest
-from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, build_august_week4, build_august_week5, build_september_week1, build_september_week2, build_september_week3, build_september_week4, july_date_card, ROOT
+from tools.school_sortie_week_story_export import build, build_week3, build_week4, build_week5, build_june_week1, build_june_week2, build_june_week3, build_june_week4, build_june_week5, build_july_week1, build_july_week2, build_july_week3, build_july_week4, build_july_week5, build_august_week1, build_august_week2, build_august_week3, build_august_week4, build_august_week5, build_september_week1, build_september_week2, build_september_week3, build_september_week4, build_september_week5, july_date_card, ROOT
 
 
 class SortieWeekStoryTests(unittest.TestCase):
@@ -276,3 +276,14 @@ class SortieWeekStoryTests(unittest.TestCase):
                          [(53,64,112),(308,43,90),(224,14,29)])
         self.assertEqual(data['scenes'][0]['effects'][0]['target'],'data/adv/dat/Chapter308.ybc')
         self.assertEqual((ROOT/'prototype/assets/school_story/tc0904.png').read_bytes(), july_date_card(4,9)[1])
+
+    def test_adventure24_sources_and_join_order(self):
+        data = build_september_week5()
+        self.assertEqual((ROOT/'prototype/data/school_september_week5_story.json').read_bytes(),
+                         (json.dumps(data, ensure_ascii=False, indent=2)+chr(10)).encode())
+        self.assertEqual([s['chapter'] for s in data['scenes']], [54,55,211,56])
+        self.assertEqual([len(s['pages']) for s in data['scenes']], [26,45,14,54])
+        for row, identity, others in zip(data['joins'], [14,15,11], [16,17,18], strict=True):
+            self.assertEqual(row['candidate']['character_id'], identity)
+            self.assertEqual(len(row['join_relationships']), others*2)
+        self.assertEqual((ROOT/'prototype/assets/school_story/tc0905.png').read_bytes(), july_date_card(5,9)[1])

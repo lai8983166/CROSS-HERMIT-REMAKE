@@ -98,30 +98,45 @@ def player_job(image, role, job):
              'family':row[2]-1, 'weapon_type':image[0x6f5088-BASE+role*1184+0x72]}
 
 
-def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighteen=False, nine=False, fourteen=False, twenty=False, twenty_one=False, thirty_five=False, twenty_two=False):
+def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighteen=False, nine=False, fourteen=False, twenty=False, twenty_one=False, thirty_five=False, twenty_two=False, twenty_four=False):
     global PARENT_FRAMES
-    full_roster=thirty_five or twenty_two
+    full_roster=thirty_five or twenty_two or twenty_four
     late=twenty or twenty_one or full_roster
-    output=OUT.parent/'school_twenty_two' if twenty_two else OUT.parent/'school_thirty_five' if thirty_five else OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
-    PARENT_FRAMES=parent_frames(seven or four or six or ten or thirteen or eighteen or nine or fourteen or late,four or six or ten or thirteen or eighteen or nine or fourteen or late,six or ten or thirteen or eighteen or nine or fourteen or late,ten or thirteen or eighteen or nine or fourteen or late,thirteen or eighteen or nine or fourteen or late,eighteen or nine or fourteen or late,nine or fourteen or late,fourteen or late,late,twenty_one or full_roster,full_roster,twenty_two)
+    output=OUT.parent/'school_twenty_four' if twenty_four else OUT.parent/'school_twenty_two' if twenty_two else OUT.parent/'school_thirty_five' if thirty_five else OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
+    PARENT_FRAMES=parent_frames(seven or four or six or ten or thirteen or eighteen or nine or fourteen or late,four or six or ten or thirteen or eighteen or nine or fourteen or late,six or ten or thirteen or eighteen or nine or fourteen or late,ten or thirteen or eighteen or nine or fourteen or late,thirteen or eighteen or nine or fourteen or late,eighteen or nine or fourteen or late,nine or fourteen or late,fourteen or late,late,twenty_one or full_roster,full_roster,twenty_two or twenty_four)
+    if twenty_four:
+        for directory in ('school_twenty_two','school_twenty_two_actions'):
+            data=json.loads((OUT.parent/directory/'catalog.json').read_bytes())
+            for value in data.get('skins',data).values():
+                for frame in value['frames'].values():
+                    path=ROOT/'prototype'/frame['file'].removeprefix('res://')
+                    assert digest(path.read_bytes())==frame['file_sha256']
+                    PARENT_FRAMES.setdefault(frame['file_sha256'],frame['file'])
     image=SOURCE.read_bytes();assert digest(image)==SOURCE_SHA256
     output.mkdir(parents=True,exist_ok=True)
     old=formation();terrain=bytes.fromhex(old['terrain_hex'])
     grid=[list(v[:3]) for v in struct.iter_unpack('<bbHH',bytes.fromhex(old['grid_hex']))]
     skins={};scenes={}
-    for sid in ((22,) if twenty_two else (35,) if thirty_five else (21,) if twenty_one else (20,) if twenty else (14,) if fourteen else (9,) if nine else (18,) if eighteen else (13,) if thirteen else (10,) if ten else (6,) if six else (4,) if four else (7,) if seven else (8,17)):
+    for sid in ((24,) if twenty_four else (22,) if twenty_two else (35,) if thirty_five else (21,) if twenty_one else (20,) if twenty else (14,) if fourteen else (9,) if nine else (18,) if eighteen else (13,) if thirteen else (10,) if ten else (6,) if six else (4,) if four else (7,) if seven else (8,17)):
         r=record_rules(sid,image);actors=[]
         for ordinal,t in enumerate(r['templates']):
             value=expected_record(t,rules=r);raw=bytes.fromhex(value['record_hex']);job=value['job']
             j=bytes.fromhex(r['jobs'][str(job)]['row_hex']);aid=struct.unpack_from('<H',j,24)[0]
             attack=bytes.fromhex(r['archetypes'][str(aid)]['row_hex'])
             actions=ACTIONS+[('summon_prepare',12),('summon',17)] if (four or ten or nine or fourteen or late) and raw[0x96]==2 else ACTIONS
+            if twenty_four and aid not in (0,511):
+                timing=image[0x611538-BASE+16*aid:0x611538-BASE+16*aid+3]
+                actions=[(name,timing[('cast','attack','recover').index(name)] if name in ('cast','attack','recover') else action) for name,action in actions]
             actors.append({'instance_id':1249-ordinal,'work_index':249-ordinal,**value,
                 'character_id':value['identity'],'cell':value['coordinates'],'skin_key':skin(value['identity'],job,image,skins,output,actions,extend_actions=late),
                 'movement_type':raw[48], 'limits':{k:value[k] for k in ('hp_max','mp_max')},
                 'combat':{**from_record(raw),'attack_id':aid,'attack_class':attack[5],'target_filter':attack[25]}})
             actors[-1]['limits'].update(hp=value['hp_max'],mp=value['mp_max'])
             if (four or ten or nine or fourteen or late) and raw[0x96]==2:actors[-1]['summon_interval']=struct.unpack_from('<I',bytes.fromhex(t),52)[0]
+            if twenty_four:
+                actors[-1]['search_mode']=bytes.fromhex(t)[0x24]
+                actors[-1]['vision']=raw[0x2c]
+                actors[-1]['poison_modifier']=struct.unpack_from('<b',j,34)[0]
             actors[-1].pop('profile_hex');actors[-1].pop('profile_pointer')
         logical=(GAME/f'DATA/TACTICS/MAP/MAP{sid:02}.BIN').read_bytes()
         graphics=(GAME/f'DATA/TACTICS/MAP/MAP{sid:02}.MAP').read_bytes()
@@ -157,11 +172,21 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
     result={'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,'skins':skins,'attack_rules':attack}
     if seven or four or six or ten or thirteen or eighteen or nine or fourteen or late:
         from tools.school_adventure_scene_rules import catalog as scene_rules
-        rules=scene_rules((sid,),(146,161) if twenty_one else (146,) if fourteen else (112,146) if ten else (130,146,161) if eighteen else ())['scenes'][str(sid)]
+        rules=scene_rules((sid,),(112,146,159) if twenty_four else (146,161) if twenty_one else (146,) if fourteen else (112,146) if ten else (130,146,161) if eighteen else ())['scenes'][str(sid)]
         scene=scenes[str(sid)]
         scene['scripts']=rules['scripts']
         scene['script_sha256']=rules['script_sha256']
         if seven or ten or thirteen:scene['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (range(1,10) if thirteen else range(1,7) if ten else (1,2))}
+    if twenty_four:
+        numbers=struct.unpack_from('<6h',image,0x5ff83c-BASE)
+        assert numbers==(2,3,4,5,6,-1)
+        scene['grade_objects']=list(numbers[:-1])
+        scene['regions']={'1':[i for i in range(len(layout['cells'])) if logical[18+i*6]==1]}
+        table=struct.unpack_from('<I',image,0x6acb88-BASE+sid*4)[0]
+        scene['patrol_routes']={}
+        for index in range(1,13):
+            count,ptr=struct.unpack_from('<II',image,table-BASE+index*8)
+            scene['patrol_routes'][str(index)]=[list(struct.unpack_from('<BB2xIb3x',image,ptr-BASE+i*12)) for i in range(count)]
     if twenty_two:
         numbers=struct.unpack_from('<2h',image,0x5ff838-BASE)
         assert numbers==(2,-1)
@@ -292,6 +317,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--seven',action='store_true')
     parser.add_argument('--four',action='store_true')
+    parser.add_argument('--twenty-four',action='store_true')
     parser.add_argument('--twenty-two-actions',action='store_true')
     parser.add_argument('--twenty-two',action='store_true')
     parser.add_argument('--thirty-five',action='store_true')
@@ -309,4 +335,4 @@ if __name__=='__main__':
     if args.twenty_two_actions: export_twenty_two_actions()
     elif args.july_five: export_july_five()
     elif args.may_five: export_may_five()
-    else: export(args.seven,args.four,args.six,args.ten,args.thirteen,args.eighteen,args.nine,args.fourteen,args.twenty,args.twenty_one,args.thirty_five,args.twenty_two)
+    else: export(args.seven,args.four,args.six,args.ten,args.thirteen,args.eighteen,args.nine,args.fourteen,args.twenty,args.twenty_one,args.thirty_five,args.twenty_two,args.twenty_four)

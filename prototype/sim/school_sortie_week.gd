@@ -35,7 +35,7 @@ const SEPTEMBER_THREE_SHA := "8c177184de59357ea446aa09603029955f70fbba49c53037a9
 const SEPTEMBER_FOUR_SHA := "505a554441ed424bd78e4423cc4edf9fdc476ac4fd82742ffe0a9fab61d22de1"
 const SEPTEMBER_STORIES := [["res://data/school_september_week2_story.json", SEPTEMBER_TWO_SHA],
 	["res://data/school_september_week3_story.json", SEPTEMBER_THREE_SHA],
-	["res://data/school_september_week4_story.json", SEPTEMBER_FOUR_SHA]]
+	["res://data/school_september_week4_story.json", SEPTEMBER_FOUR_SHA],Return.SEPTEMBER_FIVE]
 const AUGUST_STORIES := [["res://data/school_august_week2_story.json",AUGUST_TWO_SHA],
 	["res://data/school_august_week3_story.json",AUGUST_THREE_SHA],Return.AUGUST_FOUR,
 	["res://data/school_august_week5_story.json",AUGUST_FIVE_SHA],
@@ -68,6 +68,10 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 		if month==9 and start_week==3:
 			result["pre_week"] = scenes[0]["pages"] + scenes[1]["pages"]
 			result["week_start"] = scenes[2]["pages"]
+		if month==9 and start_week==4:
+			result["pre_week"]=scenes[0]["pages"]
+			result["week_start"]=scenes[1]["pages"]+scenes[2]["pages"]
+			result["school_entry"]=scenes[3]["pages"]
 		if month==7 and start_week==4:
 			result["pre_week"]=scenes[0]["pages"]
 			result["week_start"]=scenes[1]["pages"]
@@ -105,6 +109,8 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 static func begin_story(before: Dictionary) -> Dictionary:
 	var rules := Return._rules()
 	if rules.is_empty(): return {"supported":false,"reason":"invalid_sortie_week_sources"}
+	if before.get("school") is Dictionary and before.school.month==9:
+		return Return.join_september_students(before,false)
 	if before.get("school") is Dictionary and before["school"].get("month")==7:
 		return Return.join_chapter304(before,rules)
 	if before.get("school") is Dictionary and before["school"].get("month")==6:
@@ -117,7 +123,8 @@ static func next_week(before: Dictionary) -> Dictionary:
 	var course: bool = before.get("phase")=="courses_confirmed"
 	var phase := "courses_confirmed" if course else "sortie_settled"
 	if before.get("school") is Dictionary:
-		if before["school"].get("month")==7 and before["school"].get("week")==4:phase="chapter304_joined"
+		if [before.school.month,before.school.week]==[9,4]:phase="chapter054_joined"
+		elif before["school"].get("month")==7 and before["school"].get("week")==4:phase="chapter304_joined"
 		elif before["school"].get("month")==6 and before["school"].get("week")!=5:
 			phase="chapter036_joined" if before["school"].get("week")==1 else "sortie_settled"
 		elif before["school"].get("month")==5 and before["school"].get("week")==4: phase="chapter030b_joined"
@@ -185,11 +192,16 @@ static func finish_story(before: Dictionary) -> Dictionary:
 		after.flags["0x7a55f6"]=9
 		after.flags["0x7e11a0"]=1
 		after.adv_background=10
+	if [after.school.month,week]==[9,5]:
+		after.flags["0x7a55f6"]=9
+		after.flags["0x7e11a0"]=1
+		after.adv_background=14
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
 
 
 static func begin_school_entry(before: Dictionary) -> Dictionary:
+	if [before.school.month,before.school.week]==[9,5]:return Return.join_september_students(before,true)
 	return Return.join_chapter306(before,Return._rules())
 
 
@@ -200,6 +212,7 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	var school: Variant=before.get("school")
 	if school is Dictionary and school.get("month")==8 and school.get("week")==4:
 		expected_phase="chapter306_joined"
+	if school is Dictionary and [school.month,school.week]==[9,5]:expected_phase="chapter056_joined"
 	var reason := _guard(before,2,expected_phase,rules)
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
 	var id: int = before["school"]["lecture_work_fields"][2]
@@ -266,8 +279,11 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	if [month,week]==[9,1]:
 		after.flags["0x7a55f6"]=11
 		after.flags["0x7e11a0"]=1
+	if [month,week]==[9,5]:
+		after.flags["0x7a55f6"]=11
+		after.flags["0x7e11a0"]=0
 	after["newly_dated_adventures"] = []
-	if required_id!=0 or month==7 or [month,week]==[8,5]:
+	if required_id!=0 or month==7 or [month,week] in [[8,5],[9,5]]:
 		for rule in rules["boot"]["adventures"]:
 			if rule["present"] and rule["gate"] and rule["kind"] and rule["month"]==month and rule["week"]==week:
 				after["newly_dated_adventures"].append(rule.duplicate(true))
@@ -320,9 +336,11 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 			var id := 18+int(school["week"])
 			if phase!="sortie_settled" or school.get("adventure_gate")!=1 or school.get("lecture_active")!=1 or school.get("lecture_work_fields")!=[3,id-1,id,0]:
 				return "outside_mandatory_sortie_return"
-	var september: bool = school.get("month")==9 and school.get("week") in [1,2,3,4]
+	var september: bool = school.get("month")==9 and school.get("week") in [1,2,3,4,5]
 	if september and first_week==1:
-		if school.week==3:
+		if school.week==4:
+			if phase!="chapter054_joined" or school.adventure_gate!=1 or school.lecture_active!=1 or school.lecture_work_fields!=[3,22,24,0]:return "outside_mandatory_sortie_return"
+		elif school.week==3:
 			if phase!="sortie_settled" or school.adventure_gate!=1 or school.lecture_active!=1 or school.lecture_work_fields!=[3,21,22,0]:
 				return "outside_mandatory_sortie_return"
 		elif school.week not in [1,2] or phase!="courses_confirmed" or school.get("adventure_gate")!=0:
