@@ -5,7 +5,7 @@ Godot 学校试玩已接通至 9 月第 5 周返校。从第 4 周存档按现�
 2002 年 EnterBrain 出品的 SRPG+养成游戏，2004 年光谱资讯繁体中文版。
 本工作区用于**私下研究**：黑盒规则逆向 + 素材格式分析 + 复刻原型（Godot）。
 
-逆向工作的总范围、完成标准及 **2026-11-20** 目标见[逆向总规格与六个里程碑](openspec/specs/reverse-engineering/completion/spec.md)。旧的 `add-fifth-week-school-planning` 已[归档](openspec/changes/archive/2026-10-20-add-fifth-week-school-planning/tasks.md)，其中六项未完成计划迁入总路线图，未计作已完成；[既有规格](openspec/specs/school-fifth-week-planning/spec.md)已同步。后续按有限功能里程碑创建或接续change，不再向旧change追加任务。下方各批次记录为历史进展。
+重制工作路线图、里程碑与验收方式见[重制路线图](openspec/specs/remake/roadmap/spec.md)（自 2026-11 起采用"重制驱动"，以行为对等验收）。原[逆向总规格](openspec/specs/reverse-engineering/completion/spec.md)（目标 2026-11-20）已改为参考，其验收方式不再作为主线。旧的 `add-fifth-week-school-planning` 已[归档](openspec/changes/archive/2026-10-20-add-fifth-week-school-planning/tasks.md)，其中六项未完成计划迁入总路线图，未计作已完成；[既有规格](openspec/specs/school-fifth-week-planning/spec.md)已同步。后续按有限功能里程碑创建或接续 change，不再向旧 change 追加任务。下方各批次记录为历史进展。
 
 当前R1已完成[原窗口创建返回与HWND发布](docs/school_startup_window.md)：真正新启动的自有原进程验证游戏/字体缓存初值0，新客体在第一条原指令前声明；同一创建调用连续执行17条真实消息，含3层输入法嵌套，随后原4504DC发布实际HWND，停4504E1。28项相关回归、32项严格规格通过。完整R1的窗口后处理、游戏工厂/缓存和正常寿命仍待继续；原连续VM与Godot保持。接续[close-original-startup](openspec/changes/close-original-startup/tasks.md)，不再按消息拆change。
 
