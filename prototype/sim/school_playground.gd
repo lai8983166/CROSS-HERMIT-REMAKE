@@ -63,7 +63,8 @@ const SAVE_CONTEXTS := {
 	31:"school_playground_october_one",
 	32:"school_playground_october_two",
 	33:"school_playground_autumn_courses",
-	34:"school_playground_job_change"
+	34:"school_playground_job_change",
+	35:"school_playground_november_three"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -647,6 +648,7 @@ func export_save() -> Dictionary:
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	if _postbattle.planning.get("committed_date")==[11,2]:return 35
 	if _commands.any(func(c):return c.op=="return_job"):return 34
 	var date: Array=_postbattle.planning.get("committed_date",[])
 	if date.size()==2 and Postbattle.SortieWeek.YearLoop.has_departure(date[0],date[1]):return 33
@@ -698,6 +700,7 @@ func _save_fingerprints(version: int) -> Dictionary:
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
+	if version>=35:result["november_three_story"]=Postbattle.SortieWeek.YearLoop.NOVEMBER_SHA
 	if version>=34:
 		result["job_menu"]=Postbattle.JobEligibility.MENU_SHA
 		result["job_change"]=Postbattle.JobEligibility.CHANGE_SHA

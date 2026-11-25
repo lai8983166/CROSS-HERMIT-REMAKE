@@ -132,7 +132,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 
 
 static func _uses_late_course_table(month: int, week: int) -> bool:
-	return [month,week]==[9,5] or (month==10 and week in range(1,6)) or [month,week]==[11,1]
+	return [month,week]==[9,5] or (month==10 and week in range(1,6)) or (month==11 and week in [1,2])
 
 
 static func _uses_september_courses(month: int, week: int) -> bool:

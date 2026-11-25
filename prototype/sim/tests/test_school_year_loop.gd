@@ -57,4 +57,23 @@ func test_autumn_calendar_uses_dated_school_events() -> void:
 		assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"],state.adv_background],row.slice(4,7))
 		assert_true(year.apply_arrival_effects(state,true))
 		assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"]],[row[7],1])
-	assert_false(year.has_departure(11,2))
+	assert_false(year.has_departure(11,3))
+
+
+func test_november_three_requires_departure_before_story_completion() -> void:
+	var year := preload("res://sim/school_year_loop.gd")
+	var adventures := preload("res://sim/school_return_adventures.gd")
+	var route := year.story(11,2)
+	assert_true(route.supported)
+	if not route.supported:return
+	assert_eq(route.pre_week,[])
+	assert_eq(route.school_entry,[])
+	assert_eq(route.week_start.size(),152)
+	assert_eq(route.week_start[0].chapter,71)
+	var state := {"school":{"month":11,"week":3},"flags":{}}
+	assert_false(year.apply_arrival_effects(state,false))
+	state.chapter071_absent={"participants":{"character_id":2}}
+	assert_true(year.apply_arrival_effects(state,false))
+	assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"],state.adv_background],[2,1,10])
+	assert_eq(adventures._mandatory_id(11,2),0)
+	assert_eq(adventures._mandatory_id(11,3),41)

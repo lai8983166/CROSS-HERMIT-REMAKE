@@ -181,7 +181,46 @@ static func next_week(before: Dictionary) -> Dictionary:
 		var joined := Return.join_chapter033(after,rules)
 		if not joined["supported"]: return joined
 		after=joined["after"]
+	if [advanced.month,advanced.week]==[11,3]:
+		var removed := _leave_chapter071(after,rules)
+		if not removed.supported:return removed
 	return Return._result(after,after["phase"],{"date":[advanced["month"],advanced["week"]],"week_executed":true})
+
+
+## The opening opcode precedes even the date card. Keep the absent student's
+## backing records for the later chapter, outside the active school arrays.
+static func _leave_chapter071(after: Dictionary, rules: Dictionary) -> Dictionary:
+	var school: Dictionary=after.school
+	var index: int=school.student_ids.slice(0,school.student_count).find(2)
+	if index<0 or after.has("chapter071_absent"):
+		return {"supported":false,"reason":"unexpected_chapter071_roster"}
+	var absent := {}
+	for key in ["participants","growth","records","counts"]:
+		absent[key]=after[key].pop_at(index)
+	absent.profile=school.member_profiles.pop_at(index+1)
+	absent.relationships=school.relationships.filter(func(r):return r.from==2 or r.to==2)
+	school.relationships=school.relationships.filter(func(r):return r.from!=2 and r.to!=2)
+	after.chapter071_absent=absent
+	for item in absent.participants.equipped_items:
+		if item>0 and (after.item_flags[item-1]&1)!=0:
+			after.item_flags[item-1]=(after.item_flags[item-1]&0xf0ff)|0x100
+	for i in range(index,school.student_count-1):
+		school.raw_student_ids[i]=school.raw_student_ids[i+1]
+	school.student_count-=1
+	school.student_ids.remove_at(index)
+	school.student_ids.append(-1)
+	school.availability[2]=0
+	for group in range(5):
+		for slot in range(4):
+			var at := group*28+16+2*slot
+			if Return.Groups._word(school.group_raw_bytes,at)==2:
+				Return.Groups._put_word(school.group_raw_bytes,at,-1)
+	var prepared := Return._prepare(school,rules)
+	if not prepared.supported:return prepared
+	after.school=prepared.after
+	after.ratings=prepared.ratings
+	after.rankings=Return._rankings(after.school)
+	return {"supported":true}
 
 
 static func finish_story(before: Dictionary) -> Dictionary:

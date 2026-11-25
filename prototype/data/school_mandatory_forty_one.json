@@ -1,0 +1,313 @@
+{
+  "source_image_sha256": "588b4288e4c737dc489d2b9bc0652cca85e3d668b1784942ef4b4bda916f1005",
+  "scene": {
+    "configuration_hex": "2900000000011408b7000000000000051e0a0f140101010c0c0c6a000000000000000000000000000000",
+    "configuration_sha256": "67818245484e5c8223ed5274dbc6294deae223907c649ca17af48bca9872e073",
+    "map_resources": [
+      {
+        "filename": "map41.bin",
+        "sha256": "3628a4fba8d38059865439b5831242762e1edeac31570ce7f0e1a324ad510a97",
+        "bytes": 147472
+      },
+      {
+        "filename": "map41.map",
+        "sha256": "ad54030beb56b9b9058c6c8246adf815f587bbd8ad3583c2ca3525b9c4fee3cb",
+        "bytes": 25169932
+      },
+      {
+        "filename": "map41.bmp",
+        "sha256": "4e55649cb20a976624ca9c9a3be82019f1466fed61666770bfe6669dd2d3db3f",
+        "bytes": 23094
+      },
+      {
+        "filename": "map41.vpt",
+        "sha256": "c2bbe2e35372eb1ae9f3428007c14f6ce35855ae8a10cab6f51d0a85e5eb5994",
+        "bytes": 344264
+      }
+    ],
+    "script": "T0041.BIN",
+    "script_sha256": "3e543c06faf0fec313f71609637996a8fa45103c831ad24c4bfa898e90bdef36",
+    "template_count": 106
+  },
+  "rewards": {
+    "task_id": 41,
+    "base_points": [
+      800000,
+      700000,
+      600000,
+      400000,
+      200000
+    ],
+    "unit_bonus": 0,
+    "time_bonuses": [
+      115,
+      110,
+      105
+    ],
+    "count_bonuses": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      1
+    ],
+    "loot_quotas": [
+      [
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "fixed_items": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "objective_rewards": [
+      [
+        0,
+        7,
+        2
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "adventure": {
+    "id": 41,
+    "present": 1,
+    "month": 11,
+    "week": 3,
+    "duration": 1,
+    "kind": 4,
+    "subkind": 27,
+    "gate": 1,
+    "cooldown": 0,
+    "rounds": [
+      {
+        "scene_id": 41,
+        "selection_word": 1
+      }
+    ],
+    "sha256": "fb5cdbea0f825b6d46f372f0f63941e16a566fd0eec935ad1640268a71d9d07c"
+  },
+  "objective": {
+    "function": "0x435cd0",
+    "defeat_target": {
+      "ordinal": 1,
+      "role": 446
+    },
+    "ownership_target": {
+      "ordinal": 2,
+      "role": 389
+    },
+    "priority": [
+      {
+        "when": "target_state_4_owned_no_losses",
+        "ending_sub": 2,
+        "selector": 1
+      },
+      {
+        "when": "target_state_4_owned",
+        "ending_sub": 5,
+        "selector": 2
+      },
+      {
+        "when": "target_state_4",
+        "ending_sub": 8,
+        "selector": 3
+      },
+      {
+        "when": "time_remaining_zero",
+        "ending_sub": 11,
+        "selector": 4
+      },
+      {
+        "when": "party_down",
+        "ending_sub": 14,
+        "selector": 5
+      }
+    ]
+  },
+  "opening_timers": [
+    {
+      "slot": 0,
+      "block": 0,
+      "sub": 20,
+      "delay": 3600
+    },
+    {
+      "slot": 1,
+      "block": 0,
+      "sub": 20,
+      "delay": 7200
+    },
+    {
+      "slot": 2,
+      "block": 0,
+      "sub": 20,
+      "delay": 10800
+    },
+    {
+      "slot": 3,
+      "block": 0,
+      "sub": 20,
+      "delay": 14400
+    },
+    {
+      "slot": 4,
+      "block": 0,
+      "sub": 20,
+      "delay": 18000
+    },
+    {
+      "slot": 5,
+      "block": 0,
+      "sub": 21,
+      "delay": 10800
+    },
+    {
+      "slot": 6,
+      "block": 0,
+      "sub": 21,
+      "delay": 25200
+    },
+    {
+      "slot": 7,
+      "block": 0,
+      "sub": 21,
+      "delay": 36000
+    },
+    {
+      "slot": 8,
+      "block": 0,
+      "sub": 21,
+      "delay": 54000
+    },
+    {
+      "slot": 9,
+      "block": 0,
+      "sub": 21,
+      "delay": 64800
+    }
+  ]
+}

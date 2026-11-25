@@ -12,7 +12,7 @@ from tools.tactics_exit_emulation import ROOT, SOURCE, SOURCE_SHA256
 
 CHAPTER_COUNTS = {20:378,21:91,22:90,208:22}
 CHAPTERS = tuple(CHAPTER_COUNTS)
-ALLOWED = {12,13,15,17,19,20,21,22,24,26,27,28,29,30,31,32,33,35,36,40,43,44,50,51,56,59,63,65,67,69,74,91,144,151,153}
+ALLOWED = {12,13,15,17,19,20,21,22,24,26,27,28,29,30,31,32,33,35,36,40,43,44,50,51,56,59,63,65,67,69,74,91,144,145,151,153}
 
 
 def catalog(chapter_counts=None):
@@ -75,7 +75,7 @@ def catalog(chapter_counts=None):
                 lines.append(texts[index]);indices.append(index)
             elif op == 51:
                 flush(at)
-            elif op in (144,151,153,91):
+            elif op in (144,145,151,153,91):
                 effects.append({'offset':at,'opcode':op,'operands':immediate(payload)})
             elif op == 15:
                 index = struct.unpack('<I',payload)[0]

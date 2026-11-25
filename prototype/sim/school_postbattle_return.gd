@@ -54,7 +54,7 @@ static func group_rules(school: Dictionary) -> Dictionary:
 
 static func _october_roster(school: Dictionary) -> bool:
 	var date := [school.get("month"),school.get("week")]
-	var date_in_scope: bool = date==[9,5] or (date[0]==10 and date[1] in range(1,6)) or (date[0]==11 and date[1] in [1,2])
+	var date_in_scope: bool = date==[9,5] or (date[0]==10 and date[1] in range(1,6)) or (date[0]==11 and date[1] in [1,2,3])
 	return date_in_scope and school.get("student_count") in [15,16] and school.get("teacher_count")==5
 
 
@@ -345,7 +345,8 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 		return "outside_current_return_week"
 	if _october_roster(school):
 		var roster := [3,4,9,5,8,6,1,2,16,17,13,14,15,11] + [18]
-		if school.student_count==16:roster.append(32)
+		if school.student_count==16 or [school.month,school.week]==[11,3]:roster.append(32)
+		if [school.month,school.week]==[11,3] and bundle.has("chapter071_absent"):roster.erase(2)
 		return _validate(bundle,roster,school.month,school.week,rules)
 	if _has_chapter054(school):
 		var ids := [3,4,9,5,8,6,1,2,16,17,13,14,15]
