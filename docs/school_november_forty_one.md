@@ -26,3 +26,5 @@
 3. 对输出目录中的 `settled.json` 和 `submission.json` 运行 `python -m devtools.verify_november_sortie_result`，分别核对原版评分、奖励及成长与确认函数。若要复核逐页/跳过与入队现场，使用 `devtools/verify_november_four_return.gd` 与 `tools.school_november_four_joins`。
 
 下一段从十一月第 4 周返校的存档接回[学年循环](school_year_loop.md)。
+
+本次 v36 存档保存在 `.venv-audit/november41-victory-campaign/november-four.json`，共 1,468 条战役操作。逐页验证器的第二个参数可直接使用[验收记录](../analysis/november-forty-one-acceptance.json)，其中保留了提交前的冒险列表。第三个参数指定临时入队观察文件，随后将 `settled.json` 和该观察文件传给 `python -m tools.school_november_four_joins` 即可复核原入队函数。
