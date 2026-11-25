@@ -64,11 +64,17 @@ class LessonCheck(CourseConfirmationEmulator):
 
     def load_bundle(self, before, seed, ratings):
         school = before['school']
-        if (school['month'], school['week']) not in [(8,4),(8,5),(9,1),(9,2),(9,3),(9,4)]:
-            raise ValueError('expected an August week 4/5 or September weeks 1 through 4 settlement')
+        date = (school['month'], school['week'])
+        expected_ids = [3,4,9,5,8,6,1,2,16,17,13]
+        if date == (9, 5):
+            expected_ids += [14,15,11]
+        elif date[0] == 10 and 1 <= date[1] <= 5 or date == (11, 1):
+            expected_ids += [14,15,11,18,32]
+        elif date not in [(8,4),(8,5),(9,1),(9,2),(9,3),(9,4)]:
+            raise ValueError(f'unsupported settlement date {date}')
         history = ((school['month']-4)*5+school['week']-1)*3
         self.participant_ids = school['student_ids'][:school['student_count']]
-        check('accepted roster', self.participant_ids, [3,4,9,5,8,6,1,2,16,17,13])
+        check('accepted roster', self.participant_ids, expected_ids)
         self.uc.mem_write(TASK+0x34, bytes(0x1430-0x34))
         for category, row in enumerate(source_rules()['skill_grid']):
             for ordinal, skill in enumerate(row):

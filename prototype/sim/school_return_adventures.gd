@@ -181,7 +181,7 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if month not in range(5,10) or week not in range(1,6): return false
+	if month not in range(5,12) or week not in range(1,6): return false
 	var last := (month-5)*5+week
 	var source := rules()
 	var first := initial()

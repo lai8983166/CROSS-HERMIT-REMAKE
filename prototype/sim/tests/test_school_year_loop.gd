@@ -41,3 +41,20 @@ func test_job_change_equipment_against_original() -> void:
 	var observed: Dictionary=rules.case.before.duplicate(true)
 	eligibility.apply_equipment(observed,observed.item_flags,rules.case.target,rules)
 	assert_eq(observed,rules.case.after)
+
+func test_autumn_calendar_uses_dated_school_events() -> void:
+	var year := preload("res://sim/school_year_loop.gd")
+	var expected := [[10,2,10,3,11,0,9,11],[10,3,10,4,11,0,14,11],
+		[10,4,10,5,11,0,15,11],[10,5,11,1,19,1,15,4],[11,1,11,2,11,0,50,11]]
+	for row in expected:
+		var route := year.story(row[0],row[1])
+		assert_true(route.supported)
+		if not route.supported:return
+		assert_false(route.pre_week.is_empty())
+		assert_eq(not route.school_entry.is_empty(),row[2]==11 and row[3]==1)
+		var state := {"school":{"month":row[2],"week":row[3]},"flags":{}}
+		assert_true(year.apply_arrival_effects(state,false))
+		assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"],state.adv_background],row.slice(4,7))
+		assert_true(year.apply_arrival_effects(state,true))
+		assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"]],[row[7],1])
+	assert_false(year.has_departure(11,2))

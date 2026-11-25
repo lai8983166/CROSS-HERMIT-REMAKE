@@ -5,10 +5,8 @@ const SOURCE := "res://data/school_job_menu.json"
 
 
 static func menu_data() -> Dictionary:
-	var raw := FileAccess.get_file_as_string(SOURCE).replace("
-","
-")
-	if raw.sha256_text()!="e3f3eb8596295d54a26b892c6495114ddeccf34421bb3fdb18af98c8eedf237f":return {}
+	var raw := FileAccess.get_file_as_string(SOURCE).replace("\r\n","\n")
+	if raw.sha256_text()!=MENU_SHA:return {}
 	return JSON.parse_string(raw)
 
 
@@ -25,6 +23,7 @@ static func calculate_eligibility(student: Dictionary, menu: Dictionary) -> Arra
 	return jobs
 
 
+const MENU_SHA := "e3f3eb8596295d54a26b892c6495114ddeccf34421bb3fdb18af98c8eedf237f"
 const CHANGE_SHA := "0049238b77eefe79402de53bd300fcde14252ec7d3669f0405c234d1463ff848"
 const Return := preload("res://sim/school_postbattle_return.gd")
 

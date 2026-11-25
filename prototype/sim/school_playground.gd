@@ -59,7 +59,11 @@ const SAVE_CONTEXTS := {
 	27:"school_playground_september_courses",
 	28:"school_playground_september_course_25",
 	29:"school_playground_mandatory_twenty_two",
-	30:"school_playground_mandatory_twenty_four"
+	30:"school_playground_mandatory_twenty_four",
+	31:"school_playground_october_one",
+	32:"school_playground_october_two",
+	33:"school_playground_autumn_courses",
+	34:"school_playground_job_change"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -220,7 +224,7 @@ func _dispatch(command: Dictionary) -> Dictionary:
 			if not begun["supported"]: return begun
 			_postbattle=next;return {"supported":true,"status":"battle_committed_once"}
 		"course_story","sortie_finish","post_next","post_prev","post_skip","post_school","return_move",\
-		"return_plan","return_mode","return_course","return_select","return_settle","return_depart":
+		"return_plan","return_job","return_mode","return_course","return_select","return_settle","return_depart":
 			return _failure("postbattle_not_started") if _postbattle==null else _postbattle.execute(command)
 		"move":
 			var input := command.duplicate(true)
@@ -278,6 +282,9 @@ static func _valid_command(command: Dictionary, departure_date: Array = [], scen
 		"return_course":
 			keys=["op","group","course"]
 			if not _integer(command.get("group"),0,4) or not _integer(command.get("course"),1,100):return false
+		"return_job":
+			keys=["op","member","job"]
+			if not _integer(command.get("member"),1,44) or not _integer(command.get("job"),1,30):return false
 		"return_select":
 			keys=["op","adventure"]
 			if not _integer(command.get("adventure"),1,100):return false
@@ -640,6 +647,11 @@ func export_save() -> Dictionary:
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	if _commands.any(func(c):return c.op=="return_job"):return 34
+	var date: Array=_postbattle.planning.get("committed_date",[])
+	if date.size()==2 and Postbattle.SortieWeek.YearLoop.has_departure(date[0],date[1]):return 33
+	if _postbattle.planning.get("committed_date")==[10,1]:return 32
+	if _postbattle.planning.get("committed_date")==[9,5]: return 31
 	if _postbattle.planning.get("committed_date")==[9,4]: return 30
 	if _postbattle.planning.get("committed_date")==[9,3]: return 29
 	if _postbattle.planning.get("committed_date")==[9,2]: return 28
@@ -686,6 +698,14 @@ func _save_fingerprints(version: int) -> Dictionary:
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
+	if version>=34:
+		result["job_menu"]=Postbattle.JobEligibility.MENU_SHA
+		result["job_change"]=Postbattle.JobEligibility.CHANGE_SHA
+	if version>=33:result["autumn_courses_story"]=Postbattle.SortieWeek.YearLoop.SHA
+	if version>=32:result["october_two_story"]=Postbattle.SortieWeek.OCTOBER_TWO[1]
+	if version>=31:
+		result["october_one_story"]=Postbattle.Return.OCTOBER_ONE[1]
+		result["september_five_courses"]=Postbattle.Courses.SEPTEMBER_FIVE_SHA
 	if version>=30:
 		result["september_five_story"]=Postbattle.Return.SEPTEMBER_FIVE[1]
 		result["mandatory_twenty_four"]=Postbattle.Adventures.TWENTY_FOUR_SHA

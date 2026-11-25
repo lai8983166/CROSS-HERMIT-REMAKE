@@ -11,8 +11,8 @@ from tools.school_postbattle_story_export import GAME, SOURCE
 
 
 def verify(cases):
-    assert [(c["chapter"], [r["character_id"] for r in c["new_students"]]) for c in cases] == [
-        (54, [14, 15]), (56, [11])]
+    assert [(c["chapter"], [r["character_id"] for r in c["new_students"]]) for c in cases] in (
+        [(54, [14, 15]), (56, [11])], [(313, [18]), (233, [32])])
     counts = []
     image = SOURCE.read_bytes()
     for case in cases:

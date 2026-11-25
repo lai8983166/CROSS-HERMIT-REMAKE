@@ -6,7 +6,8 @@ const Courses := preload("res://sim/school_return_courses.gd")
 const SortieRecord := preload("res://sim/school_sortie_record.gd")
 const SortieSettlement := preload("res://sim/school_sortie_settlement.gd")
 const SortieWeek := preload("res://sim/school_sortie_week.gd")
-const PLAN_OPS := ["return_plan","return_mode","return_course","return_select","return_settle","return_depart"]
+const JobEligibility := preload("res://sim/school_job_eligibility.gd")
+const PLAN_OPS := ["return_plan","return_job","return_mode","return_course","return_select","return_settle","return_depart"]
 const STORY_PATH := "res://data/school_postbattle_story.json"
 const STORY_SHA := "7810a795b702e90cd439e3916e03ecaf824646c9f09db93c5ba6e1c7a5be1aaf"
 var bundle: Dictionary = {}
@@ -91,6 +92,10 @@ func execute(command: Dictionary) -> Dictionary:
 			return _failure("course_not_confirmed")
 		var story := SortieWeek.story(bundle["school"]["week"],bundle["school"]["month"])
 		if not story["supported"]: return story
+		if [bundle.school.month,bundle.school.week]==[9,5]:
+			var joined := SortieWeek.join_october_student(bundle,313)
+			if not joined.supported:return joined
+			bundle=joined.after
 		_set_dated_story(story)
 		if _post_pages.is_empty():return _advance_work_week()
 		phase="post_story"
@@ -141,6 +146,10 @@ func execute(command: Dictionary) -> Dictionary:
 		var joined := SortieWeek.begin_story(bundle)
 		if not joined["supported"]:return joined
 		bundle=joined["after"]
+	if phase=="new_week_story" and [bundle.school.month,bundle.school.week]==[10,1] and bundle.school.student_count==15 and (next==pages.size() or int(pages[next].chapter)==233):
+		var joined := SortieWeek.join_october_student(bundle,233)
+		if not joined.supported:return joined
+		bundle=joined.after
 	if next==pages.size():
 		if phase=="school_entry_story": return _return_to_school()
 		if phase=="post_story":
@@ -203,6 +212,7 @@ func _plan(command: Dictionary) -> Dictionary:
 	if planning.is_empty():return _failure("return_plan_not_open")
 	var result: Dictionary
 	match op:
+		"return_job":result=JobEligibility.change_job(bundle,command["member"],command["job"])
 		"return_mode":result=Courses.set_mode(bundle,command["group"],command["teaching"])
 		"return_course":result=Courses.assign_course(bundle,command["group"],command["course"])
 		"return_select":result=Adventures.select(bundle,planning["ledger"],command["adventure"])
@@ -210,12 +220,12 @@ func _plan(command: Dictionary) -> Dictionary:
 		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
 	if not result["supported"]:return result
 	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
-	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"] in [6,7,8,9]) and op in ["return_settle","return_depart"]:
+	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"] in [6,7,8,9,10,11]) and op in ["return_settle","return_depart"]:
 		# Replace last week's display summary only when the new work is committed.
 		# Keep its starting ledger for validating the battle and next school's entry.
 		var opening: Dictionary=planning["ledger"]
 		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
-		if bundle["school"]["month"] in [6,7,8,9]:
+		if bundle["school"]["month"] in [6,7,8,9,10,11]:
 			planning["committed_date"]=[bundle["school"]["month"],bundle["school"]["week"]]
 		elif bundle["school"]["week"]>=3:
 			planning["committed_week"]=bundle["school"]["week"]

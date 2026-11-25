@@ -4,6 +4,7 @@ signal command(value: Dictionary)
 signal save_requested
 signal load_requested
 signal sortie_requested
+const JobEligibility := preload("res://sim/school_job_eligibility.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const Courses := preload("res://sim/school_return_courses.gd")
 const Adventures := preload("res://sim/school_return_adventures.gd")
@@ -139,6 +140,29 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 			for slot in range(4):
 				var id := Groups._word(school["group_raw_bytes"],group*28+16+slot*2)
 				row.add_child(_button(names.get(id,"空位"),func():_move(group,slot,false)))
+		if school.month >= 10 and _selected > 0 and not _is_teacher(_selected):
+			var menu := JobEligibility.menu_data()
+			var students: Array = view.bundle.participants.filter(func(student):return student.character_id==_selected)
+			if not menu.is_empty() and not students.is_empty():
+				var jobs := JobEligibility.calculate_eligibility(students[0],menu)
+				var picker := OptionButton.new()
+				picker.name="eligible_jobs"
+				for job in jobs:
+					picker.add_item(menu.names[job],job)
+					if job==students[0].job:picker.select(picker.item_count-1)
+				var choices := HBoxContainer.new()
+				assignments.add_child(choices)
+				var caption := _label(17)
+				caption.text="已解锁职业"
+				choices.add_child(caption)
+				choices.add_child(picker)
+				var change := _button("确认转职",func():
+					var target := picker.get_selected_id()
+					_confirm("return_job","将职业改为%s？已装备的技能和物品将卸下。"%menu.names[target],{"member":_selected,"job":target}))
+				change.name="change_job"
+				change.disabled=picker.get_selected_id()==students[0].job or picker.item_count==0
+				picker.item_selected.connect(func(_index):change.disabled=picker.get_selected_id()==students[0].job)
+				choices.add_child(change)
 		var waiting := _label(17);waiting.text="待命："+", ".join((school["idle_teacher_ids"]+school["idle_student_ids"]).map(func(id):return names.get(id,str(id))))
 		assignments.add_child(waiting)
 		var to_wait := _button("移到待命",func():_move(-1,-1,_is_teacher(_selected)))
@@ -219,14 +243,14 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[9,5]
+	var planning_only: bool=[school["month"],school["week"]]==[11,2]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="9 月第 5 周可选冒险 11、35 或 17，可安排三位新生的席位并保存。"
+		dialogue.text="11 月第 2 周可调整编班与课表。"
 		progress.text="调整后可保存本周安排。"
-	elif school.month==9 and school.week in [1,2]:
+	elif school.month==9 and school.week in [1,2,5] or school.month==10 or [school.month,school.week]==[11,1]:
 		dialogue.text="核对五个班的课表后，确认本周授课即可结算并进入下周剧情。"
 		progress.text="可调整编班和课程，保存后继续。"
 	elif [school.month,school.week]==[8,5]:
@@ -279,7 +303,7 @@ func _show_plan(view: Dictionary) -> void:
 	if school["week"]==5 and school.month!=8 and ratings["supported"] and ratings["ratings"].any(func(r):return r["state"]==3):
 		progress.text="有班级设为冒险但尚未选择任务。要全校授课，请将该班切换为授课并确认课程；也可选择冒险，让其余班级照常上课。"
 
-	if [school.month,school.week] in [[8,1],[9,1],[9,2]]:return
+	if school.month==10 or [school.month,school.week] in [[8,1],[9,1],[9,2],[9,5],[11,1]]:return
 	var depart := _button("确认出击交接",func():_confirm("return_depart","确认后锁定本周出击队伍并更新冒险使用记录，随后可进入战场。可以保存出击记录后稍后继续。"))
 	depart.name="depart";row.add_child(depart)
 	var prepared := Adventures.prepare(bundle,plan["ledger"])
@@ -291,8 +315,8 @@ func _show_plan(view: Dictionary) -> void:
 	plans.add_child(ready)
 
 
-func _confirm(op: String, message: String) -> void:
-	_pending={"op":op};commit_dialog.dialog_text=message;commit_dialog.popup_centered(Vector2i(520,190))
+func _confirm(op: String, message: String, fields: Dictionary = {}) -> void:
+	_pending=fields.duplicate();_pending["op"]=op;commit_dialog.dialog_text=message;commit_dialog.popup_centered(Vector2i(520,190))
 
 
 func _member_names(ids: Array) -> String:
