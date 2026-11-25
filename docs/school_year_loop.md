@@ -53,3 +53,5 @@ Chapter071 共 205 条文本，分为 152 页。末尾音乐字段为 2、1，�
 本段 v35 存档为 `.venv-audit/november-three-verified.json`，154441 字节，SHA-256 为 `66a5f47ca9b3dfeea6d1ad65559a807031fee72b844e761443ce470fbd73760f`。无窗口运行 `devtools/verify_november_three.gd`，传入上表的十一月第 2 周存档及新的输出路径，可重建该文件。仅传入 v35 路径时，验证器从头重放并检查离队、班级、冒险 41 出击预览以及必修周的授课拒绝。
 
 关联 change 已接入可玩 MAP41、两组增援、战果和战后返校。固定胜利记录从 v35 学校实际编班出发，到十一月第 4 周以 18 名学生、6 名教师接回学年。详见[冒险 41 的操作、归队与复现](school_november_forty_one.md)。
+
+转职存档另由 `devtools/verify_school_job_save.gd` 从十月第 1 周 v31 存档生成。学生 3 从职业 10 转到职业 2 后保存为 v34，重复确认保持同一操作记录。新模型从头读取该档得到原状态，摘要为 `0c757388bf9fd96c9aa02bf48d7b95d7281fae4990df2fbd76b00001201e4d20`。篡改转职规则指纹会被拒绝，当前学校状态保持完整。
