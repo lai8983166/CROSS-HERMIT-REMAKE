@@ -14,7 +14,7 @@ from tools.school_story_export import source_string
 from tools.tactics_exit_emulation import ROOT, SOURCE, SOURCE_SHA256
 
 
-def source_menu():
+def source_menu(probes=None):
     raw = SOURCE.read_bytes()
     if hashlib.sha256(raw).hexdigest() != SOURCE_SHA256:
         raise ValueError('source image mismatch')
@@ -31,7 +31,9 @@ def source_menu():
     order = list(struct.unpack('<15H', cpu.mem_read(frame-0x58, 30)))
     variants = [raw[0x2f5088+member*0x4a0+0x72] for member in range(45)]
     cases = []
-    for member, enabled in [(18, [2, 4, 5, 12, 14, 29, 30]), (32, [1, 3, 4, 11, 13, 22, 29])]:
+    if probes is None:
+        probes = [(18, [2, 4, 5, 12, 14, 29, 30]), (32, [1, 3, 4, 11, 13, 22, 29])]
+    for member, enabled in probes:
         cpu.mem_write(screen+0x69, bytes([variants[member]]))
         cpu.mem_write(screen+0x596, struct.pack('<H', member))
         flags = [int(job in enabled) for job in range(1, 31)]

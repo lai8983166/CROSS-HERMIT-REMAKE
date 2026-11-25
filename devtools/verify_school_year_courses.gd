@@ -36,8 +36,15 @@ func _play_week(model: Model, date: Array, directory: String) -> bool:
 	var before: Dictionary = model.read_postbattle().bundle
 	if model.stage()!="returned_school" or [before.school.month,before.school.week]!=date:
 		return false
+	if date!=[10,1] and not preload("res://sim/tests/school_year_course_comparison.gd").compare_menus(before):
+		printerr("Original personal-screen menus differ at ",date)
+		return false
 	if not _command(model,"return_settle"):return false
 	var after: Dictionary = model.read_postbattle().bundle
+	var difference := preload("res://sim/tests/school_year_course_comparison.gd").compare(after)
+	if not difference.is_empty():
+		printerr("Original settlement differs at ",date," in ",difference)
+		return false
 	var file := FileAccess.open(directory.path_join("settlement-%02d-%d.json"%date),FileAccess.WRITE)
 	if file==null:return false
 	file.store_string(JSON.stringify({"before":before,"after":after}))
