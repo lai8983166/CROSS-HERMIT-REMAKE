@@ -3,7 +3,7 @@ import json
 import unittest
 
 from tools.school_course_settlement_emulation import (
-    report, fixture, source_rules, runtime_rules, may_five_lessons, june_five_lessons, august_four_lessons, september_one_lessons, september_two_lessons, CourseSettlementEmulator, CHAR, STRIDE)
+    report, fixture, source_rules, runtime_rules, may_five_lessons, june_five_lessons, august_four_lessons, september_one_lessons, september_two_lessons, _lesson_rows, CourseSettlementEmulator, CHAR, STRIDE)
 from tools.tactics_exit_emulation import ROOT, report_text
 from tools.school_course_unlock_emulation import CourseUnlockEmulator
 
@@ -74,6 +74,23 @@ class AugustCourseTableTests(unittest.TestCase):
         rows = json.loads((ROOT/'prototype/data/school_september_two_courses.json').read_bytes())
         self.assertEqual(rows,september_two_lessons())
         self.assertEqual(set(map(int,rows)),set(added))
+
+
+    def test_september_five_courses_carry_through_october_rollover(self):
+        original = CourseUnlockEmulator(9, 2)
+        original.unlock()
+        initial = original.snapshot()['course_unlocked_flags']
+        original.write(0x7A5290, 5, 'h')
+        original.unlock()
+        september = original.snapshot()['course_unlocked_flags']
+        added = [i for i, (old, new) in enumerate(zip(initial, september)) if new and not old]
+        self.assertEqual(added, [35, 48, 49, 50, 51, 52])
+        self.assertEqual(_lesson_rows(added), json.loads(
+            (ROOT/'prototype/data/school_september_five_courses.json').read_bytes()))
+        original.write(0x7A528E, 10, 'h')
+        original.write(0x7A5290, 1, 'h')
+        original.unlock()
+        self.assertEqual(original.snapshot()['course_unlocked_flags'], september)
 
 
 class CourseSettlementTests(unittest.TestCase):

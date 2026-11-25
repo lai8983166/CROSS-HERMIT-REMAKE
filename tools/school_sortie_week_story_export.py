@@ -468,6 +468,45 @@ def build_september_week5():
     return data
 
 
+def build_october_week1():
+    data = catalog({313: 70, 58: 142, 233: 63})
+    routes = [date_route('CH003', 9, 5), date_route('CH001', 10, 1), date_route('CH002', 10, 1)]
+    assert [route['target'] for route in routes] == [
+        'data/adv/dat/Chapter313.ybc', 'data/adv/dat/Chapter058.ybc', None]
+    assert [route.get('effects', []) for route in routes] == [
+        [], [], [{'offset': 0x5a4, 'opcode': 151, 'operands': [11, 1]}]]
+    scenes = data['scenes']
+    assert [scene['effects'] for scene in scenes] == [
+        [{'offset': 0x14, 'opcode': 144, 'operands': [18]}],
+        [{'offset': 0xce0, 'opcode': 15, 'string_index': 1}],
+        [{'offset': 0x14, 'opcode': 144, 'operands': [32]},
+         {'offset': 0x4d2, 'opcode': 151, 'operands': [11, 0]},
+         {'offset': 0x4de, 'opcode': 91, 'operands': [14, 2]}]]
+    _link_chapters(scenes[1], '058', 233)
+    add_chapter_card(data, 1, '058', 1, 10)
+    data['routes'] = routes
+    members = [101,3,4,9,5,8,110,6,115,1,2,118,16,17,116,13,14,15,11]
+    data['joins'] = []
+    for identity in (18, 32):
+        members.append(identity)
+        data['joins'].append(join_data({}, identity, None, members))
+    return data
+
+
+def build_october_week2():
+    data = catalog({59: 106, 60: 52})
+    routes = [date_route('CH003', 10, 1), date_route('CH001', 10, 2), date_route('CH002', 10, 2)]
+    assert [route['target'] for route in routes] == [
+        'data/adv/dat/Chapter059.ybc', 'data/adv/dat/Chapter060.ybc', None]
+    assert not any('effects' in route for route in routes)
+    assert [scene['effects'] for scene in data['scenes']] == [[], [
+        {'offset': 0x660, 'opcode': 151, 'operands': [3, 1]},
+        {'offset': 0x66c, 'opcode': 91, 'operands': [14, 2]}]]
+    add_chapter_card(data, 1, '060', 2, 10)
+    data['routes'] = routes
+    return data
+
+
 def _link_chapters(scene, label, next_chapter):
     raw = (GAME/f'DAT/CHAPTER{label}.YBC').read_bytes()
     _, _, end, pool, _ = struct.unpack_from('<5I', raw)
@@ -517,8 +556,8 @@ if __name__ == '__main__':
                        ('school_june_week3_story', build_june_week3), ('school_june_week4_story', build_june_week4), ('school_june_week5_story', build_june_week5), ('school_july_week1_story', build_july_week1),
                        ('school_july_week2_story', build_july_week2), ('school_july_week3_story', build_july_week3), ('school_july_week4_story', build_july_week4), ('school_july_week5_story', build_july_week5),
                        ('school_august_week1_story', build_august_week1), ('school_august_week2_story', build_august_week2),
-                       ('school_august_week3_story', build_august_week3), ('school_august_week4_story', build_august_week4), ('school_august_week5_story', build_august_week5), ('school_september_week1_story', build_september_week1), ('school_september_week2_story', build_september_week2), ('school_september_week3_story', build_september_week3), ('school_september_week4_story', build_september_week4), ('school_september_week5_story', build_september_week5)]:
+                       ('school_august_week3_story', build_august_week3), ('school_august_week4_story', build_august_week4), ('school_august_week5_story', build_august_week5), ('school_september_week1_story', build_september_week1), ('school_september_week2_story', build_september_week2), ('school_september_week3_story', build_september_week3), ('school_september_week4_story', build_september_week4), ('school_september_week5_story', build_september_week5), ('school_october_week1_story', build_october_week1), ('school_october_week2_story', build_october_week2)]:
         target = ROOT / f'prototype/data/{name}.json'
         target.write_text(json.dumps(make(), ensure_ascii=False, indent=2)+'\n', encoding='utf8', newline='\n')
-    for month,week in ((7,2),(7,4),(7,5),(8,1),(8,2),(8,3),(8,4),(8,5),(9,1),(9,2),(9,3),(9,4),(9,5)):
+    for month,week in ((7,2),(7,4),(7,5),(8,1),(8,2),(8,3),(8,4),(8,5),(9,1),(9,2),(9,3),(9,4),(9,5),(10,1),(10,2)):
         (ROOT/f'prototype/assets/school_story/tc{month:02}{week:02}.png').write_bytes(july_date_card(week,month)[1])
