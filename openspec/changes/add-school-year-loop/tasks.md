@@ -17,6 +17,8 @@
 
 ## 3. 多周累积验收
 
+十一月第 3 周的必修冒险由关联 change `add-november-mandatory-forty-one` 负责，从 v35 学校出发，以十一月第 4 周 v36 返校存档接回本节。后续继续核对第 4 周以后的学校操作及剧情。
+
 - [x] 3.1 创建原版对照工具 `tools/school_year_loop_emulation.py`，执行 10 月第 1 周至 11 月第 1 周的原版规则
 - [x] 3.2 生成对照文件 `prototype/data/school_year_loop_evidence_oct_nov.json`，记录每周结算后的学生快照
 - [x] 3.3 在 Godot 中实现每周快照对比测试，验证属性、技能、关系、职业进度与原版一致

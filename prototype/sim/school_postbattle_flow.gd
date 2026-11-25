@@ -105,6 +105,10 @@ func execute(command: Dictionary) -> Dictionary:
 	if phase=="sortie_result" and op=="post_next":
 		if pages.is_empty():
 			return _advance_work_week()
+		if [bundle.school.month,bundle.school.week]==[11,3]:
+			var joined := SortieWeek.join_november(bundle,72)
+			if not joined.supported:return joined
+			bundle=joined.after
 		if bundle.school.week==4 and bundle.school.month in [5,6,7,9]:
 			var started := SortieWeek.begin_story(bundle)
 			if not started["supported"]:return started
@@ -142,6 +146,10 @@ func execute(command: Dictionary) -> Dictionary:
 		if cursor==0: return {"supported":true,"status":"duplicate"}
 		cursor-=1;revision+=1;return {"supported":true}
 	var next := pages.size() if op=="post_skip" or pages.is_empty() else cursor+1
+	if phase=="post_story" and bundle.phase=="chapter072_joined" and next>=_pre_week_join_page:
+		var joined := SortieWeek.join_november(bundle,74)
+		if not joined.supported:return joined
+		bundle=joined.after
 	if phase=="post_story" and _pre_week_join_page>=0 and next>=_pre_week_join_page and bundle["phase"]=="sortie_settled":
 		var joined := SortieWeek.begin_story(bundle)
 		if not joined["supported"]:return joined

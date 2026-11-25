@@ -53,6 +53,14 @@ const STORIES := [[PATH,SHA],[WEEK3_PATH,WEEK3_SHA],[WEEK4_PATH,WEEK4_SHA],Retur
 
 
 static func story(start_week: int = 1, month: int = 5) -> Dictionary:
+	if [month,start_week]==[11,3]:
+		var data := _november_four()
+		if data.is_empty() or FileAccess.get_sha256(data.date_card.image)!=data.date_card.png_sha256:
+			return {"supported":false,"reason":"invalid_november_four_story"}
+		var scenes: Array=data.scenes
+		return {"supported":true,"pre_week":scenes[0].pages+scenes[1].pages,
+			"pre_week_join_page":scenes[0].pages.size(),"date_card":data.date_card,
+			"week_start":scenes[2].pages,"school_entry":scenes[3].pages}
 	if YearLoop.has_departure(month,start_week):return YearLoop.story(month,start_week)
 	var dated: Array = {5:STORIES,6:JUNE_STORIES,7:JULY_STORIES,8:AUGUST_STORIES,9:SEPTEMBER_STORIES,10:[OCTOBER_TWO]}.get(month,[])
 	if start_week<1 or start_week>dated.size():
@@ -133,6 +141,38 @@ static func join_october_student(before: Dictionary, chapter: int) -> Dictionary
 	return Return._result(after,after.phase)
 
 
+static func _november_four() -> Dictionary:
+	var raw := FileAccess.get_file_as_string(Return.NOVEMBER_FOUR[0]).replace("\r\n","\n")
+	if raw.sha256_text()!=Return.NOVEMBER_FOUR[1]:return {}
+	return Roles._integers(JSON.parse_string(raw))
+
+
+static func join_november(before: Dictionary, chapter: int) -> Dictionary:
+	var rules := Return._rules()
+	var reason := Return.validate_planning_roster(before,rules)
+	if not reason.is_empty():return {"supported":false,"reason":reason}
+	if [before.school.month,before.school.week]!=[11,3] or before.school.lecture_work_fields!=[3,26,41,0] or before.school.adventure_gate!=1 or before.school.lecture_active!=1:
+		return {"supported":false,"reason":"outside_adventure41_join"}
+	var after := before.duplicate(true)
+	if chapter==72 and before.phase=="sortie_settled" and before.has("chapter071_absent"):
+		var absent: Dictionary=after.chapter071_absent
+		var source := {"candidate":absent.participants,"history":absent.records,"template_sha256":absent.profile.template_sha256}
+		Return._append_student(after,source,rules)
+		after.counts[-1]=absent.counts
+		after.school.relationships.append_array(absent.relationships)
+		after.erase("chapter071_absent")
+		after.phase="chapter072_joined"
+	elif chapter==74 and before.phase=="chapter072_joined":
+		var data := _november_four()
+		if data.is_empty():return {"supported":false,"reason":"invalid_november_four_story"}
+		var source: Dictionary=data.joins[0]
+		Return._append_student(after,source,rules)
+		after.school.relationships.append_array(source.join_relationships)
+		after.phase="chapter074_joined"
+	else:return {"supported":false,"reason":"outside_adventure41_join"}
+	return Return._result(after,after.phase)
+
+
 static func begin_story(before: Dictionary) -> Dictionary:
 	var rules := Return._rules()
 	if rules.is_empty(): return {"supported":false,"reason":"invalid_sortie_week_sources"}
@@ -150,7 +190,8 @@ static func next_week(before: Dictionary) -> Dictionary:
 	var course: bool = before.get("phase")=="courses_confirmed"
 	var phase := "courses_confirmed" if course else "sortie_settled"
 	if before.get("school") is Dictionary:
-		if [before.school.month,before.school.week]==[9,4]:phase="chapter054_joined"
+		if [before.school.month,before.school.week]==[11,3]:phase="chapter074_joined"
+		elif [before.school.month,before.school.week]==[9,4]:phase="chapter054_joined"
 		elif before["school"].get("month")==7 and before["school"].get("week")==4:phase="chapter304_joined"
 		elif before["school"].get("month")==6 and before["school"].get("week")!=5:
 			phase="chapter036_joined" if before["school"].get("week")==1 else "sortie_settled"
@@ -181,6 +222,13 @@ static func next_week(before: Dictionary) -> Dictionary:
 		var joined := Return.join_chapter033(after,rules)
 		if not joined["supported"]: return joined
 		after=joined["after"]
+	if [advanced.month,advanced.week]==[11,4]:
+		var data := _november_four()
+		if data.is_empty():return {"supported":false,"reason":"invalid_november_four_story"}
+		var source: Dictionary=data.joins[1]
+		Return._append_teacher(after.school,source.join_profiles[1])
+		Return._append_student(after,source,rules)
+		after.school.relationships.append_array(source.join_relationships)
 	if [advanced.month,advanced.week]==[11,3]:
 		var removed := _leave_chapter071(after,rules)
 		if not removed.supported:return removed
@@ -270,6 +318,10 @@ static func finish_story(before: Dictionary) -> Dictionary:
 		after.flags["0x7a55f6"]=9
 		after.flags["0x7e11a0"]=1
 		after.adv_background=14
+	if [after.school.month,week]==[11,4]:
+		after.flags["0x7a55f6"]=5
+		after.flags["0x7e11a0"]=1
+		after.adv_background=122
 	if YearLoop.has_arrival(after.school.month,week) and not YearLoop.apply_arrival_effects(after,false):
 		return {"supported":false,"reason":"invalid_school_year_week_start"}
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
@@ -358,6 +410,9 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	if [month,week]==[9,5]:
 		after.flags["0x7a55f6"]=11
 		after.flags["0x7e11a0"]=0
+	if [month,week]==[11,4]:
+		after.flags["0x7a55f6"]=11
+		after.flags["0x7e11a0"]=0
 	if YearLoop.has_arrival(month,week) and not YearLoop.apply_arrival_effects(after,true):
 		return {"supported":false,"reason":"invalid_school_year_school_entry"}
 	after["newly_dated_adventures"] = []
@@ -428,6 +483,10 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	if first_week==1 and YearLoop.has_departure(school.month,school.week) and phase=="courses_confirmed" and school.adventure_gate==0:
 		return Return.validate_planning_roster(before,rules)
 	if first_week==2 and YearLoop.has_arrival(school.month,school.week):
+		return Return.validate_planning_roster(before,rules)
+	if [school.month,school.week]==[11,3] and first_week==1 and phase=="chapter074_joined" and school.student_count==17 and school.lecture_work_fields==[3,26,41,0]:
+		return Return.validate_planning_roster(before,rules)
+	if [school.month,school.week]==[11,4] and first_week==2 and school.student_count==18:
 		return Return.validate_planning_roster(before,rules)
 	if not may and not june and not july and not august and not september:
 		return "outside_sortie_week"

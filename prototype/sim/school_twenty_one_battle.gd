@@ -118,7 +118,7 @@ func _advance_units(s) -> void:
 		if u.controllable or u.limits.hp<=0:continue
 		if u.life_kind==2:s._update_summoner(u,u.group,u.lives,s.reserves[u.instance_id].summon_interval)
 		if u.patrol>0 and s.frame%12==0 and u.summon_phase=="":_patrol(s,u)
-		if u.character_id in [388,394] and not s.phases.has(u.instance_id):
+		if u.character_id in [388,389,394,395] and not s.phases.has(u.instance_id):
 			var closest := {}
 			var best: int=u.combat.attack_range+1
 			if not nearby.has(u.instance_id):

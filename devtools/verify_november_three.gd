@@ -58,6 +58,6 @@ func _verify_final(path: String) -> bool:
 	if not prepared.supported:return false
 	var round_data: Dictionary=prepared.prepared.rounds[0]
 	if round_data.scene_id!=41 or 2 in round_data.student_ids or round_data.student_ids.is_empty():return false
-	if model.execute({"op":"return_settle"}).supported or model.execute({"op":"return_depart"}).supported or model.export_save()!=saved:return false
+	if model.execute({"op":"return_settle"}).supported or model.export_save()!=saved:return false
 	print("Verified v35 replay ",saved.state_sha256,", scene 41 squad ",round_data.student_ids)
 	return true

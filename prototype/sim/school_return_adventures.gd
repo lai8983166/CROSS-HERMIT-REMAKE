@@ -286,8 +286,6 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 
 
 static func submit(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
-	if bundle.get("school",{}).get("month")==11 and bundle.school.week==3:
-		return _failure("scene_41_battle_unavailable")
 	if bundle.get("school") is Dictionary and (bundle["school"].get("week") in [3,4,5] or bundle["school"].get("month") in [6,7,8]) and not valid_opening(ledger,bundle["school"]["week"],bundle["school"]["month"]):
 		return _failure("sortie_opening_ledger_mismatch")
 	var ready := prepare(bundle,ledger)

@@ -107,7 +107,8 @@ func _repeat_wave(s,wave: Dictionary) -> void:
 		var route:=-1
 		if not wave.route.is_empty():
 			route=int(wave.route[0])+int(s.rng.randi()%(int(wave.route[1])-int(wave.route[0])+1))
-		s._spawn_group(group,wave.center,wave.radius,route)
+		var center:Vector2i=wave.centers[s.rng.randi()%wave.centers.size()] if wave.has("centers") else wave.center
+		s._spawn_group(group,center,wave.radius,route)
 		if route>0:
 			for u in s.units:
 				if u.get("group",0)==group:

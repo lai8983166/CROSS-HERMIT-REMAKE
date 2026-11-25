@@ -22,6 +22,7 @@ const JULY_FIVE := ["res://data/school_july_week5_story.json","659ec34f5bc053cb8
 const AUGUST_FOUR := ["res://data/school_august_week4_story.json","ad68ccde061718a14e0c26ece14fb92af5a28738515b612984c2709b5703abff"]
 const OCTOBER_ONE := ["res://data/school_october_week1_story.json","0298af3717bef42862e75b4731b32e859528cdaa23eeca87192a44ef92889304"]
 const SEPTEMBER_FIVE := ["res://data/school_september_week5_story.json","35160a1c93c06ad0d1546bb1e76efe8845a0d39f9de4e571f0ffbee137f538fc"]
+const NOVEMBER_FOUR := ["res://data/school_november_four_story.json","a44d70b4ab51f763ffa10f38eadafec44ee392ba5a62a9a22f87004f48dbaca3"]
 const SOURCES := {
 	"candidate":["res://data/school_postbattle_return_rules.json","1775635836be11e1c038437bb7043a2b2989bdccb880d8882fcda06d41fdb854"],
 	"week":["res://data/week_settlement_evidence.json","5bdb406c2125c610c75942a9e589a9b427cdbcd5d97b0cbf35c014b1d793aedf"],
@@ -33,6 +34,7 @@ const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_status
 
 static func group_rules(school: Dictionary) -> Dictionary:
 	var rules := Origin.group_rules()
+	if _november_roster(school):rules["november_students"]=true
 	if _october_roster(school):rules["october_students"]=true
 	if _has_chapter054(school):rules["chapter054_students"]=true
 	if _has_chapter304(school):rules["chapter304_students"]=true
@@ -49,13 +51,20 @@ static func group_rules(school: Dictionary) -> Dictionary:
 	elif school.get("month")==5 and school.get("week")==4:
 		rules["teacher_scope"]="chapter029"
 		rules["chapter_sha256"]=Groups.CHAPTER029_SHA
+	if _november_roster(school) and school.teacher_count==6:
+		rules.teacher_scope="chapter307"
+		rules.chapter_sha256=Groups.CHAPTER307_SHA
 	return rules
+
+
+static func _november_roster(school: Dictionary) -> bool:
+	return school.get("month")==11 and (school.get("week")==3 and school.get("student_count")==17 and school.get("teacher_count")==5 or school.get("week")==4 and school.get("student_count")==18 and school.get("teacher_count")==6)
 
 
 static func _october_roster(school: Dictionary) -> bool:
 	var date := [school.get("month"),school.get("week")]
 	var date_in_scope: bool = date==[9,5] or (date[0]==10 and date[1] in range(1,6)) or (date[0]==11 and date[1] in [1,2,3])
-	return date_in_scope and school.get("student_count") in [15,16] and school.get("teacher_count")==5
+	return _november_roster(school) or date_in_scope and school.get("student_count") in [15,16] and school.get("teacher_count")==5
 
 
 static func _has_chapter054(school: Dictionary) -> bool:
@@ -72,6 +81,7 @@ static func _has_chapter304(school: Dictionary) -> bool:
 
 static func sort_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
 	var result: Dictionary=rules["school"]["sort_rules"].duplicate()
+	if _november_roster(school):result["november_students"]=true
 	if _october_roster(school):result["october_students"]=true
 	if _has_chapter054(school):result["chapter054_students"]=true
 	if _has_chapter304(school):result["chapter304_students"]=true
@@ -343,6 +353,11 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
+	if school.month==11 and school.week in [3,4] and not bundle.has("chapter071_absent"):
+		var expected := [3,4,9,5,8,6,1,16,17,13,14,15,11,18,32,2]
+		if school.student_count>=17:expected.append(7)
+		if school.week==4:expected.append(28)
+		return _validate(bundle,expected,11,school.week,rules)
 	if _october_roster(school):
 		var roster := [3,4,9,5,8,6,1,2,16,17,13,14,15,11] + [18]
 		if school.student_count==16 or [school.month,school.week]==[11,3]:roster.append(32)
@@ -481,6 +496,7 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 	if ids.has(6): teachers.append(115)
 	if _has_four_teachers(school): teachers.append(118)
 	if ids.has(13):teachers.append(116)
+	if ids.has(28):teachers.append(107)
 	var reason := Groups._validate(school,group_rules(school))
 	if not reason.is_empty(): return reason
 	if school.get("month")!=month or school.get("week")!=week or school["student_ids"].slice(0,school["student_count"])!=ids \
@@ -498,6 +514,7 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 			var identity: int=teachers[index]
 			var expected_sha := "bc3a30a04ca4e32a3d40c50f9beb18d65354006d9246e43858049bd9cd84cabc" if identity==110 else "5bcf15751c390f22d43e7d3c7e88259f009e523cfdb93f937fb3a88e17a663c7"
 			if identity==118:expected_sha="2b6766966dc7f55df460999262331520e52be33433117109a2d8ff8aeffdcc04"
+			if identity==107:expected_sha="7d84447a828bb3744746b7b5236e1116c00f433c0ebff4b29d02e96007605489"
 			if identity==116:expected_sha="b986d2e72edf00de0185aa5422ccc526e113ebb4b7ebff67380320a289177eeb"
 			if (not teacher is Dictionary or teacher.get("member_id")!=identity or teacher.get("job")!=1
 					or teacher.get("level_50")!=0 or not Week._vector(teacher.get("attributes"),7,0,0)

@@ -8,6 +8,7 @@ const CHAPTER_SHA := "dfbdb1dc1f197f2d198a9d6b71e68c12d8f8f7fb72d1b2a4328f8f164a
 const CHAPTER029_SHA := "9c6eb47adb70624b2f6b7f921bdf2aa8fa217959452430906252e5ef8715a344"
 const CHAPTER030B_SHA := "587758031aa9f3c040bf895a58072b2822bb1bb4f2f3f37b4a7ee8e0c4657ed0"
 const CH003_SHA := "5c24ef18116b91cf6b31601ce0e0e6389f01eb2befc2fb0eb9b8f2fd8a6c805b"
+const CHAPTER307_SHA := "0c1226360c35beb8b780307a7098101fad15463b7ad74a1d1b3d5fd4043df587"
 const CHAPTER306_SHA := "dba0aad949845639934f4ae16f2b2b6af34d3fafc26a32e2e7d92ff6f6824df7"
 const TEACHERS := [117, 118]
 const ORIGIN_SHA := "d06bdeb2e5951237481a121d0ccec4b46db3e3f9c5509622d19a5b9444a08f76"
@@ -165,6 +166,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 	var teacher_domain := _teacher_rule_domain(rules)
 	var chapter304: bool=rules.get("chapter304_students",false)
 	var chapter306: bool=rules.get("chapter306_students",false)
+	var november: bool = rules.get("november_students",false)
 	var october: bool = rules.get("october_students", false)
 	var chapter054: bool=rules.get("chapter054_students",false)
 	if teacher_domain.is_empty():
@@ -173,7 +175,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			or not Week._vector(before.get("group_raw_bytes"), 140, 0, 255):
 		return "invalid_school_group_buffers"
 	var present := {}
-	for spec in [["student", 16 if october else 14 if chapter054 else 12], ["teacher", teacher_domain.size()]]:
+	for spec in [["student", 18 if november else 16 if october else 14 if chapter054 else 12], ["teacher", teacher_domain.size()]]:
 		var prefix: String = spec[0]
 		var ids: Variant = before.get(prefix + "_ids")
 		if not Week._bounded(before.get(prefix + "_count"), 0, spec[1]) or not ids is Array or ids.size() != 20:
@@ -185,7 +187,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			if index >= int(before[prefix + "_count"]):
 				if int(identity) != -1:
 					return "invalid_school_roster_tail"
-			elif not (_scoped_teacher(identity,teacher_domain) if prefix == "teacher" else _student(identity,chapter304,chapter306,chapter054,october)) or present.has(int(identity)):
+			elif not (_scoped_teacher(identity,teacher_domain) if prefix == "teacher" else _student(identity,chapter304,chapter306,chapter054,october,november)) or present.has(int(identity)):
 				return "unsupported_or_duplicate_school_identity"
 			else:
 				present[int(identity)] = true
@@ -205,7 +207,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 	if chapter304:
 		for row in before["derived_student_ids"]:
 			for id in row:
-				if id>12 and not _student(id,true,chapter306,chapter054,october):return "invalid_school_derived_buffers"
+				if id>12 and not _student(id,true,chapter306,chapter054,october,november):return "invalid_school_derived_buffers"
 	for id in before["derived_teacher_ids"]:
 		if int(id) != -1 and not _scoped_teacher(id,teacher_domain):
 			return "invalid_derived_teacher"
@@ -213,7 +215,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		if not before.get(pair[0]) is Array or before[pair[0]].size() > 20:
 			return "invalid_school_waiting_buffer"
 		for identity in before[pair[0]]:
-			if not (_scoped_teacher(identity,teacher_domain) if pair[1] else _student(identity,chapter304,chapter306,chapter054,october)):
+			if not (_scoped_teacher(identity,teacher_domain) if pair[1] else _student(identity,chapter304,chapter306,chapter054,october,november)):
 				return "invalid_school_waiting_identity"
 	var teachers := {}
 	for group in range(5):
@@ -228,13 +230,13 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 			return "invalid_school_activity_mode"
 		for slot in range(4):
 			var identity := _word(raw, base + 16 + slot * 2)
-			if identity != -1 and not _student(identity,chapter304,chapter306,chapter054,october):
+			if identity != -1 and not _student(identity,chapter304,chapter306,chapter054,october,november):
 				return "unsupported_group_student"
 	if not before.get("relationships") is Array:
 		return "missing_school_relationships"
 	var pairs := {}
 	for row in before["relationships"]:
-		if not row is Dictionary or not _scoped_identity(row.get("from"),teacher_domain,chapter304,chapter306,chapter054,october) or not _scoped_identity(row.get("to"),teacher_domain,chapter304,chapter306,chapter054,october) \
+		if not row is Dictionary or not _scoped_identity(row.get("from"),teacher_domain,chapter304,chapter306,chapter054,october,november) or not _scoped_identity(row.get("to"),teacher_domain,chapter304,chapter306,chapter054,october,november) \
 				or row["from"] == row["to"] or not Week._bounded(row.get("value"), 1, 100):
 			return "invalid_school_relationship"
 		var key := _pair(row["from"], row["to"])
@@ -248,6 +250,8 @@ static func _teacher_rule_domain(rules: Dictionary) -> Array:
 	if rules.get("source_image_sha256") != SOURCE_SHA or rules.get("relationship_thresholds") != [16,31,46,61,76,91]:
 		return []
 	if rules.has("teacher_scope"):
+		if rules["teacher_scope"]=="chapter307" and rules.get("chapter_sha256")==CHAPTER307_SHA and rules.get("origin_fields_sha256")==ORIGIN_SHA:
+			return [101,110,115,118,116,107]
 		if rules["teacher_scope"] == "chapter306" and rules.get("chapter_sha256")==CHAPTER306_SHA and rules.get("origin_fields_sha256")==ORIGIN_SHA:
 			return [101,110,115,118,116]
 		if rules["teacher_scope"] == "ch003_week_four" and rules.get("chapter_sha256")==CH003_SHA and rules.get("origin_fields_sha256")==ORIGIN_SHA:
@@ -270,12 +274,12 @@ static func _scoped_teacher(identity: Variant, domain: Array) -> bool:
 	return Week._integer(identity) and int(identity) in domain
 
 
-static func _student(identity: Variant, chapter304: bool, chapter306: bool=false, chapter054: bool=false, october: bool=false) -> bool:
-	return (october and Week._integer(identity) and identity in [18,32]) or _domain(identity,false) or (chapter304 and Week._integer(identity) and identity in [16,17]) or (chapter306 and Week._integer(identity) and identity==13) or (chapter054 and Week._integer(identity) and identity in [14,15])
+static func _student(identity: Variant, chapter304: bool, chapter306: bool=false, chapter054: bool=false, october: bool=false, november: bool=false) -> bool:
+	return (november and Week._integer(identity) and identity==28) or (october and Week._integer(identity) and identity in [18,32]) or _domain(identity,false) or (chapter304 and Week._integer(identity) and identity in [16,17]) or (chapter306 and Week._integer(identity) and identity==13) or (chapter054 and Week._integer(identity) and identity in [14,15])
 
 
-static func _scoped_identity(identity: Variant, domain: Array, chapter304: bool=false, chapter306: bool=false, chapter054: bool=false, october: bool=false) -> bool:
-	return _student(identity,chapter304,chapter306,chapter054,october) or _scoped_teacher(identity,domain)
+static func _scoped_identity(identity: Variant, domain: Array, chapter304: bool=false, chapter306: bool=false, chapter054: bool=false, october: bool=false, november: bool=false) -> bool:
+	return _student(identity,chapter304,chapter306,chapter054,october,november) or _scoped_teacher(identity,domain)
 
 
 static func _available(snapshot: Dictionary, identity: int) -> bool:

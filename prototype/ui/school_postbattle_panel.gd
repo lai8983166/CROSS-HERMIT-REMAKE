@@ -243,13 +243,13 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[11,3]
+	var planning_only: bool=[school["month"],school["week"]]==[11,4]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="11 月第 3 周须参加冒险 41，可调整出击编班并保存。"
-		progress.text="本周战场尚未接通。保存编班后可从此处接续。"
+		dialogue.text="11 月第 4 周已返校，可给归队和新加入的师生编班。"
+		progress.text="本周可调整学校安排并保存进度。"
 	elif school.month==9 and school.week in [1,2,5] or school.month==10 or (school.month==11 and school.week in [1,2]):
 		dialogue.text="核对五个班的课表后，确认本周授课即可结算并进入下周剧情。"
 		progress.text="可调整编班和课程，保存后继续。"
@@ -258,7 +258,7 @@ func _show_plan(view: Dictionary) -> void:
 	elif school.month==8 and school.week==1:
 		dialogue.text="确认四个班的课程后，即可结算并进入下周剧情。"
 		progress.text="本周可重新排课并保存。"
-	elif mandatory and school["month"] in [6,7,8,9]:
+	elif mandatory and school["month"] in [6,7,8,9,11]:
 		dialogue.text="%d 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [school["month"],school["week"],school["lecture_work_fields"][2]]
 	elif mandatory:
 		dialogue.text="奎丝忒和帕佩修已加入。第4周为必修冒险7，确认已保存的出击编班后即可进入战场。"
@@ -294,14 +294,7 @@ func _show_plan(view: Dictionary) -> void:
 		button.name="adventure_%d" % id;button.toggle_mode=true
 		button.disabled=mandatory
 		button.button_pressed=school["lecture_active"]==1 and school["lecture_work_fields"][2]==id;plans.add_child(button)
-	if planning_only:
-		var preview := Adventures.prepare(bundle,plan["ledger"])
-		if preview.supported:
-			var squad := _label(17)
-			squad.name="mandatory_squad"
-			squad.text="冒险 41 出击名单："+_member_names(preview.prepared.rounds[0].student_ids)
-			plans.add_child(squad)
-		return
+	if planning_only:return
 	var row := HBoxContainer.new();plans.add_child(row)
 	var settle := _button("确认本周授课",func():_confirm("return_settle","确认后结算本周授课，保留成长、技能与成员记录。本周不能再出击。"))
 	settle.name="settle";row.add_child(settle);settle.visible=not mandatory and [school.month,school.week]!=[8,5]
