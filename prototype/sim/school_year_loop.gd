@@ -8,22 +8,33 @@ const SHA := "9ae5d47f6d49a0623f4aed39f86a20b79dfd5a265049e908ed75b66be5570781"
 const NOVEMBER_SHA := "eee1d7ed1c0a7c769c767073f64423150822a3a608b3757a873b4166e1dc2f01"
 
 
-static func _source(november_three := false) -> Dictionary:
-	var raw := FileAccess.get_file_as_string("res://data/school_year_november_three.json" if november_three else PATH).replace("\r\n","\n")
-	if raw.sha256_text() != (NOVEMBER_SHA if november_three else SHA):return {}
+const NOVEMBER_FIVE_SHA := "d26b6a0ac4ba24e9ddb47cada2b0147fb0f4d1b06e329d1ed859187625230896"
+
+
+static func _source(month: int, arrival_week: int) -> Dictionary:
+	var path := PATH
+	var digest := SHA
+	if month==11 and arrival_week==3:
+		path="res://data/school_year_november_three.json"
+		digest=NOVEMBER_SHA
+	elif month==11 and arrival_week==5:
+		path="res://data/school_year_november_five.json"
+		digest=NOVEMBER_FIVE_SHA
+	var raw := FileAccess.get_file_as_string(path).replace("\r\n","\n")
+	if raw.sha256_text() != digest:return {}
 	return Roles._integers(JSON.parse_string(raw))
 
 
 static func has_departure(month: int, week: int) -> bool:
-	return (month==10 and week in range(2,6)) or (month==11 and week in [1,2])
+	return (month==10 and week in range(2,6)) or (month==11 and week in [1,2,4])
 
 
 static func has_arrival(month: int, week: int) -> bool:
-	return (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3])
+	return (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3,5])
 
 
 static func story(month: int, week: int) -> Dictionary:
-	var data := _source(month==11 and week==2)
+	var data := _source(month,week+1)
 	for route in data.get("arrivals",[]):
 		if route.departure != [month,week]:continue
 		var card: Dictionary = route.date_card
@@ -45,14 +56,15 @@ static func story(month: int, week: int) -> Dictionary:
 
 
 static func apply_arrival_effects(after: Dictionary, at_school: bool) -> bool:
-	var data := _source(after.school.month==11 and after.school.week==3)
+	var data := _source(after.school.month,after.school.week)
 	for route in data.get("arrivals",[]):
 		if route.arrival != [after.school.month,after.school.week]:continue
 		var section: Dictionary=route.sections[2 if at_school else 1]
 		for effect in section.effects:
 			match effect.opcode:
 				145:
-					if not after.has("chapter071_absent"):return false
+					var key := "chapter071_absent" if effect.operands[0]==2 else "chapter076_absent"
+					if after.get(key,{}).get("participants",{}).get("character_id")!=effect.operands[0]:return false
 				151:
 					after.flags["0x7a55f6"]=effect.operands[0]
 					after.flags["0x7e11a0"]=effect.operands[1]

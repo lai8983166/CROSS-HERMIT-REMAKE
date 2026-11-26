@@ -229,26 +229,26 @@ static func next_week(before: Dictionary) -> Dictionary:
 		Return._append_teacher(after.school,source.join_profiles[1])
 		Return._append_student(after,source,rules)
 		after.school.relationships.append_array(source.join_relationships)
-	if [advanced.month,advanced.week]==[11,3]:
-		var removed := _leave_chapter071(after,rules)
+	if advanced.month==11 and advanced.week in [3,5]:
+		var removed := _leave_student(after,rules,2,"chapter071_absent") if advanced.week==3 else _leave_student(after,rules,4,"chapter076_absent")
 		if not removed.supported:return removed
 	return Return._result(after,after["phase"],{"date":[advanced["month"],advanced["week"]],"week_executed":true})
 
 
 ## The opening opcode precedes even the date card. Keep the absent student's
 ## backing records for the later chapter, outside the active school arrays.
-static func _leave_chapter071(after: Dictionary, rules: Dictionary) -> Dictionary:
+static func _leave_student(after: Dictionary, rules: Dictionary, student: int, storage: String) -> Dictionary:
 	var school: Dictionary=after.school
-	var index: int=school.student_ids.slice(0,school.student_count).find(2)
-	if index<0 or after.has("chapter071_absent"):
-		return {"supported":false,"reason":"unexpected_chapter071_roster"}
+	var index: int=school.student_ids.slice(0,school.student_count).find(student)
+	if index<0 or after.has(storage):
+		return {"supported":false,"reason":"unexpected_departing_student_roster"}
 	var absent := {}
 	for key in ["participants","growth","records","counts"]:
 		absent[key]=after[key].pop_at(index)
 	absent.profile=school.member_profiles.pop_at(index+1)
-	absent.relationships=school.relationships.filter(func(r):return r.from==2 or r.to==2)
-	school.relationships=school.relationships.filter(func(r):return r.from!=2 and r.to!=2)
-	after.chapter071_absent=absent
+	absent.relationships=school.relationships.filter(func(r):return r.from==student or r.to==student)
+	school.relationships=school.relationships.filter(func(r):return r.from!=student and r.to!=student)
+	after[storage]=absent
 	for item in absent.participants.equipped_items:
 		if item>0 and (after.item_flags[item-1]&1)!=0:
 			after.item_flags[item-1]=(after.item_flags[item-1]&0xf0ff)|0x100
@@ -257,11 +257,11 @@ static func _leave_chapter071(after: Dictionary, rules: Dictionary) -> Dictionar
 	school.student_count-=1
 	school.student_ids.remove_at(index)
 	school.student_ids.append(-1)
-	school.availability[2]=0
+	school.availability[student]=0
 	for group in range(5):
 		for slot in range(4):
 			var at := group*28+16+2*slot
-			if Return.Groups._word(school.group_raw_bytes,at)==2:
+			if Return.Groups._word(school.group_raw_bytes,at)==student:
 				Return.Groups._put_word(school.group_raw_bytes,at,-1)
 	var prepared := Return._prepare(school,rules)
 	if not prepared.supported:return prepared

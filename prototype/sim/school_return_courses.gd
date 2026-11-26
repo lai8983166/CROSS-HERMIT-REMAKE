@@ -11,6 +11,8 @@ const Growth := preload("res://sim/school_course_settlement.gd")
 const Confirmation := preload("res://sim/school_course_confirmation.gd")
 const Courses := preload("res://sim/school_course_unlocking.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
+const NOVEMBER_FOUR_SHA := "c52cf7cb93cb17c05c980e38995b2e1d8647282eb481664e31ab7e8ea5f6c6b1"
+const NOVEMBER_FOUR_IDS := [21,22,31,34,37,38]
 const MAY_FIVE_SHA := "f1672fbbbae4b817bd3e1188c734493538411c73461f71b59880e9bb84d2fc04"
 const JUNE_FIVE_SHA := "34f20195975120edf92a77ad82ba106cfd481186c54a6e9e9fbfd5683ede6683"
 const AUGUST_FOUR_SHA := "12b84b6c1b134f8fd0d9b459f8af68b6eb465b4c14e2e95c3515000799eade30"
@@ -132,7 +134,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 
 
 static func _uses_late_course_table(month: int, week: int) -> bool:
-	return [month,week]==[9,5] or (month==10 and week in range(1,6)) or (month==11 and week in [1,2])
+	return [month,week]==[9,5] or (month==10 and week in range(1,6)) or (month==11 and week in [1,2,4])
 
 
 static func _uses_september_courses(month: int, week: int) -> bool:
@@ -159,6 +161,8 @@ static func lesson_rules(month := 5, week := 1) -> Dictionary:
 	if _uses_late_course_table(month,week):
 		tables.append(["res://data/school_september_five_courses.json",SEPTEMBER_FIVE_SHA])
 		size=53
+	if [month,week]==[11,4]:
+		tables.append(["res://data/school_november_four_courses.json",NOVEMBER_FOUR_SHA])
 	growth["training"].resize(size)
 	for table in tables:
 		var raw := FileAccess.get_file_as_string(table[0]).replace("\r\n","\n")
@@ -209,6 +213,7 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 		available_courses.append(25)
 	if _uses_late_course_table(school.month,school.week):
 		available_courses.append_array([35,48,49,50,51,52])
+	if [school.month,school.week]==[11,4]:available_courses.append_array(NOVEMBER_FOUR_IDS)
 	for group in range(5):
 		var rating: Dictionary = rated["ratings"][group]
 		if rating["state"]==0:continue

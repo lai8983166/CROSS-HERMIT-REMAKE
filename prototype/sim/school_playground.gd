@@ -65,7 +65,8 @@ const SAVE_CONTEXTS := {
 	33:"school_playground_autumn_courses",
 	34:"school_playground_job_change",
 	35:"school_playground_november_three",
-	36:"school_playground_mandatory_forty_one"
+	36:"school_playground_mandatory_forty_one",
+	37:"school_playground_november_five"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -649,6 +650,7 @@ func export_save() -> Dictionary:
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	if _november_four_planning() or _postbattle.planning.get("committed_date")==[11,4]:return 37
 	if _postbattle.planning.get("committed_date")==[11,3]:return 36
 	if _postbattle.planning.get("committed_date")==[11,2]:return 35
 	if _commands.any(func(c):return c.op=="return_job"):return 34
@@ -684,6 +686,10 @@ func _save_version() -> int:
 	return 5
 
 
+func _november_four_planning() -> bool:
+	return _postbattle!=null and _postbattle.phase=="returned_school" and [_postbattle.bundle.school.month,_postbattle.bundle.school.week]==[11,4] and not _commands.is_empty() and _commands.back().op in ["return_course","return_mode","return_move","return_job","return_select"]
+
+
 func _save_fingerprints(version: int) -> Dictionary:
 	var result := _fingerprints.duplicate(true)
 	if version>=5:
@@ -702,6 +708,9 @@ func _save_fingerprints(version: int) -> Dictionary:
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
+	if version>=37:
+		result["november_five_story"]=Postbattle.SortieWeek.YearLoop.NOVEMBER_FIVE_SHA
+		result["november_four_courses"]=Postbattle.Courses.NOVEMBER_FOUR_SHA
 	if version>=36:
 		result["mandatory_forty_one"]=Postbattle.Adventures.FORTY_ONE_SHA
 		result["scene_forty_one"]=Postbattle.SortieRecord.Sortie.FORTY_ONE_SHA
@@ -843,7 +852,8 @@ func restore(payload: Variant) -> Dictionary:
 		var result: Dictionary = candidate.execute(command)
 		if not result["supported"] or candidate.revision() == previous:
 			return _failure("save_command_rejected")
-	if payload["version"]>=5 and candidate._save_version()!=payload["version"]:
+	var legacy_november_plan: bool=payload["version"]==36 and candidate._november_four_planning()
+	if payload["version"]>=5 and candidate._save_version()!=payload["version"] and not legacy_november_plan:
 		return _failure("save_work_version_mismatch")
 	var candidate_state: Dictionary = candidate._school_state() if legacy else candidate._version2_state() if version2 else candidate._version3_state() if version3 else candidate._version4_state() if payload["version"]==4 else candidate.state()
 	if JSON.stringify(candidate_state,"",true).sha256_text() != payload["state_sha256"]:
