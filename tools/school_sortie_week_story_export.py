@@ -299,10 +299,12 @@ def add_chapter_card(data,index,chapter,week,month=7):
     assert raw[end:pool].split(bytes(1))[0].replace(bytes([92,92]),b'/') == f'data/adv/bin/tc{month:02}{week:02}.bin'.encode()
     ops = []
     at = start
-    if chapter=='071':
-        assert struct.unpack_from('<HHI',raw,at)==(145,8,0x20000002)
+    departing = {'071': 2, '076': 4}.get(chapter)
+    if departing is not None:
+        assert struct.unpack_from('<HHI',raw,at)==(145,8,0x20000000 + departing)
         at += 8
-    while at < (0x78 if chapter=='071' else 0x70):
+    prefix_end = at + 0x70 - start
+    while at < prefix_end:
         op, size = struct.unpack_from('<HH',raw,at)
         cells = struct.unpack_from('<'+'I'*((size-4)//4),raw,at+4)
         assert all(v >> 28 == 2 for v in cells) if op!=67 else cells==(0,)

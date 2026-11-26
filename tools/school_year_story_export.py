@@ -31,9 +31,10 @@ def build(counts=COUNTS, dates=ARRIVALS):
             assert route['target'] == target
             effects = route.get('effects', []) + (scenes[chapter]['effects'] if chapter else [])
             for event in effects:
+                departure = {71:2, 76:4}.get(chapter)
                 assert (event['opcode'] in (91, 151) or
                         (chapter == 69 and event['opcode'] == 153 and event['operands'] == [1, 6, 0]) or
-                        (chapter == 71 and event == {'opcode':145,'offset':20,'operands':[2]}))
+                        (departure is not None and event == {'opcode':145,'offset':20,'operands':[departure]}))
             sections.append({'chapter': chapter, 'effects': effects})
         if chapters[1]:
             card = {'scenes': [scenes[chapters[1]]]}
@@ -59,7 +60,8 @@ if __name__ == '__main__':
     output.write_text(json.dumps(build(), indent=2, ensure_ascii=False)+'\n', encoding='utf8', newline='\n')
     for month, week in ARRIVALS:
         (ROOT/f'prototype/assets/school_story/tc{month:02}{week:02}.png').write_bytes(july_date_card(week, month)[1])
-    november = build({71:205}, {(11,3):(None,71,None)})
-    (ROOT/'prototype/data/school_year_november_three.json').write_text(
-        json.dumps(november, indent=2, ensure_ascii=False)+'\n', encoding='utf8', newline='\n')
-    (ROOT/'prototype/assets/school_story/tc1103.png').write_bytes(july_date_card(3,11)[1])
+    for week, label, chapter, lines in [(3,'three',71,205), (5,'five',76,206)]:
+        data = build({chapter:lines}, {(11,week):(None,chapter,None)})
+        (ROOT/f'prototype/data/school_year_november_{label}.json').write_text(
+            json.dumps(data, indent=2, ensure_ascii=False)+'\n', encoding='utf8', newline='\n')
+        (ROOT/f'prototype/assets/school_story/tc11{week:02}.png').write_bytes(july_date_card(week,11)[1])

@@ -93,6 +93,23 @@ class AugustCourseTableTests(unittest.TestCase):
         self.assertEqual(original.snapshot()['course_unlocked_flags'], september)
 
 
+    def test_november_four_courses_cover_the_six_active_teachers(self):
+        cpu = CourseUnlockEmulator(11, 4)
+        cpu.unlock()
+        menus = cpu.snapshot()['course_buffers']
+        offered = {row[3] for teacher in (101,110,115,118,116,107)
+                   for row in menus[teacher-101] if row[3] > 0}
+        self.assertEqual([row[3] for row in menus[107-101] if row[3] > 0], [38,37])
+        available = set(range(len(source_rules()['training'])))
+        for name in ('may_five','june_five','august_four','september_one','september_two','september_five'):
+            path = ROOT/f'prototype/data/school_{name}_courses.json'
+            available.update(map(int,json.loads(path.read_bytes())))
+        missing = sorted(offered - available)
+        self.assertEqual(missing, [21,22,31,34,37,38])
+        rows = json.loads((ROOT/'prototype/data/school_november_four_courses.json').read_bytes())
+        self.assertEqual(rows, _lesson_rows(missing))
+
+
 class CourseSettlementTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
