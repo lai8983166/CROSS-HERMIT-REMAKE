@@ -41,7 +41,7 @@ static func set_mode(before: Dictionary, group: Variant, teaching: Variant) -> D
 	var reason := _guard(before,rules)
 	if not reason.is_empty(): return Origin.failure(reason)
 	var school: Dictionary=before["school"]
-	if teaching==true and school["adventure_gate"]!=0 and (school["week"]==4 or school["month"]==6 or (school["month"]==7 and school["week"]==3) or (school.month==8 and school.week in [2,3]) or [school.month,school.week]==[9,3]):
+	if teaching==true and school["adventure_gate"]!=0 and (school["week"]==4 or school["month"]==6 or (school["month"]==7 and school["week"]==3) or (school.month==8 and school.week in [2,3]) or [school.month,school.week] in [[9,3],[12,1]]):
 		return Origin.failure("mandatory_adventure_requires_sortie")
 	var changed := Planning.set_mode(Session._working(before["school"]),group,teaching,Return.group_rules(before["school"]),Return.work_rules(before["school"],rules))
 	if not changed["supported"]: return changed
@@ -134,7 +134,7 @@ static func settle(before: Dictionary, seed: Variant = 4660) -> Dictionary:
 
 
 static func _uses_late_course_table(month: int, week: int) -> bool:
-	return [month,week]==[9,5] or (month==10 and week in range(1,6)) or (month==11 and week in [1,2,4])
+	return [month,week]==[9,5] or (month==10 and week in range(1,6)) or (month==11 and week in [1,2,4,5])
 
 
 static func _uses_september_courses(month: int, week: int) -> bool:
@@ -161,7 +161,7 @@ static func lesson_rules(month := 5, week := 1) -> Dictionary:
 	if _uses_late_course_table(month,week):
 		tables.append(["res://data/school_september_five_courses.json",SEPTEMBER_FIVE_SHA])
 		size=53
-	if [month,week]==[11,4]:
+	if month==11 and week in [4,5]:
 		tables.append(["res://data/school_november_four_courses.json",NOVEMBER_FOUR_SHA])
 	growth["training"].resize(size)
 	for table in tables:
@@ -213,7 +213,8 @@ static func _plan(school: Dictionary, rules: Dictionary, mixed := false) -> Dict
 		available_courses.append(25)
 	if _uses_late_course_table(school.month,school.week):
 		available_courses.append_array([35,48,49,50,51,52])
-	if [school.month,school.week]==[11,4]:available_courses.append_array(NOVEMBER_FOUR_IDS)
+	if school.month==11 and school.week in [4,5]:available_courses.append_array(NOVEMBER_FOUR_IDS)
+	if [school.month,school.week]==[11,5]:available_courses.append(9)
 	for group in range(5):
 		var rating: Dictionary = rated["ratings"][group]
 		if rating["state"]==0:continue

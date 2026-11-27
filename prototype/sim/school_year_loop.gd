@@ -11,6 +11,9 @@ const NOVEMBER_SHA := "eee1d7ed1c0a7c769c767073f64423150822a3a608b3757a873b4166e
 const NOVEMBER_FIVE_SHA := "d26b6a0ac4ba24e9ddb47cada2b0147fb0f4d1b06e329d1ed859187625230896"
 
 
+const DECEMBER_ONE_SHA := "2b1d8314ca688c0d559b44c0085de68ddd3399ef9ac901506290590ef57e77f1"
+
+
 static func _source(month: int, arrival_week: int) -> Dictionary:
 	var path := PATH
 	var digest := SHA
@@ -20,21 +23,24 @@ static func _source(month: int, arrival_week: int) -> Dictionary:
 	elif month==11 and arrival_week==5:
 		path="res://data/school_year_november_five.json"
 		digest=NOVEMBER_FIVE_SHA
+	if month==12 and arrival_week==1:
+		path="res://data/school_year_december_one.json"
+		digest=DECEMBER_ONE_SHA
 	var raw := FileAccess.get_file_as_string(path).replace("\r\n","\n")
 	if raw.sha256_text() != digest:return {}
 	return Roles._integers(JSON.parse_string(raw))
 
 
 static func has_departure(month: int, week: int) -> bool:
-	return (month==10 and week in range(2,6)) or (month==11 and week in [1,2,4])
+	return (month==10 and week in range(2,6)) or (month==11 and week in [1,2,4,5])
 
 
 static func has_arrival(month: int, week: int) -> bool:
-	return (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3,5])
+	return (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3,5]) or [month,week]==[12,1]
 
 
 static func story(month: int, week: int) -> Dictionary:
-	var data := _source(month,week+1)
+	var data := _source(month+1,1) if week==5 else _source(month,week+1)
 	for route in data.get("arrivals",[]):
 		if route.departure != [month,week]:continue
 		var card: Dictionary = route.date_card

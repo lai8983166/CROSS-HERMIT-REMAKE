@@ -95,3 +95,22 @@ func test_november_five_starts_after_student_four_leaves() -> void:
 	assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"],state.adv_background],[11,0,10])
 	assert_true(year.apply_arrival_effects(state,true))
 	assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"]],[11,1])
+
+
+func test_december_one_route_and_mandatory_adventure() -> void:
+	var year := preload("res://sim/school_year_loop.gd")
+	var adventures := preload("res://sim/school_return_adventures.gd")
+	var route := year.story(11,5)
+	assert_true(route.supported)
+	if not route.supported:return
+	assert_eq([route.pre_week.size(),route.pre_week[0].chapter],[56,77])
+	assert_eq(route.week_start,[])
+	assert_eq(route.date_card.source,"data/adv/bin/tc1201.bin")
+	assert_eq([route.school_entry.size(),route.school_entry[0].chapter],[27,231])
+	var state := {"school":{"month":12,"week":1},"flags":{}}
+	assert_true(year.apply_arrival_effects(state,false))
+	assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"],state.adv_background],[9,0,15])
+	assert_true(year.apply_arrival_effects(state,true))
+	assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"]],[9,1])
+	assert_eq(adventures._mandatory_id(11,5),0)
+	assert_eq(adventures._mandatory_id(12,1),31)

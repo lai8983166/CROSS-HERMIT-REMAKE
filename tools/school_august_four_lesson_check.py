@@ -68,11 +68,13 @@ class LessonCheck(CourseConfirmationEmulator):
         expected_ids = [3,4,9,5,8,6,1,2,16,17,13]
         if date == (9, 5):
             expected_ids += [14,15,11]
-        elif date in ((11, 3), (11, 4)):
+        elif date in ((11, 3), (11, 4), (11, 5)):
             expected_ids.remove(2)
             expected_ids += [14,15,11,18,32]
-            if date == (11, 4):
+            if date[1] >= 4:
                 expected_ids += [2,7,28]
+            if date == (11, 5):
+                expected_ids.remove(4)
         elif date[0] == 10 and 1 <= date[1] <= 5 or date in [(11, 1),(11, 2)]:
             expected_ids += [14,15,11,18,32]
         elif date not in [(8,4),(8,5),(9,1),(9,2),(9,3),(9,4)]:

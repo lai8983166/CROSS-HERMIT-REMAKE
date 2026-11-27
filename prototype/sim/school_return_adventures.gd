@@ -185,7 +185,7 @@ static func available(ledger: Dictionary) -> Array:
 
 ## A departure ledger can be reconstructed from the legal earlier submissions.
 static func valid_opening(ledger: Dictionary, week: int, month := 5) -> bool:
-	if month not in range(5,12) or week not in range(1,6): return false
+	if (month not in range(5,12) and [month,week]!=[12,1]) or week not in range(1,6): return false
 	var last := (month-5)*5+week
 	var source := rules()
 	var first := initial()
@@ -215,6 +215,7 @@ static func _mandatory_id(month: int, week: int) -> int:
 		8:return {2:20,3:21}.get(week,0)
 		9:return {3:22,4:24}.get(week,0)
 		11:return 41 if week==3 else 0
+		12:return 31 if week==1 else 0
 	return 0
 
 
@@ -224,11 +225,11 @@ static func select(bundle: Dictionary, ledger: Dictionary, id: int) -> Dictionar
 	var school: Dictionary=bundle["school"]
 	var date := [school["month"],school["week"]]
 	var mandatory := _mandatory_id(school["month"],school["week"])
-	if id in [4,6,7,9,10,13,14,20,21,22,24,41] and (school["adventure_gate"]!=1 or id!=mandatory):
+	if id in [4,6,7,9,10,13,14,20,21,22,24,31,41] and (school["adventure_gate"]!=1 or id!=mandatory):
 		return _failure("adventure_not_available")
 	if bundle["school"]["adventure_gate"] != 0 and id != mandatory:
 		return _failure("mandatory_adventure_required")
-	var autumn: bool=school.month in [10,11]
+	var autumn: bool=school.month in [10,11] or date==[12,1]
 	if not autumn and ((id==11 and date!=[9,5]) or (id==18 and date!=[7,1]) or (id==35 and date not in [[8,5],[9,1],[9,2],[9,5]])):return _failure("adventure_not_available")
 	if (not autumn and id not in [4,6,7,8,9,10,11,13,14,17,18,20,21,22,24,35,41]) or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("adventure_not_available")
 	var row: Dictionary=ledger["entries"].filter(func(r):return r["id"]==id)[0]
@@ -260,7 +261,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	for group in range(5):
 		var state: int=rated["ratings"][group]["state"]
 		if state not in [0,2,4]:return _failure("incomplete_class")
-		if id in [22,24,41] and state==4:return _failure("mandatory_adventure_requires_sortie")
+		if id in [22,24,31,41] and state==4:return _failure("mandatory_adventure_requires_sortie")
 		if state!=2:continue
 		teachers.append(Groups._word(school["group_raw_bytes"],group*28))
 		for slot in range(4):

@@ -65,3 +65,12 @@ Chapter071 共 205 条文本，分为 152 页。末尾音乐字段为 2、1，�
 本次实际授课的五班依次选择 38、18、25、29、33 号课。十名学生出勤，原版结算加分 1,190，总分达到 2,874,058。第 5 周存档保存在 `.venv-audit/november-five-verification/week-five-v37.json`，其哈希、18 名学生的履历和关系对照摘要见[本段验收记录](../analysis/school-november-five-acceptance.json)。
 
 用 Godot 无窗口运行 `devtools/verify_november_five.gd`，传入已验收的第 4 周 v36 存档和新的输出路径，即可重建第 5 周存档。只传入第 5 周存档会从头重放操作，并检查篡改规则指纹的存档被拒绝。把生成的 `.settlement.json` 交给 `python -m tools.school_august_four_lesson_check` 可复核原版授课与确认函数；`python -m tools.school_november_departure --week 5` 单独复核 Chapter076 的离队指令。
+
+
+## 十一月第 5 周至十二月第 1 周
+
+从 v37 返校存档出发，十一月第 5 周没有必修冒险。教师 101 在本周解锁课程 9，沿用原版成长包。全校授课后，CH003 进入 Chapter077（67 条原文、56 页）。读完才结算周进度并显示十二月第 1 周日期卡。CH001 直接设置音乐字段 9、0 和背景 15；从职务室回校时，CH002 进入 Chapter231（43 条原文、27 页），章末音乐字段变为 9、1。两个章节都保留原名单，瑟希莉丝的离队履历随档保存。
+
+十二月第 1 周学校锁定必修冒险 31，玩家可以编班和保存。当前里程碑止于这次返校。用 `python -m tools.school_december_one` 可重新导出两章、三段路由及日期卡。用 Godot 无窗口运行 `devtools/verify_december_one.gd`，传入固定 v37 和新的输出文件，可重建 v38；单独传入 v38 会重放操作、核对返校状态并验证规则篡改拒绝。生成时的临时 `.settlement.json` 可交给 `python -m tools.school_august_four_lesson_check` 复核原版授课及确认函数。
+
+本段固定课表为 38、18、25、29、33。9 人出勤，新增 1,200 分，累计 2,875,258 分。授课和确认函数逐项复核 17 人的职业与履历、168 次关系调用和 506 个关系值。另将第一班改由教师 101 带班，实测课程 9 经面板确认后按原函数结算。[存档身份和验收数据](../analysis/school-december-one-acceptance.json)。
