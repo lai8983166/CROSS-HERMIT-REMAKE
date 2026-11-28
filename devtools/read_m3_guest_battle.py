@@ -29,7 +29,25 @@ def parse_units(work, records, controller):
     return units
 
 
-def observe(pid, scene, game):
+def command_state(units, work, read):
+    """46F170 selected flag and 48DD60's first pending 16-byte unit command."""
+    rows = []
+    for unit in units:
+        if unit["side"] != 0 or not 1 <= unit["role"] <= 45:
+            continue
+        at = unit["slot"] * 0x520
+        head, = struct.unpack_from("<I", work, at + 0x518)
+        pending = None
+        if head:
+            payload, = struct.unpack("<I", read(head + 8, 4))
+            pending = read(payload, 16).hex()
+        rows.append({"slot":unit["slot"], "role":unit["role"], "selected":work[at+0x28c],
+                     "move_phase":work[at+0x293], "goal_pixels":list(struct.unpack_from("<hh",work,at+0x4d0)),
+                     "first_pending_command":pending})
+    return rows
+
+
+def observe(pid, scene, game, include_commands=False):
     kernel = ctypes.windll.kernel32
     kernel.OpenProcess.restype = wintypes.HANDLE
     handle = kernel.OpenProcess(0x1010, False, pid)
@@ -64,11 +82,22 @@ def observe(pid, scene, game):
             clock=read(ctrl+0x2E6F4,12)
             work=read(ctrl+0x80AEC,250*0x520)
             records=read(ctrl+0xD0C2C,250*176)
+            if read(ctrl+0x2E6F4,12)!=clock or word(0x7A49F4)!=task:
+                continue
+            units = parse_units(work,records,ctrl)
+            extra = {}
+            if include_commands:
+                try:
+                    extra["command_state"] = command_state(units,work,read)
+                except OSError:
+                    if read(ctrl+0x2E6F4,12)!=clock:
+                        continue
+                    raise
             if read(ctrl+0x2E6F4,12)==clock and word(0x7A49F4)==task:
                 remaining,elapsed,limit=struct.unpack('<3i',clock)
                 return {'scene':scene,'date':list(struct.unpack('<hh',read(0x7A528E,4))),
                         'remaining':remaining,'elapsed':elapsed,'limit':limit,
-                        'units':parse_units(work,records,ctrl)}
+                        'units':units, **extra}
         raise ValueError('Tactical clock changed during all samples')
     finally:
         kernel.CloseHandle(h)
@@ -83,6 +112,7 @@ if __name__=='__main__':
     parser.add_argument('pid',type=int)
     parser.add_argument('scene',type=int)
     parser.add_argument('--departure-sha256', help='verify the last original school save exported by this guest')
+    parser.add_argument('--commands',action='store_true',help='record selected students, movement goals and pending commands')
     args=parser.parse_args()
     game=root/'project/.venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/CROSS HERMIT.EXE'
     output=root/'m3-battle-sample.json'
@@ -90,7 +120,7 @@ if __name__=='__main__':
         digest=hashlib.sha256((root/'m3-export.sav').read_bytes()).hexdigest()
         if digest!=args.departure_sha256:
             raise ValueError('Guest school checkpoint differs from the requested departure')
-    sample=observe(args.pid,args.scene,game)
+    sample=observe(args.pid,args.scene,game,args.commands)
     if args.departure_sha256:
         sample['exported_school_sha256']=digest
     output.write_text(json.dumps(sample,separators=(',',':')),encoding='utf8')
