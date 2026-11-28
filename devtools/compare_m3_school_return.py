@@ -18,6 +18,11 @@ def differences(original, remake, before, squad):
     yield "result.experience", original["global_score"] - before["global_score"], result["experience"]
     yield "school.score", original["global_score"], remake["score"]
     yield "school.mission44_grade", original["mission44_grade"], remake["grades"][43]
+    yield from member_fields(original, remake)
+
+
+def member_fields(original, remake, include_staged=True):
+    school = remake["school"]
     yield "school.roster", original["roster"], school["student_ids"]
     yield "school.item_flags", original["item_flags"], remake["item_flags"]
     for member in original["roster"]:
@@ -25,7 +30,8 @@ def differences(original, remake, before, squad):
         row = remake["members"][str(member)]
         for key in ("job", "level", "attributes", "growth_pools", "staged_package", "staged_total",
                     "skill_statuses", "week_records", "equipped_skills", "equipped_items", "unlock_flags", "mvp_count"):
-            yield f"member[{member}].{key}", native[key], row["level_50" if key == "level" else key]
+            if include_staged or key not in ("staged_package","staged_total"):
+                yield f"member[{member}].{key}", native[key], row["level_50" if key == "level" else key]
         yield f"member[{member}].job_progress", native["job_progress"][:31], [v & 255 for v in row["job_progress"]]
     people = original["roster"] + original["teachers"]
     pairs = {(r["from"], r["to"]): r["value"] for r in school["relationships"]}

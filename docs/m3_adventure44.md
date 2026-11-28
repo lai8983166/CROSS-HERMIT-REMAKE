@@ -142,3 +142,5 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 六月第 4 周的 35 人在校名册和 17 人教师名册已包含一月目标班级所需的全部 19 名学生与 5 名教师。五班当前编排均与目标不同。指令转换器的 --inspect-school 与 --school-sha256 参数可列出每班待调整的人员及位置。
 
 原版六月第 5 周冒险 17 验证了客体按指定时钟采样。观察器在原版时钟恰为 4400 时读取 81 个工作槽、20 人的选择及待处理指令状态，并按原 46FC20 读取视口与角色点击位置。该样本 15466 字节，SHA-256 为 5bf4abfe4f80956a20e0f6c35405865a3862b167f6d1d9fdbb1b1e5be92a0ff3，文件名为 battle-06-5-17-clock4400.json。
+
+出击前的校务状态也可单独比对。用 devtools/export_m3_native_school.gd 导出游戏实际导入的状态，再运行 devtools.compare_m3_school_opening 对照同一份 v7 原档。比较五班师生和课程、任务等级与解锁表、在籍和物品、角色履历、成长及师生关系。一月另比对待确认的成长包与出击任务字段。四月第 1 周 35 人原档回归核对了 3152 项，全部一致。
