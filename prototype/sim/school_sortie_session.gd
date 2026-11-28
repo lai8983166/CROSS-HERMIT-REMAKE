@@ -1284,30 +1284,6 @@ func result_inputs() -> Dictionary:
 		"clock_seed":4660,"growth_seed":4660}
 
 
-func can_descend() -> bool:
-	return scene_id in [14,15] and _ending_phase=="summary" and not _terminal_choice.is_empty() and remaining_ticks!=0 and controlled_units().any(func(u):return u.source_state==1 and u.limits.hp>0)
-
-
-func next_floor():
-	if not can_descend():return null
-	var next=get_script().new()
-	var successor:=String(catalog.configuration_hex).hex_decode().decode_s16(2)
-	if successor!=scene_id+1 or not next._open_scene(departure,"",successor):return null
-	for u in controlled_units():
-		var carried: Dictionary=next.find_unit(u.instance_id)
-		carried.limits=u.limits.duplicate(true)
-		carried.source_state=u.source_state
-		if u.limits.hp<=0:carried.dead_at=0
-	next.completed_floor_traces=completed_floor_traces+[battle_trace()]
-	next.completed_floor_facts=completed_floor_facts+[_floor_result_inputs()]
-	return next
-
-
-func sortie_trace() -> Dictionary:
-	if completed_floor_traces.is_empty():return battle_trace()
-	return {"version":2,"floors":completed_floor_traces+[battle_trace()]}
-
-
 func advance_exit() -> void:
 	super.advance_exit()
 	if departure.has("native_sha256") and scene_id in [1,2,3,44] and _ending_phase=="summary" and not _terminal_choice.is_empty() and native_score.is_empty():
