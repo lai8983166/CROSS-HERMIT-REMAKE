@@ -28,13 +28,8 @@ def transfer(before, after):
     after.uc.mem_write(CHAR_BASE, bytes(before.uc.mem_read(CHAR_BASE, 65*CHAR_STRIDE)))
 
 
-def verify(raw, source_sha, case):
-    check('source', hashlib.sha256(raw).hexdigest(), source_sha)
-    check('save size', len(raw), SIZE)
-    check('checksum', sum(v if v<128 else v-256 for v in raw[:44]+raw[48:]), struct.unpack_from('<i',raw,44)[0])
-    score, facts, state = (case[k] for k in ('score','facts','state'))
-    sid = facts['scene_id']
-    check('April mission', list(struct.unpack_from('<hh',raw,0x1a6)), [4,sid])
+def prepare_native_school(raw):
+    """Run the original readiness and round construction on verified school bytes."""
     school = SchoolAdventurePreparationEmulator()
     school.uc.mem_write(STATE,raw)
     local = 0x7BC6AC-STATE
@@ -45,7 +40,17 @@ def verify(raw, source_sha, case):
     check('departure ready', school.uc.reg_read(UC_X86_REG_EAX)&255,1)
     school.clear_trace('departure_rounds')
     school.call(0x4A6A10)
-    prepared=school.round_snapshot()
+    return school, school.round_snapshot()
+
+
+def verify(raw, source_sha, case):
+    check('source', hashlib.sha256(raw).hexdigest(), source_sha)
+    check('save size', len(raw), SIZE)
+    check('checksum', sum(v if v<128 else v-256 for v in raw[:44]+raw[48:]), struct.unpack_from('<i',raw,44)[0])
+    score, facts, state = (case[k] for k in ('score','facts','state'))
+    sid = facts['scene_id']
+    check('April mission', list(struct.unpack_from('<hh',raw,0x1a6)), [4,sid])
+    school, prepared = prepare_native_school(raw)
     units=prepared['rounds'][0]['student_ids']
     check('combatants',units,[row['character_id'] for row in facts['units']])
     reward=PreparationEmulator(seed=facts['clock_seed'])

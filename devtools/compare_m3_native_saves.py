@@ -98,9 +98,21 @@ def main():
     parser.add_argument('--require-44', action='store_true', help='validate mission/date fields of the pair')
     args = parser.parse_args()
     try:
-        before = snapshot(args.before.read_bytes(), args.before_sha256)
+        raw = args.before.read_bytes()
+        before = snapshot(raw, args.before_sha256)
         after = snapshot(args.after.read_bytes(), args.after_sha256)
         report = compare(before, after, args.require_44)
+        if args.require_44:
+            from devtools.verify_native_april_return import prepare_native_school
+            _, prepared = prepare_native_school(raw)
+            rounds = prepared['rounds']
+            if len(rounds) != 1 or rounds[0]['scene_id'] != 44:
+                raise ValueError('Original departure did not select one round of adventure 44')
+            ids = rounds[0]['student_ids']
+            if len(ids) != len(set(ids)) or not ids or not set(ids).issubset(before['roster']):
+                raise ValueError('Invalid prepared native squad')
+            report['original_prepared'] = prepared
+            report['original_party_size'] = len(ids)
     except (OSError, ValueError) as exc:
         parser.exit(1, f'{exc}\n')
     print(json.dumps(report, sort_keys=True, separators=(',', ':')))
