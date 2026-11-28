@@ -997,7 +997,7 @@ func _show_native_return() -> void:
 	var levels := []
 	for row in result.changes:
 		if row.before_level!=row.level:levels.append("%s %d→%d" % [_name(row.id),row.before_level,row.level])
-	var lines := ["4 月第 %d 周　累计经验 %d" % [state.school.week,state.score],
+	var lines := ["%d 月第 %d 周　累计经验 %d" % [(int(state.school.month)-1)%12+1,state.school.week,state.score],
 		"冒险 %d　评价 %d　经验 +%d　MVP %s" % [result.scene,result.grade,result.experience,_name(result.mvp) if result.mvp>=0 else "无"]]
 	var items := []
 	for group in result.loot:

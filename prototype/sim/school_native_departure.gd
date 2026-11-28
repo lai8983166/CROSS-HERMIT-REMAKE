@@ -133,8 +133,14 @@ static func score(handoff: Dictionary, facts: Dictionary) -> Dictionary:
 	var rules: Dictionary=tables.preparation.score.duplicate(true)
 	# Mission rows at 73BEF4h + mission*100h through 73BF1Bh + mission*100h.
 	var bases := {1:[20000,20000,18000,15000,12500],2:[36000,30000,24000,18000,12000],3:[36000,34000,32000,21000,14000]}
-	rules.merge({"task_id":sid,"base_points":bases[sid],"unit_bonus":{1:0,2:120,3:110}[sid],
-		"time_bonuses":[0,0,0] if sid==1 else [115,110,105],"count_bonuses":[100,100,100,100,100,0]},true)
+	if sid==44:
+		var rewards: Dictionary=preload("res://sim/school_winter_battle.gd").mission_rules(sid).get("rewards",{})
+		if rewards.get("task_id")!=sid:return {}
+		for key in ["task_id","base_points","unit_bonus","time_bonuses","count_bonuses"]:rules[key]=rewards[key]
+	elif bases.has(sid):
+		rules.merge({"task_id":sid,"base_points":bases[sid],"unit_bonus":{1:0,2:120,3:110}[sid],
+			"time_bonuses":[0,0,0] if sid==1 else [115,110,105],"count_bonuses":[100,100,100,100,100,0]},true)
+	else:return {}
 	var characters := []
 	for i in range(facts.units.size()):
 		var member: Dictionary=handoff.participants[i]

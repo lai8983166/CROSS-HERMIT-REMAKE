@@ -26,9 +26,9 @@ func departure() -> Dictionary:
 
 
 func finish(battle: Sortie, directory := SAVE_DIR) -> bool:
-	if state.is_empty() or battle._ending_phase!="summary" or battle.scene_id!=state.school.week:return false
+	if state.is_empty() or battle._ending_phase!="summary":return false
 	var admission := departure()
-	if admission!=battle.departure:return false
+	if admission.is_empty() or admission!=battle.departure or battle.scene_id!=admission.prepared.adventure_id:return false
 	var trace := battle.battle_trace()
 	if not _valid_trace(trace):return false
 	var next := Return.settle(state,admission,battle.result_inputs(),battle.native_score)
@@ -41,7 +41,8 @@ func finish(battle: Sortie, directory := SAVE_DIR) -> bool:
 	var hash := payload.sha256_text()
 	var root_path := ProjectSettings.globalize_path(directory)
 	if DirAccess.make_dir_recursive_absolute(root_path)!=OK:return false
-	var path := root_path.path_join("april-%d-%s.%s" % [next.school.week,hash,EXTENSION])
+	var month := "january" if next.school.month==13 else "april"
+	var path := root_path.path_join("%s-%d-%s.%s" % [month,next.school.week,hash,EXTENSION])
 	if FileAccess.file_exists(path):
 		if FileAccess.get_file_as_string(path)!=payload:return false
 	else:
@@ -71,8 +72,8 @@ func load_progress(path: String) -> bool:
 	var candidate = get_script().new()
 	if not candidate.load_origin(body.source_path) or body.get("source_sha256")!=candidate.state.origin_sha:return false
 	for entry in body.rounds:
-		if not entry is Dictionary or entry.size()!=3 or entry.get("scene")!=candidate.state.school.week or not _valid_trace(entry.get("trace")):return false
 		var admission: Dictionary=candidate.departure()
+		if admission.is_empty() or not entry is Dictionary or entry.size()!=3 or entry.get("scene")!=admission.prepared.adventure_id or not _valid_trace(entry.get("trace")):return false
 		var battle := Sortie.new()
 		if not battle.open(admission):return false
 		var trace: Dictionary=Sortie.Limits._source_numbers(entry.trace)

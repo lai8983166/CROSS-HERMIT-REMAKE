@@ -45,13 +45,20 @@ def snapshot(raw, expected_sha256):
             'skill_statuses': [value(base + 0xB8 + 12*i, 'B') for i in range(84)],
             'week_records': fields(package + 0x24, '177B'),
             'job_progress': fields(package + 0xD7, '33B'),
+            'unlock_flags': fields(package + 0xF9, '30B'),
+            'mvp_count': value(package + 0x120, 'h'),
             'relationships': fields(0x7D3D71 + 68*member, '68B'),
             'equipped_skills': fields(base + 0x52, '8h'), 'equipped_items': fields(base + 0x62, '8h'),
             'staged_package': fields(package, '8i'), 'staged_total': value(package + 0x20, 'i')}
     teacher_count = value(0x7A528A, 'h')
     if not 0 <= teacher_count <= 20:
         raise ValueError('Invalid teacher count')
-    return data | {'sha256': identity, 'build': build, 'teachers': fields(0x7A5262, f'{teacher_count}h'),
+    teachers = fields(0x7A5262, f'{teacher_count}h')
+    if any(not 101 <= teacher <= 120 for teacher in teachers):
+        raise ValueError('Invalid serialized teacher index')
+    return data | {'sha256': identity, 'build': build, 'teachers': teachers,
+                   'teacher_relationships': {str(t): fields(0x7D3D71 + 68*(t-55), '68B') for t in teachers},
+                   'item_flags': fields(0x7AACAC, '360H'),
                    'groups': groups, 'selected_mission': value(0x7AAB16, 'h'),
                    'departure_mission': value(0x7A5294, 'h'), 'global_score': value(0x7A511C, 'i'),
                    'mission44_grade': value(0x7A54CA + 44, 'B'), 'roles': roles}

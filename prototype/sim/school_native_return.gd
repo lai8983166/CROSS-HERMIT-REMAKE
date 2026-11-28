@@ -22,12 +22,13 @@ static func _array(raw: PackedByteArray, start: int, count: int, step: int, kind
 
 
 static func from_save(raw: PackedByteArray) -> Dictionary:
-	var handoff := Native.decode(raw)
+	var january := raw.size()==0x306d4 and raw.decode_s16(0x1a6)==13
+	var handoff := Native.decode_january(raw) if january else Native.decode(raw)
 	if handoff.is_empty():return {}
 	var count := raw.decode_s16(0x178)
 	var roster := _array(raw,0x128,count,2,"short")
 	var faculty := _array(raw,0x7a5262-Native.BASE,raw.decode_s16(0x7a528a-Native.BASE),2,"short")
-	var school := {"month":4,"week":handoff.date[1],"student_count":count,"student_ids":roster,"relationships":[]}
+	var school := {"month":handoff.date[0],"week":handoff.date[1],"student_count":count,"student_ids":roster,"relationships":[]}
 	for id in roster+faculty:
 		for other in roster+faculty:
 			if id==other:continue
@@ -38,6 +39,11 @@ static func from_save(raw: PackedByteArray) -> Dictionary:
 		"score":handoff.initial_total,"availability":_array(raw,0x7a5120-Native.BASE,45,1,"byte"),
 		"item_flags":_array(raw,0x7aacac-Native.BASE,360,2,"word"),"origin_sha":handoff.native_sha256,
 		"ledger":{"entries":[],"unlock_flags":_array(raw,0x7a55fc-Native.BASE+1,100,1,"byte")} }
+	if january:
+		state["source_departure"]=handoff
+		state["lecture_work_fields"]=[]
+		for address in [0x7aab10,0x7aab12,0x7aab16,0x7aab14]:
+			state.lecture_work_fields.append(raw.decode_s16(address-Native.BASE))
 	for i in range(raw.decode_s16(0x7a5b62-Native.BASE)):
 		var pos := 0x7a5662-Native.BASE+16*i
 		state.ledger.entries.append({"id":raw.decode_s16(pos),"metadata":_array(raw,pos+3,3,1,"byte"),
@@ -59,10 +65,15 @@ static func from_save(raw: PackedByteArray) -> Dictionary:
 			"skill_statuses":_array(raw,role+0xb8,84,12,"byte"),"job_progress":_array(raw,pack+0xd7,31,1,"sbyte"),
 			"unlock_flags":_array(raw,pack+0xf9,30,1,"byte"),"week_records":_array(raw,pack+0x24,177,1,"byte"),
 			"job_sums":[0,0,0,0,0],"mvp_count":raw.decode_s16(pack+0x120)}
+		if january:
+			state.members[id]["staged_package"]=_array(raw,pack,8,4,"int")
+			state.members[id]["staged_total"]=raw.decode_s32(pack+0x20)
 	return state
 
 
 static func handoff(state: Dictionary) -> Dictionary:
+	if state.school.month==13:
+		return state.get("source_departure",{}).duplicate(true) if state.school.week==2 else {}
 	var sid: int=state.school.week
 	if not Native.SCENES.has(sid) or not Ledger.available(state.ledger).any(func(r):return r.id==sid):return {}
 	var teachers := []
@@ -92,8 +103,9 @@ static func handoff(state: Dictionary) -> Dictionary:
 
 
 static func settle(before: Dictionary, sortie: Dictionary, facts: Dictionary, score: Dictionary) -> Dictionary:
-	var sid: int=before.school.week
-	if sortie.date!=[4,sid] or not score.get("supported",false) or facts.get("scene_id")!=sid:return {}
+	var sid: int=sortie.prepared.adventure_id
+	var month: int=before.school.month
+	if sortie.date!=[month,before.school.week] or not score.get("supported",false) or facts.get("scene_id")!=sid:return {}
 	var catalog := FileAccess.get_file_as_string(REWARDS).replace("\r\n","\n")
 	if catalog.sha256_text()!=REWARD_SHA:return {}
 	var rules := Courses._rules()
@@ -119,6 +131,9 @@ static func settle(before: Dictionary, sortie: Dictionary, facts: Dictionary, sc
 			var old: Dictionary=state.members[id]
 			changes.append({"id":id,"before_level":old.level_50,"level":record.level_50,"staged_total":record.staged_total})
 			for key in ["attributes","growth_pools","level_50","skill_statuses","job_sums"]:old[key]=record[key]
+			if month==13:
+				old.staged_package=record.staged_package
+				old.staged_total=record.staged_total
 			if id<13 and record.staged_total>best:
 				mvp=id
 				best=record.staged_total
@@ -126,11 +141,16 @@ static func settle(before: Dictionary, sortie: Dictionary, facts: Dictionary, sc
 	var input := FileAccess.get_file_as_string(preparation[0]).replace("\r\n","\n")
 	if input.sha256_text()!=preparation[1]:return {}
 	var loot_rules: Dictionary=Battle.Roles._integers(JSON.parse_string(input).rules)
-	loot_rules.merge(Battle.Roles._integers(JSON.parse_string(catalog).missions[str(sid)]),true)
+	if sid==44:
+		var rewards: Dictionary=preload("res://sim/school_winter_battle.gd").mission_rules(sid).get("rewards",{})
+		if rewards.get("task_id")!=sid:return {}
+		for key in ["loot_quotas","fixed_items","objective_rewards"]:loot_rules[key]=rewards[key]
+	else:
+		loot_rules.merge(Battle.Roles._integers(JSON.parse_string(catalog).missions[str(sid)]),true)
 	var loot := Battle.Loot._loot(state.item_flags,score.grade_index,facts,loot_rules)
 	state.item_flags=loot.item_flags
 	var working := {"school":state.school,"growth":state.members.values(),"records":state.members.values()}
-	for group in state.classes:group.work_fields=[3,sid-1,sid,0]
+	for group in state.classes:group.work_fields=state.get("lecture_work_fields",[3,sid-1,sid,0])
 	Courses._confirm(working,state.classes,rules.confirmation.job_categories,2)
 	var ids: Array=sortie.prepared.rounds[0].student_ids
 	var teachers: Array=sortie.prepared.rounds[0].teacher_ids
@@ -144,7 +164,7 @@ static func settle(before: Dictionary, sortie: Dictionary, facts: Dictionary, sc
 			calls.append({"from":teacher,"to":id,"delta":delta})
 	Courses._apply_relationships(working,calls)
 	if mvp>=0:state.members[mvp].mvp_count=mini(5,state.members[mvp].mvp_count+1)
-	var week := Week.project({"month":4,"week":sid,"participants":state.members.values(),"availability":state.availability,
+	var week := Week.project({"month":month,"week":before.school.week,"participants":state.members.values(),"availability":state.availability,
 		"item_flags":state.item_flags,"flags":{"0x7a55fa":1,"0x7a4e62":0,"0x7a55f6":0,"0x7e11a0":0}},rules.week,true)
 	if not week.supported:return {}
 	for updated in week.after.participants:state.members[updated.character_id].merge(updated,true)
@@ -153,7 +173,8 @@ static func settle(before: Dictionary, sortie: Dictionary, facts: Dictionary, sc
 	state.score=score.total_after
 	state.grades[sid-1]=score.task_grade
 	state.ledger=Ledger.advance(state.ledger,sid)
-	Ledger._open(state.ledger,4,state.school.week,Ledger.rules())
+	Ledger._open(state.ledger,month,state.school.week,Ledger.rules())
+	state.erase("source_departure")
 	state["last_result"]={"scene":sid,"grade":score.grade_index+1,"experience":score.total_delta,
 		"mvp":mvp,"changes":changes,"loot":loot.loot_groups}
 	return state

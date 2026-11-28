@@ -6,7 +6,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size()!=1:quit(2);return
+	if args.size() not in [1,2]:quit(2);return
 	var path: String=args[0]
 	var school=load("res://school_playground.tscn").instantiate()
 	root.add_child(school)
@@ -33,7 +33,15 @@ func _run() -> void:
 		DirAccess.remove_absolute(bad)
 		if not rejected or campaign.state!=baseline:
 			printerr("Corruption admitted or state changed: ",field);quit(1);return
-	if week<4:
+	if args.size()==2:
+		if campaign.state.school.month!=13 or week!=3 or FileAccess.file_exists(args[1]):quit(2);return
+		var output:=FileAccess.open(args[1],FileAccess.WRITE)
+		if output==null:quit(1);return
+		output.store_string(JSON.stringify(campaign.state))
+		output.flush()
+		if output.get_error()!=OK:quit(1);return
+		output.close()
+	if not campaign.departure().is_empty():
 		school.native_return_dialog.hide()
 		school._play_imported_sortie()
 		if not school.sortie_trial.visible or school.sortie_trial.session.scene_id!=week:quit(1);return
