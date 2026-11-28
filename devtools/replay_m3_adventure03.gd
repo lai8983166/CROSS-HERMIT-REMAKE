@@ -1,13 +1,14 @@
 extends SceneTree
-const Three := preload("res://sim/school_three_departure.gd")
+const SAVE_SHA := "cf37a6c6854b4dcb4df461418aa07c0dd0276ee96668a941bc8efee332797cd6"
+const Native := preload("res://sim/school_native_departure.gd")
 const Sortie := preload("res://sim/school_sortie_session.gd")
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
 	if args.size()!=1:quit(2);return
-	var handoff := Three.load_save(args[0])
+	var handoff := Native.load_save(args[0])
 	var session := Sortie.new()
-	if handoff.is_empty() or not session.open(handoff):printerr("MAP03 admission failed");quit(1);return
+	if handoff.get("native_sha256")!=SAVE_SHA or not session.open(handoff):printerr("MAP03 admission failed");quit(1);return
 	print("MAP03 admitted ",session.controlled_units().size()," students")
 	while session.ending_snapshot().phase=="opening":session.advance_opening(true)
 	var unit: Dictionary=session.controlled_units()[0]
@@ -48,12 +49,12 @@ func _initialize() -> void:
 		if session._ending_phase=="summary":break
 	if session.ending_sub<0 or session.ending_snapshot().phase!="summary":
 		printerr("No objective result");quit(1);return
-	if not session.three_score.get("supported",false):printerr(session.three_score);quit(1);return
+	if not session.native_score.get("supported",false):printerr(session.native_score);quit(1);return
 	var trace := session.battle_trace()
-	if trace.overflow or session._terminal_choice!={"tactical_result_selector":1,"script_sub":5} or session.ending_snapshot().summary.defeated_enemies!=38 or session.three_score.characters.size()!=20 or session.three_score.total_delta!=40174:
+	if trace.overflow or session._terminal_choice!={"tactical_result_selector":1,"script_sub":5} or session.ending_snapshot().summary.defeated_enemies!=38 or session.native_score.characters.size()!=20 or session.native_score.total_delta!=40174:
 		printerr("MAP03 replay differs from the accepted result");quit(1);return
 	print("MAP03 commands ",trace.commands.size()," ticks ",trace.ticks," SHA-256 ",JSON.stringify(trace).sha256_text())
-	print("MAP03 score ",session.three_score.total_delta," packages ",session.three_score.characters.size())
+	print("MAP03 score ",session.native_score.total_delta," packages ",session.native_score.characters.size())
 	print("MAP03 selector ",session._terminal_choice," defeated ",session.ending_snapshot().summary.defeated_enemies)
 	print("MAP03 tick ",session.elapsed," cell ",unit.cell)
 	quit(0)

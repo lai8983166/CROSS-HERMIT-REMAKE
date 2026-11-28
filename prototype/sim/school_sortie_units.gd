@@ -3,7 +3,7 @@ extends RefCounted
 const Limits := preload("res://sim/school_combat_limits.gd")
 
 
-static func project(participant: Dictionary, growth: Dictionary, rules: Dictionary, november := false, december := false, winter := false, unlocked_job := 0, native_three := false) -> Dictionary:
+static func project(participant: Dictionary, growth: Dictionary, rules: Dictionary, november := false, december := false, winter := false, unlocked_job := 0, native_school := false) -> Dictionary:
 	var id = participant.get("character_id")
 	var jobs := {1:6,2:4,3:10,4:6,9:7,5:4,8:8,6:2,13:10,16:1,17:1}
 	if november or december or winter:
@@ -24,7 +24,7 @@ static func project(participant: Dictionary, growth: Dictionary, rules: Dictiona
 	if (not bow and participant.get("equipped_items")!=[0,0,0,0,0,0,0,0]) or not Limits._numbers(participant.get("equipped_skills"),8,0,65535):return {}
 	for skill in participant["equipped_skills"]:
 		if skill not in [0,11,20,29,31,57,59]:return {}
-		if not native_three and (winter or november or december) and skill>0 and (participant.get("skill_statuses",[]).size()!=84 or participant.skill_statuses[skill-1]!=6):return {}
+		if not native_school and (winter or november or december) and skill>0 and (participant.get("skill_statuses",[]).size()!=84 or participant.skill_statuses[skill-1]!=6):return {}
 		if not (winter or november or december) and id in [6,8,16,17] and skill!=0:return {}
 	if not rules.jobs.has(str(jobs[id])):return {}
 	var job: Dictionary=rules["jobs"][str(jobs[id])]

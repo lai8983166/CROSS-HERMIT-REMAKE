@@ -213,10 +213,11 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
     if early_scene:
         players = tuple((role, struct.unpack_from('<H', image, 0x6f5088-BASE+role*1184+6)[0])
                         for role in (10,6,5,4,3,7,9,11,2,1,12,14,15,17,18,13,16,20,21,23))
-        for path in sorted(OUT.parent.glob('school_*/catalog.json')):
-            if path.parent.name in ('school_two','school_three'):
-                continue
-            data = json.loads(path.read_bytes())
+        # Keep the parent set fixed so a future map cannot change these file references.
+        parents = ('school_forty_one', 'school_thirty_one', 'school_twenty_two',
+                   'school_twenty_two_actions', 'school_winter_29', 'school_winter_44')
+        for directory in parents:
+            data = json.loads((OUT.parent/directory/'catalog.json').read_bytes())
             for skin_data in data.get('skins', {}).values():
                 for frame in skin_data['frames'].values():
                     PARENT_FRAMES.setdefault(frame['file_sha256'], frame['file'])

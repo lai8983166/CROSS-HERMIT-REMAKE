@@ -149,12 +149,12 @@ func _ready() -> void:
 	year_button.name="school_year_trial"
 	toolbar.add_child(year_button)
 	var native_file := FileDialog.new()
-	native_file.title="读取四月第3周原版学校档"
+	native_file.title="读取四月第2、3周原版学校档"
 	native_file.file_mode=FileDialog.FILE_MODE_OPEN_FILE
 	native_file.access=FileDialog.ACCESS_FILESYSTEM
 	native_file.add_filter("*.sav, *.SAV","原版学校存档")
 	add_child(native_file)
-	native_file.file_selected.connect(_open_native_three)
+	native_file.file_selected.connect(_open_native_sortie)
 	toolbar.add_child(_button("原档出击",func():native_file.popup_centered_ratio(0.75)))
 	save_button = _button("保存",_manual_save)
 	load_button = _button("读取",_load)
@@ -273,7 +273,7 @@ func _ready() -> void:
 			panel.show()
 		refresh())
 	sortie_trial.result_confirmed.connect(func(trace):
-		if sortie_trial.session.scene_id==3:
+		if sortie_trial.session.scene_id in [2,3]:
 			sortie_trial._leave()
 		elif _act({"op":"sortie_finish","trace":trace}):
 			sortie_trial._leave()
@@ -949,8 +949,8 @@ func _open_combat_trial() -> void:
 		panel.hide()
 
 
-func _open_native_three(path: String) -> void:
-	var handoff := preload("res://sim/school_three_departure.gd").load_save(path)
+func _open_native_sortie(path: String) -> void:
+	var handoff := preload("res://sim/school_native_departure.gd").load_save(path)
 	if not handoff.is_empty():
 		var names := {}
 		for member in handoff.participants:names[member.character_id]=_name(member.character_id)
@@ -958,7 +958,7 @@ func _open_native_three(path: String) -> void:
 			imported_sortie_open=true
 			panel.hide()
 			return
-	_message="无法打开冒险3。请选择已核验的四月第3周原版学校档。"
+	_message="未能载入出击记录。请选择四月第2、3周可出击且已有战场素材的原版学校存档。"
 	refresh()
 
 
