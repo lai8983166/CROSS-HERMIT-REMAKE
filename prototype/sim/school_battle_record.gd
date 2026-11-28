@@ -34,9 +34,11 @@ static func replay(preparation: Dictionary, combat: Dictionary, trace: Variant) 
 	return result
 
 
-static func run_trace(session: Combat, trace: Dictionary) -> Dictionary:
+static func run_trace(session: Combat, trace: Dictionary, observe: Callable = Callable()) -> Dictionary:
 	for row in trace["commands"]:
-		if not _advance(session,row[0]): return _failure("battle_trace_timing_rejected")
+		if not _advance(session,row[0]):
+			if observe.is_valid():observe.call(row,false)
+			return _failure("battle_trace_timing_rejected")
 		var accepted := false
 		match row[1]:
 			1: accepted = session.advance_opening(row[2]==1)
@@ -48,6 +50,7 @@ static func run_trace(session: Combat, trace: Dictionary) -> Dictionary:
 			10,11: accepted = session.call("cast_aimed_skill",row[2],row[3],11 if row[1]==10 else 20)
 			9: accepted = session.call("cast_field_spell",row[2],Vector2i(row[3],row[4]),31)
 			7,8: accepted = session.call("cast_field_spell",row[2],Vector2i(row[3],row[4]),59 if row[1]==7 else 57)
+		if observe.is_valid():observe.call(row,accepted)
 		if not accepted: return _failure("battle_trace_command_rejected")
 	if not _advance(session,trace["ticks"]): return _failure("battle_trace_terminal_rejected")
 	for i in range(4): session.advance_exit()
