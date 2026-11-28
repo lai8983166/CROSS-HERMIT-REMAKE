@@ -1,9 +1,10 @@
 extends "res://sim/school_combat_session.gd"
 ## Source scenes and predicates on the existing explicit remake combat scheduler.
 const Native := preload("res://sim/school_native_departure.gd")
+const OneBattle := preload("res://sim/school_one_battle.gd")
+const EARLY_CATALOGS := {1:"res://assets/school_one/catalog.json",2:"res://assets/school_two/catalog.json",3:"res://assets/school_three/catalog.json"}
+const EARLY_SHAS := {1:"46d97c0732606e0fe0a22212412078829e75fbc9dcffe7d4ab28ab7b02f9ca1d",2:"f27eeeb6b635c1323d215ab879d88c6235f9459825030481b88a20262eab6146",3:"5ef92fee83d56f07b94c1d448d1c9c39870821df3bfc3ed9308b000aa87787e8"}
 const TwoBattle := preload("res://sim/school_two_battle.gd")
-const TWO_SHA := "f27eeeb6b635c1323d215ab879d88c6235f9459825030481b88a20262eab6146"
-const THREE_SHA := "5ef92fee83d56f07b94c1d448d1c9c39870821df3bfc3ed9308b000aa87787e8"
 const AttackPaths := preload("res://sim/school_sortie_paths.gd")
 const PlayerUnits := preload("res://sim/school_sortie_units.gd")
 const PERSONAL_SKIN_SHA := "0e3af871a2a1a9f50c2de2265b3492c89750abff7f654bcb2dbd2868106464bc"
@@ -82,6 +83,7 @@ var timers: Array = []
 var ambushed: Array = []
 var spawn_points: Array = []
 var native_score := {}
+var one_mission: OneBattle
 var two_mission: TwoBattle
 var three_held: Array[int] = []
 var ending_sub := -1
@@ -93,8 +95,8 @@ var weapon_distances := PackedByteArray()
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var winter: int=Winter.DATES.find_key(handoff.get("date")) if handoff.get("date") in Winter.DATES.values() else 0
-	var early: bool=handoff.get("date") in [[4,2],[4,3]] and str(handoff.get("native_sha256","")).length()==64
-	var two: bool=early and handoff.date==[4,2]
+	var early: bool=handoff.get("date") in [[4,1],[4,2],[4,3]] and str(handoff.get("native_sha256","")).length()==64
+	var early_id: int=handoff.date[1] if early else 0
 	if not early and winter==0 and handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[11,3],[12,1]]: return false
 	var thirty_one: bool=handoff.date==[12,1]
 	var forty_one: bool=handoff.date==[11,3]
@@ -118,11 +120,11 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var four: bool=handoff["date"]==[6,1]
 	var may_five: bool=handoff["date"]==[5,5]
 	var seven: bool=handoff["date"]==[5,4]
-	if raw.is_empty():raw=FileAccess.get_file_as_string("res://assets/school_two/catalog.json" if two else "res://assets/school_three/catalog.json" if early else "res://assets/school_winter_%d/catalog.json"%winter if winter else THIRTY_ONE_PATH if thirty_one else FORTY_ONE_PATH if forty_one else TWENTY_FOUR_PATH if twenty_four else TWENTY_TWO_PATH if twenty_two else THIRTY_FIVE_PATH if thirty_five else TWENTY_ONE_PATH if twenty_one else TWENTY_PATH if twenty else FOURTEEN_PATH if fourteen else NINE_PATH if nine else EIGHTEEN_PATH if eighteen else THIRTEEN_PATH if thirteen else TEN_PATH if ten else SIX_PATH if six else FOUR_PATH if four else SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
-	if raw.sha256_text()!=(TWO_SHA if two else THREE_SHA if early else WINTER_SHA[winter] if winter else THIRTY_ONE_SHA if thirty_one else FORTY_ONE_SHA if forty_one else TWENTY_FOUR_SHA if twenty_four else TWENTY_TWO_SHA if twenty_two else THIRTY_FIVE_SHA if thirty_five else TWENTY_ONE_SHA if twenty_one else TWENTY_SHA if twenty else FOURTEEN_SHA if fourteen else NINE_SHA if nine else EIGHTEEN_SHA if eighteen else THIRTEEN_SHA if thirteen else TEN_SHA if ten else SIX_SHA if six else FOUR_SHA if four else SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
+	if raw.is_empty():raw=FileAccess.get_file_as_string(EARLY_CATALOGS[early_id] if early else "res://assets/school_winter_%d/catalog.json"%winter if winter else THIRTY_ONE_PATH if thirty_one else FORTY_ONE_PATH if forty_one else TWENTY_FOUR_PATH if twenty_four else TWENTY_TWO_PATH if twenty_two else THIRTY_FIVE_PATH if thirty_five else TWENTY_ONE_PATH if twenty_one else TWENTY_PATH if twenty else FOURTEEN_PATH if fourteen else NINE_PATH if nine else EIGHTEEN_PATH if eighteen else THIRTEEN_PATH if thirteen else TEN_PATH if ten else SIX_PATH if six else FOUR_PATH if four else SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
+	if raw.sha256_text()!=(EARLY_SHAS[early_id] if early else WINTER_SHA[winter] if winter else THIRTY_ONE_SHA if thirty_one else FORTY_ONE_SHA if forty_one else TWENTY_FOUR_SHA if twenty_four else TWENTY_TWO_SHA if twenty_two else THIRTY_FIVE_SHA if thirty_five else TWENTY_ONE_SHA if twenty_one else TWENTY_SHA if twenty else FOURTEEN_SHA if fourteen else NINE_SHA if nine else EIGHTEEN_SHA if eighteen else THIRTEEN_SHA if thirteen else TEN_SHA if ten else SIX_SHA if six else FOUR_SHA if four else SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
 	if not handoff.get("prepared") is Dictionary or handoff.get("requested_states")!=[10,16] or handoff.get("round_cursor")!=1:return false
 	var prepared: Dictionary=handoff["prepared"];var sid=prepared.get("adventure_id")
-	if sid not in ([2] if two else [3] if early else [winter] if winter else [31] if thirty_one else [41] if forty_one else [24] if twenty_four else [22] if twenty_two else [35] if thirty_five else [21] if twenty_one else [20] if twenty else [14] if fourteen else [9] if nine else [18] if eighteen else [17] if june_five else [13] if thirteen else [10] if ten else [6] if six else [4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
+	if sid not in ([early_id] if early else [winter] if winter else [31] if thirty_one else [41] if forty_one else [24] if twenty_four else [22] if twenty_two else [35] if thirty_five else [21] if twenty_one else [20] if twenty else [14] if fourteen else [9] if nine else [18] if eighteen else [17] if june_five else [13] if thirteen else [10] if ten else [6] if six else [4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
 	if not prepared.get("rounds") is Array or prepared["rounds"].size()!=1:return false
 	var round_data: Dictionary=prepared["rounds"][0]
 	var teachers=round_data.get("teacher_ids")
@@ -145,7 +147,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	if june_five and not _add_june_five_players(next_catalog,source):return false
 	if (expanded_training or august) and not (early or winter or forty_one or thirty_one) and not _add_july_five_players(next_catalog,source):return false
 	if may_five and not _add_may_five_players(next_catalog,source):return false
-	var identity: Dictionary=Native.TWO_SCENE if two else Native.SCENE if early else Winter.mission_rules(sid).get("scene",{}) if winter else Adventures.mission_rules(31).get("scene",{}) if thirty_one else Adventures.mission_rules(41).get("scene",{}) if forty_one else Adventures.twenty_four_rules().get("scene",{}) if twenty_four else Adventures.twenty_two_rules().get("scene",{}) if twenty_two else Adventures.thirty_five_rules().get("scene",{}) if thirty_five else Adventures.twenty_one_rules().get("scene",{}) if twenty_one else Adventures.twenty_rules().get("scene",{}) if twenty else Adventures.fourteen_rules().get("scene",{}) if fourteen else Adventures.nine_rules().get("scene",{}) if nine else Adventures.eighteen_rules().get("scene",{}) if eighteen else Adventures.thirteen_rules().get("scene",{}) if thirteen else Adventures.ten_rules().get("scene",{}) if ten else Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
+	var identity: Dictionary=Native.SCENES[early_id] if early else Winter.mission_rules(sid).get("scene",{}) if winter else Adventures.mission_rules(31).get("scene",{}) if thirty_one else Adventures.mission_rules(41).get("scene",{}) if forty_one else Adventures.twenty_four_rules().get("scene",{}) if twenty_four else Adventures.twenty_two_rules().get("scene",{}) if twenty_two else Adventures.thirty_five_rules().get("scene",{}) if thirty_five else Adventures.twenty_one_rules().get("scene",{}) if twenty_one else Adventures.twenty_rules().get("scene",{}) if twenty else Adventures.fourteen_rules().get("scene",{}) if fourteen else Adventures.nine_rules().get("scene",{}) if nine else Adventures.eighteen_rules().get("scene",{}) if eighteen else Adventures.thirteen_rules().get("scene",{}) if thirteen else Adventures.ten_rules().get("scene",{}) if ten else Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
 	if identity.is_empty() or handoff.get("scene")!=identity:return false
 	var candidates: Array[Dictionary]=[];var seen := {}
 	var promoted_jobs: Dictionary={}
@@ -220,7 +222,8 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var mask := String(wave["capture_mask"]["hex"]).hex_decode()
 	if mask.size()!=121:return false
 	close()
-	if two:two_mission=TwoBattle.new()
+	if early_id==1:one_mission=OneBattle.new()
+	if early_id==2:two_mission=TwoBattle.new()
 	scene_id=sid;field_width=width;field_height=height;catalog=next_catalog
 	catalog["skins"]=source["skins"];combat_rules=source["attack_rules"]
 	attack_paths=AttackPaths.new(width,height,catalog["passability"])
@@ -337,7 +340,7 @@ static func _add_may_five_players(scene: Dictionary, source: Dictionary) -> bool
 
 
 func _distance(a: Dictionary, b: Dictionary) -> int:
-	if scene_id in [2,3,20,21,22,24,29,31,32,35,41,44,45]:
+	if scene_id in [1,2,3,20,21,22,24,29,31,32,35,41,44,45]:
 		var delta: Vector2i=(a.cell-b.cell).abs()
 		if delta.x<=32 and delta.y<=32 and weapon_distances[delta.y*33+delta.x]!=255:
 			return weapon_distances[delta.y*33+delta.x]
@@ -345,14 +348,14 @@ func _distance(a: Dictionary, b: Dictionary) -> int:
 
 
 func _route_units(mover: Dictionary) -> Array:
-	if scene_id not in [2,3,20,21,22,24,29,31,32,35,41,44,45]:return units
+	if scene_id not in [1,2,3,20,21,22,24,29,31,32,35,41,44,45]:return units
 	# 47E02A resolves an occupied cell. 47E05A permits same-side
 	# traversal, and 47E0AD keeps full speed past a stationary gate.
 	return units.filter(func(u):return u.side!=mover.side)
 
 
 func _wait_for_occupant(mover: Dictionary, cell: Vector2i) -> bool:
-	if scene_id not in [2,3,20,21,22,24,29,31,32,35,41,44,45] or (frame/int(catalog.interaction.move_interval))%2==0:return false
+	if scene_id not in [1,2,3,20,21,22,24,29,31,32,35,41,44,45] or (frame/int(catalog.interaction.move_interval))%2==0:return false
 	for u in units:
 		if u.instance_id!=mover.instance_id and u.cell==cell and u.side==mover.side and u.limits.hp>0:
 			if mover.combat.movement_rate<=u.combat.movement_rate:return true
@@ -360,7 +363,7 @@ func _wait_for_occupant(mover: Dictionary, cell: Vector2i) -> bool:
 
 
 func _blocked(identity: int) -> Dictionary:
-	if scene_id not in [2,3,20,21,22,24,29,31,32,35,41,44,45]:return super._blocked(identity)
+	if scene_id not in [1,2,3,20,21,22,24,29,31,32,35,41,44,45]:return super._blocked(identity)
 	var mover:=find_unit(identity)
 	if mover.is_empty():return super._blocked(identity)
 	var blocked := {}
@@ -406,7 +409,7 @@ func _start_attack(unit: Dictionary,target: Dictionary) -> void:
 
 
 func _paths_for(unit: Dictionary) -> AttackPaths:
-	if scene_id not in [2,3] and scene_id not in Winter.DATES:return attack_paths
+	if scene_id not in [1,2,3] and scene_id not in Winter.DATES:return attack_paths
 	# Allies may cross each other. Keep the reverse BFS fields for each distinct
 	# opposing occupancy instead of invalidating them whenever the acting side changes.
 	if not winter_attack_paths.has(unit.side):
@@ -416,7 +419,7 @@ func _paths_for(unit: Dictionary) -> AttackPaths:
 
 func _attack_path(unit: Dictionary, target: Dictionary) -> Array[Vector2i]:
 	var reach: int=unit.combat.attack_range
-	var mask := weapon_masks[reach] if scene_id in [2,3,20,21,22,24,29,31,32,35,41,44,45] and reach<weapon_masks.size() else PackedByteArray()
+	var mask := weapon_masks[reach] if scene_id in [1,2,3,20,21,22,24,29,31,32,35,41,44,45] and reach<weapon_masks.size() else PackedByteArray()
 	return _paths_for(unit).route(unit.cell,target.cell,reach,unit.movement_type,_route_units(unit),mask)
 
 
@@ -427,7 +430,7 @@ func _actor_unit(actor: Dictionary, cell: Vector2i) -> Dictionary:
 		"cell":cell,"from_cell":cell,"facing":"S","path":[],"destination":Vector2i(-1,-1),"move_started_frame":-100000,
 		"visual":"idle","visual_started_frame":frame,"target":-1,"dead_at":-1}
 	_apply_record_fields(unit,actor)
-	if scene_id in [2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45]:
+	if scene_id in [1,2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45]:
 		var record := String(actor["record_hex"]).hex_decode()
 		unit["recovery"]=[record.decode_u16(24),record.decode_u16(30)]
 		unit["recovery_clock"]=[0,0]
@@ -461,6 +464,7 @@ func advance_opening(confirmed := false) -> bool:
 
 
 func _guard_target(unit: Dictionary) -> int:
+	if scene_id==1 and one_mission.retreating and unit.side==5:return -1
 	if scene_id==22:
 		# 4750B0/4DA710 copy template+14h. Search 0 spans the field,
 		# selector 9 compares absolute world coordinates (32x16 pixels/cell).
@@ -564,7 +568,7 @@ func _set_group_ai(group: int, parameter: int) -> void:
 func _update_summoning() -> void:
 	# Elapsed source units advance by two at the explicitly local 30Hz scheduler.
 	elapsed+=2
-	if scene_id in [2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45]:
+	if scene_id in [1,2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45]:
 		_update_recovery()
 		_update_field_spell(field_spell)
 		if not healing_spell.is_empty():_update_field_spell(healing_spell)
@@ -576,6 +580,9 @@ func _update_summoning() -> void:
 			_update_aimed_skills()
 			if scene_id==22:_advance_twenty()
 			if scene_id in [24,29,31,32,41,44,45]:siege.advance(self)
+			return
+		if scene_id==1:
+			one_mission.advance(self)
 			return
 		if scene_id in [2,3,6]:return
 		if scene_id==18:return
@@ -640,7 +647,7 @@ func _update_recovery() -> void:
 
 
 func can_cast_spell(id: int, skill: int) -> bool:
-	if not ready or scene_id not in [2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45] or _ending_phase!="active":return false
+	if not ready or scene_id not in [1,2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45] or _ending_phase!="active":return false
 	var unit := find_unit(id)
 	var personal:bool=scene_id in Winter.DATES or scene_id in [31,41]
 	if personal and unit.get("summon_phase","")!="":return false
@@ -878,7 +885,7 @@ func command_move(id: int, cell: Vector2i) -> bool:
 		var ally := at_cell(cell)
 		if _support_target(ally) and ally["limits"]["hp"]<ally["limits"]["hp_max"]:
 			return command_attack(id,unit_key(ally))
-	if scene_id in [2,3,20,21,22,24,29,31,32,35,41,44,45] and not at_cell(cell).is_empty():return false
+	if scene_id in [1,2,3,20,21,22,24,29,31,32,35,41,44,45] and not at_cell(cell).is_empty():return false
 	return super.command_move(id,cell)
 
 
@@ -934,7 +941,10 @@ func _check_before_actions() -> bool:
 func _detect_trial_end() -> bool:
 	var sub := -1
 	var unavailable := controlled_units().filter(func(u):return u["character_id"]<=45).all(func(u):return u["limits"]["hp"]<=0)
-	if scene_id==2:
+	if scene_id==1:
+		sub=one_mission.result(self,unavailable)
+		if sub<0 and _ending_phase=="event20":return true
+	elif scene_id==2:
 		sub=two_mission.result(self,unavailable)
 		if sub<0 and _ending_phase=="event20":return true
 	elif scene_id==3:
@@ -1084,10 +1094,10 @@ func _detect_trial_end() -> bool:
 				sub=2 if complete.count(true)==3 and _own_casualties==0 else 5 if complete.count(true)==3 else 8 if complete.has(true) else 11
 		if unavailable:sub=14
 	if sub<0:return false
-	ending_sub=5 if scene_id in [2,3] and sub in [2,5,8] else 14 if scene_id==2 else sub
+	ending_sub={2:2,5:8,8:11,11:11,14:14}[sub] if scene_id==1 else 5 if scene_id in [2,3] and sub in [2,5,8] else 14 if scene_id==2 else sub
 	_terminal_choice={"tactical_result_selector":1 if sub in [2,3] else 2 if sub in [5,6] else 3 if sub==8 else 4 if sub in [11,12] else 5,"script_sub":ending_sub}
-	var won: bool=(scene_id==29 and sub==11) or (scene_id==22 and sub in [2,3,5,6,8]) or (scene_id==35 and sub!=14) or (scene_id in [2,3,4,6,9,10,13,14,18,20,21,24,29,31,32,41,44,45] and sub in [2,5,8])
-	_begin_ending("mission_objectives_met" if won else "time_expired" if scene_id in [2,3,4,9,13,22,41,44] and sub==11 else "objective_destroyed" if scene_id==9 and sub==12 else "objective_destroyed" if scene_id in [18,24,31,32] and sub==11 else "squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "escort_lost" if sub==14 else "mission_objectives_met" if scene_id==7 else "defense_completed")
+	var won: bool=(scene_id==29 and sub==11) or (scene_id==22 and sub in [2,3,5,6,8]) or (scene_id==35 and sub!=14) or (scene_id in [1,2,3,4,6,9,10,13,14,18,20,21,24,29,31,32,41,44,45] and sub in [2,5,8])
+	_begin_ending("mission_objectives_met" if won else "time_expired" if scene_id in [1,2,3,4,9,13,22,41,44] and sub==11 else "objective_destroyed" if scene_id==9 and sub==12 else "objective_destroyed" if scene_id in [18,24,31,32] and sub==11 else "squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "escort_lost" if sub==14 else "mission_objectives_met" if scene_id==7 else "defense_completed")
 	return true
 
 
@@ -1103,7 +1113,7 @@ func _three_event(sub: int) -> void:
 
 
 func advance_event() -> bool:
-	if scene_id not in [2,3,7,9,10,13,24] or _ending_phase!="event20":return false
+	if scene_id not in [1,2,3,7,9,10,13,24] or _ending_phase!="event20":return false
 	_record_command([2])
 	_event_index+=1
 	if _event_index==_event_pages.size():
@@ -1113,6 +1123,9 @@ func advance_event() -> bool:
 		if scene_id==9:
 			_ending_phase="active"
 			reason="knight_released"
+			return true
+		if scene_id==1:
+			one_mission.finish_event(self)
 			return true
 		if scene_id in [2,3]:
 			_ending_phase="active"
@@ -1134,7 +1147,7 @@ func advance_event() -> bool:
 
 
 func _normal_healer(unit: Dictionary) -> bool:
-	if scene_id in [2,3,9,14,18,20,21,22,24,29,31,32,35,41,44,45]:return unit.get("normal_heal",false)
+	if scene_id in [1,2,3,9,14,18,20,21,22,24,29,31,32,35,41,44,45]:return unit.get("normal_heal",false)
 	return scene_id in [4,6,10,13] and unit.get("character_id")==8
 
 
@@ -1200,7 +1213,7 @@ func _admitted(unit: Dictionary, target: Dictionary) -> bool:
 
 func _packet(unit: Dictionary) -> Dictionary:
 	var result := super._packet(unit)
-	if scene_id in [2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45] and unit.get("barrier_until",0)>elapsed:
+	if scene_id in [1,2,3,4,6,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45] and unit.get("barrier_until",0)>elapsed:
 		var row := String(catalog["spells"]["rows"]["57"]).hex_decode()
 		var intelligence: int=unit["input"]["attributes"][4] if unit.has("input") else String(reserves[unit_key(unit)]["record_hex"]).hex_decode()[8]
 		# 4DF6F0 applies effect 50 to armor, body and evasion.
@@ -1273,7 +1286,7 @@ func result_inputs() -> Dictionary:
 
 func advance_exit() -> void:
 	super.advance_exit()
-	if scene_id in [2,3] and _ending_phase=="summary" and not _terminal_choice.is_empty() and native_score.is_empty():
+	if scene_id in [1,2,3] and _ending_phase=="summary" and not _terminal_choice.is_empty() and native_score.is_empty():
 		native_score=Native.score(departure,result_inputs())
 
 
@@ -1284,4 +1297,4 @@ func ending_snapshot() -> Dictionary:
 
 
 func close() -> void:
-	super.close();two_mission=null;native_score.clear();three_held.clear();winter_attack_paths.clear();aimed_skills.clear();poisoned_statues.clear();siege=null;weapon_masks.clear();weapon_distances.clear();dungeon=null;knight_released=false;castle=null;prayer=null;escort_route=null;field_spell.clear();healing_spell.clear();other_field_casts.clear();healing_impacts.clear();recurring_events.clear();rendezvous=false;attack_paths=null;scene_id=0;elapsed=0;departure.clear();scene_scripts.clear();timers.clear();ambushed.clear();spawn_points.clear();ending_sub=-1
+	super.close();one_mission=null;two_mission=null;native_score.clear();three_held.clear();winter_attack_paths.clear();aimed_skills.clear();poisoned_statues.clear();siege=null;weapon_masks.clear();weapon_distances.clear();dungeon=null;knight_released=false;castle=null;prayer=null;escort_route=null;field_spell.clear();healing_spell.clear();other_field_casts.clear();healing_impacts.clear();recurring_events.clear();rendezvous=false;attack_paths=null;scene_id=0;elapsed=0;departure.clear();scene_scripts.clear();timers.clear();ambushed.clear();spawn_points.clear();ending_sub=-1

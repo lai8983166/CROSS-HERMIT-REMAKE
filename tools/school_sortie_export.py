@@ -135,11 +135,11 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
     global PARENT_FRAMES
     if winter and winter not in (32, 44, 29, 45):
         raise ValueError(winter)
-    if early_scene not in (0, 2, 3):
+    if early_scene not in (0, 1, 2, 3):
         raise ValueError(early_scene)
     full_roster=early_scene or thirty_five or twenty_two or twenty_four or forty_one or thirty_one or winter
     late=twenty or twenty_one or full_roster
-    output=OUT.parent/{2:'school_two',3:'school_three'}[early_scene] if early_scene else OUT.parent/f'school_winter_{winter}' if winter else OUT.parent/'school_thirty_one' if thirty_one else OUT.parent/'school_forty_one' if forty_one else OUT.parent/'school_twenty_four' if twenty_four else OUT.parent/'school_twenty_two' if twenty_two else OUT.parent/'school_thirty_five' if thirty_five else OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
+    output=OUT.parent/{1:'school_one',2:'school_two',3:'school_three'}[early_scene] if early_scene else OUT.parent/f'school_winter_{winter}' if winter else OUT.parent/'school_thirty_one' if thirty_one else OUT.parent/'school_forty_one' if forty_one else OUT.parent/'school_twenty_four' if twenty_four else OUT.parent/'school_twenty_two' if twenty_two else OUT.parent/'school_thirty_five' if thirty_five else OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
     PARENT_FRAMES=parent_frames(seven or four or six or ten or thirteen or eighteen or nine or fourteen or late,four or six or ten or thirteen or eighteen or nine or fourteen or late,six or ten or thirteen or eighteen or nine or fourteen or late,ten or thirteen or eighteen or nine or fourteen or late,thirteen or eighteen or nine or fourteen or late,eighteen or nine or fourteen or late,nine or fourteen or late,fourteen or late,late,twenty_one or full_roster,full_roster,twenty_two or twenty_four or forty_one or thirty_one or winter)
     if twenty_four or forty_one or thirty_one or winter:
         parents = ('school_twenty_two','school_twenty_two_actions') + (('school_twenty_four',) if forty_one or thirty_one or winter else ()) + (('school_forty_one',) if thirty_one or winter else ()) + (('school_thirty_one',) if winter else ())
@@ -188,8 +188,8 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
             'cells':layout['cells'],'passability':[[int(mode==4 or struct.unpack_from('<i',terrain,c[0]*76+mode*16+12)[0]!=0) for c in layout['cells']] for mode in range(5)],
             'actors':actors,'atlas':'res://assets/'+output.name+'/'+atlas.name,'atlas_sha256':digest(atlas.read_bytes()),
             'interaction':{'logic_hz':30,'move_interval':12,'delta_cap':0.2},'player_skins':{}}
-        if early_scene==2:
-            scenes[str(sid)]['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (1,2)}
+        if early_scene in (1,2):
+            scenes[str(sid)]['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in ((1,2,3) if early_scene==1 else (1,2))}
         if sid==17:scenes[str(sid)]['exit_cells']=[i for i in range(len(layout['cells'])) if logical[18+i*6]==1]
     attack=source_rules()
     players=((3,10),(4,6),(9,7),(5,4))
@@ -425,7 +425,7 @@ if __name__=='__main__':
     parser.add_argument('--six',action='store_true')
     parser.add_argument('--may-five',action='store_true')
     parser.add_argument('--july-five',action='store_true')
-    parser.add_argument("--early-scene",type=int,choices=(2,3))
+    parser.add_argument("--early-scene",type=int,choices=(1,2,3))
     args=parser.parse_args()
     if args.early_scene: export(early_scene=args.early_scene)
     elif args.winter: export(winter=args.winter)

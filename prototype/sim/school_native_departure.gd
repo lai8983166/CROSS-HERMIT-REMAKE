@@ -1,7 +1,10 @@
 extends RefCounted
 ## Read the selected early-April sortie from a version-7 original school save.
-const SCENE := {"scene_id":3,"configuration_hex":"03000000000114045b0000000000000514050a0f0101010b0b0b00000000000000000000000000000000","script_sha256":"b119aa40130d837edd43e9b67c2d0e9d7f186004daa596f43e1f3f7c6f06c5cb"}
-const TWO_SCENE := {"scene_id":2,"configuration_hex":"020000000001145b1000000000000005140a0f140101010f0f0f01020300000000000000000000000000","script_sha256":"810950ba5b22f2bc4a65654d47d4389986892deec5f9dc403bcbfb133606b81c"}
+const SCENES := {
+	1:{"scene_id":1,"configuration_hex":"010000000001141f0e00000000000005ff0000000101010b0b0b00000000000000000000000000000000","script_sha256":"69b81351612650da1369c9597b80ec59610fab9f6e43a91a90c496b302475f72"},
+	2:{"scene_id":2,"configuration_hex":"020000000001145b1000000000000005140a0f140101010f0f0f01020300000000000000000000000000","script_sha256":"810950ba5b22f2bc4a65654d47d4389986892deec5f9dc403bcbfb133606b81c"},
+	3:{"scene_id":3,"configuration_hex":"03000000000114045b0000000000000514050a0f0101010b0b0b00000000000000000000000000000000","script_sha256":"b119aa40130d837edd43e9b67c2d0e9d7f186004daa596f43e1f3f7c6f06c5cb"}
+}
 const BASE := 0x7a50e8
 
 static func load_save(path: String) -> Dictionary:
@@ -18,7 +21,7 @@ static func decode(raw: PackedByteArray) -> Dictionary:
 		if i<44 or i>=48:checksum+=raw[i] if raw[i]<128 else raw[i]-256
 	if checksum!=raw.decode_s32(44):return {}
 	var week := raw.decode_s16(0x1a8)
-	if week not in [2,3] or raw.decode_s16(0x1a6)!=4 or raw.decode_s16(0x7aab16-BASE)!=week:return {}
+	if not SCENES.has(week) or raw.decode_s16(0x1a6)!=4 or raw.decode_s16(0x7aab16-BASE)!=week:return {}
 	if raw[0x7a55fc-BASE+week]!=1 or raw.decode_s16(0x7aab0a-BASE)==0:return {}
 	var ledger_count := raw.decode_s16(0x7a5b62-BASE)
 	if ledger_count<1 or ledger_count>80:return {}
@@ -87,7 +90,7 @@ static func decode(raw: PackedByteArray) -> Dictionary:
 			students.append(id)
 	if students.is_empty():return {}
 	return {"date":[4,week],"supported":true,"ready":true,"requested_states":[10,16],"round_cursor":1,
-		"native_sha256":source_sha,"initial_total":total,"initial_grade":grade,"participants":members,"growth":members.duplicate(true),"scene":SCENE if week==3 else TWO_SCENE,
+		"native_sha256":source_sha,"initial_total":total,"initial_grade":grade,"participants":members,"growth":members.duplicate(true),"scene":SCENES[week],
 		"prepared":{"adventure_id":week,"round_count":1,"round_index":0,
 			"rounds":[{"scene_id":week,"student_ids":students,"teacher_ids":teachers}]}}
 
@@ -112,8 +115,9 @@ static func score(handoff: Dictionary, facts: Dictionary) -> Dictionary:
 	var sid: int=handoff.prepared.adventure_id
 	var rules: Dictionary=tables.preparation.score.duplicate(true)
 	# Mission rows at 73BEF4h + mission*100h through 73BF1Bh + mission*100h.
-	rules.merge({"task_id":sid,"base_points":[36000,34000,32000,21000,14000] if sid==3 else [36000,30000,24000,18000,12000],
-		"unit_bonus":110 if sid==3 else 120,"time_bonuses":[115,110,105],"count_bonuses":[100,100,100,100,100,0]},true)
+	var bases := {1:[20000,20000,18000,15000,12500],2:[36000,30000,24000,18000,12000],3:[36000,34000,32000,21000,14000]}
+	rules.merge({"task_id":sid,"base_points":bases[sid],"unit_bonus":{1:0,2:120,3:110}[sid],
+		"time_bonuses":[0,0,0] if sid==1 else [115,110,105],"count_bonuses":[100,100,100,100,100,0]},true)
 	var characters := []
 	for i in range(facts.units.size()):
 		var member: Dictionary=handoff.participants[i]
