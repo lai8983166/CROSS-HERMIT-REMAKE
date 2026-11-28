@@ -140,3 +140,5 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 | school-06-5.sav | 198356 | cd970a58c3eb558008d0e1699e1179fabfc1cec5ad4e6625d99ddbfff33b798c |
 
 六月第 4 周的 35 人在校名册和 17 人教师名册已包含一月目标班级所需的全部 19 名学生与 5 名教师。五班当前编排均与目标不同。指令转换器的 --inspect-school 与 --school-sha256 参数可列出每班待调整的人员及位置。
+
+原版六月第 5 周冒险 17 验证了客体按指定时钟采样。观察器在原版时钟恰为 4400 时读取 81 个工作槽、20 人的选择及待处理指令状态，并按原 46FC20 读取视口与角色点击位置。该样本 15466 字节，SHA-256 为 5bf4abfe4f80956a20e0f6c35405865a3862b167f6d1d9fdbb1b1e5be92a0ff3，文件名为 battle-06-5-17-clock4400.json。
