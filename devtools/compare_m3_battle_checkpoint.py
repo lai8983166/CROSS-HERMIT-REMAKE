@@ -44,8 +44,12 @@ def main():
     observations = []
     for path in args.observations:
         raw = path.read_bytes()
-        sample = json.loads(raw)
-        observations.append((sample["elapsed"], hashlib.sha256(raw).hexdigest(), sample))
+        samples = raw.splitlines(keepends=True) if path.suffix.lower()==".jsonl" else [raw]
+        if not samples:
+            parser.error(f"No original observations in {path}")
+        for entry in samples:
+            sample = json.loads(entry)
+            observations.append((sample["elapsed"], hashlib.sha256(entry).hexdigest(), sample))
     if len({row[0] for row in observations}) != len(observations):
         raise ValueError("Repeated clock among original observations")
     for index, (clock, digest, sample) in enumerate(sorted(observations), 1):

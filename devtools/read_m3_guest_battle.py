@@ -159,7 +159,11 @@ if __name__=='__main__':
     parser.add_argument('--departure-sha256', help='verify the last original school save exported by this guest')
     parser.add_argument('--commands',action='store_true',help='record selected students, movement goals and pending commands')
     parser.add_argument("--at-clock",type=int,help="wait in the guest for this exact tactical clock")
+    parser.add_argument("--clock-series",type=int,nargs="+",help="capture party slots at successive command clocks into a new JSONL file")
     args=parser.parse_args()
+    if args.clock_series and (args.at_clock is not None or args.commands or not args.departure_sha256
+            or min(args.clock_series)<0 or sorted(set(args.clock_series))!=args.clock_series):
+        parser.error("a clock series requires a departure hash and strictly increasing nonnegative clocks")
     if args.at_clock is not None and args.at_clock<0:parser.error("clock must be nonnegative")
     game=root/'project/.venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/CROSS HERMIT.EXE'
     output=root/'m3-battle-sample.json'
@@ -167,6 +171,16 @@ if __name__=='__main__':
         digest=hashlib.sha256((root/'m3-export.sav').read_bytes()).hexdigest()
         if digest!=args.departure_sha256:
             raise ValueError('Guest school checkpoint differs from the requested departure')
+    if args.clock_series:
+        series=root/f"m3-party-{args.departure_sha256}-{args.clock_series[0]}.jsonl"
+        with series.open("x",encoding="utf8") as stream:
+            for clock in args.clock_series:
+                sample=observe(args.pid,args.scene,game,at_clock=clock)
+                sample["exported_school_sha256"]=digest
+                sample["units"]=[u for u in sample["units"] if u["slot"]<20]
+                stream.write(json.dumps(sample,separators=(",",":"))+"\n")
+                stream.flush()
+        sys.exit(0)
     sample=observe(args.pid,args.scene,game,args.commands,args.at_clock)
     if args.departure_sha256:
         sample['exported_school_sha256']=digest

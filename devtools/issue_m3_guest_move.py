@@ -116,12 +116,13 @@ def main():
             point=pixel
             break
     else:raise ValueError(f"Original hover did not resolve requested destination {destination}")
+    if selected(hovered)!=[args.slot]:raise ValueError("Student selection changed while locating the target")
     click(point,True)
     after=state()
     receipt={"scene":args.scene,"date":after["date"],"departure_sha256":args.save_sha256,
              "actor_slot":args.slot,"role":args.role,"target_cell":destination,"target_slot":args.target_slot,"screen":point,
-             "cursor_before_order":cursor,"selected_at":chosen["elapsed"],"before_click":moved["elapsed"],"after_click":after["elapsed"],
-             "before":next(r for r in moved["command_state"] if r["slot"]==args.slot),
+             "cursor_before_order":cursor,"selected_at":chosen["elapsed"],"before_click":hovered["elapsed"],"after_click":after["elapsed"],
+             "before":next(r for r in hovered["command_state"] if r["slot"]==args.slot),
              "after":next(r for r in after["command_state"] if r["slot"]==args.slot)}
     packet=receipt["after"]["first_pending_command"]
     receipt["order_evidence"]="unobserved"
