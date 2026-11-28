@@ -173,6 +173,24 @@ static func join_november(before: Dictionary, chapter: int) -> Dictionary:
 	return Return._result(after,after.phase)
 
 
+static func join_chapter309(before: Dictionary, choice: int) -> Dictionary:
+	var rules := Return._rules()
+	var school: Dictionary=before.school
+	if choice not in [0,1] or before.get("phase")!="sortie_settled" or [school.month,school.week]!=[12,1] or school.student_count!=17 or school.lecture_work_fields!=[3,24,31,0] or school.adventure_gate!=1 or school.lecture_active!=1:
+		return {"supported":false,"reason":"outside_chapter309_join"}
+	var reason := Return.validate_planning_roster(before,rules)
+	if not reason.is_empty():return {"supported":false,"reason":reason}
+	var data := YearLoop._source(12,2)
+	if data.is_empty():return {"supported":false,"reason":"invalid_chapter309_source"}
+	var after := before.duplicate(true)
+	for index in ([0,1] if choice==0 else [2]):
+		var source: Dictionary=data.joins[index]
+		Return._append_student(after,source,rules)
+		after.school.relationships.append_array(source.join_relationships)
+	after.phase="chapter309_joined"
+	return Return._result(after,after.phase)
+
+
 static func begin_story(before: Dictionary) -> Dictionary:
 	var rules := Return._rules()
 	if rules.is_empty(): return {"supported":false,"reason":"invalid_sortie_week_sources"}
@@ -190,7 +208,8 @@ static func next_week(before: Dictionary) -> Dictionary:
 	var course: bool = before.get("phase")=="courses_confirmed"
 	var phase := "courses_confirmed" if course else "sortie_settled"
 	if before.get("school") is Dictionary:
-		if [before.school.month,before.school.week]==[11,3]:phase="chapter074_joined"
+		if [before.school.month,before.school.week]==[12,1]:phase="chapter309_joined"
+		elif [before.school.month,before.school.week]==[11,3]:phase="chapter074_joined"
 		elif [before.school.month,before.school.week]==[9,4]:phase="chapter054_joined"
 		elif before["school"].get("month")==7 and before["school"].get("week")==4:phase="chapter304_joined"
 		elif before["school"].get("month")==6 and before["school"].get("week")!=5:
@@ -479,6 +498,9 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 		elif school.week not in [1,2,5] or phase!="courses_confirmed" or school.get("adventure_gate")!=0:
 			return "outside_september_course_return"
 	if school.get("month")==10 and (school.week==1 and phase=="courses_confirmed" or first_week==2 and school.week in [1,2]):
+		return Return.validate_planning_roster(before,rules)
+	if [school.month,school.week]==[12,1] and first_week==1:
+		if phase!="chapter309_joined" or school.student_count not in [18,19] or school.lecture_work_fields!=[3,24,31,0] or school.adventure_gate!=1 or school.lecture_active!=1:return "outside_chapter309_join"
 		return Return.validate_planning_roster(before,rules)
 	if first_week==1 and YearLoop.has_departure(school.month,school.week) and phase=="courses_confirmed" and school.adventure_gate==0:
 		return Return.validate_planning_roster(before,rules)

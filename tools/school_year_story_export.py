@@ -33,6 +33,7 @@ def build(counts=COUNTS, dates=ARRIVALS):
             for event in effects:
                 departure = {71:2, 76:4}.get(chapter)
                 assert (event['opcode'] in (91, 151) or
+                        (chapter == 309 and event['opcode'] == 144) or
                         (chapter == 69 and event['opcode'] == 153 and event['operands'] == [1, 6, 0]) or
                         (departure is not None and event == {'opcode':145,'offset':20,'operands':[departure]}))
             sections.append({'chapter': chapter, 'effects': effects})

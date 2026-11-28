@@ -67,7 +67,8 @@ const SAVE_CONTEXTS := {
 	35:"school_playground_november_three",
 	36:"school_playground_mandatory_forty_one",
 	37:"school_playground_november_five",
-	38:"school_playground_december_one"
+	38:"school_playground_december_one",
+	39:"school_playground_mandatory_thirty_one"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
@@ -205,7 +206,7 @@ func execute(command: Variant) -> Dictionary:
 		return _failure("invalid_command")
 	if _commands.size() >= (MAX_COMMANDS if _postbattle==null else POST_MAX_COMMANDS):
 		return _failure("save_command_limit")
-	if _postbattle!=null and command["op"] not in ["course_story","sortie_finish","post_next","post_prev","post_skip","post_school","return_move"]+Postbattle.PLAN_OPS:
+	if _postbattle!=null and command["op"] not in ["course_story","sortie_finish","post_next","post_prev","post_skip","post_choice","post_school","return_move"]+Postbattle.PLAN_OPS:
 		return _failure("postbattle_locks_departure")
 	if _story_cursor >= 0 and command["op"] in SCHOOL_OPS:
 		return _failure("story_locks_school")
@@ -227,7 +228,7 @@ func _dispatch(command: Dictionary) -> Dictionary:
 			var begun := next.begin(context,replayed["receipt"],_school_entry["after"]["participants"],_school_entry["after"]["flags"])
 			if not begun["supported"]: return begun
 			_postbattle=next;return {"supported":true,"status":"battle_committed_once"}
-		"course_story","sortie_finish","post_next","post_prev","post_skip","post_school","return_move",\
+		"course_story","sortie_finish","post_next","post_prev","post_skip","post_choice","post_school","return_move",\
 		"return_plan","return_job","return_mode","return_course","return_select","return_settle","return_depart":
 			return _failure("postbattle_not_started") if _postbattle==null else _postbattle.execute(command)
 		"move":
@@ -286,6 +287,9 @@ static func _valid_command(command: Dictionary, departure_date: Array = [], scen
 		"return_course":
 			keys=["op","group","course"]
 			if not _integer(command.get("group"),0,4) or not _integer(command.get("course"),1,100):return false
+		"post_choice":
+			keys=["op","choice"]
+			if not _integer(command.get("choice"),0,1):return false
 		"return_job":
 			keys=["op","member","job"]
 			if not _integer(command.get("member"),1,44) or not _integer(command.get("job"),1,30):return false
@@ -651,6 +655,7 @@ func export_save() -> Dictionary:
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	if _postbattle.planning.get("committed_date")==[12,1]:return 39
 	if _postbattle.planning.get("committed_date")==[11,5]:return 38
 	if _november_four_planning() or _postbattle.planning.get("committed_date")==[11,4]:return 37
 	if _postbattle.planning.get("committed_date")==[11,3]:return 36
@@ -710,6 +715,10 @@ func _save_fingerprints(version: int) -> Dictionary:
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
+	if version>=39:
+		result["mandatory_thirty_one"]=Postbattle.Adventures.THIRTY_ONE_SHA
+		result["scene_thirty_one"]=Postbattle.SortieRecord.Sortie.THIRTY_ONE_SHA
+		result["december_two_story"]=Postbattle.SortieWeek.YearLoop.DECEMBER_TWO_SHA
 	if version>=38:
 		result["december_one_story"]=Postbattle.SortieWeek.YearLoop.DECEMBER_ONE_SHA
 	if version>=37:
@@ -846,7 +855,7 @@ func restore(payload: Variant) -> Dictionary:
 			return _failure("save_command_rejected")
 		if payload["version"]<6 and command is Dictionary and command.get("op") in Postbattle.PLAN_OPS:
 			return _failure("save_command_rejected")
-		if payload["version"]<5 and command is Dictionary and command.get("op") in ["battle_finish","post_next","post_prev","post_skip","post_school","return_move"]:
+		if payload["version"]<5 and command is Dictionary and command.get("op") in ["battle_finish","post_next","post_prev","post_skip","post_choice","post_school","return_move"]:
 			return _failure("save_command_rejected")
 		if legacy and (not command is Dictionary or command.get("op") not in SCHOOL_OPS):
 			return _failure("save_command_rejected")

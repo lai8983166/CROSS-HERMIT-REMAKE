@@ -213,7 +213,8 @@ func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) 
 	member_buttons.clear()
 	for unit in session.controlled_units():
 		var identity: int = unit["character_id"]
-		var button := _button("",func(): session.select(identity); _refresh())
+		var command_id: int=session.unit_key(unit)
+		var button := _button("",func(): session.select(command_id); _refresh())
 		button.toggle_mode = true; button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.custom_minimum_size.y = 54; roster.add_child(button)
 		member_buttons[identity] = button

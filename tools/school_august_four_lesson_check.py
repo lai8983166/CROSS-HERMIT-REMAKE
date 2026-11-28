@@ -68,12 +68,12 @@ class LessonCheck(CourseConfirmationEmulator):
         expected_ids = [3,4,9,5,8,6,1,2,16,17,13]
         if date == (9, 5):
             expected_ids += [14,15,11]
-        elif date in ((11, 3), (11, 4), (11, 5)):
+        elif date in ((11, 3), (11, 4), (11, 5), (12, 1)):
             expected_ids.remove(2)
             expected_ids += [14,15,11,18,32]
-            if date[1] >= 4:
+            if date >= (11, 4):
                 expected_ids += [2,7,28]
-            if date == (11, 5):
+            if date >= (11, 5):
                 expected_ids.remove(4)
         elif date[0] == 10 and 1 <= date[1] <= 5 or date in [(11, 1),(11, 2)]:
             expected_ids += [14,15,11,18,32]
@@ -145,7 +145,7 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     lessons = summary['lessons'] if round_data else summary
     reported = {row['character_id']:row for row in after['growth']}
     seed = summary['growth_seed'] if round_data else summary['declared_clock_seed']
-    full_dispatch = not round_data or before['school']['week']==5 or date in ([9,3],[9,4],[11,3])
+    full_dispatch = not round_data or before['school']['week']==5 or date in ([9,3],[9,4],[11,3],[12,1])
     if round_data and not full_dispatch:
         prefix = len(summary['learning_draws'])-len(lessons['learning_draws'])
         for draw in summary['learning_draws'][:prefix]:

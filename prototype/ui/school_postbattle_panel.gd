@@ -127,6 +127,15 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	for container in [roster,assignments,plans]:
 		for child in container.get_children():
 			container.remove_child(child);child.queue_free()
+	if phase=="chapter309_choice":
+		heading.text=date+"　｜　战后剧情"
+		speaker.text=view.page.speaker
+		dialogue.text=view.page.text
+		progress.text=""
+		for i in range(view.choice_labels.size()):
+			var button := _button(view.choice_labels[i],func():command.emit({"op":"post_choice","choice":i}))
+			button.name="post_choice_%d" % i
+			plans.add_child(button)
 	if returned:
 		for profile in school["member_profiles"]:
 			var id: int=profile["member_id"]
@@ -243,12 +252,12 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[12,1]
+	var planning_only: bool=[school["month"],school["week"]]==[12,2]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
 	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
 	if planning_only:
-		dialogue.text="12 月第 1 周已返校，本周必修冒险 31，可调整出击编班。"
+		dialogue.text="12 月第 2 周已返校，可调整师生编班。"
 		progress.text="本周可调整学校安排并保存进度。"
 	elif school.month==9 and school.week in [1,2,5] or school.month==10 or (school.month==11 and school.week in [1,2,4,5]):
 		dialogue.text="核对五个班的课表后，确认本周授课即可结算并进入下周剧情。"
@@ -258,7 +267,7 @@ func _show_plan(view: Dictionary) -> void:
 	elif school.month==8 and school.week==1:
 		dialogue.text="确认四个班的课程后，即可结算并进入下周剧情。"
 		progress.text="本周可重新排课并保存。"
-	elif mandatory and school["month"] in [6,7,8,9,11]:
+	elif mandatory and school["month"] in [6,7,8,9,11,12]:
 		dialogue.text="%d 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [school["month"],school["week"],school["lecture_work_fields"][2]]
 	elif mandatory:
 		dialogue.text="奎丝忒和帕佩修已加入。第4周为必修冒险7，确认已保存的出击编班后即可进入战场。"

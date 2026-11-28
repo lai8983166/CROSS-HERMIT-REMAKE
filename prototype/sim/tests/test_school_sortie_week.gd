@@ -277,7 +277,7 @@ func test_june_registration_and_compulsory_boot_after_each_may_week_five_result(
 func _june_week_two(june: Dictionary, ledger: Dictionary) -> void:
 	var story := Calendar.story(1,6)
 	assert_true(story["supported"])
-	assert_false(Calendar.story(1,12)["supported"])
+	assert_false(Calendar.story(2,12)["supported"])
 	assert_eq(story["pre_week_join_page"],81)
 	assert_eq([story["pre_week"][80]["chapter"],story["pre_week"][81]["chapter"]],[35,36])
 	assert_eq([story["week_start"][78]["chapter"],story["week_start"][79]["chapter"]],[37,38])
@@ -589,7 +589,7 @@ func _july_two_and_three(july: Dictionary, ledger: Dictionary) -> void:
 				assert_eq(bundle["school"]["adventure_gate"],1)
 				assert_eq(bundle["school"]["lecture_work_fields"],[3,8,9,0])
 				assert_eq(bundle["newly_dated_adventures"].map(func(r):return r["id"]),[9])
-				assert_false(Calendar.story(1,12)["supported"])
+				assert_false(Calendar.story(2,12)["supported"])
 				if selection==18:_july_week_four(bundle,opening)
 
 
@@ -879,7 +879,7 @@ func _august_week_four(school: Dictionary, ledger: Dictionary) -> void:
 		var list:=Courses.list_courses(moved.after,4)
 		assert_true(list.supported,str(list.get("reason")))
 		if list.supported:assert_true(list.courses[0].any(func(row):return row[1]==33))
-	assert_false(Calendar.story(1,12).supported)
+	assert_false(Calendar.story(2,12).supported)
 	assert_false(Calendar.next_week(bundle).supported)
 
 
@@ -945,3 +945,17 @@ func test_october_rollover_routes_and_first_course_week() -> void:
 	assert_eq(second.week_start.size(),46)
 	assert_eq(second.week_start[0].chapter,60)
 	assert_eq(second.date_card.image,"res://assets/school_story/tc1002.png")
+
+func test_december_one_story_stops_at_the_original_decision() -> void:
+	var story := Calendar.story(1,12)
+	assert_true(story.supported)
+	if not story.supported:return
+	assert_eq(story.pre_week.size(),29)
+	assert_eq(story.choice_labels.size(),2)
+	assert_eq(story.pre_week[-1].text_indices, [46])
+	assert_eq(story.choice_pages[0][0].text_indices, [49])
+	assert_eq(story.choice_pages[0][-1].text_indices, [91,92])
+	assert_eq(story.choice_pages[1][0].text_indices, [93,94])
+	assert_eq(story.choice_pages[1][-1].text_indices, [140,141])
+	assert_eq(story.week_start,[])
+	assert_eq(story.school_entry,[])

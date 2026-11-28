@@ -74,3 +74,16 @@ Chapter071 共 205 条文本，分为 152 页。末尾音乐字段为 2、1，�
 十二月第 1 周学校锁定必修冒险 31，玩家可以编班和保存。当前里程碑止于这次返校。用 `python -m tools.school_december_one` 可重新导出两章、三段路由及日期卡。用 Godot 无窗口运行 `devtools/verify_december_one.gd`，传入固定 v37 和新的输出文件，可重建 v38；单独传入 v38 会重放操作、核对返校状态并验证规则篡改拒绝。生成时的临时 `.settlement.json` 可交给 `python -m tools.school_august_four_lesson_check` 复核原版授课及确认函数。
 
 本段固定课表为 38、18、25、29、33。9 人出勤，新增 1,200 分，累计 2,875,258 分。授课和确认函数逐项复核 17 人的职业与履历、168 次关系调用和 506 个关系值。另将第一班改由教师 101 带班，实测课程 9 经面板确认后按原函数结算。[存档身份和验收数据](../analysis/school-december-one-acceptance.json)。
+
+
+## 十二月第 1 周必修冒险 31 与第 2 周返校
+
+从固定 v38 读档，将待命的罗沙丽亚移入第一班第二个学生位置。五名教师带十名学生出击。MAP31 的 96 × 96 格地图含 97 个撤退格；玩家可以分别指挥三名葛斯貝布洛学生移动或停下。三人全部到达且己方无人倒下获得第一档。原版终局函数还区分己方伤亡、部分护送者阵亡、三人全部阵亡以及参战学生全队倒下。战斗沿用重制版移动、AI 和时钟调度。
+
+这份[胜利记录](../prototype/sim/tests/mandatory_thirty_one_victory_trace.json)用 250 条操作突破城门，在第 6,972 个模拟 tick 完成护送。十名参战学生全部生还，战果增加 689,059，累计 3,564,317。法娜（5）获得 MVP，道具奖励为 188、134、122、104、21。原版函数对同一组战斗事实核对了分数、成长、物品、履历、关系与 MVP。
+
+战后的 CH003 指向 Chapter309。快进停在原文提问处，玩家选择答复后继续。第一项接收派洛斯（20）和昱荻（21），第二项接收加德摩斯（19）。入队发生在本周结算前。两条路线都显示十二月第 2 周日期卡，经职务室回校，分别有 19 或 18 名活动学生及 6 名教师。瑟希莉丝（4）的离队记录继续保留。冒险 31 已消费，新入队学生可以参与编班。
+
+用 Godot 无窗口运行 `devtools/verify_thirty_one_campaign.gd`，依次传入固定 v38、胜利记录和空输出目录，可重建出击待战、战后选择及第一选项返校三个存档。在新进程中只传一个存档路径即可重放；选择处读回后走第二项。正式保留的返校存档及摘要见[本段验收记录](../analysis/december-thirty-one-acceptance.json)。
+
+用 `python -m devtools.verify_november_sortie_result` 传入生成的 `settled.json` 和 `submission.json` 可重做原版战果对照。用 `devtools/verify_december_two_return.gd` 传入 `settled.json`、本段验收记录和临时观察结果路径，可复核两个选项的逐页、跳过和入队时点。随后用 `python -m devtools.verify_december_two_joins` 对照原版入队函数。

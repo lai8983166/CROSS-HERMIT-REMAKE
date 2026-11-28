@@ -67,11 +67,11 @@ static func _advance(session: Combat, target: int) -> bool:
 	return session._trace_clock==target
 
 
-static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false, june_two := false, june_three := false, june_four := false, june_five := false, july_eighteen := false, july_nine := false, july_fourteen := false, july_five := false, august_twenty := false, august_twenty_one := false, august_thirty_five := false, september_twenty_two := false, september_twenty_four := false, november_forty_one := false) -> bool:
+static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false, june_two := false, june_three := false, june_four := false, june_five := false, july_eighteen := false, july_nine := false, july_fourteen := false, july_five := false, august_twenty := false, august_twenty_one := false, august_thirty_five := false, september_twenty_two := false, september_twenty_four := false, november_forty_one := false, december_thirty_one := false) -> bool:
 	if not trace is Dictionary or trace.size()!=4 or trace.get("version")!=1 or trace.get("overflow")!=false \
 			or not Roles._bounded(trace.get("ticks"),0,MAX_SORTIE_TICKS if sortie else MAX_TICKS) or not trace.get("commands") is Array \
 			or trace["commands"].size()>MAX_COMMANDS: return false
-	var full_roster := august_thirty_five or september_twenty_two or september_twenty_four or november_forty_one
+	var full_roster := august_thirty_five or september_twenty_two or september_twenty_four or november_forty_one or december_thirty_one
 	var august := august_twenty or august_twenty_one or full_roster
 	var july_battle := july_eighteen or july_nine or july_fourteen or august
 	var wide_june := june_three or june_four
@@ -83,6 +83,9 @@ static func valid_trace(trace: Variant, sortie := false, seven := false, may_fiv
 		if row.size()!=[0,3,2,5,4,3,2,5,5,5,4,4][row[1]]: return false
 		for value in row:
 			if not value is int: return false
+		if december_thirty_one:
+			if not _valid_december_command(row):return false
+			continue
 		if row[1] in [10,11] and (row[2]!=(5 if row[1]==10 else 4) or not Roles._bounded(row[3],1000,1249)):return false
 		if row[1]==1 and (september_twenty_two or september_twenty_four or november_forty_one) and row[2]!=1:return false
 		if row[1]==1 and (august_twenty_one or august_thirty_five or row[2] not in [0,1]): return false
@@ -93,6 +96,20 @@ static func valid_trace(trace: Variant, sortie := false, seven := false, may_fiv
 		if row[1]==4 and not Roles._bounded(row[3],1000,1249):
 			if not (july_battle or june_one or june_two or wide_june) or row[2] not in ([8,9] if july_battle else [8]) or row[3] not in ([1,3,4,5,6,8,9,11,13,14,15,16,17,18,32] if november_forty_one else [1,2,3,4,5,6,8,9,13,16,17] if full_roster else [1,2,3,4,5,6,8,9,16,17] if august else [1,2,3,4,5,6,8,9] if july_battle or june_two or wide_june else [1,3,4,5,6,8,9]):return false
 	return true
+
+
+static func _valid_december_command(row: Array) -> bool:
+	const STUDENTS := [1,2,3,5,6,7,8,9,11,13,14,15,16,17,18,28,32]
+	const ESCORTS := [1237,1236,1235]
+	match row[1]:
+		1:return row[2]==1
+		3:return (row[2] in STUDENTS or row[2] in ESCORTS) and Roles._bounded(row[3],0,95) and Roles._bounded(row[4],0,95)
+		4:return row[2] in STUDENTS and (Roles._bounded(row[3],1166,1249) or (row[2] in [7,8,9] and row[3] in STUDENTS))
+		5:return row[2] in STUDENTS or row[2] in ESCORTS
+		6:return true
+		7,8,9:return row[2]==(9 if row[1]==9 else 3) and Roles._bounded(row[3],0,95) and Roles._bounded(row[4],0,95)
+		10:return row[2]==5 and Roles._bounded(row[3],1166,1249)
+	return false
 
 
 static func _failure(reason: String) -> Dictionary:

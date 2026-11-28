@@ -19,6 +19,9 @@ var _week_pages: Array = []
 var _date_card: Dictionary = {}
 var _school_pages: Array = []
 var _pre_week_join_page := -1
+var _choice_labels: Array = []
+var _choice_pages: Array = []
+var _choice := -1
 var revision := 0
 var result_summary: Dictionary = {}
 var planning: Dictionary = {}
@@ -73,6 +76,9 @@ func finish_sortie(trace: Dictionary) -> Dictionary:
 
 func _set_dated_story(story: Dictionary) -> void:
 	_pre_week_join_page=story.get("pre_week_join_page",-1)
+	_choice_labels=story.get("choice_labels",[])
+	_choice_pages=story.get("choice_pages",[])
+	_choice=-1
 	_post_pages=story["pre_week"]
 	_week_pages=story["week_start"]
 	_date_card=story.get("date_card",{})
@@ -87,6 +93,15 @@ func course_continued() -> bool:
 
 func execute(command: Dictionary) -> Dictionary:
 	var op: String = command["op"]
+	if op=="post_choice":
+		if phase!="chapter309_choice" or typeof(command.get("choice"))!=TYPE_INT or command.choice not in [0,1]:
+			return _failure("invalid_chapter309_choice")
+		_choice=command.choice
+		pages=_choice_pages[_choice]
+		cursor=0
+		phase="post_story"
+		revision+=1
+		return {"supported":true}
 	if op=="course_story":
 		if phase!="course_result" or bundle.get("phase")!="courses_confirmed":
 			return _failure("course_not_confirmed")
@@ -158,7 +173,23 @@ func execute(command: Dictionary) -> Dictionary:
 		var joined := SortieWeek.join_october_student(bundle,233)
 		if not joined.supported:return joined
 		bundle=joined.after
+	if phase=="post_story" and not _choice_labels.is_empty() and _choice==-1 and next>=pages.size()-1:
+		cursor=pages.size()-1
+		phase="chapter309_choice"
+		revision+=1
+		return {"supported":true}
 	if next==pages.size():
+		if phase=="post_story" and not _choice_labels.is_empty():
+			var joined := SortieWeek.join_chapter309(bundle,_choice)
+			if not joined.supported:return joined
+			var advanced := SortieWeek.next_week(joined.after)
+			if not advanced.supported:return advanced
+			bundle=advanced.after
+			pages=[]
+			cursor=0
+			phase="new_week_story"
+			revision+=1
+			return {"supported":true}
 		if phase=="school_entry_story": return _return_to_school()
 		if phase=="post_story":
 			var week := SortieWeek.next_week(bundle) if planning.has("sortie_summary") or course_continued() else Return.next_week(bundle)
@@ -198,11 +229,12 @@ func _return_to_school() -> Dictionary:
 
 func snapshot() -> Dictionary:
 	var result := {"phase":phase,"cursor":cursor,"total":pages.size(),"bundle":bundle.duplicate(true),
-		"page":pages[cursor].duplicate(true) if not pages.is_empty() and phase in ["post_story","new_week_story","school_entry_story"] else {},
+		"page":pages[cursor].duplicate(true) if not pages.is_empty() and phase in ["post_story","new_week_story","school_entry_story","chapter309_choice"] else {},
 		"result_summary":result_summary.duplicate(true),"revision":revision}
 	if phase=="new_week_story" and not _date_card.is_empty():
 		result["date_card"]=_date_card.duplicate(true)
 		if not _week_pages.is_empty():result["story_after_card"]=true
+	if phase=="chapter309_choice":result["choice_labels"]=_choice_labels.duplicate()
 	# Older v5 snapshots retain their exact shape until an explicit new command.
 	if not planning.is_empty():result["planning"]=planning.duplicate(true)
 	return result
@@ -228,12 +260,12 @@ func _plan(command: Dictionary) -> Dictionary:
 		"return_depart":result=Adventures.submit(bundle,planning["ledger"])
 	if not result["supported"]:return result
 	if result["after"]==bundle:return {"supported":true,"status":"duplicate"}
-	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"] in [6,7,8,9,10,11]) and op in ["return_settle","return_depart"]:
+	if (bundle["school"]["week"] in [2,3,4,5] or bundle["school"]["month"] in [6,7,8,9,10,11,12]) and op in ["return_settle","return_depart"]:
 		# Replace last week's display summary only when the new work is committed.
 		# Keep its starting ledger for validating the battle and next school's entry.
 		var opening: Dictionary=planning["ledger"]
 		planning={"opening_ledger":opening,"ledger":opening,"adventure_catalog_complete":true}
-		if bundle["school"]["month"] in [6,7,8,9,10,11]:
+		if bundle["school"]["month"] in [6,7,8,9,10,11,12]:
 			planning["committed_date"]=[bundle["school"]["month"],bundle["school"]["week"]]
 		elif bundle["school"]["week"]>=3:
 			planning["committed_week"]=bundle["school"]["week"]

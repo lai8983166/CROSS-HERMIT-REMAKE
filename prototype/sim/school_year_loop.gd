@@ -14,6 +14,9 @@ const NOVEMBER_FIVE_SHA := "d26b6a0ac4ba24e9ddb47cada2b0147fb0f4d1b06e329d1ed859
 const DECEMBER_ONE_SHA := "2b1d8314ca688c0d559b44c0085de68ddd3399ef9ac901506290590ef57e77f1"
 
 
+const DECEMBER_TWO_SHA := "efbe777908b59b088c8945f1952a9b45f8a68cfd57f877bfaf586e2bbade2ed2"
+
+
 static func _source(month: int, arrival_week: int) -> Dictionary:
 	var path := PATH
 	var digest := SHA
@@ -26,17 +29,20 @@ static func _source(month: int, arrival_week: int) -> Dictionary:
 	if month==12 and arrival_week==1:
 		path="res://data/school_year_december_one.json"
 		digest=DECEMBER_ONE_SHA
+	if month==12 and arrival_week==2:
+		path="res://data/school_year_december_two.json"
+		digest=DECEMBER_TWO_SHA
 	var raw := FileAccess.get_file_as_string(path).replace("\r\n","\n")
 	if raw.sha256_text() != digest:return {}
 	return Roles._integers(JSON.parse_string(raw))
 
 
 static func has_departure(month: int, week: int) -> bool:
-	return (month==10 and week in range(2,6)) or (month==11 and week in [1,2,4,5])
+	return (month==10 and week in range(2,6)) or (month==11 and week in [1,2,4,5]) or [month,week]==[12,1]
 
 
 static func has_arrival(month: int, week: int) -> bool:
-	return (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3,5]) or [month,week]==[12,1]
+	return (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3,5]) or (month==12 and week in [1,2])
 
 
 static func story(month: int, week: int) -> Dictionary:
@@ -57,6 +63,12 @@ static func story(month: int, week: int) -> Dictionary:
 						break
 				if pages.is_empty():return {"supported":false,"reason":"missing_school_year_chapter"}
 			result[["pre_week","week_start","school_entry"][section]]=pages
+		if [month,week]==[12,1]:
+			var scene: Dictionary=data.scenes[0]
+			result.pre_week=scene.pages.filter(func(p):return p.text_indices[0]<47)
+			result.choice_labels=scene.choice_labels
+			result.choice_pages=[scene.pages.filter(func(p):return p.text_indices[0]>=49 and p.text_indices[0]<93),
+				scene.pages.filter(func(p):return p.text_indices[0]>=93)]
 		return result
 	return {"supported":false,"reason":"missing_school_year_route"}
 

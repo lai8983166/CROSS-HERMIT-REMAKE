@@ -12,6 +12,9 @@ const SEVEN_PATH := "res://assets/school_seven/catalog.json"
 const SEVEN_SHA := "1e7d03f2b4fdb7517f8e43cc8931121b02fc747e3b881f6f3fbf8b207f24873c"
 const Dungeon := preload("res://sim/school_fourteen_dungeon.gd")
 const TwentyOne := preload("res://sim/school_twenty_one_battle.gd")
+const ThirtyOne := preload("res://sim/school_thirty_one_battle.gd")
+const THIRTY_ONE_PATH := "res://assets/school_thirty_one/catalog.json"
+const THIRTY_ONE_SHA := "42ffb1e8f8dee950d07f0045f5c43b08ca5643d4a5c552a63551dbd5ea82f077"
 const FortyOne := preload("res://sim/school_forty_one_battle.gd")
 const FORTY_ONE_PATH := "res://assets/school_forty_one/catalog.json"
 const FORTY_ONE_SHA := "bb21789ba43bff052a5b40db274b409758203fd11ad7ce44265a15615ae736f4"
@@ -75,13 +78,14 @@ var weapon_distances := PackedByteArray()
 
 
 func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
-	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[11,3]]: return false
+	if handoff.get("date") not in [[5,1],[5,2],[5,3],[5,4],[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[11,3],[12,1]]: return false
+	var thirty_one: bool=handoff.date==[12,1]
 	var forty_one: bool=handoff.date==[11,3]
 	var twenty_four: bool=handoff["date"]==[9,4]
 	var twenty_two: bool=handoff["date"]==[9,3]
 	var thirty_five: bool=handoff["date"]==[8,5]
 	var twenty_one: bool=handoff["date"]==[8,3]
-	var august: bool=forty_one or twenty_four or twenty_two or thirty_five or twenty_one or handoff["date"]==[8,2]
+	var august: bool=thirty_one or forty_one or twenty_four or twenty_two or thirty_five or twenty_one or handoff["date"]==[8,2]
 	var twenty: bool=handoff["date"]==[8,2]
 	var august_training: bool=handoff["date"] in [[8,4],[8,5]]
 	var expanded_training: bool=handoff["date"]==[7,5] or august_training
@@ -97,30 +101,30 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	var four: bool=handoff["date"]==[6,1]
 	var may_five: bool=handoff["date"]==[5,5]
 	var seven: bool=handoff["date"]==[5,4]
-	if raw.is_empty():raw=FileAccess.get_file_as_string(FORTY_ONE_PATH if forty_one else TWENTY_FOUR_PATH if twenty_four else TWENTY_TWO_PATH if twenty_two else THIRTY_FIVE_PATH if thirty_five else TWENTY_ONE_PATH if twenty_one else TWENTY_PATH if twenty else FOURTEEN_PATH if fourteen else NINE_PATH if nine else EIGHTEEN_PATH if eighteen else THIRTEEN_PATH if thirteen else TEN_PATH if ten else SIX_PATH if six else FOUR_PATH if four else SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
-	if raw.sha256_text()!=(FORTY_ONE_SHA if forty_one else TWENTY_FOUR_SHA if twenty_four else TWENTY_TWO_SHA if twenty_two else THIRTY_FIVE_SHA if thirty_five else TWENTY_ONE_SHA if twenty_one else TWENTY_SHA if twenty else FOURTEEN_SHA if fourteen else NINE_SHA if nine else EIGHTEEN_SHA if eighteen else THIRTEEN_SHA if thirteen else TEN_SHA if ten else SIX_SHA if six else FOUR_SHA if four else SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
+	if raw.is_empty():raw=FileAccess.get_file_as_string(THIRTY_ONE_PATH if thirty_one else FORTY_ONE_PATH if forty_one else TWENTY_FOUR_PATH if twenty_four else TWENTY_TWO_PATH if twenty_two else THIRTY_FIVE_PATH if thirty_five else TWENTY_ONE_PATH if twenty_one else TWENTY_PATH if twenty else FOURTEEN_PATH if fourteen else NINE_PATH if nine else EIGHTEEN_PATH if eighteen else THIRTEEN_PATH if thirteen else TEN_PATH if ten else SIX_PATH if six else FOUR_PATH if four else SEVEN_PATH if seven else SOURCE_PATH).replace("\r\n","\n")
+	if raw.sha256_text()!=(THIRTY_ONE_SHA if thirty_one else FORTY_ONE_SHA if forty_one else TWENTY_FOUR_SHA if twenty_four else TWENTY_TWO_SHA if twenty_two else THIRTY_FIVE_SHA if thirty_five else TWENTY_ONE_SHA if twenty_one else TWENTY_SHA if twenty else FOURTEEN_SHA if fourteen else NINE_SHA if nine else EIGHTEEN_SHA if eighteen else THIRTEEN_SHA if thirteen else TEN_SHA if ten else SIX_SHA if six else FOUR_SHA if four else SEVEN_SHA if seven else SOURCE_SHA) or not handoff.get("supported",false) or not handoff.get("ready",false):return false
 	if not handoff.get("prepared") is Dictionary or handoff.get("requested_states")!=[10,16] or handoff.get("round_cursor")!=1:return false
 	var prepared: Dictionary=handoff["prepared"];var sid=prepared.get("adventure_id")
-	if sid not in ([41] if forty_one else [24] if twenty_four else [22] if twenty_two else [35] if thirty_five else [21] if twenty_one else [20] if twenty else [14] if fourteen else [9] if nine else [18] if eighteen else [17] if june_five else [13] if thirteen else [10] if ten else [6] if six else [4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
+	if sid not in ([31] if thirty_one else [41] if forty_one else [24] if twenty_four else [22] if twenty_two else [35] if thirty_five else [21] if twenty_one else [20] if twenty else [14] if fourteen else [9] if nine else [18] if eighteen else [17] if june_five else [13] if thirteen else [10] if ten else [6] if six else [4] if four else [7] if seven else [8,17]) or prepared.get("round_count")!=1 or prepared.get("round_index")!=0:return false
 	if not prepared.get("rounds") is Array or prepared["rounds"].size()!=1:return false
 	var round_data: Dictionary=prepared["rounds"][0]
 	var teachers=round_data.get("teacher_ids")
 	if round_data.get("scene_id")!=sid:return false
 	if may_five or four or six or ten or thirteen or eighteen or nine or fourteen or august or june_five:
-		if not teachers is Array or teachers.is_empty() or teachers.size()>(5 if august_training or twenty_two or twenty_four or forty_one else 4 if june_five or eighteen or nine or fourteen or august else 3):return false
+		if not teachers is Array or teachers.is_empty() or teachers.size()>(5 if august_training or twenty_two or twenty_four or forty_one or thirty_one else 4 if june_five or eighteen or nine or fourteen or august else 3):return false
 		for teacher in teachers:
-			if teacher not in ([101,110,115,116,118] if august_training or twenty_two or twenty_four or forty_one else [101,110,115,118] if june_five or eighteen or nine or fourteen or august else [101,110,115]) or teachers.count(teacher)!=1:return false
+			if teacher not in ([101,107,110,115,116,118] if thirty_one else [101,110,115,116,118] if august_training or twenty_two or twenty_four or forty_one else [101,110,115,118] if june_five or eighteen or nine or fourteen or august else [101,110,115]) or teachers.count(teacher)!=1:return false
 	elif teachers not in ([[101],[110],[101,110],[110,101]] if seven else [[101]]):return false
 	var ids: Array=round_data.get("student_ids",[])
-	if ids.is_empty() or ids.size()>(15 if forty_one else 11 if thirty_five or twenty_two or twenty_four else 10 if august or expanded_training else 8 if fourteen or nine or eighteen or june_five or six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
+	if ids.is_empty() or ids.size()>(17 if thirty_one else 15 if forty_one else 11 if thirty_five or twenty_two or twenty_four else 10 if august or expanded_training else 8 if fourteen or nine or eighteen or june_five or six or ten or thirteen else 7 if four else 6 if may_five else 5 if seven else 4) or not handoff.get("participants") is Array or not handoff.get("growth") is Array:return false
 	if ids.size()!=handoff["participants"].size() or ids.size()!=handoff["growth"].size():return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	var next_catalog: Dictionary=source["scenes"][str(sid)].duplicate(true)
 	if four or six or ten or thirteen or eighteen or nine or fourteen or august:source["attack_rules"]["bow189_hex"]=next_catalog["bow189_hex"]
 	if june_five and not _add_june_five_players(next_catalog,source):return false
-	if (expanded_training or august) and not forty_one and not _add_july_five_players(next_catalog,source):return false
+	if (expanded_training or august) and not (forty_one or thirty_one) and not _add_july_five_players(next_catalog,source):return false
 	if may_five and not _add_may_five_players(next_catalog,source):return false
-	var identity: Dictionary=Adventures.mission_rules(41).get("scene",{}) if forty_one else Adventures.twenty_four_rules().get("scene",{}) if twenty_four else Adventures.twenty_two_rules().get("scene",{}) if twenty_two else Adventures.thirty_five_rules().get("scene",{}) if thirty_five else Adventures.twenty_one_rules().get("scene",{}) if twenty_one else Adventures.twenty_rules().get("scene",{}) if twenty else Adventures.fourteen_rules().get("scene",{}) if fourteen else Adventures.nine_rules().get("scene",{}) if nine else Adventures.eighteen_rules().get("scene",{}) if eighteen else Adventures.thirteen_rules().get("scene",{}) if thirteen else Adventures.ten_rules().get("scene",{}) if ten else Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
+	var identity: Dictionary=Adventures.mission_rules(31).get("scene",{}) if thirty_one else Adventures.mission_rules(41).get("scene",{}) if forty_one else Adventures.twenty_four_rules().get("scene",{}) if twenty_four else Adventures.twenty_two_rules().get("scene",{}) if twenty_two else Adventures.thirty_five_rules().get("scene",{}) if thirty_five else Adventures.twenty_one_rules().get("scene",{}) if twenty_one else Adventures.twenty_rules().get("scene",{}) if twenty else Adventures.fourteen_rules().get("scene",{}) if fourteen else Adventures.nine_rules().get("scene",{}) if nine else Adventures.eighteen_rules().get("scene",{}) if eighteen else Adventures.thirteen_rules().get("scene",{}) if thirteen else Adventures.ten_rules().get("scene",{}) if ten else Adventures.six_rules().get("scene",{}) if six else Adventures.four_rules().get("scene",{}) if four else Adventures.seven_rules().get("scene",{}) if seven else Adventures.rules().get("scenes",{}).get(str(sid),{})
 	if identity.is_empty() or handoff.get("scene")!=identity:return false
 	var candidates: Array[Dictionary]=[];var seen := {}
 	for id in ids:
@@ -130,7 +134,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 		var p: Array=handoff["participants"].filter(func(v):return v.get("character_id")==id)
 		var g: Array=handoff["growth"].filter(func(v):return v.get("character_id")==id)
 		if p.size()!=1 or g.size()!=1:return false
-		var unit := PlayerUnits.project(p[0],g[0],source["attack_rules"],forty_one)
+		var unit := PlayerUnits.project(p[0],g[0],source["attack_rules"],forty_one,thirty_one)
 		if unit.is_empty():return false
 		unit.merge({"instance_id":id,"skin_key":next_catalog["player_skins"][str(id)],"controllable":true,"category":0,
 			"side":0,"source_state":1,"death_counted":false,"facing":"N","path":[],"destination":Vector2i(-1,-1),
@@ -146,7 +150,7 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 				clampi(int(job.decode_u16(12)-attr[6]-attr[3]*0.5),30,999)]
 			unit["recovery_clock"]=[0,0]
 		candidates.append(unit)
-	var width := 128 if fourteen or twenty_one or forty_one else 96 if sid in [7,10,13,17,24] else 64;var height := 192 if fourteen or twenty_one or forty_one else 144 if sid in [7,10,13,17,24] else 96
+	var width := 128 if fourteen or twenty_one or forty_one else 96 if sid in [7,10,13,17,24,31] else 64;var height := 192 if fourteen or twenty_one or forty_one else 144 if sid in [7,10,13,17,24] else 96
 	var blocked := {}
 	for actor in next_catalog["actors"]:
 		if actor["state"]==1:blocked[Vector2i(actor["cell"][0],actor["cell"][1])]=true
@@ -202,11 +206,14 @@ func open(handoff: Dictionary, _combat: Dictionary = {}, raw := "") -> bool:
 	scene_scripts=(next_catalog if (seven or four or six or ten or thirteen or eighteen or nine or fourteen or august) else rules["scenes"][str(sid)])["scripts"].duplicate(true);spawn_points=rules["scene17_repeat_rows"]
 	_opening_pages=_pages(1);_opening_index=0;_ending_phase="opening"
 	ready=true;selected_id=ids[0];reason="opening";rng.seed=20261115+sid;_placement_rotation=rotation
-	remaining_ticks=int(String(next_catalog["configuration_hex"]).hex_decode()[16])*3600 if thirteen or nine or twenty_two or forty_one else 36000 if four else 108000 if sid==8 else -1;_initial_enemies=enemies().size()
+	remaining_ticks=int(String(next_catalog["configuration_hex"]).hex_decode()[16])*3600 if thirteen or nine or twenty_two or forty_one or thirty_one else 36000 if four else 108000 if sid==8 else -1;_initial_enemies=enemies().size()
 	for id in ids:_battle_stats[id]={"character_id":id,"count_field_aa":0,"contribution_field_ac":0,"status_field_ae":0}
 	if thirty_five:
 		_ending_phase="active"
 		reason="ready"
+	if thirty_one:
+		siege=ThirtyOne.new()
+		siege.start(self)
 	if forty_one:
 		siege=FortyOne.new()
 		siege.start(self)
@@ -283,7 +290,7 @@ static func _add_may_five_players(scene: Dictionary, source: Dictionary) -> bool
 
 
 func _distance(a: Dictionary, b: Dictionary) -> int:
-	if scene_id in [20,21,22,24,35,41]:
+	if scene_id in [20,21,22,24,31,35,41]:
 		var delta: Vector2i=(a.cell-b.cell).abs()
 		if delta.x<=32 and delta.y<=32 and weapon_distances[delta.y*33+delta.x]!=255:
 			return weapon_distances[delta.y*33+delta.x]
@@ -291,14 +298,14 @@ func _distance(a: Dictionary, b: Dictionary) -> int:
 
 
 func _route_units(mover: Dictionary) -> Array:
-	if scene_id not in [20,21,22,24,35,41]:return units
+	if scene_id not in [20,21,22,24,31,35,41]:return units
 	# 47E02A resolves an occupied cell. 47E05A permits same-side
 	# traversal, and 47E0AD keeps full speed past a stationary gate.
 	return units.filter(func(u):return u.side!=mover.side)
 
 
 func _wait_for_occupant(mover: Dictionary, cell: Vector2i) -> bool:
-	if scene_id not in [20,21,22,24,35,41] or (frame/int(catalog.interaction.move_interval))%2==0:return false
+	if scene_id not in [20,21,22,24,31,35,41] or (frame/int(catalog.interaction.move_interval))%2==0:return false
 	for u in units:
 		if u.instance_id!=mover.instance_id and u.cell==cell and u.side==mover.side and u.limits.hp>0:
 			if mover.combat.movement_rate<=u.combat.movement_rate:return true
@@ -306,7 +313,7 @@ func _wait_for_occupant(mover: Dictionary, cell: Vector2i) -> bool:
 
 
 func _blocked(identity: int) -> Dictionary:
-	if scene_id not in [20,21,22,24,35,41]:return super._blocked(identity)
+	if scene_id not in [20,21,22,24,31,35,41]:return super._blocked(identity)
 	var mover:=find_unit(identity)
 	if mover.is_empty():return super._blocked(identity)
 	var blocked := {}
@@ -317,7 +324,7 @@ func _blocked(identity: int) -> Dictionary:
 
 func _attack_path(unit: Dictionary, target: Dictionary) -> Array[Vector2i]:
 	var reach: int=unit.combat.attack_range
-	var mask := weapon_masks[reach] if scene_id in [20,21,22,24,35,41] and reach<weapon_masks.size() else PackedByteArray()
+	var mask := weapon_masks[reach] if scene_id in [20,21,22,24,31,35,41] and reach<weapon_masks.size() else PackedByteArray()
 	return attack_paths.route(unit.cell,target.cell,reach,unit.movement_type,_route_units(unit),mask)
 
 
@@ -328,11 +335,11 @@ func _actor_unit(actor: Dictionary, cell: Vector2i) -> Dictionary:
 		"cell":cell,"from_cell":cell,"facing":"S","path":[],"destination":Vector2i(-1,-1),"move_started_frame":-100000,
 		"visual":"idle","visual_started_frame":frame,"target":-1,"dead_at":-1}
 	_apply_record_fields(unit,actor)
-	if scene_id in [4,6,9,10,13,14,18,20,21,22,24,35,41]:
+	if scene_id in [4,6,9,10,13,14,18,20,21,22,24,31,35,41]:
 		var record := String(actor["record_hex"]).hex_decode()
 		unit["recovery"]=[record.decode_u16(24),record.decode_u16(30)]
 		unit["recovery_clock"]=[0,0]
-	if scene_id in [20,21,22,24,41]:unit["patrol"]=String(actor["record_hex"]).hex_decode()[0xa2]
+	if scene_id in [20,21,22,24,31,41]:unit["patrol"]=String(actor["record_hex"]).hex_decode()[0xa2]
 	if actor.has("source_ai_request"):
 		unit["source_ai_request"]=actor["source_ai_request"].duplicate()
 		if scene_id==21:unit["patrol"]=unit["source_ai_request"][1]
@@ -376,7 +383,7 @@ func _guard_target(unit: Dictionary) -> int:
 				best=distance
 		return nearest
 	if scene_id==35:return -1 # TACTICSEXP: the training statues do not retaliate.
-	if scene_id in [21,24,41]:return siege.guard_target(self,unit)
+	if scene_id in [21,24,31,41]:return siege.guard_target(self,unit)
 	return super._guard_target(unit)
 
 
@@ -387,19 +394,19 @@ func find_unit(identity: int) -> Dictionary:
 
 
 func _update_captures() -> void:
-	if scene_id in [21,24,41]:siege.refresh_positions(self)
+	if scene_id in [21,24,31,41]:siege.refresh_positions(self)
 	for object in units:
 		if not _capture_role(object["character_id"]):continue
-		if scene_id in [9,14,20,21,22,24,41] and (object.source_state!=1 or object.limits.hp<=0):continue
+		if scene_id in [9,14,20,21,22,24,31,41] and (object.source_state!=1 or object.limits.hp<=0):continue
 		if object["capture_elapsed"]>=0:
 			object["capture_elapsed"]+=1
 			if object["capture_elapsed"]>=Progression.capture_transition_ticks(object["character_id"]):
 				object["side"]=object["capture_target"];object["capture_hold"]=Progression.capture_hold_limit(object["side"])
 				object["capture_elapsed"]=-1;object["capture_target"]=-1
-				if scene_id in [21,24,41]:siege.capture_candidates.clear()
+				if scene_id in [21,24,31,41]:siege.capture_candidates.clear()
 			continue
 		var candidate: int
-		if scene_id in [21,24,41] and siege.capture_candidates.has(object.instance_id):
+		if scene_id in [21,24,31,41] and siege.capture_candidates.has(object.instance_id):
 			candidate=siege.capture_candidates[object.instance_id]
 		else:
 			var counts := [];counts.resize(16);counts.fill(0)
@@ -408,7 +415,7 @@ func _update_captures() -> void:
 				var delta: Vector2i=(object["cell"]-unit["cell"]).abs()
 				if delta.x<=5 and delta.y<=5 and _capture_mask[(delta.y+5)*11+delta.x+5]!=0:counts[unit["side"]]=(counts[unit["side"]]+1)%256
 			candidate=Progression.capture_candidate(object["side"],counts)
-			if scene_id in [21,24,41]:siege.capture_candidates[object.instance_id]=candidate
+			if scene_id in [21,24,31,41]:siege.capture_candidates[object.instance_id]=candidate
 		if candidate==4 and object["side"]!=7:candidate=-1
 		if candidate<0:object["capture_hold"]=mini(object["capture_hold"]+1,Progression.capture_hold_limit(object["side"]))
 		else:
@@ -418,7 +425,7 @@ func _update_captures() -> void:
 
 func _activate(identity: int, center: Vector2i, radius: int) -> bool:
 	var old := find_unit(identity)
-	if scene_id in [4,9,10,14,20,21,24,41] and not old.is_empty() and old["source_state"] not in [0,2]:return false
+	if scene_id in [4,9,10,14,20,21,24,31,41] and not old.is_empty() and old["source_state"] not in [0,2]:return false
 	if not reserves.has(identity) or (not old.is_empty() and old["source_state"] not in [0,2,3,4]):return false
 	var actor: Dictionary=reserves[identity];var blocked := _blocked(identity)
 	_placement_rotation=(_placement_rotation+1)%5
@@ -431,11 +438,11 @@ func _activate(identity: int, center: Vector2i, radius: int) -> bool:
 		var next := _actor_unit(actor,cell);next["source_state"]=1
 		if old.is_empty():units.append(next)
 		else:
-			if scene_id in [4,9,10,14,20,21,24,41]:next["lives"]=old["lives"]
+			if scene_id in [4,9,10,14,20,21,24,31,41]:next["lives"]=old["lives"]
 			old.clear();old.merge(next)
 		for request in _pending_activations.duplicate():
 			if request["identity"]==identity:_pending_activations.erase(request)
-		if scene_id in [21,24,41]:
+		if scene_id in [21,24,31,41]:
 			siege.nearby.clear()
 			siege.by_id[identity]=next if old.is_empty() else old
 		source_actors[identity]=actor.duplicate(true);return true
@@ -447,7 +454,7 @@ func _spawn_group(group: int, center: Vector2i, radius: int, ai_parameter := -1)
 		var raw := String(reserves[id]["record_hex"]).hex_decode()
 		if raw[0x98]==group and not _activate(id,center,radius):
 			var old := find_unit(id)
-			if scene_id in [14,21,24,41] and not old.is_empty() and old.source_state not in [0,2]:continue
+			if scene_id in [14,21,24,31,41] and not old.is_empty() and old.source_state not in [0,2]:continue
 			if (old.is_empty() or old["source_state"] in [0,2,3,4]) and not _pending_activations.any(func(r):return r["identity"]==id):
 				_pending_activations.append({"identity":id,"center":center,"radius":radius})
 	if ai_parameter>=0:_set_group_ai(group,ai_parameter)
@@ -465,15 +472,15 @@ func _set_group_ai(group: int, parameter: int) -> void:
 func _update_summoning() -> void:
 	# Elapsed source units advance by two at the explicitly local 30Hz scheduler.
 	elapsed+=2
-	if scene_id in [4,6,9,10,13,14,18,20,21,22,24,35,41]:
+	if scene_id in [4,6,9,10,13,14,18,20,21,22,24,31,35,41]:
 		_update_recovery()
 		_update_field_spell(field_spell)
 		if not healing_spell.is_empty():_update_field_spell(healing_spell)
 		if not healing_impacts.is_empty():_apply_healing_impacts()
-		if scene_id in [22,24,35,41]:
+		if scene_id in [22,24,31,35,41]:
 			_update_aimed_skills()
 			if scene_id==22:_advance_twenty()
-			if scene_id in [24,41]:siege.advance(self)
+			if scene_id in [24,31,41]:siege.advance(self)
 			return
 		if scene_id==6:return
 		if scene_id==18:return
@@ -538,15 +545,15 @@ func _update_recovery() -> void:
 
 
 func can_cast_spell(id: int, skill: int) -> bool:
-	if not ready or scene_id not in [4,6,9,10,13,14,18,20,21,22,24,35,41] or _ending_phase!="active":return false
+	if not ready or scene_id not in [4,6,9,10,13,14,18,20,21,22,24,31,35,41] or _ending_phase!="active":return false
 	if skill in [11,20]:
-		if scene_id not in [22,24,35,41] or aimed_skills.has(id):return false
+		if scene_id not in [22,24,31,35,41] or aimed_skills.has(id):return false
 	elif skill==31:
-		if scene_id not in [21,22,24,35,41] or not healing_spell.is_empty():return false
+		if scene_id not in [21,22,24,31,35,41] or not healing_spell.is_empty():return false
 	elif skill not in [57,59] or not field_spell.is_empty():return false
 	var unit := find_unit(id)
 	var row := String(catalog["spells"]["rows"][str(skill)]).hex_decode()
-	return unit.get("controllable",false) and unit["limits"]["hp"]>0 and unit["limits"]["mp"]>=row.decode_u16(8) and unit["input"]["equipped_skills"].has(skill)
+	return unit.get("controllable",false) and unit["limits"]["hp"]>0 and unit["limits"]["mp"]>=row.decode_u16(8) and unit.get("input",{}).get("equipped_skills",[]).has(skill)
 
 
 func _advance_twenty() -> void:
@@ -603,7 +610,7 @@ func cast_field_spell(id: int, cell: Vector2i, skill: int) -> bool:
 	phases.erase(id)
 	unit["limits"]["mp"]-=row.decode_u16(8)
 	unit["summon_phase"]="field_spell"
-	if scene_id in [22,24,35,41]:unit["presentation_skill"]=str(skill)
+	if scene_id in [22,24,31,35,41]:unit["presentation_skill"]=str(skill)
 	unit["visual"]="cast"
 	unit["visual_started_frame"]=frame
 	var cast := {"skill":skill,"caster":id,"cell":cell,"release":elapsed+row.decode_u16(10),"finish":elapsed+row.decode_u16(10)+row.decode_u16(14),"released":false}
@@ -674,7 +681,7 @@ func _update_aimed_skills() -> void:
 		if cast.skill==20 and damage>0 and target.limits.hp>0:
 			# 48B980/4828A0 condition 4. All four statue jobs have modifier zero.
 			var scale:int=100-target.combat.body
-			if scene_id in [24,41]:scale=mini(100,scale+int(reserves[target.instance_id].poison_modifier))
+			if scene_id in [24,31,41]:scale=mini(100,scale+int(reserves[target.instance_id].poison_modifier))
 			if scale<0:scale=100-scale
 			var sense:int=caster.input.attributes[2]
 			var duration:=int((row.decode_u16(28)+int(sense*row.decode_u16(30)/100))*scale/100)
@@ -731,7 +738,7 @@ func _update_field_spell(cast: Dictionary = field_spell) -> void:
 	attack["power"]=int(int((attr[4]+attr[1]+row.decode_s16(32))*attr[4]/100)*row.decode_s16(34)/100)
 	attack["power_range"]=int(int((attr[4]+attr[1]+row.decode_s16(36))*attr[4]/100)*row.decode_s16(38)/100)
 	var targets := _allied_targets() if skill==57 else enemies()
-	if skill==59 and scene_id in [9,14,20,21,22,24,35,41]:
+	if skill==59 and scene_id in [9,14,20,21,22,24,31,35,41]:
 		# 486749 scans the active list, including hostile bases (46AE20/43C1D0).
 		targets=units.filter(func(u):return u.side==5 and u.source_state==1 and u.limits.hp>0)
 	for target in targets:
@@ -764,14 +771,14 @@ func _apply_healing_impacts() -> void:
 
 func command_move(id: int, cell: Vector2i) -> bool:
 	if field_spell.get("caster",-1)==id or healing_spell.get("caster",-1)==id or aimed_skills.has(id):return false
-	if scene_id in [9,14,20,21,22,24,35,41]:
+	if scene_id in [9,14,20,21,22,24,31,35,41]:
 		var object := at_cell(cell)
 		if (scene_id==41 and object.get("side",-1)==6) or (scene_id==35 and object.get("side",-1)==5) or _hostile_base(object):return command_attack(id,unit_key(object))
 	if _normal_healer(find_unit(id)):
 		var ally := at_cell(cell)
 		if _support_target(ally) and ally["limits"]["hp"]<ally["limits"]["hp_max"]:
 			return command_attack(id,unit_key(ally))
-	if scene_id in [20,21,22,24,35,41] and not at_cell(cell).is_empty():return false
+	if scene_id in [20,21,22,24,31,35,41] and not at_cell(cell).is_empty():return false
 	return super.command_move(id,cell)
 
 
@@ -820,7 +827,7 @@ func _repeat_group() -> void:
 
 func _check_before_actions() -> bool:
 	# 4539B0 samples the six prayer regions after movement and combat.
-	if scene_id in [9,13,14,18,20,21,22,24,35,41]:return false
+	if scene_id in [9,13,14,18,20,21,22,24,31,35,41]:return false
 	return super._check_before_actions()
 
 
@@ -833,7 +840,7 @@ func _detect_trial_end() -> bool:
 			sub=(2 if _own_casualties==0 else 5) if elapsed<=25200 else 8
 		elif remaining_ticks==0:sub=11
 		elif unavailable:sub=14
-	elif scene_id==41:
+	elif scene_id in [31,41]:
 		sub=siege.result(self)
 	elif scene_id==24:
 		sub=siege.result(self)
@@ -954,8 +961,8 @@ func _detect_trial_end() -> bool:
 	if sub<0:return false
 	ending_sub=sub
 	_terminal_choice={"tactical_result_selector":1 if sub in [2,3] else 2 if sub in [5,6] else 3 if sub==8 else 4 if sub in [11,12] else 5,"script_sub":sub}
-	var won: bool=(scene_id==22 and sub in [2,3,5,6,8]) or (scene_id==35 and sub!=14) or (scene_id in [4,6,9,10,13,14,18,20,21,24,41] and sub in [2,5,8])
-	_begin_ending("mission_objectives_met" if won else "time_expired" if scene_id in [4,9,13,22,41] and sub==11 else "objective_destroyed" if scene_id==9 and sub==12 else "objective_destroyed" if scene_id in [18,24] and sub==11 else "squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "escort_lost" if sub==14 else "mission_objectives_met" if scene_id==7 else "defense_completed")
+	var won: bool=(scene_id==22 and sub in [2,3,5,6,8]) or (scene_id==35 and sub!=14) or (scene_id in [4,6,9,10,13,14,18,20,21,24,31,41] and sub in [2,5,8])
+	_begin_ending("mission_objectives_met" if won else "time_expired" if scene_id in [4,9,13,22,41] and sub==11 else "objective_destroyed" if scene_id==9 and sub==12 else "objective_destroyed" if scene_id in [18,24,31] and sub==11 else "squad_defeated" if unavailable else "bases_lost" if sub==15 else "training_ended" if scene_id==17 else "escort_lost" if sub==14 else "mission_objectives_met" if scene_id==7 else "defense_completed")
 	return true
 
 
@@ -992,7 +999,7 @@ func advance_event() -> bool:
 
 
 func _normal_healer(unit: Dictionary) -> bool:
-	if scene_id in [9,14,18,20,21,22,24,35,41]:return unit.get("normal_heal",false)
+	if scene_id in [9,14,18,20,21,22,24,31,35,41]:return unit.get("normal_heal",false)
 	return scene_id in [4,6,10,13] and unit.get("character_id")==8
 
 
@@ -1019,6 +1026,10 @@ func _hostile_base(target: Dictionary) -> bool:
 
 
 func _admitted(unit: Dictionary, target: Dictionary) -> bool:
+	if scene_id==31 and not unit.is_empty():
+		# These survivors have source attack 271 (no target). Commands are movement and stop.
+		if unit.character_id in [172,173,174]:return false
+		if unit.controllable and not target.is_empty() and unit.side==target.side and not _normal_healer(unit):return false
 	if scene_id==41 and unit.get("controllable",false) and target.get("side",-1)==6:
 		# Single-player faction table 618568: 0 -> 6 is relation 2,
 		# admitted by 46A6A0 for manual attack (except 405/406 chests).
@@ -1026,18 +1037,18 @@ func _admitted(unit: Dictionary, target: Dictionary) -> bool:
 	if scene_id==24 and not unit.is_empty() and not target.is_empty() and target.side==4 and unit.side==5:
 		return unit.character_id not in [413,394] and _ending_phase=="active" and unit.source_state==1 and target.source_state==1 and unit.limits.hp>0 and target.limits.hp>0
 	if scene_id==35 and not unit.get("controllable",false):return false
-	if scene_id in [20,21,22,24,41] and not unit.is_empty() and not target.is_empty():
+	if scene_id in [20,21,22,24,31,41] and not unit.is_empty() and not target.is_empty():
 		if unit.character_id in [388,389,393,394,395,399]:
 			if _ending_phase!="active" or unit.source_state!=1 or target.source_state!=1 or unit.limits.hp<=0 or target.limits.hp<=0:return false
 			if unit.character_id in [393,394,395]:return target.side==unit.side and target.limits.hp*100<91*target.limits.hp_max
 			return target.side in [0,5] and target.side!=unit.side and (target.controllable or target.category==5 or target.character_id==412)
 		if unit.side==5 and unit.category==5 and target.character_id==412:
 			return _ending_phase=="active" and unit.limits.hp>0 and target.limits.hp>0 and target.side==0 and _distance(unit,target)<=unit.combat.attack_range+2
-	if unit.get("character_id",-1) in range(411,415) and (scene_id in [14,20,21,24,41] or departure.get("date") in [[7,5],[8,4]]):
-		return false # These gates use attack 511 with no target or effect.
+	if unit.get("character_id",-1) in range(411,415) and (scene_id in [14,20,21,24,31,41] or departure.get("date") in [[7,5],[8,4]]):
+		return false # These gates have no attack target.
 	# Manual target packet 48DAB7/48DBBD/48DBD5 excludes chests via 46A050.
 	# The distinct automatic search at 47A9D0 requires the AI base flag.
-	if scene_id in [9,14,20,21,22,24,35,41] and unit.get("controllable",false) and _hostile_base(target):
+	if scene_id in [9,14,20,21,22,24,31,35,41] and unit.get("controllable",false) and _hostile_base(target):
 		return _ending_phase=="active" and unit.limits.hp>0 and target.limits.hp>0 and target.source_state==1
 	if _ending_phase=="active" and _normal_healer(unit) and _support_target(target):
 		return unit["limits"]["hp"]>0 and target["limits"]["hp"]>0 and target["limits"]["hp"]<target["limits"]["hp_max"]
@@ -1052,9 +1063,9 @@ func _admitted(unit: Dictionary, target: Dictionary) -> bool:
 
 func _packet(unit: Dictionary) -> Dictionary:
 	var result := super._packet(unit)
-	if scene_id in [4,6,9,10,13,14,18,20,21,22,24,35,41] and unit.get("barrier_until",0)>elapsed:
+	if scene_id in [4,6,9,10,13,14,18,20,21,22,24,31,35,41] and unit.get("barrier_until",0)>elapsed:
 		var row := String(catalog["spells"]["rows"]["57"]).hex_decode()
-		var intelligence: int=unit["input"]["attributes"][4] if unit["controllable"] else String(reserves[unit_key(unit)]["record_hex"]).hex_decode()[8]
+		var intelligence: int=unit["input"]["attributes"][4] if unit.has("input") else String(reserves[unit_key(unit)]["record_hex"]).hex_decode()[8]
 		# 4DF6F0 applies effect 50 to armor, body and evasion.
 		result["armor"]=clampi(result["armor"]+row.decode_s16(32)+int(intelligence*row.decode_s16(34)/100),0,255)
 		result["body"]=clampi(result["body"]+row.decode_s16(36)+int(intelligence*row.decode_s16(38)/100),0,100)
@@ -1063,7 +1074,7 @@ func _packet(unit: Dictionary) -> Dictionary:
 
 
 func _hit(unit: Dictionary, target: Dictionary) -> void:
-	if (_normal_healer(unit) and _support_target(target)) or (scene_id in [20,21,22,24,41] and unit.character_id in [393,394,395] and unit.side==target.side):
+	if (_normal_healer(unit) and _support_target(target)) or (scene_id in [20,21,22,24,31,41] and unit.character_id in [393,394,395] and unit.side==target.side):
 		if not _admitted(unit,target) or _distance(unit,target)>unit["combat"]["attack_range"]:return
 		# 48AAE0 category 5 allied branch -> 48B1B0 -> 482810 (positive HP).
 		var amount: int=unit["combat"]["power"]
@@ -1102,7 +1113,7 @@ func result_inputs() -> Dictionary:
 		slots.append(int(unit.get("side",-1)==0))
 	var no_hostile := true
 	for unit in units:
-		if (scene_id in [14,20,21,24,41] or departure.date in [[7,5],[8,4]]) and unit.character_id in range(411,415):continue
+		if (scene_id in [14,20,21,24,31,41] or departure.date in [[7,5],[8,4]]) and unit.character_id in range(411,415):continue
 		if unit["category"]==5 and unit["side"]!=0 and unit["source_state"] in [1,3]:
 			no_hostile=false
 			break

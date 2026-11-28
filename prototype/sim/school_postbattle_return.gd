@@ -34,6 +34,7 @@ const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_status
 
 static func group_rules(school: Dictionary) -> Dictionary:
 	var rules := Origin.group_rules()
+	if _december_roster(school):rules["december_students"]=true
 	if _november_roster(school):rules["november_students"]=true
 	if _october_roster(school):rules["october_students"]=true
 	if _has_chapter054(school):rules["chapter054_students"]=true
@@ -57,7 +58,12 @@ static func group_rules(school: Dictionary) -> Dictionary:
 	return rules
 
 
+static func _december_roster(school: Dictionary) -> bool:
+	return school.get("month")==12 and school.get("week") in [1,2] and school.get("student_count") in [18,19] and school.get("teacher_count")==6
+
+
 static func _november_roster(school: Dictionary) -> bool:
+	if _december_roster(school):return true
 	if [school.get("month"),school.get("week")]==[12,1]:
 		return school.get("student_count")==17 and school.get("teacher_count")==6
 	return school.get("month")==11 and (school.get("week")==3 and school.get("student_count")==17 and school.get("teacher_count")==5 or (school.get("week")==4 and school.get("student_count")==18 or school.get("week")==5 and school.get("student_count")==17) and school.get("teacher_count")==6)
@@ -83,6 +89,7 @@ static func _has_chapter304(school: Dictionary) -> bool:
 
 static func sort_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
 	var result: Dictionary=rules["school"]["sort_rules"].duplicate()
+	if _december_roster(school):result["december_students"]=true
 	if _november_roster(school):result["november_students"]=true
 	if _october_roster(school):result["october_students"]=true
 	if _has_chapter054(school):result["chapter054_students"]=true
@@ -355,11 +362,14 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
-	if (school.month==11 and school.week in [3,4,5] or [school.month,school.week]==[12,1]) and not bundle.has("chapter071_absent"):
+	if (school.month==11 and school.week in [3,4,5] or school.month==12 and school.week in [1,2]) and not bundle.has("chapter071_absent"):
 		var expected := [3,4,9,5,8,6,1,16,17,13,14,15,11,18,32,2]
 		if school.student_count>=17:expected.append(7)
 		if school.month==12 or school.week>=4:expected.append(28)
 		if school.month==12 or school.week==5:expected.erase(4)
+		if _december_roster(school):
+			expected.append_array([20,21] if school.student_count==19 else [19])
+		elif [school.month,school.week]==[12,2]:return "outside_chapter309_roster"
 		return _validate(bundle,expected,school.month,school.week,rules)
 	if _october_roster(school):
 		var roster := [3,4,9,5,8,6,1,2,16,17,13,14,15,11] + [18]

@@ -1,4 +1,4 @@
-"""Compare a MAP41 settlement with original scoring, loot, growth and school confirmation."""
+"""Compare a MAP41 or MAP31 settlement with original scoring, loot, growth and school confirmation."""
 import argparse
 import json
 from pathlib import Path
@@ -15,14 +15,15 @@ def verify_rewards(before, after, round_data, ratings, facts):
     school = before['school']
     summary = after['sortie_result']
     score = summary['score']
-    assert [school['month'],school['week'],facts['scene_id']] == [11,3,41]
+    scene_id = facts['scene_id']
+    assert (school['month'], school['week'], scene_id) in ((11,3,41), (12,1,31))
     cpu = PreparationEmulator(seed=facts['clock_seed'])
-    cpu.write(0x7A5294, 41, 'h')
+    cpu.write(0x7A5294, scene_id, 'h')
     cpu.write(0x7A528C, school['difficulty'], 'h')
-    cpu.write(0x7A528E, 11, 'h')
-    cpu.write(0x7A5290, 3, 'h')
+    cpu.write(0x7A528E, school['month'], 'h')
+    cpu.write(0x7A5290, school['week'], 'h')
     cpu.write(0x7A511C, school['global_total_511c'])
-    cpu.write(0x7A54CA+41, 5, 'B')
+    cpu.write(0x7A54CA+scene_id, 5, 'B')
     for i, key in enumerate(('result_selector','time_key','unit_condition_key')):
         cpu.write(0x7F450C+2*i, facts[key], 'h')
     cpu.uc.mem_write(0x7F44BE, bytes(facts['objective_slots']))
@@ -59,7 +60,7 @@ def verify_rewards(before, after, round_data, ratings, facts):
         cpu.uc.emu_start(address,RETURN,timeout=60_000_000,count=2_000_000)
         check('original return',cpu.uc.reg_read(UC_X86_REG_EIP),RETURN)
         check('stack',cpu.uc.reg_read(UC_X86_REG_ESP),sp+4)
-    check('grade',cpu.read(0x7A54CA+41,'B'),score['task_grade'])
+    check('grade',cpu.read(0x7A54CA+scene_id,'B'),score['task_grade'])
     for offset, key, fmt in [(0x34,'grade_index','h'),(0x36,'time_display','h'),(0x38,'unit_display','h'),
                              (0x3c,'total_after','i'),(0x40,'total_delta','i')]:
         check(key,cpu.read(RESULT_TASK+offset,fmt),score[key])

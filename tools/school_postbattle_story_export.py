@@ -45,6 +45,7 @@ def catalog(chapter_counts=None):
             text = data.replace(b'\x81\x40',b'\xa1\x40').decode('cp950',errors='strict')
             texts.append(text)
         pages, effects, boards, lines, indices = [], [], {}, [], []
+        choice_labels = []
         active = None
         def flush(offset):
             if not lines: return
@@ -55,13 +56,21 @@ def catalog(chapter_counts=None):
             lines.clear(); indices.clear()
         while at < end:
             op, size = struct.unpack_from('<2H',raw,at)
-            assert op in ALLOWED and size>=4 and at+size<=end, (chapter,at,op,size)
+            assert (op in ALLOWED or (chapter == 309 and op in (8, 11, 61))) and size>=4 and at+size<=end, (chapter,at,op,size)
             payload = raw[at+4:at+size]
-            if op in (22,27,29,30,33):
+            if chapter == 309 and op == 61:
+                flush(at)
+                assert at == 0x39e and struct.unpack('<4I',payload) == (0,2,47,48)
+                choice_labels = texts[47:49]
+            elif chapter == 309 and op in (8,11):
+                jumps = {0x3b2:(1,0,0x20000000,0x3da-20),
+                         0x3c6:(1,0,0x20000001,0x756-20),0x74e:(0xc5c-20,)}
+                assert struct.unpack('<'+'I'*(len(payload)//4),payload) == jumps[at]
+            elif op in (22,27,29,30,33):
                 flush(at); values = immediate(payload); boards[values[0]]=values[1]
             elif op == 26:
                 flush(at); values=immediate(payload)
-                if chapter in (304,305):
+                if chapter in (304,305,309):
                     old, new, speaker, _ = values
                     assert old in boards and [old,new] in ([4,9],[9,4])
                     boards[new] = speaker
@@ -82,9 +91,11 @@ def catalog(chapter_counts=None):
                 strings=raw[end:pool].split(b'\0')
                 effects.append({'offset':at,'opcode':op,'string_index':index})
             at += size
-        assert not lines and [i for p in pages for i in p['text_indices']]==list(range(count))
+        assert not lines and [i for p in pages for i in p['text_indices']]==[i for i in range(count) if not (choice_labels and i in (47,48))]
         scenes.append({'chapter':chapter,'source':f'ADV/DAT/CHAPTER{label}.YBC',
                        'sha256':hashlib.sha256(raw).hexdigest(),'text_count':count,'pages':pages,'effects':effects})
+        if choice_labels:
+            scenes[-1]['choice_labels'] = choice_labels
     return {'schema_version':1,'source_image_sha256':SOURCE_SHA256,'scenes':scenes,
             'scope':'All source text in original order and key-wait grouping; remake text presentation. No original movies/audio/fades or native execution.'}
 
