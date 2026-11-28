@@ -42,3 +42,16 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 ~~~
 
 两个 Godot 进程都成功退出后再运行 Python。完整学校观察与角色工作槽是可重建的中间文件，Git 只保留脚本、小报告和来源摘要。全图范围见[地图覆盖表](m3_battle_map_coverage.md)。
+
+### 新基线的原版来源核对
+
+隔离客体实际载入 ATWIKI_ALL_CHARACTERS 时，学校日期为四月第 1 周，任务号 1，在籍学生 35 人。按学校的「進行預定行程」确认后进入首战，战斗界面显示 20 名参战学生。冒险 44 的一月第 2 周出击前状态仍待取得。
+
+随游戏附带的《超魔法大戰.chm》内含 save.rar，SHA-256 为 `7e68646bae02eeee3f4b94a5bbc7eed6c3469030ca171a1353a72d3da867ab0d`。其中四份 v7 存档均为 198356 字节，均通过原版有符号字节校验。四份的冒险 44 评价字段原始值均为 3。此字段不足以还原一月的操作顺序或角色成长。
+
+| 文件 | 原版学校日期 | SHA-256 |
+|---|---|---|
+| 1zhoumu-quan aoyi .SAV | 三月第 4 周 | e49a6ee351fa4f52a8a70fe9e9f6703d5d2a38507dbcfd39a23ac5ca4d5ef316 |
+| 2zhoumu-quan daoju .SAV | 三月第 4 周 | 912d7353c57bcc4075a9caf9a0a5afe03b5c1ca9fcc6b4a3b81359cd6da9c324 |
+| bb09.SAV | 三月第 1 周 | 196905114f85738571402162785e9229eede19ae6a74dc5ddb5f885ee59cc873 |
+| earth01.SAV | 三月第 5 周 | a1ae3d9f41c8f2ff9fc912bd2bdd4d72cecb163af04dddd7534e7b0086bdc796 |
