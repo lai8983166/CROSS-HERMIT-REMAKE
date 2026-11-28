@@ -14,12 +14,12 @@ static func order(profiles: Variant, waiting_ids: Variant, mode: Variant, rules:
 	if rules.get("source_image_sha256") != SOURCE_SHA \
 			or not Week._vector(rules.get("job_categories"), 31, 0, 5):
 		return _unsupported("invalid_waitlist_sort_rules")
-	if not profiles is Array or not waiting_ids is Array or waiting_ids.size() > 20 \
-			or not Week._vector(waiting_ids, waiting_ids.size(), 1, 32 if rules.get("october_students",false) else 17 if rules.get("chapter304_students",false) else 12):
+	if not profiles is Array or not waiting_ids is Array or waiting_ids.size() > (40 if rules.get("winter_students",false) else 20) \
+			or not Week._vector(waiting_ids, waiting_ids.size(), 1, 33 if rules.get("winter_students",false) else 32 if rules.get("october_students",false) else 17 if rules.get("chapter304_students",false) else 12):
 		return _unsupported("invalid_waitlist_members")
 	var records := {}
 	for row in profiles:
-		if not row is Dictionary or not Groups._student(row.get("character_id"),rules.get("chapter304_students",false),rules.get("chapter306_students",false),rules.get("chapter054_students",false),rules.get("october_students",false),rules.get("november_students",false),rules.get("december_students",false)) \
+		if not row is Dictionary or not Groups._student(row.get("character_id"),rules.get("chapter304_students",false),rules.get("chapter306_students",false),rules.get("chapter054_students",false),rules.get("october_students",false),rules.get("november_students",false),rules.get("december_students",false),rules.get("winter_students",false)) \
 				or records.has(int(row["character_id"])) or not Week._bounded(row.get("job"), 1, 30) \
 				or not Week._bounded(row.get("level_50"), 0, 255) \
 				or not Week._vector(row.get("attributes"), 7, 0, 255):

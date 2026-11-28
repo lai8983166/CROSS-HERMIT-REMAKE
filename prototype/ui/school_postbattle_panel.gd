@@ -6,6 +6,7 @@ signal load_requested
 signal year_requested
 signal sortie_requested
 const JobEligibility := preload("res://sim/school_job_eligibility.gd")
+const PersonalSkills := preload("res://sim/school_personal_skills.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const Courses := preload("res://sim/school_return_courses.gd")
 const Adventures := preload("res://sim/school_return_adventures.gd")
@@ -86,11 +87,11 @@ func _ready() -> void:
 func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	_view=view.duplicate(true);_names=names.duplicate();status.text=message
 	var phase: String=view["phase"];var school: Dictionary=view["bundle"]["school"]
-	var date := "%d月 · 第%d周" % [school["month"],school["week"]]
+	var date := "%d月 · 第%d周" % [(school["month"]-1)%12+1,school["week"]]
 	var date_card: Dictionary=view.get("date_card",{})
 	var reading := date_card.is_empty() and phase in ["post_story","new_week_story","school_entry_story"]
 	var returned := phase=="returned_school"
-	heading.text="%d月 · 第%d周　｜　%s" % [school["month"],school["week"],"战后剧情" if phase=="post_story" else "新一周" if phase=="new_week_story" else "返校剧情" if phase=="school_entry_story" else "学校" if returned else "职务室"]
+	heading.text="%d月 · 第%d周　｜　%s" % [(school["month"]-1)%12+1,school["week"],"战后剧情" if phase=="post_story" else "新一周" if phase=="new_week_story" else "返校剧情" if phase=="school_entry_story" else "学校" if returned else "职务室"]
 	if phase=="post_story" and view.get("planning",{}).has("course_summary"):
 		heading.text=date+"　｜　课后剧情"
 	speaker.text=view["page"]["speaker"] if reading else "已返回学校" if returned else "准备返校"
@@ -129,13 +130,19 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 	for container in [roster,assignments,plans]:
 		for child in container.get_children():
 			container.remove_child(child);child.queue_free()
-	if phase=="chapter309_choice":
+	if phase=="school_year_complete":
+		heading.text=date+"　｜　学年结束"
+		speaker.text="结业"
+		dialogue.text="三月第 5 周的结局剧情已结束。可以保存本次学年记录。"
+		progress.text=""
+	if phase in ["chapter309_choice","chapter310_choice"]:
 		heading.text=date+"　｜　战后剧情"
 		speaker.text=view.page.speaker
 		dialogue.text=view.page.text
 		progress.text=""
 		for i in range(view.choice_labels.size()):
-			var button := _button(view.choice_labels[i],func():command.emit({"op":"post_choice","choice":i}))
+			var choice_text := String(view.choice_labels[i]).replace(String.chr(92)+"n",String.chr(10))
+			var button := _button(choice_text,func():command.emit({"op":"post_choice","choice":i}))
 			button.name="post_choice_%d" % i
 			plans.add_child(button)
 	if returned:
@@ -174,6 +181,7 @@ func show_state(view: Dictionary, names: Dictionary, message: String) -> void:
 				change.disabled=picker.get_selected_id()==students[0].job or picker.item_count==0
 				picker.item_selected.connect(func(_index):change.disabled=picker.get_selected_id()==students[0].job)
 				choices.add_child(change)
+				if view.has("planning"):_skill_options(students[0])
 		var waiting := _label(17);waiting.text="待命："+", ".join((school["idle_teacher_ids"]+school["idle_student_ids"]).map(func(id):return names.get(id,str(id))))
 		assignments.add_child(waiting)
 		var to_wait := _button("移到待命",func():_move(-1,-1,_is_teacher(_selected)))
@@ -201,7 +209,7 @@ func _process(_delta: float) -> void:
 func _show_plan(view: Dictionary) -> void:
 	var phase: String=view["phase"];var bundle: Dictionary=view["bundle"]
 	var plan: Dictionary=view["planning"];var school: Dictionary=bundle["school"]
-	var date := "%d月 · 第%d周" % [school["month"],school["week"]]
+	var date := "%d月 · 第%d周" % [(school["month"]-1)%12+1,school["week"]]
 	if phase=="sortie_result":
 		var summary: Dictionary=plan["sortie_summary"]
 		heading.text=date+"　｜　冒险%d战果" % summary["scene_id"]
@@ -254,14 +262,10 @@ func _show_plan(view: Dictionary) -> void:
 		var play := _button("进入战场",func():sortie_requested.emit());play.name="play_sortie";plans.add_child(play)
 		return
 	if phase!="returned_school":return
-	var planning_only: bool=[school["month"],school["week"]]==[12,2]
 	var mandatory: bool=school["adventure_gate"]!=0
 	dialogue.text="安排本周授课，或选择冒险并提交出击队伍。每班本周只能执行一种安排。"
-	progress.text="可调整编班与课程并保存安排。" if planning_only else "课程与出击准备均可存档；选择仍开放的冒险，提交后即可进入对应战场。"
-	if planning_only:
-		dialogue.text="12 月第 2 周已返校，可调整师生编班。"
-		progress.text="本周可调整学校安排并保存进度。"
-	elif school.month==9 and school.week in [1,2,5] or school.month==10 or (school.month==11 and school.week in [1,2,4,5]):
+	progress.text="选择冒险并确认队伍后可进入战场。"
+	if (school.month>=12 and not mandatory) or school.month==9 and school.week in [1,2,5] or school.month==10 or (school.month==11 and school.week in [1,2,4,5]):
 		dialogue.text="核对五个班的课表后，确认本周授课即可结算并进入下周剧情。"
 		progress.text="可调整编班和课程，保存后继续。"
 	elif [school.month,school.week]==[8,5]:
@@ -269,8 +273,8 @@ func _show_plan(view: Dictionary) -> void:
 	elif school.month==8 and school.week==1:
 		dialogue.text="确认四个班的课程后，即可结算并进入下周剧情。"
 		progress.text="本周可重新排课并保存。"
-	elif mandatory and school["month"] in [6,7,8,9,11,12]:
-		dialogue.text="%d 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [school["month"],school["week"],school["lecture_work_fields"][2]]
+	elif mandatory and school["month"] in [6,7,8,9,11,12,13,14,15]:
+		dialogue.text="%d 月第 %d 周为必修冒险 %d。确认已保存的出击编班后即可进入战场。" % [(school["month"]-1)%12+1,school["week"],school["lecture_work_fields"][2]]
 	elif mandatory:
 		dialogue.text="奎丝忒和帕佩修已加入。第4周为必修冒险7，确认已保存的出击编班后即可进入战场。"
 	for group in range(5):
@@ -305,7 +309,6 @@ func _show_plan(view: Dictionary) -> void:
 		button.name="adventure_%d" % id;button.toggle_mode=true
 		button.disabled=mandatory
 		button.button_pressed=school["lecture_active"]==1 and school["lecture_work_fields"][2]==id;plans.add_child(button)
-	if planning_only:return
 	var row := HBoxContainer.new();plans.add_child(row)
 	var settle := _button("确认本周授课",func():_confirm("return_settle","确认后结算本周授课，保留成长、技能与成员记录。本周不能再出击。"))
 	settle.name="settle";row.add_child(settle);settle.visible=not mandatory and [school.month,school.week]!=[8,5]
@@ -324,6 +327,27 @@ func _show_plan(view: Dictionary) -> void:
 	if prepared.get("reason")=="unsupported_training_student_13":
 		ready.text="攸莉目前可上课或待命。调整她的安排后即可出击训练。"
 	plans.add_child(ready)
+
+
+func _skill_options(student: Dictionary) -> void:
+	var available: Array=PersonalSkills.available(student)
+	if available.is_empty():return
+	var row := HBoxContainer.new()
+	assignments.add_child(row)
+	var skills := OptionButton.new()
+	var slots := OptionButton.new()
+	for skill in available:skills.add_item(PersonalSkills.skill_name(skill),skill)
+	for slot in range(PersonalSkills.slot_count(student.job)):
+		var current: int=student.equipped_skills[slot]
+		var label := PersonalSkills.skill_name(current) if current else "空"
+		slots.add_item("第%d槽 · %s" % [slot+1,label if not label.is_empty() else "技能%d"%current],slot)
+	row.add_child(skills)
+	row.add_child(slots)
+	row.add_child(_button("装备技能",func():
+		var skill := skills.get_selected_id()
+		var slot := slots.get_selected_id()
+		_confirm("return_skill","将%s装入第%d槽？" % [PersonalSkills.skill_name(skill),slot+1],
+			{"member_id":student.character_id,"skill":skill,"slot":slot})))
 
 
 func _confirm(op: String, message: String, fields: Dictionary = {}) -> void:

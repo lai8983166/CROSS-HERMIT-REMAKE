@@ -2,6 +2,7 @@ extends RefCounted
 ## Reconstruct a local battle from player commands, not saved result fields.
 const Combat := preload("res://sim/school_combat_session.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
+const NOVEMBER_STUDENTS := [1,3,4,5,6,8,9,11,13,14,15,16,17,18,32]
 const MAX_TICKS := 54064
 const MAX_COMMANDS := 4096
 const MAX_SORTIE_TICKS := 216000
@@ -68,24 +69,26 @@ static func _advance(session: Combat, target: int) -> bool:
 
 
 static func valid_trace(trace: Variant, sortie := false, seven := false, may_five := false, june_one := false, june_two := false, june_three := false, june_four := false, june_five := false, july_eighteen := false, july_nine := false, july_fourteen := false, july_five := false, august_twenty := false, august_twenty_one := false, august_thirty_five := false, september_twenty_two := false, september_twenty_four := false, november_forty_one := false, december_thirty_one := false) -> bool:
-	if not trace is Dictionary or trace.size()!=4 or trace.get("version")!=1 or trace.get("overflow")!=false \
-			or not Roles._bounded(trace.get("ticks"),0,MAX_SORTIE_TICKS if sortie else MAX_TICKS) or not trace.get("commands") is Array \
-			or trace["commands"].size()>MAX_COMMANDS: return false
+	if not _valid_trace_header(trace,MAX_SORTIE_TICKS if sortie else MAX_TICKS):return false
 	var full_roster := august_thirty_five or september_twenty_two or september_twenty_four or november_forty_one or december_thirty_one
 	var august := august_twenty or august_twenty_one or full_roster
 	var july_battle := july_eighteen or july_nine or july_fourteen or august
 	var wide_june := june_three or june_four
 	var previous := 0
 	for row in trace["commands"]:
-		if not row is Array or row.size()<2 or not Roles._bounded(row[0],previous,trace["ticks"]) \
-				or not Roles._bounded(row[1],1,11 if full_roster else 9 if august_twenty_one else 8 if july_battle or june_one or june_two or wide_june else 6): return false
-		previous = row[0]
-		if row.size()!=[0,3,2,5,4,3,2,5,5,5,4,4][row[1]]: return false
-		for value in row:
-			if not value is int: return false
+		if not _valid_command_row(row,previous,trace.ticks,11 if full_roster else 9 if august_twenty_one else 8 if july_battle or june_one or june_two or wide_june else 6):return false
+		previous=row[0]
 		if december_thirty_one:
 			if not _valid_december_command(row):return false
 			continue
+		if november_forty_one:
+			if row[1] in [7,8,9]:
+				if row[2] not in NOVEMBER_STUDENTS or not Rect2i(0,0,128,192).has_point(Vector2i(row[3],row[4])):return false
+				continue
+			if row[1] in [10,11]:
+				if row[2] not in NOVEMBER_STUDENTS or not Roles._bounded(row[3],1000,1249):return false
+				continue
+			if row[1]==4 and row[2] in NOVEMBER_STUDENTS and row[3] in NOVEMBER_STUDENTS:continue
 		if row[1] in [10,11] and (row[2]!=(5 if row[1]==10 else 4) or not Roles._bounded(row[3],1000,1249)):return false
 		if row[1]==1 and (september_twenty_two or september_twenty_four or november_forty_one) and row[2]!=1:return false
 		if row[1]==1 and (august_twenty_one or august_thirty_five or row[2] not in [0,1]): return false
@@ -98,17 +101,48 @@ static func valid_trace(trace: Variant, sortie := false, seven := false, may_fiv
 	return true
 
 
+static func _valid_trace_header(trace: Variant, tick_limit: int) -> bool:
+	return trace is Dictionary and trace.size()==4 and trace.get("version")==1 and trace.get("overflow")==false and Roles._bounded(trace.get("ticks"),0,tick_limit) and trace.get("commands") is Array and trace.commands.size()<=MAX_COMMANDS
+
+
+static func _valid_command_row(row: Variant, previous: int, ticks: int, maximum_op: int) -> bool:
+	if not row is Array or row.size()<2 or not Roles._bounded(row[0],previous,ticks) or not Roles._bounded(row[1],1,maximum_op):return false
+	return row.size()==[0,3,2,5,4,3,2,5,5,5,4,4][row[1]] and row.all(func(value):return value is int)
+
+
+static func valid_winter_trace(trace: Variant, bounds: Vector2i, actor_count: int) -> bool:
+	if not _valid_trace_header(trace,MAX_SORTIE_TICKS):return false
+	var previous:=0
+	for row in trace.commands:
+		if not _valid_command_row(row,previous,trace.ticks,11) or not _valid_winter_command(row,bounds,actor_count):return false
+		previous=row[0]
+	return true
+
+
+static func _valid_winter_command(row: Array, bounds: Vector2i, actor_count: int) -> bool:
+	match row[1]:
+		1:return row[2]==1
+		3,7,8,9:
+			var actor_ok:bool=Roles._bounded(row[2],1,33)
+			return actor_ok and Rect2i(Vector2i.ZERO,bounds).has_point(Vector2i(row[3],row[4]))
+		4:return Roles._bounded(row[2],1,33) and (Roles._bounded(row[3],1250-actor_count,1249) or Roles._bounded(row[3],1,33))
+		5:return Roles._bounded(row[2],1,33)
+		6:return true
+		10,11:return Roles._bounded(row[2],1,33) and Roles._bounded(row[3],1250-actor_count,1249)
+	return false
+
+
 static func _valid_december_command(row: Array) -> bool:
 	const STUDENTS := [1,2,3,5,6,7,8,9,11,13,14,15,16,17,18,28,32]
 	const ESCORTS := [1237,1236,1235]
 	match row[1]:
 		1:return row[2]==1
 		3:return (row[2] in STUDENTS or row[2] in ESCORTS) and Roles._bounded(row[3],0,95) and Roles._bounded(row[4],0,95)
-		4:return row[2] in STUDENTS and (Roles._bounded(row[3],1166,1249) or (row[2] in [7,8,9] and row[3] in STUDENTS))
+		4:return row[2] in STUDENTS and (Roles._bounded(row[3],1166,1249) or row[3] in STUDENTS)
 		5:return row[2] in STUDENTS or row[2] in ESCORTS
 		6:return true
-		7,8,9:return row[2]==(9 if row[1]==9 else 3) and Roles._bounded(row[3],0,95) and Roles._bounded(row[4],0,95)
-		10:return row[2]==5 and Roles._bounded(row[3],1166,1249)
+		7,8,9:return row[2] in STUDENTS and Roles._bounded(row[3],0,95) and Roles._bounded(row[4],0,95)
+		10,11:return row[2] in STUDENTS and Roles._bounded(row[3],1166,1249)
 	return false
 
 

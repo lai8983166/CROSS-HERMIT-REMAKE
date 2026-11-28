@@ -110,6 +110,15 @@ class AugustCourseTableTests(unittest.TestCase):
         self.assertEqual(rows, _lesson_rows(missing))
 
 
+class WinterCourseTableTests(unittest.TestCase):
+    def test_winter_courses_match_dated_templates_and_native_growth(self):
+        templates = json.loads((ROOT/'prototype/data/new_game_school_rules.json').read_bytes())['course_rules']['templates']
+        dated = sorted({row['work_id'] for row in templates if 12 <= row['month'] <= 15})
+        self.assertEqual(dated, [39,41,42,43,45,46])
+        rows = json.loads((ROOT/'prototype/data/school_winter_courses.json').read_bytes())
+        self.assertEqual(rows, _lesson_rows(dated))
+
+
 class CourseSettlementTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

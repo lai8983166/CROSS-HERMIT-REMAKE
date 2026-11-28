@@ -52,7 +52,7 @@ const JUNE_STORIES := [Return.JUNE_TWO,["res://data/school_june_week3_story.json
 const STORIES := [[PATH,SHA],[WEEK3_PATH,WEEK3_SHA],[WEEK4_PATH,WEEK4_SHA],Return.WEEK_FIVE,Return.JUNE_ONE]
 
 
-static func story(start_week: int = 1, month: int = 5) -> Dictionary:
+static func story(start_week: int = 1, month: int = 5, grades: Dictionary={}, choices: Array=[]) -> Dictionary:
 	if [month,start_week]==[11,3]:
 		var data := _november_four()
 		if data.is_empty() or FileAccess.get_sha256(data.date_card.image)!=data.date_card.png_sha256:
@@ -61,7 +61,7 @@ static func story(start_week: int = 1, month: int = 5) -> Dictionary:
 		return {"supported":true,"pre_week":scenes[0].pages+scenes[1].pages,
 			"pre_week_join_page":scenes[0].pages.size(),"date_card":data.date_card,
 			"week_start":scenes[2].pages,"school_entry":scenes[3].pages}
-	if YearLoop.has_departure(month,start_week):return YearLoop.story(month,start_week)
+	if YearLoop.has_departure(month,start_week):return YearLoop.story(month,start_week,grades,choices)
 	var dated: Array = {5:STORIES,6:JUNE_STORIES,7:JULY_STORIES,8:AUGUST_STORIES,9:SEPTEMBER_STORIES,10:[OCTOBER_TWO]}.get(month,[])
 	if start_week<1 or start_week>dated.size():
 		return {"supported":false,"reason":"outside_sortie_story_week"}
@@ -203,7 +203,7 @@ static func begin_story(before: Dictionary) -> Dictionary:
 	return Return.join_chapter030b(before,rules)
 
 
-static func next_week(before: Dictionary) -> Dictionary:
+static func next_week(before: Dictionary, observe: Callable=Callable()) -> Dictionary:
 	var rules := Return._rules()
 	var course: bool = before.get("phase")=="courses_confirmed"
 	var phase := "courses_confirmed" if course else "sortie_settled"
@@ -221,10 +221,12 @@ static func next_week(before: Dictionary) -> Dictionary:
 		var joined := Return.join_ch003_teacher(before)
 		if not joined["supported"]:return joined
 		before=joined["after"]
-	var result := Week.project(Return._week_input(before),rules["week"])
+	var projection_input := Return._week_input(before)
+	var result := Week.project(projection_input,rules["week"])
 	if not result["supported"]: return result
 	var after := before.duplicate(true)
 	var advanced: Dictionary = result["after"]
+	if observe.is_valid():observe.call(projection_input,advanced)
 	after["school"]["month"] = advanced["month"]
 	after["school"]["week"] = advanced["week"]
 	for key in ["participants","flags","item_flags"]: after[key] = advanced[key]
@@ -275,7 +277,7 @@ static func _leave_student(after: Dictionary, rules: Dictionary, student: int, s
 		school.raw_student_ids[i]=school.raw_student_ids[i+1]
 	school.student_count-=1
 	school.student_ids.remove_at(index)
-	school.student_ids.append(-1)
+	if school.student_ids.size()<20:school.student_ids.append(-1)
 	school.availability[student]=0
 	for group in range(5):
 		for slot in range(4):
@@ -290,7 +292,7 @@ static func _leave_student(after: Dictionary, rules: Dictionary, student: int, s
 	return {"supported":true}
 
 
-static func finish_story(before: Dictionary) -> Dictionary:
+static func finish_story(before: Dictionary, winter_section: Variant=null) -> Dictionary:
 	var course: bool = before.get("phase")=="course_week_advanced"
 	var reason := _guard(before,2,"course_week_advanced" if course else "sortie_week_advanced",Return._rules())
 	if not reason.is_empty(): return {"supported":false,"reason":reason}
@@ -341,7 +343,7 @@ static func finish_story(before: Dictionary) -> Dictionary:
 		after.flags["0x7a55f6"]=5
 		after.flags["0x7e11a0"]=1
 		after.adv_background=122
-	if YearLoop.has_arrival(after.school.month,week) and not YearLoop.apply_arrival_effects(after,false):
+	if YearLoop.has_arrival(after.school.month,week) and not YearLoop.apply_arrival_effects(after,false,winter_section):
 		return {"supported":false,"reason":"invalid_school_year_week_start"}
 	after["phase"] = "course_workroom" if course else "sortie_workroom"
 	return Return._result(after,after["phase"])
@@ -352,7 +354,7 @@ static func begin_school_entry(before: Dictionary) -> Dictionary:
 	return Return.join_chapter306(before,Return._rules())
 
 
-static func school_return(before: Dictionary, ledger: Dictionary, departure_ledger: Dictionary = {}) -> Dictionary:
+static func school_return(before: Dictionary, ledger: Dictionary, departure_ledger: Dictionary = {}, winter_section: Variant=null) -> Dictionary:
 	var rules := Return._rules()
 	var course: bool = before.get("phase")=="course_workroom"
 	var expected_phase := "course_workroom" if course else "sortie_workroom"
@@ -432,10 +434,10 @@ static func school_return(before: Dictionary, ledger: Dictionary, departure_ledg
 	if [month,week]==[11,4]:
 		after.flags["0x7a55f6"]=11
 		after.flags["0x7e11a0"]=0
-	if YearLoop.has_arrival(month,week) and not YearLoop.apply_arrival_effects(after,true):
+	if YearLoop.has_arrival(month,week) and not YearLoop.apply_arrival_effects(after,true,winter_section):
 		return {"supported":false,"reason":"invalid_school_year_school_entry"}
 	after["newly_dated_adventures"] = []
-	if required_id!=0 or month==7 or [month,week] in [[8,5],[9,5]]:
+	if required_id!=0 or month>=12 or month==7 or [month,week] in [[8,5],[9,5]]:
 		for rule in rules["boot"]["adventures"]:
 			if rule["present"] and rule["gate"] and rule["kind"] and rule["month"]==month and rule["week"]==week:
 				after["newly_dated_adventures"].append(rule.duplicate(true))
@@ -502,6 +504,10 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	if [school.month,school.week]==[12,1] and first_week==1:
 		if phase!="chapter309_joined" or school.student_count not in [18,19] or school.lecture_work_fields!=[3,24,31,0] or school.adventure_gate!=1 or school.lecture_active!=1:return "outside_chapter309_join"
 		return Return.validate_planning_roster(before,rules)
+	if first_week==1 and YearLoop.Winter.departure(school.month,school.week) and phase=="sortie_settled":
+		var required := Adventures._mandatory_id(school.month,school.week)
+		if required==0 or school.lecture_work_fields[2]!=required or school.adventure_gate!=1:return "invalid_winter_mandatory_result"
+		return Return.validate_planning_roster(before,rules)
 	if first_week==1 and YearLoop.has_departure(school.month,school.week) and phase=="courses_confirmed" and school.adventure_gate==0:
 		return Return.validate_planning_roster(before,rules)
 	if first_week==2 and YearLoop.has_arrival(school.month,school.week):
@@ -517,3 +523,54 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 	if phase=="chapter030b_joined":
 		return Return._validate(before,[3,4,9,5,8,6],5,4,rules)
 	return Return.validate_planning_roster(before,rules)
+
+
+static func winter_effects(before: Dictionary, effects: Array) -> Dictionary:
+	var after := before.duplicate(true)
+	var rules := Return._rules()
+	for effect in effects:
+		var id: int=effect.operands[0]
+		match effect.opcode:
+			91:after.adv_background=id
+			151:
+				after.flags["0x7a55f6"]=id
+				after.flags["0x7e11a0"]=effect.operands[1]
+			145:
+				if id!=3:return {"supported":false,"reason":"invalid_winter_departure"}
+				if not after.has("winter_roster_events"):after.winter_roster_events=[]
+				after.winter_roster_events.append(-id)
+				var left := _leave_student(after,rules,id,"chapter082_absent")
+				if not left.supported:return left
+			144:
+				if after.school.availability[id]==1:continue
+				var joins: Dictionary=YearLoop.Winter.source().joins
+				if not joins.has(str(id)):return {"supported":false,"reason":"invalid_winter_join"}
+				var source: Dictionary=joins[str(id)]
+				var relations: Array=source.join_relationships
+				if id in [3,4]:
+					var key := "chapter082_absent" if id==3 else "chapter076_absent"
+					if not after.has(key):return {"supported":false,"reason":"missing_winter_returning_student"}
+					var absent: Dictionary=after[key]
+					var candidate: Dictionary=absent.participants.duplicate(true)
+					candidate["unlock_reserved_bytes"]=[0,0]
+					var restored := {"candidate":candidate,"history":absent.records,"template_sha256":absent.profile.template_sha256}
+					Return._append_student(after,restored,rules)
+					after.counts[-1]=absent.counts
+					relations=relations.duplicate(true)
+					for r in relations:
+						for old in absent.relationships:
+							if r.from==old.from and r.to==old.to:
+								r.value=old.value
+								break
+					after.erase(key)
+				elif id>=101:
+					Return._append_teacher(after.school,source.profile)
+				else:
+					Return._append_student(after,source,rules)
+				for r in relations:
+					if after.school.availability[r.from]==1 and after.school.availability[r.to]==1:
+						after.school.relationships.append(r.duplicate(true))
+				if not after.has("winter_roster_events"):after.winter_roster_events=[]
+				after.winter_roster_events.append(id)
+			_:return {"supported":false,"reason":"unknown_winter_effect"}
+	return Return._result(after,after.phase)

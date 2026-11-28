@@ -75,6 +75,14 @@ class LessonCheck(CourseConfirmationEmulator):
                 expected_ids += [2,7,28]
             if date >= (11, 5):
                 expected_ids.remove(4)
+        elif (12,2) <= date <= (15,4) and 1 <= date[1] <= 5:
+            expected_ids = [3,9,5,8,6,1,16,17,13,14,15,11,18,32,2,7,28]
+            expected_ids.extend([19] if school['availability'][19] == 1 else [20,21])
+            for event in before.get('winter_roster_events', []):
+                if event < 0:
+                    expected_ids.remove(-event)
+                elif event < 101:
+                    expected_ids.append(event)
         elif date[0] == 10 and 1 <= date[1] <= 5 or date in [(11, 1),(11, 2)]:
             expected_ids += [14,15,11,18,32]
         elif date not in [(8,4),(8,5),(9,1),(9,2),(9,3),(9,4)]:
@@ -145,7 +153,7 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     lessons = summary['lessons'] if round_data else summary
     reported = {row['character_id']:row for row in after['growth']}
     seed = summary['growth_seed'] if round_data else summary['declared_clock_seed']
-    full_dispatch = not round_data or before['school']['week']==5 or date in ([9,3],[9,4],[11,3],[12,1])
+    full_dispatch = not round_data or date >= [12, 2] or before['school']['week']==5 or date in ([9,3],[9,4],[11,3],[12,1])
     if round_data and not full_dispatch:
         prefix = len(summary['learning_draws'])-len(lessons['learning_draws'])
         for draw in summary['learning_draws'][:prefix]:

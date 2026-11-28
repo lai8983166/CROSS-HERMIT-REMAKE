@@ -130,7 +130,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		return "outside_availability_subset"
 	if not _vector(before["item_flags"], 360, 0, 65535):
 		return "invalid_item_flags"
-	if not before["participants"] is Array or before["participants"].is_empty() or before["participants"].size() > 20:
+	if not before["participants"] is Array or before["participants"].is_empty() or before["participants"].size() > (40 if before.month>=12 else 20):
 		return "invalid_participants"
 	var seen := {}
 	for record in before["participants"]:

@@ -368,9 +368,9 @@ func tick() -> void:
 	for identity in phases.keys():
 		if not phases.has(identity): continue
 		var unit := find_unit(identity); var target := find_unit(phases[identity]["target"])
-		if not _admitted(unit,target):
-			phases.erase(identity); unit["target"] = -1; _visual(unit,"idle"); continue
 		var phase: Dictionary = phases[identity]
+		if unit.limits.hp<=0 or (not phase.get("committed_action",false) and not _admitted(unit,target)):
+			phases.erase(identity); unit["target"] = -1; _visual(unit,"idle"); continue
 		if frame < phase["deadline"]: continue
 		if phase["stage"] == "cast":
 			_hit(unit,target); phase["stage"] = "attack"; phase["deadline"] = frame+phase["release_frames"]

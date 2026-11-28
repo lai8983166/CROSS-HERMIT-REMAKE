@@ -68,12 +68,15 @@ const SAVE_CONTEXTS := {
 	36:"school_playground_mandatory_forty_one",
 	37:"school_playground_november_five",
 	38:"school_playground_december_one",
-	39:"school_playground_mandatory_thirty_one"
+	39:"school_playground_mandatory_thirty_one",
+	40:"school_year_winter"
 }
 const MAX_COMMANDS := 512
 const MAX_BYTES := 262144
 const POST_MAX_BYTES := 1048576
 const POST_MAX_COMMANDS := 2048
+const YEAR_MAX_COMMANDS := 8192
+const YEAR_MAX_BYTES := 2097152
 
 var session: Session
 var _commands: Array = []
@@ -209,7 +212,8 @@ func execute(command: Variant) -> Dictionary:
 	var scene_id: int=handoff.get("prepared",{}).get("adventure_id",0)
 	if not command is Dictionary or not _valid_command(command,handoff.get("date",[]),scene_id):
 		return _failure("invalid_command")
-	if _commands.size() >= (MAX_COMMANDS if _postbattle==null else POST_MAX_COMMANDS):
+	var command_limit := MAX_COMMANDS if _postbattle==null else YEAR_MAX_COMMANDS if _postbattle.bundle.get("school",{}).get("month",0)>=10 else POST_MAX_COMMANDS
+	if _commands.size() >= command_limit:
 		return _failure("save_command_limit")
 	if _postbattle!=null and command["op"] not in ["course_story","sortie_finish","post_next","post_prev","post_skip","post_choice","post_school","return_move"]+Postbattle.PLAN_OPS:
 		return _failure("postbattle_locks_departure")
@@ -234,7 +238,7 @@ func _dispatch(command: Dictionary) -> Dictionary:
 			if not begun["supported"]: return begun
 			_postbattle=next;return {"supported":true,"status":"battle_committed_once"}
 		"course_story","sortie_finish","post_next","post_prev","post_skip","post_choice","post_school","return_move",\
-		"return_plan","return_job","return_mode","return_course","return_select","return_settle","return_depart":
+		"return_plan","return_job","return_skill","return_mode","return_course","return_select","return_settle","return_depart":
 			return _failure("postbattle_not_started") if _postbattle==null else _postbattle.execute(command)
 		"move":
 			var input := command.duplicate(true)
@@ -294,7 +298,10 @@ static func _valid_command(command: Dictionary, departure_date: Array = [], scen
 			if not _integer(command.get("group"),0,4) or not _integer(command.get("course"),1,100):return false
 		"post_choice":
 			keys=["op","choice"]
-			if not _integer(command.get("choice"),0,1):return false
+			if not _integer(command.get("choice"),0,2):return false
+		"return_skill":
+			keys=["op","member_id","skill","slot"]
+			if not _integer(command.get("member_id"),1,44) or not _integer(command.get("skill"),1,84) or not _integer(command.get("slot"),0,7):return false
 		"return_job":
 			keys=["op","member","job"]
 			if not _integer(command.get("member"),1,44) or not _integer(command.get("job"),1,30):return false
@@ -654,12 +661,15 @@ func export_save() -> Dictionary:
 	if session == null:
 		return {}
 	var version := _save_version()
-	return {"version":version,"context":SAVE_CONTEXTS[version],"rules":_save_fingerprints(version),
+	return {"version":version,"context":SAVE_CONTEXTS[version],"rules":_save_fingerprints(version,_uses_personal_skills(_commands)),
 		"commands":_commands.duplicate(true),"state_sha256":JSON.stringify(state(),"",true).sha256_text()}
 
 
 func _save_version() -> int:
 	if _postbattle==null: return 4
+	var committed: Array=_postbattle.planning.get("committed_date",[])
+	if _commands.size()>POST_MAX_COMMANDS or _uses_personal_skills(_commands):return 40
+	if committed.size()==2 and (committed[0]>12 or (committed[0]==12 and committed[1]>=2)):return 40
 	if _postbattle.planning.get("committed_date")==[12,1]:return 39
 	if _postbattle.planning.get("committed_date")==[11,5]:return 38
 	if _november_four_planning() or _postbattle.planning.get("committed_date")==[11,4]:return 37
@@ -702,7 +712,11 @@ func _november_four_planning() -> bool:
 	return _postbattle!=null and _postbattle.phase=="returned_school" and [_postbattle.bundle.school.month,_postbattle.bundle.school.week]==[11,4] and not _commands.is_empty() and _commands.back().op in ["return_course","return_mode","return_move","return_job","return_select"]
 
 
-func _save_fingerprints(version: int) -> Dictionary:
+func _uses_personal_skills(commands: Variant) -> bool:
+	return commands is Array and commands.size()<=YEAR_MAX_COMMANDS and commands.any(func(c):return c is Dictionary and c.get("op")=="return_skill")
+
+
+func _save_fingerprints(version: int, personal_skills := false) -> Dictionary:
 	var result := _fingerprints.duplicate(true)
 	if version>=5:
 		result["postbattle_story"]=Postbattle.STORY_SHA
@@ -720,6 +734,17 @@ func _save_fingerprints(version: int) -> Dictionary:
 		result["sortie_scene"]=Postbattle.SortieRecord.Sortie.SCENES_SHA
 	if version>=9:
 		result["may_week_three"]=Postbattle.SortieWeek.WEEK3_SHA
+	if version>=40:
+		if personal_skills:
+			result["personal_skills"]=Postbattle.PersonalSkills.SHA
+			result["personal_skill_art"]=Postbattle.SortieRecord.Sortie.PERSONAL_SKIN_SHA
+		result["winter_story"]=Postbattle.SortieWeek.YearLoop.Winter.SHA
+		result["december_three_story"]="e5782e5758848a3aeabdbf774fff0b1933ad530f544f0ca63d6d267391ccfd50"
+		result["winter_battles"]=JSON.stringify(Postbattle.SortieRecord.Sortie.WINTER_SHA,"",true).sha256_text()
+		result["winter_attack_timing"]=Postbattle.SortieRecord.Sortie.Winter.ATTACK_TIMING_SHA
+		result["winter_job_skins"]=Postbattle.SortieRecord.Sortie.WINTER_JOBS_SHA
+		result["winter_courses"]=Postbattle.Courses.WINTER_SHA
+		result["winter_missions"]=preload("res://sim/school_winter_battle.gd").RULE_SHA
 	if version>=39:
 		result["mandatory_thirty_one"]=Postbattle.Adventures.THIRTY_ONE_SHA
 		result["scene_thirty_one"]=Postbattle.SortieRecord.Sortie.THIRTY_ONE_SHA
@@ -834,7 +859,7 @@ func restore(payload: Variant) -> Dictionary:
 	var version3: bool = payload["version"] == 3
 	if not _integer(payload["version"],1,SAVE_CONTEXTS.size()) or payload["context"] != SAVE_CONTEXTS[payload["version"]]:
 		return _failure("unsupported_save_version")
-	var fingerprints: Dictionary = _save_fingerprints(payload["version"])
+	var fingerprints: Dictionary = _save_fingerprints(payload["version"],_uses_personal_skills(payload.get("commands")))
 	if legacy or version2 or version3:
 		fingerprints = {}
 		for key in LEGACY_KEYS if legacy else VERSION2_KEYS if version2 else VERSION3_KEYS:
@@ -846,7 +871,7 @@ func restore(payload: Variant) -> Dictionary:
 		previous_line_endings["story"] = LEGACY_STORY_CRLF_SHA
 	if payload["rules"] != fingerprints and payload["rules"] != previous_line_endings:
 		return _failure("save_rules_changed")
-	if not payload["commands"] is Array or payload["commands"].size() > (POST_MAX_COMMANDS if payload["version"]>=5 else MAX_COMMANDS) \
+	if not payload["commands"] is Array or payload["commands"].size() > (YEAR_MAX_COMMANDS if payload["version"]>=40 else POST_MAX_COMMANDS if payload["version"]>=5 else MAX_COMMANDS) \
 			or not payload["state_sha256"] is String or payload["state_sha256"].length() != 64:
 		return _failure("invalid_save")
 	var candidate = get_script().new()
@@ -895,7 +920,7 @@ func restore(payload: Variant) -> Dictionary:
 
 
 func restore_text(content: String) -> Dictionary:
-	if content.to_utf8_buffer().size() > POST_MAX_BYTES:
+	if content.to_utf8_buffer().size() > YEAR_MAX_BYTES:
 		return _failure("save_too_large")
 	var json := JSON.new()
 	if json.parse(content) != OK:
@@ -904,6 +929,7 @@ func restore_text(content: String) -> Dictionary:
 		var version: Variant=json.data.get("version")
 		if not (version is float or version is int) or not SAVE_CONTEXTS.has(int(version)) or version!=int(version) or version<5:
 			return _failure("save_too_large")
+		if version<40 and content.to_utf8_buffer().size()>POST_MAX_BYTES:return _failure("save_too_large")
 	return restore(Roles._integers(json.data))
 
 
@@ -913,7 +939,7 @@ func _read(path: String) -> Dictionary:
 	var file := FileAccess.open(path,FileAccess.READ)
 	if file == null:
 		return _failure("save_read_failed")
-	if file.get_length() > POST_MAX_BYTES:
+	if file.get_length() > YEAR_MAX_BYTES:
 		return _failure("save_too_large")
 	var content := file.get_as_text()
 	var result := restore_text(content)
@@ -939,7 +965,7 @@ func save_file(path := SAVE_PATH) -> Dictionary:
 	if payload.is_empty():
 		return _failure("not_started")
 	var content := JSON.stringify(payload,"" if payload["version"]>=9 else "  ",true)+"\n"
-	if content.to_utf8_buffer().size() > (POST_MAX_BYTES if _postbattle!=null else MAX_BYTES):
+	if content.to_utf8_buffer().size() > (YEAR_MAX_BYTES if payload.version==40 else POST_MAX_BYTES if _postbattle!=null else MAX_BYTES):
 		return _failure("save_too_large")
 	var temporary := path+".tmp"
 	var file := FileAccess.open(temporary,FileAccess.WRITE)

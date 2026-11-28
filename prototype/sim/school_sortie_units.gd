@@ -3,15 +3,18 @@ extends RefCounted
 const Limits := preload("res://sim/school_combat_limits.gd")
 
 
-static func project(participant: Dictionary, growth: Dictionary, rules: Dictionary, november := false, december := false) -> Dictionary:
+static func project(participant: Dictionary, growth: Dictionary, rules: Dictionary, november := false, december := false, winter := false, unlocked_job := 0) -> Dictionary:
 	var id = participant.get("character_id")
 	var jobs := {1:6,2:4,3:10,4:6,9:7,5:4,8:8,6:2,13:10,16:1,17:1}
-	if november or december:
+	if november or december or winter:
 		if november:jobs.erase(2)
 		jobs.merge({11:9,14:5,15:4,18:4,32:13})
-	if december:
+	if december or winter:
 		jobs.erase(4)
 		jobs.merge({7:8,28:9})
+	if winter:
+		jobs.merge({4:6,10:1,12:5,19:21,20:11,21:22,22:28,23:8,24:17,25:10,26:29,27:10,29:10,30:9,31:10,33:28})
+	if unlocked_job>0 and jobs.has(id):jobs[id]=unlocked_job
 	if id not in jobs or growth.get("character_id")!=id or participant.get("job")!=jobs[id] or growth.get("job")!=jobs[id]: return {}
 	if participant.get("attributes")!=growth.get("attributes") or participant.get("level_50")!=growth.get("level_50"):return {}
 	if not Limits._numbers(growth.get("attributes"),7,0,255) or not Limits._integer(growth.get("level_50"),0,99):return {}
@@ -20,8 +23,9 @@ static func project(participant: Dictionary, growth: Dictionary, rules: Dictiona
 	if bow and item.size()!=56:return {}
 	if (not bow and participant.get("equipped_items")!=[0,0,0,0,0,0,0,0]) or not Limits._numbers(participant.get("equipped_skills"),8,0,65535):return {}
 	for skill in participant["equipped_skills"]:
-		if id not in [6,8,16,17] and skill not in [0,11,20,29,31,57,59]:return {}
-		if id in [6,8,16,17] and skill!=0:return {}
+		if skill not in [0,11,20,29,31,57,59]:return {}
+		if (winter or november or december) and skill>0 and (participant.get("skill_statuses",[]).size()!=84 or participant.skill_statuses[skill-1]!=6):return {}
+		if not (winter or november or december) and id in [6,8,16,17] and skill!=0:return {}
 	if not rules.jobs.has(str(jobs[id])):return {}
 	var job: Dictionary=rules["jobs"][str(jobs[id])]
 	var j := String(job["job_hex"]).hex_decode();var w := String(job["attack_hex"]).hex_decode()

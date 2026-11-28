@@ -114,3 +114,48 @@ func test_december_one_route_and_mandatory_adventure() -> void:
 	assert_eq([state.flags["0x7a55f6"],state.flags["0x7e11a0"]],[9,1])
 	assert_eq(adventures._mandatory_id(11,5),0)
 	assert_eq(adventures._mandatory_id(12,1),31)
+
+
+func test_loop_phase_guards_preserve_order_and_reject_duplicate_transactions() -> void:
+	var loop := preload("res://sim/school_year_loop.gd")
+	for row in [["returned_school","planning","return_depart"],["sortie_pending","execution","sortie_finish"],
+			["sortie_result","settlement","post_next"],["course_result","settlement","course_story"],
+			["post_story","story","post_skip"],["new_week_story","next_week","post_next"],
+			["post_workroom","next_week","post_school"],["chapter310_choice","story","post_choice"]]:
+		assert_eq(loop.phase_for(row[0]),row[1])
+		assert_true(loop.accepts(row[0],row[2]))
+	assert_true(loop.accepts("returned_school","return_skill"))
+	for row in [["returned_school","sortie_finish"],["sortie_result","sortie_finish"],["course_result","return_settle"],
+			["chapter310_choice","post_skip"],["post_workroom","return_depart"],["school_year_complete","post_school"]]:
+		assert_false(loop.accepts(row[0],row[1]))
+
+
+func test_winter_choice_grades_and_march_ending_use_distinct_original_paths() -> void:
+	var winter := preload("res://sim/school_winter_story.gd")
+	var loop := preload("res://sim/school_year_loop.gd")
+	assert_true(loop.has_departure(12,3))
+	assert_eq(loop.story(12,3).choice_labels.size(),2)
+	var arrival := {"school":{"month":13,"week":2},"flags":{}}
+	assert_true(loop.apply_arrival_effects(arrival,false))
+	assert_eq([arrival.flags["0x7a55f6"],arrival.flags["0x7e11a0"],arrival.adv_background],[2,1,15])
+	assert_eq(winter.story(12,3,{}).choice_labels.size(),2)
+	assert_eq(winter.story(12,3,{},[1]).choice_labels.size(),3)
+	assert_eq(winter.story(12,3,{},[0]).effects[0],[])
+	for i in range(3):
+		assert_eq(winter.story(12,3,{},[1,i]).effects[0][0].operands,[[23],[24],[22]][i])
+	for grade in range(1,6):
+		var joins := []
+		for e in winter.story(13,3,{13:grade}).effects[1]:
+			if e.opcode==144:joins.append(e.operands[0])
+		assert_eq(joins,[113,33] if grade<=3 else [113])
+		joins.clear()
+		for e in winter.story(13,4,{29:grade}).effects[0]:
+			if e.opcode==144:joins.append(e.operands[0])
+		assert_eq(joins,[10,12]+([25,31] if grade==1 else [27,29] if grade<4 else [26,30])+[112])
+	var ending := winter.story(15,4,{})
+	assert_true(ending.terminal)
+	assert_eq(ending.pre_week[-1].chapter,"097A")
+	assert_eq(winter.story(15,4,{},[],{4:7,5:7}).pre_week[-1].chapter,"097D")
+	assert_eq(winter.story(15,4,{},[],{11:1,12:99}).pre_week[-1].chapter,"097K")
+	assert_eq(winter.ending_member({2:-1,12:100}),1)
+	assert_false(winter.departure(15,5))

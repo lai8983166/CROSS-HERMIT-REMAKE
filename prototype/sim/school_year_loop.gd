@@ -1,5 +1,6 @@
 extends RefCounted
 ## Dated CH003, CH001 and CH002 sections for the existing school session.
+const Winter := preload("res://sim/school_winter_story.gd")
 const Roles := preload("res://sim/all_result_role_replay.gd")
 const PATH := "res://data/school_year_october_continuation.json"
 const SHA := "9ae5d47f6d49a0623f4aed39f86a20b79dfd5a265049e908ed75b66be5570781"
@@ -32,20 +33,24 @@ static func _source(month: int, arrival_week: int) -> Dictionary:
 	if month==12 and arrival_week==2:
 		path="res://data/school_year_december_two.json"
 		digest=DECEMBER_TWO_SHA
+	if month==12 and arrival_week==3:
+		path="res://data/school_year_december_three.json"
+		digest="e5782e5758848a3aeabdbf774fff0b1933ad530f544f0ca63d6d267391ccfd50"
 	var raw := FileAccess.get_file_as_string(path).replace("\r\n","\n")
 	if raw.sha256_text() != digest:return {}
 	return Roles._integers(JSON.parse_string(raw))
 
 
 static func has_departure(month: int, week: int) -> bool:
-	return (month==10 and week in range(2,6)) or (month==11 and week in [1,2,4,5]) or [month,week]==[12,1]
+	return Winter.departure(month,week) or (month==10 and week in range(2,6)) or (month==11 and week in [1,2,4,5]) or (month==12 and week in [1,2])
 
 
 static func has_arrival(month: int, week: int) -> bool:
-	return (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3,5]) or (month==12 and week in [1,2])
+	return Winter.arrival(month,week) or (month==10 and week in range(3,6)) or (month==11 and week in [1,2,3,5]) or (month==12 and week in [1,2,3])
 
 
-static func story(month: int, week: int) -> Dictionary:
+static func story(month: int, week: int, grades: Dictionary={}, choices: Array=[]) -> Dictionary:
+	if Winter.departure(month,week):return Winter.story(month,week,grades,choices)
 	var data := _source(month+1,1) if week==5 else _source(month,week+1)
 	for route in data.get("arrivals",[]):
 		if route.departure != [month,week]:continue
@@ -73,22 +78,66 @@ static func story(month: int, week: int) -> Dictionary:
 	return {"supported":false,"reason":"missing_school_year_route"}
 
 
-static func apply_arrival_effects(after: Dictionary, at_school: bool) -> bool:
-	var data := _source(after.school.month,after.school.week)
-	for route in data.get("arrivals",[]):
-		if route.arrival != [after.school.month,after.school.week]:continue
-		var section: Dictionary=route.sections[2 if at_school else 1]
-		for effect in section.effects:
-			match effect.opcode:
-				145:
-					var key := "chapter071_absent" if effect.operands[0]==2 else "chapter076_absent"
-					if after.get(key,{}).get("participants",{}).get("character_id")!=effect.operands[0]:return false
-				151:
-					after.flags["0x7a55f6"]=effect.operands[0]
-					after.flags["0x7e11a0"]=effect.operands[1]
-				91:
-					after.adv_background=effect.operands[0]
-				_:
-					return false
-		return true
+static func apply_arrival_effects(after: Dictionary, at_school: bool, winter_section: Variant=null) -> bool:
+	var month: int=after.school.month
+	var week: int=after.school.week
+	var winter := Winter.arrival(month,week)
+	var effects: Variant=null
+	if winter:
+		if [month,week]==[15,5]:return false
+		if winter_section==null:
+			var grades := {}
+			if [month,week]==[13,4]:
+				# Closing Chapter314A/B uses identical flags. The completed roster
+				# identifies which chapter ran when no selected section is supplied.
+				grades[13]=1 if after.school.availability[33]==1 else 4
+			var route := Winter.story(month if week>1 else month-1,week-1 if week>1 else 5,grades)
+			if not route.supported:return false
+			winter_section=route.effects[2 if at_school else 1]
+		effects=winter_section
+	else:
+		for route in _source(month,week).get("arrivals",[]):
+			if route.arrival==[month,week]:
+				effects=route.sections[2 if at_school else 1].effects
+				break
+	if not effects is Array:return false
+	for effect in effects:
+		var id: int=effect.operands[0]
+		match effect.opcode:
+			144,145:
+				if winter:
+					# These ran at their source page, before the closing music and background.
+					if after.school.availability[id]!=int(effect.opcode==144):return false
+				else:
+					var key := "chapter071_absent" if id==2 else "chapter076_absent"
+					if effect.opcode!=145 or after.get(key,{}).get("participants",{}).get("character_id")!=id:return false
+			151:
+				after.flags["0x7a55f6"]=id
+				after.flags["0x7e11a0"]=effect.operands[1]
+			91:after.adv_background=id
+			_:return false
+	return true
+
+
+## The concrete play phases carry the underlying command/replay state. Courses
+## execute synchronously on return_settle, while sorties have a pending execution.
+static func phase_for(play_phase: String) -> String:
+	match play_phase:
+		"returned_school":return "planning"
+		"sortie_pending":return "execution"
+		"course_result","sortie_result":return "settlement"
+		"post_story","chapter309_choice","chapter310_choice":return "story"
+		"new_week_story","post_workroom","school_entry_story","school_year_complete":return "next_week"
+	return ""
+
+
+static func accepts(play_phase: String, op: String) -> bool:
+	match play_phase:
+		"returned_school":return op in ["return_plan","return_job","return_skill","return_move","return_mode","return_course","return_select","return_settle","return_depart"]
+		"sortie_pending":return op=="sortie_finish"
+		"course_result":return op=="course_story"
+		"sortie_result":return op=="post_next"
+		"post_story","new_week_story","school_entry_story":return op in ["post_next","post_prev","post_skip"]
+		"chapter309_choice","chapter310_choice":return op=="post_choice"
+		"post_workroom":return op=="post_school"
 	return false

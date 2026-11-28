@@ -9,7 +9,7 @@ from unicorn.x86_const import UC_X86_REG_EBP, UC_X86_REG_EIP, UC_X86_REG_ESP
 from tools.tactics_exit_emulation import ROOT, SOURCE, SOURCE_SHA256
 
 
-def build():
+def build(played_case=None):
     image = SOURCE.read_bytes()
     if hashlib.sha256(image).hexdigest() != SOURCE_SHA256:
         raise ValueError('source differs')
@@ -45,7 +45,12 @@ def build():
     # Exercise signed/untouched status values, both ownership categories and nonzero owner bits.
     before = {'job': 4, 'level_50': 19, 'equipped_items':[6,100]+[0]*6, 'equipped_skills':[3,22]+[0]*6,
               'skill_statuses': [i%7 for i in range(84)], 'item_flags':[0x8011 | ((i%5)<<8) for i in range(360)]}
-    cpu.mem_write(character+6, struct.pack('<H', 14))
+    target=14
+    if played_case is not None:
+        before=played_case['before']
+        target=played_case['target']
+        if not 1<=target<=30:raise ValueError('invalid played job')
+    cpu.mem_write(character+6, struct.pack('<H',target))
     cpu.mem_write(character+0x50, bytes([before['level_50']]))
     cpu.mem_write(character+0x52, struct.pack('<16H',*before['equipped_skills'],*before['equipped_items']))
     cpu.mem_write(0x7aacac, struct.pack('<360H',*before['item_flags']))
@@ -58,11 +63,11 @@ def build():
     if cpu.reg_read(UC_X86_REG_EIP)!=0x4b699b:raise ValueError('incomplete unequip loop')
     for item in range(1,361):call(0x4b5af0,item)
     for skill in range(1,85):call(0x4b5c90,skill)
-    after={'job':14,'level_50':19,'equipped_items':list(struct.unpack('<8H',cpu.mem_read(character+0x62,16))),
+    after={'job':target,'level_50':before['level_50'],'equipped_items':list(struct.unpack('<8H',cpu.mem_read(character+0x62,16))),
            'equipped_skills':list(struct.unpack('<8H',cpu.mem_read(character+0x52,16))),
            'skill_statuses':statuses(),'item_flags':list(struct.unpack('<360H',cpu.mem_read(0x7aacac,720)))}
     return {'source_image_sha256':SOURCE_SHA256,'classes':classes,'items':items,
-            'case':{'before':before,'target':14,'after':after}}
+            'case':{'before':before,'target':target,'after':after}}
 
 
 if __name__=='__main__':

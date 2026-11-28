@@ -29,12 +29,14 @@ const SOURCES := {
 	"role":["res://data/role_application_evidence.json","b0c1f014711dabe3a70482967f58761d8915779da1bbcfcf2eadb18969d38055"],
 	"school":["res://data/new_game_school_rules.json","ac4faffab74cb73b7f39c0c1a28a05a96f20f426aa1c5124eec58e1541bbef97"],
 	"boot":["res://data/school_boot_evidence.json","066ac6af7eb1f8b4b5a8b7d363cff5fcb62760652065b06fc9cf77cb8546301e"]}
+const Winter := preload("res://sim/school_winter_story.gd")
 const GROWTH_KEYS := ["job","attributes","growth_pools","level_50","skill_statuses","job_sums","staged_total"]
 
 
 static func group_rules(school: Dictionary) -> Dictionary:
 	var rules := Origin.group_rules()
 	if _december_roster(school):rules["december_students"]=true
+	if _winter_roster(school):rules["winter_students"]=true
 	if _november_roster(school):rules["november_students"]=true
 	if _october_roster(school):rules["october_students"]=true
 	if _has_chapter054(school):rules["chapter054_students"]=true
@@ -55,11 +57,19 @@ static func group_rules(school: Dictionary) -> Dictionary:
 	if _november_roster(school) and school.teacher_count==6:
 		rules.teacher_scope="chapter307"
 		rules.chapter_sha256=Groups.CHAPTER307_SHA
+	if _winter_roster(school):
+		rules.winter_teacher_count=school.teacher_count
+		rules.teacher_scope="winter"
+		rules.chapter_sha256=Winter.SHA
 	return rules
 
 
+static func _winter_roster(school: Dictionary) -> bool:
+	return school.get("month") in [13,14,15] or school.get("month")==12 and school.get("week") in [3,4,5]
+
+
 static func _december_roster(school: Dictionary) -> bool:
-	return school.get("month")==12 and school.get("week") in [1,2] and school.get("student_count") in [18,19] and school.get("teacher_count")==6
+	return _winter_roster(school) or school.get("month")==12 and school.get("week") in [1,2,3] and school.get("student_count") in [18,19] and school.get("teacher_count")==6
 
 
 static func _november_roster(school: Dictionary) -> bool:
@@ -90,6 +100,7 @@ static func _has_chapter304(school: Dictionary) -> bool:
 static func sort_rules(school: Dictionary, rules: Dictionary) -> Dictionary:
 	var result: Dictionary=rules["school"]["sort_rules"].duplicate()
 	if _december_roster(school):result["december_students"]=true
+	if _winter_roster(school):result["winter_students"]=true
 	if _november_roster(school):result["november_students"]=true
 	if _october_roster(school):result["october_students"]=true
 	if _has_chapter054(school):result["chapter054_students"]=true
@@ -294,6 +305,7 @@ static func _append_student(after: Dictionary, source: Dictionary, rules: Dictio
 	after["records"].append(source["history"].duplicate(true))
 	after["counts"].append({"character_id":identity,"count":0})
 	var index: int=school["student_count"]
+	if index==school.student_ids.size():school.student_ids.append(-1)
 	school["student_ids"][index] = identity
 	school["raw_student_ids"][index] = identity
 	school["student_count"] += 1
@@ -362,14 +374,21 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 	var school: Variant = bundle.get("school")
 	if not school is Dictionary or school.get("week") not in [1,2,3,4,5]:
 		return "outside_current_return_week"
-	if (school.month==11 and school.week in [3,4,5] or school.month==12 and school.week in [1,2]) and not bundle.has("chapter071_absent"):
+	if _winter_roster(school):
+		var expected := [3,9,5,8,6,1,16,17,13,14,15,11,18,32,2,7,28]
+		expected.append_array([19] if school.availability[19]==1 else [20,21])
+		for event in bundle.get("winter_roster_events",[]):
+			if event<0:expected.erase(-event)
+			elif event<101:expected.append(event)
+		return _validate(bundle,expected,school.month,school.week,rules)
+	if (school.month==11 and school.week in [3,4,5] or school.month==12 and school.week in [1,2,3]) and not bundle.has("chapter071_absent"):
 		var expected := [3,4,9,5,8,6,1,16,17,13,14,15,11,18,32,2]
 		if school.student_count>=17:expected.append(7)
 		if school.month==12 or school.week>=4:expected.append(28)
 		if school.month==12 or school.week==5:expected.erase(4)
 		if _december_roster(school):
 			expected.append_array([20,21] if school.student_count==19 else [19])
-		elif [school.month,school.week]==[12,2]:return "outside_chapter309_roster"
+		elif school.month==12 and school.week in [2,3]:return "outside_chapter309_roster"
 		return _validate(bundle,expected,school.month,school.week,rules)
 	if _october_roster(school):
 		var roster := [3,4,9,5,8,6,1,2,16,17,13,14,15,11] + [18]
@@ -510,6 +529,8 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 	if _has_four_teachers(school): teachers.append(118)
 	if ids.has(13):teachers.append(116)
 	if ids.has(28):teachers.append(107)
+	for event in bundle.get("winter_roster_events",[]):
+		if event>=101:teachers.append(event)
 	var reason := Groups._validate(school,group_rules(school))
 	if not reason.is_empty(): return reason
 	if school.get("month")!=month or school.get("week")!=week or school["student_ids"].slice(0,school["student_count"])!=ids \
@@ -528,6 +549,7 @@ static func _validate(bundle: Dictionary, ids: Array, month: int, week: int, rul
 			var expected_sha := "bc3a30a04ca4e32a3d40c50f9beb18d65354006d9246e43858049bd9cd84cabc" if identity==110 else "5bcf15751c390f22d43e7d3c7e88259f009e523cfdb93f937fb3a88e17a663c7"
 			if identity==118:expected_sha="2b6766966dc7f55df460999262331520e52be33433117109a2d8ff8aeffdcc04"
 			if identity==107:expected_sha="7d84447a828bb3744746b7b5236e1116c00f433c0ebff4b29d02e96007605489"
+			if identity in [112,113]:expected_sha=Winter.source().joins[str(identity)].profile.template_sha256
 			if identity==116:expected_sha="b986d2e72edf00de0185aa5422ccc526e113ebb4b7ebff67380320a289177eeb"
 			if (not teacher is Dictionary or teacher.get("member_id")!=identity or teacher.get("job")!=1
 					or teacher.get("level_50")!=0 or not Week._vector(teacher.get("attributes"),7,0,0)

@@ -1,4 +1,4 @@
-"""Compare a MAP41 or MAP31 settlement with original scoring, loot, growth and school confirmation."""
+"""Compare a mandatory school-year battle with original scoring, loot, growth and confirmation."""
 import argparse
 import json
 from pathlib import Path
@@ -16,7 +16,7 @@ def verify_rewards(before, after, round_data, ratings, facts):
     summary = after['sortie_result']
     score = summary['score']
     scene_id = facts['scene_id']
-    assert (school['month'], school['week'], scene_id) in ((11,3,41), (12,1,31))
+    assert (school['month'], school['week'], scene_id) in ((11,3,41), (12,1,31), (12,3,32), (13,2,44), (13,3,29), (15,4,45))
     cpu = PreparationEmulator(seed=facts['clock_seed'])
     cpu.write(0x7A5294, scene_id, 'h')
     cpu.write(0x7A528C, school['difficulty'], 'h')

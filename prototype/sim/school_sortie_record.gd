@@ -6,6 +6,10 @@ static var _cache: Dictionary = {}
 
 
 static func valid_trace(trace: Variant, date: Variant, scene_id: Variant) -> bool:
+	var winter: bool=scene_id in Sortie.Winter.DATES
+	if winter or date in Sortie.Winter.DATES.values():
+		if not winter or date!=Sortie.Winter.DATES[scene_id]:return false
+		return Record.valid_winter_trace(trace,Sortie.Winter.MAP_SIZE[scene_id],Sortie.Winter.TEMPLATES[scene_id])
 	var thirty_one: bool=date==[12,1] and scene_id==31
 	if (date==[12,1] or scene_id==31) and not thirty_one:return false
 	var forty_one: bool=date==[11,3] and scene_id==41

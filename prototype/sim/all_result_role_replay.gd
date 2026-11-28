@@ -89,17 +89,17 @@ static func project_growth(before: Dictionary, ordered_ids: Array, seed: int, ru
 	return _apply_growth(_normalized_snapshot(before), ordered_ids, seed, rules)
 
 
-static func _growth_id(id: Variant, july_recruits: bool, august_recruit: bool, autumn_recruits := false, december_roster := false) -> bool:
-	return _bounded(id,1,12) or (july_recruits and _bounded(id,16,17)) or (august_recruit and id==13) or (autumn_recruits and id in [14,15,18,32]) or (december_roster and id==28)
+static func _growth_id(id: Variant, july_recruits: bool, august_recruit: bool, autumn_recruits := false, december_roster := false, winter_roster := false) -> bool:
+	return _bounded(id,1,12) or (july_recruits and _bounded(id,16,17)) or (august_recruit and id==13) or (autumn_recruits and id in [14,15,18,32]) or (december_roster and id==28) or (winter_roster and _bounded(id,1,33))
 
 
-static func project_growth_records(input: Array, ordered_ids: Array, seed: int, rules: Dictionary, july_recruits := false, august_recruit := false, autumn_recruits := false, december_roster := false) -> Dictionary:
+static func project_growth_records(input: Array, ordered_ids: Array, seed: int, rules: Dictionary, july_recruits := false, august_recruit := false, autumn_recruits := false, december_roster := false, winter_roster := false) -> Dictionary:
 	# Growth itself does not read the date, relation directory or teacher slots.
 	# Keep the historical full-snapshot/context validators unchanged.
 	var seen := {}
 	if input.is_empty() or input.size() > 5: return _unsupported("invalid_growth_records")
 	for record in input:
-		if not record is Dictionary or not _growth_id(record.get("character_id"),july_recruits,august_recruit,autumn_recruits,december_roster) \
+		if not record is Dictionary or not _growth_id(record.get("character_id"),july_recruits,august_recruit,autumn_recruits,december_roster,winter_roster) \
 				or seen.has(record["character_id"]): return _unsupported("invalid_growth_identity")
 		seen[record["character_id"]] = true
 		for bounds in [["job",1,30],["level_50",1,50],["staged_total",0,0x7fffffff]]:
@@ -107,10 +107,10 @@ static func project_growth_records(input: Array, ordered_ids: Array, seed: int, 
 		for bounds in [["attributes",7,1,135],["growth_pools",7,0,0x7fffffff],
 				["skill_statuses",84,0,6],["staged_package",8,0,0x7fffffff],["job_progress",31,-128,127]]:
 			if not _vector(record.get(bounds[0]),bounds[1],bounds[2],bounds[3]): return _unsupported("invalid_growth_vector")
-	return _apply_growth({"characters":_integers(input)},ordered_ids,seed,rules,july_recruits,august_recruit,autumn_recruits,december_roster)
+	return _apply_growth({"characters":_integers(input)},ordered_ids,seed,rules,july_recruits,august_recruit,autumn_recruits,december_roster,winter_roster)
 
 
-static func _apply_growth(before: Dictionary, ordered_ids: Array, seed: int, rules: Dictionary, july_recruits := false, august_recruit := false, autumn_recruits := false, december_roster := false) -> Dictionary:
+static func _apply_growth(before: Dictionary, ordered_ids: Array, seed: int, rules: Dictionary, july_recruits := false, august_recruit := false, autumn_recruits := false, december_roster := false, winter_roster := false) -> Dictionary:
 	var reason := _validate_rules(rules)
 	if not reason.is_empty():
 		return _unsupported(reason)
@@ -125,7 +125,7 @@ static func _apply_growth(before: Dictionary, ordered_ids: Array, seed: int, rul
 	for k in range(1, 136):
 		maximum_pool += int(increments[k])
 	for value in ordered_ids:
-		if not _growth_id(value,july_recruits,august_recruit,autumn_recruits,december_roster) or seen.has(int(value)) or not records.has(int(value)):
+		if not _growth_id(value,july_recruits,august_recruit,autumn_recruits,december_roster,winter_roster) or seen.has(int(value)) or not records.has(int(value)):
 			return _unsupported("missing_or_duplicate_growth_id")
 		var id := int(value)
 		seen[id] = true
