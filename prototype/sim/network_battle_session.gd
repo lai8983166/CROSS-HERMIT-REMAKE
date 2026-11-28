@@ -1,7 +1,9 @@
 extends "res://sim/standalone_battle_session.gd"
-## Local two-side practice on the original network selection 1.
+## Original versus and cooperative battle selections, plus local unused-terrain practice.
 const DATA := "res://assets/network_battle/catalog.json"
 const DATA_SHA := "22183594aada0c94d9f0afcea77780633b9f8d484aa0a5fa819f65e1c5a67234"
+
+var guards:=preload("res://sim/school_twenty_four_battle.gd").new()
 
 func start(home: Array, away: Array, scenario := 71) -> bool:
 	var raw:=FileAccess.get_file_as_string(DATA)
@@ -63,6 +65,7 @@ func start(home: Array, away: Array, scenario := 71) -> bool:
 			if side==0:
 				_participant_ids.append(id)
 				_battle_stats[id]={"character_id":id,"count_field_aa":0,"contribution_field_ac":0,"status_field_ae":0}
+	guards.living=controlled_units()
 	selected_id=home[0]
 	_initial_enemies=enemies().size()
 	remaining_ticks=0x7fffffff if config[16]==255 else int(config[16])*3600
@@ -96,6 +99,7 @@ func _admitted(unit: Dictionary, target: Dictionary) -> bool:
 	return _ending_phase=="active" and not target.is_empty() and unit.side!=target.side and unit.limits.hp>0 and target.limits.hp>0
 
 func _guard_target(unit: Dictionary) -> int:
+	if scene_id in [42,43]:return guards.guard_target(self,unit)
 	var best:=0x7fffffff
 	var target:=-1
 	for candidate in controlled_units():
