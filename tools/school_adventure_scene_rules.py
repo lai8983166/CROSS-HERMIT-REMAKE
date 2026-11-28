@@ -28,7 +28,7 @@ def catalog(scene_ids=(8, 17), extra_ops=()):
             commands, pages, page = [], [], []
             while True:
                 op, advance = struct.unpack_from('<HH', raw, pc)
-                assert advance >= 4 and pc + advance <= len(raw)
+                assert advance >= 4 and pc + advance <= (len(raw) if pool is None else pool)
                 if op == 17:
                     index = struct.unpack_from('<H', raw, pc + 4)[0]
                     page.append({'offset': pc, 'text': texts[index][2]})
@@ -38,7 +38,8 @@ def catalog(scene_ids=(8, 17), extra_ops=()):
                     cells = list(struct.unpack_from('<' + 'I' * ((advance - 4)//4), raw, pc + 4))
                     commands.append({'offset': pc, 'opcode': op, 'cells': cells,
                         'values': [v & 0xfffffff for v in cells]})
-                if op == 19:
+                # T0080 contains single-instruction blocks ending at the string pool.
+                if op == 19 or (op == 148 and pc + advance == pool):
                     break
                 pc += advance
             assert not page
