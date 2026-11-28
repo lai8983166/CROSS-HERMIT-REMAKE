@@ -77,12 +77,19 @@ def main():
     parser.add_argument("save",type=Path)
     parser.add_argument("sha256")
     parser.add_argument("--apply",action="store_true")
+    parser.add_argument("--save-departure",action="store_true",
+                        help="save the verified January class arrangement through the original school UI")
     args=parser.parse_args()
+    if args.save_departure and not args.apply:
+        parser.error("--save-departure requires --apply")
     start=snapshot(args.save.read_bytes(),args.sha256)
     target=party_layout(args.source)
     folder=WORKER/"m3-new-baseline"
     vm=folder/VMX.name
     guest=Path("C:/ChaomofaWorker")
+    departure=folder/"school-13-2-sortie44.sav"
+    if args.save_departure and departure.exists():
+        raise FileExistsError(departure)
     if args.apply and (start["date"]!=[13,2] or start["selected_mission"]!=44):
         raise ValueError("Class changes require the original January week 2 adventure 44 school save")
     reference=folder/"school-controls.png"
@@ -111,6 +118,28 @@ def main():
     for step in range(256):
         gesture=next_gesture(state,target)
         if gesture is None:
+            if args.save_departure:
+                import hashlib
+                from tempfile import TemporaryDirectory
+                from devtools.compare_m3_native_saves import adventure44_party
+                if check_school()!=pid:
+                    raise ValueError("Original process changed before saving")
+                click("click",132,17)
+                click("click",293,257)
+                click("export-school",13,2)
+                with TemporaryDirectory(dir=folder) as temp:
+                    captured=Path(temp)/"school.sav"
+                    vmrun(["CopyFileFromGuestToHost",vm,guest/"m3-export.sav",captured],guest=True)
+                    raw=captured.read_bytes()
+                    saved=snapshot(raw,hashlib.sha256(raw).hexdigest())
+                    actual,=adventure44_party(raw,saved)["original_prepared"]["rounds"]
+                    expected,=authenticated(args.source/"formal/handoff-44.json",HANDOFF_SHA)["prepared"]["rounds"]
+                    if actual!=expected:
+                        raise ValueError("Saved original departure differs from the verified January party")
+                    with departure.open("xb") as output:
+                        output.write(raw)
+                click("click",729,258)
+                print(departure,saved["sha256"])
             print(json.dumps({"date":start["date"],"gestures":step,"classes":state["classes"]}))
             return
         action=gesture_input(gesture,state)
