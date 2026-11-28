@@ -57,8 +57,8 @@ def compare(before, after, require_44=False):
     if require_44:
         if before['date'] != [13, 2] or before['selected_mission'] != 44:
             raise ValueError('Pre-save must show January week 2 with mission 44 selected')
-        if after['date'] not in ([13, 2], [13, 3]) or after['departure_mission'] != 44:
-            raise ValueError('Post-save lacks the expected date and departure mission 44')
+        if after['date'] != [13, 3] or after['departure_mission'] != 44:
+            raise ValueError('Post-save must show January week 3 after departure mission 44')
         if before['sha256'] == after['sha256']:
             raise ValueError('Pre-save and post-save are identical')
     deltas = {}

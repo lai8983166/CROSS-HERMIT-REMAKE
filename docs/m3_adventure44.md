@@ -66,3 +66,9 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 从上述四月第 2 周的学校档出击，原版结算为 CONGRATULATIONS，时间奖 BEST、歼灭奖 FAILED。20 人参战，击败敌人 12，评价分数 30，己方被击败 4 次。学级经验由 17,960 加上本次的 23,285，累计为 41,245。班级成长和返校剧情结束后，新存档经学校 LOAD 菜单重新载入，日期为四月第 3 周、任务 3、在籍 35 人。
 
 恢复文件为 `.venv-audit/native-worker/m3-new-baseline/week3.sav`，198356 字节，SHA-256 为 `cf37a6c6854b4dcb4df461418aa07c0dd0276ee96668a941bc8efee332797cd6`，v7 校验和为 257329。与第 2 周文件对比，20 名学生的成长相关字段发生变化。本次只推进原版校历。
+
+### 原版冒险 3 返校检查点
+
+四月第 3 周从学校出击后，冒险 3 结算为 PERFECT，时间奖 GOOD、歼灭奖 COMPLETE。20 人参战，击败敌人 38，评价分数 60，己方被击败 0 次。学级经验增加 39,844，从 41,245 累计至 81,089。原版学校 LOAD 菜单重新载入四月第 4 周存档后，在籍 35 人。存档中的上一场出击编号为 3，累计积分与战果页相符；与第 3 周相比，20 人的成长相关字段发生变化。
+
+恢复文件为 `.venv-audit/native-worker/m3-new-baseline/week4.sav`，198356 字节，SHA-256 为 `1fb1241c9e030bebcb7aef988579f06048c412d315ced3698302d8ac443585eb`，v7 校验和为 261532。同目录的 `adventure3-result.png` 保存原版结算表。冒险 44 的返校存档比较现要求一月第 3 周且上一场出击编号为 44。

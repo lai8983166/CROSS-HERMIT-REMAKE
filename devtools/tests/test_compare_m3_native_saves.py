@@ -20,6 +20,12 @@ class NativeSaveComparison(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'January week 2'):
             compare(state, state, require_44=True)
 
+    def test_same_week_is_too_early_for_return(self):
+        before = {'date': [13, 2], 'selected_mission': 44}
+        after = {'date': [13, 2], 'departure_mission': 44}
+        with self.assertRaisesRegex(ValueError, 'January week 3'):
+            compare(before, after, require_44=True)
+
     def test_separate_integrity_checks(self):
         altered = bytearray(APRIL.read_bytes())
         altered[-10] ^= 1
