@@ -1,10 +1,13 @@
 extends "../devtools/verify_september_adventure24.gd"
 
+var settlement_output := ""
+
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size() not in [1,2] or FileAccess.get_sha256(args[0])!="1437a80bf7b27c16dec9304d52b2d54e686d4aa83f54d91ad5a3736612e24fad" or (args.size()==2 and FileAccess.file_exists(args[1])):
+	if args.size() not in [1,2,3] or FileAccess.get_sha256(args[0])!="1437a80bf7b27c16dec9304d52b2d54e686d4aa83f54d91ad5a3736612e24fad" or (args.size()>=2 and FileAccess.file_exists(args[1])) or (args.size()==3 and (args[1]==args[2] or FileAccess.file_exists(args[2]))):
 		quit(1)
 		return
+	if args.size()==3:settlement_output=args[2]
 	var ui := Screen.new()
 	ui.auto_load=false
 	ui.autosave=false
@@ -27,7 +30,7 @@ func _run() -> void:
 			panel.commit_dialog.confirmed.emit()
 			ok=ui.model.stage()=="sortie_pending"
 	if ok:
-		if args.size()==2:
+		if args.size()>=2:
 			var checkpoint := FileAccess.open_compressed(args[1],FileAccess.WRITE,FileAccess.COMPRESSION_ZSTD)
 			if checkpoint==null:
 				ui.free()
@@ -68,6 +71,14 @@ func _battle_and_return(ui,s) -> bool:
 	if facts.is_empty() or facts.scene_id!=11 or attacks==0:return false
 	var party_size: int=s.controlled_units().size()
 	print("MAP11 result ",facts.result_selector," escaped ",s.eleven_mission.escaped," attack orders ",attacks," ticks ",s.frame)
+	var evidence := {}
+	if not settlement_output.is_empty():
+		var flow=ui.model._postbattle
+		var handoff: Dictionary=flow.planning.handoff
+		var settled:=preload("res://sim/school_sortie_settlement.gd").apply(flow.bundle,handoff,facts,flow.planning.opening_ledger,flow._task_grades)
+		if not settled.supported:return false
+		evidence={"settlement":{"before":flow.bundle,"after":settled.after},
+			"submission":{"round":handoff.prepared.rounds[0],"ratings":handoff.prepared.class_ratings,"facts":facts}}
 	ui.sortie_trial._refresh()
 	ui.sortie_trial.continue_button.pressed.emit()
 	if ui.model.stage()!="sortie_result":
@@ -85,4 +96,14 @@ func _battle_and_return(ui,s) -> bool:
 			return false
 	var school: Dictionary=ui.model.read_postbattle().bundle.school
 	print("MAP11 returned ",[school.month,school.week]," students ",school.student_count," total ",school.global_total_511c)
-	return ui.model.stage()=="returned_school" and [school.month,school.week,school.student_count]==[10,1,16]
+	if ui.model.stage()!="returned_school" or [school.month,school.week,school.student_count]!=[10,1,16]:return false
+	if not evidence.is_empty():
+		if evidence.settlement.after.sortie_result!=result:return false
+		var file:=FileAccess.open(settlement_output,FileAccess.WRITE)
+		if file==null:return false
+		file.store_string(JSON.stringify(evidence))
+		file.flush()
+		var written:=file.get_error()==OK
+		file.close()
+		return written
+	return true
