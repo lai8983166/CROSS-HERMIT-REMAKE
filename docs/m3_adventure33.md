@@ -28,3 +28,5 @@
 用以下命令可在全新进程从胜利档重放学校和战场指令，并检查父档指令前缀、返校日期、评分和重新导出的状态摘要。
 
     godot --headless --path prototype --script F:/project/chaomofa/devtools/replay_m3_adventure33.gd -- --reload F:/project/chaomofa/.venv-audit/october-one-v31.json F:/project/chaomofa/.venv-audit/m3-map33-victory-week2.json
+
+胜利档的独立冷重放已完成。该 v32 存档有 1439 条学校指令，占 177619 字节，SHA-256 为 6c7482490b0cce734f15bfc15b6a980956bc6a594ed47a554d59050929d996bb。重新执行后得到相同的十月第 2 周、第三档评价和累计 2546015 经验，状态摘要为 b8be9058978e1acadfd1ebebfde32e3f847f3865c5979b8545693569b9cdf910。
