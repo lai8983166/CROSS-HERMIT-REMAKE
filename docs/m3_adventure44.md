@@ -108,7 +108,7 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 
 | 学校档 | 在校人数 | 字节 | SHA-256 |
 | --- | ---: | ---: | --- |
-|  | 35 | 198356 |  |
-|  | 35 | 198356 |  |
+| `school-05-5.sav` | 35 | 198356 | `0ecfebbc27a44bf59163aaa36c180da1c07f9f525ca952fecf193e71c4a936a0` |
+| `school-06-1.sav` | 35 | 198356 | `e9105a84c79254b0e8e7c9003611ef0c0beb97d8d6ea968a9688338ff08c4e9d` |
 
-对应原版结果画面为 （496578 字节，SHA-256 ）和 （488350 字节，SHA-256 ）。
+对应原版结果画面为 `result-05-4-07.png`（496578 字节，SHA-256 `ced605fc640a8e98288beddc99279a46aa287ffd1f314dd09baced1d1d2d9ef3`）和 `result-05-5-17.png`（488350 字节，SHA-256 `d2185aff4606d33b32ce5e6d07ac77b2834300717413d3fabe91955634bc42fc`）。
