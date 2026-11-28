@@ -87,3 +87,7 @@ Chapter071 共 205 条文本，分为 152 页。末尾音乐字段为 2、1，�
 用 Godot 无窗口运行 `devtools/verify_thirty_one_campaign.gd`，依次传入固定 v38、胜利记录和空输出目录，可重建出击待战、战后选择及第一选项返校三个存档。在新进程中只传一个存档路径即可重放；选择处读回后走第二项。正式保留的返校存档及摘要见[本段验收记录](../analysis/december-thirty-one-acceptance.json)。
 
 用 `python -m devtools.verify_november_sortie_result` 传入生成的 `settled.json` 和 `submission.json` 可重做原版战果对照。用 `devtools/verify_december_two_return.gd` 传入 `settled.json`、本段验收记录和临时观察结果路径，可复核两个选项的逐页、跳过和入队时点。随后用 `python -m devtools.verify_december_two_joins` 对照原版入队函数。
+
+## 学年试玩入口
+
+学校顶部的「学年试玩」会读取独立的学年存档。第一次进入时，后台重放十月第 1 周之前的 1,421 条指令，核对 v31 状态摘要后显示学校。重开学年会回到同一十月起点。

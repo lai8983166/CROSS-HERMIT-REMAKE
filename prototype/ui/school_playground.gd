@@ -1,6 +1,11 @@
 extends Control
 ## Player-facing school slice; all state changes belong to the verified controller.
 
+const YearTrial := preload("res://ui/school_year_trial.gd")
+var year_worker := Thread.new()
+var year_loader: YearTrial
+var year_dialog: AcceptDialog
+
 const Playground := preload("res://sim/school_playground.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
 const StoryReader := preload("res://ui/school_story_reader.gd")
@@ -139,6 +144,9 @@ func _ready() -> void:
 		button.custom_minimum_size = Vector2(115,38)
 		toolbar.add_child(button)
 		tab_buttons[key] = button
+	var year_button := _button("学年试玩",func():_open_year(true))
+	year_button.name="school_year_trial"
+	toolbar.add_child(year_button)
 	save_button = _button("保存",_manual_save)
 	load_button = _button("读取",_load)
 	restart_button = _button("重开",func(): restart_dialog.popup_centered(Vector2i(440,180)))
@@ -243,6 +251,9 @@ func _ready() -> void:
 	add_child(combat_trial)
 	postbattle_panel=load("res://ui/school_postbattle_panel.gd").new();add_child(postbattle_panel)
 	postbattle_panel.command.connect(func(value):_act(value);refresh())
+	postbattle_panel.year_requested.connect(func():
+		if save_path==YearTrial.SAVE_PATH:restart_dialog.popup_centered(Vector2i(440,180))
+		else:_open_year(true))
 	postbattle_panel.save_requested.connect(_manual_save)
 	postbattle_panel.load_requested.connect(_load)
 	sortie_trial=load("res://ui/school_sortie_trial.gd").new();add_child(sortie_trial)
@@ -267,7 +278,7 @@ func _ready() -> void:
 		next_button.disabled = true
 		return
 	if auto_load:
-		var loaded := model.load_file(save_path)
+		var loaded := model.load_week_state(save_path)
 		if loaded["supported"]:
 			_save_message = "已恢复备份" if loaded["status"] == "recovered_backup" else "已读取试玩存档"
 			_restore_view()
@@ -277,7 +288,7 @@ func _ready() -> void:
 
 
 func _open_battle() -> void:
-	var saved := model.save_file(save_path)
+	var saved := model.save_week_state(save_path)
 	if not saved["supported"]:
 		_save_message = "保存失败"
 		_message = "进度未能保存，暂时不能离开学校。"
@@ -313,14 +324,14 @@ func _restore_view() -> void:
 
 
 func _manual_save() -> void:
-	var result := model.save_file(save_path)
+	var result := model.save_week_state(save_path)
 	_save_message = "已保存试玩进度" if result["supported"] else "保存失败，当前进度尚未写入"
 	_message = "安排、成长和剧情进度已保存。" if result["supported"] else "保存未成功。请保留当前窗口，稍后重试。"
 	refresh()
 
 
 func _load() -> void:
-	var result := model.load_file(save_path)
+	var result := model.load_week_state(save_path)
 	if result["supported"]:
 		_restore_view()
 		_save_message = "已恢复备份" if result["status"] == "recovered_backup" else "已读取试玩存档"
@@ -330,7 +341,55 @@ func _load() -> void:
 	refresh()
 
 
+func _open_year(resume: bool) -> void:
+	if year_worker.is_started():return
+	year_dialog=AcceptDialog.new()
+	year_dialog.title="学年试玩"
+	year_dialog.dialog_text="正在重放学校指令以恢复学年进度……"
+	year_dialog.exclusive=true
+	year_loader=YearTrial.new()
+	year_dialog.ok_button_text="取消"
+	year_dialog.confirmed.connect(year_loader.cancel)
+	year_dialog.canceled.connect(year_loader.cancel)
+	add_child(year_dialog)
+	year_dialog.popup_centered(Vector2i(400,140))
+	var error := year_worker.start(year_loader.open.bind(resume))
+	if error!=OK:
+		year_dialog.queue_free()
+		_message="无法启动学年读档。"
+		refresh()
+
+
+func _process(_delta: float) -> void:
+	if not year_worker.is_started():return
+	if year_worker.is_alive():
+		var state := year_loader.progress()
+		if state[1]>0 and not state[2]:
+			year_dialog.dialog_text="正在重放学校指令 %d / %d" % [state[0],state[1]]
+		return
+	var result: Dictionary=year_worker.wait_to_finish()
+	year_dialog.queue_free()
+	if year_loader.progress()[2]:return
+	if result.supported:
+		model=result.model
+		save_path=YearTrial.SAVE_PATH
+		_restore_view()
+		_message="已进入学年试玩。"
+	else:
+		_message="学年指令重放失败（%s）。" % result.reason
+	refresh()
+
+
+func _exit_tree() -> void:
+	if year_worker.is_started():
+		year_loader.cancel()
+		year_worker.wait_to_finish()
+
+
 func _restart_confirmed() -> void:
+	if save_path==YearTrial.SAVE_PATH:
+		_open_year(false)
+		return
 	var candidate := Playground.new()
 	if not candidate.start()["supported"]:
 		_message = "重新开始失败，当前进度已保留。"
@@ -466,7 +525,7 @@ func _act(command: Dictionary) -> bool:
 func _save() -> void:
 	if not autosave:
 		return
-	var result := model.save_file(save_path)
+	var result := model.save_week_state(save_path)
 	_save_message = "已自动保存" if result["supported"] else "保存失败：本次修改仅保留在内存"
 
 

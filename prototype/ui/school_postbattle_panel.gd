@@ -3,6 +3,7 @@ extends PanelContainer
 signal command(value: Dictionary)
 signal save_requested
 signal load_requested
+signal year_requested
 signal sortie_requested
 const JobEligibility := preload("res://sim/school_job_eligibility.gd")
 const Groups := preload("res://sim/school_teacher_group_replay.gd")
@@ -40,6 +41,7 @@ func _ready() -> void:
 	var column := VBoxContainer.new();column.add_theme_constant_override("separation",14);add_child(column)
 	var toolbar := HBoxContainer.new();column.add_child(toolbar)
 	heading=_label(24);heading.size_flags_horizontal=Control.SIZE_EXPAND_FILL;toolbar.add_child(heading)
+	toolbar.add_child(_button("学年试玩",func():year_requested.emit()))
 	toolbar.add_child(_button("保存进度",func():save_requested.emit()))
 	toolbar.add_child(_button("读取存档",func():load_requested.emit()))
 	var scroll := ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;column.add_child(scroll)

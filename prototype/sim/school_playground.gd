@@ -94,6 +94,11 @@ var _school_entry: Dictionary = {}
 var _postbattle: Postbattle
 
 
+var _last_save_digest := ""
+var _last_save_path := ""
+var replay_progress: Callable
+
+
 func _init() -> void:
 	for key in RULE_PATHS:
 		_rules[key] = Roles._integers(JSON.parse_string(FileAccess.get_file_as_string(RULE_PATHS[key])))
@@ -848,7 +853,10 @@ func restore(payload: Variant) -> Dictionary:
 	var begun: Dictionary = candidate.start()
 	if not begun["supported"]:
 		return begun
-	for command in payload["commands"]:
+	for i in range(payload["commands"].size()):
+		if replay_progress.is_valid() and not replay_progress.call(i,payload["commands"].size()):
+			return _failure("replay_canceled")
+		var command: Variant=payload["commands"][i]
 		if payload["version"]<8 and command is Dictionary and command.get("op")=="course_story":
 			return _failure("save_command_rejected")
 		if payload["version"]<7 and command is Dictionary and command.get("op")=="sortie_finish":
@@ -907,13 +915,19 @@ func _read(path: String) -> Dictionary:
 		return _failure("save_read_failed")
 	if file.get_length() > POST_MAX_BYTES:
 		return _failure("save_too_large")
-	return restore_text(file.get_as_text())
+	var content := file.get_as_text()
+	var result := restore_text(content)
+	if result.supported:
+		_last_save_path=path
+		_last_save_digest=content.sha256_text()
+	return result
 
 
 func load_file(path := SAVE_PATH) -> Dictionary:
 	var result := _read(path)
 	if result["supported"]:
 		return result
+	if result.get("reason")=="replay_canceled":return result
 	var backup := _read(path+".bak")
 	if backup["supported"]:
 		return {"supported":true,"status":"recovered_backup","primary_reason":result["reason"]}
@@ -940,9 +954,11 @@ func save_file(path := SAVE_PATH) -> Dictionary:
 	# Existing valid saves rotate to backup; a corrupt primary cannot replace it.
 	var previous := ""
 	if FileAccess.file_exists(path):
-		var checker = get_script().new()
-		var valid: Dictionary = checker._read(path)
-		previous = path+".bak" if valid["supported"] else path+".corrupt"
+		var valid := path==_last_save_path and FileAccess.get_sha256(path)==_last_save_digest
+		if not valid:
+			var checker = get_script().new()
+			valid=checker._read(path).supported
+		previous = path+".bak" if valid else path+".corrupt"
 		if FileAccess.file_exists(previous):
 			if previous.ends_with(".corrupt"):
 				return _failure("corrupt_copy_exists")
@@ -955,8 +971,18 @@ func save_file(path := SAVE_PATH) -> Dictionary:
 		if not previous.is_empty():
 			DirAccess.rename_absolute(ProjectSettings.globalize_path(previous),ProjectSettings.globalize_path(path))
 		return _failure("save_replace_failed")
+	_last_save_path=path
+	_last_save_digest=content.sha256_text()
 	return {"supported":true,"status":"saved"}
 
 
 static func _failure(reason: String) -> Dictionary:
 	return {"supported":false,"reason":reason}
+
+
+func save_week_state(path := SAVE_PATH) -> Dictionary:
+	return save_file(path)
+
+
+func load_week_state(path := SAVE_PATH) -> Dictionary:
+	return load_file(path)
