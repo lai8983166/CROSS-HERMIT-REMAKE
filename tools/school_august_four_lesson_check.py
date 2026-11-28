@@ -153,7 +153,7 @@ def verify(before, after, round_data=None, submitted_ratings=None):
     lessons = summary['lessons'] if round_data else summary
     reported = {row['character_id']:row for row in after['growth']}
     seed = summary['growth_seed'] if round_data else summary['declared_clock_seed']
-    full_dispatch = not round_data or date >= [12, 2] or before['school']['week']==5 or date in ([9,3],[9,4],[11,3],[12,1])
+    full_dispatch = not round_data or date >= [12, 2] or before['school']['week']==5 or date in ([9,3],[9,4],[10,1],[11,3],[12,1])
     if round_data and not full_dispatch:
         prefix = len(summary['learning_draws'])-len(lessons['learning_draws'])
         for draw in summary['learning_draws'][:prefix]:

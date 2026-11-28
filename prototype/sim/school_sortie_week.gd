@@ -129,9 +129,7 @@ static func join_october_student(before: Dictionary, chapter: int) -> Dictionary
 		return {"supported":false,"reason":"outside_october_join"}
 	var reason := Return.validate_planning_roster(before, Return._rules())
 	if not reason.is_empty():return {"supported":false,"reason":reason}
-	var raw := FileAccess.get_file_as_string(Return.OCTOBER_ONE[0]).replace("
-","
-")
+	var raw := FileAccess.get_file_as_string(Return.OCTOBER_ONE[0]).replace("\r\n","\n")
 	if raw.sha256_text() != Return.OCTOBER_ONE[1]:return {"supported":false,"reason":"invalid_join_source"}
 	var data: Dictionary = Roles._integers(JSON.parse_string(raw))
 	var source: Dictionary = data.joins[0 if pre_week else 1]
@@ -499,6 +497,9 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 				return "outside_mandatory_sortie_return"
 		elif school.week not in [1,2,5] or phase!="courses_confirmed" or school.get("adventure_gate")!=0:
 			return "outside_september_course_return"
+	if [school.month,school.week]==[10,1] and first_week==1 and phase=="sortie_settled":
+		if school.adventure_gate!=0 or school.lecture_active!=1 or school.lecture_work_fields[2]!=33:return "outside_october_sortie_return"
+		return Return.validate_planning_roster(before,rules)
 	if school.get("month")==10 and (school.week==1 and phase=="courses_confirmed" or first_week==2 and school.week in [1,2]):
 		return Return.validate_planning_roster(before,rules)
 	if [school.month,school.week]==[12,1] and first_week==1:

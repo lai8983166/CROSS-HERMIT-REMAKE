@@ -1,4 +1,4 @@
-extends SceneTree
+extends "res://sim/tests/test_base.gd"
 const Mission := preload("res://sim/school_two_battle.gd")
 
 class Sample:
@@ -19,7 +19,7 @@ class Sample:
 	func find_unit(id) -> Dictionary:
 		return {"side":0 if 1249-id < owned else 5,"source_state":1}
 
-func _initialize() -> void:
+func test_search_and_terminal_priority() -> void:
 	var s := Sample.new()
 	var m := Mission.new()
 	var observed := [m.result(s,false)]
@@ -39,5 +39,4 @@ func _initialize() -> void:
 	s.owned = 2
 	observed.append(m.result(s,true))
 	var expected := [-1,-1,[1,1],-1,"active",14,11,2,5,8]
-	print("MAP02 result branches ",observed)
-	quit(0 if observed == expected else 1)
+	assert_eq(observed,expected)

@@ -22,9 +22,10 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var july: bool=school["month"]==7
 	var august: bool=school.month==8 and week in [2,3,4,5]
 	var december: bool=school.month>=12
+	var october: bool=[school.month,week]==[10,1]
 	var november: bool=[school.month,week]==[11,3]
-	var september: bool=school.month==9 and week in [3,4]
-	var ledger := opening_ledger if december or june or july or august or week>=3 else Adventures.initial()
+	var september: bool=school.month==9 and week in [3,4,5]
+	var ledger := opening_ledger if october or december or june or july or august or week>=3 else Adventures.initial()
 	if school["month"]==5 and week==2:
 		var previous_id: Variant=previous.get("scene_id",0)
 		if ledger.is_empty() or previous_id not in [0,8,17]:
@@ -44,7 +45,10 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var slots: Variant = facts.get("objective_slots")
 	var timed := scene_id in [4,6,7,9,13,14,20,21,22,24,31,35,41]
 	var objectives := 0 if scene_id in [6,9,10,13,18,20,21,35] else 1 if scene_id in [7,22,24,41] else 2 if scene_id in [4,8,31] else 3
-	if scene_id in [29,32,44,45]:
+	if scene_id==14 and facts.get("dungeon_depth",1) in [2,3]:
+		objectives=9
+		timed=false
+	if scene_id in [11,29,32,33,44,45]:
 		var config := String(handoff.scene.configuration_hex).hex_decode()
 		if config.size()!=42:return Origin.failure("invalid_sortie_result_rules")
 		timed=config[17]!=0
@@ -83,7 +87,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	if school["month"]==5 and week==2 and previous.get("scene_id")==scene_id:
 		if not Roles._bounded(previous.get("task_grade"),1,5): return Origin.failure("invalid_previous_task_grade")
 		initial_grade=previous["task_grade"]
-	if december or june or july or august or week>=3:
+	if october or december or june or july or august or week>=3:
 		var previous_tasks := [8,17]
 		if week==5 or june or july or august: previous_tasks.append(7)
 		if august or july or (june and week>=2): previous_tasks.append(4)
@@ -97,8 +101,11 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		if august and week>=4: previous_tasks.append(21)
 		if september:
 			previous_tasks=[4,6,7,8,9,10,13,14,17,18,20,21,35]
-			if week==4: previous_tasks.append(22)
-		if november or december:previous_tasks=[4,6,7,8,9,10,13,14,17,18,20,21,22,24,35]
+			if week>=4: previous_tasks.append(22)
+			if week==5: previous_tasks.append(24)
+		if october or november or december:previous_tasks=[4,6,7,8,9,10,13,14,17,18,20,21,22,24,35]
+		if october or november or december:previous_tasks.append(11)
+		if november or december:previous_tasks.append(33)
 		if december:
 			previous_tasks.append(41)
 			for entry in [[12,1,31],[12,3,32],[13,2,44],[13,3,29]]:
@@ -128,7 +135,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		classes.append({"students":members,"teacher":teacher,"work_fields":prepared["class_ratings"][group]["work_fields"],"activity":2})
 	var lessons := []
 	var lesson_rules := {}
-	if week==5 or july or (august and week==4):
+	if october or week==5 or july or (august and week==4):
 		var plan := Courses._plan(school,Courses._rules(),true)
 		if not plan["supported"]:return plan
 		classes=plan["classes"]
@@ -138,7 +145,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 	var growth := _grow_classes(after,classes,records,lessons,lesson_rules,rules["role"],facts["growth_seed"])
 	if not growth["supported"]:return growth
 	var recipient: int=growth["recipient"]
-	if recipient < 0 and not (december or november or september or august or (july and week==5)): return Origin.failure("missing_positive_sortie_recipient")
+	if recipient < 0 and not (october or december or november or september or august or (july and week==5)): return Origin.failure("missing_positive_sortie_recipient")
 	var confirmation := Courses._confirm(after,classes,rules["job_categories"],2)
 	var grade_calls := []
 	var delta: int = Battle.Confirmation.GRADE_DELTA[score["grade_index"]]
@@ -170,7 +177,7 @@ static func apply(bundle: Dictionary, handoff: Dictionary, facts: Dictionary, op
 		"old_mvp_count":old_count,"mvp_script":"allresult/dat/mvp%03d.ybc" % recipient if recipient>=0 else "allresult/dat/nomvp.ybc",
 		"history_index":(bundle["school"]["month"]-4)*5+week-1,"relationship_calls":confirmation["relationship_calls"],
 		"adv_request":{"state":6,"script":"adv/dat/ch003.ybc","next_task":18 if scene_id==45 else 7,"week_advanced":scene_id==45}}
-	if week==5 or july or (august and week==4) or september or november or december:
+	if october or week==5 or july or (august and week==4) or september or november or december:
 		summary["lessons"]=growth["lessons"]
 		summary["rand_state"]=growth["rand_state"]
 	after["sortie_result"] = summary.duplicate(true)
@@ -202,9 +209,9 @@ static func _grow_classes(after: Dictionary, classes: Array, records: Array, les
 			var members: Array=item["students"]
 			var inputs := records.filter(func(row):return row["character_id"] in members)
 			var result := Roles.project_growth_records(inputs,members,state,role_rules,
-				[after.school.month,after.school.week] in [[7,5],[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[11,3],[12,1]],
-				[after.school.month,after.school.week] in [[8,5],[9,3],[9,4],[11,3],[12,1]],
-				[after.school.month,after.school.week] in [[11,3],[12,1]],
+				[after.school.month,after.school.week] in [[7,5],[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[10,1],[11,3],[12,1]],
+				[after.school.month,after.school.week] in [[8,5],[9,3],[9,4],[10,1],[11,3],[12,1]],
+				[after.school.month,after.school.week] in [[10,1],[11,3],[12,1]],
 				[after.school.month,after.school.week]==[12,1],after.school.month>12 or (after.school.month==12 and after.school.week>=3))
 			if not result["supported"]:return result
 			for row in result["after"]["characters"]:
@@ -236,7 +243,7 @@ static func _rules(scene_id: int) -> Dictionary:
 	var raw := FileAccess.get_file_as_string(TASK_PATH).replace("\r\n","\n")
 	if raw.sha256_text() != TASK_SHA: return {}
 	var task: Dictionary
-	if scene_id in [4,6,7,9,10,13,14,18,20,21,22,24,29,31,32,35,41,44,45]:
+	if scene_id in [4,6,7,9,10,11,13,14,18,20,21,22,24,29,31,32,33,35,41,44,45]:
 		var mission := Adventures.mission_rules(scene_id)
 		if mission.is_empty():return {}
 		task=mission["rewards"]

@@ -117,6 +117,14 @@ static func mission_rules(id: int) -> Dictionary:
 		7:return seven_rules()
 		9:return nine_rules()
 		10:return ten_rules()
+		33:
+			var raw := FileAccess.get_file_as_string("res://data/school_october_thirty_three.json").replace(String.chr(13),"")
+			if raw.sha256_text()!="8484f7eb28610d5aa7df325f03579c97f172befe3efe7e77781e274602988eb8":return {}
+			return Roles._integers(JSON.parse_string(raw))
+		11:
+			var raw := FileAccess.get_file_as_string("res://data/school_september_eleven.json").replace("\r\n","\n")
+			if raw.sha256_text()!="5bd252a2815003597de0f6ea93ffd259139a2f115231ed2235e0018118661758":return {}
+			return Roles._integers(JSON.parse_string(raw))
 		13:return thirteen_rules()
 		14:return fourteen_rules()
 		18:return eighteen_rules()
@@ -257,11 +265,13 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var june: bool=school["month"]==6
 	var july: bool=school["month"]==7 and school["week"] in range(1,6)
 	var required := _mandatory_id(school["month"],school["week"])
-	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week] not in [[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[11,3],[12,1],[12,3],[13,2],[13,3],[15,4]]):return _failure("outside_supported_sortie_week")
+	if (june and required==0 and school["week"]!=5) or (school["month"] not in [5,6] and not july and [school.month,school.week] not in [[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[9,5],[10,1],[11,3],[12,1],[12,3],[13,2],[13,3],[15,4]]):return _failure("outside_supported_sortie_week")
 	if (required and (id!=required or school["adventure_gate"]!=1)) or (id==7 and required!=7):
 		return _failure("mandatory_adventure_required")
 	var options := [required] if required else ([17,18] if july and school["week"]==1 else [17] if july or june or school.month==8 else [8,17])
 	if [school.month,school.week]==[8,5]:options=[35]
+	if [school.month,school.week]==[9,5]:options=[11]
+	if [school.month,school.week]==[10,1]:options=[33]
 	if school["lecture_active"]!=1 or id not in options or available(ledger).filter(func(r):return r["id"]==id).is_empty():return _failure("select_available_adventure")
 	var rated := Groups.rate(school,Return.group_rules(school))
 	if not rated["supported"]:return rated
@@ -282,7 +292,7 @@ static func prepare(bundle: Dictionary, ledger: Dictionary) -> Dictionary:
 	var specs: Array=source["adventures"][id-1]["rounds"]
 	if specs!=[{"scene_id":id,"selection_word":1}]:return _failure("unsupported_round_selection")
 	var scenes: Dictionary=source["scenes"]
-	if required or id in [18,35]:
+	if required or id in [11,18,33,35]:
 		var mission := mission_rules(id)
 		if mission.is_empty():return _failure("adventure_sources_changed")
 		scenes={str(id):mission["scene"]}

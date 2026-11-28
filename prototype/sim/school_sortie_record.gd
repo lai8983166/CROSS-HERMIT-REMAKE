@@ -6,7 +6,17 @@ static var _cache: Dictionary = {}
 
 
 static func valid_trace(trace: Variant, date: Variant, scene_id: Variant) -> bool:
+	if trace is Dictionary and trace.get("version")==2:
+		if date!=[7,4] or scene_id!=14 or trace.size()!=2 or not trace.get("floors") is Array or trace.floors.size() not in [2,3]:return false
+		if not trace.floors[0] is Dictionary or trace.floors[0].get("version")!=1 or not valid_trace(trace.floors[0],date,scene_id):return false
+		for i in range(1,trace.floors.size()):
+			if not Record.valid_winter_trace(trace.floors[i],Vector2i(128,192),64 if i==1 else 62):return false
+		return true
 	var winter: bool=scene_id in Sortie.Winter.DATES
+	if date==[10,1] or scene_id==33:
+		return date==[10,1] and scene_id==33 and Record.valid_winter_trace(trace,Vector2i(128,192),83)
+	if date==[9,5] or scene_id==11:
+		return date==[9,5] and scene_id==11 and Record.valid_winter_trace(trace,Vector2i(64,192),100)
 	if winter or date in Sortie.Winter.DATES.values():
 		if not winter or date!=Sortie.Winter.DATES[scene_id]:return false
 		return Record.valid_winter_trace(trace,Sortie.Winter.MAP_SIZE[scene_id],Sortie.Winter.TEMPLATES[scene_id])
@@ -43,10 +53,16 @@ static func replay(handoff: Dictionary, trace: Variant) -> Dictionary:
 		return {"supported":false,"reason":"invalid_sortie_handoff"}
 	var key := JSON.stringify([handoff,trace],"",true).sha256_text()
 	if _cache.has(key): return _cache[key].duplicate(true)
-	var run := Record.run_trace(session,trace)
-	if not run["supported"]: return run
+	var floors: Array=trace.floors if trace.get("version")==2 else [trace]
+	for i in floors.size():
+		if i>0:
+			var next: Sortie=session.next_floor()
+			if next==null:return {"supported":false,"reason":"sortie_floor_transition_rejected"}
+			session=next
+		var run := Record.run_trace(session,floors[i])
+		if not run["supported"]: return run
 	var facts := session.result_inputs()
-	if facts.is_empty() or session.battle_trace()!=trace:
+	if facts.is_empty() or session.sortie_trace()!=trace:
 		return {"supported":false,"reason":"sortie_objective_not_reached"}
 	var result := {"supported":true,"facts":facts}
 	if _cache.size()>=4: _cache.erase(_cache.keys()[0])

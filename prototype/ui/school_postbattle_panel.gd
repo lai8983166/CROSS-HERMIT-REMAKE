@@ -317,7 +317,7 @@ func _show_plan(view: Dictionary) -> void:
 	if school["week"]==5 and school.month!=8 and ratings["supported"] and ratings["ratings"].any(func(r):return r["state"]==3):
 		progress.text="有班级设为冒险但尚未选择任务。要全校授课，请将该班切换为授课并确认课程；也可选择冒险，让其余班级照常上课。"
 
-	if school.month==10 or [school.month,school.week] in [[8,1],[9,1],[9,2],[9,5],[11,1],[11,2],[11,4],[11,5]]:return
+	if (school.month==10 and school.week!=1) or [school.month,school.week] in [[8,1],[9,1],[9,2],[11,1],[11,2],[11,4],[11,5]]:return
 	var depart := _button("确认出击交接",func():_confirm("return_depart","确认后锁定本周出击队伍并更新冒险使用记录，随后可进入战场。可以保存出击记录后稍后继续。"))
 	depart.name="depart";row.add_child(depart)
 	var prepared := Adventures.prepare(bundle,plan["ledger"])

@@ -67,7 +67,11 @@ func advance(s) -> void:
 
 func result(s, unavailable: bool) -> int:
 	if s._ending_phase != "active": return -1
-	if unavailable: return 14
+	for id in [1249,1248,1247]:
+		var gate: Dictionary = s.find_unit(id)
+		if not shown.has(Vector2i(0,29)) and gate.source_state == 1 and gate.limits.hp < 200:
+			_show(s,29)
+			return -1
 	for id in [1249,1248,1247]:
 		var gate: Dictionary = s.find_unit(id)
 		if gate.source_state in [2,3,4] and not gate_breached and not retreating:
@@ -86,6 +90,7 @@ func result(s, unavailable: bool) -> int:
 	if penetrations > 0 and not shown.has(Vector2i(1,2)):
 		_show(s,2,1)
 		return -1
+	if unavailable: return 14
 	if finish_due < 0 or s.elapsed < finish_due: return -1
 	for u in s.units:
 		if u.side == 5 and u.character_id not in range(387,405) and u.source_state in [1,3]: return -1

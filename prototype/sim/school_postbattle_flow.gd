@@ -75,6 +75,10 @@ func _settle_replayed_sortie(facts: Dictionary) -> Dictionary:
 	if not settled["supported"]: return settled
 	var story := SortieWeek.story(bundle["school"]["week"],bundle["school"]["month"],_task_grades)
 	if not story["supported"]: return story
+	if [bundle.school.month,bundle.school.week]==[9,5]:
+		var joined := SortieWeek.join_october_student(settled.after,313)
+		if not joined.supported:return joined
+		settled.after=joined.after
 	if story.get("terminal",false):
 		var advanced := SortieWeek.next_week(settled.after,week_observer)
 		if not advanced.supported:return advanced
