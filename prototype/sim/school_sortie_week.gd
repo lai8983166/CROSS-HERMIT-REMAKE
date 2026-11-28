@@ -495,6 +495,8 @@ static func _guard(before: Dictionary, first_week: int, phase: String, rules: Di
 		elif school.week==3:
 			if phase!="sortie_settled" or school.adventure_gate!=1 or school.lecture_active!=1 or school.lecture_work_fields!=[3,21,22,0]:
 				return "outside_mandatory_sortie_return"
+		elif school.week==5 and phase=="sortie_settled":
+			if school.adventure_gate!=0 or school.lecture_active!=1 or school.lecture_work_fields[2]!=11:return "outside_september_sortie_return"
 		elif school.week not in [1,2,5] or phase!="courses_confirmed" or school.get("adventure_gate")!=0:
 			return "outside_september_course_return"
 	if [school.month,school.week]==[10,1] and first_week==1 and phase=="sortie_settled":

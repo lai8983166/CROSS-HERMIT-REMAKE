@@ -399,7 +399,7 @@ static func validate_planning_roster(bundle: Dictionary, rules: Dictionary) -> S
 		var ids := [3,4,9,5,8,6,1,2,16,17,13,14,15]
 		if school.week==4:
 			if bundle.get("phase")!="chapter054_joined":return "outside_chapter054_join"
-		elif bundle.get("phase") in ["chapter056_joined","school_returned","courses_confirmed"]:ids.append(11)
+		elif bundle.get("phase") in ["chapter056_joined","school_returned","courses_confirmed","sortie_settled"]:ids.append(11)
 		elif bundle.get("phase") not in ["sortie_week_advanced","sortie_workroom"]:return "outside_chapter056_join"
 		return _validate(bundle,ids,9,school.week,rules)
 	if [school.get("month"),school.week] in [[8,5],[9,1],[9,2],[9,3],[9,4]] or ([school.get("month"),school.week]==[8,4] and bundle.get("phase") not in ["sortie_week_advanced","sortie_workroom"]):
