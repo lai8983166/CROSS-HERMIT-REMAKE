@@ -77,6 +77,7 @@ var adventure_map_button: Button
 var adventure_trial_button: Button
 var field_trial: FieldTrial
 var combat_trial: CombatTrial
+var imported_sortie_open := false
 var sortie_trial: Control
 var adventure_combat_button: Button
 
@@ -147,6 +148,14 @@ func _ready() -> void:
 	var year_button := _button("学年试玩",func():_open_year(true))
 	year_button.name="school_year_trial"
 	toolbar.add_child(year_button)
+	var native_file := FileDialog.new()
+	native_file.title="读取四月第3周原版学校档"
+	native_file.file_mode=FileDialog.FILE_MODE_OPEN_FILE
+	native_file.access=FileDialog.ACCESS_FILESYSTEM
+	native_file.add_filter("*.sav, *.SAV","原版学校存档")
+	add_child(native_file)
+	native_file.file_selected.connect(_open_native_three)
+	toolbar.add_child(_button("原档出击",func():native_file.popup_centered_ratio(0.75)))
 	save_button = _button("保存",_manual_save)
 	load_button = _button("读取",_load)
 	restart_button = _button("重开",func(): restart_dialog.popup_centered(Vector2i(440,180)))
@@ -258,9 +267,15 @@ func _ready() -> void:
 	postbattle_panel.load_requested.connect(_load)
 	sortie_trial=load("res://ui/school_sortie_trial.gd").new();add_child(sortie_trial)
 	postbattle_panel.sortie_requested.connect(_open_sortie)
-	sortie_trial.closed.connect(refresh)
+	sortie_trial.closed.connect(func():
+		if imported_sortie_open:
+			imported_sortie_open=false
+			panel.show()
+		refresh())
 	sortie_trial.result_confirmed.connect(func(trace):
-		if _act({"op":"sortie_finish","trace":trace}):
+		if sortie_trial.session.scene_id==3:
+			sortie_trial._leave()
+		elif _act({"op":"sortie_finish","trace":trace}):
 			sortie_trial._leave()
 		else:
 			sortie_trial.help_label.text="战斗记录未能通过结算校验。当前出击存档已保留。")
@@ -932,6 +947,19 @@ func _open_combat_trial() -> void:
 		last_battle_handoff.clear()
 		# The trial is modal: hidden school controls cannot receive keyboard focus.
 		panel.hide()
+
+
+func _open_native_three(path: String) -> void:
+	var handoff := preload("res://sim/school_three_departure.gd").load_save(path)
+	if not handoff.is_empty():
+		var names := {}
+		for member in handoff.participants:names[member.character_id]=_name(member.character_id)
+		if sortie_trial.open_trial(handoff,{},names):
+			imported_sortie_open=true
+			panel.hide()
+			return
+	_message="无法打开冒险3。请选择已核验的四月第3周原版学校档。"
+	refresh()
 
 
 func _open_sortie() -> void:

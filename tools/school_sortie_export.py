@@ -131,13 +131,15 @@ def winter_patrol_routes(image, sid, actors):
     return dict(sorted(routes.items(), key=lambda pair:int(pair[0])))
 
 
-def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighteen=False, nine=False, fourteen=False, twenty=False, twenty_one=False, thirty_five=False, twenty_two=False, twenty_four=False, forty_one=False, thirty_one=False, winter=0):
+def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighteen=False, nine=False, fourteen=False, twenty=False, twenty_one=False, thirty_five=False, twenty_two=False, twenty_four=False, forty_one=False, thirty_one=False, winter=0, early_scene=0):
     global PARENT_FRAMES
     if winter and winter not in (32, 44, 29, 45):
         raise ValueError(winter)
-    full_roster=thirty_five or twenty_two or twenty_four or forty_one or thirty_one or winter
+    if early_scene not in (0, 2, 3):
+        raise ValueError(early_scene)
+    full_roster=early_scene or thirty_five or twenty_two or twenty_four or forty_one or thirty_one or winter
     late=twenty or twenty_one or full_roster
-    output=OUT.parent/f'school_winter_{winter}' if winter else OUT.parent/'school_thirty_one' if thirty_one else OUT.parent/'school_forty_one' if forty_one else OUT.parent/'school_twenty_four' if twenty_four else OUT.parent/'school_twenty_two' if twenty_two else OUT.parent/'school_thirty_five' if thirty_five else OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
+    output=OUT.parent/{2:'school_two',3:'school_three'}[early_scene] if early_scene else OUT.parent/f'school_winter_{winter}' if winter else OUT.parent/'school_thirty_one' if thirty_one else OUT.parent/'school_forty_one' if forty_one else OUT.parent/'school_twenty_four' if twenty_four else OUT.parent/'school_twenty_two' if twenty_two else OUT.parent/'school_thirty_five' if thirty_five else OUT.parent/'school_twenty_one' if twenty_one else OUT.parent/'school_twenty' if twenty else OUT.parent/'school_fourteen' if fourteen else OUT.parent/'school_nine' if nine else OUT.parent/'school_eighteen' if eighteen else OUT.parent/'school_thirteen' if thirteen else OUT.parent/'school_ten' if ten else OUT.parent/'school_six' if six else OUT.parent/'school_four' if four else OUT.parent/'school_seven' if seven else OUT
     PARENT_FRAMES=parent_frames(seven or four or six or ten or thirteen or eighteen or nine or fourteen or late,four or six or ten or thirteen or eighteen or nine or fourteen or late,six or ten or thirteen or eighteen or nine or fourteen or late,ten or thirteen or eighteen or nine or fourteen or late,thirteen or eighteen or nine or fourteen or late,eighteen or nine or fourteen or late,nine or fourteen or late,fourteen or late,late,twenty_one or full_roster,full_roster,twenty_two or twenty_four or forty_one or thirty_one or winter)
     if twenty_four or forty_one or thirty_one or winter:
         parents = ('school_twenty_two','school_twenty_two_actions') + (('school_twenty_four',) if forty_one or thirty_one or winter else ()) + (('school_forty_one',) if thirty_one or winter else ()) + (('school_thirty_one',) if winter else ())
@@ -155,7 +157,7 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
     old=formation();terrain=bytes.fromhex(old['terrain_hex'])
     grid=[list(v[:3]) for v in struct.iter_unpack('<bbHH',bytes.fromhex(old['grid_hex']))]
     skins={};scenes={}
-    for sid in ((winter,) if winter else (31,) if thirty_one else (41,) if forty_one else (24,) if twenty_four else (22,) if twenty_two else (35,) if thirty_five else (21,) if twenty_one else (20,) if twenty else (14,) if fourteen else (9,) if nine else (18,) if eighteen else (13,) if thirteen else (10,) if ten else (6,) if six else (4,) if four else (7,) if seven else (8,17)):
+    for sid in ((early_scene,) if early_scene else (winter,) if winter else (31,) if thirty_one else (41,) if forty_one else (24,) if twenty_four else (22,) if twenty_two else (35,) if thirty_five else (21,) if twenty_one else (20,) if twenty else (14,) if fourteen else (9,) if nine else (18,) if eighteen else (13,) if thirteen else (10,) if ten else (6,) if six else (4,) if four else (7,) if seven else (8,17)):
         r=record_rules(sid,image);actors=[]
         for ordinal,t in enumerate(r['templates']):
             value=expected_record(t,rules=r);raw=bytes.fromhex(value['record_hex']);job=value['job']
@@ -186,6 +188,8 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
             'cells':layout['cells'],'passability':[[int(mode==4 or struct.unpack_from('<i',terrain,c[0]*76+mode*16+12)[0]!=0) for c in layout['cells']] for mode in range(5)],
             'actors':actors,'atlas':'res://assets/'+output.name+'/'+atlas.name,'atlas_sha256':digest(atlas.read_bytes()),
             'interaction':{'logic_hz':30,'move_interval':12,'delta_cap':0.2},'player_skins':{}}
+        if early_scene==2:
+            scenes[str(sid)]['regions']={str(n):[i for i in range(len(layout['cells'])) if logical[18+i*6]==n] for n in (1,2)}
         if sid==17:scenes[str(sid)]['exit_cells']=[i for i in range(len(layout['cells'])) if logical[18+i*6]==1]
     attack=source_rules()
     players=((3,10),(4,6),(9,7),(5,4))
@@ -206,6 +210,16 @@ def export(seven=False, four=False, six=False, ten=False, thirteen=False, eighte
         existing = {role for role, _ in players}
         players += tuple((role, struct.unpack_from('<H',image,0x6f5088-BASE+role*1184+6)[0])
                          for role in ((19,20,21) if winter==32 else (4,19,20,21,22,23,24) if winter in (44,29) else (4,10,12,19,20,21,22,23,24,25,26,27,29,30,31,33)) if role not in existing)
+    if early_scene:
+        players = tuple((role, struct.unpack_from('<H', image, 0x6f5088-BASE+role*1184+6)[0])
+                        for role in (10,6,5,4,3,7,9,11,2,1,12,14,15,17,18,13,16,20,21,23))
+        for path in sorted(OUT.parent.glob('school_*/catalog.json')):
+            if path.parent.name in ('school_two','school_three'):
+                continue
+            data = json.loads(path.read_bytes())
+            for skin_data in data.get('skins', {}).values():
+                for frame in skin_data['frames'].values():
+                    PARENT_FRAMES.setdefault(frame['file_sha256'], frame['file'])
     for role,job in players:
         actions=ACTIONS
         if full_roster:
@@ -410,8 +424,10 @@ if __name__=='__main__':
     parser.add_argument('--six',action='store_true')
     parser.add_argument('--may-five',action='store_true')
     parser.add_argument('--july-five',action='store_true')
+    parser.add_argument("--early-scene",type=int,choices=(2,3))
     args=parser.parse_args()
-    if args.winter: export(winter=args.winter)
+    if args.early_scene: export(early_scene=args.early_scene)
+    elif args.winter: export(winter=args.winter)
     elif args.twenty_two_actions: export_twenty_two_actions()
     elif args.july_five: export_july_five()
     elif args.may_five: export_may_five()
