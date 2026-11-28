@@ -6,7 +6,7 @@ import struct
 from pathlib import Path
 
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_32
-from unicorn.x86_const import UC_X86_REG_EIP, UC_X86_REG_ESP
+from unicorn.x86_const import UC_X86_REG_EBP, UC_X86_REG_EIP, UC_X86_REG_ESP
 
 from devtools.inspect_m3_adventure44_guest_saves import inspect_save
 from tools.tactics_exit_emulation import BASE, SOURCE, SOURCE_SHA256
@@ -34,7 +34,14 @@ def offers(save):
             raise ValueError("Invalid original school offer count")
         categories.append([struct.unpack("<h", cpu.mem_read(0x7D599E + category*0x320 + row*10, 2))[0]
                            for row in range(count)])
+    # Execute the category selection shared by all eight visible offer hit boxes.
+    cpu.reg_write(UC_X86_REG_EBP, stack)
+    cpu.emu_start(0x4A204E, 0x4A208E, count=64)
+    if cpu.reg_read(UC_X86_REG_EIP) != 0x4A208E:
+        raise ValueError("Original school list category selection did not finish")
+    category, = struct.unpack("<h", cpu.mem_read(0x7AAB08, 2))
     return {"date":state["date"], "sha256":hashlib.sha256(save).hexdigest(), "categories":categories,
+            "rebuilt_visible_category":category, "visible_offers":categories[category],
             "selected":struct.unpack("<h", cpu.mem_read(0x7AAB16, 2))[0]}
 
 
