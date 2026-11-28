@@ -90,29 +90,44 @@ def compare(before, after, require_44=False):
             'grade44_before_after': [before['mission44_grade'], after['mission44_grade']]}
 
 
+def adventure44_party(raw, before):
+    from devtools.verify_native_april_return import prepare_native_school
+    if before['date'] != [13, 2] or before['selected_mission'] != 44:
+        raise ValueError('Pre-save must show January week 2 with mission 44 selected')
+    _, prepared = prepare_native_school(raw)
+    rounds = prepared['rounds']
+    if len(rounds) != 1 or rounds[0]['scene_id'] != 44:
+        raise ValueError('Original departure did not select one round of adventure 44')
+    ids = rounds[0]['student_ids']
+    if len(ids) != len(set(ids)) or not ids or not set(ids).issubset(before['roster']):
+        raise ValueError('Invalid prepared native squad')
+    return {'original_prepared': prepared, 'original_party_size': len(ids)}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    for endpoint in ('before', 'after'):
-        parser.add_argument(endpoint, type=Path)
-        parser.add_argument(f'--{endpoint}-sha256', required=True)
+    parser.add_argument('before', type=Path)
+    parser.add_argument('--before-sha256', required=True)
+    parser.add_argument('after', type=Path, nargs='?')
+    parser.add_argument('--after-sha256')
+    parser.add_argument('--departure-only', action='store_true', help='verify the January week 2 squad before playing the original battle')
     parser.add_argument('--require-44', action='store_true', help='validate mission/date fields of the pair')
     args = parser.parse_args()
+    if args.departure_only:
+        if args.after or args.after_sha256:
+            parser.error('--departure-only accepts only the pre-save')
+    elif not args.after or not args.after_sha256:
+        parser.error('a comparison requires the post-save and --after-sha256')
     try:
         raw = args.before.read_bytes()
         before = snapshot(raw, args.before_sha256)
-        after = snapshot(args.after.read_bytes(), args.after_sha256)
-        report = compare(before, after, args.require_44)
-        if args.require_44:
-            from devtools.verify_native_april_return import prepare_native_school
-            _, prepared = prepare_native_school(raw)
-            rounds = prepared['rounds']
-            if len(rounds) != 1 or rounds[0]['scene_id'] != 44:
-                raise ValueError('Original departure did not select one round of adventure 44')
-            ids = rounds[0]['student_ids']
-            if len(ids) != len(set(ids)) or not ids or not set(ids).issubset(before['roster']):
-                raise ValueError('Invalid prepared native squad')
-            report['original_prepared'] = prepared
-            report['original_party_size'] = len(ids)
+        if args.departure_only:
+            report = {'before': before, **adventure44_party(raw, before)}
+        else:
+            after = snapshot(args.after.read_bytes(), args.after_sha256)
+            report = compare(before, after, args.require_44)
+            if args.require_44:
+                report.update(adventure44_party(raw, before))
     except (OSError, ValueError) as exc:
         parser.exit(1, f'{exc}\n')
     print(json.dumps(report, sort_keys=True, separators=(',', ':')))
