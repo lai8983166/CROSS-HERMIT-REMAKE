@@ -1,15 +1,16 @@
 extends SceneTree
-const Departure := preload("res://sim/school_native_departure.gd")
+const Campaign := preload("res://sim/school_native_campaign.gd")
 const Sortie := preload("res://sim/school_sortie_session.gd")
 const SAVE_SHA := "d97cdbcb6e76ad8f285f8733c6a63561e0dab102ad5e3c2457a3750ccf0336e4"
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size()!=1 or FileAccess.get_sha256(args[0])!=SAVE_SHA:
+	if args.size() not in [1,2] or FileAccess.get_sha256(args[0])!=SAVE_SHA:
 		quit(2)
 		return
 	var s := Sortie.new()
-	if not s.open(Departure.load_save(args[0])) or s.scene_id!=1:
+	var campaign := Campaign.new()
+	if not campaign.load_origin(args[0]) or not s.open(campaign.departure()) or s.scene_id!=1:
 		printerr("Prepared week-one school admission failed")
 		quit(1)
 		return
@@ -40,4 +41,11 @@ func _initialize() -> void:
 		s.tick()
 		if s._ending_phase=="summary": break
 	print("MAP01 ",s._terminal_choice," waves=",s.one_mission.wave_index," escaped=",s.one_mission.escaped," events=",s.one_mission.shown," attack orders=",attack_orders," elapsed=",s.elapsed," score=",s.native_score.get("total_delta"))
+	if args.size()==2:
+		if not campaign.finish(s,args[1]):printerr("MAP01 return failed");quit(1);return
+		var output:=FileAccess.open(args[1].path_join("native-expected.json"),FileAccess.WRITE)
+		if output==null:quit(1);return
+		output.store_string(JSON.stringify({"score":s.native_score,"facts":s.result_inputs(),"state":campaign.state}))
+		output.close()
+		print("Saved ",campaign.save_path)
 	quit(0 if s._ending_phase=="summary" and s._terminal_choice.tactical_result_selector in [1,2,3] and s.one_mission.wave_index==4 and attack_orders>0 and s.native_score.get("characters",[]).size()==20 else 1)

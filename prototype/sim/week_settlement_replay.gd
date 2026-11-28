@@ -41,8 +41,8 @@ func apply_once(instance_id: String, context: Dictionary, before: Dictionary, ru
 	return result
 
 
-static func project(before: Dictionary, rules: Dictionary) -> Dictionary:
-	var reason := _validate(before, rules)
+static func project(before: Dictionary, rules: Dictionary, native_school := false) -> Dictionary:
+	var reason := _validate(before,rules,native_school)
 	if not reason.is_empty():
 		return _unsupported(reason)
 	var after: Dictionary = before.duplicate(true)
@@ -115,7 +115,7 @@ static func apply_unlocks(record: Dictionary, month: int, week: int, rules: Dict
 			record["unlock_flags"][category] = 1
 
 
-static func _validate(before: Dictionary, rules: Dictionary) -> String:
+static func _validate(before: Dictionary, rules: Dictionary, native_school := false) -> String:
 	for key in ["month", "week", "flags", "participants", "availability", "item_flags"]:
 		if not before.has(key):
 			return "missing_" + key
@@ -130,7 +130,7 @@ static func _validate(before: Dictionary, rules: Dictionary) -> String:
 		return "outside_availability_subset"
 	if not _vector(before["item_flags"], 360, 0, 65535):
 		return "invalid_item_flags"
-	if not before["participants"] is Array or before["participants"].is_empty() or before["participants"].size() > (40 if before.month>=12 else 20):
+	if not before["participants"] is Array or before["participants"].is_empty() or before["participants"].size() > (40 if native_school or before.month>=12 else 20):
 		return "invalid_participants"
 	var seen := {}
 	for record in before["participants"]:

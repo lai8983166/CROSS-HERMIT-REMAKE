@@ -26,7 +26,7 @@ func _run() -> void:
 	var corrupt := raw.duplicate()
 	corrupt[group+16]^=1
 	if not Native.decode(corrupt).is_empty():quit(1);return
-	for patch in [[group+16,second],[group+16,200],[group+14,5],[group+14,0],[0x178,41],[0x7aab16-Native.BASE,99],[0x7a5662-Native.BASE+6,1],[0x7a5662-Native.BASE+14,1]]:
+	for patch in [[group+16,second],[group+16,200],[group+14,5],[group+14,0],[group+3,1],[0x178,41],[0x7aab16-Native.BASE,99],[0x7a5662-Native.BASE+6,1],[0x7a5662-Native.BASE+14,1]]:
 		corrupt=raw.duplicate()
 		corrupt.encode_s16(patch[0],patch[1])
 		_checksum(corrupt)

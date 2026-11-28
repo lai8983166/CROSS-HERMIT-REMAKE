@@ -77,6 +77,9 @@ var adventure_map_button: Button
 var adventure_trial_button: Button
 var field_trial: FieldTrial
 var combat_trial: CombatTrial
+const NativeCampaign := preload("res://sim/school_native_campaign.gd")
+var imported_campaign: NativeCampaign
+var native_return_dialog: ConfirmationDialog
 var imported_sortie_open := false
 var sortie_trial: Control
 var adventure_combat_button: Button
@@ -149,10 +152,21 @@ func _ready() -> void:
 	year_button.name="school_year_trial"
 	toolbar.add_child(year_button)
 	var native_file := FileDialog.new()
-	native_file.title="读取四月第1至3周原版学校档"
+	native_file.title="读取原版学校档或重制续档"
 	native_file.file_mode=FileDialog.FILE_MODE_OPEN_FILE
 	native_file.access=FileDialog.ACCESS_FILESYSTEM
-	native_file.add_filter("*.sav, *.SAV","原版学校存档")
+	native_file.add_filter("*.sav, *.SAV, *.chschool","原版学校档与重制续档")
+	native_file.add_button("重制续档目录",true,"resume")
+	native_file.custom_action.connect(func(action):
+		if action=="resume":
+			var folder := ProjectSettings.globalize_path(NativeCampaign.SAVE_DIR)
+			if DirAccess.make_dir_recursive_absolute(folder)==OK:native_file.current_dir=folder)
+	native_return_dialog=ConfirmationDialog.new()
+	native_return_dialog.title="返校记录"
+	native_return_dialog.cancel_button_text="返回学校菜单"
+	native_return_dialog.confirmed.connect(func():
+		if imported_campaign!=null and not imported_campaign.departure().is_empty():_play_imported_sortie())
+	add_child(native_return_dialog)
 	add_child(native_file)
 	native_file.file_selected.connect(_open_native_sortie)
 	toolbar.add_child(_button("原档出击",func():native_file.popup_centered_ratio(0.75)))
@@ -273,8 +287,12 @@ func _ready() -> void:
 			panel.show()
 		refresh())
 	sortie_trial.result_confirmed.connect(func(trace):
-		if sortie_trial.session.scene_id in [1,2,3]:
+		if imported_sortie_open:
+			if imported_campaign==null or not imported_campaign.finish(sortie_trial.session):
+				sortie_trial.help_label.text="本次返校记录未保存。可重试，或返回学校菜单。"
+				return
 			sortie_trial._leave()
+			_show_native_return()
 		elif _act({"op":"sortie_finish","trace":trace}):
 			sortie_trial._leave()
 		else:
@@ -950,16 +968,47 @@ func _open_combat_trial() -> void:
 
 
 func _open_native_sortie(path: String) -> void:
-	var handoff := preload("res://sim/school_native_departure.gd").load_save(path)
-	if not handoff.is_empty():
-		var names := {}
-		for member in handoff.participants:names[member.character_id]=_name(member.character_id)
-		if sortie_trial.open_trial(handoff,{},names):
-			imported_sortie_open=true
-			panel.hide()
-			return
-	_message="未能载入出击记录。请选择四月第1至3周可出击且已有战场素材的原版学校存档。"
+	var next := NativeCampaign.new()
+	var resume := path.get_extension().to_lower()==NativeCampaign.EXTENSION
+	if (next.load_progress(path) if resume else next.load_origin(path)):
+		imported_campaign=next
+		if resume:_show_native_return()
+		else:_play_imported_sortie()
+		return
+	_message="未能载入出击记录。请核对原版学校档、重制续档及任务日期。"
 	refresh()
+
+
+func _play_imported_sortie() -> void:
+	var handoff := imported_campaign.departure()
+	var names := {}
+	for member in handoff.get("participants",[]):names[member.character_id]=_name(member.character_id)
+	if not handoff.is_empty() and sortie_trial.open_trial(handoff,{},names):
+		imported_sortie_open=true
+		panel.hide()
+		return
+	_message="当前队伍或任务尚未接入战场。"
+	refresh()
+
+
+func _show_native_return() -> void:
+	var state := imported_campaign.state
+	var result: Dictionary=state.last_result
+	var levels := []
+	for row in result.changes:
+		if row.before_level!=row.level:levels.append("%s %d→%d" % [_name(row.id),row.before_level,row.level])
+	var lines := ["4 月第 %d 周　累计经验 %d" % [state.school.week,state.score],
+		"冒险 %d　评价 %d　经验 +%d　MVP %s" % [result.scene,result.grade,result.experience,_name(result.mvp) if result.mvp>=0 else "无"]]
+	var items := []
+	for group in result.loot:
+		for item in group:
+			if item>0:items.append(str(item))
+	lines.append("获得道具：" + ("、".join(items) if not items.is_empty() else "无"))
+	for i in range(0,levels.size(),4):lines.append("　".join(levels.slice(i,i+4)))
+	lines.append("续档已保存到「原档出击」中的「重制续档目录」。")
+	native_return_dialog.dialog_text=String.chr(10).join(lines)
+	native_return_dialog.ok_button_text="继续本周出击" if not imported_campaign.departure().is_empty() else "完成"
+	native_return_dialog.popup_centered(Vector2i(660,320))
 
 
 func _open_sortie() -> void:

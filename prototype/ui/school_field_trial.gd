@@ -185,6 +185,10 @@ func _skin_overrides(_next: Field) -> Variant:
 func open_trial(preparation: Dictionary, combat: Dictionary, names: Dictionary) -> bool:
 	var next = _new_session()
 	if not next.open(preparation,combat): return false
+	return _mount_session(next,names)
+
+
+func _mount_session(next, names: Dictionary) -> bool:
 	var map_catalog = JSON.parse_string(FileAccess.get_file_as_string(MapPreview.CATALOG))
 	if not map_catalog is Dictionary:return false
 	var atlas: String = next.catalog.get("atlas",MapPreview.ATLAS)

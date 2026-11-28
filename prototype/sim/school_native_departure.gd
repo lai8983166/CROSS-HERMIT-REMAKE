@@ -22,7 +22,7 @@ static func decode(raw: PackedByteArray) -> Dictionary:
 	if checksum!=raw.decode_s32(44):return {}
 	var week := raw.decode_s16(0x1a8)
 	if not SCENES.has(week) or raw.decode_s16(0x1a6)!=4 or raw.decode_s16(0x7aab16-BASE)!=week:return {}
-	if raw[0x7a55fc-BASE+week]!=1 or raw.decode_s16(0x7aab0a-BASE)==0:return {}
+	if raw.decode_s16(0x7a55fa-BASE)!=1 or raw[0x7a55fc-BASE+week]!=1 or raw.decode_s16(0x7aab0a-BASE)==0:return {}
 	var ledger_count := raw.decode_s16(0x7a5b62-BASE)
 	if ledger_count<1 or ledger_count>80:return {}
 	var available := false
@@ -63,9 +63,7 @@ static func decode(raw: PackedByteArray) -> Dictionary:
 			continue
 		if teacher not in faculty or teacher in assigned_teachers or group_students.is_empty():return {}
 		assigned_teachers.append(teacher)
-		if raw[record+3]==1:
-			if raw.decode_s16(record+8)<0:return {}
-			continue
+		# 4A7D30 mandatory gate requires every staffed class to receive rating 2.
 		if raw[record+3]!=0:return {}
 		teachers.append(teacher)
 		var group_members: Array=group_students.duplicate()

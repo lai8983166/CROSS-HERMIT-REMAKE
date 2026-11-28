@@ -1,14 +1,18 @@
 extends SceneTree
-const Departure := preload("res://sim/school_native_departure.gd")
+const Campaign := preload("res://sim/school_native_campaign.gd")
 const Sortie := preload("res://sim/school_sortie_session.gd")
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size() != 1 or FileAccess.get_sha256(args[0]) != "fe596120b84afb3e3197198fb1aecc1289479c40b489f2b2dc5b03b320d83261":
+	if args.size() not in [1,2]:quit(2);return
+	var resume: bool=args[0].get_extension()=="chschool"
+	if not resume and FileAccess.get_sha256(args[0]) != "fe596120b84afb3e3197198fb1aecc1289479c40b489f2b2dc5b03b320d83261":
 		quit(2)
 		return
 	var s := Sortie.new()
-	if not s.open(Departure.load_save(args[0])) or s.scene_id != 2:
+	var campaign := Campaign.new()
+	var loaded := campaign.load_progress(args[0]) if resume else campaign.load_origin(args[0])
+	if not loaded or not s.open(campaign.departure()) or s.scene_id != 2:
 		printerr("Week-two admission failed")
 		quit(1)
 		return
@@ -65,4 +69,22 @@ func _initialize() -> void:
 		if s._ending_phase == "summary":
 			break
 	print("MAP02 ",s._terminal_choice," search=",saw_search," moved=",moved," damage=",damaged," attack_orders=",order_count," elapsed=",s.elapsed)
-	quit(0 if moved and damaged and saw_search and order_count > 0 and s._ending_phase == "summary" and s.ending_sub == 5 and s.native_score.get("supported", false) and s.native_score.characters.size() == 20 else 1)
+	var passed: bool = moved and damaged and saw_search and order_count > 0 and s._ending_phase == "summary" and s.ending_sub == 5 and s.native_score.get("supported", false) and s.native_score.characters.size() == 20
+	if args.size()==2:
+		if not campaign.finish(s,args[1]):
+			printerr("Failed to settle played April sortie");quit(1);return
+		var output:=FileAccess.open(args[1].path_join("native-expected.json"),FileAccess.WRITE)
+		if output==null:quit(1);return
+		output.store_string(JSON.stringify({"score":s.native_score,"facts":s.result_inputs(),"state":campaign.state}))
+		output.close()
+		print("Saved ",campaign.save_path)
+		if resume:
+			quit(0 if passed else 1);return
+		var recovered:=Campaign.new()
+		if not recovered.load_progress(campaign.save_path) or recovered.state!=campaign.state or recovered.departure().date!=[4,3]:
+			printerr("Replay did not recover the same returned school");quit(1);return
+		var next:=Sortie.new()
+		if not next.open(recovered.departure()) or next.scene_id!=3:
+			printerr("Returned squad could not enter MAP03");quit(1);return
+		print("Verified cold week-three departure ",next.controlled_units().size()," participants, total ",recovered.state.score)
+	quit(0 if passed else 1)

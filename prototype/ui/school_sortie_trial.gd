@@ -263,7 +263,7 @@ func _refresh() -> void:
 	elif spell_choice.get_selected_id()==31:help_label.text="右键指定治愈中心。射程8格，消耗30 MP，恢复范围内友方的体力。"
 	elif spell_choice.get_selected_id()==57:help_label.text="右键指定障壁中心。射程10格，消耗15 MP。"
 	if phase=="summary":
-		help_label.text="确认战果并返回学校菜单。" if session.scene_id in [1,2,3] else "确认后保存奖励和成长，继续战后剧情。" if session.ending_sub>=0 else "已中止本场，可从保存的出击队伍重新开始。"
+		help_label.text="确认战果后结算成长、保存并返校。" if session.scene_id in [1,2,3] else "确认后保存奖励和成长，继续战后剧情。" if session.ending_sub>=0 else "已中止本场，可从保存的出击队伍重新开始。"
 	var commands_left: int=Record.MAX_COMMANDS-session._trace.size()
 	var ticks_left: int=Record.MAX_SORTIE_TICKS-session._trace_clock
 	var exceeded: bool=session._trace_overflow or ticks_left<0

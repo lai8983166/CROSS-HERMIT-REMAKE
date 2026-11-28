@@ -1,14 +1,18 @@
 extends SceneTree
 const SAVE_SHA := "cf37a6c6854b4dcb4df461418aa07c0dd0276ee96668a941bc8efee332797cd6"
-const Native := preload("res://sim/school_native_departure.gd")
+const Campaign := preload("res://sim/school_native_campaign.gd")
 const Sortie := preload("res://sim/school_sortie_session.gd")
 
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size()!=1:quit(2);return
-	var handoff := Native.load_save(args[0])
+	if args.size() not in [1,2]:quit(2);return
+	var campaign := Campaign.new()
+	var resume: bool=args[0].get_extension()=="chschool"
+	var loaded := campaign.load_progress(args[0]) if resume else campaign.load_origin(args[0])
+	if not loaded:quit(1);return
+	var handoff := campaign.departure()
 	var session := Sortie.new()
-	if handoff.get("native_sha256")!=SAVE_SHA or not session.open(handoff):printerr("MAP03 admission failed");quit(1);return
+	if (not resume and handoff.get("native_sha256")!=SAVE_SHA) or not session.open(handoff) or session.scene_id!=3:printerr("MAP03 admission failed");quit(1);return
 	print("MAP03 admitted ",session.controlled_units().size()," students")
 	while session.ending_snapshot().phase=="opening":session.advance_opening(true)
 	var unit: Dictionary=session.controlled_units()[0]
@@ -51,10 +55,17 @@ func _initialize() -> void:
 		printerr("No objective result");quit(1);return
 	if not session.native_score.get("supported",false):printerr(session.native_score);quit(1);return
 	var trace := session.battle_trace()
-	if trace.overflow or session._terminal_choice!={"tactical_result_selector":1,"script_sub":5} or session.ending_snapshot().summary.defeated_enemies!=38 or session.native_score.characters.size()!=20 or session.native_score.total_delta!=40174:
+	if trace.overflow or session._terminal_choice!={"tactical_result_selector":1,"script_sub":5} or session.ending_snapshot().summary.defeated_enemies!=38 or session.native_score.characters.size()!=20 or (not resume and session.native_score.total_delta!=40174):
 		printerr("MAP03 replay differs from the accepted result");quit(1);return
 	print("MAP03 commands ",trace.commands.size()," ticks ",trace.ticks," SHA-256 ",JSON.stringify(trace).sha256_text())
 	print("MAP03 score ",session.native_score.total_delta," packages ",session.native_score.characters.size())
 	print("MAP03 selector ",session._terminal_choice," defeated ",session.ending_snapshot().summary.defeated_enemies)
 	print("MAP03 tick ",session.elapsed," cell ",unit.cell)
+	if args.size()==2:
+		if not campaign.finish(session,args[1]):printerr("MAP03 return failed");quit(1);return
+		var output:=FileAccess.open(args[1].path_join("native-expected.json"),FileAccess.WRITE)
+		if output==null:quit(1);return
+		output.store_string(JSON.stringify({"score":session.native_score,"facts":session.result_inputs(),"state":campaign.state}))
+		output.close()
+		print("Saved ",campaign.save_path)
 	quit(0)
