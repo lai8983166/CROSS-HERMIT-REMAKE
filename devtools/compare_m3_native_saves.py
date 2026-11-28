@@ -99,8 +99,8 @@ def adventure44_party(raw, before):
     if len(rounds) != 1 or rounds[0]['scene_id'] != 44:
         raise ValueError('Original departure did not select one round of adventure 44')
     ids = rounds[0]['student_ids']
-    if len(ids) != len(set(ids)) or not ids or not set(ids).issubset(before['roster']):
-        raise ValueError('Invalid prepared native squad')
+    if len(ids) != 19 or len(set(ids)) != 19 or not set(ids).issubset(before['roster']):
+        raise ValueError(f'Adventure 44 requires 19 distinct enrolled students, original prepared {len(ids)}')
     return {'original_prepared': prepared, 'original_party_size': len(ids)}
 
 

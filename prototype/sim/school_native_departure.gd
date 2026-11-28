@@ -15,27 +15,39 @@ static func load_save(path: String) -> Dictionary:
 
 
 static func decode(raw: PackedByteArray) -> Dictionary:
+	if raw.size()!=0x306d4:return {}
+	var week := raw.decode_s16(0x1a8)
+	if not SCENES.has(week):return {}
+	return _decode_mission(raw,[4,week],week,SCENES[week])
+
+
+static func decode_january(raw: PackedByteArray) -> Dictionary:
+	var scene: Dictionary=preload("res://sim/school_winter_battle.gd").mission_rules(44).get("scene",{})
+	if scene.is_empty():return {}
+	return _decode_mission(raw,[13,2],44,scene)
+
+
+static func _decode_mission(raw: PackedByteArray, date: Array, mission: int, scene: Dictionary) -> Dictionary:
 	if raw.size()!=0x306d4 or raw.decode_u16(0)!=7 or raw.decode_u32(4)>0x10002:return {}
 	var checksum := 0
 	for i in range(raw.size()):
 		if i<44 or i>=48:checksum+=raw[i] if raw[i]<128 else raw[i]-256
 	if checksum!=raw.decode_s32(44):return {}
-	var week := raw.decode_s16(0x1a8)
-	if not SCENES.has(week) or raw.decode_s16(0x1a6)!=4 or raw.decode_s16(0x7aab16-BASE)!=week:return {}
-	if raw.decode_s16(0x7a55fa-BASE)!=1 or raw[0x7a55fc-BASE+week]!=1 or raw.decode_s16(0x7aab0a-BASE)==0:return {}
+	if [raw.decode_s16(0x1a6),raw.decode_s16(0x1a8)]!=date or raw.decode_s16(0x7aab16-BASE)!=mission:return {}
+	if raw.decode_s16(0x7a55fa-BASE)!=1 or raw[0x7a55fc-BASE+mission]!=1 or raw.decode_s16(0x7aab0a-BASE)==0:return {}
 	var ledger_count := raw.decode_s16(0x7a5b62-BASE)
 	if ledger_count<1 or ledger_count>80:return {}
 	var available := false
 	for i in range(ledger_count):
 		var slot := 0x7a5662-BASE+16*i
-		if raw.decode_s16(slot)!=week:continue
+		if raw.decode_s16(slot)!=mission:continue
 		var elapsed := raw.decode_s16(slot+14)
 		if raw[slot+2]==1 and raw[slot+6]==0 and elapsed>=0 and elapsed<raw.decode_s16(slot+8):available=true
 	if not available:return {}
 	var roster := _roster(raw,0x128,raw.decode_s16(0x178),40,1,45)
 	var faculty := _roster(raw,0x7a5262-BASE,raw.decode_s16(0x7a528a-BASE),20,101,120)
 	if roster.is_empty() or faculty.is_empty():return {}
-	var grade := raw[0x7a54ca-BASE+week]
+	var grade := raw[0x7a54ca-BASE+mission]
 	var total := raw.decode_s32(0x7a511c-BASE)
 	if grade<1 or grade>5 or total<0 or total>999999999:return {}
 	var digest := HashingContext.new()
@@ -45,6 +57,7 @@ static func decode(raw: PackedByteArray) -> Dictionary:
 	var teachers := []
 	var students := []
 	var members := []
+	var student_groups := []
 	var assigned_teachers := []
 	var assigned_students := []
 	for group in range(5):
@@ -84,13 +97,19 @@ static func decode(raw: PackedByteArray) -> Dictionary:
 				member.equipped_skills.append(raw.decode_s16(role+0x52+2*i))
 				member.equipped_items.append(raw.decode_s16(role+0x62+2*i))
 			for i in range(84):member.skill_statuses.append(raw[role+0xb8+12*i])
+			if mission==44:
+				var pack: int=0x7cf34c-BASE+id*0x124
+				member["unlock_flags"]=Array(raw.slice(pack+0xf9,pack+0xf9+30))
 			members.append(member)
 			students.append(id)
+			student_groups.append(group)
 	if students.is_empty():return {}
-	return {"date":[4,week],"supported":true,"ready":true,"requested_states":[10,16],"round_cursor":1,
-		"native_sha256":source_sha,"initial_total":total,"initial_grade":grade,"participants":members,"growth":members.duplicate(true),"scene":SCENES[week],
-		"prepared":{"adventure_id":week,"round_count":1,"round_index":0,
-			"rounds":[{"scene_id":week,"student_ids":students,"teacher_ids":teachers}]}}
+	var round_data := {"scene_id":mission,"student_ids":students,"teacher_ids":teachers}
+	if mission==44:round_data["student_groups"]=student_groups
+	return {"date":date,"supported":true,"ready":true,"requested_states":[10,16],"round_cursor":1,
+		"native_sha256":source_sha,"initial_total":total,"initial_grade":grade,"participants":members,"growth":members.duplicate(true),"scene":scene,
+		"prepared":{"adventure_id":mission,"round_count":1,"round_index":0,
+			"rounds":[round_data]}}
 
 static func _roster(raw: PackedByteArray, offset: int, count: int, capacity: int, first: int, last: int) -> Array:
 	var ids := []

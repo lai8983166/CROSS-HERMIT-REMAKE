@@ -112,3 +112,7 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 | `school-06-1.sav` | 35 | 198356 | `e9105a84c79254b0e8e7c9003611ef0c0beb97d8d6ea968a9688338ff08c4e9d` |
 
 对应原版结果画面为 `result-05-4-07.png`（496578 字节，SHA-256 `ced605fc640a8e98288beddc99279a46aa287ffd1f314dd09baced1d1d2d9ef3`）和 `result-05-5-17.png`（488350 字节，SHA-256 `d2185aff4606d33b32ce5e6d07ac77b2834300717413d3fabe91955634bc42fc`）。
+
+六月第 1 周冒险 4 已在原版运行到时限 36000，剩余 0。终局样本同时记录了客体内最近导出的学校档摘要，与上表六月档一致。样本包含 76 个单位槽，保存为 `battle-06-1-04-terminal.json`（9571 字节，SHA-256 `22300d228f729f8333e137edb47736a04d688c9acc903d3a83cbed602c077d6f`）。
+
+冒险 44 的开场比较使用客体观察器的 `--departure-sha256` 选项、一月学校档的原版出击报告以及重制开场报告。[开场比较器](../devtools/compare_m3_opening.py) 检查两边时钟均为零、学校档摘要一致、19 人编班和顺序一致，再逐槽比较角色、阵营、状态、格坐标及当前和最大 HP/MP。某字段不同会输出双方值；开场比较的范围只覆盖这些学生字段。

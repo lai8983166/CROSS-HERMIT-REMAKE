@@ -82,7 +82,15 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('pid',type=int)
     parser.add_argument('scene',type=int)
+    parser.add_argument('--departure-sha256', help='verify the last original school save exported by this guest')
     args=parser.parse_args()
     game=root/'project/.venv-audit/scene-callback-runtime/CROSS HERMIT/CROSS HERMIT/CROSS HERMIT.EXE'
     output=root/'m3-battle-sample.json'
-    output.write_text(json.dumps(observe(args.pid,args.scene,game),separators=(',',':')),encoding='utf8')
+    if args.departure_sha256:
+        digest=hashlib.sha256((root/'m3-export.sav').read_bytes()).hexdigest()
+        if digest!=args.departure_sha256:
+            raise ValueError('Guest school checkpoint differs from the requested departure')
+    sample=observe(args.pid,args.scene,game)
+    if args.departure_sha256:
+        sample['exported_school_sha256']=digest
+    output.write_text(json.dumps(sample,separators=(',',':')),encoding='utf8')

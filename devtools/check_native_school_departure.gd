@@ -7,6 +7,27 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
+	if args.size()==4 and args[0]=="january":
+		if FileAccess.get_sha256(args[1])!=args[2]:quit(1);return
+		var handoff := Native.decode_january(FileAccess.get_file_as_bytes(args[1]))
+		if handoff.is_empty():printerr("January native handoff unavailable");quit(1);return
+		var battle := Sortie.new()
+		if not battle.open(handoff):printerr("January native squad could not enter MAP44");quit(1);return
+		var report=JSON.parse_string(FileAccess.get_file_as_string(args[3]))
+		if not report is Dictionary or report.get("before",{}).get("sha256")!=handoff.native_sha256:
+			printerr("Original departure report is missing or uses another save");quit(1);return
+		var rounds=report.get("original_prepared",{}).get("rounds")
+		var squad: Dictionary=handoff.prepared.rounds[0]
+		var field_ids := battle.controlled_units().map(func(u):return u.character_id)
+		if not rounds is Array or Sortie.Limits._source_numbers(rounds)!=[squad] or field_ids!=squad.student_ids:
+			printerr("Departure differs: original ",rounds," remake ",squad," field ",field_ids);quit(1);return
+		var students := []
+		for unit in battle.controlled_units():
+			students.append({"role":unit.character_id,"cell":[unit.cell.x,unit.cell.y],"state":unit.source_state,
+				"side":unit.side,"hp":unit.limits.hp,"max_hp":unit.limits.hp_max,"mp":unit.limits.mp,"max_mp":unit.limits.mp_max})
+		print(JSON.stringify({"source_sha256":handoff.native_sha256,"scene":44,"elapsed":battle.elapsed,"party":squad,"opening_students":students}))
+		quit(0)
+		return
 	if args.size()!=1:quit(2);return
 	var raw := FileAccess.get_file_as_bytes(args[0])
 	var base := Native.decode(raw)
