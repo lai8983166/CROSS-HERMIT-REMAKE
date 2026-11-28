@@ -55,3 +55,8 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 | 2zhoumu-quan daoju .SAV | 三月第 4 周 | 912d7353c57bcc4075a9caf9a0a5afe03b5c1ca9fcc6b4a3b81359cd6da9c324 |
 | bb09.SAV | 三月第 1 周 | 196905114f85738571402162785e9229eede19ae6a74dc5ddb5f885ee59cc873 |
 | earth01.SAV | 三月第 5 周 | a1ae3d9f41c8f2ff9fc912bd2bdd4d72cecb163af04dddd7534e7b0086bdc796 |
+### 原版首战返校检查点
+
+隔离客体中从四月第 1 周学校出击，原版冒险 1 结算为 PERFECT，20 人参战、击败敌人 16、评价分数 27、己方被击败 0 次，学级经验 17,960。经过班级成长页和返校剧情后，新建四月第 2 周存档，并在学校 LOAD 页重新选择该档。载入后的原版学校内存读数为四月第 2 周、任务 2、35 名学生。
+
+本地恢复文件为 `.venv-audit/native-worker/m3-new-baseline/week2.sav`，198356 字节，SHA-256 为 `fe596120b84afb3e3197198fb1aecc1289479c40b489f2b2dc5b03b320d83261`。原版 v7 有符号校验和为 250923，文件内日期与在籍人数同载入后的内存一致。此检查点仅覆盖冒险 1。
