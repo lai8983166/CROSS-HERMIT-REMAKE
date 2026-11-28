@@ -83,3 +83,13 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 | school-05-1.sav | 五月第 1 周 | 260906 | 134014 | `19c18150b0cd2400a0825026cb6f8d789fb66eeaf0393fc35a721483f5c33c2c` |
 
 两份存档均为 198356 字节，位于 F 盘既有的 `.venv-audit/native-worker/m3-new-baseline` 目录。
+
+### 原版五月第 2、3 周检查点
+
+五月第 1 周冒险 8 返校后的累计学级经验为 160971，增加 26957。随后两周均从学校选择冒险 17。第 2 周返校后累计为 170748；第 3 周在东北撤离后的原版战果页显示 BAD LUCK，20 人参战，双方击败数均为 0，学级经验再增加 9777，累计为 180525。两周返校档均有 35 名在校学生。
+
+| 新基线目录中的证据 | 字节 | v7 校验和 | SHA-256 |
+|---|---:|---:|---|
+| school-05-2.sav | 198356 | 266182 | `54574f0f27079961452e70f067cd2c2d9a82e0963ab58ef74ee6fa111e5c2b85` |
+| school-05-3.sav | 198356 | 269302 | `8205f69a7effe62d8a1c0ea2453f20f3a29ce1b5e36d7451b768bdeddac20fba` |
+| result-05-3-17.png | 489526 | 战果截图 | `db0de2da0411d0e8df7d4968d3e6beef142ca8502bbbaa8c395bf55bdcfc1ea0` |
