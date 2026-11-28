@@ -65,7 +65,9 @@ class PlayedWeek(WeekSettlementEmulator):
 def verify(case):
     before=case['before']
     cpu=PlayedWeek(before)
-    cpu.call_week()
+    # Full winter rosters can spend nearly ten seconds in Python instruction
+    # hooks on an idle core. Keep the same native instruction/return bounds.
+    cpu.call_week(timeout_us=60_000_000)
     if cpu.week_entry_snapshot!=before:raise ValueError('original week entry differs from command replay')
     after=cpu.week_snapshot()
     actual=digest(after)

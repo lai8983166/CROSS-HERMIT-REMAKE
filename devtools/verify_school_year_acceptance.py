@@ -91,10 +91,22 @@ def current_work(directory,date,row,command):
     summary=after['sortie_result' if battle else 'course_result']
     check(summary['recipient'],row['mvp'],'played MVP')
     check(after['school']['global_total_511c'],row['total'],'played total')
-    for key,data in [('growth_sha256',after['growth']),('history_sha256',after['records']),
+    growth=after['growth']
+    result={'settlement_input_sha256':sha(case_path)}
+    if date==(15,4):
+        # State 12 advances immediately. Its independent observer samples the
+        # synchronized participant fields just before 4D3510. The growth table
+        # also keeps the earlier staged package and career snapshot for each ID.
+        fields=('character_id','job','attributes','growth_pools','level_50','skill_statuses','job_sums','staged_total')
+        carried=[{key:participant[key] for key in fields} for participant in after['participants']]
+        check([p['character_id'] for p in carried],[g['character_id'] for g in before['growth']],'terminal roster order')
+        check([{**prior,**participant} for prior,participant in zip(before['growth'],carried,strict=True)],
+              growth,'complete pre-week terminal growth including retained package and career fields')
+        result['complete_growth_sha256']=digest(growth)
+        growth=carried
+    for key,data in [('growth_sha256',growth),('history_sha256',after['records']),
                      ('relationships_sha256',after['school']['relationships']),('mvp_counts_sha256',after['counts'])]:
         check(digest(data),row[key],f'{date} played {key}')
-    result={'settlement_input_sha256':sha(case_path)}
     if battle:
         handoff_path=directory/f'handoff-{battle}.json'
         facts_path=directory/f'facts-{battle}.json'
@@ -122,7 +134,10 @@ def current_work(directory,date,row,command):
 def verify_delta(final, replay, parents, directory):
     path=ROOT/'prototype/sim/tests/school_year_winter_commands.json'
     package=load(path)
-    suffix=package if isinstance(package,list) else package['commands']
+    check(package['parent_sha256'],parents[-1]['sha256'],'delta parent file')
+    check(package['file_sha256'],replay['save_sha256'],'delta final file')
+    check(package['header'],{k:v for k,v in final.items() if k!='commands'},'delta final header')
+    suffix=package['commands']
     offset=parents[-1]['commands']
     check(suffix,final['commands'][offset:],'retained winter command delta')
     inputs=load(directory/'played-job-transfers.json')
@@ -218,6 +233,9 @@ def verify(directory,final_path):
                 original={'source':HISTORIC[src][0],'comparison':original}
             else:original=current_work(directory,date,details,final['commands'][details['command']-1])
             row['settlement']={**details,'original':original}
+            if date==(15,4):
+                row['settlement']['observed_pre_week_participant_growth_sha256']=details['growth_sha256']
+                row['settlement']['growth_sha256']=original['complete_growth_sha256']
         else:
             check(final['commands'][checkpoint['command']-1]['op'],'sortie_finish','terminal week entered by result')
             row['terminal']={'original_successor':18,'original_dispatch_address':'0x49E3D0','ending_task_factory':'0x4FB1E0','chapter':replay['ending_chapter'],'ordinary_school_return':False,

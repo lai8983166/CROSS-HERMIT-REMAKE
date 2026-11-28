@@ -115,3 +115,5 @@ Chapter071 共 205 条文本，分为 152 页。末尾音乐字段为 2、1，�
 python -m devtools.school_year_winter_commands restore "/path/to/december-two-v39.json" "/path/to/march-ending-v40.json"
 godot --headless --path prototype --script ../devtools/verify_school_year_replay.gd -- "/path/to/march-ending-v40.json" "/path/to/observations"
 ```
+
+[年度验收报告](../analysis/school-year-loop-acceptance.json)逐周给出日期、在籍名单、资格位与个人职业选择格的原版对照，以及各次课程或冒险的结算。30 个周位累计核对 18,240 个资格字节及 9,120 个职业格。六月至冬季存档边界、学校与战斗等 Godot 回归共 120 组、629 项通过。

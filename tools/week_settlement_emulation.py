@@ -100,7 +100,7 @@ class WeekSettlementEmulator(AllResultEmulator):
             'state12_executed': False, 'native_week_body_executed': True,
             'school_task_executed': False, 'authorizes_persistent_write': False}
 
-    def call_week(self):
+    def call_week(self, timeout_us=10_000_000):
         """Bounded whole-body call, with the same budget as its state12 caller.
 
         ExitEmulator.call's one-second budget is for short exit helpers. The
@@ -112,9 +112,11 @@ class WeekSettlementEmulator(AllResultEmulator):
         self.write(sp, RETURN)
         self.uc.reg_write(UC_X86_REG_ESP, sp)
         self.uc.reg_write(UC_X86_REG_ECX, TASK)
-        self.uc.emu_start(0x4D3510, RETURN, timeout=10_000_000, count=2_000_000)
+        self.uc.emu_start(0x4D3510, RETURN, timeout=timeout_us, count=2_000_000)
         if self.uc.reg_read(UC_X86_REG_EIP) != RETURN:
-            raise RuntimeError('whole-week probe exceeded instruction/time bounds')
+            from unicorn import UC_QUERY_TIMEOUT
+            reason='wall timeout' if self.uc.query(UC_QUERY_TIMEOUT) else 'instruction bound'
+            raise RuntimeError(f'whole-week probe reached {reason} at {self.uc.reg_read(UC_X86_REG_EIP):#x}')
         if self.uc.reg_read(UC_X86_REG_ESP) != sp+4:
             raise RuntimeError('whole-week probe ret0 stack mismatch')
 
