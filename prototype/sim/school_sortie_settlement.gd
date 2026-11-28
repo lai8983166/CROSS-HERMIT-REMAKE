@@ -209,9 +209,9 @@ static func _grow_classes(after: Dictionary, classes: Array, records: Array, les
 			var members: Array=item["students"]
 			var inputs := records.filter(func(row):return row["character_id"] in members)
 			var result := Roles.project_growth_records(inputs,members,state,role_rules,
-				[after.school.month,after.school.week] in [[7,5],[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[10,1],[11,3],[12,1]],
-				[after.school.month,after.school.week] in [[8,5],[9,3],[9,4],[10,1],[11,3],[12,1]],
-				[after.school.month,after.school.week] in [[10,1],[11,3],[12,1]],
+				[after.school.month,after.school.week] in [[7,5],[8,2],[8,3],[8,4],[8,5],[9,3],[9,4],[9,5],[10,1],[11,3],[12,1]],
+				[after.school.month,after.school.week] in [[8,5],[9,3],[9,4],[9,5],[10,1],[11,3],[12,1]],
+				[after.school.month,after.school.week] in [[9,5],[10,1],[11,3],[12,1]],
 				[after.school.month,after.school.week]==[12,1],after.school.month>12 or (after.school.month==12 and after.school.week>=3))
 			if not result["supported"]:return result
 			for row in result["after"]["characters"]:

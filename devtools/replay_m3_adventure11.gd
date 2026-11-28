@@ -33,7 +33,7 @@ func _run() -> void:
 				ui.free()
 				quit(1)
 				return
-			checkpoint.store_string(JSON.stringify(ui.model.read_postbattle().planning.handoff))
+			checkpoint.store_string(JSON.stringify(ui.model.read_postbattle()))
 			checkpoint.close()
 		panel.find_child("play_sortie",true,false).pressed.emit()
 		var s=ui.sortie_trial.session
@@ -70,7 +70,9 @@ func _battle_and_return(ui,s) -> bool:
 	print("MAP11 result ",facts.result_selector," escaped ",s.eleven_mission.escaped," attack orders ",attacks," ticks ",s.frame)
 	ui.sortie_trial._refresh()
 	ui.sortie_trial.continue_button.pressed.emit()
-	if ui.model.stage()!="sortie_result":return false
+	if ui.model.stage()!="sortie_result":
+		printerr("MAP11 settlement rejected ",ui.model.execute({"op":"sortie_finish","trace":s.sortie_trace()}))
+		return false
 	var view: Dictionary=ui.model.read_postbattle()
 	var result: Dictionary=view.planning.sortie_summary
 	print("MAP11 settlement ",result.score.total_delta," students ",result.students.size()," MVP ",result.recipient)

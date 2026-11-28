@@ -31,10 +31,10 @@ static func calculate(inputs: Dictionary, rules: Dictionary, may_five := false, 
 		4: party_limit=7
 		5: party_limit=3
 		7: party_limit=5
-		6,9,10,11,13,14,18: party_limit=8
+		6,9,10,13,14,18: party_limit=8
 		20,21: party_limit=10
 		22,24: party_limit=11
-		1,2,3,29,31,32,33,35,41,44,45: party_limit=20
+		1,2,3,11,29,31,32,33,35,41,44,45: party_limit=20
 		17:
 			if july_five: party_limit=10
 			elif june_five: party_limit=8
