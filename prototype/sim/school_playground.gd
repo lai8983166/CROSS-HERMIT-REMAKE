@@ -920,16 +920,19 @@ func restore(payload: Variant) -> Dictionary:
 
 
 func restore_text(content: String) -> Dictionary:
-	if content.to_utf8_buffer().size() > YEAR_MAX_BYTES:
+	var byte_count := content.to_utf8_buffer().size()
+	if byte_count > YEAR_MAX_BYTES:
 		return _failure("save_too_large")
 	var json := JSON.new()
 	if json.parse(content) != OK:
-		return _failure("invalid_save_json")
-	if json.data is Dictionary and content.to_utf8_buffer().size()>MAX_BYTES:
+		return _failure("save_too_large" if byte_count > POST_MAX_BYTES else "invalid_save_json")
+	if byte_count > POST_MAX_BYTES and not json.data is Dictionary:
+		return _failure("save_too_large")
+	if json.data is Dictionary and byte_count > MAX_BYTES:
 		var version: Variant=json.data.get("version")
 		if not (version is float or version is int) or not SAVE_CONTEXTS.has(int(version)) or version!=int(version) or version<5:
 			return _failure("save_too_large")
-		if version<40 and content.to_utf8_buffer().size()>POST_MAX_BYTES:return _failure("save_too_large")
+		if version<40 and byte_count>POST_MAX_BYTES:return _failure("save_too_large")
 	return restore(Roles._integers(json.data))
 
 
