@@ -126,3 +126,5 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 返校比较时，先用 `check_native_school_resume.gd` 读取重制续档，以第二个参数指定待新建的状态报告，再运行 `python -m devtools.compare_m3_school_return PRE POST REPORT --before-sha256 PRE_SHA --after-sha256 POST_SHA`。比较器核验原版出击队伍、经验、评级、道具、在校角色的成长包、学级履历、职业、技能、装备和师生关系。开发回归用六月数据独立解码，验证了 3219 个字段或关系值，并能定位单个成长池改动。一月的实际返校差异仍待原版存档验证。
 
 冒险 44 的开场比较使用客体观察器的 `--departure-sha256` 选项、一月学校档的原版出击报告以及重制开场报告。[开场比较器](../devtools/compare_m3_opening.py) 检查两边时钟均为零、学校档摘要一致、19 人编班和顺序一致，再逐槽比较角色、阵营、状态、格坐标及当前和最大 HP/MP。某字段不同会输出双方值；开场比较的范围只覆盖这些学生字段。
+
+已从固定摘要的战斗记录还原 482 条指令，分布在 91 个下令帧，包括 3 次开场推进、155 次移动、290 次攻击、13 次地面治疗和 21 次指定目标施法。[指令转换器](../devtools/m3_adventure44_orders.py) 保留同帧内的先后顺序，把角色号与敌人实例号转换为原版工作槽。传入原版出击报告时同时核对日期、五班成员和教师。原版何时实际接受各条指令仍需客体观察。
