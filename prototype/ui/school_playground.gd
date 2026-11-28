@@ -171,6 +171,9 @@ func _ready() -> void:
 	native_file.file_selected.connect(_open_native_sortie)
 	toolbar.add_child(_button("战斗教学",func():
 		if sortie_trial.open_tutorial():panel.hide()))
+	toolbar.add_child(_button("对战练习",func():
+		var names:={3:_name(3),6:_name(6),1000:_name(4),1001:_name(8)}
+		if sortie_trial.open_network_practice(names):panel.hide()))
 	toolbar.add_child(_button("原档出击",func():native_file.popup_centered_ratio(0.75)))
 	save_button = _button("保存",_manual_save)
 	load_button = _button("读取",_load)

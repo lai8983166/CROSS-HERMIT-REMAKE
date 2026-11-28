@@ -119,6 +119,8 @@ godot --headless --path "$root/prototype" --log-file "$obs/objective.log" --scri
 
 六月第 2 周冒险 6 在开场对白期间取得时钟 0 的原版战场样本，共 88 个已占用工作槽。独立从同一学校档运行原版出击例程 4A7D30 和 4A6A10，得到的 20 人名单与战场第 0–19 槽逐项相同。首槽为角色 10，HP 661/661。样本 `battle-06-2-06-opening.json` 为 11053 字节，SHA-256 为 `c0da5fd00e895be9fb40275d9ca2b4163100babfafc85ca1507996d902285f8d`。
 
+冒险 6 结果画面记录击破 24 人、取得 30 点、被击破 19 次。学级经验 +39486，累计从 260264 升至 299750。原版六月第 3 周学校档确认在校 35 人，上次出击 6、当前任务 10、累计 299750。`school-06-3.sav` 为 198356 字节，SHA-256 为 `1c4616d7f3eb5f98083c76f4057414c539506971a1ca3bee735094a34b097ad3`；`result-06-2-06.png` 为 494571 字节，SHA-256 为 `3bbff726d187da7bedf0fd58fbfc6eaa05a6614f6b3c6bbedaa6b3e785fb8563`。
+
 返校比较时，先用 `check_native_school_resume.gd` 读取重制续档，以第二个参数指定待新建的状态报告，再运行 `python -m devtools.compare_m3_school_return PRE POST REPORT --before-sha256 PRE_SHA --after-sha256 POST_SHA`。比较器核验原版出击队伍、经验、评级、道具、在校角色的成长包、学级履历、职业、技能、装备和师生关系。开发回归用六月数据独立解码，验证了 3219 个字段或关系值，并能定位单个成长池改动。一月的实际返校差异仍待原版存档验证。
 
 冒险 44 的开场比较使用客体观察器的 `--departure-sha256` 选项、一月学校档的原版出击报告以及重制开场报告。[开场比较器](../devtools/compare_m3_opening.py) 检查两边时钟均为零、学校档摘要一致、19 人编班和顺序一致，再逐槽比较角色、阵营、状态、格坐标及当前和最大 HP/MP。某字段不同会输出双方值；开场比较的范围只覆盖这些学生字段。

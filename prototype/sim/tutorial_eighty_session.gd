@@ -1,4 +1,4 @@
-extends "res://sim/school_sortie_session.gd"
+extends "res://sim/standalone_battle_session.gd"
 ## Standalone battle tutorial. Its fixed student record comes from 452CF0.
 const DATA := "res://assets/tutorial_eighty/catalog.json"
 const DATA_SHA := "24a4728d79b5b73432a3c15b58357f2760d55c5de2037107c1a2db8f3743b705"
@@ -13,18 +13,7 @@ func start() -> bool:
 	catalog=source.scenes["80"]
 	catalog.skins=source.skins
 	combat_rules=source.attack_rules
-	field_width=catalog.cell_size[0]
-	field_height=catalog.cell_size[1]
-	attack_paths=AttackPaths.new(field_width,field_height,catalog.passability)
-	var zeros := []
-	zeros.resize(field_width*field_height)
-	zeros.fill(0)
-	for layer in catalog.passability:
-		var map := SimMapData.new()
-		map.cell_w=field_width
-		map.cell_h=field_height
-		map._layers={"terrain":layer,"object":zeros,"variant":zeros}
-		_maps.append(map)
+	_open_terrain()
 	for actor in catalog.actors:reserves[actor.instance_id]=actor
 	var player: Dictionary=catalog.solo_player
 	var unit := _actor_unit(player,Vector2i(catalog.origin[0],catalog.origin[1]))
@@ -52,9 +41,6 @@ func _update_summoning() -> void:
 
 func can_cast_spell(id: int, skill: int) -> bool:
 	return _ending_phase=="active" and id==units[0].instance_id and units[0].input.equipped_skills.has(skill) and field_spell.is_empty() and units[0].limits.hp>0 and units[0].limits.mp>=String(catalog.spells.rows[str(skill)]).hex_decode().decode_u16(8)
-
-func _update_captures() -> void:
-	pass
 
 func _check_before_actions() -> bool:
 	return false
