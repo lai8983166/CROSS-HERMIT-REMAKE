@@ -44,6 +44,16 @@ def orders(trace, party):
     return result
 
 
+def spell_bindings(school, sequence):
+    required = sorted({(row["actor_role"], row["spell"]) for row in sequence if "spell" in row})
+    bindings = []
+    for role, spell in required:
+        equipped = school["roles"].get(str(role), {}).get("equipped_skills", [])
+        bindings.append({"role":role, "spell":spell,
+                         "equipped_slots":[i for i, current in enumerate(equipped) if current==spell]})
+    return bindings
+
+
 def class_layout(school, party):
     """Identify the exact school UI slots to change without modifying the source save."""
     desired = [[] for _ in party["teacher_ids"]]
@@ -77,13 +87,16 @@ def main():
     if args.inspect_school:
         from devtools.compare_m3_native_saves import snapshot
         school = snapshot(args.inspect_school.read_bytes(), args.school_sha256)
-        print(json.dumps(class_layout(school,party), ensure_ascii=False))
+        layout=class_layout(school,party)
+        layout["spell_bindings"]=spell_bindings(school,result["orders"])
+        print(json.dumps(layout, ensure_ascii=False))
     if args.admission:
         admission = json.loads(args.admission.read_bytes())
         original, = admission["original_prepared"]["rounds"]
         if original != party or admission["before"]["date"] != [13, 2]:
             raise ValueError("Original departure does not match the January order file")
         result["departure_sha256"] = admission["before"]["sha256"]
+        result["spell_bindings"] = spell_bindings(admission["before"],result["orders"])
     if args.output:
         with args.output.open("x", encoding="utf-8") as fp:
             json.dump(result, fp, separators=(",", ":"))

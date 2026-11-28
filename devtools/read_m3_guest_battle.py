@@ -30,7 +30,7 @@ def parse_units(work, records, controller):
     return units
 
 
-def command_state(units, work, read):
+def command_state(units, work, read, records=None):
     """46F170 selected flag and 48DD60's first pending 16-byte unit command."""
     rows = []
     for unit in units:
@@ -47,6 +47,10 @@ def command_state(units, work, read):
                      "target_cell":list(work[at+0x4f0:at+0x4f2]),"skill":struct.unpack_from("<h",work,at+0x4f2)[0],
                      "goal_pixels":list(struct.unpack_from("<hh",work,at+0x4d0)),
                      "first_pending_command":pending})
+        if records is not None:
+            at_record=unit["slot"]*176
+            rows[-1].update(skill_mode=records[at_record+0x9d],selected_skill_slot=records[at_record+0x9e],
+                            skill_slots=list(struct.unpack_from("<8H",records,at_record+0x84)))
     return rows
 
 
@@ -120,7 +124,7 @@ def observe(pid, scene, game, include_commands=False, at_clock=None, timeout=60)
             extra = {}
             if include_commands:
                 try:
-                    extra["command_state"] = command_state(units,work,read)
+                    extra["command_state"] = command_state(units,work,read,records)
                     camera = struct.unpack("<hh",read(ctrl+0x2a30e,4))
                     boxes = read(0x615e5c,4*(1+max((work[u["slot"]*0x520+0x502] for u in units),default=0)))
                     active,kind,x,y,target=struct.unpack("<BBhhh",read(ctrl+0x3098c,8))
