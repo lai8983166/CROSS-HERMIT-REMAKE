@@ -3,19 +3,36 @@ extends "res://sim/standalone_battle_session.gd"
 const DATA := "res://assets/network_battle/catalog.json"
 const DATA_SHA := "22183594aada0c94d9f0afcea77780633b9f8d484aa0a5fa819f65e1c5a67234"
 
-func start(home: Array, away: Array) -> bool:
+func start(home: Array, away: Array, scenario := 71) -> bool:
 	var raw:=FileAccess.get_file_as_string(DATA)
 	if raw.sha256_text()!=DATA_SHA:return false
 	var source: Dictionary=Limits._source_numbers(JSON.parse_string(raw))
 	close()
-	scene_id=71
+	scene_id=scenario
 	catalog=source.scene
 	catalog.skins=source.skins
+	if scenario in [42,43]:
+		var extra_raw:=FileAccess.get_file_as_string("res://assets/network_battle_%d/catalog.json" % scenario)
+		var hashes:={42:"92ff0fade58d99ef157f207268238d53fd3598edc5136f3db33fe25caec3fbf8",43:"e4a116c5e8050cf1afa4551d19edef9cde67d944a80c3f190dd86c8f3ac22914"}
+		if extra_raw.sha256_text()!=hashes[scenario]:return false
+		var extra: Dictionary=Limits._source_numbers(JSON.parse_string(extra_raw))
+		catalog=extra.scene
+		catalog.skins=source.skins.duplicate()
+		catalog.skins.merge(extra.skins,true)
+	elif scenario!=71:return false
 	combat_rules=source.attack_rules
 	_open_terrain()
 	var config:=String(catalog.configuration_hex).hex_decode()
 	var occupied:={}
-	for side in 2:
+	for actor in catalog.get("actors",[]):
+		reserves[actor.instance_id]=actor
+		if actor.state!=1:continue
+		var position:=Vector2i(actor.cell[0],actor.cell[1])
+		var enemy:=_actor_unit(actor,position)
+		units.append(enemy)
+		source_actors[actor.instance_id]=actor
+		occupied[position]=true
+	for side in (2 if scenario==71 else 1):
 		var group:=home if side==0 else away
 		if group.is_empty() or group.size()>source.roster.size():return false
 		var origin:=Vector2i(config[7+side*2],config[8+side*2])
@@ -42,8 +59,8 @@ func start(home: Array, away: Array) -> bool:
 				_participant_ids.append(id)
 				_battle_stats[id]={"character_id":id,"count_field_aa":0,"contribution_field_ac":0,"status_field_ae":0}
 	selected_id=home[0]
-	_initial_enemies=away.size()
-	remaining_ticks=int(config[16])*3600
+	_initial_enemies=enemies().size()
+	remaining_ticks=0x7fffffff if config[16]==255 else int(config[16])*3600
 	rng.seed=1703
 	_ending_phase="active"
 	ready=true
@@ -65,6 +82,10 @@ func _formation_cell(origin: Vector2i, radius: int, mode: int, index: int, occup
 
 func _update_summoning() -> void:
 	elapsed+=2
+	if scene_id!=71:
+		for unit in units.duplicate():
+			if unit.life_kind==2 and unit.source_state==1 and unit.limits.hp>0 and reserves.has(unit.instance_id):
+				_update_summoner(unit,unit.group,unit.lives,reserves[unit.instance_id].summon_interval)
 
 func _admitted(unit: Dictionary, target: Dictionary) -> bool:
 	return _ending_phase=="active" and not target.is_empty() and unit.side!=target.side and unit.limits.hp>0 and target.limits.hp>0
@@ -86,14 +107,19 @@ func _check_before_actions() -> bool:
 func _detect_trial_end() -> bool:
 	var counts:=[0,0,0,0]
 	for unit in units:
-		if unit.source_state==1:counts[unit.side]+=1
+		if unit.side<4 and unit.source_state==1:counts[unit.side]+=1
 	var selector:=0
-	if counts[0]==0 or counts[1]==0:
+	if scene_id in [42,43]:
+		var objectives: Array=[1249] if scene_id==42 else [1249,1248,1247,1246]
+		if objectives.all(func(id):return find_unit(id).get("source_state",-1)==4):
+			selector=1 if _own_casualties==0 else 2
+		elif counts[0]==0 or remaining_ticks==0:selector=5
+	elif counts[0]==0 or counts[1]==0:
 		selector=5 if counts[0]==0 else 1
 	elif remaining_ticks==0:
 		selector=5 if counts[0]<counts[1] else 3 if counts[0]==counts[1] else 1
 	if selector==0:return false
 	ending_sub=0
 	_terminal_choice={"tactical_result_selector":selector,"script_sub":0}
-	_begin_ending("mission_objectives_met" if selector==1 else "time_limit" if remaining_ticks==0 else "own_force_defeated")
+	_begin_ending("mission_objectives_met" if selector in [1,2] else "time_limit" if remaining_ticks==0 else "own_force_defeated")
 	return true

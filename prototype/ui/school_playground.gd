@@ -171,9 +171,14 @@ func _ready() -> void:
 	native_file.file_selected.connect(_open_native_sortie)
 	toolbar.add_child(_button("战斗教学",func():
 		if sortie_trial.open_tutorial():panel.hide()))
-	toolbar.add_child(_button("对战练习",func():
-		var names:={3:_name(3),6:_name(6),1000:_name(4),1001:_name(8)}
-		if sortie_trial.open_network_practice(names):panel.hide()))
+	var practice:=MenuButton.new()
+	practice.text="对战练习"
+	for map_id in [71,42,43]:practice.get_popup().add_item("MAP%d" % map_id,map_id)
+	practice.get_popup().id_pressed.connect(func(map_id):
+		var names:={1000:_name(4),1001:_name(8)}
+		for role in [3,4,6,8,9,10,11,12]:names[role]=_name(role)
+		if sortie_trial.open_network_practice(names,map_id):panel.hide())
+	toolbar.add_child(practice)
 	toolbar.add_child(_button("原档出击",func():native_file.popup_centered_ratio(0.75)))
 	save_button = _button("保存",_manual_save)
 	load_button = _button("读取",_load)

@@ -11,7 +11,9 @@ func _run() -> void:
 	root.add_child(school)
 	var entry: Array=school.find_children("*","Button",true,false).filter(func(b):return b.text=="对战练习")
 	if entry.size()!=1:quit(1);return
-	entry[0].pressed.emit()
+	var args:=OS.get_cmdline_user_args()
+	var scenario:=71 if args.is_empty() else int(args[0])
+	entry[0].get_popup().id_pressed.emit(scenario)
 	var view=school.sortie_trial
 	if not view.visible or not view.session.ready:quit(1);return
 	await process_frame
@@ -27,7 +29,7 @@ func _run() -> void:
 					if view._command_cell(opponents[0].cell) and student.target==opponents[0].instance_id:attacks+=1
 		arena.tick()
 		if arena._ending_phase=="summary":break
-	print("MAP71 local practice ",arena._terminal_choice," attacks ",attacks," elapsed ",arena.elapsed," damage events ",arena.events.size())
+	print( "MAP",scenario," local practice ",arena._terminal_choice," attacks ",attacks," elapsed ",arena.elapsed," damage events ",arena.events.size())
 	var passed:=arena._ending_phase=="summary" and attacks>0 and not arena.events.is_empty()
 	view._continue()
 	await process_frame

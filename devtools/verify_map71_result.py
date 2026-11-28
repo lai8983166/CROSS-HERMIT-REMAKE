@@ -65,6 +65,35 @@ def run():
         assert actual == expected, (counts, remaining, local_side, expected, actual)
     print(f"MAP71 original network result passed {len(cases)} side-count, local-side and timeout cases")
 
+    for scene, entry, bosses in ((42, 0x435dc0, 1), (43, 0x435f10, 4)):
+        for alive, defeated, casualties, clock, expected in (
+            (1, 0, 0, 50, -1), (0, 0, 0, 50, 5), (1, 0, 0, 0, 5),
+            (1, bosses - 1, 0, 10, -1), (1, bosses, 0, 0, 1), (0, bosses, 1, 0, 2),
+        ):
+            uc.mem_write(ctrl + 0x80aec, bytes(250 * 0x520))
+            uc.mem_write(0x7f44d4, bytes([1, 0, 0, 0]))
+            uc.mem_write(ctrl + 0x2ef34, bytes([casualties, 0, 0, 0]))
+            for slot, role, side, state in [(0, 3, 0, 1 if alive else 4)] + [
+                (249-i, 445 if scene==42 else 441+i, 5, 4 if i<defeated else 1)
+                for i in range(bosses)
+            ]:
+                work = ctrl + 0x80aec + slot * 0x520
+                record = ctrl + 0xd0c2c + slot * 176
+                uc.mem_write(work, pack("<h", 1))
+                uc.mem_write(work + 600, pack("<I", record))
+                uc.mem_write(record + 2, pack("<H", role))
+                uc.mem_write(record + 15, bytes([state]))
+                uc.mem_write(record + 0xa4, bytes([side]))
+            uc.mem_write(ctrl + 0x2e6f4, pack("<i", clock))
+            uc.mem_write(task + 0x174, pack("<i", -1))
+            uc.mem_write(top, pack("<I", end))
+            uc.reg_write(UC_X86_REG_ECX, ctrl)
+            uc.reg_write(UC_X86_REG_ESP, top)
+            uc.emu_start(entry, end, count=100000)
+            actual, = unpack("<i", uc.mem_read(task + 0x174, 4))
+            assert uc.reg_read(UC_X86_REG_EIP) == end and actual == expected, (scene, actual, expected)
+        print(f"MAP{scene} original boss state, result precedence and defeat verified")
+
 
 if __name__ == "__main__":
     run()
