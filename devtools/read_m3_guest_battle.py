@@ -43,7 +43,9 @@ def command_state(units, work, read):
             payload, = struct.unpack("<I", read(head + 8, 4))
             pending = read(payload, 16).hex()
         rows.append({"slot":unit["slot"], "role":unit["role"], "selected":work[at+0x28c],
-                     "move_phase":work[at+0x293], "goal_pixels":list(struct.unpack_from("<hh",work,at+0x4d0)),
+                     "move_phase":work[at+0x293], "target_id":struct.unpack_from("<h",work,at+0x4ee)[0],
+                     "target_cell":list(work[at+0x4f0:at+0x4f2]),"skill":struct.unpack_from("<h",work,at+0x4f2)[0],
+                     "goal_pixels":list(struct.unpack_from("<hh",work,at+0x4d0)),
                      "first_pending_command":pending})
     return rows
 
@@ -121,6 +123,9 @@ def observe(pid, scene, game, include_commands=False, at_clock=None, timeout=60)
                     extra["command_state"] = command_state(units,work,read)
                     camera = struct.unpack("<hh",read(ctrl+0x2a30e,4))
                     boxes = read(0x615e5c,4*(1+max((work[u["slot"]*0x520+0x502] for u in units),default=0)))
+                    active,kind,x,y,target=struct.unpack("<BBhhh",read(ctrl+0x3098c,8))
+                    extra["cursor"]={"active":active,"kind":kind,"cell":[x,y],"target":target,
+                                     "world_pixels":list(struct.unpack("<hh",read(ctrl+0x2a34c,4)))}
                     extra["camera"] = list(camera)
                     extra["screen_positions"] = screen_positions(units,work,camera,boxes)
                     if read(ctrl+0x2a30e,4)!=struct.pack("<hh",*camera):
