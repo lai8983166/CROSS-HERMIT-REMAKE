@@ -1,4 +1,5 @@
 import hashlib
+from copy import deepcopy
 import unittest
 from pathlib import Path
 
@@ -25,6 +26,21 @@ class NativeSaveComparison(unittest.TestCase):
         after = {'date': [13, 2], 'departure_mission': 44}
         with self.assertRaisesRegex(ValueError, 'January week 3'):
             compare(before, after, require_44=True)
+
+    def test_growth_keeps_discrete_transitions_without_attribute_changes(self):
+        before = snapshot(APRIL.read_bytes(), APRIL_SHA)
+        after = deepcopy(before)
+        member = str(before['roster'][0])
+        original = before['roles'][member]
+        updated = after['roles'][member]
+        for key in ('skill_statuses', 'week_records', 'job_progress', 'relationships'):
+            updated[key][-1] ^= 1
+        changed = compare(before, after)['growth_differences']
+        self.assertEqual(set(changed), {member})
+        self.assertEqual(changed[member], {
+            key: {len(original[key])-1: [original[key][-1], updated[key][-1]]}
+            for key in ('skill_statuses', 'week_records', 'job_progress', 'relationships')
+        })
 
     def test_separate_integrity_checks(self):
         altered = bytearray(APRIL.read_bytes())

@@ -42,6 +42,10 @@ def snapshot(raw, expected_sha256):
             'job': value(base + 6, 'h'), 'level': value(base + 0x50, 'B'),
             'attributes': [value(base + 0xC + 8*i, 'B') for i in range(7)],
             'growth_pools': [value(base + 0x10 + 8*i, 'I') for i in range(7)],
+            'skill_statuses': [value(base + 0xB8 + 12*i, 'B') for i in range(84)],
+            'week_records': fields(package + 0x24, '177B'),
+            'job_progress': fields(package + 0xD7, '33B'),
+            'relationships': fields(0x7D3D71 + 68*member, '68B'),
             'equipped_skills': fields(base + 0x52, '8h'), 'equipped_items': fields(base + 0x62, '8h'),
             'staged_package': fields(package, '8i'), 'staged_total': value(package + 0x20, 'i')}
     teacher_count = value(0x7A528A, 'h')
@@ -71,6 +75,14 @@ def compare(before, after, require_44=False):
         for key in ('level', 'staged_total'):
             if first[key] != last[key]:
                 changed[key] = last[key] - first[key]
+        if first['job'] != last['job']:
+            changed['job'] = [first['job'], last['job']]
+        for key in ('skill_statuses', 'week_records', 'job_progress', 'relationships',
+                    'equipped_skills', 'equipped_items'):
+            entries = {i: [a, b] for i, (a, b) in enumerate(zip(first[key], last[key], strict=True))
+                       if a != b}
+            if entries:
+                changed[key] = entries
         if changed:
             deltas[member] = changed
     return {'before': before, 'after': after, 'growth_differences': deltas,
