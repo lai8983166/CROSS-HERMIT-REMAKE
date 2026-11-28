@@ -87,13 +87,14 @@ func _tutorial_action() -> void:
 
 func open_network_practice(names: Dictionary, scenario := 71) -> bool:
 	var next:=preload("res://sim/network_battle_session.gd").new()
-	if not next.start([3,6] if scenario==71 else [3,4,6,8,9,10,11,12],[4,8] if scenario==71 else [],scenario) or not _mount_session(next,names):return false
+	if not next.start([3,6] if scenario in [71,93,94] else [3,4,6,8,9,10,11,12],[4,8] if scenario in [71,93,94] else [],scenario) or not _mount_session(next,names):return false
 	_finished=false
 	summary_page=0
 	targets.clear()
 	spell_choice.select(0)
 	canvas.labels=_names.duplicate(true)
 	title_label.text="MAP%d · 本地对战练习" % scenario
+	if scenario in [93,94]:title_label.text="MAP%d · 地形演练" % (23 if scenario==93 else 30)
 	return true
 
 
@@ -183,7 +184,7 @@ func _refresh() -> void:
 			member_buttons[character]=button
 			_names[character]=_names.get(identity,str(character))
 	super._refresh()
-	if session.ready and session.scene_id not in [42,43,71,80] and (session.scene_id in Sortie.Winter.DATES or session.scene_id in [7,33] or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,5],[9,3],[9,4],[11,3],[12,1]]):
+	if session.ready and session.scene_id not in [42,43,71,80,93,94] and (session.scene_id in Sortie.Winter.DATES or session.scene_id in [7,33] or session.departure["date"] in [[5,5],[6,1],[6,2],[6,3],[6,4],[6,5],[7,1],[7,2],[7,3],[7,4],[7,5],[8,2],[8,3],[8,5],[9,3],[9,4],[11,3],[12,1]]):
 		var leaders: Array=session.departure["prepared"]["rounds"][0]["teacher_ids"]
 		info.text=info.text.get_slice("    |",0)+"    |    班级领队："+ "、".join(leaders.map(func(id):return str(_names.get(id,id))))
 		if session.rendezvous:
@@ -240,11 +241,13 @@ func _refresh() -> void:
 	if session.scene_id==71:
 		help_label.text="左键选择学生，右键移动或攻击。击倒对方全队即可胜出；十五分钟后按在场人数判定。"
 		info.text=info.text.get_slice("    |",0)
+	elif session.scene_id in [93,94]:
+		help_label.text="本地地形演练：指挥两名学生击倒对方小队。"
+	elif session.scene_id in [42,43]:
+		help_label.text="击倒首领。" if session.scene_id==42 else "击倒四名首领。"
 	elif session.scene_id==80:
 		help_label.text=["移动到集合点（18,8）。","右键敌人，练习普通攻击。","选择雷击术，再指定目标。","呼叫法娜加入战斗。","选择学生并下达退场命令。","教学完成。"][session.lesson]
 	elif session.scene_id==11:
-	elif session.scene_id in [42,43]:
-		help_label.text="击倒首领。" if session.scene_id==42 else "击倒四名首领。"
 		status.text+="　·　已逃脱 %d/10" % session.eleven_mission.escaped
 		help_label.text="守住南端出口三十分钟。逃脱的敌人越少，评价越高；十名敌人逃脱时战斗结束。"
 	elif session.scene_id==33:
@@ -351,7 +354,7 @@ func _continue() -> void:
 	if session.ending_snapshot()["phase"]=="opening":session.advance_opening(true);_refresh()
 	elif session.ending_snapshot()["phase"]=="event20":session.advance_event();_refresh()
 	elif session.ending_snapshot()["phase"]=="summary":
-		if session.scene_id in [42,43,71,80]:_leave()
+		if session.scene_id in [42,43,71,80,93,94]:_leave()
 		elif session.ending_sub>=0 and not session._trace_overflow and session._trace_clock<=Record.MAX_SORTIE_TICKS:
 			result_confirmed.emit(session.sortie_trace())
 		else: _leave()

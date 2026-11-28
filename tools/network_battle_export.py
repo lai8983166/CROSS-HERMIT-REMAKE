@@ -7,17 +7,17 @@ from tools.school_adventure_scene_rules import source_filenames
 
 
 def export(scene_id=71):
-    if scene_id not in (42, 43, 71):
+    if scene_id not in (42, 43, 71, 93, 94):
         raise ValueError(scene_id)
     image = sortie.SOURCE.read_bytes()
     assert sortie.digest(image) == sortie.SOURCE_SHA256
-    out = sortie.OUT.parent / ("network_battle" if scene_id == 71 else f"network_battle_{scene_id}")
+    out = sortie.OUT.parent / ("network_battle" if scene_id == 71 else f"terrain_practice_{scene_id}" if scene_id in (93,94) else f"network_battle_{scene_id}")
     out.mkdir(exist_ok=True)
     _, files = source_filenames(image, scene_id)
     folder = sortie.GAME / "DATA/TACTICS/MAP"
     layout = sortie.logical_cells((folder/files[0]).read_bytes())
     graphics = (folder/files[1]).read_bytes()
-    atlas = out / f"map{scene_id}.png"
+    atlas = out / files[0].lower().replace(".bin", ".png")
     sortie.atlas_image(graphics, layout, sortie.map_textures(graphics, layout)).save(atlas)
     formation = sortie.formation()
     terrain = bytes.fromhex(formation["terrain_hex"])
@@ -28,6 +28,11 @@ def export(scene_id=71):
              "atlas": f"res://assets/{out.name}/{atlas.name}", "atlas_sha256": sortie.digest(atlas.read_bytes()),
              "passability": passability, "interaction": {"logic_hz":30,"move_interval":12,"delta_cap":0.2}}
     scene["formation_grid"] = [list(row[:3]) for row in struct.iter_unpack("<bbHH", bytes.fromhex(formation["grid_hex"]))]
+    if scene_id in (93,94):
+        data = json.dumps({"scene":scene, "skins":{}}, separators=(",",":")).encode()
+        (out/"catalog.json").write_bytes(data)
+        print(scene_id, scene["cell_size"], sortie.digest(data))
+        return
     roster, skins = [], {}
     attack_rules = sortie.source_rules()
     sortie.PARENT_FRAMES = sortie.parent_frames(*([True]*12))
@@ -92,5 +97,5 @@ def export(scene_id=71):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("scene", type=int, choices=(42,43,71), default=71, nargs="?")
+    parser.add_argument("scene", type=int, choices=(42,43,71,93,94), default=71, nargs="?")
     export(parser.parse_args().scene)

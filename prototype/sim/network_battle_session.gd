@@ -11,9 +11,10 @@ func start(home: Array, away: Array, scenario := 71) -> bool:
 	scene_id=scenario
 	catalog=source.scene
 	catalog.skins=source.skins
-	if scenario in [42,43]:
-		var extra_raw:=FileAccess.get_file_as_string("res://assets/network_battle_%d/catalog.json" % scenario)
-		var hashes:={42:"92ff0fade58d99ef157f207268238d53fd3598edc5136f3db33fe25caec3fbf8",43:"e4a116c5e8050cf1afa4551d19edef9cde67d944a80c3f190dd86c8f3ac22914"}
+	if scenario in [42,43,93,94]:
+		var path:="res://assets/terrain_practice_%d/catalog.json" if scenario in [93,94] else "res://assets/network_battle_%d/catalog.json"
+		var extra_raw:=FileAccess.get_file_as_string(path % scenario)
+		var hashes:={93:"4f5c5fc04614811480cd2b235adebf54900e8281cb63de0ce41b27e8aaea6d38",94:"31a4f172cd5f7c834073eb7400cfee2ee5e7efb471ea2947a2267b58cc6b0cf9",42:"92ff0fade58d99ef157f207268238d53fd3598edc5136f3db33fe25caec3fbf8",43:"e4a116c5e8050cf1afa4551d19edef9cde67d944a80c3f190dd86c8f3ac22914"}
 		if extra_raw.sha256_text()!=hashes[scenario]:return false
 		var extra: Dictionary=Limits._source_numbers(JSON.parse_string(extra_raw))
 		catalog=extra.scene
@@ -32,10 +33,14 @@ func start(home: Array, away: Array, scenario := 71) -> bool:
 		units.append(enemy)
 		source_actors[actor.instance_id]=actor
 		occupied[position]=true
-	for side in (2 if scenario==71 else 1):
+	for side in (1 if scenario in [42,43] else 2):
 		var group:=home if side==0 else away
 		if group.is_empty() or group.size()>source.roster.size():return false
 		var origin:=Vector2i(config[7+side*2],config[8+side*2])
+		var radius:=int(config[15])
+		if scenario in [93,94]:
+			origin=Vector2i(config[7],config[8])+Vector2i(side*7,side*7)
+			radius=12
 		var seen:={}
 		for i in group.size():
 			var id: int=group[i]
@@ -44,7 +49,7 @@ func start(home: Array, away: Array, scenario := 71) -> bool:
 			seen[id]=true
 			var actor: Dictionary=entries[0].duplicate(true)
 			actor.instance_id=id if side==0 else 1000+i
-			var cell:=_formation_cell(origin,config[15],actor.movement_type,i,occupied)
+			var cell:=_formation_cell(origin,radius,actor.movement_type,i,occupied)
 			if cell.x<0:return false
 			occupied[cell]=true
 			var record:=String(actor.record_hex).hex_decode()

@@ -174,6 +174,9 @@ func _ready() -> void:
 	var practice:=MenuButton.new()
 	practice.text="对战练习"
 	for map_id in [71,42,43]:practice.get_popup().add_item("MAP%d" % map_id,map_id)
+	practice.get_popup().add_separator()
+	practice.get_popup().add_item("MAP23 · 地形演练",93)
+	practice.get_popup().add_item("MAP30 · 地形演练",94)
 	practice.get_popup().id_pressed.connect(func(map_id):
 		var names:={1000:_name(4),1001:_name(8)}
 		for role in [3,4,6,8,9,10,11,12]:names[role]=_name(role)
